@@ -21,3 +21,4 @@ The following icons are used in commit messages and this changelog.
 ### ✨ Features
 
 - #1: Added `CHANGELOG`
+- #1: Support for `.editorconfig`

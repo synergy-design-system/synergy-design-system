@@ -5,9 +5,11 @@ title: "[FEAT] "
 labels: component/change, enhancement, status/triage
 ---
 
+<!--
 Thank you for taking your time to request a new feature for a component of the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
+-->
 
---
+---
 
 **Version**:
 
@@ -21,7 +23,7 @@ I suggest to add the feature to the following component: _____
 
 - [ ] I have read the documentation and can confirm the functionality is not provided by the given component.
 
---
+---
 
 **Description**:
 

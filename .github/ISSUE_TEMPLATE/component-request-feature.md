@@ -9,8 +9,6 @@ labels: component/change, enhancement, status/triage
 Thank you for taking your time to request a new feature for a component of the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
----
-
 **Version**:
 
 I am using the following version of the component library: _____
@@ -27,4 +25,12 @@ I suggest to add the feature to the following component: _____
 
 **Description**:
 
+<!--
 Please provide a description of the new feature, e.g. what it should do, and how it should behave.
+-->
+
+**Rationale**:
+
+<!--
+Please provide a reason for this feature to exist.
+-->

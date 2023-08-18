@@ -23,4 +23,5 @@ The following icons are used in commit messages and this changelog.
 - #1: Added `CHANGELOG`
 - #1: Support for `.editorconfig`
 - #1: Added first Github templates
+- #3: Added pull request template
 - #5: Added basic contribution guidelines and initial readme.

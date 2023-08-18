@@ -9,8 +9,6 @@ labels: bug, status/triage
 Thank you for taking your time to report a bug in the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
----
-
 **Version**:
 
 I am using the following version of the component library: _____
@@ -34,4 +32,12 @@ The issue happens in the following browser(s): _____
 
 **Description**:
 
+<!--
 Please provide a description of the bug.
+-->
+
+**Rationale**:
+
+<!--
+Please provide a reason for this feature to exist.
+-->

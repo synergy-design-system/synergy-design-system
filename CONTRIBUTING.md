@@ -2,7 +2,7 @@
 
 Thank you for investing your time to contribute to our project.
 We want to make sure to provide our users with a set of feature rich, high quality and easy to use web-components.
-To archive this, we are using some common conventions when contributing features or components to this repository.
+To achieve this, we are using some common conventions when contributing features or components to this repository.
 
 ## Testing
 
@@ -14,4 +14,4 @@ We are enforcing common code conventions via `eslint` and `prettier`. Please mak
 
 When writing components, use our defined list of design tokens for spacing, fonts or colors. As a rule of thumb, there should be no need to have a static color anywhere in your css code.
 
-Components must be optimized for accessability. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessability Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.
+Components must be optimized for accessibility. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.

@@ -52,7 +52,8 @@ Please provide a summary of the tests affected by this work and any unique strat
 ### Component
 
 - [ ] I have created a new component.
-- [ ] I have added changes to a already existing component.
+- [ ] I have added changes to an already existing component.
 - [ ] I have written integration tests (or have adjusted already existing ones).
-- [ ] I have validated that there are no accessability errors.
-- [ ] I have created or updated any stories affected by my change.
+- [ ] I have validated that there are no accessibility errors.
+- [ ] I have created or updated any stories affected by my changes.
+- [ ] I have used design tokens instead of fix css values

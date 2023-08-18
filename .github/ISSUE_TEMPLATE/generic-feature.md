@@ -3,7 +3,6 @@ name: Feature
 about: Use this template to request a new feature. Please use "Component/Request feature" for requesting features in new components
 title: "[FEAT] "
 labels: status/triage, enhancement
-
 ---
 
 <!--

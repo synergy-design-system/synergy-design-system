@@ -9,3 +9,9 @@ Welcome to the home of the SICK Design System (**SDS**) 🎨.
 This repository provides a set of design-tokens, css styles, web-components and documentation that make it easy to use the SICK Design System in web based applications in a framework agnostic way.
 
 The packages SDS consists of are mainly intended for usage in [SICK](https://www.sick.com) applications to ensure a unique look and feel across products, however you may also use them [for your own projects for free](./LICENSE) as well.
+
+---
+
+## Development environment
+
+SDS uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. If not already installed, install and configure those tools. 

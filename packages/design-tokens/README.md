@@ -1,6 +1,6 @@
 # @sick-design-system/design-tokens
 
-This package provides the low level [design tokens](https://www.invisionapp.com/inside-design/design-tokens/) that form the core of the SICK Design System. It uses [style-dictionary](https://amzn.github.io/style-dictionary) to provide various output formats, as detailed below and allows bidirectional syncs between the original JSON files and [Figma Tokens Studio](https://tokens.studio/).
+This package provides the low level [design tokens](https://www.invisionapp.com/inside-design/design-tokens/) that form the core of the SICK Design System. It uses [style-dictionary](https://amzn.github.io/style-dictionary) to provide various output formats, as described below and allows bidirectional syncs between the original JSON files and [Figma Tokens Studio](https://tokens.studio/).
 
 ---
 
@@ -57,7 +57,7 @@ This is the preferred way to use the SDS design tokens. Custom-Properties have t
 ```
 
 ```javascript
-// Example 2: Referencing via javascript, e.g. when using webpack or vite
+// Example 2: Referencing via JavaScript, e.g. when using webpack or vite
 // Note your bundler may need to be setup to allow css files!
 import '@sick-design-system/design-tokens/css/tokens.css';
 ```
@@ -79,9 +79,9 @@ If you already have a SASS toolchain, you may also use our scss variables. Use t
 }
 ```
 
-### 3. Javascript constants
+### 3. JavaScript constants
 
-We also provide all tokens as javascript constants. This may be needed when you want to use the variables in Javascript based animations or calculations that use our sizings.
+We also provide all tokens as JavaScript constants. This may be needed when you want to use the variables in JavaScript based animations or calculations that use our sizings.
 
 > Beware! Custom Properties and the JavaScript export are NOT synced.
 > If you have overridden a css custom property in the project, the JavaScript exports will still point to the original value!

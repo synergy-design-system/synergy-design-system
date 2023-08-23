@@ -22,17 +22,22 @@ If you want to contribute to this project, please [make sure that a similar issu
 
 Please use the following message conventions for your commits:
 
-`ICON TYPE(PKG) ISSUE_ID: DESCRIPTION`
+`ICON COMMIT PREFIX(PKG) ISSUE_ID: DESCRIPTION`
 
-where ICON and TYPE are one of the following:
+where ICON and COMMIT PREFIX are one of the following:
 
-|  Icon  | Type          | Description
-|:------:|:--------------|:----------------------------
-|   🐛   | Bugs          | Used when a bug was fixed
-|   📚   | Documentation | Used when adding or updating documentation
-|   ✨   | Features      | Feature was added
-|   🚀   | Releases      | Release was scheduled
-|   ⛔   | Removals      | Used when a feature was removed
+|  Icon  | Used for      | Commit Prefix | Description
+|:------:|:--------------|:--------------|:------------
+|   🐛   | Bugs          | Fix           | Used when a bug was fixed
+|   📚   | Documentation | Doc           | Used when adding or updating documentation
+|   ✨   | Features      | Feat          | Feature was added
+|   🚀   | Releases      | Rel           | Release was scheduled
+|   ⛔   | Removals      | Del           | Used when a feature was removed
+
+and PKG is the package in which changes are done:
+
+- **design-tokens**: Design Tokens package
+- **Core**: Web components package
 
 Examples for valid commit messages:
 

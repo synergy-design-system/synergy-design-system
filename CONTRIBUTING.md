@@ -15,3 +15,31 @@ We are enforcing common code conventions via `eslint` and `prettier`. Please mak
 When writing components, use our defined list of design tokens for spacing, fonts or colors. As a rule of thumb, there should be no need to have a static color anywhere in your css code.
 
 Components must be optimized for accessibility. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.
+
+## Contribution workflow:
+
+If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/sds/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes. 
+
+Please use the following message conventions for your commits:
+
+`ICON TYPE(PKG) ISSUE_ID: DESCRIPTION`
+
+where ICON and TYPE are one of the following:
+
+|  Icon  | Type          | Description
+|:------:|:--------------|:----------------------------
+|   🐛   | Bugs          | Used when a bug was fixed
+|   📚   | Documentation | Used when adding or updating documentation
+|   ✨   | Features      | Feature was added
+|   🚀   | Releases      | Release was scheduled
+|   ⛔   | Removals      | Used when a feature was removed
+
+Examples for valid commit messages:
+
+```
+🐛 Fix(design-tokens) #12: Fixed typo in README.md
+✨ Feat(Core) #6: Support for pnpm and workspaces
+📚 Doc(design-tokens) #14: Add installation instructions
+🚀 Rel(design-tokens): v0.2.0
+⛔ Del(design-tokens) #18: Removed less output from design-tokens (not needed)
+```

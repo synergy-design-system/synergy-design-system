@@ -1,0 +1,43 @@
+{
+  "author": {
+    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "url": "https://www.sick.com"
+  },
+  "description": "Design tokens for the SICK Design System",
+  "devDependencies": {
+    "@tokens-studio/sd-transforms": "^0.11.0",
+    "chalk": "^5.3.0",
+    "rimraf": "^5.0.1",
+    "style-dictionary": "^3.8.0"
+  },
+  "exports": {
+    ".": "./build/js/index.js"
+  },
+  "files": [
+    "build",
+    "tokens",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/sds/packages/design-tokens",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "SICK Design System",
+    "Design Tokens"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@sick-design-system/design-tokens",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/sds.git",
+    "directory": "packages/design-tokens"
+  },
+  "scripts": {
+    "build": "pnpm clean && node src/build.js",
+    "clean": "rimraf build",
+    "start": "pnpm build"
+  },
+  "type": "module",
+  "types": "./build/js/index.d.ts",
+  "version": "0.1.0"
+}

@@ -59,7 +59,11 @@ This is the preferred way to use the SDS design tokens. Custom-Properties have t
 ```javascript
 // Example 2: Referencing via JavaScript, e.g. when using webpack or vite
 // Note your bundler may need to be setup to allow css files!
-import '@sick-design-system/design-tokens/css/tokens.css';
+import '@sick-design-system/design-tokens/build/css/tokens.css';
+
+// Example 3: If your system supports package.json exports fields (like vite does),
+// you may optionally also use the following alias:
+import '@sick-design-system/design-tokens/css';
 ```
 
 ### 2. SASS

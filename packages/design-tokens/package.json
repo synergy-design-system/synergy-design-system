@@ -11,7 +11,8 @@
     "style-dictionary": "^3.8.0"
   },
   "exports": {
-    ".": "./build/js/index.js"
+    ".": "./build/js/index.js",
+    "./css": "./build/css/tokens.css"
   },
   "files": [
     "build",

@@ -14,6 +14,8 @@ yarn add @sick-design-system/design-tokens
 pnpm i @sick-design-system/design-tokens
 ```
 
+---
+
 ## Workflow for usage
 
 > This guide assumes you have already [set up your GitHub Repository for syncing with Figma Tokens Studio](https://docs.tokens.studio/sync/github). Please make sure to follow the steps for setting up the sync first!

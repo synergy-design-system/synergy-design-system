@@ -1,7 +1,6 @@
-import { readFileSync } from 'fs';
+import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
-import { registerTransforms } from '@tokens-studio/sd-transforms';
-import { transforms } from '@tokens-studio/sd-transforms';
+import { readFileSync } from 'fs';
 
 const { version } = JSON.parse(readFileSync('./package.json'));
 const buildPath = 'build/';
@@ -10,7 +9,7 @@ const buildPath = 'build/';
 const tokenPrefix = 'sds';
 
 // Set up our own custom transform group
-const sdsTransformGroup = tokenPrefix + '/tokens-studio';
+const sdsTransformGroup = `${tokenPrefix}/tokens-studio`;
 
 // Use @tokens-studio/sd-transforms from Tokens.Studio Figma plugin
 // Register them on StyleDictionary object
@@ -27,18 +26,17 @@ StyleDictionary.registerTransformGroup({
 
 // Set up our custom file header for better comments
 StyleDictionary.registerFileHeader({
-  name: 'sdsHeader',
   fileHeader: (defaultMsg) => [
-    'SICK Design System ' +  version,
+    `SICK Design System ${version}`,
     ...defaultMsg,
   ],
+  name: 'sdsHeader',
 });
 
 const sdsStyleDictionaryConfig = ({
-  source: ['tokens/**/*.json'],
   platforms: {
     css: {
-      buildPath: buildPath + 'css/',
+      buildPath: `${buildPath}css/`,
       files: [{
         destination: 'tokens.css',
         format: 'css/variables',
@@ -50,7 +48,7 @@ const sdsStyleDictionaryConfig = ({
       transformGroup: sdsTransformGroup,
     },
     js: {
-      buildPath: buildPath + 'js/',
+      buildPath: `${buildPath}js/`,
       files: [
         {
           destination: 'index.js',
@@ -71,7 +69,7 @@ const sdsStyleDictionaryConfig = ({
       transformGroup: 'tokens-studio',
     },
     scss: {
-      buildPath: buildPath + 'scss/',
+      buildPath: `${buildPath}scss/`,
       files: [{
         destination: '_tokens.scss',
         format: 'scss/variables',
@@ -86,8 +84,8 @@ const sdsStyleDictionaryConfig = ({
       transformGroup: sdsTransformGroup,
     },
   },
+  source: ['tokens/**/*.json'],
 });
-
 
 StyleDictionary
   .extend(sdsStyleDictionaryConfig)

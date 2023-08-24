@@ -14,4 +14,8 @@ The packages SDS consists of are mainly intended for usage in [SICK](https://www
 
 ## Development environment
 
-SDS uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. If not already installed, install and configure those tools. 
+SDS uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. If not already installed, install and configure those tools.
+
+1. `pnpm install --recursive` installs all dependencies.
+2. `pnpm build` in the root directory forces a build all packages that provide a build job.
+3. `pnpm lint` in the root directory will run all configured lint jobs.

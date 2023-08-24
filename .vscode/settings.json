@@ -1,0 +1,7 @@
+{
+  "cSpell.language": "en,lorem",
+  "cSpell.enableFiletypes": [
+    "editorconfig"
+  ],
+  "stylelint.packageManager": "pnpm"
+}

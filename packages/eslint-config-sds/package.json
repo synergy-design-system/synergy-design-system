@@ -35,6 +35,8 @@
     "url": "https://github.com/SickDesignSystem/sds.git",
     "directory": "packages/eslint-config-sds"
   },
-  "scripts": {},
+  "scripts": {
+    "lint:js": "eslint ."
+  },
   "version": "0.1.0"
 }

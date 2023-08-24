@@ -20,5 +20,4 @@ The following icons are used in commit messages and this changelog.
 
 ### ✨ Features
 
-- #7: Added core setup for eslint JavaScript and TypeScript versions.
-- #8: Added lint job for checking the lint configuration against its own rules.
+- #8: Added core setup for stylelint for easy css linting.

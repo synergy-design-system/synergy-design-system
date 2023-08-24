@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "anseki.vscode-color"
+    "anseki.vscode-color",
+    "stylelint.vscode-stylelint"
   ]
 }

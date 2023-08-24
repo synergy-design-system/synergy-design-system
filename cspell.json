@@ -1,0 +1,12 @@
+{
+  "words": [
+    "sds",
+    "stylelint",
+    "stylelintrc"
+  ],
+  "ignorePaths": [
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "useGitignore": true
+}

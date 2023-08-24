@@ -10,7 +10,7 @@ All features and components must be automatically tested to catch regressions. P
 
 ## Code conventions
 
-We are enforcing common code conventions via `eslint` and `prettier`. Please make sure your code meets those conventions by linting your files or your PR may not be approved.
+We are enforcing common code conventions via `eslint`. Please make sure your code meets those conventions by linting your files or your PR may not be approved. You may use your editors eslint integration or run `pnpm lint` in the package that you are working on.
 
 When writing components, use our defined list of design tokens for spacing, fonts or colors. As a rule of thumb, there should be no need to have a static color anywhere in your css code.
 
@@ -38,6 +38,7 @@ and PKG is the package in which changes are done:
 
 - **design-tokens**: Design Tokens package
 - **Core**: Web components package
+- **lint**: EsLint rules
 
 Examples for valid commit messages:
 

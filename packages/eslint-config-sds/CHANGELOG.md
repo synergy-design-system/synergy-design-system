@@ -20,6 +20,4 @@ The following icons are used in commit messages and this changelog.
 
 ### ✨ Features
 
-- #9: Initial README and CHANGELOG.
-- #9: Added core setup for style-dictionary.
-- #7: Added lint job `pnpm lint`
+- #7: Added core setup for eslint JavaScript and TypeScript versions.

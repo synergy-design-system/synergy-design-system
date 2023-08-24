@@ -4,13 +4,16 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
+    "postcss-lit": "^1.1.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-order": "^6.0.3"
   },
   "description": "Stylelint core rules used in the SICK Design System",
   "devDependencies": {
+    "@microsoft/fast-element": "^1.12.0",
     "@sick-design-system/eslint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
+    "lit": "^2.8.0",
     "stylelint": "^15.10.3"
   },
   "exports": {
@@ -36,7 +39,7 @@
     "directory": "packages/stylelint-config-sds"
   },
   "scripts": {
-    "lint:css": "stylelint demo/*.css",
+    "lint:css": "stylelint \"demo/*.{css,js,ts}\"",
     "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/"
   },

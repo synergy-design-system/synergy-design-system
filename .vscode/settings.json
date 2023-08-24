@@ -3,5 +3,12 @@
   "cSpell.enableFiletypes": [
     "editorconfig"
   ],
-  "stylelint.packageManager": "pnpm"
+  "stylelint.packageManager": "pnpm",
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "javascript",
+    "typescript"
+  ]
 }

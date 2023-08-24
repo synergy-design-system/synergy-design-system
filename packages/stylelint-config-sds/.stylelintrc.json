@@ -1,5 +1,11 @@
 {
   "extends": "stylelint-config-standard",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.js"],
+      "customSyntax": "postcss-lit"
+    }
+  ],
   "plugins": [
     "stylelint-order"
   ],

@@ -9,6 +9,7 @@ module.exports = {
   ],
   rules: {
     complexity: ['error', 5],
+    'import/prefer-default-export': 0,
     'sort-imports': 2,
     'sort-keys': 'warn',
   },

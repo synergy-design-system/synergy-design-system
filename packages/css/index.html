@@ -3,10 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Typography demo for @sick-design-system/css</title>
   <link rel="stylesheet" href="build/with-reset.css" />
+  <style>
+  html, body {
+    background: var(--sds-color-neutral-0);
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: var(--sds-color-neutral-700);
+    color: var(--sds-color-neutral-0);
+    padding: 1rem 2rem;
+  }
+
+  header h1 {
+    margin: 0;
+    text-align: center;
+  }
+
+  main {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: auto;
+    padding: 2rem 2rem 2rem 5rem;
+  }
+
+  /* Code Samples */
+  main code {
+    background: var(--sds-color-accent-400);
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 5px;
+    position: absolute;
+    left: 1rem;
+  }
+
+  main code::before {
+    content: "<";
+  }
+  main code::after {
+    content: ">";
+  }
+
+</style>
 </head>
 <body>
-  
+  <header>
+    <h1>Demo for @sick-design-system/css</h1>
+  </header>
+  <main>
+    
+    <h1><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+    
+    <h2><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
+    
+    <h3><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
+    
+    <h4><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
+    
+    <h5><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
+    
+    <h6><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
+    
+    <p>
+      <code>p</code>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
+      Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
+    </p>
+    
+    <ul>
+      <li>
+        <code>ul</code>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      </li>
+      <li>Error, non obcaecati!</li>
+      <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+      <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+    </ul>
+
+    <ol>
+      <li>
+        <code>ol</code>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      </li>
+      <li>Error, non obcaecati!</li>
+      <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+      <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+    </ol>
+
+  </main>
 </body>
 </html>

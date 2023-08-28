@@ -8,5 +8,6 @@
 
 body {
   color: var(--sds-color-neutral-800);
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }

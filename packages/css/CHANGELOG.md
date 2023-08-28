@@ -21,3 +21,4 @@ The following icons are used in commit messages and this changelog.
 ### ✨ Features
 
 - #11: Added core setup for css utility package
+- #11: Added core font and configuration for inlining

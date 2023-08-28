@@ -2,6 +2,7 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "anseki.vscode-color",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "vunguyentuan.vscode-css-variables"
   ]
 }

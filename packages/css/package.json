@@ -16,6 +16,7 @@
     "postcss-cli": "^10.1.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^15.1.0",
+    "postcss-inline-base64": "^7.3.1",
     "rimraf": "^5.0.1",
     "serve": "^14.2.1",
     "stylelint": "^15.10.3"
@@ -24,7 +25,8 @@
     ".": "./build/default.css"
   },
   "files": [
-    "build"
+    "build",
+    "fonts"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/packages/css",
   "keywords": [

@@ -1,15 +1,14 @@
-import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
-import StyleDictionary from 'style-dictionary';
 import { readFileSync } from 'fs';
+import { registerTransforms } from '@tokens-studio/sd-transforms';
+import StyleDictionary from 'style-dictionary';
+import { buildPath, prefix } from './config.js';
+import { calc } from './transforms/index.js';
+import { SDSTransformGroupDefault } from './transformGroups.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
-const buildPath = 'build/';
 
-// Set sds as our global variable prefix
-const tokenPrefix = 'sds';
-
-// Set up our own custom transform group
-const sdsTransformGroup = `${tokenPrefix}/tokens-studio`;
+// Add support for sds custom transforms
+StyleDictionary.registerTransform(calc);
 
 // Use @tokens-studio/sd-transforms from Tokens.Studio Figma plugin
 // Register them on StyleDictionary object
@@ -17,12 +16,7 @@ const sdsTransformGroup = `${tokenPrefix}/tokens-studio`;
 // @see https://github.com/tokens-studio/sd-transforms
 registerTransforms(StyleDictionary);
 
-// Register custom tokens-studio transform group
-// to add 'name/cti/kebab' for the token names
-StyleDictionary.registerTransformGroup({
-  name: sdsTransformGroup,
-  transforms: [...transforms, 'name/cti/kebab'],
-});
+StyleDictionary.registerTransformGroup(SDSTransformGroupDefault);
 
 // Set up our custom file header for better comments
 StyleDictionary.registerFileHeader({
@@ -43,10 +37,11 @@ const sdsStyleDictionaryConfig = ({
         format: 'css/variables',
         options: {
           fileHeader: 'sdsHeader',
+          outputReferences: true,
         },
       }],
-      prefix: tokenPrefix,
-      transformGroup: sdsTransformGroup,
+      prefix,
+      transformGroup: SDSTransformGroupDefault.name,
     },
     js: {
       buildPath: `${buildPath}js/`,
@@ -66,7 +61,7 @@ const sdsStyleDictionaryConfig = ({
           },
         },
       ],
-      prefix: tokenPrefix,
+      prefix,
       transformGroup: 'tokens-studio',
     },
     scss: {
@@ -76,13 +71,14 @@ const sdsStyleDictionaryConfig = ({
         format: 'scss/variables',
         options: {
           fileHeader: 'sdsHeader',
+          outputReferences: true,
         },
       }],
       options: {
         themeable: true,
       },
-      prefix: tokenPrefix,
-      transformGroup: sdsTransformGroup,
+      prefix,
+      transformGroup: SDSTransformGroupDefault.name,
     },
   },
   source: ['tokens/**/*.json'],

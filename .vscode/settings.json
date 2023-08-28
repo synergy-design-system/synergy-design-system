@@ -10,5 +10,6 @@
     "postcss",
     "javascript",
     "typescript"
-  ]
+  ],
+  "css.lint.unknownAtRules": "ignore"
 }

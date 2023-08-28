@@ -1,0 +1,3 @@
+/* stylelint-disable-next-line import-notation */
+@import "normalize.css";
+@import url("./default.css");

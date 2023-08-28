@@ -1,0 +1,56 @@
+{
+  "author": {
+    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@sick-design-system/design-tokens": "workspace:^"
+  },
+  "description": "Various CSS styles used in the SICK Design System",
+  "devDependencies": {
+    "@sick-design-system/eslint-config-sds": "workspace:^",
+    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "eslint": "^8.47.0",
+    "normalize.css": "^8.0.1",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^15.1.0",
+    "rimraf": "^5.0.1",
+    "serve": "^14.2.1",
+    "stylelint": "^15.10.3"
+  },
+  "exports": {
+    ".": "./build/default.css"
+  },
+  "files": [
+    "build"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/sds/packages/css",
+  "keywords": [
+    "CSS",
+    "Styles",
+    "Reset",
+    "SDS",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@sick-design-system/css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/sds.git",
+    "directory": "packages/css"
+  },
+  "scripts": {
+    "build:clean": "rimraf build",
+    "build:postcss": "postcss src/versions/**/*.css --base src/versions --dir build",
+    "build": "pnpm build:clean && pnpm build:postcss",
+    "demo": "serve .",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
+    "start": "pnpm build"
+  },
+  "version": "0.1.0"
+}

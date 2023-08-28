@@ -2,7 +2,7 @@ import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { readFileSync } from 'fs';
 
-const { version } = JSON.parse(readFileSync('./package.json'));
+const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 const buildPath = 'build/';
 
 // Set sds as our global variable prefix
@@ -27,7 +27,8 @@ StyleDictionary.registerTransformGroup({
 // Set up our custom file header for better comments
 StyleDictionary.registerFileHeader({
   fileHeader: (defaultMsg) => [
-    `SICK Design System ${version}`,
+    `${name} version ${version}`,
+    `${author.name}`,
     ...defaultMsg,
   ],
   name: 'sdsHeader',

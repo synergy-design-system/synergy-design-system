@@ -3,7 +3,8 @@
     "sds",
     "stylelint",
     "stylelintrc",
-    "themeable"
+    "themeable",
+    "autowatch"
   ],
   "ignorePaths": [
     "package.json",

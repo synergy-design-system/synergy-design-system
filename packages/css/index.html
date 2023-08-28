@@ -16,25 +16,44 @@
     flex-direction: column;
   }
 
-  header {
+  header,
+  footer {
     background: var(--sds-color-neutral-700);
-    color: var(--sds-color-neutral-0);
+    text-align: center;
     padding: 1rem 2rem;
   }
 
   header h1 {
+    background: transparent;
+    color: var(--sds-color-neutral-0);
     margin: 0;
     text-align: center;
+  }
+
+  footer small {
+    color: var(--sds-color-neutral-0);
   }
 
   main {
     flex: 1 1 auto;
     height: 100%;
     overflow: auto;
-    padding: 2rem 2rem 2rem 5rem;
+    padding: 0 2rem 0 5rem;
   }
 
   /* Code Samples */
+  .marked {
+    position: relative;
+  }
+
+  .marked code {
+    opacity: 0;
+  }
+
+  .marked:hover code {
+    opacity: 1;
+  }
+
   main code {
     background: var(--sds-color-accent-400);
     border-radius: 5px;
@@ -42,7 +61,8 @@
     font-size: 1rem;
     padding: 5px;
     position: absolute;
-    left: 1rem;
+    transition: opacity .3s;
+    left: -3.5rem;
   }
 
   main code::before {
@@ -51,7 +71,6 @@
   main code::after {
     content: ">";
   }
-
 </style>
 </head>
 <body>
@@ -60,26 +79,35 @@
   </header>
   <main>
     
-    <h1><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+    <h1 class="marked"><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
     
-    <h2><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
+    <h2 class="marked"><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
     
-    <h3><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
+    <h3 class="marked"><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
     
-    <h4><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
+    <h4 class="marked"><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
     
-    <h5><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
+    <h5 class="marked"><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
     
-    <h6><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
+    <h6 class="marked"><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
     
-    <p>
+    <p class="marked">
       <code>p</code>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
       Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
     </p>
     
-    <ul>
+    <p class="marked">
+      <code>small</code>
+      <small>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
+        Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
+      </small>
+    </p>
+
+    <ul class="marked">
       <li>
         <code>ul</code>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -89,7 +117,7 @@
       <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
     </ul>
 
-    <ol>
+    <ol class="marked">
       <li>
         <code>ol</code>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -100,5 +128,8 @@
     </ol>
 
   </main>
+  <footer>
+    <small>Hover over an item to see its corresponding tag name</small>
+  </footer>
 </body>
 </html>

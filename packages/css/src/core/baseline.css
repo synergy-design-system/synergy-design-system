@@ -7,7 +7,8 @@
 @import url("@sick-design-system/design-tokens/build/css/tokens.css");
 
 body {
+  background: var(--sds-color-neutral-0);
   color: var(--sds-color-neutral-800);
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sds-font-family-default), var(--sds-font-family-system);
   font-size: 14px;
 }

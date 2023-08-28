@@ -4,7 +4,8 @@
     "stylelint",
     "stylelintrc",
     "themeable",
-    "autowatch"
+    "autowatch",
+    "fouc"
   ],
   "ignorePaths": [
     "package.json",

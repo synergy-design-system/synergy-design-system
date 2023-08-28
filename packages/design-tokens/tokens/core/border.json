@@ -1,0 +1,48 @@
+{
+  "border": {
+    "radius": {
+      "none": {
+        "value": "0px",
+        "type": "borderRadius",
+        "description": "None"
+      },
+      "pill": {
+        "value": "99px",
+        "type": "borderRadius",
+        "description": "Pill"
+      },
+      "circle": {
+        "value": "50%",
+        "type": "borderRadius",
+        "description": "Circle"
+      }
+    },
+    "width": {
+      "none": {
+        "value": "0px",
+        "type": "borderWidth",
+        "description": "None"
+      },
+      "default": {
+        "value": "1px",
+        "type": "borderWidth",
+        "description": "Default"
+      },
+      "small": {
+        "value": "2px",
+        "type": "borderWidth",
+        "description": "Small"
+      },
+      "medium": {
+        "value": "3px",
+        "type": "borderWidth",
+        "description": "Medium"
+      },
+      "large": {
+        "value": "4px",
+        "type": "borderWidth",
+        "description": "Large"
+      }
+    }
+  }
+}

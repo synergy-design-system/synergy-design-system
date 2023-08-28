@@ -18,6 +18,8 @@ The following icons are used in commit messages and this changelog.
 
 ### 🐛 Bugs
 
+- #11: Set default `ecmaVersion` to es2023 to prevent optional chaining false positives
+
 ### ✨ Features
 
 - #7: Added core setup for eslint JavaScript and TypeScript versions.

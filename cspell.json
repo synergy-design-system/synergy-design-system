@@ -2,7 +2,8 @@
   "words": [
     "sds",
     "stylelint",
-    "stylelintrc"
+    "stylelintrc",
+    "themeable"
   ],
   "ignorePaths": [
     "package.json",

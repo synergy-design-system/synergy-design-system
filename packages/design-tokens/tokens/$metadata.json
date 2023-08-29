@@ -6,7 +6,7 @@
     "core/duration",
     "core/opacity",
     "core/shadow",
-    "core/space_size",
+    "core/spacing",
     "core/typography",
     "semantic/light",
     "semantic/dark"

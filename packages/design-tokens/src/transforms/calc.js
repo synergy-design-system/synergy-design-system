@@ -21,11 +21,11 @@ export const calc = {
   transformer: ({ value }) => {
     // CSS Calc syntax needs a whitespace before AND after the calculation because:
     //   calc(4px * 3); <-- valid
-    //   calc(4px *3);  <!-- invalid
+    //   calc(4px *3);  <-- invalid
     const output = value
-      .replace(/\*/, '* ') // Make sure we have a whitespace after our calculation char
-      .replace(/\//, '/ ') // Make sure we have a whitespace after our calculation char
-      .replace(/\+/, '+ ') // Make sure we have a whitespace after our calculation char
+      .replace(/\*/g, ' * ') // Make sure we have a whitespace after our calculation char
+      .replace(/\//g, ' / ') // Make sure we have a whitespace after our calculation char
+      .replace(/\+/g, ' + ') // Make sure we have a whitespace after our calculation char
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
 

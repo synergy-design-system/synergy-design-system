@@ -5,7 +5,8 @@
     "stylelintrc",
     "themeable",
     "autowatch",
-    "fouc"
+    "fouc",
+    "rgba"
   ],
   "ignorePaths": [
     "package.json",

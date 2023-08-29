@@ -3,7 +3,7 @@ import { registerTransforms } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { buildPath, prefix } from './config.js';
 import { calc } from './transforms/index.js';
-import { SDSTransformGroupDefault } from './transformGroups.js';
+import { SDSTransformGroupDefault, SDSTransformGroupSASS } from './transformGroups.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
@@ -17,6 +17,7 @@ StyleDictionary.registerTransform(calc);
 registerTransforms(StyleDictionary);
 
 StyleDictionary.registerTransformGroup(SDSTransformGroupDefault);
+StyleDictionary.registerTransformGroup(SDSTransformGroupSASS);
 
 // Set up our custom file header for better comments
 StyleDictionary.registerFileHeader({
@@ -78,7 +79,7 @@ const sdsStyleDictionaryConfig = ({
         themeable: true,
       },
       prefix,
-      transformGroup: SDSTransformGroupDefault.name,
+      transformGroup: SDSTransformGroupSASS.name,
     },
   },
   source: ['tokens/**/*.json'],

@@ -2,144 +2,153 @@
   "font": {
     "family": {
       "default": {
-        "value": "Open Sans",
+        "description": "The default font stack used for regular text",
         "type": "fontFamilies",
-        "description": "Open Sans"
+        "value": "{font.family.serif}, {font.family.system}"
+      },
+      "monospace": {
+        "description": "The font used for monospaced text. Using monospace twice is a common bugfix, do not remove it!",
+        "type": "fontFamilies",
+        "value": "monospace, monospace"
+      },
+      "serif": {
+        "description": "Our main digital font family is Open Sans from Google Fonts. Open Sans is a humanist sans serif typeface designed by Steve Matteson, Type Director of Ascender Corp. It contains the complete 897 character set, which includes the standard ISO Latin 1, Latin CE, Greek and Cyrillic character sets.",
+        "type": "fontFamilies",
+        "value": "Open Sans"
       },
       "system": {
-        "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
+        "description": "Default fallback system font stack. Used when primary font cannot be found.",
         "type": "fontFamilies",
-        "description": "System Font Stack"
+        "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
       }
     },
     "weight": {
       "regular": {
-        "value": "400",
+        "description": "Regular",
         "type": "fontWeights",
-        "description": "Regular"
+        "value": "400"
       },
       "semibold": {
-        "value": "600",
+        "description": "Semibold",
         "type": "fontWeights",
-        "description": "Semibold"
+        "value": "600"
       },
       "bold": {
-        "value": "700",
+        "description": "Bold",
         "type": "fontWeights",
-        "description": "Bold"
+        "value": "700"
       }
     },
-    "lineheight": {
+    "lineHeight": {
       "100": {
+        "description": "1.0",
         "value": "100%",
-        "type": "lineHeights",
-        "description": "1.0"
+        "type": "lineHeights"
       },
       "110": {
-        "value": "110%",
+        "description": "1.1",
         "type": "lineHeights",
-        "description": "1.1"
+        "value": "110%"
       },
       "120": {
-        "value": "120%",
+        "description": "1.2",
         "type": "lineHeights",
-        "description": "1.2"
+        "value": "120%"
       },
       "130": {
-        "value": "130%",
+        "description": "1.3",
         "type": "lineHeights",
-        "description": "1.3"
+        "value": "130%"
       },
       "140": {
-        "value": "140%",
+        "description": "1.4",
         "type": "lineHeights",
-        "description": "1.4"
+        "value": "140%"
       },
       "150": {
-        "value": "150%",
+        "description": "1.5",
         "type": "lineHeights",
-        "description": "1.5"
+        "value": "150%"
+      },
+      "default": {
+        "description": "Default line height to use for body text",
+        "type": "lineHeights",
+        "value": "{font.lineHeight.120}"
       }
     },
-    "letterspacing": {
+    "letterSpacing": {
       "wide": {
-        "value": "4.5px",
+        "description": "Wide letter spacing",
         "type": "letterSpacing",
-        "description": "Wide"
+        "value": "4.5px"
       }
     },
     "text": {
-      "transform-uppercase": {
-        "value": "uppercase",
+      "uppercase": {
+        "description": "Uppercase",
         "type": "textCase",
-        "description": "Uppercase"
+        "value": "uppercase"
       },
-      "decoration-underline": {
-        "value": "underline",
+      "underline": {
+        "description": "Underline",
         "type": "textDecoration",
-        "description": "Underline"
+        "value": "underline"
       }
     },
     "size": {
-      "size-70": {
-        "value": "{dimension.font.base} * 0.714",
-        "type": "fontSizes",
-        "description": "Size-70"
+      "body": {
+        "l": {
+          "description": "Larger content text.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base} * {dimension.font.scale}"
+        },
+        "m": {
+          "description": "Default content text.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base}"
+        },
+        "s": {
+          "description": "Small text and labels.",
+          "type": "fontSizes",
+          "value": "12"
+        },
+        "xs": {
+          "description": "Only for really small purposes. Please test if this size is really necessary.",
+          "type": "fontSizes",
+          "value": "10"
+        }
       },
-      "size-85": {
-        "value": "{dimension.font.base} * 0.857",
-        "type": "fontSizes",
-        "description": "Size-85"
-      },
-      "size-100": {
-        "value": "{dimension.font.base}",
-        "type": "fontSizes",
-        "description": "Size-100"
-      },
-      "size-200": {
-        "value": "{dimension.font.base} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-200"
-      },
-      "size-300": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-300"
-      },
-      "size-400": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-400"
-      },
-      "size-500": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-500"
-      },
-      "size-600": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-600"
-      },
-      "size-700": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-700"
-      },
-      "size-800": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-800"
-      },
-      "size-900": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-900"
-      },
-      "size-1000": {
-        "value": "{dimension.font.base} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale} * {dimension.font.scale}",
-        "type": "fontSizes",
-        "description": "Size-1000"
+      "headline": {
+        "xl": {
+          "description": "Main content header. Use only once on a page.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.l} * {dimension.font.scale}"
+        },
+        "l": {
+          "description": "Secondary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.m} * {dimension.font.scale}"
+        },
+        "m": {
+          "description": "Tertiary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.s} * {dimension.font.scale}"
+        },
+        "s": {
+          "description": "Quaternary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.xs} * {dimension.font.scale}"
+        },
+        "xs": {
+          "description": "Section header.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.xxs} * {dimension.font.scale}"
+        },
+        "xxs": {
+          "description": "Section header.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base}"
+        }
       }
     }
   }

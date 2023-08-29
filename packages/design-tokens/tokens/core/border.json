@@ -1,47 +1,52 @@
 {
   "border": {
     "radius": {
-      "none": {
-        "value": "0px",
+      "circle": {
+        "description": "Circle",
         "type": "borderRadius",
-        "description": "None"
+        "value": "50%"
+      },
+      "default": {
+        "description": "Default border radius",
+        "type": "borderRadius",
+        "value": "{border.radius.none}"
+      },
+      "none": {
+        "description": "No border radius",
+        "type": "borderRadius",
+        "value": "0"
       },
       "pill": {
-        "value": "99px",
+        "description": "Pill",
         "type": "borderRadius",
-        "description": "Pill"
-      },
-      "circle": {
-        "value": "50%",
-        "type": "borderRadius",
-        "description": "Circle"
+        "value": "99px"
       }
     },
     "width": {
-      "none": {
-        "value": "0px",
-        "type": "borderWidth",
-        "description": "None"
-      },
       "default": {
-        "value": "1px",
+        "description": "Default",
         "type": "borderWidth",
-        "description": "Default"
-      },
-      "small": {
-        "value": "2px",
-        "type": "borderWidth",
-        "description": "Small"
+        "value": "1px"
       },
       "medium": {
-        "value": "3px",
+        "description": "Medium",
         "type": "borderWidth",
-        "description": "Medium"
+        "value": "3px"
+      },
+      "none": {
+        "description": "None",
+        "type": "borderWidth",
+        "value": "0px"
+      },
+      "small": {
+        "description": "Small",
+        "type": "borderWidth",
+        "value": "2px"
       },
       "large": {
-        "value": "4px",
+        "description": "Large",
         "type": "borderWidth",
-        "description": "Large"
+        "value": "4px"
       }
     }
   }

@@ -10,7 +10,9 @@ import { prefix } from './config.js';
 export const createTransformGroup = (name, additionalTransforms = []) => ({
   name,
   transforms: [
-    ...transforms,
+    // Strip out resolveMath as it does not work with outputReferences
+    // @see https://github.com/amzn/style-dictionary/issues/974
+    ...transforms.filter((transform) => transform !== 'ts/resolveMath'),
     ...additionalTransforms,
   ],
 });
@@ -22,4 +24,13 @@ export const createTransformGroup = (name, additionalTransforms = []) => ({
 export const SDSTransformGroupDefault = createTransformGroup(
   `${prefix}/tokens-studio`,
   ['sds/calc', 'name/cti/kebab'],
+);
+
+/**
+ * Transform group for SASS.
+ * Does not need calc() statements at all
+ */
+export const SDSTransformGroupSASS = createTransformGroup(
+  `${prefix}/tokens-studio-scss`,
+  ['name/cti/kebab'],
 );

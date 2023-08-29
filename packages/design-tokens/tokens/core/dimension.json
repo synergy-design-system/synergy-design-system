@@ -2,51 +2,53 @@
   "dimension": {
     "font": {
       "base": {
-        "value": "14",
-        "type": "number",
-        "description": "Base font-size"
+        "description": "Our base font size is 14px.",
+        "type": "fontSizes",
+        "value": "14"
       },
       "scale": {
-        "value": "1.2",
-        "type": "number"
+        "description": "We derive all our font sizes from this, with a scale of 1.2 (Minor Third).",
+        "type": "number",
+        "value": "1.2"
       }
     },
     "size": {
       "base": {
+        "description": "The spacing of our components is based on a 4px baseline. This forms the basic unit of measurement for spacing.",
         "value": "4px",
         "type": "dimension"
-      }
+      }  
     },
     "breakpoint": {
-      "xsmall": {
-        "value": "320px",
+      "xs": {
+        "description": "Default layout, starts at 0",
         "type": "dimension",
-        "description": "Extra small"
+        "value": "320px"
       },
       "small": {
-        "value": "640px",
+        "description": "Small",
         "type": "dimension",
-        "description": "Small"
+        "value": "640px"
       },
       "medium": {
-        "value": "1024px",
+        "description": "Medium",
         "type": "dimension",
-        "description": "Medium"
+        "value": "1024px"
       },
       "large": {
-        "value": "1200px",
+        "description": "Large",
         "type": "dimension",
-        "description": "Large"
+        "value": "1200px"
       },
-      "xlarge": {
-        "value": "1440px",
+      "xl": {
+        "description": "Extra large",
         "type": "dimension",
-        "description": "Extra large"
+        "value": "1440px"
       },
-      "xxlarge": {
-        "value": "1920px",
+      "xxl": {
+        "description": "XX Large",
         "type": "dimension",
-        "description": "XX Large"
+        "value": "1920px"
       }
     }
   }

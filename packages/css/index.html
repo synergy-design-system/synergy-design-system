@@ -11,9 +11,18 @@
     height: 100%;
   }
 
+  html {
+    background: var(--sds-color-neutral-20);
+  }
+
   body {
+    box-shadow: var(--sds-shadow-elevated);
+    border-radius: .25rem;
+    height: calc(100% - 2rem);
     display: flex;
     flex-direction: column;
+    margin: 1rem auto;
+    max-width: 45rem;
   }
 
   header,
@@ -21,6 +30,14 @@
     background: var(--sds-color-neutral-700);
     text-align: center;
     padding: 1rem 2rem;
+  }
+
+  header {
+    border-radius: .25rem .25rem 0 0;
+  }
+
+  footer {
+    border-radius: 0 0 .25rem .25rem;
   }
 
   header h1 {
@@ -50,6 +67,10 @@
     opacity: 0;
   }
 
+  .marked:hover {
+    background: var(--sds-color-neutral-50);
+  }
+
   .marked:hover code {
     opacity: 1;
   }
@@ -62,7 +83,7 @@
     padding: 5px;
     position: absolute;
     transition: opacity .3s;
-    left: -3.5rem;
+    left: -4rem;
   }
 
   main code::before {
@@ -105,6 +126,20 @@
         Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
         Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
       </small>
+    </p>
+
+    <p class="marked">
+      <code>strong</code>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Nostrum quasi <strong>sequi excepturi</strong> error repudiandae?
+      Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
+    </p>
+
+    <p class="marked">
+      <code>em</code>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Nostrum quasi <em>sequi excepturi</em> error repudiandae?
+      Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
     </p>
 
     <ul class="marked">

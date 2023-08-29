@@ -47,6 +47,7 @@
   "scripts": {
     "build:clean": "rimraf build",
     "build:postcss": "postcss src/versions/**/*.css --base src/versions --dir build",
+    "build:watch": "pnpm build --watch",
     "build": "pnpm build:clean && pnpm build:postcss",
     "demo": "serve .",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",

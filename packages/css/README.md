@@ -16,7 +16,7 @@ pnpm i @sick-design-system/css
 
 ## Developing
 
-To develop new features and test them live, open a terminal and issue the following command: `pnpm build --watch`. This will run postcss with autowatch enabled. Each time you save your work in the `src/` folder, a new build will be issued. You may then test your changes by running the [package demo](./index.html) via `pnpm demo`.
+To develop new features and test them live, open a terminal and issue the following command: `pnpm build:watch`. This will run postcss with autowatch enabled. Each time you save your work in the `src/` folder, a new build will be issued. You may then test your changes by running the [package demo](./index.html) via `pnpm demo`.
 
 ## Usage
 

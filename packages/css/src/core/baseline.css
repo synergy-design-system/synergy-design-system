@@ -1,14 +1,10 @@
 /**
  * Default Baseline css for usage in applications.
  * This file provides defaults for new applications.
- * It automatically loads the design tokens from "@sick-design-system/design-tokens
- * and adds common baseline definitions for fonts and colors
  */
-@import url("@sick-design-system/design-tokens/build/css/tokens.css");
-
 body {
   background: var(--sds-color-neutral-0);
   color: var(--sds-color-neutral-800);
-  font-family: var(--sds-font-family-default), var(--sds-font-family-system);
-  font-size: 14px;
+  font-family: var(--sds-font-family-default);
+  font-size: var(--sds-dimension-font-base);
 }

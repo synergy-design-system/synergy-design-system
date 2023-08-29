@@ -47,6 +47,15 @@
     text-align: center;
   }
 
+  header nav {
+    border-top: 1px solid var(--sds-color-neutral-0);
+    display: flex;
+    gap: .5rem;
+    margin-top: .5rem;
+    padding-top: .5rem;
+    justify-content: center;
+  }
+
   footer small {
     color: var(--sds-color-neutral-0);
   }
@@ -75,7 +84,7 @@
     opacity: 1;
   }
 
-  main code {
+  .marked code {
     background: var(--sds-color-accent-400);
     border-radius: 5px;
     display: inline-block;
@@ -86,85 +95,192 @@
     left: -4rem;
   }
 
-  main code::before {
+  .marked code::before {
     content: "<";
   }
-  main code::after {
+  .marked code::after {
     content: ">";
+  }
+
+  /* Animations */
+  .animated {
+    text-align: center;
+  }
+
+  .circle {
+    background: var(--sds-color-primary-400);
+    border-radius: var(--sds-border-radius-circle);
+    height: var(--sds-spacing-8);
+    width: var(--sds-spacing-8);
+    display: block;
+  }
+
+  .sds-fade {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem;
+    justify-content: center;
   }
 </style>
 </head>
 <body>
   <header>
     <h1>Demo for @sick-design-system/css</h1>
+    <nav>
+      <a href="#typo">Typography</a>
+      <a href="#animations">Animations</a>
+    </nav>
   </header>
   <main>
     
-    <h1 class="marked"><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-    
-    <h2 class="marked"><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
-    
-    <h3 class="marked"><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
-    
-    <h4 class="marked"><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
-    
-    <h5 class="marked"><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
-    
-    <h6 class="marked"><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
-    
-    <p class="marked">
-      <code>p</code>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
-      Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
-    </p>
-    
-    <p class="marked">
-      <code>small</code>
-      <small>
+    <section id="typo">
+      <h1 class="marked"><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+      
+      <h2 class="marked"><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
+      
+      <h3 class="marked"><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
+      
+      <h4 class="marked"><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
+      
+      <h5 class="marked"><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
+      
+      <h6 class="marked"><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
+      
+      <p class="marked">
+        <code>p</code>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
         Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
-      </small>
-    </p>
+      </p>
+      
+      <p class="marked">
+        <code>small</code>
+        <small>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
+          Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
+        </small>
+      </p>
 
-    <p class="marked">
-      <code>strong</code>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      Nostrum quasi <strong>sequi excepturi</strong> error repudiandae?
-      Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
-    </p>
+      <p class="marked">
+        <code>strong</code>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Nostrum quasi <strong>sequi excepturi</strong> error repudiandae?
+        Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
+      </p>
 
-    <p class="marked">
-      <code>em</code>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      Nostrum quasi <em>sequi excepturi</em> error repudiandae?
-      Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
-    </p>
+      <p class="marked">
+        <code>em</code>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Nostrum quasi <em>sequi excepturi</em> error repudiandae?
+        Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
+      </p>
 
-    <ul class="marked">
-      <li>
-        <code>ul</code>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </li>
-      <li>Error, non obcaecati!</li>
-      <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
-      <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
-    </ul>
+      <ul class="marked">
+        <li>
+          <code>ul</code>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </li>
+        <li>Error, non obcaecati!</li>
+        <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+        <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+      </ul>
 
-    <ol class="marked">
-      <li>
-        <code>ol</code>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </li>
-      <li>Error, non obcaecati!</li>
-      <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
-      <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
-    </ol>
+      <ol class="marked">
+        <li>
+          <code>ol</code>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </li>
+        <li>Error, non obcaecati!</li>
+        <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+        <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+      </ol>
 
+      <div class="marked">
+        <code>hr</code>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe eligendi nobis eum ipsam.</p>
+        <hr />
+        <p>Beatae veniam aspernatur non odio laborum a, porro numquam, ratione nam doloribus deleniti, distinctio repellat repudiandae corrupti.</p>
+      </div>
+    </section>
+
+    <!-- BEGIN ANIMATIONS Section -->
+    <section id="animations">
+      <h2>Animations</h2>
+      <h3>Please hover over an item to see the animation</h3>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-fade-in-slow)</code>
+        <div class="sds-fade sds-fade-in-slow" data-animation="--sds-animation-fade-in-slow">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-fade-in-fast)</code>
+        <div class="sds-fade" data-animation="--sds-animation-fade-in-fast">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-rotate-slow)</code>
+        <div class="sds-fade" data-animation="--sds-animation-rotate-slow">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-rotate-fast)</code>
+        <div class="sds-fade" data-animation="--sds-animation-rotate-fast">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-scale)</code>
+        <div class="sds-fade" data-animation="--sds-animation-scale">
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--sds-animation-scale), including overridden --animation-scale</code>
+        <div class="sds-fade" data-animation="--sds-animation-scale" data-customstyles="--animation-scale: 5.0;">
+          <span class="circle"></span>
+        </div>
+      </div>
+    </section>    
   </main>
   <footer>
-    <small>Hover over an item to see its corresponding tag name</small>
+    <small>Hover over an item to see its corresponding tag name or its associated animation</small>
   </footer>
+  <script>
+  // Add support for animations
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.animated').forEach((animatedItem) => {
+      animatedItem.addEventListener('mouseenter', ({ target }) => {
+        const div = target.querySelector('div');
+        div.style = [
+          `animation: var(${div.dataset.animation})`,
+          'will-change: transform',
+          div.dataset.customstyles || '',
+        ].join(';');
+      });
+      animatedItem.addEventListener('mouseleave', ({ target }) => {
+        const div = target.querySelector('div');
+        div.style = '';
+      });
+    });
+  });
+  </script>
 </body>
 </html>

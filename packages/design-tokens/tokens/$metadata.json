@@ -1,5 +1,6 @@
 {
   "tokenSetOrder": [
+    "core/animate",
     "core/border",
     "core/color",
     "core/dimension",

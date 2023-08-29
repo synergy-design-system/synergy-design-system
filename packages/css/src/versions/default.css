@@ -2,8 +2,8 @@
  * Load design tokens from "@sick-design-system/design-tokens
  */
 @import url("@sick-design-system/design-tokens/build/css/tokens.css");
-
 @import url("../core/fouc.css");
 @import url("../core/fonts.css");
+@import url("../core/animations.css");
 @import url("../core/baseline.css");
 @import url("../core/typo.css");

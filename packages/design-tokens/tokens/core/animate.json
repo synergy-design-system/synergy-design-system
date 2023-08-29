@@ -1,0 +1,32 @@
+{
+  "animation": {
+    "fade-in-slow": {
+      "description": "Slow fade in animation",
+      "value": "sds-fade-in {duration.slow} ease-in-out infinite alternate"
+    },
+    "fade-in-fast": {
+      "description": "Fast fade in animation",
+      "value": "sds-fade-in {duration.fast} ease-in-out infinite alternate"
+    },
+    "fade-in": {
+      "description": "Default fade in animation",
+      "value": "{animation.fade-in-fast}"
+    },
+    "rotate-slow": {
+      "description": "Slot rotation animation",
+      "value": "sds-rotate-360 {duration.extra-slow} ease-in-out infinite"
+    },
+    "rotate-fast": {
+      "description": "Fast rotation animation",
+      "value": "sds-rotate-360 {duration.slow} ease-in-out infinite"
+    },
+    "rotate": {
+      "description": "Animating through rotation gives a more interactive effect of transition between elements or states.",
+      "value": "{animation.rotate-fast}"
+    },
+    "scale": {
+      "description": "Scale animation is mainly about the size of the elements. You can increase or decrease them, providing an interesting dynamic for the user. In order to have a more gentle result, it is possible to combine it with another animation.",
+      "value": "sds-scale {duration.extra-slow} ease-in-out infinite"
+    }
+  }
+}

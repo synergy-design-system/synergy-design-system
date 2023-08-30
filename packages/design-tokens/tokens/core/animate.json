@@ -13,7 +13,7 @@
       "value": "{animation.fade-in-fast}"
     },
     "rotate-slow": {
-      "description": "Slot rotation animation",
+      "description": "Slow rotation animation",
       "value": "sds-rotate-360 {duration.extra-slow} ease-in-out infinite"
     },
     "rotate-fast": {

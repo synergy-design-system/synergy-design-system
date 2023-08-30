@@ -1,6 +1,6 @@
 # @sick-design-system/css
 
-This package provides css styles that may be used in new web projects. It [sets a common baseline](./src/core/baseline.css) for projects by configuring [tags with default sizes and colors](./src/core/typo.css) and provides the css variables and [fonts](./src/core/fonts.css) used throughout the SICK Design System components.
+This package provides css styles that may be used in new web projects. It [sets a common baseline](./src/core/baseline.css) for projects by configuring [tags with default sizes and colors](./src/core/typo.css) and provides the css variables and [fonts](./src/core/fonts.css), as well as [icons](../icons/README.md) used throughout the SICK Design System components.
 
 ---
 
@@ -36,7 +36,7 @@ This package includes two versions of the css files. You may use either of them,
 <link rel="stylesheet" href="/node_modules/@sick-design-system/css/build/default.css" />
 </head>
 <body>
-  <div style="background: var(--sds-color-primary-500)">Content</div>"
+  <div style="background: var(--sds-color-primary-500)">Content</div>
 </body>
 ```
 
@@ -47,7 +47,7 @@ This package includes two versions of the css files. You may use either of them,
 <link rel="stylesheet" href="/node_modules/@sick-design-system/css/build/with-reset.css" />
 </head>
 <body>
-  <div style="background: var(--sds-color-primary-500)">Content</div>"
+  <div style="background: var(--sds-color-primary-500)">Content</div>
 </body>
 ```
 
@@ -56,6 +56,17 @@ This package includes two versions of the css files. You may use either of them,
 ## Font Support
 
 Supporting web-fonts as an npm module is more complex than it looks, as applications use various bundlers and each of them comes with its own syntax, configuration options and support for loading static files. Because of this, `@sick-design-system/css` comes with our chosen font [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
+
+---
+
+## Icon Support
+
+The package ships with a inlined version of Material Design Icons that is available as `@sick-design-system/icons`. Just add a `className` of **sds-icon** to an element to use the icon font. You may use it in the following way:
+
+```html
+<!-- Display the material design menu glyph -->
+<span class="sds-icon">menu</span>
+```
 
 ---
 

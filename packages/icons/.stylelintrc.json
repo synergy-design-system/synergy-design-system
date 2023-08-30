@@ -1,0 +1,4 @@
+{
+  "extends": "@sick-design-system/stylelint-config-sds",
+  "ignoreFiles": ["build/*"]
+}

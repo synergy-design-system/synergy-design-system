@@ -6,7 +6,8 @@
     "themeable",
     "autowatch",
     "fouc",
-    "rgba"
+    "rgba",
+    "liga"
   ],
   "ignorePaths": [
     "package.json",

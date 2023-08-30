@@ -3,16 +3,13 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
-  "dependencies": {
-    "@sick-design-system/design-tokens": "workspace:^",
-    "@sick-design-system/icons": "workspace:^"
-  },
-  "description": "Various CSS styles used in the SICK Design System",
+  "description": "Icon font used in the SICK Design System",
   "devDependencies": {
+    "@sick-design-system/design-tokens": "workspace:^",
     "@sick-design-system/eslint-config-sds": "workspace:^",
     "@sick-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
-    "normalize.css": "^8.0.1",
+    "material-icons": "^1.13.10",
     "postcss": "^8.4.28",
     "postcss-cli": "^10.1.0",
     "postcss-header": "^3.0.3",
@@ -23,32 +20,34 @@
     "stylelint": "^15.10.3"
   },
   "exports": {
-    ".": "./build/default.css"
+    ".": "./build/font.css",
+    "./font.css": "./build/font.css",
+    "./icon.css": "./build/icon.css"
   },
   "files": [
     "build",
-    "fonts",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/packages/css",
+  "homepage": "https://github.com/SickDesignSystem/sds/packages/icons",
   "keywords": [
+    "Icons",
+    "Material Icons",
+    "Webfont",
     "CSS",
-    "Styles",
-    "Reset",
     "SDS",
     "SICK",
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/css",
+  "name": "@sick-design-system/icons",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",
-    "directory": "packages/css"
+    "directory": "packages/icons"
   },
   "scripts": {
     "build:clean": "rimraf build",
-    "build:postcss": "postcss src/versions/**/*.css --base src/versions --dir build",
+    "build:postcss": "postcss src/output/**/*.css --base src/output --dir build",
     "build:watch": "pnpm build --watch",
     "build": "pnpm build:clean && pnpm build:postcss",
     "demo": "serve .",

@@ -215,43 +215,43 @@
           "value": "#d6c1ab"
         }
       },
-      "goblinGreen": {
+      "goblin-green": {
         "500": {
           "type": "color",
           "value": "#3b5e43"
         }
       },
-      "oliveGreen": {
+      "olive-green": {
         "500": {
           "type": "color",
           "value": "#8c9453"
         }
       },
-      "wasabiGreen": {
+      "wasabi-green": {
         "500": {
           "type": "color",
           "value": "#abc444"
         }
       },
-      "emeraldGreen": {
+      "emerald-green": {
         "500": {
           "type": "color",
           "value": "#50c878"
         }
       },
-      "tiffanyBlue": {
+      "tiffany-blue": {
         "500": {
           "type": "color",
           "value": "#00b9af"
         }
       },
-      "skyBlue": {
+      "sky-blue": {
         "500": {
           "type": "color",
           "value": "#89cbdf"
         }
       },
-      "deepPurple": {
+      "deep-purple": {
         "500": {
           "type": "color",
           "value": "#7000b0"
@@ -263,7 +263,7 @@
           "value": "#b501eb"
         }
       },
-      "darkFuchsia": {
+      "dark-fuchsia": {
         "500": {
           "type": "color",
           "value": "#7d256f"

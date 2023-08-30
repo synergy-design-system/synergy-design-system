@@ -14,5 +14,12 @@
   "css.lint.unknownAtRules": "ignore",
   "cssVariables.lookupFiles": [
     "packages/design-tokens/build/css/*.css"
+  ],
+  "eslint.workingDirectories": [
+    "packages/css",
+    "packages/design-tokens",
+    "packages/docs",
+    "packages/eslint-config-sds",
+    "packages/stylelint-config-sds"
   ]
 }

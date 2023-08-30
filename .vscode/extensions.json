@@ -3,6 +3,7 @@
     "editorconfig.editorconfig",
     "anseki.vscode-color",
     "stylelint.vscode-stylelint",
-    "vunguyentuan.vscode-css-variables"
+    "vunguyentuan.vscode-css-variables",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

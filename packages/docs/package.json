@@ -1,0 +1,55 @@
+{
+  "author": {
+    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@sick-design-system/css": "workspace:^"
+  },
+  "description": "Storybook demo for static assets and components of the SICK Design System",
+  "devDependencies": {
+    "@microsoft/fast-element": "^1.12.0",
+    "@microsoft/fast-foundation": "^2.49.1",
+    "@sick-design-system/eslint-config-sds": "workspace:^",
+    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@storybook/addon-essentials": "^7.4.0",
+    "@storybook/addon-interactions": "^7.4.0",
+    "@storybook/addon-links": "^7.4.0",
+    "@storybook/blocks": "^7.4.0",
+    "@storybook/html": "^7.4.0",
+    "@storybook/html-vite": "^7.4.0",
+    "@storybook/testing-library": "^0.2.0",
+    "eslint": "^8.47.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.4.0",
+    "stylelint": "^15.10.3"
+  },
+  "files": [],
+  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/docs",
+  "keywords": [
+    "Storybook",
+    "Design System Demo",
+    "SDS",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@sick-design-system/docs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/sds.git",
+    "directory": "packages/docs"
+  },
+  "scripts": {
+    "build": "pnpm storybook:build",
+    "lint:css": "stylelint \"{src,stories}/**/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
+    "start": "pnpm storybook:run",
+    "storybook:run": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
+  },
+  "version": "0.1.0"
+}

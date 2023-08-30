@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "@sick-design-system/eslint-config-sds/ts",
+    "plugin:storybook/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

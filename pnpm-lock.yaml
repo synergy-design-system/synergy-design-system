@@ -111,9 +111,6 @@ importers:
       material-icons:
         specifier: ^1.13.10
         version: 1.13.10
-      normalize.css:
-        specifier: ^8.0.1
-        version: 8.0.1
       postcss:
         specifier: ^8.4.28
         version: 8.4.28

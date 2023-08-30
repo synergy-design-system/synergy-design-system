@@ -10,7 +10,6 @@
     "@sick-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
     "material-icons": "^1.13.10",
-    "normalize.css": "^8.0.1",
     "postcss": "^8.4.28",
     "postcss-cli": "^10.1.0",
     "postcss-header": "^3.0.3",

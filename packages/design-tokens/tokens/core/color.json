@@ -2,252 +2,278 @@
   "color": {
     "primary": {
       "3": {
-        "value": "#E5F6FF",
+        "description": "Focus background; Background for selected rows in tables or other elements.",
         "type": "color",
-        "description": "Primary-3"
+        "value": "#e5f6ff"
       },
       "10": {
-        "value": "#BCE7FF",
+        "description": "Background color for an information box;",
         "type": "color",
-        "description": "Primary-10"
+        "value": "#bce7ff"
       },
       "400": {
-        "value": "#009DF4",
+        "description": "Hover/focus state for primary colored elements; Do not use as background color",
         "type": "color",
-        "description": "Primary-400"
+        "value": "#009df4"
       },
       "500": {
-        "value": "#007CC1",
+        "description": "Links, buttons, icons, selected state",
         "type": "color",
-        "description": "Primary-500"
+        "value": "#007cc1"
       },
       "600": {
-        "value": "#005B8E",
+        "description": "Active state for primary colored elements",
         "type": "color",
-        "description": "Primary-600"
+        "value": "#005b8e"
       },
       "700": {
-        "value": "#003A5B",
         "type": "color",
-        "description": "Primary-700"
+        "value": "#003A5B"
+      },
+      "750": {
+        "type": "color",
+        "value": "#002A41"
+      }
+    },
+    "secondary": {
+      "400": {
+        "description": "Hover/focus state for secondary colored elements",
+        "type": "color",
+        "value": "#8e989d"
+      },
+      "500": {
+        "description": "Default buttons; Base for neutral colors",
+        "type": "color",
+        "value": "#737f85"
+      },
+      "650": {
+        "description": "Active state for secondary colored elements",
+        "type": "color",
+        "value": "#50585c"
       }
     },
     "accent": {
       "400": {
-        "value": "#FFA927",
+        "description": "Hover/focus state for accent colored elements; Do not use as background color",
         "type": "color",
-        "description": "Accent-400"
+        "value": "#ffa927"
       },
       "500": {
-        "value": "#F39200",
+        "description": "Highlighting and special buttons eg. transactions; Do not use as background color",
         "type": "color",
-        "description": "Accent-500"
+        "value": "#f39200"
       },
-      "650": {
-        "value": "#E36A00",
+      "600": {
+        "description": "Active state for accent colored elements; Do not use as background color",
         "type": "color",
-        "description": "Accent-650"
+        "value": "#e36a00"
       }
     },
     "neutral": {
       "0": {
-        "value": "#FFFFFF",
+        "description": "Default background color for large areas; Body text, button, link and icons on dark or brand backgrounds",
         "type": "color",
-        "description": "Neutral-0 / White"
+        "value": "#fff"
       },
       "1": {
-        "value": "#FBFCFC",
+        "description": "Light background color for large areas",
         "type": "color",
-        "description": "Neutral-1"
+        "value": "#fbfcfc"
       },
       "20": {
-        "value": "#F6F7F7",
+        "description": "Light background color for large areas",
         "type": "color",
-        "description": "Neutral-20"
+        "value": "#f6f7f7"
       },
       "50": {
-        "value": "#EEEFF0",
+        "description": "Background color for mid areas",
         "type": "color",
-        "description": "Neutral-50"
+        "value": "#eeeff0"
       },
       "100": {
-        "value": "#E0E3E4",
+        "description": "Background color for small areas",
         "type": "color",
-        "description": "Neutral-100"
+        "value": "#E0E3E4"
       },
       "200": {
-        "value": "#C5CACC",
+        "description": "Disabled background color; Disabled or lighter border color; Do not use as background color",
         "type": "color",
-        "description": "Neutral-200"
+        "value": "#c5cacc"
       },
       "300": {
-        "value": "#B1B8BC",
+        "description": "Disabled text without background color; Do not use as background color",
         "type": "color",
-        "description": "Neutral-300"
+        "value": "#b1b8bc"
       },
       "400": {
-        "value": "#8E989D",
+        "description": "Border, icons, disabled text; Hover/focus state for secondary colored elements; Do not use as background color",
         "type": "color",
-        "description": "Neutral-400"
+        "value": "#8e989d"
       },
       "500": {
-        "value": "#737F85",
+        "description": "Text hints, icons, form label, read-only; darker border color; Default buttons;",
         "type": "color",
-        "description": "Neutral-500"
+        "value": "#737f85"
       },
       "650": {
-        "value": "#50585C",
+        "description": "Headlines; Active state for secondary colored elements; Dark (footer) background",
         "type": "color",
-        "description": "Neutral-650"
+        "value": "#50585c"
       },
       "700": {
-        "value": "#444B4E",
+        "description": "Background for \"Dark mode\"",
         "type": "color",
-        "description": "Neutral-700"
+        "value": "#444B4E"
       },
       "750": {
-        "value": "#383E41",
+        "description": "Background for \"Dark mode\"",
         "type": "color",
-        "description": "Neutral-750"
+        "value": "#383E41"
       },
       "800": {
-        "value": "#2C3133",
+        "description": "Text, buttons and icons; Off-Canvas navigation background;  Darker (footer) background",
         "type": "color",
-        "description": "Neutral-800"
+        "value": "#2c3133"
       },
       "900": {
-        "value": "#141718",
+        "description": "Legacy value, not used anymore",
         "type": "color",
-        "description": "Neutral-900"
+        "value": "#141718"
       }
     },
     "status": {
-      "error-20": {
-        "value": "#FEE9EB",
-        "type": "color",
-        "description": "Error-20"
+      "error": {
+        "20": {
+          "description": "Background color for an error notification",
+          "type": "color",
+          "value": "#fee9eb"
+        },
+        "500": {
+          "description": "Inline error text and icon color for a notification that indicates a wrong action or error message; Do not use as background color",
+          "type": "color",
+          "value": "#ea0823"
+        }
       },
-      "error-500": {
-        "value": "#EA0823",
-        "type": "color",
-        "description": "Error-500"
+      "warning": {
+        "100": {
+          "description": "Background color for a warning notification",
+          "type": "color",
+          "value": "#fdf5d7"
+        },
+        "500": {
+          "description": "Icon color for a notification that indicates something is wrong; Do not use as background color",
+          "type": "color",
+          "value": "#f5c413"
+        }
       },
-      "warning-100": {
-        "value": "#FDF5D7",
-        "type": "color",
-        "description": "Warning-100"
-      },
-      "warning-500": {
-        "value": "#F5C413",
-        "type": "color",
-        "description": "Warning-500"
-      },
-      "success-5": {
-        "value": "#F0FBE4",
-        "type": "color",
-        "description": "Success-5"
-      },
-      "success-10": {
-        "value": "#E0F8C9",
-        "type": "color",
-        "description": "Success-10"
-      },
-      "success-500": {
-        "value": "#63B017",
-        "type": "color",
-        "description": "Success-500"
-      },
-      "maintain-10": {
-        "value": "#FFFAFF",
-        "type": "color",
-        "description": "Maintain-10"
-      },
-      "maintain-200": {
-        "value": "#FF99F8",
-        "type": "color",
-        "description": "Maintain-200"
-      },
-      "maintain-500": {
-        "value": "#FF00ED",
-        "type": "color",
-        "description": "Maintain-500"
+      "success": {
+        "5": {
+          "description": "Background color for a success information in a table or other elements",
+          "type": "color",
+          "value": "#F0FBE4"
+        },
+        "10": {
+          "description": "Background color for a success notification",
+          "type": "color",
+          "value": "#e0f8c9"
+        },
+        "500": {
+          "description": "Icon color for a notification that indicates when a user successfully completes a task; Do not use as background color",
+          "type": "color",
+          "value": "#63b017"
+        }
       }
     },
-    "secondary": {
-      "maroon-500": {
-        "value": "#691A12",
-        "type": "color",
-        "description": "Maroon-500"
+    "addons": {
+      "maroon": {
+        "500": {
+          "type": "color",
+          "value": "#691a12"
+        }
       },
-      "burgundy-500": {
-        "value": "#A50032",
-        "type": "color",
-        "description": "Burgundy-500"
+      "burgundy": {
+        "500": {
+          "type": "color",
+          "value": "#a50032"
+        }
       },
-      "chocolate-500": {
-        "value": "#B96400",
-        "type": "color",
-        "description": "Chocolate-500"
+      "chocolate": {
+        "500": {
+          "type": "color",
+          "value": "#b96400"
+        }
       },
-      "gold-500": {
-        "value": "#C19C31",
-        "type": "color",
-        "description": "Gold-500"
+      "gold": {
+        "500": {
+          "type": "color",
+          "value": "#c19c31"
+        }
       },
-      "sand-500": {
-        "value": "#D6C1AB",
-        "type": "color",
-        "description": "Sand-500"
+      "sand": {
+        "500": {
+          "type": "color",
+          "value": "#d6c1ab"
+        }
       },
-      "goblin-green-500": {
-        "value": "#3B5E43",
-        "type": "color",
-        "description": "Goblin-Green-500"
+      "goblin-green": {
+        "500": {
+          "type": "color",
+          "value": "#3b5e43"
+        }
       },
-      "olive-green-500": {
-        "value": "#8C9453",
-        "type": "color",
-        "description": "Olive-Green-500"
+      "olive-green": {
+        "500": {
+          "type": "color",
+          "value": "#8c9453"
+        }
       },
-      "wasabi-green-500": {
-        "value": "#ABC444",
-        "type": "color",
-        "description": "Wasabi-Green-500"
+      "wasabi-green": {
+        "500": {
+          "type": "color",
+          "value": "#abc444"
+        }
       },
-      "emerald-green-500": {
-        "value": "#50C878",
-        "type": "color",
-        "description": "Emerald-Green-500"
+      "emerald-green": {
+        "500": {
+          "type": "color",
+          "value": "#50c878"
+        }
       },
-      "tiffany-blue-500": {
-        "value": "#00B9AF",
-        "type": "color",
-        "description": "Tiffany-Blue-500"
+      "tiffany-blue": {
+        "500": {
+          "type": "color",
+          "value": "#00b9af"
+        }
       },
-      "sky-blue-500": {
-        "value": "#89CBDF",
-        "type": "color",
-        "description": "Sky-Blue-500"
+      "sky-blue": {
+        "500": {
+          "type": "color",
+          "value": "#89cbdf"
+        }
       },
-      "deep-purple-500": {
-        "value": "#7000B0",
-        "type": "color",
-        "description": "Deep-Purple-500"
+      "deep-purple": {
+        "500": {
+          "type": "color",
+          "value": "#7000b0"
+        }
       },
-      "purple-500": {
-        "value": "#B501EB",
-        "type": "color",
-        "description": "Purple-500"
+      "purple": {
+        "500": {
+          "type": "color",
+          "value": "#b501eb"
+        }
       },
-      "dark-fuchsia-500": {
-        "value": "#7D256F",
-        "type": "color",
-        "description": "Dark-Fuchsia-500"
+      "dark-fuchsia": {
+        "500": {
+          "type": "color",
+          "value": "#7d256f"
+        }
       },
-      "fuchsia-500": {
-        "value": "#FF00ED",
-        "type": "color",
-        "description": "Fuchsia-500"
+      "fuchsia": {
+        "500": {
+          "type": "color",
+          "value": "#ff00ed"
+        }
       }
     }
   }

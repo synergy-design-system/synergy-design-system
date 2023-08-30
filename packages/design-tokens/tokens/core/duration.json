@@ -1,0 +1,25 @@
+{
+  "duration": {
+    "extra-fast": {
+      "value": "90ms",
+      "type": "duration"
+    },
+    "fast": {
+      "description": "Default animation time",
+      "value": "150ms",
+      "type": "duration"
+    },
+    "normal": {
+      "value": "250ms",
+      "type": "duration"
+    },
+    "slow": {
+      "value": "350ms",
+      "type": "duration"
+    },
+    "extra-slow": {
+      "value": "500ms",
+      "type": "duration"
+    }
+  }
+}

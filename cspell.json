@@ -3,6 +3,10 @@
     "sds",
     "stylelint",
     "stylelintrc",
+    "themeable",
+    "autowatch",
+    "fouc",
+    "rgba",
     "liga"
   ],
   "ignorePaths": [

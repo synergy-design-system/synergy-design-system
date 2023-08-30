@@ -8,6 +8,49 @@ importers:
 
   .: {}
 
+  packages/css:
+    dependencies:
+      '@sick-design-system/design-tokens':
+        specifier: workspace:^
+        version: link:../design-tokens
+    devDependencies:
+      '@sick-design-system/eslint-config-sds':
+        specifier: workspace:^
+        version: link:../eslint-config-sds
+      '@sick-design-system/stylelint-config-sds':
+        specifier: workspace:^
+        version: link:../stylelint-config-sds
+      eslint:
+        specifier: ^8.47.0
+        version: 8.47.0
+      normalize.css:
+        specifier: ^8.0.1
+        version: 8.0.1
+      postcss:
+        specifier: ^8.4.28
+        version: 8.4.28
+      postcss-cli:
+        specifier: ^10.1.0
+        version: 10.1.0(postcss@8.4.28)
+      postcss-header:
+        specifier: ^3.0.3
+        version: 3.0.3(postcss@8.4.28)
+      postcss-import:
+        specifier: ^15.1.0
+        version: 15.1.0(postcss@8.4.28)
+      postcss-inline-base64:
+        specifier: ^7.3.1
+        version: 7.3.1(postcss@8.4.28)
+      rimraf:
+        specifier: ^5.0.1
+        version: 5.0.1
+      serve:
+        specifier: ^14.2.1
+        version: 14.2.1
+      stylelint:
+        specifier: ^15.10.3
+        version: 15.10.3
+
   packages/design-tokens:
     devDependencies:
       '@sick-design-system/eslint-config-sds':

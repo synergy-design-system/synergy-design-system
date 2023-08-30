@@ -1,0 +1,15 @@
+{
+  "tokenSetOrder": [
+    "core/animate",
+    "core/border",
+    "core/color",
+    "core/dimension",
+    "core/duration",
+    "core/opacity",
+    "core/shadow",
+    "core/spacing",
+    "core/typography",
+    "semantic/light",
+    "semantic/dark"
+  ]
+}

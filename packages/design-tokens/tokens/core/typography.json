@@ -1,0 +1,155 @@
+{
+  "font": {
+    "family": {
+      "default": {
+        "description": "The default font stack used for regular text",
+        "type": "fontFamilies",
+        "value": "{font.family.serif}, {font.family.system}"
+      },
+      "monospace": {
+        "description": "The font used for monospaced text. Using monospace twice is a common bugfix, do not remove it!",
+        "type": "fontFamilies",
+        "value": "monospace, monospace"
+      },
+      "serif": {
+        "description": "Our main digital font family is Open Sans from Google Fonts. Open Sans is a humanist sans serif typeface designed by Steve Matteson, Type Director of Ascender Corp. It contains the complete 897 character set, which includes the standard ISO Latin 1, Latin CE, Greek and Cyrillic character sets.",
+        "type": "fontFamilies",
+        "value": "Open Sans"
+      },
+      "system": {
+        "description": "Default fallback system font stack. Used when primary font cannot be found.",
+        "type": "fontFamilies",
+        "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
+      }
+    },
+    "weight": {
+      "regular": {
+        "description": "Regular",
+        "type": "fontWeights",
+        "value": "400"
+      },
+      "semibold": {
+        "description": "Semibold",
+        "type": "fontWeights",
+        "value": "600"
+      },
+      "bold": {
+        "description": "Bold",
+        "type": "fontWeights",
+        "value": "700"
+      }
+    },
+    "lineHeight": {
+      "100": {
+        "description": "1.0",
+        "value": "100%",
+        "type": "lineHeights"
+      },
+      "110": {
+        "description": "1.1",
+        "type": "lineHeights",
+        "value": "110%"
+      },
+      "120": {
+        "description": "1.2",
+        "type": "lineHeights",
+        "value": "120%"
+      },
+      "130": {
+        "description": "1.3",
+        "type": "lineHeights",
+        "value": "130%"
+      },
+      "140": {
+        "description": "1.4",
+        "type": "lineHeights",
+        "value": "140%"
+      },
+      "150": {
+        "description": "1.5",
+        "type": "lineHeights",
+        "value": "150%"
+      },
+      "default": {
+        "description": "Default line height to use for body text",
+        "type": "lineHeights",
+        "value": "{font.lineHeight.120}"
+      }
+    },
+    "letterSpacing": {
+      "wide": {
+        "description": "Wide letter spacing",
+        "type": "letterSpacing",
+        "value": "4.5px"
+      }
+    },
+    "text": {
+      "uppercase": {
+        "description": "Uppercase",
+        "type": "textCase",
+        "value": "uppercase"
+      },
+      "underline": {
+        "description": "Underline",
+        "type": "textDecoration",
+        "value": "underline"
+      }
+    },
+    "size": {
+      "body": {
+        "l": {
+          "description": "Larger content text.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base} * {dimension.font.scale}"
+        },
+        "m": {
+          "description": "Default content text.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base}"
+        },
+        "s": {
+          "description": "Small text and labels.",
+          "type": "fontSizes",
+          "value": "12"
+        },
+        "xs": {
+          "description": "Only for really small purposes. Please test if this size is really necessary.",
+          "type": "fontSizes",
+          "value": "10"
+        }
+      },
+      "headline": {
+        "xl": {
+          "description": "Main content header. Use only once on a page.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.l} * {dimension.font.scale}"
+        },
+        "l": {
+          "description": "Secondary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.m} * {dimension.font.scale}"
+        },
+        "m": {
+          "description": "Tertiary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.s} * {dimension.font.scale}"
+        },
+        "s": {
+          "description": "Quaternary content header. Use to structure content.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.xs} * {dimension.font.scale}"
+        },
+        "xs": {
+          "description": "Section header.",
+          "type": "fontSizes",
+          "value": "{font.size.headline.xxs} * {dimension.font.scale}"
+        },
+        "xxs": {
+          "description": "Section header.",
+          "type": "fontSizes",
+          "value": "{dimension.font.base}"
+        }
+      }
+    }
+  }
+}

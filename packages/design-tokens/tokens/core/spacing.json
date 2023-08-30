@@ -1,0 +1,49 @@
+{
+  "spacing": {
+    "0": {
+      "description": "Use this value to remove all inner or outer spacings",
+      "value": "0",
+      "type": "spacing"
+    },
+    "05": {
+      "value": "{dimension.size.base} / 2",
+      "type": "spacing"
+    },
+    "1": {
+      "value": "{dimension.size.base}",
+      "type": "spacing"
+    },
+    "2": {
+      "value": "{dimension.size.base} * 2",
+      "type": "spacing"
+    },
+    "3": {
+      "value": "{dimension.size.base} * 3",
+      "type": "spacing"
+    },
+    "4": {
+      "value": "{dimension.size.base} * 4",
+      "type": "spacing"
+    },
+    "6": {
+      "value": "{dimension.size.base} * 6",
+      "type": "spacing"
+    },
+    "8": {
+      "value": "{dimension.size.base} * 8",
+      "type": "spacing"
+    },
+    "12": {
+      "value": "{dimension.size.base} * 12",
+      "type": "spacing"
+    },
+    "24": {
+      "value": "{dimension.size.base} * 24",
+      "type": "spacing"
+    },
+    "32": {
+      "value": "{dimension.size.base} * 32",
+      "type": "spacing"
+    }
+  }
+}

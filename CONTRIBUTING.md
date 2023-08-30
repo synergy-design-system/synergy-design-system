@@ -36,8 +36,9 @@ where ICON and COMMIT PREFIX are one of the following:
 
 and PKG is the package in which changes are done:
 
+- **css**: CSS package
+- **core**: Web components package
 - **design-tokens**: Design Tokens package
-- **Core**: Web components package
 - **icons**: Icons package
 - **lint**: EsLint or stylelint rules
 

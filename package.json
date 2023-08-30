@@ -6,6 +6,7 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
+  "browserslist": "defaults and supports es6-module",
   "contributors": [
     { "name": "Timothy Burk" },
     { "name": "Susanne Kirchner" },

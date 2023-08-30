@@ -38,6 +38,7 @@ and PKG is the package in which changes are done:
 
 - **design-tokens**: Design Tokens package
 - **Core**: Web components package
+- **icons**: Icons package
 - **lint**: EsLint or stylelint rules
 
 Examples for valid commit messages:

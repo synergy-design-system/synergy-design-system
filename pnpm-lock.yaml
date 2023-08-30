@@ -13,6 +13,9 @@ importers:
       '@sick-design-system/design-tokens':
         specifier: workspace:^
         version: link:../design-tokens
+      '@sick-design-system/icons':
+        specifier: workspace:^
+        version: link:../icons
     devDependencies:
       '@sick-design-system/eslint-config-sds':
         specifier: workspace:^

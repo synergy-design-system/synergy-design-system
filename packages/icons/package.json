@@ -25,7 +25,8 @@
     "./icon.css": "./build/icon.css"
   },
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/packages/icons",
   "keywords": [

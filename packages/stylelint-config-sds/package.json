@@ -21,7 +21,8 @@
   },
   "files": [
     ".stylelintrc.json",
-    "index.js"
+    "index.js",
+    "CHANGELOG.md"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/packages/stylelint-config-sds",
   "keywords": [

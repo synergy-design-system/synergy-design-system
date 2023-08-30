@@ -27,7 +27,8 @@
   },
   "files": [
     "build",
-    "fonts"
+    "fonts",
+    "CHANGELOG.md"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/packages/css",
   "keywords": [

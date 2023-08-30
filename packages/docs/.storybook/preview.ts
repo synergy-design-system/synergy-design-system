@@ -1,5 +1,7 @@
-/** @type { import('@storybook/html').Preview } */
-const preview = {
+import type { Preview } from '@storybook/html';
+import '@sick-design-system/css/default.css';
+
+const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {

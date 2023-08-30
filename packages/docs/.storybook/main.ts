@@ -1,5 +1,5 @@
-/** @type { import('@storybook/html-vite').StorybookConfig } */
-const config = {
+import type { StorybookConfig } from '@storybook/html-vite';
+const config: StorybookConfig = {
   stories: [
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
@@ -8,6 +8,7 @@ const config = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-a11y",
   ],
   framework: {
     name: "@storybook/html-vite",
@@ -15,6 +16,9 @@ const config = {
   },
   docs: {
     autodocs: "tag",
+  },
+  core: {
+    disableTelemetry: true,
   },
 };
 export default config;

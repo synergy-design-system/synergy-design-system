@@ -12,6 +12,7 @@
     "@microsoft/fast-foundation": "^2.49.1",
     "@sick-design-system/eslint-config-sds": "workspace:^",
     "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@storybook/addon-a11y": "^7.4.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",

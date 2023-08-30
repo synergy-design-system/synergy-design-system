@@ -93,8 +93,8 @@ strong {
 
 /* Emphasized text */
 em {
-  font-weight: var(--sds-font-weight-regular);
   font-style: italic;
+  font-weight: var(--sds-font-weight-regular);
 }
 
 /* Lists */

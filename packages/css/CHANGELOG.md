@@ -18,6 +18,8 @@ The following icons are used in commit messages and this changelog.
 
 ### 🐛 Bugs
 
+- #20: Adjusted exports to be useable, added `with-reset` style
+
 ### ✨ Features
 
 - #11: Added core setup for css utility package

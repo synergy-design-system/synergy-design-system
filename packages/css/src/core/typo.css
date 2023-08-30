@@ -1,0 +1,117 @@
+/**
+ * CSS for basic typographic elements
+ * @todo: Use css variables for all missing entries
+ */
+
+/* BEGIN: HEADLINES */
+
+/* Shared styles for all headlines */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background: var(--sds-color-neutral-0);
+  color: var(--sds-color-neutral-650);
+  font-family: var(--sds-font-family-default);
+  margin: var(--sds-spacing-8) 0 var(--sds-spacing-4);
+}
+
+/* Main content header. Use only once on a page. */
+h1 {
+  font-size: var(--sds-font-size-headline-xl);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-font-line-height-default);
+  margin: var(--sds-spacing-12) 0 var(--sds-spacing-6);
+}
+
+/* Secondary content header. Use to structure content. */
+h2 {
+  font-size: var(--sds-font-size-headline-l);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-font-line-height-default);
+  margin: var(--sds-spacing-8) 0 var(--sds-spacing-6);
+}
+
+/* Tertiary content header. Use to structure content. */
+h3 {
+  font-size: var(--sds-font-size-headline-m);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-font-line-height-130);
+}
+
+/* Quaternary content header. Use to structure content. */
+h4 {
+  font-size: var(--sds-font-size-headline-s);
+  font-weight: var(--sds-font-weight-semibold);
+  line-height: var(--sds-font-line-height-130);
+}
+
+/* Section header. */
+h5 {
+  font-size: var(--sds-font-size-headline-xs);
+  font-weight: var(--sds-font-weight-bold);
+  line-height: var(--sds-font-line-height-140);
+}
+
+/* Section header. */
+h6 {
+  font-size: var(--sds-font-size-headline-xxs);
+  font-weight: var(--sds-font-weight-bold);
+  line-height: var(--sds-font-line-height-140);
+}
+
+/* END: HEADLINES */
+
+/* BEGIN: BODY */
+
+/* Shared styles for body elements */
+p,
+small {
+  color: var(--sds-color-neutral-800);
+  font-family: var(--sds-font-family-default);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Default content text. */
+p {
+  font-size: var(--sds-font-size-body-m);
+  margin: 0 0 var(--sds-spacing-4);
+}
+
+/* Small text and labels. */
+small {
+  font-size: var(--sds-font-size-body-xs);
+}
+
+/* Bold text */
+strong {
+  font-weight: var(--sds-font-weight-bold);
+}
+
+/* Emphasized text */
+em {
+  font-weight: var(--sds-font-weight-regular);
+  font-style: italic;
+}
+
+/* Lists */
+ol,
+ul {
+  margin: var(--sds-spacing-4);
+  margin-right: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: var(--sds-spacing-2);
+  padding-left: var(--sds-spacing-2);
+}
+
+ul {
+  list-style: square;
+}
+
+/* END: BODY */

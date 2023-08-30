@@ -1,0 +1,55 @@
+{
+  "dimension": {
+    "font": {
+      "base": {
+        "description": "Our base font size is 14px.",
+        "type": "fontSizes",
+        "value": "14"
+      },
+      "scale": {
+        "description": "We derive all our font sizes from this, with a scale of 1.2 (Minor Third).",
+        "type": "number",
+        "value": "1.2"
+      }
+    },
+    "size": {
+      "base": {
+        "description": "The spacing of our components is based on a 4px baseline. This forms the basic unit of measurement for spacing.",
+        "value": "4px",
+        "type": "dimension"
+      }  
+    },
+    "breakpoint": {
+      "xs": {
+        "description": "Default layout, starts at 0",
+        "type": "dimension",
+        "value": "320px"
+      },
+      "small": {
+        "description": "Small",
+        "type": "dimension",
+        "value": "640px"
+      },
+      "medium": {
+        "description": "Medium",
+        "type": "dimension",
+        "value": "1024px"
+      },
+      "large": {
+        "description": "Large",
+        "type": "dimension",
+        "value": "1200px"
+      },
+      "xl": {
+        "description": "Extra large",
+        "type": "dimension",
+        "value": "1440px"
+      },
+      "xxl": {
+        "description": "XX Large",
+        "type": "dimension",
+        "value": "1920px"
+      }
+    }
+  }
+}

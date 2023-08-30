@@ -2,7 +2,11 @@
   "words": [
     "sds",
     "stylelint",
-    "stylelintrc"
+    "stylelintrc",
+    "themeable",
+    "autowatch",
+    "fouc",
+    "rgba"
   ],
   "ignorePaths": [
     "package.json",

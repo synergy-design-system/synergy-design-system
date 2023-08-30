@@ -20,12 +20,9 @@ The following icons are used in commit messages and this changelog.
 
 ### ✨ Features
 
-- #9: Initial README and CHANGELOG.
-- #9: Added core setup for style-dictionary.
-- #7: Added lint job `pnpm lint`
-- #11: Adjusted header to match `@sick-design-system/css`
-- #11: Added missing tokens for borders, dimensions, durations, opacity, shadow, spacing and typo
-- #11: Token names for colors should be using `kebab-case`
-- #11: Added ability to use css `calc` in output
-- #11: Restructured tokens, added missing ones.
-- #12: Added low level design tokens for animations.
+- #11: Added core setup for css utility package
+- #11: Added core font and configuration for inlining
+- #11: Added basic typographic section for common elements like `h*`, `p`, `ul/ol` and `a`.
+- #11: Added initial fouc prevention
+- #11: Added new variables as base for typo layout
+- #12: Added basic support for `sds-fade-in`, `sds-rotate-360` and `sds-scale` animations.

@@ -10,5 +10,9 @@
     "postcss",
     "javascript",
     "typescript"
+  ],
+  "css.lint.unknownAtRules": "ignore",
+  "cssVariables.lookupFiles": [
+    "packages/design-tokens/build/css/*.css"
   ]
 }

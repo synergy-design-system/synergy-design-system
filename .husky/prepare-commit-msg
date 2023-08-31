@@ -16,7 +16,7 @@ BRANCH_TYPE=$(echo $BRANCH_NAME | grep -o '\(^[0-9]\+\)-\(feat\|bug\)-')
 if [[ $BRANCH_TYPE == *"feat"* ]]; then
     BRANCH_TYPE="✨ Feat"
 elif [[ $BRANCH_TYPE == *"bug"* ]]; then
-    BRANCH_TYPE="🐛 Bug"
+    BRANCH_TYPE="🐛 Fix"
 fi
 
 

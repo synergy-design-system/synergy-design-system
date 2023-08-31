@@ -17,6 +17,8 @@ if [[ $BRANCH_TYPE == *"feat"* ]]; then
     BRANCH_TYPE="✨ Feat"
 elif [[ $BRANCH_TYPE == *"bug"* ]]; then
     BRANCH_TYPE="🐛 Fix"
+elif [[ $BRANCH_TYPE == *"doc"* ]]; then
+    BRANCH_TYPE="📚 Doc"
 fi
 
 

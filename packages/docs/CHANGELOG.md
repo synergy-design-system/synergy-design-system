@@ -22,3 +22,4 @@ The following icons are used in commit messages and this changelog.
 
 - #20: Added base package setup
 - #20: Add dark theme with SICK logo
+- #20: Add first fast component for testing purposes

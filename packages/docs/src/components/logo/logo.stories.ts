@@ -1,12 +1,35 @@
+import { html } from '@microsoft/fast-element';
 import type { Meta, StoryObj } from '@storybook/html';
-import { provideSDSDesignSystem } from '../../system';
+import { renderComponent } from '../../helpers';
+import { Logo } from './class';
 
-provideSDSDesignSystem();
+const storyTemplate = html<Logo>`
+  <sds-logo
+    variant="${x => x.variant}"
+  >
+  </sds-logo>
+`;
+
+const render = renderComponent(storyTemplate);
 
 export default {
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'small',
+        'default',
+      ],
+    },
+  },
+  render,
+  tags: ['autodocs'],
   title: 'Components/Logo',
 } as Meta;
 
-export const Primary: StoryObj = {
-  render: () => '<sds-logo></sds-logo>',
+export const Default: StoryObj = {};
+export const Small: StoryObj = {
+  args: {
+    variant: 'small',
+  },
 };

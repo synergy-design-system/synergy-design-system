@@ -21,3 +21,4 @@ The following icons are used in commit messages and this changelog.
 ### ✨ Features
 
 - #20: Added base package setup
+- #20: Add dark theme with SICK logo

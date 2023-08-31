@@ -11,7 +11,12 @@ module.exports = {
     ecmaVersion: 2023,
   },
   rules: {
+
+    // Disabled as we use it for templating a lot
+    'arrow-parens': 0,
+
     complexity: ['error', 5],
+
     // Rule disabled, we use node imports and node imports always need extensions
     'import/extensions': 0,
 

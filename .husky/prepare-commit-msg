@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+
+#######################
+# Get the type of pull request (e.b. bugfix, feature, ...) and the issue number from branch name
+#######################
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+ISSUE_NO=$(echo $BRANCH_NAME | grep -o '\(^[0-9]\+\)-' | sed 's/-$//')
+
+BRANCH_TYPE=$(echo $BRANCH_NAME | grep -o '\(^[0-9]\+\)-\(feat\|bug\)-')
+
+# Add more branch types here as soon as we added templates for them
+if [[ $BRANCH_TYPE == *"feat"* ]]; then
+    BRANCH_TYPE="✨ Feat"
+elif [[ $BRANCH_TYPE == *"bug"* ]]; then
+    BRANCH_TYPE="🐛 Bug"
+fi
+
+
+#######################
+# Get names of changed files and check which packages changed
+#######################
+
+while read file; do
+    PACKAGE=$(echo "$file" | grep -oP 'packages/([^/]+)/' | cut -d'/' -f2)
+
+    # If new packages are added to the monorepo, check if they also need a separate handling for the package name
+    if [[ $PACKAGE = 'eslint-config-sds' || $PACKAGE = 'stylelint-config-sds' ]]; then
+        PACKAGE="lint" 
+    fi
+
+    if [ -n "$PACKAGE" ] && [ -n "$CHANGED_PACKAGES" ] && [[ $CHANGED_PACKAGES != *"$PACKAGE"* ]]; then
+        CHANGED_PACKAGES="$CHANGED_PACKAGES,$PACKAGE"
+    elif [ -n "$PACKAGE" ] && [ -z "$CHANGED_PACKAGES" ]; then
+        CHANGED_PACKAGES=$PACKAGE
+    fi
+
+done < <(git diff --cached --name-only)
+
+
+
+#######################
+# Change the commit message and add the new prefix
+#######################
+
+if [ -n "$ISSUE_NO" ] && [ -n "$BRANCH_TYPE" ] && [ -n "$CHANGED_PACKAGES" ]; then
+    PREFIX_MESSAGE="$BRANCH_TYPE($CHANGED_PACKAGES) #$ISSUE_NO:"
+elif [ -n "$ISSUE_NO" ] && [ -n "$BRANCH_TYPE" ] && [ -z "$CHANGED_PACKAGES" ]; then
+    PREFIX_MESSAGE="$BRANCH_TYPE #$ISSUE_NO:"
+fi
+
+
+if [ -n "$PREFIX_MESSAGE" ]; then
+    sed -i.bak -e "1s/^/$PREFIX_MESSAGE /" $1
+fi

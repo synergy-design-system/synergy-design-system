@@ -7,3 +7,26 @@ Please have a look at the corresponding [packages](./packages) for a list of rec
 - [@sick-design-system/eslint-config-sds](./packages/eslint-config-sds/CHANGELOG.md)
 - [@sick-design-system/icons](./packages/icons/CHANGELOG.md)
 - [@sick-design-system/stylelint-config-sds](./packages/stylelint-config-sds/CHANGELOG.md)
+
+
+### Item definitions
+
+The following icons are used in commit messages and this changelog.
+
+|  Icon  | Type          | Description
+|:------:|:--------------|:----------------------------
+|   🐛   | Bugs          | Used when a bug was fixed
+|   📚   | Documentation | Used when adding or updating documentation
+|   ✨   | Features      | Feature was added
+|   🚀   | Releases      | Release was scheduled
+|   ⛔   | Removals      | Used when a feature was removed
+
+---
+
+## 🚀 NEXT
+
+### 🐛 Bugs
+
+### ✨ Features
+
+- #37: Added automatic prefixing of commit messages via husky hook

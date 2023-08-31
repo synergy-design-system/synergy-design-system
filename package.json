@@ -26,6 +26,10 @@
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
-    "lint": "pnpm --recursive --if-present lint"
+    "lint": "pnpm --recursive --if-present lint",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
   }
 }

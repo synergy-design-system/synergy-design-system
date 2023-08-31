@@ -1,4 +1,4 @@
 /**
- * The type of logo to show
+ * The logo is displayed in original colours. It should ideally be placed on a white background
  */
-export type LogoType = 'small' | 'default';
+export type LogoVariant = 'black' | 'white' | 'color';

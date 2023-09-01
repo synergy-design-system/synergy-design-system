@@ -80,6 +80,9 @@ importers:
       '@sick-design-system/css':
         specifier: workspace:^
         version: link:../css
+      '@sick-design-system/design-tokens':
+        specifier: workspace:^
+        version: link:../design-tokens
     devDependencies:
       '@microsoft/fast-element':
         specifier: ^1.12.0

@@ -1,0 +1,42 @@
+import { Meta , ColorPalette, ColorItem } from "@storybook/blocks";
+import * as tokens from '@sick-design-system/design-tokens';
+
+<Meta title="Foundations/Color" />
+
+# Color
+
+**The use of color in our interfaces help convey meaning, hierarchy, and accessibility to our products.**
+
+<ColorPalette>
+  <ColorItem
+    colors={[
+      tokens.sdsColorPrimary500,
+      tokens.sdsColorSecondary500,
+      tokens.sdsColorAccent500,
+      tokens.sdsColorNeutral0,
+    ]}
+  />
+</ColorPalette>
+
+## Guideline
+
+### Color is purposeful
+
+Although we value an appealing use of color, we place a higher value on clear communication.
+Our use of color should be purposeful, rational, and should support the purpose of the content.
+It is also important to note that color alone is not always enough to convey meaning but it can help support the intended message.
+
+### Color supports hierarchy
+
+The use of color should help bring attention to what matters most.
+Color should support the hierarchy of the page.
+We use color sparingly and purposefully to draw focus and attention for the user.
+
+### Color should be accessible
+
+When choosing colors, consider users who are color blind or who have low vision.
+Never use color alone to convey information.
+
+We strive to comply with AA standard contrast ratios when using combinations of text colors in our product interfaces.
+This helps to provide accessible interfaces for a wide range of our users, increasing usability and readability.
+If you see a AA compliant color listed below, this means the background of this color contrasts well against the defined text color.

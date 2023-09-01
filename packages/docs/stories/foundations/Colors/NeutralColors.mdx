@@ -1,0 +1,35 @@
+import { Meta , ColorPalette, ColorItem } from "@storybook/blocks";
+import * as tokens from '@sick-design-system/design-tokens';
+import {
+  getNeutralDarkPalette,
+  getNeutralMidPalette,
+  getNeutralLightPalette,
+} from '../../../src/helpers';
+
+<Meta title="Foundations/Color/Neutral" />
+
+### Neutral colors
+
+Our UI and neutral colors define typography and background colors as well as strokes and outlines. 
+Typically they are used for text and subtle backgrounds when we don't want to draw too much attention to a particular touchpoint or convey information such as "to do" or "disabled".
+They are made of a consistent dark-to-light color palette.
+
+<ColorPalette>
+  <ColorItem
+    title="Dark Neutrals"
+    subtitle="Dark neutrals are very effective for creating contrast and are therefore the primary color used for typography. Occasionally the dark neutrals are found in other elements but they rarely dominate the palette."
+    colors={getNeutralDarkPalette()}
+  />
+  
+  <ColorItem
+    title="Dark Neutrals"
+    subtitle="Use mid neutrals to create depth in components. Use them for border, icons, disabled text or disabled backgrounds. Avoid mid neutrals as background colors because there is usually not enough contrast to remain AA compliant."
+    colors={getNeutralMidPalette()}
+  />
+
+  <ColorItem
+    title="Dark Neutrals"
+    subtitle="Light neutrals are helpful for offsetting content in a primarily white layout without losing warmth and cleanliness and are therefore often used as a background color for small and large areas."
+    colors={getNeutralLightPalette()}
+  /> 
+</ColorPalette>

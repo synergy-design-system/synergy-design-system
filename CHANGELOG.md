@@ -29,4 +29,5 @@ The following icons are used in commit messages and this changelog.
 
 ### ✨ Features
 
+- #4: Added github action for linting
 - #37: Added automatic prefixing of commit messages via husky hook

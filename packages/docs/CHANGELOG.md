@@ -20,7 +20,8 @@ The following icons are used in commit messages and this changelog.
 
 ### 📚 Doc
 
-- #20: Added Welcome page and colors
+- #22: Added Welcome page and colors
+- #22: Added `@sick-design-system/design-tokens` Changelog and Readme, as well as first token files
 
 ### ✨ Features
 

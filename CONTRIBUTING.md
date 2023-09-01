@@ -39,6 +39,7 @@ and PKG is the package in which changes are done:
 - **css**: CSS package
 - **core**: Web components package
 - **design-tokens**: Design Tokens package
+- **docs**: Documentation package
 - **icons**: Icons package
 - **lint**: EsLint or stylelint rules
 

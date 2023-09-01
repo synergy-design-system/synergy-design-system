@@ -23,14 +23,16 @@
     "stylelint": "^15.10.3"
   },
   "exports": {
-    ".": "./build/default.css"
+    ".": "./build/default.css",
+    "./default.css": "./build/default.css",
+    "./with-reset.css": "./build/with-reset.css"
   },
   "files": [
     "build",
     "fonts",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/packages/css",
+  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/css",
   "keywords": [
     "CSS",
     "Styles",

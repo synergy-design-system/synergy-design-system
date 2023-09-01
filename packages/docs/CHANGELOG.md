@@ -18,14 +18,9 @@ The following icons are used in commit messages and this changelog.
 
 ### 🐛 Bugs
 
-- #20: Adjusted exports to be useable, added `with-reset` style
-
 ### ✨ Features
 
-- #11: Added core setup for css utility package
-- #11: Added core font and configuration for inlining
-- #11: Added basic typographic section for common elements like `h*`, `p`, `ul/ol` and `a`
-- #11: Added initial fouc prevention
-- #11: Added new variables as base for typo layout
-- #12: Added basic support for `sds-fade-in`, `sds-rotate-360` and `sds-scale` animations
-- #15: Added support for automatic loading of `@sick-design-system/icons`
+- #20: Added base package setup
+- #20: Add dark theme with SICK logo
+- #20: Add first fast component for testing purposes
+- #20: Ignore linting the `stories` folder.

@@ -7,7 +7,9 @@
     "autowatch",
     "fouc",
     "rgba",
-    "liga"
+    "liga",
+    "autodocs",
+    "csspart"
   ],
   "ignorePaths": [
     "package.json",

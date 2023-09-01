@@ -10,9 +10,9 @@ import type { Args, StoryContext } from '@storybook/html';
 export function renderComponent<TArgs = Args>(
   template: ViewTemplate,
 ): (args: TArgs, context: StoryContext) => Element | DocumentFragment | null {
-  return (args, { updateArgs }) => {
+  return (args) => {
     const storyFragment = new DocumentFragment();
-    template.render({ ...args, updateArgs }, storyFragment);
+    template.render({ ...args }, storyFragment);
     if (storyFragment.childElementCount === 1) {
       return storyFragment.firstElementChild;
     }

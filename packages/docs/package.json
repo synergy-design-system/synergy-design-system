@@ -47,8 +47,8 @@
   },
   "scripts": {
     "build": "pnpm storybook:build",
-    "lint:css": "stylelint \"{src,stories}/**/*.{css,js,ts}\"",
-    "lint:js": "eslint .",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "start": "pnpm storybook:run",
     "storybook:run": "storybook dev -p 6006",

@@ -5,7 +5,8 @@
   },
   "dependencies": {
     "@sick-design-system/css": "workspace:^",
-    "@sick-design-system/design-tokens": "workspace:^"
+    "@sick-design-system/design-tokens": "workspace:^",
+    "change-case": "^4.1.2"
   },
   "description": "Storybook demo for static assets and components of the SICK Design System",
   "devDependencies": {

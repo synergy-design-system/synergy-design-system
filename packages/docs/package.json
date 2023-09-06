@@ -9,6 +9,7 @@
   },
   "description": "Storybook demo for static assets and components of the SICK Design System",
   "devDependencies": {
+    "@geometricpanda/storybook-addon-badges": "^2.0.0",
     "@microsoft/fast-element": "^1.12.0",
     "@microsoft/fast-foundation": "^2.49.1",
     "@sick-design-system/eslint-config-sds": "workspace:^",

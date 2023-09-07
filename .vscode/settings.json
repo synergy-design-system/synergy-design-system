@@ -16,10 +16,12 @@
     "packages/design-tokens/build/css/*.css"
   ],
   "eslint.workingDirectories": [
+    "packages/components",
     "packages/css",
     "packages/design-tokens",
     "packages/docs",
     "packages/eslint-config-sds",
+    "packages/icons",
     "packages/stylelint-config-sds"
   ]
 }

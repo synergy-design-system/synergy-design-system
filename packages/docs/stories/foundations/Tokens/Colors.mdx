@@ -1,10 +1,13 @@
 import { Meta } from "@storybook/blocks";
 import * as tokens from '@sick-design-system/design-tokens';
-import { paramCase } from 'change-case';
+import { CopyToClipBoard } from '../../../src/Clipboard.tsx';
+
 import {
   getAccentColorPalette,
   getAddonsColorPalette,
+  getCSSToken,
   getPrimaryColorPalette,
+  getSASSToken,
   getSecondaryColorPalette
 } from '../../../src/helpers';
 
@@ -33,25 +36,30 @@ import {
           <td>
             <div className="color-swatch" style={{ backgroundColor: value }} />
           </td>
-          <td>{value}</td>
           <td>
-            --
-            {paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
           </td>
           <td>
-            ${paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
           </td>
-          <td>{token}</td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
         </tr>
       ))
     }
 
     <tr>
-      <th colSpan="5">Secondary Colors</th>
+      <th colSpan="8">Secondary Colors</th>
     </tr>
     {Object
       .entries(getSecondaryColorPalette())
@@ -60,25 +68,30 @@ import {
           <td>
             <div className="color-swatch" style={{ backgroundColor: value }} />
           </td>
-          <td>{value}</td>
           <td>
-            --
-            {paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
           </td>
           <td>
-            ${paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
           </td>
-          <td>{token}</td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
         </tr>
       ))
     }
 
     <tr>
-      <th colSpan="5">Accent Colors</th>
+      <th colSpan="8">Accent Colors</th>
     </tr>
     {Object
       .entries(getAccentColorPalette())
@@ -87,25 +100,30 @@ import {
           <td>
             <div className="color-swatch" style={{ backgroundColor: value }} />
           </td>
-          <td>{value}</td>
           <td>
-            --
-            {paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
           </td>
           <td>
-            ${paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
           </td>
-          <td>{token}</td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
         </tr>
       ))
     }
 
     <tr>
-      <th colSpan="5">Additional Colors</th>
+      <th colSpan="8">Additional Colors</th>
     </tr>
     {Object
       .entries(getAddonsColorPalette())
@@ -114,19 +132,24 @@ import {
           <td>
             <div className="color-swatch" style={{ backgroundColor: value }} />
           </td>
-          <td>{value}</td>
           <td>
-            --
-            {paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
           </td>
           <td>
-            ${paramCase(token, {
-              splitRegexp: /([a-z])([A-Z0-9])/g,
-            })}
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
           </td>
-          <td>{token}</td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
         </tr>
       ))
     }
@@ -143,6 +166,11 @@ import {
     height: 40px;
     justify-content: center;
     width: 40px;
+  }
+
+  .copy-to-clipboard {
+    text-align: center;
+    width: 20px;
   }
 `}
 </style>

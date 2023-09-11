@@ -25,6 +25,7 @@
     "@storybook/manager-api": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
     "@storybook/theming": "^7.4.0",
+    "@types/react": "^18.2.21",
     "eslint": "^8.47.0",
     "eslint-plugin-storybook": "^0.6.13",
     "react": "^18.2.0",

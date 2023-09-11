@@ -1,3 +1,4 @@
+import { paramCase } from 'change-case';
 import * as tokens from '@sick-design-system/design-tokens';
 
 /**
@@ -78,3 +79,21 @@ export const getNeutralMidPalette = () => getPaletteMembersByWeight('neutral', 2
  * mid is defined as a weight <= 199
  */
 export const getNeutralLightPalette = () => getPaletteMembersByWeight('neutral', 0, 199);
+
+/**
+ * Get the css variable name from a design token
+ * @param token The token to get the css name for
+ * @returns The css token name
+ */
+export const getCSSToken = (token: string) => `--${paramCase(token, {
+  splitRegexp: /([a-z])([A-Z0-9])/g,
+})}`;
+
+/**
+ * Get the sass variable name from a design token
+ * @param token The token to get the css name for
+ * @returns The sass token name
+ */
+export const getSASSToken = (token: string) => `$${paramCase(token, {
+  splitRegexp: /([a-z])([A-Z0-9])/g,
+})}`;

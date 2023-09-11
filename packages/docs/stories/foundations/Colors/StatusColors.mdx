@@ -1,0 +1,38 @@
+import { Meta , ColorPalette, ColorItem } from "@storybook/blocks";
+import * as tokens from '@sick-design-system/design-tokens';
+
+<Meta title="Foundations/Color/Status" />
+
+### Status colors
+
+Status colors are representing a clear message as well as status, such as error, warning, success and other information.
+
+<ColorPalette>
+  <ColorItem
+    title="Errors"
+    subtitle="Used for errors"
+    colors={{
+      20: tokens.sdsColorStatusError20,
+      500: tokens.sdsColorStatusError500,
+    }}
+  />
+
+  <ColorItem
+    title="Warning"
+    subtitle="Used for warnings"
+    colors={{
+      100: tokens.sdsColorStatusWarning100,
+      500: tokens.sdsColorStatusWarning500,
+    }}
+  />
+
+  <ColorItem
+    title="Success"
+    subtitle="Used for success messages"
+    colors={{
+      5: tokens.sdsColorStatusSuccess5,
+      10: tokens.sdsColorStatusSuccess10,
+      500: tokens.sdsColorStatusSuccess500,
+    }}
+  />
+</ColorPalette>

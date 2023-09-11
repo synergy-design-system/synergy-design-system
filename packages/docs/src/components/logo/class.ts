@@ -29,3 +29,9 @@ export class Logo extends FoundationElement {
   @attr
   public variant: LogoVariant = 'color';
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sds-logo': Logo;
+  }
+}

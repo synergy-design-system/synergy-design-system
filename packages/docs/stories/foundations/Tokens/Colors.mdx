@@ -1,0 +1,176 @@
+import { Meta } from "@storybook/blocks";
+import * as tokens from '@sick-design-system/design-tokens';
+import { CopyToClipBoard } from '../../../src/Clipboard.tsx';
+
+import {
+  getAccentColorPalette,
+  getAddonsColorPalette,
+  getCSSToken,
+  getPrimaryColorPalette,
+  getSASSToken,
+  getSecondaryColorPalette,
+} from '../../../src/helpers';
+
+<Meta title="Foundations/Design Tokens/Colors" />
+
+# Colors
+
+<table>
+  <thead>
+    <tr>
+      <th colSpan="2">Color</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <th colSpan="5">Primary Colors</th>
+    </tr>
+    {Object
+      .entries(getPrimaryColorPalette(true))
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))
+    }
+
+    <tr>
+      <th colSpan="8">Secondary Colors</th>
+    </tr>
+    {Object
+      .entries(getSecondaryColorPalette(true))
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))
+    }
+
+    <tr>
+      <th colSpan="8">Accent Colors</th>
+    </tr>
+    {Object
+      .entries(getAccentColorPalette(true))
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))
+    }
+
+    <tr>
+      <th colSpan="8">Additional Colors</th>
+    </tr>
+    {Object
+      .entries(getAddonsColorPalette(true))
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>
+            <CopyToClipBoard value={value}>{value}</CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+{`
+  .color-swatch {
+    align-items: center;
+    border-radius: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+  }
+
+  .copy-to-clipboard {
+    text-align: center;
+    width: 20px;
+  }
+`}
+</style>

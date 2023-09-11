@@ -1,6 +1,12 @@
 import { Meta } from "@storybook/blocks";
 import * as tokens from '@sick-design-system/design-tokens';
 import { paramCase } from 'change-case';
+import {
+  getAccentColorPalette,
+  getAddonsColorPalette,
+  getPrimaryColorPalette,
+  getSecondaryColorPalette
+} from '../../../src/helpers';
 
 <Meta title="Foundations/Design Tokens/Colors" />
 
@@ -9,16 +15,19 @@ import { paramCase } from 'change-case';
 <table>
   <thead>
     <tr>
-      <th colspan="2">Color</th>
+      <th colSpan="2">Color</th>
       <th>CSS Token</th>
       <th>SCSS Token</th>
       <th>JS Token</th>
     </tr>
   </thead>
   <tbody>
+    
+    <tr>
+      <th colSpan="5">Primary Colors</th>
+    </tr>
     {Object
-      .entries(tokens)
-      .filter(([token]) => token.toLowerCase().startsWith('sdscolor'))
+      .entries(getPrimaryColorPalette())
       .map(([token, value]) => (
         <tr key={token}>
           <td>
@@ -38,7 +47,89 @@ import { paramCase } from 'change-case';
           </td>
           <td>{token}</td>
         </tr>
-      ))}
+      ))
+    }
+
+    <tr>
+      <th colSpan="5">Secondary Colors</th>
+    </tr>
+    {Object
+      .entries(getSecondaryColorPalette())
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>{value}</td>
+          <td>
+            --
+            {paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>
+            ${paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>{token}</td>
+        </tr>
+      ))
+    }
+
+    <tr>
+      <th colSpan="5">Accent Colors</th>
+    </tr>
+    {Object
+      .entries(getAccentColorPalette())
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>{value}</td>
+          <td>
+            --
+            {paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>
+            ${paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>{token}</td>
+        </tr>
+      ))
+    }
+
+    <tr>
+      <th colSpan="5">Additional Colors</th>
+    </tr>
+    {Object
+      .entries(getAddonsColorPalette())
+      .map(([token, value]) => (
+        <tr key={token}>
+          <td>
+            <div className="color-swatch" style={{ backgroundColor: value }} />
+          </td>
+          <td>{value}</td>
+          <td>
+            --
+            {paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>
+            ${paramCase(token, {
+              splitRegexp: /([a-z])([A-Z0-9])/g,
+            })}
+          </td>
+          <td>{token}</td>
+        </tr>
+      ))
+    }
   </tbody>
 </table>
 

@@ -18,9 +18,19 @@ The following icons are used in commit messages and this changelog.
 
 ### 🐛 Bugs
 
+### 📚 Doc
+
+- #22: Added Welcome page and colors
+- #22: Added `@sick-design-system/design-tokens` Changelog and Readme, as well as color tokens
+
 ### ✨ Features
 
 - #20: Added base package setup
 - #20: Add dark theme with SICK logo
 - #20: Add first fast component for testing purposes
 - #20: Ignore linting the `stories` folder.
+- #22: Add support for storybook badges
+
+### ⛔ Removals
+
+- #20: Removed Storybook demo content

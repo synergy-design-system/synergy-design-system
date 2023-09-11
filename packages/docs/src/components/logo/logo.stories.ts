@@ -1,5 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { Meta, StoryObj } from '@storybook/html';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import { renderComponent } from '../../helpers';
 import { Logo } from './class';
 
@@ -39,6 +40,9 @@ export default {
         },
       },
     },
+  },
+  parameters: {
+    badges: [BADGE.STABLE, 'v1', 'needsHandoff'],
   },
   render,
   tags: ['autodocs'],

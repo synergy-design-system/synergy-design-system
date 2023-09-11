@@ -4,13 +4,14 @@ import * as tokens from '@sick-design-system/design-tokens';
 /**
  * Get all colors from a palette as object
  * @param palette The palette to search for
+ * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete color palette
  */
-const getColorAsPalette = (palette: string) => Object.fromEntries(
+const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(
   Object.entries(tokens)
     .filter(([token]) => token.toLowerCase().startsWith(`sdscolor${palette}`))
     .map(([token, value]) => [
-      token.toLowerCase().replace('sdscolor', ''),
+      useFullTokenName ? token : token.toLowerCase().replace('sdscolor', ''),
       value,
     ]),
 );
@@ -38,19 +39,19 @@ const getPaletteMembersByWeight = (
 /**
  * Get the primary color palette
  */
-export const getPrimaryColorPalette = () => getColorAsPalette('primary');
+export const getPrimaryColorPalette = (useFullTokenName = false) => getColorAsPalette('primary', useFullTokenName);
 
-export const getSecondaryColorPalette = () => getColorAsPalette('secondary');
+export const getSecondaryColorPalette = (useFullTokenName = false) => getColorAsPalette('secondary', useFullTokenName);
 
-export const getAccentColorPalette = () => getColorAsPalette('accent');
+export const getAccentColorPalette = (useFullTokenName = false) => getColorAsPalette('accent', useFullTokenName);
 
 /**
  * Special case handling: As addons does not use the weight specifier but is still named,
  * we have to strip the naming by ourselfs
  */
-export const getAddonsColorPalette = () => Object.fromEntries(
+export const getAddonsColorPalette = (useFullTokenName = false) => Object.fromEntries(
   Object
-    .entries(getColorAsPalette('addons'))
+    .entries(getColorAsPalette('addons', useFullTokenName))
     .map(([token, value]) => [
       token.replace('addons', ''),
       value,

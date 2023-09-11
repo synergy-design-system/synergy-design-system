@@ -8,7 +8,7 @@ import {
   getCSSToken,
   getPrimaryColorPalette,
   getSASSToken,
-  getSecondaryColorPalette
+  getSecondaryColorPalette,
 } from '../../../src/helpers';
 
 <Meta title="Foundations/Design Tokens/Colors" />
@@ -30,7 +30,7 @@ import {
       <th colSpan="5">Primary Colors</th>
     </tr>
     {Object
-      .entries(getPrimaryColorPalette())
+      .entries(getPrimaryColorPalette(true))
       .map(([token, value]) => (
         <tr key={token}>
           <td>
@@ -62,7 +62,7 @@ import {
       <th colSpan="8">Secondary Colors</th>
     </tr>
     {Object
-      .entries(getSecondaryColorPalette())
+      .entries(getSecondaryColorPalette(true))
       .map(([token, value]) => (
         <tr key={token}>
           <td>
@@ -94,7 +94,7 @@ import {
       <th colSpan="8">Accent Colors</th>
     </tr>
     {Object
-      .entries(getAccentColorPalette())
+      .entries(getAccentColorPalette(true))
       .map(([token, value]) => (
         <tr key={token}>
           <td>
@@ -126,7 +126,7 @@ import {
       <th colSpan="8">Additional Colors</th>
     </tr>
     {Object
-      .entries(getAddonsColorPalette())
+      .entries(getAddonsColorPalette(true))
       .map(([token, value]) => (
         <tr key={token}>
           <td>

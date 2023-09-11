@@ -24,7 +24,7 @@ export const CopyToClipBoard: FC<ClipboardProps> = ({ children, value = '' }) =>
   >
     <div
       style={{
-        flex: '1 0 auto',
+        flex: '1 1 auto',
       }}
     >
       {children}

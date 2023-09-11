@@ -1,5 +1,5 @@
 import { ViewTemplate, html, when } from '@microsoft/fast-element';
-import { Logo } from './class';
+import { Logo } from './class.js';
 
 type LogoTemplateType<T extends Logo> = () => ViewTemplate<T>;
 

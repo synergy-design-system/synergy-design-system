@@ -1,6 +1,6 @@
-import { Logo } from './class';
-import { styles } from './styles';
-import { logoTemplate as template } from './template';
+import { Logo } from './class.js';
+import { styles } from './styles.js';
+import { logoTemplate as template } from './template.js';
 
 export const SdsLogo = Logo.compose({
   baseName: 'logo',

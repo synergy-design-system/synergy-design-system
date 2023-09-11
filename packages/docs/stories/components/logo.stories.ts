@@ -1,8 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import type { Meta, StoryObj } from '@storybook/html';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import { renderComponent } from '../../helpers';
-import { Logo } from './class';
+import type { Logo } from '@sick-design-system/components/dist/types/components/logo/class';
+import { renderComponent } from '../../src/helpers';
 
 const storyTemplate = html<Logo>`
   <sds-logo

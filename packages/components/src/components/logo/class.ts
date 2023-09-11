@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import type { LogoVariant } from './options';
+import type { LogoVariant } from './options.js';
 
 /**
  * The logo represents the company and forms the core of the brand identity.

@@ -108,6 +108,9 @@ importers:
 
   packages/docs:
     dependencies:
+      '@sick-design-system/components':
+        specifier: workspace:^
+        version: link:../components
       '@sick-design-system/css':
         specifier: workspace:^
         version: link:../css

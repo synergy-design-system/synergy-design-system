@@ -1,5 +1,6 @@
 import { DesignSystem } from '@microsoft/fast-foundation';
-import type { CompositionFunction } from './types';
+import { ALL_COMPONENTS } from './components/all.js';
+import type { CompositionFunction } from './types.js';
 
 /**
  * Creates an instance of our design system with a component prefix of "sds"
@@ -24,4 +25,12 @@ export const setup = (components: CompositionFunction[] = []) => {
   provideSDSDesignSystem().register(
     ...components.map(c => c()),
   );
+};
+
+/**
+ * Initial quickstart function.
+ * Use this function once in your project to load all components
+ */
+export const quickStart = () => {
+  setup(ALL_COMPONENTS);
 };

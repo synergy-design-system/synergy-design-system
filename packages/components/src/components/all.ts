@@ -1,4 +1,4 @@
-import * as components from './index';
+import * as components from './index.js';
 
 /**
  * List of all components in the library.

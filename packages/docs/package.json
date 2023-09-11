@@ -4,6 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
+    "@sick-design-system/components": "workspace:^",
     "@sick-design-system/css": "workspace:^",
     "@sick-design-system/design-tokens": "workspace:^",
     "change-case": "^4.1.2"

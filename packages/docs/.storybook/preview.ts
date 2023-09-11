@@ -1,9 +1,9 @@
 import type { Preview } from '@storybook/html';
 import '@sick-design-system/css/default.css';
+import { quickStart } from '@sick-design-system/components';
 import * as tokens from '@sick-design-system/design-tokens';
-import { provideSDSDesignSystem } from '../src/system';
 
-provideSDSDesignSystem();
+quickStart();
 
 const preview: Preview = {
   parameters: {

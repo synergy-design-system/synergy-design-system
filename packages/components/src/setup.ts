@@ -17,8 +17,8 @@ const provideSDSDesignSystem = (element?: HTMLElement) => DesignSystem
  * @param components Array of components to load
  * @example
  * ```typescript
- * import { setup, SDSButton, SDSLogo } from '@sick-design-system/components';
- * setup([ SDSButton, SDSLogo ]);
+ * import { setup, SdsButton, SdsLogo } from '@sick-design-system/components';
+ * setup([ SdsButton, SdsLogo ]);
  * ```
  */
 export const setup = (components: CompositionFunction[] = []) => {

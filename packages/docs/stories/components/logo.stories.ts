@@ -3,8 +3,9 @@ import type { Meta, StoryObj } from '@storybook/html';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import type { Logo } from '@sick-design-system/components/dist/types/components/logo/class';
 import { renderComponent } from '../../src/helpers';
+import type { StoryArgs } from '../../src/helpers';
 
-const storyTemplate = html<Logo>`
+const storyTemplate = html<StoryArgs<Logo>>`
   <sds-logo
     claim="${x => x.claim}"
     variant="${x => x.variant}"

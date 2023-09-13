@@ -34,4 +34,4 @@ The following icons are used in commit messages and this changelog.
 ### ⛔ Removals
 
 - #20: Removed Storybook demo content
-- #18: Moved `<SDSLogo />` component to `@sick-design-system/components`
+- #18: Moved `<SdsLogo />` component to `@sick-design-system/components`

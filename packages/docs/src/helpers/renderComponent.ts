@@ -1,4 +1,4 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
+import type { FASTElement, ViewTemplate } from '@microsoft/fast-element';
 import type { Args, StoryContext } from '@storybook/html';
 
 /**
@@ -19,3 +19,8 @@ export function renderComponent<TArgs = Args>(
     return storyFragment;
   };
 }
+
+/**
+ * Combined Storybook story args.
+ */
+export type StoryArgs<TArgs = Args> = Partial<Omit<TArgs, keyof FASTElement>> & Args;

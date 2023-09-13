@@ -1,0 +1,29 @@
+import { Meta, IconGallery, IconItem } from "@storybook/blocks";
+import LinkTo from '@storybook/addon-links/react';
+import versions from 'material-icons/_data/versions.json';
+import { CopyToClipBoard } from '../../../src/Clipboard.tsx';
+
+<Meta title="Foundations/Icons" />
+
+# Icons and pictograms
+
+Icons and pictograms are symbols which communicate information with simple graphics.
+We are using [Googles Material Icons](https://fonts.google.com/icons) as base of our own <LinkTo kind="Packages/Icons" story="Docs">icons package</LinkTo>.
+The following icons are currently supported as ligatures.
+
+> ⚠️ Please click on an icon to copy the corresponding HTML to your clipboard.
+
+<IconGallery>
+  {Object.keys(versions).map(ligature => (
+    <IconItem name={ligature} key={ligature}>
+      <sds-icon
+        onClick={() => {
+          navigator.clipboard.writeText(`<sds-icon>${ligature}</sds-icon>`);
+        }}
+        style={{ cursor: 'pointer', }}
+      >
+        {ligature}
+      </sds-icon>
+    </IconItem>
+  ))}
+</IconGallery>

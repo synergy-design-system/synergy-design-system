@@ -7,7 +7,8 @@
     "@sick-design-system/components": "workspace:^",
     "@sick-design-system/css": "workspace:^",
     "@sick-design-system/design-tokens": "workspace:^",
-    "change-case": "^4.1.2"
+    "change-case": "^4.1.2",
+    "material-icons": "^1.13.10"
   },
   "description": "Storybook demo for static assets and components of the SICK Design System",
   "devDependencies": {
@@ -59,5 +60,6 @@
     "storybook:run": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
+  "type": "module",
   "version": "0.1.0"
 }

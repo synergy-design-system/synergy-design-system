@@ -7,3 +7,9 @@ export const SdsLogo = Logo.compose({
   styles,
   template,
 });
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sds-logo': Logo;
+  }
+}

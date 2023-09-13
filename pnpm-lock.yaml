@@ -22,9 +22,6 @@ importers:
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
     devDependencies:
       '@sick-design-system/eslint-config-sds':
         specifier: workspace:^
@@ -38,6 +35,9 @@ importers:
       stylelint:
         specifier: ^15.10.3
         version: 15.10.3
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
 
   packages/css:
     dependencies:
@@ -120,6 +120,9 @@ importers:
       change-case:
         specifier: ^4.1.2
         version: 4.1.2
+      material-icons:
+        specifier: ^1.13.10
+        version: 1.13.10
     devDependencies:
       '@geometricpanda/storybook-addon-badges':
         specifier: ^2.0.0
@@ -7074,7 +7077,6 @@ packages:
 
   /material-icons@1.13.10:
     resolution: {integrity: sha512-XSESl/zo7XzD9nz8ihUq5HO0DzsvnVex9t8hpH8pqY1SFlESAdHlMQQbcCyyP58mPp6Wm1tyt0OaDNZhBT9lXQ==}
-    dev: true
 
   /mathml-tag-names@2.1.3:
     resolution: {integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==}

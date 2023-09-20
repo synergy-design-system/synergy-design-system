@@ -87,7 +87,7 @@ It is also the suggested approach if you want to use a CDN for working with stat
   <script type="module">
     import { setup, SdsButton, SdsIcon, SdsLogo } from '@sick-design-system/components';
     setup([
-      SDSButton,
+      SdsButton,
       SdsIcon,
       SdsLogo,
     ]);

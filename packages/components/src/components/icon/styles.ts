@@ -5,7 +5,7 @@ export const styles = css`
     display: inline-block;
 
     /* Remove white space in inline-block elements */
-    font-size: 0;
+    line-height: 0;
   }
 
   .icon {
@@ -14,7 +14,6 @@ export const styles = css`
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Material Icons";
     font-feature-settings: "liga";
-    font-size: 24px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-style: normal;

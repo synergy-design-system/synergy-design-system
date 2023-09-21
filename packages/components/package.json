@@ -1,0 +1,57 @@
+{
+  "author": {
+    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@microsoft/fast-element": "^1.12.0",
+    "@microsoft/fast-foundation": "^2.49.1",
+    "tslib": "^2.6.2"
+  },
+  "description": "Web Components for the SICK Design System",
+  "devDependencies": {
+    "@sick-design-system/eslint-config-sds": "workspace:^",
+    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "eslint": "^8.47.0",
+    "rimraf": "^5.0.1",
+    "stylelint": "^15.10.3",
+    "typescript": "^5.2.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "dist"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/components",
+  "keywords": [
+    "Web Components",
+    "Design System",
+    "SDS",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@sick-design-system/components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/sds.git",
+    "directory": "packages/components"
+  },
+  "scripts": {
+    "build:tsc": "tsc -p ./tsconfig.build.json",
+    "build": "rimraf clean ./dist && pnpm build:tsc",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/",
+    "start": "pnpm storybook:run"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "dist/types/index.d.ts",
+  "version": "0.1.0"
+}

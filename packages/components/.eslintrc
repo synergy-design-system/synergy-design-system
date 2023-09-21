@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "@sick-design-system/eslint-config-sds/ts"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

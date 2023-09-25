@@ -5,7 +5,6 @@
       "type": "duration"
     },
     "fast": {
-      "description": "Default animation time",
       "value": "150ms",
       "type": "duration"
     },

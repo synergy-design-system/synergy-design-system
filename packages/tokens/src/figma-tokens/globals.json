@@ -1,0 +1,241 @@
+{
+  "font-size": {
+    "2x-small": {
+      "value": "10px",
+      "type": "fontSizes"
+    },
+    "x-small": {
+      "value": "12px",
+      "type": "fontSizes"
+    },
+    "small": {
+      "value": "14px",
+      "type": "fontSizes"
+    },
+    "medium": {
+      "value": "16px",
+      "type": "fontSizes"
+    },
+    "large": {
+      "value": "20px",
+      "type": "fontSizes"
+    },
+    "x-large": {
+      "value": "24px",
+      "type": "fontSizes"
+    },
+    "2x-large": {
+      "value": "36px",
+      "type": "fontSizes"
+    },
+    "3x-large": {
+      "value": "48px",
+      "type": "fontSizes"
+    },
+    "4x-large": {
+      "value": "72px",
+      "type": "fontSizes"
+    }
+  },
+  "line-height": {
+    "denser": {
+      "value": "100%",
+      "type": "lineHeights"
+    },
+    "dense": {
+      "value": "140%",
+      "type": "lineHeights"
+    },
+    "normal": {
+      "value": "180%",
+      "type": "lineHeights"
+    },
+    "loose": {
+      "value": "220%",
+      "type": "lineHeights"
+    },
+    "looser": {
+      "value": "260%",
+      "type": "lineHeights"
+    }
+  },
+  "letter-spacing": {
+    "denser": {
+      "value": "-3%",
+      "type": "letterSpacing"
+    },
+    "dense": {
+      "value": "-1.5%",
+      "type": "letterSpacing"
+    },
+    " normal": {
+      "value": "0%",
+      "type": "letterSpacing"
+    },
+    "loose": {
+      "value": "7.5%",
+      "type": "letterSpacing"
+    },
+    "looser": {
+      "value": "15%",
+      "type": "letterSpacing"
+    }
+  },
+  "font-weight": {
+    "light": {
+      "value": "300",
+      "type": "fontWeights"
+    },
+    "normal": {
+      "value": "400",
+      "type": "fontWeights"
+    },
+    "semibold": {
+      "value": "500",
+      "type": "fontWeights"
+    },
+    "bold": {
+      "value": "700",
+      "type": "fontWeights"
+    }
+  },
+  "shadow": {
+    "x-small": {
+      "value": {
+        "x": "0",
+        "y": "1px",
+        "blur": "2px",
+        "spread": "0",
+        "color": "rgba(113,113,122,0.06)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "small": {
+      "value": {
+        "x": "0",
+        "y": "1px",
+        "blur": "2px",
+        "spread": "0",
+        "color": "rgba(113,113,122,0.12)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "medium": {
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "4px",
+        "spread": "0",
+        "color": "rgba(113,113,122,0.12)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "large": {
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "8px",
+        "spread": "0",
+        "color": "rgba(113,113,122,0.12)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "x-large": {
+      "value": {
+        "x": "0",
+        "y": "4px",
+        "blur": "16px",
+        "spread": "0",
+        "color": "rgba(113,113,122,0.12)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    }
+  },
+  "font": {
+    "sans": {
+      "value": "Roboto",
+      "type": "fontFamilies"
+    },
+    "serif": {
+      "value": "Georgia",
+      "type": "fontFamilies"
+    },
+    "mono": {
+      "value": "Menlo",
+      "type": "fontFamilies"
+    }
+  },
+  "spacing": {
+    "3x-small": {
+      "value": "0.125rem",
+      "type": "spacing"
+    },
+    "2x-small": {
+      "value": "0.25rem",
+      "type": "spacing"
+    },
+    "x-small": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "small": {
+      "value": "0.75rem",
+      "type": "spacing"
+    },
+    "medium": {
+      "value": "1rem",
+      "type": "spacing"
+    },
+    "large": {
+      "value": "1.25rem",
+      "type": "spacing"
+    },
+    "x-large": {
+      "value": "1.75rem",
+      "type": "spacing"
+    },
+    "2x-large": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "3x-large": {
+      "value": "3rem",
+      "type": "spacing"
+    },
+    "4x-large": {
+      "value": "4.5rem",
+      "type": "spacing"
+    }
+  },
+  "border-radius": {
+    "small": {
+      "value": "0.1875rem",
+      "type": "borderRadius"
+    },
+    "medium": {
+      "value": "0.25rem",
+      "type": "borderRadius"
+    },
+    "large": {
+      "value": "0.5rem",
+      "type": "borderRadius"
+    },
+    "x-large": {
+      "value": "1rem",
+      "type": "borderRadius"
+    },
+    "pill": {
+      "value": "99999px",
+      "type": "borderRadius"
+    },
+    "circle": {
+      "value": "50%",
+      "type": "borderRadius"
+    }
+  }
+}

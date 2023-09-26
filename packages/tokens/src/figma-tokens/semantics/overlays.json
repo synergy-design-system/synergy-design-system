@@ -1,0 +1,8 @@
+{
+  "overlay": {
+    "background-color": {
+      "value": "hsl(240 3.8% 46.1% / 33%)",
+      "type": "color"
+    }
+  }
+}

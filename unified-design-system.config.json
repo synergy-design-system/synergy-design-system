@@ -1,0 +1,16 @@
+{
+  "tokensPath": "./packages/tokens/src",
+  "libraryName": "sick",
+  "libraryPrefix": "sds",
+  "lockFilesForVSCode": true,
+  "updateGitignore": false,
+  "assetsPath": "./packages/assets/src",
+  "figmaPersonalToken": "x",
+  "figmaFileId": "x",
+  "shoelaceVersion": "v2.6.0",
+  "vendorPath": "./vendor",
+  "componentsPath": "./packages/components",
+  "components": [
+    "button"
+  ]
+}

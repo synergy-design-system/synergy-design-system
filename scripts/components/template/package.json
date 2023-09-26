@@ -1,0 +1,41 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mariohamann/custom-shoelace"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "tsc && vite build",
+    "build-storybook": "storybook build"
+  },
+  "author": "",
+  "homepage": "",
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@mariohamann/wc-storybook-helpers": "^1.3.0",
+    "@shoelace-style/animations": "^1.1.0",
+    "@shoelace-style/localize": "^3.1.1",
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/manager-api": "^7.4.0",
+    "@storybook/theming": "^7.4.0",
+    "@storybook/web-components": "^7.2.1",
+    "@storybook/web-components-vite": "^7.2.1",
+    "cem-plugin-vs-code-custom-data-generator": "^1.4.2",
+    "comment-parser": "^1.4.0",
+    "html-format": "^1.1.2",
+    "lit": "^2.7.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.2.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-cem": "^0.5.0",
+    "vite-plugin-replace": "^0.1.1"
+  }
+}

@@ -6,13 +6,24 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
+  "type": "module",
   "browserslist": "defaults and supports es6-module",
   "contributors": [
-    { "name": "Timothy Burk" },
-    { "name": "Susanne Kirchner" },
-    { "name": "Sebastian Klaar" },
-    { "name": "Stefan Reichert" },
-    { "name": "Christian Schilling" }
+    {
+      "name": "Timothy Burk"
+    },
+    {
+      "name": "Susanne Kirchner"
+    },
+    {
+      "name": "Sebastian Klaar"
+    },
+    {
+      "name": "Stefan Reichert"
+    },
+    {
+      "name": "Christian Schilling"
+    }
   ],
   "description": "SICK AG Design System for web based applications",
   "license": "BSD-3-Clause",
@@ -26,6 +37,22 @@
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
-    "lint": "pnpm --recursive --if-present lint"
+    "lint": "pnpm --recursive --if-present lint",
+    "cli": "node ./scripts/unified-design-system.js"
+  },
+  "devDependencies": {
+    "@clack/core": "^0.3.3",
+    "@clack/prompts": "^0.7.0",
+    "@tokens-studio/sd-transforms": "^0.11.0",
+    "dependency-tree": "^10.0.9",
+    "dotenv": "^16.3.1",
+    "download-git-repo": "^3.0.2",
+    "figma-export-assets": "github:mariohamann/figma-export-assets",
+    "globby": "^13.2.2",
+    "remark-parse": "^11.0.0",
+    "style-dictionary": "^3.8.0",
+    "svgo": "^3.0.2",
+    "unified": "^11.0.3",
+    "unist-util-visit": "^5.0.0"
   }
 }

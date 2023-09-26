@@ -1,57 +1,41 @@
 {
-  "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
-    "url": "https://www.sick.com"
-  },
-  "dependencies": {
-    "@microsoft/fast-element": "^1.12.0",
-    "@microsoft/fast-foundation": "^2.49.1",
-    "tslib": "^2.6.2"
-  },
-  "description": "Web Components for the SICK Design System",
-  "devDependencies": {
-    "@sick-design-system/eslint-config-sds": "workspace:^",
-    "@sick-design-system/stylelint-config-sds": "workspace:^",
-    "eslint": "^8.47.0",
-    "rimraf": "^5.0.1",
-    "stylelint": "^15.10.3",
-    "typescript": "^5.2.2"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
-    }
-  },
-  "files": [
-    "CHANGELOG.md",
-    "dist"
-  ],
-  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/components",
-  "keywords": [
-    "Web Components",
-    "Design System",
-    "SDS",
-    "SICK",
-    "SICK Design System"
-  ],
-  "license": "BSD-3-Clause",
   "name": "@sick-design-system/components",
+  "version": "1.0.0",
+  "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/sds.git",
-    "directory": "packages/components"
+    "url": "https://github.com/mariohamann/custom-shoelace"
   },
   "scripts": {
-    "build:tsc": "tsc -p ./tsconfig.build.json",
-    "build": "rimraf clean ./dist && pnpm build:tsc",
-    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
-    "lint:js": "eslint src",
-    "lint": "pnpm run /^lint:.*/",
-    "start": "pnpm storybook:run"
+    "dev": "storybook dev -p 6006",
+    "build": "tsc && vite build",
+    "build-storybook": "storybook build"
   },
-  "sideEffects": false,
-  "type": "module",
-  "types": "dist/types/index.d.ts",
-  "version": "0.1.0"
+  "author": "",
+  "homepage": "",
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@mariohamann/wc-storybook-helpers": "^1.3.0",
+    "@shoelace-style/animations": "^1.1.0",
+    "@shoelace-style/localize": "^3.1.1",
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/manager-api": "^7.4.0",
+    "@storybook/theming": "^7.4.0",
+    "@storybook/web-components": "^7.2.1",
+    "@storybook/web-components-vite": "^7.2.1",
+    "cem-plugin-vs-code-custom-data-generator": "^1.4.2",
+    "comment-parser": "^1.4.0",
+    "html-format": "^1.1.2",
+    "lit": "^2.7.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.2.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-cem": "^0.5.0",
+    "vite-plugin-replace": "^0.1.1"
+  }
 }

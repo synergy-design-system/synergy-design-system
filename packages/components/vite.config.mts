@@ -6,6 +6,17 @@ import path from 'path';
 
 export default (({ command }: { command: string; }) => {
   return {
+    plugins: [
+      VitePluginCustomElementsManifest(customElementConfig as any),
+      replaceCodePlugin({
+        replacements: [
+          {
+            from: "__PACKAGE_VERSION__",
+            to: `'${packageJson.version}'`,
+          },
+        ],
+      }),
+    ],
     build: {
       outDir: 'dist',
       lib: {

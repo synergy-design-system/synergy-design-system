@@ -11,7 +11,8 @@
   "vendorPath": "./vendor",
   "componentsPath": "./packages/components",
   "components": [
+    "alert",
     "button",
-    "button"
+    "icon"
   ]
 }

@@ -19,8 +19,8 @@ function deleteFolderRecursive(directory) {
 
 export const downloadShoelace = async (config) => {
   s.start(`⏳ Downloading Shoelace ${config.shoelaceVersion}`);
-  deleteFolderRecursive(config.vendorPath);
-  fs.mkdirSync(config.vendorPath, { recursive: true });
+  await deleteFolderRecursive(config.vendorPath);
+  await fs.mkdirSync(config.vendorPath, { recursive: true });
   await new Promise((resolve, reject) => {
     download(`shoelace-style/shoelace#${config.shoelaceVersion}`, config.vendorPath, err => {
       if (err) reject(`Error downloading repo: ${err}`);

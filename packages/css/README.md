@@ -1,4 +1,4 @@
-# @sick-design-system/css
+# @synergy-design-system/css
 
 This package provides css styles that may be used in new web projects. It [sets a common baseline](./src/core/baseline.css) for projects by configuring [tags with default sizes and colors](./src/core/typo.css) and provides the css variables and [fonts](./src/core/fonts.css), as well as [icons](../icons/README.md) used throughout the SICK Design System components.
 
@@ -9,9 +9,9 @@ This package provides css styles that may be used in new web projects. It [sets 
 You may install all styles via one of the following commands:
 
 ```bash
-npm install --save @sick-design-system/css
-yarn add @sick-design-system/css
-pnpm i @sick-design-system/css
+npm install --save @synergy-design-system/css
+yarn add @synergy-design-system/css
+pnpm i @synergy-design-system/css
 ```
 
 ---
@@ -33,7 +33,7 @@ This package includes two versions of the css files. You may use either of them,
 <head>
 <!-- Example 1: Referencing directly in a HTML document -->
 <!-- Make sure to add the stylesheet before using any components -->
-<link rel="stylesheet" href="/node_modules/@sick-design-system/css/build/default.css" />
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/css/build/default.css" />
 </head>
 <body>
   <div style="background: var(--sds-color-primary-500)">Content</div>
@@ -44,7 +44,7 @@ This package includes two versions of the css files. You may use either of them,
 <head>
 <!-- Example 2: Using the normalize version -->
 <!-- Make sure to add the stylesheet before using any components -->
-<link rel="stylesheet" href="/node_modules/@sick-design-system/css/build/with-reset.css" />
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/css/build/with-reset.css" />
 </head>
 <body>
   <div style="background: var(--sds-color-primary-500)">Content</div>
@@ -55,13 +55,13 @@ This package includes two versions of the css files. You may use either of them,
 
 ## Font Support
 
-Supporting web-fonts as an npm module is more complex than it looks, as applications use various bundlers and each of them comes with its own syntax, configuration options and support for loading static files. Because of this, `@sick-design-system/css` comes with our chosen font [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
+Supporting web-fonts as an npm module is more complex than it looks, as applications use various bundlers and each of them comes with its own syntax, configuration options and support for loading static files. Because of this, `@synergy-design-system/css` comes with our chosen font [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
 
 ---
 
 ## Icon Support
 
-The package ships with a inlined version of Material Design Icons that is available as `@sick-design-system/icons`. Just add a `className` of **sds-icon** to an element to use the icon font. You may use it in the following way:
+The package ships with a inlined version of Material Design Icons that is available as `@synergy-design-system/icons`. Just add a `className` of **sds-icon** to an element to use the icon font. You may use it in the following way:
 
 ```html
 <!-- Display the material design menu glyph -->

@@ -4,9 +4,9 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@sick-design-system/components": "workspace:^",
-    "@sick-design-system/css": "workspace:^",
-    "@sick-design-system/design-tokens": "workspace:^",
+    "@synergy-design-system/components": "workspace:^",
+    "@synergy-design-system/css": "workspace:^",
+    "@synergy-design-system/design-tokens": "workspace:^",
     "change-case": "^4.1.2",
     "material-icons": "^1.13.10"
   },
@@ -15,8 +15,8 @@
     "@geometricpanda/storybook-addon-badges": "^2.0.0",
     "@microsoft/fast-element": "^1.12.0",
     "@microsoft/fast-foundation": "^2.49.1",
-    "@sick-design-system/eslint-config-sds": "workspace:^",
-    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-sds": "workspace:^",
+    "@synergy-design-system/stylelint-config-sds": "workspace:^",
     "@storybook/addon-a11y": "^7.4.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
@@ -45,7 +45,7 @@
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/docs",
+  "name": "@synergy-design-system/docs",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",

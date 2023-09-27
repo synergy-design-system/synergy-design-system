@@ -22,3 +22,4 @@ The following icons are used in commit messages and this changelog.
 
 - #18: Basic package setup, linting, dependencies and typescript
 - #18: Added initial `<sds-icon />` component
+- #55: Rename package namespace to `@synergy-design-system`

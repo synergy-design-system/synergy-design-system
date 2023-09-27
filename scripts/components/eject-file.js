@@ -22,7 +22,7 @@ export const ejectFile = async (config) => {
 
 
   if (config.lockFilesForVSCode) {
-    removeFilesFromReadonly([file]);
+    removeFilesFromReadonly([file.replace(/\\/g, "/")]);
   }
 
   // TODO: remove from gitignore

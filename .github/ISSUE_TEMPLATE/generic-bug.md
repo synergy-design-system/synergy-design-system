@@ -6,7 +6,7 @@ labels: bug, status/triage
 ---
 
 <!--
-Thank you for taking your time to report a bug in the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
+Thank you for taking your time to report a bug in the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
 **Version**:
@@ -24,7 +24,7 @@ The issue happens in the following browser(s): _____
 
 **Questions**:
 
-- [ ] I have verified the bug exists in the latest version of `@sick-design-system/core` (e.g. via `npm install @sick-design-system/core@latest`).
+- [ ] I have verified the bug exists in the latest version of `@synergy-design-system/core` (e.g. via `npm install @synergy-design-system/core@latest`).
 - [ ] I can provide a simple, reproducible example of the issue (e.g. via code-sandbox or sample code, ...).
 - [ ] I would be willing to provide a PR for the issue.
 

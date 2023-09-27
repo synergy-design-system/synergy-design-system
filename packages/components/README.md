@@ -1,4 +1,4 @@
-# @sick-design-system/components
+# @synergy-design-system/components
 
 SDS Web Component library based on [@microsoft/fast-foundation](https://github.com/microsoft/fast).
 
@@ -9,9 +9,9 @@ SDS Web Component library based on [@microsoft/fast-foundation](https://github.c
 You may install the components via one of the following commands:
 
 ```bash
-npm install --save @sick-design-system/components
-yarn add @sick-design-system/components
-pnpm i @sick-design-system/components
+npm install --save @synergy-design-system/components
+yarn add @synergy-design-system/components
+pnpm i @synergy-design-system/components
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ This function is intended for quick testing of the library. It will provide **al
 Current feature set:
 
 - [x] Define all components available.
-- [ ] Add the `with-reset.css` stylesheet from `@sick-design-system/css` automatically.
+- [ ] Add the `with-reset.css` stylesheet from `@synergy-design-system/css` automatically.
 
 ```html
 <!DOCTYPE html>
@@ -38,10 +38,10 @@ Current feature set:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module">
-    import { quickStart } from '@sick-design-system/components';
+    import { quickStart } from '@synergy-design-system/components';
     quickStart();
   </script>
-  <title>SICK Design System Demo</title>
+  <title>Synergy Design System Demo</title>
 </head>
 <body>
   <header>
@@ -77,15 +77,15 @@ It is also the suggested approach if you want to use a CDN for working with stat
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
 
   <!-- Load the design tokens and icons from anywhere you like -->
-  <link rel="stylesheet" href="https://path.to.cdn/@sick-design-system/design-tokens/build/tokens.css">
-  <link rel="stylesheet" href="https://path.to.cdn/@sick-design-system/icons/build/font.css">
+  <link rel="stylesheet" href="https://path.to.cdn/@synergy-design-system/design-tokens/build/tokens.css">
+  <link rel="stylesheet" href="https://path.to.cdn/@synergy-design-system/icons/build/font.css">
   
   <!-- or use a local version from npm -->
-  <link rel="stylesheet" href="node_modules/@sick-design-system/design-tokens/build/tokens.css">
-  <link rel="stylesheet" href="node_modules/@sick-design-system/icons/build/font.css">
+  <link rel="stylesheet" href="node_modules/@synergy-design-system/design-tokens/build/tokens.css">
+  <link rel="stylesheet" href="node_modules/@synergy-design-system/icons/build/font.css">
 
   <script type="module">
-    import { setup, SdsButton, SdsIcon, SdsLogo } from '@sick-design-system/components';
+    import { setup, SdsButton, SdsIcon, SdsLogo } from '@synergy-design-system/components';
     setup([
       SdsButton,
       SdsIcon,
@@ -93,7 +93,7 @@ It is also the suggested approach if you want to use a CDN for working with stat
     ]);
   </script>
 
-  <title>SICK Design System Demo</title>
+  <title>Synergy Design System Demo</title>
 </head>
 <body>
   <header>

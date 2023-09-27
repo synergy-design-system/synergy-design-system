@@ -1,7 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { Meta, StoryObj } from '@storybook/html';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import type { Logo } from '@sick-design-system/components/dist/types/components/logo/class';
+import type { Logo } from '@synergy-design-system/components/dist/types/components/logo/class';
 import { renderComponent } from '../../src/helpers';
 import type { StoryArgs } from '../../src/helpers';
 

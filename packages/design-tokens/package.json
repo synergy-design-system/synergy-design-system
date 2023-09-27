@@ -3,7 +3,7 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
-  "description": "Design tokens for the SICK Design System",
+  "description": "Design tokens for the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/eslint-config-sds": "workspace:^",
     "@tokens-studio/sd-transforms": "^0.11.0",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/design-tokens",
   "keywords": [
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System",
     "Design Tokens"

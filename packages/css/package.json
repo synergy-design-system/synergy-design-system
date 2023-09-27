@@ -7,7 +7,7 @@
     "@synergy-design-system/design-tokens": "workspace:^",
     "@synergy-design-system/icons": "workspace:^"
   },
-  "description": "Various CSS styles used in the SICK Design System",
+  "description": "Various CSS styles used in the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/eslint-config-sds": "workspace:^",
     "@synergy-design-system/stylelint-config-sds": "workspace:^",
@@ -38,6 +38,7 @@
     "Styles",
     "Reset",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],

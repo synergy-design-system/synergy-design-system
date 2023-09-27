@@ -14,7 +14,7 @@
     { "name": "Stefan Reichert" },
     { "name": "Christian Schilling" }
   ],
-  "description": "SICK AG Design System for web based applications",
+  "description": "SICK AG Synergy Design System for web based applications",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=18.17.0",

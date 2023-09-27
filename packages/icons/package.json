@@ -3,7 +3,7 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
-  "description": "Icon font used in the SICK Design System",
+  "description": "Icon font used in the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/design-tokens": "workspace:^",
     "@synergy-design-system/eslint-config-sds": "workspace:^",
@@ -35,6 +35,7 @@
     "Webfont",
     "CSS",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],

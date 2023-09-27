@@ -10,7 +10,7 @@
     "change-case": "^4.1.2",
     "material-icons": "^1.13.10"
   },
-  "description": "Storybook demo for static assets and components of the SICK Design System",
+  "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "^2.0.0",
     "@microsoft/fast-element": "^1.12.0",
@@ -41,6 +41,7 @@
     "Storybook",
     "Design System Demo",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],

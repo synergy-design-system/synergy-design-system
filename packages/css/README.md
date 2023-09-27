@@ -1,6 +1,6 @@
 # @synergy-design-system/css
 
-This package provides css styles that may be used in new web projects. It [sets a common baseline](./src/core/baseline.css) for projects by configuring [tags with default sizes and colors](./src/core/typo.css) and provides the css variables and [fonts](./src/core/fonts.css), as well as [icons](../icons/README.md) used throughout the SICK Design System components.
+This package provides css styles that may be used in new web projects. It [sets a common baseline](./src/core/baseline.css) for projects by configuring [tags with default sizes and colors](./src/core/typo.css) and provides the css variables and [fonts](./src/core/fonts.css), as well as [icons](../icons/README.md) used throughout the Synergy Design System components.
 
 ---
 

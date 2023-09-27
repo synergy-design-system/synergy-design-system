@@ -8,7 +8,7 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-order": "^6.0.3"
   },
-  "description": "Stylelint core rules used in the SICK Design System",
+  "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
     "@microsoft/fast-element": "^1.12.0",
     "@synergy-design-system/eslint-config-sds": "workspace:^",
@@ -29,6 +29,7 @@
     "stylelint",
     "stylelintconfig",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],

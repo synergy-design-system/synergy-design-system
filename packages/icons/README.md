@@ -1,6 +1,6 @@
 # @synergy-design-system/icons
 
-This package provides [Material Icons](https://fonts.google.com/icons) that are used throughout the SICK Design System in an easy to use package. The font is loaded [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
+This package provides [Material Icons](https://fonts.google.com/icons) that are used throughout the Synergy Design System in an easy to use package. The font is loaded [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
 
 ---
 

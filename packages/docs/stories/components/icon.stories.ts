@@ -2,7 +2,7 @@
 import { html } from '@microsoft/fast-element';
 import type { Meta, StoryObj } from '@storybook/html';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import type { Icon } from '@sick-design-system/components/dist/types/components/icon/class';
+import type { Icon } from '@synergy-design-system/components/dist/types/components/icon/class';
 import { renderComponent } from '../../src/helpers';
 import type { StoryArgs } from '../../src/helpers';
 

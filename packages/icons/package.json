@@ -3,11 +3,11 @@
     "name": "SICK Integrated Automation - UX and UI Services Team",
     "url": "https://www.sick.com"
   },
-  "description": "Icon font used in the SICK Design System",
+  "description": "Icon font used in the Synergy Design System",
   "devDependencies": {
-    "@sick-design-system/design-tokens": "workspace:^",
-    "@sick-design-system/eslint-config-sds": "workspace:^",
-    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/design-tokens": "workspace:^",
+    "@synergy-design-system/eslint-config-sds": "workspace:^",
+    "@synergy-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
     "material-icons": "^1.13.10",
     "postcss": "^8.4.28",
@@ -35,11 +35,12 @@
     "Webfont",
     "CSS",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/icons",
+  "name": "@synergy-design-system/icons",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",

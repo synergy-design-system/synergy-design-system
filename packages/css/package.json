@@ -4,13 +4,13 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@sick-design-system/design-tokens": "workspace:^",
-    "@sick-design-system/icons": "workspace:^"
+    "@synergy-design-system/design-tokens": "workspace:^",
+    "@synergy-design-system/icons": "workspace:^"
   },
-  "description": "Various CSS styles used in the SICK Design System",
+  "description": "Various CSS styles used in the Synergy Design System",
   "devDependencies": {
-    "@sick-design-system/eslint-config-sds": "workspace:^",
-    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-sds": "workspace:^",
+    "@synergy-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
     "normalize.css": "^8.0.1",
     "postcss": "^8.4.28",
@@ -38,11 +38,12 @@
     "Styles",
     "Reset",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/css",
+  "name": "@synergy-design-system/css",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",

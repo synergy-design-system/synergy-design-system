@@ -20,10 +20,10 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
-      '@sick-design-system/stylelint-config-sds':
+      '@synergy-design-system/stylelint-config-sds':
         specifier: workspace:^
         version: link:../stylelint-config-sds
       eslint:
@@ -41,17 +41,17 @@ importers:
 
   packages/css:
     dependencies:
-      '@sick-design-system/design-tokens':
+      '@synergy-design-system/design-tokens':
         specifier: workspace:^
         version: link:../design-tokens
-      '@sick-design-system/icons':
+      '@synergy-design-system/icons':
         specifier: workspace:^
         version: link:../icons
     devDependencies:
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
-      '@sick-design-system/stylelint-config-sds':
+      '@synergy-design-system/stylelint-config-sds':
         specifier: workspace:^
         version: link:../stylelint-config-sds
       eslint:
@@ -87,7 +87,7 @@ importers:
 
   packages/design-tokens:
     devDependencies:
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
       '@tokens-studio/sd-transforms':
@@ -108,13 +108,13 @@ importers:
 
   packages/docs:
     dependencies:
-      '@sick-design-system/components':
+      '@synergy-design-system/components':
         specifier: workspace:^
         version: link:../components
-      '@sick-design-system/css':
+      '@synergy-design-system/css':
         specifier: workspace:^
         version: link:../css
-      '@sick-design-system/design-tokens':
+      '@synergy-design-system/design-tokens':
         specifier: workspace:^
         version: link:../design-tokens
       change-case:
@@ -133,10 +133,10 @@ importers:
       '@microsoft/fast-foundation':
         specifier: ^2.49.1
         version: 2.49.1
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
-      '@sick-design-system/stylelint-config-sds':
+      '@synergy-design-system/stylelint-config-sds':
         specifier: workspace:^
         version: link:../stylelint-config-sds
       '@storybook/addon-a11y':
@@ -212,13 +212,13 @@ importers:
 
   packages/icons:
     devDependencies:
-      '@sick-design-system/design-tokens':
+      '@synergy-design-system/design-tokens':
         specifier: workspace:^
         version: link:../design-tokens
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
-      '@sick-design-system/stylelint-config-sds':
+      '@synergy-design-system/stylelint-config-sds':
         specifier: workspace:^
         version: link:../stylelint-config-sds
       eslint:
@@ -267,7 +267,7 @@ importers:
       '@microsoft/fast-element':
         specifier: ^1.12.0
         version: 1.12.0
-      '@sick-design-system/eslint-config-sds':
+      '@synergy-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../eslint-config-sds
       eslint:

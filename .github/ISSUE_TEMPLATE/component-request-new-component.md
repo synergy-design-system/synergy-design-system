@@ -6,7 +6,7 @@ labels: component/new, status/triage, enhancement
 ---
 
 <!--
-Thank you for taking your time to request a new component for the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
+Thank you for taking your time to request a new component for the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
 **Version**:

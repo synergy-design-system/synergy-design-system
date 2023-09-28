@@ -8,10 +8,10 @@
     "@microsoft/fast-foundation": "^2.49.1",
     "tslib": "^2.6.2"
   },
-  "description": "Web Components for the SICK Design System",
+  "description": "Web Components for the Synergy Design System",
   "devDependencies": {
-    "@sick-design-system/eslint-config-sds": "workspace:^",
-    "@sick-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-sds": "workspace:^",
+    "@synergy-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",
     "rimraf": "^5.0.1",
     "stylelint": "^15.10.3",
@@ -32,11 +32,12 @@
     "Web Components",
     "Design System",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/components",
+  "name": "@synergy-design-system/components",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",

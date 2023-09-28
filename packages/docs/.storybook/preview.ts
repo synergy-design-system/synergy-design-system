@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/html';
-import '@sick-design-system/css/default.css';
-import { quickStart } from '@sick-design-system/components';
-import * as tokens from '@sick-design-system/design-tokens';
+import '@synergy-design-system/css/default.css';
+import { quickStart } from '@synergy-design-system/components';
+import * as tokens from '@synergy-design-system/design-tokens';
 
 quickStart();
 

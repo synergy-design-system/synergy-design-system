@@ -1,4 +1,4 @@
-# SICK Design System Contribution Guidelines
+# Synergy Design System Contribution Guidelines
 
 Thank you for investing your time to contribute to our project.
 We want to make sure to provide our users with a set of feature rich, high quality and easy to use web-components.

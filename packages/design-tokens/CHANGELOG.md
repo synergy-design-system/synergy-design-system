@@ -23,6 +23,7 @@ The following icons are used in commit messages and this changelog.
 - #9: Initial README and CHANGELOG.
 - #9: Added core setup for style-dictionary.
 - #7: Added lint job `pnpm lint`
+- #10: Adjusted export to skip semantic tokens for the moment.
 - #11: Adjusted header to match `@sick-design-system/css`
 - #11: Added missing tokens for borders, dimensions, durations, opacity, shadow, spacing and typo
 - #11: Token names for colors should be using `kebab-case`

@@ -4,8 +4,8 @@ import { CopyToClipBoard } from '../../../src/Clipboard.tsx';
 
 import {
   getAccentColorPalette,
-  getAddonsColorPalette,
   getCSSToken,
+  getNeutralColorPalette,
   getPrimaryColorPalette,
   getSASSToken,
   getSecondaryColorPalette,
@@ -123,10 +123,10 @@ import {
     }
 
     <tr>
-      <th colSpan="8">Additional Colors</th>
+      <th colSpan="8">Neutral Colors</th>
     </tr>
     {Object
-      .entries(getAddonsColorPalette(true))
+      .entries(getNeutralColorPalette(true))
       .map(([token, value]) => (
         <tr key={token}>
           <td>

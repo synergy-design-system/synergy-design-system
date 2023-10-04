@@ -8,7 +8,7 @@ import {
   select,
 } from '@clack/prompts';
 import 'dotenv/config';
-import { saveConfig } from '../basics/config.js';
+import { saveConfig } from '../../../scripts/basics/config.js';
 import { createThemes } from './create-themes.js';
 import fs from 'fs';
 

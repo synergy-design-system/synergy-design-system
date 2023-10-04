@@ -50,6 +50,7 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
 
 export const addMissingTokens = async (prefix) => {
   const sourceDir = '../src/shoelace-fallbacks';
+  // TODO: This next line is wrong
   const targetDir = './packages/tokens/src';
 
   try {

@@ -48,6 +48,27 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
 
+  packages/assets:
+    devDependencies:
+      '@sick-design-system/eslint-config-sds':
+        specifier: workspace:^
+        version: link:../eslint-config-sds
+      '@tokens-studio/sd-transforms':
+        specifier: ^0.11.0
+        version: 0.11.0
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      eslint:
+        specifier: ^8.47.0
+        version: 8.47.0
+      rimraf:
+        specifier: ^5.0.1
+        version: 5.0.1
+      style-dictionary:
+        specifier: ^3.8.0
+        version: 3.8.0
+
   packages/components:
     devDependencies:
       '@mariohamann/wc-storybook-helpers':

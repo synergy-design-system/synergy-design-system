@@ -7,6 +7,8 @@ export class TokenBuilder {
     this.buildPath = buildPath;
     this.prefix = prefix;
 
+    console.log(this.sourcePaths, this.buildPath, this.prefix);
+
     this.init();
   }
 
@@ -24,7 +26,7 @@ export class TokenBuilder {
       matcher: (token) => token.type === 'color',
       transformer: (token) => {
         if (token.type === 'color' && !token.filePath.includes('semantics')) {
-          token.name = token.name.replace(this.prefix, this.prefix + 'color-');
+          token.name = token.name.replace(this.prefix, `${this.prefix}color-`);
         }
         return token.name;
       },
@@ -36,26 +38,22 @@ export class TokenBuilder {
       matcher: (token) => token.type === 'fontFamilies',
       transformer: (token) => {
         if (token.name.includes('sans')) {
-          token.value = token.value + `, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+          token.value += `, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
-        }
-        else if (token.name.includes('serif')) {
-          token.value = token.value + `, Georgia, 'Times New Roman', Times, serif`;
-        }
-        else if (token.name.includes('mono')) {
-          token.value = token.value + `, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace`;
+        } else if (token.name.includes('serif')) {
+          token.value += ', Georgia, \'Times New Roman\', Times, serif';
+        } else if (token.name.includes('mono')) {
+          token.value += ', SFMono-Regular, Consolas, \'Liberation Mono\', Menlo, monospace';
         }
         return token.value;
-      }
+      },
     });
 
     StyleDictionary.registerTransform({
       type: 'value',
       name: 'logger',
-      matcher: (token) => { true },
-      transformer: (token) => {
-        return token.value; // <-- transform as needed
-      },
+      matcher: (token) => true,
+      transformer: (token) => token.value, // <- transform as needed
     });
   }
 
@@ -64,35 +62,36 @@ export class TokenBuilder {
 
     StyleDictionary.registerFormat({
       name: 'myCustomFormat',
-      formatter: function ({ dictionary, file, options }) {
+      formatter({ dictionary, file, options }) {
         const { outputReferences } = options;
 
+        const isTokenColor = (token) => !token?.name.includes(`${prefix}color`) && typeof token?.original?.value === 'string' && token.original.value.includes('{');
+
         const convertOriginalToCssVar = (token) => {
-          if (!token?.name.includes(prefix + 'color') && typeof token?.original?.value === 'string' && token.original.value.includes('{')) {
+          if (isTokenColor(token)) {
             token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
               .replace('{', '')
               .replace('}', '')
               .replace('.', '-')
-              })`;
+            })`;
           }
           return token;
-        }
+        };
+
+        // eslint-disable-next-line max-len
         // go recursively through every dictionary.property, check if it has an original value and if it does, convert it to a css var
         const convertOriginalToCssVarRecursive = (dictionary) => {
           Object.keys(dictionary).forEach((key) => {
             if (!dictionary[key].hasOwnProperty('original') && !dictionary[key].hasOwnProperty('value')) {
               convertOriginalToCssVarRecursive(dictionary[key]);
-            }
-            else {
+            } else {
               dictionary[key] = convertOriginalToCssVar(dictionary[key]);
             }
           });
-        }
+        };
         convertOriginalToCssVarRecursive(dictionary);
 
-        return `${fileHeader({ file })}:root {
-${formattedVariables({ format: 'css', dictionary, outputReferences })}
-}`;
+        return `${fileHeader({ file })}:root {${formattedVariables({ format: 'css', dictionary, outputReferences })}}`;
       },
     });
   }
@@ -126,7 +125,7 @@ ${formattedVariables({ format: 'css', dictionary, outputReferences })}
             files: [
               {
                 destination: `${theme}.css`,
-                "filter": function (token) { return !token.filePath.includes('primitive') },
+                filter(token) { return !token.filePath.includes('primitive'); },
                 format: 'myCustomFormat',
               },
             ],

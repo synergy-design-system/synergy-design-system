@@ -29,14 +29,14 @@
     "Design Tokens"
   ],
   "license": "BSD-3-Clause",
-  "name": "@sick-design-system/design-tokens",
+  "name": "@sick-design-system/tokens",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/sds.git",
-    "directory": "packages/design-tokens"
+    "directory": "packages/tokens"
   },
   "scripts": {
-    "build": "pnpm clean && node src/build.js",
+    "build": "pnpm clean && node scripts/build.js",
     "clean": "rimraf build",
     "lint": "eslint .",
     "start": "pnpm build"

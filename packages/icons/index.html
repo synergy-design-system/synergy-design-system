@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typography demo for @sick-design-system/css</title>
-  <link rel="stylesheet" href="node_modules/@sick-design-system/design-tokens/build/css/tokens.css" />
-  <link rel="stylesheet" href="build/font.css" />
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography demo for @sick-design-system/css</title>
+    <link rel="stylesheet"
+      href="node_modules/@sick-design-system/tokens/build/css/tokens.css" />
+    <link rel="stylesheet" href="build/font.css" />
+    <style>
   html, body {
     background: var(--sds-color-neutral-0);
   }
@@ -90,20 +91,22 @@
     font-size: var(--sds-font-size-headline-xl);
   }
 </style>
-</head>
-<body>
-  <header>
-    <h1>Demo for @sick-design-system/icons</h1>
-  </header>
-  <main>
-    <ul class="icon-grid"></ul>
-  </main>
-  <footer>
-    <em>
-      Please have a look at <a href="https://marella.me/material-icons/demo/#filled">the complete list of glyphs available</a>
-    </em>
-  </footer>
-  <script>
+  </head>
+  <body>
+    <header>
+      <h1>Demo for @sick-design-system/icons</h1>
+    </header>
+    <main>
+      <ul class="icon-grid"></ul>
+    </main>
+    <footer>
+      <em>
+        Please have a look at <a
+          href="https://marella.me/material-icons/demo/#filled">the complete
+          list of glyphs available</a>
+      </em>
+    </footer>
+    <script>
   const createIcon = (icon) => {
     const elm = document.createElement('li');
     elm.innerHTML = `
@@ -145,5 +148,5 @@
     list.appendChild(createIcon(icon));
   });
   </script>
-</body>
+  </body>
 </html>

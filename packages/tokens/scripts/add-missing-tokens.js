@@ -22,7 +22,7 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
   try {
     const [sourceData, targetData] = await Promise.all([
       readFile(sourceFilePath, 'utf-8'),
-      readFile(targetFilePath, 'utf-8')
+      readFile(targetFilePath, 'utf-8'),
     ]);
 
     const sourceVariables = extractVariables(sourceData, prefix);
@@ -31,7 +31,7 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
     const targetVariableProperties = targetVariables.map(v => v.property);
 
     const missingVariables = sourceVariables.filter(
-      variable => !targetVariableProperties.includes(variable.property)
+      variable => !targetVariableProperties.includes(variable.property),
     );
 
     if (missingVariables.length > 0) {
@@ -49,7 +49,7 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
 };
 
 export const addMissingTokens = async (prefix) => {
-  const sourceDir = './vendor/src/themes';
+  const sourceDir = '../src/shoelace-fallbacks';
   const targetDir = './packages/tokens/src';
 
   try {

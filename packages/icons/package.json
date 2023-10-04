@@ -5,7 +5,7 @@
   },
   "description": "Icon font used in the SICK Design System",
   "devDependencies": {
-    "@sick-design-system/design-tokens": "workspace:^",
+    "@sick-design-system/tokens": "workspace:^",
     "@sick-design-system/eslint-config-sds": "workspace:^",
     "@sick-design-system/stylelint-config-sds": "workspace:^",
     "eslint": "^8.47.0",

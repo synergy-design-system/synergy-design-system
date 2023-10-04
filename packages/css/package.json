@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@sick-design-system/design-tokens": "workspace:^",
+    "@sick-design-system/tokens": "workspace:^",
     "@sick-design-system/icons": "workspace:^"
   },
   "description": "Various CSS styles used in the SICK Design System",

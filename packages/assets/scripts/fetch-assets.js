@@ -1,22 +1,23 @@
 import 'dotenv/config';
 import {
+  intro,
+  outro,
   spinner
 } from '@clack/prompts';
 import fs from 'fs';
-
-
-const s = spinner();
-
 import { FigmaExporter } from 'figma-export-assets';
 import { optimizeSVGs } from './optimize-svg.js';
 
-export async function fetchAssets(customConfig) {
+intro(`Fetch Assets`);
+
+const s = spinner();
+
+export async function fetchAssets() {
   const config = {
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
-    fileId: process.env.FIGMA_FILE_ID,
+    fileId: "bZFqk9urD3NlghGUKrkKCR",
     "page": "Assets",
-    "assetsPath": "./packages/assets/src",
-    ...customConfig
+    "assetsPath": "./src"
   }
 
   // if folder in assetsPath does not exist, create it
@@ -66,7 +67,11 @@ export async function fetchAssets(customConfig) {
     s.stop(`${svgs.length} SVGs downloaded`);
   }
 
-  if (fs.existsSync('./packages/assets/src/icons')) {
+  if (fs.existsSync('./src/icons')) {
     await optimizeSVGs();
   }
 }
+
+fetchAssets();
+
+outro(`Assets fetched!`);

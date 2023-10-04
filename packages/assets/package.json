@@ -1,0 +1,46 @@
+{
+  "author": {
+    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "url": "https://www.sick.com"
+  },
+  "description": "Assets for the SICK Design System",
+  "devDependencies": {
+    "@sick-design-system/eslint-config-sds": "workspace:^",
+    "@tokens-studio/sd-transforms": "^0.11.0",
+    "chalk": "^5.3.0",
+    "eslint": "^8.47.0",
+    "rimraf": "^5.0.1",
+    "style-dictionary": "^3.8.0"
+  },
+  "exports": {
+    ".": "./build/js/index.js"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/assets",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "SICK Design System",
+    "Design Tokens"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@sick-design-system/assets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/sds.git",
+    "directory": "packages/assets"
+  },
+  "scripts": {
+    "build": "pnpm clean && node scripts/build.js",
+    "clean": "rimraf build",
+    "lint": "eslint .",
+    "start": "pnpm build",
+    "fetch": "node scripts/fetch.js"
+  },
+  "type": "module",
+  "types": "./build/js/index.d.ts",
+  "version": "0.1.0"
+}

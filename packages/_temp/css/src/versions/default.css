@@ -4,7 +4,6 @@
 @import url("@sick-design-system/tokens/build/css/tokens.css");
 @import url("../core/fouc.css");
 @import url("../core/fonts.css");
-@import url("@sick-design-system/icons/build/font.css");
 @import url("../core/animations.css");
 @import url("../core/baseline.css");
 @import url("../core/typo.css");

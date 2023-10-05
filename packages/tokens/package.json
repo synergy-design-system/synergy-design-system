@@ -21,7 +21,7 @@
     "tokens",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/design-tokens",
+  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/tokens",
   "keywords": [
     "SDS",
     "SICK",

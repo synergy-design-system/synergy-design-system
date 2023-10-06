@@ -1,18 +1,16 @@
 import { eject, setTarget, setSource } from 'vendorism';
 import { generateStorybookFile } from './vendorism-create-stories.js';
+import { execSync } from 'child_process';
 
 const components = ['input']
 const libraryPrefix = 'sds';
 const libraryName = 'sick';
 const shoelaceVersion = '2.6.0';
 
-await setSource(config);
-
 /**
  * Upfront we're going to generate the storybook files for all relevant components so that they can be vendored
  */
 await Promise.all(components.map(async (component) => {
-  console.log(component);
   const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
   const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
   await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
@@ -56,11 +54,29 @@ const config = {
             .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
             .replace(regexPattern, '@shoelace-style/');
         return {path, content: modifiedContent};
-      }
+      },
+      // Move stories into `temp` directory
+      (path, content) => {
+        if (path.includes('.stories.ts')) {
+          const parts = path.split("/");
+          const fileName = parts[parts.length - 1];  // Gets 'input.stories.ts'
+          console.log(fileName)
+          return {path: `./src/temp/${fileName}`, content};
+        }
+        return {path, content};
+      },
     ]
   },
 }
 
+await setSource(config);
+
+// Move all files from '../docs/src/components' to './src/temp'
+await execSync('mv ../docs/src/components ./src/temp');
+
 await setTarget(config);
+
+// Move files back from './src/temp' to '../docs/src/components'
+await execSync('mv ./src/temp ../docs/src/components');
 
 process.exit();

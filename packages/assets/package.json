@@ -38,7 +38,7 @@
     "clean": "rimraf build",
     "lint": "eslint .",
     "start": "pnpm build",
-    "fetch": "node scripts/fetch.js"
+    "fetch": "pnpm clean && node scripts/fetch-assets.js"
   },
   "type": "module",
   "types": "./build/js/index.d.ts",

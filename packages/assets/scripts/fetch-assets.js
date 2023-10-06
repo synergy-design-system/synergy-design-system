@@ -10,9 +10,8 @@ import { optimizeSVGs } from './optimize-svg.js';
 
 intro(`Fetch Assets`);
 
-const s = spinner();
-
-export async function fetchAssets() {
+ const s = spinner();
+async function fetchAssets() {
   const config = {
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
     fileId: "bZFqk9urD3NlghGUKrkKCR",

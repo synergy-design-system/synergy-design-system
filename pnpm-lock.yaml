@@ -166,12 +166,21 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
       storybook:
         specifier: ^7.2.1
         version: 7.4.0
       typescript:
         specifier: ^5.0.2
         version: 5.2.2
+      unified:
+        specifier: ^11.0.3
+        version: 11.0.3
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
       vendorism:
         specifier: github:mariohamann/vendorism
         version: github.com/mariohamann/vendorism/b54a32805ce93ad5e2d8bf29bc683549271e4608
@@ -4447,7 +4456,7 @@ packages:
   /@types/mdast@4.0.0:
     resolution: {integrity: sha512-YLeG8CujC9adtj/kuDzq1N4tCDYKoZ5l/bnjq8d74+t/3q/tHquJOJKUQXJrLCflOHpKjXgcI/a929gpmLOEng==}
     dependencies:
-      '@types/unist': 2.0.7
+      '@types/unist': 3.0.0
     dev: true
 
   /@types/mdx@2.0.7:

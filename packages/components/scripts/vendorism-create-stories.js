@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse';
 import { visit } from 'unist-util-visit';
 import path from 'path';
 
-export async function generateStorybookFile(inputFilePath, outputFilePath, componentName, config) {
+export async function generateStorybookFile(inputFilePath, outputFilePath, componentName, prefix) {
   const markdownContent = fs.readFileSync(inputFilePath, 'utf-8');
 
   const examplesSection = markdownContent
@@ -37,15 +37,13 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
     }
   });
 
-  const prefix = config.libraryPrefix;
-
   let overrides = {
     'alert': `args: overrideArgs([ { type: 'slot', value: 'This is a standard alert. You can customize its content and even the icon.', name: 'default' }, { type: 'attribute', value: true, name: 'open' }, { type: 'slot', value: '<${prefix}-icon slot="icon" name="info-circle"></${prefix}-icon>', name: 'icon' } ], args)`,
     'button': `args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args)`,
   }
 
   let storybookOutput = `
-import './${componentName}';
+import '../../../../components/src/components/${componentName}';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import docsTokens from '../../../../tokens/src/figma-tokens/_docs.json';
@@ -105,25 +103,3 @@ export const ${formattedStoryName}: Story = {
 
   fs.writeFileSync(outputFilePath, storybookOutput, 'utf-8');
 }
-
-
-const sourceDir = './vendor/docs/pages/components';
-const destinationDir = './vendor/src/components';
-
-export const generateStorybookFiles = async (config) =>
-  fs.readdir(sourceDir, (err, files) => {
-    if (err) {
-      console.error(`Could not list the directory. Error: ${err}`);
-      return;
-    }
-
-    files.forEach((file) => {
-      if (path.extname(file) === '.md') {
-        const componentName = path.basename(file, '.md');
-        const inputFilePath = path.join(sourceDir, file);
-        const outputFilePath = path.join(destinationDir, componentName, `${componentName}.stories.ts`);
-
-        generateStorybookFile(inputFilePath, outputFilePath, componentName, config);
-      }
-    });
-  });

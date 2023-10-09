@@ -5,12 +5,13 @@ import {
   spinner
 } from '@clack/prompts';
 import fs from 'fs';
+import { rimraf } from 'rimraf';
 import { FigmaExporter } from 'figma-export-assets';
 import { optimizeSVGs } from './optimize-svg.js';
 
 intro(`Fetch Assets`);
 
- const s = spinner();
+const s = spinner();
 async function fetchAssets() {
   const config = {
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
@@ -33,8 +34,9 @@ async function fetchAssets() {
   let assets = await figma.getAssets();
   s.stop(`${assets.length} assets found`);
 
+  assets = assets.filter(asset => !asset.name.startsWith('_'));
+  
   // Step 2: Create PNGs
-
   let pngs = assets.filter(asset => asset.name.includes('.png'));
   if (pngs.length !== 0) {
 
@@ -65,12 +67,11 @@ async function fetchAssets() {
     await Promise.all(svgDownloads);
     s.stop(`${svgs.length} SVGs downloaded`);
   }
-
-  if (fs.existsSync('./src/icons')) {
-    await optimizeSVGs();
-  }
 }
 
-fetchAssets();
-
+await rimraf('./src');
+await fetchAssets();
+if (fs.existsSync('./src/icons')) {
+  await optimizeSVGs('./src/icons');
+}
 outro(`Assets fetched!`);

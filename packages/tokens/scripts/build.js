@@ -1,7 +1,6 @@
 import { TokenBuilder } from './build-tokens.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
-// TODO: Remove LibraryPrefix hardcoded
 const createThemes = async () => {
   const tokenBuilder = new TokenBuilder({
     sourcePaths: [

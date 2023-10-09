@@ -34,11 +34,8 @@
     "directory": "packages/assets"
   },
   "scripts": {
-    "build": "pnpm clean && node scripts/build.js",
-    "clean": "rimraf build",
     "lint": "eslint .",
-    "start": "pnpm build",
-    "fetch": "pnpm clean && node scripts/fetch-assets.js"
+    "fetch-assets": "node scripts/fetch-assets.js"
   },
   "type": "module",
   "types": "./build/js/index.d.ts",

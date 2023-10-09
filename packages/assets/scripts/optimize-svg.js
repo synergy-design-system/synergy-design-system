@@ -3,11 +3,9 @@ import { join, extname } from 'path';
 import { optimize } from 'svgo';
 import { spinner } from '@clack/prompts';
 
-const svgDirPath = './packages/assets/src/icons';
-
 const s = spinner();
 
-export async function optimizeSVGs() {
+export async function optimizeSVGs(svgDirPath) {
   try {
     const files = await fs.readdir(svgDirPath);
 

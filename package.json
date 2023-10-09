@@ -1,19 +1,12 @@
 {
   "name": "@synergy-design-system/root",
   "version": "1.0.0",
-  "homepage": "https://github.com/SickDesignSystem/sds",
+  "homepage": "https://github.com/SickDesignSystem/synergy",
   "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
   "browserslist": "defaults and supports es6-module",
-  "contributors": [
-    { "name": "Timothy Burk" },
-    { "name": "Susanne Kirchner" },
-    { "name": "Sebastian Klaar" },
-    { "name": "Stefan Reichert" },
-    { "name": "Christian Schilling" }
-  ],
   "description": "SICK AG Synergy Design System for web based applications",
   "license": "BSD-3-Clause",
   "engines": {
@@ -22,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/sds.git"
+    "url": "https://github.com/SickDesignSystem/synergy.git"
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",

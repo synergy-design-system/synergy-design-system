@@ -16,6 +16,10 @@ The following icons are used in commit messages and this changelog.
 
 ## 🚀 NEXT
 
+### 📚 Documentation
+
+- #17: Adjusted package.json author field
+
 ### 🐛 Bugs
 
 ### ✨ Features

@@ -1,6 +1,6 @@
 {
   "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
   "dependencies": {
@@ -27,7 +27,7 @@
     "CHANGELOG.md",
     "dist"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/components",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
   "keywords": [
     "Web Components",
     "Design System",
@@ -40,7 +40,7 @@
   "name": "@synergy-design-system/components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/sds.git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/components"
   },
   "scripts": {

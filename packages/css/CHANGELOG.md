@@ -16,6 +16,10 @@ The following icons are used in commit messages and this changelog.
 
 ## 🚀 NEXT
 
+### 📚 Documentation
+
+- #17: Adjusted package.json author field
+
 ### 🐛 Bugs
 
 - #20: Adjusted exports to be useable, added `with-reset` style

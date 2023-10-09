@@ -1,6 +1,6 @@
 {
   "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
   "dependencies": {
@@ -24,7 +24,7 @@
     "index.js",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/stylelint-config-sds",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/stylelint-config-sds",
   "keywords": [
     "stylelint",
     "stylelintconfig",
@@ -37,7 +37,7 @@
   "name": "@synergy-design-system/stylelint-config-sds",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/sds.git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/stylelint-config-sds"
   },
   "scripts": {

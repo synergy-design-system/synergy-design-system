@@ -3,6 +3,7 @@ import { generateStorybookFile } from './vendorism-create-stories.js';
 import { execSync } from 'child_process';
 
 const components = ['input']
+const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', '.eslint*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
 const libraryPrefix = 'sds';
 const libraryName = 'sick';
 const shoelaceVersion = '2.6.0';
@@ -30,6 +31,7 @@ const config = {
     path: ".",
     includes: [
       ...components.map((component) => `src/components/${component}/**`),
+      ...otherIncludes
     ],
     hooks: {
       before: "echo ⌛️ Setting up target...",
@@ -45,7 +47,7 @@ const config = {
 
         const regexPattern = new RegExp(`@${libraryDesignName}/(?!${lowerLibraryName}$)`, 'g');
 
-        let modifiedContent = content
+        const replace = (content) => content
             .replace(/Sl(?=[A-Z])/g, capitalizedPrefix)
             .replace(/(?<![A-Za-z])sl-/g, `${libraryPrefix}-`)
             .replace(/shoelace-style/g, libraryDesignName)
@@ -53,14 +55,17 @@ const config = {
             .replace(/shoelace/g, lowerLibraryName)
             .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
             .replace(regexPattern, '@shoelace-style/');
-        return {path, content: modifiedContent};
+
+        let modifiedContent = replace(content)
+        let modifiedPath = replace(content)
+
+        return {path: replace(path), content: replace(content)};
       },
       // Move stories into `temp` directory
       (path, content) => {
         if (path.includes('.stories.ts')) {
           const parts = path.split("/");
           const fileName = parts[parts.length - 1];  // Gets 'input.stories.ts'
-          console.log(fileName)
           return {path: `./src/temp/${fileName}`, content};
         }
         return {path, content};
@@ -69,7 +74,7 @@ const config = {
   },
 }
 
-await setSource(config);
+// await setSource(config);
 
 // Move all files from '../docs/src/components' to './src/temp'
 await execSync('mv ../docs/src/components ./src/temp');

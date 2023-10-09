@@ -3,12 +3,12 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+
 import '../../../../components/src/components/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import docsTokens from '../../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../../.storybook/helper';
-
 const { args, argTypes } = storybookDefaults('sds-input');
 const { overrideArgs } = storybookHelpers('sds-input');
 const { generateTemplate } = storybookTemplate('sds-input');
@@ -21,25 +21,28 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: docsTokens.components.input.description.value,
+        component: docsTokens.components['input'].description.value
       },
-    },
-  },
+    }
+  }
 };
 export default meta;
 
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => generateTemplate({ args }),
+  render: (args: any) => {
+    return generateTemplate({ args });
+  },
   parameters: {
     docs: {
       description: {
-        story: docsTokens.components.input.description.value,
-      },
-    },
-  },
+        story: docsTokens.components['input'].description.value
+      }
+    }
+  }
 } as Story;
+
 
 /**
  * Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.

@@ -25,7 +25,7 @@ const config = {
       before: "echo ⌛️ Setting up source...",
       after: "echo ✅ Source setup complete.",
     },
-    downloadConfig: {extract: true, strip: 1}
+    downloadConfig: { extract: true, strip: 1 }
   },
   target: {
     path: ".",
@@ -48,36 +48,35 @@ const config = {
         const regexPattern = new RegExp(`@${libraryDesignName}/(?!${lowerLibraryName}$)`, 'g');
 
         const replace = (content) => content
-            .replace(/Sl(?=[A-Z])/g, capitalizedPrefix)
-            .replace(/(?<![A-Za-z])sl-/g, `${libraryPrefix}-`)
-            .replace(/shoelace-style/g, libraryDesignName)
-            .replace(/Shoelace/g, capitalizedLibraryName)
-            .replace(/shoelace/g, lowerLibraryName)
-            .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
-            .replace(regexPattern, '@shoelace-style/');
+          .replace(/Sl(?=[A-Z])/g, capitalizedPrefix)
+          .replace(/(?<![A-Za-z])sl-/g, `${libraryPrefix}-`)
+          .replace(/shoelace-style/g, libraryDesignName)
+          .replace(/Shoelace/g, capitalizedLibraryName)
+          .replace(/shoelace/g, lowerLibraryName)
+          .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
+          .replace(regexPattern, '@shoelace-style/');
 
-        let modifiedContent = replace(content)
-        let modifiedPath = replace(content)
-
-        return {path: replace(path), content: replace(content)};
+        return { path: replace(path), content: replace(content) };
       },
       // Move stories into `temp` directory
       (path, content) => {
         if (path.includes('.stories.ts')) {
           const parts = path.split("/");
           const fileName = parts[parts.length - 1];  // Gets 'input.stories.ts'
-          return {path: `./src/temp/${fileName}`, content};
+          return { path: `./src/temp/${fileName}`, content };
         }
-        return {path, content};
+        return { path, content };
       },
       // change something in `custom-elemenents-manifest.config.js`
       (path, content) => {
         if (path.includes('custom-elements-manifest.config.js')) {
-          return {path, content: content.replace(`{ name: 'outdir', type: String }
+          return {
+            path, content: content.replace(`{ name: 'outdir', type: String }
 ]);`, `{ name: 'outdir', type: String }
-], { partial: true })`)};
+], { partial: true })`)
+          };
         }
-        return {path, content};
+        return { path, content };
       }
     ]
   },

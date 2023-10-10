@@ -4,11 +4,13 @@
 // ---------------------------------------------------------------------
 
 
-import '../../../../components/src/components/input';
+/* eslint-disable import/no-relative-packages */
+
+import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../../.storybook/helper';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component';
 const { args, argTypes } = storybookDefaults('sds-input');
 const { overrideArgs } = storybookHelpers('sds-input');
 const { generateTemplate } = storybookTemplate('sds-input');

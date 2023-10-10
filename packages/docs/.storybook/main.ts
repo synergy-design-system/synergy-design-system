@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/html-vite';
+import type { StorybookConfig } from "@storybook/web-components-vite";
 
 const config: StorybookConfig = {
   addons: [
@@ -12,18 +12,20 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
   },
   framework: {
-    name: "@storybook/html-vite",
+    name: "@storybook/web-components-vite",
     options: {},
   },
   staticDirs: [
     '../public',
   ],
   stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../stories/index.mdx",
+    "../stories/components/**/*.stories.*",
+    // "../stories/**/*.mdx",
+    // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],

@@ -43,11 +43,13 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
   }
 
   let storybookOutput = `
-import '../../../../components/src/components/${componentName}';
+/* eslint-disable import/no-relative-packages */
+
+import '../../../components/src/components/${componentName}/${componentName}';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../../.storybook/helper';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component';
 const { args, argTypes } = storybookDefaults('${prefix}-${componentName}');
 const { overrideArgs } = storybookHelpers('${prefix}-${componentName}');
 const { generateTemplate } = storybookTemplate('${prefix}-${componentName}');

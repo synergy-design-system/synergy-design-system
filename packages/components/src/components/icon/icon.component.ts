@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { getIconLibrary, type IconLibrary, unwatchIcon, watchIcon } from './library.js';
 import { html } from 'lit';
 import { isTemplateResult } from 'lit/directive-helpers.js';

@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { registerTranslation } from '@shoelace-style/localize';
 import type { Translation } from '../utilities/localize.js';
 

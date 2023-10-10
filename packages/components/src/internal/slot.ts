@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 
 /** A reactive controller that determines when slots exist. */

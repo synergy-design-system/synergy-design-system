@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 // eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 import { elementUpdated, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { getFormControls, serialize } from '../../../dist/sick.js';

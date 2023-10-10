@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 declare module '*.css' {
   const styles: string;
   export default styles;

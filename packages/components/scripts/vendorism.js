@@ -30,6 +30,29 @@ const config = {
       after: "echo ✅ Target setup complete.",
     },
     transforms: [
+      // Add lint ignore information to all vendored data
+      (path, content) => {
+
+        const eslintDisableComment = '/* eslint-disable */';
+        const stylelintDisableComment = '/* stylelint-disable */';
+
+        const prefixedContent = [];
+
+        // Shoelace vendor components use other style rules, so make sure to ignore them per default
+        if (path.endsWith('.ts')) {
+          prefixedContent.push(eslintDisableComment);
+        }
+
+        // We do not want to lint shoelace styles as they do not adhere to any standard
+        if (path.endsWith('.styles.ts')) {
+          prefixedContent.push(stylelintDisableComment);
+        }
+
+        return {
+          content: [...prefixedContent, content].join('\n'),
+          path,
+        };
+      },
       // Remove Shoelace branding
       (path, content) => {
         const capitalizedPrefix = `${libraryPrefix.charAt(0).toUpperCase()}${libraryPrefix.slice(1)}`;

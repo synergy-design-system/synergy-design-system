@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type { SickFormControl } from '../internal/sick-element.js';
 import type SdsButton from '../components/button/button.js';

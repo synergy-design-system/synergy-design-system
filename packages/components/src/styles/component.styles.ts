@@ -3,6 +3,8 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
+/* stylelint-disable */
 import { css } from 'lit';
 
 export default css`

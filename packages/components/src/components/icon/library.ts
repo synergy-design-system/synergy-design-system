@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import defaultLibrary from './library.default.js';
 import systemLibrary from './library.system.js';
 import type SdsIcon from '../icon/icon.js';

@@ -239,7 +239,7 @@ importers:
         version: 0.4.2
       vendorism:
         specifier: github:mariohamann/vendorism
-        version: github.com/mariohamann/vendorism/617fd0397422157c9123978568c6705e063a384e
+        version: github.com/mariohamann/vendorism/7dc6e3fd994743fdf1f44f2fd642132147ffdea4
       vite:
         specifier: ^4.4.5
         version: 4.4.9
@@ -13926,8 +13926,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  github.com/mariohamann/vendorism/617fd0397422157c9123978568c6705e063a384e:
-    resolution: {tarball: https://codeload.github.com/mariohamann/vendorism/tar.gz/617fd0397422157c9123978568c6705e063a384e}
+  github.com/mariohamann/vendorism/7dc6e3fd994743fdf1f44f2fd642132147ffdea4:
+    resolution: {tarball: https://codeload.github.com/mariohamann/vendorism/tar.gz/7dc6e3fd994743fdf1f44f2fd642132147ffdea4}
     name: vendorism
     version: 1.0.0
     dependencies:

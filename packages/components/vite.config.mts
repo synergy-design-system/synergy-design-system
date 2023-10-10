@@ -20,19 +20,9 @@ export default (({ command }: { command: string; }) => {
     build: {
       outDir: 'dist',
       lib: {
-        entry: path.resolve(__dirname, 'src/components.ts'),
-        name: 'Solid Components',
+        entry: path.resolve(__dirname, '../components/src/sick-components.ts'),
+        name: 'SDS Components',
         fileName: format => `${format}/components.js`
-      },
-      rollupOptions: {
-        output: {
-          // Modern JS bundles (no JS compilation, ES module output)
-          format: 'esm',
-          chunkFileNames: 'es/[name].js',
-          dir: 'dist/components'
-        },
-        plugins: [
-        ]
       }
     }
   };

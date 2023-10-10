@@ -17,7 +17,7 @@ const { outdir } = commandLineArgs([
   { name: 'litelement', type: String },
   { name: 'analyze', defaultOption: true },
   { name: 'outdir', type: String }
-]);
+], { partial: true })
 
 function noDash(string) {
   return string.replace(/^\s?-/, '').trim();

@@ -81,9 +81,6 @@ importers:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.8.4
         version: 0.8.4
-      '@mariohamann/wc-storybook-helpers':
-        specifier: ^1.3.0
-        version: 1.3.2(react-dom@18.2.0)(react@18.2.0)
       '@open-wc/testing':
         specifier: ^3.2.0
         version: 3.2.0
@@ -195,9 +192,6 @@ importers:
       globby:
         specifier: ^13.2.2
         version: 13.2.2
-      html-format:
-        specifier: ^1.1.2
-        version: 1.1.2
       jsdom:
         specifier: ^22.1.0
         version: 22.1.0
@@ -245,7 +239,7 @@ importers:
         version: 0.4.2
       vendorism:
         specifier: github:mariohamann/vendorism
-        version: github.com/mariohamann/vendorism/b54a32805ce93ad5e2d8bf29bc683549271e4608
+        version: github.com/mariohamann/vendorism/617fd0397422157c9123978568c6705e063a384e
       vite:
         specifier: ^4.4.5
         version: 4.4.9
@@ -261,9 +255,6 @@ importers:
       '@sick-design-system/components':
         specifier: workspace:^
         version: link:../components
-      '@sick-design-system/tokens':
-        specifier: workspace:^
-        version: link:../tokens
       change-case:
         specifier: ^4.1.2
         version: 4.1.2
@@ -274,12 +265,9 @@ importers:
       '@geometricpanda/storybook-addon-badges':
         specifier: ^2.0.0
         version: 2.0.0(@storybook/blocks@7.4.0)(@storybook/components@7.4.0)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.0)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.0)(@storybook/types@7.4.5)(react-dom@18.2.0)(react@18.2.0)
-      '@microsoft/fast-element':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@microsoft/fast-foundation':
-        specifier: ^2.49.1
-        version: 2.49.1
+      '@mariohamann/wc-storybook-helpers':
+        specifier: ^1.3.0
+        version: 1.3.2(react-dom@18.2.0)(react@18.2.0)
       '@sick-design-system/eslint-config-sds':
         specifier: workspace:^
         version: link:../_internal/eslint-config-sds
@@ -306,7 +294,7 @@ importers:
         version: 7.4.0(@babel/core@7.22.11)
       '@storybook/html-vite':
         specifier: ^7.4.0
-        version: 7.4.0(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(vite@4.4.9)
+        version: 7.4.0(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@storybook/manager-api':
         specifier: ^7.4.0
         version: 7.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -316,6 +304,9 @@ importers:
       '@storybook/theming':
         specifier: ^7.4.0
         version: 7.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/web-components':
+        specifier: ^7.2.1
+        version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -325,6 +316,12 @@ importers:
       eslint-plugin-storybook:
         specifier: ^0.6.13
         version: 0.6.13(eslint@8.47.0)(typescript@5.2.2)
+      html-format:
+        specifier: ^1.1.2
+        version: 1.1.2
+      lit:
+        specifier: ^2.8.0
+        version: 2.8.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -337,6 +334,12 @@ importers:
       stylelint:
         specifier: ^15.10.3
         version: 15.10.3
+      vite-plugin-cem:
+        specifier: ^0.5.0
+        version: 0.5.0
+      vite-plugin-replace:
+        specifier: ^0.1.1
+        version: 0.1.1(vite@4.4.9)
 
   packages/tokens:
     devDependencies:
@@ -2629,21 +2632,6 @@ packages:
     resolution: {integrity: sha512-gQutuDHPKNxUEcQ4pypZT4Wmrbapus+P9s3bR/SEOLsMbNqNoXigGImITygI5zhb+aA5rzflM6O8YWkmRbGkPA==}
     dev: true
 
-  /@microsoft/fast-foundation@2.49.1:
-    resolution: {integrity: sha512-dSajlZeX+lkqjg4108XbIIhVLECgJTCG32bE8P6rNgo8XCPHVJBDiBejrF34lv5pO9Z2uGORZjeip/N0fPib+g==}
-    dependencies:
-      '@microsoft/fast-element': 1.12.0
-      '@microsoft/fast-web-utilities': 5.4.1
-      tabbable: 5.3.3
-      tslib: 1.14.1
-    dev: true
-
-  /@microsoft/fast-web-utilities@5.4.1:
-    resolution: {integrity: sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==}
-    dependencies:
-      exenv-es6: 1.1.1
-    dev: true
-
   /@ndelangen/get-tarball@3.0.9:
     resolution: {integrity: sha512-9JKTEik4vq+yGosHYhZ1tiH/3WpUS0Nh0kej4Agndhox8pAdWhEx5knFVRcb/ya9knCRCs1rPxNrSXTDdfVqpA==}
     dependencies:
@@ -3894,7 +3882,7 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/builder-vite@7.4.0(typescript@5.2.2)(vite@4.4.9):
+  /@storybook/builder-vite@7.4.0(typescript@5.2.2):
     resolution: {integrity: sha512-2hE+Q5zoSFQvmiPKsRaZWUX5v6vRaSp0+kgZo3EOg0DvAACiC/Cd+sdnv7wxigvSnVRMbWvBVguPyePRjke8KA==}
     peerDependencies:
       '@preact/preset-vite': '*'
@@ -3929,7 +3917,6 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.28.1
       typescript: 5.2.2
-      vite: 4.4.9
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4470,12 +4457,12 @@ packages:
     resolution: {integrity: sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==}
     dev: true
 
-  /@storybook/html-vite@7.4.0(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(vite@4.4.9):
+  /@storybook/html-vite@7.4.0(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-Bw7hyHWTpTM3GxpTu2k3ztZUlAyBPGwlQkg4ejs/PXND0D5skZENRfzvvZL93nFNaCDhhguz1Bohe88HSK0e1Q==}
     engines: {node: ^14.18 || >=16}
     dependencies:
       '@storybook/addons': 7.4.0(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/builder-vite': 7.4.0(typescript@5.2.2)(vite@4.4.9)
+      '@storybook/builder-vite': 7.4.0(typescript@5.2.2)
       '@storybook/client-api': 7.4.0
       '@storybook/core-server': 7.4.0
       '@storybook/html': 7.4.0(@babel/core@7.22.11)
@@ -8122,10 +8109,6 @@ packages:
       onetime: 5.1.2
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
-    dev: true
-
-  /exenv-es6@1.1.1:
-    resolution: {integrity: sha512-vlVu3N8d6yEMpMsEm+7sUBAI81aqYYuEvfK0jNqmdb/OPXzzH7QWDDnVjMvDSY47JdHEqx/dfC/q8WkfoTmpGQ==}
     dev: true
 
   /expand-tilde@2.0.2:
@@ -12868,10 +12851,6 @@ packages:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
     dev: true
 
-  /tabbable@5.3.3:
-    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
-    dev: true
-
   /table-layout@3.0.2:
     resolution: {integrity: sha512-rpyNZYRw+/C+dYkcQ3Pr+rLxW4CfHpXjPDnG7lYhdRoUcZTUt+KEsX+94RGp/aVp/MQU35JCITv2T/beY4m+hw==}
     engines: {node: '>=12.17'}
@@ -13947,8 +13926,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  github.com/mariohamann/vendorism/b54a32805ce93ad5e2d8bf29bc683549271e4608:
-    resolution: {tarball: https://codeload.github.com/mariohamann/vendorism/tar.gz/b54a32805ce93ad5e2d8bf29bc683549271e4608}
+  github.com/mariohamann/vendorism/617fd0397422157c9123978568c6705e063a384e:
+    resolution: {tarball: https://codeload.github.com/mariohamann/vendorism/tar.gz/617fd0397422157c9123978568c6705e063a384e}
     name: vendorism
     version: 1.0.0
     dependencies:

@@ -14,8 +14,9 @@ export default async function loadCustomElements() {
 
   setCustomElementsManifest(customElements);
   console.log('Custom elements manifest loaded');
-}
 
+  console.log(customElements);
+}
 
 type ArgTypesDefinition = 'attribute' | 'property' | 'slot' | 'cssPart' | 'cssProperty';
 
@@ -42,28 +43,28 @@ await loadCustomElements();
  * @returns {any} - An object containing default arguments, events, and argument types.
  */
 export const storybookDefaults = (customElementTag: string): any => {
-  const { args, events, argTypes, manifest } = getWcStorybookHelpers(customElementTag);
+  const {
+    args, events, argTypes, manifest,
+  } = getWcStorybookHelpers(customElementTag);
 
-  const getBadgesConfig = () => {
-    return {
-      status: {
-        styles: {
-          backgroundColor: manifest?.status === 'stable' ? '#43b02a' : 'rgb(255, 131, 0)',
-          borderColor: 'white',
-          color: 'white'
-        },
-        title: `Status: ${manifest?.status}`
+  const getBadgesConfig = () => ({
+    status: {
+      styles: {
+        backgroundColor: manifest?.status === 'stable' ? '#43b02a' : 'rgb(255, 131, 0)',
+        borderColor: 'white',
+        color: 'white',
       },
-      since: {
-        styles: {
-          backgroundColor: '#333',
-          borderColor: '#fff',
-          color: '#fff'
-        },
-        title: `Since: ${manifest?.since}`
-      }
-    };
-  };
+      title: `Status: ${manifest?.status}`,
+    },
+    since: {
+      styles: {
+        backgroundColor: '#333',
+        borderColor: '#fff',
+        color: '#fff',
+      },
+      title: `Since: ${manifest?.since}`,
+    },
+  });
 
   const getOptimizedArgTypes = () => {
     interface member {
@@ -78,8 +79,6 @@ export const storybookDefaults = (customElementTag: string): any => {
       const result = fieldMembers?.filter(member => !attributeNames.has(member.name) && member?.privacy !== 'private');
       return result?.map(member => member.name);
     };
-
-    console.log(manifest.members);
 
     const output = {
       ...argTypes,
@@ -99,7 +98,7 @@ export const storybookDefaults = (customElementTag: string): any => {
         // Add a new one which is not editable
         acc[property] = { control: false, table: { category: 'Properties' } };
         return acc;
-      }, {})
+      }, {}),
     };
 
     console.log('output', output);
@@ -114,9 +113,9 @@ export const storybookDefaults = (customElementTag: string): any => {
       badges: ['status', 'since'],
       badgesConfig: getBadgesConfig(),
       actions: {
-        handles: events
-      }
-    }
+        handles: events,
+      },
+    },
   };
 };
 
@@ -126,79 +125,72 @@ export const storybookDefaults = (customElementTag: string): any => {
  * @param {string} customElementTag - The custom element tag for which the helpers are to be fetched.
  * @returns {Object} - An object containing several helper functions for working with the stories.
  */
-export const storybookHelpers = (customElementTag: string) => {
-  return {
-    /**
+export const storybookHelpers = (customElementTag: string) => ({
+  /**
      * Returns a suffix string based on the type of argument.
      *
      * @param {ArgTypesDefinition} type - The type of the argument.
      * @returns {string} - The suffix string.
      */
-    getSuffixFromType: (type: ArgTypesDefinition): string => {
-      return {
-        attribute: '-attr',
-        property: '-prop',
-        slot: '-slot',
-        cssPart: '-part',
-        cssProperty: ''
-      }[type];
-    },
+  getSuffixFromType: (type: ArgTypesDefinition): string => ({
+    attribute: '-attr',
+    property: '-prop',
+    slot: '-slot',
+    cssPart: '-part',
+    cssProperty: '',
+  }[type]),
 
-    /**
+  /**
      * Returns the possible values for an attribute for a given custom element tag.
      *
      * @param {string} attribute - The attribute for which the values are to be fetched.
      * @returns {any} - The possible values for the attribute.
      */
-    getValuesFromAttribute: (attribute: string): any => {
-      if (!attribute.endsWith('-attr')) {
-        attribute = `${attribute}-attr`;
-      }
-      const { argTypes } = storybookDefaults(customElementTag);
-      if (argTypes[attribute]?.control?.type === 'boolean') {
-        return [true, false];
-      } else {
-        return argTypes[attribute].options;
-      }
-    },
+  getValuesFromAttribute: (attribute: string): any => {
+    if (!attribute.endsWith('-attr')) {
+      attribute = `${attribute}-attr`;
+    }
+    const { argTypes } = storybookDefaults(customElementTag);
+    if (argTypes[attribute]?.control?.type === 'boolean') {
+      return [true, false];
+    }
+    return argTypes[attribute].options;
+  },
 
-    /**
+  /**
      * Returns the possible values for a list of attributes for a given custom element tag.
      *
      * @param {string[]} attributes - The attributes for which the values are to be fetched.
      * @returns {any} - The possible values for the attributes.
      */
-    getValuesFromAttributes: (attributes: string[]): any => {
-      return attributes?.map((attribute: string) => {
-        if (!attribute.endsWith('-attr')) {
-          attribute = `${attribute}-attr`;
-        }
-        return {
-          name: attribute,
-          values: storybookHelpers(customElementTag).getValuesFromAttribute(attribute)
-        };
-      });
-    },
+  getValuesFromAttributes: (attributes: string[]): any => attributes?.map((attribute: string) => {
+    if (!attribute.endsWith('-attr')) {
+      attribute = `${attribute}-attr`;
+    }
+    return {
+      name: attribute,
+      values: storybookHelpers(customElementTag).getValuesFromAttribute(attribute),
+    };
+  }),
 
-    /**
+  /**
      * Returns an arguments object that has been overridden with the specified overrides.
      *
      * @param {ConstantDefinition | ConstantDefinition[]} overrides - The overrides for the arguments.
      * @param {Object} original - The original arguments object that is to be overridden.
      * @returns {Object} - The arguments object with the overrides applied.
      */
-    overrideArgs: (overrides: ConstantDefinition | ConstantDefinition[], original?: { [k: string]: any; }) => {
-      const args = original || storybookDefaults(customElementTag).args;
-      const overridesArray = Array.isArray(overrides) ? overrides : [overrides];
-      for (const override of overridesArray) {
-        const suffix = storybookHelpers(customElementTag).getSuffixFromType(override.type as any);
-        args[`${override.name}${suffix}`] = override.value;
-      }
-
-      return args;
+  overrideArgs: (overrides: ConstantDefinition | ConstantDefinition[], original?: { [k: string]: any; }) => {
+    const args = original || storybookDefaults(customElementTag).args;
+    const overridesArray = Array.isArray(overrides) ? overrides : [overrides];
+    for (const override of overridesArray) {
+      const suffix = storybookHelpers(customElementTag).getSuffixFromType(override.type as any);
+      args[`${override.name}${suffix}`] = override.value;
     }
-  };
-};
+
+    return args;
+  },
+});
 
 /**
  * Returns a template function for creating stories for a given custom element tag.
@@ -241,7 +233,7 @@ export const storybookTemplate = (customElementTag: string) => {
     axis,
     constants = [],
     options,
-    args = defaultArgs
+    args = defaultArgs,
   }: {
     /**
      * The object defining the x-axis and y-axis for the story.
@@ -333,15 +325,15 @@ export const storybookTemplate = (customElementTag: string) => {
     const constantDefinitions = (Array.isArray(constants) ? constants : [constants]).reduce(
       (acc, curr) => ({
         ...acc,
-        [`${curr.name}${storybookHelpers(customElementTag).getSuffixFromType(curr.type as any)}`]: curr.value
+        [`${curr.name}${storybookHelpers(customElementTag).getSuffixFromType(curr.type as any)}`]: curr.value,
       }),
-      {}
+      {},
     );
 
     if (!axis?.x && !axis?.y && !options?.title) {
       return html`${template({
         ...args,
-        ...constantDefinitions
+        ...constantDefinitions,
       })}`;
     }
 
@@ -350,16 +342,15 @@ export const storybookTemplate = (customElementTag: string) => {
       if (Array.isArray(axis)) {
         return axis.map(item => ({
           ...item,
-          values: item.values || getValuesFromAttribute(item.name)
+          values: item.values || getValuesFromAttribute(item.name),
         }));
-      } else {
-        return [
-          {
-            ...axis,
-            values: axis.values || getValuesFromAttribute(axis.name)
-          }
-        ];
       }
+      return [
+        {
+          ...axis,
+          values: axis.values || getValuesFromAttribute(axis.name),
+        },
+      ];
     };
 
     const xAxes = generateAxes(axis?.x);
@@ -422,50 +413,47 @@ export const storybookTemplate = (customElementTag: string) => {
           white-space: nowrap;
         }
 
-        ${options?.templateBackground &&
-      `
+        ${options?.templateBackground
+      && `
           .${uuid}.story-template tbody tr.template-row td.template {
             background: ${options?.templateBackground};
           }
         `}
 
         ${options?.templateBackgrounds?.colors.map((color, index) => {
-        const calculateNth = (index: number) => {
-          return `${options?.templateBackgrounds?.colors.length}n + ${index + 1}`;
-        };
-        return options?.templateBackgrounds?.alternate === 'y'
-          ? `
+    const calculateNth = (index: number) => `${options?.templateBackgrounds?.colors.length}n + ${index + 1}`;
+    return options?.templateBackgrounds?.alternate === 'y'
+      ? `
                 .${uuid}.story-template tbody tr.template-row:nth-of-type(${calculateNth(index)}) td.template {
                   background: ${color};
                 }
               `
-          : `
+      : `
                 .${uuid}.story-template tbody tr.template-row td.template:nth-of-type(${calculateNth(index)}) {
                   background: ${color};
                 }
               `;
-      })}
+  })}
       </style>
-      ${xAxes.map((xAxis: any) => {
-        return html` ${yAxes.map((yAxis: any) => {
-          let firstRow = true;
-          const showXLabel = xAxes.length > 1 || xAxis.values;
-          const showYLabel = ((xAxis && yAxis) || yAxes.length > 1) && yAxis?.values;
-          return html`
+      ${xAxes.map((xAxis: any) => html` ${yAxes.map((yAxis: any) => {
+    let firstRow = true;
+    const showXLabel = xAxes.length > 1 || xAxis.values;
+    const showYLabel = ((xAxis && yAxis) || yAxes.length > 1) && yAxis?.values;
+    return html`
             <table class="story-template ${uuid} ${options?.classes}">
               <thead>
-                ${options?.title &&
-            html`<tr>
+                ${options?.title
+            && html`<tr>
                   <th class="title" colspan=${(xAxis.values?.length || 0) + 3}><code>${options?.title}</code></th>
                 </tr>`}
-                ${xAxis &&
-            xAxis.values &&
-            html`
+                ${xAxis
+            && xAxis.values
+            && html`
                   <tr>
                     ${showYLabel ? html`<td></td>` : ''} <td></td>
-                    ${showXLabel &&
-              html`<th colspan=${xAxis.values?.length || 0}><code>${xAxis.title || xAxis.name}</code></th>`
-              }
+                    ${showXLabel
+              && html`<th colspan=${xAxis.values?.length || 0}><code>${xAxis.title || xAxis.name}</code></th>`
+}
                     </tr>
                   </tr>
                   ${html`
@@ -479,65 +467,62 @@ export const storybookTemplate = (customElementTag: string) => {
               </thead>
               <tbody>
                 ${(yAxis?.values || ['']).map((yValue: any) => {
-                const row = html`
+    const row = html`
                     <tr class="template-row">
                       ${firstRow && showYLabel
-                    ? html`<th rowspan="${yAxis?.values?.length}">
+    ? html`<th rowspan="${yAxis?.values?.length}">
                             <span><code>${yAxis.title || yAxis.name}</code></span>
                           </th>`
-                    : ''}
+    : ''}
                       <th><code>${yValue.title || yValue}</code></th>
-                      ${(xAxis?.values || ['']).map((xValue: any) => {
-                      return html`
+                      ${(xAxis?.values || ['']).map((xValue: any) => html`
                           <td class="template template-x-${xAxis?.values?.indexOf(xValue) || 0 + 1} template-y-${yAxis?.values?.indexOf(yValue.value || yValue) || 0 + 1
-                        }">
-                          ${(xAxis.type === 'template' &&
-                          unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[0] || '')) ||
-                        ''
-                        }
-                          ${(yAxis.type === 'template' &&
-                          unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[0] || '')) ||
-                        ''
-                        }
+}">
+                          ${(xAxis.type === 'template'
+                          && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[0] || ''))
+                        || ''
+}
+                          ${(yAxis.type === 'template'
+                          && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[0] || ''))
+                        || ''
+}
                           ${(constantsTemplate && unsafeStatic(constantsTemplate.split('%TEMPLATE%')[0] || '')) || ''}
                             ${template({
-                          ...args,
-                          ...constantDefinitions,
-                          ...(xAxis &&
-                            xAxis.type !== 'template' && {
-                            [`${xAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(xAxis.type)}`]:
+    ...args,
+    ...constantDefinitions,
+    ...(xAxis
+                            && xAxis.type !== 'template' && {
+      [`${xAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(xAxis.type)}`]:
                               // As the value could be null or empty, we need to check if the property exists
-                              xValue.hasOwnProperty('value') ? xValue.value : xValue
-                          }),
-                          ...(yAxis &&
-                            yAxis.type !== 'template' && {
-                            [`${yAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(yAxis.type)}`]:
+                              xValue.hasOwnProperty('value') ? xValue.value : xValue,
+    }),
+    ...(yAxis
+                            && yAxis.type !== 'template' && {
+      [`${yAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(yAxis.type)}`]:
                               // As the value could be null or empty, we need to check if the property exists
-                              yValue.hasOwnProperty('value') ? yValue.value : yValue
-                          })
-                        })}
-                         ${(yAxis.type === 'template' &&
-                          unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[1] || '')) ||
-                        ''
-                        }
-                         ${(xAxis.type === 'template' &&
-                          unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[1] || '')) ||
-                        ''
-                        }
+                              yValue.hasOwnProperty('value') ? yValue.value : yValue,
+    }),
+  })}
+                         ${(yAxis.type === 'template'
+                          && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[1] || ''))
+                        || ''
+}
+                         ${(xAxis.type === 'template'
+                          && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[1] || ''))
+                        || ''
+}
                           ${(constantsTemplate && unsafeStatic(constantsTemplate.split('%TEMPLATE%')[1] || '')) || ''
-                        }</td></div>
-                        `;
-                    })}
+}</td></div>
+                        `)}
                     </tr>
                   `;
-                firstRow = false;
-                return row;
-              })}
+    firstRow = false;
+    return row;
+  })}
               </tbody>
             </table>
           `;
-        })}`;
-      })}
+  })}`)}
     `;
   };
 
@@ -550,7 +535,7 @@ export const storybookUtilities = {
    * It especially works in combination with the `generateTemplate` function to optimize the final code.
    */
   codeOptimizer: (code: string) => {
-    const body = new DOMParser().parseFromString(code, 'text/html').body;
+    const { body } = new DOMParser().parseFromString(code, 'text/html');
     const templates = body.querySelectorAll('.template');
     let templateInnerHTML = '';
     if (templates.length) {
@@ -566,5 +551,5 @@ export const storybookUtilities = {
       .replace(/<script>\s*component = document\.querySelector\('(.+?)'\);\s*<\/script>/g, '');
     // return templateInnerHTML;
     return format(templateInnerHTML);
-  }
+  },
 };

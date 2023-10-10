@@ -70,6 +70,15 @@ const config = {
         }
         return {path, content};
       },
+      // change something in `custom-elemenents-manifest.config.js`
+      (path, content) => {
+        if (path.includes('custom-elements-manifest.config.js')) {
+          return {path, content: content.replace(`{ name: 'outdir', type: String }
+]);`, `{ name: 'outdir', type: String }
+], { partial: true })`)};
+        }
+        return {path, content};
+      }
     ]
   },
 }
@@ -77,11 +86,11 @@ const config = {
 // await setSource(config);
 
 // Move all files from '../docs/src/components' to './src/temp'
-await execSync('mv ../docs/src/components ./src/temp');
+await execSync('mv ../docs/stories/components ./src/temp');
 
 await setTarget(config);
 
 // Move files back from './src/temp' to '../docs/src/components'
-await execSync('mv ./src/temp ../docs/src/components');
+await execSync('mv ./src/temp ../docs/stories/components');
 
 process.exit();

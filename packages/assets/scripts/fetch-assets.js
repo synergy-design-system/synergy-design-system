@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { config as dotenvConfig } from 'dotenv';
 import {
   intro,
   outro,
@@ -13,6 +13,19 @@ intro(`Fetch Assets`);
 
 const s = spinner();
 async function fetchAssets() {
+  // Load environment variables from .env file
+  if (fs.existsSync('.env')) {
+    dotenvConfig();
+  }
+
+  else {
+    throw new Error('Missing .env file.');
+  }
+
+  if (!process.env.FIGMA_PERSONAL_ACCESS_TOKEN) {
+    throw new Error('Missing FIGMA_PERSONAL_ACCESS_TOKEN in .env file.');
+  }
+
   const config = {
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
     fileId: "bZFqk9urD3NlghGUKrkKCR",
@@ -35,7 +48,7 @@ async function fetchAssets() {
   s.stop(`${assets.length} assets found`);
 
   assets = assets.filter(asset => !asset.name.startsWith('_'));
-  
+
   // Step 2: Create PNGs
   let pngs = assets.filter(asset => asset.name.includes('.png'));
   if (pngs.length !== 0) {

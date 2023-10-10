@@ -20,6 +20,8 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@open-wc/testing": "^3.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.1",
     "@storybook/addon-essentials": "^7.2.1",
@@ -64,6 +66,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remark-parse": "^11.0.0",
+    "semantic-release": "^22.0.5",
+    "semantic-release-monorepo": "^7.0.5",
     "sinon": "^16.1.0",
     "storybook": "^7.2.1",
     "tslib": "^2.6.2",
@@ -75,5 +79,45 @@
     "vite": "^4.4.5",
     "vite-plugin-cem": "^0.5.0",
     "vite-plugin-replace": "^0.1.1"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x", 
+      "main", 
+      {"name": "beta", "prerelease": true}, 
+      {"name": "alpha", "prerelease": true}
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": true
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ]
+    ]
   }
 }

@@ -33,3 +33,4 @@ The following icons are used in commit messages and this changelog.
 
 - #4: Added github action for linting
 - #55: Rename package namespace to `@synergy-design-system`
+- #18: Adjusted issue titles to use [conventional changelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular#type) style.

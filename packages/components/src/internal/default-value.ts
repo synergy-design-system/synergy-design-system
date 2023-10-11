@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 // @defaultValue decorator
 //
 // Runs when the corresponding attribute of the observed property changes, e.g. after calling Element.setAttribute or after updating

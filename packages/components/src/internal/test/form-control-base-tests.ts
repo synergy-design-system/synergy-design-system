@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { expect, fixture } from '@open-wc/testing';
 import type { SickFormControl } from '../sick-element.js';
 

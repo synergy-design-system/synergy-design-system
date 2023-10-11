@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { registerTranslation } from '../utilities/localize.js';
 import type { Translation } from '../utilities/localize.js';
 

@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import type { LitElement } from 'lit';
 
 type UpdateHandler = (prev?: unknown, next?: unknown) => void;

@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { getBasePath } from '../../utilities/base-path.js';
 import type { IconLibrary } from './library.js';
 

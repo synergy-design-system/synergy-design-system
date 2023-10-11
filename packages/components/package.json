@@ -10,7 +10,8 @@
     "dev": "storybook dev -p 6006",
     "build": "vite build",
     "build-storybook": "storybook build",
-    "vendor": "node scripts/vendorism.js"
+    "vendor": "node scripts/vendorism.js",
+    "test": "web-test-runner --group default"
   },
   "author": "",
   "type": "module",

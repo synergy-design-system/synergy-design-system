@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import SickElement from '../../internal/sick-element.js';

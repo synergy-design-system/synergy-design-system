@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 let basePath = '';
 
 /** Sets the library's base path to the specified directory. */

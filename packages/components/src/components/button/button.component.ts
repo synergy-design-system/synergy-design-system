@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';

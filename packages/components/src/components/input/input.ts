@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import SdsInput from './input.component.js';
 export * from './input.component.js';
 export default SdsInput;

@@ -8,14 +8,6 @@ const libraryPrefix = 'sds';
 const libraryName = 'sick';
 const shoelaceVersion = '2.6.0';
 
-/**
- * Upfront we're going to generate the storybook files for all relevant components so that they can be vendored
- */
-await Promise.all(components.map(async (component) => {
-  const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
-  const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
-  await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
-}));
 
 const config = {
   source: {
@@ -38,6 +30,29 @@ const config = {
       after: "echo ✅ Target setup complete.",
     },
     transforms: [
+      // Add lint ignore information to all vendored data
+      (path, content) => {
+
+        const eslintDisableComment = '/* eslint-disable */';
+        const stylelintDisableComment = '/* stylelint-disable */';
+
+        const prefixedContent = [];
+
+        // Shoelace vendor components use other style rules, so make sure to ignore them per default
+        if (path.endsWith('.ts')) {
+          prefixedContent.push(eslintDisableComment);
+        }
+
+        // We do not want to lint shoelace styles as they do not adhere to any standard
+        if (path.endsWith('.styles.ts')) {
+          prefixedContent.push(stylelintDisableComment);
+        }
+
+        return {
+          content: [...prefixedContent, content].join('\n'),
+          path,
+        };
+      },
       // Remove Shoelace branding
       (path, content) => {
         const capitalizedPrefix = `${libraryPrefix.charAt(0).toUpperCase()}${libraryPrefix.slice(1)}`;
@@ -82,7 +97,16 @@ const config = {
   },
 }
 
-// await setSource(config);
+await setSource(config);
+
+/**
+ * Generate the storybook files for all relevant components after shoelace is available so that they can be vendored
+ */
+await Promise.all(components.map(async (component) => {
+  const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
+  const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
+  await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
+}));
 
 // Move all files from '../docs/src/components' to './src/temp'
 await execSync('mv ../docs/stories/components ./src/temp');

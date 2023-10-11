@@ -13,7 +13,8 @@
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
-    "vendor.set": "node scripts/vendorism.js -s"
+    "vendor.set": "node scripts/vendorism.js -s",
+    "vendor.eject": "node scripts/vendorism.js -e"
   },
   "author": "",
   "type": "module",

@@ -1,6 +1,7 @@
 import { eject, setTarget, setSource } from 'vendorism';
 import { generateStorybookFile } from './vendorism-create-stories.js';
 import { execSync } from 'child_process';
+import { updateVsCodeReadOnlyFiles } from './update-vscode-readonly-files.js';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
 
@@ -13,7 +14,9 @@ const shoelaceVersion = '2.6.0';
 //Command line options
 const optionDefinitions = [
   { name: 'setOnly', alias: 's', type: Boolean },
-  { name: 'getOnly', alias: 'g', type: Boolean }
+  { name: 'getOnly', alias: 'g', type: Boolean },
+  { name: 'eject', alias: 'e', type: Boolean },
+  { name: 'file', type: String, defaultOption: true } 
 ];
 
 const options = commandLineArgs(optionDefinitions);
@@ -107,46 +110,21 @@ const config = {
   },
 }
 
-export async function updateVsCodeReadOnlyFiles(remove, add, settingsPath = '../../.vscode/settings.json') {
-  try {
-    // Default settings object
-    let settings = {};
+// If the eject option is specified, runs the eject functionality
+if (options.eject) {
+  const filePath = options.file;
 
-    // If settings.json exists, read and parse it
-    if (fs.existsSync(settingsPath)) {
-      console.log("📖 Reading existing settings.json file..."); 
-      const rawData = fs.readFileSync(settingsPath, 'utf8');
-      settings = JSON.parse(rawData);
-    }
-    else {
-      console.log("settings.json does not exist.");
-    }
+  console.log("🚀 Ejecting file", filePath);
 
-    // Initialize files.readonlyInclude if it doesn't exist
-    settings['files.readonlyInclude'] = settings['files.readonlyInclude'] || {};
-
-
-    // Remove files from files.readonlyInclude
-    for (const file of remove) {
-      if (!settings['files.readonlyInclude'][`packages/components/${file}`]) continue; 
-      delete settings['files.readonlyInclude'][`packages/components/${file}`];
-    }
-
-    const readonlyFiles = {};
-    for (const file of add) {
-      readonlyFiles[`packages/components/${file}`] = true;
-    } 
-
-    // Override files.readonlyInclude with the provided files object
-    settings['files.readonlyInclude'] = { ...readonlyFiles, ...settings['files.readonlyInclude'] };
-
-    // Write the updated settings back to settings.json
-    console.log("🖊️ Writing to settings.json file...");
-    await fs.mkdirSync(settingsPath.split('/').slice(0, -1).join('/'), { recursive: true });
-    await fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 4), 'utf8');
-  } catch (error) {
-    console.error('An error occurred while updating settings:', error);
+  if (!filePath) {
+    console.error("❗ Please provide a file path for the eject operation.");
+    process.exit(1);
   }
+
+  await eject(filePath);
+  updateVsCodeReadOnlyFiles([filePath], []);
+
+  process.exit(0);
 }
 
 //Downloads Shoelace and sets up the source

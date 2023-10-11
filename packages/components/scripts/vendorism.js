@@ -107,6 +107,48 @@ const config = {
   },
 }
 
+export async function updateVsCodeReadOnlyFiles(remove, add, settingsPath = '../../.vscode/settings.json') {
+  try {
+    // Default settings object
+    let settings = {};
+
+    // If settings.json exists, read and parse it
+    if (fs.existsSync(settingsPath)) {
+      console.log("📖 Reading existing settings.json file..."); 
+      const rawData = fs.readFileSync(settingsPath, 'utf8');
+      settings = JSON.parse(rawData);
+    }
+    else {
+      console.log("settings.json does not exist.");
+    }
+
+    // Initialize files.readonlyInclude if it doesn't exist
+    settings['files.readonlyInclude'] = settings['files.readonlyInclude'] || {};
+
+
+    // Remove files from files.readonlyInclude
+    for (const file of remove) {
+      if (!settings['files.readonlyInclude'][`packages/components/${file}`]) continue; 
+      delete settings['files.readonlyInclude'][`packages/components/${file}`];
+    }
+
+    const readonlyFiles = {};
+    for (const file of add) {
+      readonlyFiles[`packages/components/${file}`] = true;
+    } 
+
+    // Override files.readonlyInclude with the provided files object
+    settings['files.readonlyInclude'] = { ...readonlyFiles, ...settings['files.readonlyInclude'] };
+
+    // Write the updated settings back to settings.json
+    console.log("🖊️ Writing to settings.json file...");
+    await fs.mkdirSync(settingsPath.split('/').slice(0, -1).join('/'), { recursive: true });
+    await fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 4), 'utf8');
+  } catch (error) {
+    console.error('An error occurred while updating settings:', error);
+  }
+}
+
 //Downloads Shoelace and sets up the source
 if (!options.setOnly) {
   await setSource(config);
@@ -125,7 +167,12 @@ if (!options.getOnly) {
   // Move all files from '../docs/src/components' to './src/temp'
   await execSync('mv ../docs/stories/components ./src/temp');
 
-  await setTarget(config);
+  const target = await setTarget(config);
+  const removedFiles = target.removedFiles;
+  const newFiles = target.newFiles;
+
+  await updateVsCodeReadOnlyFiles(removedFiles, newFiles);
+
   // Move files back from './src/temp' to '../docs/src/components'
   await execSync('mv ./src/temp ../docs/stories/components');
 }

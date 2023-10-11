@@ -1,6 +1,8 @@
 import { eject, setTarget, setSource } from 'vendorism';
 import { generateStorybookFile } from './vendorism-create-stories.js';
 import { execSync } from 'child_process';
+import commandLineArgs from 'command-line-args';
+import fs from 'fs';
 
 const components = ['input']
 const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', '.eslint*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
@@ -8,6 +10,13 @@ const libraryPrefix = 'sds';
 const libraryName = 'sick';
 const shoelaceVersion = '2.6.0';
 
+//Command line options
+const optionDefinitions = [
+  { name: 'setOnly', alias: 's', type: Boolean },
+  { name: 'getOnly', alias: 'g', type: Boolean }
+];
+
+const options = commandLineArgs(optionDefinitions);
 
 const config = {
   source: {
@@ -29,6 +38,7 @@ const config = {
       before: "echo ⌛️ Setting up target...",
       after: "echo ✅ Target setup complete.",
     },
+    //Changes targeted files -> otherIncludes
     transforms: [
       // Add lint ignore information to all vendored data
       (path, content) => {
@@ -82,7 +92,7 @@ const config = {
         }
         return { path, content };
       },
-      // change something in `custom-elemenents-manifest.config.js`
+      // change something in `custom-elements-manifest.config.js`
       (path, content) => {
         if (path.includes('custom-elements-manifest.config.js')) {
           return {
@@ -97,23 +107,27 @@ const config = {
   },
 }
 
-await setSource(config);
+//Downloads Shoelace and sets up the source
+if (!options.setOnly) {
+  await setSource(config);
+}
+// Check for the "getOnly" option and modify the content if necessary
+if (!options.getOnly) {
+  /**
+   * Generate the storybook files for all relevant components after shoelace is available so that they can be vendored
+  */
+  await Promise.all(components.map(async (component) => {
+    const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
+    const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
+    await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
+  }));
 
-/**
- * Generate the storybook files for all relevant components after shoelace is available so that they can be vendored
- */
-await Promise.all(components.map(async (component) => {
-  const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
-  const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
-  await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
-}));
+  // Move all files from '../docs/src/components' to './src/temp'
+  await execSync('mv ../docs/stories/components ./src/temp');
 
-// Move all files from '../docs/src/components' to './src/temp'
-await execSync('mv ../docs/stories/components ./src/temp');
-
-await setTarget(config);
-
-// Move files back from './src/temp' to '../docs/src/components'
-await execSync('mv ./src/temp ../docs/stories/components');
+  await setTarget(config);
+  // Move files back from './src/temp' to '../docs/src/components'
+  await execSync('mv ./src/temp ../docs/stories/components');
+}
 
 process.exit();

@@ -1,13 +1,13 @@
 name: Quality Gate
 
-on: 
-  pull_request:
-  push:
+on: pull_request
 
 jobs:
     quality-gate:
         name: Install and verify
         runs-on: ubuntu-latest
+        container:
+            image: mcr.microsoft.com/playwright:v1.33.0-jammy
         steps:
             - name: Checkout
               uses: actions/checkout@v3

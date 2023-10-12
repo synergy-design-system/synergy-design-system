@@ -16,7 +16,7 @@ const optionDefinitions = [
   { name: 'setOnly', alias: 's', type: Boolean },
   { name: 'getOnly', alias: 'g', type: Boolean },
   { name: 'eject', alias: 'e', type: Boolean },
-  { name: 'file', type: String, defaultOption: true } 
+  { name: 'file', type: String, defaultOption: true }
 ];
 
 const options = commandLineArgs(optionDefinitions);
@@ -52,7 +52,7 @@ const config = {
         const prefixedContent = [];
 
         // Shoelace vendor components use other style rules, so make sure to ignore them per default
-        if (path.endsWith('.ts')) {
+        if (path.endsWith('.ts') || path.endsWith('.js')) {
           prefixedContent.push(eslintDisableComment);
         }
 

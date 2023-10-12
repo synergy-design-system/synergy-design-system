@@ -21,6 +21,7 @@ The following icons are used in commit messages and this changelog.
 ### 📚 Doc
 
 - #10: Adjusted stories for new token structure
+- #17: Adjusted package.json author field
 - #22: Added Welcome page and colors
 - #22: Added `@synergy-design-system/design-tokens` Changelog and Readme, as well as color tokens
 

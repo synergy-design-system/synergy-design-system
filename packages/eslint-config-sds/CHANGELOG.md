@@ -16,6 +16,10 @@ The following icons are used in commit messages and this changelog.
 
 ## 🚀 NEXT
 
+### 📚 Documentation
+
+- #17: Adjusted package.json author field
+
 ### 🐛 Bugs
 
 - #11: Set default `ecmaVersion` to es2023 to prevent optional chaining false positives

@@ -1,6 +1,6 @@
 {
   "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
   "description": "Design tokens for the Synergy Design System",
@@ -21,7 +21,7 @@
     "tokens",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/design-tokens",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/design-tokens",
   "keywords": [
     "SDS",
     "Synergy Design System",
@@ -33,7 +33,7 @@
   "name": "@synergy-design-system/design-tokens",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/sds.git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/design-tokens"
   },
   "scripts": {

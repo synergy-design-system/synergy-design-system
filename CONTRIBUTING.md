@@ -18,7 +18,7 @@ Components must be optimized for accessibility. Please use tools like AXE or Dev
 
 ## Contribution workflow:
 
-If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/sds/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes. 
+If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/synergy/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes. 
 
 Please use the following message conventions for your commits:
 

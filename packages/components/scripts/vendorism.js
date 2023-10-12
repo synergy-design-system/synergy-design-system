@@ -121,8 +121,11 @@ if (options.eject) {
     process.exit(1);
   }
 
-  await eject(filePath);
-  updateVsCodeReadOnlyFiles([filePath], []);
+  await eject(
+    config,
+    filePath
+  );
+  await updateVsCodeReadOnlyFiles([filePath], []);
 
   process.exit(0);
 }

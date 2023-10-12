@@ -1,7 +1,7 @@
 ---
 name: Component/Request new component
 about: Use this template to request a new component
-title: "[FEAT] "
+title: "feat: ✨ "
 labels: component/new, status/triage, enhancement
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Report a bug
 about: Use this template to report a bug.
-title: "[BUG] "
+title: "fix: 🤔 "
 labels: bug, status/triage
 ---
 

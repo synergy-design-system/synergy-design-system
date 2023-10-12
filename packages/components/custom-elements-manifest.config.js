@@ -3,6 +3,7 @@
 // Removing this comment will prevent it from being managed by it.
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 import { generateCustomData } from 'cem-plugin-vs-code-custom-data-generator';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'pascal-case';

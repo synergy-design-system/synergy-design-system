@@ -25,7 +25,7 @@ export class TokenBuilder {
       name: 'eds/add-color-name',
       matcher: (token) => token.type === 'color',
       transformer: (token) => {
-        if (token.type === 'color' && !token.filePath.includes('semantics')) {
+        if (token.type === 'color' && !token.filePath.includes('semantic')) {
           token.name = token.name.replace(this.prefix, `${this.prefix}color-`);
         }
         return token.name;
@@ -73,7 +73,7 @@ export class TokenBuilder {
               .replace('{', '')
               .replace('}', '')
               .replace('.', '-')
-            })`;
+              })`;
           }
           return token;
         };
@@ -99,7 +99,7 @@ export class TokenBuilder {
   buildTokens() {
     return ['dark', 'light'].map((theme) => {
       const sd = StyleDictionary.extend({
-        source: this.sourcePaths.concat(`./packages/tokens/src/figma-tokens/colors/${theme}.json`),
+        source: this.sourcePaths.concat(`./packages/tokens/src/figma-tokens/color/${theme}.json`),
         platforms: {
           css: {
             transforms: [

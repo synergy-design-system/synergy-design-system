@@ -1,14 +1,11 @@
 {
   "tokenSetOrder": [
-    "colors/dark",
-    "colors/light",
-    "colors/primitives",
     "globals",
-    "semantics/input",
-    "semantics/focus-ring",
-    "semantics/overlays",
-    "semantics/panels",
-    "semantics/button",
+    "color/dark",
+    "color/light",
+    "color/primitives",
+    "semantic/focus-ring",
+    "semantic/input",
     "_docs"
   ]
 }

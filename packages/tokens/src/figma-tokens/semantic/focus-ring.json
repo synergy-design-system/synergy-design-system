@@ -5,11 +5,11 @@
       "type": "color"
     },
     "width": {
-      "value": "3px",
+      "value": "{border-width.small}",
       "type": "borderWidth"
     },
     "offset": {
-      "value": "1px",
+      "value": "{spacing.4x-small}",
       "type": "spacing"
     }
   }

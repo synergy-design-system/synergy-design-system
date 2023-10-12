@@ -4,9 +4,9 @@ import { addMissingTokens } from './add-missing-tokens.js';
 const createThemes = async () => {
   const tokenBuilder = new TokenBuilder({
     sourcePaths: [
-      '../src/figma-tokens/colors/primitives.json',
+      '../src/figma-tokens/color/primitives.json',
       '../src/figma-tokens/globals.json',
-      '../src/figma-tokens/semantics/*.json',
+      '../src/figma-tokens/semantic/*.json',
     ],
     buildPath: '../dist/',
     prefix: 'sds-',

@@ -4,6 +4,7 @@ import { execSync } from 'child_process';
 import { updateVsCodeReadOnlyFiles } from './update-vscode-readonly-files.js';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
+import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
 const components = ['input']
 const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', '.eslint*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
@@ -89,7 +90,8 @@ const config = {
       // Move stories into `temp` directory
       (path, content) => {
         if (path.includes('.stories.ts')) {
-          const parts = path.split("/");
+          const optimizedPath = optimizePathForWindows(path);
+          const parts = optimizedPath.split("/");
           const fileName = parts[parts.length - 1];  // Gets 'input.stories.ts'
           return { path: `./src/temp/${fileName}`, content };
         }
@@ -113,10 +115,11 @@ const config = {
 // If the eject option is specified, runs the eject functionality
 if (options.eject) {
   const filePath = options.file;
+  const optimizedPath = optimizePathForWindows(filePath);
 
-  console.log("🚀 Ejecting file", filePath);
+  console.log("🚀 Ejecting file", optimizedPath);
 
-  if (!filePath) {
+  if (!optimizedPath) {
     console.error("❗ Please provide a file path for the eject operation.");
     process.exit(1);
   }
@@ -125,7 +128,7 @@ if (options.eject) {
     config,
     filePath
   );
-  await updateVsCodeReadOnlyFiles([filePath], []);
+  await updateVsCodeReadOnlyFiles([optimizedPath], []);
 
   process.exit(0);
 }
@@ -133,6 +136,8 @@ if (options.eject) {
 //Downloads Shoelace and sets up the source
 if (!options.setOnly) {
   await setSource(config);
+  // Don`t know exactly why, but this is needed for Windows. Otherwise the last three files (tsconfig.(prod).json, web-test-runner.config.js) from shoelace are missing after the download.
+  await new Promise(res => { setTimeout(res, 100); })
 }
 // Check for the "getOnly" option and modify the content if necessary
 if (!options.getOnly) {

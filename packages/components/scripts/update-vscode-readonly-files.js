@@ -1,4 +1,6 @@
 import fs from 'fs';
+import path from 'path';
+import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
 export async function updateVsCodeReadOnlyFiles(remove, add, settingsPath = '../../.vscode/settings.json') {
   try {
@@ -21,8 +23,26 @@ export async function updateVsCodeReadOnlyFiles(remove, add, settingsPath = '../
 
     // Removes files from files.readonlyInclude
     for (const file of remove) {
-      if (!settings['files.readonlyInclude'] || !settings['files.readonlyInclude'][`packages/components/${file}`]) continue;
-      delete settings['files.readonlyInclude'][`packages/components/${file}`];
+      let optimizedFile = optimizePathForWindows(file).replace(/\/\//g, "/");
+      const relativePathTest = new RegExp(/^\.?(\/|\\)/);
+      const isRelative = relativePathTest.test(optimizedFile);
+      const isAbsolute = path.isAbsolute(optimizedFile);
+
+      if(isRelative){
+        console.error('⚠️  Ejected file should not start with an "." or "./". It should look like "src/declaration.d.ts"');
+        optimizedFile = optimizedFile.replace(relativePathTest, '');
+      } else if(isAbsolute) {
+        console.error('⚠️  Ejected file should not be an absolute path. It should look like "src/declaration.d.ts".');
+        const findPackage = optimizedFile.search(/packages\/components\//);
+        optimizedFile = optimizedFile.slice(findPackage + 20);
+      } 
+      
+      if (!settings['files.readonlyInclude'] || !settings['files.readonlyInclude'][`packages/components/${optimizedFile}`]) continue;
+      delete settings['files.readonlyInclude'][`packages/components/${optimizedFile}`];
+      
+      if(isRelative || isAbsolute){
+        console.error('⚠️  A suitable entry was found and therefore removed anyway.');
+      }
     }
 
     const readonlyFiles = {};

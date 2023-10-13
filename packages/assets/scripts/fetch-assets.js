@@ -1,37 +1,40 @@
+import fs from 'fs';
 import { config as dotenvConfig } from 'dotenv';
 import {
   intro,
   outro,
-  spinner
+  spinner,
 } from '@clack/prompts';
-import fs from 'fs';
 import { rimraf } from 'rimraf';
 import { FigmaExporter } from 'figma-export-assets';
 import { optimizeSVGs } from './optimize-svg.js';
 
-intro(`Fetch Assets`);
+intro('Fetch Assets');
 
 const s = spinner();
-async function fetchAssets() {
+
+function loadEnvironmentVariables() {
   // Load environment variables from .env file
   if (fs.existsSync('.env')) {
     dotenvConfig();
-  }
-
-  else {
+  } else {
     throw new Error('Missing .env file.');
   }
 
   if (!process.env.FIGMA_PERSONAL_ACCESS_TOKEN) {
     throw new Error('Missing FIGMA_PERSONAL_ACCESS_TOKEN in .env file.');
   }
+}
+
+async function fetchAssets() {
+  loadEnvironmentVariables();
 
   const config = {
+    assetsPath: './src',
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
-    fileId: "bZFqk9urD3NlghGUKrkKCR",
-    "page": "Assets",
-    "assetsPath": "./src"
-  }
+    fileId: 'bZFqk9urD3NlghGUKrkKCR',
+    page: 'Assets',
+  };
 
   // if folder in assetsPath does not exist, create it
   if (!fs.existsSync(config.assetsPath)) {
@@ -40,7 +43,7 @@ async function fetchAssets() {
 
   const figma = new FigmaExporter(config);
 
-  const optimizePath = (path) => path.replace('assets/', '').replace('name=', '').replace('.png', '')
+  const optimizePath = (path) => path.replace('assets/', '').replace('name=', '').replace('.png', '');
 
   // Step 1: Get Assets
   s.start('⏳ Find assets');
@@ -52,13 +55,12 @@ async function fetchAssets() {
   // Step 2: Create PNGs
   let pngs = assets.filter(asset => asset.name.includes('.png'));
   if (pngs.length !== 0) {
-
     s.start('⏳ Prepare & download PNG assets');
     pngs = await figma.exportAssets(pngs, 'png', 4);
 
     const pngDownloads = pngs.map(async asset => {
       await figma.saveAsset(asset, {
-        name: optimizePath(asset.name)
+        name: optimizePath(asset.name),
       });
     });
 
@@ -74,7 +76,7 @@ async function fetchAssets() {
     svgs = await figma.exportAssets(svgs, 'svg');
     const svgDownloads = svgs.map(async asset => {
       await figma.saveAsset(asset, {
-        name: optimizePath(asset.name)
+        name: optimizePath(asset.name),
       });
     });
     await Promise.all(svgDownloads);
@@ -87,4 +89,4 @@ await fetchAssets();
 if (fs.existsSync('./src/icons')) {
   await optimizeSVGs('./src/icons');
 }
-outro(`Assets fetched!`);
+outro('Assets fetched!');

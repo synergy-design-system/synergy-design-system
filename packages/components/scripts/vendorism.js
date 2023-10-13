@@ -7,7 +7,7 @@ import fs from 'fs';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
 const components = ['input']
-const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', '.eslint*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
+const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
 const libraryPrefix = 'sds';
 const libraryName = 'sick';
 const shoelaceVersion = '2.6.0';
@@ -44,8 +44,10 @@ const config = {
     },
     //Changes targeted files -> otherIncludes
     transforms: [
-      // Add lint ignore information to all vendored data
+      // Add lint ignore information to all vendored data and remove lint-enables
       (path, content) => {
+        const eslintEnableComment = '/* eslint-enable */';
+        content = content.replaceAll(eslintEnableComment, '')
 
         const eslintDisableComment = '/* eslint-disable */';
         const stylelintDisableComment = '/* stylelint-disable */';

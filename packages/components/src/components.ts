@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Import all components and register them
 
 /* PACKAGES:START */

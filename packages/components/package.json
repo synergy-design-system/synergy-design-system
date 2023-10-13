@@ -24,6 +24,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@open-wc/testing": "^3.2.0",
+    "@playwright/test": "^1.39.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
@@ -86,10 +87,16 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x", 
-      "main", 
-      {"name": "beta", "prerelease": true}, 
-      {"name": "alpha", "prerelease": true}
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

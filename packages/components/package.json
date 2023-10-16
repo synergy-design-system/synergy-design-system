@@ -6,7 +6,18 @@
     "type": "git",
     "url": "https://github.com/mariohamann/custom-shoelace"
   },
-  "scripts": {
+  "exports": {
+    ".": {
+      "types": "./dist/sick.d.ts",
+      "import": "./dist/sick.js"
+    },
+    "./dist/custom-elements.json": "./dist/custom-elements.json",
+    "./dist/sick.js": "./dist/sick.js",
+    "./dist/sick-autoloader.js": "./dist/sick-autoloader.js",
+    "./dist/components/*": "./dist/components/*",
+    "./dist/utilities/*": "./dist/utilities/*",
+    "./dist/translations/*": "./dist/translations/*"
+  },  "scripts": {
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
@@ -26,16 +37,17 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
-    "@shoelace-style/localize": "^3.1.1",
+    "@shoelace-style/localize": "^3.1.2",
     "@types/mocha": "^10.0.2",
-    "@types/react": "^18.2.21",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
+    "@types/react": "^18.2.28",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
     "@web/dev-server-esbuild": "^0.4.1",
-    "@web/test-runner": "^0.17.1",
-    "@web/test-runner-commands": "^0.8.0",
+    "@web/test-runner": "^0.17.2",
+    "@web/test-runner-commands": "^0.8.1",
     "@web/test-runner-playwright": "^0.10.1",
     "cem-plugin-vs-code-custom-data-generator": "^1.4.2",
+    "chalk": "^5.3.0",
     "change-case": "^4.1.2",
     "command-line-args": "^5.2.1",
     "comment-parser": "^1.4.0",
@@ -43,7 +55,7 @@
     "download": "^8.0.0",
     "esbuild": "^0.19.4",
     "esbuild-plugin-replace": "^1.4.0",
-    "eslint": "^8.47.0",
+    "eslint": "^8.51.0",
     "eslint-plugin-chai-expect": "^3.0.0",
     "eslint-plugin-chai-friendly": "^0.7.2",
     "eslint-plugin-import": "^2.28.1",
@@ -55,7 +67,7 @@
     "front-matter": "^4.0.2",
     "globby": "^13.2.2",
     "jsdom": "^22.1.0",
-    "lit": "^2.7.6",
+    "ora": "^7.0.1",
     "pascal-case": "^4.0.0",
     "plop": "^4.0.0",
     "prettier": "^3.0.3",
@@ -111,11 +123,13 @@
         }
       ],
       [
-        "@semantic-release/github",
-        {
+        "@semantic-release/github", {
           "successComment": false
         }
       ]
     ]
+  },
+  "dependencies": {
+    "lit": "^2.8.0"
   }
 }

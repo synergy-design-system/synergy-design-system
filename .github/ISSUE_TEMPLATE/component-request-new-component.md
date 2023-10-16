@@ -11,8 +11,8 @@ Thank you for taking your time to request a new component for the Synergy Design
 
 **Questions**
 
-- [ ] I have looked at the documentation site and was not able to find the component. <!-- link zur seite??? -->
-- [ ] I have looked into the Figma boards and was not able to find the component. <!-- kommt jeder auf figma??? -->
+- [ ] I have looked at the documentation site and was not able to find the component.
+- [ ] I have looked into the Figma boards and was not able to find the component.
 - [ ] I could (or even want) to implement the component myself
 
 ---

@@ -11,10 +11,6 @@ Thank you for taking your time to request a new feature for the Synergy Design S
 
 ---
 
-**Version**:
-
-I am using the following version of the component library: _____
-
 **Description**:
 
 As a user, I want to be able to _____.
@@ -22,5 +18,5 @@ As a user, I want to be able to _____.
 **Rationale**:
 
 <!--
-Please provide a reason for this feature to exist.
+What is the use-case and the requirement to be solved? 
 -->

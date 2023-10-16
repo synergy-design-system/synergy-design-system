@@ -9,28 +9,24 @@ labels: component/change, enhancement, status/triage
 Thank you for taking your time to request a new feature for a component of the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
-**Version**:
-
-I am using the following version of the component library: _____
-
-**Component**:
+**Component**
 
 I suggest to add the feature to the following component: _____
 
-**Questions**:
+**Questions**
 
 - [ ] I have read the documentation and can confirm the functionality is not provided by the given component.
 
 ---
 
-**Description**:
+**Description**
 
 <!--
 Please provide a description of the new feature, e.g. what it should do, and how it should behave.
 -->
 
-**Rationale**:
+**Rationale**
 
 <!--
-Please provide a reason for this feature to exist.
+What is the use-case and the requirement to be solved?
 -->

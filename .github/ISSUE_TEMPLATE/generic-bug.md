@@ -15,7 +15,7 @@ I am using the following version of the component library: _____
 
 **Component**:
 
-The issue arises when using the following component: _____
+The issue arises when using the following component(s): _____
 
 **Environment**:
 
@@ -24,7 +24,7 @@ The issue happens in the following browser(s): _____
 
 **Questions**:
 
-- [ ] I have verified the bug exists in the latest version of `@synergy-design-system/core` (e.g. via `npm install @synergy-design-system/core@latest`).
+- [ ] I have verified the bug exists in the latest version of `@synergy-design-system/core` (e.g. via `npm install @synergy-design-system/core@latest`). <!-- core??? -->
 - [ ] I can provide a simple, reproducible example of the issue (e.g. via code-sandbox or sample code, ...).
 - [ ] I would be willing to provide a PR for the issue.
 
@@ -34,10 +34,6 @@ The issue happens in the following browser(s): _____
 
 <!--
 Please provide a description of the bug.
+If it is possible and meaningful please also consider a screenshot or screencast.
 -->
 
-**Rationale**:
-
-<!--
-Please provide a reason for this feature to exist.
--->

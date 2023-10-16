@@ -7,9 +7,7 @@
     "url": "https://github.com/mariohamann/custom-shoelace"
   },
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "vite build",
-    "build-storybook": "storybook build",
+    "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -29,13 +27,6 @@
     "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.1",
-    "@storybook/addon-essentials": "^7.2.1",
-    "@storybook/addon-links": "^7.2.1",
-    "@storybook/blocks": "^7.2.1",
-    "@storybook/manager-api": "^7.4.0",
-    "@storybook/theming": "^7.4.0",
-    "@storybook/web-components": "^7.2.1",
-    "@storybook/web-components-vite": "^7.2.1",
     "@types/mocha": "^10.0.2",
     "@types/react": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
@@ -74,16 +65,12 @@
     "semantic-release": "^22.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "sinon": "^16.1.0",
-    "storybook": "^7.2.1",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "unified": "^11.0.3",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "github:mariohamann/vendorism",
-    "vite": "^4.4.5",
-    "vite-plugin-cem": "^0.5.0",
-    "vite-plugin-replace": "^0.1.1"
+    "vendorism": "github:mariohamann/vendorism"
   },
   "release": {
     "branches": [

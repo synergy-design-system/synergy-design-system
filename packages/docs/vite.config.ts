@@ -2,12 +2,13 @@
 /* eslint-disable import/no-relative-packages */
 import fs from 'fs';
 import path from 'path';
+import { defineConfig } from 'vite';
 import { replaceCodePlugin } from 'vite-plugin-replace';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
 import packageJson from '../components/package.json';
 import customElementConfig from '../components/custom-elements-manifest.config.js';
 
-const getAbsolutePath = (...pathParts: String[]) => path.join(
+const getAbsolutePath = (...pathParts: string[]) => path.join(
   path.dirname(__filename),
   ...pathParts,
 );
@@ -54,7 +55,7 @@ const getCustomElementManifestPlugins = () => {
   });
 };
 
-export default (() => ({
+export default defineConfig(() => ({
   build: {
     lib: {
       entry: getAbsolutePath('../components/src/sick.ts'),
@@ -66,11 +67,11 @@ export default (() => ({
       output: {
         chunkFileNames: 'es/[name].js',
         dir: 'dist/components',
-        // Modern JS bundles (no JS compilation, ES module output)
         format: 'esm',
       },
       plugins: [],
     },
+    target: 'esnext',
   },
   plugins: [
     VitePluginCustomElementsManifest({

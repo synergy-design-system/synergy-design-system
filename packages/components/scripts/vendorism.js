@@ -47,12 +47,13 @@ const config = {
       // Add lint ignore information to all vendored data and remove lint-enables
       (path, content) => {
         const eslintEnableComment = '/* eslint-enable */';
-        content = content.replaceAll(eslintEnableComment, '')
-
         const eslintDisableComment = '/* eslint-disable */';
         const stylelintDisableComment = '/* stylelint-disable */';
 
         const prefixedContent = [];
+
+        // Sometimes eslint is enabled explicitly in code. This needs to be removed, otherwise the disable does not work.
+        content = content.replaceAll(eslintEnableComment, '')
 
         // Shoelace vendor components use other style rules, so make sure to ignore them per default
         if (path.endsWith('.ts') || path.endsWith('.js')) {
@@ -60,9 +61,8 @@ const config = {
         }
 
         // We do not want to lint shoelace styles as they do not adhere to any standard
-        if (path.endsWith('.styles.ts')) {
-          prefixedContent.push(stylelintDisableComment);
-        }
+        // we can`t just add the style-disable at the top of the file. To make it work it needs to be in the "css" function
+        content = content.replace('css`', `css\`\n\t${stylelintDisableComment}`);
 
         return {
           content: [...prefixedContent, content].join('\n'),

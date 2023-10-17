@@ -90,6 +90,10 @@ async function buildSource() {
   ]);
 } 
 
+async function buildCEM() {
+  return exec('cem analyze --litelement --outdir dist', { stdio: 'inherit' });
+}
+
 /**
  * 
  * @param {String} label 
@@ -126,6 +130,11 @@ await nextTask('Cleaning up the previous build', async () => {
 
 await nextTask('Building source files', async () => {
   buildResults = await buildSource();
+});
+
+
+await nextTask('Building CEM', async () => {
+  buildResults = await buildCEM();
 });
 
 // Cleanup on exit

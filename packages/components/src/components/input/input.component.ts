@@ -412,8 +412,8 @@ export default class SdsInput extends SickElement implements SickFormControl {
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon =
-      this.clearable && !this.disabled && !this.readonly && (typeof this.value === 'number' || this.value.length > 0);
+    const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
+    const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
 
     return html`
       <div
@@ -499,7 +499,10 @@ export default class SdsInput extends SickElement implements SickFormControl {
               ? html`
                   <button
                     part="clear-button"
-                    class="input__clear"
+                    class=${classMap({
+                      input__clear: true,
+                      'input__clear--visible': isClearIconVisible
+                    })}
                     type="button"
                     aria-label=${this.localize.term('clearEntry')}
                     @click=${this.handleClearClick}
@@ -552,11 +555,5 @@ export default class SdsInput extends SickElement implements SickFormControl {
         </div>
       </div>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-input': SdsInput;
   }
 }

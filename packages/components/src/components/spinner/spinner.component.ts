@@ -37,9 +37,3 @@ export default class SdsSpinner extends SickElement {
     `;
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-spinner': SdsSpinner;
-  }
-}

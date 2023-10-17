@@ -30,7 +30,10 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--sds-transition-fast) color, var(--sds-transition-fast) border, var(--sds-transition-fast) box-shadow,
+    transition:
+      var(--sds-transition-fast) color,
+      var(--sds-transition-fast) border,
+      var(--sds-transition-fast) box-shadow,
       var(--sds-transition-fast) background-color;
   }
 
@@ -136,6 +139,7 @@ export default css`
   .input__control::placeholder {
     color: var(--sds-input-placeholder-color);
     user-select: none;
+    -webkit-user-select: none;
   }
 
   .input:hover:not(.input--disabled) .input__control {
@@ -254,6 +258,10 @@ export default css`
   /*
    * Clearable + Password Toggle
    */
+
+  .input__clear:not(.input__clear--visible) {
+    visibility: hidden;
+  }
 
   .input__clear,
   .input__password-toggle {

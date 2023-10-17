@@ -31,6 +31,7 @@
         "packages/components/src/declaration.d.ts": true,
         "packages/components/src/translations/de.ts": true,
         "packages/components/prettier.config.cjs": true,
+        "packages/components/prettier.config.js": true,
         "packages/components/src/sick-autoloader.ts": true,
         "packages/components/src/components/input/input.component.ts": true,
         "packages/components/./src/temp/input.stories.ts": true,

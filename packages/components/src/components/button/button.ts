@@ -5,6 +5,14 @@
 
 /* eslint-disable */
 import SdsButton from './button.component.js';
+
 export * from './button.component.js';
 export default SdsButton;
+
 SdsButton.define('sds-button');
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sds-button': SdsButton;
+  }
+}

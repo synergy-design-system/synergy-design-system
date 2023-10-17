@@ -5,6 +5,14 @@
 
 /* eslint-disable */
 import SdsInput from './input.component.js';
+
 export * from './input.component.js';
 export default SdsInput;
+
 SdsInput.define('sds-input');
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sds-input': SdsInput;
+  }
+}

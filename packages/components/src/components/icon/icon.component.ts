@@ -21,6 +21,11 @@ type SVGResult = HTMLTemplateResult | SVGSVGElement | typeof RETRYABLE_ERROR | t
 let parser: DOMParser;
 const iconCache = new Map<string, Promise<SVGResult>>();
 
+interface IconSource {
+  url?: string;
+  fromLibrary: boolean;
+}
+
 /**
  * @summary Icons are symbols that can be used to represent various options within an application.
  * @documentation https://sick.style/components/icon
@@ -110,12 +115,19 @@ export default class SdsIcon extends SickElement {
     unwatchIcon(this);
   }
 
-  private getUrl() {
+  private getIconSource(): IconSource {
     const library = getIconLibrary(this.library);
     if (this.name && library) {
-      return library.resolver(this.name);
+      return {
+        url: library.resolver(this.name),
+        fromLibrary: true
+      };
     }
-    return this.src;
+
+    return {
+      url: this.src,
+      fromLibrary: false
+    };
   }
 
   @watch('label')
@@ -135,8 +147,8 @@ export default class SdsIcon extends SickElement {
 
   @watch(['name', 'src', 'library'])
   async setIcon() {
-    const library = getIconLibrary(this.library);
-    const url = this.getUrl();
+    const { url, fromLibrary } = this.getIconSource();
+    const library = fromLibrary ? getIconLibrary(this.library) : undefined;
 
     if (!url) {
       this.svg = null;
@@ -160,7 +172,7 @@ export default class SdsIcon extends SickElement {
       iconCache.delete(url);
     }
 
-    if (url !== this.getUrl()) {
+    if (url !== this.getIconSource().url) {
       // If the url has changed while fetching the icon, ignore this request
       return;
     }
@@ -185,11 +197,5 @@ export default class SdsIcon extends SickElement {
 
   render() {
     return this.svg;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-icon': SdsIcon;
   }
 }

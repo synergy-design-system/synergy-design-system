@@ -29,11 +29,15 @@ export default css`
     font-weight: var(--sds-font-weight-semibold);
     text-decoration: none;
     user-select: none;
+    -webkit-user-select: none;
     white-space: nowrap;
     vertical-align: middle;
     padding: 0;
-    transition: var(--sds-transition-x-fast) background-color, var(--sds-transition-x-fast) color,
-      var(--sds-transition-x-fast) border, var(--sds-transition-x-fast) box-shadow;
+    transition:
+      var(--sds-transition-x-fast) background-color,
+      var(--sds-transition-x-fast) color,
+      var(--sds-transition-x-fast) border,
+      var(--sds-transition-x-fast) box-shadow;
     cursor: inherit;
   }
 

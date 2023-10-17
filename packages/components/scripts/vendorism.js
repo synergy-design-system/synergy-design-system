@@ -10,7 +10,7 @@ const components = ['input']
 const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', '.eslint*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
 const libraryPrefix = 'sds';
 const libraryName = 'sick';
-const shoelaceVersion = '2.6.0';
+const shoelaceVersion = '2.10.0';
 
 //Command line options
 const optionDefinitions = [

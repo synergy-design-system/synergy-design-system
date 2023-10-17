@@ -334,9 +334,3 @@ export default class SdsButton extends SickElement implements SickFormControl {
     /* eslint-enable lit/binding-positions */
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-button': SdsButton;
-  }
-}

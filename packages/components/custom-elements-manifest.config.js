@@ -4,12 +4,13 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-import { generateCustomData } from 'cem-plugin-vs-code-custom-data-generator';
+import * as path from 'path';
+import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
+import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'pascal-case';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
-import * as path from 'path';
 
 const packageData = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 const { name, description, version, author, homepage, license } = packageData;
@@ -59,8 +60,10 @@ export default {
               return;
             }
 
-            const tagName = 'sds-' + path.basename(importPath, '.component.ts');
+            const tagNameWithoutPrefix = path.basename(importPath, '.component.ts');
+            const tagName = 'sds-' + tagNameWithoutPrefix;
 
+            classDoc.tagNameWithoutPrefix = tagNameWithoutPrefix;
             classDoc.tagName = tagName;
 
             // This used to be set to true by @customElement
@@ -173,7 +176,7 @@ export default {
           //
           const terms = [
             { from: /^src\//, to: '' }, // Strip the src/ prefix
-            { from: /\.(t|j)sx?$/, to: '.js' } // Convert .ts to .js
+            { from: /\.component.(t|j)sx?$/, to: '.js' } // Convert .ts to .js
           ];
 
           mod.path = replace(mod.path, terms);
@@ -195,9 +198,25 @@ export default {
       }
     },
     // Generate custom VS Code data
-    generateCustomData({
+    customElementVsCodePlugin({
       outdir,
-      cssFileName: null
+      cssFileName: null,
+      referencesTemplate: (_, tag) => [
+        {
+          name: 'Documentation',
+          url: `https://sick.style/components/${tag.replace('sds-', '')}`
+        }
+      ]
+    }),
+    customElementJetBrainsPlugin({
+      outdir: './dist',
+      excludeCss: true,
+      referencesTemplate: (_, tag) => {
+        return {
+          name: 'Documentation',
+          url: `https://sick.style/components/${tag.replace('sds-', '')}`
+        };
+      }
     })
   ]
 };

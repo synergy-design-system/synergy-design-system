@@ -37,7 +37,7 @@ Please provide a summary of the tests affected by this work and any unique strat
 
 ## ✅ Checklist
 
-<!-- Review the list and put an x in the boxes that apply. -->
+<!-- Please review the list and make sure every item is fullfilled. Place a check (x) for each fullfilled item. -->
 
 - [ ] I have tested my changes manually.
 - [ ] I have added automatic tests for my changes (unit- and visual regression tests).

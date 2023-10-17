@@ -6,20 +6,20 @@
 /* eslint-disable */
 // eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 import { elementUpdated, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
-import { getFormControls, serialize } from '../../../dist/sick.js';
+import { getFormControls, serialize } from '../../../dist/synergy.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands'; // must come from the same module
 import sinon from 'sinon';
-import type SdsInput from './input';
+import type SynInput from './input';
 
-describe('<sds-input>', () => {
+describe('<syn-input>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SdsInput>(html` <sds-input label="Name"></sds-input> `);
+    const el = await fixture<SynInput>(html` <syn-input label="Name"></syn-input> `);
     await expect(el).to.be.accessible();
   });
 
   it('default properties', async () => {
-    const el = await fixture<SdsInput>(html` <sds-input></sds-input> `);
+    const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
 
     expect(el.type).to.equal('text');
     expect(el.size).to.equal('medium');
@@ -57,14 +57,14 @@ describe('<sds-input>', () => {
   });
 
   it('should have title if title attribute is set', async () => {
-    const el = await fixture<SdsInput>(html` <sds-input title="Test"></sds-input> `);
+    const el = await fixture<SynInput>(html` <syn-input title="Test"></syn-input> `);
     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
     expect(input.title).to.equal('Test');
   });
 
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SdsInput>(html` <sds-input disabled></sds-input> `);
+    const el = await fixture<SynInput>(html` <syn-input disabled></syn-input> `);
     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
     expect(input.disabled).to.be.true;
@@ -72,7 +72,7 @@ describe('<sds-input>', () => {
 
   describe('value methods', () => {
     it('should set the value as a date when using valueAsDate', async () => {
-      const el = document.createElement(`sds-input`);
+      const el = document.createElement(`syn-input`);
       el.type = 'date';
       const today = new Date();
 
@@ -106,7 +106,7 @@ describe('<sds-input>', () => {
     });
 
     it('should set the value as a number when using valueAsNumber', async () => {
-      const el = document.createElement(`sds-input`);
+      const el = document.createElement(`syn-input`);
       el.type = 'number';
       const num = 12345;
 
@@ -139,11 +139,11 @@ describe('<sds-input>', () => {
   });
 
   it('should focus the input when clicking on the label', async () => {
-    const el = await fixture<SdsInput>(html` <sds-input label="Name"></sds-input> `);
+    const el = await fixture<SynInput>(html` <syn-input label="Name"></syn-input> `);
     const label = el.shadowRoot!.querySelector('[part~="form-control-label"]')!;
     const focusHandler = sinon.spy();
 
-    el.addEventListener('sds-focus', focusHandler);
+    el.addEventListener('syn-focus', focusHandler);
     (label as HTMLLabelElement).click();
     await waitUntil(() => focusHandler.calledOnce);
 
@@ -152,25 +152,25 @@ describe('<sds-input>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
       expect(el.checkValidity()).to.be.true;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input required></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input required></syn-input> `);
       expect(el.reportValidity()).to.be.false;
       expect(el.checkValidity()).to.be.false;
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input disabled required></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input disabled required></syn-input> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.checkValidity()).to.be.false;
     });
 
     it('should receive the correct validation attributes ("states") when valid', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input required value="a"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input required value="a"></syn-input> `);
 
       expect(el.checkValidity()).to.be.true;
       expect(el.hasAttribute('data-required')).to.be.true;
@@ -193,7 +193,7 @@ describe('<sds-input>', () => {
     });
 
     it('should receive the correct validation attributes ("states") when invalid', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input required></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input required></syn-input> `);
 
       expect(el.hasAttribute('data-required')).to.be.true;
       expect(el.hasAttribute('data-optional')).to.be.false;
@@ -215,8 +215,8 @@ describe('<sds-input>', () => {
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
-      const el = await fixture<HTMLFormElement>(html` <form novalidate><sds-input required></sds-input></form> `);
-      const input = el.querySelector<SdsInput>('sds-input')!;
+      const el = await fixture<HTMLFormElement>(html` <form novalidate><syn-input required></syn-input></form> `);
+      const input = el.querySelector<SynInput>('syn-input')!;
 
       expect(input.hasAttribute('data-required')).to.be.true;
       expect(input.hasAttribute('data-optional')).to.be.false;
@@ -229,20 +229,20 @@ describe('<sds-input>', () => {
 
   describe('when submitting a form', () => {
     it('should serialize its name and value with FormData', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><sds-input name="a" value="1"></sds-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><syn-input name="a" value="1"></syn-input></form> `);
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('1');
     });
 
     it('should serialize its name and value with JSON', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><sds-input name="a" value="1"></sds-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><syn-input name="a" value="1"></syn-input></form> `);
       const json = serialize(form) as { a: '1' };
       expect(json.a).to.equal('1');
     });
 
     it('should submit the form when pressing enter in a form without a submit button', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><sds-input></sds-input></form> `);
-      const input = form.querySelector('sds-input')!;
+      const form = await fixture<HTMLFormElement>(html` <form><syn-input></syn-input></form> `);
+      const input = form.querySelector('syn-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       form.addEventListener('submit', submitHandler);
@@ -254,8 +254,8 @@ describe('<sds-input>', () => {
     });
 
     it('should prevent submission when pressing enter in an input and canceling the keydown event', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><sds-input></sds-input></form> `);
-      const input = form.querySelector('sds-input')!;
+      const form = await fixture<HTMLFormElement>(html` <form><syn-input></syn-input></form> `);
+      const input = form.querySelector('syn-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
       const keydownHandler = sinon.spy((event: KeyboardEvent) => {
         if (event.key === 'Enter') {
@@ -274,7 +274,7 @@ describe('<sds-input>', () => {
     });
 
     it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
-      const input = await fixture<HTMLFormElement>(html` <sds-input></sds-input> `);
+      const input = await fixture<HTMLFormElement>(html` <syn-input></syn-input> `);
 
       input.setCustomValidity('Invalid selection');
       await input.updateComplete;
@@ -299,9 +299,9 @@ describe('<sds-input>', () => {
       const el = await fixture<HTMLFormElement>(html`
         <div>
           <form id="f">
-            <sds-button type="submit">Submit</sds-button>
+            <syn-button type="submit">Submit</syn-button>
           </form>
-          <sds-input form="f" name="a" value="1"></sds-input>
+          <syn-input form="f" name="a" value="1"></syn-input>
         </div>
       `);
       const form = el.querySelector('form')!;
@@ -315,12 +315,12 @@ describe('<sds-input>', () => {
     it('should reset the element to its initial value', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <sds-input name="a" value="test"></sds-input>
-          <sds-button type="reset">Reset</sds-button>
+          <syn-input name="a" value="test"></syn-input>
+          <syn-button type="reset">Reset</syn-button>
         </form>
       `);
-      const button = form.querySelector('sds-button')!;
-      const input = form.querySelector('sds-input')!;
+      const button = form.querySelector('syn-button')!;
+      const input = form.querySelector('syn-input')!;
       input.value = '1234';
 
       await input.updateComplete;
@@ -345,8 +345,8 @@ describe('<sds-input>', () => {
     it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <sds-input required value=""></sds-input>
-          <sds-button type="submit">Submit</sds-button>
+          <syn-input required value=""></syn-input>
+          <syn-button type="submit">Submit</syn-button>
         </form>
       `);
 
@@ -356,8 +356,8 @@ describe('<sds-input>', () => {
     it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
-          <sds-input required value=""></sds-input>
-          <sds-button type="submit">Submit</sds-button>
+          <syn-input required value=""></syn-input>
+          <syn-button type="submit">Submit</syn-button>
         </form>
       `);
 
@@ -368,7 +368,7 @@ describe('<sds-input>', () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
           <input required value=""></input>
-          <sds-button type="submit">Submit</sds-button>
+          <syn-button type="submit">Submit</syn-button>
         </form>
       `);
 
@@ -377,13 +377,13 @@ describe('<sds-input>', () => {
   });
 
   describe('when the value changes', () => {
-    it('should emit sds-change and sds-input when the user types in the input', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input></sds-input> `);
+    it('should emit syn-change and syn-input when the user types in the input', async () => {
+      const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
       const inputHandler = sinon.spy();
       const changeHandler = sinon.spy();
 
-      el.addEventListener('sds-input', inputHandler);
-      el.addEventListener('sds-change', changeHandler);
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
       el.focus();
       await sendKeys({ type: 'abc' });
       el.blur();
@@ -393,21 +393,21 @@ describe('<sds-input>', () => {
       expect(inputHandler).to.have.been.calledThrice;
     });
 
-    it('should not emit sds-change or sds-input when the value is set programmatically', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input></sds-input> `);
+    it('should not emit syn-change or syn-input when the value is set programmatically', async () => {
+      const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
 
-      el.addEventListener('sds-change', () => expect.fail('sds-change should not be emitted'));
-      el.addEventListener('sds-input', () => expect.fail('sds-input should not be emitted'));
+      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
+      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
       el.value = 'abc';
 
       await el.updateComplete;
     });
 
-    it('should not emit sds-change or sds-input when calling setRangeText()', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input value="hi there"></sds-input> `);
+    it('should not emit syn-change or syn-input when calling setRangeText()', async () => {
+      const el = await fixture<SynInput>(html` <syn-input value="hi there"></syn-input> `);
 
-      el.addEventListener('sds-change', () => expect.fail('sds-change should not be emitted'));
-      el.addEventListener('sds-input', () => expect.fail('sds-input should not be emitted'));
+      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
+      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
       el.focus();
       el.setSelectionRange(0, 2);
       el.setRangeText('hello');
@@ -418,17 +418,17 @@ describe('<sds-input>', () => {
 
   describe('when type="number"', () => {
     it('should be valid when the value is within the boundary of a step', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step=".5" value="1.5"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.5"></syn-input> `);
       expect(el.checkValidity()).to.be.true;
     });
 
     it('should be invalid when the value is not within the boundary of a step', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step=".5" value="1.25"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.25"></syn-input> `);
       expect(el.checkValidity()).to.be.false;
     });
 
     it('should update validity when step changes', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step=".5" value="1.5"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.5"></syn-input> `);
       expect(el.checkValidity()).to.be.true;
 
       el.step = 1;
@@ -437,7 +437,7 @@ describe('<sds-input>', () => {
     });
 
     it('should increment by step when stepUp() is called', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step="2" value="2"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
 
       el.stepUp();
       await el.updateComplete;
@@ -445,28 +445,28 @@ describe('<sds-input>', () => {
     });
 
     it('should decrement by step when stepDown() is called', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step="2" value="2"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
 
       el.stepDown();
       await el.updateComplete;
       expect(el.value).to.equal('0');
     });
 
-    it('should not emit sds-input or sds-change when stepUp() is called programmatically', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step="2" value="2"></sds-input> `);
+    it('should not emit syn-input or syn-change when stepUp() is called programmatically', async () => {
+      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
 
-      el.addEventListener('sds-change', () => expect.fail('sds-change should not be emitted'));
-      el.addEventListener('sds-input', () => expect.fail('sds-input should not be emitted'));
+      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
+      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
       el.stepUp();
 
       await el.updateComplete;
     });
 
-    it('should not emit sds-input and sds-change when stepDown() is called programmatically', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input type="number" step="2" value="2"></sds-input> `);
+    it('should not emit syn-input and syn-change when stepDown() is called programmatically', async () => {
+      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
 
-      el.addEventListener('sds-change', () => expect.fail('sds-change should not be emitted'));
-      el.addEventListener('sds-input', () => expect.fail('sds-input should not be emitted'));
+      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
+      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
       el.stepDown();
 
       await el.updateComplete;
@@ -475,21 +475,21 @@ describe('<sds-input>', () => {
 
   describe('when using spellcheck', () => {
     it('should enable spellcheck when no attribute is present', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
       const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
       expect(input.getAttribute('spellcheck')).to.equal('true');
       expect(input.spellcheck).to.be.true;
     });
 
     it('should enable spellcheck when set to "true"', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input spellcheck="true"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input spellcheck="true"></syn-input> `);
       const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
       expect(input.getAttribute('spellcheck')).to.equal('true');
       expect(input.spellcheck).to.be.true;
     });
 
     it('should disable spellcheck when set to "false"', async () => {
-      const el = await fixture<SdsInput>(html` <sds-input spellcheck="false"></sds-input> `);
+      const el = await fixture<SynInput>(html` <syn-input spellcheck="false"></syn-input> `);
       const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
       expect(input.getAttribute('spellcheck')).to.equal('false');
       expect(input.spellcheck).to.be.false;
@@ -502,17 +502,17 @@ describe('<sds-input>', () => {
         <div>
           <form id="f1">
             <input type="hidden" name="b" value="2" />
-            <sds-button type="submit">Submit</sds-button>
+            <syn-button type="submit">Submit</syn-button>
           </form>
           <form id="f2">
             <input type="hidden" name="c" value="3" />
-            <sds-button type="submit">Submit</sds-button>
+            <syn-button type="submit">Submit</syn-button>
           </form>
-          <sds-input form="f1" name="a" value="1"></sds-input>
+          <syn-input form="f1" name="a" value="1"></syn-input>
         </div>
       `);
       const form = el.querySelector<HTMLFormElement>('#f2')!;
-      const input = document.querySelector('sds-input')!;
+      const input = document.querySelector('syn-input')!;
 
       input.form = 'f2';
       await input.updateComplete;
@@ -526,21 +526,21 @@ describe('<sds-input>', () => {
   });
 
   describe('when using the getFormControls() function', () => {
-    it('should return both native and Sick form controls in the correct DOM order', async () => {
+    it('should return both native and Synergy form controls in the correct DOM order', async () => {
       const el = await fixture<HTMLFormElement>(html`
         <div>
           <input type="text" name="a" value="1" form="f1" />
-          <sds-input type="text" name="b" value="2" form="f1"></sds-input>
+          <syn-input type="text" name="b" value="2" form="f1"></syn-input>
           <form id="f1">
             <input type="hidden" name="c" value="3" />
             <input type="text" name="d" value="4" />
-            <sds-input name="e" value="5"></sds-input>
+            <syn-input name="e" value="5"></syn-input>
             <textarea name="f">6</textarea>
-            <sds-textarea name="g" value="7"></sds-textarea>
-            <sds-checkbox name="h" value="8"></sds-checkbox>
+            <syn-textarea name="g" value="7"></syn-textarea>
+            <syn-checkbox name="h" value="8"></syn-checkbox>
           </form>
           <input type="text" name="i" value="9" form="f1" />
-          <sds-input type="text" name="j" value="10" form="f1"></sds-input>
+          <syn-input type="text" name="j" value="10" form="f1"></syn-input>
         </div>
       `);
       const form = el.querySelector<HTMLFormElement>('form')!;
@@ -551,5 +551,5 @@ describe('<sds-input>', () => {
     });
   });
 
-  runFormControlBaseTests('sds-input');
+  runFormControlBaseTests('syn-input');
 });

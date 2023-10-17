@@ -16,8 +16,13 @@ The following icons are used in commit messages and this changelog.
 
 ## 🚀 NEXT
 
+### 📚 Documentation
+
+- #17: Adjusted package.json author field
+
 ### 🐛 Bugs
 
 ### ✨ Features
 
 - #15: Added core setup for icons package
+- #55: Rename package namespace to `@synergy-design-system`

@@ -1,19 +1,19 @@
 {
   "opacity": {
     "25": {
-      "description": "25%",
+      "value": "0.25",
       "type": "opacity",
-      "value": "0.25"
+      "description": "25%"
     },
     "40": {
-      "description": "40%",
+      "value": "0.40",
       "type": "opacity",
-      "value": "0.40"
+      "description": "40%"
     },
     "45": {
-      "description": "45%",
+      "value": "0.45",
       "type": "opacity",
-      "value": "0.45"
+      "description": "45%"
     }
   }
 }

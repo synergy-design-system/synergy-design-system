@@ -29,6 +29,18 @@ const config: StorybookConfig = {
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+  viteFinal: async (config) => {
+    return {
+      ...config,
+      build: {
+        ...config.build,
+        // This prevents an error with top level await statements
+        // that prevents bundling via `pnpm build`.
+        // @see https://github.com/vitejs/vite/issues/6985
+        target: 'esnext',
+      }
+    };
+  }
 };
 
 export default config;

@@ -1,15 +1,25 @@
 {
-  "name": "@sick-design-system/components",
+  "name": "@synergy-design-system/components",
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/mariohamann/custom-shoelace"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/synergy.d.ts",
+      "import": "./dist/synergy.js"
+    },
+    "./dist/custom-elements.json": "./dist/custom-elements.json",
+    "./dist/synergy.js": "./dist/synergy.js",
+    "./dist/synergy-autoloader.js": "./dist/synergy-autoloader.js",
+    "./dist/components/*": "./dist/components/*",
+    "./dist/utilities/*": "./dist/utilities/*",
+    "./dist/translations/*": "./dist/translations/*"
+  },
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "vite build",
-    "build-storybook": "storybook build",
+    "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -24,34 +34,27 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@open-wc/testing": "^3.2.0",
+    "@playwright/test": "^1.39.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
-    "@shoelace-style/localize": "^3.1.1",
-    "@storybook/addon-essentials": "^7.2.1",
-    "@storybook/addon-links": "^7.2.1",
-    "@storybook/blocks": "^7.2.1",
-    "@storybook/manager-api": "^7.4.0",
-    "@storybook/theming": "^7.4.0",
-    "@storybook/web-components": "^7.2.1",
-    "@storybook/web-components-vite": "^7.2.1",
+    "@shoelace-style/localize": "^3.1.2",
     "@types/mocha": "^10.0.2",
-    "@types/react": "^18.2.21",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
     "@web/dev-server-esbuild": "^0.4.1",
-    "@web/test-runner": "^0.17.1",
-    "@web/test-runner-commands": "^0.8.0",
+    "@web/test-runner": "^0.17.2",
+    "@web/test-runner-commands": "^0.8.1",
     "@web/test-runner-playwright": "^0.10.1",
-    "cem-plugin-vs-code-custom-data-generator": "^1.4.2",
-    "change-case": "^4.1.2",
+    "chalk": "^5.3.0",
     "command-line-args": "^5.2.1",
     "comment-parser": "^1.4.0",
+    "custom-element-jet-brains-integration": "^1.3.1",
+    "custom-element-vs-code-integration": "^1.2.1",
     "del": "^7.1.0",
-    "download": "^8.0.0",
     "esbuild": "^0.19.4",
     "esbuild-plugin-replace": "^1.4.0",
-    "eslint": "^8.47.0",
+    "eslint": "^8.51.0",
     "eslint-plugin-chai-expect": "^3.0.0",
     "eslint-plugin-chai-friendly": "^0.7.2",
     "eslint-plugin-import": "^2.28.1",
@@ -60,36 +63,33 @@
     "eslint-plugin-markdown": "^3.0.1",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "eslint-plugin-wc": "^2.0.4",
-    "front-matter": "^4.0.2",
     "globby": "^13.2.2",
     "jsdom": "^22.1.0",
-    "lit": "^2.7.6",
+    "ora": "^7.0.1",
     "pascal-case": "^4.0.0",
-    "plop": "^4.0.0",
     "prettier": "^3.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "remark-parse": "^11.0.0",
     "semantic-release": "^22.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "sinon": "^16.1.0",
-    "storybook": "^7.2.1",
-    "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "unified": "^11.0.3",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "github:mariohamann/vendorism",
-    "vite": "^4.4.5",
-    "vite-plugin-cem": "^0.5.0",
-    "vite-plugin-replace": "^0.1.1"
+    "vendorism": "github:mariohamann/vendorism"
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x", 
-      "main", 
-      {"name": "beta", "prerelease": true}, 
-      {"name": "alpha", "prerelease": true}
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -123,5 +123,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "lit": "^3.0.0"
   }
 }

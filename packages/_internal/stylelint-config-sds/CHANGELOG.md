@@ -16,8 +16,13 @@ The following icons are used in commit messages and this changelog.
 
 ## 🚀 NEXT
 
+### 📚 Documentation
+
+- #17: Adjusted package.json author field
+
 ### 🐛 Bugs
 
 ### ✨ Features
 
 - #8: Added core setup for stylelint for easy css linting.
+- #55: Rename package namespace to `@synergy-design-system`

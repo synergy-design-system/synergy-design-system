@@ -6,13 +6,13 @@
 /* eslint-disable */
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import SickElement from '../../internal/sick-element.js';
+import SynergyElement from '../../internal/synergy-element.js';
 import styles from './spinner.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Spinners are used to show the progress of an indeterminate operation.
- * @documentation https://sick.style/components/spinner
+ * @documentation https://synergy.style/components/spinner
  * @status stable
  * @since 2.0
  *
@@ -23,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-color - The color of the spinner's indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
-export default class SdsSpinner extends SickElement {
+export default class SynSpinner extends SynergyElement {
   static styles: CSSResultGroup = styles;
 
   private readonly localize = new LocalizeController(this);
@@ -35,11 +35,5 @@ export default class SdsSpinner extends SickElement {
         <circle class="spinner__indicator"></circle>
       </svg>
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-spinner': SdsSpinner;
   }
 }

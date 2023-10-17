@@ -1,7 +1,7 @@
 /**
- * Load design tokens from "@sick-design-system/tokens
+ * Load design tokens from "@synergy-design-system/tokens
  */
-@import url("@sick-design-system/tokens/build/css/tokens.css");
+@import url("@synergy-design-system/tokens/build/css/tokens.css");
 @import url("../core/fouc.css");
 @import url("../core/fonts.css");
 @import url("../core/animations.css");

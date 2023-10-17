@@ -1,6 +1,6 @@
-# @sick-design-system/icons
+# @synergy-design-system/icons
 
-This package provides [Material Icons](https://fonts.google.com/icons) that are used throughout the SICK Design System in an easy to use package. The font is loaded [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
+This package provides [Material Icons](https://fonts.google.com/icons) that are used throughout the Synergy Design System in an easy to use package. The font is loaded [as an embeddable data URI](https://oreillymedia.github.io/Using_SVG/extras/ch07-dataURI-fonts.html). Caching is still possible with this approach and you will not have to adjust your application bundlers configuration at all.
 
 ---
 
@@ -9,9 +9,9 @@ This package provides [Material Icons](https://fonts.google.com/icons) that are 
 You may install all styles via one of the following commands:
 
 ```bash
-npm install --save @sick-design-system/icons
-yarn add @sick-design-system/icons
-pnpm i @sick-design-system/icons
+npm install --save @synergy-design-system/icons
+yarn add @synergy-design-system/icons
+pnpm i @synergy-design-system/icons
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ Just include the provided `font.css` file in the `build/` directory. It will hav
 <head>
 <!-- Example 1: Referencing directly in a HTML document -->
 <!-- Make sure to add the stylesheet before using any components -->
-<link rel="stylesheet" href="/node_modules/@sick-design-system/icons/build/font.css" />
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/icons/build/font.css" />
 </head>
 <body>
   <span class="sds-icon">
@@ -34,11 +34,11 @@ Just include the provided `font.css` file in the `build/` directory. It will hav
 ```javascript
 // Example 2: Referencing via JavaScript, e.g. when using webpack or vite
 // Note your bundler may need to be setup to allow css files!
-import '@sick-design-system/icons/build/font.css';
+import '@synergy-design-system/icons/build/font.css';
 
 // Example 3: If your system supports package.json exports fields (like vite does),
 // you may optionally also use the following alias:
-import '@sick-design-system/icons';
+import '@synergy-design-system/icons';
 ```
 
 ---
@@ -54,7 +54,7 @@ import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 // Vite Imports this as string only when using ?inline
-import iconDefinition from '@sick-design-system/icons/icon.css?inline';
+import iconDefinition from '@synergy-design-system/icons/icon.css?inline';
 import otherStyles from './iconDemo.styles.css?inline';
 
 @customElement('icon-demo')

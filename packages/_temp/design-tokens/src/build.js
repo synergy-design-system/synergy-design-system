@@ -82,7 +82,11 @@ const sdsStyleDictionaryConfig = ({
       transformGroup: SDSTransformGroupSASS.name,
     },
   },
-  source: ['tokens/**/*.json'],
+  source: [
+    'tokens/core/*.json', // Core tokens
+    'tokens/semantic/colors-light.json', // Currently, we only support default tokens
+    'tokens/semantic/typography-default.json', // Currently, we only support default tokens
+  ],
 });
 
 StyleDictionary

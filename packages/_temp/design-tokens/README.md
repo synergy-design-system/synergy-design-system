@@ -1,6 +1,6 @@
-# @sick-design-system/tokens
+# @synergy-design-system/design-tokens
 
-This package provides the low level [design tokens](https://www.invisionapp.com/inside-design/design-tokens/) that form the core of the SICK Design System. It uses [style-dictionary](https://amzn.github.io/style-dictionary) to provide various output formats, as described below and allows bidirectional syncs between the original JSON files and [Figma Tokens Studio](https://tokens.studio/).
+This package provides the low level [design tokens](https://www.invisionapp.com/inside-design/design-tokens/) that form the core of the Synergy Design System. It uses [style-dictionary](https://amzn.github.io/style-dictionary) to provide various output formats, as described below and allows bidirectional syncs between the original JSON files and [Figma Tokens Studio](https://tokens.studio/).
 
 ---
 
@@ -9,9 +9,9 @@ This package provides the low level [design tokens](https://www.invisionapp.com/
 You may install this package using one of the following ways:
 
 ```bash
-npm install --save @sick-design-system/tokens
-yarn add @sick-design-system/tokens
-pnpm i @sick-design-system/tokens
+npm install --save @synergy-design-system/design-tokens
+yarn add @synergy-design-system/design-tokens
+pnpm i @synergy-design-system/design-tokens
 ```
 
 ---
@@ -49,12 +49,9 @@ This is the preferred way to use the SDS design tokens. Custom-Properties have t
 
 ```html
 <head>
-  <!-- Example 1: Referencing directly in a HTML document -->
-  <!-- Make sure to add the stylesheet before using any components -->
-  <link
-    rel="stylesheet"
-    href="/node_modules/@sick-design-system/tokens/build/css/tokens.css"
-  />
+<!-- Example 1: Referencing directly in a HTML document -->
+<!-- Make sure to add the stylesheet before using any components -->
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/design-tokens/build/css/tokens.css" />
 </head>
 <body>
   <div style="background: var(--sds-color-primary-500)">Content</div>
@@ -65,11 +62,11 @@ This is the preferred way to use the SDS design tokens. Custom-Properties have t
 ```javascript
 // Example 2: Referencing via JavaScript, e.g. when using webpack or vite
 // Note your bundler may need to be setup to allow css files!
-import "@sick-design-system/tokens/build/css/tokens.css";
+import '@synergy-design-system/design-tokens/build/css/tokens.css';
 
 // Example 3: If your system supports package.json exports fields (like vite does),
 // you may optionally also use the following alias:
-import "@sick-design-system/tokens/css";
+import '@synergy-design-system/design-tokens/css';
 ```
 
 ### 2. SASS
@@ -81,7 +78,7 @@ If you already have a SASS toolchain, you may also use our scss variables. Use t
 // If not using webpack sass loader, you may need a sass import helper like
 // https://www.npmjs.com/package/node-sass-package-importer
 // to make it work.
-@import "~sick-design-system/design-tokens/build/scss/tokens.scss";
+@import '~@synergy-design-system/design-tokens/build/scss/tokens.scss';
 
 // You may now use the variables in your sass files
 .box {
@@ -98,8 +95,8 @@ We also provide all tokens as JavaScript constants. This may be needed when you 
 
 ```javascript
 // Note! We do NOT provide a default export, so you will have to use one of the syntaxes below to import a token.
-import * as allTokens from "@sick-design-system/tokens";
-import { sdsColorPrimary500 } from "@sick-design-system/tokens";
+import * as allTokens from '@synergy-design-system/design-tokens';
+import { sdsColorPrimary500 } from '@synergy-design-system/design-tokens';
 
 console.log(allTokens.sdsColorPrimary500); // <- #007CC1
 console.log(sdsColorPrimary500); // <- #007CC1

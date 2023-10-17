@@ -1,1 +1,1 @@
-# @sick-design-system/docs
+# @synergy-design-system/docs

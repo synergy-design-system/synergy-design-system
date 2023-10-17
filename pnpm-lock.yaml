@@ -276,6 +276,9 @@ importers:
       '@sick-design-system/components':
         specifier: workspace:^
         version: link:../components
+      '@sick-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
       change-case:
         specifier: ^4.1.2
         version: 4.1.2

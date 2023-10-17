@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@sick-design-system/components": "workspace:^",
+    "@sick-design-system/tokens": "workspace:^",
     "change-case": "^4.1.2",
     "material-icons": "^1.13.10"
   },

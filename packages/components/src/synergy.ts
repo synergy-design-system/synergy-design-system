@@ -1,5 +1,5 @@
 // Components
-export { default as SdsInput } from './components/input/input.js';
+export { default as SynInput } from './components/input/input.js';
 /* plop:component */
 
 // Utilities

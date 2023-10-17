@@ -4,15 +4,15 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-import SdsButton from './button.component.js';
+import SynButton from './button.component.js';
 
 export * from './button.component.js';
-export default SdsButton;
+export default SynButton;
 
-SdsButton.define('sds-button');
+SynButton.define('syn-button');
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sds-button': SdsButton;
+    'syn-button': SynButton;
   }
 }

@@ -39,14 +39,14 @@ export default {
   plugins: [
     // Append package data
     {
-      name: 'sick-package-data',
+      name: 'synergy-package-data',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest.package = { name, description, version, author, homepage, license };
       }
     },
     // Infer tag names because we no longer use @customElement decorators.
     {
-      name: 'sick-infer-tag-names',
+      name: 'synergy-infer-tag-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -61,7 +61,7 @@ export default {
             }
 
             const tagNameWithoutPrefix = path.basename(importPath, '.component.ts');
-            const tagName = 'sds-' + tagNameWithoutPrefix;
+            const tagName = 'syn-' + tagNameWithoutPrefix;
 
             classDoc.tagNameWithoutPrefix = tagNameWithoutPrefix;
             classDoc.tagName = tagName;
@@ -74,7 +74,7 @@ export default {
     },
     // Parse custom jsDoc tags
     {
-      name: 'sick-custom-tags',
+      name: 'synergy-custom-tags',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -144,7 +144,7 @@ export default {
       }
     },
     {
-      name: 'sick-react-event-names',
+      name: 'synergy-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -162,7 +162,7 @@ export default {
       }
     },
     {
-      name: 'sick-translate-module-paths',
+      name: 'synergy-translate-module-paths',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest?.modules?.forEach(mod => {
           //
@@ -204,7 +204,7 @@ export default {
       referencesTemplate: (_, tag) => [
         {
           name: 'Documentation',
-          url: `https://sick.style/components/${tag.replace('sds-', '')}`
+          url: `https://synergy.style/components/${tag.replace('syn-', '')}`
         }
       ]
     }),
@@ -214,7 +214,7 @@ export default {
       referencesTemplate: (_, tag) => {
         return {
           name: 'Documentation',
-          url: `https://sick.style/components/${tag.replace('sds-', '')}`
+          url: `https://synergy.style/components/${tag.replace('syn-', '')}`
         };
       }
     })

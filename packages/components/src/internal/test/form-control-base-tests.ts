@@ -5,12 +5,12 @@
 
 /* eslint-disable */
 import { expect, fixture } from '@open-wc/testing';
-import type { SickFormControl } from '../sick-element.js';
+import type { SynergyFormControl } from '../synergy-element.js';
 
-type CreateControlFn = () => Promise<SickFormControl>;
+type CreateControlFn = () => Promise<SynergyFormControl>;
 
-/** Runs a set of generic tests for Sick form controls */
-export function runFormControlBaseTests<T extends SickFormControl = SickFormControl>(
+/** Runs a set of generic tests for Synergy form controls */
+export function runFormControlBaseTests<T extends SynergyFormControl = SynergyFormControl>(
   tagNameOrConfig:
     | string
     | {
@@ -44,7 +44,7 @@ export function runFormControlBaseTests<T extends SickFormControl = SickFormCont
 }
 
 //
-// Applicable for all Sick form controls. This function checks the behavior of:
+// Applicable for all Synergy form controls. This function checks the behavior of:
 //   - `.validity`
 //   - `.validationMessage`,
 //   - `.checkValidity()`
@@ -54,7 +54,7 @@ export function runFormControlBaseTests<T extends SickFormControl = SickFormCont
 function runAllValidityTests(
   tagName: string, //
   displayName: string,
-  createControl: () => Promise<SickFormControl>
+  createControl: () => Promise<SynergyFormControl>
 ) {
   // will be used later to retrieve meta information about the control
   describe(`Form validity base test for ${displayName}`, async () => {
@@ -98,36 +98,36 @@ function runAllValidityTests(
       expect(control.reportValidity()).to.equal(true);
     });
 
-    it('should not emit an `sds-invalid` event when `.checkValidity()` is called while valid', async () => {
+    it('should not emit an `syn-invalid` event when `.checkValidity()` is called while valid', async () => {
       const control = await createControl();
-      const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.checkValidity());
+      const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.checkValidity());
       expect(emittedEvents.length).to.equal(0);
     });
 
-    it('should not emit an `sds-invalid` event when `.reportValidity()` is called while valid', async () => {
+    it('should not emit an `syn-invalid` event when `.reportValidity()` is called while valid', async () => {
       const control = await createControl();
-      const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.reportValidity());
+      const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
       expect(emittedEvents.length).to.equal(0);
     });
 
-    // TODO: As soon as `SdsRadioGroup` has a property `disabled` this
+    // TODO: As soon as `SynRadioGroup` has a property `disabled` this
     // condition can be removed
-    if (tagName !== 'sds-radio-group') {
-      it('should not emit an `sds-invalid` event when `.checkValidity()` is called in custom error case while disabled', async () => {
+    if (tagName !== 'syn-radio-group') {
+      it('should not emit an `syn-invalid` event when `.checkValidity()` is called in custom error case while disabled', async () => {
         const control = await createControl();
         control.setCustomValidity('error');
         control.disabled = true;
         await control.updateComplete;
-        const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.checkValidity());
+        const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.checkValidity());
         expect(emittedEvents.length).to.equal(0);
       });
 
-      it('should not emit an `sds-invalid` event when `.reportValidity()` is called in custom error case while disabled', async () => {
+      it('should not emit an `syn-invalid` event when `.reportValidity()` is called in custom error case while disabled', async () => {
         const control = await createControl();
         control.setCustomValidity('error');
         control.disabled = true;
         await control.updateComplete;
-        const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.reportValidity());
+        const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
         expect(emittedEvents.length).to.equal(0);
       });
     }
@@ -147,7 +147,7 @@ function runAllValidityTests(
 }
 
 //
-//  Special tests for <sds-button type="button">
+//  Special tests for <syn-button type="button">
 //
 function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
   it('should make sure that `.validity.valid` is `false` in custom error case', async () => {
@@ -168,28 +168,28 @@ function runSpecialTests_slButtonOfTypeButton(createControl: CreateControlFn) {
     expect(control.reportValidity()).to.equal(true);
   });
 
-  it('should not emit an `sds-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
+  it('should not emit an `syn-invalid` event when `.checkValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.checkValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.checkValidity());
     expect(emittedEvents.length).to.equal(0);
   });
 
-  it('should not emit an `sds-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
+  it('should not emit an `syn-invalid` event when `.reportValidity()` is called in custom error case, and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.reportValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
 
     expect(emittedEvents.length).to.equal(0);
   });
 }
 
 //
-// Special tests for <sds-button href="...">
+// Special tests for <syn-button href="...">
 //
 function runSpecialTests_slButtonWithHref(createControl: CreateControlFn) {
   it('should make sure that calling `.checkValidity()` will return `true` in custom error case', async () => {
@@ -204,19 +204,19 @@ function runSpecialTests_slButtonWithHref(createControl: CreateControlFn) {
     expect(control.reportValidity()).to.equal(true);
   });
 
-  it('should not emit an `sds-invalid` event when `.checkValidity()` is called in custom error case', async () => {
+  it('should not emit an `syn-invalid` event when `.checkValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.checkValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.checkValidity());
     expect(emittedEvents.length).to.equal(0);
   });
 
-  it('should not emit an `sds-invalid` event when `.reportValidity()` is called in custom error case', async () => {
+  it('should not emit an `syn-invalid` event when `.reportValidity()` is called in custom error case', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.reportValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
     expect(emittedEvents.length).to.equal(0);
   });
 }
@@ -243,21 +243,21 @@ function runSpecialTests_standard(createControl: CreateControlFn) {
     expect(control.reportValidity()).to.equal(false);
   });
 
-  it('should emit an `sds-invalid` event when `.checkValidity()` is called in custom error case and not disabled', async () => {
+  it('should emit an `syn-invalid` event when `.checkValidity()` is called in custom error case and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.checkValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.checkValidity());
     expect(emittedEvents.length).to.equal(1);
   });
 
-  it('should emit an `sds-invalid` event when `.reportValidity()` is called in custom error case and not disabled', async () => {
+  it('should emit an `syn-invalid` event when `.reportValidity()` is called in custom error case and not disabled', async () => {
     const control = await createControl();
     control.setCustomValidity('error');
     control.disabled = false;
     await control.updateComplete;
-    const emittedEvents = checkEventEmissions(control, 'sds-invalid', () => control.reportValidity());
+    const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
     expect(emittedEvents.length).to.equal(1);
   });
 }
@@ -266,14 +266,14 @@ function runSpecialTests_standard(createControl: CreateControlFn) {
 // Local helper functions
 //
 
-// Creates a testable Sick form control instance
-async function createFormControl<T extends SickFormControl = SickFormControl>(tagName: string): Promise<T> {
+// Creates a testable Synergy form control instance
+async function createFormControl<T extends SynergyFormControl = SynergyFormControl>(tagName: string): Promise<T> {
   return await fixture<T>(`<${tagName}></${tagName}>`);
 }
 
 // Runs an action while listening for emitted events of a given type. Returns an array of all events of the given type
 // that have been been emitted while the action was running.
-function checkEventEmissions(control: SickFormControl, eventType: string, action: () => void): Event[] {
+function checkEventEmissions(control: SynergyFormControl, eventType: string, action: () => void): Event[] {
   const emittedEvents: Event[] = [];
 
   const eventHandler = (event: Event) => {
@@ -290,11 +290,11 @@ function checkEventEmissions(control: SickFormControl, eventType: string, action
   return emittedEvents;
 }
 
-// Component `sds-button` behaves quite different to the other components. To keep things simple we use simple conditions
-// here. `sds-button` might stay the only component in Sick core behaves that way, so we just hard code it here.
-function getMode(control: SickFormControl) {
+// Component `syn-button` behaves quite different to the other components. To keep things simple we use simple conditions
+// here. `syn-button` might stay the only component in Synergy core behaves that way, so we just hard code it here.
+function getMode(control: SynergyFormControl) {
   if (
-    control.localName === 'sds-button' && //
+    control.localName === 'syn-button' && //
     'href' in control &&
     'type' in control &&
     control.type === 'button' &&
@@ -303,8 +303,8 @@ function getMode(control: SickFormControl) {
     return 'slButtonOfTypeButton';
   }
 
-  // <sds-button href="...">
-  if (control.localName === 'sds-button' && 'href' in control && !!control.href) {
+  // <syn-button href="...">
+  if (control.localName === 'syn-button' && 'href' in control && !!control.href) {
     return 'slButtonWithHRef';
   }
 

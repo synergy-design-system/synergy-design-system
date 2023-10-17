@@ -12,8 +12,8 @@
       "import": "./dist/sick.js"
     },
     "./dist/custom-elements.json": "./dist/custom-elements.json",
-    "./dist/sick.js": "./dist/sick.js",
-    "./dist/sick-autoloader.js": "./dist/sick-autoloader.js",
+    "./dist/synergy.js": "./dist/synergy.js",
+    "./dist/synergy-autoloader.js": "./dist/synergy-autoloader.js",
     "./dist/components/*": "./dist/components/*",
     "./dist/utilities/*": "./dist/utilities/*",
     "./dist/translations/*": "./dist/translations/*"

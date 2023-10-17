@@ -14,19 +14,19 @@ import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
-import SickElement from '../../internal/sick-element.js';
-import SdsIcon from '../icon/icon.component.js';
+import SynergyElement from '../../internal/synergy-element.js';
+import SynIcon from '../icon/icon.component.js';
 import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type { SickFormControl } from '../../internal/sick-element.js';
+import type { SynergyFormControl } from '../../internal/synergy-element.js';
 
 /**
  * @summary Inputs collect data from the user.
- * @documentation https://sick.style/components/input
+ * @documentation https://synergy.style/components/input
  * @status stable
  * @since 2.0
  *
- * @dependency sds-icon
+ * @dependency syn-icon
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
@@ -36,12 +36,12 @@ import type { SickFormControl } from '../../internal/sick-element.js';
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
- * @event sds-blur - Emitted when the control loses focus.
- * @event sds-change - Emitted when an alteration to the control's value is committed by the user.
- * @event sds-clear - Emitted when the clear button is activated.
- * @event sds-focus - Emitted when the control gains focus.
- * @event sds-input - Emitted when the control receives input.
- * @event sds-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-blur - Emitted when the control loses focus.
+ * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event syn-clear - Emitted when the clear button is activated.
+ * @event syn-focus - Emitted when the control gains focus.
+ * @event syn-input - Emitted when the control receives input.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -54,12 +54,12 @@ import type { SickFormControl } from '../../internal/sick-element.js';
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
  */
-export default class SdsInput extends SickElement implements SickFormControl {
+export default class SynInput extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = styles;
-  static dependencies = { 'sds-icon': SdsIcon };
+  static dependencies = { 'syn-icon': SynIcon };
 
   private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['sds-blur', 'sds-input']
+    assumeInteractionOn: ['syn-blur', 'syn-input']
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
@@ -246,19 +246,19 @@ export default class SdsInput extends SickElement implements SickFormControl {
 
   private handleBlur() {
     this.hasFocus = false;
-    this.emit('sds-blur');
+    this.emit('syn-blur');
   }
 
   private handleChange() {
     this.value = this.input.value;
-    this.emit('sds-change');
+    this.emit('syn-change');
   }
 
   private handleClearClick(event: MouseEvent) {
     this.value = '';
-    this.emit('sds-clear');
-    this.emit('sds-input');
-    this.emit('sds-change');
+    this.emit('syn-clear');
+    this.emit('syn-input');
+    this.emit('syn-change');
     this.input.focus();
 
     event.stopPropagation();
@@ -266,13 +266,13 @@ export default class SdsInput extends SickElement implements SickFormControl {
 
   private handleFocus() {
     this.hasFocus = true;
-    this.emit('sds-focus');
+    this.emit('syn-focus');
   }
 
   private handleInput() {
     this.value = this.input.value;
     this.formControlController.updateValidity();
-    this.emit('sds-input');
+    this.emit('syn-input');
   }
 
   private handleInvalid(event: Event) {
@@ -291,7 +291,7 @@ export default class SdsInput extends SickElement implements SickFormControl {
         // When using an Input Method Editor (IME), pressing enter will cause the form to submit unexpectedly. One way
         // to check for this is to look at event.isComposing, which will be true when the IME is open.
         //
-        // See https://github.com/sick-design-system/sick/pull/988
+        // See https://github.com/synergy-design-system/synergy/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
           this.formControlController.submit();
@@ -509,7 +509,7 @@ export default class SdsInput extends SickElement implements SickFormControl {
                     tabindex="-1"
                   >
                     <slot name="clear-icon">
-                      <sds-icon name="x-circle-fill" library="system"></sds-icon>
+                      <syn-icon name="x-circle-fill" library="system"></syn-icon>
                     </slot>
                   </button>
                 `
@@ -527,12 +527,12 @@ export default class SdsInput extends SickElement implements SickFormControl {
                     ${this.passwordVisible
                       ? html`
                           <slot name="show-password-icon">
-                            <sds-icon name="eye-slash" library="system"></sds-icon>
+                            <syn-icon name="eye-slash" library="system"></syn-icon>
                           </slot>
                         `
                       : html`
                           <slot name="hide-password-icon">
-                            <sds-icon name="eye" library="system"></sds-icon>
+                            <syn-icon name="eye" library="system"></syn-icon>
                           </slot>
                         `}
                   </button>

@@ -9,11 +9,11 @@ const createThemes = async () => {
       '../src/figma-tokens/semantic/*.json',
     ],
     buildPath: '../dist/',
-    prefix: 'sds-',
+    prefix: 'syn-',
   });
   tokenBuilder.buildTokens();
 
-  await addMissingTokens('sds');
+  await addMissingTokens('syn');
   return Promise.resolve(true);
 };
 

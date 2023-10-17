@@ -18,7 +18,14 @@ const getAbsolutePath = (...pathParts: string[]) => path.join(
  * This will make custom data from `package.json` work for metadata.
  */
 const getCustomElementManifestPlugins = () => {
-  const allowedPlugins = ['sick-package-data', 'sick-infer-tag-names', 'sick-custom-tags', 'sick-translate-module-paths'];
+  // List of allowed plugins, taken from the
+  // components custom-elements-manifest.config.js.
+  const allowedPlugins = [
+    'package-data',
+    'infer-tag-names',
+    'custom-tags',
+    'translate-module-paths'
+  ].map(i => `synergy-${i}`);
 
   const applyablePlugins = customElementConfig.plugins.filter(
     plugin => plugin.name && allowedPlugins.includes(plugin.name)
@@ -60,7 +67,7 @@ export default defineConfig(() => ({
     lib: {
       entry: getAbsolutePath('../components/src/sick.ts'),
       fileName: format => `${format}/components.js`,
-      name: 'SDS Components',
+      name: 'Synergy Components',
     },
     outDir: 'dist',
     rollupOptions: {

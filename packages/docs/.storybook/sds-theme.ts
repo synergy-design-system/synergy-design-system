@@ -1,17 +1,18 @@
 import { create } from '@storybook/theming/create';
 
-export const light = create({
-  base: 'light',
-  brandTitle: 'SDS',
-  brandUrl: 'https://github.com/SickDesignSystem/sds/',
+const baseConfig = {
+  brandTitle: 'Synergy Design System',
+  brandUrl: 'https://github.com/SickDesignSystem/synergy/',
   brandImage: '/logo-claim.svg',
   brandTarget: '_self',
+};
+
+export const light = create({
+  ...baseConfig,
+  base: 'light',
 });
 
 export const dark = create({
+  ...baseConfig,
   base: 'dark',
-  brandTitle: 'SDS',
-  brandUrl: 'https://github.com/SickDesignSystem/sds/',
-  brandImage: '/logo-claim.svg',
-  brandTarget: '_self',
 });

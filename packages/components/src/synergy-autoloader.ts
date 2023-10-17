@@ -21,13 +21,13 @@ const observer = new MutationObserver(mutations => {
  */
 export async function discover(root: Element | ShadowRoot) {
   const rootTagName = root instanceof Element ? root.tagName.toLowerCase() : '';
-  const rootIsSickElement = rootTagName?.startsWith('sds-');
+  const rootIsSynergyElement = rootTagName?.startsWith('syn-');
   const tags = [...root.querySelectorAll(':not(:defined)')]
     .map(el => el.tagName.toLowerCase())
-    .filter(tag => tag.startsWith('sds-'));
+    .filter(tag => tag.startsWith('syn-'));
 
-  // If the root element is an undefined Sick component, add it to the list
-  if (rootIsSickElement && !customElements.get(rootTagName)) {
+  // If the root element is an undefined Synergy component, add it to the list
+  if (rootIsSynergyElement && !customElements.get(rootTagName)) {
     tags.push(rootTagName);
   }
 
@@ -46,7 +46,7 @@ function register(tagName: string): Promise<void> {
     return Promise.resolve();
   }
 
-  const tagWithoutPrefix = tagName.replace(/^sds-/i, '');
+  const tagWithoutPrefix = tagName.replace(/^syn-/i, '');
   const path = getBasePath(`components/${tagWithoutPrefix}/${tagWithoutPrefix}.js`);
 
   // Register it

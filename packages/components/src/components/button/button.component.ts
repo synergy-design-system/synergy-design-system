@@ -12,25 +12,25 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
-import SickElement from '../../internal/sick-element.js';
-import SdsIcon from '../icon/icon.component.js';
-import SdsSpinner from '../spinner/spinner.component.js';
+import SynergyElement from '../../internal/synergy-element.js';
+import SynIcon from '../icon/icon.component.js';
+import SynSpinner from '../spinner/spinner.component.js';
 import styles from './button.styles.js';
 import type { CSSResultGroup } from 'lit';
-import type { SickFormControl } from '../../internal/sick-element.js';
+import type { SynergyFormControl } from '../../internal/synergy-element.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.
- * @documentation https://sick.style/components/button
+ * @documentation https://synergy.style/components/button
  * @status stable
  * @since 2.0
  *
- * @dependency sds-icon
- * @dependency sds-spinner
+ * @dependency syn-icon
+ * @dependency syn-spinner
  *
- * @event sds-blur - Emitted when the button loses focus.
- * @event sds-focus - Emitted when the button gains focus.
- * @event sds-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-blur - Emitted when the button loses focus.
+ * @event syn-focus - Emitted when the button gains focus.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @slot - The button's label.
  * @slot prefix - A presentational prefix icon or similar element.
@@ -40,14 +40,14 @@ import type { SickFormControl } from '../../internal/sick-element.js';
  * @csspart prefix - The container that wraps the prefix.
  * @csspart label - The button's label.
  * @csspart suffix - The container that wraps the suffix.
- * @csspart caret - The button's caret icon, an `<sds-icon>` element.
+ * @csspart caret - The button's caret icon, an `<syn-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-export default class SdsButton extends SickElement implements SickFormControl {
+export default class SynButton extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = styles;
   static dependencies = {
-    'sds-icon': SdsIcon,
-    'sds-spinner': SdsSpinner
+    'syn-icon': SynIcon,
+    'syn-spinner': SynSpinner
   };
 
   private readonly formControlController = new FormControlController(this, {
@@ -97,7 +97,7 @@ export default class SdsButton extends SickElement implements SickFormControl {
   @property({ type: Boolean, reflect: true }) pill = false;
 
   /**
-   * Draws a circular icon button. When this attribute is present, the button expects a single `<sds-icon>` in the
+   * Draws a circular icon button. When this attribute is present, the button expects a single `<syn-icon>` in the
    * default slot.
    */
   @property({ type: Boolean, reflect: true }) circle = false;
@@ -185,12 +185,12 @@ export default class SdsButton extends SickElement implements SickFormControl {
 
   private handleBlur() {
     this.hasFocus = false;
-    this.emit('sds-blur');
+    this.emit('syn-blur');
   }
 
   private handleFocus() {
     this.hasFocus = true;
-    this.emit('sds-focus');
+    this.emit('syn-focus');
   }
 
   private handleClick() {
@@ -325,9 +325,9 @@ export default class SdsButton extends SickElement implements SickFormControl {
         <slot part="label" class="button__label"></slot>
         <slot name="suffix" part="suffix" class="button__suffix"></slot>
         ${
-          this.caret ? html` <sds-icon part="caret" class="button__caret" library="system" name="caret"></sds-icon> ` : ''
+          this.caret ? html` <syn-icon part="caret" class="button__caret" library="system" name="caret"></syn-icon> ` : ''
         }
-        ${this.loading ? html`<sds-spinner part="spinner"></sds-spinner>` : ''}
+        ${this.loading ? html`<syn-spinner part="spinner"></syn-spinner>` : ''}
       </${tag}>
     `;
     /* eslint-enable lit/no-invalid-html */

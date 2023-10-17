@@ -5,15 +5,15 @@
 
 /* eslint-disable */
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
-import type { SickFormControl } from '../internal/sick-element.js';
-import type SdsButton from '../components/button/button.js';
+import type { SynergyFormControl } from '../internal/synergy-element.js';
+import type SynButton from '../components/button/button.js';
 
 //
-// We store a WeakMap of forms + controls so we can keep references to all Sick controls within a given form. As
+// We store a WeakMap of forms + controls so we can keep references to all Synergy controls within a given form. As
 // elements connect and disconnect to/from the DOM, their containing form is used as the key and the form control is
 // added and removed from the form's set, respectively.
 //
-export const formCollections: WeakMap<HTMLFormElement, Set<SickFormControl>> = new WeakMap();
+export const formCollections: WeakMap<HTMLFormElement, Set<SynergyFormControl>> = new WeakMap();
 
 //
 // We store a WeakMap of reportValidity() overloads so we can override it when form controls connect to the DOM and
@@ -25,31 +25,31 @@ const reportValidityOverloads: WeakMap<HTMLFormElement, () => boolean> = new Wea
 // We store a Set of controls that users have interacted with. This allows us to determine the interaction state
 // without littering the DOM with additional data attributes.
 //
-const userInteractedControls: WeakSet<SickFormControl> = new WeakSet();
+const userInteractedControls: WeakSet<SynergyFormControl> = new WeakSet();
 
 //
 // We store a WeakMap of interactions for each form control so we can track when all conditions are met for validation.
 //
-const interactions = new WeakMap<SickFormControl, string[]>();
+const interactions = new WeakMap<SynergyFormControl, string[]>();
 
 export interface FormControlControllerOptions {
   /** A function that returns the form containing the form control. */
-  form: (input: SickFormControl) => HTMLFormElement | null;
+  form: (input: SynergyFormControl) => HTMLFormElement | null;
   /** A function that returns the form control's name, which will be submitted with the form data. */
-  name: (input: SickFormControl) => string;
+  name: (input: SynergyFormControl) => string;
   /** A function that returns the form control's current value. */
-  value: (input: SickFormControl) => unknown | unknown[];
+  value: (input: SynergyFormControl) => unknown | unknown[];
   /** A function that returns the form control's default value. */
-  defaultValue: (input: SickFormControl) => unknown | unknown[];
+  defaultValue: (input: SynergyFormControl) => unknown | unknown[];
   /** A function that returns the form control's current disabled state. If disabled, the value won't be submitted. */
-  disabled: (input: SickFormControl) => boolean;
+  disabled: (input: SynergyFormControl) => boolean;
   /**
    * A function that maps to the form control's reportValidity() function. When the control is invalid, this will
    * prevent submission and trigger the browser's constraint violation warning.
    */
-  reportValidity: (input: SickFormControl) => boolean;
+  reportValidity: (input: SynergyFormControl) => boolean;
   /** A function that sets the form control's value */
-  setValue: (input: SickFormControl, value: unknown) => void;
+  setValue: (input: SynergyFormControl, value: unknown) => void;
   /**
    * An array of event names to listen to. When all events in the list are emitted, the control will receive validity
    * states such as user-valid and user-invalid.user interacted validity states. */
@@ -58,11 +58,11 @@ export interface FormControlControllerOptions {
 
 /** A reactive controller to allow form controls to participate in form submission, validation, etc. */
 export class FormControlController implements ReactiveController {
-  host: SickFormControl & ReactiveControllerHost;
+  host: SynergyFormControl & ReactiveControllerHost;
   form?: HTMLFormElement | null;
   options: FormControlControllerOptions;
 
-  constructor(host: ReactiveControllerHost & SickFormControl, options?: Partial<FormControlControllerOptions>) {
+  constructor(host: ReactiveControllerHost & SynergyFormControl, options?: Partial<FormControlControllerOptions>) {
     (this.host = host).addController(this);
     this.options = {
       form: input => {
@@ -84,7 +84,7 @@ export class FormControlController implements ReactiveController {
       disabled: input => input.disabled ?? false,
       reportValidity: input => (typeof input.reportValidity === 'function' ? input.reportValidity() : true),
       setValue: (input, value: string) => (input.value = value),
-      assumeInteractionOn: ['sds-input'],
+      assumeInteractionOn: ['syn-input'],
       ...options
     };
   }
@@ -140,14 +140,14 @@ export class FormControlController implements ReactiveController {
       if (formCollections.has(this.form)) {
         formCollections.get(this.form)!.add(this.host);
       } else {
-        formCollections.set(this.form, new Set<SickFormControl>([this.host]));
+        formCollections.set(this.form, new Set<SynergyFormControl>([this.host]));
       }
 
       this.form.addEventListener('formdata', this.handleFormData);
       this.form.addEventListener('submit', this.handleFormSubmit);
       this.form.addEventListener('reset', this.handleFormReset);
 
-      // Overload the form's reportValidity() method so it looks at Sick form controls
+      // Overload the form's reportValidity() method so it looks at Synergy form controls
       if (!reportValidityOverloads.has(this.form)) {
         reportValidityOverloads.set(this.form, this.form.reportValidity);
         this.form.reportValidity = () => this.reportFormValidity();
@@ -183,7 +183,7 @@ export class FormControlController implements ReactiveController {
 
     // For buttons, we only submit the value if they were the submitter. This is currently done in doAction() by
     // injecting the name/value on a temporary button, so we can just skip them here.
-    const isButton = this.host.tagName.toLowerCase() === 'sds-button';
+    const isButton = this.host.tagName.toLowerCase() === 'syn-button';
 
     if (!disabled && !isButton && typeof name === 'string' && name.length > 0 && typeof value !== 'undefined') {
       if (Array.isArray(value)) {
@@ -234,7 +234,7 @@ export class FormControlController implements ReactiveController {
 
   private reportFormValidity = () => {
     //
-    // Sick form controls work hard to act like regular form controls. They support the Constraint Validation API
+    // Synergy form controls work hard to act like regular form controls. They support the Constraint Validation API
     // and its associated methods such as setCustomValidity() and reportValidity(). However, the HTMLFormElement also
     // has a reportValidity() method that will trigger validation on all child controls. Since we're not yet using
     // ElementInternals, we need to overload this method so it looks for any element with the reportValidity() method.
@@ -246,7 +246,7 @@ export class FormControlController implements ReactiveController {
     // Note that we're also honoring the form's novalidate attribute.
     //
     if (this.form && !this.form.noValidate) {
-      // This seems sloppy, but checking all elements will cover native inputs, Sick inputs, and other custom
+      // This seems sloppy, but checking all elements will cover native inputs, Synergy inputs, and other custom
       // elements that support the constraint validation API.
       const elements = this.form.querySelectorAll<HTMLInputElement>('*');
 
@@ -262,7 +262,7 @@ export class FormControlController implements ReactiveController {
     return true;
   };
 
-  private setUserInteracted(el: SickFormControl, hasInteracted: boolean) {
+  private setUserInteracted(el: SynergyFormControl, hasInteracted: boolean) {
     if (hasInteracted) {
       userInteractedControls.add(el);
     } else {
@@ -272,7 +272,7 @@ export class FormControlController implements ReactiveController {
     el.requestUpdate();
   }
 
-  private doAction(type: 'submit' | 'reset', submitter?: HTMLInputElement | SdsButton) {
+  private doAction(type: 'submit' | 'reset', submitter?: HTMLInputElement | SynButton) {
     if (this.form) {
       const button = document.createElement('button');
       button.type = type;
@@ -307,12 +307,12 @@ export class FormControlController implements ReactiveController {
   }
 
   /** Resets the form, restoring all the control to their default value */
-  reset(submitter?: HTMLInputElement | SdsButton) {
+  reset(submitter?: HTMLInputElement | SynButton) {
     this.doAction('reset', submitter);
   }
 
   /** Submits the form, triggering validation and form data injection. */
-  submit(submitter?: HTMLInputElement | SdsButton) {
+  submit(submitter?: HTMLInputElement | SynButton) {
     // Calling form.submit() bypasses the submit event and constraint validation. To prevent this, we can inject a
     // native submit button into the form, "click" it, then remove it to simulate a standard form submission.
     this.doAction('submit', submitter);
@@ -331,7 +331,7 @@ export class FormControlController implements ReactiveController {
     // We're mapping the following "states" to data attributes. In the future, we can use ElementInternals.states to
     // create a similar mapping, but instead of [data-invalid] it will look like :--invalid.
     //
-    // See this RFC for more details: https://github.com/sick-design-system/sick/issues/1011
+    // See this RFC for more details: https://github.com/synergy-design-system/synergy/issues/1011
     //
     host.toggleAttribute('data-required', required);
     host.toggleAttribute('data-optional', !required);
@@ -351,14 +351,14 @@ export class FormControlController implements ReactiveController {
   }
 
   /**
-   * Dispatches a non-bubbling, cancelable custom event of type `sds-invalid`.
-   * If the `sds-invalid` event will be cancelled then the original `invalid`
+   * Dispatches a non-bubbling, cancelable custom event of type `syn-invalid`.
+   * If the `syn-invalid` event will be cancelled then the original `invalid`
    * event (which may have been passed as argument) will also be cancelled.
-   * If no original `invalid` event has been passed then the `sds-invalid`
+   * If no original `invalid` event has been passed then the `syn-invalid`
    * event will be cancelled before being dispatched.
    */
   emitInvalidEvent(originalInvalidEvent?: Event) {
-    const slInvalidEvent = new CustomEvent<Record<PropertyKey, never>>('sds-invalid', {
+    const slInvalidEvent = new CustomEvent<Record<PropertyKey, never>>('syn-invalid', {
       bubbles: false,
       composed: false,
       cancelable: true,

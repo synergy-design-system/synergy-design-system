@@ -61,9 +61,9 @@ async function buildSource() {
     },
     entryPoints: [
       // The whole shebang
-      './src/sick.ts',
+      './src/synergy.ts',
       // The auto-loader
-      './src/sick-autoloader.ts',
+      './src/synergy-autoloader.ts',
       // Components
       ...(await globby('./src/components/**/!(*.(style|test)).ts')),
       // Translations

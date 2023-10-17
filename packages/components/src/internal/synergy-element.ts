@@ -48,7 +48,7 @@ type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 // Given an event name string, get a valid type for the options to initialize the event that is more restrictive than
 // just CustomEventInit when appropriate (validate the type of the event detail, and require it to be provided if the
 // event requires it)
-type SdsEventInit<T> = T extends keyof GlobalEventHandlersEventMap
+type SynEventInit<T> = T extends keyof GlobalEventHandlersEventMap
   ? GlobalEventHandlersEventMap[T] extends CustomEvent<Record<PropertyKey, unknown>>
     ? GlobalEventHandlersEventMap[T] extends CustomEvent<Record<PropertyKey, never>>
       ? CustomEventInit<GlobalEventHandlersEventMap[T]['detail']>
@@ -68,7 +68,7 @@ type GetCustomEventType<T> = T extends keyof GlobalEventHandlersEventMap
 // `keyof ValidEventTypeMap` is equivalent to `keyof GlobalEventHandlersEventMap` but gives a nicer error message
 type ValidEventTypeMap = EventTypesWithRequiredDetail | EventTypesWithoutRequiredDetail;
 
-export default class SickElement extends LitElement {
+export default class SynergyElement extends LitElement {
   // Make localization attributes reactive
   @property() dir: string;
   @property() lang: string;
@@ -76,15 +76,15 @@ export default class SickElement extends LitElement {
   /** Emits a custom event with more convenient defaults. */
   emit<T extends string & keyof EventTypesWithoutRequiredDetail>(
     name: EventTypeDoesNotRequireDetail<T>,
-    options?: SdsEventInit<T> | undefined
+    options?: SynEventInit<T> | undefined
   ): GetCustomEventType<T>;
   emit<T extends string & keyof EventTypesWithRequiredDetail>(
     name: EventTypeRequiresDetail<T>,
-    options: SdsEventInit<T>
+    options: SynEventInit<T>
   ): GetCustomEventType<T>;
   emit<T extends string & keyof ValidEventTypeMap>(
     name: T,
-    options?: SdsEventInit<T> | undefined
+    options?: SynEventInit<T> | undefined
   ): GetCustomEventType<T> {
     const event = new CustomEvent(name, {
       bubbles: true,
@@ -107,7 +107,7 @@ export default class SickElement extends LitElement {
   static define(name: string, elementConstructor = this, options: ElementDefinitionOptions = {}) {
     const currentlyRegisteredConstructor = customElements.get(name) as
       | CustomElementConstructor
-      | typeof SickElement;
+      | typeof SynergyElement;
 
     if (!currentlyRegisteredConstructor) {
       customElements.define(name, class extends elementConstructor {} as unknown as CustomElementConstructor, options);
@@ -136,17 +136,17 @@ export default class SickElement extends LitElement {
     );
   }
 
-  static dependencies: Record<string, typeof SickElement> = {};
+  static dependencies: Record<string, typeof SynergyElement> = {};
 
   constructor() {
     super();
-    Object.entries((this.constructor as typeof SickElement).dependencies).forEach(([name, component]) => {
-      (this.constructor as typeof SickElement).define(name, component);
+    Object.entries((this.constructor as typeof SynergyElement).dependencies).forEach(([name, component]) => {
+      (this.constructor as typeof SynergyElement).define(name, component);
     });
   }
 }
 
-export interface SickFormControl extends SickElement {
+export interface SynergyFormControl extends SynergyElement {
   // Form attributes
   name: string;
   value: unknown;

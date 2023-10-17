@@ -6,7 +6,7 @@
 /* eslint-disable */
 import defaultLibrary from './library.default.js';
 import systemLibrary from './library.system.js';
-import type SdsIcon from '../icon/icon.js';
+import type SynIcon from '../icon/icon.js';
 
 export type IconLibraryResolver = (name: string) => string;
 export type IconLibraryMutator = (svg: SVGElement) => void;
@@ -18,15 +18,15 @@ export interface IconLibrary {
 }
 
 let registry: IconLibrary[] = [defaultLibrary, systemLibrary];
-let watchedIcons: SdsIcon[] = [];
+let watchedIcons: SynIcon[] = [];
 
 /** Adds an icon to the list of watched icons. */
-export function watchIcon(icon: SdsIcon) {
+export function watchIcon(icon: SynIcon) {
   watchedIcons.push(icon);
 }
 
 /** Removes an icon from the list of watched icons. */
-export function unwatchIcon(icon: SdsIcon) {
+export function unwatchIcon(icon: SynIcon) {
   watchedIcons = watchedIcons.filter(el => el !== icon);
 }
 

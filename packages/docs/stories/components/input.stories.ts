@@ -12,15 +12,15 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component';
-const { args, argTypes } = storybookDefaults('sds-input');
-const { overrideArgs } = storybookHelpers('sds-input');
-const { generateTemplate } = storybookTemplate('sds-input');
+const { args, argTypes } = storybookDefaults('syn-input');
+const { overrideArgs } = storybookHelpers('syn-input');
+const { generateTemplate } = storybookTemplate('syn-input');
 
 const meta: Meta = {
   component: 'input',
   args,
   argTypes,
-  title: 'Components/sds-input',
+  title: 'Components/syn-input',
   parameters: {
     docs: {
       description: {
@@ -51,111 +51,111 @@ export const Default = {
  * Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.
  */
 export const Labels: Story = {
-  render: () => html`<sds-input label="What is your name?"></sds-input>`,
+  render: () => html`<syn-input label="What is your name?"></syn-input>`,
 };
 
 /**
  * Add descriptive help text to an input with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.
  */
 export const HelpText: Story = {
-  render: () => html`<sds-input label="Nickname" help-text="What would you like people to call you?"></sds-input>`,
+  render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
 };
 
 /**
  * Use the placeholder attribute to add a placeholder.
  */
 export const Placeholders: Story = {
-  render: () => html`<sds-input placeholder="Type something"></sds-input>`,
+  render: () => html`<syn-input placeholder="Type something"></syn-input>`,
 };
 
 /**
  * Add the clearable attribute to add a clear button when the input has content.
  */
 export const Clearable: Story = {
-  render: () => html`<sds-input placeholder="Clearable" clearable></sds-input>`,
+  render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
 };
 
 /**
  * Add the password-toggle attribute to add a toggle button that will show the password when activated.
  */
 export const TogglePassword: Story = {
-  render: () => html`<sds-input type="password" placeholder="Password Toggle" password-toggle></sds-input>`,
+  render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
 };
 
 /**
  * Add the filled attribute to draw a filled input.
  */
 export const FilledInputs: Story = {
-  render: () => html`<sds-input placeholder="Type something" filled></sds-input>`,
+  render: () => html`<syn-input placeholder="Type something" filled></syn-input>`,
 };
 
 /**
  * Use the disabled attribute to disable an input.
  */
 export const Disabled: Story = {
-  render: () => html`<sds-input placeholder="Disabled" disabled></sds-input>`,
+  render: () => html`<syn-input placeholder="Disabled" disabled></syn-input>`,
 };
 
 /**
  * Use the size attribute to change an input's size.
  */
 export const Sizes: Story = {
-  render: () => html`<sds-input placeholder="Small" size="small"></sds-input>
+  render: () => html`<syn-input placeholder="Small" size="small"></syn-input>
 <br />
-<sds-input placeholder="Medium" size="medium"></sds-input>
+<syn-input placeholder="Medium" size="medium"></syn-input>
 <br />
-<sds-input placeholder="Large" size="large"></sds-input>`,
+<syn-input placeholder="Large" size="large"></syn-input>`,
 };
 
 /**
  * Use the pill attribute to give inputs rounded edges.
  */
 export const Pill: Story = {
-  render: () => html`<sds-input placeholder="Small" size="small" pill></sds-input>
+  render: () => html`<syn-input placeholder="Small" size="small" pill></syn-input>
 <br />
-<sds-input placeholder="Medium" size="medium" pill></sds-input>
+<syn-input placeholder="Medium" size="medium" pill></syn-input>
 <br />
-<sds-input placeholder="Large" size="large" pill></sds-input>`,
+<syn-input placeholder="Large" size="large" pill></syn-input>`,
 };
 
 /**
  * The type attribute controls the type of input the browser renders.
  */
 export const InputTypes: Story = {
-  render: () => html`<sds-input type="email" placeholder="Email"></sds-input>
+  render: () => html`<syn-input type="email" placeholder="Email"></syn-input>
 <br />
-<sds-input type="number" placeholder="Number"></sds-input>
+<syn-input type="number" placeholder="Number"></syn-input>
 <br />
-<sds-input type="date" placeholder="Date"></sds-input>`,
+<syn-input type="date" placeholder="Date"></syn-input>`,
 };
 
 /**
  * Use the prefix and suffix slots to add icons.
  */
 export const PrefixSuffixIcons: Story = {
-  render: () => html`<sds-input placeholder="Small" size="small">
-  <sds-icon name="house" slot="prefix"></sds-icon>
-  <sds-icon name="chat" slot="suffix"></sds-icon>
-</sds-input>
+  render: () => html`<syn-input placeholder="Small" size="small">
+  <syn-icon name="house" slot="prefix"></syn-icon>
+  <syn-icon name="chat" slot="suffix"></syn-icon>
+</syn-input>
 <br />
-<sds-input placeholder="Medium" size="medium">
-  <sds-icon name="house" slot="prefix"></sds-icon>
-  <sds-icon name="chat" slot="suffix"></sds-icon>
-</sds-input>
+<syn-input placeholder="Medium" size="medium">
+  <syn-icon name="house" slot="prefix"></syn-icon>
+  <syn-icon name="chat" slot="suffix"></syn-icon>
+</syn-input>
 <br />
-<sds-input placeholder="Large" size="large">
-  <sds-icon name="house" slot="prefix"></sds-icon>
-  <sds-icon name="chat" slot="suffix"></sds-icon>
-</sds-input>`,
+<syn-input placeholder="Large" size="large">
+  <syn-icon name="house" slot="prefix"></syn-icon>
+  <syn-icon name="chat" slot="suffix"></syn-icon>
+</syn-input>`,
 };
 
 /**
  * Use  to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.
  */
 export const CustomizingLabelPosition: Story = {
-  render: () => html`<sds-input class="label-on-left" label="Name" help-text="Enter your name"></sds-input>
-<sds-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></sds-input>
-<sds-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></sds-textarea>
+  render: () => html`<syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
+<syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
+<syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
 
 <style>
   .label-on-left {
@@ -164,13 +164,13 @@ export const CustomizingLabelPosition: Story = {
   }
 
   .label-on-left + .label-on-left {
-    margin-top: var(--sds-spacing-medium);
+    margin-top: var(--syn-spacing-medium);
   }
 
   .label-on-left::part(form-control) {
     display: grid;
     grid: auto / var(--label-width) 1fr;
-    gap: var(--sds-spacing-3x-small) var(--gap-width);
+    gap: var(--syn-spacing-3x-small) var(--gap-width);
     align-items: center;
   }
 

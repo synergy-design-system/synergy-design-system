@@ -322,10 +322,6 @@ importers:
         version: 0.1.1(vite@4.4.11)
 
   packages/tokens:
-    dependencies:
-      change-case:
-        specifier: ^4.1.2
-        version: 4.1.2
     devDependencies:
       '@semantic-release/changelog':
         specifier: ^6.0.3

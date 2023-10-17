@@ -12,6 +12,7 @@ const createThemes = async () => {
     prefix: 'sds-',
   });
   tokenBuilder.buildTokens();
+  tokenBuilder.buildSCSSTokens();
 
   await addMissingTokens('sds');
   return Promise.resolve(true);

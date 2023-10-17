@@ -1,5 +1,10 @@
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
+import { calc } from './transforms/index.js';
+import { readFileSync } from 'fs';
+import { SDSTransformGroupDefault, SDSTransformGroupSASS } from './transformGroups.js';
+
+const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
 export class TokenBuilder {
   constructor({ sourcePaths, buildPath, prefix = 'es-' }) {
@@ -7,16 +12,30 @@ export class TokenBuilder {
     this.buildPath = buildPath;
     this.prefix = prefix;
 
-    console.log(this.sourcePaths, this.buildPath, this.prefix);
-
     this.init();
   }
 
   init() {
-    registerTransforms(StyleDictionary);
-
+    this.registerBaseTransforms();
     this.registerTransforms();
     this.registerFormat(this.prefix);
+  }
+
+  registerBaseTransforms() {
+    StyleDictionary.registerTransform(calc);
+    registerTransforms(StyleDictionary);
+    StyleDictionary.registerTransformGroup(SDSTransformGroupDefault);
+    StyleDictionary.registerTransformGroup(SDSTransformGroupSASS);
+
+    // Sets up custom file header
+    StyleDictionary.registerFileHeader({
+      fileHeader: (defaultMsg) => [
+        `${name} version ${version}`,
+        `${author.name}`,
+        ...defaultMsg,
+      ],
+      name: 'sdsHeader',
+    });
   }
 
   registerTransforms() {
@@ -134,6 +153,34 @@ export class TokenBuilder {
       });
       sd.buildAllPlatforms();
     });
+  }
+
+  buildSCSSTokens() {
+    const sdsStyleDictionaryConfig = ({
+      platforms: {
+        scss: {
+          buildPath: `${this.buildPath}scss/`,
+          files: [{
+            destination: '_tokens.scss',
+            format: 'scss/variables',
+            options: {
+              fileHeader: 'sdsHeader',
+              outputReferences: true,
+            },
+          }],
+          options: {
+            themeable: true,
+          },
+          prefix: this.prefix,
+          transformGroup: SDSTransformGroupSASS.name,
+        },
+      },
+      source: ['tokens/**/*.json'],
+    });
+
+    StyleDictionary
+      .extend(sdsStyleDictionaryConfig)
+      .buildAllPlatforms();
   }
 }
 

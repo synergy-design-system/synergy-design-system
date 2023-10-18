@@ -1,12 +1,12 @@
 ---
 name: Component/Request feature
 about: Use this template for a request of adding new features to an existing component.
-title: "[FEAT] "
+title: "feat: ✨ "
 labels: component/change, enhancement, status/triage
 ---
 
 <!--
-Thank you for taking your time to request a new feature for a component of the SICK Design System. Please make sure to answer the questions below to give us more information about your request.
+Thank you for taking your time to request a new feature for a component of the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
 -->
 
 **Version**:

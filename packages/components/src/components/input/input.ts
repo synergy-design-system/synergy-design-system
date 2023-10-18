@@ -4,7 +4,15 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-import SdsInput from './input.component.js';
+import SynInput from './input.component.js';
+
 export * from './input.component.js';
-export default SdsInput;
-SdsInput.define('sds-input');
+export default SynInput;
+
+SynInput.define('syn-input');
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'syn-input': SynInput;
+  }
+}

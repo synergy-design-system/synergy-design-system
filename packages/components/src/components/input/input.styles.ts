@@ -24,71 +24,74 @@ export default css`
     justify-content: start;
     position: relative;
     width: 100%;
-    font-family: var(--sds-input-font-family);
-    font-weight: var(--sds-input-font-weight);
-    letter-spacing: var(--sds-input-letter-spacing);
+    font-family: var(--syn-input-font-family);
+    font-weight: var(--syn-input-font-weight);
+    letter-spacing: var(--syn-input-letter-spacing);
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--sds-transition-fast) color, var(--sds-transition-fast) border, var(--sds-transition-fast) box-shadow,
-      var(--sds-transition-fast) background-color;
+    transition:
+      var(--syn-transition-fast) color,
+      var(--syn-transition-fast) border,
+      var(--syn-transition-fast) box-shadow,
+      var(--syn-transition-fast) background-color;
   }
 
   /* Standard inputs */
   .input--standard {
-    background-color: var(--sds-input-background-color);
-    border: solid var(--sds-input-border-width) var(--sds-input-border-color);
+    background-color: var(--syn-input-background-color);
+    border: solid var(--syn-input-border-width) var(--syn-input-border-color);
   }
 
   .input--standard:hover:not(.input--disabled) {
-    background-color: var(--sds-input-background-color-hover);
-    border-color: var(--sds-input-border-color-hover);
+    background-color: var(--syn-input-background-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
 
   .input--standard.input--focused:not(.input--disabled) {
-    background-color: var(--sds-input-background-color-focus);
-    border-color: var(--sds-input-border-color-focus);
-    box-shadow: 0 0 0 var(--sds-focus-ring-width) var(--sds-input-focus-ring-color);
+    background-color: var(--syn-input-background-color-focus);
+    border-color: var(--syn-input-border-color-focus);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
   }
 
   .input--standard.input--focused:not(.input--disabled) .input__control {
-    color: var(--sds-input-color-focus);
+    color: var(--syn-input-color-focus);
   }
 
   .input--standard.input--disabled {
-    background-color: var(--sds-input-background-color-disabled);
-    border-color: var(--sds-input-border-color-disabled);
+    background-color: var(--syn-input-background-color-disabled);
+    border-color: var(--syn-input-border-color-disabled);
     opacity: 0.5;
     cursor: not-allowed;
   }
 
   .input--standard.input--disabled .input__control {
-    color: var(--sds-input-color-disabled);
+    color: var(--syn-input-color-disabled);
   }
 
   .input--standard.input--disabled .input__control::placeholder {
-    color: var(--sds-input-placeholder-color-disabled);
+    color: var(--syn-input-placeholder-color-disabled);
   }
 
   /* Filled inputs */
   .input--filled {
     border: none;
-    background-color: var(--sds-input-filled-background-color);
-    color: var(--sds-input-color);
+    background-color: var(--syn-input-filled-background-color);
+    color: var(--syn-input-color);
   }
 
   .input--filled:hover:not(.input--disabled) {
-    background-color: var(--sds-input-filled-background-color-hover);
+    background-color: var(--syn-input-filled-background-color-hover);
   }
 
   .input--filled.input--focused:not(.input--disabled) {
-    background-color: var(--sds-input-filled-background-color-focus);
-    outline: var(--sds-focus-ring);
-    outline-offset: var(--sds-focus-ring-offset);
+    background-color: var(--syn-input-filled-background-color-focus);
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
   }
 
   .input--filled.input--disabled {
-    background-color: var(--sds-input-filled-background-color-disabled);
+    background-color: var(--syn-input-filled-background-color-disabled);
     opacity: 0.5;
     cursor: not-allowed;
   }
@@ -100,7 +103,7 @@ export default css`
     font-weight: inherit;
     min-width: 0;
     height: 100%;
-    color: var(--sds-input-color);
+    color: var(--syn-input-color);
     border: none;
     background: inherit;
     box-shadow: none;
@@ -121,25 +124,26 @@ export default css`
   .input__control:-webkit-autofill:hover,
   .input__control:-webkit-autofill:focus,
   .input__control:-webkit-autofill:active {
-    box-shadow: 0 0 0 var(--sds-input-height-large) var(--sds-input-background-color-hover) inset !important;
-    -webkit-text-fill-color: var(--sds-color-primary-500);
-    caret-color: var(--sds-input-color);
+    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset !important;
+    -webkit-text-fill-color: var(--syn-color-primary-500);
+    caret-color: var(--syn-input-color);
   }
 
   .input--filled .input__control:-webkit-autofill,
   .input--filled .input__control:-webkit-autofill:hover,
   .input--filled .input__control:-webkit-autofill:focus,
   .input--filled .input__control:-webkit-autofill:active {
-    box-shadow: 0 0 0 var(--sds-input-height-large) var(--sds-input-filled-background-color) inset !important;
+    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-filled-background-color) inset !important;
   }
 
   .input__control::placeholder {
-    color: var(--sds-input-placeholder-color);
+    color: var(--syn-input-placeholder-color);
     user-select: none;
+    -webkit-user-select: none;
   }
 
   .input:hover:not(.input--disabled) .input__control {
-    color: var(--sds-input-color-hover);
+    color: var(--syn-input-color-hover);
   }
 
   .input__control:focus {
@@ -154,9 +158,9 @@ export default css`
     cursor: default;
   }
 
-  .input__prefix ::slotted(sds-icon),
-  .input__suffix ::slotted(sds-icon) {
-    color: var(--sds-input-icon-color);
+  .input__prefix ::slotted(syn-icon),
+  .input__suffix ::slotted(syn-icon) {
+    color: var(--syn-input-icon-color);
   }
 
   /*
@@ -164,75 +168,75 @@ export default css`
    */
 
   .input--small {
-    border-radius: var(--sds-input-border-radius-small);
-    font-size: var(--sds-input-font-size-small);
-    height: var(--sds-input-height-small);
+    border-radius: var(--syn-input-border-radius-small);
+    font-size: var(--syn-input-font-size-small);
+    height: var(--syn-input-height-small);
   }
 
   .input--small .input__control {
-    height: calc(var(--sds-input-height-small) - var(--sds-input-border-width) * 2);
-    padding: 0 var(--sds-input-spacing-small);
+    height: calc(var(--syn-input-height-small) - var(--syn-input-border-width) * 2);
+    padding: 0 var(--syn-input-spacing-small);
   }
 
   .input--small .input__clear,
   .input--small .input__password-toggle {
-    width: calc(1em + var(--sds-input-spacing-small) * 2);
+    width: calc(1em + var(--syn-input-spacing-small) * 2);
   }
 
   .input--small .input__prefix ::slotted(*) {
-    margin-inline-start: var(--sds-input-spacing-small);
+    margin-inline-start: var(--syn-input-spacing-small);
   }
 
   .input--small .input__suffix ::slotted(*) {
-    margin-inline-end: var(--sds-input-spacing-small);
+    margin-inline-end: var(--syn-input-spacing-small);
   }
 
   .input--medium {
-    border-radius: var(--sds-input-border-radius-medium);
-    font-size: var(--sds-input-font-size-medium);
-    height: var(--sds-input-height-medium);
+    border-radius: var(--syn-input-border-radius-medium);
+    font-size: var(--syn-input-font-size-medium);
+    height: var(--syn-input-height-medium);
   }
 
   .input--medium .input__control {
-    height: calc(var(--sds-input-height-medium) - var(--sds-input-border-width) * 2);
-    padding: 0 var(--sds-input-spacing-medium);
+    height: calc(var(--syn-input-height-medium) - var(--syn-input-border-width) * 2);
+    padding: 0 var(--syn-input-spacing-medium);
   }
 
   .input--medium .input__clear,
   .input--medium .input__password-toggle {
-    width: calc(1em + var(--sds-input-spacing-medium) * 2);
+    width: calc(1em + var(--syn-input-spacing-medium) * 2);
   }
 
   .input--medium .input__prefix ::slotted(*) {
-    margin-inline-start: var(--sds-input-spacing-medium);
+    margin-inline-start: var(--syn-input-spacing-medium);
   }
 
   .input--medium .input__suffix ::slotted(*) {
-    margin-inline-end: var(--sds-input-spacing-medium);
+    margin-inline-end: var(--syn-input-spacing-medium);
   }
 
   .input--large {
-    border-radius: var(--sds-input-border-radius-large);
-    font-size: var(--sds-input-font-size-large);
-    height: var(--sds-input-height-large);
+    border-radius: var(--syn-input-border-radius-large);
+    font-size: var(--syn-input-font-size-large);
+    height: var(--syn-input-height-large);
   }
 
   .input--large .input__control {
-    height: calc(var(--sds-input-height-large) - var(--sds-input-border-width) * 2);
-    padding: 0 var(--sds-input-spacing-large);
+    height: calc(var(--syn-input-height-large) - var(--syn-input-border-width) * 2);
+    padding: 0 var(--syn-input-spacing-large);
   }
 
   .input--large .input__clear,
   .input--large .input__password-toggle {
-    width: calc(1em + var(--sds-input-spacing-large) * 2);
+    width: calc(1em + var(--syn-input-spacing-large) * 2);
   }
 
   .input--large .input__prefix ::slotted(*) {
-    margin-inline-start: var(--sds-input-spacing-large);
+    margin-inline-start: var(--syn-input-spacing-large);
   }
 
   .input--large .input__suffix ::slotted(*) {
-    margin-inline-end: var(--sds-input-spacing-large);
+    margin-inline-end: var(--syn-input-spacing-large);
   }
 
   /*
@@ -240,20 +244,24 @@ export default css`
    */
 
   .input--pill.input--small {
-    border-radius: var(--sds-input-height-small);
+    border-radius: var(--syn-input-height-small);
   }
 
   .input--pill.input--medium {
-    border-radius: var(--sds-input-height-medium);
+    border-radius: var(--syn-input-height-medium);
   }
 
   .input--pill.input--large {
-    border-radius: var(--sds-input-height-large);
+    border-radius: var(--syn-input-height-large);
   }
 
   /*
    * Clearable + Password Toggle
    */
+
+  .input__clear:not(.input__clear--visible) {
+    visibility: hidden;
+  }
 
   .input__clear,
   .input__password-toggle {
@@ -261,17 +269,17 @@ export default css`
     align-items: center;
     justify-content: center;
     font-size: inherit;
-    color: var(--sds-input-icon-color);
+    color: var(--syn-input-icon-color);
     border: none;
     background: none;
     padding: 0;
-    transition: var(--sds-transition-fast) color;
+    transition: var(--syn-transition-fast) color;
     cursor: pointer;
   }
 
   .input__clear:hover,
   .input__password-toggle:hover {
-    color: var(--sds-input-icon-color-hover);
+    color: var(--syn-input-icon-color-hover);
   }
 
   .input__clear:focus,

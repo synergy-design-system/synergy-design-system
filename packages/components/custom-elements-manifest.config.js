@@ -4,12 +4,13 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-import { generateCustomData } from 'cem-plugin-vs-code-custom-data-generator';
+import * as path from 'path';
+import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
+import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'pascal-case';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
-import * as path from 'path';
 
 const packageData = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 const { name, description, version, author, homepage, license } = packageData;
@@ -38,14 +39,14 @@ export default {
   plugins: [
     // Append package data
     {
-      name: 'sick-package-data',
+      name: 'synergy-package-data',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest.package = { name, description, version, author, homepage, license };
       }
     },
     // Infer tag names because we no longer use @customElement decorators.
     {
-      name: 'sick-infer-tag-names',
+      name: 'synergy-infer-tag-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -59,8 +60,10 @@ export default {
               return;
             }
 
-            const tagName = 'sds-' + path.basename(importPath, '.component.ts');
+            const tagNameWithoutPrefix = path.basename(importPath, '.component.ts');
+            const tagName = 'syn-' + tagNameWithoutPrefix;
 
+            classDoc.tagNameWithoutPrefix = tagNameWithoutPrefix;
             classDoc.tagName = tagName;
 
             // This used to be set to true by @customElement
@@ -71,7 +74,7 @@ export default {
     },
     // Parse custom jsDoc tags
     {
-      name: 'sick-custom-tags',
+      name: 'synergy-custom-tags',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -141,7 +144,7 @@ export default {
       }
     },
     {
-      name: 'sick-react-event-names',
+      name: 'synergy-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
         switch (node.kind) {
           case ts.SyntaxKind.ClassDeclaration: {
@@ -159,7 +162,7 @@ export default {
       }
     },
     {
-      name: 'sick-translate-module-paths',
+      name: 'synergy-translate-module-paths',
       packageLinkPhase({ customElementsManifest }) {
         customElementsManifest?.modules?.forEach(mod => {
           //
@@ -173,7 +176,7 @@ export default {
           //
           const terms = [
             { from: /^src\//, to: '' }, // Strip the src/ prefix
-            { from: /\.(t|j)sx?$/, to: '.js' } // Convert .ts to .js
+            { from: /\.component.(t|j)sx?$/, to: '.js' } // Convert .ts to .js
           ];
 
           mod.path = replace(mod.path, terms);
@@ -195,9 +198,25 @@ export default {
       }
     },
     // Generate custom VS Code data
-    generateCustomData({
+    customElementVsCodePlugin({
       outdir,
-      cssFileName: null
+      cssFileName: null,
+      referencesTemplate: (_, tag) => [
+        {
+          name: 'Documentation',
+          url: `https://synergy.style/components/${tag.replace('syn-', '')}`
+        }
+      ]
+    }),
+    customElementJetBrainsPlugin({
+      outdir: './dist',
+      excludeCss: true,
+      referencesTemplate: (_, tag) => {
+        return {
+          name: 'Documentation',
+          url: `https://synergy.style/components/${tag.replace('syn-', '')}`
+        };
+      }
     })
   ]
 };

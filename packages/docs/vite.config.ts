@@ -2,12 +2,13 @@
 /* eslint-disable import/no-relative-packages */
 import fs from 'fs';
 import path from 'path';
+import { defineConfig } from 'vite';
 import { replaceCodePlugin } from 'vite-plugin-replace';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
 import packageJson from '../components/package.json';
 import customElementConfig from '../components/custom-elements-manifest.config.js';
 
-const getAbsolutePath = (...pathParts: String[]) => path.join(
+const getAbsolutePath = (...pathParts: string[]) => path.join(
   path.dirname(__filename),
   ...pathParts,
 );
@@ -17,7 +18,14 @@ const getAbsolutePath = (...pathParts: String[]) => path.join(
  * This will make custom data from `package.json` work for metadata.
  */
 const getCustomElementManifestPlugins = () => {
-  const allowedPlugins = ['sick-package-data', 'sick-infer-tag-names', 'sick-custom-tags', 'sick-translate-module-paths'];
+  // List of allowed plugins, taken from the
+  // components custom-elements-manifest.config.js.
+  const allowedPlugins = [
+    'package-data',
+    'infer-tag-names',
+    'custom-tags',
+    'translate-module-paths'
+  ].map(i => `synergy-${i}`);
 
   const applyablePlugins = customElementConfig.plugins.filter(
     plugin => plugin.name && allowedPlugins.includes(plugin.name)
@@ -54,23 +62,23 @@ const getCustomElementManifestPlugins = () => {
   });
 };
 
-export default (() => ({
+export default defineConfig(() => ({
   build: {
     lib: {
       entry: getAbsolutePath('../components/src/sick.ts'),
       fileName: format => `${format}/components.js`,
-      name: 'SDS Components',
+      name: 'Synergy Components',
     },
     outDir: 'dist',
     rollupOptions: {
       output: {
         chunkFileNames: 'es/[name].js',
         dir: 'dist/components',
-        // Modern JS bundles (no JS compilation, ES module output)
         format: 'esm',
       },
       plugins: [],
     },
+    target: 'esnext',
   },
   plugins: [
     VitePluginCustomElementsManifest({

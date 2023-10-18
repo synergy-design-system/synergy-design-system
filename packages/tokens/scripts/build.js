@@ -4,7 +4,7 @@ import { addMissingTokens } from './add-missing-tokens.js';
 const createThemes = async () => {
   const tokenBuilder = new TokenBuilder({
     buildPath: '../dist/',
-    prefix: 'sds-',
+    prefix: 'syn-',
     sourcePaths: [
       '../src/figma-tokens/color/primitives.json',
       '../src/figma-tokens/globals.json',
@@ -13,7 +13,7 @@ const createThemes = async () => {
   });
   tokenBuilder.buildTokens();
 
-  await addMissingTokens('sds');
+  await addMissingTokens('syn');
   return Promise.resolve(true);
 };
 

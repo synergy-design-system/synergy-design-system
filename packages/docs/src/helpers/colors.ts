@@ -1,5 +1,5 @@
 import { paramCase } from 'change-case';
-import * as tokens from '@sick-design-system/tokens';
+import * as tokens from '@synergy-design-system/design-tokens';
 
 /**
  * Get all colors from a palette as object
@@ -31,7 +31,7 @@ const getPaletteMembersByWeight = (
   Object
     .entries(getColorAsPalette(palette))
     .filter(([token]) => {
-      const weight = parseInt(token.toLowerCase().replace(palette, '').trim(), 10);
+      const weight = parseInt(token.toLowerCase().replaceAll(palette, '').trim(), 10);
       return weight >= minValue && weight <= maxValue;
     }),
 );
@@ -46,22 +46,9 @@ export const getSecondaryColorPalette = (useFullTokenName = false) => getColorAs
 export const getAccentColorPalette = (useFullTokenName = false) => getColorAsPalette('accent', useFullTokenName);
 
 /**
- * Special case handling: As addons does not use the weight specifier but is still named,
- * we have to strip the naming by ourselfs
- */
-export const getAddonsColorPalette = (useFullTokenName = false) => Object.fromEntries(
-  Object
-    .entries(getColorAsPalette('addons', useFullTokenName))
-    .map(([token, value]) => [
-      token.replace('addons', ''),
-      value,
-    ]),
-);
-
-/**
  * Get the full neutral palette
  */
-export const getNeutralColorPalette = () => getColorAsPalette('neutral');
+export const getNeutralColorPalette = (useFullTokenName = false) => getColorAsPalette('neutral', useFullTokenName);
 
 /**
  * Get the dark part of the neutral palette.

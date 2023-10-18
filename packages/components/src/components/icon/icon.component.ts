@@ -9,7 +9,7 @@ import { html } from 'lit';
 import { isTemplateResult } from 'lit/directive-helpers.js';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
-import SickElement from '../../internal/sick-element.js';
+import SynergyElement from '../../internal/synergy-element.js';
 import styles from './icon.styles.js';
 
 import type { CSSResultGroup, HTMLTemplateResult } from 'lit';
@@ -21,19 +21,24 @@ type SVGResult = HTMLTemplateResult | SVGSVGElement | typeof RETRYABLE_ERROR | t
 let parser: DOMParser;
 const iconCache = new Map<string, Promise<SVGResult>>();
 
+interface IconSource {
+  url?: string;
+  fromLibrary: boolean;
+}
+
 /**
  * @summary Icons are symbols that can be used to represent various options within an application.
- * @documentation https://sick.style/components/icon
+ * @documentation https://synergy.style/components/icon
  * @status stable
  * @since 2.0
  *
- * @event sds-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
- * @event sds-error - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.
+ * @event syn-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
+ * @event syn-error - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.
  *
  * @csspart svg - The internal SVG element.
  * @csspart use - The <use> element generated when using `spriteSheet: true`
  */
-export default class SdsIcon extends SickElement {
+export default class SynIcon extends SynergyElement {
   static styles: CSSResultGroup = styles;
 
   private initialRender = false;
@@ -110,12 +115,19 @@ export default class SdsIcon extends SickElement {
     unwatchIcon(this);
   }
 
-  private getUrl() {
+  private getIconSource(): IconSource {
     const library = getIconLibrary(this.library);
     if (this.name && library) {
-      return library.resolver(this.name);
+      return {
+        url: library.resolver(this.name),
+        fromLibrary: true
+      };
     }
-    return this.src;
+
+    return {
+      url: this.src,
+      fromLibrary: false
+    };
   }
 
   @watch('label')
@@ -135,8 +147,8 @@ export default class SdsIcon extends SickElement {
 
   @watch(['name', 'src', 'library'])
   async setIcon() {
-    const library = getIconLibrary(this.library);
-    const url = this.getUrl();
+    const { url, fromLibrary } = this.getIconSource();
+    const library = fromLibrary ? getIconLibrary(this.library) : undefined;
 
     if (!url) {
       this.svg = null;
@@ -160,7 +172,7 @@ export default class SdsIcon extends SickElement {
       iconCache.delete(url);
     }
 
-    if (url !== this.getUrl()) {
+    if (url !== this.getIconSource().url) {
       // If the url has changed while fetching the icon, ignore this request
       return;
     }
@@ -174,22 +186,16 @@ export default class SdsIcon extends SickElement {
       case RETRYABLE_ERROR:
       case CACHEABLE_ERROR:
         this.svg = null;
-        this.emit('sds-error');
+        this.emit('syn-error');
         break;
       default:
         this.svg = svg.cloneNode(true) as SVGElement;
         library?.mutator?.(this.svg);
-        this.emit('sds-load');
+        this.emit('syn-load');
     }
   }
 
   render() {
     return this.svg;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'sds-icon': SdsIcon;
   }
 }

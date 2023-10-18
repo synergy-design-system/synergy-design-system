@@ -4,7 +4,15 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-import SdsIcon from './icon.component.js';
+import SynIcon from './icon.component.js';
+
 export * from './icon.component.js';
-export default SdsIcon;
-SdsIcon.define('sds-icon');
+export default SynIcon;
+
+SynIcon.define('syn-icon');
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'syn-icon': SynIcon;
+  }
+}

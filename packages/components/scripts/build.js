@@ -91,7 +91,7 @@ async function buildSource() {
 } 
 
 async function buildCEM() {
-  return exec('cem analyze --litelement --outdir dist', { stdio: 'inherit' });
+  return execPromise('cem analyze --litelement --outdir dist', { stdio: 'inherit' });
 }
 
 /**
@@ -124,9 +124,9 @@ await nextTask('Cleaning up the previous build', async () => {
 });
 
 // @todo: Enable this for type checks in the future!
-// await nextTask('Running the TypeScript compiler', () => {
-//   return execPromise(`tsc --project ./tsconfig.json --outdir "${outDir}"`, { stdio: 'inherit' });
-// });
+await nextTask('Running the TypeScript compiler', () => {
+  return execPromise(`tsc --project ./tsconfig.prod.json --outdir "${outDir}"`, { stdio: 'inherit' });
+});
 
 await nextTask('Building source files', async () => {
   buildResults = await buildSource();

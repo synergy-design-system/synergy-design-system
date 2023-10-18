@@ -13,23 +13,31 @@
     ],
     "css.lint.unknownAtRules": "ignore",
     "cssVariables.lookupFiles": [
-        "packages/design-tokens/build/css/*.css"
+        "packages/tokens/src/*.css"
     ],
     "eslint.workingDirectories": [
-        "packages/components",
-        "packages/css",
-        "packages/design-tokens",
-        "packages/docs",
-        "packages/eslint-config-sds",
-        "packages/icons",
-        "packages/stylelint-config-sds"
+      "packages/_internal/eslint-config-sds",
+      "packages/_internal/stylelint-config-sds",
+      "packages/assets",
+      "packages/components",
+      "packages/docs",
+      "packages/tokens",
     ],
     "files.readonlyInclude": {
         "packages/components/custom-elements-manifest.config.js": true,
         "packages/components/web-test-runner.config.js": true,
         "packages/components/tsconfig.json": true,
+        "packages/components/tsconfig.prod.json": true,
         "packages/components/src/declaration.d.ts": true,
         "packages/components/src/translations/de.ts": true,
+        "packages/components/src/events/syn-blur.ts": true,
+        "packages/components/src/events/syn-focus.ts": true,
+        "packages/components/src/events/syn-invalid.ts": true,
+        "packages/components/src/events/syn-load.ts": true,
+        "packages/components/src/events/syn-error.ts": true,
+        "packages/components/src/events/syn-change.ts": true,
+        "packages/components/src/events/syn-clear.ts": true,
+        "packages/components/src/events/syn-input.ts": true,
         "packages/components/prettier.config.cjs": true,
         "packages/components/prettier.config.js": true,
         "packages/components/src/synergy-autoloader.ts": true,
@@ -60,5 +68,8 @@
         "packages/components/src/internal/form.ts": true,
         "packages/components/src/styles/form-control.styles.ts": true,
         "packages/components/src/internal/test/form-control-base-tests.ts": true
-    }
+    },
+    "html.customData": [
+        "packages/components/dist/vscode.html-custom-data.json"
+    ]
 }

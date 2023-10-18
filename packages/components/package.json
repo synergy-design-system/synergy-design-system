@@ -18,6 +18,9 @@
     "./dist/utilities/*": "./dist/utilities/*",
     "./dist/translations/*": "./dist/translations/*"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
@@ -56,7 +59,7 @@
     "custom-element-vs-code-integration": "^1.2.1",
     "del": "^7.1.0",
     "esbuild": "^0.19.4",
-    "esbuild-plugin-replace": "^1.4.0",    
+    "esbuild-plugin-replace": "^1.4.0",
     "eslint": "^8.47.0",
     "eslint-plugin-lit": "^1.9.1",
     "eslint-plugin-lit-a11y": "^4.1.0",
@@ -80,7 +83,10 @@
   "release": {
     "branches": [
       "+([0-9])?(.{+([0-9]),x}).x",
-      "main",
+      {
+        "name": "main",
+        "prerelease": true
+      },
       {
         "name": "beta",
         "prerelease": true

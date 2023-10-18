@@ -2,10 +2,10 @@ export class FigmaValidator {
   constructor(config) {
     this.config = {
       baseURL: 'https://api.figma.com/v1', // default value
+      exportVariants: true,
       format: 'svg',
       scale: 1,
-      exportVariants: true,
-      ...config
+      ...config,
     };
   }
 
@@ -14,12 +14,12 @@ export class FigmaValidator {
       const response = await fetch(`${this.config.baseURL}/files/${fileId}`, {
         headers: {
           'Content-Type': 'application/json',
-          'X-Figma-Token': this.config.figmaPersonalToken
+          'X-Figma-Token': this.config.figmaPersonalToken,
         },
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+        throw new Error(`Network response was not ok ${response.statusText}`);
       }
 
       const data = await response.json();
@@ -40,5 +40,6 @@ export class FigmaValidator {
 
       return missingPages;
     }
+    return Promise.resolve();
   }
 }

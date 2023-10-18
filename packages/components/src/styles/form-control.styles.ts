@@ -4,10 +4,10 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-/* stylelint-disable */
 import { css } from 'lit';
 
 export default css`
+	/* stylelint-disable */
   .form-control .form-control__label {
     display: none;
   }

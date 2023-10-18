@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { paramCase } from 'change-case';
 import * as tokens from '@synergy-design-system/tokens';
 

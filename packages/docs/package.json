@@ -25,6 +25,7 @@
     "@storybook/web-components-vite": "^7.4.6",
     "@synergy-design-system/eslint-config-sds": "workspace:^",
     "@synergy-design-system/stylelint-config-sds": "workspace:^",
+    "@types/react": "^18.2.28",
     "eslint": "^8.51.0",
     "eslint-plugin-storybook": "^0.6.15",
     "html-format": "^1.1.2",

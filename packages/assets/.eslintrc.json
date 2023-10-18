@@ -3,9 +3,6 @@
   "rules": {
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
-    }],
-    "no-param-reassign": ["error", { "props": false }],
-    "no-prototype-builtins": "off",
-    "no-cond-assign": ["error", "except-parens"]
+    }]
   }
 }

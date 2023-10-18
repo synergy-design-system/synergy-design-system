@@ -1,6 +1,44 @@
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
 
+function registerFormat(prefix) {
+  const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
+
+  StyleDictionary.registerFormat({
+    formatter({ dictionary, file, options }) {
+      const { outputReferences } = options;
+
+      const isTokenColor = (token) => !token?.name.includes(`${prefix}color`) && typeof token?.original?.value === 'string' && token.original.value.includes('{');
+      const convertOriginalToCssVar = (token) => {
+        if (isTokenColor(token)) {
+          token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
+            .replace('{', '')
+            .replace('}', '')
+            .replace('.', '-')
+          })`;
+        }
+        return token;
+      };
+
+      // eslint-disable-next-line max-len
+      // go recursively through every dictionary.property, check if it has an original value and if it does, convert it to a css var
+      const convertOriginalToCssVarRecursive = (dict) => {
+        Object.keys(dict).forEach((key) => {
+          if (!dict[key].hasOwnProperty('original') && !dict[key].hasOwnProperty('value')) {
+            convertOriginalToCssVarRecursive(dict[key]);
+          } else {
+            dict[key] = convertOriginalToCssVar(dict[key]);
+          }
+        });
+      };
+      convertOriginalToCssVarRecursive(dictionary);
+
+      return `${fileHeader({ file })}:root {${formattedVariables({ dictionary, format: 'css', outputReferences })}}`;
+    },
+    name: 'myCustomFormat',
+  });
+}
+
 export class TokenBuilder {
   constructor({ sourcePaths, buildPath, prefix = 'es-' }) {
     this.sourcePaths = sourcePaths;
@@ -16,30 +54,29 @@ export class TokenBuilder {
     registerTransforms(StyleDictionary);
 
     this.registerTransforms();
-    this.registerFormat(this.prefix);
+    registerFormat(this.prefix);
   }
 
   registerTransforms() {
     StyleDictionary.registerTransform({
-      type: 'name',
-      name: 'eds/add-color-name',
       matcher: (token) => token.type === 'color',
+      name: 'eds/add-color-name',
       transformer: (token) => {
         if (token.type === 'color' && !token.filePath.includes('semantic')) {
           token.name = token.name.replace(this.prefix, `${this.prefix}color-`);
         }
         return token.name;
       },
+      type: 'name',
     });
 
     StyleDictionary.registerTransform({
-      type: 'value',
-      name: 'eds/add-fallback-fonts',
       matcher: (token) => token.type === 'fontFamilies',
+      name: 'eds/add-fallback-fonts',
       transformer: (token) => {
         if (token.name.includes('sans')) {
           token.value += `, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
+          'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
         } else if (token.name.includes('serif')) {
           token.value += ', Georgia, \'Times New Roman\', Times, serif';
         } else if (token.name.includes('mono')) {
@@ -47,61 +84,31 @@ export class TokenBuilder {
         }
         return token.value;
       },
+      type: 'value',
     });
 
     StyleDictionary.registerTransform({
-      type: 'value',
+      matcher: () => true,
       name: 'logger',
-      matcher: (token) => true,
       transformer: (token) => token.value, // <- transform as needed
-    });
-  }
-
-  registerFormat(prefix) {
-    const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
-
-    StyleDictionary.registerFormat({
-      name: 'myCustomFormat',
-      formatter({ dictionary, file, options }) {
-        const { outputReferences } = options;
-
-        const isTokenColor = (token) => !token?.name.includes(`${prefix}color`) && typeof token?.original?.value === 'string' && token.original.value.includes('{');
-
-        const convertOriginalToCssVar = (token) => {
-          if (isTokenColor(token)) {
-            token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
-              .replace('{', '')
-              .replace('}', '')
-              .replace('.', '-')
-              })`;
-          }
-          return token;
-        };
-
-        // eslint-disable-next-line max-len
-        // go recursively through every dictionary.property, check if it has an original value and if it does, convert it to a css var
-        const convertOriginalToCssVarRecursive = (dictionary) => {
-          Object.keys(dictionary).forEach((key) => {
-            if (!dictionary[key].hasOwnProperty('original') && !dictionary[key].hasOwnProperty('value')) {
-              convertOriginalToCssVarRecursive(dictionary[key]);
-            } else {
-              dictionary[key] = convertOriginalToCssVar(dictionary[key]);
-            }
-          });
-        };
-        convertOriginalToCssVarRecursive(dictionary);
-
-        return `${fileHeader({ file })}:root {${formattedVariables({ format: 'css', dictionary, outputReferences })}}`;
-      },
+      type: 'value',
     });
   }
 
   buildTokens() {
-    return ['dark', 'light'].map((theme) => {
+    return ['dark', 'light'].forEach((theme) => {
       const sd = StyleDictionary.extend({
-        source: this.sourcePaths.concat(`./packages/tokens/src/figma-tokens/color/${theme}.json`),
         platforms: {
           css: {
+            buildPath: this.buildPath,
+            files: [
+              {
+                destination: `${theme}.css`,
+                filter(token) { return !token.filePath.includes('primitive'); },
+                format: 'myCustomFormat',
+              },
+            ],
+            prefix: this.prefix,
             transforms: [
               'ts/descriptionToComment',
               'ts/size/px',
@@ -120,17 +127,9 @@ export class TokenBuilder {
               'eds/add-color-name',
               'eds/add-fallback-fonts',
             ],
-            prefix: this.prefix,
-            buildPath: this.buildPath,
-            files: [
-              {
-                destination: `${theme}.css`,
-                filter(token) { return !token.filePath.includes('primitive'); },
-                format: 'myCustomFormat',
-              },
-            ],
           },
         },
+        source: this.sourcePaths.concat(`./packages/tokens/src/figma-tokens/color/${theme}.json`),
       });
       sd.buildAllPlatforms();
     });

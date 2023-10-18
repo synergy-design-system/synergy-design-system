@@ -1,6 +1,5 @@
 // Components
 export { default as SynInput } from './components/input/input.js';
-/* plop:component */
 
 // Utilities
 // export * from './utilities/animation.js';
@@ -9,4 +8,4 @@ export { default as SynInput } from './components/input/input.js';
 // export * from './utilities/form.js';
 
 // Events
-// export * from './events/events.js';
+export * from './events/events.js';

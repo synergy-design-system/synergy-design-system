@@ -9,7 +9,11 @@ const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 function registerFormat(prefix) {
   const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
+  /**
+   * tokens-to-recursive-css-variables
+   */
   StyleDictionary.registerFormat({
+    name: 'tokens-to-recursive-css-variables',
     formatter({ dictionary, file, options }) {
       const { outputReferences } = options;
 
@@ -39,8 +43,51 @@ function registerFormat(prefix) {
       convertOriginalToCssVarRecursive(dictionary);
 
       return `${fileHeader({ file })}:root {${formattedVariables({ dictionary, format: 'css', outputReferences })}}`;
-    },
-    name: 'myCustomFormat',
+    }
+  });
+
+  StyleDictionary.registerFormat({
+    name: 'tokens-to-scss-variables',
+    formatter({ dictionary, file, options }) {
+      const { outputReferences } = options;
+
+      const isTokenColor = (token) => {
+        return token?.original?.value && typeof token.original.value === 'string' && token.original.value.includes('{');
+      };
+
+      const convertOriginalToCssVar = (token) => {
+        if (isTokenColor(token)) {
+          token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
+            .replace('{', '')
+            .replace('}', '')
+            .replace('.', '-')
+            })`;
+        }
+        return token;
+      };
+
+      const convertOriginalToScssVarRecursive = (dict) => {
+        Object.keys(dict).forEach((key) => {
+          if (dict[key].value) {
+            dict[key] = convertOriginalToCssVar(dict[key]);
+          } else if (typeof dict[key] === 'object') {
+            convertOriginalToScssVarRecursive(dict[key]);
+          }
+        });
+      };
+
+      convertOriginalToScssVarRecursive(dictionary.properties);
+
+      let scssString = formattedVariables({ dictionary, format: 'scss', outputReferences });
+      scssString = scssString.split('\n')
+        .map(line => {
+          if (line.trim() === '') return line; 
+          return `$${line.trim().replace(' =', ':')};`; 
+        })
+        .join('\n');
+
+      return `${fileHeader({ file })}${scssString}`;
+    }
   });
 }
 
@@ -109,7 +156,7 @@ export class TokenBuilder {
     StyleDictionary.registerTransform({
       matcher: () => true,
       name: 'logger',
-      transformer: (token) => token.value, // <- transform as needed
+      transformer: (token) => token.value,
       type: 'value',
     });
   }
@@ -119,12 +166,16 @@ export class TokenBuilder {
       const sd = StyleDictionary.extend({
         platforms: {
           css: {
-            buildPath: this.buildPath,
+            buildPath: `${this.buildPath}css/`,
             files: [
               {
                 destination: `${theme}.css`,
                 filter(token) { return !token.filePath.includes('primitive'); },
-                format: 'myCustomFormat',
+                format: 'tokens-to-recursive-css-variables',
+                options: {
+                  fileHeader: 'sdsHeader',
+                  outputReferences: true,
+                },
               },
             ],
             prefix: this.prefix,
@@ -154,14 +205,17 @@ export class TokenBuilder {
     });
   }
 
+  //move to dist/ folder
   buildSCSSTokens() {
     const sdsStyleDictionaryConfig = ({
       platforms: {
         scss: {
           buildPath: `${this.buildPath}scss/`,
-          files: [{
-            destination: '_tokens.scss',
-            format: 'scss/variables',
+          files: [
+            {
+            destination: `tokens.scss`,
+            filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
+            format: 'tokens-to-scss-variables',
             options: {
               fileHeader: 'sdsHeader',
               outputReferences: true,
@@ -174,7 +228,7 @@ export class TokenBuilder {
           transformGroup: SDSTransformGroupSASS.name,
         },
       },
-      source: ['tokens/**/*.json'],
+      source: ['src/figma-tokens/**/*.json'],
     });
 
     StyleDictionary

@@ -3,7 +3,7 @@ import { addMissingTokens } from './add-missing-tokens.js';
 
 const createThemes = async () => {
   const tokenBuilder = new TokenBuilder({
-    buildPath: './build/',
+    buildPath: './dist/',
     prefix: 'syn-',
     sourcePaths: [
       '../src/figma-tokens/color/primitives.json',

@@ -37,45 +37,45 @@ export const createCssVariablesForCss = {
 }
 
 export const createCssVariablesForScss = {
-    name: 'syn/create-css-variables-for-scss',
-    formatter({ dictionary, file, options }) {
-      const { outputReferences } = options;
+  name: 'syn/create-css-variables-for-scss',
+  formatter({ dictionary, file, options }) {
+    const { outputReferences } = options;
 
-      const isTokenColor = (token) => {
-        return token?.original?.value && typeof token.original.value === 'string' && token.original.value.includes('{');
-      };
+    const isTokenColor = (token) => {
+      return token?.original?.value && typeof token.original.value === 'string' && token.original.value.includes('{');
+    };
 
-      const convertOriginalToCssVar = (token) => {
-        if (isTokenColor(token)) {
-          token.value = `var(--syn-${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
-            .replace('{', '')
-            .replace('}', '')
-            .replace('.', '-')
-            })`;
+    const convertOriginalToCssVar = (token) => {
+      if (isTokenColor(token)) {
+        let tokenName = token.path.join('-');
+        if (token.original.type === 'color') {
+          tokenName = 'color-' + tokenName;
         }
-        return token;
-      };
+        token.value = `var(--syn-${tokenName})`;
+      }
+      return token;
+    };
 
-      const convertOriginalToScssVarRecursive = (dict) => {
-        Object.keys(dict).forEach((key) => {
-          if (dict[key].value) {
-            dict[key] = convertOriginalToCssVar(dict[key]);
-          } else if (typeof dict[key] === 'object') {
-            convertOriginalToScssVarRecursive(dict[key]);
-          }
-        });
-      };
+  const convertOriginalToScssVarRecursive = (dict) => {
+    Object.keys(dict).forEach((key) => {
+      if (dict[key].value) {
+        dict[key] = convertOriginalToCssVar(dict[key]);
+      } else if (typeof dict[key] === 'object') {
+        convertOriginalToScssVarRecursive(dict[key]);
+      }
+    });
+  };
 
-      convertOriginalToScssVarRecursive(dictionary.properties);
+  convertOriginalToScssVarRecursive(dictionary.properties);
 
-      let scssString = formattedVariables({ dictionary, format: 'scss', outputReferences });
-      scssString = scssString.split('\n')
-        .map(line => {
-          if (line.trim() === '') return line; 
-          return `$${line.trim().replace(' =', ':')}`; 
-        })
-        .join('\n');
+  let scssString = formattedVariables({ dictionary, format: 'scss', outputReferences });
+  scssString = scssString.split('\n')
+    .map(line => {
+      if (line.trim() === '') return line; 
+      return `$${line.trim().replace(' =', ':')}`; 
+    })
+    .join('\n');
 
-      return `${fileHeader({ file })}${scssString}`;
-    }
+  return `${fileHeader({ file })}${scssString}`;
   }
+}

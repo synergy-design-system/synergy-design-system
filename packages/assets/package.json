@@ -34,6 +34,9 @@
     "SICK Design System",
     "Design Tokens"
   ],
+  "files": [
+    "src"
+  ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/assets",
   "repository": {

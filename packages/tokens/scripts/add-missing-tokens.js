@@ -1,3 +1,8 @@
+/**
+ * As long as we don't have all tokens coming from Figma Tokens,
+ * we will provide some fallback CSS variables from Shoelace.
+ */
+
 import fs from 'fs';
 import { promisify } from 'util';
 import path from 'path';

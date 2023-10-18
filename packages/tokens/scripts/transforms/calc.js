@@ -17,7 +17,7 @@ const supportedCalculations = [
  */
 export const calc = {
   matcher: ({ value }) => typeof value === 'string' && supportedCalculations.find((calcChar) => value.includes(calcChar)),
-  name: 'sds/calc',
+  name: 'syn/calc',
   transformer: ({ value }) => {
     // CSS Calc syntax needs a whitespace before AND after the calculation because:
     //   calc(4px * 3); <-- valid

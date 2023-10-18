@@ -6,8 +6,35 @@ import commandLineArgs from 'command-line-args';
 import fs from 'fs';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
-const components = ['input']
-const otherIncludes = ['custom-elements-manifest.config.js', 'web-test-runner.config.js', '*prettier*', 'tsconfig.json', 'src/declaration.d.ts', 'src/shoelace-autoloader*', 'src/translations/de.ts'];
+const components = ['input'];
+
+// List of events that we want to import.
+// @todo: Automate this depending on components!
+// @todo: This will NOT add exports to events/events.ts automatically
+const events = [
+  'sl-blur',
+  'sl-focus',
+  'sl-invalid',
+  'sl-load',
+  'sl-error',
+  'sl-blur', 
+  'sl-change', 
+  'sl-clear',
+  'sl-input',
+].map(evt => `src/events/${evt}.ts`);
+
+const otherIncludes = [
+  'custom-elements-manifest.config.js',
+  'web-test-runner.config.js',
+  '*prettier*',
+  'tsconfig.json',
+  'tsconfig.prod.json',
+  'src/declaration.d.ts',
+  'src/shoelace-autoloader*',
+  'src/translations/de.ts',
+  ...events,
+];
+
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
 const shoelaceVersion = '2.10.0';
@@ -44,6 +71,17 @@ const config = {
     },
     //Changes targeted files -> otherIncludes
     transforms: [
+      // Adjust the event map to use our own file names
+      (path, content) => {
+        const outputPath = path.startsWith('events/')
+          ? path.replace('sl-', libraryPrefix + '-')
+          : path;
+
+        return {
+          content,
+          path: outputPath,
+        };
+      },
       // Add lint ignore information to all vendored data and remove lint-enables
       (path, content) => {
         const eslintEnableComment = '/* eslint-enable */';

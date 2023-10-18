@@ -22,5 +22,6 @@
     "build": "pnpm --recursive --if-present build",
     "lint": "pnpm --recursive --if-present lint",
     "cli": "node ./scripts/unified-design-system.js"
-  }
+  },
+  "private": true
 }

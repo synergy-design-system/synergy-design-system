@@ -16,13 +16,9 @@
     "semantic-release-monorepo": "^7.0.5",
     "style-dictionary": "^3.8.0"
   },
-  "exports": {
-    ".": "./build/js/index.js",
-    "./css": "./build/css/tokens.css"
-  },
   "files": [
-    "build",
-    "tokens",
+    "dist",
+    "src",
     "CHANGELOG.md"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/tokens",
@@ -41,16 +37,10 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      "main",
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      }
+      "+([0-9])?(.{+([0-9]),x}).x", 
+      { "name": "main", "prerelease": true },
+      {"name": "beta", "prerelease": true}, 
+      {"name": "alpha", "prerelease": true}
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -92,6 +82,5 @@
     "start": "pnpm build"
   },
   "type": "module",
-  "types": "./build/js/index.d.ts",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }

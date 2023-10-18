@@ -34,6 +34,9 @@
     "SICK Design System",
     "Design Tokens"
   ],
+  "files": [
+    "src"
+  ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/assets",
   "repository": {
@@ -44,7 +47,10 @@
   "release": {
     "branches": [
       "+([0-9])?(.{+([0-9]),x}).x",
-      "main",
+      {
+        "name": "main",
+        "prerelease": true
+      },
       {
         "name": "beta",
         "prerelease": true
@@ -93,5 +99,5 @@
   },
   "type": "module",
   "types": "./build/js/index.d.ts",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }

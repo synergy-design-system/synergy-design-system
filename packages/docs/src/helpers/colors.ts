@@ -1,5 +1,5 @@
 import { paramCase } from 'change-case';
-import * as tokens from '@synergy-design-system/design-tokens';
+import * as tokens from '@synergy-design-system/tokens';
 
 /**
  * Get all colors from a palette as object

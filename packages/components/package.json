@@ -110,10 +110,7 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
+          "assets": ["CHANGELOG.md", "package.json"]
         }
       ],
       [
@@ -126,5 +123,6 @@
   },
   "dependencies": {
     "lit": "^3.0.0"
-  }
+  },
+  "web-types": "./dist/web-types.json"
 }

@@ -1,2 +1,1 @@
-export * from './colors';
-export * from './renderComponent';
+export * from './colors.js';

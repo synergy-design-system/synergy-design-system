@@ -102,7 +102,7 @@ export default class SynergyElement extends LitElement {
   /* eslint-disable */
   // @ts-expect-error This is auto-injected at build time.
   static version = __PACKAGE_VERSION__;
-  /* eslint-enable */
+  
 
   static define(name: string, elementConstructor = this, options: ElementDefinitionOptions = {}) {
     const currentlyRegisteredConstructor = customElements.get(name) as

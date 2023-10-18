@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "@synergy-design-system/eslint-config-sds/ts",
+    "plugin:wc/recommended",
+    "plugin:wc/best-practice",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "wc",
+    "lit",
+    "lit-a11y"
+  ]
+}

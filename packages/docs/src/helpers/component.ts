@@ -1,3 +1,7 @@
+// TODO: this eslint-disable should be removed at some point,
+// as soon as it is clear what we want to do with this file
+
+/* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
 import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
 import { html, unsafeStatic } from 'lit/static-html.js';

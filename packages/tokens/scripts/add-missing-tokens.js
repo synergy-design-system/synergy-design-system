@@ -55,14 +55,18 @@ export const addMissingTokens = async (prefix) => {
   try {
     const targetFiles = await readdir(targetDir);
 
-    for (const targetFile of targetFiles) {
+    const results = [];
+
+    targetFiles.forEach((targetFile) => {
       const sourceFilePath = path.join(sourceDir, targetFile);
       const targetFilePath = path.join(targetDir, targetFile);
 
       if (fs.existsSync(sourceFilePath)) {
-        await compareAndAppendVariables(sourceFilePath, targetFilePath, prefix);
+        results.push(compareAndAppendVariables(sourceFilePath, targetFilePath, prefix));
       }
-    }
+    });
+
+    await Promise.all(results);
   } catch (error) {
     console.error('Error reading directory:', error);
   }

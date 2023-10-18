@@ -4,12 +4,12 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable */
-/* stylelint-disable */
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
+	/* stylelint-disable */
   ${componentStyles}
   ${formControlStyles}
 

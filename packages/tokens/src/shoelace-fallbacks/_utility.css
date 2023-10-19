@@ -1,15 +1,15 @@
 /*
  * This file contains utility classes that can't be contained in a component and must be applied to the light DOM. None
- * of the rules in this stylesheet should target component tags or HTML tags, and all classes *must* start with ".sds-"
+ * of the rules in this stylesheet should target component tags or HTML tags, and all classes *must* start with ".syn-"
  * to reduce the possibility of collisions.
  */
 
-.sds-scroll-lock {
+.syn-scroll-lock {
   padding-right: var(--syn-scroll-lock-size) !important;
   overflow: hidden !important;
 }
 
-.sds-toast-stack {
+.syn-toast-stack {
   position: fixed;
   top: 0;
   inset-inline-end: 0;
@@ -20,10 +20,10 @@
   overflow: auto;
 }
 
-.sds-toast-stack sds-alert {
+.syn-toast-stack syn-alert {
   margin: var(--syn-spacing-medium);
 }
 
-.sds-toast-stack sds-alert::part(base) {
+.syn-toast-stack syn-alert::part(base) {
   box-shadow: var(--syn-shadow-large);
 }

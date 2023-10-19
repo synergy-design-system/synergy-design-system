@@ -35,7 +35,7 @@
     "Design Tokens"
   ],
   "files": [
-    "src"
+    "src/logos"
   ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/assets",

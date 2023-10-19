@@ -1,17 +1,32 @@
 import StyleDictionary from 'style-dictionary';
+
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
 export const createCssVariables = (prefix) => ({
   formatter({ dictionary, file, options }) {
     const { outputReferences } = options;
 
-    const isTokenColor = (token) => {
-      // if (token.type !== 'color') return false;
-      return !token?.name.includes(`${prefix}color`) && !token?.name.includes(`${prefix}spacing`) && typeof token?.original?.value === 'string' && token.original.value.includes('{')
+    // Detects if the token name is valid.
+    // If you need some other prefixes, append them to the array
+    const isValidTokenName = name => (![
+      'color',
+      'spacing',
+    ]
+      .map(p => `${prefix}${p}`)
+      .some(p => name.startsWith(p))
+    );
+
+    // Check if a given token is valid
+    const isValidToken = (token) => {
+      // Skip if the prefix is not allowed
+      if (!isValidTokenName(token.name)) return false;
+
+      // We only allow strings that refer to variables
+      return typeof token?.original?.value === 'string' && token.original.value.includes('{');
     };
 
     const convertOriginalToCssVar = (token) => {
-      if (isTokenColor(token)) {
+      if (isValidToken(token)) {
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')

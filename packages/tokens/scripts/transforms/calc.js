@@ -28,15 +28,12 @@ const supportedCalculations = [
 ];
 
 /**
- * List of supported 
+ * @var List of supported prefixes
+ * @type String[]
  */
 const supportedPrefixes = [
   'syn-spacing',
 ];
-
-// --syn-spacing-small: calc(4px * 3); // yes
-// --syn-input-spacing-small: calc(calc(4px * 3)); // no :()
-
 
 /**
  * Custom transform used for adding calc() around variables that need it.
@@ -45,7 +42,8 @@ const supportedPrefixes = [
 export const calc = {
   matcher: ({ type, value, name }) => {
     if (!supportedTypes.includes(type)) return false;
-    
+
+    // Make sure we have at least one supported prefix
     const hasSupportedPrefix = supportedPrefixes.some(prefix => name.startsWith(prefix));
     if (!hasSupportedPrefix) return false;
 
@@ -62,8 +60,6 @@ export const calc = {
       .replace(/\+/g, ' + ') // Make sure we have a whitespace after our calculation char
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
-
-    console.log(output);
 
     return `calc(${output})`;
   },

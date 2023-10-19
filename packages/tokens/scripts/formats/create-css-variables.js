@@ -33,6 +33,7 @@ export const createCssVariablesForCss = {
 
     return `${fileHeader({ file })}:root {${formattedVariables({ dictionary, format: 'css', outputReferences })}}`;
   },
+  name: 'syn/create-css-variables-for-css',
 };
 
 export const createCssVariablesForScss = {

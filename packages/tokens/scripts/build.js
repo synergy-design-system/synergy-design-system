@@ -2,7 +2,14 @@ import { readFileSync } from 'fs';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
 import {
-  addColorName, addFallbackFonts, calc, log, transformTokenNameForScss, transformTokenValueForCss, transformTokenValueForScss,
+  addColorName,
+  addFallbackFonts,
+  addQuotesForStrings,
+  calc,
+  log,
+  transformTokenNameForScss,
+  transformTokenValueForCss,
+  transformTokenValueForScss,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
@@ -22,6 +29,7 @@ registerTransforms(StyleDictionary);
 StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(addQuotesForStrings);
 StyleDictionary.registerTransform(transformTokenNameForScss);
 StyleDictionary.registerTransform(transformTokenValueForScss);
 StyleDictionary.registerTransform(transformTokenValueForCss);
@@ -71,6 +79,7 @@ StyleDictionary.registerFileHeader({
           'syn/add-color-name',
           'syn/add-fallback-fonts',
           'syn/calc',
+          'syn/add-missing-quotes-for-strings',
           'syn/transform-token-value-for-css',
         ],
       },

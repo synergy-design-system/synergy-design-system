@@ -48,7 +48,6 @@ export const calc = {
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
 
-    console.log(`calc(${output})`)
     return `calc(${output})`;
   },
   transitive: true,

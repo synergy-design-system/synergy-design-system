@@ -112,6 +112,20 @@
       "color": {
         "value": "{neutral.950}",
         "type": "color"
+      },
+      "font-size": {
+        "small": {
+          "value": "{font-size.small}",
+          "type": "text"
+        },
+        "medium": {
+          "value": "{font-size.medium}",
+          "type": "text"
+        },
+        "large": {
+          "value": "{font-size.large}",
+          "type": "text"
+        }
       }
     },
     "spacing": {
@@ -164,8 +178,8 @@
         "type": "color"
       }
     },
-    "font-size": {
-      "help-text": {
+    "help-text": {
+      "font-size": {
         "small": {
           "value": "{font-size.x-small}",
           "type": "text"
@@ -179,20 +193,16 @@
           "type": "text"
         }
       },
-      "label": {
-        "small": {
-          "value": "{font-size.small}",
-          "type": "text"
-        },
-        "medium": {
-          "value": "{font-size.medium}",
-          "type": "text"
-        },
-        "large": {
-          "value": "{font-size.large}",
-          "type": "text"
-        }
+      "color": {
+        "value": "{neutral.800}",
+        "type": "color"
       },
+      "color-error": {
+        "value": "{error.600}",
+        "type": "color"
+      }
+    },
+    "font-size": {
       "small": {
         "value": "{font-size.small}",
         "type": "text"
@@ -204,16 +214,6 @@
       "large": {
         "value": "{font-size.large}",
         "type": "text"
-      }
-    },
-    "help-text": {
-      "color": {
-        "value": "{neutral.800}",
-        "type": "color"
-      },
-      "color-error": {
-        "value": "{error.600}",
-        "type": "color"
       }
     },
     "height": {

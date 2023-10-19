@@ -1,7 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
-import { calc, addColorName, addFallbackFonts, log } from './transforms/index.js';
-import { createCssVariablesForCss, createCssVariablesForScss } from './formats/index.js'
+import { calc, addColorName, addFallbackFonts, log, transformTokenNameForScss, transformTokenValueForScss, transformTokenValueForCss } from './transforms/index.js';
 import { readFileSync } from 'fs';
 import { addMissingTokens } from './add-missing-tokens.js';
 
@@ -21,9 +20,10 @@ registerTransforms(StyleDictionary);
 StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(transformTokenNameForScss);
+StyleDictionary.registerTransform(transformTokenValueForScss);
+StyleDictionary.registerTransform(transformTokenValueForCss);
 StyleDictionary.registerTransform(log);
-StyleDictionary.registerFormat(createCssVariablesForCss);
-StyleDictionary.registerFormat(createCssVariablesForScss);
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
@@ -44,7 +44,7 @@ StyleDictionary.registerFileHeader({
           {
             destination: `${theme}.css`,
             filter(token) { return !token.filePath.includes('primitive'); },
-            format: 'syn/create-css-variables-for-css',
+            format: 'css/variables',
             options: {
               fileHeader: 'syn/header',
               outputReferences: true,
@@ -69,6 +69,7 @@ StyleDictionary.registerFileHeader({
           'name/cti/kebab',
           'syn/add-color-name',
           'syn/add-fallback-fonts',
+          'syn/transform-token-value-for-css'
         ],
       },
     },
@@ -85,7 +86,7 @@ StyleDictionary
         {
         destination: `tokens.scss`,
         filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
-        format: 'syn/create-css-variables-for-scss',
+          format: 'scss/variables',
         options: {
           fileHeader: 'syn/header',
           outputReferences: true,
@@ -97,7 +98,9 @@ StyleDictionary
       prefix: config.prefix,
       transforms: [
         'name/cti/kebab',
-        'syn/add-color-name'
+        'syn/add-color-name',
+        'syn/transform-token-name-for-scss',
+        'syn/transform-token-value-for-scss'
       ],
     },
   },

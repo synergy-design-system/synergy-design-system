@@ -109,7 +109,6 @@ StyleDictionary.extend({
       transforms: [
         'name/cti/kebab',
         'syn/add-color-name',
-        'syn/transform-token-name-for-scss',
         'syn/transform-token-value-for-scss',
       ],
     },

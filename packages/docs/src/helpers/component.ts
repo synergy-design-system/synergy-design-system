@@ -18,8 +18,6 @@ export default async function loadCustomElements() {
 
   setCustomElementsManifest(customElements);
   console.log('Custom elements manifest loaded');
-
-  console.log(customElements);
 }
 
 type ArgTypesDefinition = 'attribute' | 'property' | 'slot' | 'cssPart' | 'cssProperty';
@@ -104,8 +102,6 @@ export const storybookDefaults = (customElementTag: string): any => {
         return acc;
       }, {}),
     };
-
-    console.log('output', output);
 
     return output;
   };
@@ -425,39 +421,39 @@ export const storybookTemplate = (customElementTag: string) => {
         `}
 
         ${options?.templateBackgrounds?.colors.map((color, index) => {
-    const calculateNth = (index: number) => `${options?.templateBackgrounds?.colors.length}n + ${index + 1}`;
-    return options?.templateBackgrounds?.alternate === 'y'
-      ? `
+        const calculateNth = (index: number) => `${options?.templateBackgrounds?.colors.length}n + ${index + 1}`;
+        return options?.templateBackgrounds?.alternate === 'y'
+          ? `
                 .${uuid}.story-template tbody tr.template-row:nth-of-type(${calculateNth(index)}) td.template {
                   background: ${color};
                 }
               `
-      : `
+          : `
                 .${uuid}.story-template tbody tr.template-row td.template:nth-of-type(${calculateNth(index)}) {
                   background: ${color};
                 }
               `;
-  })}
+      })}
       </style>
       ${xAxes.map((xAxis: any) => html` ${yAxes.map((yAxis: any) => {
-    let firstRow = true;
-    const showXLabel = xAxes.length > 1 || xAxis.values;
-    const showYLabel = ((xAxis && yAxis) || yAxes.length > 1) && yAxis?.values;
-    return html`
+        let firstRow = true;
+        const showXLabel = xAxes.length > 1 || xAxis.values;
+        const showYLabel = ((xAxis && yAxis) || yAxes.length > 1) && yAxis?.values;
+        return html`
             <table class="story-template ${uuid} ${options?.classes}">
               <thead>
                 ${options?.title
-            && html`<tr>
+          && html`<tr>
                   <th class="title" colspan=${(xAxis.values?.length || 0) + 3}><code>${options?.title}</code></th>
                 </tr>`}
                 ${xAxis
-            && xAxis.values
-            && html`
+          && xAxis.values
+          && html`
                   <tr>
                     ${showYLabel ? html`<td></td>` : ''} <td></td>
                     ${showXLabel
-              && html`<th colspan=${xAxis.values?.length || 0}><code>${xAxis.title || xAxis.name}</code></th>`
-}
+            && html`<th colspan=${xAxis.values?.length || 0}><code>${xAxis.title || xAxis.name}</code></th>`
+            }
                     </tr>
                   </tr>
                   ${html`
@@ -471,62 +467,62 @@ export const storybookTemplate = (customElementTag: string) => {
               </thead>
               <tbody>
                 ${(yAxis?.values || ['']).map((yValue: any) => {
-    const row = html`
+              const row = html`
                     <tr class="template-row">
                       ${firstRow && showYLabel
-    ? html`<th rowspan="${yAxis?.values?.length}">
+                  ? html`<th rowspan="${yAxis?.values?.length}">
                             <span><code>${yAxis.title || yAxis.name}</code></span>
                           </th>`
-    : ''}
+                  : ''}
                       <th><code>${yValue.title || yValue}</code></th>
                       ${(xAxis?.values || ['']).map((xValue: any) => html`
                           <td class="template template-x-${xAxis?.values?.indexOf(xValue) || 0 + 1} template-y-${yAxis?.values?.indexOf(yValue.value || yValue) || 0 + 1
-}">
+                    }">
                           ${(xAxis.type === 'template'
-                          && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[0] || ''))
-                        || ''
-}
+                      && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[0] || ''))
+                    || ''
+                    }
                           ${(yAxis.type === 'template'
-                          && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[0] || ''))
-                        || ''
-}
+                      && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[0] || ''))
+                    || ''
+                    }
                           ${(constantsTemplate && unsafeStatic(constantsTemplate.split('%TEMPLATE%')[0] || '')) || ''}
                             ${template({
-    ...args,
-    ...constantDefinitions,
-    ...(xAxis
-                            && xAxis.type !== 'template' && {
-      [`${xAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(xAxis.type)}`]:
-                              // As the value could be null or empty, we need to check if the property exists
-                              xValue.hasOwnProperty('value') ? xValue.value : xValue,
-    }),
-    ...(yAxis
-                            && yAxis.type !== 'template' && {
-      [`${yAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(yAxis.type)}`]:
-                              // As the value could be null or empty, we need to check if the property exists
-                              yValue.hasOwnProperty('value') ? yValue.value : yValue,
-    }),
-  })}
+                      ...args,
+                      ...constantDefinitions,
+                      ...(xAxis
+                        && xAxis.type !== 'template' && {
+                        [`${xAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(xAxis.type)}`]:
+                          // As the value could be null or empty, we need to check if the property exists
+                          xValue.hasOwnProperty('value') ? xValue.value : xValue,
+                      }),
+                      ...(yAxis
+                        && yAxis.type !== 'template' && {
+                        [`${yAxis.name}${storybookHelpers(customElementTag).getSuffixFromType(yAxis.type)}`]:
+                          // As the value could be null or empty, we need to check if the property exists
+                          yValue.hasOwnProperty('value') ? yValue.value : yValue,
+                      }),
+                    })}
                          ${(yAxis.type === 'template'
-                          && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[1] || ''))
-                        || ''
-}
+                      && unsafeStatic((yValue.value || yValue).split('%TEMPLATE%')[1] || ''))
+                    || ''
+                    }
                          ${(xAxis.type === 'template'
-                          && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[1] || ''))
-                        || ''
-}
+                      && unsafeStatic((xValue.value || xValue).split('%TEMPLATE%')[1] || ''))
+                    || ''
+                    }
                           ${(constantsTemplate && unsafeStatic(constantsTemplate.split('%TEMPLATE%')[1] || '')) || ''
-}</td></div>
+                    }</td></div>
                         `)}
                     </tr>
                   `;
-    firstRow = false;
-    return row;
-  })}
+              firstRow = false;
+              return row;
+            })}
               </tbody>
             </table>
           `;
-  })}`)}
+      })}`)}
     `;
   };
 

@@ -6,8 +6,8 @@ import {
   addFallbackFonts,
   addQuotesForStrings,
   calc,
+  createCssVariables,
   log,
-  transformTokenValueForCss,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
@@ -28,7 +28,7 @@ StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addQuotesForStrings);
-StyleDictionary.registerTransform(transformTokenValueForCss);
+StyleDictionary.registerTransform(createCssVariables);
 StyleDictionary.registerTransform(log);
 
 // Sets up custom file header
@@ -76,7 +76,7 @@ StyleDictionary.registerFileHeader({
           'syn/add-fallback-fonts',
           'syn/calc',
           'syn/add-missing-quotes-for-strings',
-          'syn/transform-token-value-for-css',
+          'syn/create-css-variables',
         ],
       },
     },

@@ -13,7 +13,7 @@ import { addMissingTokens } from './add-missing-tokens.js';
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
 const config = {
-  buildPath: '../dist/',
+  buildPath: './dist/',
   prefix: 'syn-',
   sourcePaths: [
     './src/figma-tokens/color/primitives.json',

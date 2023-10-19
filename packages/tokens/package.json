@@ -18,7 +18,6 @@
   },
   "files": [
     "dist",
-    "src",
     "CHANGELOG.md"
   ],
   "homepage": "https://github.com/SickDesignSystem/sds/tree/main/packages/tokens",
@@ -37,10 +36,19 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x", 
-      { "name": "main", "prerelease": true },
-      {"name": "beta", "prerelease": true}, 
-      {"name": "alpha", "prerelease": true}
+      "+([0-9])?(.{+([0-9]),x}).x",
+      {
+        "name": "main",
+        "prerelease": true
+      },
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

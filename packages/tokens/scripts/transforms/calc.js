@@ -28,12 +28,27 @@ const supportedCalculations = [
 ];
 
 /**
+ * List of supported 
+ */
+const supportedPrefixes = [
+  'syn-spacing',
+];
+
+// --syn-spacing-small: calc(4px * 3); // yes
+// --syn-input-spacing-small: calc(calc(4px * 3)); // no :()
+
+
+/**
  * Custom transform used for adding calc() around variables that need it.
  * @see https://github.com/amzn/style-dictionary/issues/820
  */
 export const calc = {
-  matcher: ({ type, value }) => {
+  matcher: ({ type, value, name }) => {
     if (!supportedTypes.includes(type)) return false;
+    
+    const hasSupportedPrefix = supportedPrefixes.some(prefix => name.startsWith(prefix));
+    if (!hasSupportedPrefix) return false;
+
     return typeof value === 'string' && !!supportedCalculations.find((calcChar) => value.includes(calcChar));
   },
   name: 'syn/calc',
@@ -47,6 +62,8 @@ export const calc = {
       .replace(/\+/g, ' + ') // Make sure we have a whitespace after our calculation char
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
+
+    console.log(output);
 
     return `calc(${output})`;
   },

@@ -6,9 +6,9 @@ import {
   addFallbackFonts,
   addQuotesForStrings,
   calc,
-  createCssVariables,
   log,
 } from './transforms/index.js';
+import { createCssVariables } from './formats/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
@@ -28,8 +28,9 @@ StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addQuotesForStrings);
-StyleDictionary.registerTransform(createCssVariables);
 StyleDictionary.registerTransform(log);
+
+StyleDictionary.registerFormat(createCssVariables(config.prefix));
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
@@ -50,10 +51,9 @@ StyleDictionary.registerFileHeader({
           {
             destination: `${theme}.css`,
             filter(token) { return !token.filePath.includes('primitive'); },
-            format: 'css/variables',
+            format: 'syn/create-css-variables',
             options: {
               fileHeader: 'syn/header',
-              outputReferences: true,
             },
           },
         ],
@@ -76,7 +76,6 @@ StyleDictionary.registerFileHeader({
           'syn/add-fallback-fonts',
           'syn/calc',
           'syn/add-missing-quotes-for-strings',
-          'syn/create-css-variables',
         ],
       },
     },

@@ -164,7 +164,7 @@
         "type": "color"
       }
     },
-    "fontsize": {
+    "font-size": {
       "help-text": {
         "small": {
           "value": "{font-size.x-small}",

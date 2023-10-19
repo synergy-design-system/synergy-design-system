@@ -1,20 +1,25 @@
+import { readFileSync } from 'fs';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
-import { calc, addColorName, addFallbackFonts, log } from './transforms/index.js';
-import { createCssVariablesForCss, createCssVariablesForScss } from './formats/index.js'
-import { readFileSync } from 'fs';
+import {
+  addColorName,
+  addFallbackFonts,
+  calc,
+  log,
+} from './transforms/index.js';
+import { createCssVariablesForCss, createCssVariablesForScss } from './formats/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
 const config = {
   buildPath: '../dist/',
+  prefix: 'syn-',
   sourcePaths: [
     './src/figma-tokens/color/primitives.json',
     './src/figma-tokens/globals.json',
     './src/figma-tokens/semantic/*.json',
   ],
-  prefix: 'syn-',
 };
 
 registerTransforms(StyleDictionary);
@@ -76,15 +81,15 @@ StyleDictionary.registerFileHeader({
   }).buildAllPlatforms();
 });
 
-StyleDictionary
-  .extend({
-    platforms: {
+StyleDictionary.extend({
+  platforms: {
     scss: {
       buildPath: `${config.buildPath}scss/`,
-      files: [
-        {
-        destination: `tokens.scss`,
-        filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
+      files: [{
+        destination: 'tokens.scss',
+        filter(token) {
+          return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs');
+        },
         format: 'syn/create-css-variables-for-scss',
         options: {
           fileHeader: 'syn/header',
@@ -97,7 +102,7 @@ StyleDictionary
       prefix: config.prefix,
       transforms: [
         'name/cti/kebab',
-        'syn/add-color-name'
+        'syn/add-color-name',
       ],
     },
   },

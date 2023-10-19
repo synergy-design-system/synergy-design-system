@@ -1,1 +1,1 @@
-export * from './create-css-variables.js'
+export * from './create-css-variables.js';

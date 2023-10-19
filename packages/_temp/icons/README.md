@@ -25,7 +25,7 @@ Just include the provided `font.css` file in the `build/` directory. It will hav
 <link rel="stylesheet" href="/node_modules/@synergy-design-system/icons/build/font.css" />
 </head>
 <body>
-  <span class="sds-icon">
+  <span class="syn-icon">
     menu
   </span>
 </body>
@@ -45,7 +45,7 @@ import '@synergy-design-system/icons';
 
 ## Usage in Web Components
 
-> ⚠️ There is also an `icon.css` that only includes the base class `.sds-icon`.
+> ⚠️ There is also an `icon.css` that only includes the base class `.syn-icon`.
 > This file is intended to be loaded in web components that directly require icons in the shadow root and must not be loaded in your application.
 
 ```javascript
@@ -68,7 +68,7 @@ export class IconDemo extends LitElement {
   protected render() {
     return html`
       <p>
-        <span class="sds-icon">menu</span>
+        <span class="syn-icon">menu</span>
         Content
       </p>
     `;

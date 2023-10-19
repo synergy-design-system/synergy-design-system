@@ -16,14 +16,14 @@ The following icons are currently supported as ligatures.
 <IconGallery>
   {Object.keys(versions).map(ligature => (
     <IconItem name={ligature} key={ligature}>
-      <sds-icon
+      <syn-icon
         onClick={() => {
-          navigator.clipboard.writeText(`<sds-icon>${ligature}</sds-icon>`);
+          navigator.clipboard.writeText(`<syn-icon>${ligature}</syn-icon>`);
         }}
         style={{ cursor: 'pointer', }}
       >
         {ligature}
-      </sds-icon>
+      </syn-icon>
     </IconItem>
   ))}
 </IconGallery>

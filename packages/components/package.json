@@ -18,9 +18,7 @@
     "./dist/utilities/*": "./dist/utilities/*",
     "./dist/translations/*": "./dist/translations/*"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
@@ -45,8 +43,8 @@
     "@semantic-release/git": "^10.0.1",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.2",
-    "@synergy-design-system/eslint-config-sds": "workspace:^",
-    "@synergy-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
+    "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
     "@types/mocha": "^10.0.2",
     "@web/dev-server-esbuild": "^0.4.1",
     "@web/test-runner": "^0.17.2",
@@ -115,10 +113,7 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
+          "assets": ["CHANGELOG.md", "package.json"]
         }
       ],
       [

@@ -17,7 +17,7 @@
     ".": "./js.js",
     "./ts": "./ts.js"
   },
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/eslint-config-sds",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/eslint-config-syn",
   "keywords": [
     "eslint",
     "eslintconfig",
@@ -27,14 +27,14 @@
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@synergy-design-system/eslint-config-sds",
+  "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
     "eslint": ">8.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/synergy.git",
-    "directory": "packages/eslint-config-sds"
+    "directory": "packages/eslint-config-syn"
   },
   "scripts": {
     "lint:js": "eslint ."

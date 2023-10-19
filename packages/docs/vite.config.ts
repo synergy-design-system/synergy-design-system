@@ -34,7 +34,7 @@ const getCustomElementManifestPlugins = () => {
   return applyablePlugins.map(plugin => {
     switch (plugin.name) {
       // Adjust metadata plugin to make it work with relative package.json files
-      case 'sick-package-data': {
+      case 'synergy-package-data': {
         return {
           ...plugin,
           packageLinkPhase({ customElementsManifest }) {
@@ -65,7 +65,7 @@ const getCustomElementManifestPlugins = () => {
 export default defineConfig(() => ({
   build: {
     lib: {
-      entry: getAbsolutePath('../components/src/sick.ts'),
+      entry: getAbsolutePath('../components/src/synergy.ts'),
       fileName: format => `${format}/components.js`,
       name: 'Synergy Components',
     },

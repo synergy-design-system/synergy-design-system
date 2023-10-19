@@ -11,7 +11,7 @@
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
     "@microsoft/fast-element": "^1.12.0",
-    "@synergy-design-system/eslint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
     "eslint": "^8.47.0",
     "lit": "^2.8.0",
     "stylelint": "^15.10.3"
@@ -24,7 +24,7 @@
     "index.js",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/stylelint-config-sds",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/stylelint-config-syn",
   "keywords": [
     "stylelint",
     "stylelintconfig",
@@ -34,11 +34,11 @@
     "SICK Design System"
   ],
   "license": "BSD-3-Clause",
-  "name": "@synergy-design-system/stylelint-config-sds",
+  "name": "@synergy-design-system/stylelint-config-syn",
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/synergy.git",
-    "directory": "packages/stylelint-config-sds"
+    "directory": "packages/stylelint-config-syn"
   },
   "scripts": {
     "lint:css": "stylelint \"demo/*.{css,js,ts}\"",

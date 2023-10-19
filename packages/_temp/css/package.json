@@ -4,13 +4,13 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@synergy-design-system/design-tokens": "workspace:^",
-    "@synergy-design-system/icons": "workspace:^"
+    "@synergy-design-system/design-tokens": "workspace:0.1",
+    "@synergy-design-system/icons": "workspace:0.1"
   },
   "description": "Various CSS styles used in the Synergy Design System",
   "devDependencies": {
-    "@synergy-design-system/eslint-config-sds": "workspace:^",
-    "@synergy-design-system/stylelint-config-sds": "workspace:^",
+    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
+    "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
     "eslint": "^8.47.0",
     "normalize.css": "^8.0.1",
     "postcss": "^8.4.28",

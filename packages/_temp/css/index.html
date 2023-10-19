@@ -7,16 +7,16 @@
   <link rel="stylesheet" href="build/with-reset.css" />
   <style>
   html, body {
-    background: var(--sds-color-neutral-0);
+    background: var(--syn-color-neutral-0);
     height: 100%;
   }
 
   html {
-    background: var(--sds-color-neutral-20);
+    background: var(--syn-color-neutral-20);
   }
 
   body {
-    box-shadow: var(--sds-shadow-elevated);
+    box-shadow: var(--syn-shadow-elevated);
     border-radius: .25rem;
     height: calc(100% - 2rem);
     display: flex;
@@ -27,7 +27,7 @@
 
   header,
   footer {
-    background: var(--sds-color-neutral-700);
+    background: var(--syn-color-neutral-700);
     text-align: center;
     padding: 1rem 2rem;
   }
@@ -42,13 +42,13 @@
 
   header h1 {
     background: transparent;
-    color: var(--sds-color-neutral-0);
+    color: var(--syn-color-neutral-0);
     margin: 0;
     text-align: center;
   }
 
   header nav {
-    border-top: 1px solid var(--sds-color-neutral-0);
+    border-top: 1px solid var(--syn-color-neutral-0);
     display: flex;
     gap: .5rem;
     margin-top: .5rem;
@@ -57,7 +57,7 @@
   }
 
   footer small {
-    color: var(--sds-color-neutral-0);
+    color: var(--syn-color-neutral-0);
   }
 
   main {
@@ -77,7 +77,7 @@
   }
 
   .marked:hover {
-    background: var(--sds-color-neutral-50);
+    background: var(--syn-color-neutral-50);
   }
 
   .marked:hover code {
@@ -85,7 +85,7 @@
   }
 
   .marked code {
-    background: var(--sds-color-accent-400);
+    background: var(--syn-color-accent-400);
     border-radius: 5px;
     display: inline-block;
     font-size: 1rem;
@@ -108,14 +108,14 @@
   }
 
   .circle {
-    background: var(--sds-color-primary-400);
-    border-radius: var(--sds-border-radius-circle);
-    height: var(--sds-spacing-8);
-    width: var(--sds-spacing-8);
+    background: var(--syn-color-primary-400);
+    border-radius: var(--syn-border-radius-circle);
+    height: var(--syn-spacing-8);
+    width: var(--syn-spacing-8);
     display: block;
   }
 
-  .sds-fade {
+  .syn-fade {
     display: flex;
     gap: 1rem;
     margin: 1rem;
@@ -211,8 +211,8 @@
       <h3>Please hover over an item to see the animation</h3>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-fade-in-slow)</code>
-        <div class="sds-fade sds-fade-in-slow" data-animation="--sds-animation-fade-in-slow">
+        <code>animation: var(--syn-animation-fade-in-slow)</code>
+        <div class="syn-fade syn-fade-in-slow" data-animation="--syn-animation-fade-in-slow">
           <span class="circle"></span>
           <span class="circle"></span>
           <span class="circle"></span>
@@ -220,8 +220,8 @@
       </div>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-fade-in-fast)</code>
-        <div class="sds-fade" data-animation="--sds-animation-fade-in-fast">
+        <code>animation: var(--syn-animation-fade-in-fast)</code>
+        <div class="syn-fade" data-animation="--syn-animation-fade-in-fast">
           <span class="circle"></span>
           <span class="circle"></span>
           <span class="circle"></span>
@@ -229,8 +229,8 @@
       </div>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-rotate-slow)</code>
-        <div class="sds-fade" data-animation="--sds-animation-rotate-slow">
+        <code>animation: var(--syn-animation-rotate-slow)</code>
+        <div class="syn-fade" data-animation="--syn-animation-rotate-slow">
           <span class="circle"></span>
           <span class="circle"></span>
           <span class="circle"></span>
@@ -238,8 +238,8 @@
       </div>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-rotate-fast)</code>
-        <div class="sds-fade" data-animation="--sds-animation-rotate-fast">
+        <code>animation: var(--syn-animation-rotate-fast)</code>
+        <div class="syn-fade" data-animation="--syn-animation-rotate-fast">
           <span class="circle"></span>
           <span class="circle"></span>
           <span class="circle"></span>
@@ -247,15 +247,15 @@
       </div>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-scale)</code>
-        <div class="sds-fade" data-animation="--sds-animation-scale">
+        <code>animation: var(--syn-animation-scale)</code>
+        <div class="syn-fade" data-animation="--syn-animation-scale">
           <span class="circle"></span>
         </div>
       </div>
 
       <div class="animated">
-        <code>animation: var(--sds-animation-scale), including overridden --animation-scale</code>
-        <div class="sds-fade" data-animation="--sds-animation-scale" data-customstyles="--animation-scale: 5.0;">
+        <code>animation: var(--syn-animation-scale), including overridden --animation-scale</code>
+        <div class="syn-fade" data-animation="--syn-animation-scale" data-customstyles="--animation-scale: 5.0;">
           <span class="circle"></span>
         </div>
       </div>
@@ -265,9 +265,9 @@
       <h2>Icons</h2>
       <h3>Copy an icon to copy the glyph name</h3>
       <p>
-        <span class="sds-icon">menu</span>
-        <span class="sds-icon">cancel</span>
-        <span class="sds-icon">save</span>
+        <span class="syn-icon">menu</span>
+        <span class="syn-icon">cancel</span>
+        <span class="syn-icon">save</span>
       </p>
     </section>
 

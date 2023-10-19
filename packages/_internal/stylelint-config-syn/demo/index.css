@@ -1,6 +1,6 @@
 /**
  * This file is here to demonstrate how stylelint is used in this project.
- * See packages/stylelint-config-sds/.stylelintrc.json for a list of current rules
+ * See packages/stylelint-config-syn/.stylelintrc.json for a list of current rules
  */
 @import url("foo.css");
 @import url("bar.css");

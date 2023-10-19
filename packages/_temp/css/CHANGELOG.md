@@ -31,6 +31,6 @@ The following icons are used in commit messages and this changelog.
 - #11: Added basic typographic section for common elements like `h*`, `p`, `ul/ol` and `a`
 - #11: Added initial fouc prevention
 - #11: Added new variables as base for typo layout
-- #12: Added basic support for `sds-fade-in`, `sds-rotate-360` and `sds-scale` animations
+- #12: Added basic support for `syn-fade-in`, `syn-rotate-360` and `syn-scale` animations
 - #15: Added support for automatic loading of `@synergy-design-system/icons`
 - #55: Rename package namespace to `@synergy-design-system`

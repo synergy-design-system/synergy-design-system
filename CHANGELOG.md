@@ -6,9 +6,9 @@ Please have a look at the corresponding [packages](./packages) for a list of rec
 - [@synergy-design-system/components](./packages/components/CHANGELOG.md) 
 - [@synergy-design-system/design-tokens](./packages/design-tokens/CHANGELOG.md)
 - [@synergy-design-system/docs](./packages/docs/CHANGELOG.md)
-- [@synergy-design-system/eslint-config-sds](./packages/eslint-config-sds/CHANGELOG.md)
+- [@synergy-design-system/eslint-config-syn](./packages/eslint-config-syn/CHANGELOG.md)
 - [@synergy-design-system/icons](./packages/icons/CHANGELOG.md)
-- [@synergy-design-system/stylelint-config-sds](./packages/stylelint-config-sds/CHANGELOG.md)
+- [@synergy-design-system/stylelint-config-syn](./packages/stylelint-config-syn/CHANGELOG.md)
 
 ### Item definitions
 

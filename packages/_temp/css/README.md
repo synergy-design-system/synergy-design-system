@@ -36,7 +36,7 @@ This package includes two versions of the css files. You may use either of them,
 <link rel="stylesheet" href="/node_modules/@synergy-design-system/css/build/default.css" />
 </head>
 <body>
-  <div style="background: var(--sds-color-primary-500)">Content</div>
+  <div style="background: var(--syn-color-primary-500)">Content</div>
 </body>
 ```
 
@@ -47,7 +47,7 @@ This package includes two versions of the css files. You may use either of them,
 <link rel="stylesheet" href="/node_modules/@synergy-design-system/css/build/with-reset.css" />
 </head>
 <body>
-  <div style="background: var(--sds-color-primary-500)">Content</div>
+  <div style="background: var(--syn-color-primary-500)">Content</div>
 </body>
 ```
 
@@ -61,11 +61,11 @@ Supporting web-fonts as an npm module is more complex than it looks, as applicat
 
 ## Icon Support
 
-The package ships with a inlined version of Material Design Icons that is available as `@synergy-design-system/icons`. Just add a `className` of **sds-icon** to an element to use the icon font. You may use it in the following way:
+The package ships with a inlined version of Material Design Icons that is available as `@synergy-design-system/icons`. Just add a `className` of **syn-icon** to an element to use the icon font. You may use it in the following way:
 
 ```html
 <!-- Display the material design menu glyph -->
-<span class="sds-icon">menu</span>
+<span class="syn-icon">menu</span>
 ```
 
 ---
@@ -74,45 +74,45 @@ The package ships with a inlined version of Material Design Icons that is availa
 
 This package also provides some shared styles, that make it possible to add animations to elements fast. The following animations are provided:
 
-### Fade-In: (sds-fade-in)
+### Fade-In: (syn-fade-in)
 
-This animation will change the `opacity` value of an element from __0__ to __1__. It may be used in conjunction with the `--sds-animation-fade-in`, `--sds-animation-fade-in-slow` or `--sds-animation-fade-in-fast` design tokens.
+This animation will change the `opacity` value of an element from __0__ to __1__. It may be used in conjunction with the `--syn-animation-fade-in`, `--syn-animation-fade-in-slow` or `--syn-animation-fade-in-fast` design tokens.
 
 ```html
 <!-- Example usage: -->
 <style>
-.sds-fade {
+.syn-fade {
   /* Default fade in animation */
-  /* You could also use --sds-animation-fade-in-slow or --sds-animation-fade-in-fast */
-  animation: var(--sds-animation-fade-in);
+  /* You could also use --syn-animation-fade-in-slow or --syn-animation-fade-in-fast */
+  animation: var(--syn-animation-fade-in);
 }
 </style>
-<div class="sds-fade">
+<div class="syn-fade">
   Content to fade
 </div>
 ```
 
-### Rotate: (sds-rotate-360)
+### Rotate: (syn-rotate-360)
 
-Provides an animation that rotates the element by 360°. It may be used in conjunction with `--sds-animation-rotate`, `--sds-animation-rotate-slow` and `--sds-animation-rotate-fast`.
+Provides an animation that rotates the element by 360°. It may be used in conjunction with `--syn-animation-rotate`, `--syn-animation-rotate-slow` and `--syn-animation-rotate-fast`.
 
 ```html
 <!-- Example usage: -->
 <style>
-.sds-rotate {
+.syn-rotate {
   /* Default fade in animation */
-  /* You could also use --sds-animation-rotate-slow or --sds-animation-rotate-fast */
-  animation: var(--sds-animation-rotate);
+  /* You could also use --syn-animation-rotate-slow or --syn-animation-rotate-fast */
+  animation: var(--syn-animation-rotate);
 }
 </style>
-<div class="sds-rotate">
+<div class="syn-rotate">
   Content to rotate
 </div>
 ```
 
-### Scale: (sds-scale)
+### Scale: (syn-scale)
 
-Provides an animation that scales an image. It may be used in conjunction with `--sds-animation-scale`.
+Provides an animation that scales an image. It may be used in conjunction with `--syn-animation-scale`.
 
 > The default scale is set to `1.2`.
 > This may be overridden individually by setting the `-animation-scale` property of the element the animation is bound to.
@@ -121,32 +121,32 @@ Provides an animation that scales an image. It may be used in conjunction with `
 ```html
 <!-- Example usage: -->
 <style>
-.sds-scale {
+.syn-scale {
   /* Default scale animation. Will use a fixed amount of 1.2 as a scale factor. */
-  animation: var(--sds-animation-scale);
+  animation: var(--syn-animation-scale);
 }
 
-.sds-scale-custom-5 {
+.syn-scale-custom-5 {
   /* Uses a custom scale factor, only for this element. */
-  animation: var(--sds-animation-scale);
+  animation: var(--syn-animation-scale);
   --animation-scale=5;
 }
 
-.sds-scale-custom-10 {
+.syn-scale-custom-10 {
   /* Custom scale factor is set via style below. */
-  animation: var(--sds-animation-scale);
+  animation: var(--syn-animation-scale);
 }
 </style>
 
-<div class="sds-scale">
+<div class="syn-scale">
   Content to scale (scale factor 1.2)
 </div>
 
-<div class="sds-scale-custom-5">
+<div class="syn-scale-custom-5">
   Content to scale (scale factor 5)
 </div>
 
-<div class="sds-scale-custom-10" style="--animation-scale=10;">
+<div class="syn-scale-custom-10" style="--animation-scale=10;">
   Content to scale (scale factor 10)
 </div>
 ```

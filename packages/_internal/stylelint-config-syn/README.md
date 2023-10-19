@@ -1,4 +1,4 @@
-# @synergy-design-system/stylelint-config-sds
+# @synergy-design-system/stylelint-config-syn
 
 This package provides common linting rules for CSS used throughout the Synergy Design System. It is primarily based on `stylelint-config-standard` and supports css, JavaScript and TypeScript files and lit and fast css helper functions via [postcss-lit](https://github.com/43081j/postcss-lit).
 
@@ -9,9 +9,9 @@ This package provides common linting rules for CSS used throughout the Synergy D
 Please issue one of the following commands to install the linting toolchain:
 
 ```bash
-npm install --save-dev stylelint @synergy-design-system/styling-config-sds
-yarn add --dev stylelint @synergy-design-system/styling-config-sds
-pnpm i -D stylelint @synergy-design-system/styling-config-sds
+npm install --save-dev stylelint @synergy-design-system/styling-config-syn
+yarn add --dev stylelint @synergy-design-system/styling-config-syn
+pnpm i -D stylelint @synergy-design-system/styling-config-syn
 ```
 
 ## Configuration
@@ -20,7 +20,7 @@ Create a new `.stylelintrc.json` file with the following content:
 
 ```json
 {
-  "extends": "@synergy-design-system/stylelint-config-sds",
+  "extends": "@synergy-design-system/stylelint-config-syn",
   "rules": {
     "example-rule": null
   }

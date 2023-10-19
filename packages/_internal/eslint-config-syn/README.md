@@ -1,4 +1,4 @@
-# @synergy-design-system/eslint-config-sds
+# @synergy-design-system/eslint-config-syn
 
 This package provides common linting rules used throughout the Synergy Design System. It is primarily based on `eslint-config-airbnb` and supports JavaScript and TypeScript projects.
 
@@ -9,9 +9,9 @@ This package provides common linting rules used throughout the Synergy Design Sy
 Please issue one of the following commands to install the linting toolchain:
 
 ```bash
-npm install --save-dev eslint @synergy-design-system/eslint-config-sds
-yarn add --dev eslint @synergy-design-system/eslint-config-sds
-pnpm i -D eslint @synergy-design-system/eslint-config-sds
+npm install --save-dev eslint @synergy-design-system/eslint-config-syn
+yarn add --dev eslint @synergy-design-system/eslint-config-syn
+pnpm i -D eslint @synergy-design-system/eslint-config-syn
 ```
 
 ## Configuration
@@ -22,7 +22,7 @@ Create a new `.eslintrc.json` file with the following content:
 
 ```json
 {
-  "extends": "@synergy-design-system/eslint-config-sds"
+  "extends": "@synergy-design-system/eslint-config-syn"
 }
 ```
 
@@ -34,7 +34,7 @@ Create a new `.eslintrc.json` file with the following content:
 
 ```json
 {
-  "extends": "@synergy-design-system/eslint-config-sds/ts",
+  "extends": "@synergy-design-system/eslint-config-syn/ts",
   "parserOptions": {
     "project": "./tsconfig.json"
   }

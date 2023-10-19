@@ -20,6 +20,10 @@ const config: StorybookConfig = {
   },
   staticDirs: [
     '../public',
+    {
+      from: '../../assets/src',
+      to: '/assets'
+    }
   ],
   stories: [
     "../stories/index.mdx",

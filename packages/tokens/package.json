@@ -1,0 +1,94 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Design tokens for the SICK Design System",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
+    "@tokens-studio/sd-transforms": "^0.11.0",
+    "chalk": "^5.3.0",
+    "eslint": "^8.47.0",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^22.0.5",
+    "semantic-release-monorepo": "^7.0.5",
+    "style-dictionary": "^3.8.0"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/syn/tree/main/packages/tokens",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "Synergy Design System",
+    "Design Tokens"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/tokens",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/syn.git",
+    "directory": "packages/tokens"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      {
+        "name": "main",
+        "prerelease": true
+      },
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": true
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release/tokens): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ]
+    ]
+  },
+  "scripts": {
+    "build": "pnpm clean && node scripts/build.js",
+    "clean": "rimraf build",
+    "lint": "eslint scripts",
+    "start": "pnpm build"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

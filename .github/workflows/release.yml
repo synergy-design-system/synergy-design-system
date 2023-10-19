@@ -1,0 +1,46 @@
+name: Release new version
+
+on:
+  push:
+    branches:
+      - 'main'
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.2
+
+      - name: Install dependencies
+        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
+
+      - name: (assets) Run Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
+        run: cd packages/assets && pnpm release
+
+      - name: (components) Run Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
+        run: cd packages/components && pnpm release
+
+      - name: (tokens) Run Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
+        run: cd packages/tokens && pnpm release
+

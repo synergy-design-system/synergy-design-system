@@ -1,0 +1,844 @@
+{
+  "components": {
+    "alert": {
+      "description": {
+        "value": "Alerts are used to display important messages inline or as toast notifications.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Alert",
+        "type": "text"
+      }
+    },
+    "animated-image": {
+      "description": {
+        "value": "A component for displaying animated GIFs and WEBPs that play and pause on interaction.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Animated Image",
+        "type": "text"
+      }
+    },
+    "animation": {
+      "description": {
+        "value": "Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Animation",
+        "type": "text"
+      }
+    },
+    "avatar": {
+      "description": {
+        "value": "Avatars are used to represent a person or object.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Avatar",
+        "type": "text"
+      }
+    },
+    "badge": {
+      "description": {
+        "value": "Badges are used to draw attention and display statuses or counts.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Badge",
+        "type": "text"
+      }
+    },
+    "breadcrumb-item": {
+      "description": {
+        "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Breadcrumb Item",
+        "type": "text"
+      }
+    },
+    "breadcrumb": {
+      "description": {
+        "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Breadcrumb",
+        "type": "text"
+      }
+    },
+    "button-group": {
+      "description": {
+        "value": "Button groups can be used to group related buttons into sections.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Button Group",
+        "type": "text"
+      }
+    },
+    "button": {
+      "description": {
+        "value": "Buttons represent actions that are available to the user.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Button",
+        "type": "text"
+      }
+    },
+    "card": {
+      "description": {
+        "value": "Cards can be used to group related subjects in a container.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Card",
+        "type": "text"
+      }
+    },
+    "carousel-item": {
+      "description": {
+        "value": "A carousel item represent a slide within a carousel.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Carousel Item",
+        "type": "text"
+      }
+    },
+    "carousel": {
+      "description": {
+        "value": "Carousels display an arbitrary number of content slides along a horizontal or vertical axis.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Carousel",
+        "type": "text"
+      }
+    },
+    "checkbox": {
+      "description": {
+        "value": "Checkboxes allow the user to toggle an option on or off.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Checkbox",
+        "type": "text"
+      }
+    },
+    "color-picker": {
+      "description": {
+        "value": "Color pickers allow the user to select a color.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Color Picker",
+        "type": "text"
+      }
+    },
+    "copy-button": {
+      "description": {
+        "value": "Copies data to the clipboard when the user clicks the button.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Copy Button",
+        "type": "text"
+      }
+    },
+    "details": {
+      "description": {
+        "value": "Details show a brief summary and expand to show additional content.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Details",
+        "type": "text"
+      }
+    },
+    "dialog": {
+      "description": {
+        "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Dialog",
+        "type": "text"
+      }
+    },
+    "divider": {
+      "description": {
+        "value": "Dividers are used to visually separate or group elements.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Divider",
+        "type": "text"
+      }
+    },
+    "drawer": {
+      "description": {
+        "value": "Drawers slide in from a container to expose additional options and information.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Drawer",
+        "type": "text"
+      }
+    },
+    "dropdown": {
+      "description": {
+        "value": "Dropdowns expose additional content that \"drops down\" in a panel.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Dropdown",
+        "type": "text"
+      }
+    },
+    "format-bytes": {
+      "description": {
+        "value": "Formats a number as a human readable bytes value.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Format Bytes",
+        "type": "text"
+      }
+    },
+    "format-date": {
+      "description": {
+        "value": "Formats a date/time using the specified locale and options.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Format Date",
+        "type": "text"
+      }
+    },
+    "format-number": {
+      "description": {
+        "value": "Formats a number using the specified locale and options.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Format Number",
+        "type": "text"
+      }
+    },
+    "icon-button": {
+      "description": {
+        "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Icon Button",
+        "type": "text"
+      }
+    },
+    "icon": {
+      "description": {
+        "value": "Icons are symbols that can be used to represent various options within an application.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Icon",
+        "type": "text"
+      }
+    },
+    "image-comparer": {
+      "description": {
+        "value": "Compare visual differences between similar photos with a sliding panel.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Image Comparer",
+        "type": "text"
+      }
+    },
+    "include": {
+      "description": {
+        "value": "Includes give you the power to embed external HTML files into the page.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Include",
+        "type": "text"
+      }
+    },
+    "input": {
+      "description": {
+        "value": "Inputs collect data from the user.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Input",
+        "type": "text"
+      }
+    },
+    "menu-item": {
+      "description": {
+        "value": "Menu items provide options for the user to pick from in a menu.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Menu Item",
+        "type": "text"
+      }
+    },
+    "menu-label": {
+      "description": {
+        "value": "Menu labels are used to describe a group of menu items.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Menu Label",
+        "type": "text"
+      }
+    },
+    "menu": {
+      "description": {
+        "value": "Menus provide a list of options for the user to choose from.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Menu",
+        "type": "text"
+      }
+    },
+    "mutation-observer": {
+      "description": {
+        "value": "The Mutation Observer component offers a thin, declarative interface to the MutationObserver API.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Mutation Observer",
+        "type": "text"
+      }
+    },
+    "option": {
+      "description": {
+        "value": "Options define the selectable items within various form controls such as select.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Option",
+        "type": "text"
+      }
+    },
+    "popup": {
+      "description": {
+        "value": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Popup",
+        "type": "text"
+      }
+    },
+    "progress-bar": {
+      "description": {
+        "value": "Progress bars are used to show the status of an ongoing operation.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Progress Bar",
+        "type": "text"
+      }
+    },
+    "progress-ring": {
+      "description": {
+        "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Progress Ring",
+        "type": "text"
+      }
+    },
+    "qr-code": {
+      "description": {
+        "value": "Generates a QR code and renders it using the Canvas API.",
+        "type": "text"
+      },
+      "title": {
+        "value": "QR Code",
+        "type": "text"
+      }
+    },
+    "radio-button": {
+      "description": {
+        "value": "Radios buttons allow the user to select a single option from a group using a button-like control.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Radio Button",
+        "type": "text"
+      }
+    },
+    "radio-group": {
+      "description": {
+        "value": "Radio groups are used to group multiple radios or radio buttons so they function as a single form control.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Radio Group",
+        "type": "text"
+      }
+    },
+    "radio": {
+      "description": {
+        "value": "Radios allow the user to select a single option from a group.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Radio",
+        "type": "text"
+      }
+    },
+    "range": {
+      "description": {
+        "value": "Ranges allow the user to select a single value within a given range using a slider.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Range",
+        "type": "text"
+      }
+    },
+    "rating": {
+      "description": {
+        "value": "Ratings give users a way to quickly view and provide feedback.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Rating",
+        "type": "text"
+      }
+    },
+    "relative-time": {
+      "description": {
+        "value": "Outputs a localized time phrase relative to the current date and time.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Relative Time",
+        "type": "text"
+      }
+    },
+    "resize-observer": {
+      "description": {
+        "value": "The Resize Observer component offers a thin, declarative interface to the ResizeObserver API.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Resize Observer",
+        "type": "text"
+      }
+    },
+    "select": {
+      "description": {
+        "value": "Selects allow you to choose items from a menu of predefined options.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Select",
+        "type": "text"
+      }
+    },
+    "skeleton": {
+      "description": {
+        "value": "Skeletons are used to provide a visual representation of where content will eventually be drawn.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Skeleton",
+        "type": "text"
+      }
+    },
+    "spinner": {
+      "description": {
+        "value": "Spinners are used to show the progress of an indeterminate operation.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Spinner",
+        "type": "text"
+      }
+    },
+    "split-panel": {
+      "description": {
+        "value": "Split panels display two adjacent panels, allowing the user to reposition them.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Split Panel",
+        "type": "text"
+      }
+    },
+    "switch": {
+      "description": {
+        "value": "Switches allow the user to toggle an option on or off.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Switch",
+        "type": "text"
+      }
+    },
+    "tab-group": {
+      "description": {
+        "value": "Tab groups organize content into a container that shows one section at a time.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tab Group",
+        "type": "text"
+      }
+    },
+    "tab-panel": {
+      "description": {
+        "value": "Tab panels are used inside tab groups to display tabbed content.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tab Panel",
+        "type": "text"
+      }
+    },
+    "tab": {
+      "description": {
+        "value": "Tabs are used inside tab groups to represent and activate tab panels.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tab",
+        "type": "text"
+      }
+    },
+    "tag": {
+      "description": {
+        "value": "Tags are used as labels to organize things or to indicate a selection.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tag",
+        "type": "text"
+      }
+    },
+    "textarea": {
+      "description": {
+        "value": "Textareas collect data from the user and allow multiple lines of text.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Textarea",
+        "type": "text"
+      }
+    },
+    "tooltip": {
+      "description": {
+        "value": "Tooltips display additional information based on a specific action.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tooltip",
+        "type": "text"
+      }
+    },
+    "tree-item": {
+      "description": {
+        "value": "A tree item serves as a hierarchical node that lives inside a tree.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tree Item",
+        "type": "text"
+      }
+    },
+    "tree": {
+      "description": {
+        "value": "Trees allow you to display a hierarchical list of selectable tree items. Items with children can be expanded and collapsed as desired by the user.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Tree",
+        "type": "text"
+      }
+    },
+    "visually-hidden": {
+      "description": {
+        "value": "The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Visually Hidden",
+        "type": "text"
+      }
+    }
+  },
+  "frameworks": {
+    "angular": {
+      "description": {
+        "value": "Tips for using Essential in your Angular app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Angular",
+        "type": "text"
+      }
+    },
+    "react": {
+      "description": {
+        "value": "Tips for using Essential in your React app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "React",
+        "type": "text"
+      }
+    },
+    "vue-2": {
+      "description": {
+        "value": "Tips for using Essential in your Vue 2 app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Vue (version 2)",
+        "type": "text"
+      }
+    },
+    "vue": {
+      "description": {
+        "value": "Tips for using Essential in your Vue 3 app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Vue",
+        "type": "text"
+      }
+    }
+  },
+  "getting-started": {
+    "customizing": {
+      "description": {
+        "value": "Learn how to customize Essential through parts and custom properties.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Customizing",
+        "type": "text"
+      }
+    },
+    "form-controls": {
+      "description": {
+        "value": "Some things to note about Essential and forms.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Form Controls",
+        "type": "text"
+      }
+    },
+    "installation": {
+      "description": {
+        "value": "Choose the installation method that works best for you.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Installation",
+        "type": "text"
+      }
+    },
+    "localization": {
+      "description": {
+        "value": "Discover how to localize Essential with minimal effort.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Localization",
+        "type": "text"
+      }
+    },
+    "themes": {
+      "description": {
+        "value": "Everything you need to know about theming Essential.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Themes",
+        "type": "text"
+      }
+    },
+    "usage": {
+      "description": {
+        "value": "Learn more about using custom elements.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Usage",
+        "type": "text"
+      }
+    }
+  },
+  "resources": {
+    "accessibility": {
+      "description": {
+        "value": "Essential recognizes the need for all users to have undeterred access to the websites and applications that are created with it.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Accessibility Commitment",
+        "type": "text"
+      }
+    },
+    "changelog": {
+      "description": {
+        "value": "Changes to each version of the project are documented here.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Changelog",
+        "type": "text"
+      }
+    },
+    "community": {
+      "description": {
+        "value": "Essential has a growing community of designers and developers that are building amazing things with web components.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Community",
+        "type": "text"
+      }
+    },
+    "contributing": {
+      "description": {
+        "value": "Essential is an open source project, meaning everyone can use it and contribute to its development.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Contributing",
+        "type": "text"
+      }
+    }
+  },
+  "tokens": {
+    "border-radius": {
+      "description": {
+        "value": "Border radius tokens are used to give sharp edges a more subtle, rounded effect.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Border Radius",
+        "type": "text"
+      }
+    },
+    "color": {
+      "description": {
+        "value": "Color tokens help maintain consistent use of color throughout your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Color Tokens",
+        "type": "text"
+      }
+    },
+    "elevation": {
+      "description": {
+        "value": "Elevation tokens are used to give elements the appearance of being raised off the page.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Elevation",
+        "type": "text"
+      }
+    },
+    "more": {
+      "description": {
+        "value": "Additional design tokens can be found here.",
+        "type": "text"
+      },
+      "title": {
+        "value": "More Design Tokens",
+        "type": "text"
+      }
+    },
+    "spacing": {
+      "description": {
+        "value": "Spacing tokens are used to provide consistent spacing between content in your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Spacing Tokens",
+        "type": "text"
+      }
+    },
+    "transition": {
+      "description": {
+        "value": "Transition tokens are used to provide consistent transitions throughout your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Transition Tokens",
+        "type": "text"
+      }
+    },
+    "typography": {
+      "description": {
+        "value": "Typography tokens are used to maintain a consistent set of font styles throughout your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Typography",
+        "type": "text"
+      }
+    },
+    "z-index": {
+      "description": {
+        "value": "Z-indexes are used to stack components in a logical manner.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Z-Index Tokens",
+        "type": "text"
+      }
+    }
+  },
+  "tutorials": {
+    "integrating-with-laravel": {
+      "description": {
+        "value": "This page explains how to integrate Essential with a Laravel app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Integrating with Laravel",
+        "type": "text"
+      }
+    },
+    "integrating-with-nextjs": {
+      "description": {
+        "value": "This page explains how to integrate Essential with a NextJS app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Integrating with NextJS",
+        "type": "text"
+      }
+    },
+    "integrating-with-rails": {
+      "description": {
+        "value": "This page explains how to integrate Essential with a Rails app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Integrating with Rails",
+        "type": "text"
+      }
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "extends": "@synergy-design-system/eslint-config-sds",
-  "rules": {
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }]
-  }
-}

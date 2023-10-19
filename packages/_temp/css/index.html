@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography demo for @synergy-design-system/css</title>
+  <link rel="stylesheet" href="build/with-reset.css" />
+  <style>
+  html, body {
+    background: var(--syn-color-neutral-0);
+    height: 100%;
+  }
+
+  html {
+    background: var(--syn-color-neutral-20);
+  }
+
+  body {
+    box-shadow: var(--syn-shadow-elevated);
+    border-radius: .25rem;
+    height: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-width: 45rem;
+  }
+
+  header,
+  footer {
+    background: var(--syn-color-neutral-700);
+    text-align: center;
+    padding: 1rem 2rem;
+  }
+
+  header {
+    border-radius: .25rem .25rem 0 0;
+  }
+
+  footer {
+    border-radius: 0 0 .25rem .25rem;
+  }
+
+  header h1 {
+    background: transparent;
+    color: var(--syn-color-neutral-0);
+    margin: 0;
+    text-align: center;
+  }
+
+  header nav {
+    border-top: 1px solid var(--syn-color-neutral-0);
+    display: flex;
+    gap: .5rem;
+    margin-top: .5rem;
+    padding-top: .5rem;
+    justify-content: center;
+  }
+
+  footer small {
+    color: var(--syn-color-neutral-0);
+  }
+
+  main {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: auto;
+    padding: 0 2rem 0 5rem;
+  }
+
+  /* Code Samples */
+  .marked {
+    position: relative;
+  }
+
+  .marked code {
+    opacity: 0;
+  }
+
+  .marked:hover {
+    background: var(--syn-color-neutral-50);
+  }
+
+  .marked:hover code {
+    opacity: 1;
+  }
+
+  .marked code {
+    background: var(--syn-color-accent-400);
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 5px;
+    position: absolute;
+    transition: opacity .3s;
+    left: -4rem;
+  }
+
+  .marked code::before {
+    content: "<";
+  }
+  .marked code::after {
+    content: ">";
+  }
+
+  /* Animations */
+  .animated {
+    text-align: center;
+  }
+
+  .circle {
+    background: var(--syn-color-primary-400);
+    border-radius: var(--syn-border-radius-circle);
+    height: var(--syn-spacing-8);
+    width: var(--syn-spacing-8);
+    display: block;
+  }
+
+  .syn-fade {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Demo for @synergy-design-system/css</h1>
+    <nav>
+      <a href="#typo">Typography</a>
+      <a href="#animations">Animations</a>
+      <a href="#icons">Icons</a>
+    </nav>
+  </header>
+  <main>
+    
+    <section id="typo">
+      <h1 class="marked"><code>h1</code> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+      
+      <h2 class="marked"><code>h2</code> Eum nobis iure, quos reprehenderit maxime quam velit dignissimos.</h2>
+      
+      <h3 class="marked"><code>h3</code> A similique, mollitia neque nihil voluptates est velit atque tempore modi.</h3>
+      
+      <h4 class="marked"><code>h4</code> Quae error excepturi neque consectetur corrupti omnis, aperiam qui numquam voluptatibus vel quo quibusdam expedita, fugit similique ullam aut et inventore labore!</h4>
+      
+      <h5 class="marked"><code>h5</code> Exercitationem libero ullam dolorem cum perferendis inventore iusto aliquam laudantium debitis impedit, minima alias vel soluta harum est facere nulla architecto laborum.</h5>
+      
+      <h6 class="marked"><code>h6</code> Tenetur dolorum cum, porro iusto laboriosam dolores itaque?</h6>
+      
+      <p class="marked">
+        <code>p</code>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
+        Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
+      </p>
+      
+      <p class="marked">
+        <code>small</code>
+        <small>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Sed necessitatibus nulla nobis veritatis quis quo voluptas facilis magnam labore ab.
+          Ea praesentium, quas tempora numquam labore laboriosam deserunt quisquam officiis!
+        </small>
+      </p>
+
+      <p class="marked">
+        <code>strong</code>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Nostrum quasi <strong>sequi excepturi</strong> error repudiandae?
+        Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
+      </p>
+
+      <p class="marked">
+        <code>em</code>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Nostrum quasi <em>sequi excepturi</em> error repudiandae?
+        Blanditiis iste quo dolorum commodi, omnis provident mollitia quos deserunt nulla nostrum, rem, debitis repellat vero.
+      </p>
+
+      <ul class="marked">
+        <li>
+          <code>ul</code>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </li>
+        <li>Error, non obcaecati!</li>
+        <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+        <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+      </ul>
+
+      <ol class="marked">
+        <li>
+          <code>ol</code>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </li>
+        <li>Error, non obcaecati!</li>
+        <li>Labore quas sequi voluptate molestiae velit quos quibusdam laboriosam recusandae obcaecati cupiditate?</li>
+        <li>Ducimus odio in nemo, perspiciatis doloribus a?</li>
+      </ol>
+
+      <div class="marked">
+        <code>hr</code>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe eligendi nobis eum ipsam.</p>
+        <hr />
+        <p>Beatae veniam aspernatur non odio laborum a, porro numquam, ratione nam doloribus deleniti, distinctio repellat repudiandae corrupti.</p>
+      </div>
+    </section>
+
+    <!-- BEGIN ANIMATIONS Section -->
+    <section id="animations">
+      <h2>Animations</h2>
+      <h3>Please hover over an item to see the animation</h3>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-fade-in-slow)</code>
+        <div class="syn-fade syn-fade-in-slow" data-animation="--syn-animation-fade-in-slow">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-fade-in-fast)</code>
+        <div class="syn-fade" data-animation="--syn-animation-fade-in-fast">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-rotate-slow)</code>
+        <div class="syn-fade" data-animation="--syn-animation-rotate-slow">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-rotate-fast)</code>
+        <div class="syn-fade" data-animation="--syn-animation-rotate-fast">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-scale)</code>
+        <div class="syn-fade" data-animation="--syn-animation-scale">
+          <span class="circle"></span>
+        </div>
+      </div>
+
+      <div class="animated">
+        <code>animation: var(--syn-animation-scale), including overridden --animation-scale</code>
+        <div class="syn-fade" data-animation="--syn-animation-scale" data-customstyles="--animation-scale: 5.0;">
+          <span class="circle"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="icons">
+      <h2>Icons</h2>
+      <h3>Copy an icon to copy the glyph name</h3>
+      <p>
+        <span class="syn-icon">menu</span>
+        <span class="syn-icon">cancel</span>
+        <span class="syn-icon">save</span>
+      </p>
+    </section>
+
+  </main>
+  <footer>
+    <small>Hover over an item to see its corresponding tag name or its associated animation</small>
+  </footer>
+  <script>
+  // Add support for animations
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.animated').forEach((animatedItem) => {
+      animatedItem.addEventListener('mouseenter', ({ target }) => {
+        const div = target.querySelector('div');
+        div.style = [
+          `animation: var(${div.dataset.animation})`,
+          'will-change: transform',
+          div.dataset.customstyles || '',
+        ].join(';');
+      });
+      animatedItem.addEventListener('mouseleave', ({ target }) => {
+        const div = target.querySelector('div');
+        div.style = '';
+      });
+    });
+  });
+  </script>
+</body>
+</html>

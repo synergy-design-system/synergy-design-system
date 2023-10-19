@@ -1,0 +1,52 @@
+/**
+ * This file is here to demonstrate how stylelint is used in this project.
+ * See packages/stylelint-config-syn/.stylelintrc.json for a list of current rules
+ */
+@import url("foo.css");
+@import url("bar.css");
+
+@custom-media --foo (min-width: 30em);
+
+/**
+ * Multi-line comment
+ */
+
+:root {
+  --brand-red: hsl(5deg 10% 40%);
+}
+
+/* Single-line comment */
+
+.class-foo:not(a, div) {
+  margin: 0;
+  top: calc(100% - 2rem);
+}
+
+/* Flush single line comment */
+@media (width >= 60em) {
+  #id-bar {
+    /* Flush to parent comment */
+    --offset: 0px;
+
+    color: #fff;
+    font-family: Helvetica, "Arial Black", sans-serif;
+    left: calc(var(--offset) + 50%);
+  }
+
+  /* Flush nested single line comment */
+  a::after {
+    background-image: url("x.svg");
+    content: "→";
+    display: block;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

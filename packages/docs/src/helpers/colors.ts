@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { paramCase } from 'change-case';
-import * as tokens from '@synergy-design-system/design-tokens';
+import * as tokens from '@synergy-design-system/tokens';
 
 /**
  * Get all colors from a palette as object
@@ -9,9 +10,9 @@ import * as tokens from '@synergy-design-system/design-tokens';
  */
 const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(
   Object.entries(tokens)
-    .filter(([token]) => token.toLowerCase().startsWith(`sdscolor${palette}`))
+    .filter(([token]) => token.toLowerCase().startsWith(`syncolor${palette}`))
     .map(([token, value]) => [
-      useFullTokenName ? token : token.toLowerCase().replace('sdscolor', ''),
+      useFullTokenName ? token : token.toLowerCase().replace('syncolor', ''),
       value,
     ]),
 );

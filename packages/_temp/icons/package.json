@@ -1,0 +1,61 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Icon font used in the Synergy Design System",
+  "devDependencies": {
+    "@synergy-design-system/design-tokens": "workspace:0.1",
+    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
+    "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
+    "eslint": "^8.47.0",
+    "material-icons": "^1.13.10",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^15.1.0",
+    "postcss-inline-base64": "^7.3.1",
+    "rimraf": "^5.0.1",
+    "serve": "^14.2.1",
+    "stylelint": "^15.10.3"
+  },
+  "exports": {
+    ".": "./build/font.css",
+    "./font.css": "./build/font.css",
+    "./icon.css": "./build/icon.css"
+  },
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/icons",
+  "keywords": [
+    "Icons",
+    "Material Icons",
+    "Webfont",
+    "CSS",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/icons",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/icons"
+  },
+  "scripts": {
+    "build:clean": "rimraf build",
+    "build:postcss": "postcss src/output/**/*.css --base src/output --dir build",
+    "build:watch": "pnpm build --watch",
+    "build": "pnpm build:clean && pnpm build:postcss",
+    "demo": "serve .",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
+    "start": "pnpm build"
+  },
+  "version": "0.1.0"
+}

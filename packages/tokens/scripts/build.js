@@ -1,7 +1,9 @@
 import { readFileSync } from 'fs';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
-import { calc, addColorName, addFallbackFonts, log, transformTokenNameForScss, transformTokenValueForScss, transformTokenValueForCss } from './transforms/index.js';
+import {
+  addColorName, addFallbackFonts, calc, log, transformTokenNameForScss, transformTokenValueForCss, transformTokenValueForScss,
+} from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
@@ -58,7 +60,6 @@ StyleDictionary.registerFileHeader({
           'ts/opacity',
           'ts/size/lineheight',
           'ts/typography/fontWeight',
-          'ts/resolveMath',
           'ts/size/css/letterspacing',
           'ts/typography/css/fontFamily',
           'ts/typography/css/shorthand',
@@ -69,7 +70,8 @@ StyleDictionary.registerFileHeader({
           'name/cti/kebab',
           'syn/add-color-name',
           'syn/add-fallback-fonts',
-          'syn/transform-token-value-for-css'
+          'syn/calc',
+          'syn/transform-token-value-for-css',
         ],
       },
     },
@@ -83,14 +85,14 @@ StyleDictionary.extend({
       buildPath: `${config.buildPath}scss/`,
       files: [
         {
-        destination: `tokens.scss`,
-        filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
+          destination: 'tokens.scss',
+          filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
           format: 'scss/variables',
-        options: {
-          fileHeader: 'syn/header',
-          outputReferences: true,
-        },
-      }],
+          options: {
+            fileHeader: 'syn/header',
+            outputReferences: true,
+          },
+        }],
       options: {
         themeable: true,
       },
@@ -99,7 +101,7 @@ StyleDictionary.extend({
         'name/cti/kebab',
         'syn/add-color-name',
         'syn/transform-token-name-for-scss',
-        'syn/transform-token-value-for-scss'
+        'syn/transform-token-value-for-scss',
       ],
     },
   },

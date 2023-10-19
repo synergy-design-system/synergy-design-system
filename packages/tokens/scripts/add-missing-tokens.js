@@ -54,8 +54,8 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
 };
 
 export const addMissingTokens = async (prefix) => {
-  const sourceDir = '../src/shoelace-fallbacks';
-  const targetDir = './src';
+  const sourceDir = './src/shoelace-fallbacks';
+  const targetDir = './dist/css';
 
   try {
     const targetFiles = await readdir(targetDir);
@@ -71,7 +71,7 @@ export const addMissingTokens = async (prefix) => {
       }
     });
 
-    await Promise.all(results);
+    console.log('Missing tokens added');
   } catch (error) {
     console.error('Error reading directory:', error);
   }

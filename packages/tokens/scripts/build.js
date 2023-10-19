@@ -7,9 +7,7 @@ import {
   addQuotesForStrings,
   calc,
   log,
-  transformTokenNameForScss,
   transformTokenValueForCss,
-  transformTokenValueForScss,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
@@ -30,8 +28,6 @@ StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addQuotesForStrings);
-StyleDictionary.registerTransform(transformTokenNameForScss);
-StyleDictionary.registerTransform(transformTokenValueForScss);
 StyleDictionary.registerTransform(transformTokenValueForCss);
 StyleDictionary.registerTransform(log);
 
@@ -87,33 +83,5 @@ StyleDictionary.registerFileHeader({
     source: config.sourcePaths.concat(`./src/figma-tokens/color/${theme}.json`),
   }).buildAllPlatforms();
 });
-
-StyleDictionary.extend({
-  platforms: {
-    scss: {
-      buildPath: `${config.buildPath}scss/`,
-      files: [
-        {
-          destination: 'tokens.scss',
-          filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
-          format: 'scss/variables',
-          options: {
-            fileHeader: 'syn/header',
-            outputReferences: true,
-          },
-        }],
-      options: {
-        themeable: true,
-      },
-      prefix: config.prefix,
-      transforms: [
-        'name/cti/kebab',
-        'syn/add-color-name',
-        'syn/transform-token-value-for-scss',
-      ],
-    },
-  },
-  source: ['./src/figma-tokens/**/*.json'],
-}).buildAllPlatforms();
 
 addMissingTokens('syn');

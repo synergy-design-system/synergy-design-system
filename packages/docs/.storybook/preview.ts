@@ -1,9 +1,9 @@
 import type { Preview } from "@storybook/web-components";
+import '@synergy-design-system/tokens/dist/css/light.css';
 
 import { setCustomElementsManifest } from '@storybook/web-components';
 import '../src/docs.css';
 import '../../tokens/src/shoelace-fallbacks/_utility.css';
-import '../../tokens/src/light.css';
 
 const preview: Preview = {
   parameters: {

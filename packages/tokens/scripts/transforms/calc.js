@@ -1,4 +1,20 @@
 /**
+ * @var supportedTypes List of supported token types we apply the calculation to
+ * @type String[]
+ */
+const supportedTypes = [
+  'borderRadius',
+  'borderWidth',
+  'dimension',
+  'fontSizes',
+  'letterSpacing',
+  'lineHeights',
+  'sizing',
+  'spacing',
+  'number',
+];
+
+/**
  * @var supportedCalculations List of supported calculations
  * @type String[]
  */
@@ -16,7 +32,10 @@ const supportedCalculations = [
  * @see https://github.com/amzn/style-dictionary/issues/820
  */
 export const calc = {
-  matcher: ({ value }) => typeof value === 'string' && supportedCalculations.find((calcChar) => value.includes(calcChar)),
+  matcher: ({ type, value }) => {
+    if (!supportedTypes.includes(type)) return false;
+    return typeof value === 'string' && !!supportedCalculations.find((calcChar) => value.includes(calcChar));
+  },
   name: 'syn/calc',
   transformer: ({ value }) => {
     // CSS Calc syntax needs a whitespace before AND after the calculation because:
@@ -29,6 +48,7 @@ export const calc = {
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
 
+    console.log(`calc(${output})`)
     return `calc(${output})`;
   },
   transitive: true,

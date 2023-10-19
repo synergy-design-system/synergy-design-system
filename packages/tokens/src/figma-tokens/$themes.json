@@ -170,13 +170,13 @@
       "globals": "enabled"
     },
     "$figmaStyleReferences": {
-      "shadow.small": "S:c0b8580ee9db62a24ef278785c259d82e8857b59,",
-      "shadow.medium": "S:7123a6aeffa0d616e09e2cf8ea5d595623278f8c,",
-      "shadow.large": "S:decf92e6ae9f3658e952d2f4249bc59ad40a7949,",
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
       "shadow.overflow-up": "S:ebee7b95cb85a3185584fdc56404b17925e3b283,",
       "shadow.overflow-left": "S:3997a6cf3d676b608164a1840472409fb97fb436,",
-      "shadow.overflow-right": "S:c5a844f08a4ad385d999b9ab9159fb18deebec8a,"
+      "shadow.overflow-right": "S:c5a844f08a4ad385d999b9ab9159fb18deebec8a,",
+      "shadow.x-large": "S:decf92e6ae9f3658e952d2f4249bc59ad40a7949,",
+      "shadow.large": "S:7123a6aeffa0d616e09e2cf8ea5d595623278f8c,",
+      "shadow.medium": "S:c0b8580ee9db62a24ef278785c259d82e8857b59,"
     },
     "$figmaVariableReferences": {
       "spacing.4x-small": "0c5c205948f7b7c63e5e91f6f3dc3e9054b274ae",

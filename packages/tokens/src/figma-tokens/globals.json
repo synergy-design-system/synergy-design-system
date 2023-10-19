@@ -92,7 +92,7 @@
     }
   },
   "shadow": {
-    "small": {
+    "medium": {
       "value": [
         {
           "x": "0",
@@ -121,7 +121,7 @@
       ],
       "type": "boxShadow"
     },
-    "medium": {
+    "large": {
       "value": [
         {
           "x": "0",
@@ -150,7 +150,7 @@
       ],
       "type": "boxShadow"
     },
-    "large": {
+    "x-large": {
       "value": [
         {
           "x": "0",

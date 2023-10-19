@@ -2,12 +2,8 @@ import { readFileSync } from 'fs';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
 import {
-  addColorName,
-  addFallbackFonts,
-  calc,
-  log,
+  addColorName, addFallbackFonts, calc, log, transformTokenNameForScss, transformTokenValueForCss, transformTokenValueForScss,
 } from './transforms/index.js';
-import { createCssVariablesForCss, createCssVariablesForScss } from './formats/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
@@ -26,9 +22,10 @@ registerTransforms(StyleDictionary);
 StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(transformTokenNameForScss);
+StyleDictionary.registerTransform(transformTokenValueForScss);
+StyleDictionary.registerTransform(transformTokenValueForCss);
 StyleDictionary.registerTransform(log);
-StyleDictionary.registerFormat(createCssVariablesForCss);
-StyleDictionary.registerFormat(createCssVariablesForScss);
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
@@ -49,7 +46,7 @@ StyleDictionary.registerFileHeader({
           {
             destination: `${theme}.css`,
             filter(token) { return !token.filePath.includes('primitive'); },
-            format: 'syn/create-css-variables-for-css',
+            format: 'css/variables',
             options: {
               fileHeader: 'syn/header',
               outputReferences: true,
@@ -63,7 +60,6 @@ StyleDictionary.registerFileHeader({
           'ts/opacity',
           'ts/size/lineheight',
           'ts/typography/fontWeight',
-          'ts/resolveMath',
           'ts/size/css/letterspacing',
           'ts/typography/css/fontFamily',
           'ts/typography/css/shorthand',
@@ -74,6 +70,8 @@ StyleDictionary.registerFileHeader({
           'name/cti/kebab',
           'syn/add-color-name',
           'syn/add-fallback-fonts',
+          'syn/calc',
+          'syn/transform-token-value-for-css',
         ],
       },
     },
@@ -85,17 +83,16 @@ StyleDictionary.extend({
   platforms: {
     scss: {
       buildPath: `${config.buildPath}scss/`,
-      files: [{
-        destination: 'tokens.scss',
-        filter(token) {
-          return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs');
-        },
-        format: 'syn/create-css-variables-for-scss',
-        options: {
-          fileHeader: 'syn/header',
-          outputReferences: true,
-        },
-      }],
+      files: [
+        {
+          destination: 'tokens.scss',
+          filter(token) { return !token.filePath.includes('primitive') && !token.filePath.includes('dark') && !token.filePath.includes('_docs'); },
+          format: 'scss/variables',
+          options: {
+            fileHeader: 'syn/header',
+            outputReferences: true,
+          },
+        }],
       options: {
         themeable: true,
       },
@@ -103,6 +100,8 @@ StyleDictionary.extend({
       transforms: [
         'name/cti/kebab',
         'syn/add-color-name',
+        'syn/transform-token-name-for-scss',
+        'syn/transform-token-value-for-scss',
       ],
     },
   },

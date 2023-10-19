@@ -13,7 +13,7 @@
     ],
     "css.lint.unknownAtRules": "ignore",
     "cssVariables.lookupFiles": [
-        "packages/tokens/src/*.css"
+        "packages/tokens/dist/css/light.css"
     ],
     "eslint.workingDirectories": [
       "packages/_internal/eslint-config-sds",

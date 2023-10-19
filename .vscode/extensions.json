@@ -5,6 +5,7 @@
     "stylelint.vscode-stylelint",
     "vunguyentuan.vscode-css-variables",
     "streetsidesoftware.code-spell-checker",
-    "unifiedjs.vscode-mdx"
+    "unifiedjs.vscode-mdx",
+    "dbaeumer.vscode-eslint"
   ]
 }

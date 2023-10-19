@@ -78,7 +78,7 @@
   "scripts": {
     "build": "pnpm clean && node scripts/build.js",
     "clean": "rimraf build",
-    "lint": "eslint .",
+    "lint": "eslint scripts",
     "start": "pnpm build"
   },
   "type": "module",

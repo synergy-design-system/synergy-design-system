@@ -1,19 +1,19 @@
+import { readFileSync } from 'fs';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
 import { calc, addColorName, addFallbackFonts, log, transformTokenNameForScss, transformTokenValueForScss, transformTokenValueForCss } from './transforms/index.js';
-import { readFileSync } from 'fs';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
 const config = {
-  buildPath: '../dist/',
+  buildPath: './dist/',
+  prefix: 'syn-',
   sourcePaths: [
     './src/figma-tokens/color/primitives.json',
     './src/figma-tokens/globals.json',
     './src/figma-tokens/semantic/*.json',
   ],
-  prefix: 'syn-',
 };
 
 registerTransforms(StyleDictionary);
@@ -77,9 +77,8 @@ StyleDictionary.registerFileHeader({
   }).buildAllPlatforms();
 });
 
-StyleDictionary
-  .extend({
-    platforms: {
+StyleDictionary.extend({
+  platforms: {
     scss: {
       buildPath: `${config.buildPath}scss/`,
       files: [

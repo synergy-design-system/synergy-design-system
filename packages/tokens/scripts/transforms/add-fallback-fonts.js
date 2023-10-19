@@ -1,4 +1,3 @@
-
 export const addFallbackFonts = {
   matcher: (token) => token.type === 'fontFamilies',
   name: 'syn/add-fallback-fonts',
@@ -11,7 +10,7 @@ export const addFallbackFonts = {
     } else if (token.name.includes('mono')) {
       token.value += ', SFMono-Regular, Consolas, \'Liberation Mono\', Menlo, monospace';
     }
-      return token.value;
+    return token.value;
   },
   type: 'value',
 };

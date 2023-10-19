@@ -271,13 +271,105 @@
       }
     },
     "input": {
-      "description": {
-        "value": "Inputs collect data from the user.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Inputs collect data from the user.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Input",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Input",
-        "type": "text"
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "help-text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to an input with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "placeholder": {
+        "title": {
+          "value": "Placeholder",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
+      },
+      "clearable": {
+        "title": {
+          "value": "Clearable",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the clearable attribute to add a clear button when the input has content.",
+          "type": "text"
+        }
+      },
+      "password-toggle": {
+        "title": {
+          "value": "Toggle Password",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated.",
+          "type": "text"
+        }
+      },
+      "filled": {
+        "title": {
+          "value": "Filled Inputs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the filled attribute to draw a (pre-)filled input.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable an input.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change an input's size.",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "title": {
+          "value": "Prefix Suffix Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add icons.",
+          "type": "text"
+        }
       }
     },
     "menu-item": {

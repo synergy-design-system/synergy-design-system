@@ -54,6 +54,9 @@
   ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/react",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/synergy.git",

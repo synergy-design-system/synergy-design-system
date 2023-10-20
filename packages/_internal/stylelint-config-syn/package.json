@@ -24,7 +24,7 @@
     "index.js",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/stylelint-config-syn",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/_internal/stylelint-config-syn",
   "keywords": [
     "stylelint",
     "stylelintconfig",

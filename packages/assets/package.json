@@ -1,6 +1,6 @@
 {
   "author": {
-    "name": "SICK Integrated Automation - UX and UI Services Team",
+    "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
   "description": "Assets for the SICK Design System",
@@ -23,11 +23,7 @@
   "exports": {
     ".": "./build/js/index.js"
   },
-  "files": [
-    "dist",
-    "CHANGELOG.md"
-  ],
-  "homepage": "https://github.com/SickDesignSystem/syn/tree/main/packages/assets",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
   "keywords": [
     "SDS",
     "SICK",
@@ -35,13 +31,14 @@
     "Design Tokens"
   ],
   "files": [
-    "src/logos"
+    "src/logos",
+    "CHANGELOG.md"
   ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/assets",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/syn.git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/assets"
   },
   "release": {

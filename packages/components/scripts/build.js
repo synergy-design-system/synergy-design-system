@@ -123,7 +123,6 @@ await nextTask('Cleaning up the previous build', async () => {
   await fs.mkdir(outDir, { recursive: true });
 });
 
-// @todo: Enable this for type checks in the future!
 await nextTask('Running the TypeScript compiler', () => {
   return execPromise(`tsc --project ./tsconfig.prod.json --outdir "${outDir}"`, { stdio: 'inherit' });
 });

@@ -4,6 +4,12 @@
     "airbnb-typescript",
     "@synergy-design-system/eslint-config-syn/ts"
   ],
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/disable-type-checked"],
+      "files": ["./**/*.js"]
+    }
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -11,5 +17,6 @@
     "import/no-extraneous-dependencies": 0,
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
-  }
+  },
+  "root": true
 }

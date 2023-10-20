@@ -11,12 +11,12 @@
       "types": "./dist/synergy.d.ts",
       "import": "./dist/synergy.js"
     },
-    "./dist/custom-elements.json": "./dist/custom-elements.json",
-    "./dist/synergy.js": "./dist/synergy.js",
-    "./dist/synergy-autoloader.js": "./dist/synergy-autoloader.js",
-    "./dist/components/*": "./dist/components/*",
-    "./dist/utilities/*": "./dist/utilities/*",
-    "./dist/translations/*": "./dist/translations/*"
+    "./custom-elements.json": "./dist/custom-elements.json",
+    "./synergy.js": "./dist/synergy.js",
+    "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
+    "./components/*": "./dist/components/*",
+    "./utilities/*": "./dist/utilities/*",
+    "./translations/*": "./dist/translations/*"
   },
   "files": ["dist"],
   "scripts": {

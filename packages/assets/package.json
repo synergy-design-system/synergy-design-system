@@ -3,7 +3,7 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
-  "description": "Assets for the SICK Design System",
+  "description": "Assets for the Synergy Design System",
   "devDependencies": {
     "@clack/prompts": "^0.7.0",
     "@semantic-release/changelog": "^6.0.3",
@@ -25,10 +25,13 @@
   },
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
   "keywords": [
+    "Static Assets",
     "SDS",
+    "Synergy Design System",
     "SICK",
     "SICK Design System",
-    "Design Tokens"
+    "SICK Icons",
+    "SICK Logos"
   ],
   "files": [
     "src/logos",

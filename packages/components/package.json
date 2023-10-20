@@ -37,7 +37,15 @@
   },
   "type": "module",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
-  "keywords": [],
+  "keywords": [
+    "Web Components",
+    "LIT Components",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",

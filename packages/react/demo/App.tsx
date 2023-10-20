@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SynButton, SynInput } from '../dist';
 
 export const App = () => (

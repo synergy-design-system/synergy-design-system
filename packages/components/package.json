@@ -23,7 +23,9 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
@@ -81,7 +83,7 @@
     "pascal-case": "^4.0.0",
     "prettier": "^3.0.3",
     "remark-parse": "^11.0.0",
-    "semantic-release": "^22.0.5",
+    "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "sinon": "^16.1.0",
     "stylelint": "^15.10.3",
@@ -105,7 +107,8 @@
       {
         "name": "alpha",
         "prerelease": true
-      }
+      },
+      "release-fallback"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -126,7 +129,10 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ],
       [

@@ -1,0 +1,55 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:^"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^",
+    "@types/react": "^18.2.30",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.5.0"
+  },
+  "description": "React wrappers for Web Components of the Synergy Design System",
+  "exports": "./*",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/react",
+  "keywords": [
+    "React Web Component Wrapper",
+    "React Components",
+    "React Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/react"
+  },
+  "scripts": {
+    "start": "vite",
+    "lint": "eslint demo --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "version": "0.1.0"
+}

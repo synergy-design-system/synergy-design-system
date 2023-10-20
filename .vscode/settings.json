@@ -21,6 +21,7 @@
       "packages/assets",
       "packages/components",
       "packages/docs",
+      "packages/react",
       "packages/tokens",
     ],
     "files.readonlyInclude": {

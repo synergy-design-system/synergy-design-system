@@ -7,7 +7,7 @@ const distDir = path.join('./dist');
 const manifest = path.join('../components/dist/custom-elements.json');
 const metadata = JSON.parse(fs.readFileSync(manifest, 'utf8'));
 
-// await jobs.runAdjustPackageVersion();
+await jobs.runAdjustPackageVersion();
 await jobs.runPrepare(outDir, distDir);
 await jobs.createWrappers(metadata, outDir);
 await jobs.runFormat(outDir);

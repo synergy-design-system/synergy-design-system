@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SynButton, SynInput } from '../src';
+import { SynButton, SynInput } from '../dist';
 
 export const App = () => (
   <main>
@@ -28,7 +28,7 @@ export const App = () => (
         type="submit"
         variant="primary"
       >
-        Hello World
+        Submit
       </SynButton>
     </form>
   </main>

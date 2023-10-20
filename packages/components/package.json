@@ -107,7 +107,8 @@
       {
         "name": "alpha",
         "prerelease": true
-      }
+      },
+      "release-fallback"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

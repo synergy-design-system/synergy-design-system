@@ -20,7 +20,7 @@
     "dist",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/syn/tree/main/packages/tokens",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/tokens",
   "keywords": [
     "SDS",
     "SICK",
@@ -31,7 +31,7 @@
   "name": "@synergy-design-system/tokens",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/syn.git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/tokens"
   },
   "release": {
@@ -87,7 +87,8 @@
     "build": "pnpm clean && node scripts/build.js",
     "clean": "rimraf build",
     "lint": "eslint scripts",
-    "start": "pnpm build"
+    "start": "pnpm build",
+    "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "version": "0.1.0"

@@ -95,7 +95,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "fetch-assets": "node scripts/fetch-assets.js"
+    "fetch-assets": "node scripts/fetch-assets.js",
+    "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "types": "./build/js/index.d.ts",

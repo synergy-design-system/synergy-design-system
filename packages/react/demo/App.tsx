@@ -7,6 +7,7 @@ export const App = () => (
       onSubmit={e => {
         e.preventDefault();
         const fd = new FormData(e.target as HTMLFormElement);
+        // eslint-disable-next-line no-console
         console.log(...fd);
       }}
     >

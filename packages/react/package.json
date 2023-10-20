@@ -61,8 +61,8 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "start": "vite",
-    "lint": "eslint demo --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint \"scripts/**/*.{js,ts,tsx}\" \"demo/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "start": "vite"
   },
   "type": "module",
   "version": "0.1.0"

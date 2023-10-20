@@ -33,7 +33,8 @@
     "vendor.eject": "node scripts/vendorism.js -e",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
-    "lint": "pnpm run /^lint:.*/"
+    "lint": "pnpm run /^lint:.*/",
+    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",

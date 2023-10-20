@@ -87,7 +87,8 @@
     "build": "pnpm clean && node scripts/build.js",
     "clean": "rimraf build",
     "lint": "eslint scripts",
-    "start": "pnpm build"
+    "start": "pnpm build",
+    "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "version": "0.1.0"

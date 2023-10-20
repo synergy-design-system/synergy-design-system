@@ -1,10 +1,15 @@
 {
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
   "name": "@synergy-design-system/components",
   "version": "0.1.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mariohamann/custom-shoelace"
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/components"
   },
   "exports": {
     ".": {
@@ -30,10 +35,17 @@
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },
-  "author": "",
   "type": "module",
-  "homepage": "",
-  "keywords": [],
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
+  "keywords": [
+    "Web Components",
+    "LIT Components",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",

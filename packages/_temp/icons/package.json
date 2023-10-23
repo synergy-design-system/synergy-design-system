@@ -5,9 +5,9 @@
   },
   "description": "Icon font used in the Synergy Design System",
   "devDependencies": {
-    "@synergy-design-system/design-tokens": "workspace:0.1",
-    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
-    "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
+    "@synergy-design-system/design-tokens": "workspace:*",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "eslint": "^8.47.0",
     "material-icons": "^1.13.10",
     "postcss": "^8.4.28",

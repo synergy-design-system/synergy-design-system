@@ -4,8 +4,8 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@synergy-design-system/components": "workspace:0.1",
-    "@synergy-design-system/tokens": "workspace:0.1",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "change-case": "^4.1.2",
     "material-icons": "^1.13.12"
   },
@@ -23,8 +23,8 @@
     "@storybook/theming": "^7.4.6",
     "@storybook/web-components": "^7.4.6",
     "@storybook/web-components-vite": "^7.4.6",
-    "@synergy-design-system/eslint-config-syn": "workspace:0.1",
-    "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/react": "^18.2.28",
     "eslint": "^8.51.0",
     "eslint-plugin-storybook": "^0.6.15",

@@ -23,5 +23,9 @@
     "lint": "pnpm --recursive --if-present lint",
     "cli": "node ./scripts/unified-design-system.js"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "semantic-release": "^19.0.5",
+    "semantic-release-monorepo": "^7.0.5"
+  }
 }

@@ -6,7 +6,14 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      semantic-release:
+        specifier: ^19.0.5
+        version: 19.0.5
+      semantic-release-monorepo:
+        specifier: ^7.0.5
+        version: 7.0.5(semantic-release@19.0.5)
 
   packages/_internal/eslint-config-syn:
     dependencies:

@@ -57,38 +57,6 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "release": {
-    "extends": "../../.releaserc",
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": true
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
-      ]
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/synergy.git",

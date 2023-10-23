@@ -233,10 +233,10 @@ importers:
   packages/docs:
     dependencies:
       '@synergy-design-system/components':
-        specifier: workspace:0.1
+        specifier: workspace:1.0.0-main.1
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:0.1
+        specifier: workspace:1.0.0-main.1
         version: link:../tokens
       change-case:
         specifier: ^4.1.2
@@ -290,6 +290,9 @@ importers:
       '@types/react':
         specifier: ^18.2.28
         version: 18.2.28
+      chromatic:
+        specifier: ^7.4.0
+        version: 7.4.0
       eslint:
         specifier: ^8.51.0
         version: 8.51.0
@@ -6587,6 +6590,11 @@ packages:
   /chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: true
+
+  /chromatic@7.4.0:
+    resolution: {integrity: sha512-ORsoNgXiAxIEvbdVEqOu4lMZuVMGoM3kiO/toTrAEdh0ej9jIMm2VYqvGVdYGgIWO0xOD9Bn6A34gGeqCsZ1lQ==}
+    hasBin: true
     dev: true
 
   /chrome-launcher@0.15.2:

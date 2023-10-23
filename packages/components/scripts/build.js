@@ -136,6 +136,10 @@ await nextTask('Building CEM', async () => {
   buildResults = await buildCEM();
 });
 
+await nextTask('Creating react wrappers', () => {
+  return execPromise('pnpm run --filter react build');
+});
+
 // Cleanup on exit
 process.on('SIGINT', handleCleanup);
 process.on('SIGTERM', handleCleanup);

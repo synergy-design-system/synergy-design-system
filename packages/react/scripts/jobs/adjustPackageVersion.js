@@ -20,6 +20,9 @@ export const runAdjustPackageVersion = job('Adjusting package.json version field
   // Write out the changed package.json file with adjusted version
   return await fs.writeFile(
     path.join('package.json'),
-    JSON.stringify({ ...reactPackageAsJSON, version }, null, 2),
+    [
+      JSON.stringify({ ...reactPackageAsJSON, version }, null, 2).trim(),
+      '',
+    ].join('\n'),
   );
 });

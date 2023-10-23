@@ -25,6 +25,7 @@
       "packages/tokens",
     ],
     "files.readonlyInclude": {
+        "packages/react/src/**/*.ts": true,
         "packages/components/custom-elements-manifest.config.js": true,
         "packages/components/web-test-runner.config.js": true,
         "packages/components/tsconfig.json": true,

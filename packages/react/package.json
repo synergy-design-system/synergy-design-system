@@ -5,11 +5,11 @@
   },
   "dependencies": {
     "@lit/react": "^1.0.0",
-    "@synergy-design-system/components": "workspace:^"
+    "@synergy-design-system/components": "workspace:*"
   },
   "devDependencies": {
-    "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@synergy-design-system/tokens": "workspace:^",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "@types/react": "^18.2.30",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
@@ -68,5 +68,5 @@
     "start": "vite"
   },
   "type": "module",
-  "version": "0.1.0"
+  "version": "1.0.0-main.1"
 }

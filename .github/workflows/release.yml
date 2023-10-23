@@ -26,21 +26,8 @@ jobs:
       - name: Install dependencies
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
-      - name: (assets) Run Semantic Release
+      - name: Run Semantic Release for all packages
         env:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: cd packages/assets && pnpm release
-
-      - name: (components) Run Semantic Release
-        env:
-          GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
-          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: cd packages/components && pnpm release
-
-      - name: (tokens) Run Semantic Release
-        env:
-          GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
-          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: cd packages/tokens && pnpm release
-
+        run: pnpm build && pnpm -r --workspace-concurrency=1 exec -- npx --no-install semantic-release -e semantic-release-monorepo

@@ -78,11 +78,26 @@ export const createWrappers = job('Creating React Component Wrappers...', async 
       ${eventExports}
     `;
 
-    index.push(`export { ${component.name} } from './components/${tagWithoutPrefix}/index.js';`);
+    index.push({
+      name: component.name,
+      outputPath: `./components/${tagWithoutPrefix}/index.js`,
+    });
 
     fs.writeFileSync(componentFile, source, 'utf8');
   });
 
+  // Always sort the included scripts as otherwise we would have unneeded index.js changes
+  // due to the fact that the order is not treated well
+  const alphabeticIndex = [...index]
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    })
+    .map(({ name, outputPath }) => `export { ${name} } from '${outputPath}';`);
+
   // Generate the index file
-  fs.writeFileSync(path.join(outDir, 'index.ts'), index.join('\n'), 'utf8');
+  fs.writeFileSync(path.join(outDir, 'index.ts'), `${alphabeticIndex.join('\n')}\n`, 'utf8');
 });

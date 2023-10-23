@@ -92,5 +92,5 @@
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "0.1.0"
+  "version": "1.0.0-main.1"
 }

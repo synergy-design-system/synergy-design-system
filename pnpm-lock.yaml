@@ -233,10 +233,10 @@ importers:
   packages/docs:
     dependencies:
       '@synergy-design-system/components':
-        specifier: workspace:1.0.0-main.1
+        specifier: workspace:*
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:1.0.0-main.1
+        specifier: workspace:*
         version: link:../tokens
       change-case:
         specifier: ^4.1.2

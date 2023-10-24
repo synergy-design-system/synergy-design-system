@@ -4,8 +4,8 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@synergy-design-system/components": "workspace:1.0.0-main.1",
-    "@synergy-design-system/tokens": "workspace:1.0.0-main.1",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "change-case": "^4.1.2",
     "material-icons": "^1.13.12"
   },
@@ -26,7 +26,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:0.1",
     "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
     "@types/react": "^18.2.28",
-    "chromatic": "^7.4.0",
+    "chromatic": "^7.5.0",
     "eslint": "^8.51.0",
     "eslint-plugin-storybook": "^0.6.15",
     "html-format": "^1.1.2",
@@ -61,9 +61,10 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
+    "chromatic": "pnpm storybook:build && chromatic --project-token=chpt_1bf9ad8e175d22c --build-script-name=build",
     "start": "storybook dev -p 6006",
     "storybook:run": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build --output-dir dist/storybook" 
   },
   "type": "module",
   "version": "0.1.0"

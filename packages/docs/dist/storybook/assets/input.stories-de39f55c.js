@@ -778,7 +778,7 @@ https://www.npmjs.com/package/wc-storybook-helpers#before-you-install`);const s=
               </tbody>
             </table>
           `})}`)}
-    `}}},{args:Cn,argTypes:Tn}=Tt("syn-input"),{generateTemplate:Sn}=An("syn-input"),Pn={component:"input",args:Cn,argTypes:Tn,title:"Components/syn-input",parameters:{docs:{description:{component:ye.components.input.description.value}}}},vt={render:n=>Sn({args:n}),parameters:{docs:{description:{story:ye.components.input.description.value}}}},J={render:()=>x`<syn-input label="What is your name?"></syn-input>`},X={render:()=>x`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`},tt={render:()=>x`<syn-input placeholder="Type something"></syn-input>`},et={render:()=>x`<syn-input placeholder="Clearable" clearable></syn-input>`},st={render:()=>x`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`},nt={render:()=>x`<syn-input placeholder="Type something" filled></syn-input>`},it={render:()=>x`<syn-input placeholder="Disabled" disabled></syn-input>`},rt={render:()=>x`<syn-input placeholder="Small" size="small"></syn-input>
+    `}}},{args:Cn,argTypes:Tn}=Tt("syn-input"),{generateTemplate:Sn}=An("syn-input"),Pn={component:"input",args:Cn,argTypes:Tn,title:"Components/syn-input",parameters:{docs:{description:{component:ye.components.input.default.description.value}}}},vt={render:n=>Sn({args:n}),parameters:{docs:{description:{story:ye.components.input.default.description.value}}}},J={render:()=>x`<syn-input label="What is your name?"></syn-input>`},X={render:()=>x`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`},tt={render:()=>x`<syn-input placeholder="Type something"></syn-input>`},et={render:()=>x`<syn-input placeholder="Clearable" clearable></syn-input>`},st={render:()=>x`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`},nt={render:()=>x`<syn-input placeholder="Type something" filled></syn-input>`},it={render:()=>x`<syn-input placeholder="Disabled" disabled></syn-input>`},rt={render:()=>x`<syn-input placeholder="Small" size="small"></syn-input>
 <br />
 <syn-input placeholder="Medium" size="medium"></syn-input>
 <br />
@@ -840,7 +840,7 @@ https://www.npmjs.com/package/wc-storybook-helpers#before-you-install`);const s=
   parameters: {
     docs: {
       description: {
-        story: docsTokens.components['input'].description.value
+        story: docsTokens.components['input'].default.description.value
       }
     }
   }
@@ -908,4 +908,4 @@ https://www.npmjs.com/package/wc-storybook-helpers#before-you-install`);const s=
   }
 </style>\`
 }`,...pt.parameters?.docs?.source},description:{story:"Use  to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",...pt.parameters?.docs?.description}}};const Mn=["Default","Labels","HelpText","Placeholders","Clearable","TogglePassword","FilledInputs","Disabled","Sizes","Pill","InputTypes","PrefixSuffixIcons","CustomizingLabelPosition"];export{et as Clearable,pt as CustomizingLabelPosition,vt as Default,it as Disabled,nt as FilledInputs,X as HelpText,at as InputTypes,J as Labels,ot as Pill,tt as Placeholders,lt as PrefixSuffixIcons,rt as Sizes,st as TogglePassword,Mn as __namedExportsOrder,Pn as default};
-//# sourceMappingURL=input.stories-30fb1bc6.js.map
+//# sourceMappingURL=input.stories-de39f55c.js.map

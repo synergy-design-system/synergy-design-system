@@ -291,8 +291,8 @@ importers:
         specifier: ^18.2.28
         version: 18.2.28
       chromatic:
-        specifier: ^7.4.0
-        version: 7.4.0
+        specifier: ^7.5.0
+        version: 7.5.0
       eslint:
         specifier: ^8.51.0
         version: 8.51.0
@@ -6592,8 +6592,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chromatic@7.4.0:
-    resolution: {integrity: sha512-ORsoNgXiAxIEvbdVEqOu4lMZuVMGoM3kiO/toTrAEdh0ej9jIMm2VYqvGVdYGgIWO0xOD9Bn6A34gGeqCsZ1lQ==}
+  /chromatic@7.5.0:
+    resolution: {integrity: sha512-9B1rT8/L71BZTmAGXFBvKGrudnVZ4uBcGFckx0ZEMvOXboI0DOyr1/ehmSB1YmPOhu+r/7dy2jfTEzPmYcpXJg==}
     hasBin: true
     dev: true
 

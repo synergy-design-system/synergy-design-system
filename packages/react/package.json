@@ -15,9 +15,6 @@
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "@vitejs/plugin-react": "^4.0.3",
-    "chalk": "^5.3.0",
-    "del": "^7.1.0",
-    "esbuild": "^0.19.4",
     "eslint": "^8.51.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -26,8 +23,6 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "globby": "^13.2.2",
-    "ora": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.0.2",
@@ -118,8 +113,7 @@
     "directory": "packages/react"
   },
   "scripts": {
-    "build": "node scripts/build.js",
-    "lint": "eslint \"scripts/**/*.{js,ts,tsx}\" \"demo/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint \"demo/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "release": "semantic-release --tagFormat 'react/${version}' -e semantic-release-monorepo",
     "start": "vite"
   },

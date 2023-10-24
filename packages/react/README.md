@@ -79,10 +79,8 @@ To create a new version of this package, proceed in the following way:
 1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
 2. Run `pnpm i -r` to install all dependencies.
 3. Build the `@synergy-design-system/components` package (or run `pnpm build in the project root to build everything).
-4. Move to the `packages/react` folder and apply your changes.
-5. Call `pnpm build` when you want to recreate the wrappers.
-6. Use `pnpm start` to spin up a local vite project using react and typescript to validate your changes.
-7. Apply all fixes displayed when using `pnpm lint`.
+4. Move to to `packages/react` and use `pnpm start` to spin up a local vite project using react and typescript to validate your changes.
+5. Apply all fixes displayed when using `pnpm lint`.
 
 > ⚠️ The build process will always try to sync this packages `package.json.version` field with the latest version from `@synergy-design-system/components`!
 > Therefore, it is best to not alter the version string

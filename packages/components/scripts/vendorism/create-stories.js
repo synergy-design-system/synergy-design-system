@@ -1,14 +1,14 @@
+/* eslint-disable no-restricted-syntax */
 import fs from 'fs';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import { visit } from 'unist-util-visit';
-import path from 'path';
 
 export async function generateStorybookFile(inputFilePath, outputFilePath, componentName, prefix) {
   const markdownContent = fs.readFileSync(inputFilePath, 'utf-8');
 
   const examplesSection = markdownContent
-    .split("## Examples")[1]
+    .split('## Examples')[1]
     ?.split(/\n(?=## )/)[0];
 
   let isCapturingDescription = false;
@@ -20,6 +20,7 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
 
   const parsedMarkdown = processor.parse(examplesSection);
 
+  // eslint-disable-next-line complexity
   visit(parsedMarkdown, (node) => {
     if (node.type === 'heading' && node.depth === 3) {
       // Identified a headline, start capturing description
@@ -37,10 +38,10 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
     }
   });
 
-  let overrides = {
-    'alert': `args: overrideArgs([ { type: 'slot', value: 'This is a standard alert. You can customize its content and even the icon.', name: 'default' }, { type: 'attribute', value: true, name: 'open' }, { type: 'slot', value: '<${prefix}-icon slot="icon" name="info-circle"></${prefix}-icon>', name: 'icon' } ], args)`,
-    'button': `args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args)`,
-  }
+  const overrides = {
+    alert: `args: overrideArgs([ { type: 'slot', value: 'This is a standard alert. You can customize its content and even the icon.', name: 'default' }, { type: 'attribute', value: true, name: 'open' }, { type: 'slot', value: '<${prefix}-icon slot="icon" name="info-circle"></${prefix}-icon>', name: 'icon' } ], args)`,
+    button: "args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args)",
+  };
 
   let storybookOutput = `
 /* eslint-disable import/no-relative-packages */
@@ -49,7 +50,7 @@ import '../../../components/src/components/${componentName}/${componentName}';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component';
+import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('${prefix}-${componentName}');
 const { overrideArgs } = storybookHelpers('${prefix}-${componentName}');
 const { generateTemplate } = storybookTemplate('${prefix}-${componentName}');

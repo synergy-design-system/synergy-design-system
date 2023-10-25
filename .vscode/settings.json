@@ -16,16 +16,15 @@
         "packages/tokens/dist/css/light.css"
     ],
     "eslint.workingDirectories": [
-      "packages/_internal/eslint-config-syn",
-      "packages/_internal/stylelint-config-syn",
-      "packages/assets",
-      "packages/components",
-      "packages/docs",
-      "packages/react",
-      "packages/tokens",
+        "packages/_internal/eslint-config-syn",
+        "packages/_internal/stylelint-config-syn",
+        "packages/assets",
+        "packages/components",
+        "packages/docs",
+        "packages/react",
+        "packages/tokens"
     ],
     "files.readonlyInclude": {
-        "packages/react/src/**/*.ts": true,
         "packages/components/custom-elements-manifest.config.js": true,
         "packages/components/web-test-runner.config.js": true,
         "packages/components/tsconfig.json": true,
@@ -44,7 +43,7 @@
         "packages/components/prettier.config.js": true,
         "packages/components/src/synergy-autoloader.ts": true,
         "packages/components/src/components/input/input.component.ts": true,
-        "packages/components/./src/temp/input.stories.ts": true,
+        "packages/docs/stories/components/input.stories.ts": true,
         "packages/components/src/components/input/input.styles.ts": true,
         "packages/components/src/components/input/input.test.ts": true,
         "packages/components/src/components/input/input.ts": true,
@@ -69,7 +68,9 @@
         "packages/components/src/components/button/button.ts": true,
         "packages/components/src/internal/form.ts": true,
         "packages/components/src/styles/form-control.styles.ts": true,
-        "packages/components/src/internal/test/form-control-base-tests.ts": true
+        "packages/components/src/internal/test/form-control-base-tests.ts": true,
+        "packages/docs/stories/components/alert.stories.ts": true,
+        "packages/react/src/**/*.ts": true
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"

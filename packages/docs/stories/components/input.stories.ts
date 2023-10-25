@@ -11,7 +11,7 @@ import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component';
+import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');

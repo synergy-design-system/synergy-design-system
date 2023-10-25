@@ -9,6 +9,6 @@ export const runTypeScript = job('Generating typescript types...', async (
   outDir,
   tsConfigPath = './tsconfig.json',
 ) => await execPromise(
-  `pnpm tsc --project ${tsConfigPath} --outDir "${outDir}"`,
+  `tsc --project ${tsConfigPath} --outDir "${outDir}"`,
   { stdio: 'inherit' },
 ));

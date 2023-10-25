@@ -37,6 +37,7 @@ export const runEsBuildComponents = job('Running esbuild...', async (distDir, __
         __PACKAGE_VERSION__,
       }),
     ],
+    sourcemap: true,
     splitting: true,
     target: 'es2017',
   };

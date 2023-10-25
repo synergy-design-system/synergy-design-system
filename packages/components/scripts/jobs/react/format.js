@@ -1,7 +1,8 @@
+import path from 'path';
 import { ESLint } from 'eslint';
-import { getPath, job } from '../shared.js';
+import { job } from '../shared.js';
 
-export const runFormat = job('React: Running code formatter...', async (outDir) => {
+export const runFormat = job('React: Running code formatter...', async (outDir, packagePath) => {
   const eslint = new ESLint({
     fix: true,
     overrideConfig: {
@@ -17,7 +18,7 @@ export const runFormat = job('React: Running code formatter...', async (outDir) 
         },
       ],
       parserOptions: {
-        project: getPath('jobs/react/tsconfig.json'),
+        project: path.join(packagePath, 'tsconfig.json'),
       },
       root: true,
       rules: {

@@ -1,8 +1,7 @@
-import { SynButton, SynInput } from '../dist';
+import { SynButton, SynInput } from '@synergy-design-system/react';
 
 export const App = () => (
   <main>
-    hello world
     <form
       onSubmit={e => {
         e.preventDefault();

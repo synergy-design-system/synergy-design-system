@@ -17,6 +17,7 @@ export const runEsBuild = job('React: Running esbuild...', async (distDir) => {
     minify: false,
     outdir: distDir,
     packages: 'external',
+    sourcemap: true,
     splitting: true,
     target: 'es2020',
   };

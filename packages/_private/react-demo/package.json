@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@lit/react": "^1.0.0",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/react": "workspace:1.0.0-main.1",
+    "@synergy-design-system/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@types/react": "^18.2.30",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.5.0"
+  },
+  "description": "Sample Demo Project for using the Synergy Design System React Wrappers",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/_private/react-demo",
+  "keywords": [
+    "React Web Component Wrapper",
+    "React Components",
+    "React Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/demo-react",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/_private/react-demo"
+  },
+  "scripts": {
+    "lint": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "start": "vite"
+  },
+  "type": "module",
+  "version": "1.0.0-main.1"
+}

@@ -1,7 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { getPath } from './shared.js';
-import { runTypeScript } from './tsc.js';
 import * as jobs from './react/index.js';
 
 /**
@@ -26,7 +24,7 @@ export const runCreateReactWrappers = async ({
   await jobs.runAdjustPackageVersion(componentPackageDir, reactPackageDir);
   await jobs.runPrepare(outDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
-  await jobs.runFormat(outDir);
+  await jobs.runFormat(outDir, reactPackageDir);
   await jobs.runEsBuild(distDir);
-  await runTypeScript(distDir, getPath('../tsconfig.react.json'));
+  await jobs.runReactTypeScript(distDir, reactPackageDir);
 };

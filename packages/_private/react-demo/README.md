@@ -11,9 +11,6 @@ Run the following steps to install the required packages.
 ```bash
 # Install the base library and required css files
 npm install --save @synergy-design-system/react @synergy-design-system/tokens
-
-# Only if not already installed
-npm install --save react react-dom
 ```
 
 > ⚠️ Note we do **not** ship react in this package.
@@ -81,8 +78,9 @@ To create a new version of this package, proceed in the following way:
 
 1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
 2. Run `pnpm i -r` to install all dependencies.
-3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
-4. Move to to `packages/_private/react-demo` and use `pnpm start` to spin up a local vite project using react and typescript to validate the build.
+3. Build the `@synergy-design-system/components` package (or run `pnpm build in the project root to build everything).
+4. Move to to `packages/react` and use `pnpm start` to spin up a local vite project using react and typescript to validate your changes.
+5. Apply all fixes displayed when using `pnpm lint`.
 
 > ⚠️ The build process will always try to sync this packages `package.json.version` field with the latest version from `@synergy-design-system/components`!
 > Therefore, it is best to not alter the version string

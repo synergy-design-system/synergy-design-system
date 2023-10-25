@@ -23,7 +23,7 @@ jobs:
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
       # 👇 Build storybook with pnpm
       - name: Build storybook
-        run: cd packages/docs && pnpm run chromatic
+        run: cd packages/docs && pnpm run build
       # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1

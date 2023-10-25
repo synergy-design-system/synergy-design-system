@@ -27,6 +27,7 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:0.1",
     "@types/react": "^18.2.28",
     "chromatic": "^7.5.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
     "eslint-plugin-storybook": "^0.6.15",
     "html-format": "^1.1.2",
@@ -62,10 +63,10 @@
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "chromatic:build": "cd ../.. && pnpm build",
-    "chromatic": "chromatic --project-token=chpt_1bf9ad8e175d22c --build-script-name=chromatic:build",
+    "chromatic": "cross-env chromatic ${CHROMATIC_PROJECT_TOKEN} --build-script-name=chromatic:build",
     "start": "storybook dev -p 6006",
     "storybook:run": "storybook dev -p 6006",
-    "storybook:build": "storybook build --output-dir dist" 
+    "storybook:build": "storybook build --output-dir dist"
   },
   "type": "module",
   "version": "0.1.0"

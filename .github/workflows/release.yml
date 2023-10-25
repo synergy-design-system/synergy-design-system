@@ -30,4 +30,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: pnpm build && pnpm release && pnpm publish --tag alpha
+        run: pnpm build.release && pnpm release && pnpm publish --tag main

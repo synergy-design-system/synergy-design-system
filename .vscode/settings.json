@@ -16,8 +16,9 @@
         "packages/tokens/dist/css/light.css"
     ],
     "eslint.workingDirectories": [
-        "packages/_internal/eslint-config-syn",
-        "packages/_internal/stylelint-config-syn",
+        "packages/_private/eslint-config-syn",
+        "packages/_private/react-demo",
+        "packages/_private/stylelint-config-syn",
         "packages/assets",
         "packages/components",
         "packages/docs",
@@ -70,7 +71,7 @@
         "packages/components/src/styles/form-control.styles.ts": true,
         "packages/components/src/internal/test/form-control-base-tests.ts": true,
         "packages/docs/stories/components/alert.stories.ts": true,
-        "packages/react/src/**/*.ts": true
+        "packages/react/src/**": true
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"

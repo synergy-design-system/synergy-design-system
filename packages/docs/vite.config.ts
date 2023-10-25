@@ -24,14 +24,14 @@ const getCustomElementManifestPlugins = () => {
     'package-data',
     'infer-tag-names',
     'custom-tags',
-    'translate-module-paths'
+    'translate-module-paths',
   ].map(i => `synergy-${i}`);
 
   const applyablePlugins = customElementConfig.plugins.filter(
-    plugin => plugin.name && allowedPlugins.includes(plugin.name)
-  ) as any[];
+    (plugin: { name: string; }) => plugin.name && allowedPlugins.includes(plugin.name),
+  );
 
-  return applyablePlugins.map(plugin => {
+  return applyablePlugins.map((plugin: { name: any; }) => {
     switch (plugin.name) {
       // Adjust metadata plugin to make it work with relative package.json files
       case 'synergy-package-data': {
@@ -41,9 +41,12 @@ const getCustomElementManifestPlugins = () => {
             const packageData = JSON.parse(
               fs.readFileSync(
                 getAbsolutePath('../components/package.json'),
-                'utf8'
-              ));
-            const { name, description, version, author, homepage, license } = packageData;
+                'utf8',
+              ),
+            );
+            const {
+              name, description, version, author, homepage, license,
+            } = packageData;
             customElementsManifest.package = {
               author,
               description,

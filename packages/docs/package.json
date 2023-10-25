@@ -61,8 +61,8 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "chromatic.build": "cd ../.. && pnpm build",
-    "chromatic": "pnpm storybook:build && chromatic --project-token=chpt_1bf9ad8e175d22c --build-script-name=chromatic.build",
+    "chromatic:build": "cd ../.. && pnpm build",
+    "chromatic": "chromatic --project-token=chpt_1bf9ad8e175d22c --build-script-name=chromatic:build",
     "start": "storybook dev -p 6006",
     "storybook:run": "storybook dev -p 6006",
     "storybook:build": "storybook build --output-dir dist/storybook" 

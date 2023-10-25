@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
       # 👇 Build storybook with pnpm
-      - name: Build storybook
+      - name: Build packages
         run: pnpm run build
       # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic

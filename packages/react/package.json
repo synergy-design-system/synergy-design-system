@@ -88,11 +88,6 @@
     "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/react"
   },
-  "scripts": {
-    "lint": "eslint \"demo/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "release": "semantic-release --tagFormat 'react/${version}' -e semantic-release-monorepo",
-    "start": "vite"
-  },
   "type": "module",
   "version": "1.0.0-main.1",
   "devDependencies": {

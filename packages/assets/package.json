@@ -13,6 +13,7 @@
     "chalk": "^5.3.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.47.0",
+    "eslint-plugin-import": "^2.28.1",
     "figma-export-assets": "github:mariohamann/figma-export-assets",
     "rimraf": "^5.0.1",
     "semantic-release": "^19.0.5",

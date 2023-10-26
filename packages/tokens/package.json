@@ -63,6 +63,12 @@
         }
       ],
       [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
+        }
+      ],
+      [
         "@semantic-release/npm",
         {
           "npmPublish": false
@@ -76,12 +82,6 @@
             "CHANGELOG.md",
             "package.json"
           ]
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build"
         }
       ],
       [

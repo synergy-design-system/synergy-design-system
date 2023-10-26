@@ -11,7 +11,6 @@ const components = [
 
 // List of events that we want to import.
 // @todo: Automate this depending on components!
-// @todo: This will NOT add exports to events/events.ts automatically
 const events = [
   'sl-blur',
   'sl-focus',

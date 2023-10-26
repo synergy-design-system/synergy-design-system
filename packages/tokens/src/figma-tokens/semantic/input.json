@@ -88,7 +88,7 @@
     },
     "placeholder": {
       "color": {
-        "value": "{gray.500}",
+        "value": "{neutral.500}",
         "type": "color"
       },
       "color-disabled": {

@@ -20,8 +20,9 @@
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
+    "build.release": "pnpm --recursive --filter '!docs' --if-present build",
     "lint": "pnpm --recursive --if-present lint",
-    "cli": "node ./scripts/unified-design-system.js"
+    "release": "pnpm --recursive --if-present release --filter"
   },
   "private": true
 }

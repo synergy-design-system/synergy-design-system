@@ -1,12 +1,14 @@
-import { eject, setTarget, setSource } from 'vendorism';
-import { generateStorybookFile } from './vendorism-create-stories.js';
-import { execSync } from 'child_process';
-import { updateVsCodeReadOnlyFiles } from './update-vscode-readonly-files.js';
-import commandLineArgs from 'command-line-args';
+/* eslint-disable no-console */
 import fs from 'fs';
+import { execSync } from 'child_process';
+import commandLineArgs from 'command-line-args';
+import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
+import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 
-const components = ['input'];
+const components = [
+  'input',
+];
 
 // List of events that we want to import.
 // @todo: Automate this depending on components!
@@ -38,42 +40,42 @@ const libraryPrefix = 'syn';
 const libraryName = 'synergy';
 const shoelaceVersion = '2.10.0';
 
-//Command line options
+// Command line options
 const optionDefinitions = [
-  { name: 'setOnly', alias: 's', type: Boolean },
-  { name: 'getOnly', alias: 'g', type: Boolean },
-  { name: 'eject', alias: 'e', type: Boolean },
-  { name: 'file', type: String, defaultOption: true }
+  { alias: 's', name: 'setOnly', type: Boolean },
+  { alias: 'g', name: 'getOnly', type: Boolean },
+  { alias: 'e', name: 'eject', type: Boolean },
+  { defaultOption: true, name: 'file', type: String },
 ];
 
 const options = commandLineArgs(optionDefinitions);
 
 const config = {
   source: {
-    url: `https://github.com/shoelace-style/shoelace/archive/refs/tags/v${shoelaceVersion}.tar.gz`,
-    path: "./vendor",
+    downloadConfig: { extract: true, strip: 1 },
     hooks: {
-      before: "echo ⌛️ Setting up source...",
-      after: "echo ✅ Source setup complete.",
+      after: 'echo ✅ Source setup complete.',
+      before: 'echo ⌛️ Setting up source...',
     },
-    downloadConfig: { extract: true, strip: 1 }
+    path: './vendor',
+    url: `https://github.com/shoelace-style/shoelace/archive/refs/tags/v${shoelaceVersion}.tar.gz`,
   },
   target: {
-    path: ".",
+    hooks: {
+      after: 'echo ✅ Target setup complete.',
+      before: 'echo ⌛️ Setting up target...',
+    },
     includes: [
       ...components.map((component) => `src/components/${component}/**`),
-      ...otherIncludes
+      ...otherIncludes,
     ],
-    hooks: {
-      before: "echo ⌛️ Setting up target...",
-      after: "echo ✅ Target setup complete.",
-    },
-    //Changes targeted files -> otherIncludes
+    path: '.',
+    // Changes targeted files -> otherIncludes
     transforms: [
       // Adjust the event map to use our own file names
       (path, content) => {
         const outputPath = path.startsWith('events/')
-          ? path.replace('sl-', libraryPrefix + '-')
+          ? path.replace('sl-', `${libraryPrefix}-`)
           : path;
 
         return {
@@ -87,22 +89,23 @@ const config = {
         const eslintDisableComment = '/* eslint-disable */';
         const stylelintDisableComment = '/* stylelint-disable */';
 
-        const prefixedContent = [];
-
-        // Sometimes eslint is enabled explicitly in code. This needs to be removed, otherwise the disable does not work.
-        content = content.replaceAll(eslintEnableComment, '')
+        // Sometimes eslint is enabled explicitly in code.
+        // This needs to be removed, otherwise the disable does not work.
+        let nextContent = content.replaceAll(eslintEnableComment, '');
 
         // Shoelace vendor components use other style rules, so make sure to ignore them per default
         if (path.endsWith('.ts') || path.endsWith('.js')) {
-          prefixedContent.push(eslintDisableComment);
+          nextContent = `${eslintDisableComment}\n${nextContent}`;
         }
 
-        // We do not want to lint shoelace styles as they do not adhere to any standard
-        // we can`t just add the style-disable at the top of the file. To make it work it needs to be in the "css" function
-        content = content.replace('css`', `css\`\n\t${stylelintDisableComment}`);
+        // We do not want to lint shoelace styles
+        // as they do not adhere to any standard.
+        // We can`t just add the style-disable at the top of the file.
+        // To make it work it needs to be in the "css" function
+        nextContent = nextContent.replace('css`', `css\`\n\t${stylelintDisableComment}`);
 
         return {
-          content: [...prefixedContent, content].join('\n'),
+          content: nextContent,
           path,
         };
       },
@@ -115,7 +118,7 @@ const config = {
 
         const regexPattern = new RegExp(`@${libraryDesignName}/(?!${lowerLibraryName}$)`, 'g');
 
-        const replace = (content) => content
+        const replace = c => c
           .replace(/Sl(?=[A-Z])/g, capitalizedPrefix)
           .replace(/(?<![A-Za-z])sl-/g, `${libraryPrefix}-`)
           .replace(/shoelace-style/g, libraryDesignName)
@@ -124,40 +127,61 @@ const config = {
           .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
           .replace(regexPattern, '@shoelace-style/');
 
-        return { path: replace(path), content: replace(content) };
+        return {
+          content: replace(content),
+          path: replace(path),
+        };
       },
       // Move stories into `temp` directory
       (path, content) => {
         if (path.includes('.stories.ts')) {
           const optimizedPath = optimizePathForWindows(path);
-          const parts = optimizedPath.split("/");
-          const fileName = parts[parts.length - 1];  // Gets 'input.stories.ts'
-          return { path: `./src/temp/${fileName}`, content };
+          const parts = optimizedPath.split('/');
+          // Gets 'input.stories.ts'
+          const fileName = parts[parts.length - 1];
+          return {
+            content,
+            path: `./src/temp/${fileName}`,
+          };
         }
-        return { path, content };
+        return {
+          content,
+          path,
+        };
       },
       // allow unknown command line args in `custom-elements-manifest.config.js`
       // as otherwise commandLineArgs breaks when we start it from docs
       (path, content) => {
         if (path.includes('custom-elements-manifest.config.js')) {
           return {
-            path, content: content.replace(`{ name: 'outdir', type: String }
+            content: content.replace(`{ name: 'outdir', type: String }
 ]);`, `{ name: 'outdir', type: String }
-], { partial: true })`)
+], { partial: true })`),
+            path,
           };
         }
-        return { path, content };
+        return {
+          content,
+          path,
+        };
       },
       // add custom styles to the end of `${component}.styles.ts`
       (path, content) => {
         let newContent;
-        components.map((component) => {
+        components.forEach((component) => {
           if (path.includes(`${component}.styles.ts`)) {
             newContent = content
-              .replace(`import componentStyles from '../../styles/component.styles.js';`,
-                `import componentStyles from './${component}.custom.styles.js';
-import customStyles from '../../styles/component.styles.js';`)
-              .replace(`}\n\`;`, `}\n\n  $\{customStyles}\n\`;\n`);
+              .replace(
+                // eslint-disable-next-line @typescript-eslint/quotes
+                `import componentStyles from '../../styles/component.styles.js';`,
+                `import componentStyles from '../../styles/component.styles.js';
+import customStyles from './${component}.custom.styles.js';`,
+              )
+              .replace(
+                '}\n`;',
+                // eslint-disable-next-line @typescript-eslint/quotes
+                `}\n\n  $\{customStyles}\n\`;\n`,
+              );
 
             // create file if it doesn't exist
             const customStylesPath = path.replace(`${component}.styles.ts`, `${component}.custom.styles.ts`);
@@ -166,44 +190,49 @@ import customStyles from '../../styles/component.styles.js';`)
             }
           }
         });
-        return { path, content: newContent };
-      }
-    ]
+
+        return {
+          content: newContent,
+          path,
+        };
+      },
+    ],
   },
-}
+};
 
 // If the eject option is specified, runs the eject functionality
 if (options.eject) {
   const filePath = options.file;
   const optimizedPath = optimizePathForWindows(filePath);
 
-  console.log("🚀 Ejecting file", optimizedPath);
+  console.log('🚀 Ejecting file', optimizedPath);
 
   if (!optimizedPath) {
-    console.error("❗ Please provide a file path for the eject operation.");
+    console.error('❗ Please provide a file path for the eject operation.');
     process.exit(1);
   }
 
-  await eject(
-    config,
-    filePath
-  );
+  await eject(config, filePath);
   await updateVsCodeReadOnlyFiles([optimizedPath], []);
 
   process.exit(0);
 }
 
-//Downloads Shoelace and sets up the source
+// Downloads Shoelace and sets up the source
 if (!options.setOnly) {
   await setSource(config);
-  // Don`t know exactly why, but this is needed for Windows. Otherwise the last three files (tsconfig.(prod).json, web-test-runner.config.js) from shoelace are missing after the download.
-  await new Promise(res => { setTimeout(res, 100); })
+  // Don`t know exactly why, but this is needed for Windows.
+  // Otherwise the last three files (tsconfig.(prod).json, web-test-runner.config.js)
+  // from shoelace are missing after the download.
+  await new Promise(res => { setTimeout(res, 100); });
 }
+
 // Check for the "getOnly" option and modify the content if necessary
 if (!options.getOnly) {
   /**
-   * Generate the storybook files for all relevant components after shoelace is available so that they can be vendored
-  */
+   * Generate the storybook files for all relevant components
+   * after shoelace is available so that they can be vendored
+   */
   await Promise.all(components.map(async (component) => {
     const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
     const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
@@ -213,9 +242,7 @@ if (!options.getOnly) {
   // Move all files from '../docs/src/components' to './src/temp'
   await execSync('mv ../docs/stories/components ./src/temp');
 
-  const target = await setTarget(config);
-  const removedFiles = target.removedFiles;
-  const newFiles = target.newFiles;
+  const { removedFiles, newFiles } = await setTarget(config);
 
   await updateVsCodeReadOnlyFiles(removedFiles, newFiles);
 

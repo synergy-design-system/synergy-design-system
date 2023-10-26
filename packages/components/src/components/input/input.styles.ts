@@ -5,8 +5,8 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import componentStyles from './input.custom.styles.js';
-import customStyles from '../../styles/component.styles.js';
+import componentStyles from '../../styles/component.styles.js';
+import customStyles from './input.custom.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`

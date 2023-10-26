@@ -16,12 +16,12 @@
       "types": "./dist/synergy.d.ts",
       "import": "./dist/synergy.js"
     },
-    "./dist/custom-elements.json": "./dist/custom-elements.json",
-    "./dist/synergy.js": "./dist/synergy.js",
-    "./dist/synergy-autoloader.js": "./dist/synergy-autoloader.js",
-    "./dist/components/*": "./dist/components/*",
-    "./dist/utilities/*": "./dist/utilities/*",
-    "./dist/translations/*": "./dist/translations/*"
+    "./custom-elements.json": "./dist/custom-elements.json",
+    "./synergy.js": "./dist/synergy.js",
+    "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
+    "./components/*": "./dist/components/*",
+    "./utilities/*": "./dist/utilities/*",
+    "./translations/*": "./dist/translations/*"
   },
   "files": ["dist"],
   "scripts": {
@@ -50,6 +50,7 @@
   "license": "ISC",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
+    "@lit/react": "^1.0.0",
     "@open-wc/testing": "^3.2.0",
     "@playwright/test": "^1.39.0",
     "@semantic-release/changelog": "^6.0.3",
@@ -59,6 +60,8 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/mocha": "^10.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "@web/dev-server-esbuild": "^0.4.1",
     "@web/test-runner": "^0.17.2",
     "@web/test-runner-commands": "^0.8.1",
@@ -72,6 +75,9 @@
     "esbuild": "^0.19.4",
     "esbuild-plugin-replace": "^1.4.0",
     "eslint": "^8.47.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-lit": "^1.9.1",
     "eslint-plugin-lit-a11y": "^4.1.0",
     "eslint-plugin-wc": "^2.0.4",
@@ -120,7 +126,7 @@
       [
         "@semantic-release/npm",
         {
-          "npmPublish": true
+          "npmPublish": false
         }
       ],
       [

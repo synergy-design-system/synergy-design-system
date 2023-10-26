@@ -1,5 +1,7 @@
 import { css } from 'lit';
 
-export default css`
-  /* Write custom CSS here */
+export default css`  /* Label */
+  .form-control--has-label .form-control__label {
+    margin-bottom: var(--syn-spacing-small);
+  }
 `;

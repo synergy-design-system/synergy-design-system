@@ -168,13 +168,13 @@ const config = {
       // add custom styles to the end of `${component}.styles.ts`
       (path, content) => {
         let newContent;
-        components.forEach((component) => {
+        [...components, 'form-control'].forEach((component) => {
           if (path.includes(`${component}.styles.ts`)) {
             newContent = content
               .replace(
                 // eslint-disable-next-line @typescript-eslint/quotes
-                `import componentStyles from '../../styles/component.styles.js';`,
-                `import componentStyles from '../../styles/component.styles.js';
+                `import { css } from 'lit';`,
+                `import { css } from 'lit';
 import customStyles from './${component}.custom.styles.js';`,
               )
               .replace(

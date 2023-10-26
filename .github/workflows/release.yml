@@ -3,7 +3,7 @@ name: Release new version
 on:
   push:
     branches:
-      - 'main'
+      - "main"
 
 permissions:
   contents: read # for checkout
@@ -30,4 +30,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: pnpm build.release && pnpm publish --tag main
+        run: pnpm release && pnpm publish --recursive --tag main

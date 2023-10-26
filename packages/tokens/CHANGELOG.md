@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.2...tokens/1.0.0-main.3) (2023-10-26)
+
+
+### Features
+
+* update input-tokens ([#97](https://github.com/SickDesignSystem/synergy/issues/97)) ([630d8e2](https://github.com/SickDesignSystem/synergy/commit/630d8e25b053daae1c78944e5e56577aead1a6c2))
+
 # [@synergy-design-system/tokens-v1.0.0-main.2](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.1...tokens/1.0.0-main.2) (2023-10-26)
 
 

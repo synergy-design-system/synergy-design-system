@@ -33,56 +33,6 @@
   ],
   "license": "BSD-3-Clause",
   "name": "@synergy-design-system/react",
-  "release": {
-    "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      {
-        "name": "main",
-        "prerelease": true
-      },
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      },
-      "release-fallback"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
-      ]
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SickDesignSystem/synergy.git",

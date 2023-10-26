@@ -24,7 +24,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: docsTokens.components['input'].description.value
+        component: docsTokens?.components?.['input']?.default?.description?.value ?? 'No Description',
       },
     }
   }
@@ -40,7 +40,7 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens.components['input'].description.value
+        story: docsTokens?.components?.['input']?.default?.description?.value ?? 'No Description',
       }
     }
   }

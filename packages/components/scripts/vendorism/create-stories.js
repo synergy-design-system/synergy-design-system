@@ -63,7 +63,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: docsTokens.components['${componentName}'].description.value
+        component: docsTokens?.components?.['${componentName}']?.default?.description?.value ?? 'No Description',
       },
     }
   }
@@ -79,7 +79,7 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens.components['${componentName}'].description.value
+        story: docsTokens?.components?.['${componentName}']?.default?.description?.value ?? 'No Description',
       }
     }
   }

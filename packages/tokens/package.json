@@ -6,6 +6,7 @@
   "description": "Design tokens for the SICK Design System",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@tokens-studio/sd-transforms": "^0.11.0",
@@ -65,13 +66,7 @@
         "@semantic-release/npm",
         {
           "npmPublish": false
-        },
-        [
-          "@semantic-release/exec",
-          {
-            "prepareCmd": "pnpm build"
-          }
-        ]
+        }
       ],
       [
         "@semantic-release/git",
@@ -81,6 +76,12 @@
             "CHANGELOG.md",
             "package.json"
           ]
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
         }
       ],
       [

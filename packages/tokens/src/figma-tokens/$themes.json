@@ -212,17 +212,15 @@
     "selectedTokenSets": {
       "globals": "source",
       "semantic/focus-ring": "enabled",
-      "color/primitives": "source"
+      "color/primitives": "source",
+      "semantic/input": "enabled"
     },
-    "$figmaCollectionId": "VariableCollectionId:91:2621",
-    "$figmaModeId": "91:0",
+    "$figmaCollectionId": "VariableCollectionId:790:67393",
+    "$figmaModeId": "790:0",
     "$figmaVariableReferences": {
-      "focus-ring.color": "4d0e34f090cc0313051d2d4964418cd98126600c",
-      "focus-ring.width": "a16054b55cd1f6caa6da63d8deb17fc702769c8a",
-      "focus-ring.offset": "e3e19ae20f408c87ed8feb4d7448e2305f02cc65",
-      "input.height.small": "03619e6b5a135549ebfd9a91b44378e2c06955e7",
-      "input.height.medium": "9ed954cd36bd75b3251d61ef1d556d8c287f5b6e",
-      "input.height.large": "91b386cb3812d1fbf8f305afe70c70b73d69d2cd"
+      "focus-ring.color": "4560189da085bbe8e1ce1fa9a615fa9b88869789",
+      "focus-ring.width": "2e54bf95bfc688cc460e9f7606fb9631fd43aecc",
+      "focus-ring.offset": "491c1017f3208a7c19a9ed70a4b1cc50001e01b4"
     },
     "group": "Semantic"
   }

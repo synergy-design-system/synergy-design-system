@@ -63,6 +63,12 @@
         }
       ],
       [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
+        }
+      ],
+      [
         "@semantic-release/npm",
         {
           "npmPublish": false
@@ -76,12 +82,6 @@
             "CHANGELOG.md",
             "package.json"
           ]
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build"
         }
       ],
       [
@@ -100,5 +100,5 @@
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0-main.1"
+  "version": "1.0.0-main.2"
 }

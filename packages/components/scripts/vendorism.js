@@ -17,8 +17,8 @@ const events = [
   'sl-invalid',
   'sl-load',
   'sl-error',
-  'sl-blur', 
-  'sl-change', 
+  'sl-blur',
+  'sl-change',
   'sl-clear',
   'sl-input',
 ].map(evt => `src/events/${evt}.ts`);
@@ -137,7 +137,8 @@ const config = {
         }
         return { path, content };
       },
-      // change something in `custom-elements-manifest.config.js`
+      // allow unknown command line args in `custom-elements-manifest.config.js`
+      // as otherwise commandLineArgs breaks when we start it from docs
       (path, content) => {
         if (path.includes('custom-elements-manifest.config.js')) {
           return {
@@ -147,6 +148,27 @@ const config = {
           };
         }
         return { path, content };
+      },
+      // add custom styles to the end of `${component}.styles.ts`
+      (path, content) => {
+        let newContent;
+        components.map((component) => {
+          if (path.includes(`${component}.styles.ts`)) {
+            console.log(path);
+            newContent = content
+              .replace(`import componentStyles from '../../styles/component.styles.js';`,
+                `import componentStyles from './${component}.custom.styles.js';
+import customStyles from '../../styles/component.styles.js';`)
+              .replace(`}\n\`;`, `}\n\n  $\{customStyles}\n\`;\n`);
+
+            // create file if it doesn't exist
+            const customStylesPath = path.replace(`${component}.styles.ts`, `${component}.custom.styles.ts`);
+            if (!fs.existsSync(customStylesPath)) {
+              fs.writeFileSync(customStylesPath, 'import { css } from \'lit\';\n\nexport default css`\n  /* Write custom CSS here */\n`;\n');
+            }
+          }
+        });
+        return { path, content: newContent };
       }
     ]
   },

@@ -5,7 +5,8 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
+import componentStyles from './input.custom.styles.js';
+import customStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
@@ -306,4 +307,7 @@ export default css`
   .input--no-spin-buttons input[type='number'] {
     -moz-appearance: textfield;
   }
+
+  ${customStyles}
 `;
+

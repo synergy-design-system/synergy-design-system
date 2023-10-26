@@ -44,7 +44,7 @@
         "type": "color"
       },
       "color-focus": {
-        "value": "{primary.800}",
+        "value": "{gray.950}",
         "type": "color"
       },
       "color-disables": {
@@ -64,7 +64,7 @@
         "type": "borderRadius"
       },
       "color-focus-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
       }
     },
@@ -110,7 +110,7 @@
     },
     "label": {
       "color": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       },
       "font-size": {
@@ -144,7 +144,7 @@
     },
     "focus-ring": {
       "color": {
-        "value": "{primary.200}",
+        "value": "{primary.400}",
         "type": "color"
       },
       "offset": {
@@ -152,7 +152,7 @@
         "type": "spacing"
       },
       "error": {
-        "value": "{error.200}",
+        "value": "{error.400}",
         "type": "color"
       }
     },
@@ -198,7 +198,7 @@
         "type": "color"
       },
       "color-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
       }
     },

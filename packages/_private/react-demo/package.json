@@ -6,7 +6,7 @@
   "dependencies": {
     "@lit/react": "^1.0.0",
     "@synergy-design-system/components": "workspace:*",
-    "@synergy-design-system/react": "workspace:1.0.0-main.1",
+    "@synergy-design-system/react": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*"
   },
   "devDependencies": {
@@ -54,5 +54,5 @@
     "start": "vite"
   },
   "type": "module",
-  "version": "1.0.0-main.1"
+  "version": "0.1.0"
 }

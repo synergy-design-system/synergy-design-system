@@ -39,7 +39,7 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/react':
-        specifier: workspace:1.0.0-main.1
+        specifier: workspace:*
         version: link:../../react
       '@synergy-design-system/tokens':
         specifier: workspace:*

@@ -6,8 +6,7 @@
   "dependencies": {
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "change-case": "^4.1.2",
-    "material-icons": "^1.13.12"
+    "change-case": "^4.1.2"
   },
   "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {
@@ -27,7 +26,6 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/react": "^18.2.28",
     "chromatic": "^7.5.0",
-    "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-storybook": "^0.6.15",
@@ -60,15 +58,12 @@
     "directory": "packages/docs"
   },
   "scripts": {
-    "build": "pnpm storybook:build",
+    "build": "storybook build --output-dir dist",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "chromatic:build": "cd ../.. && pnpm build",
-    "chromatic": "cross-env chromatic ${CHROMATIC_PROJECT_TOKEN} --build-script-name=chromatic:build",
-    "start": "storybook dev -p 6006",
-    "storybook:run": "storybook dev -p 6006",
-    "storybook:build": "storybook build --output-dir dist"
+    "chromatic": "chromatic ${CHROMATIC_PROJECT_TOKEN} --build-script-name=build",
+    "start": "storybook dev -p 6006"
   },
   "type": "module",
   "version": "0.1.0"

@@ -154,7 +154,6 @@ const config = {
         let newContent;
         components.map((component) => {
           if (path.includes(`${component}.styles.ts`)) {
-            console.log(path);
             newContent = content
               .replace(`import componentStyles from '../../styles/component.styles.js';`,
                 `import componentStyles from './${component}.custom.styles.js';

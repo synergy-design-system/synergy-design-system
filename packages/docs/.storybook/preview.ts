@@ -1,31 +1,16 @@
-import type { Preview } from '@storybook/html';
-import '@synergy-design-system/css/default.css';
-import { quickStart } from '@synergy-design-system/components';
-import * as tokens from '@synergy-design-system/design-tokens';
+import type { Preview } from "@storybook/web-components";
+import '@synergy-design-system/tokens/dist/css/light.css';
 
-quickStart();
+import { setCustomElementsManifest } from '@storybook/web-components';
+import '../src/docs.css';
+import '../../tokens/src/shoelace-fallbacks/_utility.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    badgesConfig: {
-      needsHandoff: {
-        styles: {
-          backgroundColor: tokens.sdsColorAccent500,
-          borderColor: tokens.sdsColorAccent600,
-          color: tokens.sdsColorNeutral0,
-        },
-        title: 'Needs handoff',
-      },
-      v1: {
-        styles: {
-          backgroundColor: tokens.sdsColorPrimary500,
-          borderColor: tokens.sdsColorNeutral800,
-          color: tokens.sdsColorNeutral0,
-        },
-        title: 'v1.0.0'
-      },
+    docs: {
+      stories: { inline: false }
     },
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,

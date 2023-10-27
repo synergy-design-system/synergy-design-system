@@ -1,29 +1,20 @@
-# Changelog
+# [@synergy-design-system/components-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.2...components/1.0.0-main.3) (2023-10-26)
 
-### Item definitions
 
-The following icons are used in commit messages and this changelog.
+### Features
 
-|  Icon  | Type          | Description
-|:------:|:--------------|:----------------------------
-|   🐛   | Bugs          | Used when a bug was fixed
-|   📚   | Documentation | Used when adding or updating documentation
-|   ✨   | Features      | Feature was added
-|   🚀   | Releases      | Release was scheduled
-|   ⛔   | Removals      | Used when a feature was removed
+* ✨ React component support ([#88](https://github.com/SickDesignSystem/synergy/issues/88)) ([967b7dd](https://github.com/SickDesignSystem/synergy/commit/967b7ddce3f2e1f6a1c55898c1368f0560947101))
 
----
+# [@synergy-design-system/components-v1.0.0-main.2](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.1...components/1.0.0-main.2) (2023-10-25)
 
-## 🚀 NEXT
 
-### 📚 Documentation
+### Features
 
-- #17: Adjusted package.json author field
+* ✨ Add support for Chromatic into Storybook ([#94](https://github.com/SickDesignSystem/synergy/issues/94)) ([9979190](https://github.com/SickDesignSystem/synergy/commit/997919066f5c207dd679c4d1227849e27d0f9350))
 
-### 🐛 Bugs
+# @synergy-design-system/components-v1.0.0-main.1 (2023-10-23)
 
-### ✨ Features
 
-- #18: Basic package setup, linting, dependencies and typescript
-- #18: Added initial `<sds-icon />` component
-- #55: Rename package namespace to `@synergy-design-system`
+### Bug Fixes
+
+* 🤔 Fix multiple errors in package.json ([#85](https://github.com/SickDesignSystem/synergy/issues/85)) ([7d18b9a](https://github.com/SickDesignSystem/synergy/commit/7d18b9a43c836a33f9f1beaefd18c4c2abf937c4))

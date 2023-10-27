@@ -1,11 +1,12 @@
 {
   "name": "@synergy-design-system/root",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/SickDesignSystem/synergy",
   "author": {
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
+  "type": "module",
   "browserslist": "defaults and supports es6-module",
   "description": "SICK AG Synergy Design System for web based applications",
   "license": "BSD-3-Clause",
@@ -19,6 +20,9 @@
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
-    "lint": "pnpm --recursive --if-present lint"
-  }
+    "build.release": "pnpm --recursive --filter '!docs' --if-present build",
+    "lint": "pnpm --recursive --if-present lint",
+    "release": "pnpm --recursive --if-present release --workspace-concurrency 1"
+  },
+  "private": true
 }

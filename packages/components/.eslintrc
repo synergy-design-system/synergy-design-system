@@ -1,8 +1,31 @@
 {
   "extends": [
-    "@synergy-design-system/eslint-config-sds/ts"
+    "@synergy-design-system/eslint-config-syn/ts",
+    "plugin:wc/recommended",
+    "plugin:wc/best-practice",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
+  ],
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/disable-type-checked"],
+      "files": ["./**/*.js"]
+    }
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.lint.json"
+  },
+  "plugins": [
+    "wc",
+    "lit",
+    "lit-a11y"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["scripts/**/*.js"]
+      }
+    ]
   }
 }

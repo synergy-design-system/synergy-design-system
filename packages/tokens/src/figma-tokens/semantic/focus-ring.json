@@ -1,0 +1,16 @@
+{
+  "focus-ring": {
+    "color": {
+      "value": "{primary.600}",
+      "type": "color"
+    },
+    "width": {
+      "value": "{border-width.small}",
+      "type": "borderWidth"
+    },
+    "offset": {
+      "value": "{spacing.4x-small}",
+      "type": "spacing"
+    }
+  }
+}

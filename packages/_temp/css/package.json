@@ -1,0 +1,64 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@synergy-design-system/design-tokens": "workspace:*",
+    "@synergy-design-system/icons": "workspace:*"
+  },
+  "description": "Various CSS styles used in the Synergy Design System",
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "eslint": "^8.47.0",
+    "normalize.css": "^8.0.1",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^15.1.0",
+    "postcss-inline-base64": "^7.3.1",
+    "rimraf": "^5.0.1",
+    "serve": "^14.2.1",
+    "stylelint": "^15.10.3"
+  },
+  "exports": {
+    ".": "./build/default.css",
+    "./default.css": "./build/default.css",
+    "./with-reset.css": "./build/with-reset.css"
+  },
+  "files": [
+    "build",
+    "fonts",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/css",
+  "keywords": [
+    "CSS",
+    "Styles",
+    "Reset",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/css"
+  },
+  "scripts": {
+    "build:clean": "rimraf build",
+    "build:postcss": "postcss src/versions/**/*.css --base src/versions --dir build",
+    "build:watch": "pnpm build --watch",
+    "build": "pnpm build:clean && pnpm build:postcss",
+    "demo": "serve .",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
+    "start": "pnpm build"
+  },
+  "version": "0.1.0"
+}

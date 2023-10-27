@@ -1,0 +1,51 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "postcss-lit": "^1.1.0",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-order": "^6.0.3"
+  },
+  "description": "Stylelint core rules used in the Synergy Design System",
+  "devDependencies": {
+    "@microsoft/fast-element": "^1.12.0",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "eslint": "^8.47.0",
+    "eslint-plugin-import": "^2.28.1",
+    "lit": "^2.8.0",
+    "stylelint": "^15.10.3"
+  },
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    ".stylelintrc.json",
+    "index.js",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/_internal/stylelint-config-syn",
+  "keywords": [
+    "stylelint",
+    "stylelintconfig",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/stylelint-config-syn",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/stylelint-config-syn"
+  },
+  "scripts": {
+    "lint:css": "stylelint \"demo/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "version": "0.1.0"
+}

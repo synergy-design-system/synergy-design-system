@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import React, { FC, ReactNode } from 'react';
 
 type ClipboardProps = {

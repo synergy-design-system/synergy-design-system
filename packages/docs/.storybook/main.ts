@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/html-vite';
+import type { StorybookConfig } from "@storybook/web-components-vite";
 
 const config: StorybookConfig = {
   addons: [
@@ -12,21 +12,39 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
   },
   framework: {
-    name: "@storybook/html-vite",
+    name: "@storybook/web-components-vite",
     options: {},
   },
   staticDirs: [
     '../public',
+    {
+      from: '../../assets/src',
+      to: '/assets'
+    }
   ],
   stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../stories/index.mdx",
+    "../stories/components/**/*.stories.*",
+    // "../stories/**/*.mdx",
+    // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+  viteFinal: async (config) => {
+    return {
+      ...config,
+      build: {
+        ...config.build,
+        // This prevents an error with top level await statements
+        // that prevents bundling via `pnpm build`.
+        // @see https://github.com/vitejs/vite/issues/6985
+        target: 'esnext',
+      }
+    };
+  }
 };
 
 export default config;

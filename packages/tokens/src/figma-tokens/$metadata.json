@@ -1,0 +1,11 @@
+{
+  "tokenSetOrder": [
+    "globals",
+    "color/dark",
+    "color/light",
+    "color/primitives",
+    "semantic/focus-ring",
+    "semantic/input",
+    "_docs"
+  ]
+}

@@ -26,8 +26,15 @@ jobs:
       - name: Install dependencies
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
+      # Make sure pnpm is able to release
+      # @see https://github.com/pnpm/pnpm/issues/3141#issuecomment-1305563972
+      - name: Setup PNPM publish config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_RELEASE_TOKEN_CS}}
+
       - name: Run Semantic Release for all packages
         env:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: pnpm release && pnpm publish --recursive --tag main
+        run: pnpm release && pnpm publish --recursive --tag main --access=public

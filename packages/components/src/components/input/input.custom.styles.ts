@@ -1,5 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+    .input--medium .input__control {
+    padding: var(--syn-spacing-x-small) var(--syn-input-spacing-small);
+  }
 `;

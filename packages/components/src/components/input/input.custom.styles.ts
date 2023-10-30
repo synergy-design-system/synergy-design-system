@@ -1,7 +1,8 @@
 import { css } from 'lit';
 
 export default css`
-    .input--medium .input__control {
+
+  .input--medium .input__control {
     padding: var(--syn-spacing-x-small) var(--syn-input-spacing-small);
   }
 
@@ -45,4 +46,21 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-medium);
   }
 
+  /* ICONS SIZE */
+   .input--small .input__prefix ::slotted(syn-icon) {
+    font-size: var(--syn-spacing-small);
+   }
+
+  .input--large .input__prefix ::slotted(syn-icon) {
+    font-size: var(--syn-spacing-large);
+   }
+
+    .input--small .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-spacing-small);
+   }
+
+  .input--large .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-spacing-large);
+   }
+  
 `;

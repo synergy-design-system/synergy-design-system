@@ -17,7 +17,32 @@ export default css`
     padding: var(--syn-spacing-2x-small);
   }
 
-    .input__suffix ::slotted(*) {
+  .input--small .input__prefix ::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-small);
+  }
+
+  .input--medium .input__prefix ::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-small);
+  }
+
+  .input--large .input__prefix ::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-medium);
+  }
+
+  .input__suffix ::slotted(*) {
     padding: var(--syn-spacing-2x-small);
   }
+
+  .input--small .input__suffix ::slotted(*) {
+    margin-inline-end: var(--syn-input-spacing-small);
+  }
+
+  .input--medium .input__suffix ::slotted(*) {
+    margin-inline-end: var(--syn-input-spacing-small);
+  }
+
+  .input--large .input__suffix ::slotted(*) {
+    margin-inline-end: var(--syn-input-spacing-medium);
+  }
+
 `;

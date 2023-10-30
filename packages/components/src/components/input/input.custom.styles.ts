@@ -31,6 +31,22 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-medium);
   }
 
+  /* -----------TODO -----------------------------*/
+
+    .input--small .has-prefix .input__control {
+    padding: var(--syn-spacing-3x-small) var(--syn-input-spacing-2x-small);
+  }
+
+  .input--medium .has-prefix .input__control {
+    padding: var(--syn-input-spacing-x-small);
+  }
+
+  .input--large .has-prefix .input__control {
+    padding: var(--syn-input-spacing-small);
+  }
+
+  /* -----------TODO -----------------------------*/
+
   .input__suffix ::slotted(*) {
     padding: var(--syn-spacing-2x-small);
   }

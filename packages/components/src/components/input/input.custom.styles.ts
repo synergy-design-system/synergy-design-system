@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export default css`
 
+  /* PADDINGS */
   .input--medium .input__control {
     padding: var(--syn-spacing-x-small) var(--syn-input-spacing-small);
   }
@@ -14,7 +15,7 @@ export default css`
     padding: var(--syn-spacing-small) var(--syn-input-spacing-medium);
   }
 
-  .input__prefix ::slotted(*) {
+  .input__prefix ::slotted(syn-icon) {
     padding: var(--syn-spacing-2x-small);
   }
 

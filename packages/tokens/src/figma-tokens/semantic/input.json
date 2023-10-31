@@ -44,7 +44,7 @@
         "type": "color"
       },
       "color-focus": {
-        "value": "{primary.800}",
+        "value": "{neutral.950}",
         "type": "color"
       },
       "color-disables": {
@@ -64,7 +64,7 @@
         "type": "borderRadius"
       },
       "color-focus-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
       }
     },
@@ -74,16 +74,30 @@
     },
     "icon": {
       "color": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       },
       "color-hover": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       },
       "color-focus": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
+      },
+      "icon-clearable": {
+        "color": {
+          "value": "{gray.500}",
+          "type": "color"
+        },
+        "color-hover": {
+          "value": "{gray.500}",
+          "type": "color"
+        },
+        "color-focus": {
+          "value": "{gray.500}",
+          "type": "color"
+        }
       }
     },
     "placeholder": {
@@ -144,7 +158,7 @@
     },
     "focus-ring": {
       "color": {
-        "value": "{primary.200}",
+        "value": "{primary.400}",
         "type": "color"
       },
       "offset": {
@@ -152,7 +166,7 @@
         "type": "spacing"
       },
       "error": {
-        "value": "{error.200}",
+        "value": "{error.400}",
         "type": "color"
       }
     },
@@ -198,7 +212,7 @@
         "type": "color"
       },
       "color-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
       }
     },
@@ -245,20 +259,6 @@
       },
       "color-focus": {
         "value": "{neutral.950}",
-        "type": "color"
-      }
-    },
-    "icon-clearable": {
-      "color": {
-        "value": "{gray.500}",
-        "type": "color"
-      },
-      "color-hover": {
-        "value": "{gray.500}",
-        "type": "color"
-      },
-      "color-focus": {
-        "value": "{gray.500}",
         "type": "color"
       }
     }

@@ -118,6 +118,14 @@ export const Pill: Story = {
 <syn-input placeholder="Large" size="large" pill></syn-input>`,
 };
 
+export const Error: Story = {
+  render: () => html`<syn-input placeholder="Small" size="small"></syn-input>
+<br />
+<syn-input placeholder="Medium" size="medium"></syn-input>
+<br />
+<syn-input placeholder="Large" size="large"></syn-input>`,
+};
+
 /**
  * The type attribute controls the type of input the browser renders.
  */

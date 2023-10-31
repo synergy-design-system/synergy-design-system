@@ -84,6 +84,20 @@
       "color-focus": {
         "value": "{neutral.800}",
         "type": "color"
+      },
+      "icon-clearable": {
+        "color": {
+          "value": "{gray.500}",
+          "type": "color"
+        },
+        "color-hover": {
+          "value": "{gray.500}",
+          "type": "color"
+        },
+        "color-focus": {
+          "value": "{gray.500}",
+          "type": "color"
+        }
       }
     },
     "placeholder": {
@@ -160,7 +174,7 @@
       "value": "50%",
       "type": "opacity"
     },
-    "filled-background": {
+    "readonly-background": {
       "color": {
         "value": "{neutral.50}",
         "type": "color"
@@ -230,7 +244,7 @@
         "type": "spacing"
       }
     },
-    "filled": {
+    "readonly": {
       "color": {
         "value": "{neutral.800}",
         "type": "color"

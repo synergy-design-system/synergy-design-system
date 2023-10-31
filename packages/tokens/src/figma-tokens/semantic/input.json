@@ -174,7 +174,7 @@
       "value": "50%",
       "type": "opacity"
     },
-    "filled-background": {
+    "readonly-background": {
       "color": {
         "value": "{neutral.50}",
         "type": "color"
@@ -244,7 +244,7 @@
         "type": "spacing"
       }
     },
-    "filled": {
+    "readonly": {
       "color": {
         "value": "{neutral.800}",
         "type": "color"

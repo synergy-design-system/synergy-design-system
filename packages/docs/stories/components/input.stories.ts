@@ -83,10 +83,10 @@ export const TogglePassword: Story = {
 };
 
 /**
- * Add the filled attribute to draw a filled input.
+ * Add the readonly attribute to draw a readonly input.
  */
-export const FilledInputs: Story = {
-  render: () => html`<syn-input placeholder="Type something" filled></syn-input>`,
+export const ReadonlyInputs: Story = {
+  render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
 };
 
 /**

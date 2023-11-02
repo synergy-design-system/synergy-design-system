@@ -4,47 +4,45 @@ export default css`
 
   /* PADDINGS */
   .input--medium .input__control {
-    padding: var(--syn-spacing-x-small) var(--syn-input-spacing-small);
+    padding: var(--syn-spacing-x-small) var(--syn-input-spacing-medium);
   }
 
-    .input--small .input__control {
+  .input--small .input__control {
     padding: var(--syn-spacing-3x-small) var(--syn-input-spacing-small);
   }
 
-    .input--large .input__control {
-    padding: var(--syn-spacing-small) var(--syn-input-spacing-medium);
-  }
-
-  .input__prefix ::slotted(syn-icon) {
-    padding: var(--syn-spacing-2x-small);
+  .input--large .input__control {
+    padding: var(--syn-spacing-small) var(--syn-input-spacing-large);
   }
 
   .input--small .input__prefix ::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
+    margin-inline-start: var(--syn-spacing-small);
+    margin-right: var(--syn-spacing-x-small);
   }
 
   .input--medium .input__prefix ::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
+    margin-inline-start: var(--syn-spacing-medium);
+    margin-right: var(--syn-spacing-small);
   }
 
   .input--large .input__prefix ::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-medium);
-  }
-
-  .input__suffix ::slotted(*) {
-    padding: var(--syn-spacing-2x-small);
+    margin-inline-start: var(--syn-input-spacing-large);
+    margin-right: var(--syn-spacing-medium);
   }
 
   .input--small .input__suffix ::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-small);
+    margin-left:  var(--syn-spacing-x-small);
   }
 
   .input--medium .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
+    margin-inline-end: var(--syn-input-spacing-medium);
+    margin-left: var(--syn-spacing-small);
   }
 
   .input--large .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-medium);
+    margin-inline-end: var(--syn-input-spacing-large);
+    margin-left: var(--syn-spacing-medium);
   }
 
   /* ICONS SIZE */
@@ -64,4 +62,12 @@ export default css`
     font-size: var(--syn-spacing-large);
    }
   
+  :host([data-user-invalid]) .input--standard {
+    border-color: red;
+    box-shadow: 0 0 0 red red;
+  }
+
+  :host([data-user-invalid]) .input--standard.input--focused {
+    border-color: none;
+  }
 `;

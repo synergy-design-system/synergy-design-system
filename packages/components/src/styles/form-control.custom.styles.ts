@@ -3,6 +3,10 @@ import { css } from 'lit';
 export default css` 
 
    /* Label */
+  .form-control--has-label .form-control__label {
+   font-weight: 600;
+  }
+
   .form-control--has-label.form-control--small .form-control__label {
     margin-bottom: var(--syn-spacing-x-small);
   }
@@ -21,14 +25,18 @@ export default css`
   }
 
   .form-control--small.form-control--has-prefix .input__control  {
-    padding: var(--syn-spacing-3x-small) var(--syn-spacing-2x-small);
+    padding: var(--syn-spacing-3x-small) 0;
   }
 
   .form-control--has-prefix.form-control--medium .input__control {
-    padding: var(--syn-spacing-x-small);
+    padding: var(--syn-spacing-x-small) 0;
   }
 
   .form-control--large.form-control--has-prefix .input__control {
-   padding: var(--syn-input-spacing-small);
+   padding: var(--syn-input-spacing-small) 0;
   }
+  
+  :host([data-user-invalid]) .form-control__help-text {
+    color: red;
+   }
 `;

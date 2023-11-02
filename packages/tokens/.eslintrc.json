@@ -6,7 +6,6 @@
     }],
     "no-param-reassign": ["error", { "props": false }],
     "no-prototype-builtins": "off",
-    "no-cond-assign": ["error", "except-parens"],
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?$"
+    "no-cond-assign": ["error", "except-parens"]
   }
 }

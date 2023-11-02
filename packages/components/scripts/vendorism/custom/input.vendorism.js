@@ -3,7 +3,11 @@ import { removeSection } from '../remove-section.js';
 export default (path, content) => {
   const output = { content, path };
 
-  if (!path.includes('input.component.ts') && !path.includes('input.styles.ts') && !path.includes('input.stories.ts')) {
+  if (!path.includes('input.component.ts')
+    && !path.includes('input.styles.ts')
+    && !path.includes('input.stories.ts')
+    && !path.includes('input.test.ts')
+  ) {
     return output;
   }
   // We don't provide a filled property in Synergy, but instead use the filled styles for readonly
@@ -32,6 +36,14 @@ export default (path, content) => {
     "'form-control--has-help-text': hasHelpText",
     "'form-control--has-help-text': hasHelpText,\n          'form-control--has-prefix': hasPrefixSlot,\n          'form-control--has-suffix': hasSuffixSlot",
   );
+
+  // remove tests for pill and filled
+  output.content = removeSection(output.content, 'expect(el.filled)', ';');
+  output.content = removeSection(output.content, 'expect(el.pill)', ';');
+
+  // @todo remove this when syn-textarea and syn-checkbox are available
+  output.content = output.content.replace(/syn-textarea/g, 'syn-input');
+  output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
 
   return output;
 };

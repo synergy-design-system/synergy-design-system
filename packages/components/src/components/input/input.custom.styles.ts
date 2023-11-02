@@ -12,21 +12,21 @@ export default css`
   }
 
   .input--large .input__control {
-    padding: var(--syn-spacing-small) var(--syn-input-spacing-large);
+    padding: var(--syn-input-spacing-small) var(--syn-input-spacing-large);
   }
 
   .input--small .input__prefix ::slotted(*) {
     margin-inline-end: var(--syn-spacing-x-small);
-    margin-inline-start: var(--syn-spacing-small);
+    margin-inline-start: var(--syn-input-spacing-small);
   }
 
   .input--medium .input__prefix ::slotted(*) {
-    margin-inline-end: var(--syn-spacing-small);
-    margin-inline-start: var(--syn-spacing-medium);
+    margin-inline-end: var(--syn-input-spacing-small);
+    margin-inline-start: var(--syn-input-spacing-medium);
   }
 
   .input--large .input__prefix ::slotted(*) {
-    margin-inline-end: var(--syn-spacing-medium);
+    margin-inline-end: var(--syn-input-spacing-medium);
     margin-inline-start: var(--syn-input-spacing-large);
   }
 
@@ -37,29 +37,29 @@ export default css`
 
   .input--medium .input__suffix ::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-medium);
-    margin-inline-start: var(--syn-spacing-small);
+    margin-inline-start: var(--syn-input-spacing-small);
   }
 
   .input--large .input__suffix ::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-large);
-    margin-inline-start: var(--syn-spacing-medium);
+    margin-inline-start: var(--syn-input-spacing-medium);
   }
 
   /* ICONS SIZE */
    .input--small .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-spacing-small);
+    font-size: var(--syn-input-spacing-small);
    }
 
   .input--large .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-spacing-large);
+    font-size: var(--syn-input-spacing-large);
    }
 
-    .input--small .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-spacing-small);
+  .input--small .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-input-spacing-small);
    }
 
   .input--large .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-spacing-large);
+    font-size: var(--syn-input-spacing-large);
    }
   
   :host([data-user-invalid]) .input--standard {

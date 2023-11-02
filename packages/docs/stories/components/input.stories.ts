@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/input/input';
@@ -11,18 +10,23 @@ const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
 
+const generateStoryParameters = (attributeName : string) => {
+  const description = (docsTokens?.components?.['input'] as any)?.[attributeName]?.description?.value ?? 'No Description';
+  return {
+    docs: {
+      description: {
+        story: description,
+      }
+    }
+  };
+};
+
 const meta: Meta = {
   component: 'input',
   args,
   argTypes,
   title: 'Components/syn-input',
-  parameters: {
-    docs: {
-      description: {
-        component: docsTokens?.components?.['input']?.default?.description?.value ?? 'No Description',
-      },
-    }
-  }
+  parameters: generateStoryParameters('default')
 };
 export default meta;
 
@@ -32,63 +36,42 @@ export const Default = {
   render: (args: any) => {
     return generateTemplate({ args });
   },
-  parameters: {
-    docs: {
-      description: {
-        story: docsTokens?.components?.['input']?.default?.description?.value ?? 'No Description',
-      }
-    }
-  }
+  parameters: generateStoryParameters('default')
 } as Story;
 
-
-/**
- * Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.
- */
 export const Labels: Story = {
   render: () => html`<syn-input label="What is your name?"></syn-input>`,
+  parameters: generateStoryParameters('label')
 };
 
-/**
- * Add descriptive help text to an input with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.
- */
 export const HelpText: Story = {
   render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
+  parameters: generateStoryParameters('help-text')
 };
 
-/**
- * Use the placeholder attribute to add a placeholder.
- */
 export const Placeholders: Story = {
   render: () => html`<syn-input placeholder="Type something"></syn-input>`,
+  parameters: generateStoryParameters('placeholder')
 };
 
-/**
- * Add the clearable attribute to add a clear button when the input has content.
- */
 export const Clearable: Story = {
   render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
+  parameters: generateStoryParameters('clearable')
 };
 
-/**
- * Add the password-toggle attribute to add a toggle button that will show the password when activated.
- */
 export const TogglePassword: Story = {
   render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
+  parameters: generateStoryParameters('password-toggle')
 };
 
-/**
- * Add the readonly attribute to draw a readonly input.
- */
 export const ReadonlyInputs: Story = {
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
+  parameters: generateStoryParameters('filled')
 };
 
-/**
- * Use the disabled attribute to disable an input.
- */
 export const Disabled: Story = {
   render: () => html`<syn-input placeholder="Disabled" disabled></syn-input>`,
+  parameters: generateStoryParameters('disabled')
 };
 
 /**
@@ -100,8 +83,12 @@ export const Sizes: Story = {
 <syn-input placeholder="Medium" size="medium"></syn-input>
 <br />
 <syn-input placeholder="Large" size="large"></syn-input>`,
+  parameters: generateStoryParameters('size')
 };
 
+/**
+ * The error state is used to warn the user that the input is invalid. 
+ */
 export const Error: Story = {
   render: () => html`<form>
   <syn-input required placeholder="Small" size="small" help-text="Help Error Text"></syn-input>
@@ -134,9 +121,6 @@ export const InputTypes: Story = {
 <syn-input type="date" placeholder="Date"></syn-input>`,
 };
 
-/**
- * Use the prefix and suffix slots to add icons.
- */
 export const PrefixSuffixIcons: Story = {
   render: () => html`<syn-input placeholder="Small" size="small">
   <syn-icon name="house" slot="prefix"></syn-icon>
@@ -152,6 +136,7 @@ export const PrefixSuffixIcons: Story = {
   <syn-icon name="house" slot="prefix"></syn-icon>
   <syn-icon name="chat" slot="suffix"></syn-icon>
 </syn-input>`,
+  parameters: generateStoryParameters('prefix-suffix')
 };
 
 /**

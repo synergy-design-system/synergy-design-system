@@ -4,7 +4,7 @@ export default css`
 
    /* Label */
   .form-control--has-label .form-control__label {
-   font-weight: 600;
+   font-weight: var(--syn-font-weight-semibold);
   }
 
   .form-control--has-label.form-control--small .form-control__label {
@@ -12,11 +12,11 @@ export default css`
   }
   
   .form-control--has-label.form-control--medium .form-control__label {
-    margin-bottom: var(--syn-spacing-small);
+    margin-bottom: var(--syn-input-spacing-small);
   }
 
   .form-control--has-label.form-control--large .form-control__label {
-    margin-bottom: var(--syn-spacing-medium);
+    margin-bottom: var(--syn-input-spacing-medium);
   }
 
     /* Help text */
@@ -33,7 +33,7 @@ export default css`
   }
 
   .form-control--large.form-control--has-prefix .input__control {
-   padding: var(--syn-input-spacing-small) 0;
+   padding: var(--syn--input-spacing-small) 0;
   }
   
   :host([data-user-invalid]) .form-control__help-text {

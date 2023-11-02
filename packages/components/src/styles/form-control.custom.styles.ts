@@ -33,7 +33,7 @@ export default css`
   }
 
   .form-control--large.form-control--has-prefix .input__control {
-   padding: var(--syn--input-spacing-small) 0;
+   padding: var(--syn-input-spacing-small) 0;
   }
   
   :host([data-user-invalid]) .form-control__help-text {

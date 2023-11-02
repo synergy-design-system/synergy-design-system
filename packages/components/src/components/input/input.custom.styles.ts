@@ -63,11 +63,11 @@ export default css`
    }
   
   :host([data-user-invalid]) .input--standard {
-    border-color: red;
-    box-shadow: 0 0 0 red red;
+    border-color: var(--syn-input-border-color-focus-error);
   }
 
-  :host([data-user-invalid]) .input--standard.input--focused {
-    border-color: none;
+  :host([data-user-invalid]) .input--standard.input--focused:not(.input--disabled) {
+    border-color: var(--syn-input-border-color-focus-error);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
   }
 `;

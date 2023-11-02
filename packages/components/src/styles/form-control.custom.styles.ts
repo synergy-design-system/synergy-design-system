@@ -37,6 +37,6 @@ export default css`
   }
   
   :host([data-user-invalid]) .form-control__help-text {
-    color: red;
+    color: var(--syn-input-help-text-color-error);
    }
 `;

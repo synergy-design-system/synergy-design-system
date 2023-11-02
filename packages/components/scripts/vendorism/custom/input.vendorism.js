@@ -1,27 +1,14 @@
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // escape special characters
-}
-
-function removeLineContaining(input, start, end, removePrecedingWhitespace = false) {
-  let regex;
-
-  if (removePrecedingWhitespace) {
-    regex = new RegExp(`\\n?[\\t\\s]*${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}`, 'gm');
-  } else {
-    regex = new RegExp(`${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}`, 'gm');
-  }
-
-  return input.replace(regex, '');
-}
+import { removeSection } from '../remove-section.js';
 
 export default (path, content) => {
   const output = { content, path };
 
   if (path.includes('input.component.ts')) {
-    // Pilled is not supported in Synergy
-    output.content = removeLineContaining(output.content, "'input--pill':", ',', true);
-    output.content = removeLineContaining(output.content, '/** Draws a pill-style', 'pill = false;', true);
-    // We need to add the prefix and suffix slots to the input component
+    // Pill is not supported in Synergy
+    output.content = removeSection(output.content, "'input--pill':", ',');
+    output.content = removeSection(output.content, '/** Draws a pill-style', 'pill = false;');
+
+    // We need to add classes depenending on prefix and suffix slots to use them in CSS
     output.content = output.content.replace(
       "HasSlotController(this, 'help-text', 'label')",
       "HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix')",
@@ -43,7 +30,7 @@ export default (path, content) => {
     output.content = output.content.replaceAll('Filled', 'Readonly');
 
     // update component and styles
-    output.content = removeLineContaining(output.content, '/** Draws a filled', 'filled = false;', true);
+    output.content = removeSection(output.content, '/** Draws a filled', 'filled = false;');
     output.content = output.content.replaceAll('filled', 'readonly'); // makes changes in styles and components
   }
   return output;

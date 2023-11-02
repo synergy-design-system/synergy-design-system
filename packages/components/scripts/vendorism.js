@@ -6,6 +6,7 @@ import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import customInput from './vendorism/custom/input.vendorism.js';
+import customButton from './vendorism/custom/button.vendorism.js';
 
 const components = [
   'input',
@@ -199,6 +200,7 @@ import customStyles from './${component}.custom.styles.js';`,
       },
       // speczialized customizations
       (path, content) => customInput(path, content),
+      (path, content) => customButton(path, content),
     ],
   },
 };

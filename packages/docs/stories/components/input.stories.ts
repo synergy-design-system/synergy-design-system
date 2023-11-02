@@ -115,9 +115,23 @@ export const Pill: Story = {
 
 export const Error: Story = {
   render: () => html`<form>
-  <syn-input required placeholder="Small" size="small" help-text="heeelp"></syn-input>
+  <syn-input required placeholder="Small" size="small" help-text="Help Error Text"></syn-input>
 <button type="submit">Submit</button>
-</form>`,
+</form>
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin-top: 1rem;
+    align-self: flex-end;
+    padding: 0.5rem 1rem;
+    min-width: 5%;
+  }
+</style>
+`,
 };
 
 /**

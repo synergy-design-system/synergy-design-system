@@ -102,17 +102,6 @@ export const Sizes: Story = {
 <syn-input placeholder="Large" size="large"></syn-input>`,
 };
 
-/**
- * Use the pill attribute to give inputs rounded edges.
- */
-export const Pill: Story = {
-  render: () => html`<syn-input placeholder="Small" size="small" pill></syn-input>
-<br />
-<syn-input placeholder="Medium" size="medium" pill></syn-input>
-<br />
-<syn-input placeholder="Large" size="large" pill></syn-input>`,
-};
-
 export const Error: Story = {
   render: () => html`<form>
   <syn-input required placeholder="Small" size="small" help-text="Help Error Text"></syn-input>

@@ -10,6 +10,7 @@ import customButton from './vendorism/custom/button.vendorism.js';
 
 const components = [
   'input',
+  'button',
 ];
 
 // List of events that we want to import.

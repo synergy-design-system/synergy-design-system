@@ -3,7 +3,10 @@ import { removeSection } from '../remove-section.js';
 export default (path, content) => {
   const output = { content, path };
 
-  if (!path.includes('button.component.ts') && !path.includes('button.styles.ts')) {
+  if (!path.includes('button.component.ts')
+    && !path.includes('button.styles.ts')
+    && !path.includes('button.test.ts')
+  ) {
     return output;
   }
   // Remove unneeded modifiers from component's classMap
@@ -51,6 +54,12 @@ export default (path, content) => {
 
   // Rename "standard" class to default
   output.content = output.content.replace(/button--standard/g, 'button--default');
+
+  // Fix tests
+  output.content = output.content.replace("const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];", "const variants = ['default', 'outline', 'text'];");
+  ['outline', 'pill', 'circle'].forEach((prop) => {
+    output.content = removeSection(output.content, `expect(el.${prop})`, ';');
+  });
 
   return output;
 };

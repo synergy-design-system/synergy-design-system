@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.2",
+  "version": "1.0.0-main.3",
   "description": "",
   "repository": {
     "type": "git",
@@ -125,6 +125,12 @@
         }
       ],
       [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
+        }
+      ],
+      [
         "@semantic-release/npm",
         {
           "npmPublish": false
@@ -134,19 +140,17 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "../react/**",
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ],
       [
         "@semantic-release/github",
         {
           "successComment": false
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build"
         }
       ]
     ]

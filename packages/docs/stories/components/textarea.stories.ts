@@ -76,10 +76,10 @@ export const Placeholders: Story = {
 };
 
 /**
- * Add the filled attribute to draw a filled textarea.
+ * Add the readonly attribute to draw a readonly textarea.
  */
-export const FilledTextareas: Story = {
-  render: () => html`<syn-textarea placeholder="Type something" filled></syn-textarea>`,
+export const ReadonlyTextareas: Story = {
+  render: () => html`<syn-textarea value="Readonly content" readonly></syn-textarea>`,
 };
 
 /**

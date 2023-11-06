@@ -155,7 +155,7 @@ export const PrefixSuffixIcons: Story = {
 export const CustomizingLabelPosition: Story = {
   render: () => html`<syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
 <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
-<syn-input class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-input>
+<syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
 
 <style>
   .label-on-left {

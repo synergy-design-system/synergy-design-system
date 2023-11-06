@@ -76,25 +76,25 @@ export default css`
     color: var(--syn-input-placeholder-color-disabled);
   }
 
-  /* Filled textareas */
-  .textarea--filled {
+  /* Readonly textareas */
+  .textarea--readonly {
     border: none;
-    background-color: var(--syn-input-filled-background-color);
+    background-color: var(--syn-input-readonly-background-color);
     color: var(--syn-input-color);
   }
 
-  .textarea--filled:hover:not(.textarea--disabled) {
-    background-color: var(--syn-input-filled-background-color-hover);
+  .textarea--readonly:hover:not(.textarea--disabled) {
+    background-color: var(--syn-input-readonly-background-color-hover);
   }
 
-  .textarea--filled.textarea--focused:not(.textarea--disabled) {
-    background-color: var(--syn-input-filled-background-color-focus);
+  .textarea--readonly.textarea--focused:not(.textarea--disabled) {
+    background-color: var(--syn-input-readonly-background-color-focus);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
 
-  .textarea--filled.textarea--disabled {
-    background-color: var(--syn-input-filled-background-color-disabled);
+  .textarea--readonly.textarea--disabled {
+    background-color: var(--syn-input-readonly-background-color-disabled);
     opacity: 0.5;
     cursor: not-allowed;
   }

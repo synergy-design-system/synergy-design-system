@@ -46,7 +46,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']
   });
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
   private resizeObserver: ResizeObserver;
 
   @query('.textarea__control') input: HTMLTextAreaElement;
@@ -62,9 +62,6 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
 
   /** The textarea's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
-
-  /** Draws a filled textarea. */
-  @property({ type: Boolean, reflect: true }) filled = false;
 
   /** The textarea's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -305,6 +302,8 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
@@ -317,7 +316,9 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'form-control--has-help-text': hasHelpText,
+          'form-control--has-prefix': hasPrefixSlot,
+          'form-control--has-suffix': hasSuffixSlot
         })}
       >
         <label
@@ -337,8 +338,8 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
               'textarea--small': this.size === 'small',
               'textarea--medium': this.size === 'medium',
               'textarea--large': this.size === 'large',
-              'textarea--standard': !this.filled,
-              'textarea--filled': this.filled,
+              'textarea--standard': !this.readonly,
+              'textarea--readonly': this.readonly,
               'textarea--disabled': this.disabled,
               'textarea--focused': this.hasFocus,
               'textarea--empty': !this.value,

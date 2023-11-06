@@ -149,6 +149,114 @@ export const PrefixAndSuffixIcons: Story = {
   <syn-icon slot="prefix" name="link-45deg"></syn-icon>
   <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
   Open
+</syn-button>
+
+<br/><br/><br/>
+
+<syn-button variant="outline" size="small">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="outline" size="small">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="outline" size="small">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+
+<br /><br />
+
+<syn-button variant="outline">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="outline">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="outline">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+
+<br /><br />
+
+<syn-button variant="outline" size="large">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="outline" size="large">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="outline" size="large">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+
+<br/><br/><br/>
+
+<syn-button variant="text" size="small">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="text" size="small">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="text" size="small">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+
+<br /><br />
+
+<syn-button variant="text">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="text">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="text">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+
+<br /><br />
+
+<syn-button variant="text" size="large">
+  <syn-icon slot="prefix" name="gear"></syn-icon>
+  Settings
+</syn-button>
+
+<syn-button variant="text" size="large">
+  <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+  Refresh
+</syn-button>
+
+<syn-button variant="text" size="large">
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
 </syn-button>`,
 };
 
@@ -176,6 +284,23 @@ export const Loading: Story = {
 export const Disabled: Story = {
   render: () => html`<syn-button variant="default" disabled>Default</syn-button>
 <syn-button variant="outline" disabled>Primary</syn-button>
-<syn-button variant="text" disabled>Success</syn-button>`,
+<syn-button variant="text" disabled>Success</syn-button>
+<br><br>
+<syn-button variant="default" disabled>
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+<syn-button variant="outline" disabled>
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+<syn-button variant="text" disabled>
+  <syn-icon slot="prefix" name="link-45deg"></syn-icon>
+  <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+  Open
+</syn-button>
+`,
 };
 

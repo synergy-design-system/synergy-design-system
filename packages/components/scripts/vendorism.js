@@ -5,7 +5,7 @@ import commandLineArgs from 'command-line-args';
 import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
-import customInput from './vendorism/custom/input.vendorism.js';
+import { vendorButton, vendorInput } from './vendorism/custom/index.js';
 
 const components = [
   'input',
@@ -199,8 +199,9 @@ import customStyles from './${component}.custom.styles.js';`,
           path,
         };
       },
-      // speczialized customizations
-      (path, content) => customInput(path, content),
+      // specialized customizations
+      vendorButton,
+      vendorInput,
     ],
   },
 };

@@ -116,15 +116,15 @@
       "font-size": {
         "small": {
           "value": "{font-size.small}",
-          "type": "text"
+          "type": "fontSizes"
         },
         "medium": {
           "value": "{font-size.medium}",
-          "type": "text"
+          "type": "fontSizes"
         },
         "large": {
           "value": "{font-size.large}",
-          "type": "text"
+          "type": "fontSizes"
         }
       }
     },
@@ -179,20 +179,6 @@
       }
     },
     "help-text": {
-      "font-size": {
-        "small": {
-          "value": "{font-size.x-small}",
-          "type": "text"
-        },
-        "medium": {
-          "value": "{font-size.small}",
-          "type": "text"
-        },
-        "large": {
-          "value": "{font-size.medium}",
-          "type": "text"
-        }
-      },
       "color": {
         "value": "{neutral.800}",
         "type": "color"
@@ -200,20 +186,20 @@
       "color-error": {
         "value": "{error.700}",
         "type": "color"
-      }
-    },
-    "font-size": {
-      "small": {
-        "value": "{font-size.small}",
-        "type": "text"
       },
-      "medium": {
-        "value": "{font-size.medium}",
-        "type": "text"
-      },
-      "large": {
-        "value": "{font-size.large}",
-        "type": "text"
+      "font-size": {
+        "small": {
+          "value": "{font-size.x-small}",
+          "type": "fontSizes"
+        },
+        "medium": {
+          "value": "{font-size.small}",
+          "type": "fontSizes"
+        },
+        "large": {
+          "value": "{font-size.medium}",
+          "type": "fontSizes"
+        }
       }
     },
     "height": {
@@ -246,6 +232,20 @@
       "color-focus": {
         "value": "{neutral.950}",
         "type": "color"
+      }
+    },
+    "font-size": {
+      "small": {
+        "value": "{font-size.small}",
+        "type": "fontSizes"
+      },
+      "medium": {
+        "value": "{font-size.medium}",
+        "type": "fontSizes"
+      },
+      "large": {
+        "value": "{font-size.large}",
+        "type": "fontSizes"
       }
     }
   },

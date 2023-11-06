@@ -9,6 +9,7 @@ import customInput from './vendorism/custom/input.vendorism.js';
 
 const components = [
   'input',
+  'button',
 ];
 
 // List of events that we want to import.
@@ -26,7 +27,7 @@ const events = [
 ].map(evt => `src/events/${evt}.ts`);
 
 const otherIncludes = [
-  'custom-elements-manifest.config.js',
+  'custom-elements-manifest.config*',
   'web-test-runner.config.js',
   '*prettier*',
   'tsconfig.json',
@@ -34,6 +35,7 @@ const otherIncludes = [
   'src/declaration.d.ts',
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
+  'src/utilities/form*',
   ...events,
 ];
 

@@ -87,7 +87,7 @@ export const Sizes: Story = {
 };
 
 /**
- * The error state is used to warn the user that the input is invalid. 
+ * The error state is used to warn the user that the input is invalid.
  */
 export const Error: Story = {
   render: () => html`<form>
@@ -145,7 +145,7 @@ export const PrefixSuffixIcons: Story = {
 export const CustomizingLabelPosition: Story = {
   render: () => html`<syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
 <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
-<syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
+<syn-input class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-input>
 
 <style>
   .label-on-left {

@@ -8,7 +8,7 @@ labels: docs, status/triage
 **Description**:
 
 <!--
-Please describe what you want to change for the documentation.
+Please describe what documentation should be changed.
 -->
 
 **Rationale**:

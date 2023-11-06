@@ -6,27 +6,29 @@ labels: component/change, enhancement, status/triage
 ---
 
 <!--
-Thank you for taking your time to request a new feature for a component of the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
+Thank you for taking your time to request a new feature for a component of the Synergy Design System.
+
+Please make sure to read the existing documentation and confirm the functionality is not already provided by the given component.
 -->
 
-**Component**
+# Checklist
+
+- [ ] I have looked at the documentation site and was not able to find the required feature.
+- [ ] I have looked into the Figma boards and was not able to find the required feature.
+- [ ] I would be willing to provide a PR for this feature.
+
+# Component
 
 I suggest to add the feature to the following component: _____
 
-**Questions**
 
-- [ ] I have read the documentation and can confirm the functionality is not provided by the given component.
-
----
-
-**Description**
+# Story
 
 <!--
-Please provide a description of the new feature, e.g. what it should do, and how it should behave.
+The Story should answer the following questions:
+- What is the use-case and the requirement to be solved?
+- Why is this component needed?
+- What should the component do and how should it behave?
+- What is the application context?
 -->
-
-**Rationale**
-
-<!--
-What is the use-case and the requirement to be solved?
--->
+As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].

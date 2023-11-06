@@ -5,10 +5,6 @@ title: "chore: 🔧 "
 labels: status/triage
 ---
 
-<!--
-Thank you for taking your time to request an update to the Synergy Design System. Please make sure to answer the questions below to give us more information about your request.
--->
-
 **Description**
 
 <!--

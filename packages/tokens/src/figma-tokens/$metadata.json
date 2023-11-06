@@ -6,7 +6,8 @@
     "color/primitives",
     "semantic/focus-ring",
     "semantic/input",
-    "_docs",
-    "button"
+    "button",
+    "toggels",
+    "_docs"
   ]
 }

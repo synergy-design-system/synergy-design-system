@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.4](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.3...components/1.0.0-main.4) (2023-11-06)
+
+
+### Features
+
+* ✨ vendor syn-input and syn-button ([#113](https://github.com/SickDesignSystem/synergy/issues/113)) ([e475b17](https://github.com/SickDesignSystem/synergy/commit/e475b17950ead260472ddce8bcfd68baa10c11d6))
+
 # [@synergy-design-system/components-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.2...components/1.0.0-main.3) (2023-10-26)
 
 

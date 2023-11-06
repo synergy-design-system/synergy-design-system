@@ -1,6 +1,6 @@
 import { removeSection } from '../remove-section.js';
 
-export default (path, content) => {
+export const vendorInput = (path, content) => {
   const output = { content, path };
 
   if (!path.includes('input.component.ts')

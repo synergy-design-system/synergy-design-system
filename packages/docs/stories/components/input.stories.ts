@@ -83,10 +83,10 @@ export const TogglePassword: Story = {
 };
 
 /**
- * Add the filled attribute to draw a filled input.
+ * Add the readonly attribute to draw a readonly input.
  */
-export const FilledInputs: Story = {
-  render: () => html`<syn-input placeholder="Type something" filled></syn-input>`,
+export const ReadonlyInputs: Story = {
+  render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
 };
 
 /**
@@ -155,7 +155,7 @@ export const PrefixSuffixIcons: Story = {
 export const CustomizingLabelPosition: Story = {
   render: () => html`<syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
 <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
-<syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
+<syn-input class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-input>
 
 <style>
   .label-on-left {

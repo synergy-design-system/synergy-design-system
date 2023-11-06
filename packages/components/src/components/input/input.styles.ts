@@ -74,25 +74,25 @@ export default css`
     color: var(--syn-input-placeholder-color-disabled);
   }
 
-  /* Filled inputs */
-  .input--filled {
+  /* Readonly inputs */
+  .input--readonly {
     border: none;
-    background-color: var(--syn-input-filled-background-color);
+    background-color: var(--syn-input-readonly-background-color);
     color: var(--syn-input-color);
   }
 
-  .input--filled:hover:not(.input--disabled) {
-    background-color: var(--syn-input-filled-background-color-hover);
+  .input--readonly:hover:not(.input--disabled) {
+    background-color: var(--syn-input-readonly-background-color-hover);
   }
 
-  .input--filled.input--focused:not(.input--disabled) {
-    background-color: var(--syn-input-filled-background-color-focus);
+  .input--readonly.input--focused:not(.input--disabled) {
+    background-color: var(--syn-input-readonly-background-color-focus);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
 
-  .input--filled.input--disabled {
-    background-color: var(--syn-input-filled-background-color-disabled);
+  .input--readonly.input--disabled {
+    background-color: var(--syn-input-readonly-background-color-disabled);
     opacity: 0.5;
     cursor: not-allowed;
   }
@@ -130,11 +130,11 @@ export default css`
     caret-color: var(--syn-input-color);
   }
 
-  .input--filled .input__control:-webkit-autofill,
-  .input--filled .input__control:-webkit-autofill:hover,
-  .input--filled .input__control:-webkit-autofill:focus,
-  .input--filled .input__control:-webkit-autofill:active {
-    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-filled-background-color) inset !important;
+  .input--readonly .input__control:-webkit-autofill,
+  .input--readonly .input__control:-webkit-autofill:hover,
+  .input--readonly .input__control:-webkit-autofill:focus,
+  .input--readonly .input__control:-webkit-autofill:active {
+    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset !important;
   }
 
   .input__control::placeholder {

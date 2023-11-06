@@ -23,12 +23,10 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "web-test-runner --group default",
+    "test": "pnpm build && web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",

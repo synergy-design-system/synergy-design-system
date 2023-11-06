@@ -5,9 +5,11 @@ import commandLineArgs from 'command-line-args';
 import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
+import { vendorButton, vendorInput } from './vendorism/custom/index.js';
 
 const components = [
   'input',
+  'button',
 ];
 
 // List of events that we want to import.
@@ -25,7 +27,7 @@ const events = [
 ].map(evt => `src/events/${evt}.ts`);
 
 const otherIncludes = [
-  'custom-elements-manifest.config.js',
+  'custom-elements-manifest.config*',
   'web-test-runner.config.js',
   '*prettier*',
   'tsconfig.json',
@@ -33,6 +35,7 @@ const otherIncludes = [
   'src/declaration.d.ts',
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
+  'src/utilities/form*',
   ...events,
 ];
 
@@ -196,6 +199,9 @@ import customStyles from './${component}.custom.styles.js';`,
           path,
         };
       },
+      // specialized customizations
+      vendorButton,
+      vendorInput,
     ],
   },
 };

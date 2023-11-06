@@ -61,7 +61,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']
   });
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
@@ -99,12 +99,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
-
-  /** Draws a filled input. */
-  @property({ type: Boolean, reflect: true }) filled = false;
-
-  /** Draws a pill-style input with rounded edges. */
-  @property({ type: Boolean, reflect: true }) pill = false;
 
   /** The input's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -410,6 +404,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
@@ -424,7 +420,9 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'form-control--has-help-text': hasHelpText,
+          'form-control--has-prefix': hasPrefixSlot,
+          'form-control--has-suffix': hasSuffixSlot
         })}
       >
         <label
@@ -448,9 +446,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               'input--large': this.size === 'large',
 
               // States
-              'input--pill': this.pill,
-              'input--standard': !this.filled,
-              'input--filled': this.filled,
+              'input--standard': !this.readonly,
+              'input--readonly': this.readonly,
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,

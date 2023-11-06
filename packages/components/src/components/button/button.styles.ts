@@ -6,6 +6,7 @@
 /* eslint-disable */
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles.js';
+import customStyles from './button.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -84,116 +85,22 @@ export default css`
    * Standard buttons
    */
 
-  /* Default */
-  .button--standard.button--default {
-    background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-neutral-300);
-    color: var(--syn-color-neutral-700);
-  }
-
-  .button--standard.button--default:hover:not(.button--disabled) {
-    background-color: var(--syn-color-primary-50);
-    border-color: var(--syn-color-primary-300);
-    color: var(--syn-color-primary-700);
-  }
-
-  .button--standard.button--default:active:not(.button--disabled) {
-    background-color: var(--syn-color-primary-100);
-    border-color: var(--syn-color-primary-400);
-    color: var(--syn-color-primary-700);
-  }
-
   /* Primary */
-  .button--standard.button--primary {
+  .button--default.button--primary {
     background-color: var(--syn-color-primary-600);
     border-color: var(--syn-color-primary-600);
     color: var(--syn-color-neutral-0);
   }
 
-  .button--standard.button--primary:hover:not(.button--disabled) {
+  .button--default.button--primary:hover:not(.button--disabled) {
     background-color: var(--syn-color-primary-500);
     border-color: var(--syn-color-primary-500);
     color: var(--syn-color-neutral-0);
   }
 
-  .button--standard.button--primary:active:not(.button--disabled) {
+  .button--default.button--primary:active:not(.button--disabled) {
     background-color: var(--syn-color-primary-600);
     border-color: var(--syn-color-primary-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Success */
-  .button--standard.button--success {
-    background-color: var(--syn-color-success-600);
-    border-color: var(--syn-color-success-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--success:hover:not(.button--disabled) {
-    background-color: var(--syn-color-success-500);
-    border-color: var(--syn-color-success-500);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--success:active:not(.button--disabled) {
-    background-color: var(--syn-color-success-600);
-    border-color: var(--syn-color-success-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Neutral */
-  .button--standard.button--neutral {
-    background-color: var(--syn-color-neutral-600);
-    border-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--neutral:hover:not(.button--disabled) {
-    background-color: var(--syn-color-neutral-500);
-    border-color: var(--syn-color-neutral-500);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--neutral:active:not(.button--disabled) {
-    background-color: var(--syn-color-neutral-600);
-    border-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Warning */
-  .button--standard.button--warning {
-    background-color: var(--syn-color-warning-600);
-    border-color: var(--syn-color-warning-600);
-    color: var(--syn-color-neutral-0);
-  }
-  .button--standard.button--warning:hover:not(.button--disabled) {
-    background-color: var(--syn-color-warning-500);
-    border-color: var(--syn-color-warning-500);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--warning:active:not(.button--disabled) {
-    background-color: var(--syn-color-warning-600);
-    border-color: var(--syn-color-warning-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Danger */
-  .button--standard.button--danger {
-    background-color: var(--syn-color-danger-600);
-    border-color: var(--syn-color-danger-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--danger:hover:not(.button--disabled) {
-    background-color: var(--syn-color-danger-500);
-    border-color: var(--syn-color-danger-500);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--standard.button--danger:active:not(.button--disabled) {
-    background-color: var(--syn-color-danger-600);
-    border-color: var(--syn-color-danger-600);
     color: var(--syn-color-neutral-0);
   }
 
@@ -204,25 +111,6 @@ export default css`
   .button--outline {
     background: none;
     border: solid 1px;
-  }
-
-  /* Default */
-  .button--outline.button--default {
-    border-color: var(--syn-color-neutral-300);
-    color: var(--syn-color-neutral-700);
-  }
-
-  .button--outline.button--default:hover:not(.button--disabled),
-  .button--outline.button--default.button--checked:not(.button--disabled) {
-    border-color: var(--syn-color-primary-600);
-    background-color: var(--syn-color-primary-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--outline.button--default:active:not(.button--disabled) {
-    border-color: var(--syn-color-primary-700);
-    background-color: var(--syn-color-primary-700);
-    color: var(--syn-color-neutral-0);
   }
 
   /* Primary */
@@ -241,84 +129,6 @@ export default css`
     border-color: var(--syn-color-primary-700);
     background-color: var(--syn-color-primary-700);
     color: var(--syn-color-neutral-0);
-  }
-
-  /* Success */
-  .button--outline.button--success {
-    border-color: var(--syn-color-success-600);
-    color: var(--syn-color-success-600);
-  }
-
-  .button--outline.button--success:hover:not(.button--disabled),
-  .button--outline.button--success.button--checked:not(.button--disabled) {
-    background-color: var(--syn-color-success-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--outline.button--success:active:not(.button--disabled) {
-    border-color: var(--syn-color-success-700);
-    background-color: var(--syn-color-success-700);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Neutral */
-  .button--outline.button--neutral {
-    border-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-600);
-  }
-
-  .button--outline.button--neutral:hover:not(.button--disabled),
-  .button--outline.button--neutral.button--checked:not(.button--disabled) {
-    background-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--outline.button--neutral:active:not(.button--disabled) {
-    border-color: var(--syn-color-neutral-700);
-    background-color: var(--syn-color-neutral-700);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Warning */
-  .button--outline.button--warning {
-    border-color: var(--syn-color-warning-600);
-    color: var(--syn-color-warning-600);
-  }
-
-  .button--outline.button--warning:hover:not(.button--disabled),
-  .button--outline.button--warning.button--checked:not(.button--disabled) {
-    background-color: var(--syn-color-warning-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--outline.button--warning:active:not(.button--disabled) {
-    border-color: var(--syn-color-warning-700);
-    background-color: var(--syn-color-warning-700);
-    color: var(--syn-color-neutral-0);
-  }
-
-  /* Danger */
-  .button--outline.button--danger {
-    border-color: var(--syn-color-danger-600);
-    color: var(--syn-color-danger-600);
-  }
-
-  .button--outline.button--danger:hover:not(.button--disabled),
-  .button--outline.button--danger.button--checked:not(.button--disabled) {
-    background-color: var(--syn-color-danger-600);
-    color: var(--syn-color-neutral-0);
-  }
-
-  .button--outline.button--danger:active:not(.button--disabled) {
-    border-color: var(--syn-color-danger-700);
-    background-color: var(--syn-color-danger-700);
-    color: var(--syn-color-neutral-0);
-  }
-
-  @media (forced-colors: active) {
-    .button.button--outline.button--checked:not(.button--disabled) {
-      outline: solid 2px transparent;
-    }
   }
 
   /*
@@ -375,52 +185,6 @@ export default css`
     font-size: var(--syn-button-font-size-large);
     line-height: calc(var(--syn-input-height-large) - var(--syn-input-border-width) * 2);
     border-radius: var(--syn-input-border-radius-large);
-  }
-
-  /*
-   * Pill modifier
-   */
-
-  .button--pill.button--small {
-    border-radius: var(--syn-input-height-small);
-  }
-
-  .button--pill.button--medium {
-    border-radius: var(--syn-input-height-medium);
-  }
-
-  .button--pill.button--large {
-    border-radius: var(--syn-input-height-large);
-  }
-
-  /*
-   * Circle modifier
-   */
-
-  .button--circle {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .button--circle.button--small {
-    width: var(--syn-input-height-small);
-    border-radius: 50%;
-  }
-
-  .button--circle.button--medium {
-    width: var(--syn-input-height-medium);
-    border-radius: 50%;
-  }
-
-  .button--circle.button--large {
-    width: var(--syn-input-height-large);
-    border-radius: 50%;
-  }
-
-  .button--circle .button__prefix,
-  .button--circle .button__suffix,
-  .button--circle .button__caret {
-    display: none;
   }
 
   /*
@@ -603,4 +367,7 @@ export default css`
   :host(.syn-button-group__button[checked]) {
     z-index: 2;
   }
+
+  ${customStyles}
 `;
+

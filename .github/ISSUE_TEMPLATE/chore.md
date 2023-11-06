@@ -5,13 +5,13 @@ title: "chore: 🔧 "
 labels: status/triage
 ---
 
-**Description**
+# Description
 
 <!--
 Please provide a description of the new feature, e.g. what it should do, and how it should behave.
 -->
 
-**Rationale**
+# Rationale
 
 <!--
 What is the use-case and the requirement to be solved?

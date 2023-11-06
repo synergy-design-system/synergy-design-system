@@ -5,13 +5,13 @@ title: "docs: 📚 "
 labels: docs, status/triage
 ---
 
-**Description**:
+# Description
 
 <!--
 Please describe what documentation should be changed.
 -->
 
-**Rationale**:
+# Rationale
 
 <!--
 Please provide a reason for this change to exist.

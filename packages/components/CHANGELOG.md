@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.2...components/1.0.0-main.3) (2023-10-26)
+
+
+### Features
+
+* ✨ React component support ([#88](https://github.com/SickDesignSystem/synergy/issues/88)) ([967b7dd](https://github.com/SickDesignSystem/synergy/commit/967b7ddce3f2e1f6a1c55898c1368f0560947101))
+
 # [@synergy-design-system/components-v1.0.0-main.2](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.1...components/1.0.0-main.2) (2023-10-25)
 
 

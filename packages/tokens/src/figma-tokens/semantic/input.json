@@ -44,7 +44,7 @@
         "type": "color"
       },
       "color-focus": {
-        "value": "{primary.800}",
+        "value": "{neutral.950}",
         "type": "color"
       },
       "color-disables": {
@@ -64,7 +64,7 @@
         "type": "borderRadius"
       },
       "color-focus-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
       }
     },
@@ -74,25 +74,25 @@
     },
     "icon": {
       "color": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       },
       "color-hover": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       },
       "color-focus": {
-        "value": "{neutral.950}",
+        "value": "{neutral.800}",
         "type": "color"
       }
     },
     "placeholder": {
       "color": {
-        "value": "{neutral.800}",
+        "value": "{neutral.500}",
         "type": "color"
       },
       "color-disabled": {
-        "value": "{neutral.800}",
+        "value": "{neutral.500}",
         "type": "color"
       }
     },
@@ -116,15 +116,15 @@
       "font-size": {
         "small": {
           "value": "{font-size.small}",
-          "type": "text"
+          "type": "fontSizes"
         },
         "medium": {
           "value": "{font-size.medium}",
-          "type": "text"
+          "type": "fontSizes"
         },
         "large": {
           "value": "{font-size.large}",
-          "type": "text"
+          "type": "fontSizes"
         }
       }
     },
@@ -144,7 +144,7 @@
     },
     "focus-ring": {
       "color": {
-        "value": "{primary.200}",
+        "value": "{primary.400}",
         "type": "color"
       },
       "offset": {
@@ -152,7 +152,7 @@
         "type": "spacing"
       },
       "error": {
-        "value": "{error.200}",
+        "value": "{error.400}",
         "type": "color"
       }
     },
@@ -179,41 +179,27 @@
       }
     },
     "help-text": {
-      "font-size": {
-        "small": {
-          "value": "{font-size.x-small}",
-          "type": "text"
-        },
-        "medium": {
-          "value": "{font-size.small}",
-          "type": "text"
-        },
-        "large": {
-          "value": "{font-size.medium}",
-          "type": "text"
-        }
-      },
       "color": {
         "value": "{neutral.800}",
         "type": "color"
       },
       "color-error": {
-        "value": "{error.600}",
+        "value": "{error.700}",
         "type": "color"
-      }
-    },
-    "font-size": {
-      "small": {
-        "value": "{font-size.small}",
-        "type": "text"
       },
-      "medium": {
-        "value": "{font-size.medium}",
-        "type": "text"
-      },
-      "large": {
-        "value": "{font-size.large}",
-        "type": "text"
+      "font-size": {
+        "small": {
+          "value": "{font-size.x-small}",
+          "type": "fontSizes"
+        },
+        "medium": {
+          "value": "{font-size.small}",
+          "type": "fontSizes"
+        },
+        "large": {
+          "value": "{font-size.medium}",
+          "type": "fontSizes"
+        }
       }
     },
     "height": {
@@ -246,6 +232,20 @@
       "color-focus": {
         "value": "{neutral.950}",
         "type": "color"
+      }
+    },
+    "font-size": {
+      "small": {
+        "value": "{font-size.small}",
+        "type": "fontSizes"
+      },
+      "medium": {
+        "value": "{font-size.medium}",
+        "type": "fontSizes"
+      },
+      "large": {
+        "value": "{font-size.large}",
+        "type": "fontSizes"
       }
     }
   },

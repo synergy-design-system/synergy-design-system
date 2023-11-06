@@ -39,9 +39,51 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.0.0-main.3",
+  "version": "1.0.0-main.4",
   "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
     "@types/react": "^18.2.31",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "semantic-release": "^19.0.5",
+    "semantic-release-monorepo": "^7.0.5"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      {
+        "name": "main",
+        "prerelease": true
+      },
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      },
+      "release-fallback"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release/react): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
+          "assets": [
+            "src",
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ]
+    ]
+  },
+  "scripts": {
+    "release": "semantic-release --tagFormat 'react/${version}' -e semantic-release-monorepo"
   }
 }

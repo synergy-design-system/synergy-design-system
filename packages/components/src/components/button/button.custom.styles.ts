@@ -69,7 +69,7 @@ export default css`
     padding-inline-end: var(--syn-spacing-small);
   }
 
-  .button.button--primary.button--medium.button--has-label.button--has-prefix {
+  .button.button--medium.button--has-label.button--has-prefix {
     padding-inline-start: var(--syn-spacing-medium);
    } 
 

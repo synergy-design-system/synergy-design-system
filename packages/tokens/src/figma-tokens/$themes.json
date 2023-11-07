@@ -6,8 +6,7 @@
     "selectedTokenSets": {
       "color/light": "enabled",
       "color/primitives": "source",
-      "toggels": "disabled",
-      "button": "disabled"
+      "toggles": "disabled"
     },
     "$figmaStyleReferences": {
       "primary.50": "S:eb21790c7e19e4a2f70b605f29d45573656ac66e,",
@@ -159,8 +158,7 @@
     "selectedTokenSets": {
       "color/dark": "enabled",
       "color/primitives": "source",
-      "toggels": "disabled",
-      "button": "disabled"
+      "toggles": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -241,8 +239,7 @@
     "name": "Default",
     "selectedTokenSets": {
       "globals": "enabled",
-      "toggels": "disabled",
-      "button": "disabled"
+      "toggles": "disabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -322,8 +319,8 @@
       "semantic/focus-ring": "enabled",
       "color/primitives": "source",
       "semantic/input": "enabled",
-      "toggels": "source",
-      "button": "source"
+      "button": "source",
+      "toggles": "source"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

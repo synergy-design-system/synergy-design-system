@@ -123,25 +123,37 @@ export const Sizes: Story = {
  * The error state is used to warn the user that the input is invalid.
  */
 export const Error: Story = {
-  render: () => html`<form>
-  <syn-input required placeholder="Small" size="small" help-text="Help Error Text"></syn-input>
-<button type="submit">Submit</button>
-</form>
-<style>
+  render: () => html` 
+  <form @submit="${handleSubmit}">
+    <syn-input required placeholder="Please insert text here..." size="medium" help-text="Help Error Text"></syn-input>
+    <syn-button size="medium" type="submit">Submit</syn-button>
+  </form>
+  <style>
   form {
     display: flex;
     flex-direction: column;
   }
 
-  button {
+  syn-button {
     margin-top: 1rem;
     align-self: flex-end;
     padding: 0.5rem 1rem;
     min-width: 5%;
   }
-</style>
+  </style>
 `,
 };
+
+function handleSubmit(event: SubmitEvent) {
+  event.preventDefault();
+  const inputField = document.getElementById('inputField');
+
+  if (!inputField?.value.trim()) {
+    inputField?.setAttribute('help-text', 'Input is required');
+  } else {
+    inputField.setAttribute('help-text', '');
+  }
+}
 
 /**
  * The type attribute controls the type of input the browser renders.

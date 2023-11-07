@@ -49,7 +49,9 @@ export const createCssVariables = (prefix) => ({
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    return `${fileHeader({ file })}:root {${formattedVariables({ dictionary, format: 'css', outputReferences })}}`;
+    return `${fileHeader({ file })}:root {
+${formattedVariables({ dictionary, format: 'css', outputReferences })}
+}`;
   },
   name: 'syn/create-css-variables',
 });

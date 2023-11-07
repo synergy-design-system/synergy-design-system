@@ -11,6 +11,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@tokens-studio/sd-transforms": "^0.11.0",
     "chalk": "^5.3.0",
+    "change-case": "^4.1.2",
     "eslint": "^8.47.0",
     "eslint-plugin-import": "^2.28.1",
     "rimraf": "^5.0.1",
@@ -18,9 +19,15 @@
     "semantic-release-monorepo": "^7.0.5",
     "style-dictionary": "^3.8.0"
   },
+  "exports": {
+    ".": "./dist/js/index.js",
+    "./themes/*": "./dist/themes/*",
+    "./scss": "./dist/scss/_tokens.scss"
+  },
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "src/figma-tokens"
   ],
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/tokens",
   "keywords": [
@@ -100,5 +107,5 @@
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0-main.4"
+  "version": "1.0.0-main.6"
 }

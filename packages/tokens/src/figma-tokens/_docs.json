@@ -87,7 +87,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the variant attribute to set the button’s variant.",
+          "value": "Use the variant attribute to set the button’s variant. Variants can be default, Outline and Text Buttons. Use the outline attribute to draw outlined buttons with transparent backgrounds. Use the text variant to create text buttons that share the same size as regular buttons but don’t have backgrounds or borders.",
           "type": "text"
         }
       },
@@ -98,26 +98,6 @@
         },
         "description": {
           "value": "Use the size attribute to change a button’s size.",
-          "type": "text"
-        }
-      },
-      "outline": {
-        "title": {
-          "value": "Outline Button",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the outline attribute to draw outlined buttons with transparent backgrounds.",
-          "type": "text"
-        }
-      },
-      "text": {
-        "title": {
-          "value": "Text Buttons",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the text variant to create text buttons that share the same size as regular buttons but don’t have backgrounds or borders.",
           "type": "text"
         }
       },
@@ -584,16 +564,6 @@
         "type": "text"
       }
     },
-    "radio": {
-      "description": {
-        "value": "Radios allow the user to select a single option from a group.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Radio",
-        "type": "text"
-      }
-    },
     "range": {
       "description": {
         "value": "Ranges allow the user to select a single value within a given range using a slider.",
@@ -725,13 +695,111 @@
       }
     },
     "textarea": {
-      "description": {
-        "value": "Textareas collect data from the user and allow multiple lines of text.",
-        "type": "text"
+      "default": {
+        "title": {
+          "value": "Textarea",
+          "type": "text"
+        },
+        "description": {
+          "value": "Textareas collect data from the user and allow multiple lines of text.",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Textarea",
-        "type": "text"
+      "examples": {
+        "title": {
+          "value": "Examples",
+          "type": "text"
+        },
+        "labels": {
+          "title": {
+            "value": "Labels",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.",
+            "type": "text"
+          }
+        },
+        "help-text": {
+          "title": {
+            "value": "Help Text",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add descriptive help text to a textarea with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+            "type": "text"
+          }
+        },
+        "rows": {
+          "title": {
+            "value": "Rows",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the rows attribute to change the number of text rows that get shown.",
+            "type": "text"
+          }
+        },
+        "placeholder": {
+          "title": {
+            "value": "Placeholders",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the placeholder attribute to add a placeholder.",
+            "type": "text"
+          }
+        },
+        "filled": {
+          "title": {
+            "value": "Filled Textareas",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the filled attribute to draw a filled textarea.",
+            "type": "text"
+          }
+        },
+        "disabled": {
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the disabled attribute to disable a textarea.",
+            "type": "text"
+          }
+        },
+        "size": {
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the size attribute to change a textarea’s size.",
+            "type": "text"
+          }
+        },
+        "resize": {
+          "title": {
+            "value": "Prevent Resizing",
+            "type": "text"
+          },
+          "description": {
+            "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.",
+            "type": "text"
+          }
+        },
+        "resize-auto": {
+          "title": {
+            "value": "Expand with Content",
+            "type": "text"
+          },
+          "description": {
+            "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
+            "type": "text"
+          }
+        }
       }
     },
     "tooltip": {
@@ -772,6 +840,54 @@
       "title": {
         "value": "Visually Hidden",
         "type": "text"
+      }
+    },
+    "radio": {
+      "default": {
+        "title": {
+          "value": "Radio",
+          "type": "text"
+        },
+        "description": {
+          "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
+          "type": "text"
+        }
+      },
+      "examples": {
+        "title": {
+          "value": "Examples",
+          "type": "text"
+        },
+        "value": {
+          "title": {
+            "value": "Initial Value",
+            "type": "text"
+          },
+          "description": {
+            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+            "type": "text"
+          }
+        },
+        "disabled": {
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "text": {
+            "value": "Use the disabled attribute to disable a radio.",
+            "type": "text"
+          }
+        },
+        "sizes": {
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
+            "type": "text"
+          }
+        }
       }
     }
   },

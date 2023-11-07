@@ -58,6 +58,11 @@ export default css`
     color: var(--syn-color-primary-900);
   }
 
+  .button:focus {
+    outline: var(--syn-focus-ring-color) solid 2px;
+    outline-offset: 1px;
+  }
+
   /*
  * PADDING
 */

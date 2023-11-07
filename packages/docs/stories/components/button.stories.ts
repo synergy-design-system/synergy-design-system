@@ -46,7 +46,12 @@ export const Default = {
 export const Variants: Story = {
   render: () => html`<syn-button variant="default">Default</syn-button>
 <syn-button variant="outline">Outline</syn-button>
-<syn-button variant="text">Text</syn-button>`,
+<syn-button variant="text">Text</syn-button>
+<style>
+  syn-button {
+    margin: 0.5rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('variant'),
@@ -61,28 +66,6 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: generateStoryDescription('size'),
-    },
-  },
-};
-
-export const OutlineButtons: Story = {
-  render: () => html`<syn-button variant="outline" size="small">Outline</syn-button>
-<syn-button variant="outline" size="medium">Outline</syn-button>
-<syn-button variant="outline" size="large">Outline</syn-button>`,
-  parameters: {
-    docs: {
-      description: generateStoryDescription('outline'),
-    },
-  },
-};
-
-export const TextButtons: Story = {
-  render: () => html`<syn-button variant="text" size="small">Text</syn-button>
-<syn-button variant="text" size="medium">Text</syn-button>
-<syn-button variant="text" size="large">Text</syn-button>`,
-  parameters: {
-    docs: {
-      description: generateStoryDescription('text'),
     },
   },
 };

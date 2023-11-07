@@ -407,8 +407,7 @@
   --syn-focus-ring-color: var(--syn-color-primary-700);
   --syn-focus-ring-style: solid;
   --syn-focus-ring-width: 3px;
-  --syn-focus-ring: var(--syn-focus-ring-style) var(--syn-focus-ring-width)
-    var(--syn-focus-ring-color);
+  --syn-focus-ring: var(--syn-focus-ring-style) var(--syn-focus-ring-width) var(--syn-focus-ring-color);
   --syn-focus-ring-offset: 1px;
 
   /*

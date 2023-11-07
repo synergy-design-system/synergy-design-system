@@ -3,14 +3,10 @@
  * As long as we don't have all tokens coming from Figma Tokens,
  * we will provide some fallback CSS variables from Shoelace.
  */
-
-import fs from 'fs';
-import { promisify } from 'util';
+import { existsSync } from 'fs';
+import { readFile, readdir, writeFile } from 'fs/promises';
 import path from 'path';
-
-const readdir = promisify(fs.readdir);
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
+import chalk from 'chalk';
 
 const extractVariables = (data, prefix) => {
   const variablePattern = new RegExp(`(--${prefix}-[^:]+):\\s*([^;]+);`, 'g');
@@ -50,13 +46,12 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
       await writeFile(targetFilePath, updatedTargetData, 'utf-8');
     }
   } catch (error) {
-    console.error(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error);
+    console.error(chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error));
   }
 };
 
-export const addMissingTokens = async (prefix) => {
+export const addMissingTokens = async (prefix, targetDir) => {
   const sourceDir = './src/shoelace-fallbacks';
-  const targetDir = './dist/css';
 
   try {
     const targetFiles = await readdir(targetDir);
@@ -67,13 +62,13 @@ export const addMissingTokens = async (prefix) => {
       const sourceFilePath = path.join(sourceDir, targetFile);
       const targetFilePath = path.join(targetDir, targetFile);
 
-      if (fs.existsSync(sourceFilePath)) {
+      if (existsSync(sourceFilePath)) {
         results.push(compareAndAppendVariables(sourceFilePath, targetFilePath, prefix));
       }
     });
 
-    console.log('Missing tokens added');
+    console.log(chalk.green('✔︎ Missing tokens added'));
   } catch (error) {
-    console.error('Error reading directory:', error);
+    console.error(chalk.red('Error reading directory:', error));
   }
 };

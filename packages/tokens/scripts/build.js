@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
 import {
@@ -10,6 +11,7 @@ import {
 } from './transforms/index.js';
 import { createCssVariables } from './formats/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
+import { createJS, createSCSS } from './outputs/index.js';
 
 const { author, name, version } = JSON.parse(readFileSync('./package.json'));
 
@@ -46,7 +48,7 @@ StyleDictionary.registerFileHeader({
   StyleDictionary.extend({
     platforms: {
       css: {
-        buildPath: `${config.buildPath}css/`,
+        buildPath: `${config.buildPath}themes/`,
         files: [
           {
             destination: `${theme}.css`,
@@ -83,4 +85,19 @@ StyleDictionary.registerFileHeader({
   }).buildAllPlatforms();
 });
 
-addMissingTokens('syn');
+createJS(
+  StyleDictionary.fileHeader['syn/header'](''),
+  path.join(config.buildPath, 'themes', 'light.css'),
+  path.join(config.buildPath, 'js', 'index.js'),
+);
+
+createSCSS(
+  StyleDictionary.fileHeader['syn/header'](''),
+  path.join(config.buildPath, 'themes', 'light.css'),
+  path.join(config.buildPath, 'scss', '_tokens.scss'),
+);
+
+await addMissingTokens(
+  'syn',
+  path.join(config.buildPath, 'themes'),
+);

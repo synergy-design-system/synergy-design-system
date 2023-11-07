@@ -30,7 +30,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/dist/css/light.css';
+import '@synergy-design-system/tokens/dist/themes/light.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.5...components/1.0.0-main.6) (2023-11-07)
+
+
+### Bug Fixes
+
+* Adjusted commit message for auto deploy of react package ([cd12b7d](https://github.com/SickDesignSystem/synergy/commit/cd12b7db42c404776da89488d6538f9c90d3652d))
+
 # [@synergy-design-system/components-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.4...components/1.0.0-main.5) (2023-11-07)
 
 

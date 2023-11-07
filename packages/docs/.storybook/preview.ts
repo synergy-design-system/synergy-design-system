@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/web-components";
-import '@synergy-design-system/tokens/dist/css/light.css';
+import '@synergy-design-system/tokens/themes/light.css';
 
 import { setCustomElementsManifest } from '@storybook/web-components';
 import '../src/docs.css';

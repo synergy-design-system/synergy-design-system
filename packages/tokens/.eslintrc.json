@@ -1,9 +1,7 @@
 {
   "extends": "@synergy-design-system/eslint-config-syn",
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }],
+    "import/no-extraneous-dependencies": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-prototype-builtins": "off",
     "no-cond-assign": ["error", "except-parens"]

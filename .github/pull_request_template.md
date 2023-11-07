@@ -37,23 +37,12 @@ Please provide a summary of the tests affected by this work and any unique strat
 
 ## ✅ Checklist
 
-### General
+<!-- Please review the list and make sure every item is fullfilled. Place a check (x) for each fullfilled item. -->
 
-<!-- Review the list and put an x in the boxes that apply. -->
-
-- [ ] I have added tests for my changes.
-- [ ] I have tested my changes.
-- [ ] I have updated the project documentation to reflect my changes.
+- [ ] I have tested my changes manually.
+- [ ] I have added automatic tests for my changes (unit- and visual regression tests).
+- [ ] I have updated the project documentation to reflect my changes (e.g. CHANGELOG, Storybook, ...).
 - [ ] I have made sure to follow the projects coding and contribution guides.
-
-<!-- Use this list if your PR adds a component -->
-<!-- If not applicable, delete this section -->
-
-### Component
-
-- [ ] I have created a new component.
-- [ ] I have added changes to an already existing component.
-- [ ] I have written integration tests (or have adjusted already existing ones).
+- [ ] I have made sure that the bundle size has changed appropriately.
 - [ ] I have validated that there are no accessibility errors.
-- [ ] I have created or updated any stories affected by my changes.
 - [ ] I have used design tokens instead of fix css values

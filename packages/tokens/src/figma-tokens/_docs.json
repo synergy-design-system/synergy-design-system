@@ -564,16 +564,6 @@
         "type": "text"
       }
     },
-    "radio": {
-      "description": {
-        "value": "Radios allow the user to select a single option from a group.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Radio",
-        "type": "text"
-      }
-    },
     "range": {
       "description": {
         "value": "Ranges allow the user to select a single value within a given range using a slider.",
@@ -752,6 +742,54 @@
       "title": {
         "value": "Visually Hidden",
         "type": "text"
+      }
+    },
+    "radio": {
+      "default": {
+        "title": {
+          "value": "Radio",
+          "type": "text"
+        },
+        "description": {
+          "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
+          "type": "text"
+        }
+      },
+      "examples": {
+        "title": {
+          "value": "Examples",
+          "type": "text"
+        },
+        "value": {
+          "title": {
+            "value": "Initial Value",
+            "type": "text"
+          },
+          "description": {
+            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+            "type": "text"
+          }
+        },
+        "disabled": {
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "text": {
+            "value": "Use the disabled attribute to disable a radio.",
+            "type": "text"
+          }
+        },
+        "sizes": {
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
+            "type": "text"
+          }
+        }
       }
     }
   },

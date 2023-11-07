@@ -1,7 +1,7 @@
 {
   "size": {
     "small": {
-      "value": "{spacing.small}",
+      "value": "14px",
       "type": "spacing"
     },
     "medium": {

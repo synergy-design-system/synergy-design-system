@@ -5,7 +5,7 @@
       "type": "spacing"
     },
     "medium": {
-      "value": "spacing.medium",
+      "value": "{spacing.medium}",
       "type": "spacing"
     },
     "large": {

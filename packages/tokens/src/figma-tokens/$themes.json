@@ -5,8 +5,7 @@
     "group": "Theme",
     "selectedTokenSets": {
       "color/light": "enabled",
-      "color/primitives": "source",
-      "toggles": "disabled"
+      "color/primitives": "source"
     },
     "$figmaStyleReferences": {
       "primary.50": "S:eb21790c7e19e4a2f70b605f29d45573656ac66e,",
@@ -157,8 +156,7 @@
     "group": "Theme",
     "selectedTokenSets": {
       "color/dark": "enabled",
-      "color/primitives": "source",
-      "toggles": "disabled"
+      "color/primitives": "source"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -238,8 +236,7 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled",
-      "toggles": "disabled"
+      "globals": "enabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",

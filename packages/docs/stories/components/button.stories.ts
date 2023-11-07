@@ -10,15 +10,10 @@ const { args, argTypes } = storybookDefaults('syn-button');
 const { overrideArgs } = storybookHelpers('syn-button');
 const { generateTemplate } = storybookTemplate('syn-button');
 
-const generateStoryParameters = (attributeName: string) => {
-  const description = (docsTokens?.components?.['button'] as any)?.[attributeName]?.description?.value ?? 'No Description';
+const generateStoryDescription = (attributeName: string) => {
   return {
-    docs: {
-      description: {
-        story: description,
-      }
-    }
-  };
+    story: (docsTokens?.components?.['button'] as any)?.[attributeName]?.description?.value ?? 'No Description',
+  }
 };
 
 const meta: Meta = {
@@ -26,13 +21,13 @@ const meta: Meta = {
   args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args),
   argTypes,
   title: 'Components/syn-button',
-  parameters: { 
+  parameters: {
     docs: {
       description: {
-        component: docsTokens?.components?.['button']?.default?.description?.value ?? 'No Description',
+        story: generateStoryDescription('default'),
       },
-    }
-  }
+    },
+  },
 };
 export default meta;
 
@@ -45,10 +40,10 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens?.components?.['button']?.default?.description?.value ?? 'No Description',
-      }
-    }
-  }
+        story: generateStoryDescription('default'),
+      },
+    },
+  },
 } as Story;
 
 
@@ -56,28 +51,52 @@ export const Variants: Story = {
   render: () => html`<syn-button variant="default">Default</syn-button>
 <syn-button variant="outline">Outline</syn-button>
 <syn-button variant="text">Text</syn-button>`,
-  parameters: generateStoryParameters('variant')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('variant'),
+      },
+    },
+  },
 };
 
 export const Sizes: Story = {
   render: () => html`<syn-button size="small">Small</syn-button>
 <syn-button size="medium">Medium</syn-button>
 <syn-button size="large">Large</syn-button>`,
-  parameters: generateStoryParameters('size')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('size'),
+      },
+    },
+  },
 };
 
 export const OutlineButtons: Story = {
   render: () => html`<syn-button variant="outline" size="small">Outline</syn-button>
 <syn-button variant="outline" size="medium">Outline</syn-button>
 <syn-button variant="outline" size="large">Outline</syn-button>`,
-  parameters: generateStoryParameters('outline')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('outline'),
+      },
+    },
+  },
 };
 
 export const TextButtons: Story = {
   render: () => html`<syn-button variant="text" size="small">Text</syn-button>
 <syn-button variant="text" size="medium">Text</syn-button>
 <syn-button variant="text" size="large">Text</syn-button>`,
-  parameters: generateStoryParameters('text')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('text'),
+      },
+    },
+  },
 };
 
 export const LinkButtons: Story = {
@@ -85,14 +104,26 @@ export const LinkButtons: Story = {
 <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
 <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
 <syn-button href="https://example.com/" disabled>Disabled</syn-button>`,
-  parameters: generateStoryParameters('link')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('link'),
+      },
+    },
+  },
 };
 
 export const SettingACustomWidth: Story = {
   render: () => html`<syn-button variant="default" size="small" style="width: 100%; margin-bottom: 1rem;">Small</syn-button>
 <syn-button variant="default" size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</syn-button>
 <syn-button variant="default" size="large" style="width: 100%;">Large</syn-button>`,
-  parameters: generateStoryParameters('width')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('width'),
+      },
+    },
+  },
 };
 
 export const PrefixAndSuffixIcons: Story = {
@@ -255,21 +286,39 @@ export const PrefixAndSuffixIcons: Story = {
   <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
   Open
 </syn-button>`,
-  parameters: generateStoryParameters('prefix-suffix')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('prefix-suffix'),
+      },
+    },
+  },
 };
 
 export const Caret: Story = {
   render: () => html`<syn-button size="small" caret>Small</syn-button>
 <syn-button size="medium" caret>Medium</syn-button>
 <syn-button size="large" caret>Large</syn-button>`,
-  parameters: generateStoryParameters('caret')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('caret'),
+      },
+    },
+  },
 };
 
 export const Loading: Story = {
   render: () => html`<syn-button variant="default" loading>Default</syn-button>
 <syn-button variant="outline" loading>Primary</syn-button>
 <syn-button variant="text" loading>Success</syn-button>`,
-  parameters: generateStoryParameters('loading')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('loading'),
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
@@ -293,6 +342,12 @@ export const Disabled: Story = {
   Open
 </syn-button>
 `,
-  parameters: generateStoryParameters('disabled')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('disabled'),
+      },
+    },
+  },
 };
 

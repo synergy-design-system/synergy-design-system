@@ -23,9 +23,7 @@ const meta: Meta = {
   title: 'Components/syn-input',
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('default'),
-      },
+      description: generateStoryDescription('default'),
     },
   },
 };
@@ -39,9 +37,7 @@ export const Default = {
   },
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('default'),
-      },
+      description: generateStoryDescription('default'),
     },
   },
 } as Story;
@@ -50,9 +46,7 @@ export const Labels: Story = {
   render: () => html`<syn-input label="What is your name?"></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('label'),
-      },
+      description: generateStoryDescription('label'),
     },
   },
 };
@@ -61,9 +55,7 @@ export const HelpText: Story = {
   render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('help-text'),
-      },
+      description: generateStoryDescription('help-text'),
     },
   },
 };
@@ -72,9 +64,7 @@ export const Placeholders: Story = {
   render: () => html`<syn-input placeholder="Type something"></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('placeholder'),
-      },
+      description: generateStoryDescription('placeholder'),
     },
   },
 };
@@ -83,9 +73,7 @@ export const Clearable: Story = {
   render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('clearable'),
-      },
+      description: generateStoryDescription('clearable'),
     },
   },
 };
@@ -94,9 +82,7 @@ export const TogglePassword: Story = {
   render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('password-toggle'),
-      },
+      description: generateStoryDescription('password-toggle'),
     },
   },
 };
@@ -105,9 +91,7 @@ export const ReadonlyInputs: Story = {
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('filled'),
-      },
+      description: generateStoryDescription('filled'),
     },
   },
 };
@@ -116,16 +100,12 @@ export const Disabled: Story = {
   render: () => html`<syn-input placeholder="Disabled" disabled></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('disabled'),
-      },
+      description: generateStoryDescription('disabled'),
     },
   },
 };
 
-/**
- * Use the size attribute to change an input's size.
- */
+
 export const Sizes: Story = {
   render: () => html`<syn-input placeholder="Small" size="small"></syn-input>
 <br />
@@ -134,9 +114,7 @@ export const Sizes: Story = {
 <syn-input placeholder="Large" size="large"></syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('size'),
-      },
+      description: generateStoryDescription('size'),
     },
   },
 };
@@ -193,9 +171,7 @@ export const PrefixSuffixIcons: Story = {
 </syn-input>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('prefix-suffix'),
-      },
+      description: generateStoryDescription('prefix-suffix'),
     },
   },
 };

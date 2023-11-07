@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.5...tokens/1.0.0-main.6) (2023-11-07)
+
+
+### Features
+
+* ✨ add scss and js support for tokens ([#120](https://github.com/SickDesignSystem/synergy/issues/120)) ([1830066](https://github.com/SickDesignSystem/synergy/commit/1830066b12a061013a4fb67adaf0856de11f5e9a))
+
 # [@synergy-design-system/tokens-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.4...tokens/1.0.0-main.5) (2023-11-07)
 
 

@@ -133,7 +133,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add ../react && git commit -m \"chore: Create new version of @synergy-design-system/react [skip actions]\" && git push"
+          "prepareCmd": "pnpm build && git add ../react && git commit -m \"chore: Create new version of @synergy-design-system/react [skip actions]\""
         }
       ],
       [

@@ -23,9 +23,7 @@ const meta: Meta = {
   title: 'Components/syn-button',
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('default'),
-      },
+      description: generateStoryDescription('default'),
     },
   },
 };
@@ -39,9 +37,7 @@ export const Default = {
   },
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('default'),
-      },
+      description: generateStoryDescription('default'),
     },
   },
 } as Story;
@@ -53,9 +49,7 @@ export const Variants: Story = {
 <syn-button variant="text">Text</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('variant'),
-      },
+      description: generateStoryDescription('variant'),
     },
   },
 };
@@ -66,9 +60,7 @@ export const Sizes: Story = {
 <syn-button size="large">Large</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('size'),
-      },
+      description: generateStoryDescription('size'),
     },
   },
 };
@@ -79,9 +71,7 @@ export const OutlineButtons: Story = {
 <syn-button variant="outline" size="large">Outline</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('outline'),
-      },
+      description: generateStoryDescription('outline'),
     },
   },
 };
@@ -92,9 +82,7 @@ export const TextButtons: Story = {
 <syn-button variant="text" size="large">Text</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('text'),
-      },
+      description: generateStoryDescription('text'),
     },
   },
 };
@@ -106,9 +94,7 @@ export const LinkButtons: Story = {
 <syn-button href="https://example.com/" disabled>Disabled</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('link'),
-      },
+      description: generateStoryDescription('link'),
     },
   },
 };
@@ -119,9 +105,7 @@ export const SettingACustomWidth: Story = {
 <syn-button variant="default" size="large" style="width: 100%;">Large</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('width'),
-      },
+      description: generateStoryDescription('width'),
     },
   },
 };
@@ -288,9 +272,7 @@ export const PrefixAndSuffixIcons: Story = {
 </syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('prefix-suffix'),
-      },
+      description: generateStoryDescription('prefix-suffix'),
     },
   },
 };
@@ -301,9 +283,7 @@ export const Caret: Story = {
 <syn-button size="large" caret>Large</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('caret'),
-      },
+      description: generateStoryDescription('caret'),
     },
   },
 };
@@ -314,9 +294,7 @@ export const Loading: Story = {
 <syn-button variant="text" loading>Success</syn-button>`,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('loading'),
-      },
+      description: generateStoryDescription('loading'),
     },
   },
 };
@@ -344,9 +322,7 @@ export const Disabled: Story = {
 `,
   parameters: {
     docs: {
-      description: {
-        story: generateStoryDescription('disabled'),
-      },
+      description: generateStoryDescription('disabled'),
     },
   },
 };

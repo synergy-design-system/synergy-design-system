@@ -1,3 +1,11 @@
+# [@synergy-design-system/components-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.4...components/1.0.0-main.5) (2023-11-07)
+
+
+### Bug Fixes
+
+* Do not push on release ([31bd600](https://github.com/SickDesignSystem/synergy/commit/31bd6000815d013878562159e7c0571cac30fde4))
+* make sure react package has own release cycle ([#117](https://github.com/SickDesignSystem/synergy/issues/117)) ([f826f4b](https://github.com/SickDesignSystem/synergy/commit/f826f4b92d6eef28d40c6b44cde8f5aec87821e5))
+
 # [@synergy-design-system/components-v1.0.0-main.4](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.3...components/1.0.0-main.4) (2023-11-06)
 
 

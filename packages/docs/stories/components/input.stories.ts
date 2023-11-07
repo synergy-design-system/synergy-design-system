@@ -10,15 +10,10 @@ const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
 
-const generateStoryParameters = (attributeName : string) => {
-  const description = (docsTokens?.components?.['input'] as any)?.[attributeName]?.description?.value ?? 'No Description';
+const generateStoryDescription = (attributeName : string) => {
   return {
-    docs: {
-      description: {
-        story: description,
+    story: (docsTokens?.components?.['input'] as any)?.[attributeName]?.description?.value ?? 'No Description',
       }
-    }
-  };
 };
 
 const meta: Meta = {
@@ -26,7 +21,13 @@ const meta: Meta = {
   args,
   argTypes,
   title: 'Components/syn-input',
-  parameters: generateStoryParameters('default')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('default'),
+      },
+    },
+  },
 };
 export default meta;
 
@@ -36,42 +37,90 @@ export const Default = {
   render: (args: any) => {
     return generateTemplate({ args });
   },
-  parameters: generateStoryParameters('default')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('default'),
+      },
+    },
+  },
 } as Story;
 
 export const Labels: Story = {
   render: () => html`<syn-input label="What is your name?"></syn-input>`,
-  parameters: generateStoryParameters('label')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('label'),
+      },
+    },
+  },
 };
 
 export const HelpText: Story = {
   render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
-  parameters: generateStoryParameters('help-text')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('help-text'),
+      },
+    },
+  },
 };
 
 export const Placeholders: Story = {
   render: () => html`<syn-input placeholder="Type something"></syn-input>`,
-  parameters: generateStoryParameters('placeholder')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('placeholder'),
+      },
+    },
+  },
 };
 
 export const Clearable: Story = {
   render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
-  parameters: generateStoryParameters('clearable')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('clearable'),
+      },
+    },
+  },
 };
 
 export const TogglePassword: Story = {
   render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
-  parameters: generateStoryParameters('password-toggle')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('password-toggle'),
+      },
+    },
+  },
 };
 
 export const ReadonlyInputs: Story = {
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
-  parameters: generateStoryParameters('filled')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('filled'),
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
   render: () => html`<syn-input placeholder="Disabled" disabled></syn-input>`,
-  parameters: generateStoryParameters('disabled')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('disabled'),
+      },
+    },
+  },
 };
 
 /**
@@ -83,7 +132,13 @@ export const Sizes: Story = {
 <syn-input placeholder="Medium" size="medium"></syn-input>
 <br />
 <syn-input placeholder="Large" size="large"></syn-input>`,
-  parameters: generateStoryParameters('size')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('size'),
+      },
+    },
+  },
 };
 
 /**
@@ -136,7 +191,13 @@ export const PrefixSuffixIcons: Story = {
   <syn-icon name="house" slot="prefix"></syn-icon>
   <syn-icon name="chat" slot="suffix"></syn-icon>
 </syn-input>`,
-  parameters: generateStoryParameters('prefix-suffix')
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('prefix-suffix'),
+      },
+    },
+  },
 };
 
 /**

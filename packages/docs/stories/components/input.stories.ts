@@ -97,7 +97,11 @@ export const ReadonlyInputs: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => html`<syn-input placeholder="Disabled" disabled></syn-input>`,
+  render: () => html`
+  <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
+    <syn-icon name="house" slot="prefix"></syn-icon>
+    <syn-icon name="chat" slot="suffix">
+  </syn-input>`,
   parameters: {
     docs: {
       description: generateStoryDescription('disabled'),

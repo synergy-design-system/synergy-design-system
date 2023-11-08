@@ -332,6 +332,9 @@ importers:
 
   packages/docs:
     dependencies:
+      '@open-wc/testing-helpers':
+        specifier: 3.0.0
+        version: 3.0.0
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../components
@@ -384,6 +387,12 @@ importers:
       '@synergy-design-system/stylelint-config-syn':
         specifier: workspace:*
         version: link:../_private/stylelint-config-syn
+      '@testing-library/react':
+        specifier: ^14.1.0
+        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.5.1
+        version: 14.5.1(@testing-library/dom@9.3.3)
       '@types/react':
         specifier: ^18.2.28
         version: 18.2.28
@@ -2977,7 +2986,6 @@ packages:
 
   /@open-wc/dedupe-mixin@1.4.0:
     resolution: {integrity: sha512-Sj7gKl1TLcDbF7B6KUhtvr+1UCxdhMbNY5KxdU5IfMFWqL8oy1ZeAcCANjoB1TL0AJTcPmcCFsCbHf8X2jGDUA==}
-    dev: true
 
   /@open-wc/lit-helpers@0.5.1(lit@2.8.0):
     resolution: {integrity: sha512-r/PJpYueX2CX6R/20K+1P9jtMbf6g/O076qCpqh/o6XrThJahClpbxbr8lhu0tCWIQ/SNFvLtIOmIRR7qobwWg==}
@@ -2993,6 +3001,13 @@ packages:
       '@lit/reactive-element': 1.6.3
       '@open-wc/dedupe-mixin': 1.4.0
     dev: true
+
+  /@open-wc/scoped-elements@3.0.2:
+    resolution: {integrity: sha512-TZ9NjcAGjrfoZ8GjbMYDTuztFL1YPHtvFgqlcTrYy6C7jHSgCv67Rv9Cgf55VDNZgzRu+yBi5IjcyLzWNZ17eg==}
+    dependencies:
+      '@open-wc/dedupe-mixin': 1.4.0
+      lit: 3.0.0
+    dev: false
 
   /@open-wc/semantic-dom-diff@0.13.21:
     resolution: {integrity: sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==}
@@ -3016,6 +3031,14 @@ packages:
       lit: 2.8.0
       lit-html: 2.8.0
     dev: true
+
+  /@open-wc/testing-helpers@3.0.0:
+    resolution: {integrity: sha512-zkR39b7ljH/TqZgzBB9ekHKg1OLvR/JQYCEaW76V0RuASfV/vkgx2xfUQNe8DlEOLOetRZ3agFqssEREF45ClA==}
+    dependencies:
+      '@open-wc/scoped-elements': 3.0.2
+      lit: 3.0.0
+      lit-html: 3.0.0
+    dev: false
 
   /@open-wc/testing@3.2.0:
     resolution: {integrity: sha512-9geTbFq8InbcfniPtS8KCfb5sbQ9WE6QMo1Tli8XMnfllnkZok7Az4kTRAskGQeMeQN/I2I//jE5xY/60qhrHg==}
@@ -4968,6 +4991,20 @@ packages:
       dom-accessibility-api: 0.5.16
       lz-string: 1.5.0
       pretty-format: 27.5.1
+    dev: true
+
+  /@testing-library/react@14.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-hcvfZEEyO0xQoZeHmUbuMs7APJCGELpilL7bY+BaJaMP57aWc6q1etFwScnoZDheYjk4ESdlzPdQ33IbsKAK/A==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@testing-library/dom': 9.3.3
+      '@types/react-dom': 18.2.14
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@testing-library/user-event@14.5.1(@testing-library/dom@9.3.3):
@@ -7403,7 +7440,7 @@ packages:
       object-is: 1.1.5
       object-keys: 1.1.1
       object.assign: 4.1.4
-      regexp.prototype.flags: 1.5.0
+      regexp.prototype.flags: 1.5.1
       side-channel: 1.0.4
       which-boxed-primitive: 1.0.2
       which-collection: 1.0.1
@@ -11472,9 +11509,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /object-inspect@1.12.3:
-    resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
-
   /object-inspect@1.13.0:
     resolution: {integrity: sha512-HQ4J+ic8hKrgIt3mqk6cVOVrW2ozL4KdvHlqpBv9vDYWx9ysAgENAdvy4FoGF+KFdhR7nQTNm5J0ctAeOwn+3g==}
 
@@ -12580,15 +12614,6 @@ packages:
       '@babel/runtime': 7.23.2
     dev: true
 
-  /regexp.prototype.flags@1.5.0:
-    resolution: {integrity: sha512-0SutC3pNudRKgquxGoRGIz946MZVHqbNfPjBdxeOhBrdgDKlRoXmYLQN9xRbrR09ZXWeGAdPuif7egofn6v5LA==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      call-bind: 1.0.2
-      define-properties: 1.2.1
-      functions-have-names: 1.2.3
-    dev: true
-
   /regexp.prototype.flags@1.5.1:
     resolution: {integrity: sha512-sy6TXMN+hnP/wMy+ISxg3krXx7BAtWVO4UouuCN/ziM9UEne0euamVNafDfvC83bRNr95y0V5iijeDQFUNpvrg==}
     engines: {node: '>= 0.4'}
@@ -13017,7 +13042,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.2.1
-      object-inspect: 1.12.3
+      object-inspect: 1.13.0
 
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}

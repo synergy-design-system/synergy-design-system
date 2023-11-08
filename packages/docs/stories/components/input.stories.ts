@@ -4,8 +4,10 @@
 import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { waitUntil } from '@open-wc/testing-helpers';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { userEvent } from '@storybook/testing-library';
 const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -127,9 +129,16 @@ export const Sizes: Story = {
  * The error state is used to warn the user that the input is invalid.
  */
 export const Error: Story = {
-  render: () => html` 
-  <form @submit="${handleSubmit}">
-    <syn-input required placeholder="Please insert text here..." size="medium" help-text="Help Error Text"></syn-input>
+  parameters: { controls: { exclude: ['required'] } },
+  render: (args: any) => {
+    return html`
+  <form>
+   ${generateTemplate({
+     args,
+     constants: [
+       { type: 'attribute', name: 'required', value: true }
+     ]
+   })}
     <syn-button size="medium" type="submit">Submit</syn-button>
   </form>
   <style>
@@ -145,19 +154,14 @@ export const Error: Story = {
     min-width: 5%;
   }
   </style>
-`,
-};
-
-function handleSubmit(event: SubmitEvent) {
-  event.preventDefault();
-  const inputField = document.getElementById('inputField');
-
-  if (!inputField?.value.trim()) {
-    inputField?.setAttribute('help-text', 'Input is required');
-  } else {
-    inputField.setAttribute('help-text', '');
+`;
+},
+  play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
+    const el = canvasElement.querySelector('syn-button');
+    await waitUntil(() => el?.shadowRoot?.querySelector('button'));
+    await userEvent.type(el!.shadowRoot!.querySelector('button')!, '{return}', { pointerEventsCheck: 0 });
   }
-}
+};
 
 /**
  * The type attribute controls the type of input the browser renders.
@@ -226,3 +230,5 @@ export const CustomizingLabelPosition: Story = {
   }
 </style>`,
 };
+
+

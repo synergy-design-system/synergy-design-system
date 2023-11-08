@@ -4,8 +4,10 @@
 import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { waitUntil } from '@open-wc/testing-helpers';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { userEvent } from '@storybook/testing-library';
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
@@ -113,9 +115,21 @@ export const Sizes: Story = {
  * The error state is used to warn the user that the input is invalid.
  */
 export const Error: Story = {
-  render: () => html` 
-  <form @submit="${handleSubmit}">
-    <syn-textarea required placeholder="Please insert text here..." size="medium" help-text="Help Error Text" label="Label"></syn-textarea>
+  args: {
+    label: 'Label',
+    placeholder: 'Insert text here...',
+    helpText: 'This textarea is required.'
+  },
+  parameters: { controls: { exclude: ['required'] } },
+  render: (args: any) => {
+    return html`
+  <form>
+   ${generateTemplate({
+      args,
+      constants: [
+        { type: 'attribute', name: 'required', value: true }
+      ]
+    })}
     <button size="medium" type="submit">Submit</button>
   </form>
   <style>
@@ -130,19 +144,14 @@ export const Error: Story = {
     min-width: 5%;
   }
   </style>
-`,
-};
-
-function handleSubmit(event: SubmitEvent) {
-  event.preventDefault();
-  const inputField = document.getElementById('inputField');
-
-  if (!inputField?.value.trim()) {
-    inputField?.setAttribute('help-text', 'Input is required');
-  } else {
-    inputField.setAttribute('help-text', '');
+`;
+},
+  play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
+    const el = canvasElement.querySelector('syn-button');
+    await waitUntil(() => el?.shadowRoot?.querySelector('button'));
+    await userEvent.type(el!.shadowRoot!.querySelector('button')!, '{return}', { pointerEventsCheck: 0 });
   }
-}
+};
 
 export const PreventResizing: Story = {
   render: () => html`<syn-textarea resize="none"></syn-textarea>`,

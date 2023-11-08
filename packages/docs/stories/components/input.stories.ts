@@ -129,6 +129,11 @@ export const Sizes: Story = {
  * The error state is used to warn the user that the input is invalid.
  */
 export const Error: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Insert text here...',
+    helpText: 'This input is required.'
+  },
   parameters: { controls: { exclude: ['required'] } },
   render: (args: any) => {
     return html`

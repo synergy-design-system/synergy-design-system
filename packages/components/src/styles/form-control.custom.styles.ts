@@ -35,6 +35,15 @@ export default css`
   .form-control--large.form-control--has-prefix .input__control {
    padding: var(--syn-input-spacing-small) 0;
   }
+
+    /* DISABLED */
+
+  :host([disabled]) .form-control--has-label .form-control__label,
+  :host([disabled]) .form-control--has-label .form-control__label {
+    opacity: 0.5;
+  }
+
+  /* ERROR */
   
   :host([data-user-invalid]) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);

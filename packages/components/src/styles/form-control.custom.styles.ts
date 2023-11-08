@@ -39,7 +39,7 @@ export default css`
     /* DISABLED */
 
   :host([disabled]) .form-control--has-label .form-control__label,
-  :host([disabled]) .form-control--has-label .form-control__label {
+  :host([disabled]) .form-control--has-help-text .form-control__help-text {
     opacity: 0.5;
   }
 

@@ -23,11 +23,9 @@ const meta: Meta = {
   title: 'Components/syn-textarea',
   parameters: {
     docs: {
-      description: {
-        component: docsTokens?.components?.['textarea']?.default?.description?.value ?? 'No Description',
-      },
-    }
-  }
+      description: generateStoryDescription('default'),
+    },
+  },
 };
 export default meta;
 
@@ -39,67 +37,81 @@ export const Default = {
   },
   parameters: {
     docs: {
-      description: {
-        story: docsTokens?.components?.['textarea']?.default?.description?.value ?? 'No Description',
-      }
-    }
-  }
+      description: generateStoryDescription('default'),
+    },
+  },
 } as Story;
 
-
-/**
- * Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.
- */
 export const Labels: Story = {
   render: () => html`<syn-textarea label="Comments"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('labels'),
+    },
+  },
 };
 
-/**
- * Add descriptive help text to a textarea with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.
- */
 export const HelpText: Story = {
   render: () => html`<syn-textarea label="Feedback" help-text="Please tell us what you think."> </syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('help-text'),
+    },
+  },
 };
 
-/**
- * Use the rows attribute to change the number of text rows that get shown.
- */
 export const Rows: Story = {
   render: () => html`<syn-textarea rows="2"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('rows'),
+    },
+  },
 };
 
-/**
- * Use the placeholder attribute to add a placeholder.
- */
 export const Placeholders: Story = {
   render: () => html`<syn-textarea placeholder="Type something"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('placeholder'),
+    },
+  },
 };
 
-/**
- * Add the readonly attribute to draw a readonly textarea.
- */
 export const ReadonlyTextareas: Story = {
   render: () => html`<syn-textarea value="Readonly content" help-text="Please tell us what you think." label="Label" readonly></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('readonly'),
+    },
+  },
 };
 
-/**
- * Use the disabled attribute to disable a textarea.
- */
 export const Disabled: Story = {
   render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('disabled'),
+    },
+  },
 };
 
-/**
- * Use the size attribute to change a textarea's size.
- */
 export const Sizes: Story = {
   render: () => html`<syn-textarea placeholder="Small" size="small" help-text="Please tell us what you think." label="Label"></syn-textarea>
 <br/>
 <syn-textarea placeholder="Medium" size="medium" help-text="Please tell us what you think." label="Label"></syn-textarea>
 <br/>
 <syn-textarea placeholder="Large" size="large" help-text="Please tell us what you think." label="Label"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('size'),
+    },
+  },
 };
 
+/**
+ * The error state is used to warn the user that the input is invalid.
+ */
 export const Error: Story = {
   render: () => html` 
   <form @submit="${handleSubmit}">
@@ -132,16 +144,20 @@ function handleSubmit(event: SubmitEvent) {
   }
 }
 
-/**
- * By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.
- */
 export const PreventResizing: Story = {
   render: () => html`<syn-textarea resize="none"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('resize'),
+    },
+  },
 };
 
-/**
- * Textareas will automatically resize to expand to fit their content when resize is set to auto.
- */
 export const ExpandWithContent: Story = {
   render: () => html`<syn-textarea resize="auto"></syn-textarea>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('resize-auto'),
+    },
+  },
 };

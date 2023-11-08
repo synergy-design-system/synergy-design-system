@@ -808,13 +808,13 @@
             "type": "text"
           }
         },
-        "filled": {
+        "readonly": {
           "title": {
-            "value": "Filled Textareas",
+            "value": "Readonly Textareas",
             "type": "text"
           },
           "description": {
-            "value": "Add the filled attribute to draw a filled textarea.",
+            "value": "Add the readonly attribute to draw a read-only textarea.",
             "type": "text"
           }
         },

@@ -60,7 +60,7 @@ export default css`
 
   .button:focus {
     outline: var(--syn-focus-ring-color) solid 2px;
-    outline-offset: 1px;
+    outline-offset: 2px;
   }
 
   /*

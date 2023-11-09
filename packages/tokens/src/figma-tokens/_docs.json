@@ -413,13 +413,13 @@
           "type": "text"
         }
       },
-      "filled": {
+      "read-only": {
         "title": {
-          "value": "Filled Inputs",
+          "value": "Read-only Inputs",
           "type": "text"
         },
         "description": {
-          "value": "Add the filled attribute to draw a (pre-)filled input.",
+          "value": "Add the readonly attribute to create a read-only input.",
           "type": "text"
         }
       },
@@ -917,14 +917,8 @@
           "type": "text"
         },
         "value": {
-          "title": {
-            "value": "Initial Value",
-            "type": "text"
-          },
-          "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-            "type": "text"
-          }
+          "title": "[object Object]",
+          "description": "[object Object]"
         },
         "disabled": {
           "title": {
@@ -945,7 +939,8 @@
             "value": "Add the size attribute to the Radio Group to change the radios’ size.",
             "type": "text"
           }
-        }
+        },
+        "type": "other"
       }
     }
   },

@@ -13,6 +13,8 @@ const __PACKAGE_VERSION__ = JSON.stringify(version.toString());
 // The directory we want our output to be stored
 const componentDir = getPath('../');
 const outDir = getPath('../dist');
+
+const angularPackageDir = getPath('../../angular');
 const reactPackageDir = getPath('../../react');
 
 await jobs.runPrepare(outDir);
@@ -20,8 +22,22 @@ await jobs.runCreateEvents(componentDir);
 await jobs.runTypeScript(outDir, './tsconfig.prod.json');
 await jobs.runEsBuildComponents(outDir, __PACKAGE_VERSION__);
 await jobs.runCem();
-await jobs.runCreateReactWrappers({
-  componentDistDir: outDir,
-  componentPackageDir: componentDir,
-  reactPackageDir,
-});
+
+await Promise.all([
+  jobs.runCreateReactWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    reactPackageDir,
+  }),
+  jobs.runCreateAngularWrappers({
+    angularPackageDir,
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+  }),
+]);
+
+// await jobs.runCreateAngularWrappers({
+//   angularPackageDir,
+//   componentDistDir: outDir,
+//   componentPackageDir: componentDir,
+// });

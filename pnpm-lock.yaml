@@ -131,6 +131,22 @@ importers:
         specifier: ^15.10.3
         version: 15.10.3(typescript@5.2.2)
 
+  packages/angular:
+    dependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../components
+    devDependencies:
+      '@angular/core':
+        specifier: ^17.0.1
+        version: 17.0.1(rxjs@7.8.1)(zone.js@0.14.2)
+      '@types/react':
+        specifier: ^18.2.31
+        version: 18.2.33
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
   packages/assets:
     devDependencies:
       '@clack/prompts':
@@ -505,6 +521,18 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
+    dev: true
+
+  /@angular/core@17.0.1(rxjs@7.8.1)(zone.js@0.14.2):
+    resolution: {integrity: sha512-yVwU+oz0G8g6Q5ORyOCpgqMPdSiCdfW+uQhjI37WROnXHja3jY843AqrYTKE6mMx1r6q9h1wbDy+x2E61OWP7A==}
+    engines: {node: ^18.13.0 || >=20.9.0}
+    peerDependencies:
+      rxjs: ^6.5.3 || ^7.4.0
+      zone.js: ~0.14.0
+    dependencies:
+      rxjs: 7.8.1
+      tslib: 2.6.2
+      zone.js: 0.14.2
     dev: true
 
   /@aw-web-design/x-default-browser@1.4.126:
@@ -12787,6 +12815,12 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
 
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+    dependencies:
+      tslib: 2.6.2
+    dev: true
+
   /safe-array-concat@1.0.1:
     resolution: {integrity: sha512-6XbUAseYE2KtOuGueyeobCySj9L4+66Tn6KQMOPQJrAJEowYKW/YR/MGJZl7FdydUdaFu4LYyDZjxf4/Nmo23Q==}
     engines: {node: '>=0.4'}
@@ -14681,6 +14715,12 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zone.js@0.14.2:
+    resolution: {integrity: sha512-X4U7J1isDhoOmHmFWiLhloWc2lzMkdnumtfQ1LXzf/IOZp5NQYuMUTaviVzG/q1ugMBIXzin2AqeVJUoSEkNyQ==}
+    dependencies:
+      tslib: 2.6.2
+    dev: true
 
   github.com/mariohamann/figma-export-assets/4f97015941df88d2082827dd50e5a7ac858f012b:
     resolution: {tarball: https://codeload.github.com/mariohamann/figma-export-assets/tar.gz/4f97015941df88d2082827dd50e5a7ac858f012b}

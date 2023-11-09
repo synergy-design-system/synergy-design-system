@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as jobs from './react/index.js';
+import { runAdjustPackageVersion } from './shared.js';
 
 /**
  * Run all steps to create new react components
@@ -21,7 +22,7 @@ export const runCreateReactWrappers = async ({
   const outDir = path.join(reactPackageDir, './src');
   const distDir = path.join(reactPackageDir, './dist');
 
-  await jobs.runAdjustPackageVersion(componentPackageDir, reactPackageDir);
+  await runAdjustPackageVersion('React: Adjusting react package.json version field...')(componentPackageDir, reactPackageDir);
   await jobs.runPrepare(outDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
   await jobs.runFormat(outDir, reactPackageDir);

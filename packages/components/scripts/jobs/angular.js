@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-// import * as jobs from './angular/index.js';
-import { runAdjustPackageVersion } from './shared.js';
+import * as jobs from './angular/index.js';
+import { createRunPrepare, runAdjustPackageVersion } from './shared.js';
 
 /**
  * Run all steps to create new react components
@@ -20,12 +20,12 @@ export const runCreateAngularWrappers = async ({
 
   // Internal react package paths for usage in sub packages
   const outDir = path.join(angularPackageDir, './src');
+  const componentsDir = path.join(outDir, 'components');
   const distDir = path.join(angularPackageDir, './dist');
 
   await runAdjustPackageVersion('Angular: Adjusting angular package.json version field...')(componentPackageDir, angularPackageDir);
-
-  // await jobs.runPrepare(outDir, distDir);
-  // await jobs.runCreateWrappers(metadata, outDir);
+  // await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir);
+  await jobs.runCreateComponents(metadata, componentsDir);
   // await jobs.runFormat(outDir, reactPackageDir);
   // await jobs.runEsBuild(distDir);
   // await jobs.runReactTypeScript(distDir, reactPackageDir);

@@ -35,9 +35,3 @@ await Promise.all([
     componentPackageDir: componentDir,
   }),
 ]);
-
-// await jobs.runCreateAngularWrappers({
-//   angularPackageDir,
-//   componentDistDir: outDir,
-//   componentPackageDir: componentDir,
-// });

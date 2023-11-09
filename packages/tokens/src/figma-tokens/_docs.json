@@ -703,13 +703,51 @@
       }
     },
     "switch": {
-      "description": {
-        "value": "Switches allow the user to toggle an option on or off.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Switches allow the user to toggle an option on or off.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Switch",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Switch",
-        "type": "text"
+      "examples": {
+        "title": {
+          "value": "Examples",
+          "type": "text"
+        },
+        "checked": {
+          "description": {
+            "value": "Use the checked attribute to activate the switch.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Checked",
+            "type": "text"
+          }
+        },
+        "disabled": {
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the disabled attribute to disable the switch.",
+            "type": "text"
+          }
+        },
+        "sizes": {
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the size attribute to change a switch’s size.",
+            "type": "text"
+          }
+        }
       }
     },
     "tab-group": {
@@ -917,14 +955,8 @@
           "type": "text"
         },
         "value": {
-          "title": {
-            "value": "Initial Value",
-            "type": "text"
-          },
-          "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-            "type": "text"
-          }
+          "title": "[object Object]",
+          "description": "[object Object]"
         },
         "disabled": {
           "title": {
@@ -945,7 +977,8 @@
             "value": "Add the size attribute to the Radio Group to change the radios’ size.",
             "type": "text"
           }
-        }
+        },
+        "type": "other"
       }
     }
   },

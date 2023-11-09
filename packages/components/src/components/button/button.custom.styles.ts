@@ -58,7 +58,7 @@ export default css`
     color: var(--syn-color-primary-900);
   }
 
-  .button:focus {
+  .button:focus, .button:active {
     outline: var(--syn-focus-ring-color) solid 2px;
     outline-offset: 2px;
   }

@@ -49,7 +49,7 @@ export const Variants: Story = {
 <syn-button variant="text">Text</syn-button>
 <style>
   syn-button {
-    margin: 0.5rem;
+    margin: 0.2rem;
   }
 </style>`,
   parameters: {
@@ -62,7 +62,12 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => html`<syn-button size="small">Small</syn-button>
 <syn-button size="medium">Medium</syn-button>
-<syn-button size="large">Large</syn-button>`,
+<syn-button size="large">Large</syn-button>
+<style>
+  syn-button {
+    margin: 0.2rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('size'),
@@ -74,7 +79,12 @@ export const LinkButtons: Story = {
   render: () => html`<syn-button href="https://example.com/">Link</syn-button>
 <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
 <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
-<syn-button href="https://example.com/" disabled>Disabled</syn-button>`,
+<syn-button href="https://example.com/" disabled>Disabled</syn-button>
+<style>
+  syn-button {
+    margin: 0.2rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('link'),
@@ -252,7 +262,12 @@ export const PrefixAndSuffixIcons: Story = {
   <syn-icon slot="prefix" name="link-45deg"></syn-icon>
   <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
   Open
-</syn-button>`,
+</syn-button>
+<style>
+  syn-button {
+    margin: 0.2rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('prefix-suffix'),
@@ -263,7 +278,12 @@ export const PrefixAndSuffixIcons: Story = {
 export const Caret: Story = {
   render: () => html`<syn-button size="small" caret>Small</syn-button>
 <syn-button size="medium" caret>Medium</syn-button>
-<syn-button size="large" caret>Large</syn-button>`,
+<syn-button size="large" caret>Large</syn-button>
+<style>
+  syn-button {
+    margin: 0.2rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('caret'),
@@ -274,7 +294,12 @@ export const Caret: Story = {
 export const Loading: Story = {
   render: () => html`<syn-button variant="default" loading>Default</syn-button>
 <syn-button variant="outline" loading>Primary</syn-button>
-<syn-button variant="text" loading>Success</syn-button>`,
+<syn-button variant="text" loading>Success</syn-button>
+<style>
+  syn-button {
+    margin: 0.2rem;
+  }
+</style>`,
   parameters: {
     docs: {
       description: generateStoryDescription('loading'),

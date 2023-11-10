@@ -2,6 +2,8 @@
 
 This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
+> We are currently supporting Angular Version 16 only!
+
 ## Getting started
 
 ### 1. Package installation
@@ -9,8 +11,8 @@ This package provides [Angular](https://angular.io/) wrappers for [Synergy Web C
 Run the following steps to install the required packages.
 
 ```bash
-# Install the base library and required css files
-npm install --save @synergy-design-system/angular @synergy-design-system/tokens
+# Install the required dependencies
+npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
 ```
 
 ### 2. Add the desired theme to your application
@@ -50,7 +52,7 @@ This library is providing an `NgModule` named `SynergyModule`, which takes care 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { SynergyModule } from '@synergy-design-system/angular';
+import { SynergyModule } from '@synergy-design-system/angular/dist';
 
 @NgModule({
   declarations: [

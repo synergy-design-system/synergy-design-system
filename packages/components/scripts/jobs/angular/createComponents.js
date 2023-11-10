@@ -138,7 +138,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     index.push({
       name: `${component.name}Component`,
-      outputPath: `./${componentFileName}`,
+      outputPath: `./${componentFileName.slice(0, -3)}`,
     });
 
     fs.writeFileSync(componentPath, source, 'utf8');

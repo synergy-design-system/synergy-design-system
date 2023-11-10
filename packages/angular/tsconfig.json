@@ -16,6 +16,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
+    "experimentalDecorators": true,
     "declaration": true,
     "jsx": "react-jsx",
 

@@ -29,7 +29,7 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateComponents(metadata, componentsDir);
   await jobs.runCreateNgModule(metadata, modulesDir);
   await jobs.runCreateExports(outDir);
-  // await jobs.runFormat(outDir, reactPackageDir);
+  await jobs.runFormat(outDir, angularPackageDir);
   // await jobs.runEsBuild(distDir);
   // await jobs.runReactTypeScript(distDir, reactPackageDir);
 };

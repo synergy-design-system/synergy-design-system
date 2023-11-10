@@ -12,10 +12,10 @@ const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
 
-const generateStoryDescription = (attributeName : string) => {
+const generateStoryDescription = (attributeName: string) => {
   return {
     story: (docsTokens?.components?.['input'] as any)?.[attributeName]?.description?.value ?? 'No Description',
-      }
+  }
 };
 
 const meta: Meta = {
@@ -139,11 +139,11 @@ export const Error: Story = {
     return html`
   <form>
    ${generateTemplate({
-     args,
-     constants: [
-       { type: 'attribute', name: 'required', value: true }
-     ]
-   })}
+      args,
+      constants: [
+        { type: 'attribute', name: 'required', value: true }
+      ]
+    })}
     <syn-button size="medium" type="submit">Submit</syn-button>
   </form>
   <style>
@@ -234,5 +234,3 @@ export const CustomizingLabelPosition: Story = {
   }
 </style>`,
 };
-
-

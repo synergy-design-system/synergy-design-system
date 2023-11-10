@@ -15,7 +15,8 @@ npm install --save @synergy-design-system/angular @synergy-design-system/tokens
 
 ### 2. Add the desired theme to your application
 
-The components will not be display correctly without the needed theme. Include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
+The components will not display correctly without the needed theme.
+Include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
 
 ```json
 {

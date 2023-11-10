@@ -4,7 +4,6 @@
 import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { waitUntil } from '@open-wc/testing-helpers';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 import { userEvent } from '@storybook/testing-library';

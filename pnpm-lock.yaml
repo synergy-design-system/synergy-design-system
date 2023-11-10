@@ -333,7 +333,7 @@ importers:
   packages/docs:
     dependencies:
       '@open-wc/testing-helpers':
-        specifier: 3.0.0
+        specifier: ^3.0.0
         version: 3.0.0
       '@synergy-design-system/components':
         specifier: workspace:*

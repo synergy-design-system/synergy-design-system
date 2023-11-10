@@ -21,11 +21,14 @@ export const runCreateAngularWrappers = async ({
   // Internal react package paths for usage in sub packages
   const outDir = path.join(angularPackageDir, './src');
   const componentsDir = path.join(outDir, 'components');
+  const modulesDir = path.join(outDir, 'modules');
   const distDir = path.join(angularPackageDir, './dist');
 
   await runAdjustPackageVersion('Angular: Adjusting angular package.json version field...')(componentPackageDir, angularPackageDir);
-  // await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir);
+  await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir, modulesDir, componentsDir);
   await jobs.runCreateComponents(metadata, componentsDir);
+  await jobs.runCreateNgModule(metadata, modulesDir);
+  await jobs.runCreateExports(outDir);
   // await jobs.runFormat(outDir, reactPackageDir);
   // await jobs.runEsBuild(distDir);
   // await jobs.runReactTypeScript(distDir, reactPackageDir);

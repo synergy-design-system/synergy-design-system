@@ -162,9 +162,8 @@ export const Error: Story = {
 `;
 },
   play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
-    const el = canvasElement.querySelector('syn-button');
-    await waitUntil(() => el?.shadowRoot?.querySelector('button'));
-    await userEvent.type(el!.shadowRoot!.querySelector('button')!, '{return}', { pointerEventsCheck: 0 });
+    const button = canvasElement.querySelector('syn-button');
+    button && await userEvent.click(button);
   }
 };
 

@@ -2,9 +2,6 @@
 import '../../../dist/synergy.js';
 import { expect, fixture, html } from '@open-wc/testing';
 
-import type SynInput from './input.js';
-import type SynButton from '../button/button.js';
-
 describe('when using constraint validation', () => {
   it('should be invalid when required and empty', async () => {
     const el = await fixture<HTMLFormElement>(html`

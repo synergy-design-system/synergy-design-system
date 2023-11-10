@@ -4,6 +4,4 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 export { SynButtonComponent } from './button.component.ts';
-export { SynIconComponent } from './icon.component.ts';
 export { SynInputComponent } from './input.component.ts';
-export { SynSpinnerComponent } from './spinner.component.ts';

@@ -7,6 +7,7 @@ import util from 'util';
 import { deleteAsync } from 'del';
 import chalk from 'chalk';
 import ora from 'ora';
+import { components as exportedComponents } from '../config.js';
 
 const spinner = ora({ hideCursor: false });
 
@@ -138,7 +139,7 @@ export const getAllComponents = metadata => {
     module.declarations?.forEach(declaration => {
       if (declaration.customElement) {
         const component = declaration;
-        if (component) {
+        if (component && exportedComponents.includes(component.tagNameWithoutPrefix)) {
           allComponents.push(Object.assign(component, {
             path: module.path,
           }));

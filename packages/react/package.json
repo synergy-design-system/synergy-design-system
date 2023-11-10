@@ -15,6 +15,7 @@
     },
     "./components/*": "./dist/components/*"
   },
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "CHANGELOG.md",

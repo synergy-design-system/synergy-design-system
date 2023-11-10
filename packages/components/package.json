@@ -23,6 +23,7 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
+  "types": "./dist/synergy.d.ts",
   "files": ["dist"],
   "scripts": {
     "build": "node scripts/build.js",

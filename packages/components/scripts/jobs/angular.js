@@ -31,5 +31,5 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateExports(outDir);
   await jobs.runFormat(outDir, angularPackageDir);
   await jobs.runEsBuild(distDir);
-  // await jobs.runReactTypeScript(distDir, reactPackageDir);
+  await jobs.runAngularTypeScript(distDir, angularPackageDir);
 };

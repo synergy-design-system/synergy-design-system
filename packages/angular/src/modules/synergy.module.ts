@@ -7,16 +7,12 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import {
   SynButtonComponent,
-  SynIconComponent,
   SynInputComponent,
-  SynSpinnerComponent,
 } from '../components';
 
 const components = [
   SynButtonComponent,
-  SynIconComponent,
   SynInputComponent,
-  SynSpinnerComponent,
 ];
 
 @NgModule({

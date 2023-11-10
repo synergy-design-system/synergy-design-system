@@ -17,10 +17,10 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
   // Index exports file
   const index = [];
 
+  const componentDir = path.join(outDir, 'components');
+
   components.forEach(component => {
-    const tagWithoutPrefix = component.tagName.replace(/^sl-/, '');
-    const componentDir = path.join(outDir, 'components', tagWithoutPrefix);
-    const componentFile = path.join(componentDir, 'index.ts');
+    const componentFile = path.join(componentDir, `${component.tagNameWithoutPrefix}.ts`);
     const importPath = `@synergy-design-system/components/${component.path.replace(/\.js$/, '.component.js')}`;
 
     const eventImports = (component.events || [])
@@ -36,8 +36,6 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
     const events = (component.events || [])
       .map(event => `${event.reactName}: '${event.name}' as EventName<${event.eventName}>`)
       .join(',\n');
-
-    fs.mkdirSync(componentDir, { recursive: true });
 
     const jsDoc = component.jsDoc || '';
 
@@ -69,7 +67,7 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
 
     index.push({
       name: component.name,
-      outputPath: `./components/${tagWithoutPrefix}/index.js`,
+      outputPath: `./components/${component.tagNameWithoutPrefix}.js`,
     });
 
     fs.writeFileSync(componentFile, source, 'utf8');

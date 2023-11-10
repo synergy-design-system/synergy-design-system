@@ -13,9 +13,9 @@ Run the following steps to install the required packages.
 npm install --save @synergy-design-system/angular @synergy-design-system/tokens
 ```
 
-### 2. Add the wanted theme to your application
+### 2. Add the desired theme to your application
 
-The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
+The components will not be display correctly without the needed theme. Include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
 
 ```json
 {
@@ -42,7 +42,7 @@ The components will not display correctly without the needed theme. Please inclu
 > It is recommended that you ship your own NgModule with only needed components
 > See below for more information!
 
-This library is providing a `NgModule` named `SynergyModule`, which takes care of exporting all available Synergy Components. You may use it in the following way:
+This library is providing an `NgModule` named `SynergyModule`, which takes care of exporting all available Synergy Components. You may use it in the following way:
 
 ```typescript
 // src/app/app.module.ts

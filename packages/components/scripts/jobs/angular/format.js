@@ -7,8 +7,6 @@ export const runFormat = job('Angular: Running code formatter...', async (outDir
     fix: true,
     overrideConfig: {
       extends: [
-        'airbnb',
-        'airbnb-typescript',
         '@synergy-design-system/eslint-config-syn/ts',
       ],
       overrides: [
@@ -18,14 +16,14 @@ export const runFormat = job('Angular: Running code formatter...', async (outDir
         },
       ],
       parserOptions: {
+        ecmaFeatures: {
+          jsx: false,
+        },
         project: path.join(packagePath, 'tsconfig.json'),
       },
       root: true,
       rules: {
         'import/no-extraneous-dependencies': 0,
-        'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-        'react/react-in-jsx-scope': 0,
       },
     },
     useEslintrc: false,

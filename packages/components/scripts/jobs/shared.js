@@ -11,6 +11,20 @@ import ora from 'ora';
 const spinner = ora({ hideCursor: false });
 
 /**
+ * Sort function, used to sort components by name
+ * @param {Object} a Component A
+ * @param {Object} b Component B
+ * @returns Sorted object
+ */
+const sortByComponentName = (a, b) => {
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+};
+
+/**
  * Create a job that when run executes the given actions
  * @param {String} label The label to show
  * @param {Function} action The action to run
@@ -133,7 +147,10 @@ export const getAllComponents = metadata => {
     });
   });
 
-  return allComponents;
+  // Make sure to always sort alphabetically as this will otherwise trigger bad effects
+  const sortedComponents = [...allComponents].sort(sortByComponentName);
+
+  return sortedComponents;
 };
 
 /**
@@ -167,13 +184,7 @@ export const createFrameworkIndex = (headerComment, components = []) => {
   // Always sort the included scripts as otherwise we would have unneeded index.js changes
   // due to the fact that the order is not treated well
   const alphabeticIndex = [...components]
-    .sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
-      return 0;
-    })
+    .sort(sortByComponentName)
     .map(({ name, outputPath }) => `export { ${name} } from '${outputPath}';`);
 
   return [

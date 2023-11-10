@@ -140,12 +140,6 @@ importers:
       '@angular/core':
         specifier: ^17.0.1
         version: 17.0.1(rxjs@7.8.1)(zone.js@0.14.2)
-      '@types/react':
-        specifier: ^18.2.31
-        version: 18.2.33
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
 
   packages/assets:
     devDependencies:

@@ -135,3 +135,50 @@ export const getAllComponents = metadata => {
 
   return allComponents;
 };
+
+/**
+ * Create a function that uppercases or lowercases the first letter of its argument
+ * @param {string} method The method to use. May be toLowerCase or toUpperCase
+ * @returns {function} A function that will either lower or uppercase the first letter
+ */
+export const changeFirstLetter = method => string => string.charAt(0)[method]() + string.slice(1);
+
+/**
+ * Lower case the first letter of string
+ * @param {string} Input string
+ * @returns {string}
+ */
+export const lcFirstLetter = changeFirstLetter('toLowerCase');
+
+/**
+ * Upper case the first letter
+ * @param {string} Input string
+ * @returns {string}
+ */
+export const ucFirstLetter = changeFirstLetter('toUpperCase');
+
+/**
+ * Creates a string that represents the index.js file for all components
+ * @param {string} headerComment Comment to prefix
+ * @param {object[]} Array of name and output path objects
+ * @returns {string} The index.js output
+ */
+export const createFrameworkIndex = (headerComment, components = []) => {
+  // Always sort the included scripts as otherwise we would have unneeded index.js changes
+  // due to the fact that the order is not treated well
+  const alphabeticIndex = [...components]
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    })
+    .map(({ name, outputPath }) => `export { ${name} } from '${outputPath}';`);
+
+  return [
+    headerComment,
+    alphabeticIndex.join('\n'),
+    '',
+  ].join('\n');
+};

@@ -1,7 +1,12 @@
 /* eslint-disable complexity */
 import fs from 'fs';
 import path from 'path';
-import { createHeader, getAllComponents, job } from '../shared.js';
+import {
+  createFrameworkIndex,
+  createHeader,
+  getAllComponents,
+  job,
+} from '../shared.js';
 
 const headerComment = createHeader('react');
 
@@ -70,24 +75,8 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
     fs.writeFileSync(componentFile, source, 'utf8');
   });
 
-  // Always sort the included scripts as otherwise we would have unneeded index.js changes
-  // due to the fact that the order is not treated well
-  const alphabeticIndex = [...index]
-    .sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
-      return 0;
-    })
-    .map(({ name, outputPath }) => `export { ${name} } from '${outputPath}';`);
-
-  const output = [
-    headerComment,
-    alphabeticIndex.join('\n'),
-    '',
-  ].join('\n');
+  const frameworkIndex = createFrameworkIndex(headerComment, index);
 
   // Generate the index file
-  fs.writeFileSync(path.join(outDir, 'index.ts'), output, 'utf8');
+  fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');
 });

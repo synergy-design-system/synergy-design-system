@@ -565,60 +565,54 @@
           "type": "text"
         }
       },
-      "example": {
+      "help-text": {
         "title": {
-          "value": "Examples",
+          "value": "Help Text",
           "type": "text"
         },
-        "help-text": {
-          "title": {
-            "value": "Help Text",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add descriptive help text to a radio group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Add descriptive help text to a radio group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabling Options",
+          "type": "text"
         },
-        "disabled": {
-          "title": {
-            "value": "Disabling Options",
-            "type": "text"
-          },
-          "description": {
-            "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizing Options",
+          "type": "text"
         },
-        "size": {
-          "title": {
-            "value": "Sizing Options",
-            "type": "text"
-          },
-          "description": {
-            "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
-            "type": "text"
-          }
+        "description": {
+          "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
+          "type": "text"
+        }
+      },
+      "required": {
+        "title": {
+          "value": "Validation",
+          "type": "text"
         },
-        "required": {
-          "title": {
-            "value": "Validation",
-            "type": "text"
-          },
-          "description": {
-            "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.",
+          "type": "text"
+        }
+      },
+      "setCustomValidity": {
+        "title": {
+          "value": "Custom Validity",
+          "type": "text"
         },
-        "setCustomValidity": {
-          "title": {
-            "value": "Custom Validity",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
         }
       }
     },
@@ -703,13 +697,45 @@
       }
     },
     "switch": {
-      "description": {
-        "value": "Switches allow the user to toggle an option on or off.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Switches allow the user to toggle an option on or off.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Switch",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Switch",
-        "type": "text"
+      "checked": {
+        "description": {
+          "value": "Use the checked attribute to activate the switch.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable the switch.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a switch’s size.",
+          "type": "text"
+        }
       }
     },
     "tab-group": {
@@ -763,100 +789,94 @@
           "type": "text"
         }
       },
-      "examples": {
+      "labels": {
         "title": {
-          "value": "Examples",
+          "value": "Labels",
           "type": "text"
         },
-        "labels": {
-          "title": {
-            "value": "Labels",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
         },
-        "help-text": {
-          "title": {
-            "value": "Help Text",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add descriptive help text to a textarea with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Add descriptive help text to a textarea with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "rows": {
+        "title": {
+          "value": "Rows",
+          "type": "text"
         },
-        "rows": {
-          "title": {
-            "value": "Rows",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the rows attribute to change the number of text rows that get shown.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the rows attribute to change the number of text rows that get shown.",
+          "type": "text"
+        }
+      },
+      "placeholder": {
+        "title": {
+          "value": "Placeholders",
+          "type": "text"
         },
-        "placeholder": {
-          "title": {
-            "value": "Placeholders",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the placeholder attribute to add a placeholder.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Readonly Textareas",
+          "type": "text"
         },
-        "readonly": {
-          "title": {
-            "value": "Readonly Textareas",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add the readonly attribute to draw a read-only textarea.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only textarea.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
         },
-        "disabled": {
-          "title": {
-            "value": "Disabled",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the disabled attribute to disable a textarea.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the disabled attribute to disable a textarea.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
         },
-        "size": {
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change a textarea’s size.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the size attribute to change a textarea’s size.",
+          "type": "text"
+        }
+      },
+      "resize": {
+        "title": {
+          "value": "Prevent Resizing",
+          "type": "text"
         },
-        "resize": {
-          "title": {
-            "value": "Prevent Resizing",
-            "type": "text"
-          },
-          "description": {
-            "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.",
-            "type": "text"
-          }
+        "description": {
+          "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.",
+          "type": "text"
+        }
+      },
+      "resize-auto": {
+        "title": {
+          "value": "Expand with Content",
+          "type": "text"
         },
-        "resize-auto": {
-          "title": {
-            "value": "Expand with Content",
-            "type": "text"
-          },
-          "description": {
-            "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
+          "type": "text"
         }
       }
     },
@@ -909,42 +929,6 @@
         "description": {
           "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
           "type": "text"
-        }
-      },
-      "examples": {
-        "title": {
-          "value": "Examples",
-          "type": "text"
-        },
-        "value": {
-          "title": {
-            "value": "Initial Value",
-            "type": "text"
-          },
-          "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-            "type": "text"
-          }
-        },
-        "disabled": {
-          "title": {
-            "value": "Disabled",
-            "type": "text"
-          },
-          "text": {
-            "value": "Use the disabled attribute to disable a radio.",
-            "type": "text"
-          }
-        },
-        "sizes": {
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
-            "type": "text"
-          }
         }
       }
     }

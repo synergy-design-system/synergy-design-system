@@ -41,8 +41,9 @@ export default css`
     color: var(--syn-color-neutral-400);
   }
 
-  .button--default.button--primary:active {
-    border-color: var(--syn-color-primary-950);
+  .button--default.button--primary:active:not(.button--focused) {
+   background-color: var(--syn-color-primary-950);
+   outline: none;
   } 
 
   .button--default.button--primary:hover:not(.button--disabled) {

@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     '@geometricpanda/storybook-addon-badges',
+    "@storybook/addon-mdx-gfm"
   ],
   core: {
     disableTelemetry: true,

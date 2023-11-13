@@ -713,40 +713,34 @@
           "type": "text"
         }
       },
-      "examples": {
-        "title": {
-          "value": "Examples",
+      "checked": {
+        "description": {
+          "value": "Use the checked attribute to activate the switch.",
           "type": "text"
         },
-        "checked": {
-          "description": {
-            "value": "Use the checked attribute to activate the switch.",
-            "type": "text"
-          },
-          "title": {
-            "value": "Checked",
-            "type": "text"
-          }
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
         },
-        "disabled": {
-          "title": {
-            "value": "Disabled",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the disabled attribute to disable the switch.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the disabled attribute to disable the switch.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
         },
-        "sizes": {
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change a switch’s size.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the size attribute to change a switch’s size.",
+          "type": "text"
         }
       }
     },

@@ -898,6 +898,26 @@
           "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
           "type": "text"
         }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Textarea has been focused by the keyboard interaction and that the Textarea component is ready for use.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
       }
     },
     "tooltip": {

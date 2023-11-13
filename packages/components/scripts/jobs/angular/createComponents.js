@@ -47,8 +47,7 @@ const getEventListeners = (events = []) => events
 const getEventOutputs = (events = []) => events
   .map(event => `
     ${createComment(event.description || '')}
-    @Output() ${lcFirstLetter(event.eventName)} = new EventEmitter<${event.eventName}>();`
-  )
+    @Output() ${lcFirstLetter(event.eventName)} = new EventEmitter<${event.eventName}>();`)
   .join('\n');
 
 const getAttributeInputs = (componentName, attributes = []) => attributes
@@ -87,6 +86,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
   components.forEach(component => {
     const componentFileName = `${component.tagNameWithoutPrefix}.component.ts`;
     const componentPath = path.join(outDir, componentFileName);
+    const jsDoc = component.jsDoc || '';
     const importPath = `@synergy-design-system/components/${component.path}`;
 
     const eventImports = getEventImports(component.events);
@@ -111,6 +111,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
       ${eventImports}
       import '${importPath}';
 
+      ${jsDoc}
       @Component({
         selector: '${component.tagName}',
         standalone: true,

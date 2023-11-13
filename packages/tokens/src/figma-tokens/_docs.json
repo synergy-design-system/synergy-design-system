@@ -930,37 +930,6 @@
           "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
           "type": "text"
         }
-      },
-      "examples": {
-        "title": {
-          "value": "Examples",
-          "type": "text"
-        },
-        "value": {
-          "title": "[object Object]",
-          "description": "[object Object]"
-        },
-        "disabled": {
-          "title": {
-            "value": "Disabled",
-            "type": "text"
-          },
-          "text": {
-            "value": "Use the disabled attribute to disable a radio.",
-            "type": "text"
-          }
-        },
-        "sizes": {
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
-            "type": "text"
-          }
-        },
-        "type": "other"
       }
     }
   },

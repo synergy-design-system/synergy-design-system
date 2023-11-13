@@ -97,6 +97,28 @@ export const ReadonlyInputs: Story = {
   },
 };
 
+/** The focus attribute provides feedback to the users, informing them that the input component is ready for use.  */
+export const Focus: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Insert text here...',
+    helpText: 'This input is focused.'
+  },
+  render: (args: any) => {
+    return html`
+      <form>
+        ${generateTemplate({
+      args
+    })}
+      </form>
+    `;
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
+    input && input.focus();
+  }
+};
+
 export const Disabled: Story = {
   render: () => html`
   <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
@@ -197,28 +219,6 @@ export const PrefixSuffixIcons: Story = {
       description: generateStoryDescription('prefix-suffix'),
     },
   },
-};
-
-/** The focus attribute provides feedback to the users, informing them that the input component is ready for use.  */
-export const Focus: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Insert text here...',
-    helpText: 'This input is required.'
-  },
-  render: (args: any) => {
-    return html`
-      <form>
-        ${generateTemplate({
-      args
-    })}
-      </form>
-    `;
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
-    input && input.focus();
-  }
 };
 
 /**

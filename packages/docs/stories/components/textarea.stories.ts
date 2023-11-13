@@ -88,6 +88,28 @@ export const ReadonlyTextareas: Story = {
   },
 };
 
+/** The focus attribute provides feedback to the users, informing them that the textarea component is ready for use.  */
+export const Focus: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Insert text here...',
+    helpText: 'This textarea is focused.'
+  },
+  render: (args: any) => {
+    return html`
+      <form>
+        ${generateTemplate({
+      args
+    })}
+      </form>
+    `;
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
+    textarea && textarea.focus();
+  }
+};
+
 export const Disabled: Story = {
   render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
   parameters: {

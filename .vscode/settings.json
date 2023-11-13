@@ -22,6 +22,7 @@
         "packages/assets",
         "packages/components",
         "packages/docs",
+        "packages/angular",
         "packages/react",
         "packages/tokens"
     ],

@@ -41,6 +41,10 @@ export default css`
     color: var(--syn-color-neutral-400);
   }
 
+  .button--default.button--primary:active {
+    border-color: var(--syn-color-primary-950);
+  } 
+
   .button--default.button--primary:hover:not(.button--disabled) {
     background-color: var(--syn-color-primary-900);
     border-color: var(--syn-color-primary-900);
@@ -58,7 +62,7 @@ export default css`
     color: var(--syn-color-primary-900);
   }
 
-  .button:focus, .button:active {
+  .button:focus {
     outline: var(--syn-focus-ring-color) solid 2px;
     outline-offset: 2px;
   }

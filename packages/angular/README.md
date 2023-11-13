@@ -52,7 +52,7 @@ This library is providing an `NgModule` named `SynergyModule`, which takes care 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { SynergyModule } from '@synergy-design-system/angular/dist';
+import { SynergyModule } from '@synergy-design-system/angular';
 
 @NgModule({
   declarations: [

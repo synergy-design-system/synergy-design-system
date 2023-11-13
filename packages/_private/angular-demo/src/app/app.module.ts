@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SynergyElementsModule } from '@synergy-design-system/angular/dist';
+import { SynergyElementsModule } from '@synergy-design-system/angular';
 
 import { AppComponent } from './app.component';
 

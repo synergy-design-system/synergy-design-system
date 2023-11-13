@@ -219,7 +219,7 @@ importers:
         specifier: workspace:*
         version: link:../_private/stylelint-config-syn
       '@synergy-design-system/tokens':
-        specifier: workspace:1.0.0-main.6
+        specifier: workspace:*
         version: link:../tokens
       '@types/mocha':
         specifier: ^10.0.2

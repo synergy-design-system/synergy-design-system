@@ -14,7 +14,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^8.47.0",
     "eslint-plugin-import": "^2.28.1",
-    "lit": "^2.8.0",
+    "lit": "^3.0.0",
     "stylelint": "^15.10.3"
   },
   "exports": {

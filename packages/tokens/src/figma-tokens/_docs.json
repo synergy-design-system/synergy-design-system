@@ -565,60 +565,54 @@
           "type": "text"
         }
       },
-      "example": {
+      "help-text": {
         "title": {
-          "value": "Examples",
+          "value": "Help Text",
           "type": "text"
         },
-        "help-text": {
-          "title": {
-            "value": "Help Text",
-            "type": "text"
-          },
-          "description": {
-            "value": "Add descriptive help text to a radio group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Add descriptive help text to a radio group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabling Options",
+          "type": "text"
         },
-        "disabled": {
-          "title": {
-            "value": "Disabling Options",
-            "type": "text"
-          },
-          "description": {
-            "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizing Options",
+          "type": "text"
         },
-        "size": {
-          "title": {
-            "value": "Sizing Options",
-            "type": "text"
-          },
-          "description": {
-            "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
-            "type": "text"
-          }
+        "description": {
+          "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
+          "type": "text"
+        }
+      },
+      "required": {
+        "title": {
+          "value": "Validation",
+          "type": "text"
         },
-        "required": {
-          "title": {
-            "value": "Validation",
-            "type": "text"
-          },
-          "description": {
-            "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.",
+          "type": "text"
+        }
+      },
+      "setCustomValidity": {
+        "title": {
+          "value": "Custom Validity",
+          "type": "text"
         },
-        "setCustomValidity": {
-          "title": {
-            "value": "Custom Validity",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
-            "type": "text"
-          }
+        "description": {
+          "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
         }
       }
     },

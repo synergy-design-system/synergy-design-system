@@ -152,7 +152,7 @@ export const Invalid: Story = {
         { type: 'attribute', name: 'required', value: true }
       ]
     })}
-    <syn-button size="medium" type="submit">Submit</syn-button>
+    <button size="medium" type="submit">Submit</button>
   </form>
   <style>
   form {
@@ -168,19 +168,15 @@ export const Invalid: Story = {
   </style>
 `;
 },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const textarea = canvasElement.querySelector('syn-textarea');
       const button = canvasElement.querySelector('button');
 
       await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
-      await waitUntil(() => button?.shadowRoot?.querySelector('syn-button'));
 
-      if (button && button.shadowRoot) {
-        const buttonElement = button.shadowRoot.querySelector('button');
-        if (buttonElement) {
-          await userEvent.click(buttonElement);
-        }
+      if (button) {
+        await userEvent.click(button);
       }
     } catch (error) {
       console.error('Error in play function:', error);

@@ -7,6 +7,7 @@ import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 import { userEvent } from '@storybook/testing-library';
+import { waitUntil } from '@open-wc/testing-helpers';
 const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -147,9 +148,9 @@ export const Sizes: Story = {
 };
 
 /**
- * The error state is used to warn the user that the input is invalid.
+ * The invalid state is used to warn the user that the input is invalid.
  */
-export const Error: Story = {
+export const Invalid: Story = {
   args: {
     label: 'Label',
     placeholder: 'Insert text here...',
@@ -181,10 +182,24 @@ export const Error: Story = {
   }
   </style>
 `;
-},
-  play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
-    const button = canvasElement.querySelector('syn-button');
-    button && await userEvent.click(button);
+  },
+  play: async ({ canvasElement }) => {
+    try {
+      const input = canvasElement.querySelector('syn-input');
+      const button = canvasElement.querySelector('syn-button');
+
+      await waitUntil(() => input?.shadowRoot?.querySelector('input'));
+      await waitUntil(() => button?.shadowRoot?.querySelector('button'));
+
+      if (button && button.shadowRoot) {
+        const buttonElement = button.shadowRoot.querySelector('button');
+        if (buttonElement) {
+          await userEvent.click(buttonElement);
+        }
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
   }
 };
 

@@ -183,11 +183,23 @@ export const Invalid: Story = {
   </style>
 `;
   },
-  play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
-    const input = canvasElement.querySelector('syn-input');
-    await waitUntil(() => input?.shadowRoot?.querySelector('input'));
-    const button = canvasElement.querySelector('syn-button');
-    button && await userEvent.click(button);
+  play: async ({ canvasElement }) => {
+    try {
+      const input = canvasElement.querySelector('syn-input');
+      const button = canvasElement.querySelector('syn-button');
+
+      await waitUntil(() => input?.shadowRoot?.querySelector('input'));
+      await waitUntil(() => button?.shadowRoot?.querySelector('button'));
+
+      if (button && button.shadowRoot) {
+        const buttonElement = button.shadowRoot.querySelector('button');
+        if (buttonElement) {
+          await userEvent.click(buttonElement);
+        }
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
   }
 };
 

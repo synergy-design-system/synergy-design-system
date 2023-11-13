@@ -116,7 +116,7 @@
           "value": "Setting a Custom Width",
           "type": "text"
         },
-        "desciption": {
+        "description": {
           "value": "As expected, buttons can be given a custom width by setting the width attribute. This is useful for making buttons span the full width of their container on smaller screens.",
           "type": "text"
         }

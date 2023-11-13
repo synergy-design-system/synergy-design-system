@@ -7,6 +7,7 @@ import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 import { userEvent } from '@storybook/testing-library';
+import { waitUntil } from '@open-wc/testing-helpers';
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
@@ -133,9 +134,9 @@ export const Sizes: Story = {
 };
 
 /**
- * The error state is used to warn the user that the input is invalid.
+ * The invalid state is used to warn the user that the input is invalid.
  */
-export const Error: Story = {
+export const Invalid: Story = {
   args: {
     label: 'Label',
     placeholder: 'Insert text here...',
@@ -151,7 +152,7 @@ export const Error: Story = {
         { type: 'attribute', name: 'required', value: true }
       ]
     })}
-    <button size="medium" type="submit">Submit</button>
+    <syn-button size="medium" type="submit">Submit</syn-button>
   </form>
   <style>
   form {
@@ -167,9 +168,23 @@ export const Error: Story = {
   </style>
 `;
 },
-  play: async ({ canvasElement }: { canvasElement: HTMLUnknownElement }) => {
-    const button = canvasElement.querySelector('button');
-    button && await userEvent.click(button);
+  play: async ({ canvasElement }) => {
+    try {
+      const textarea = canvasElement.querySelector('syn-textarea');
+      const button = canvasElement.querySelector('button');
+
+      await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
+      await waitUntil(() => button?.shadowRoot?.querySelector('syn-button'));
+
+      if (button && button.shadowRoot) {
+        const buttonElement = button.shadowRoot.querySelector('button');
+        if (buttonElement) {
+          await userEvent.click(buttonElement);
+        }
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
   }
 };
 

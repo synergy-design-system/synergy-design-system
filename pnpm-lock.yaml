@@ -182,7 +182,7 @@ importers:
   packages/components:
     dependencies:
       '@floating-ui/dom':
-        specifier: 1.5.3
+        specifier: ^1.5.3
         version: 1.5.3
       '@shoelace-style/animations':
         specifier: ^1.1.0
@@ -191,7 +191,7 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
       composed-offset-position:
-        specifier: 0.0.4
+        specifier: ^0.0.4
         version: 0.0.4
       lit:
         specifier: ^3.0.0

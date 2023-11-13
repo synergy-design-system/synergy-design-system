@@ -199,6 +199,28 @@ export const PrefixSuffixIcons: Story = {
   },
 };
 
+/** The focus attribute provides feedback to the users, informing them that the input component is ready for use.  */
+export const Focus: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Insert text here...',
+    helpText: 'This input is required.'
+  },
+  render: (args: any) => {
+    return html`
+      <form>
+        ${generateTemplate({
+      args
+    })}
+      </form>
+    `;
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
+    input && input.focus();
+  }
+};
+
 /**
  * Use  to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.
  */

@@ -452,6 +452,26 @@
           "value": "Use the prefix and suffix slots to add icons.",
           "type": "text"
         }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
       }
     },
     "menu-item": {

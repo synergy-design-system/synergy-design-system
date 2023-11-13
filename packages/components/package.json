@@ -35,7 +35,9 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo"
+    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
+    "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
+    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
   },
   "type": "module",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
@@ -135,7 +137,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
+          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react"
         }
       ],
       [

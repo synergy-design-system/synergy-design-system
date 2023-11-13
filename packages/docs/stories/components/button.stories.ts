@@ -75,6 +75,15 @@ export const Sizes: Story = {
   },
 };
 
+/** The focus attribute provides feedback to the users, informing them that the button component is ready for use.  */
+export const Focus: Story = {
+  render: () => html`<syn-button>Default</syn-button>`,
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
+    button && button.focus();
+  },
+}
+
 export const LinkButtons: Story = {
   render: () => html`<syn-button href="https://example.com/">Link</syn-button>
 <syn-button href="https://example.com/" target="_blank">New Window</syn-button>

@@ -413,13 +413,13 @@
           "type": "text"
         }
       },
-      "filled": {
+      "readonly": {
         "title": {
-          "value": "Filled Inputs",
+          "value": "Read-only Inputs",
           "type": "text"
         },
         "description": {
-          "value": "Add the filled attribute to draw a (pre-)filled input.",
+          "value": "Add the read-only attribute to draw a read-only input.",
           "type": "text"
         }
       },
@@ -831,11 +831,11 @@
       },
       "readonly": {
         "title": {
-          "value": "Readonly Textareas",
+          "value": "Read-only Textareas",
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only textarea.",
+          "value": "Add the read-only attribute to draw a read-only textarea.",
           "type": "text"
         }
       },

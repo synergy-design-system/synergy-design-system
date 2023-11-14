@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.6",
+  "version": "1.0.0-main.7",
   "description": "",
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
   },
   "type": "module",
+  "types": "./dist/synergy.d.ts",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
   "keywords": [
     "Web Components",
@@ -59,8 +60,6 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@shoelace-style/animations": "^1.1.0",
-    "@shoelace-style/localize": "^3.1.2",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/mocha": "^10.0.2",
@@ -156,6 +155,10 @@
     ]
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.5.3",
+    "@shoelace-style/animations": "^1.1.0",
+    "@shoelace-style/localize": "^3.1.2",
+    "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0"
   },
   "web-types": "./dist/web-types.json"

@@ -31,22 +31,22 @@ export default css`
  * Standard buttons
  */
 
-  .button--default.button--primary.button--disabled {
+  .button--filled.button--primary.button--disabled {
     background-color: var(--syn-color-neutral-400);
     border-color: var(--syn-color-neutral-400);
     color: var(--syn-color-neutral-600);
   }
 
-  .button--default.button--primary:hover:not(.button--disabled) {
+  .button--filled.button--primary:hover:not(.button--disabled) {
     background-color: var(--syn-color-primary-900);
     border-color: var(--syn-color-primary-900);
     color: var(--syn-color-neutral-0);
   }
 
-  .button--default.button--primary:active:not(.button--disabled) {
+  .button--filled.button--primary:active:not(.button--disabled) {
     background-color: var(--syn-color-primary-950);
     border-color: inherit;
-    color: inherit;
+    color: var(--syn-color-neutral-0);
   }
 
   /*

@@ -341,6 +341,9 @@ importers:
       change-case:
         specifier: ^4.1.2
         version: 4.1.2
+      lit:
+        specifier: ^3.0.0
+        version: 3.0.0
     devDependencies:
       '@geometricpanda/storybook-addon-badges':
         specifier: ^2.0.0
@@ -405,9 +408,6 @@ importers:
       html-format:
         specifier: ^1.1.2
         version: 1.1.2
-      lit:
-        specifier: ^3.0.0
-        version: 3.0.0
       react:
         specifier: ^18.2.0
         version: 18.2.0

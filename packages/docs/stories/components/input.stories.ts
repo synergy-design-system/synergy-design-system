@@ -151,7 +151,10 @@ export const Invalid: Story = {
     label: 'Label',
     placeholder: 'Insert text here...',
   },
-  parameters: { controls: { exclude: ['required'] } },
+  parameters: {
+    chromatic: { delay: 300 },
+    controls: { exclude: ['required'] },
+  },
   play: async ({ canvasElement }) => {
     try {
       const input = canvasElement.querySelector('syn-input');

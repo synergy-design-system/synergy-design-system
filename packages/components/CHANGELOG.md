@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.7](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.6...components/1.0.0-main.7) (2023-11-14)
+
+
+### Bug Fixes
+
+* 🐛 ship all required dependencies ([#129](https://github.com/SickDesignSystem/synergy/issues/129)) ([fd61821](https://github.com/SickDesignSystem/synergy/commit/fd618217568eae70f6a4ec59fd5e522f41621d1d))
+
 # [@synergy-design-system/components-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.5...components/1.0.0-main.6) (2023-11-07)
 
 

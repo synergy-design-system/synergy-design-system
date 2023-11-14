@@ -152,18 +152,18 @@ export const Invalid: Story = {
     placeholder: 'Insert text here...',
   },
   parameters: {
-    chromatic: { delay: 300 },
     controls: { exclude: ['required'] },
   },
   play: async ({ canvasElement }) => {
     try {
       const input = canvasElement.querySelector('syn-input');
-      const button = canvasElement.querySelector('syn-button');
+      const button = canvasElement.querySelector('button');
 
       await waitUntil(() => input?.shadowRoot?.querySelector('input'));
-      await waitUntil(() => button?.shadowRoot?.querySelector('button'));
 
-      await userEvent.type(button!.shadowRoot!.querySelector('button')!, '{return}', { pointerEventsCheck: 0 });
+      if (button) {
+        await userEvent.click(button);
+      }
     } catch (error) {
       console.error('Error in play function:', error);
     }
@@ -176,7 +176,7 @@ export const Invalid: Story = {
       { type: 'attribute', name: 'required', value: true },
     ],
   })}
-    <syn-button size="medium" type="submit">Submit</syn-button>
+    <button size="medium" type="submit">Submit</button>
   </form>
   <style>
   form {
@@ -184,7 +184,7 @@ export const Invalid: Story = {
     flex-direction: column;
   }
 
-  syn-button {
+  button {
     margin-top: 1rem;
     align-self: flex-end;
     padding: 0.5rem 1rem;

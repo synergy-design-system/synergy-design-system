@@ -28,7 +28,7 @@ There are multiple ways to load the components:
 
 #### Loading all available components
 
-To make all components available, just load the the main package file. It will make sure that all components and needed dependencies are loaded and available directly.
+To make all components available, just load the main package file. It will make sure that all components and needed dependencies are loaded and available directly.
 
 > Please keep in mind that this way of loading the components will create larger bundle sizes!
 

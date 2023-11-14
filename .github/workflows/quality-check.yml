@@ -38,7 +38,7 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - uses: pnpm/action-setup@v2
       name: Install pnpm
@@ -48,7 +48,7 @@ jobs:
         run_install: false
 
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 18
         cache: 'pnpm'
@@ -66,6 +66,9 @@ jobs:
 
     - name: Run Playwright tests
       run: pnpm test -r
+      # @see https://github.com/microsoft/playwright/issues/6500
+      env:
+        HOME: /root
     
     # Uncomment this for screenshot based tests
     # @todo: Add regviz support

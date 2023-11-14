@@ -1,136 +1,132 @@
-/* eslint-disable */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 import { userEvent } from '@storybook/testing-library';
 import { waitUntil } from '@open-wc/testing-helpers';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
 
-const generateStoryDescription = (attributeName: string) => {
-  return {
-    story: (docsTokens?.components?.['textarea'] as any)?.[attributeName]?.description?.value ?? 'No Description',
-  }
-};
+const generateStoryDescription = (attributeName: string) => ({
+  story: (docsTokens?.components?.textarea as any)?.[attributeName]?.description?.value ?? 'No Description',
+});
 
 const meta: Meta = {
   component: 'textarea',
   args,
   argTypes,
-  title: 'Components/syn-textarea',
   parameters: {
     docs: {
       description: generateStoryDescription('default'),
     },
   },
+  title: 'Components/syn-textarea',
 };
 export default meta;
 
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => {
-    return generateTemplate({ args });
-  },
   parameters: {
     docs: {
       description: generateStoryDescription('default'),
     },
   },
+  render: (args: any) => generateTemplate({ args }),
 } as Story;
 
 export const Labels: Story = {
-  render: () => html`<syn-textarea label="Comments"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('labels'),
     },
   },
+  render: () => html`<syn-textarea label="Comments"></syn-textarea>`,
 };
 
 export const HelpText: Story = {
-  render: () => html`<syn-textarea label="Feedback" help-text="Please tell us what you think."> </syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('help-text'),
     },
   },
+  render: () => html`<syn-textarea label="Feedback" help-text="Please tell us what you think."> </syn-textarea>`,
 };
 
 export const Rows: Story = {
-  render: () => html`<syn-textarea rows="2"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('rows'),
     },
   },
+  render: () => html`<syn-textarea rows="2"></syn-textarea>`,
 };
 
 export const Placeholders: Story = {
-  render: () => html`<syn-textarea placeholder="Type something"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('placeholder'),
     },
   },
+  render: () => html`<syn-textarea placeholder="Type something"></syn-textarea>`,
 };
 
 export const ReadonlyTextareas: Story = {
-  render: () => html`<syn-textarea value="Readonly content" help-text="Please tell us what you think." label="Label" readonly></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('readonly'),
     },
   },
+  render: () => html`<syn-textarea value="Readonly content" help-text="Please tell us what you think." label="Label" readonly></syn-textarea>`,
 };
 
-/** The focus attribute provides feedback to the users, informing them that the textarea component is ready for use.  */
+/** The focus attribute provides feedback to the users,
+ * informing them that the textarea component is ready for use.  */
 export const Focus: Story = {
   args: {
+    helpText: 'This textarea is focused.',
     label: 'Label',
     placeholder: 'Insert text here...',
-    helpText: 'This textarea is focused.'
   },
-  render: (args: any) => {
-    return html`
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
+    if (textarea) {
+      textarea.focus();
+    }
+  },
+  render: (args: any) => html`
       <form>
         ${generateTemplate({
-      args
-    })}
+    args,
+  })}
       </form>
-    `;
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
-    textarea && textarea.focus();
-  }
+    `,
 };
 
 export const Disabled: Story = {
-  render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('disabled'),
     },
   },
+  render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
 };
 
 export const Sizes: Story = {
-  render: () => html`<syn-textarea placeholder="Small" size="small" help-text="Please tell us what you think." label="Label"></syn-textarea>
-<br/>
-<syn-textarea placeholder="Medium" size="medium" help-text="Please tell us what you think." label="Label"></syn-textarea>
-<br/>
-<syn-textarea placeholder="Large" size="large" help-text="Please tell us what you think." label="Label"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('size'),
     },
   },
+  render: () => html`
+  <syn-textarea placeholder="Small" size="small" help-text="Please tell us what you think." label="Label"></syn-textarea><br/>
+  <syn-textarea placeholder="Medium" size="medium" help-text="Please tell us what you think." label="Label"></syn-textarea><br/>
+  <syn-textarea placeholder="Large" size="large" help-text="Please tell us what you think." label="Label"></syn-textarea>`,
 };
 
 /**
@@ -138,20 +134,33 @@ export const Sizes: Story = {
  */
 export const Invalid: Story = {
   args: {
+    helpText: 'This textarea is required.',
     label: 'Label',
     placeholder: 'Insert text here...',
-    helpText: 'This textarea is required.'
   },
   parameters: { controls: { exclude: ['required'] } },
-  render: (args: any) => {
-    return html`
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    try {
+      const textarea = canvasElement.querySelector('syn-textarea');
+      const button = canvasElement.querySelector('button');
+
+      await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
+
+      if (button) {
+        await userEvent.click(button);
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
+  render: (args: any) => html`
   <form>
    ${generateTemplate({
-      args,
-      constants: [
-        { type: 'attribute', name: 'required', value: true }
-      ]
-    })}
+    args,
+    constants: [
+      { type: 'attribute', name: 'required', value: true },
+    ],
+  })}
     <button size="medium" type="submit">Submit</button>
   </form>
   <style>
@@ -166,38 +175,23 @@ export const Invalid: Story = {
     min-width: 5%;
   }
   </style>
-`;
-},
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    try {
-      const textarea = canvasElement.querySelector('syn-textarea');
-      const button = canvasElement.querySelector('button');
-
-      await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
-
-      if (button) {
-        await userEvent.click(button);
-      }
-    } catch (error) {
-      console.error('Error in play function:', error);
-    }
-  }
+`,
 };
 
 export const PreventResizing: Story = {
-  render: () => html`<syn-textarea resize="none"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('resize'),
     },
   },
+  render: () => html`<syn-textarea resize="none"></syn-textarea>`,
 };
 
 export const ExpandWithContent: Story = {
-  render: () => html`<syn-textarea resize="auto"></syn-textarea>`,
   parameters: {
     docs: {
       description: generateStoryDescription('resize-auto'),
     },
   },
+  render: () => html`<syn-textarea resize="auto"></syn-textarea>`,
 };

@@ -28,9 +28,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "test.setup": "mkdir -p dist/themes && pnpm run -C ../tokens build && cp ../tokens/dist/themes/light.css dist/themes/light.css",
-    "test.download": "pnpm playwright install-deps && pnpm playwright install",
-    "test": "pnpm test.setup && pnpm test.download && web-test-runner --group default",
+    "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",

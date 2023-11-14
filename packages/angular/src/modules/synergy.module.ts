@@ -20,4 +20,4 @@ const components = [
   exports: components,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SynergyElementsModule {}
+export class SynergyComponentsModule {}

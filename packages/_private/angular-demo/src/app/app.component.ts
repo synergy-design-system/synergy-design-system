@@ -28,7 +28,7 @@ export class AppComponent {
 
   clearDemo() {
     if (!window.confirm('Are you sure to reset this form?')) return;
-    this.myForm.setValue({ name: '', test: '' });
+    this.myForm.setValue({ name: '', test: '', pass: '' });
   }
 
   onSubmit(form: FormGroup) {

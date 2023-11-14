@@ -28,6 +28,7 @@ export const runCreateAngularWrappers = async ({
   await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir, modulesDir, componentsDir);
   await jobs.runCreateComponents(metadata, componentsDir);
   await jobs.runCreateNgModule(metadata, modulesDir);
+  await jobs.runCreateFormsModule(modulesDir);
   await jobs.runCreateExports(outDir);
   await jobs.runFormat(outDir, angularPackageDir);
   await jobs.runNGPackagr();

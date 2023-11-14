@@ -32,7 +32,7 @@ const components = [
   exports: components,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SynergyElementsModule {}
+export class SynergyComponentsModule {}
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');

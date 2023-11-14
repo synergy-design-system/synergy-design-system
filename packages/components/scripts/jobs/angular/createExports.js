@@ -12,6 +12,7 @@ export const runCreateExports = job('Angular: Creating exports file...', async (
   const output = `
 ${headerComment}
 export * from './components';
+export * from './modules/forms.module';
 export * from './modules/synergy.module'; 
 `.trim();
 

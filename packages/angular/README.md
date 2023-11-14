@@ -13,6 +13,9 @@ Run the following steps to install the required packages.
 ```bash
 # Install the required dependencies
 npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
+
+# Optional, add peer dependencies
+npm install --save @angular/core@16 @angular/forms@16
 ```
 
 ### 2. Add the desired theme to your application
@@ -52,7 +55,7 @@ This library is providing an `NgModule` named `SynergyModule`, which takes care 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { SynergyModule } from '@synergy-design-system/angular';
+import { SynergyComponentsModule } from '@synergy-design-system/angular';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,7 @@ import { SynergyModule } from '@synergy-design-system/angular';
   ],
   imports: [
     BrowserModule,
-    SynergyModule,
+    SynergyComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -90,3 +93,66 @@ You will then be able to use the provided wrappers in the following way:
 ```
 
 This example will render the provided `<syn-input />` angular component and hook it into angular forms via `ngDefaultControl`.
+
+> Note that you will have to provide `ngDefaultControl`. For automatic usage in Angular Forms, please add the `SynergyFormsModule`!
+
+---
+
+### 4. Using synergy components in @angular/forms via SynergyFormsModule
+
+There are two ways to use the angular wrappers in forms: Either manual (like described above) by adding a `ngDefaultControl` to the component or via our custom `SynergyFormsModule`.
+
+`SynergyFormsModule` provides automatic support for all currently available Synergy form input elements by wrapping them with custom angular `ValueAccessors`.
+
+To use the module, please proceed the following way:
+
+```typescript
+// src/app/app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import {
+  SynergyComponentsModule,
+  SynergyFormsModule,
+} from '@synergy-design-system/angular';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    SynergyComponentsModule,
+    SynergyFormsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+You will then be able to use the provided wrappers in the following way:
+
+```html
+<!-- src/app/app.component.html -->
+<syn-input
+  formControlName="test"
+  type="text"
+  name="test"
+  [title]="myLabel"
+  type="text"
+  required
+>
+  <span slot="label">
+    {{myLabel}}
+  </span>
+</syn-input>
+```
+
+Note that all elements that have one of the following attributes will be used as selectors:
+
+- Elements defining a `[formControlName]` attribute
+- Elements defining a `[formControl]` attribute
+- Elements defining a `[ngModel]` attribute

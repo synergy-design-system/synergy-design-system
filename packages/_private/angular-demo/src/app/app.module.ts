@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SynergyElementsModule } from '@synergy-design-system/angular';
+import {
+  SynergyFormsModule,
+  SynergyComponentsModule,
+} from '@synergy-design-system/angular';
 
 import { AppComponent } from './app.component';
 
@@ -12,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    SynergyElementsModule,
+    SynergyComponentsModule,
+    SynergyFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

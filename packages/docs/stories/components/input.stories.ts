@@ -68,12 +68,12 @@ export const Placeholders: Story = {
 };
 
 export const Clearable: Story = {
-  render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
   parameters: {
     docs: {
       description: generateStoryDescription('clearable'),
     },
   },
+  render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
 };
 
 export const TogglePassword: Story = {

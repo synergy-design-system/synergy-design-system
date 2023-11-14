@@ -6,17 +6,17 @@ import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 
-const { args, argTypes } = storybookDefaults('syn-button');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-button');
 const { overrideArgs } = storybookHelpers('syn-button');
 const { generateTemplate } = storybookTemplate('syn-button');
 
 const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.button as any)?.[attributeName]?.description?.value ?? 'No Description',
+  story: (docsTokens?.components?.button as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description',
 });
 
 const meta: Meta = {
   component: 'button',
-  args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args),
+  args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, defaultArgs),
   argTypes,
   parameters: {
     docs: {
@@ -72,13 +72,16 @@ export const Sizes: Story = {
   </style>`,
 };
 
-/** The focus attribute provides feedback to the users, informing them that the button component is ready for use.  */
+/** The focus attribute provides feedback to the users,
+ * informing them that the button component is ready for use.  */
 export const Focus: Story = {
-  render: () => html`<syn-button>Default</syn-button>`,
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
-    button && button.focus();
+    if (button) {
+      button.focus();
+    }
   },
+  render: () => html`<syn-button>Default</syn-button>`,
 };
 
 export const LinkButtons: Story = {

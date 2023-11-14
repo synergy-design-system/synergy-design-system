@@ -174,9 +174,7 @@ export const Invalid: Story = {
   <form>
    ${generateTemplate({
     args,
-    constants: [
-      { type: 'attribute', name: 'required', value: true },
-    ],
+    constants: { type: 'attribute', name: 'required', value: true },
   })}
     <syn-button size="medium" type="submit">Submit</syn-button>
   </form>

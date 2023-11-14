@@ -86,19 +86,19 @@ export default css`
    */
 
   /* Primary */
-  .button--default.button--primary {
+  .button--filled.button--primary {
     background-color: var(--syn-color-primary-600);
     border-color: var(--syn-color-primary-600);
     color: var(--syn-color-neutral-0);
   }
 
-  .button--default.button--primary:hover:not(.button--disabled) {
+  .button--filled.button--primary:hover:not(.button--disabled) {
     background-color: var(--syn-color-primary-500);
     border-color: var(--syn-color-primary-500);
     color: var(--syn-color-neutral-0);
   }
 
-  .button--default.button--primary:active:not(.button--disabled) {
+  .button--filled.button--primary:active:not(.button--disabled) {
     background-color: var(--syn-color-primary-600);
     border-color: var(--syn-color-primary-600);
     color: var(--syn-color-neutral-0);
@@ -344,7 +344,7 @@ export default css`
       .syn-button-group__button:not(
           .syn-button-group__button--first,
           .syn-button-group__button--radio,
-          [variant='default']
+          [variant='filled']
         ):not(:hover)
     )
     .button:after {

@@ -160,12 +160,7 @@ export const Invalid: Story = {
       await waitUntil(() => input?.shadowRoot?.querySelector('input'));
       await waitUntil(() => button?.shadowRoot?.querySelector('button'));
 
-      if (button && button.shadowRoot) {
-        const buttonElement = button.shadowRoot.querySelector('button');
-        if (buttonElement) {
-          await userEvent.click(buttonElement);
-        }
-      }
+      await userEvent.type(button!.shadowRoot!.querySelector('button')!, '{return}', { pointerEventsCheck: 0 });
     } catch (error) {
       console.error('Error in play function:', error);
     }

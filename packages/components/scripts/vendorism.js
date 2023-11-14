@@ -5,12 +5,15 @@ import commandLineArgs from 'command-line-args';
 import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
-import { vendorButton, vendorInput, vendorTextarea } from './vendorism/custom/index.js';
+import {
+  vendorButton, vendorInput, vendorRadio, vendorTextarea,
+} from './vendorism/custom/index.js';
 
 const components = [
   'input',
   'button',
   'textarea',
+  'radio',
 ];
 
 // List of events that we want to import.
@@ -204,6 +207,7 @@ import customStyles from './${component}.custom.styles.js';`,
       vendorButton,
       vendorInput,
       vendorTextarea,
+      vendorRadio,
     ],
   },
 };

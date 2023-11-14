@@ -1,10 +1,15 @@
 import { css } from 'lit';
 
 export default css`
+.button:focus-visible {
+    outline: var(--syn-focus-ring-color) solid 2px;
+    outline-offset: 2px;
+  }
 
   /*
-* SIZES
-*/
+ * Size modifiers
+ */
+
   .button--medium {
     font-size: var(--syn-button-font-size-large);
   }
@@ -23,33 +28,35 @@ export default css`
   }
 
   /*
- * COLORING
-*/
+ * Standard buttons
+ */
+
   .button--default.button--primary.button--disabled {
     background-color: var(--syn-color-neutral-400);
     border-color: var(--syn-color-neutral-400);
     color: var(--syn-color-neutral-600);
   }
 
-  .button--outline.button--primary.button--disabled {
-    background: none;
-    border-color: var(--syn-color-neutral-400);
-    color: var(--syn-color-neutral-400);
-  }
-
-  .button--text.button--primary.button--disabled {
-    color: var(--syn-color-neutral-400);
-  }
-
-  .button--default.button--primary:active:not(.button--focused) {
-   background-color: var(--syn-color-primary-950);
-   outline: none;
-  } 
-
   .button--default.button--primary:hover:not(.button--disabled) {
     background-color: var(--syn-color-primary-900);
     border-color: var(--syn-color-primary-900);
     color: var(--syn-color-neutral-0);
+  }
+
+  .button--default.button--primary:active:not(.button--disabled) {
+    background-color: var(--syn-color-primary-950);
+    border-color: inherit;
+    color: inherit;
+  }
+
+  /*
+ * Outline buttons
+ */
+
+  .button--outline.button--primary.button--disabled {
+    background: none;
+    border-color: var(--syn-color-neutral-400);
+    color: var(--syn-color-neutral-400);
   }
 
   .button--outline.button--primary:hover:not(.button--disabled),
@@ -58,19 +65,34 @@ export default css`
     border-color: var(--syn-color-primary-900);
     color: var(--syn-color-primary-900);
   }
+
+  .button--outline.button--primary:active:not(.button--disabled) {
+    background: inherit;
+    border-color:  var(--syn-color-primary-950);
+    color:  var(--syn-color-primary-950);
+  }
+
+  /*
+ * Text buttons
+ */
   
   .button--text:hover:not(.button--disabled) {
     color: var(--syn-color-primary-900);
   }
 
-  .button:focus {
-    outline: var(--syn-focus-ring-color) solid 2px;
-    outline-offset: 2px;
+  .button--text.button--primary:active:not(.button--disabled) {
+    background: inherit;
+    border-color:  none;
+    color:  var(--syn-color-primary-950);
+  }
+
+  .button--text.button--primary.button--disabled {
+    color: var(--syn-color-neutral-400);
   }
 
   /*
- * PADDING
-*/
+* PADDING
+ */
    .button.button--small.button--has-label.button--has-prefix {
       padding-inline-start: var(--syn-spacing-small);
    }

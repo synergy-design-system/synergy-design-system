@@ -130,7 +130,7 @@ document.addEventListener('load', () => {
 
 ---
 
-5. Add html autocompletion to VSCode (optional)
+### 5. Add html autocompletion to VSCode (optional)
 
 This package ships with a [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) that may be used to provide typings for tags. To enable code completion, please proceed the following way:
 

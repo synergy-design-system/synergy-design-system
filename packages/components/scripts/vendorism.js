@@ -6,25 +6,9 @@ import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import { vendorButton, vendorInput } from './vendorism/custom/index.js';
+import { components, events } from './config.js';
 
-const components = [
-  'input',
-  'button',
-];
-
-// List of events that we want to import.
-// @todo: Automate this depending on components!
-const events = [
-  'sl-blur',
-  'sl-focus',
-  'sl-invalid',
-  'sl-load',
-  'sl-error',
-  'sl-blur',
-  'sl-change',
-  'sl-clear',
-  'sl-input',
-].map(evt => `src/events/${evt}.ts`);
+const eventList = events.map(evt => `src/events/${evt}.ts`);
 
 const otherIncludes = [
   'custom-elements-manifest.config*',
@@ -36,7 +20,7 @@ const otherIncludes = [
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
   'src/utilities/form*',
-  ...events,
+  ...eventList,
 ];
 
 const libraryPrefix = 'syn';

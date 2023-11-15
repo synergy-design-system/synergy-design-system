@@ -1,0 +1,42 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Angular wrappers for the Synergy Design System",
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/angular",
+  "keywords": [
+    "Angular Web Component Wrapper",
+    "Angular Components",
+    "Angular Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/angular",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/angular"
+  },
+  "version": "1.0.0-main.7",
+  "peerDependencies": {
+    "@angular/core": "^16.2.12",
+    "@angular/forms": "^16.2.12",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@angular/core": "^16.2.12",
+    "@angular/forms": "^16.2.12",
+    "@synergy-design-system/components": "workspace:*",
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "sideEffects": true
+}

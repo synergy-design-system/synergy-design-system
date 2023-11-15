@@ -64,7 +64,15 @@ export const Rows: Story = {
       description: generateStoryDescription('rows'),
     },
   },
-  render: () => html`<syn-textarea rows="2"></syn-textarea>`,
+  render: () => html`
+    <syn-textarea rows="1" placeholder="One row shown"></syn-textarea>
+    <syn-textarea rows="5" placeholder="Five rows shown"></syn-textarea>
+    <syn-textarea rows="3" placeholder="Three rows shown"></syn-textarea>
+    <style>
+    syn-textarea {
+      margin-bottom: 1rem;
+    }
+    </style>`,
 };
 
 export const Placeholders: Story = {
@@ -82,16 +90,14 @@ export const ReadonlyTextareas: Story = {
       description: generateStoryDescription('readonly'),
     },
   },
-  render: () => html`<syn-textarea value="Readonly content" help-text="Please tell us what you think." label="Label" readonly></syn-textarea>`,
+  render: () => html`<syn-textarea value="Read-only content"  readonly></syn-textarea>`,
 };
 
 /** The focus attribute provides feedback to the users,
  * informing them that the textarea component is ready for use.  */
 export const Focus: Story = {
   args: {
-    helpText: 'This textarea is focused.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
+    placeholder: 'This is in focus',
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
@@ -124,9 +130,9 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-  <syn-textarea placeholder="Small" size="small" help-text="Please tell us what you think." label="Label"></syn-textarea><br/>
-  <syn-textarea placeholder="Medium" size="medium" help-text="Please tell us what you think." label="Label"></syn-textarea><br/>
-  <syn-textarea placeholder="Large" size="large" help-text="Please tell us what you think." label="Label"></syn-textarea>`,
+  <syn-textarea placeholder="Small" size="small"></syn-textarea><br/>
+  <syn-textarea placeholder="Medium" size="medium"></syn-textarea><br/>
+  <syn-textarea placeholder="Large" size="large"></syn-textarea>`,
 };
 
 /**
@@ -135,8 +141,7 @@ export const Sizes: Story = {
 export const Invalid: Story = {
   args: {
     helpText: 'This textarea is required.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
+    placeholder: 'Type something',
   },
   parameters: { controls: { exclude: ['required'] } },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -193,5 +198,5 @@ export const ExpandWithContent: Story = {
       description: generateStoryDescription('resize-auto'),
     },
   },
-  render: () => html`<syn-textarea resize="auto"></syn-textarea>`,
+  render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,
 };

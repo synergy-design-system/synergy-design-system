@@ -77,4 +77,9 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error);
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
   }
+
+  .input--standard.input--disabled .input__suffix, 
+  .input--standard.input--disabled .input__prefix {
+    cursor: not-allowed;
+  } 
 `;

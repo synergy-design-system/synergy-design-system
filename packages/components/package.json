@@ -23,10 +23,12 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "pnpm build && web-test-runner --group default",
+    "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",
@@ -59,6 +61,7 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "@types/mocha": "^10.0.2",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
@@ -139,7 +142,10 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ],
       [

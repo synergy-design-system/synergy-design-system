@@ -316,8 +316,8 @@
       "semantic/focus-ring": "enabled",
       "color/primitives": "source",
       "semantic/input": "enabled",
-      "semantic/button": "source",
-      "semantic/toggles": "source"
+      "semantic/button": "enabled",
+      "semantic/toggles": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

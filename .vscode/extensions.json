@@ -6,6 +6,7 @@
     "vunguyentuan.vscode-css-variables",
     "streetsidesoftware.code-spell-checker",
     "unifiedjs.vscode-mdx",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "angular.ng-template"
   ]
 }

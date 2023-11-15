@@ -15,6 +15,7 @@
     },
     "./components/*": "./dist/components/*"
   },
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "CHANGELOG.md",
@@ -39,7 +40,7 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.0.0-main.7",
+  "version": "1.0.0-main.8",
   "devDependencies": {
     "@types/react": "^18.2.31",
     "react": "^18.2.0"

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.8](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.7...components/1.0.0-main.8) (2023-11-15)
+
+
+### Features
+
+* ✨ Angular component support ([#128](https://github.com/SickDesignSystem/synergy/issues/128)) ([6d43510](https://github.com/SickDesignSystem/synergy/commit/6d435101af7cfc7becbf6bdacfc910bf04c4650d))
+
 # [@synergy-design-system/components-v1.0.0-main.7](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.6...components/1.0.0-main.7) (2023-11-14)
 
 

@@ -31,5 +31,5 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateFormsModule(modulesDir);
   await jobs.runCreateExports(outDir);
   await jobs.runFormat(outDir, angularPackageDir);
-  await jobs.runNGPackagr();
+  await jobs.runNgPackagr();
 };

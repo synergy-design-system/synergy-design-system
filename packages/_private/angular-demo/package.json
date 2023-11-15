@@ -18,8 +18,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-    "@synergy-design-system/angular": "workspace:1.0.0-main.6",
-    "@synergy-design-system/tokens": "workspace:1.0.0-main.6",
+    "@synergy-design-system/angular": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

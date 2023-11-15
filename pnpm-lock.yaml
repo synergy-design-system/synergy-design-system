@@ -35,10 +35,10 @@ importers:
         specifier: ^16.2.0
         version: 16.2.12(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/platform-browser@16.2.12)(rxjs@7.8.1)
       '@synergy-design-system/angular':
-        specifier: workspace:1.0.0-main.6
+        specifier: workspace:*
         version: link:../../angular/dist
       '@synergy-design-system/tokens':
-        specifier: workspace:1.0.0-main.6
+        specifier: workspace:*
         version: link:../../tokens
       rxjs:
         specifier: ~7.8.0

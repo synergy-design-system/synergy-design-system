@@ -46,19 +46,27 @@ export default css`
 
   /* ICONS SIZE */
    .input--small .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-small);
+    font-size: var(--syn-input-spacing-medium);
+   }
+
+  .input--medium .input__prefix ::slotted(syn-icon) {
+    font-size: var(--syn-input-spacing-large);
    }
 
   .input--large .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-large);
+    font-size: var(--syn-font-size-2x-large);
    }
 
   .input--small .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-small);
+    font-size: var(--syn-input-spacing-medium);
+   }
+
+  .input--medium .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-input-spacing-large);
    }
 
   .input--large .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-large);
+    font-size: var(--syn-font-size-2x-large);
    }
   
   :host([data-user-invalid]) .input--standard {

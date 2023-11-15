@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.7",
+  "version": "1.0.0-main.8",
   "description": "",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
   "files": ["dist"],
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "pnpm build && web-test-runner --group default",
+    "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",
@@ -34,7 +34,9 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo"
+    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
+    "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
+    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
@@ -59,6 +61,7 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
     "@types/mocha": "^10.0.2",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
@@ -83,6 +86,7 @@
     "eslint-plugin-wc": "^2.0.4",
     "globby": "^13.2.2",
     "jsdom": "^22.1.0",
+    "ng-packagr": "^17.0.0",
     "ora": "^7.0.1",
     "pascal-case": "^4.0.0",
     "prettier": "^3.0.3",
@@ -132,7 +136,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
+          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react"
         }
       ],
       [

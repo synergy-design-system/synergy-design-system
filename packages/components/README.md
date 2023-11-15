@@ -130,6 +130,21 @@ document.addEventListener('load', () => {
 
 ---
 
+5. Add html autocompletion to VSCode (optional)
+
+This package ships with a [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) that may be used to provide typings for tags. To enable code completion, please proceed the following way:
+
+1. Install the `@synergy-design-system/components` package.
+2. If you do **not** have a `.vscode/settings.json` file yet, create it.
+3. Add support for [vscode-custom-data](https://github.com/microsoft/vscode-custom-data) by adding the following setting to your `.vscode/settings.json`: `"html.customData": ["./node_modules/@synergy-design-system/components/dist/custom-elements.json"]`
+4. Restart VSCode.
+5. Move to a html (or similar) file and type `<syn`. Autocomplete should now provide a list of available components from the components manifest.
+
+> Note the path above is valid for installations using npm.
+> When using another package manager, make sure to adjust the path to the custom-elements.json file to suite your needs!
+
+---
+
 ## Local setup
 
 ### Using the vendor cli

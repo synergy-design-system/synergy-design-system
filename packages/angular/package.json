@@ -4,11 +4,6 @@
     "url": "https://www.sick.com"
   },
   "description": "Angular wrappers for the Synergy Design System",
-  "files": [
-    "dist",
-    "CHANGELOG.md",
-    "README.md"
-  ],
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/angular",
   "keywords": [
     "Angular Web Component Wrapper",

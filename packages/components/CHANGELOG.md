@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.9](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.8...components/1.0.0-main.9) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-button ([#118](https://github.com/SickDesignSystem/synergy/issues/118)) ([ca9385b](https://github.com/SickDesignSystem/synergy/commit/ca9385beef3f868679d51088d3fa372423277223))
+
 # [@synergy-design-system/components-v1.0.0-main.8](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.7...components/1.0.0-main.8) (2023-11-15)
 
 

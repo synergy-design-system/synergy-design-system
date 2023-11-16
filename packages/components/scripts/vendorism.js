@@ -234,7 +234,7 @@ if (!options.getOnly) {
 
   const { removedFiles, newFiles } = await setTarget(config);
 
-  await updateVsCodeReadOnlyFiles(removedFiles, newFiles);
+  await updateVsCodeReadOnlyFiles(removedFiles, newFiles.filter(f => !f.includes('stories.ts')));
 
   // Move files back from './src/temp' to '../docs/src/components'
   await execSync('mv ./src/temp ../docs/stories/components');

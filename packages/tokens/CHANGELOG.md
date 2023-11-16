@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.7](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.6...tokens/1.0.0-main.7) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-button ([#118](https://github.com/SickDesignSystem/synergy/issues/118)) ([ca9385b](https://github.com/SickDesignSystem/synergy/commit/ca9385beef3f868679d51088d3fa372423277223))
+
 # [@synergy-design-system/tokens-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.5...tokens/1.0.0-main.6) (2023-11-07)
 
 

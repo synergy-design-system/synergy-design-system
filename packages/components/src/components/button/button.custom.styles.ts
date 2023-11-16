@@ -36,7 +36,7 @@ export default css`
 
   .button--filled.button--primary:active:not(.button--disabled) {
     background-color: var(--syn-color-primary-950);
-    border-color: var(--syn-color-primary-950);
+    border-color: inherit;
     color: var(--syn-color-neutral-0);
   }
 

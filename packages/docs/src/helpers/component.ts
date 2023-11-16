@@ -46,8 +46,32 @@ await loadCustomElements();
  */
 export const storybookDefaults = (customElementTag: string): any => {
   const {
-    args, events, argTypes, manifest,
+    args, events, argTypes: initialArgTypes, manifest,
   } = getWcStorybookHelpers(customElementTag);
+
+  const argTypes = Object.fromEntries(
+    Object
+      .entries(initialArgTypes)
+      .map(([key, item]) => {
+
+        // Fix wrong controls,
+        // as some fields may be seen as numbers when in fact they arent!
+        // @todo: Check with mario where this comes from!
+        if (
+          item?.control?.type === 'number' &&
+          item.options && item.options?.length > 0
+        ) {
+          return [key, {
+            ...item,
+            control: {
+              type: 'select',
+            },
+          }];
+        }
+
+        return [key, item];
+      })
+    );
 
   const getBadgesConfig = () => ({
     status: {

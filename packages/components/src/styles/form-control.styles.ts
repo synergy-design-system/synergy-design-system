@@ -5,6 +5,7 @@
 
 /* eslint-disable */
 import { css } from 'lit';
+import customStyles from './form-control.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -63,4 +64,7 @@ export default css`
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {
     margin-top: var(--syn-spacing-2x-small);
   }
+
+  ${customStyles}
 `;
+

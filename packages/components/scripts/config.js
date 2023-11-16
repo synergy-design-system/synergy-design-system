@@ -5,6 +5,7 @@
 export const components = [
   'input',
   'button',
+  'textarea',
 ];
 
 /**

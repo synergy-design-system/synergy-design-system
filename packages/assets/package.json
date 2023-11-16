@@ -102,5 +102,5 @@
   },
   "type": "module",
   "types": "./build/js/index.d.ts",
-  "version": "1.0.0-main.2"
+  "version": "1.0.0-main.3"
 }

@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.2...assets/1.0.0-main.3) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-input ([#108](https://github.com/SickDesignSystem/synergy/issues/108)) ([d02457e](https://github.com/SickDesignSystem/synergy/commit/d02457e3a4f71911aefa1694037a639deee14ddb))
+
 # [@synergy-design-system/assets-v1.0.0-main.2](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.1...assets/1.0.0-main.2) (2023-10-26)
 
 

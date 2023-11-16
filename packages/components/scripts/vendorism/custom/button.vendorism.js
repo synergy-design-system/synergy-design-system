@@ -44,19 +44,23 @@ export const vendorButton = (path, content) => {
   // Use variant prop for "shape"
   output.content = removeSection(output.content, '@property({ reflect: true }) variant:', ';', { preserveEnd: true, preserveStart: true, removePrecedingWhitespace: false });
   output.content = removeSection(output.content, '/** Draws an outlined', ';');
-  output.content = output.content.replace('variant:', "variant: 'default' | 'outline' | 'text' = 'default'");
-  output.content = output.content.replace('!this.outline', 'this.variant === \'default\'');
+  output.content = output.content.replace('variant:', "variant: 'filled' | 'outline' | 'text' = 'outline'");
+  output.content = output.content.replace('!this.outline', 'this.variant === \'filled\'');
   output.content = output.content.replace('this.outline', 'this.variant === \'outline\'');
 
   // Set "primary" as default color
   // If we need more colors later, a "color" prop would have to be added
   output.content = output.content.replace("this.variant === 'primary'", 'true');
 
+  // Fix button group
+  output.content = output.content.replace("[variant='default']", "[variant='filled']");
+
   // Rename "standard" class to default
-  output.content = output.content.replace(/button--standard/g, 'button--default');
+  output.content = output.content.replace(/button--standard/g, 'button--filled');
 
   // Fix tests
-  output.content = output.content.replace("const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];", "const variants = ['default', 'outline', 'text'];");
+  output.content = output.content.replace("const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];", "const variants = ['filled', 'outline', 'text'];");
+  output.content = output.content.replace("expect(el.variant).to.equal('default');", "expect(el.variant).to.equal('outline');");
   ['outline', 'pill', 'circle'].forEach((prop) => {
     output.content = removeSection(output.content, `expect(el.${prop})`, ';');
   });

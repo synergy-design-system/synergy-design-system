@@ -75,7 +75,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
   @property() title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
-  @property({ reflect: true }) variant: 'default' | 'outline' | 'text' = 'default';
+  @property({ reflect: true }) variant: 'filled' | 'outline' | 'text' = 'filled';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -277,7 +277,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
           'button--disabled': this.disabled,
           'button--focused': this.hasFocus,
           'button--loading': this.loading,
-          'button--default': this.variant === 'default',
+          'button--filled': this.variant === 'filled',
           'button--outline': this.variant === 'outline',
           'button--rtl': this.localize.dir() === 'rtl',
           'button--has-label': this.hasSlotController.test('[default]'),

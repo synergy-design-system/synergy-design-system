@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.8](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.7...tokens/1.0.0-main.8) (2023-11-16)
+
+
+### Bug Fixes
+
+* 🐛 use correct focus ring width ([#144](https://github.com/SickDesignSystem/synergy/issues/144)) ([12d3cbe](https://github.com/SickDesignSystem/synergy/commit/12d3cbe9241a4edca0afabc20dad74cd9874d3b0))
+
 # [@synergy-design-system/tokens-v1.0.0-main.7](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.6...tokens/1.0.0-main.7) (2023-11-16)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.10](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.9...components/1.0.0-main.10) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-input ([#108](https://github.com/SickDesignSystem/synergy/issues/108)) ([d02457e](https://github.com/SickDesignSystem/synergy/commit/d02457e3a4f71911aefa1694037a639deee14ddb))
+
 # [@synergy-design-system/components-v1.0.0-main.9](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.8...components/1.0.0-main.9) (2023-11-16)
 
 

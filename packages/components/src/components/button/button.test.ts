@@ -10,7 +10,7 @@ import { runFormControlBaseTests } from '../../internal/test/form-control-base-t
 import sinon from 'sinon';
 import type SynButton from './button.js';
 
-const variants = ['default', 'outline', 'text'];
+const variants = ['filled', 'outline', 'text'];
 
 describe('<syn-button>', () => {
   describe('accessibility tests', () => {
@@ -32,7 +32,7 @@ describe('<syn-button>', () => {
       const el = await fixture<SynButton>(html` <syn-button>Button Label</syn-button> `);
 
       expect(el.title).to.equal('');
-      expect(el.variant).to.equal('default');
+      expect(el.variant).to.equal('filled');
       expect(el.size).to.equal('medium');
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);

@@ -37,6 +37,5 @@ export const vendorInput = (path, content) => {
   output.content = removeSection(output.content, 'expect(el.pill)', ';');
   // @todo remove this when syn-textarea and syn-checkbox are available
   output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
-
   return output;
 };

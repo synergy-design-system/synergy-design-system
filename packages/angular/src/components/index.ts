@@ -5,3 +5,4 @@
 // ---------------------------------------------------------------------
 export { SynButtonComponent } from './button.component';
 export { SynInputComponent } from './input.component';
+export { SynTextareaComponent } from './textarea.component';

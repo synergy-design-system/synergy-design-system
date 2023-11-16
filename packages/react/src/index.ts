@@ -5,3 +5,4 @@
 // ---------------------------------------------------------------------
 export { SynButton } from './components/button.js';
 export { SynInput } from './components/input.js';
+export { SynTextarea } from './components/textarea.js';

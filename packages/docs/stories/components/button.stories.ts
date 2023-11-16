@@ -75,7 +75,7 @@ export const Sizes: Story = {
 /** The focus attribute provides feedback to the users,
  * informing them that the button component is ready for use.  */
 export const Focus: Story = {
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
     const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
     if (button) {
       button.focus();
@@ -220,7 +220,7 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-  <syn-button disabled>Filled</syn-button>
+  <syn-button variant="filled" disabled>Filled</syn-button>
   <syn-button variant="outline" disabled>Outline</syn-button>
   <syn-button variant="text" disabled>Text</syn-button>`,
 };

@@ -94,31 +94,47 @@ export const CustomValidity: Story = {
       console.error('Error in play function:', error);
     }
   },
-  render: () => html`<form class="custom-validity">
-  <syn-checkbox>Check me</syn-checkbox>
-  <br />
-  <button size="medium" type="submit">Submit</button>
-</form>
-<script type="module">
-  const form = document.querySelector('.custom-validity');
-  const checkbox = form.querySelector('syn-checkbox');
-  const errorMessage = \`Don't forget to check me!\`;
+  render: () => html`
+    <form class="custom-validity">
+      <syn-checkbox>Check me</syn-checkbox>
+      <br />
+      <button size="medium" type="submit">Submit</button>
+    </form>
+    <style>
+    form {
+      display: flex;
+      flex-direction: column;
+    }
 
-  // Set initial validity as soon as the element is defined
-  customElements.whenDefined('syn-checkbox').then(async () => {
-    await checkbox.updateComplete;
-    checkbox.setCustomValidity(errorMessage);
-  });
+    button {
+      margin-top: 1rem;
+      align-self: flex-end;
+      padding: 0.5rem 1rem;
+      min-width: 5%;
+    }
+    </style>
 
-  // Update validity on change
-  checkbox.addEventListener('syn-change', () => {
-    checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
-  });
+    <script type="module">
+      const form = document.querySelector('.custom-validity');
+      const checkbox = form.querySelector('syn-checkbox');
+      const errorMessage = \`Don't forget to check me!\`;
 
-  // Handle submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
-  });
-</script>`,
+      // Set initial validity as soon as the element is defined
+      customElements.whenDefined('syn-checkbox').then(async () => {
+        await checkbox.updateComplete;
+        checkbox.setCustomValidity(errorMessage);
+      });
+
+      // Update validity on change
+      checkbox.addEventListener('syn-change', () => {
+        checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
+      });
+
+      // Handle submit
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        alert('All fields are valid!');
+      });
+    </script>
+  `,
 };

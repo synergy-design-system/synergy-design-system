@@ -20,11 +20,11 @@ export default css`
   }
 
   /* Disabled */
-  .checkbox--disabled {
-    opacity: 1;
-  }
-
   .checkbox--disabled .checkbox__label {
     color: var(--syn-color-neutral-700);
+  }
+
+  :host([data-user-invalid]) .checkbox__control {
+    border-color: var(--syn-input-border-color-focus-error);
   }
 `;

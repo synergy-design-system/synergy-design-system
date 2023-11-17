@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.9](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.8...tokens/1.0.0-main.9) (2023-11-17)
+
+
+### Bug Fixes
+
+* changed focus-ring offset and color token ([#157](https://github.com/SickDesignSystem/synergy/issues/157)) ([8a553e5](https://github.com/SickDesignSystem/synergy/commit/8a553e53ca31e3ac5fa44c176fbeec5797cf37a9))
+
 # [@synergy-design-system/tokens-v1.0.0-main.8](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.7...tokens/1.0.0-main.8) (2023-11-16)
 
 

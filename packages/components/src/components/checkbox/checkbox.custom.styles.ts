@@ -1,5 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+  .checkbox__control {
+    border-radius: 0;
+  }
 `;

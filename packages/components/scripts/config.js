@@ -5,7 +5,11 @@
 export const components = [
   'input',
   'button',
+  'button-group',
   'textarea',
+  'radio',
+  'radio-button',
+  'radio-group',
 ];
 
 /**

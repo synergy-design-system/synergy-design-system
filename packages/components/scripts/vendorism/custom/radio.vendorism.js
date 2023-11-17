@@ -19,7 +19,7 @@ export const vendorRadio = (path, content) => {
   output.content = removeSection(output.content, '/** Draws a filled', 'filled = false;');
   output.content = output.content.replaceAll('filled', 'readonly'); // makes changes in styles and components
 
-  // We need to add classes depenending on prefix and suffix slots to use them in CSS
+  // We need to add classes depending on prefix and suffix slots to use them in CSS
   output.content = output.content.replace(
     "HasSlotController(this, 'help-text', 'label')",
     "HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix')",

@@ -5,7 +5,11 @@
 
 // Components
 export { default as SynButton } from './components/button/button.js';
+// export { default as SynButton-group } from './components/button-group/button-group.js';
 export { default as SynInput } from './components/input/input.js';
+export { default as SynRadio } from './components/radio/radio.js';
+// export { default as SynRadio-button } from './components/radio-button/radio-button.js';
+// export { default as SynRadio-group } from './components/radio-group/radio-group.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
 
 // Utilities

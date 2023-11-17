@@ -2,29 +2,20 @@ import { css } from 'lit';
 
 export default css`
 .button:focus-visible {
-    outline: var(--syn-focus-ring-color) solid 2px;
-    outline-offset: 2px;
+    outline: var(--syn-focus-ring-color) solid var(--syn-focus-ring-width);
+    outline-offset: var(--syn-focus-ring-width);
   }
 
   /*
  * Size modifiers
  */
 
-  .button--medium {
-    font-size: var(--syn-button-font-size-large);
-  }
+  .button.button--medium.button--has-label .button__label {
+    font-size: var(--syn-font-size-medium);
+   } 
 
-  .button--large {
+  .button.button--large.button--has-label .button__label {
     font-size: var(--syn-font-size-large);
-  }
-
-  .button--large syn-icon {
-    font-size: var(--syn-spacing-large);
-  }
-
-  .button.button--large.button--has-label.button--has-prefix .button__prefix,
-  .button.button--large.button--has-label.button--has-suffix .button__suffix {
-    font-size: var(--syn-spacing-large);
   }
 
   /*
@@ -45,7 +36,7 @@ export default css`
 
   .button--filled.button--primary:active:not(.button--disabled) {
     background-color: var(--syn-color-primary-950);
-    border-color: inherit;
+    border-color: var(--syn-color-primary-950);
     color: var(--syn-color-neutral-0);
   }
 
@@ -101,12 +92,22 @@ export default css`
     padding-inline-end: var(--syn-spacing-small);
   }
 
+  .button.button--small.button--has-prefix .button__prefix, 
+  .button.button--small.button--has-suffix .button__suffix {
+    font-size: var(--syn-spacing-medium);
+  }
+
   .button.button--medium.button--has-label.button--has-prefix {
     padding-inline-start: var(--syn-spacing-medium);
    } 
 
   .button.button--medium.button--has-label.button--has-suffix {
     padding-inline-end: var(--syn-spacing-medium);
+  }
+
+  .button.button--medium.button--has-prefix .button__prefix, 
+  .button.button--medium.button--has-suffix .button__suffix {
+    font-size: var(--syn-spacing-large);
   }
 
   .button.button--large.button--has-label.button--has-prefix {
@@ -123,5 +124,10 @@ export default css`
 
   .button.button--large.button--has-label.button--has-suffix .button__label {
     padding-inline-end: var(--syn-spacing-medium);
+  }
+
+  .button.button--large.button--has-prefix .button__prefix, 
+  .button.button--large.button--has-suffix .button__suffix {
+    font-size: var(--syn-font-size-2x-large);
   }
   `;

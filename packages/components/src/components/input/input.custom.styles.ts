@@ -46,19 +46,27 @@ export default css`
 
   /* ICONS SIZE */
    .input--small .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-small);
+    font-size: var(--syn-input-spacing-medium);
+   }
+
+  .input--medium .input__prefix ::slotted(syn-icon) {
+    font-size: var(--syn-input-spacing-large);
    }
 
   .input--large .input__prefix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-large);
+    font-size: var(--syn-font-size-2x-large);
    }
 
   .input--small .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-small);
+    font-size: var(--syn-input-spacing-medium);
+   }
+
+  .input--medium .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-input-spacing-large);
    }
 
   .input--large .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-large);
+    font-size: var(--syn-font-size-2x-large);
    }
   
   :host([data-user-invalid]) .input--standard {
@@ -69,4 +77,9 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error);
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
   }
+
+  .input--standard.input--disabled .input__suffix, 
+  .input--standard.input--disabled .input__prefix {
+    cursor: not-allowed;
+  } 
 `;

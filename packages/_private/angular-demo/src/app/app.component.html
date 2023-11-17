@@ -1,0 +1,52 @@
+<main>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+    <div>
+      <label>
+        Name:
+        <input formControlName="name" placeholder="Your name" required>
+      </label>
+    </div>
+
+    <syn-input
+      formControlName="test"
+      name="test"
+      [title]="myLabel"
+      type="text"
+      (click)="logMessage('Clicked the field!', $event)"
+      (synBlurEvent)="logMessage('Left the field', $event)"
+      (synInputEvent)="logMessage('Added to the field', $event)"
+      pattern="whatever"
+      [autofocus]="true"
+    >
+      <span slot="label">
+        DISABLED
+        Inline Slot Demo {{myLabel}}
+      </span>
+      <span slot="suffix" (click)="clearDemo()">
+        Cancel
+      </span>
+    </syn-input>
+
+    <syn-input
+      formControlName="pass"
+      type="password"
+      name="pass"
+      ngDefaultControl
+      [title]="myPass"
+      (click)="logMessage('Clicked the field!', $event)"
+      (synBlurEvent)="logMessage('Left the field', $event)"
+      (synInputEvent)="logMessage('Added to the field', $event)"
+    >
+      <span slot="label">
+        Inline Slot Demo {{myLabel}}
+      </span>
+      <span slot="suffix" (click)="clearDemo()">
+        Cancel
+      </span>
+    </syn-input>
+
+    <syn-button type="submit" variant="default">hello</syn-button>
+    <button type="submit">hello</button>
+  </form>
+</main>

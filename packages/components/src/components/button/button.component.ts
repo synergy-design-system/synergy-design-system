@@ -75,7 +75,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
   @property() title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
-  @property({ reflect: true }) variant: 'filled' | 'outline' | 'text' = 'filled';
+  @property({ reflect: true }) variant: 'filled' | 'outline' | 'text' = 'outline';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

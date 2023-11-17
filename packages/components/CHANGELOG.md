@@ -1,3 +1,31 @@
+# [@synergy-design-system/components-v1.0.0-main.11](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.10...components/1.0.0-main.11) (2023-11-16)
+
+
+### Bug Fixes
+
+* use correct defaults for button ([#151](https://github.com/SickDesignSystem/synergy/issues/151)) ([a8102c8](https://github.com/SickDesignSystem/synergy/commit/a8102c8c18a14b173e4f5a268fe7a73cae07974d))
+
+# [@synergy-design-system/components-v1.0.0-main.10](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.9...components/1.0.0-main.10) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-input ([#108](https://github.com/SickDesignSystem/synergy/issues/108)) ([d02457e](https://github.com/SickDesignSystem/synergy/commit/d02457e3a4f71911aefa1694037a639deee14ddb))
+
+# [@synergy-design-system/components-v1.0.0-main.9](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.8...components/1.0.0-main.9) (2023-11-16)
+
+
+### Features
+
+* ✨ add syn-button ([#118](https://github.com/SickDesignSystem/synergy/issues/118)) ([ca9385b](https://github.com/SickDesignSystem/synergy/commit/ca9385beef3f868679d51088d3fa372423277223))
+
+# [@synergy-design-system/components-v1.0.0-main.8](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.7...components/1.0.0-main.8) (2023-11-15)
+
+
+### Features
+
+* ✨ Angular component support ([#128](https://github.com/SickDesignSystem/synergy/issues/128)) ([6d43510](https://github.com/SickDesignSystem/synergy/commit/6d435101af7cfc7becbf6bdacfc910bf04c4650d))
+
 # [@synergy-design-system/components-v1.0.0-main.7](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.6...components/1.0.0-main.7) (2023-11-14)
 
 

@@ -5,8 +5,8 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 import customStyles from './button.custom.styles.js';
+import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */

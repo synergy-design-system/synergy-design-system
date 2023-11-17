@@ -13,6 +13,7 @@ export const vendorInput = (path, content) => {
   // update stories
   output.content = output.content.replace('<syn-input placeholder="Type something" filled>', '<syn-input value="Readonly content" readonly>');
   output.content = output.content.replaceAll('Filled', 'Readonly');
+
   // update component and styles
   output.content = removeSection(output.content, '/** Draws a filled', 'filled = false;');
   output.content = output.content.replaceAll('filled', 'readonly'); // makes changes in styles and components
@@ -37,6 +38,5 @@ export const vendorInput = (path, content) => {
   output.content = removeSection(output.content, 'expect(el.pill)', ';');
   // @todo remove this when syn-textarea and syn-checkbox are available
   output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
-
   return output;
 };

@@ -19,6 +19,7 @@ const reactPackageDir = getPath('../../react');
 
 await jobs.runPrepare(outDir);
 await jobs.runCreateEvents(componentDir);
+await jobs.runCreateExports(componentDir);
 await jobs.runTypeScript(outDir, './tsconfig.prod.json');
 await jobs.runEsBuildComponents(outDir, __PACKAGE_VERSION__);
 await jobs.runCem();

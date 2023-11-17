@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.11](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.10...components/1.0.0-main.11) (2023-11-16)
+
+
+### Bug Fixes
+
+* use correct defaults for button ([#151](https://github.com/SickDesignSystem/synergy/issues/151)) ([a8102c8](https://github.com/SickDesignSystem/synergy/commit/a8102c8c18a14b173e4f5a268fe7a73cae07974d))
+
 # [@synergy-design-system/components-v1.0.0-main.10](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.9...components/1.0.0-main.10) (2023-11-16)
 
 

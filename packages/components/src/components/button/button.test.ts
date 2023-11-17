@@ -32,7 +32,7 @@ describe('<syn-button>', () => {
       const el = await fixture<SynButton>(html` <syn-button>Button Label</syn-button> `);
 
       expect(el.title).to.equal('');
-      expect(el.variant).to.equal('filled');
+      expect(el.variant).to.equal('outline');
       expect(el.size).to.equal('medium');
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);

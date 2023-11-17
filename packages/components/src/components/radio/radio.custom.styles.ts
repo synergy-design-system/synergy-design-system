@@ -1,10 +1,10 @@
 import { css } from 'lit';
 
 export default css`
-  .radio:focus-visible {
-    border: var(--syn-focus-ring-color) solid 2px;
+  :host(:focus-visible) .radio__control {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-width);
   }
-
 
   /*
  * Size modifiers
@@ -23,8 +23,4 @@ export default css`
   .radio--large {
     --toggle-size: var(--syn-font-size-large);
   }
-
-
-
-
 `;

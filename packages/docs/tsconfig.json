@@ -7,7 +7,7 @@
     "target": "ESNext",
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
-    "module": "ESNext",
+    "module": "NodeNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "NodeNext",
     "strict": true,

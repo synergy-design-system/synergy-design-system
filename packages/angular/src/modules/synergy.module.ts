@@ -7,11 +7,13 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import {
   SynButtonComponent,
+  SynCheckboxComponent,
   SynInputComponent,
 } from '../components';
 
 const components = [
   SynButtonComponent,
+  SynCheckboxComponent,
   SynInputComponent,
 ];
 

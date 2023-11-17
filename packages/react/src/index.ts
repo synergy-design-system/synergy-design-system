@@ -4,4 +4,5 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 export { SynButton } from './components/button.js';
+export { SynCheckbox } from './components/checkbox.js';
 export { SynInput } from './components/input.js';

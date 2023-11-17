@@ -3,8 +3,9 @@
  * @type {string[]}
  */
 export const components = [
-  'input',
   'button',
+  'checkbox',
+  'input',
 ];
 
 /**

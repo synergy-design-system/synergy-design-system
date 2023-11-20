@@ -9,12 +9,14 @@ import {
   SynButtonComponent,
   SynCheckboxComponent,
   SynInputComponent,
+  SynTextareaComponent,
 } from '../components';
 
 const components = [
   SynButtonComponent,
   SynCheckboxComponent,
   SynInputComponent,
+  SynTextareaComponent,
 ];
 
 @NgModule({

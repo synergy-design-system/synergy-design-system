@@ -1,5 +1,14 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+
+  :host([data-user-invalid]) .textarea--standard {
+    border-color: var(--syn-input-border-color-focus-error);
+  }
+
+  :host([data-user-invalid]) .textarea--standard.textarea--focused:not(.textarea--disabled) {
+    border-color: var(--syn-input-border-color-focus-error);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
+  }
+
 `;

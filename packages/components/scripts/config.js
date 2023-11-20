@@ -6,6 +6,7 @@ export const components = [
   'button',
   'checkbox',
   'input',
+  'textarea',
 ];
 
 /**

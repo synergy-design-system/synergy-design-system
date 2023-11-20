@@ -160,6 +160,16 @@
           "value": "Use the disabled attribute to disable a button.",
           "type": "text"
         }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use.",
+          "type": "text"
+        }
       }
     },
     "button-group": {
@@ -754,6 +764,16 @@
         },
         "description": {
           "value": "Use the size attribute to change a switch’s size.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.",
           "type": "text"
         }
       }

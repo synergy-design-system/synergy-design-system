@@ -6,3 +6,4 @@
 export { SynButtonComponent } from './button.component';
 export { SynCheckboxComponent } from './checkbox.component';
 export { SynInputComponent } from './input.component';
+export { SynTextareaComponent } from './textarea.component';

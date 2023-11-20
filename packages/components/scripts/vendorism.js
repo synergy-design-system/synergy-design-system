@@ -8,6 +8,7 @@ import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/in
 import {
   vendorButton,
   vendorInput,
+  vendorTextarea,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 import { components, events } from './config.js';
@@ -189,6 +190,7 @@ import customStyles from './${component}.custom.styles.js';`,
       // specialized customizations
       vendorButton,
       vendorInput,
+      vendorTextarea,
       vendorWebTestRunnerConfig,
     ],
   },

@@ -756,6 +756,16 @@
           "value": "Use the size attribute to change a switch’s size.",
           "type": "text"
         }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.",
+          "type": "text"
+        }
       }
     },
     "tab-group": {

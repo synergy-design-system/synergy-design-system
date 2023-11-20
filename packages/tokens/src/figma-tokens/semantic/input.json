@@ -262,11 +262,5 @@
         "type": "fontSizes"
       }
     }
-  },
-  "focus-ring": {
-    "offset": {
-      "value": "0",
-      "type": "spacing"
-    }
   }
 }

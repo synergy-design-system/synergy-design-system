@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.10](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.9...tokens/1.0.0-main.10) (2023-11-20)
+
+
+### Bug Fixes
+
+* 🐛 fix focus ring offset ([#159](https://github.com/SickDesignSystem/synergy/issues/159)) ([816983e](https://github.com/SickDesignSystem/synergy/commit/816983ed01d22c5aa0bda18892e399d26462b1ef))
+
 # [@synergy-design-system/tokens-v1.0.0-main.9](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.8...tokens/1.0.0-main.9) (2023-11-17)
 
 

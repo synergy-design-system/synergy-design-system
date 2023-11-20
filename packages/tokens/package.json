@@ -107,5 +107,5 @@
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0-main.10"
+  "version": "1.0.0-main.11"
 }

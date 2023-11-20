@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.11](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.10...tokens/1.0.0-main.11) (2023-11-20)
+
+
+### Bug Fixes
+
+* 🐛 add toggle tokens namespacing ([#160](https://github.com/SickDesignSystem/synergy/issues/160)) ([8734cf2](https://github.com/SickDesignSystem/synergy/commit/8734cf201e199defa23ff1419f20fa1efdf2fc56))
+
 # [@synergy-design-system/tokens-v1.0.0-main.10](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.9...tokens/1.0.0-main.10) (2023-11-20)
 
 

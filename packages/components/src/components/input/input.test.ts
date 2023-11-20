@@ -535,7 +535,7 @@ describe('<syn-input>', () => {
             <input type="text" name="d" value="4" />
             <syn-input name="e" value="5"></syn-input>
             <textarea name="f">6</textarea>
-            <syn-input name="g" value="7"></syn-input>
+            <syn-textarea name="g" value="7"></syn-textarea>
             <syn-input name="h" value="8"></syn-input>
           </form>
           <input type="text" name="i" value="9" form="f1" />

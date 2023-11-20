@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
 .button:focus-visible {
-    outline: var(--syn-focus-ring-color) solid 2px;
-    outline-offset: 2px;
+    outline: var(--syn-focus-ring-color) solid var(--syn-focus-ring-width);
+    outline-offset: var(--syn-focus-ring-width);
   }
 
   /*

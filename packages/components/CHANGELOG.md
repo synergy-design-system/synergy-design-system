@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.12](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.11...components/1.0.0-main.12) (2023-11-20)
+
+
+### Features
+
+* ✨ add syn-textarea ([#122](https://github.com/SickDesignSystem/synergy/issues/122)) ([5f21ce9](https://github.com/SickDesignSystem/synergy/commit/5f21ce95297b158e5b47d0ef9b961022b294c9cc))
+
 # [@synergy-design-system/components-v1.0.0-main.11](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.10...components/1.0.0-main.11) (2023-11-16)
 
 

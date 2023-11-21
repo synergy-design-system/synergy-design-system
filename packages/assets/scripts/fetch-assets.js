@@ -9,6 +9,7 @@ import { rimraf } from 'rimraf';
 import { FigmaExporter } from 'figma-export-assets';
 import { optimizeSVGs } from './optimize-svg.js';
 import { bundleIcons } from './bundle-icons.js';
+import { updateSystemIcons } from './update-system-icons.js';
 
 intro('Fetch Assets');
 
@@ -97,5 +98,6 @@ if (fs.existsSync('./src/icons')) {
 
 if (fs.existsSync('./src/system-icons')) {
   await optimizeSVGs('./src/system-icons');
+  await updateSystemIcons('./src/system-icons', '../components/src/components/icon/library.system.ts');
 }
 outro('Assets fetched!');

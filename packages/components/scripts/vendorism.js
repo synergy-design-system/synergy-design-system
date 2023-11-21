@@ -13,7 +13,7 @@ import {
 } from './vendorism/custom/index.js';
 
 /**
- * List of components. Add a component name here to make it available to the outside
+ * List of components that should be vendored.
  * @type {string[]}
  */
 export const components = [

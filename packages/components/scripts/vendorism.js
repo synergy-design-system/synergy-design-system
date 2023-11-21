@@ -20,6 +20,7 @@ export const components = [
   'input',
   'button',
   'textarea',
+  'checkbox',
 ].sort();
 
 /**
@@ -203,6 +204,7 @@ import customStyles from './${component}.custom.styles.js';`,
       vendorCustomElementsManifest,
       vendorInput,
       vendorTextarea,
+      vendorWebTestRunnerConfig,
     ],
   },
 };

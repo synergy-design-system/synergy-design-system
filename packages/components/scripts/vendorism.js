@@ -23,7 +23,7 @@ export const components = [
 ].sort();
 
 /**
- * List of events that should be created.
+ * List of events that should be vendored.
  * Add a component name here to make it available to the outside
  * @todo: Automate this depending on components!
  * @type {string[]}

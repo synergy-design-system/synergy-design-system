@@ -31,6 +31,9 @@ async function fetchAssets() {
 
   const config = {
     assetsPath: './src',
+    axiosConfig: {
+      proxy: false,
+    },
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
     fileId: 'bZFqk9urD3NlghGUKrkKCR',
     page: 'Assets',
@@ -88,5 +91,9 @@ await rimraf('./src');
 await fetchAssets();
 if (fs.existsSync('./src/icons')) {
   await optimizeSVGs('./src/icons');
+}
+
+if (fs.existsSync('./src/system-icons')) {
+  await optimizeSVGs('./src/system-icons');
 }
 outro('Assets fetched!');

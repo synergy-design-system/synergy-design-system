@@ -12,7 +12,7 @@ const headerComment = createHeader('react');
 
 export const runCreateWrappers = job('React: Creating Component Wrappers...', async (metadata, outDir) => {
   // List of components
-  const components = getAllComponents(metadata);
+  const components = await getAllComponents(metadata);
 
   // Index exports file
   const index = [];

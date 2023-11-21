@@ -11,8 +11,8 @@ export const runCreateNgModule = job('Angular: Creating SynergyModule...', async
   const outFile = path.join(outDir, 'synergy.module.ts');
 
   // Get the path to component exports
-  const components = getAllComponents(metadata)
-    .map(component => `${component.name}Component`)
+  const components = await getAllComponents(metadata);
+  const componentNames = components.map(component => `${component.name}Component`)
     .join(',\n');
 
   const output = `
@@ -20,11 +20,11 @@ ${headerComment}
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import {
-  ${components},
+  ${componentNames},
 } from '../components';
 
 const components = [
-  ${components},
+  ${componentNames},
 ];
 
 @NgModule({

@@ -14,6 +14,18 @@ import { pascalCase } from 'change-case';
 const spinner = ora({ hideCursor: false });
 
 /**
+ * @var {array} ALL_COMPONENTS Cached list of components
+ * @see getAllComponents
+ */
+let ALL_COMPONENTS;
+
+/**
+ * @var {array} EXPORTED_COMPONENTS Cached list of exported components
+ * @see getExportsListFromFileSystem
+ */
+let EXPORTED_COMPONENTS;
+
+/**
  * Sort function, used to sort components by name
  * @param {Object} a Component A
  * @param {Object} b Component B
@@ -134,12 +146,17 @@ export const createHeader = framework => `
  * @param {boolean} warn Show warning messages when skipping an entry?
  */
 export const getExportsListFromFileSystem = async (warn = false) => {
+  // Make sure to use the cache when calling the function again
+  if (EXPORTED_COMPONENTS) {
+    return EXPORTED_COMPONENTS;
+  }
+
   const componentsDir = getPath('../src/components');
 
   // Only treat components as available if there is a COMPONENTNAME.component.ts!
   const foundComponents = await globby(`${componentsDir}/**/*.component.ts`);
 
-  return foundComponents
+  EXPORTED_COMPONENTS = foundComponents
     .sort()
     .map(c => c.split('/').at(-1))
     .map(c => c.replace(/\.component\.ts$/, ''))
@@ -163,6 +180,8 @@ export const getExportsListFromFileSystem = async (warn = false) => {
 
       return available;
     });
+
+  return EXPORTED_COMPONENTS;
 };
 
 /**
@@ -171,6 +190,11 @@ export const getExportsListFromFileSystem = async (warn = false) => {
  * @returns {array} List of components
  */
 export const getAllComponents = async (metadata) => {
+  // Make sure to use the cache when calling the function again
+  if (ALL_COMPONENTS) {
+    return ALL_COMPONENTS;
+  }
+
   const allComponents = [];
 
   const exportedComponents = await getExportsListFromFileSystem(false);
@@ -190,9 +214,9 @@ export const getAllComponents = async (metadata) => {
   });
 
   // Make sure to always sort alphabetically as this will otherwise trigger bad effects
-  const sortedComponents = [...allComponents].sort(sortByComponentName);
+  ALL_COMPONENTS = [...allComponents].sort(sortByComponentName);
 
-  return sortedComponents;
+  return ALL_COMPONENTS;
 };
 
 /**

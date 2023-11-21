@@ -10,6 +10,7 @@ import {
   vendorCustomElementsManifest,
   vendorInput,
   vendorTextarea,
+  vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 
 /**

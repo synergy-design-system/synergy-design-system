@@ -158,7 +158,7 @@ export const getExportsListFromFileSystem = async (warn = false) => {
 
       // Make sure to warn user if it seems we missed an export
       if (!available && warn) {
-        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentName} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
+        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
       }
 
       return available;

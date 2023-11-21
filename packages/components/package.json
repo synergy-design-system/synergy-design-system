@@ -89,7 +89,6 @@
     "jsdom": "^22.1.0",
     "ng-packagr": "^17.0.0",
     "ora": "^7.0.1",
-    "pascal-case": "^4.0.0",
     "prettier": "^3.0.3",
     "remark-parse": "^11.0.0",
     "semantic-release": "^19.0.5",

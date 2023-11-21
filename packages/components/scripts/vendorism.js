@@ -5,7 +5,12 @@ import commandLineArgs from 'command-line-args';
 import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
-import { vendorButton, vendorInput, vendorTextarea } from './vendorism/custom/index.js';
+import {
+  vendorButton,
+  vendorCustomElementsManifest,
+  vendorInput,
+  vendorTextarea,
+} from './vendorism/custom/index.js';
 
 /**
  * List of components. Add a component name here to make it available to the outside
@@ -162,22 +167,6 @@ const config = {
           path,
         };
       },
-      // allow unknown command line args in `custom-elements-manifest.config.js`
-      // as otherwise commandLineArgs breaks when we start it from docs
-      (path, content) => {
-        if (path.includes('custom-elements-manifest.config.js')) {
-          return {
-            content: content.replace(`{ name: 'outdir', type: String }
-]);`, `{ name: 'outdir', type: String }
-], { partial: true })`),
-            path,
-          };
-        }
-        return {
-          content,
-          path,
-        };
-      },
       // add custom styles to the end of `${component}.styles.ts`
       (path, content) => {
         let newContent;
@@ -211,6 +200,7 @@ import customStyles from './${component}.custom.styles.js';`,
       },
       // specialized customizations
       vendorButton,
+      vendorCustomElementsManifest,
       vendorInput,
       vendorTextarea,
     ],

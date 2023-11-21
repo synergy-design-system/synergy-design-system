@@ -809,13 +809,35 @@
       }
     },
     "tag": {
-      "description": {
-        "value": "Tags are used as labels to organize things or to indicate a selection.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tags are used as labels to organize things or to indicate a selection.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Tag",
-        "type": "text"
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a tab’s size.",
+          "type": "text"
+        }
+      },
+      "removable": {
+        "title": {
+          "value": "Removable",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the removable attribute to add a remove button to the tag.",
+          "type": "text"
+        }
       }
     },
     "textarea": {

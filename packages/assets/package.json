@@ -22,9 +22,18 @@
     "svgo": "^3.0.2"
   },
   "exports": {
+    ".": {
+      "types": "./src/default-icons.d.ts",
+      "import": "./src/default-icons.js"
+    },
     "./icons/*": "./src/icons/*",
-    "./logos/*": "./src/logos/*"
+    "./logos/*": "./src/logos/*",
+    "./default-icons.js": {
+      "types": "./src/default-icons.js",
+      "import": "./src/default-icons.js"
+    }
   },
+  "types": "./src/default-icons.d.ts",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
   "keywords": [
     "Static Assets",
@@ -38,6 +47,8 @@
   "files": [
     "src/logos",
     "src/icons",
+    "src/default-icons.d.ts",
+    "src/default-icons.js",
     "CHANGELOG.md"
   ],
   "license": "BSD-3-Clause",

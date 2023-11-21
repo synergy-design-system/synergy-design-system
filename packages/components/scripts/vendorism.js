@@ -6,14 +6,40 @@ import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import { vendorButton, vendorInput, vendorTextarea } from './vendorism/custom/index.js';
-import { components, events } from './config.js';
+
+/**
+ * List of components. Add a component name here to make it available to the outside
+ * @type {string[]}
+ */
+export const components = [
+  'input',
+  'button',
+  'textarea',
+].sort();
+
+/**
+ * List of events that should be created.
+ * Add a component name here to make it available to the outside
+ * @todo: Automate this depending on components!
+ * @type {string[]}
+ */
+export const events = [
+  'sl-blur',
+  'sl-focus',
+  'sl-invalid',
+  'sl-load',
+  'sl-error',
+  'sl-blur',
+  'sl-change',
+  'sl-clear',
+  'sl-input',
+];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
 
 const otherIncludes = [
   'custom-elements-manifest.config*',
   'web-test-runner.config.js',
-  '*prettier*',
   'tsconfig.json',
   'tsconfig.prod.json',
   'src/declaration.d.ts',

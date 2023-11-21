@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
 import url from 'url';
 import { exec } from 'child_process';
 import util from 'util';
 import { deleteAsync } from 'del';
+import { globby } from 'globby';
 import chalk from 'chalk';
 import ora from 'ora';
-import { components as exportedComponents } from '../config.js';
+import { pascalCase } from 'change-case';
 
 const spinner = ora({ hideCursor: false });
 
@@ -128,18 +130,57 @@ export const createHeader = framework => `
 `.trim();
 
 /**
+ * Get the complete list of exports from the file system
+ * @param {boolean} warn Show warning messages when skipping an entry?
+ */
+export const getExportsListFromFileSystem = async (warn = false) => {
+  const componentsDir = getPath('../src/components');
+
+  // Only treat components as available if there is a COMPONENTNAME.component.ts!
+  const foundComponents = await globby(`${componentsDir}/**/*.component.ts`);
+
+  return foundComponents
+    .sort()
+    .map(c => c.split('/').at(-1))
+    .map(c => c.replace(/\.component\.ts$/, ''))
+    .map(c => ({
+      componentAbsolutePath: path.join(
+        componentsDir,
+        c,
+        `${c}.ts`,
+      ),
+      componentClass: pascalCase(`Syn-${c}`),
+      componentImportPath: path.join('components', c, `${c}.js`),
+      componentName: c,
+    }))
+    .filter(c => {
+      const available = fsSync.existsSync(c.componentAbsolutePath);
+
+      // Make sure to warn user if it seems we missed an export
+      if (!available && warn) {
+        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentName} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
+      }
+
+      return available;
+    });
+};
+
+/**
  * Get all available components out of the metadata
  * @param {object} metadata Metadata, usually from components.json
  * @returns {array} List of components
  */
-export const getAllComponents = metadata => {
+export const getAllComponents = async (metadata) => {
   const allComponents = [];
+
+  const exportedComponents = await getExportsListFromFileSystem(false);
+  const exportedComponentsWithoutPrefix = exportedComponents.map(c => c.componentName);
 
   metadata.modules.forEach(module => {
     module.declarations?.forEach(declaration => {
       if (declaration.customElement) {
         const component = declaration;
-        if (component && exportedComponents.includes(component.tagNameWithoutPrefix)) {
+        if (component && exportedComponentsWithoutPrefix.includes(component.tagNameWithoutPrefix)) {
           allComponents.push(Object.assign(component, {
             path: module.path,
           }));

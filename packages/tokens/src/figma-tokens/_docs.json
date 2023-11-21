@@ -323,13 +323,45 @@
       }
     },
     "icon-button": {
-      "description": {
-        "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Icon Button",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Icon Button",
-        "type": "text"
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Icon buttons inherit their parent element’s font-size.",
+          "type": "text"
+        }
+      },
+      "colors": {
+        "title": {
+          "value": "Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "Icon buttons are designed to have a uniform appearance, so their color is not inherited. However, you can still customize them by styling the base part.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable the icon button.",
+          "type": "text"
+        }
       }
     },
     "icon": {

@@ -347,6 +347,9 @@ importers:
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
+      change-case:
+        specifier: ^4.1.2
+        version: 4.1.2
       command-line-args:
         specifier: ^5.2.1
         version: 5.2.1
@@ -401,9 +404,6 @@ importers:
       ora:
         specifier: ^7.0.1
         version: 7.0.1
-      pascal-case:
-        specifier: ^4.0.0
-        version: 4.0.0
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -14429,6 +14429,7 @@ packages:
   /make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dependencies:
       pify: 4.0.1
       semver: 5.7.2
@@ -15221,6 +15222,7 @@ packages:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
     engines: {node: '>=4'}
     hasBin: true
+    requiresBuild: true
     dev: true
 
   /mime@2.5.2:
@@ -15581,11 +15583,6 @@ packages:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.6.2
-
-  /no-case@4.0.0:
-    resolution: {integrity: sha512-WmS3EUGw+vXHlTgiUPi3NzbZNwH6+uGX0QLGgqG+aFSJ5rkX/Ee0nuwHBJfZTfQwwR8lGO819NEIwQ7CGhkdEQ==}
-    deprecated: Use `change-case`
-    dev: true
 
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
@@ -16331,13 +16328,6 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.6.2
-
-  /pascal-case@4.0.0:
-    resolution: {integrity: sha512-DPrSBfN1ivlJ5WwTdcBfCfmOHZXjaeW+b8DMHXcUWiR8wmO92T6N8elBsJj/v3g+INObw8Zx/q6eFAjA1w071Q==}
-    deprecated: Use `change-case`
-    dependencies:
-      no-case: 4.0.0
-    dev: true
 
   /path-case@3.0.4:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}

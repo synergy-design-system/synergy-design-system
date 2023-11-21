@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { job, ucFirstLetter } from './shared.js';
-import { components } from '../config.js';
+import { getExportsListFromFileSystem, job } from './shared.js';
 
 /**
  * This function will create the src/synergy.ts file out of available components
@@ -9,11 +8,12 @@ import { components } from '../config.js';
 export const runCreateExports = job('Creating component exports in src/synergy.ts...', async (componentsDir) => {
   const synergyMainFile = path.join(componentsDir, 'src/synergy.ts');
 
+  const foundComponents = await getExportsListFromFileSystem(true);
+
   // Get the export list for of all components
-  // and write them out in alphabetical order
-  const exportList = [...components]
-    .sort()
-    .map(c => `export { default as Syn${ucFirstLetter(c)} } from './components/${c}/${c}.js';`);
+  const exportList = foundComponents.map(
+    c => `export { default as ${c.componentClass} } from './${c.componentImportPath}';`,
+  );
 
   const otherExports = `
 // Utilities

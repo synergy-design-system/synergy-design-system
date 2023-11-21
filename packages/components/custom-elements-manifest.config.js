@@ -8,7 +8,7 @@ import * as path from 'path';
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 import { parse } from 'comment-parser';
-import { pascalCase } from 'pascal-case';
+import { pascalCase } from 'change-case';
 import commandLineArgs from 'command-line-args';
 import fs from 'fs';
 

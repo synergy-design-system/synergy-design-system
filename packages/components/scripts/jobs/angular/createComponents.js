@@ -79,7 +79,7 @@ const getMethodInputs = (component, members = []) => members
 
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
-  const components = getAllComponents(metadata);
+  const components = await getAllComponents(metadata);
 
   const index = [];
 

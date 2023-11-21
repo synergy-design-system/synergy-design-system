@@ -4,6 +4,6 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 export { SynButtonComponent } from './button.component';
-export { SynCheckboxComponent } from './checkbox.component';
+export { SynIconComponent } from './icon.component';
 export { SynInputComponent } from './input.component';
 export { SynTextareaComponent } from './textarea.component';

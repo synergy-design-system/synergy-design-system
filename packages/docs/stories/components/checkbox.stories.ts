@@ -13,16 +13,25 @@ const { args, argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
 const { generateTemplate } = storybookTemplate('syn-checkbox');
 
+const generateStoryDescription = (attributeName: string = '') => {
+  const story = attributeName
+    ? (docsTokens?.components?.checkbox as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description'
+    : (docsTokens?.components?.checkbox as Record<string, any>)?.description?.value ?? 'No Description';
+  return {
+    story,
+  }
+};
+
 const meta: Meta = {
   component: 'checkbox',
-  args,
+  args: overrideArgs([
+    { name: 'default', type: 'slot', value: 'Checkbox' }
+  ]),
   argTypes,
   title: 'Components/syn-checkbox',
   parameters: {
     docs: {
-      description: {
-        component: docsTokens?.components?.['checkbox']?.default?.description?.value ?? 'No Description',
-      },
+      description: generateStoryDescription(),
     }
   }
 };
@@ -36,9 +45,7 @@ export const Default = {
   },
   parameters: {
     docs: {
-      description: {
-        story: docsTokens?.components?.['checkbox']?.default?.description?.value ?? 'No Description',
-      }
+      description: generateStoryDescription(),
     }
   }
 } as Story;
@@ -82,10 +89,9 @@ export const Sizes: Story = {
 export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
-      const checkbox = canvasElement.querySelector('syn-checkbox');
       const button = canvasElement.querySelector('button');
 
-      await waitUntil(() => checkbox?.shadowRoot?.querySelector('input'));
+      await waitUntil(() => customElements.whenDefined('syn-checkbox'));
 
       if (button) {
         await userEvent.click(button);
@@ -96,9 +102,9 @@ export const CustomValidity: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-      <syn-checkbox>Check me</syn-checkbox>
+      <syn-checkbox name="checked" value="on">Check me</syn-checkbox>
       <br />
-      <button size="medium" type="submit">Submit</button>
+      <button type="submit">hello</button>
     </form>
     <style>
     form {
@@ -108,7 +114,7 @@ export const CustomValidity: Story = {
 
     button {
       margin-top: 1rem;
-      align-self: flex-end;
+      align-self: flex-start;
       padding: 0.5rem 1rem;
       min-width: 5%;
     }

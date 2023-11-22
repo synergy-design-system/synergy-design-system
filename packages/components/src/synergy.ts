@@ -5,7 +5,7 @@
 
 // Components
 export { default as SynButton } from './components/button/button.js';
-// export { default as SynButton-group } from './components/button-group/button-group.js';
+export { default as SynIcon } from './components/icon/icon.js';
 export { default as SynInput } from './components/input/input.js';
 export { default as SynRadio } from './components/radio/radio.js';
 // export { default as SynRadio-button } from './components/radio-button/radio-button.js';

@@ -1,15 +1,29 @@
 /* eslint-disable no-console */
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
 import url from 'url';
 import { exec } from 'child_process';
 import util from 'util';
 import { deleteAsync } from 'del';
+import { globby } from 'globby';
 import chalk from 'chalk';
 import ora from 'ora';
-import { components as exportedComponents } from '../config.js';
+import { pascalCase } from 'change-case';
 
 const spinner = ora({ hideCursor: false });
+
+/**
+ * @var {array} ALL_COMPONENTS Cached list of components
+ * @see getAllComponents
+ */
+let ALL_COMPONENTS;
+
+/**
+ * @var {array} EXPORTED_COMPONENTS Cached list of exported components
+ * @see getExportsListFromFileSystem
+ */
+let EXPORTED_COMPONENTS;
 
 /**
  * Sort function, used to sort components by name
@@ -128,18 +142,69 @@ export const createHeader = framework => `
 `.trim();
 
 /**
+ * Get the complete list of exports from the file system
+ * @param {boolean} warn Show warning messages when skipping an entry?
+ */
+export const getExportsListFromFileSystem = async (warn = false) => {
+  // Make sure to use the cache when calling the function again
+  if (EXPORTED_COMPONENTS) {
+    return EXPORTED_COMPONENTS;
+  }
+
+  const componentsDir = getPath('../src/components');
+
+  // Only treat components as available if there is a COMPONENTNAME.component.ts!
+  const foundComponents = await globby(`${componentsDir}/**/*.component.ts`);
+
+  EXPORTED_COMPONENTS = foundComponents
+    .sort()
+    .map(c => c.split('/').at(-1))
+    .map(c => c.replace(/\.component\.ts$/, ''))
+    .map(c => ({
+      componentAbsolutePath: path.join(
+        componentsDir,
+        c,
+        `${c}.ts`,
+      ),
+      componentClass: pascalCase(`Syn-${c}`),
+      componentImportPath: path.join('components', c, `${c}.js`),
+      componentName: c,
+    }))
+    .filter(c => {
+      const available = fsSync.existsSync(c.componentAbsolutePath);
+
+      // Make sure to warn user if it seems we missed an export
+      if (!available && warn) {
+        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
+      }
+
+      return available;
+    });
+
+  return EXPORTED_COMPONENTS;
+};
+
+/**
  * Get all available components out of the metadata
  * @param {object} metadata Metadata, usually from components.json
  * @returns {array} List of components
  */
-export const getAllComponents = metadata => {
+export const getAllComponents = async (metadata) => {
+  // Make sure to use the cache when calling the function again
+  if (ALL_COMPONENTS) {
+    return ALL_COMPONENTS;
+  }
+
   const allComponents = [];
+
+  const exportedComponents = await getExportsListFromFileSystem(false);
+  const exportedComponentsWithoutPrefix = exportedComponents.map(c => c.componentName);
 
   metadata.modules.forEach(module => {
     module.declarations?.forEach(declaration => {
       if (declaration.customElement) {
         const component = declaration;
-        if (component && exportedComponents.includes(component.tagNameWithoutPrefix)) {
+        if (component && exportedComponentsWithoutPrefix.includes(component.tagNameWithoutPrefix)) {
           allComponents.push(Object.assign(component, {
             path: module.path,
           }));
@@ -149,9 +214,9 @@ export const getAllComponents = metadata => {
   });
 
   // Make sure to always sort alphabetically as this will otherwise trigger bad effects
-  const sortedComponents = [...allComponents].sort(sortByComponentName);
+  ALL_COMPONENTS = [...allComponents].sort(sortByComponentName);
 
-  return sortedComponents;
+  return ALL_COMPONENTS;
 };
 
 /**

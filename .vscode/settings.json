@@ -41,7 +41,6 @@
         "packages/components/src/events/syn-clear.ts": true,
         "packages/components/src/events/syn-input.ts": true,
         "packages/components/custom-elements-manifest.config.js": true,
-        "packages/components/prettier.config.js": true,
         "packages/components/src/synergy-autoloader.ts": true,
         "packages/components/src/utilities/form.ts": true,
         "packages/components/src/components/button/button.component.ts": true,

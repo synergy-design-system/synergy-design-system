@@ -5,15 +5,46 @@ import commandLineArgs from 'command-line-args';
 import { eject, setSource, setTarget } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
-import { vendorButton, vendorInput, vendorTextarea } from './vendorism/custom/index.js';
-import { components, events } from './config.js';
+import {
+  vendorButton,
+  vendorCustomElementsManifest,
+  vendorInput,
+  vendorTextarea,
+} from './vendorism/custom/index.js';
+
+/**
+ * List of components that should be vendored.
+ * @type {string[]}
+ */
+export const components = [
+  'input',
+  'button',
+  'textarea',
+].sort();
+
+/**
+ * List of events that should be vendored.
+ * Add a component name here to make it available to the outside
+ * @todo: Automate this depending on components!
+ * @type {string[]}
+ */
+export const events = [
+  'sl-blur',
+  'sl-focus',
+  'sl-invalid',
+  'sl-load',
+  'sl-error',
+  'sl-blur',
+  'sl-change',
+  'sl-clear',
+  'sl-input',
+];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
 
 const otherIncludes = [
   'custom-elements-manifest.config*',
   'web-test-runner.config.js',
-  '*prettier*',
   'tsconfig.json',
   'tsconfig.prod.json',
   'src/declaration.d.ts',
@@ -136,22 +167,6 @@ const config = {
           path,
         };
       },
-      // allow unknown command line args in `custom-elements-manifest.config.js`
-      // as otherwise commandLineArgs breaks when we start it from docs
-      (path, content) => {
-        if (path.includes('custom-elements-manifest.config.js')) {
-          return {
-            content: content.replace(`{ name: 'outdir', type: String }
-]);`, `{ name: 'outdir', type: String }
-], { partial: true })`),
-            path,
-          };
-        }
-        return {
-          content,
-          path,
-        };
-      },
       // add custom styles to the end of `${component}.styles.ts`
       (path, content) => {
         let newContent;
@@ -185,6 +200,7 @@ import customStyles from './${component}.custom.styles.js';`,
       },
       // specialized customizations
       vendorButton,
+      vendorCustomElementsManifest,
       vendorInput,
       vendorTextarea,
     ],

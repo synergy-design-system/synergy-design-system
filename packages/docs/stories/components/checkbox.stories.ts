@@ -13,10 +13,8 @@ const { args, argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
 const { generateTemplate } = storybookTemplate('syn-checkbox');
 
-const generateStoryDescription = (attributeName: string = '') => {
-  const story = attributeName
-    ? (docsTokens?.components?.checkbox as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description'
-    : (docsTokens?.components?.checkbox as Record<string, any>)?.description?.value ?? 'No Description';
+const generateStoryDescription = (attributeName: string) => {
+  const story = (docsTokens?.components?.checkbox as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description';
   return {
     story,
   }
@@ -31,7 +29,7 @@ const meta: Meta = {
   title: 'Components/syn-checkbox',
   parameters: {
     docs: {
-      description: generateStoryDescription(),
+      description: generateStoryDescription('default'),
     }
   }
 };
@@ -45,36 +43,38 @@ export const Default = {
   },
   parameters: {
     docs: {
-      description: generateStoryDescription(),
+      description: generateStoryDescription('default'),
     }
   }
 } as Story;
 
-
-/**
- * Use the checked attribute to activate the checkbox.
- */
 export const Checked: Story = {
   render: () => html`<syn-checkbox checked>Checked</syn-checkbox>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('checked'),
+    }
+  }
 };
 
-/**
- * Use the indeterminate attribute to make the checkbox indeterminate.
- */
 export const Indeterminate: Story = {
   render: () => html`<syn-checkbox indeterminate>Indeterminate</syn-checkbox>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('indeterminate'),
+    }
+  }
 };
 
-/**
- * Use the disabled attribute to disable the checkbox.
- */
 export const Disabled: Story = {
   render: () => html`<syn-checkbox disabled>Disabled</syn-checkbox>`,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('disabled'),
+    }
+  }
 };
 
-/**
- * Use the size attribute to change a checkbox's size.
- */
 export const Sizes: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 1rem;">
@@ -83,11 +83,13 @@ export const Sizes: Story = {
       <syn-checkbox size="large">Large</syn-checkbox>
     </div>
   `,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('sizes'),
+    }
+  }
 };
 
-/**
- * Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.
- */
 export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
@@ -145,4 +147,9 @@ export const CustomValidity: Story = {
       });
     </script>
   `,
+  parameters: {
+    docs: {
+      description: generateStoryDescription('validity'),
+    }
+  },
 };

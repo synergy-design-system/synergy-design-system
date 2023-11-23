@@ -12,6 +12,10 @@ const { args, argTypes } = storybookDefaults('syn-radio');
 const { overrideArgs } = storybookHelpers('syn-radio');
 const { generateTemplate } = storybookTemplate('syn-radio');
 
+const generateStoryDescription = (attributeName: string) => ({
+  story: (docsTokens?.components?.radio as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description',
+});
+
 const meta: Meta = {
   component: 'radio',
   args,
@@ -41,34 +45,11 @@ export const Default = {
 } as Story;
 
 /**
- * To set the initial value and checked state,
- * use the value attribute on the containing radio group.
- */
-export const InitialValue: Story = {
-  render: () => html`<radio-group label="Select an option" name="a" value="3">
-  <syn-radio value="1">Option 1</syn-radio>
-  <syn-radio value="2">Option 2</syn-radio>
-  <syn-radio value="3">Option 3</syn-radio>
-</radio-group>`,
-};
-
-/**
  * Use the disabled attribute to disable a radio.
  */
 export const Disabled: Story = {
   render: () => html`
-  <form>
-  <legend>Select an option</legend>
-    <syn-radio value="1">Option 1</syn-radio>
-    <syn-radio value="2" disabled>Option 2</syn-radio>
-    <syn-radio value="3">Option 3</syn-radio>
-  </form>
-  <style>
-  legend {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  </style>`,
+    <syn-radio value="1" disabled>Option</syn-radio>`,
 };
 
 export const Focus: Story = {
@@ -79,37 +60,50 @@ export const Focus: Story = {
     }
   },
   render: () => html`
-    <syn-radio value="1">Option 1</syn-radio>`,
+    <syn-radio value="1">Option</syn-radio>`,
 };
 
 export const Invalid: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    try {
+      const radioGroup = canvasElement.querySelector('syn-radio-group');
+      const radio = canvasElement.querySelector('syn-radio');
+      const button = canvasElement.querySelector('button');
+
+      await waitUntil(() => radioGroup?.shadowRoot?.querySelector('fieldset'));
+
+      if (button instanceof HTMLButtonElement && radio) {
+        await userEvent.click(button);
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
   render: () => html`
   <form>
-  <legend>Select an option</legend>
-    <syn-radio value="1">Option 1</syn-radio>
-    <syn-radio value="2">Option 2</syn-radio>
-    <syn-radio value="3">Option 3</syn-radio>
+    <syn-radio-group required>
+      <syn-radio value="1">Option</syn-radio>
+    </syn-radio-group>
+    <button size="medium" type="submit">Submit</button>
   </form>
   <style>
-  legend {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
+    form {
+    display: flex;
+    flex-direction: column;
+    }
+
+    button {
+      margin-top: 1rem;
+      align-self: flex-end;
+      padding: 0.5rem 1rem;
+      min-width: 5%;
+    }
   </style>`,
 };
 
 export const Sizes: Story = {
   render: () => html`
-  <form>
-  <legend>Select an option</legend>
     <syn-radio value="1" size="small">Option 1</syn-radio>
     <syn-radio value="2" size="medium">Option 2</syn-radio>
-    <syn-radio value="3" size="large">Option 3</syn-radio>
-  </form>
-  <style>
-  legend {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  </style>`,
+    <syn-radio value="3" size="large">Option 3</syn-radio>`,
 };

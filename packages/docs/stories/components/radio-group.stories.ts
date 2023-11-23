@@ -28,7 +28,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => generateTemplate({ args }),
   parameters: {
     docs: {
       description: {
@@ -36,29 +35,26 @@ export const Default = {
       },
     },
   },
+  render: (args: any) => generateTemplate({ args }),
 } as Story;
+
+export const Label: Story = {
+  render: () => html`<syn-radio-group label="This is a label">
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
+</syn-radio-group>`,
+};
 
 /**
  * Add descriptive help text to a radio group with the help-text attribute.
  * For help texts that contain HTML, use the help-text slot instead.
  */
 export const HelpText: Story = {
-  render: () => html`<syn-radio-group label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
-  <syn-radio value="1">Option 1</syn-radio>
-  <syn-radio value="2">Option 2</syn-radio>
-  <syn-radio value="3">Option 3</syn-radio>
-</syn-radio-group>`,
-};
-
-/**
- *  offer an alternate way to display radio controls.
- * In this case, an internal  is used to group the buttons into a single, cohesive control.
- */
-export const RadioButtons: Story = {
-  render: () => html`<syn-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2">Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
+  render: () => html`<syn-radio-group label="This is a label" help-text="This is the help-text" name="a" value="1">
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>`,
 };
 

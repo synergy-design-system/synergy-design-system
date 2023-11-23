@@ -6,6 +6,10 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
+ :host([data-user-invalid]) .radio__control {
+  border-color: var(--syn-input-border-color-focus-error);
+  }
+
   /*
  * Size modifiers
  */

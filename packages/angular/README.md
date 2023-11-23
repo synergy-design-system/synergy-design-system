@@ -2,7 +2,7 @@
 
 This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
-> We are currently supporting Angular versions 16 and 17.
+> We are currently supporting Angular version 17.
 
 ## Getting started
 
@@ -15,10 +15,6 @@ Run the following steps to install the required packages.
 npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
 
 # If not already installed, install angulars peer dependencies
-
-# Install step for angular@16
-npm install --save @angular/core@16 @angular/forms@16
-
 # Install step for angular@17
 npm install --save @angular/core@17 @angular/forms@17
 ```

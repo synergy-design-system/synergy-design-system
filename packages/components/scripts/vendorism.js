@@ -20,6 +20,7 @@ export const components = [
   'input',
   'button',
   'textarea',
+  'icon',
 ].sort();
 
 /**
@@ -51,6 +52,7 @@ const otherIncludes = [
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
   'src/utilities/form*',
+  'src/utilities/icon-library*',
   ...eventList,
 ];
 

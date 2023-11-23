@@ -18,12 +18,7 @@ const { generateTemplate } = storybookTemplate('syn-icon');
 
 const meta: Meta = {
   component: 'icon',
-  args: overrideArgs(
-    [
-      { name: 'name', type: 'attribute', value: 'bell' }
-    ],
-    args
-  ),
+  args,
   argTypes,
   title: 'Components/syn-icon',
   parameters: {

@@ -76,11 +76,13 @@ export const Disabled: Story = {
  * Use the size attribute to change a checkbox's size.
  */
 export const Sizes: Story = {
-  render: () => html`<syn-checkbox size="small">Small</syn-checkbox>
-<br />
-<syn-checkbox size="medium">Medium</syn-checkbox>
-<br />
-<syn-checkbox size="large">Large</syn-checkbox>`,
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <syn-checkbox size="small">Small</syn-checkbox>
+      <syn-checkbox size="medium">Medium</syn-checkbox>
+      <syn-checkbox size="large">Large</syn-checkbox>
+    </div>
+  `,
 };
 
 /**
@@ -104,7 +106,7 @@ export const CustomValidity: Story = {
     <form class="custom-validity">
       <syn-checkbox name="checked" value="on">Check me</syn-checkbox>
       <br />
-      <button type="submit">hello</button>
+      <button type="submit">Submit</button>
     </form>
     <style>
     form {

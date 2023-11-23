@@ -11,7 +11,7 @@ Thank you for taking your time to request a new feature for a component of the S
 Please make sure to read the existing documentation and confirm the functionality is not already provided by the given component.
 -->
 
-# Checklist
+# Checklist (for the issue creator)
 
 - [ ] I have looked at the documentation site and was not able to find the required feature.
 - [ ] I have looked into the Figma boards and was not able to find the required feature.
@@ -32,3 +32,11 @@ The Story should answer the following questions:
 - What is the application context?
 -->
 As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].
+
+
+# Acceptance criteria
+
+- [ ] All DoD items successfully completed
+<!--
+Add further specific criterias for the new feature.
+-->

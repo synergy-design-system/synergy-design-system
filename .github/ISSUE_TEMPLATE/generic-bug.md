@@ -39,7 +39,6 @@ If it is possible and meaningful please also consider to provide a screenshot or
 
 # Acceptance criteria
 
-- [ ] All DoD items sucessfully completed
 - [ ] All DoD items successfully completed
 <!--
 Add further specific criterias for the bug-fix.

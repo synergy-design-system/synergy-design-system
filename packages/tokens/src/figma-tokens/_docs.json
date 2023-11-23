@@ -213,13 +213,85 @@
       }
     },
     "checkbox": {
-      "description": {
-        "value": "Checkboxes allow the user to toggle an option on or off.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Checkboxes allow the user to toggle an option on or off.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Checkbox",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Checkbox",
-        "type": "text"
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the checked attribute to activate the checkbox.",
+          "type": "text"
+        }
+      },
+      "indeterminate": {
+        "title": {
+          "value": "Indeterminate",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the indeterminate attribute to make the checkbox indeterminate.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Checkbox has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable the checkbox.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a checkbox’s size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Checkbox is invalid. For example, if the check is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "validity": {
+        "title": {
+          "value": "Custom Validity",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
+        }
       }
     },
     "color-picker": {

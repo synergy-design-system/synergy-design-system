@@ -415,16 +415,6 @@
           "type": "text"
         }
       },
-      "colors": {
-        "title": {
-          "value": "Colors",
-          "type": "text"
-        },
-        "description": {
-          "value": "Icon buttons are designed to have a uniform appearance, so their color is not inherited. However, you can still customize them by styling the base part.",
-          "type": "text"
-        }
-      },
       "disabled": {
         "title": {
           "value": "Disabled",

@@ -51,28 +51,28 @@ export const Default = {
  */
 export const Colors: Story = {
   render: () => html`<div style="color: #4a90e2;">
-  <syn-icon name="exclamation-triangle"></syn-icon>
-  <syn-icon name="archive"></syn-icon>
-  <syn-icon name="battery-charging"></syn-icon>
-  <syn-icon name="bell"></syn-icon>
+  <syn-icon name="warning"></syn-icon>
+  <syn-icon name="inventory"></syn-icon>
+  <syn-icon name="battery_charging_full"></syn-icon>
+  <syn-icon name="notifications"></syn-icon>
 </div>
 <div style="color: #9013fe;">
-  <syn-icon name="clock"></syn-icon>
+  <syn-icon name="schedule"></syn-icon>
   <syn-icon name="cloud"></syn-icon>
   <syn-icon name="download"></syn-icon>
-  <syn-icon name="file-earmark"></syn-icon>
+  <syn-icon name="description"></syn-icon>
 </div>
 <div style="color: #417505;">
   <syn-icon name="flag"></syn-icon>
-  <syn-icon name="heart"></syn-icon>
+  <syn-icon name="favorite"></syn-icon>
   <syn-icon name="image"></syn-icon>
-  <syn-icon name="lightning"></syn-icon>
+  <syn-icon name="bolt"></syn-icon>
 </div>
 <div style="color: #f5a623;">
   <syn-icon name="mic"></syn-icon>
   <syn-icon name="search"></syn-icon>
-  <syn-icon name="star"></syn-icon>
-  <syn-icon name="trash"></syn-icon>
+  <syn-icon name="star_border"></syn-icon>
+  <syn-icon name="delete"></syn-icon>
 </div>`,
 };
 
@@ -81,22 +81,22 @@ export const Colors: Story = {
  */
 export const Sizing: Story = {
   render: () => html`<div style="font-size: 32px;">
-  <syn-icon name="exclamation-triangle"></syn-icon>
-  <syn-icon name="archive"></syn-icon>
-  <syn-icon name="battery-charging"></syn-icon>
-  <syn-icon name="bell"></syn-icon>
-  <syn-icon name="clock"></syn-icon>
+  <syn-icon name="warning"></syn-icon>
+  <syn-icon name="inventory"></syn-icon>
+  <syn-icon name="battery_charging_full"></syn-icon>
+  <syn-icon name="notifications"></syn-icon>
+  <syn-icon name="schedule"></syn-icon>
   <syn-icon name="cloud"></syn-icon>
   <syn-icon name="download"></syn-icon>
-  <syn-icon name="file-earmark"></syn-icon>
+  <syn-icon name="description"></syn-icon>
   <syn-icon name="flag"></syn-icon>
-  <syn-icon name="heart"></syn-icon>
+  <syn-icon name="favorite"></syn-icon>
   <syn-icon name="image"></syn-icon>
-  <syn-icon name="lightning"></syn-icon>
+  <syn-icon name="bolt"></syn-icon>
   <syn-icon name="mic"></syn-icon>
   <syn-icon name="search"></syn-icon>
-  <syn-icon name="star"></syn-icon>
-  <syn-icon name="trash"></syn-icon>
+  <syn-icon name="star_border"></syn-icon>
+  <syn-icon name="delete"></syn-icon>
 </div>`,
 };
 
@@ -104,12 +104,12 @@ export const Sizing: Story = {
  * For non-decorative icons, use the label attribute to announce it to assistive devices.
  */
 export const Labels: Story = {
-  render: () => html`<syn-icon name="star-fill" label="Add to favorites"></syn-icon>`,
+  render: () => html`<syn-icon name="star" label="Add to favorites"></syn-icon>`,
 };
 
 /**
  * Custom icons can be loaded individually with the src attribute. Only SVGs on a local or CORS-enabled endpoint are supported. If you're using more than one custom icon, it might make sense to register a .
  */
 export const CustomIcons: Story = {
-  render: () => html`<syn-icon src="https://synergy.style/assets/images/shoe.svg" style="font-size: 8rem;"></syn-icon>`,
+  render: () => html`<syn-icon src="/logo-claim.svg" style="font-size: 10rem;"></syn-icon>`,
 };

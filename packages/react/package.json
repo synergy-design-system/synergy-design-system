@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@lit/react": "^1.0.0",
-    "@synergy-design-system/components": "workspace:*"
+    "@synergy-design-system/components": "workspace:^"
   },
   "description": "React wrappers for the Synergy Design System",
   "exports": {

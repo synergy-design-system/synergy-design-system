@@ -26,8 +26,8 @@
   "peerDependencies": {
     "@angular/core": "^16.2.12",
     "@angular/forms": "^16.2.12",
-    "@synergy-design-system/components": "workspace:*",
-    "@synergy-design-system/tokens": "workspace:*"
+    "@synergy-design-system/components": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^"
   },
   "devDependencies": {
     "@angular/core": "^16.2.12",

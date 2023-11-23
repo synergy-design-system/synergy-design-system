@@ -10,21 +10,20 @@
 import '../../../components/src/components/icon/icon';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('syn-icon');
 const { overrideArgs } = storybookHelpers('syn-icon');
 const { generateTemplate } = storybookTemplate('syn-icon');
 
 const meta: Meta = {
   component: 'icon',
-  args,
+  args: overrideArgs({ type: 'attribute', value: 'notifications', name: 'name' }, args),
   argTypes,
   title: 'Components/syn-icon',
   parameters: {
     docs: {
       description: {
-        component: docsTokens?.components?.['icon']?.default?.description?.value ?? 'No Description',
+        component: generateStoryDescription('icon', 'default'),
       },
     }
   }
@@ -40,7 +39,7 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens?.components?.['icon']?.default?.description?.value ?? 'No Description',
+        story: generateStoryDescription('icon', 'default'),
       }
     }
   }

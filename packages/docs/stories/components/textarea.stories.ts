@@ -5,16 +5,11 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
-
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.textarea as any)?.[attributeName]?.description?.value ?? 'No Description',
-});
 
 const meta: Meta = {
   component: 'textarea',
@@ -22,7 +17,9 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        component: generateStoryDescription('textarea', 'default'),
+      },
     },
   },
   title: 'Components/syn-textarea',
@@ -34,7 +31,9 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('textarea', 'default'),
+      },
     },
   },
   render: (args: any) => generateTemplate({ args }),
@@ -43,7 +42,9 @@ export const Default = {
 export const Labels: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('labels'),
+      description: {
+        story: generateStoryDescription('textarea', 'labels'),
+      },
     },
   },
   render: () => html`<syn-textarea label="Comments"></syn-textarea>`,
@@ -52,7 +53,9 @@ export const Labels: Story = {
 export const HelpText: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('help-text'),
+      description: {
+        story: generateStoryDescription('textarea', 'help-text'),
+      },
     },
   },
   render: () => html`<syn-textarea label="Feedback" help-text="Please tell us what you think."> </syn-textarea>`,
@@ -61,7 +64,9 @@ export const HelpText: Story = {
 export const Rows: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('rows'),
+      description: {
+        story: generateStoryDescription('textarea', 'rows'),
+      },
     },
   },
   render: () => html`
@@ -78,7 +83,9 @@ export const Rows: Story = {
 export const Placeholders: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('placeholder'),
+      description: {
+        story: generateStoryDescription('textarea', 'placeholder'),
+      },
     },
   },
   render: () => html`<syn-textarea placeholder="Type something"></syn-textarea>`,
@@ -87,7 +94,9 @@ export const Placeholders: Story = {
 export const ReadonlyTextareas: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('readonly'),
+      description: {
+        story: generateStoryDescription('textarea', 'readonly'),
+      },
     },
   },
   render: () => html`<syn-textarea value="Read-only content"  readonly></syn-textarea>`,
@@ -117,7 +126,9 @@ export const Focus: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('textarea', 'disabled'),
+      },
     },
   },
   render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
@@ -126,7 +137,9 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('size'),
+      description: {
+        story: generateStoryDescription('textarea', 'size'),
+      },
     },
   },
   render: () => html`
@@ -186,7 +199,9 @@ export const Invalid: Story = {
 export const PreventResizing: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('resize'),
+      description: {
+        story: generateStoryDescription('textarea', 'resize'),
+      },
     },
   },
   render: () => html`<syn-textarea resize="none"></syn-textarea>`,
@@ -195,7 +210,9 @@ export const PreventResizing: Story = {
 export const ExpandWithContent: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('resize-auto'),
+      description: {
+        story: generateStoryDescription('textarea', 'resize-auto'),
+      },
     },
   },
   render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,

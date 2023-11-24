@@ -2,7 +2,7 @@
 
 Welcome to the home of the Synergy Design System (**SDS**) 🎨.
 
-> **Warning**! Documentation is currently work in progress and we will update it while providing the bits and pieces of packages as we see fit. A complete developer documentation will be part of [our way to version 1.0](https://github.com/orgs/SickDesignSystem/projects/2/views/11?sliceBy%5Bvalue%5D=Basic+Setup).
+> **Warning**! Documentation is currently work in progress and we will update it while providing the bits and pieces of packages as we see fit. A complete developer documentation will be part of [our way to version 1.0](https://github.com/orgs/synergy-design-system/projects/2/views/11?sliceBy%5Bvalue%5D=Basic+Setup).
 
 ---
 

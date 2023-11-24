@@ -24,7 +24,7 @@
   "exports": {
     ".": "./build/js/index.js"
   },
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets",
   "keywords": [
     "Static Assets",
     "SDS",
@@ -42,7 +42,7 @@
   "name": "@synergy-design-system/assets",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/assets"
   },
   "release": {

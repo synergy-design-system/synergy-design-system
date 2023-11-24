@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "description": "Angular wrappers for the Synergy Design System",
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/angular",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/angular",
   "keywords": [
     "Angular Web Component Wrapper",
     "Angular Components",
@@ -19,7 +19,7 @@
   "name": "@synergy-design-system/angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/angular"
   },
   "version": "1.0.0-main.13",

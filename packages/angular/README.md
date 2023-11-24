@@ -1,6 +1,6 @@
 # @synergy-design-system/angular
 
-This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
+This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 > We are currently supporting Angular version 17.
 
@@ -31,9 +31,7 @@ Include either light or dark theme in your application, for example in a newly i
       "architect": {
         "build": {
           "options": {
-            "styles": [
-              "@synergy-design-system/tokens/themes/light.css"
-            ]
+            "styles": ["@synergy-design-system/tokens/themes/light.css"]
           }
         }
       }
@@ -53,19 +51,14 @@ This library is providing an `NgModule` named `SynergyModule`, which takes care 
 
 ```typescript
 // src/app/app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { SynergyComponentsModule } from '@synergy-design-system/angular';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+import { SynergyComponentsModule } from "@synergy-design-system/angular";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    SynergyComponentsModule,
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, SynergyComponentsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
@@ -87,9 +80,7 @@ You will then be able to use the provided wrappers in the following way:
   (synInputEvent)="logMessage('onInput', $event)"
   required
 >
-  <span slot="label">
-    {{myLabel}}
-  </span>
+  <span slot="label"> {{myLabel}} </span>
 </syn-input>
 ```
 
@@ -109,19 +100,17 @@ To use the module, please proceed the following way:
 
 ```typescript
 // src/app/app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { ReactiveFormsModule } from "@angular/forms";
+import { AppComponent } from "./app.component";
 import {
   SynergyComponentsModule,
   SynergyFormsModule,
-} from '@synergy-design-system/angular';
+} from "@synergy-design-system/angular";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -146,9 +135,7 @@ You will then be able to use the provided wrappers in the following way:
   type="text"
   required
 >
-  <span slot="label">
-    {{myLabel}}
-  </span>
+  <span slot="label"> {{myLabel}} </span>
 </syn-input>
 ```
 

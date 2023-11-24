@@ -1,6 +1,6 @@
 # @synergy-design-system/react
 
-This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
+This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 ## Getting started
 
@@ -25,14 +25,14 @@ The components will not display correctly without the needed theme. Please inclu
 
 ```tsx
 // main.tsx
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { App } from './App';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
 
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/dist/themes/light.css';
+import "@synergy-design-system/tokens/dist/themes/light.css";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>,
@@ -44,7 +44,7 @@ createRoot(document.getElementById('root')!).render(
 You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a react component.
 
 ```tsx
-import { SynButton } from '../dist';
+import { SynButton } from "../dist";
 
 export const MyButton = () => (
   <SynButton type="button" variant="primary">
@@ -60,13 +60,13 @@ All events will be automatically set up to work without the need to attach event
 Just use them with the default react `onEVENT` prefix, where `EVENT` is the camelCased name of the event.
 
 ```tsx
-import { SynButton } from '../dist';
+import { SynButton } from "../dist";
 
 export const MyButton = () => (
   <SynButton
-    onSynBlur={e => console.log('button blur event', e)}
-    onSynFocus={e => console.log('button focus event', e)}
-    onSynInvalid={e => console.log('button flagged as invalid', e)}
+    onSynBlur={(e) => console.log("button blur event", e)}
+    onSynFocus={(e) => console.log("button focus event", e)}
+    onSynInvalid={(e) => console.log("button flagged as invalid", e)}
   >
     SynButton Example
   </SynButton>
@@ -79,7 +79,7 @@ export const MyButton = () => (
 
 To create a new version of this package, proceed in the following way:
 
-1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
+1. Check out the [Synergy Design System Repository](https://github.com/synergy-design-system/synergy-design-system).
 2. Run `pnpm i -r` to install all dependencies.
 3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
 4. Move to to `packages/_private/react-demo` and use `pnpm start` to spin up a local vite project using react and typescript to validate the build.

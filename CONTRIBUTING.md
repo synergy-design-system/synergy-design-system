@@ -18,7 +18,7 @@ Components must be optimized for accessibility. Please use tools like AXE or Dev
 
 ## Contribution workflow:
 
-If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/synergy/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes. 
+If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/synergy-design-system/synergy-design-system/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes.
 
 Please use the following message conventions for your commits:
 
@@ -26,13 +26,13 @@ Please use the following message conventions for your commits:
 
 where ICON and COMMIT PREFIX are one of the following:
 
-|  Icon  | Used for      | Commit Prefix | Description
-|:------:|:--------------|:--------------|:------------
-|   🐛   | Bugs          | Fix           | Used when a bug was fixed
-|   📚   | Documentation | Doc           | Used when adding or updating documentation
-|   ✨   | Features      | Feat          | Feature was added
-|   🚀   | Releases      | Rel           | Release was scheduled
-|   ⛔   | Removals      | Del           | Used when a feature was removed
+| Icon | Used for      | Commit Prefix | Description                                |
+| :--: | :------------ | :------------ | :----------------------------------------- |
+|  🐛  | Bugs          | Fix           | Used when a bug was fixed                  |
+|  📚  | Documentation | Doc           | Used when adding or updating documentation |
+|  ✨  | Features      | Feat          | Feature was added                          |
+|  🚀  | Releases      | Rel           | Release was scheduled                      |
+|  ⛔  | Removals      | Del           | Used when a feature was removed            |
 
 and PKG is the package in which changes are done:
 

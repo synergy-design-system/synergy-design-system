@@ -28,7 +28,7 @@
     "build",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/icons",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/icons",
   "keywords": [
     "Icons",
     "Material Icons",
@@ -43,7 +43,7 @@
   "name": "@synergy-design-system/icons",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/icons"
   },
   "scripts": {

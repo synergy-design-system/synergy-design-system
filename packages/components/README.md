@@ -18,7 +18,7 @@ npm install --save @synergy-design-system/components @synergy-design-system/toke
 
 ### 2. Load the design tokens
 
-The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/SickDesignSystem/synergy/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
+The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
 
 ---
 
@@ -36,17 +36,20 @@ To make all components available, just load the main package file. It will make 
 <!-- Example 1: Loading via script type module -->
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <div id="root">
-      <syn-button variant="text">Button</syn-button>
-      <syn-input></syn-input>
-    </div>
-    <!-- As we are loading all modules, syn-button and syn-input will render correctly -->
-    <script type="module" src="../node_modules/@synergy-design-system/components/dist/synergy.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div id="root">
+			<syn-button variant="text">Button</syn-button>
+			<syn-input></syn-input>
+		</div>
+		<!-- As we are loading all modules, syn-button and syn-input will render correctly -->
+		<script
+			type="module"
+			src="../node_modules/@synergy-design-system/components/dist/synergy.js"
+		></script>
+	</body>
 </html>
 ```
 
@@ -56,10 +59,10 @@ When using a build system, you should load the bundle in JavaScript or TypeScrip
 // main.ts
 
 // Do not forget to load the design tokens!
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
 // This will load synergy.js via the exports map
-import '@synergy-design-system/components';
+import "@synergy-design-system/components";
 ```
 
 #### Loading selected components only
@@ -70,17 +73,20 @@ Use this when you need complete control about which components are loaded. This 
 <!-- Example 1: Loading via script type module -->
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <div id="root">
-      <syn-button variant="text">Button</syn-button>
-      <syn-input></syn-input>
-    </div>
-    <!-- We are only loading the button, syn-input will render as an empty div! -->
-    <script type="module" src="../node_modules/@synergy-design-system/components/dist/components/button/button.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div id="root">
+			<syn-button variant="text">Button</syn-button>
+			<syn-input></syn-input>
+		</div>
+		<!-- We are only loading the button, syn-input will render as an empty div! -->
+		<script
+			type="module"
+			src="../node_modules/@synergy-design-system/components/dist/components/button/button.js"
+		></script>
+	</body>
 </html>
 ```
 
@@ -90,10 +96,10 @@ When using a build system, you may also load the bundle in JavaScript or TypeScr
 // main.ts
 
 // Do not forget to load the design tokens!
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
 // This will only load and define the button itself
-import '@synergy-design-system/components/components/button/button.js';
+import "@synergy-design-system/components/components/button/button.js";
 ```
 
 ---
@@ -106,25 +112,27 @@ The components are built using typescript and provide types for elements and eve
 // main.ts
 
 // Do not forget to load the design tokens!
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
 // Example 1: Load the type for syn-button from the root:
-import type { SynButton, SynInvalidEvent } from '@synergy-design-system/components';
+import type {
+	SynButton,
+	SynInvalidEvent,
+} from "@synergy-design-system/components";
 
 // Example 2: Load the type from the syn-button dir directly.
 // In this case you will have to load the event type from another file!
-import type { SynButton } from '@synergy-design-system/components/components/button/button';
-import type { SynInvalidEvent } from '@synergy-design-system/components/events/syn-invalid';
+import type { SynButton } from "@synergy-design-system/components/components/button/button";
+import type { SynInvalidEvent } from "@synergy-design-system/components/events/syn-invalid";
 
-document.addEventListener('load', () => {
-  const loadedSynButtons = document.querySelectorAll<SynButton>('syn-button');
+document.addEventListener("load", () => {
+	const loadedSynButtons = document.querySelectorAll<SynButton>("syn-button");
 
-  // Attach a syn-invalid event that is fired every time a button becomes invalid
-  Array
-    .from(loadedSynButtons) // Type: SynButton[]
-    .addEventListener('syn-invalid', (e: SynInvalidEvent) => {
-      console.log('Button is now invalid!', e);
-    });
+	// Attach a syn-invalid event that is fired every time a button becomes invalid
+	Array.from(loadedSynButtons) // Type: SynButton[]
+		.addEventListener("syn-invalid", (e: SynInvalidEvent) => {
+			console.log("Button is now invalid!", e);
+		});
 });
 ```
 

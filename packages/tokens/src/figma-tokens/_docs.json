@@ -434,6 +434,16 @@
           "value": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction.",
           "type": "text"
         }
+      },
+      "variant": {
+        "title": {
+          "value": "Variants",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Icon button can have two color variants, Primary or Neutral Color.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -1166,7 +1176,8 @@
           "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
           "type": "text"
         }
-      }
+      },
+      "type": "other"
     }
   },
   "frameworks": {

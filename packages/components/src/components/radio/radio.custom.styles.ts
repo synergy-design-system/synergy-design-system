@@ -6,8 +6,8 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
- :host([data-user-invalid]) .radio:not(.radio--checked, .radio--disabled) .radio__control {
-  border-color: var(--syn-input-border-color-focus-error);
+ :host([data-user-invalid]) .radio:not(.radio--checked):not(.radio--disabled) .radio__control {
+    border-color: var(--syn-input-border-color-focus-error);
   }
 
   /*

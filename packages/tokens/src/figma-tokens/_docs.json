@@ -435,9 +435,9 @@
           "type": "text"
         }
       },
-      "variant": {
+      "color": {
         "title": {
-          "value": "Variants",
+          "value": "Color",
           "type": "text"
         },
         "description": {
@@ -1128,14 +1128,8 @@
         }
       },
       "value": {
-        "title": {
-          "value": "Initial Value",
-          "type": "text"
-        },
-        "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-          "type": "text"
-        }
+        "title": "[object Object]",
+        "description": "[object Object]"
       },
       "focus": {
         "title": {

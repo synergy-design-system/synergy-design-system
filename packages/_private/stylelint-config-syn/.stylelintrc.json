@@ -15,6 +15,7 @@
       "declarations"
     ],
     "order/properties-alphabetical-order": true,
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?$"
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?$",
+    "stylelint-disable-next-line selector-not-notation": "simple"
   }
 }

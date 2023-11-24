@@ -9,9 +9,21 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error);
   }
 
-  /* Checked/indeterminate + hover */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__control:hover,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__control:hover {
+  /**
+   * Hover
+   * Applies the hover state to the whole component
+   */
+  .checkbox:not(.checkbox--checked):not(.checkbox--disabled):hover .checkbox__control {
+    background-color: var(--syn-input-background-color-hover);
+    border-color: var(--syn-input-border-color-hover);
+  }
+
+  /**
+   * Checked/indeterminate + hover
+   * Applies the hover state to the whole component
+   */
+  .checkbox.checkbox--checked:not(.checkbox--disabled):hover .checkbox__control,
+  .checkbox.checkbox--indeterminate:not(.checkbox--disabled):hover .checkbox__control {
     background-color: var(--syn-color-primary-900);
     border-color: var(--syn-color-primary-900);
   }

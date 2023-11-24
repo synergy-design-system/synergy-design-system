@@ -31,7 +31,9 @@ Include either light or dark theme in your application, for example in a newly i
       "architect": {
         "build": {
           "options": {
-            "styles": ["@synergy-design-system/tokens/themes/light.css"]
+            "styles": [
+              "@synergy-design-system/tokens/themes/light.css"
+            ]
           }
         }
       }
@@ -57,8 +59,13 @@ import { AppComponent } from "./app.component";
 import { SynergyComponentsModule } from "@synergy-design-system/angular";
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, SynergyComponentsModule],
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    SynergyComponentsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

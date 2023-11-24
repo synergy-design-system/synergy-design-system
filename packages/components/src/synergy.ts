@@ -6,6 +6,7 @@
 // Components
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
+export { default as SynCheckbox } from './components/checkbox/checkbox.js';
 export { default as SynIcon } from './components/icon/icon.js';
 export { default as SynInput } from './components/input/input.js';
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';

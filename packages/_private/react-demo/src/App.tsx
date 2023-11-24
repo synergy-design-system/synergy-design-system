@@ -1,4 +1,8 @@
-import { SynButton, SynInput } from '@synergy-design-system/react';
+import {
+  SynButton,
+  SynCheckbox,
+  SynInput,
+} from '@synergy-design-system/react';
 
 export const App = () => (
   <main>
@@ -18,14 +22,22 @@ export const App = () => (
           Here is the label
         </div>
       </SynInput>
+
       <SynInput
         label="here"
         value="other"
         name="checkme2"
       />
+
+      <div>
+        <SynCheckbox name="agree" required>
+          Agree to ToS
+        </SynCheckbox>
+      </div>
+
       <SynButton
         type="submit"
-        variant="primary"
+        variant="filled"
       >
         Submit
       </SynButton>

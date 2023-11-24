@@ -59,11 +59,6 @@ jobs:
     - name: Build
       run: pnpm build
 
-    # This is needed to make sure playwright finds the needed design tokens
-    # @see packages/components/web-test-runner.config.js
-    - name: Copy static assets for tests
-      run: mkdir -p packages/components/dist/themes && cp packages/tokens/dist/themes/light.css packages/components/dist/themes/light.css
-
     - name: Run Playwright tests
       run: pnpm test -r
       # @see https://github.com/microsoft/playwright/issues/6500

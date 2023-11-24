@@ -8,6 +8,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
   SynButtonComponent,
   SynButtonGroupComponent,
+  SynCheckboxComponent,
   SynIconComponent,
   SynInputComponent,
   SynRadioButtonComponent,
@@ -19,6 +20,7 @@ import {
 const components = [
   SynButtonComponent,
   SynButtonGroupComponent,
+  SynCheckboxComponent,
   SynIconComponent,
   SynInputComponent,
   SynRadioComponent,

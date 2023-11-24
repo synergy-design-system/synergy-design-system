@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.13](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.12...components/1.0.0-main.13) (2023-11-24)
+
+
+### Features
+
+* ✨ syn-checkbox ([#155](https://github.com/SickDesignSystem/synergy/issues/155)) ([aa336ce](https://github.com/SickDesignSystem/synergy/commit/aa336ceba43bd6b16b13c20c69e7103f73ef2481))
+
 # [@synergy-design-system/components-v1.0.0-main.12](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.11...components/1.0.0-main.12) (2023-11-20)
 
 

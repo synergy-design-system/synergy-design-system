@@ -13,46 +13,49 @@ const { overrideArgs } = storybookHelpers('syn-radio');
 const { generateTemplate } = storybookTemplate('syn-radio');
 
 const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.radio as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description',
+  story: (docsTokens?.components?.radio as Record<string, unknown>)?.[attributeName]?.description?.value ?? 'No Description',
 });
 
 const meta: Meta = {
   component: 'radio',
   args,
   argTypes,
-  title: 'Components/syn-radio',
   parameters: {
     docs: {
-      description: {
-        component: docsTokens?.components?.radio?.default?.description?.value ?? 'No Description',
-      },
+      description: generateStoryDescription('default'),
     },
   },
+  title: 'Components/syn-radio',
 };
 export default meta;
 
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => generateTemplate({ args }),
   parameters: {
     docs: {
-      description: {
-        story: docsTokens?.components?.radio?.default?.description?.value ?? 'No Description',
-      },
+      description: generateStoryDescription('default'),
     },
   },
+  render: (args: any) => generateTemplate({ args }),
 } as Story;
 
-/**
- * Use the disabled attribute to disable a radio.
- */
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('disabled'),
+    },
+  },
   render: () => html`
     <syn-radio value="1" disabled>Option</syn-radio>`,
 };
 
 export const Focus: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('focus'),
+    },
+  },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const radio = canvasElement.querySelector('syn-radio') as unknown as HTMLInputElement;
     if (radio) {
@@ -64,6 +67,11 @@ export const Focus: Story = {
 };
 
 export const Invalid: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('invalid'),
+    },
+  },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const radioGroup = canvasElement.querySelector('syn-radio-group');
@@ -102,8 +110,13 @@ export const Invalid: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('sizes'),
+    },
+  },
   render: () => html`
-    <syn-radio value="1" size="small">Option 1</syn-radio>
-    <syn-radio value="2" size="medium">Option 2</syn-radio>
-    <syn-radio value="3" size="large">Option 3</syn-radio>`,
+    <syn-radio value="1" size="small">Option</syn-radio>
+    <syn-radio value="2" size="medium">Option</syn-radio>
+    <syn-radio value="3" size="large">Option</syn-radio>`,
 };

@@ -9,6 +9,12 @@ labels: status/triage, enhancement
 Thank you for taking your time to request a new feature for the Synergy Design System.
 -->
 
+# Checklist (for the issue creator)
+
+- [ ] I have looked at the documentation site and was not able to find the required feature.
+- [ ] I have looked into the Figma boards and was not able to find the required feature.
+- [ ] I would be willing to provide a PR for this feature.
+
 # Story
 
 <!--
@@ -19,3 +25,10 @@ The Story should answer the following questions:
 - What is the application context?
 -->
 As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].
+
+# Acceptance criteria
+
+- [ ] All DoD items successfully completed
+<!--
+Add further specific criterias for the new feature.
+-->

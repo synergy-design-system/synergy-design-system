@@ -35,7 +35,7 @@ Are there particular areas of the code the reviewer should focus on?
 Please provide a summary of the tests affected by this work and any unique strategies employed in testing the features/fixes.
 -->
 
-## ✅ Checklist
+## ✅ DoD
 
 <!-- Please review the list and make sure every item is fullfilled. Place a check (x) for each fullfilled item. -->
 

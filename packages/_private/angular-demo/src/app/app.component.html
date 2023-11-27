@@ -46,7 +46,14 @@
       </span>
     </syn-input>
 
-    <syn-button type="submit" variant="default">hello</syn-button>
-    <button type="submit">hello</button>
+    <syn-checkbox
+      formControlName="agree"
+      name="agree"
+      [required]="true"
+    >
+      Agree to ToS
+    </syn-checkbox>
+
+    <syn-button type="submit" variant="filled">hello</syn-button>
   </form>
 </main>

@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@lit/react": "^1.0.0",
-    "@synergy-design-system/components": "workspace:*"
+    "@synergy-design-system/components": "workspace:^"
   },
   "description": "React wrappers for the Synergy Design System",
   "exports": {
@@ -40,7 +40,7 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.0.0-main.12",
+  "version": "1.0.0-main.13",
   "devDependencies": {
     "@types/react": "^18.2.31",
     "react": "^18.2.0"

@@ -17,7 +17,7 @@
 
 /* Single-line comment */
 
-.class-foo:not(a, div) {
+.class-foo:not(a):not(div) {
   margin: 0;
   top: calc(100% - 2rem);
 }

@@ -213,13 +213,85 @@
       }
     },
     "checkbox": {
-      "description": {
-        "value": "Checkboxes allow the user to toggle an option on or off.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Checkboxes allow the user to toggle an option on or off.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Checkbox",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Checkbox",
-        "type": "text"
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the checked attribute to activate the checkbox.",
+          "type": "text"
+        }
+      },
+      "indeterminate": {
+        "title": {
+          "value": "Indeterminate",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the indeterminate attribute to make the checkbox indeterminate.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Checkbox has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable the checkbox.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a checkbox’s size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Checkbox is invalid. For example, if the check is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "validity": {
+        "title": {
+          "value": "Custom Validity",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
+        }
       }
     },
     "color-picker": {
@@ -323,13 +395,45 @@
       }
     },
     "icon-button": {
-      "description": {
-        "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Icon Button",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Icon Button",
-        "type": "text"
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a icon-button size.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable the icon button.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -809,13 +913,35 @@
       }
     },
     "tag": {
-      "description": {
-        "value": "Tags are used as labels to organize things or to indicate a selection.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tags are used as labels to organize things or to indicate a selection.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Tag",
-        "type": "text"
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a tab’s size.",
+          "type": "text"
+        }
+      },
+      "removable": {
+        "title": {
+          "value": "Removable",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the removable attribute to add a remove button to the tag.",
+          "type": "text"
+        }
       }
     },
     "textarea": {
@@ -988,6 +1114,56 @@
         },
         "description": {
           "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
+          "type": "text"
+        }
+      },
+      "value": {
+        "title": {
+          "value": "Initial Value",
+          "type": "text"
+        },
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a radio.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the size attribute to the Radio Group to change the radios’ size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
           "type": "text"
         }
       }

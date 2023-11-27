@@ -13,6 +13,7 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {
     this.myForm = this.fb.group({
+      agree: false,
       name: '',
       test: '',
       pass: '',
@@ -28,7 +29,12 @@ export class AppComponent {
 
   clearDemo() {
     if (!window.confirm('Are you sure to reset this form?')) return;
-    this.myForm.setValue({ name: '', test: '', pass: '' });
+    this.myForm.setValue({
+      agree: false,
+      name: '',
+      test: '',
+      pass: '',
+    });
   }
 
   onSubmit(form: FormGroup) {
@@ -36,6 +42,7 @@ export class AppComponent {
     console.log('Name', form.value.name);
     console.log('test', form.value.test);
     console.log('pass', form.value.pass);
+    console.log('agree', form.value.agree);
     this.myLabel = `Label ${form.value.test}`;
   }
 }

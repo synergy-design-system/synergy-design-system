@@ -10,6 +10,7 @@ import {
   vendorCustomElementsManifest,
   vendorInput,
   vendorTextarea,
+  vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 
 /**
@@ -21,6 +22,7 @@ export const components = [
   'button',
   'textarea',
   'icon',
+  'checkbox',
 ].sort();
 
 /**
@@ -205,6 +207,7 @@ import customStyles from './${component}.custom.styles.js';`,
       vendorCustomElementsManifest,
       vendorInput,
       vendorTextarea,
+      vendorWebTestRunnerConfig,
     ],
   },
 };

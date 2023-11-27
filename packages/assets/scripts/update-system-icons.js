@@ -5,6 +5,13 @@ import { spinner } from '@clack/prompts';
 
 const s = spinner();
 
+/**
+ * Updates the system icons of a file with a start (// \*\*Start system icons\*\*) and
+ * an end marker (// \*\*End system icons\*\*).
+ *
+ * @param {string} svgDirPath - the directory path, where the svg`s are
+ * @param {string} outputFile - the output file, where the system icons should be updated
+ */
 export async function updateSystemIcons(svgDirPath, outputFilePath) {
   try {
     const files = await fs.readdir(svgDirPath);

@@ -55,6 +55,8 @@ async function fetchAssets() {
   let assets = await figma.getAssets();
   s.stop(`${assets.length} assets found`);
 
+  // All assets which start with an "_" will get filtered out.
+  // This can be used to document things in Figma, which should not appear in this assets package.
   assets = assets.filter(asset => !asset.name.startsWith('_'));
 
   // Step 2: Create PNGs

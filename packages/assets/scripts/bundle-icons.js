@@ -6,6 +6,13 @@ import { spinner } from '@clack/prompts';
 
 const s = spinner();
 
+/**
+ * Iterates over all svg`s in a directory to create a bundled js file and
+ * corresponding declaration file for them.
+ *
+ * @param {string} svgDirPath - the directory path, where the svg`s are
+ * @param {string} outputFile - the created output file
+ */
 export async function bundleIcons(svgDirPath, outputFile) {
   try {
     const dtsOutputFile = outputFile.replace('.js', '.d.ts');

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/icon/icon';

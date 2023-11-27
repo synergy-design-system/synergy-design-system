@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@lit/react": "^1.0.0",
+    "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/react": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*"
@@ -27,7 +28,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.0.2",
-    "vite": "^4.5.0"
+    "vite": "^4.5.0",
+    "vite-plugin-static-copy": "^1.0.0"
   },
   "description": "Sample Demo Project for using the Synergy Design System React Wrappers",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/_private/react-demo",

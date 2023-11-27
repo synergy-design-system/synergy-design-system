@@ -1,6 +1,7 @@
 import {
   SynButton,
   SynCheckbox,
+  SynIcon,
   SynInput,
 } from '@synergy-design-system/react';
 
@@ -39,6 +40,7 @@ export const App = () => (
         type="submit"
         variant="filled"
       >
+        <SynIcon name="send" style={{ marginRight: '10px' }} />
         Submit
       </SynButton>
     </form>

@@ -13,6 +13,9 @@ const { overrideArgs } = storybookHelpers('syn-icon');
 const { generateTemplate } = storybookTemplate('syn-icon');
 
 const iconDocumentation = `
+Icons are small standard symbols that are primarily used in screen design.
+Due to their intended use, the icons must be recognizable min size of 16 x 16 pixels.
+
 ## Libraries
 You can register additional icons to use with the <syn-icon> component through icon libraries.
 Icon files can exist locally or on a CORS-enabled endpoint (e.g. a CDN).
@@ -92,6 +95,26 @@ To display an icon, set the library and name attributes of an syn-icon element.
 <!-- This will show the icon located at /assets/icons/smile.svg -->
 <syn-icon library="my-icons" name="smile"></syn-icon>
 \`\`\`
+
+## Referencing Assets
+Most of the magic behind assets is handled internally by Synergy, but if you need to reference the base path for any reason, there is an exported function called getBasePath(). An optional string argument can be passed, allowing you to get the full path to any asset.
+
+\`\`\`html
+<script type="module">
+  import { getBasePath, setBasePath } from '@synergy-design-system/components';
+
+  setBasePath('/path/to/assets');
+
+  // ...
+
+  // Get the base path, e.g. /path/to/assets
+  const basePath = getBasePath();
+
+  // Get the path to an asset, e.g. /path/to/assets/file.ext
+  const assetPath = getBasePath('file.ext');
+</script>
+\`\`\`
+
 `;
 
 const meta: Meta = {

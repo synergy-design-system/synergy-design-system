@@ -131,54 +131,54 @@ export const PrefixAndSuffixIcons: Story = {
   },
   render: () => html`
   <syn-button size="small">
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button size="small">
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button size="small">
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
 
   <br/><br/>
 
   <syn-button>
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button>
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button>
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
 
   <br/><br/>
 
   <syn-button size="large">
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button size="large">
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button size="large">
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
   <style>

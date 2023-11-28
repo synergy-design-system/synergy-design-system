@@ -1,5 +1,5 @@
-/* eslint-disable import/no-relative-packages */
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { SynButton, SynTextarea } from '@synergy-design-system/components';
 import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
@@ -17,7 +17,6 @@ const generateStoryDescription = (attributeName: string) => ({
 });
 
 const meta: Meta = {
-  component: 'textarea',
   args,
   argTypes,
   parameters: {
@@ -99,8 +98,8 @@ export const Focus: Story = {
   args: {
     placeholder: 'This is in focus',
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const textarea = canvasElement.querySelector('syn-textarea') as SynTextarea;
     if (textarea) {
       textarea.focus();
     }
@@ -146,41 +145,51 @@ export const Invalid: Story = {
   parameters: { controls: { exclude: ['required'] } },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
-      const textarea = canvasElement.querySelector('syn-textarea');
-      const button = canvasElement.querySelector('button');
+      const form = canvasElement.querySelector('form');
 
-      await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
+      if (!form) {
+        return;
+      }
 
-      if (button) {
+      const textarea = form.querySelector('syn-textarea') as SynTextarea;
+      const button = form.querySelector('syn-button') as SynButton;
+
+      await waitUntil(() => Promise.allSettled([
+        customElements.whenDefined('syn-textarea'),
+        customElements.whenDefined('syn-button'),
+      ]));
+
+      if (button && textarea) {
         await userEvent.click(button);
+        button.click();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
   render: (args: any) => html`
-  <form>
-   ${generateTemplate({
+    <form class="custom-validity">
+  ${generateTemplate({
     args,
-    constants: [
-      { type: 'attribute', name: 'required', value: true },
-    ],
+    constants: [{
+      name: 'required',
+      type: 'attribute',
+      value: true,
+    }],
   })}
-    <button size="medium" type="submit">Submit</button>
-  </form>
-  <style>
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  button {
-    margin-top: 1rem;
-    align-self: flex-end;
-    padding: 0.5rem 1rem;
-    min-width: 5%;
-  }
-  </style>
-`,
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
 };
 
 export const PreventResizing: Story = {

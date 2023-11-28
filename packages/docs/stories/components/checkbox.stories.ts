@@ -95,8 +95,8 @@ export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-      const button: SynButton|null = canvasElement.querySelector('syn-button');
-      const checkbox: SynCheckbox|null = canvasElement.querySelector('syn-checkbox');
+      const button = canvasElement.querySelector('syn-button') as SynButton;
+      const checkbox = canvasElement.querySelector('syn-checkbox') as SynCheckbox;
       const errorMessage = "Don't forget to check me!";
 
       await waitUntil(() => Promise.allSettled([

@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:^"
+  },
+  "description": "Vue3 wrappers for the Synergy Design System",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components/*": "./dist/components/*"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/vue",
+  "keywords": [
+    "Vue Web Component Wrapper",
+    "Vue Components",
+    "Vue Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "@synergy-design-system/vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "devDependencies": {
+  }
+}

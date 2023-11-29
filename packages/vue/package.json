@@ -39,7 +39,6 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "0.1.0",
-  "devDependencies": {
-  }
+  "version": "1.0.0-main.13",
+  "devDependencies": {}
 }

@@ -6,3 +6,4 @@ export * from './esbuildComponents.js';
 export * from './prepare.js';
 export * from './react.js';
 export * from './tsc.js';
+export * from './vue.js';

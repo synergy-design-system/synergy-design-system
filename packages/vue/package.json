@@ -40,5 +40,7 @@
   },
   "type": "module",
   "version": "1.0.0-main.13",
-  "devDependencies": {}
+  "devDependencies": {
+    "vue": "^3.3.9"
+  }
 }

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as jobs from './vue/index.js';
-import { runAdjustPackageVersion } from './shared.js';
+import { createRunPrepare, runAdjustPackageVersion } from './shared.js';
 
 /**
  * Run all steps to create new react components
@@ -24,7 +24,7 @@ export const runCreateVueWrappers = async ({
   const componentDir = path.join(vuePackageDir, '/src/components');
 
   await runAdjustPackageVersion('Vue: Adjusting vue package.json version field...')(componentPackageDir, vuePackageDir);
-  // await createRunPrepare('React: Cleaning up artifacts...')(outDir, componentDir, distDir);
+  await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
   // await jobs.runCreateWrappers(metadata, outDir);
   // await jobs.runFormat(outDir, vuePackageDir);
   // await jobs.runEsBuild(distDir);

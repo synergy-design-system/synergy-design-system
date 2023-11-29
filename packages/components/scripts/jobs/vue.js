@@ -27,6 +27,6 @@ export const runCreateVueWrappers = async ({
   await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
   await jobs.runFormat(outDir, vuePackageDir);
-  // await jobs.runEsBuild(distDir);
-  // await jobs.runReactTypeScript(distDir, vuePackageDir);
+  await jobs.runEsBuild(distDir);
+  await jobs.runVueTypeScript(distDir, vuePackageDir);
 };

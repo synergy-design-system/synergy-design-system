@@ -41,6 +41,7 @@
   "type": "module",
   "version": "1.0.0-main.13",
   "devDependencies": {
+    "@vue/tsconfig": "^0.4.0",
     "vue": "^3.3.9"
   }
 }

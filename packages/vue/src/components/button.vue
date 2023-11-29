@@ -32,10 +32,9 @@
 import { ref } from 'vue';
 import '@synergy-design-system/components/components/button/button.js';
 
-import type { SynBlurEvent } from '@synergy-design-system/components';
-import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynButton } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynButton, SynFocusEvent, SynInvalidEvent,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynButton>();
@@ -45,108 +44,108 @@ const callHandleDisabledChange = (...args: Parameters<SynButton['handleDisabledC
 /**
 * Simulates a click on the button.
  */
-    const callClick = (...args: Parameters<SynButton['click']>) => element.value?.click(...args);
+const callClick = (...args: Parameters<SynButton['click']>) => element.value?.click(...args);
 /**
 * Sets focus on the button.
  */
-    const callFocus = (...args: Parameters<SynButton['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynButton['focus']>) => element.value?.focus(...args);
 /**
 * Removes focus from the button.
  */
-    const callBlur = (...args: Parameters<SynButton['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynButton['blur']>) => element.value?.blur(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-    const callCheckValidity = (...args: Parameters<SynButton['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynButton['checkValidity']>) => element.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-    const callGetForm = (...args: Parameters<SynButton['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynButton['getForm']>) => element.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-    const callReportValidity = (...args: Parameters<SynButton['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynButton['reportValidity']>) => element.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-    const callSetCustomValidity = (...args: Parameters<SynButton['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynButton['setCustomValidity']>) => element.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
-callClick,
-callFocus,
-callBlur,
-callCheckValidity,
-callGetForm,
-callReportValidity,
-callSetCustomValidity,
+  callClick,
+  callFocus,
+  callBlur,
+  callCheckValidity,
+  callGetForm,
+  callReportValidity,
+  callSetCustomValidity,
 });
 
 // Map attributes
 defineProps<{
   'title'?: SynButton['title'];
 
-/**
+  /**
 * The button's theme variant.
  */
-    'variant'?: SynButton['variant'];
+  'variant'?: SynButton['variant'];
 
-/**
+  /**
 * The button's size.
  */
-    'size'?: SynButton['size'];
+  'size'?: SynButton['size'];
 
-/**
+  /**
 * Draws the button with a caret.
 * Used to indicate that the button triggers a dropdown menu or similar behavior.
  */
-    'caret'?: SynButton['caret'];
+  'caret'?: SynButton['caret'];
 
-/**
+  /**
 * Disables the button.
  */
-    'disabled'?: SynButton['disabled'];
+  'disabled'?: SynButton['disabled'];
 
-/**
+  /**
 * Draws the button in a loading state.
  */
-    'loading'?: SynButton['loading'];
+  'loading'?: SynButton['loading'];
 
-/**
+  /**
 * The type of button.
 * Note that the default value is `button` instead of `submit`, which is opposite of how native
 `<button>` elements behave.
 * When the type is `submit`, the button will submit the surrounding form.
  */
-    'type'?: SynButton['type'];
+  'type'?: SynButton['type'];
 
-/**
+  /**
 * The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
 This attribute is ignored when `href` is present.
  */
-    'name'?: SynButton['name'];
+  'name'?: SynButton['name'];
 
-/**
+  /**
 * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
 button is the submitter.
 * This attribute is ignored when `href` is present.
  */
-    'value'?: SynButton['value'];
+  'value'?: SynButton['value'];
 
-/**
+  /**
 * When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
  */
-    'href'?: SynButton['href'];
+  'href'?: SynButton['href'];
 
-/**
+  /**
 * Tells the browser where to open the link.
 * Only used when `href` is present.
  */
-    'target'?: SynButton['target'];
+  'target'?: SynButton['target'];
 
-/**
+  /**
 * When using `href`, this attribute will map to the underlying link's `rel` attribute.
 * Unlike regular links, the
 default is `noreferrer noopener` to prevent security exploits.
@@ -155,46 +154,46 @@ specific tab/window, this will prevent that from working correctly.
 * You can remove or change the default value by
 setting the attribute to an empty string or a value of your choice, respectively.
  */
-    'rel'?: SynButton['rel'];
+  'rel'?: SynButton['rel'];
 
-/**
+  /**
 * Tells the browser to download the linked file as this filename.
 * Only used when `href` is present.
  */
-    'download'?: SynButton['download'];
+  'download'?: SynButton['download'];
 
-/**
+  /**
 * The "form owner" to associate the button with.
 * If omitted, the closest containing form will be used instead.
 * The
 value of this attribute must be an id of a form in the same document or shadow root as the button.
  */
-    'form'?: SynButton['form'];
+  'form'?: SynButton['form'];
 
-/**
+  /**
 * Used to override the form owner's `action` attribute.
  */
-    'formAction'?: SynButton['formAction'];
+  'formAction'?: SynButton['formAction'];
 
-/**
+  /**
 * Used to override the form owner's `enctype` attribute.
  */
-    'formEnctype'?: SynButton['formEnctype'];
+  'formEnctype'?: SynButton['formEnctype'];
 
-/**
+  /**
 * Used to override the form owner's `method` attribute.
  */
-    'formMethod'?: SynButton['formMethod'];
+  'formMethod'?: SynButton['formMethod'];
 
-/**
+  /**
 * Used to override the form owner's `novalidate` attribute.
  */
-    'formNoValidate'?: SynButton['formNoValidate'];
+  'formNoValidate'?: SynButton['formNoValidate'];
 
-/**
+  /**
 * Used to override the form owner's `target` attribute.
  */
-    'formTarget'?: SynButton['formTarget'];
+  'formTarget'?: SynButton['formTarget'];
 }>();
 
 // Map events
@@ -202,46 +201,46 @@ defineEmits<{
   /**
 * Emitted when the button loses focus.
  */
-    'syn-blur': [e: SynBlurEvent];
-/**
+  'syn-blur': [e: SynBlurEvent];
+  /**
 * Emitted when the button gains focus.
  */
-    'syn-focus': [e: SynFocusEvent];
-/**
+  'syn-focus': [e: SynFocusEvent];
+  /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
-    'syn-invalid': [e: SynInvalidEvent];
+  'syn-invalid': [e: SynInvalidEvent];
 }>();
 </script>
 
 <template>
   <syn-button
-     @syn-blur="$emit('syn-blur', $event)"
- @syn-focus="$emit('syn-focus', $event)"
- @syn-invalid="$emit('syn-invalid', $event)"
     :title="title"
-:variant="variant"
-:size="size"
-:caret="caret"
-:disabled="disabled"
-:loading="loading"
-:type="type"
-:name="name"
-:value="value"
-:href="href"
-:target="target"
-:rel="rel"
-:download="download"
-:form="form"
-:formAction="formAction"
-:formEnctype="formEnctype"
-:formMethod="formMethod"
-:formNoValidate="formNoValidate"
-:formTarget="formTarget"
+    :variant="variant"
+    :size="size"
+    :caret="caret"
+    :disabled="disabled"
+    :loading="loading"
+    :type="type"
+    @syn-blur="$emit('syn-blur', $event)"
+    :name="name"
+    @syn-focus="$emit('syn-focus', $event)"
+    :value="value"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    :href="href"
+    :target="target"
+    :rel="rel"
+    :download="download"
+    :form="form"
+    :form-action="formAction"
+    :form-enctype="formEnctype"
+    :form-method="formMethod"
+    :form-no-validate="formNoValidate"
+    :form-target="formTarget"
     ref="element"
   >
-    <slot ></slot>
-<slot name="prefix"></slot>
-<slot name="suffix"></slot>
+    <slot />
+    <slot name="prefix" />
+    <slot name="suffix" />
   </syn-button>
 </template>

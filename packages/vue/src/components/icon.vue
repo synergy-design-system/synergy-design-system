@@ -20,9 +20,7 @@
 import { ref } from 'vue';
 import '@synergy-design-system/components/components/icon/icon.js';
 
-import type { SynLoadEvent } from '@synergy-design-system/components';
-import type { SynErrorEvent } from '@synergy-design-system/components';
-import type { SynIcon } from '@synergy-design-system/components';
+import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynIcon>();
@@ -33,7 +31,7 @@ const callSetIcon = (...args: Parameters<SynIcon['setIcon']>) => element.value?.
 
 defineExpose({
   callHandleLabelChange,
-callSetIcon,
+  callSetIcon,
 });
 
 // Map attributes
@@ -42,26 +40,26 @@ defineProps<{
 * The name of the icon to draw.
 * Available names depend on the icon library being used.
  */
-    'name'?: SynIcon['name'];
+  'name'?: SynIcon['name'];
 
-/**
+  /**
 * An external URL of an SVG file.
 * Be sure you trust the content you are including, as it will be executed as code and
 can result in XSS attacks.
  */
-    'src'?: SynIcon['src'];
+  'src'?: SynIcon['src'];
 
-/**
+  /**
 * An alternate description to use for assistive devices.
 * If omitted, the icon will be considered presentational and
 ignored by assistive devices.
  */
-    'label'?: SynIcon['label'];
+  'label'?: SynIcon['label'];
 
-/**
+  /**
 * The name of a registered custom icon library.
  */
-    'library'?: SynIcon['library'];
+  'library'?: SynIcon['library'];
 }>();
 
 // Map events
@@ -70,25 +68,23 @@ defineEmits<{
 * Emitted when the icon has loaded.
 * When using `spriteSheet: true` this will not emit.
  */
-    'syn-load': [e: SynLoadEvent];
-/**
+  'syn-load': [e: SynLoadEvent];
+  /**
 * Emitted when the icon fails to load due to an error.
 * When using `spriteSheet: true` this will not emit.
  */
-    'syn-error': [e: SynErrorEvent];
+  'syn-error': [e: SynErrorEvent];
 }>();
 </script>
 
 <template>
   <syn-icon
-     @syn-load="$emit('syn-load', $event)"
- @syn-error="$emit('syn-error', $event)"
     :name="name"
-:src="src"
-:label="label"
-:library="library"
     ref="element"
-  >
-    
-  </syn-icon>
+    :src="src"
+    :label="label"
+    :library="library"
+    @syn-load="$emit('syn-load', $event)"
+    @syn-error="$emit('syn-error', $event)"
+  />
 </template>

@@ -32,12 +32,9 @@
 import { ref } from 'vue';
 import '@synergy-design-system/components/components/checkbox/checkbox.js';
 
-import type { SynBlurEvent } from '@synergy-design-system/components';
-import type { SynChangeEvent } from '@synergy-design-system/components';
-import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynInputEvent } from '@synergy-design-system/components';
-import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynCheckbox } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynChangeEvent, SynCheckbox, SynFocusEvent, SynInputEvent, SynInvalidEvent,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynCheckbox>();
@@ -48,97 +45,97 @@ const callHandleStateChange = (...args: Parameters<SynCheckbox['handleStateChang
 /**
 * Simulates a click on the checkbox.
  */
-    const callClick = (...args: Parameters<SynCheckbox['click']>) => element.value?.click(...args);
+const callClick = (...args: Parameters<SynCheckbox['click']>) => element.value?.click(...args);
 /**
 * Sets focus on the checkbox.
  */
-    const callFocus = (...args: Parameters<SynCheckbox['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynCheckbox['focus']>) => element.value?.focus(...args);
 /**
 * Removes focus from the checkbox.
  */
-    const callBlur = (...args: Parameters<SynCheckbox['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynCheckbox['blur']>) => element.value?.blur(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-    const callCheckValidity = (...args: Parameters<SynCheckbox['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynCheckbox['checkValidity']>) => element.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-    const callGetForm = (...args: Parameters<SynCheckbox['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynCheckbox['getForm']>) => element.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-    const callReportValidity = (...args: Parameters<SynCheckbox['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynCheckbox['reportValidity']>) => element.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * The value provided will be shown to the user when the form is submitted.
 * To clear
 the custom validation message, call this method with an empty string.
  */
-    const callSetCustomValidity = (...args: Parameters<SynCheckbox['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynCheckbox['setCustomValidity']>) => element.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
-callHandleStateChange,
-callClick,
-callFocus,
-callBlur,
-callCheckValidity,
-callGetForm,
-callReportValidity,
-callSetCustomValidity,
+  callHandleStateChange,
+  callClick,
+  callFocus,
+  callBlur,
+  callCheckValidity,
+  callGetForm,
+  callReportValidity,
+  callSetCustomValidity,
 });
 
 // Map attributes
 defineProps<{
   'title'?: SynCheckbox['title'];
 
-/**
+  /**
 * The name of the checkbox, submitted as a name/value pair with form data.
  */
-    'name'?: SynCheckbox['name'];
+  'name'?: SynCheckbox['name'];
 
-/**
+  /**
 * The current value of the checkbox, submitted as a name/value pair with form data.
  */
-    'value'?: SynCheckbox['value'];
+  'value'?: SynCheckbox['value'];
 
-/**
+  /**
 * The checkbox's size.
  */
-    'size'?: SynCheckbox['size'];
+  'size'?: SynCheckbox['size'];
 
-/**
+  /**
 * Disables the checkbox.
  */
-    'disabled'?: SynCheckbox['disabled'];
+  'disabled'?: SynCheckbox['disabled'];
 
-/**
+  /**
 * Draws the checkbox in a checked state.
  */
-    'checked'?: SynCheckbox['checked'];
+  'checked'?: SynCheckbox['checked'];
 
-/**
+  /**
 * Draws the checkbox in an indeterminate state.
 * This is usually applied to checkboxes that represents a "select
 all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
  */
-    'indeterminate'?: SynCheckbox['indeterminate'];
+  'indeterminate'?: SynCheckbox['indeterminate'];
 
-/**
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 * This attribute allows you
 to place the form control outside of a form and associate it with the form that has this `id`.
 * The form must be in
 the same document or shadow root for this to work.
  */
-    'form'?: SynCheckbox['form'];
+  'form'?: SynCheckbox['form'];
 
-/**
+  /**
 * Makes the checkbox a required field.
  */
-    'required'?: SynCheckbox['required'];
+  'required'?: SynCheckbox['required'];
 }>();
 
 // Map events
@@ -146,44 +143,44 @@ defineEmits<{
   /**
 * Emitted when the checkbox loses focus.
  */
-    'syn-blur': [e: SynBlurEvent];
-/**
+  'syn-blur': [e: SynBlurEvent];
+  /**
 * Emitted when the checked state changes.
  */
-    'syn-change': [e: SynChangeEvent];
-/**
+  'syn-change': [e: SynChangeEvent];
+  /**
 * Emitted when the checkbox gains focus.
  */
-    'syn-focus': [e: SynFocusEvent];
-/**
+  'syn-focus': [e: SynFocusEvent];
+  /**
 * Emitted when the checkbox receives input.
  */
-    'syn-input': [e: SynInputEvent];
-/**
+  'syn-input': [e: SynInputEvent];
+  /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
-    'syn-invalid': [e: SynInvalidEvent];
+  'syn-invalid': [e: SynInvalidEvent];
 }>();
 </script>
 
 <template>
   <syn-checkbox
-     @syn-blur="$emit('syn-blur', $event)"
- @syn-change="$emit('syn-change', $event)"
- @syn-focus="$emit('syn-focus', $event)"
- @syn-input="$emit('syn-input', $event)"
- @syn-invalid="$emit('syn-invalid', $event)"
     :title="title"
-:name="name"
-:value="value"
-:size="size"
-:disabled="disabled"
-:checked="checked"
-:indeterminate="indeterminate"
-:form="form"
-:required="required"
+    :name="name"
+    :value="value"
+    :size="size"
+    :disabled="disabled"
+    @syn-blur="$emit('syn-blur', $event)"
+    :checked="checked"
+    @syn-change="$emit('syn-change', $event)"
+    :indeterminate="indeterminate"
+    @syn-focus="$emit('syn-focus', $event)"
+    :form="form"
+    @syn-input="$emit('syn-input', $event)"
+    :required="required"
+    @syn-invalid="$emit('syn-invalid', $event)"
     ref="element"
   >
-    <slot ></slot>
+    <slot />
   </syn-checkbox>
 </template>

@@ -30,12 +30,9 @@
 import { ref } from 'vue';
 import '@synergy-design-system/components/components/textarea/textarea.js';
 
-import type { SynBlurEvent } from '@synergy-design-system/components';
-import type { SynChangeEvent } from '@synergy-design-system/components';
-import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynInputEvent } from '@synergy-design-system/components';
-import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynTextarea } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynTextarea,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynTextarea>();
@@ -47,179 +44,179 @@ const callHandleValueChange = (...args: Parameters<SynTextarea['handleValueChang
 /**
 * Sets focus on the textarea.
  */
-    const callFocus = (...args: Parameters<SynTextarea['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynTextarea['focus']>) => element.value?.focus(...args);
 /**
 * Removes focus from the textarea.
  */
-    const callBlur = (...args: Parameters<SynTextarea['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynTextarea['blur']>) => element.value?.blur(...args);
 /**
 * Selects all the text in the textarea.
  */
-    const callSelect = (...args: Parameters<SynTextarea['select']>) => element.value?.select(...args);
+const callSelect = (...args: Parameters<SynTextarea['select']>) => element.value?.select(...args);
 /**
 * Gets or sets the textarea's scroll position.
  */
-    const callScrollPosition = (...args: Parameters<SynTextarea['scrollPosition']>) => element.value?.scrollPosition(...args);
+const callScrollPosition = (...args: Parameters<SynTextarea['scrollPosition']>) => element.value?.scrollPosition(...args);
 /**
 * Sets the start and end positions of the text selection (0-based).
  */
-    const callSetSelectionRange = (...args: Parameters<SynTextarea['setSelectionRange']>) => element.value?.setSelectionRange(...args);
+const callSetSelectionRange = (...args: Parameters<SynTextarea['setSelectionRange']>) => element.value?.setSelectionRange(...args);
 /**
 * Replaces a range of text with a new string.
  */
-    const callSetRangeText = (...args: Parameters<SynTextarea['setRangeText']>) => element.value?.setRangeText(...args);
+const callSetRangeText = (...args: Parameters<SynTextarea['setRangeText']>) => element.value?.setRangeText(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-    const callCheckValidity = (...args: Parameters<SynTextarea['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynTextarea['checkValidity']>) => element.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-    const callGetForm = (...args: Parameters<SynTextarea['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynTextarea['getForm']>) => element.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-    const callReportValidity = (...args: Parameters<SynTextarea['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynTextarea['reportValidity']>) => element.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-    const callSetCustomValidity = (...args: Parameters<SynTextarea['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynTextarea['setCustomValidity']>) => element.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
-callHandleRowsChange,
-callHandleValueChange,
-callFocus,
-callBlur,
-callSelect,
-callScrollPosition,
-callSetSelectionRange,
-callSetRangeText,
-callCheckValidity,
-callGetForm,
-callReportValidity,
-callSetCustomValidity,
+  callHandleRowsChange,
+  callHandleValueChange,
+  callFocus,
+  callBlur,
+  callSelect,
+  callScrollPosition,
+  callSetSelectionRange,
+  callSetRangeText,
+  callCheckValidity,
+  callGetForm,
+  callReportValidity,
+  callSetCustomValidity,
 });
 
 // Map attributes
 defineProps<{
   'title'?: SynTextarea['title'];
 
-/**
+  /**
 * The name of the textarea, submitted as a name/value pair with form data.
  */
-    'name'?: SynTextarea['name'];
+  'name'?: SynTextarea['name'];
 
-/**
+  /**
 * The current value of the textarea, submitted as a name/value pair with form data.
  */
-    'value'?: SynTextarea['value'];
+  'value'?: SynTextarea['value'];
 
-/**
+  /**
 * The textarea's size.
  */
-    'size'?: SynTextarea['size'];
+  'size'?: SynTextarea['size'];
 
-/**
+  /**
 * The textarea's label.
 * If you need to display HTML, use the `label` slot instead.
  */
-    'label'?: SynTextarea['label'];
+  'label'?: SynTextarea['label'];
 
-/**
+  /**
 * The textarea's help text.
 * If you need to display HTML, use the `help-text` slot instead.
  */
-    'helpText'?: SynTextarea['helpText'];
+  'helpText'?: SynTextarea['helpText'];
 
-/**
+  /**
 * Placeholder text to show as a hint when the input is empty.
  */
-    'placeholder'?: SynTextarea['placeholder'];
+  'placeholder'?: SynTextarea['placeholder'];
 
-/**
+  /**
 * The number of rows to display by default.
  */
-    'rows'?: SynTextarea['rows'];
+  'rows'?: SynTextarea['rows'];
 
-/**
+  /**
 * Controls how the textarea can be resized.
  */
-    'resize'?: SynTextarea['resize'];
+  'resize'?: SynTextarea['resize'];
 
-/**
+  /**
 * Disables the textarea.
  */
-    'disabled'?: SynTextarea['disabled'];
+  'disabled'?: SynTextarea['disabled'];
 
-/**
+  /**
 * Makes the textarea readonly.
  */
-    'readonly'?: SynTextarea['readonly'];
+  'readonly'?: SynTextarea['readonly'];
 
-/**
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 * This attribute allows you
 to place the form control outside of a form and associate it with the form that has this `id`.
 * The form must be in
 the same document or shadow root for this to work.
  */
-    'form'?: SynTextarea['form'];
+  'form'?: SynTextarea['form'];
 
-/**
+  /**
 * Makes the textarea a required field.
  */
-    'required'?: SynTextarea['required'];
+  'required'?: SynTextarea['required'];
 
-/**
+  /**
 * The minimum length of input that will be considered valid.
  */
-    'minlength'?: SynTextarea['minlength'];
+  'minlength'?: SynTextarea['minlength'];
 
-/**
+  /**
 * The maximum length of input that will be considered valid.
  */
-    'maxlength'?: SynTextarea['maxlength'];
+  'maxlength'?: SynTextarea['maxlength'];
 
-/**
+  /**
 * Controls whether and how text input is automatically capitalized as it is entered by the user.
  */
-    'autocapitalize'?: SynTextarea['autocapitalize'];
+  'autocapitalize'?: SynTextarea['autocapitalize'];
 
-/**
+  /**
 * Indicates whether the browser's autocorrect feature is on or off.
  */
-    'autocorrect'?: SynTextarea['autocorrect'];
+  'autocorrect'?: SynTextarea['autocorrect'];
 
-/**
+  /**
 * Specifies what permission the browser has to provide assistance in filling out form field values.
 * Refer to
 [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
  */
-    'autocomplete'?: SynTextarea['autocomplete'];
+  'autocomplete'?: SynTextarea['autocomplete'];
 
-/**
+  /**
 * Indicates that the input should receive focus on page load.
  */
-    'autofocus'?: SynTextarea['autofocus'];
+  'autofocus'?: SynTextarea['autofocus'];
 
-/**
+  /**
 * Used to customize the label or icon of the Enter key on virtual keyboards.
  */
-    'enterkeyhint'?: SynTextarea['enterkeyhint'];
+  'enterkeyhint'?: SynTextarea['enterkeyhint'];
 
-/**
+  /**
 * Enables spell checking on the textarea.
  */
-    'spellcheck'?: SynTextarea['spellcheck'];
+  'spellcheck'?: SynTextarea['spellcheck'];
 
-/**
+  /**
 * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
 keyboard on supportive devices.
  */
-    'inputmode'?: SynTextarea['inputmode'];
+  'inputmode'?: SynTextarea['inputmode'];
 }>();
 
 // Map events
@@ -227,58 +224,58 @@ defineEmits<{
   /**
 * Emitted when the control loses focus.
  */
-    'syn-blur': [e: SynBlurEvent];
-/**
+  'syn-blur': [e: SynBlurEvent];
+  /**
 * Emitted when an alteration to the control's value is committed by the user.
  */
-    'syn-change': [e: SynChangeEvent];
-/**
+  'syn-change': [e: SynChangeEvent];
+  /**
 * Emitted when the control gains focus.
  */
-    'syn-focus': [e: SynFocusEvent];
-/**
+  'syn-focus': [e: SynFocusEvent];
+  /**
 * Emitted when the control receives input.
  */
-    'syn-input': [e: SynInputEvent];
-/**
+  'syn-input': [e: SynInputEvent];
+  /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
-    'syn-invalid': [e: SynInvalidEvent];
+  'syn-invalid': [e: SynInvalidEvent];
 }>();
 </script>
 
 <template>
   <syn-textarea
-     @syn-blur="$emit('syn-blur', $event)"
- @syn-change="$emit('syn-change', $event)"
- @syn-focus="$emit('syn-focus', $event)"
- @syn-input="$emit('syn-input', $event)"
- @syn-invalid="$emit('syn-invalid', $event)"
     :title="title"
-:name="name"
-:value="value"
-:size="size"
-:label="label"
-:helpText="helpText"
-:placeholder="placeholder"
-:rows="rows"
-:resize="resize"
-:disabled="disabled"
-:readonly="readonly"
-:form="form"
-:required="required"
-:minlength="minlength"
-:maxlength="maxlength"
-:autocapitalize="autocapitalize"
-:autocorrect="autocorrect"
-:autocomplete="autocomplete"
-:autofocus="autofocus"
-:enterkeyhint="enterkeyhint"
-:spellcheck="spellcheck"
-:inputmode="inputmode"
+    :name="name"
+    :value="value"
+    :size="size"
+    :label="label"
+    @syn-blur="$emit('syn-blur', $event)"
+    :help-text="helpText"
+    @syn-change="$emit('syn-change', $event)"
+    :placeholder="placeholder"
+    @syn-focus="$emit('syn-focus', $event)"
+    :rows="rows"
+    @syn-input="$emit('syn-input', $event)"
+    :resize="resize"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    :disabled="disabled"
+    :readonly="readonly"
+    :form="form"
+    :required="required"
+    :minlength="minlength"
+    :maxlength="maxlength"
+    :autocapitalize="autocapitalize"
+    :autocorrect="autocorrect"
+    :autocomplete="autocomplete"
+    :autofocus="autofocus"
+    :enterkeyhint="enterkeyhint"
+    :spellcheck="spellcheck"
+    :inputmode="inputmode"
     ref="element"
   >
-    <slot name="label"></slot>
-<slot name="help-text"></slot>
+    <slot name="label" />
+    <slot name="help-text" />
   </syn-textarea>
 </template>

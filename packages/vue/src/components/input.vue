@@ -42,13 +42,9 @@
 import { ref } from 'vue';
 import '@synergy-design-system/components/components/input/input.js';
 
-import type { SynBlurEvent } from '@synergy-design-system/components';
-import type { SynChangeEvent } from '@synergy-design-system/components';
-import type { SynClearEvent } from '@synergy-design-system/components';
-import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynInputEvent } from '@synergy-design-system/components';
-import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynInput } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynInput, SynInputEvent, SynInvalidEvent,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynInput>();
@@ -60,233 +56,233 @@ const callHandleValueChange = (...args: Parameters<SynInput['handleValueChange']
 /**
 * Sets focus on the input.
  */
-    const callFocus = (...args: Parameters<SynInput['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynInput['focus']>) => element.value?.focus(...args);
 /**
 * Removes focus from the input.
  */
-    const callBlur = (...args: Parameters<SynInput['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynInput['blur']>) => element.value?.blur(...args);
 /**
 * Selects all the text in the input.
  */
-    const callSelect = (...args: Parameters<SynInput['select']>) => element.value?.select(...args);
+const callSelect = (...args: Parameters<SynInput['select']>) => element.value?.select(...args);
 /**
 * Sets the start and end positions of the text selection (0-based).
  */
-    const callSetSelectionRange = (...args: Parameters<SynInput['setSelectionRange']>) => element.value?.setSelectionRange(...args);
+const callSetSelectionRange = (...args: Parameters<SynInput['setSelectionRange']>) => element.value?.setSelectionRange(...args);
 /**
 * Replaces a range of text with a new string.
  */
-    const callSetRangeText = (...args: Parameters<SynInput['setRangeText']>) => element.value?.setRangeText(...args);
+const callSetRangeText = (...args: Parameters<SynInput['setRangeText']>) => element.value?.setRangeText(...args);
 /**
 * Displays the browser picker for an input element (only works if the browser supports it for the input type).
  */
-    const callShowPicker = (...args: Parameters<SynInput['showPicker']>) => element.value?.showPicker(...args);
+const callShowPicker = (...args: Parameters<SynInput['showPicker']>) => element.value?.showPicker(...args);
 /**
 * Increments the value of a numeric input type by the value of the step attribute.
  */
-    const callStepUp = (...args: Parameters<SynInput['stepUp']>) => element.value?.stepUp(...args);
+const callStepUp = (...args: Parameters<SynInput['stepUp']>) => element.value?.stepUp(...args);
 /**
 * Decrements the value of a numeric input type by the value of the step attribute.
  */
-    const callStepDown = (...args: Parameters<SynInput['stepDown']>) => element.value?.stepDown(...args);
+const callStepDown = (...args: Parameters<SynInput['stepDown']>) => element.value?.stepDown(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-    const callCheckValidity = (...args: Parameters<SynInput['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynInput['checkValidity']>) => element.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-    const callGetForm = (...args: Parameters<SynInput['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynInput['getForm']>) => element.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-    const callReportValidity = (...args: Parameters<SynInput['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynInput['reportValidity']>) => element.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-    const callSetCustomValidity = (...args: Parameters<SynInput['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynInput['setCustomValidity']>) => element.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
-callHandleStepChange,
-callHandleValueChange,
-callFocus,
-callBlur,
-callSelect,
-callSetSelectionRange,
-callSetRangeText,
-callShowPicker,
-callStepUp,
-callStepDown,
-callCheckValidity,
-callGetForm,
-callReportValidity,
-callSetCustomValidity,
+  callHandleStepChange,
+  callHandleValueChange,
+  callFocus,
+  callBlur,
+  callSelect,
+  callSetSelectionRange,
+  callSetRangeText,
+  callShowPicker,
+  callStepUp,
+  callStepDown,
+  callCheckValidity,
+  callGetForm,
+  callReportValidity,
+  callSetCustomValidity,
 });
 
 // Map attributes
 defineProps<{
   'title'?: SynInput['title'];
 
-/**
+  /**
 * The type of input.
 * Works the same as a native `<input>` element, but only a subset of types are supported.
 * Defaults
 to `text`.
  */
-    'type'?: SynInput['type'];
+  'type'?: SynInput['type'];
 
-/**
+  /**
 * The name of the input, submitted as a name/value pair with form data.
  */
-    'name'?: SynInput['name'];
+  'name'?: SynInput['name'];
 
-/**
+  /**
 * The current value of the input, submitted as a name/value pair with form data.
  */
-    'value'?: SynInput['value'];
+  'value'?: SynInput['value'];
 
-/**
+  /**
 * The input's size.
  */
-    'size'?: SynInput['size'];
+  'size'?: SynInput['size'];
 
-/**
+  /**
 * The input's label.
 * If you need to display HTML, use the `label` slot instead.
  */
-    'label'?: SynInput['label'];
+  'label'?: SynInput['label'];
 
-/**
+  /**
 * The input's help text.
 * If you need to display HTML, use the `help-text` slot instead.
  */
-    'helpText'?: SynInput['helpText'];
+  'helpText'?: SynInput['helpText'];
 
-/**
+  /**
 * Adds a clear button when the input is not empty.
  */
-    'clearable'?: SynInput['clearable'];
+  'clearable'?: SynInput['clearable'];
 
-/**
+  /**
 * Disables the input.
  */
-    'disabled'?: SynInput['disabled'];
+  'disabled'?: SynInput['disabled'];
 
-/**
+  /**
 * Placeholder text to show as a hint when the input is empty.
  */
-    'placeholder'?: SynInput['placeholder'];
+  'placeholder'?: SynInput['placeholder'];
 
-/**
+  /**
 * Makes the input readonly.
  */
-    'readonly'?: SynInput['readonly'];
+  'readonly'?: SynInput['readonly'];
 
-/**
+  /**
 * Adds a button to toggle the password's visibility.
 * Only applies to password types.
  */
-    'passwordToggle'?: SynInput['passwordToggle'];
+  'passwordToggle'?: SynInput['passwordToggle'];
 
-/**
+  /**
 * Determines whether or not the password is currently visible.
 * Only applies to password input types.
  */
-    'passwordVisible'?: SynInput['passwordVisible'];
+  'passwordVisible'?: SynInput['passwordVisible'];
 
-/**
+  /**
 * Hides the browser's built-in increment/decrement spin buttons for number inputs.
  */
-    'noSpinButtons'?: SynInput['noSpinButtons'];
+  'noSpinButtons'?: SynInput['noSpinButtons'];
 
-/**
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 * This attribute allows you
 to place the form control outside of a form and associate it with the form that has this `id`.
 * The form must be in
 the same document or shadow root for this to work.
  */
-    'form'?: SynInput['form'];
+  'form'?: SynInput['form'];
 
-/**
+  /**
 * Makes the input a required field.
  */
-    'required'?: SynInput['required'];
+  'required'?: SynInput['required'];
 
-/**
+  /**
 * A regular expression pattern to validate input against.
  */
-    'pattern'?: SynInput['pattern'];
+  'pattern'?: SynInput['pattern'];
 
-/**
+  /**
 * The minimum length of input that will be considered valid.
  */
-    'minlength'?: SynInput['minlength'];
+  'minlength'?: SynInput['minlength'];
 
-/**
+  /**
 * The maximum length of input that will be considered valid.
  */
-    'maxlength'?: SynInput['maxlength'];
+  'maxlength'?: SynInput['maxlength'];
 
-/**
+  /**
 * The input's minimum value.
 * Only applies to date and number input types.
  */
-    'min'?: SynInput['min'];
+  'min'?: SynInput['min'];
 
-/**
+  /**
 * The input's maximum value.
 * Only applies to date and number input types.
  */
-    'max'?: SynInput['max'];
+  'max'?: SynInput['max'];
 
-/**
+  /**
 * Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is
 implied, allowing any numeric value.
 * Only applies to date and number input types.
  */
-    'step'?: SynInput['step'];
+  'step'?: SynInput['step'];
 
-/**
+  /**
 * Controls whether and how text input is automatically capitalized as it is entered by the user.
  */
-    'autocapitalize'?: SynInput['autocapitalize'];
+  'autocapitalize'?: SynInput['autocapitalize'];
 
-/**
+  /**
 * Indicates whether the browser's autocorrect feature is on or off.
  */
-    'autocorrect'?: SynInput['autocorrect'];
+  'autocorrect'?: SynInput['autocorrect'];
 
-/**
+  /**
 * Specifies what permission the browser has to provide assistance in filling out form field values.
 * Refer to
 [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
  */
-    'autocomplete'?: SynInput['autocomplete'];
+  'autocomplete'?: SynInput['autocomplete'];
 
-/**
+  /**
 * Indicates that the input should receive focus on page load.
  */
-    'autofocus'?: SynInput['autofocus'];
+  'autofocus'?: SynInput['autofocus'];
 
-/**
+  /**
 * Used to customize the label or icon of the Enter key on virtual keyboards.
  */
-    'enterkeyhint'?: SynInput['enterkeyhint'];
+  'enterkeyhint'?: SynInput['enterkeyhint'];
 
-/**
+  /**
 * Enables spell checking on the input.
  */
-    'spellcheck'?: SynInput['spellcheck'];
+  'spellcheck'?: SynInput['spellcheck'];
 
-/**
+  /**
 * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
 keyboard on supportive devices.
  */
-    'inputmode'?: SynInput['inputmode'];
+  'inputmode'?: SynInput['inputmode'];
 }>();
 
 // Map events
@@ -294,75 +290,75 @@ defineEmits<{
   /**
 * Emitted when the control loses focus.
  */
-    'syn-blur': [e: SynBlurEvent];
-/**
+  'syn-blur': [e: SynBlurEvent];
+  /**
 * Emitted when an alteration to the control's value is committed by the user.
  */
-    'syn-change': [e: SynChangeEvent];
-/**
+  'syn-change': [e: SynChangeEvent];
+  /**
 * Emitted when the clear button is activated.
  */
-    'syn-clear': [e: SynClearEvent];
-/**
+  'syn-clear': [e: SynClearEvent];
+  /**
 * Emitted when the control gains focus.
  */
-    'syn-focus': [e: SynFocusEvent];
-/**
+  'syn-focus': [e: SynFocusEvent];
+  /**
 * Emitted when the control receives input.
  */
-    'syn-input': [e: SynInputEvent];
-/**
+  'syn-input': [e: SynInputEvent];
+  /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
-    'syn-invalid': [e: SynInvalidEvent];
+  'syn-invalid': [e: SynInvalidEvent];
 }>();
 </script>
 
 <template>
   <syn-input
-     @syn-blur="$emit('syn-blur', $event)"
- @syn-change="$emit('syn-change', $event)"
- @syn-clear="$emit('syn-clear', $event)"
- @syn-focus="$emit('syn-focus', $event)"
- @syn-input="$emit('syn-input', $event)"
- @syn-invalid="$emit('syn-invalid', $event)"
     :title="title"
-:type="type"
-:name="name"
-:value="value"
-:size="size"
-:label="label"
-:helpText="helpText"
-:clearable="clearable"
-:disabled="disabled"
-:placeholder="placeholder"
-:readonly="readonly"
-:passwordToggle="passwordToggle"
-:passwordVisible="passwordVisible"
-:noSpinButtons="noSpinButtons"
-:form="form"
-:required="required"
-:pattern="pattern"
-:minlength="minlength"
-:maxlength="maxlength"
-:min="min"
-:max="max"
-:step="step"
-:autocapitalize="autocapitalize"
-:autocorrect="autocorrect"
-:autocomplete="autocomplete"
-:autofocus="autofocus"
-:enterkeyhint="enterkeyhint"
-:spellcheck="spellcheck"
-:inputmode="inputmode"
+    :type="type"
+    :name="name"
+    :value="value"
+    @syn-blur="$emit('syn-blur', $event)"
+    :size="size"
+    @syn-change="$emit('syn-change', $event)"
+    :label="label"
+    @syn-clear="$emit('syn-clear', $event)"
+    :help-text="helpText"
+    @syn-focus="$emit('syn-focus', $event)"
+    :clearable="clearable"
+    @syn-input="$emit('syn-input', $event)"
+    :disabled="disabled"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    :placeholder="placeholder"
+    :readonly="readonly"
+    :password-toggle="passwordToggle"
+    :password-visible="passwordVisible"
+    :no-spin-buttons="noSpinButtons"
+    :form="form"
+    :required="required"
+    :pattern="pattern"
+    :minlength="minlength"
+    :maxlength="maxlength"
+    :min="min"
+    :max="max"
+    :step="step"
+    :autocapitalize="autocapitalize"
+    :autocorrect="autocorrect"
+    :autocomplete="autocomplete"
+    :autofocus="autofocus"
+    :enterkeyhint="enterkeyhint"
+    :spellcheck="spellcheck"
+    :inputmode="inputmode"
     ref="element"
   >
-    <slot name="label"></slot>
-<slot name="prefix"></slot>
-<slot name="suffix"></slot>
-<slot name="clear-icon"></slot>
-<slot name="show-password-icon"></slot>
-<slot name="hide-password-icon"></slot>
-<slot name="help-text"></slot>
+    <slot name="label" />
+    <slot name="prefix" />
+    <slot name="suffix" />
+    <slot name="clear-icon" />
+    <slot name="show-password-icon" />
+    <slot name="hide-password-icon" />
+    <slot name="help-text" />
   </syn-input>
 </template>

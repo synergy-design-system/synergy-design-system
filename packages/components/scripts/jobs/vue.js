@@ -26,7 +26,7 @@ export const runCreateVueWrappers = async ({
   await runAdjustPackageVersion('Vue: Adjusting vue package.json version field...')(componentPackageDir, vuePackageDir);
   await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
-  // await jobs.runFormat(outDir, vuePackageDir);
+  await jobs.runFormat(outDir, vuePackageDir);
   // await jobs.runEsBuild(distDir);
   // await jobs.runReactTypeScript(distDir, vuePackageDir);
 };

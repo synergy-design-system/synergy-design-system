@@ -10,7 +10,6 @@ import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../sr
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 const { overrideArgs } = storybookHelpers('syn-radio-group');
-const { generateTemplate } = storybookTemplate('syn-radio-group');
 
 const generateStoryDescription = (attributeName: string) => ({
   story: (docsTokens?.components?.['radio-group'] as any)?.[attributeName]?.description?.value ?? 'No Description',
@@ -37,7 +36,12 @@ export const Default = {
       description: generateStoryDescription('default'),
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => html`
+  <syn-radio-group label="This is a label">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+    <syn-radio value="3">Option</syn-radio>
+  </syn-radio-group>`,
 } as Story;
 
 export const Labels: Story = {

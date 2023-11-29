@@ -37,7 +37,8 @@ export const Default = {
       description: generateStoryDescription('default'),
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => html`
+  <syn-radio value="1" size="medium">Option</syn-radio>`,
 } as Story;
 
 export const Disabled: Story = {

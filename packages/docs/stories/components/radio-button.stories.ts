@@ -47,128 +47,128 @@ export const Default = {
 } as Story;
 
 
-/**
- * To set the initial value and checked state, use the value attribute on the containing radio group.
- */
-export const CheckedStates: Story = {
-  render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2">Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
-</syn-radio-group>`,
-};
+// /**
+//  * To set the initial value and checked state, use the value attribute on the containing radio group.
+//  */
+// export const CheckedStates: Story = {
+//   render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">Option 1</syn-radio-button>
+//   <syn-radio-button value="2">Option 2</syn-radio-button>
+//   <syn-radio-button value="3">Option 3</syn-radio-button>
+// </syn-radio-group>`,
+// };
 
-/**
- * Use the disabled attribute to disable a radio button.
- */
-export const Disabled: Story = {
-  render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2" disabled>Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
-</syn-radio-group>`,
-};
+// /**
+//  * Use the disabled attribute to disable a radio button.
+//  */
+// export const Disabled: Story = {
+//   render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">Option 1</syn-radio-button>
+//   <syn-radio-button value="2" disabled>Option 2</syn-radio-button>
+//   <syn-radio-button value="3">Option 3</syn-radio-button>
+// </syn-radio-group>`,
+// };
 
-/**
- * Use the size attribute to change a radio button's size.
- */
-export const Sizes: Story = {
-  render: () => html`<syn-radio-group size="small" label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2">Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
-</syn-radio-group>
+// /**
+//  * Use the size attribute to change a radio button's size.
+//  */
+// export const Sizes: Story = {
+//   render: () => html`<syn-radio-group size="small" label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">Option 1</syn-radio-button>
+//   <syn-radio-button value="2">Option 2</syn-radio-button>
+//   <syn-radio-button value="3">Option 3</syn-radio-button>
+// </syn-radio-group>
 
-<br />
+// <br />
 
-<syn-radio-group size="medium" label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2">Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
-</syn-radio-group>
+// <syn-radio-group size="medium" label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">Option 1</syn-radio-button>
+//   <syn-radio-button value="2">Option 2</syn-radio-button>
+//   <syn-radio-button value="3">Option 3</syn-radio-button>
+// </syn-radio-group>
 
-<br />
+// <br />
 
-<syn-radio-group size="large" label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
-  <syn-radio-button value="2">Option 2</syn-radio-button>
-  <syn-radio-button value="3">Option 3</syn-radio-button>
-</syn-radio-group>`,
-};
+// <syn-radio-group size="large" label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">Option 1</syn-radio-button>
+//   <syn-radio-button value="2">Option 2</syn-radio-button>
+//   <syn-radio-button value="3">Option 3</syn-radio-button>
+// </syn-radio-group>`,
+// };
 
-/**
- * Use the pill attribute to give radio buttons rounded edges.
- */
-export const PillButtons: Story = {
-  render: () => html`<syn-radio-group size="small" label="Select an option" name="a" value="1">
-  <syn-radio-button pill value="1">Option 1</syn-radio-button>
-  <syn-radio-button pill value="2">Option 2</syn-radio-button>
-  <syn-radio-button pill value="3">Option 3</syn-radio-button>
-</syn-radio-group>
+// /**
+//  * Use the pill attribute to give radio buttons rounded edges.
+//  */
+// export const PillButtons: Story = {
+//   render: () => html`<syn-radio-group size="small" label="Select an option" name="a" value="1">
+//   <syn-radio-button pill value="1">Option 1</syn-radio-button>
+//   <syn-radio-button pill value="2">Option 2</syn-radio-button>
+//   <syn-radio-button pill value="3">Option 3</syn-radio-button>
+// </syn-radio-group>
 
-<br />
+// <br />
 
-<syn-radio-group size="medium" label="Select an option" name="a" value="1">
-  <syn-radio-button pill value="1">Option 1</syn-radio-button>
-  <syn-radio-button pill value="2">Option 2</syn-radio-button>
-  <syn-radio-button pill value="3">Option 3</syn-radio-button>
-</syn-radio-group>
+// <syn-radio-group size="medium" label="Select an option" name="a" value="1">
+//   <syn-radio-button pill value="1">Option 1</syn-radio-button>
+//   <syn-radio-button pill value="2">Option 2</syn-radio-button>
+//   <syn-radio-button pill value="3">Option 3</syn-radio-button>
+// </syn-radio-group>
 
-<br />
+// <br />
 
-<syn-radio-group size="large" label="Select an option" name="a" value="1">
-  <syn-radio-button pill value="1">Option 1</syn-radio-button>
-  <syn-radio-button pill value="2">Option 2</syn-radio-button>
-  <syn-radio-button pill value="3">Option 3</syn-radio-button>
-</syn-radio-group>`,
-};
+// <syn-radio-group size="large" label="Select an option" name="a" value="1">
+//   <syn-radio-button pill value="1">Option 1</syn-radio-button>
+//   <syn-radio-button pill value="2">Option 2</syn-radio-button>
+//   <syn-radio-button pill value="3">Option 3</syn-radio-button>
+// </syn-radio-group>`,
+// };
 
-/**
- * Use the prefix and suffix slots to add icons.
- */
-export const PrefixAndSuffixIcons: Story = {
-  render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
-  <syn-radio-button value="1">
-    <syn-icon slot="prefix" name="archive"></syn-icon>
-    Option 1
-  </syn-radio-button>
+// /**
+//  * Use the prefix and suffix slots to add icons.
+//  */
+// export const PrefixAndSuffixIcons: Story = {
+//   render: () => html`<syn-radio-group label="Select an option" name="a" value="1">
+//   <syn-radio-button value="1">
+//     <syn-icon slot="prefix" name="archive"></syn-icon>
+//     Option 1
+//   </syn-radio-button>
 
-  <syn-radio-button value="2">
-    <syn-icon slot="suffix" name="bag"></syn-icon>
-    Option 2
-  </syn-radio-button>
+//   <syn-radio-button value="2">
+//     <syn-icon slot="suffix" name="bag"></syn-icon>
+//     Option 2
+//   </syn-radio-button>
 
-  <syn-radio-button value="3">
-    <syn-icon slot="prefix" name="gift"></syn-icon>
-    <syn-icon slot="suffix" name="cart"></syn-icon>
-    Option 3
-  </syn-radio-button>
-</syn-radio-group>`,
-};
+//   <syn-radio-button value="3">
+//     <syn-icon slot="prefix" name="gift"></syn-icon>
+//     <syn-icon slot="suffix" name="cart"></syn-icon>
+//     Option 3
+//   </syn-radio-button>
+// </syn-radio-group>`,
+// };
 
-/**
- * You can omit button labels and use icons instead. Make sure to set a label attribute on each icon so screen readers will announce each option correctly.
- */
-export const ButtonsWithIcons: Story = {
-  render: () => html`<syn-radio-group label="Select an option" name="a" value="neutral">
-  <syn-radio-button value="angry">
-    <syn-icon name="emoji-angry" label="Angry"></syn-icon>
-  </syn-radio-button>
+// /**
+//  * You can omit button labels and use icons instead. Make sure to set a label attribute on each icon so screen readers will announce each option correctly.
+//  */
+// export const ButtonsWithIcons: Story = {
+//   render: () => html`<syn-radio-group label="Select an option" name="a" value="neutral">
+//   <syn-radio-button value="angry">
+//     <syn-icon name="emoji-angry" label="Angry"></syn-icon>
+//   </syn-radio-button>
 
-  <syn-radio-button value="sad">
-    <syn-icon name="emoji-frown" label="Sad"></syn-icon>
-  </syn-radio-button>
+//   <syn-radio-button value="sad">
+//     <syn-icon name="emoji-frown" label="Sad"></syn-icon>
+//   </syn-radio-button>
 
-  <syn-radio-button value="neutral">
-    <syn-icon name="emoji-neutral" label="Neutral"></syn-icon>
-  </syn-radio-button>
+//   <syn-radio-button value="neutral">
+//     <syn-icon name="emoji-neutral" label="Neutral"></syn-icon>
+//   </syn-radio-button>
 
-  <syn-radio-button value="happy">
-    <syn-icon name="emoji-smile" label="Happy"></syn-icon>
-  </syn-radio-button>
+//   <syn-radio-button value="happy">
+//     <syn-icon name="emoji-smile" label="Happy"></syn-icon>
+//   </syn-radio-button>
 
-  <syn-radio-button value="laughing">
-    <syn-icon name="emoji-laughing" label="Laughing"></syn-icon>
-  </syn-radio-button>
-</syn-radio-group>`,
-};
+//   <syn-radio-button value="laughing">
+//     <syn-icon name="emoji-laughing" label="Laughing"></syn-icon>
+//   </syn-radio-button>
+// </syn-radio-group>`,
+// };

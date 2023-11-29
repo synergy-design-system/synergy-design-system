@@ -22,6 +22,8 @@ export const components = [
   'button',
   'textarea',
   'checkbox',
+  'radio',
+  'radio-group',
 ].sort();
 
 /**
@@ -205,9 +207,6 @@ import customStyles from './${component}.custom.styles.js';`,
       vendorCustomElementsManifest,
       vendorInput,
       vendorTextarea,
-      vendorRadio,
-      vendorRadioButton,
-      vendorRadioGroup,
       vendorWebTestRunnerConfig,
     ],
   },

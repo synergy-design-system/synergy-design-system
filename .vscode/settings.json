@@ -95,7 +95,6 @@
         "packages/components/src/internal/default-value.ts": true,
         "packages/components/src/internal/test.ts": true,
         "packages/components/src/styles/form-control.styles.ts": true,
-        "packages/components/src/internal/test.ts": true,
         "packages/docs/stories/components/textarea.stories.ts": true,
         "packages/docs/stories/components/radio.stories.ts": true,
         "packages/docs/stories/components/radio-group.stories.ts": true,

@@ -434,6 +434,16 @@
           "value": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction.",
           "type": "text"
         }
+      },
+      "color": {
+        "title": {
+          "value": "Color",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Icon button can have two color variants, Primary or Neutral Color.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -1118,22 +1128,12 @@
     },
     "radio": {
       "default": {
+        "description": {
+          "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
+          "type": "text"
+        },
         "title": {
           "value": "Radio",
-          "type": "text"
-        },
-        "description": {
-          "value": "Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.",
-          "type": "text"
-        }
-      },
-      "value": {
-        "title": {
-          "value": "Initial Value",
-          "type": "text"
-        },
-        "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
           "type": "text"
         }
       },
@@ -1174,6 +1174,16 @@
         },
         "description": {
           "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "value": {
+        "title": {
+          "value": "Initial Value",
+          "type": "text"
+        },
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
           "type": "text"
         }
       }

@@ -24,23 +24,41 @@ export const createJS = (header, inputFile, outputFile) => {
         }),
         cssVar.replace(':', ''),
       ];
-    })
-    .map(([jsVar, cssVar]) => `
+    });
+
+  // Create the list of javascript exports
+  const jsExports = foundItems.map(([jsVar, cssVar]) => `
 /**
  * @type {string}
  */
-export const ${jsVar} = 'var(${cssVar})';
-    `.trim())
-    .join('\n\n');
+export const ${jsVar} = 'var(${cssVar})';`);
 
-  const output = `
+  const jsOutput = `
 ${createHeaderComment(header)}
+${jsExports.join('\n')}
+`.trim();
 
-${foundItems}
-  `.trim();
-
-  fs.writeFileSync(outputFile, `${output}\n`, {
+  fs.writeFileSync(outputFile, `${jsOutput}\n`, {
     encoding: 'utf-8',
   });
   console.log(chalk.green('✔︎ Created javascript exports'));
+
+  // Create the typescript files
+  const tsFile = outputFile.replace(/\.js$/, '.d.ts');
+  const tsExports = foundItems.map(([jsVar, cssVar]) => `
+/**
+ * Maps to the css variable \`${cssVar}\`
+ */
+export const ${jsVar}: string;`);
+
+  const tsOutput = `
+${createHeaderComment(header)}
+
+${tsExports.join('\n')}
+`.trim();
+
+  fs.writeFileSync(tsFile, `${tsOutput}\n`, {
+    encoding: 'utf-8',
+  });
+  console.log(chalk.green('✔︎ Created typescript types'));
 };

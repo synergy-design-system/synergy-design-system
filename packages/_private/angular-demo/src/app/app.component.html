@@ -54,13 +54,29 @@
       Agree to ToS
     </syn-checkbox>
 
+    <br>
+    <br>
+
     <syn-radio-group
       formControlName="radio"
       name="radio"
+      label="Radio Group"
       [required]="true">
       <syn-radio value="1">Option One</syn-radio>
       <syn-radio value="2">Option Two</syn-radio>
     </syn-radio-group>
+
+    <br>
+
+    <syn-switch
+      formControlName="switch"
+      name="switch"
+      [required]="true">
+      Switch
+    </syn-switch>
+
+    <br>
+    <br>
 
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>

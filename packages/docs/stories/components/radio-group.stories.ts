@@ -150,30 +150,38 @@ export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
       const radioGroup = canvasElement.querySelector('syn-radio-group');
-      const form = canvasElement.querySelector('form');
+      const button = canvasElement.querySelector('button');
+      const initiallySelectedOption = canvasElement.querySelector('syn-radio[value="1"]');
+      const correctRadioOption = canvasElement.querySelector('syn-radio[value="3"]');
       const errorMessage = 'You must choose the last option';
 
       await waitUntil(() => radioGroup?.shadowRoot?.querySelector('input'));
 
       radioGroup?.setCustomValidity(errorMessage);
 
-      form?.addEventListener('syn-change', () => {
-        const isValid = radioGroup?.value === '3';
-        radioGroup?.setCustomValidity(isValid ? '' : errorMessage);
-      });
+      if (initiallySelectedOption) {
+        await userEvent.click(initiallySelectedOption);
+      }
 
-      form?.addEventListener('submit', event => {
-        event.preventDefault();
+      if (correctRadioOption && radioGroup?.value === '3') {
+        radioGroup?.setCustomValidity('');
+      } else {
+        radioGroup?.setCustomValidity(errorMessage);
+      }
+
+      if (button) {
+        await userEvent.click(button);
         if (radioGroup?.checkValidity()) {
           console.log('All fields are valid!');
         } else {
           console.error('Form validation failed');
         }
-      });
+      }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
+
   render: () => html`
   <form class="custom-validity">
     <syn-radio-group label="Select an option" name="a" value="1">

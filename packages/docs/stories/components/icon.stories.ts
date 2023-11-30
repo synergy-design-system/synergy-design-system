@@ -341,6 +341,49 @@ export const BundledIconLibrary: Story = {
   },
 };
 
+/**
+* To improve performance you can use a SVG sprites to avoid multiple trips for each SVG.
+* The browser will load the sprite sheet once and then you reference the particular SVG within the sprite sheet using hash selector.
+*
+* As always, make sure to benchmark these changes. When using HTTP/2, it may in fact be more bandwidth-friendly to use multiple small requests instead of 1 large sprite sheet.
+*
+* > **Warning:** When using sprite sheets, the syn-load and syn-error events will not fire.
+*
+* > **Warning:** For security reasons, browsers may apply the same-origin policy on <use> elements located in the <syn-icon> shadow DOM and may refuse to load a cross-origin URL. There is currently no defined way to set a cross-origin policy for <use> elements. For this reason, sprite sheets should only be used if you’re self-hosting them.
+*
+* ```html
+* <script type="module">
+* import { registerIconLibrary } from '@synergy-design-system/components';
+*
+* registerIconLibrary('sprite', {
+*   resolver: (name) => {
+*     resolver: name => `/assets/images/sprite.svg#${name}`,
+*     mutator: svg => svg.setAttribute('fill', 'currentColor'),
+*     spriteSheet: true
+* });
+* </script>
+*
+* <div style="font-size: 24px;">
+*   <syn-icon library="sprite" name="settings"></syn-icon>
+*   <syn-icon library="sprite" name="refresh"></syn-icon>
+* </div>
+* ```
+*/
+export const SpriteSheetUsage: Story = {
+  render: () => {
+    registerIconLibrary('sprite', {
+      resolver: name => `/sprite.svg#${name}`,
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
+      spriteSheet: true
+    });
+
+    return html`<div style="font-size: 24px;">
+  <syn-icon library="sprite" name="settings"></syn-icon>
+  <syn-icon library="sprite" name="refresh"></syn-icon>
+</div>`;
+  },
+};
+
 
 const createIconPage = (letter: string): Story => {
   return {

@@ -39,7 +39,7 @@ jobs:
         run: git diff --exit-code
 
       - name: Vendorism
-        run: cd packages/components && pnpm vendorism.get && pnpm vendorism.set
+        run: cd packages/components && pnpm vendor.get && pnpm vendor.set
 
       - name: Check for uncommitted changes
         run: git diff --exit-code

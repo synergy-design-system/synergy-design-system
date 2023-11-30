@@ -9,7 +9,8 @@ export default css`
     --syn-input-border-color: var(--syn-input-border-color-focus-error);
     --syn-input-border-color-hover: var(--syn-input-border-color-focus-error);
     --syn-color-primary-600: var(--syn-color-error-700);
-    --syn-color-primary-950: var(--syn-color-error-800);
+    --syn-color-primary-900: var(--syn-color-error-900);
+    --syn-color-primary-950: var(--syn-color-error-950);
   }
 
 `;

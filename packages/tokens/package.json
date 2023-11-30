@@ -20,7 +20,10 @@
     "style-dictionary": "^3.8.0"
   },
   "exports": {
-    ".": "./dist/js/index.js",
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js"
+    },
     "./themes/*": "./dist/themes/*",
     "./scss": "./dist/scss/_tokens.scss"
   },
@@ -107,5 +110,6 @@
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0-main.11"
+  "types": "./dist/js/index.d.ts",
+  "version": "1.0.0-main.12"
 }

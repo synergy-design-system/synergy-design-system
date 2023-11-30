@@ -176,7 +176,7 @@ const config = {
       (path, content) => {
         let newContent;
         [...components, 'form-control'].forEach((component) => {
-          if (path.includes(`${component}.styles.ts`)) {
+          if (optimizePathForWindows(path).includes(`/${component}.styles.ts`)) {
             newContent = content
               .replace(
                 // eslint-disable-next-line @typescript-eslint/quotes
@@ -243,6 +243,10 @@ if (!options.setOnly) {
 
 // Check for the "getOnly" option and modify the content if necessary
 if (!options.getOnly) {
+  // Fallback if vendorism script stopped with error or was cancelled
+  if (fs.existsSync('./src/temp')) {
+    await execSync('mv ./src/temp ../docs/stories/components');
+  }
   /**
    * Generate the storybook files for all relevant components
    * after shoelace is available so that they can be vendored

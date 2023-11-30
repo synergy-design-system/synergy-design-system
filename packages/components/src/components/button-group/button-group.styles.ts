@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './button-group.custom.styles.js';
 import componentStyles from '../../styles/component.styles.js';
 
 export default css`
@@ -20,7 +19,4 @@ export default css`
     display: flex;
     flex-wrap: nowrap;
   }
-
-  ${customStyles}
 `;
-

@@ -24,8 +24,6 @@ export const components = [
   'checkbox',
   'radio',
   'radio-group',
-  'button-group',
-  'radio-button',
 ].sort();
 
 /**
@@ -57,6 +55,7 @@ const otherIncludes = [
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
   'src/utilities/form*',
+  'src/components/button-group/button-group.ts',
   ...eventList,
 ];
 

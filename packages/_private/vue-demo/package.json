@@ -13,8 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
+    "@synergy-design-system/vue": "workspace:*",
     "vue": "^3.3.4"
   },
   "devDependencies": {

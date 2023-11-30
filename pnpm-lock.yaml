@@ -209,12 +209,12 @@ importers:
 
   packages/_private/vue-demo:
     dependencies:
-      '@synergy-design-system/components':
-        specifier: workspace:*
-        version: link:../../components
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens
+      '@synergy-design-system/vue':
+        specifier: workspace:*
+        version: link:../../vue
       vue:
         specifier: ^3.3.4
         version: 3.3.9(typescript@5.2.2)

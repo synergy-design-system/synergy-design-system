@@ -1,20 +1,17 @@
 <script setup lang="ts">
+import {
+  SynVueButton,
+  SynVueCheckbox,
+  SynVueInput,
+} from '@synergy-design-system/vue';
 import type {
-  SynCheckbox as SynCheckboxType,
-  SynInput as SynInputType,
+  SynCheckbox,
+  SynInput,
 } from '@synergy-design-system/components';
-import SynButton from './SynButton.vue';
-import SynCheckbox from './SynCheckbox.vue';
-import SynInput from './SynInput.vue';
 
-// Use this to bootstrap all components.
-// Will result in larger bundles, but it is nice to get started before optimizing
-import '@synergy-design-system/components';
-// Single imports. Use this way for smaller bundles
-// import '@synergy-design-system/components/components/button/button';
 import { ref } from 'vue';
 
-const btnRef = ref<typeof SynButton>();
+const btnRef = ref<typeof SynVueButton>();
 
 const formValues = ref({
   givenName: '',
@@ -76,7 +73,7 @@ const log = (...args: unknown[]) => console.log(...args);
       <legend>Personal Information</legend>
       
       <!-- Using v-model -->
-      <SynInput
+      <SynVueCheckbox
         label="Given Name"
         name="givenName"
         placeholder="Please insert your given name"
@@ -85,49 +82,37 @@ const log = (...args: unknown[]) => console.log(...args);
       />
 
       <!-- Using direct listener binding -->
-      <SynInput
+      <syn-vue-input
         label="Surname"
         :value="formValues.surName"
-        @syn-input="formValues.surName = ($event.target as SynInputType)!.value"
+        @syn-input="formValues.surName = ($event.target as SynInput)!.value"
         name="surName"
         placeholder="Please insert your surname"
         required
       />
 
       <!-- Using labels as slot -->
-      <SynInput
+      <syn-vue-input
         :value="formValues.email"
-        @syn-input="formValues.email = ($event.target as SynInputType)!.value"
+        @syn-input="formValues.email = ($event.target as SynInput)!.value"
         name="email"
         placeholder="Please insert your E-Mail address"
         type="email"
       >
         <span slot="label">E-Mail <em>(optional)</em></span>
-      </SynInput>
+      </syn-vue-input>
     </fieldset>
 
-    <!--
-      Uncomment to use regular binding
-    <SynCheckbox
-      :checked="formValues.tos"
-      @syn-change="formValues.tos = ($event.target as SynCheckboxType).checked"
-      required
-      name="tos"
-    >
-      I agree to to the <strong>T</strong>erms <strong>o</strong>f <strong>S</strong>ervice
-    </SynCheckbox>
-    -->
-
-    <SynCheckbox
+    <syn-vue-checkbox
       v-model="formValues.tos"
       required
       name="tos"
     >
       I agree to to the <strong>T</strong>erms <strong>o</strong>f <strong>S</strong>ervice
-    </SynCheckbox>
+    </syn-vue-checkbox>
 
     <div class="buttons">
-      <SynButton
+      <syn-vue-button
         type="submit"
         variant="filled"
         @syn-blur="log"
@@ -141,11 +126,11 @@ const log = (...args: unknown[]) => console.log(...args);
           <span slot="prefix">prefix</span>
         -->
         Submit
-      </SynButton>
+      </syn-vue-button>
 
-      <SynButton type="reset" variant="outline">
+      <syn-vue-button type="reset" variant="outline">
         Reset form
-      </SynButton>
+      </syn-vue-button>
 
       <span @click="clickSynButton">Trigger the click method of Syn Button</span>
     </div>

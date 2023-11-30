@@ -77,6 +77,13 @@ export async function updateVsCodeReadOnlyFiles(
       ...settings['files.readonlyInclude'],
     };
 
+    // Sort the files object alphabetically
+    const sortedFiles = {};
+    Object.keys(settings['files.readonlyInclude']).sort().forEach((key) => {
+      sortedFiles[key] = settings['files.readonlyInclude'][key];
+    });
+    settings['files.readonlyInclude'] = sortedFiles;
+
     // Write the updated settings back to settings.json
     console.log('🖊️ Writing to settings.json file...');
     await fs.mkdirSync(settingsPath.split('/').slice(0, -1).join('/'), { recursive: true });

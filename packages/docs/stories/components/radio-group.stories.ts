@@ -141,7 +141,7 @@ export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
       const radioGroup = canvasElement.querySelector('syn-radio-group');
-      const form = canvasElement.querySelector('form'); // Assuming the form element is present
+      const form = canvasElement.querySelector('form');
       const errorMessage = 'You must choose the last option';
 
       await waitUntil(() => radioGroup?.shadowRoot?.querySelector('input'));

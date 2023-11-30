@@ -10,6 +10,7 @@ import { globby } from 'globby';
 import chalk from 'chalk';
 import ora from 'ora';
 import { pascalCase } from 'change-case';
+import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
 const spinner = ora({ hideCursor: false });
 
@@ -152,22 +153,23 @@ export const getExportsListFromFileSystem = async (warn = false) => {
   }
 
   const componentsDir = getPath('../src/components');
+  const optimizedPath = optimizePathForWindows(componentsDir);
 
   // Only treat components as available if there is a COMPONENTNAME.component.ts!
-  const foundComponents = await globby(`${componentsDir}/**/*.component.ts`);
+  const foundComponents = await globby(`${optimizedPath}/**/*.component.ts`);
 
   EXPORTED_COMPONENTS = foundComponents
     .sort()
     .map(c => c.split('/').at(-1))
     .map(c => c.replace(/\.component\.ts$/, ''))
     .map(c => ({
-      componentAbsolutePath: path.join(
-        componentsDir,
+      componentAbsolutePath: optimizePathForWindows(path.join(
+        optimizedPath,
         c,
         `${c}.ts`,
-      ),
+      )),
       componentClass: pascalCase(`Syn-${c}`),
-      componentImportPath: path.join('components', c, `${c}.js`),
+      componentImportPath: optimizePathForWindows(path.join('components', c, `${c}.js`)),
       componentName: c,
     }))
     .filter(c => {

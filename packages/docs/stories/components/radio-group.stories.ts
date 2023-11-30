@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/radio-group/radio-group.js';
@@ -94,10 +95,10 @@ export const Invalid: Story = {
   },
   play: async ({ canvasElement }) => {
     try {
-      const input = canvasElement.querySelector('syn-radio-group');
+      const radioGroup = canvasElement.querySelector('syn-radio-group');
       const button = canvasElement.querySelector('button');
 
-      await waitUntil(() => input?.shadowRoot?.querySelector('input'));
+      await waitUntil(() => radioGroup?.shadowRoot?.querySelector('input'));
 
       if (button) {
         await userEvent.click(button);
@@ -137,6 +138,33 @@ export const CustomValidity: Story = {
       description: generateStoryDescription('setCustomValidity'),
     },
   },
+  play: async ({ canvasElement }) => {
+    try {
+      const radioGroup = canvasElement.querySelector('syn-radio-group');
+      const form = canvasElement.querySelector('form'); // Assuming the form element is present
+      const errorMessage = 'You must choose the last option';
+
+      await waitUntil(() => radioGroup?.shadowRoot?.querySelector('input'));
+
+      radioGroup?.setCustomValidity(errorMessage);
+
+      form?.addEventListener('syn-change', () => {
+        const isValid = radioGroup?.value === '3';
+        radioGroup?.setCustomValidity(isValid ? '' : errorMessage);
+      });
+
+      form?.addEventListener('submit', event => {
+        event.preventDefault();
+        if (radioGroup?.checkValidity()) {
+          console.log('All fields are valid!');
+        } else {
+          console.error('Form validation failed');
+        }
+      });
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
   render: () => html`
   <form class="custom-validity">
     <syn-radio-group label="Select an option" name="a" value="1">
@@ -145,29 +173,6 @@ export const CustomValidity: Story = {
       <syn-radio value="3">Choose me</syn-radio>
     </syn-radio-group>
     <br />
-    <syn-button type="submit" variant="primary">Submit</syn-button>
-  </form>
-
-<script type="module">
-  const form = document.querySelector('.custom-validity');
-  const radioGroup = form.querySelector('syn-radio-group');
-  const errorMessage = 'You must choose the last option';
-
-  // Set initial validity as soon as the element is defined
-  customElements.whenDefined('syn-radio').then(() => {
-    radioGroup.setCustomValidity(errorMessage);
-  });
-
-  // Update validity when a selection is made
-  form.addEventListener('syn-change', () => {
-    const isValid = radioGroup.value === '3';
-    radioGroup.setCustomValidity(isValid ? '' : errorMessage);
-  });
-
-  // Handle form submit
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    alert('All fields are valid!');
-  });
-</script>`,
+    <button type="submit">Submit</button>
+  </form>`,
 };

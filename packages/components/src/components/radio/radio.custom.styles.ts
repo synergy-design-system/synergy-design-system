@@ -37,4 +37,8 @@ export default css`
   .radio--large {
     --toggle-size: var(--syn-spacing-large);
   }
+
+  .radio--small .radio__label, .radio--large .radio__label  {
+    margin-inline-start: var(--syn-spacing-x-small);
+  }
 `;

@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './radio-button.custom.styles.js';
 import buttonStyles from '../button/button.styles.js';
 
 export default css`
@@ -33,7 +32,4 @@ export default css`
     opacity: 0;
     z-index: -1;
   }
-
-  ${customStyles}
 `;
-

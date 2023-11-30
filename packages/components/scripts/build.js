@@ -36,3 +36,5 @@ await Promise.all([
     componentPackageDir: componentDir,
   }),
 ]);
+
+await jobs.runCreateChecksums();

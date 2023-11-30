@@ -23,9 +23,12 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
+    "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -143,7 +146,10 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ],
       [
@@ -161,5 +167,11 @@
     "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0"
   },
-  "web-types": "./dist/web-types.json"
+  "web-types": "./dist/web-types.json",
+  "meta": {
+    "checksums": {
+      "angular": "45415e7688194ab65f8f72efe2a27a658910c202",
+      "react": "00bfba6d406eb66250a884de281d565678cc0f0e"
+    }
+  }
 }

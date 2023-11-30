@@ -66,7 +66,7 @@ export const HelpText: Story = {
     },
   },
   render: () => html`
-  <syn-radio-group label="This is a label" help-text="This is the help-text" name="a" value="1">
+  <syn-radio-group label="This is a label" help-text="This is the help-text" name="a">
     <syn-radio value="1">Option</syn-radio>
     <syn-radio value="2">Option</syn-radio>
     <syn-radio value="3">Option</syn-radio>
@@ -83,6 +83,15 @@ export const Disabled: Story = {
   <syn-radio-group label="This is a label" help-text="This is disabled" name="a">
     <syn-radio value="1">Option</syn-radio>
     <syn-radio value="2" disabled>Option</syn-radio>
+    <syn-radio value="3">Option</syn-radio>
+  </syn-radio-group>`,
+};
+
+export const Checked: Story = {
+  render: () => html`
+  <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
     <syn-radio value="3">Option</syn-radio>
   </syn-radio-group>`,
 };

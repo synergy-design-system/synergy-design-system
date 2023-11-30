@@ -444,6 +444,16 @@
           "value": "The Icon button can have two color variants, Primary or Neutral Color.",
           "type": "text"
         }
+      },
+      "label": {
+        "titel": {
+          "value": "Accessibility Label",
+          "type": "text"
+        },
+        "description": {
+          "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -1176,7 +1186,8 @@
           "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
           "type": "text"
         }
-      }
+      },
+      "type": "other"
     }
   },
   "frameworks": {

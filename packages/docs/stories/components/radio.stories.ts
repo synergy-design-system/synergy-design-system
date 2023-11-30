@@ -6,11 +6,9 @@ import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import { waitUntil } from '@open-wc/testing-helpers';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { storybookDefaults } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
-const { overrideArgs } = storybookHelpers('syn-radio');
-const { generateTemplate } = storybookTemplate('syn-radio');
 
 const generateStoryDescription = (attributeName: string) => ({
   story: (docsTokens?.components?.radio as Record<string, unknown>)?.[attributeName]?.description?.value ?? 'No Description',

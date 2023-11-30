@@ -83,9 +83,8 @@ export const Sizes: Story = {
       description: generateStoryDescription('sizes'),
     },
   },
-  render: () => html`<syn-switch size="small">Small</syn-switch>
-<br />
-<syn-switch size="medium">Medium</syn-switch>
-<br />
-<syn-switch size="large">Large</syn-switch>`,
+  render: () => html`
+  <syn-switch size="small">Small</syn-switch>
+  <syn-switch size="medium">Medium</syn-switch>
+  <syn-switch size="large">Large</syn-switch>`,
 };

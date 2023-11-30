@@ -13,4 +13,8 @@ export default css`
     --syn-color-primary-950: var(--syn-color-error-950);
   }
 
+  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+    margin-top: var(--syn-spacing-x-small);
+  }
+
 `;

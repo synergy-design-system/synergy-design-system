@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.13](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.12...tokens/1.0.0-main.13) (2023-11-30)
+
+
+### Features
+
+* ✨ add syn-radio ([#170](https://github.com/SickDesignSystem/synergy/issues/170)) ([4eb4228](https://github.com/SickDesignSystem/synergy/commit/4eb4228fc814da910662fd85745ccb1717efc2d6))
+
 # [@synergy-design-system/tokens-v1.0.0-main.12](https://github.com/SickDesignSystem/synergy/compare/tokens/1.0.0-main.11...tokens/1.0.0-main.12) (2023-11-29)
 
 

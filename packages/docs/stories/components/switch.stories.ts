@@ -35,7 +35,7 @@ export const Default = {
       description: generateStoryDescription('default'),
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => html`<syn-switch>Option</syn-switch>`,
 } as Story;
 
 export const Checked: Story = {

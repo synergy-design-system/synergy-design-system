@@ -1,6 +1,6 @@
-/* eslint-disable complexity */
 import fs from 'fs';
 import path from 'path';
+import { pascalCase } from 'change-case';
 import {
   createFrameworkIndex,
   createHeader,
@@ -88,7 +88,12 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
   const componentDir = path.join(outDir, 'components');
 
   components.forEach(component => {
-    const componentFile = path.join(componentDir, `${component.tagNameWithoutPrefix}.vue`);
+    const vueComponentName = pascalCase([
+      'syn',
+      'vue',
+      component.tagNameWithoutPrefix,
+    ].join('-'));
+    const componentFile = path.join(componentDir, `${vueComponentName}.vue`);
     const importPath = `@synergy-design-system/components/${component.path}`;
 
     const eventImports = getEventImports(component.events);
@@ -154,8 +159,8 @@ defineEmits<{
 `.trim();
 
     index.push({
-      name: component.name,
-      outputPath: `./components/${component.tagNameWithoutPrefix}.vue`,
+      name: vueComponentName,
+      outputPath: `./components/${vueComponentName}.vue`,
     });
 
     fs.writeFileSync(componentFile, `${source}\n`, 'utf8');

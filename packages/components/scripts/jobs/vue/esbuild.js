@@ -12,13 +12,18 @@ export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
     },
     entryPoints: [
       ...(await globby('../vue/src/**/*.(ts|vue)')),
+      // '../vue/src/index.ts',
     ],
     external: undefined,
     format: 'esm',
     minify: false,
     outdir: distDir,
     packages: 'external',
-    plugins: [vue()],
+    plugins: [vue({
+      compilerOptions: {
+        isCustomElement: tag => tag.startsWith('syn-') && !tag.startsWith('syn-vue-'),
+      },
+    })],
     sourcemap: true,
     splitting: true,
     target: 'es2020',

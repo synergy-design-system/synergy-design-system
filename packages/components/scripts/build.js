@@ -26,16 +26,16 @@ await jobs.runEsBuildComponents(outDir, __PACKAGE_VERSION__);
 await jobs.runCem();
 
 await Promise.all([
-  // jobs.runCreateReactWrappers({
-  //   componentDistDir: outDir,
-  //   componentPackageDir: componentDir,
-  //   reactPackageDir,
-  // }),
-  // jobs.runCreateAngularWrappers({
-  //   angularPackageDir,
-  //   componentDistDir: outDir,
-  //   componentPackageDir: componentDir,
-  // }),
+  jobs.runCreateReactWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    reactPackageDir,
+  }),
+  jobs.runCreateAngularWrappers({
+    angularPackageDir,
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+  }),
   jobs.runCreateVueWrappers({
     componentDistDir: outDir,
     componentPackageDir: componentDir,

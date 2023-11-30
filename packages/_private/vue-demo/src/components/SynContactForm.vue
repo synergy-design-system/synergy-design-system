@@ -5,7 +5,6 @@ import {
   SynVueInput,
 } from '@synergy-design-system/vue';
 import type {
-  SynCheckbox,
   SynInput,
 } from '@synergy-design-system/components';
 
@@ -73,7 +72,7 @@ const log = (...args: unknown[]) => console.log(...args);
       <legend>Personal Information</legend>
       
       <!-- Using v-model -->
-      <SynVueCheckbox
+      <SynVueInput
         label="Given Name"
         name="givenName"
         placeholder="Please insert your given name"
@@ -82,7 +81,7 @@ const log = (...args: unknown[]) => console.log(...args);
       />
 
       <!-- Using direct listener binding -->
-      <syn-vue-input
+      <SynVueInput
         label="Surname"
         :value="formValues.surName"
         @syn-input="formValues.surName = ($event.target as SynInput)!.value"
@@ -92,7 +91,7 @@ const log = (...args: unknown[]) => console.log(...args);
       />
 
       <!-- Using labels as slot -->
-      <syn-vue-input
+      <SynVueInput
         :value="formValues.email"
         @syn-input="formValues.email = ($event.target as SynInput)!.value"
         name="email"
@@ -100,19 +99,19 @@ const log = (...args: unknown[]) => console.log(...args);
         type="email"
       >
         <span slot="label">E-Mail <em>(optional)</em></span>
-      </syn-vue-input>
+      </SynVueInput>
     </fieldset>
 
-    <syn-vue-checkbox
+    <SynVueCheckbox
       v-model="formValues.tos"
       required
       name="tos"
     >
       I agree to to the <strong>T</strong>erms <strong>o</strong>f <strong>S</strong>ervice
-    </syn-vue-checkbox>
+    </SynVueCheckbox>
 
     <div class="buttons">
-      <syn-vue-button
+      <SynVueButton
         type="submit"
         variant="filled"
         @syn-blur="log"
@@ -126,11 +125,11 @@ const log = (...args: unknown[]) => console.log(...args);
           <span slot="prefix">prefix</span>
         -->
         Submit
-      </syn-vue-button>
+      </SynVueButton>
 
-      <syn-vue-button type="reset" variant="outline">
+      <SynVueButton type="reset" variant="outline">
         Reset form
-      </syn-vue-button>
+      </SynVueButton>
 
       <span @click="clickSynButton">Trigger the click method of Syn Button</span>
     </div>

@@ -579,11 +579,11 @@
       },
       "prefix-suffix": {
         "title": {
-          "value": "Prefix Suffix Icons",
+          "value": "Prefix Suffix Text and Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add icons.",
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       },

@@ -92,11 +92,14 @@ export const ReadonlyTextareas: Story = {
   render: () => html`<syn-textarea value="Read-only content"  readonly></syn-textarea>`,
 };
 
-/** The focus attribute provides feedback to the users,
- * informing them that the textarea component is ready for use.  */
 export const Focus: Story = {
   args: {
     placeholder: 'This is in focus',
+  },
+  parameters: {
+    docs: {
+      description: generateStoryDescription('focus'),
+    },
   },
   play: ({ canvasElement }) => {
     const textarea = canvasElement.querySelector('syn-textarea') as SynTextarea;
@@ -134,15 +137,17 @@ export const Sizes: Story = {
   <syn-textarea placeholder="Large" size="large"></syn-textarea>`,
 };
 
-/**
- * The invalid state is used to warn the user that the input is invalid.
- */
 export const Invalid: Story = {
   args: {
     helpText: 'This textarea is required.',
     placeholder: 'Type something',
   },
-  parameters: { controls: { exclude: ['required'] } },
+  parameters: {
+    controls: { exclude: ['required'] },
+    docs: {
+      description: generateStoryDescription('invalid'),
+    },
+  },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form');

@@ -17,6 +17,7 @@ export class AppComponent {
       name: '',
       test: '',
       pass: '',
+      radio: '',
     });
 
     this.myLabel = 'here';
@@ -34,6 +35,7 @@ export class AppComponent {
       name: '',
       test: '',
       pass: '',
+      radio: '',
     });
   }
 
@@ -43,6 +45,7 @@ export class AppComponent {
     console.log('test', form.value.test);
     console.log('pass', form.value.pass);
     console.log('agree', form.value.agree);
+    console.log('radio', form.value.radio);
     this.myLabel = `Label ${form.value.test}`;
   }
 }

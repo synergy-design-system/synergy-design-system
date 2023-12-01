@@ -444,6 +444,16 @@
           "value": "The Icon button can have two color variants, Primary or Neutral Color.",
           "type": "text"
         }
+      },
+      "label": {
+        "titel": {
+          "value": "Accessibility Label",
+          "type": "text"
+        },
+        "description": {
+          "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -569,11 +579,11 @@
       },
       "prefix-suffix": {
         "title": {
-          "value": "Prefix Suffix Icons",
+          "value": "Prefix Suffix Text and Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add icons.",
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       },
@@ -709,6 +719,16 @@
           "type": "text"
         }
       },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
       "help-text": {
         "title": {
           "value": "Help Text",
@@ -756,6 +776,26 @@
         },
         "description": {
           "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.",
           "type": "text"
         }
       }
@@ -1115,6 +1155,69 @@
         "value": "Visually Hidden",
         "type": "text"
       }
+    },
+    "radio": {
+      "default": {
+        "description": {
+          "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Radio",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a radio.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the size attribute to the Radio Group to change the radios’ size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "value": {
+        "title": {
+          "value": "Initial Value",
+          "type": "text"
+        },
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
+      },
+      "type": "other"
     }
   },
   "frameworks": {

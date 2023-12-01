@@ -42,3 +42,5 @@ await Promise.all([
     vuePackageDir,
   }),
 ]);
+
+await jobs.runCreateChecksums();

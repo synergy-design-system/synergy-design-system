@@ -18,7 +18,15 @@ Components must be optimized for accessibility. Please use tools like AXE or Dev
 
 ## Contribution workflow:
 
-If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/synergy/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes. 
+If you want to contribute to this project, please [make sure that a similar issue does not exist yet](https://github.com/SickDesignSystem/synergy/issues). If it does not exist, create a new issue, using one of our issue templates as a starting point. Create a new pull request, using `main` as source. Request a review when you are done with your changes.
+
+## Semantic Release Process
+
+In our development workflow, we use Semantic Release to automate the release process for each package. This approach ensures that releases are consistent, predictable, and based on the analysis of relevant commit messages.
+
+### Commit Messages
+
+When committing changes, use structured commit messages to ensure our automated tools can correctly interpret and act upon each change. Examples of valid commit messages include:
 
 Please use the following message conventions for your commits:
 
@@ -26,29 +34,37 @@ Please use the following message conventions for your commits:
 
 where ICON and COMMIT PREFIX are one of the following:
 
-|  Icon  | Used for      | Commit Prefix | Description
-|:------:|:--------------|:--------------|:------------
-|   🐛   | Bugs          | Fix           | Used when a bug was fixed
-|   📚   | Documentation | Doc           | Used when adding or updating documentation
-|   ✨   | Features      | Feat          | Feature was added
-|   🚀   | Releases      | Rel           | Release was scheduled
-|   ⛔   | Removals      | Del           | Used when a feature was removed
-
-and PKG is the package in which changes are done:
-
-- **css**: CSS package
-- **core**: Web components package
-- **design-tokens**: Design Tokens package
-- **docs**: Documentation package
-- **icons**: Icons package
-- **lint**: EsLint or stylelint rules
+| Icon | Used for      | Commit Prefix | Description                 | Release Type |
+| :--: | :------------ | :------------ | :-------------------------- | :----------- |
+|  ✨  | Features      | feat          | Add feature                 | Major        |
+|  🐛  | Bugs          | fix           | Fix a bug                   | Minor        |
+|  📚  | Documentation | docs          | Add or update documentation | –            |
+|  🔧  | Chore         | chore         | Do something else           | –            |
 
 Examples for valid commit messages:
 
 ```
-🐛 Fix(design-tokens) #12: Fixed typo in README.md
-✨ Feat(Core) #6: Support for pnpm and workspaces
-📚 Doc(design-tokens) #14: Add installation instructions
-🚀 Rel(design-tokens): v0.2.0
-⛔ Del(design-tokens) #18: Removed less output from design-tokens (not needed)
+fix(design-tokens) #12: Fixed typo in README.md
+feat: ✨ Support for pnpm and workspaces
+docs: 📚 Add installation instructions
+re:
+chore: 🔧 Removed less output from design-tokens (not needed)
 ```
+
+## Release changes in framework wrapper packages
+
+Framework wrappers (e.g., for Angular) are automatically released when there are changes in the components package, managed by Semantic Release. While most files in the framework packages are auto-generated during the `components` package build, there are cases where manual modifications are necessary (e.g., updating `angular/README.md` or `react/package.json`).
+
+The `createChecksums` script is vital in these scenarios. It performs a dry run of an npm publish and updates `components/package.json` with the checksums of the framework packages' tarballs. This process ensures that even manual changes in the framework packages are reflected in the components package without requiring manual intervention.
+
+### Example Workflow
+
+1. Modify `{framework-name}/package.json` or other files that get published on npm but are not automatically managed by `components`.
+2. Run `cd packages/components && pnpm create-checksums` or `(cd packages/components &&) pnpm build`.
+3. The script updates `components/package.json` with the new npm tarball's checksums.
+4. Commit these changes along with your original modifications, following our structured commit message format.
+5. Semantic Release will then automatically handle the release process based on these changes.
+
+### Automatic Checksum Verification and Update
+
+We have implemented a check in our contribution guidelines to ensure the checksums are always correct. This check is automatically triggered after each release. If discrepancies are found, the checks fail. This process helps maintain the integrity and consistency of our release workflow, ensuring that manual changes are correctly accounted for in each release.

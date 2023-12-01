@@ -72,9 +72,12 @@ export const Sizes: Story = {
   </style>`,
 };
 
-/** The focus attribute provides feedback to the users,
- * informing them that the button component is ready for use.  */
 export const Focus: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('focus'),
+    },
+  },
   play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
     const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
     if (button) {

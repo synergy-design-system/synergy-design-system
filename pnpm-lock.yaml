@@ -944,7 +944,7 @@ packages:
       '@angular/compiler': 17.0.4
       typescript: '>=5.2 <5.3'
     dependencies:
-      '@angular/compiler': 17.0.4(@angular/core@17.0.4)
+      '@angular/compiler': 17.0.4
       '@babel/core': 7.23.2
       '@jridgewell/sourcemap-codec': 1.4.15
       chokidar: 3.5.3
@@ -958,6 +958,18 @@ packages:
       - supports-color
     dev: true
 
+  /@angular/compiler@17.0.4:
+    resolution: {integrity: sha512-OweJui9EWCa1ZcZjkJHS5z1gqICqyryR1Gdmyr8vIa6HD8wU/5BaeBJPCDgYgt+qJkvcT/sPxgZQsc2pVeUwbQ==}
+    engines: {node: ^18.13.0 || >=20.9.0}
+    peerDependencies:
+      '@angular/core': 17.0.4
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+    dependencies:
+      tslib: 2.6.2
+    dev: true
+
   /@angular/compiler@17.0.4(@angular/core@17.0.4):
     resolution: {integrity: sha512-OweJui9EWCa1ZcZjkJHS5z1gqICqyryR1Gdmyr8vIa6HD8wU/5BaeBJPCDgYgt+qJkvcT/sPxgZQsc2pVeUwbQ==}
     engines: {node: ^18.13.0 || >=20.9.0}
@@ -969,6 +981,7 @@ packages:
     dependencies:
       '@angular/core': 17.0.4(rxjs@7.8.1)(zone.js@0.14.2)
       tslib: 2.6.2
+    dev: false
 
   /@angular/core@17.0.4(rxjs@7.8.1)(zone.js@0.14.2):
     resolution: {integrity: sha512-zk+z5sYPZd87pLxECx27quB5FvSmoi9PjJlcSlaBwwqaGnh/tPJI14u3q1dRY/CoZgP9egEiwc428+DzvOzJew==}

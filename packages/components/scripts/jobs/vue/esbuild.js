@@ -4,6 +4,12 @@ import vue from 'esbuild-plugin-vue3';
 import { job } from '../shared.js';
 
 export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
+  // @todo: currently, we will have to use a minified bundle without sourcemap
+  // This is, because vues sfc-compiler will append absolute paths to the generated
+  // bundle files, e.g. something like // sfc-template: ABSOLUTE_PATH
+  // This leads to local paths being exposed to the internet, leaking internal information.
+  // Also, we will always create new checksums with this.
+  // This should be fixed asap after release 1.0.0!
   const esbuildConfig = {
     bundle: true,
     chunkNames: 'chunks/[name].[hash]',
@@ -15,7 +21,7 @@ export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
     ],
     external: undefined,
     format: 'esm',
-    minify: true,
+    minify: true, // <- see comment above
     outdir: distDir,
     packages: 'external',
     plugins: [vue({
@@ -23,7 +29,7 @@ export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
         isCustomElement: tag => tag.startsWith('syn-') && !tag.startsWith('syn-vue-'),
       },
     })],
-    sourcemap: true,
+    sourcemap: false, // <- see comment above
     splitting: true,
     target: 'es2020',
   };

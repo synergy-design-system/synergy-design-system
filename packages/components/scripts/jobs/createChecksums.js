@@ -6,7 +6,8 @@ import path from 'path';
 import { job } from './shared.js';
 
 /**
- * This function will create the events/events.ts file out of all vendored events
+ * This function will create checksums of framework wrapper packages to keep track of changes
+ * for Semantic Release
  */
 export const runCreateChecksums = job('Checksums updated in package.json', async () => {
   function extractShasum(output) {

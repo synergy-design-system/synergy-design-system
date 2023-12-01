@@ -8,6 +8,7 @@ import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/in
 import {
   vendorButton,
   vendorCustomElementsManifest,
+  vendorIconButton,
   vendorInput,
   vendorTextarea,
   vendorWebTestRunnerConfig,
@@ -24,6 +25,7 @@ export const components = [
   'checkbox',
   'radio',
   'radio-group',
+  'icon-button',
 ].sort();
 
 /**
@@ -206,6 +208,7 @@ import customStyles from './${component}.custom.styles.js';`,
       // specialized customizations
       vendorButton,
       vendorCustomElementsManifest,
+      vendorIconButton,
       vendorInput,
       vendorTextarea,
       vendorWebTestRunnerConfig,

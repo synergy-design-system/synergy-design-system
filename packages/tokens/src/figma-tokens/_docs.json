@@ -444,6 +444,16 @@
           "value": "The Icon button can have two color variants, Primary or Neutral Color.",
           "type": "text"
         }
+      },
+      "label": {
+        "titel": {
+          "value": "Accessibility Label",
+          "type": "text"
+        },
+        "description": {
+          "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
+          "type": "text"
+        }
       }
     },
     "icon": {
@@ -569,11 +579,11 @@
       },
       "prefix-suffix": {
         "title": {
-          "value": "Prefix Suffix Icons",
+          "value": "Prefix Suffix Text and Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add icons.",
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       },
@@ -706,6 +716,16 @@
         },
         "title": {
           "value": "Radio Group",
+          "type": "text"
+        }
+      },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.",
           "type": "text"
         }
       },

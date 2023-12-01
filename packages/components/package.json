@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.13",
+  "version": "1.0.0-main.14",
   "description": "",
   "repository": {
     "type": "git",
@@ -23,9 +23,12 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
+    "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -143,7 +146,10 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ],
       [
@@ -161,5 +167,11 @@
     "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0"
   },
-  "web-types": "./dist/web-types.json"
+  "web-types": "./dist/web-types.json",
+  "meta": {
+    "checksums": {
+      "angular": "25bfcd94030b0c25cac62ee17684b601353a8717",
+      "react": "dfd13853e7afcdaae44deb2378b40599ed4201fc"
+    }
+  }
 }

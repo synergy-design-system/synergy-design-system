@@ -24,6 +24,8 @@ export const components = [
   'textarea',
   'icon',
   'checkbox',
+  'radio',
+  'radio-group',
 ].sort();
 
 /**
@@ -56,6 +58,7 @@ const otherIncludes = [
   'src/translations/de.ts',
   'src/utilities/form*',
   'src/utilities/icon-library*',
+  'src/components/button-group/button-group.ts',
   ...eventList,
 ];
 

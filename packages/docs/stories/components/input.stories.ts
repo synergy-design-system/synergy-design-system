@@ -106,13 +106,16 @@ export const ReadonlyInputs: Story = {
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
 };
 
-/** The focus attribute provides feedback to the users,
- * informing them that the input component is ready for use.  */
 export const Focus: Story = {
   args: {
     helpText: 'This input is focused.',
     label: 'Label',
     placeholder: 'Insert text here...',
+  },
+  parameters: {
+    docs: {
+      description: generateStoryDescription('focus'),
+    },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
@@ -158,9 +161,6 @@ export const Sizes: Story = {
   <syn-input placeholder="Large" size="large"></syn-input>`,
 };
 
-/**
- * The invalid state is used to warn the user that the input is invalid.
- */
 export const Invalid: Story = {
   args: {
     helpText: 'This input is required.',
@@ -169,6 +169,9 @@ export const Invalid: Story = {
   },
   parameters: {
     controls: { exclude: ['required'] },
+    docs: {
+      description: generateStoryDescription('invalid'),
+    },
   },
   play: async ({ canvasElement }) => {
     try {

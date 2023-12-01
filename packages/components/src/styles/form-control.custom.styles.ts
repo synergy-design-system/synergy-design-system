@@ -21,7 +21,7 @@ export default css`
 
     /* Help text */
   .form-control--has-help-text .form-control__help-text {
-    margin-top: var(--syn-spacing-2x-small);
+    margin-top: var(--syn-spacing-x-small);
   }
 
   .form-control--small.form-control--has-prefix .input__control  {

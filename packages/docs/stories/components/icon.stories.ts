@@ -119,7 +119,7 @@ Most of the magic behind assets is handled internally by Synergy, but if you nee
 
 const meta: Meta = {
   component: 'icon',
-  args: overrideArgs({ type: 'attribute', value: 'notifications', name: 'name' }, args),
+  args: overrideArgs({ type: 'attribute', value: 'wallpaper', name: 'name' }, args),
   argTypes,
   parameters: {
     docs: {
@@ -151,25 +151,25 @@ export const Default = {
  * Icons inherit their color from the current text color. Thus, you can set the color property on the <syn-icon> element or an ancestor to change the color.
  */
 export const Colors: Story = {
-  render: () => html`<div style="color: #4a90e2;">
+  render: () => html`<div style="color: var(--syn-color-primary-600);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
   <syn-icon name="battery_charging_full"></syn-icon>
   <syn-icon name="notifications"></syn-icon>
 </div>
-<div style="color: #9013fe;">
+<div style="color: var(--syn-color-neutral-800);">
   <syn-icon name="schedule"></syn-icon>
   <syn-icon name="cloud"></syn-icon>
   <syn-icon name="download"></syn-icon>
   <syn-icon name="description"></syn-icon>
 </div>
-<div style="color: #417505;">
+<div style="color: var(--syn-color-error-700);">
   <syn-icon name="flag"></syn-icon>
   <syn-icon name="favorite"></syn-icon>
   <syn-icon name="image"></syn-icon>
   <syn-icon name="bolt"></syn-icon>
 </div>
-<div style="color: #f5a623;">
+<div style="color: var(--syn-color-warning-400);">
   <syn-icon name="mic"></syn-icon>
   <syn-icon name="search"></syn-icon>
   <syn-icon name="star_border"></syn-icon>
@@ -181,7 +181,7 @@ export const Colors: Story = {
  * Icons are sized relative to the current font size. To change their size, set the font-size property on the icon itself or on a parent element as shown below.
  */
 export const Sizing: Story = {
-  render: () => html`<div style="font-size: 32px;">
+  render: () => html`<div style="font-size: var(--syn-font-size-2x-large);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
   <syn-icon name="battery_charging_full"></syn-icon>
@@ -273,7 +273,7 @@ export const CDNIconLibrary: Story = {
       },
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
     });
-    return html`<div style="font-size: 24px;">
+    return html`<div style="font-size: var(--syn-font-size-x-large);">
   <syn-icon library="fa" name="far-bell"></syn-icon>
   <syn-icon library="fa" name="far-comment"></syn-icon>
   <syn-icon library="fa" name="far-hand-point-right"></syn-icon>
@@ -311,7 +311,7 @@ export const CDNIconLibrary: Story = {
 * });
 * </script>
 *
-* <div style="font-size: 24px;">
+* <div style="font-size: var(--syn-font-size-x-large);">
 *   <syn-icon name="warning"></syn-icon>
 *   <syn-icon name="inventory"></syn-icon>
 *   <syn-icon name="battery_charging_full"></syn-icon>
@@ -332,7 +332,7 @@ export const BundledIconLibrary: Story = {
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
     });
 
-    return html`<div style="font-size: 24px;">
+    return html`<div style="font-size: var(--syn-font-size-x-large);">
   <syn-icon library="bundled-default" name="warning"></syn-icon>
   <syn-icon library="bundled-default" name="inventory"></syn-icon>
   <syn-icon library="bundled-default" name="battery_charging_full"></syn-icon>
@@ -363,7 +363,7 @@ export const BundledIconLibrary: Story = {
 * });
 * </script>
 *
-* <div style="font-size: 24px;">
+* <div style="font-size: var(--syn-font-size-x-large);">
 *   <syn-icon library="sprite" name="settings"></syn-icon>
 *   <syn-icon library="sprite" name="refresh"></syn-icon>
 * </div>
@@ -377,55 +377,10 @@ export const SpriteSheetUsage: Story = {
       spriteSheet: true
     });
 
-    return html`<div style="font-size: 24px;">
+    return html`<div style="font-size: var(--syn-font-size-x-large);">
   <syn-icon library="sprite" name="settings"></syn-icon>
   <syn-icon library="sprite" name="refresh"></syn-icon>
 </div>`;
   },
 };
 
-
-const createIconPage = (letter: string): Story => {
-  return {
-    render: () => {
-      const regex = new RegExp(`^${letter}`);
-      const iconKeys = Object.keys(defaultIcons);
-      const iconContainer = iconKeys.filter((key) => key.match(regex)).map((key) =>
-      (html`
-      <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer"  >
-        <span style="font-size: 12px">${key}</span>
-        <syn-icon style="font-size: 32px" name="${key}"></syn-icon>
-      </div>
-      `));
-      return html`<div style="display: grid; grid-template-columns: repeat(auto-fill, 150px); column-gap: 12px; row-gap: 32px;">${iconContainer}</div>`;
-    }
-  }
-}
-
-export const Number_Icons = createIconPage('[0-9]');
-export const A_Icons = createIconPage('a');
-export const B_Icons = createIconPage('b');
-export const C_Icons = createIconPage('c');
-export const D_Icons = createIconPage('d');
-export const E_Icons = createIconPage('e');
-export const F_Icons = createIconPage('f');
-export const G_Icons = createIconPage('g');
-export const H_Icons = createIconPage('h');
-export const I_Icons = createIconPage('i');
-export const J_Icons = createIconPage('j');
-export const K_Icons = createIconPage('k');
-export const L_Icons = createIconPage('l');
-export const M_Icons = createIconPage('m');
-export const N_Icons = createIconPage('n');
-export const O_Icons = createIconPage('o');
-export const P_Icons = createIconPage('p');
-export const Q_Icons = createIconPage('q');
-export const R_Icons = createIconPage('r');
-export const S_Icons = createIconPage('s');
-export const T_Icons = createIconPage('t');
-export const U_Icons = createIconPage('u');
-export const V_Icons = createIconPage('v');
-export const W_Icons = createIconPage('w');
-export const X_Icons = createIconPage('x');
-export const Y_Icons = createIconPage('y');
-export const Z_Icons = createIconPage('z');

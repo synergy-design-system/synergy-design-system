@@ -174,7 +174,8 @@
   "meta": {
     "checksums": {
       "angular": "25bfcd94030b0c25cac62ee17684b601353a8717",
-      "react": "dfd13853e7afcdaae44deb2378b40599ed4201fc"
+      "react": "dfd13853e7afcdaae44deb2378b40599ed4201fc",
+      "vue": "d8694512e844999e40183d97d7bdca6bb73f3769"
     }
   }
 }

@@ -39,7 +39,7 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "1.0.0-main.13",
+  "version": "1.0.0-main.14",
   "devDependencies": {
     "@vue/tsconfig": "^0.4.0",
     "vue": "^3.3.9"

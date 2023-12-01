@@ -87,7 +87,7 @@ export async function updateVsCodeReadOnlyFiles(
     // Write the updated settings back to settings.json
     console.log('🖊️ Writing to settings.json file...');
     await fs.mkdirSync(settingsPath.split('/').slice(0, -1).join('/'), { recursive: true });
-    await fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 4), 'utf8');
+    await fs.writeFileSync(settingsPath, [JSON.stringify(settings, null, 4), ''].join('\n'), 'utf8');
   } catch (error) {
     console.error('An error occurred while updating settings:', error);
   }

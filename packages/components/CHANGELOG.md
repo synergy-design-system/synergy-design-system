@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.14](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.13...components/1.0.0-main.14) (2023-11-30)
+
+
+### Features
+
+* ✨ add syn-radio ([#170](https://github.com/SickDesignSystem/synergy/issues/170)) ([4eb4228](https://github.com/SickDesignSystem/synergy/commit/4eb4228fc814da910662fd85745ccb1717efc2d6))
+
 # [@synergy-design-system/components-v1.0.0-main.13](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.12...components/1.0.0-main.13) (2023-11-24)
 
 

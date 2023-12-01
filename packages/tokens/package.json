@@ -111,5 +111,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "1.0.0-main.12"
+  "version": "1.0.0-main.13"
 }

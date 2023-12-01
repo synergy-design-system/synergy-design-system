@@ -151,18 +151,8 @@ export const Invalid: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-
-      if (!form) {
-        return;
-      }
-
       const textarea = form.querySelector('syn-textarea') as SynTextarea;
       const button = form.querySelector('syn-button') as SynButton;
-
-      await waitUntil(() => Promise.allSettled([
-        customElements.whenDefined('syn-textarea'),
-        customElements.whenDefined('syn-button'),
-      ]));
 
       if (button && textarea) {
         await userEvent.click(button);

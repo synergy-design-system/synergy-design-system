@@ -99,11 +99,6 @@ export const CustomValidity: Story = {
       const checkbox = canvasElement.querySelector('syn-checkbox') as SynCheckbox;
       const errorMessage = "Don't forget to check me!";
 
-      await waitUntil(() => Promise.allSettled([
-        customElements.whenDefined('syn-checkbox'),
-        customElements.whenDefined('syn-button'),
-      ]));
-
       if (form && button && checkbox) {
         checkbox.setCustomValidity(errorMessage);
         await userEvent.click(button);

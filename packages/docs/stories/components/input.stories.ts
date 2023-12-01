@@ -159,18 +159,8 @@ export const Invalid: Story = {
   play: async ({ canvasElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-
-      if (!form) {
-        return;
-      }
-
       const input = form.querySelector('syn-input') as SynInput;
       const button = form.querySelector('syn-button') as SynButton;
-
-      await waitUntil(() => Promise.allSettled([
-        customElements.whenDefined('syn-input'),
-        customElements.whenDefined('syn-button'),
-      ]));
 
       if (button && input) {
         await userEvent.click(button);

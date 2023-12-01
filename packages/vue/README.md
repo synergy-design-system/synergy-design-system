@@ -11,66 +11,103 @@ Run the following steps to install the required packages.
 ```bash
 # Install the base library and required css files
 npm install --save @synergy-design-system/vue @synergy-design-system/tokens
-
-# Only if not already installed
-npm install --save vue
 ```
 
-> ⚠️ Note we do **not** ship react in this package.
-> You will have to install React by yourself first!
+> ⚠️ Note we do **not** ship vue in this package.
+> You will have to install it by yourself first!
 
 ### 2. Add the wanted theme to your application
 
-The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed vite React application:
+The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed vue application:
 
-```tsx
-// main.tsx
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { App } from './App';
-
+```ts
+// src/main.ts
 // Add this line to enable the light theme for your application
 import '@synergy-design-system/tokens/dist/themes/light.css';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
 ```
 
 ### 3. Importing and rendering components
 
-You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a react component.
+You may now use the components by importing them from the `@synergy-design-system/vue` package and rendering them in your own vue components.
 
-```tsx
-import { SynButton } from '../dist';
+```html
+<script lang="ts">
+// Note the name includes Vue here.
+// This is done because it would
+// clash with our native components otherwise
+import { SynVueButton } from '@synergy-design-system/vue';
+</script>
 
-export const MyButton = () => (
-  <SynButton type="button" variant="primary">
-    SynButton Example
-  </SynButton>
-);
+<template>
+  <SynVueButton type="submit">
+    Submit me
+  </SynVueButton>
+</template>
 ```
 
-## 4. Using component events
+### 4. Using two way databinding
 
-This library makes use of [@lit/react](https://lit.dev/docs/frameworks/react/) to wrap the existing Synergy Web Components.
-All events will be automatically set up to work without the need to attach event listeners manually.
-Just use them with the default react `onEVENT` prefix, where `EVENT` is the camelCased name of the event.
+We support [vue two way data binding](https://vuejs.org/guide/components/v-model.html) for form components out of the box.
+You may use it in one of the following ways:
 
-```tsx
-import { SynButton } from '../dist';
+```html
+<script lang="ts">
+import {
+  SynVueButton,
+  SynVueCheckbox,
+  SynVueTextArea,
+  SynVueInput,
+} from '@synergy-design-system/vue';
 
-export const MyButton = () => (
-  <SynButton
-    onSynBlur={e => console.log('button blur event', e)}
-    onSynFocus={e => console.log('button focus event', e)}
-    onSynInvalid={e => console.log('button flagged as invalid', e)}
-  >
-    SynButton Example
-  </SynButton>
-);
+const formValues = ref({
+  checkboxValue: false,
+  inputValue: '',
+  textAreaValue: '',
+});
+
+const submit = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const target = e.target as HTMLFormElement;
+
+  const isValid = target.reportValidity();
+  if (isValid) {
+    const data = [...new FormData(target)]
+      .map((v) => {
+        return `${v[0]}: ${v[1]}`;
+      })
+      .join(',\n')
+      .trim();
+    // Do something with the data
+    console.log(data);
+  }
+};
+</script>
+
+<template>
+  <form @submit="submit">
+    <SynVueInput
+      label="Input Example"
+      name="inputValue"
+      required
+      v-model="formValues.inputValue"
+    />
+    <SynVueTextArea
+      v-model="formValues.textAreaValue"
+      name="textAreaValue"
+    />
+    <SynVueCheckbox
+      v-model="formValues.checkboxValue"
+      required
+      name="checkboxValue"
+    >Agree</SynVueCheckbox>
+  </form>
+</template>
 ```
 
 ---
@@ -82,7 +119,7 @@ To create a new version of this package, proceed in the following way:
 1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
 2. Run `pnpm i -r` to install all dependencies.
 3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
-4. Move to to `packages/_private/react-demo` and use `pnpm start` to spin up a local vite project using react and typescript to validate the build.
+4. Move to to `packages/_private/vue-demo` and use `pnpm start` to spin up a local vite project using vue and typescript to validate the build.
 
 > ⚠️ The build process will always try to sync this packages `package.json.version` field with the latest version from `@synergy-design-system/components`!
 > Therefore, it is best to not alter the version string

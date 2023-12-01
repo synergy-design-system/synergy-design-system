@@ -29,7 +29,7 @@
  * @csspart caret - The button's caret icon, an `<syn-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/button/button.js';
 
 import type {
@@ -84,7 +84,7 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   'title'?: SynButton['title'];
 
   /**
@@ -196,16 +196,28 @@ value of this attribute must be an id of a form in the same document or shadow r
   'formTarget'?: SynButton['formTarget'];
 }>();
 
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined'),
+));
+
 // Map events
 defineEmits<{
   /**
 * Emitted when the button loses focus.
  */
   'syn-blur': [e: SynBlurEvent];
+
   /**
 * Emitted when the button gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
+
   /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
@@ -215,29 +227,11 @@ defineEmits<{
 
 <template>
   <syn-button
-    :title="title"
-    :variant="variant"
-    :size="size"
-    :caret="caret"
-    :disabled="disabled"
-    :loading="loading"
-    :type="type"
-    @syn-blur="$emit('syn-blur', $event)"
-    :name="name"
-    @syn-focus="$emit('syn-focus', $event)"
-    :value="value"
-    @syn-invalid="$emit('syn-invalid', $event)"
-    :href="href"
-    :target="target"
-    :rel="rel"
-    :download="download"
-    :form="form"
-    :form-action="formAction"
-    :form-enctype="formEnctype"
-    :form-method="formMethod"
-    :form-no-validate="formNoValidate"
-    :form-target="formTarget"
+    v-bind="visibleProps"
     ref="element"
+    @syn-blur="$emit('syn-blur', $event)"
+    @syn-focus="$emit('syn-focus', $event)"
+    @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
     <slot name="prefix" />

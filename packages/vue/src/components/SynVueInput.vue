@@ -39,7 +39,7 @@
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
  */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/input/input.js';
 
 import type {
@@ -123,7 +123,7 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   'title'?: SynInput['title'];
 
   /**
@@ -283,7 +283,22 @@ implied, allowing any numeric value.
 keyboard on supportive devices.
  */
   'inputmode'?: SynInput['inputmode'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynInput['value'];
 }>();
+
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined'),
+));
 
 // Map events
 defineEmits<{
@@ -291,67 +306,50 @@ defineEmits<{
 * Emitted when the control loses focus.
  */
   'syn-blur': [e: SynBlurEvent];
+
   /**
 * Emitted when an alteration to the control's value is committed by the user.
  */
   'syn-change': [e: SynChangeEvent];
+
   /**
 * Emitted when the clear button is activated.
  */
   'syn-clear': [e: SynClearEvent];
+
   /**
 * Emitted when the control gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
+
   /**
 * Emitted when the control receives input.
  */
   'syn-input': [e: SynInputEvent];
+
   /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynInput['value']];
 }>();
 </script>
 
 <template>
   <syn-input
-    :title="title"
-    :type="type"
-    :name="name"
-    :value="value"
-    @syn-blur="$emit('syn-blur', $event)"
-    :size="size"
-    @syn-change="$emit('syn-change', $event)"
-    :label="label"
-    @syn-clear="$emit('syn-clear', $event)"
-    :help-text="helpText"
-    @syn-focus="$emit('syn-focus', $event)"
-    :clearable="clearable"
-    @syn-input="$emit('syn-input', $event)"
-    :disabled="disabled"
-    @syn-invalid="$emit('syn-invalid', $event)"
-    :placeholder="placeholder"
-    :readonly="readonly"
-    :password-toggle="passwordToggle"
-    :password-visible="passwordVisible"
-    :no-spin-buttons="noSpinButtons"
-    :form="form"
-    :required="required"
-    :pattern="pattern"
-    :minlength="minlength"
-    :maxlength="maxlength"
-    :min="min"
-    :max="max"
-    :step="step"
-    :autocapitalize="autocapitalize"
-    :autocorrect="autocorrect"
-    :autocomplete="autocomplete"
-    :autofocus="autofocus"
-    :enterkeyhint="enterkeyhint"
-    :spellcheck="spellcheck"
-    :inputmode="inputmode"
+    v-bind="visibleProps"
     ref="element"
+    @syn-blur="$emit('syn-blur', $event)"
+    @syn-change="$emit('syn-change', $event)"
+    @syn-clear="$emit('syn-clear', $event)"
+    @syn-focus="$emit('syn-focus', $event)"
+    @syn-input="$emit('syn-input', $event)"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    @input="$emit('update:modelValue', $event.target.value)"
   >
     <slot name="label" />
     <slot name="prefix" />

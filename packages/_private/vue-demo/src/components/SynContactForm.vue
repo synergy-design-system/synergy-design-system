@@ -3,6 +3,7 @@ import {
   SynVueButton,
   SynVueCheckbox,
   SynVueInput,
+  SynVueTextarea,
 } from '@synergy-design-system/vue';
 import type {
   SynInput,
@@ -13,6 +14,7 @@ import { ref } from 'vue';
 const btnRef = ref<typeof SynVueButton>();
 
 const formValues = ref({
+  comment: '',
   givenName: '',
   // Prefilled only to demonstrate usage of v-model and settings up stuff by hand
   surName: 'Your Surname',
@@ -70,7 +72,7 @@ const log = (...args: unknown[]) => console.log(...args);
 
     <fieldset>
       <legend>Personal Information</legend>
-      
+   
       <!-- Using v-model -->
       <SynVueInput
         label="Given Name"
@@ -100,6 +102,12 @@ const log = (...args: unknown[]) => console.log(...args);
       >
         <span slot="label">E-Mail <em>(optional)</em></span>
       </SynVueInput>
+
+      <SynVueTextarea
+        label="Comment"
+        v-model="formValues.comment"
+        name="comment"
+      />
     </fieldset>
 
     <SynVueCheckbox

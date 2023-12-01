@@ -29,7 +29,7 @@
  * @csspart indeterminate-icon - The indeterminate icon, an `<syn-icon>` element.
  * @csspart label - The container that wraps the checkbox's label.
  */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/checkbox/checkbox.js';
 
 import type {
@@ -88,7 +88,7 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   'title'?: SynCheckbox['title'];
 
   /**
@@ -136,7 +136,22 @@ the same document or shadow root for this to work.
 * Makes the checkbox a required field.
  */
   'required'?: SynCheckbox['required'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynCheckbox['checked'];
 }>();
+
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined'),
+));
 
 // Map events
 defineEmits<{
@@ -144,42 +159,44 @@ defineEmits<{
 * Emitted when the checkbox loses focus.
  */
   'syn-blur': [e: SynBlurEvent];
+
   /**
 * Emitted when the checked state changes.
  */
   'syn-change': [e: SynChangeEvent];
+
   /**
 * Emitted when the checkbox gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
+
   /**
 * Emitted when the checkbox receives input.
  */
   'syn-input': [e: SynInputEvent];
+
   /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynCheckbox['checked']];
 }>();
 </script>
 
 <template>
   <syn-checkbox
-    :title="title"
-    :name="name"
-    :value="value"
-    :size="size"
-    :disabled="disabled"
-    @syn-blur="$emit('syn-blur', $event)"
-    :checked="checked"
-    @syn-change="$emit('syn-change', $event)"
-    :indeterminate="indeterminate"
-    @syn-focus="$emit('syn-focus', $event)"
-    :form="form"
-    @syn-input="$emit('syn-input', $event)"
-    :required="required"
-    @syn-invalid="$emit('syn-invalid', $event)"
+    v-bind="visibleProps"
     ref="element"
+    @syn-blur="$emit('syn-blur', $event)"
+    @syn-change="$emit('syn-change', $event)"
+    @syn-focus="$emit('syn-focus', $event)"
+    @syn-input="$emit('syn-input', $event)"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    @input="$emit('update:modelValue', $event.target.checked)"
   >
     <slot />
   </syn-checkbox>

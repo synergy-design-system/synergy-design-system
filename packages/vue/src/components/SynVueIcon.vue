@@ -17,7 +17,7 @@
  * @csspart svg - The internal SVG element.
  * @csspart use - The <use> element generated when using `spriteSheet: true`
  */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/icon/icon.js';
 
 import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-system/components';
@@ -35,7 +35,7 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   /**
 * The name of the icon to draw.
 * Available names depend on the icon library being used.
@@ -62,6 +62,16 @@ ignored by assistive devices.
   'library'?: SynIcon['library'];
 }>();
 
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined'),
+));
+
 // Map events
 defineEmits<{
   /**
@@ -69,6 +79,7 @@ defineEmits<{
 * When using `spriteSheet: true` this will not emit.
  */
   'syn-load': [e: SynLoadEvent];
+
   /**
 * Emitted when the icon fails to load due to an error.
 * When using `spriteSheet: true` this will not emit.
@@ -79,11 +90,8 @@ defineEmits<{
 
 <template>
   <syn-icon
-    :name="name"
+    v-bind="visibleProps"
     ref="element"
-    :src="src"
-    :label="label"
-    :library="library"
     @syn-load="$emit('syn-load', $event)"
     @syn-error="$emit('syn-error', $event)"
   />

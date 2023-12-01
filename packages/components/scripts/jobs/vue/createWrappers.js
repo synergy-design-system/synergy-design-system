@@ -12,6 +12,28 @@ import {
 const headerComment = createHeader('vue');
 
 /**
+ * List of components names that vue two way data binding should be enabled for
+ * @var {string[]} vueModelEnabledComponents
+ */
+const vueModelEnabledComponents = [
+  'checkbox',
+  'input',
+  'textarea',
+];
+
+/**
+ * Get the attribute that should be bound for two way data binding
+ * @param {string} componentName Name of the component
+ * @returns {string} Name of the attribute to use
+ */
+const getControlAttributeForVueModel = (componentName) => {
+  switch (componentName) {
+    case 'checkbox': return 'checked';
+    default: return 'value';
+  }
+};
+
+/**
  * Turns a string into a multiline js comment
  * @param {string} str The input string that should be commented
  * @param {string} [optional] splitToken The token that should be used to split
@@ -53,26 +75,84 @@ const getMethodExpose = (members = []) => filterMethods(members)
   .map(member => `call${ucFirstLetter(member.name)},`)
   .join('\n');
 
-const getEmits = (events = []) => events
-  .map(event => `
-    ${createComment(event.description || '')}
-    '${event.name}': [e: ${event.eventName}];`.trim())
-  .join('\n');
+/**
+ * Check if a given component is enabled for vModel interactions
+ * @param {string} componentName
+ * @returns {boolean}
+ */
+const getIsVModelEnabled = (componentName) => vueModelEnabledComponents.includes(componentName);
 
-const getEmitAttributes = (events = []) => events
-  .map(event => ` @${event.name}="$emit('${event.name}', $event)"`)
-  .join('\n');
+/**
+ * Get all emits for the vue component
+ * @param {string} componentName The component that we create the events for
+ * @param {string} componentClass The class name of the component
+ * @param {object[]} events Events to add
+ * @returns {string} Final events list
+ */
+const getEmits = (componentName, componentClass, events = []) => {
+  const vueEventMap = events
+    .map(event => `
+      ${createComment(event.description || '')}
+      '${event.name}': [e: ${event.eventName}];`.trim());
 
-const getDefinedProps = (componentName, attributes = []) => attributes
-  .map(attr => `
-    ${createComment(attr.description || '')}
-    '${attr.fieldName}'?: ${componentName}['${attr.fieldName}'];
-  `.trim())
-  .join('\n\n');
+  // Add support for custom vue vModel binding
+  if (getIsVModelEnabled(componentName)) {
+    vueEventMap.push(`
+      ${createComment('Support for two way data binding')}
+      'update:modelValue': [newValue: ${componentClass}['${getControlAttributeForVueModel(componentName)}']];
+    `.trim());
+  }
 
-const getPropAttributes = (attributes = []) => attributes
-  .map(attr => `:${attr.fieldName}="${attr.fieldName}"`.trim())
-  .join('\n');
+  return vueEventMap.join('\n\n');
+};
+
+/**
+ * Get the vue event list used in vue templates
+ * @param {string} componentName The components name
+ * @param {string} componentClass The class name of the component
+ * @param {object[]} events Events to add
+ * @returns string
+ */
+const getEmitAttributes = (componentName, componentClass, events = []) => {
+  const templateEvents = events.map(
+    event => ` @${event.name}="$emit('${event.name}', $event)"`,
+  );
+
+  // Add support for custom vue vModel binding
+  if (getIsVModelEnabled(componentName)) {
+    // @todo: This would make types more explicit,
+    // however esbuild is not able to compile it unfortunately
+    // ($event.target as ${componentClass}).${getControlAttributeForVueModel(componentName)
+    templateEvents.push(` @input="$emit('update:modelValue', $event.target.${getControlAttributeForVueModel(componentName)})"`);
+  }
+
+  return templateEvents.join('\n');
+};
+
+/**
+ * Get the list of defined props
+ * @param {string} componentName The name of the component
+ * @param {string} componentClass The class name of the component
+ * @param {object[]} attributes The attributes to add
+ * @returns {string} The props to apply
+ */
+const getDefinedProps = (componentName, componentClass, attributes = []) => {
+  const vueAttributeMap = attributes
+    .map(attr => `
+      ${createComment(attr.description || '')}
+      '${attr.fieldName}'?: ${componentClass}['${attr.fieldName}'];
+    `.trim());
+
+  // Add support for vModel directive
+  if (getIsVModelEnabled(componentName)) {
+    vueAttributeMap.push(`
+      ${createComment('Support for two way data binding')}
+      modelValue?: ${componentClass}['${getControlAttributeForVueModel(componentName)}'];
+    `.trim());
+  }
+
+  return vueAttributeMap.join('\n\n');
+};
 
 const getSlots = (slots = []) => slots
   .map(slot => `<slot ${slot.name ? `name="${slot.name}"` : ''}></slot>`)
@@ -103,12 +183,19 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     const methodDefinitions = getMethodExpose(component.members);
 
     // Prepare attributes
-    const props = getDefinedProps(component.name, component.attributes);
-    const propAttributes = getPropAttributes(component.attributes);
+    const props = getDefinedProps(
+      component.tagNameWithoutPrefix,
+      component.name,
+      component.attributes,
+    );
 
     // Prepare events
-    const emits = getEmits(component.events);
-    const emitAttributes = getEmitAttributes(component.events);
+    const emits = getEmits(component.tagNameWithoutPrefix, component.name, component.events);
+    const emitAttributes = getEmitAttributes(
+      component.tagNameWithoutPrefix,
+      component.name,
+      component.events,
+    );
 
     // Prepare slots
     const slots = getSlots(component.slots);
@@ -120,7 +207,7 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
 ${headerComment}
 
 ${jsDoc}
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '${importPath}';
 
 ${eventImports}
@@ -137,9 +224,19 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   ${props}
 }>();
+
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined')
+));
 
 // Map events
 defineEmits<{
@@ -150,7 +247,7 @@ defineEmits<{
 <template>
   <${component.tagName}
     ${emitAttributes}
-    ${propAttributes}
+    v-bind="visibleProps"
     ref="element"
   >
     ${slots}

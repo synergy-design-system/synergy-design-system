@@ -209,6 +209,9 @@ importers:
 
   packages/_private/vue-demo:
     dependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:1.0.0-main.13
+        version: link:../../components
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens

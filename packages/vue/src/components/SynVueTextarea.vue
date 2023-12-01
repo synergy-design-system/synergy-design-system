@@ -27,7 +27,7 @@
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/textarea/textarea.js';
 
 import type {
@@ -101,7 +101,7 @@ defineExpose({
 });
 
 // Map attributes
-defineProps<{
+const props = defineProps<{
   'title'?: SynTextarea['title'];
 
   /**
@@ -217,7 +217,22 @@ the same document or shadow root for this to work.
 keyboard on supportive devices.
  */
   'inputmode'?: SynTextarea['inputmode'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynTextarea['value'];
 }>();
+
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() => Object.fromEntries(
+  Object
+    .entries(props)
+    .filter(([, value]) => typeof value !== 'undefined'),
+));
 
 // Map events
 defineEmits<{
@@ -225,55 +240,44 @@ defineEmits<{
 * Emitted when the control loses focus.
  */
   'syn-blur': [e: SynBlurEvent];
+
   /**
 * Emitted when an alteration to the control's value is committed by the user.
  */
   'syn-change': [e: SynChangeEvent];
+
   /**
 * Emitted when the control gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
+
   /**
 * Emitted when the control receives input.
  */
   'syn-input': [e: SynInputEvent];
+
   /**
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynTextarea['value']];
 }>();
 </script>
 
 <template>
   <syn-textarea
-    :title="title"
-    :name="name"
-    :value="value"
-    :size="size"
-    :label="label"
-    @syn-blur="$emit('syn-blur', $event)"
-    :help-text="helpText"
-    @syn-change="$emit('syn-change', $event)"
-    :placeholder="placeholder"
-    @syn-focus="$emit('syn-focus', $event)"
-    :rows="rows"
-    @syn-input="$emit('syn-input', $event)"
-    :resize="resize"
-    @syn-invalid="$emit('syn-invalid', $event)"
-    :disabled="disabled"
-    :readonly="readonly"
-    :form="form"
-    :required="required"
-    :minlength="minlength"
-    :maxlength="maxlength"
-    :autocapitalize="autocapitalize"
-    :autocorrect="autocorrect"
-    :autocomplete="autocomplete"
-    :autofocus="autofocus"
-    :enterkeyhint="enterkeyhint"
-    :spellcheck="spellcheck"
-    :inputmode="inputmode"
+    v-bind="visibleProps"
     ref="element"
+    @syn-blur="$emit('syn-blur', $event)"
+    @syn-change="$emit('syn-change', $event)"
+    @syn-focus="$emit('syn-focus', $event)"
+    @syn-input="$emit('syn-input', $event)"
+    @syn-invalid="$emit('syn-invalid', $event)"
+    @input="$emit('update:modelValue', $event.target.value)"
   >
     <slot name="label" />
     <slot name="help-text" />

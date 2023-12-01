@@ -8,11 +8,10 @@ export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
     bundle: true,
     chunkNames: 'chunks/[name].[hash]',
     define: {
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': '"production"',
     },
     entryPoints: [
       ...(await globby('../vue/src/**/*.(ts|vue)')),
-      // '../vue/src/index.ts',
     ],
     external: undefined,
     format: 'esm',

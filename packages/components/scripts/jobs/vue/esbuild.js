@@ -16,7 +16,7 @@ export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
     ],
     external: undefined,
     format: 'esm',
-    minify: false,
+    minify: true,
     outdir: distDir,
     packages: 'external',
     plugins: [vue({

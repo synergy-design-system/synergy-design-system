@@ -20,8 +20,8 @@ const meta: Meta = {
     docs: {
       description: generateStoryDescription('default'),
     },
-    title: 'Components/syn-switch',
   },
+  title: 'Components/syn-switch',
 };
 export default meta;
 

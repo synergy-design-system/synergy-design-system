@@ -2,18 +2,21 @@ import { css } from 'lit';
 
 export default css`
   :host([size='small']) {
-    --thumb-size: calc(var(--syn-font-size-x-small) + 1px);
+    --height: calc(var(--syn-font-size-medium) + 2px);
+    --thumb-size: var(--syn-font-size-small);
     --width: calc((var(--height) * 2) - 6px);
   }
 
   :host([size='medium']) {
-    --thumb-size: calc(var(--syn-font-size-small) + 1px);
+    --height: var(--syn-font-size-large);
+    --thumb-size: var(--syn-font-size-medium);
     --width: calc((var(--height) * 2) - 6px);
   }
 
   :host([size='large']) {
-    --thumb-size: calc(var(--syn-font-size-large) + 3px);
-    --width: calc((var(--height) * 2) - 8px);
+    --height: calc(var(--syn-toggle-size-large) + 4px);
+    --thumb-size: var(--syn-toggle-size-large);
+    --width: calc((var(--height) * 2) - 6px);
   }
 
   .switch.switch--small {
@@ -92,4 +95,4 @@ export default css`
   .switch__label {
     margin-inline-start: var(--syn-spacing-x-small);
   }
-`;
+}}}}`;

@@ -10,13 +10,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./src/index.js"
     },
-    "./components/*": "./dist/components/*"
+    "./components/*": "./src/components/*"
   },
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
+    "src",
     "CHANGELOG.md",
     "README.md"
   ],

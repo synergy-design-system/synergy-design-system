@@ -55,11 +55,11 @@ export const runCreateChecksums = job('Checksums updated in package.json', async
   try {
     const angularChecksum = getChecksum('../angular');
     const reactChecksum = getChecksum('../react');
-    // const vueChecksum = getChecksum('../vue');
+    const vueChecksum = getChecksum('../vue');
 
     await updatePackageJson(angularChecksum, 'angular');
     await updatePackageJson(reactChecksum, 'react');
-    // await updatePackageJson(vueChecksum, 'vue');
+    await updatePackageJson(vueChecksum, 'vue');
   } catch (error) {
     console.error('An error occurred:', error);
   }

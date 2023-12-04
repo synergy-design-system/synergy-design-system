@@ -3,6 +3,10 @@ import { globby } from 'globby';
 import vue from 'esbuild-plugin-vue3';
 import { job } from '../shared.js';
 
+/**
+ * @todo: This is currently disabled. We ship the vue files directly instead.
+ * Enabling this will be tackled in another ticket after v1.0.0
+ */
 export const runEsBuild = job('Vue: Running esbuild...', async (distDir) => {
   // @todo: currently, we will have to use a minified bundle without sourcemap
   // This is, because vues sfc-compiler will append absolute paths to the generated

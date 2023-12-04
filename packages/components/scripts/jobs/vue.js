@@ -27,6 +27,9 @@ export const runCreateVueWrappers = async ({
   await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
   await jobs.runFormat(outDir, vuePackageDir);
-  await jobs.runEsBuild(distDir);
+
+  // @todo: This is currently disabled. We ship the vue files directly instead.
+  // Enabling this will be tackled in another ticket after v1.0.0
+  // await jobs.runEsBuild(distDir);
   await jobs.runVueTypeScript(distDir, vuePackageDir);
 };

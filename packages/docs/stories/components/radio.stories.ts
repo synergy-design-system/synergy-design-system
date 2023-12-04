@@ -75,38 +75,37 @@ export const Invalid: Story = {
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
-      const radioGroup = canvasElement.querySelector('syn-radio-group');
       const radio = canvasElement.querySelector('syn-radio');
-      const button = canvasElement.querySelector('button');
+      const button = canvasElement.querySelector('syn-button');
 
-      await waitUntil(() => radioGroup?.shadowRoot?.querySelector('fieldset'));
-
-      if (button instanceof HTMLButtonElement && radio) {
+      if (button && radio) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
+        button.click();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
   render: () => html`
-  <form>
+  <form class="custom-validity">
     <syn-radio-group required>
       <syn-radio value="1">Option</syn-radio>
     </syn-radio-group>
-    <button size="medium" type="submit">Submit</button>
+    <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>
   <style>
-    form {
+  .custom-validity {
     display: flex;
     flex-direction: column;
-    }
-
-    button {
-      margin-top: 1rem;
-      align-self: flex-end;
-      padding: 0.5rem 1rem;
-      min-width: 5%;
-    }
+    gap: 1rem;
+  }
+  syn-button {
+    align-self: flex-start;
+  }
   </style>`,
 };
 

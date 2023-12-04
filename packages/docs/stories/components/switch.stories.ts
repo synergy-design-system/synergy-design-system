@@ -6,7 +6,6 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import {
   generateStoryDescription,
   storybookDefaults,
@@ -38,16 +37,20 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'default'),
+      description: {
+        story: generateStoryDescription('switch', 'default'),
+      },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => generateTemplate({ args }),
 } as Story;
 
 export const Checked: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'checked'),
+      description: {
+        story: generateStoryDescription('switch', 'checked'),
+      },
     },
   },
   render: () => html`<syn-switch checked>Checked</syn-switch>`,
@@ -56,7 +59,9 @@ export const Checked: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'disabled'),
+      description: {
+        story: generateStoryDescription('switch', 'disabled'),
+      },
     },
   },
   render: () => html`<syn-switch disabled>Disabled</syn-switch>`,
@@ -65,7 +70,9 @@ export const Disabled: Story = {
 export const Focus: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'focus'),
+      description: {
+        story: generateStoryDescription('switch', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }) => {
@@ -82,14 +89,16 @@ export const Focus: Story = {
 export const Invalid: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'invalid'),
+      description: {
+        story: generateStoryDescription('switch', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-      const synSwitch = form.querySelector('syn-switch') as SynSwitch;
-      const button = form.querySelector('syn-button') as SynButton;
+      const synSwitch = form?.querySelector('syn-switch') as SynSwitch;
+      const button = form?.querySelector('syn-button') as SynButton;
 
       if (button && synSwitch) {
         await userEvent.click(button);
@@ -123,7 +132,9 @@ export const Sizes: Story = {
       disableSnapshot: true,
     },
     docs: {
-      description: generateStoryDescription('switch', 'sizes'),
+      description: {
+        story: generateStoryDescription('switch', 'sizes'),
+      },
     },
   },
   render: () => html`

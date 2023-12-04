@@ -109,5 +109,8 @@
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"
-    ]
+    ],
+    "files.readonlyExclude": {
+        "packages/docs/stories/components/button.stories.ts": true
+    }
 }

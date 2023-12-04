@@ -4,13 +4,10 @@ import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
-const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
-
 
 const meta: Meta = {
   args,
@@ -36,7 +33,7 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => generateTemplate({ args }),
 } as Story;
 
 export const Labels: Story = {
@@ -113,7 +110,7 @@ export const Focus: Story = {
   },
   parameters: {
     docs: {
-      description: generateStoryDescription('focus'),
+      description: generateStoryDescription('input', 'focus'),
     },
   },
   play: ({ canvasElement }) => {
@@ -122,7 +119,7 @@ export const Focus: Story = {
       input.focus();
     }
   },
-  render: (args: any) => html`
+  render: () => html`
       <form>
         ${generateTemplate({
     args,
@@ -169,7 +166,7 @@ export const Invalid: Story = {
   parameters: {
     controls: { exclude: ['required'] },
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: generateStoryDescription('input', 'invalid'),
     },
   },
   play: async ({ canvasElement }) => {
@@ -190,7 +187,7 @@ export const Invalid: Story = {
       console.error('Error in play function:', error);
     }
   },
-  render: (args) => html`
+  render: () => html`
     <form class="custom-validity">
   ${generateTemplate({
     args,

@@ -4,8 +4,6 @@ import '../../../components/src/components/checkbox/checkbox';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import {
   generateStoryDescription,
   storybookDefaults,
@@ -13,7 +11,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 
-const { args, argTypes } = storybookDefaults('syn-checkbox');
+const { argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
 const { generateTemplate } = storybookTemplate('syn-checkbox');
 
@@ -43,7 +41,7 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
 export const Checked: Story = {

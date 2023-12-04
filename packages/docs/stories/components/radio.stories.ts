@@ -4,15 +4,9 @@ import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
-
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.radio as Record<string, unknown>)?.[attributeName]?.description?.value ?? 'No Description',
-});
 
 const meta: Meta = {
   component: 'radio',
@@ -20,7 +14,9 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('radio', 'default'),
+      },
     },
   },
   title: 'Components/syn-radio',
@@ -32,7 +28,9 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('radio', 'default'),
+      },
     },
   },
   render: () => html`
@@ -42,7 +40,9 @@ export const Default = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('radio', 'disabled'),
+      },
     },
   },
   render: () => html`
@@ -52,7 +52,9 @@ export const Disabled: Story = {
 export const Focus: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('radio', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -68,7 +70,9 @@ export const Focus: Story = {
 export const Invalid: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: {
+        story: generateStoryDescription('radio', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -110,7 +114,9 @@ export const Invalid: Story = {
 export const Sizes: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('sizes'),
+      description: {
+        story: generateStoryDescription('radio', 'sizes'),
+      },
     },
   },
   render: () => html`

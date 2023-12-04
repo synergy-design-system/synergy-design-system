@@ -5,16 +5,9 @@ import '../../../components/src/components/radio-group/radio-group.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
-const { overrideArgs } = storybookHelpers('syn-radio-group');
-
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.['radio-group'] as any)?.[attributeName]?.description?.value ?? 'No Description',
-});
 
 const meta: Meta = {
   component: 'radio-group',
@@ -22,7 +15,7 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('radio-group', 'default'),
     },
   },
   title: 'Components/syn-radio-group',
@@ -34,7 +27,7 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('radio-group', 'default'),
     },
   },
   render: () => html`
@@ -48,7 +41,7 @@ export const Default = {
 export const Labels: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('labels'),
+      description: generateStoryDescription('radio-group', 'labels'),
     },
   },
   render: () => html`
@@ -62,7 +55,7 @@ export const Labels: Story = {
 export const HelpText: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('help-text'),
+      description: generateStoryDescription('radio-group', 'help-text'),
     },
   },
   render: () => html`
@@ -76,7 +69,7 @@ export const HelpText: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: generateStoryDescription('radio-group', 'disabled'),
     },
   },
   render: () => html`
@@ -99,7 +92,7 @@ export const Checked: Story = {
 export const Invalid: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('required'),
+      description: generateStoryDescription('radio-group', 'required'),
     },
   },
   play: async ({ canvasElement }) => {
@@ -142,7 +135,7 @@ export const Invalid: Story = {
 export const CustomValidity: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('setCustomValidity'),
+      description: generateStoryDescription('radio-group', 'setCustomValidity'),
     },
   },
   play: async ({ canvasElement }) => {

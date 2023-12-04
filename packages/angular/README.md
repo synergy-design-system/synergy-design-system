@@ -2,6 +2,12 @@
 
 This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
+This package aims for an improved UX when used in Angular applications:
+- Form support
+- Two way data-binding for properties
+- Auto-completion
+- Event handling
+
 > We are currently supporting Angular version 17.
 
 ## Getting started

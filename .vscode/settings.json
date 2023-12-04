@@ -24,7 +24,8 @@
         "packages/docs",
         "packages/angular",
         "packages/react",
-        "packages/tokens"
+        "packages/tokens",
+        "packages/vue"
     ],
     "files.readonlyInclude": {
         "packages/angular/src/**": true,

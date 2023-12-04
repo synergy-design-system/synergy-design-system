@@ -246,14 +246,25 @@ export const ucFirstLetter = changeFirstLetter('toUpperCase');
  * Creates a string that represents the index.js file for all components
  * @param {string} headerComment Comment to prefix
  * @param {object[]} Array of name and output path objects
+ * @param {boolean} useDefaultExport [optional] Use default export instead of named ones?
  * @returns {string} The index.js output
  */
-export const createFrameworkIndex = (headerComment, components = []) => {
+export const createFrameworkIndex = (
+  headerComment,
+  components = [],
+  useDefaultExport = false,
+) => {
   // Always sort the included scripts as otherwise we would have unneeded index.js changes
   // due to the fact that the order is not treated well
   const alphabeticIndex = [...components]
     .sort(sortByComponentName)
-    .map(({ name, outputPath }) => `export { ${name} } from '${outputPath}';`);
+    .map(({ name, outputPath }) => {
+      // When we use useDefaultExport,
+      // make sure to export the default as named export
+      // This is for example needed for vue sfc
+      const exportStatement = useDefaultExport ? `default as ${name}` : name;
+      return `export { ${exportStatement} } from '${outputPath}';`;
+    });
 
   return [
     headerComment,

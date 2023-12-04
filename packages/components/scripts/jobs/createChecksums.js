@@ -2,7 +2,6 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-
 import { job } from './shared.js';
 
 /**
@@ -50,15 +49,17 @@ export const runCreateChecksums = job('Checksums updated in package.json', async
     packageJson.meta.checksums[project] = checksum;
 
     // Write the updated package.json back to disk
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
+    fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
   }
 
   try {
     const angularChecksum = getChecksum('../angular');
     const reactChecksum = getChecksum('../react');
+    const vueChecksum = getChecksum('../vue');
 
     await updatePackageJson(angularChecksum, 'angular');
     await updatePackageJson(reactChecksum, 'react');
+    await updatePackageJson(vueChecksum, 'vue');
   } catch (error) {
     console.error('An error occurred:', error);
   }

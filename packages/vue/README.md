@@ -42,7 +42,7 @@ createApp(App).mount('#app')
 You may now use the components by importing them from the `@synergy-design-system/vue` package and rendering them in your own vue components.
 
 ```html
-<script lang="ts">
+<script setup lang="ts">
 // Note the name includes Vue here.
 // This is done because it would
 // clash with our native components otherwise

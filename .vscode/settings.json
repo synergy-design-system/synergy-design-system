@@ -24,7 +24,8 @@
         "packages/docs",
         "packages/angular",
         "packages/react",
-        "packages/tokens"
+        "packages/tokens",
+        "packages/vue"
     ],
     "files.readonlyInclude": {
         "packages/angular/src/**": true,
@@ -43,6 +44,7 @@
         "packages/components/src/components/checkbox/checkbox.ts": true,
         "packages/components/src/components/icon/icon.component.ts": true,
         "packages/components/src/components/icon/icon.styles.ts": true,
+        "packages/components/src/components/icon/icon.test.ts": true,
         "packages/components/src/components/icon/icon.ts": true,
         "packages/components/src/components/icon/library.default.ts": true,
         "packages/components/src/components/icon/library.system.ts": true,
@@ -96,6 +98,7 @@
         "packages/components/src/translations/en.ts": true,
         "packages/components/src/utilities/base-path.ts": true,
         "packages/components/src/utilities/form.ts": true,
+        "packages/components/src/utilities/icon-library.ts": true,
         "packages/components/src/utilities/localize.ts": true,
         "packages/components/tsconfig.json": true,
         "packages/components/tsconfig.prod.json": true,

@@ -27,7 +27,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
     "eslint": ">8.0.0"

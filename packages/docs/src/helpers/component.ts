@@ -7,6 +7,7 @@ import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import format from 'html-format';
 import { setCustomElementsManifest } from '@storybook/web-components';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 
 export default async function loadCustomElements() {
   await fetch('./custom-elements.json');
@@ -577,3 +578,25 @@ export const storybookUtilities = {
     return format(templateInnerHTML);
   },
 };
+
+
+
+type Component = keyof typeof docsTokens.components;
+type Attribute<T extends Component> = keyof typeof docsTokens.components[T];
+type AttributeDescription = {
+  description: {
+    value: string;
+    type: string;
+  }
+}
+
+/**
+ * Returns the story description to the corresponding component and attribute
+ * 
+ * @param {T} component  - The component name
+ * @param {Attribute<T>} attribute - The attribute name
+ * @returns {string} The story description
+ */
+export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => (
+  (docsTokens?.components[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
+);

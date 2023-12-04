@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.0.0-main.16](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.15...components/1.0.0-main.16) (2023-12-04)
+
+
+### Features
+
+* ✨add syn-icon ([#183](https://github.com/SickDesignSystem/synergy/issues/183)) ([add85f5](https://github.com/SickDesignSystem/synergy/commit/add85f553579b5806e1feb0ad78171ca26a7b20d))
+
+# [@synergy-design-system/components-v1.0.0-main.15](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.14...components/1.0.0-main.15) (2023-12-04)
+
+
+### Features
+
+* ✨ Add vue.js wrappers ([#200](https://github.com/SickDesignSystem/synergy/issues/200)) ([23b7e0d](https://github.com/SickDesignSystem/synergy/commit/23b7e0d4b222d6b5ea82f91dc6ff677d1e4c5bed))
+
 # [@synergy-design-system/components-v1.0.0-main.14](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.13...components/1.0.0-main.14) (2023-11-30)
 
 

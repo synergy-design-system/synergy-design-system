@@ -9,7 +9,7 @@
   "type": "module",
   "browserslist": "defaults and supports es6-module",
   "description": "SICK AG Synergy Design System for web based applications",
-  "license": "BSD-3-Clause",
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "node": ">=18.17.0",
     "pnpm": ">=8.6.12"

@@ -2,6 +2,10 @@
 
 This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
+This package aims for an improved UX when used in React applications:
+- Auto-completion
+- Event handling
+
 ## Getting started
 
 ### 1. Package installation

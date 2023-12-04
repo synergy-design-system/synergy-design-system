@@ -1,4 +1,12 @@
 /* eslint-disable no-console */
+
+/**
+ * This class serves as a utility to interact with the Figma API,
+ * providing functionalities specific to the validation of Figma documents, like:
+ *
+ * - Fetching page names from a given Figma file
+ * - Checking if essential pages are missing from the provided file
+ */
 export class FigmaValidator {
   constructor(config) {
     this.config = {
@@ -10,6 +18,12 @@ export class FigmaValidator {
     };
   }
 
+  /**
+   * Fetches and returns the names of all pages in a given Figma file.
+   *
+   * @param {string} fileId - The ID of the Figma file
+   * @returns all page names belonging to the Figma file
+   */
   async getPageNames(fileId) {
     try {
       const response = await fetch(`${this.config.baseURL}/files/${fileId}`, {
@@ -32,6 +46,13 @@ export class FigmaValidator {
     }
   }
 
+  /**
+   * Checks and returns any of the required pages (Assets, Tokens, Components)
+   * that are missing from the Figma file.
+   *
+   * @param {string} fileId - The ID of the Figma file
+   * @returns the missing Figma files
+   */
   async getMissingPages(fileId) {
     const pageNames = await this.getPageNames(fileId);
 

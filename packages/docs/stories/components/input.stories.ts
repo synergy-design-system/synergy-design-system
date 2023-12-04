@@ -5,16 +5,12 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
 
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.input as any)?.[attributeName]?.description?.value ?? 'No Description',
-});
 
 const meta: Meta = {
   component: 'input',
@@ -22,7 +18,9 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        component: generateStoryDescription('input', 'default'),
+      },
     },
   },
   title: 'Components/syn-input',
@@ -34,7 +32,9 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('input', 'default'),
+      },
     },
   },
   render: (args: any) => generateTemplate({ args }),
@@ -43,7 +43,9 @@ export const Default = {
 export const Labels: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('label'),
+      description: {
+        story: generateStoryDescription('input', 'label'),
+      },
     },
   },
   render: () => html`<syn-input label="What is your name?"></syn-input>`,
@@ -52,7 +54,9 @@ export const Labels: Story = {
 export const HelpText: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('help-text'),
+      description: {
+        story: generateStoryDescription('input', 'help-text'),
+      },
     },
   },
   render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
@@ -61,7 +65,9 @@ export const HelpText: Story = {
 export const Placeholders: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('placeholder'),
+      description: {
+        story: generateStoryDescription('input', 'placeholder'),
+      },
     },
   },
   render: () => html`<syn-input placeholder="Type something"></syn-input>`,
@@ -70,7 +76,9 @@ export const Placeholders: Story = {
 export const Clearable: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('clearable'),
+      description: {
+        story: generateStoryDescription('input', 'clearable'),
+      },
     },
   },
   render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
@@ -79,7 +87,9 @@ export const Clearable: Story = {
 export const TogglePassword: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('password-toggle'),
+      description: {
+        story: generateStoryDescription('input', 'password-toggle'),
+      },
     },
   },
   render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
@@ -88,7 +98,9 @@ export const TogglePassword: Story = {
 export const ReadonlyInputs: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('filled'),
+      description: {
+        story: generateStoryDescription('input', 'readonly'),
+      },
     },
   },
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
@@ -123,7 +135,9 @@ export const Focus: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('input', 'disabled'),
+      },
     },
   },
   render: () => html`
@@ -136,7 +150,9 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('size'),
+      description: {
+        story: generateStoryDescription('input', 'size'),
+      },
     },
   },
   render: () => html`
@@ -210,7 +226,9 @@ export const InputTypes: Story = {
 export const PrefixSuffixIcons: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('prefix-suffix'),
+      description: {
+        story: generateStoryDescription('input', 'prefix-suffix'),
+      },
     },
   },
   render: () => html`

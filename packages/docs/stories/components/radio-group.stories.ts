@@ -107,6 +107,10 @@ export const Invalid: Story = {
       const button = canvasElement.querySelector('syn-button');
 
       if (button) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
       }
@@ -162,6 +166,10 @@ export const CustomValidity: Story = {
       }
 
       if (button) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
         if (radioGroup?.checkValidity()) {

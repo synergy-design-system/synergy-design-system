@@ -101,6 +101,11 @@ export const CustomValidity: Story = {
 
       if (form && button && checkbox) {
         checkbox.setCustomValidity(errorMessage);
+
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
       }

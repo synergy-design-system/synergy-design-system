@@ -150,11 +150,15 @@ export const Invalid: Story = {
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
-      const form = canvasElement.querySelector('form');
+      const form = canvasElement.querySelector('form')!;
       const textarea = form.querySelector('syn-textarea') as SynTextarea;
       const button = form.querySelector('syn-button') as SynButton;
 
       if (button && textarea) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
       }

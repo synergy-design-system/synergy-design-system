@@ -54,7 +54,7 @@ export const App = () => (
         type="submit"
         variant="filled"
       >
-        <SynIcon name="send" style={{ marginRight: '10px' }} />
+        <SynIcon name="send" slot="prefix" />
         Submit
       </SynButton>
     </form>

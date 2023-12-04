@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
+import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults } from '../../src/helpers/component.js';
@@ -9,7 +11,7 @@ import { storybookDefaults } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('syn-switch');
 
 const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.switch as any)?.[attributeName]?.description?.value ?? 'No Description',
+  story: (docsTokens?.components?.switch)?.[attributeName]?.description?.value ?? 'No Description',
 });
 
 const meta: Meta = {
@@ -60,9 +62,9 @@ export const Focus: Story = {
       description: generateStoryDescription('focus'),
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const synSwitch = canvasElement.querySelector('syn-switch');
-    if (synSwitch instanceof HTMLElement) {
+  play: ({ canvasElement }) => {
+    const synSwitch = canvasElement.querySelector('syn-switch') as SynSwitch;
+    if (synSwitch) {
       if (synSwitch) {
         synSwitch.focus();
       }

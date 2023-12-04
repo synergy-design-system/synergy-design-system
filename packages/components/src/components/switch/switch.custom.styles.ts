@@ -37,7 +37,7 @@ export default css`
   }
 
    .switch__control .switch__thumb {
-    border: solid var(--syn-input-border-width) var(--syn-color-neutral-600);
+    border: none;
    }
 
   /* Hover */
@@ -48,8 +48,6 @@ export default css`
 
   .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover .switch__thumb {
     background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-neutral-900);
-    opacity: 0.8;
   }
 
   /* Checked + hover */
@@ -60,8 +58,6 @@ export default css`
 
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
     background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-primary-900);
-    opacity: 0.8;
   }
 
   /* Focus */
@@ -74,7 +70,6 @@ export default css`
 
   .switch:not(.switch--checked):not(.switch--disabled) .switch__input:focus-visible ~ .switch__control .switch__thumb {
     background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-neutral-600);
     outline: none;
   }
 
@@ -88,11 +83,9 @@ export default css`
 
   .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control .switch__thumb {
     background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-primary-900);
     outline: none;
   }
 
   .switch__label {
     margin-inline-start: var(--syn-spacing-x-small);
-  }
-}}}}`;
+  }`;

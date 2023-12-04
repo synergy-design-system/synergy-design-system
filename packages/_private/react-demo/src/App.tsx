@@ -1,6 +1,7 @@
 import {
   SynButton,
   SynCheckbox,
+  SynIcon,
   SynInput,
   SynRadio,
   SynRadioGroup,
@@ -53,6 +54,7 @@ export const App = () => (
         type="submit"
         variant="filled"
       >
+        <SynIcon name="send" slot="prefix" />
         Submit
       </SynButton>
     </form>

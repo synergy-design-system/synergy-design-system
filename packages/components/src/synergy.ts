@@ -16,8 +16,8 @@ export { default as SynTextarea } from './components/textarea/textarea.js';
 
 // Utilities
 // export * from './utilities/animation.js';
-// export * from './utilities/base-path.js';
-// export * from './utilities/icon-library.js';
+export * from './utilities/base-path.js';
+export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
 
 // Events

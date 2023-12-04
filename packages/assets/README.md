@@ -1,50 +1,29 @@
 ## Documentation
 
----
+This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
+The folder structure of the assets corresponds to the structure of the Figma page.
+ - **logos:** contains the variants of the SICK brand logo
+ - **icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
+ - **system-icons:** contains a small subset of icons, that are internally used by the Synergy components
 
-### `FigmaValidator`
+> **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. _my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
 
-**Purpose**:  
-This class serves as a utility to interact with the Figma API, providing functionalities specific to the validation of Figma documents.
+### Setup
+To update the assets from Figma, first of all a personal access token in Figma needs to be created.
+The documentation how this can be achieved can be found [here](https://www.figma.com/developers/api#access-tokens).
+The only needed scope is "File content" set to readonly.
 
-- It fetches page names from a given Figma file.
-- It checks if essential pages like 'Assets', 'Tokens', and 'Components' are missing from the provided Figma file.
+After the creation of the personal access token, it needs to be saved in a ***.env*** file with the variable ***"FIGMA_PERSONAL_ACCESS_TOKEN"***.
+It should look like following: 
 
-**Key Functions**:
+```
+FIGMA_PERSONAL_ACCESS_TOKEN = "my-personal-access-token"
+```
 
-- `getPageNames(fileId)`: Fetches and returns the names of all pages in a given Figma file.
-- `getMissingPages(fileId)`: Checks and returns any of the required pages (Assets, Tokens, Components) that are missing from the Figma file.
+### Update assets from Figma
+If something in the Figma assets got changed, the assets of this package also needs to be updated.
+To update the assets run following in the terminal of the assets package folder:
+```
+pnpm fetch-assets
+```
 
----
-
-### `optimizeSVGs`
-
-**Purpose**:  
-This function optimizes SVG files in a given directory, improving their performance and reducing their file size.
-
-- It uses the SVGO library to carry out optimizations.
-- It is set to remove any `fill` attributes and add a default `fill` attribute set to `currentColor`.
-
-**Key Function**:
-
-- `optimizeSVGs(svgDirPath)`: Iterates over SVG files in a specified directory, and optimizes them.
-
----
-
-### `fetchAssets`
-
-**Purpose**:  
-This script automates the process of fetching design assets from Figma and saving them to a local directory.
-
-- It makes use of the `FigmaExporter` class to fetch assets.
-- It processes PNG and SVG assets differently and ensures that unwanted assets (those starting with `_`) are not fetched.
-- At the end of the process, it clears the target directory (`./src`) and then fetches the assets anew.
-- If any SVGs are found in the `./src/icons` directory after fetching, they are optimized using the previously mentioned `optimizeSVGs` function.
-
-**Key Function**:
-
-- `fetchAssets()`: The main function that orchestrates the fetching, filtering, and saving of design assets from Figma.
-
-**To run this script and fetch the assets you will have to navigate to the *assets* package folder and write on the terminal: *'pnpm fetch-assets'*. This command will first remove everything on the *src* folder and then fetch the assets from Figma and create the folders *logos* and *icons* and store them accordingly.**
-
-- Also important to note, for this action to work you will need to have an ***.env*** file with the string variable ***"FIGMA_PERSONAL_ACCESS_TOKEN"*** on it.

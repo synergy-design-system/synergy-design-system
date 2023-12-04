@@ -25,7 +25,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**\/*",
+                "input": "./node_modules/@synergy-design-system/assets/src/icons",
+                "output": "/assets/icons"
+                }
             ],
             "styles": [
               "@synergy-design-system/tokens/themes/light.css",

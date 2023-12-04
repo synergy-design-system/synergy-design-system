@@ -3,6 +3,7 @@ import {
   SynVueButton,
   SynVueCheckbox,
   SynVueInput,
+  SynVueIcon,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
 import type {
@@ -126,6 +127,7 @@ const log = (...args: unknown[]) => console.log(...args);
         @syn-focus="log"
         ref="btnRef"
       >
+      <SynVueIcon slot="prefix" name="send" />
         <!--
           There is currently no other way to do this.
           Also, template #prefix does not work on

@@ -29,7 +29,7 @@ The components will not display correctly without the needed theme. Please inclu
 ```ts
 // src/main.ts
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/dist/themes/light.css';
+import '@synergy-design-system/tokens/themes/light.css';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -63,10 +63,11 @@ You may use it in one of the following ways:
 
 ```html
 <script setup lang="ts">
+import { ref } from 'vue';
 import {
   SynVueButton,
   SynVueCheckbox,
-  SynVueTextArea,
+  SynVueTextarea,
   SynVueInput,
 } from '@synergy-design-system/vue';
 
@@ -103,7 +104,7 @@ const submit = (e: Event) => {
       required
       v-model="formValues.inputValue"
     />
-    <SynVueTextArea
+    <SynVueTextarea
       v-model="formValues.textAreaValue"
       name="textAreaValue"
     />

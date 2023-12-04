@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.0.0-main.4](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.3...assets/1.0.0-main.4) (2023-12-04)
+
+
+### Features
+
+* ✨add syn-icon ([#183](https://github.com/SickDesignSystem/synergy/issues/183)) ([add85f5](https://github.com/SickDesignSystem/synergy/commit/add85f553579b5806e1feb0ad78171ca26a7b20d))
+
 # [@synergy-design-system/assets-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.2...assets/1.0.0-main.3) (2023-11-16)
 
 

@@ -930,6 +930,16 @@
           "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.",
           "type": "text"
         }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Switch is invalid.",
+          "type": "text"
+        }
       }
     },
     "tab-group": {

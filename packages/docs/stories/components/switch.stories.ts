@@ -7,21 +7,26 @@ import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults } from '../../src/helpers/component.js';
+import {
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-switch');
-
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.switch)?.[attributeName]?.description?.value ?? 'No Description',
-});
+const { overrideArgs } = storybookHelpers('syn-switch');
+const { generateTemplate } = storybookTemplate('syn-switch');
 
 const meta: Meta = {
   component: 'switch',
-  args,
+  args: overrideArgs([
+    { name: 'default', type: 'slot', value: 'Option' },
+  ]),
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('switch', 'default'),
     },
   },
   title: 'Components/syn-switch',
@@ -33,16 +38,16 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('switch', 'default'),
     },
   },
-  render: () => html`<syn-switch>Option</syn-switch>`,
+  render: (args: any) => generateTemplate({ args }),
 } as Story;
 
 export const Checked: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checked'),
+      description: generateStoryDescription('switch', 'checked'),
     },
   },
   render: () => html`<syn-switch checked>Checked</syn-switch>`,
@@ -51,7 +56,7 @@ export const Checked: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: generateStoryDescription('switch', 'disabled'),
     },
   },
   render: () => html`<syn-switch disabled>Disabled</syn-switch>`,
@@ -60,7 +65,7 @@ export const Disabled: Story = {
 export const Focus: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('focus'),
+      description: generateStoryDescription('switch', 'focus'),
     },
   },
   play: ({ canvasElement }) => {
@@ -77,7 +82,7 @@ export const Focus: Story = {
 export const Invalid: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: generateStoryDescription('switch', 'invalid'),
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -114,8 +119,11 @@ export const Invalid: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: true,
+    },
     docs: {
-      description: generateStoryDescription('sizes'),
+      description: generateStoryDescription('switch', 'sizes'),
     },
   },
   render: () => html`

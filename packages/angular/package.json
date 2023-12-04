@@ -22,7 +22,7 @@
     "url": "https://github.com/SickDesignSystem/synergy.git",
     "directory": "packages/angular"
   },
-  "version": "1.0.0-main.15",
+  "version": "1.0.0-main.16",
   "peerDependencies": {
     "@angular/core": "^16.2.12 || ^17.0.0",
     "@angular/forms": "^16.2.12 || ^17.0.0",

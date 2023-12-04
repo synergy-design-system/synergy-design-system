@@ -62,7 +62,7 @@ We support [vue two way data binding](https://vuejs.org/guide/components/v-model
 You may use it in one of the following ways:
 
 ```html
-<script lang="ts">
+<script setup lang="ts">
 import {
   SynVueButton,
   SynVueCheckbox,

@@ -54,7 +54,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@lit/react": "^1.0.0",

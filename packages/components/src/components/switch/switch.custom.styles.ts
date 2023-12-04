@@ -92,13 +92,11 @@ export default css`
   
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
     background-color: var(--syn-color-error-700);
-    border-color: var(--syn-color-error-700);
     outline-color: var(--syn-color-error-700);
   }
 
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
     background-color: var(--syn-color-error-900);
-    border-color: var(--syn-color-error-900);
     outline-color: var(--syn-color-error-900);
   }
   `;

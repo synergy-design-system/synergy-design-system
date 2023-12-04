@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.17](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.16...components/1.0.0-main.17) (2023-12-04)
+
+
+### Bug Fixes
+
+* 🤔 Storybooks play function does not work with custom component in forms ([#186](https://github.com/SickDesignSystem/synergy/issues/186)) ([0db602f](https://github.com/SickDesignSystem/synergy/commit/0db602f73c21d3ce3419c7d44fab0cda1c53cc6f))
+
 # [@synergy-design-system/components-v1.0.0-main.16](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.15...components/1.0.0-main.16) (2023-12-04)
 
 

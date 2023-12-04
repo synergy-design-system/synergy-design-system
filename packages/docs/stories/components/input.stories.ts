@@ -1,5 +1,5 @@
-/* eslint-disable import/no-relative-packages */
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { SynButton, SynInput } from '@synergy-design-system/components';
 import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
@@ -13,7 +13,6 @@ const { generateTemplate } = storybookTemplate('syn-input');
 
 
 const meta: Meta = {
-  component: 'input',
   args,
   argTypes,
   parameters: {
@@ -117,8 +116,8 @@ export const Focus: Story = {
       description: generateStoryDescription('focus'),
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-input') as SynInput;
     if (input) {
       input.focus();
     }
@@ -143,7 +142,7 @@ export const Disabled: Story = {
   render: () => html`
   <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
     <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix">
+    <syn-icon name="chat" slot="suffix"></syn-icon>
   </syn-input>`,
 };
 
@@ -175,42 +174,45 @@ export const Invalid: Story = {
   },
   play: async ({ canvasElement }) => {
     try {
-      const input = canvasElement.querySelector('syn-input');
-      const button = canvasElement.querySelector('button');
+      const form = canvasElement.querySelector('form')!;
+      const input = form.querySelector('syn-input') as SynInput;
+      const button = form.querySelector('syn-button') as SynButton;
 
-      await waitUntil(() => input?.shadowRoot?.querySelector('input'));
-
-      if (button) {
+      if (button && input) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
+        button.click();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
-  render: (args: any) => html`
-  <form>
-   ${generateTemplate({
+  render: (args) => html`
+    <form class="custom-validity">
+  ${generateTemplate({
     args,
-    constants: [
-      { type: 'attribute', name: 'required', value: true },
-    ],
+    constants: [{
+      name: 'required',
+      type: 'attribute',
+      value: true,
+    }],
   })}
-    <button size="medium" type="submit">Submit</button>
-  </form>
-  <style>
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  button {
-    margin-top: 1rem;
-    align-self: flex-end;
-    padding: 0.5rem 1rem;
-    min-width: 5%;
-  }
-  </style>
-`,
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
 };
 
 /**

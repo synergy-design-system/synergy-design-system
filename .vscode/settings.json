@@ -105,9 +105,6 @@
         "packages/components/web-test-runner.config.js": true,
         "packages/docs/stories/components/alert.stories.ts": true,
         "packages/docs/stories/components/button.stories.ts": true,
-        "packages/docs/stories/components/radio-group.stories.ts": true,
-        "packages/docs/stories/components/radio.stories.ts": true,
-        "packages/docs/stories/components/textarea.stories.ts": true,
         "packages/react/src/**": true
     },
     "html.customData": [

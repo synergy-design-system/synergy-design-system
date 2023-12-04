@@ -1,6 +1,6 @@
 import { addons } from '@storybook/manager-api';
-import { dark } from './synergy-theme.js';
+import { light } from './synergy-theme.js';
 
 addons.setConfig({
-  theme: dark,
+  theme: light,
 });

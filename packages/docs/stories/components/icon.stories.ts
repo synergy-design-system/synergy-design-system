@@ -163,12 +163,6 @@ export const Colors: Story = {
   <syn-icon name="download"></syn-icon>
   <syn-icon name="description"></syn-icon>
 </div>
-<div style="color: var(--syn-color-accent-500);">
-  <syn-icon name="flag"></syn-icon>
-  <syn-icon name="favorite"></syn-icon>
-  <syn-icon name="image"></syn-icon>
-  <syn-icon name="bolt"></syn-icon>
-</div>
 <div style="color: var(--syn-color-error-700);">
   <syn-icon name="mic"></syn-icon>
   <syn-icon name="search"></syn-icon>

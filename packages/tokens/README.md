@@ -1,7 +1,7 @@
 # @synergy-design-system/tokens
 
 This package provides the design tokens that form the base for all components of the synergy design system.
-It provides multiple exports for colors, spacings, shadows, sizings, etc. that can be also consumed in other applications.
+It provides multiple exports for colors, spacings, shadows, sizings, etc. that can be also consumed by applications directly.
 
 ---
 

@@ -8,6 +8,8 @@ import {
 import { rimraf } from 'rimraf';
 import { FigmaExporter } from 'figma-export-assets';
 import { optimizeSVGs } from './optimize-svg.js';
+import { bundleIcons } from './bundle-icons.js';
+import { updateSystemIcons } from './update-system-icons.js';
 
 intro('Fetch Assets');
 
@@ -31,6 +33,9 @@ async function fetchAssets() {
 
   const config = {
     assetsPath: './src',
+    axiosConfig: {
+      proxy: false,
+    },
     figmaPersonalToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
     fileId: 'bZFqk9urD3NlghGUKrkKCR',
     page: 'Assets',
@@ -50,6 +55,8 @@ async function fetchAssets() {
   let assets = await figma.getAssets();
   s.stop(`${assets.length} assets found`);
 
+  // All assets which start with an "_" will get filtered out.
+  // This can be used to document things in Figma, which should not appear in this assets package.
   assets = assets.filter(asset => !asset.name.startsWith('_'));
 
   // Step 2: Create PNGs
@@ -88,5 +95,11 @@ await rimraf('./src');
 await fetchAssets();
 if (fs.existsSync('./src/icons')) {
   await optimizeSVGs('./src/icons');
+  await bundleIcons('./src/icons', './src/default-icons.js');
+}
+
+if (fs.existsSync('./src/system-icons')) {
+  await optimizeSVGs('./src/system-icons');
+  await updateSystemIcons('./src/system-icons', '../components/src/components/icon/library.system.ts');
 }
 outro('Assets fetched!');

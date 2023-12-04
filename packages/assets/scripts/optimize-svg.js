@@ -8,6 +8,14 @@ import { spinner } from '@clack/prompts';
 
 const s = spinner();
 
+/**
+ * Iterates over SVG files in a specified directory and optimizes them
+ * by improving their performance and reducing their file size.
+ *
+ * Additionally all `fill` attributes are removed and set to `currentColor`.
+ *
+ * @param {string} svgDirPath - the directory path, where the svg`s are
+ */
 export async function optimizeSVGs(svgDirPath) {
   try {
     const files = await fs.readdir(svgDirPath);

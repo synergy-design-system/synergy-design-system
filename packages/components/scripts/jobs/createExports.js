@@ -18,8 +18,8 @@ export const runCreateExports = job('Creating component exports in src/synergy.t
   const otherExports = `
 // Utilities
 // export * from './utilities/animation.js';
-// export * from './utilities/base-path.js';
-// export * from './utilities/icon-library.js';
+export * from './utilities/base-path.js';
+export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
 
 // Events

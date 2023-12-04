@@ -42,7 +42,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "name": "@synergy-design-system/css",
   "repository": {
     "type": "git",

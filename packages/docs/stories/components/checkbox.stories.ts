@@ -6,18 +6,16 @@ import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import { waitUntil } from '@open-wc/testing-helpers';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
 const { generateTemplate } = storybookTemplate('syn-checkbox');
-
-const generateStoryDescription = (attributeName: string) => {
-  const story = (docsTokens?.components?.checkbox as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description';
-  return {
-    story,
-  };
-};
 
 const meta: Meta = {
   args: overrideArgs([
@@ -26,7 +24,7 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('checkbox', 'default'),
     },
   },
   title: 'Components/syn-checkbox',
@@ -38,7 +36,7 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: generateStoryDescription('checkbox', 'default'),
     },
   },
   render: (args: any) => generateTemplate({ args }),
@@ -47,7 +45,7 @@ export const Default = {
 export const Checked: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checked'),
+      description: generateStoryDescription('checkbox', 'checked'),
     },
   },
   render: () => html`<syn-checkbox checked>Checked</syn-checkbox>`,
@@ -56,7 +54,7 @@ export const Checked: Story = {
 export const Indeterminate: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('indeterminate'),
+      description: generateStoryDescription('checkbox', 'indeterminate'),
     },
   },
   render: () => html`<syn-checkbox indeterminate>Indeterminate</syn-checkbox>`,
@@ -65,7 +63,7 @@ export const Indeterminate: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: generateStoryDescription('checkbox', 'disabled'),
     },
   },
   render: () => html`<syn-checkbox disabled>Disabled</syn-checkbox>`,
@@ -74,7 +72,7 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('sizes'),
+      description: generateStoryDescription('checkbox', 'sizes'),
     },
   },
   render: () => html`
@@ -89,7 +87,7 @@ export const Sizes: Story = {
 export const CustomValidity: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('validity'),
+      description: generateStoryDescription('checkbox', 'validity'),
     },
   },
   play: async ({ canvasElement }) => {

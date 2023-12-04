@@ -7,6 +7,8 @@
     "streetsidesoftware.code-spell-checker",
     "unifiedjs.vscode-mdx",
     "dbaeumer.vscode-eslint",
-    "angular.ng-template"
+    "angular.ng-template",
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin"
   ]
 }

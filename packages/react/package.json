@@ -32,7 +32,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "name": "@synergy-design-system/react",
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.0.0-main.14",
+  "version": "1.0.0-main.15",
   "devDependencies": {
     "@types/react": "^18.2.31",
     "react": "^18.2.0"

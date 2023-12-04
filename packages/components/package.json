@@ -170,8 +170,8 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "25bfcd94030b0c25cac62ee17684b601353a8717",
-      "react": "dfd13853e7afcdaae44deb2378b40599ed4201fc"
+      "angular": "cbd04b55bf14e8c3cbced2b7bdaa0ac477b5804b",
+      "react": "312bd3872a1706589c5a117aaa6994e2a5c9312a"
     }
   }
 }

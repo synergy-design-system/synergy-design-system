@@ -5,6 +5,7 @@ import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
+import { userEvent } from '@storybook/testing-library';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { storybookDefaults } from '../../src/helpers/component.js';
 
@@ -71,6 +72,44 @@ export const Focus: Story = {
     }
   },
   render: () => html`<syn-switch>Focused</syn-switch>`,
+};
+
+export const Invalid: Story = {
+  parameters: {
+    docs: {
+      description: generateStoryDescription('invalid'),
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    try {
+      const form = canvasElement.querySelector('form');
+      const synSwitch = form.querySelector('syn-switch') as SynSwitch;
+      const button = form.querySelector('syn-button') as SynButton;
+
+      if (button && synSwitch) {
+        await userEvent.click(button);
+        button.click();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
+  render: () => html`
+    <form class="custom-validity">
+      <syn-switch required>Option</syn-switch>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
 };
 
 export const Sizes: Story = {

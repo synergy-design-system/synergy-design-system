@@ -1,7 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-  :host([size='small']) {
+:host([size='small']) {
     --height: calc(var(--syn-font-size-medium) + 2px);
     --thumb-size: var(--syn-font-size-small);
     --width: calc((var(--height) * 2) - 6px);
@@ -88,4 +88,17 @@ export default css`
 
   .switch__label {
     margin-inline-start: var(--syn-spacing-x-small);
-  }`;
+  }
+  
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
+    background-color: var(--syn-color-error-700);
+    border-color: var(--syn-color-error-700);
+    outline-color: var(--syn-color-error-700);
+  }
+
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
+    background-color: var(--syn-color-error-900);
+    border-color: var(--syn-color-error-900);
+    outline-color: var(--syn-color-error-900);
+  }
+  `;

@@ -39,7 +39,8 @@
     "lint": "pnpm run /^lint:.*/",
     "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
     "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
-    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\""
+    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
+    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\""
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
@@ -81,12 +82,14 @@
     "del": "^7.1.0",
     "esbuild": "^0.19.4",
     "esbuild-plugin-replace": "^1.4.0",
+    "esbuild-plugin-vue3": "^0.3.2",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-lit": "^1.9.1",
     "eslint-plugin-lit-a11y": "^4.1.0",
+    "eslint-plugin-vue": "^9.18.1",
     "eslint-plugin-wc": "^2.0.4",
     "globby": "^13.2.2",
     "jsdom": "^22.1.0",
@@ -102,7 +105,8 @@
     "unified": "^11.0.3",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "github:mariohamann/vendorism"
+    "vendorism": "github:mariohamann/vendorism",
+    "vue-tsc": "^1.8.24"
   },
   "release": {
     "branches": [
@@ -139,7 +143,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react"
+          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react && pnpm release.vue"
         }
       ],
       [
@@ -171,7 +175,8 @@
   "meta": {
     "checksums": {
       "angular": "e19b102da15b36548809c9e71e5744b9ad17e4ec",
-      "react": "6ee47906b120cc55e3e5e1d997b5227edeb3b8f7"
+      "react": "6ee47906b120cc55e3e5e1d997b5227edeb3b8f7",
+      "vue": "6264b504419c671322bad101cf337c7561664441"
     }
   }
 }

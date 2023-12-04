@@ -60,6 +60,11 @@ attribute can typically be omitted.
 * Disables the radio.
  */
   'disabled'?: SynRadio['disabled'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynRadio['value'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -83,6 +88,11 @@ defineEmits<{
 * Emitted when the control gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynRadio['value']];
 }>();
 </script>
 
@@ -92,6 +102,7 @@ defineEmits<{
     ref="element"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
+    @input="$emit('update:modelValue', $event.target.value)"
   >
     <slot />
   </syn-radio>

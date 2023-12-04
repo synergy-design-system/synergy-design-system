@@ -18,6 +18,7 @@ const headerComment = createHeader('vue');
 const vueModelEnabledComponents = [
   'checkbox',
   'input',
+  'radio',
   'textarea',
 ];
 

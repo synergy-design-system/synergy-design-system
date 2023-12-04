@@ -2,6 +2,12 @@
 
 This package provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
+This package aims to provide an improved developer experience in vue applications:
+
+- Provides two way data binding and `v-model`
+- Autocompletion and Types
+- Better custom event handling of `synergy` events
+
 ## Getting started
 
 ### 1. Package installation

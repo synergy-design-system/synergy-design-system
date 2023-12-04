@@ -39,7 +39,7 @@
     "Synergy Design System",
     "Design Tokens"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "name": "@synergy-design-system/tokens",
   "repository": {
     "type": "git",

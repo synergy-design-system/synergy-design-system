@@ -15,7 +15,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "name": "@synergy-design-system/angular",
   "repository": {
     "type": "git",

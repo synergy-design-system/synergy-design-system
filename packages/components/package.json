@@ -53,7 +53,7 @@
     "SICK",
     "SICK Design System"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@lit/react": "^1.0.0",
@@ -170,8 +170,8 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "cbd04b55bf14e8c3cbced2b7bdaa0ac477b5804b",
-      "react": "312bd3872a1706589c5a117aaa6994e2a5c9312a"
+      "angular": "e19b102da15b36548809c9e71e5744b9ad17e4ec",
+      "react": "8cf672271c805518f03a04656eb46a7835081993"
     }
   }
 }

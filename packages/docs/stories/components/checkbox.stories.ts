@@ -24,7 +24,9 @@ const meta: Meta = {
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'default'),
+      description: {
+        component: generateStoryDescription('checkbox', 'default'),
+      },
     },
   },
   title: 'Components/syn-checkbox',
@@ -36,7 +38,9 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'default'),
+      description: {
+        story: generateStoryDescription('checkbox', 'default'),
+      },
     },
   },
   render: (args: any) => generateTemplate({ args }),
@@ -45,7 +49,9 @@ export const Default = {
 export const Checked: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'checked'),
+      description: {
+        story: generateStoryDescription('checkbox', 'checked'),
+      },
     },
   },
   render: () => html`<syn-checkbox checked>Checked</syn-checkbox>`,
@@ -54,7 +60,9 @@ export const Checked: Story = {
 export const Indeterminate: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'indeterminate'),
+      description: {
+        story: generateStoryDescription('checkbox', 'indeterminate'),
+      },
     },
   },
   render: () => html`<syn-checkbox indeterminate>Indeterminate</syn-checkbox>`,
@@ -63,7 +71,9 @@ export const Indeterminate: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'disabled'),
+      description: {
+        story: generateStoryDescription('checkbox', 'disabled'),
+      },
     },
   },
   render: () => html`<syn-checkbox disabled>Disabled</syn-checkbox>`,
@@ -72,7 +82,9 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'sizes'),
+      description: {
+        story: generateStoryDescription('checkbox', 'sizes'),
+      },
     },
   },
   render: () => html`
@@ -87,7 +99,9 @@ export const Sizes: Story = {
 export const CustomValidity: Story = {
   parameters: {
     docs: {
-      description: generateStoryDescription('checkbox', 'validity'),
+      description: {
+        story: generateStoryDescription('checkbox', 'validity'),
+      },
     },
   },
   play: async ({ canvasElement }) => {

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.0-main.14](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.0.0-main.13...tokens/1.0.0-main.14) (2023-12-05)
+
+
+### Bug Fixes
+
+* correct the GitHub links ([#206](https://github.com/synergy-design-system/synergy-design-system/issues/206)) ([c4be101](https://github.com/synergy-design-system/synergy-design-system/commit/c4be101310dd8f27c8d3874554928c08bff1533f))
+
 # [@synergy-design-system/tokens-v1.0.0-main.13](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.0.0-main.12...tokens/1.0.0-main.13) (2023-11-30)
 
 

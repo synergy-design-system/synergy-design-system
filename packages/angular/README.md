@@ -91,7 +91,7 @@ You will then be able to use the provided wrappers in the following way:
   type="text"
   (synBlurEvent)="logMessage('onBlur', $event)"
   (synInputEvent)="logMessage('onInput', $event)"
-  required
+  [required]="true"
 >
   <span slot="label">
     {{myLabel}}
@@ -150,7 +150,7 @@ You will then be able to use the provided wrappers in the following way:
   name="test"
   [title]="myLabel"
   type="text"
-  required
+  [required]="true"
 >
   <span slot="label">
     {{myLabel}}

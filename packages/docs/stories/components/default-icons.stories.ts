@@ -15,6 +15,14 @@ export default meta;
 type Story = StoryObj;
 
 const createIconPage = (letter: string): Story => ({
+  parameters: {
+    chromatic: {
+      disableSnapshot: true,
+    },
+    controls: {
+      disable: true,
+    },
+  },
   render: () => {
     const regex = new RegExp(`^${letter}`);
     const iconKeys = Object.keys(defaultIcons);

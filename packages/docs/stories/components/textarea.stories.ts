@@ -4,11 +4,9 @@ import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
-const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
 
 const meta: Meta = {
@@ -17,7 +15,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('textarea', 'default'),
+        story: generateStoryDescription('textarea', 'default'),
       },
     },
   },
@@ -35,11 +33,14 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'labels'),
@@ -51,6 +52,9 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'help-text'),
@@ -62,6 +66,9 @@ export const HelpText: Story = {
 
 export const Rows: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'rows'),
@@ -81,6 +88,9 @@ export const Rows: Story = {
 
 export const Placeholders: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'placeholder'),
@@ -92,6 +102,9 @@ export const Placeholders: Story = {
 
 export const ReadonlyTextareas: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'readonly'),
@@ -106,8 +119,13 @@ export const Focus: Story = {
     placeholder: 'This is in focus',
   },
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('textarea', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }) => {
@@ -116,7 +134,7 @@ export const Focus: Story = {
       textarea.focus();
     }
   },
-  render: (args: any) => html`
+  render: () => html`
       <form>
         ${generateTemplate({
     args,
@@ -127,6 +145,9 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'disabled'),
@@ -138,6 +159,9 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'size'),
@@ -156,9 +180,13 @@ export const Invalid: Story = {
     placeholder: 'Type something',
   },
   parameters: {
-    controls: { exclude: ['required'] },
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: {
+        story: generateStoryDescription('textarea', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -179,7 +207,7 @@ export const Invalid: Story = {
       console.error('Error in play function:', error);
     }
   },
-  render: (args: any) => html`
+  render: () => html`
     <form class="custom-validity">
   ${generateTemplate({
     args,
@@ -206,6 +234,9 @@ export const Invalid: Story = {
 
 export const PreventResizing: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize'),
@@ -217,6 +248,9 @@ export const PreventResizing: Story = {
 
 export const ExpandWithContent: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize-auto'),

@@ -26,6 +26,7 @@ export const components = [
   'checkbox',
   'radio',
   'radio-group',
+  'switch',
 ].sort();
 
 /**

@@ -1,22 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/button/button';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
+import type { SynButton } from '@synergy-design-system/components';
+import {
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-button');
 const { overrideArgs } = storybookHelpers('syn-button');
 const { generateTemplate } = storybookTemplate('syn-button');
 
 const meta: Meta = {
-  component: 'button',
-  args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, defaultArgs),
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Button' }, defaultArgs),
   argTypes,
+  component: 'button',
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('button', 'default'),
+        story: generateStoryDescription('button', 'default'),
       },
     },
   },
@@ -34,11 +42,14 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
 export const Variants: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'variant'),
@@ -58,6 +69,9 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'size'),
@@ -77,12 +91,17 @@ export const Sizes: Story = {
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('button', 'focus'),
+      },
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
-    const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const button = canvasElement.querySelector('syn-button') as SynButton;
     if (button) {
       button.focus();
     }
@@ -92,6 +111,9 @@ export const Focus: Story = {
 
 export const LinkButtons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'link'),
@@ -112,6 +134,9 @@ export const LinkButtons: Story = {
 
 export const SettingACustomWidth: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'width'),
@@ -126,6 +151,9 @@ export const SettingACustomWidth: Story = {
 
 export const PrefixAndSuffixIcons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'prefix-suffix'),
@@ -193,6 +221,9 @@ export const PrefixAndSuffixIcons: Story = {
 
 export const Caret: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'caret'),
@@ -212,6 +243,9 @@ export const Caret: Story = {
 
 export const Loading: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'loading'),
@@ -231,6 +265,9 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'disabled'),

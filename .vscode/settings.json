@@ -67,6 +67,10 @@
         "packages/components/src/components/radio/radio.ts": true,
         "packages/components/src/components/spinner/spinner.component.ts": true,
         "packages/components/src/components/spinner/spinner.styles.ts": true,
+        "packages/components/src/components/switch/switch.component.ts": true,
+        "packages/components/src/components/switch/switch.styles.ts": true,
+        "packages/components/src/components/switch/switch.test.ts": true,
+        "packages/components/src/components/switch/switch.ts": true,
         "packages/components/src/components/textarea/textarea.component.ts": true,
         "packages/components/src/components/textarea/textarea.styles.ts": true,
         "packages/components/src/components/textarea/textarea.test.ts": true,
@@ -105,5 +109,8 @@
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"
-    ]
+    ],
+    "files.readonlyExclude": {
+        "packages/docs/stories/components/button.stories.ts": true
+    }
 }

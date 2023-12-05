@@ -598,5 +598,5 @@ type AttributeDescription = {
  * @returns {string} The story description
  */
 export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => (
-  (docsTokens?.components[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
+   (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
 );

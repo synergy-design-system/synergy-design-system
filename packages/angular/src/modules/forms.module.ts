@@ -12,7 +12,6 @@ import {
   CheckboxControlValueAccessor,
   DefaultValueAccessor,
   NG_VALUE_ACCESSOR,
-  RadioControlValueAccessor,
 } from '@angular/forms';
 
 @Directive({
@@ -25,7 +24,16 @@ import {
     syn-input[formControlName], syn-input[formControl], syn-input[ngModel],
     syn-textarea[formControlName], syn-textarea[formControl], syn-textarea[ngModel],
     syn-range[formControlName], syn-range[formControl], syn-range[ngModel],
-    syn-select[formControlName], syn-select[formControl], syn-select[ngModel]`,
+    syn-select[formControlName], syn-select[formControl], syn-select[ngModel],
+    syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel],
+    syn-button-group[formControlName], syn-button-group[formControl], syn-button-group[ngModel]`,
+  host: {
+    // Overwrite the input event, because we only emit syn-input event
+    '(syn-input)': '$any(this)._handleInput($event.target.value)',
+    '(blur)': 'onTouched()',
+    '(compositionstart)': '$any(this)._compositionStart()',
+    '(compositionend)': '$any(this)._compositionEnd($event.target.value)',
+  },
 })
 export class SynDefaultValueAccessor extends DefaultValueAccessor { }
 
@@ -33,34 +41,23 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor { }
   providers: [{
     multi: true,
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SynCheckboxControlValueAccessor),
+    useExisting: forwardRef(() => SynCheckedValueAccessor),
   }],
-  selector: 'syn-checkbox[formControlName], syn-checkbox[formControl], syn-checkbox[ngModel]',
+  selector: `syn-checkbox[formControlName], syn-checkbox[formControl], syn-checkbox[ngModel],
+    syn-switch[formControlName], syn-switch[formControl], syn-switch[ngModel]`,
+  // Overwrite the change event, because we only emit syn-change event
+  host: { '(syn-change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()' },
 })
-export class SynCheckboxControlValueAccessor extends CheckboxControlValueAccessor { }
-
-@Directive({
-  providers: [{
-    multi: true,
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SynRadioControlValueAccessor),
-  }],
-  selector: `syn-radio[formControlName], syn-radio[formControl], syn-radio[ngModel],
-    syn-radio-button[formControlName], syn-radio-button[formControl], syn-radio-button[ngModel],
-    syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel]`,
-})
-export class SynRadioControlValueAccessor extends RadioControlValueAccessor { }
+export class SynCheckedValueAccessor extends CheckboxControlValueAccessor { }
 
 @NgModule({
   declarations: [
     SynDefaultValueAccessor,
-    SynCheckboxControlValueAccessor,
-    SynRadioControlValueAccessor,
+    SynCheckedValueAccessor,
   ],
   exports: [
     SynDefaultValueAccessor,
-    SynCheckboxControlValueAccessor,
-    SynRadioControlValueAccessor,
+    SynCheckedValueAccessor,
   ],
   imports: [],
 })

@@ -34,7 +34,7 @@
     }
   },
   "types": "./src/default-icons.d.ts",
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets",
   "keywords": [
     "Static Assets",
     "SDS",
@@ -55,7 +55,7 @@
   "name": "@synergy-design-system/assets",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/assets"
   },
   "release": {
@@ -113,5 +113,5 @@
     "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0-main.6"
+  "version": "1.0.0-main.7"
 }

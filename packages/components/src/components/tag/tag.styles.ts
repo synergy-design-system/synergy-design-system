@@ -31,59 +31,25 @@ export default css`
     padding: 0;
   }
 
-  /*
-   * Variant modifiers
-   */
+  
 
-  .tag--primary {
-    background-color: var(--syn-color-primary-50);
-    border-color: var(--syn-color-primary-200);
-    color: var(--syn-color-primary-800);
-  }
+  
 
-  .tag--primary:active > syn-icon-button {
-    color: var(--syn-color-primary-600);
-  }
+  
 
-  .tag--success {
-    background-color: var(--syn-color-success-50);
-    border-color: var(--syn-color-success-200);
-    color: var(--syn-color-success-800);
-  }
+  
 
-  .tag--success:active > syn-icon-button {
-    color: var(--syn-color-success-600);
-  }
+  
 
-  .tag--neutral {
-    background-color: var(--syn-color-neutral-50);
-    border-color: var(--syn-color-neutral-200);
-    color: var(--syn-color-neutral-800);
-  }
+  
 
-  .tag--neutral:active > syn-icon-button {
-    color: var(--syn-color-neutral-600);
-  }
+  
 
-  .tag--warning {
-    background-color: var(--syn-color-warning-50);
-    border-color: var(--syn-color-warning-200);
-    color: var(--syn-color-warning-800);
-  }
+  
 
-  .tag--warning:active > syn-icon-button {
-    color: var(--syn-color-warning-600);
-  }
+  
 
-  .tag--danger {
-    background-color: var(--syn-color-danger-50);
-    border-color: var(--syn-color-danger-200);
-    color: var(--syn-color-danger-800);
-  }
-
-  .tag--danger:active > syn-icon-button {
-    color: var(--syn-color-danger-600);
-  }
+  
 
   /*
    * Size modifiers
@@ -117,13 +83,7 @@ export default css`
     margin-inline-start: var(--syn-spacing-x-small);
   }
 
-  /*
-   * Pill modifier
-   */
-
-  .tag--pill {
-    border-radius: var(--syn-border-radius-pill);
-  }
+  
 
   ${customStyles}
 `;

@@ -14,7 +14,7 @@ const fields = [
 ];
 
 /**
- * List of components that we want to use the default (string) fallback for
+ * List of components that use the value property in forms
  * @var {string[]} defaultSelectors
  */
 const defaultSelectors = [
@@ -23,22 +23,17 @@ const defaultSelectors = [
   'syn-textarea',
   'syn-range',
   'syn-select',
+  'syn-radio-group',
+  'syn-button-group',
 ];
 
 /**
- * List of all elements that should be treated as checkboxes
- * @var {string[]} checkboxSelectors
+ * List of components that use the checked property in forms
+ * @var {string[]} checkedSelectors
  */
-const checkboxSelectors = ['syn-checkbox'];
-
-/**
- * List of all elements that act as radio buttons
- * @var {string[]} radioSelector
- */
-const radioSelectors = [
-  'syn-radio',
-  'syn-radio-button',
-  'syn-radio-group',
+const checkedSelectors = [
+  'syn-checkbox',
+  'syn-switch',
 ];
 
 /**
@@ -71,7 +66,6 @@ import {
   CheckboxControlValueAccessor,
   DefaultValueAccessor,
   NG_VALUE_ACCESSOR,
-  RadioControlValueAccessor,
 } from '@angular/forms';
 
 @Directive({
@@ -81,6 +75,13 @@ import {
     useExisting: forwardRef(() => SynDefaultValueAccessor),
   }],
   selector: \`${createSelectors(defaultSelectors)}\`,
+  host: {
+    // Overwrite the input event, because we only emit syn-input event
+    '(syn-input)': '$any(this)._handleInput($event.target.value)',
+    '(blur)': 'onTouched()',
+    '(compositionstart)': '$any(this)._compositionStart()',
+    '(compositionend)': '$any(this)._compositionEnd($event.target.value)'
+  },
 })
 export class SynDefaultValueAccessor extends DefaultValueAccessor { }
 
@@ -88,32 +89,22 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor { }
   providers: [{
     multi: true,
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SynCheckboxControlValueAccessor),
+    useExisting: forwardRef(() => SynCheckedValueAccessor),
   }],
-  selector: \`${createSelectors(checkboxSelectors)}\`,
+  selector: \`${createSelectors(checkedSelectors)}\`,
+  // Overwrite the change event, because we only emit syn-change event
+  host: { '(syn-change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()' },
 })
-export class SynCheckboxControlValueAccessor extends CheckboxControlValueAccessor { }
-
-@Directive({
-  providers: [{
-    multi: true,
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SynRadioControlValueAccessor),
-  }],
-  selector: \`${createSelectors(radioSelectors)}\`,
-})
-export class SynRadioControlValueAccessor extends RadioControlValueAccessor { }
+export class SynCheckedValueAccessor extends CheckboxControlValueAccessor { }
 
 @NgModule({
   declarations: [
     SynDefaultValueAccessor,
-    SynCheckboxControlValueAccessor,
-    SynRadioControlValueAccessor,
+    SynCheckedValueAccessor,
   ],
   exports: [
     SynDefaultValueAccessor,
-    SynCheckboxControlValueAccessor,
-    SynRadioControlValueAccessor,
+    SynCheckedValueAccessor,
   ],
   imports: [],
 })

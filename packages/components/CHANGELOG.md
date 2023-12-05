@@ -1,3 +1,9 @@
+# [@synergy-design-system/components-v1.0.0-main.20](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0-main.19...components/1.0.0-main.20) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 Make all angular wrapper participate in form data ([#207](https://github.com/synergy-design-system/synergy-design-system/issues/207)) ([21ab688](https://github.com/synergy-design-system/synergy-design-system/commit/21ab688c091afb8763fc7d2e6a939fa36de03fbd))
 
 # [@synergy-design-system/components-v1.0.0-main.19](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0-main.18...components/1.0.0-main.19) (2023-12-05)
 

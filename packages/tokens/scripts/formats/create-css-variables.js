@@ -4,7 +4,12 @@ const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
 export const createCssVariables = (prefix) => ({
   formatter({ dictionary, file, options }) {
-    const { outputReferences } = options;
+    const {
+      outputReferences,
+      theme,
+    } = options;
+
+    const bodySelector = `.${prefix}${theme}`;
 
     // Detects if the token name is valid.
     // If you need some other prefixes, append them to the array
@@ -49,7 +54,8 @@ export const createCssVariables = (prefix) => ({
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    return `${fileHeader({ file })}:root {
+    return `${fileHeader({ file })}:root, ${bodySelector} {
+  color-scheme: ${theme};
 ${formattedVariables({ dictionary, format: 'css', outputReferences })}
 }`;
   },

@@ -46,6 +46,9 @@ export const Default = {
 
 export const Checked: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'checked'),
@@ -57,6 +60,9 @@ export const Checked: Story = {
 
 export const Indeterminate: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'indeterminate'),
@@ -68,6 +74,9 @@ export const Indeterminate: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'disabled'),
@@ -79,6 +88,9 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'sizes'),
@@ -96,6 +108,9 @@ export const Sizes: Story = {
 
 export const CustomValidity: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'validity'),

@@ -44,6 +44,9 @@ export const Default = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'disabled'),
@@ -56,6 +59,9 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'focus'),
@@ -74,6 +80,9 @@ export const Focus: Story = {
 
 export const Invalid: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'invalid'),
@@ -118,6 +127,9 @@ export const Invalid: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'sizes'),

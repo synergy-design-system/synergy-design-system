@@ -38,6 +38,9 @@ export const Default = {
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'labels'),
@@ -49,6 +52,9 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'help-text'),
@@ -60,6 +66,9 @@ export const HelpText: Story = {
 
 export const Rows: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'rows'),
@@ -79,6 +88,9 @@ export const Rows: Story = {
 
 export const Placeholders: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'placeholder'),
@@ -90,6 +102,9 @@ export const Placeholders: Story = {
 
 export const ReadonlyTextareas: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'readonly'),
@@ -104,6 +119,9 @@ export const Focus: Story = {
     placeholder: 'This is in focus',
   },
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'focus'),
@@ -127,6 +145,9 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'disabled'),
@@ -138,6 +159,9 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'size'),
@@ -156,7 +180,9 @@ export const Invalid: Story = {
     placeholder: 'Type something',
   },
   parameters: {
-    controls: { exclude: ['required'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'invalid'),
@@ -208,6 +234,9 @@ export const Invalid: Story = {
 
 export const PreventResizing: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize'),
@@ -219,6 +248,9 @@ export const PreventResizing: Story = {
 
 export const ExpandWithContent: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize-auto'),

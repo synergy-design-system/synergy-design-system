@@ -28,6 +28,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'default'),
     },
@@ -42,6 +45,9 @@ export const Default = {
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'labels'),
     },
@@ -56,6 +62,9 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'help-text'),
     },
@@ -70,6 +79,9 @@ export const HelpText: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'disabled'),
     },
@@ -93,6 +105,9 @@ export const Checked: Story = {
 
 export const Invalid: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'required'),
     },
@@ -136,6 +151,9 @@ export const Invalid: Story = {
 
 export const CustomValidity: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('radio-group', 'setCustomValidity'),
     },

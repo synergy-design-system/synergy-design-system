@@ -38,6 +38,9 @@ export const Default = {
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'label'),
@@ -49,6 +52,9 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'help-text'),
@@ -60,6 +66,9 @@ export const HelpText: Story = {
 
 export const Placeholders: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'placeholder'),
@@ -71,6 +80,9 @@ export const Placeholders: Story = {
 
 export const Clearable: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'clearable'),
@@ -82,6 +94,9 @@ export const Clearable: Story = {
 
 export const TogglePassword: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'password-toggle'),
@@ -93,6 +108,9 @@ export const TogglePassword: Story = {
 
 export const ReadonlyInputs: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'readonly'),
@@ -109,6 +127,9 @@ export const Focus: Story = {
     placeholder: 'Insert text here...',
   },
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('input', 'focus'),
     },
@@ -130,6 +151,9 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'disabled'),
@@ -145,6 +169,9 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'size'),
@@ -164,7 +191,9 @@ export const Invalid: Story = {
     placeholder: 'Insert text here...',
   },
   parameters: {
-    controls: { exclude: ['required'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: generateStoryDescription('input', 'invalid'),
     },
@@ -224,6 +253,9 @@ export const InputTypes: Story = {
 
 export const PrefixSuffixIcons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'prefix-suffix'),

@@ -46,6 +46,9 @@ export const Default = {
 
 export const Checked: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'checked'),
@@ -57,6 +60,9 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'disabled'),
@@ -68,6 +74,9 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'focus'),
@@ -87,6 +96,9 @@ export const Focus: Story = {
 
 export const Invalid: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'invalid'),
@@ -129,6 +141,9 @@ export const Sizes: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: true,
+    },
+    controls: {
+      disable: true,
     },
     docs: {
       description: {

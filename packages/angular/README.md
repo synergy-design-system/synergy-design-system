@@ -1,6 +1,6 @@
 # @synergy-design-system/angular
 
-This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
+This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims for an improved UX when used in Angular applications:
 - Form support

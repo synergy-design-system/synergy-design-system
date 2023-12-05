@@ -18,7 +18,7 @@ npm install --save @synergy-design-system/components @synergy-design-system/toke
 
 ### 2. Load the design tokens
 
-The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/SickDesignSystem/synergy/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
+The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
 
 ---
 

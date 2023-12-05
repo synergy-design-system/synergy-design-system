@@ -309,7 +309,7 @@ export const CDNIconLibrary: Story = {
 };
 
 /**
-* The package [@synergy-design-system/assets](https://github.com/SickDesignSystem/synergy/tree/main/packages/assets) provides the possibility to get all default icons via a bundled file.
+* The package [@synergy-design-system/assets](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets) provides the possibility to get all default icons via a bundled file.
 *
 * > **Warning:** Please keep in mind that via this way of using icons **all** icons will be bundled into your application and it will create larger bundle sizes!
 *

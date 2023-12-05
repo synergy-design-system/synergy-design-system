@@ -1,6 +1,6 @@
 # @synergy-design-system/react
 
-This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
+This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims for an improved UX when used in React applications:
 - Auto-completion
@@ -83,7 +83,7 @@ export const MyButton = () => (
 
 To create a new version of this package, proceed in the following way:
 
-1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
+1. Check out the [Synergy Design System Repository](https://github.com/synergy-design-system/synergy).
 2. Run `pnpm i -r` to install all dependencies.
 3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
 4. Move to to `packages/_private/react-demo` and use `pnpm start` to spin up a local vite project using react and typescript to validate the build.

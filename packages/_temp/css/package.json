@@ -32,7 +32,7 @@
     "fonts",
     "CHANGELOG.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/css",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/css",
   "keywords": [
     "CSS",
     "Styles",
@@ -46,7 +46,7 @@
   "name": "@synergy-design-system/css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy.git",
     "directory": "packages/css"
   },
   "scripts": {

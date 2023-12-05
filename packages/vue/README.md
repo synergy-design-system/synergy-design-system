@@ -1,6 +1,6 @@
 # @synergy-design-system/vue
 
-This package provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
+This package provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims to provide an improved developer experience in vue applications:
 
@@ -123,7 +123,7 @@ const submit = (e: Event) => {
 
 To create a new version of this package, proceed in the following way:
 
-1. Check out the [Synergy Design System Repository](https://github.com/SickDesignSystem/synergy).
+1. Check out the [Synergy Design System Repository](https://github.com/synergy-design-system/synergy).
 2. Run `pnpm i -r` to install all dependencies.
 3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
 4. Move to to `packages/_private/vue-demo` and use `pnpm start` to spin up a local vite project using vue and typescript to validate the build.

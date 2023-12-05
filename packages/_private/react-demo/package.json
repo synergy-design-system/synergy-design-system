@@ -32,7 +32,7 @@
     "vite-plugin-static-copy": "^1.0.0"
   },
   "description": "Sample Demo Project for using the Synergy Design System React Wrappers",
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/_private/react-demo",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo",
   "keywords": [
     "React Web Component Wrapper",
     "React Components",
@@ -48,7 +48,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy.git",
     "directory": "packages/_private/react-demo"
   },
   "scripts": {

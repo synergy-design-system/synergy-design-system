@@ -21,7 +21,7 @@
     "CHANGELOG.md",
     "README.md"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/react",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/react",
   "keywords": [
     "React Web Component Wrapper",
     "React Components",
@@ -36,7 +36,7 @@
   "name": "@synergy-design-system/react",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy.git",
     "directory": "packages/react"
   },
   "type": "module",

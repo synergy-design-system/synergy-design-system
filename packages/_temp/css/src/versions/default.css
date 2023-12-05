@@ -1,9 +1,0 @@
-/**
- * Load design tokens from "@synergy-design-system/tokens
- */
-@import url("@synergy-design-system/tokens/build/css/tokens.css");
-@import url("../core/fouc.css");
-@import url("../core/fonts.css");
-@import url("../core/animations.css");
-@import url("../core/baseline.css");
-@import url("../core/typo.css");

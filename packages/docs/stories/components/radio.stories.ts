@@ -1,28 +1,26 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
 const { overrideArgs } = storybookHelpers('syn-radio');
 const { generateTemplate } = storybookTemplate('syn-radio');
 
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.radio as Record<string, unknown>)?.[attributeName]?.description?.value ?? 'No Description',
-});
-
 const meta: Meta = {
-  component: 'radio',
-  args,
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
+  component: 'radio',
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('radio', 'default'),
+      },
     },
   },
   title: 'Components/syn-radio',
@@ -34,17 +32,25 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('radio', 'default'),
+      },
     },
   },
-  render: () => html`
-  <syn-radio value="1" size="medium">Option</syn-radio>`,
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
+  // render: () => html`
+  // <syn-radio value="1" size="medium">Option</syn-radio>`,
 } as Story;
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('radio', 'disabled'),
+      },
     },
   },
   render: () => html`
@@ -53,8 +59,13 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('radio', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -69,8 +80,13 @@ export const Focus: Story = {
 
 export const Invalid: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: {
+        story: generateStoryDescription('radio', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
@@ -111,8 +127,13 @@ export const Invalid: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('sizes'),
+      description: {
+        story: generateStoryDescription('radio', 'sizes'),
+      },
     },
   },
   render: () => html`

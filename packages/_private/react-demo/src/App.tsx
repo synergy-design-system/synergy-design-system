@@ -1,9 +1,11 @@
 import {
   SynButton,
   SynCheckbox,
+  SynIcon,
   SynInput,
   SynRadio,
   SynRadioGroup,
+  SynSwitch,
 } from '@synergy-design-system/react';
 
 export const App = () => (
@@ -37,8 +39,11 @@ export const App = () => (
         </SynCheckbox>
       </div>
 
+      <br />
+
       <SynRadioGroup
         name="radio"
+        label="Radio Group"
         required
       >
         <SynRadio value="1">
@@ -49,10 +54,23 @@ export const App = () => (
         </SynRadio>
       </SynRadioGroup>
 
+      <br />
+
+      <SynSwitch
+        name="switch"
+        required
+      >
+        Switch
+      </SynSwitch>
+
+      <br />
+      <br />
+
       <SynButton
         type="submit"
         variant="filled"
       >
+        <SynIcon name="send" slot="prefix" />
         Submit
       </SynButton>
     </form>

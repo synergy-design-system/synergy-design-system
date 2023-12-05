@@ -16,6 +16,7 @@ const outDir = getPath('../dist');
 
 const angularPackageDir = getPath('../../angular');
 const reactPackageDir = getPath('../../react');
+const vuePackageDir = getPath('../../vue');
 
 await jobs.runPrepare(outDir);
 await jobs.runCreateEvents(componentDir);
@@ -34,6 +35,11 @@ await Promise.all([
     angularPackageDir,
     componentDistDir: outDir,
     componentPackageDir: componentDir,
+  }),
+  jobs.runCreateVueWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    vuePackageDir,
   }),
 ]);
 

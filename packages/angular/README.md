@@ -2,6 +2,12 @@
 
 This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/SickDesignSystem/synergy/tree/main/packages/components).
 
+This package aims for an improved UX when used in Angular applications:
+- Form support
+- Two way data-binding for properties
+- Auto-completion
+- Event handling
+
 > We are currently supporting Angular version 17.
 
 ## Getting started
@@ -85,7 +91,7 @@ You will then be able to use the provided wrappers in the following way:
   type="text"
   (synBlurEvent)="logMessage('onBlur', $event)"
   (synInputEvent)="logMessage('onInput', $event)"
-  required
+  [required]="true"
 >
   <span slot="label">
     {{myLabel}}
@@ -144,7 +150,7 @@ You will then be able to use the provided wrappers in the following way:
   name="test"
   [title]="myLabel"
   type="text"
-  required
+  [required]="true"
 >
   <span slot="label">
     {{myLabel}}

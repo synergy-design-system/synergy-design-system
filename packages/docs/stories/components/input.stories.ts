@@ -1,28 +1,22 @@
-/* eslint-disable import/no-relative-packages */
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { SynButton, SynInput } from '@synergy-design-system/components';
 import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
-const { overrideArgs } = storybookHelpers('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
 
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.input as any)?.[attributeName]?.description?.value ?? 'No Description',
-});
-
 const meta: Meta = {
-  component: 'input',
   args,
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        component: generateStoryDescription('input', 'default'),
+      },
     },
   },
   title: 'Components/syn-input',
@@ -34,16 +28,23 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('input', 'default'),
+      },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('label'),
+      description: {
+        story: generateStoryDescription('input', 'label'),
+      },
     },
   },
   render: () => html`<syn-input label="What is your name?"></syn-input>`,
@@ -51,8 +52,13 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('help-text'),
+      description: {
+        story: generateStoryDescription('input', 'help-text'),
+      },
     },
   },
   render: () => html`<syn-input label="Nickname" help-text="What would you like people to call you?"></syn-input>`,
@@ -60,8 +66,13 @@ export const HelpText: Story = {
 
 export const Placeholders: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('placeholder'),
+      description: {
+        story: generateStoryDescription('input', 'placeholder'),
+      },
     },
   },
   render: () => html`<syn-input placeholder="Type something"></syn-input>`,
@@ -69,8 +80,13 @@ export const Placeholders: Story = {
 
 export const Clearable: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('clearable'),
+      description: {
+        story: generateStoryDescription('input', 'clearable'),
+      },
     },
   },
   render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
@@ -78,8 +94,13 @@ export const Clearable: Story = {
 
 export const TogglePassword: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('password-toggle'),
+      description: {
+        story: generateStoryDescription('input', 'password-toggle'),
+      },
     },
   },
   render: () => html`<syn-input type="password" placeholder="Password Toggle" password-toggle></syn-input>`,
@@ -87,8 +108,13 @@ export const TogglePassword: Story = {
 
 export const ReadonlyInputs: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('filled'),
+      description: {
+        story: generateStoryDescription('input', 'readonly'),
+      },
     },
   },
   render: () => html`<syn-input value="Readonly content" readonly></syn-input>`,
@@ -101,17 +127,20 @@ export const Focus: Story = {
     placeholder: 'Insert text here...',
   },
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: generateStoryDescription('input', 'focus'),
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const input = canvasElement.querySelector('syn-input') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-input') as SynInput;
     if (input) {
       input.focus();
     }
   },
-  render: (args: any) => html`
+  render: () => html`
       <form>
         ${generateTemplate({
     args,
@@ -122,21 +151,31 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('input', 'disabled'),
+      },
     },
   },
   render: () => html`
   <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
     <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix">
+    <syn-icon name="chat" slot="suffix"></syn-icon>
   </syn-input>`,
 };
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('size'),
+      description: {
+        story: generateStoryDescription('input', 'size'),
+      },
     },
   },
   render: () => html`
@@ -152,49 +191,54 @@ export const Invalid: Story = {
     placeholder: 'Insert text here...',
   },
   parameters: {
-    controls: { exclude: ['required'] },
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: generateStoryDescription('input', 'invalid'),
     },
   },
   play: async ({ canvasElement }) => {
     try {
-      const input = canvasElement.querySelector('syn-input');
-      const button = canvasElement.querySelector('button');
+      const form = canvasElement.querySelector('form')!;
+      const input = form.querySelector('syn-input') as SynInput;
+      const button = form.querySelector('syn-button') as SynButton;
 
-      await waitUntil(() => input?.shadowRoot?.querySelector('input'));
-
-      if (button) {
+      if (button && input) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
+        button.click();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
-  render: (args: any) => html`
-  <form>
-   ${generateTemplate({
+  render: () => html`
+    <form class="custom-validity">
+  ${generateTemplate({
     args,
-    constants: [
-      { type: 'attribute', name: 'required', value: true },
-    ],
+    constants: [{
+      name: 'required',
+      type: 'attribute',
+      value: true,
+    }],
   })}
-    <button size="medium" type="submit">Submit</button>
-  </form>
-  <style>
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  button {
-    margin-top: 1rem;
-    align-self: flex-end;
-    padding: 0.5rem 1rem;
-    min-width: 5%;
-  }
-  </style>
-`,
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
 };
 
 /**
@@ -209,8 +253,13 @@ export const InputTypes: Story = {
 
 export const PrefixSuffixIcons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('prefix-suffix'),
+      description: {
+        story: generateStoryDescription('input', 'prefix-suffix'),
+      },
     },
   },
   render: () => html`

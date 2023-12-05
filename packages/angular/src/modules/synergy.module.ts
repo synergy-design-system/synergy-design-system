@@ -15,6 +15,7 @@ import {
   SynRadioButtonComponent,
   SynRadioComponent,
   SynRadioGroupComponent,
+  SynSwitchComponent,
   SynTextareaComponent,
 } from '../components';
 
@@ -28,6 +29,7 @@ const components = [
   SynRadioComponent,
   SynRadioButtonComponent,
   SynRadioGroupComponent,
+  SynSwitchComponent,
   SynTextareaComponent,
 ];
 

@@ -24,7 +24,8 @@
         "packages/docs",
         "packages/angular",
         "packages/react",
-        "packages/tokens"
+        "packages/tokens",
+        "packages/vue"
     ],
     "files.readonlyInclude": {
         "packages/angular/src/**": true,
@@ -47,6 +48,7 @@
         "packages/components/src/components/icon-button/icon-button.ts": true,
         "packages/components/src/components/icon/icon.component.ts": true,
         "packages/components/src/components/icon/icon.styles.ts": true,
+        "packages/components/src/components/icon/icon.test.ts": true,
         "packages/components/src/components/icon/icon.ts": true,
         "packages/components/src/components/icon/library.default.ts": true,
         "packages/components/src/components/icon/library.system.ts": true,
@@ -69,6 +71,10 @@
         "packages/components/src/components/radio/radio.ts": true,
         "packages/components/src/components/spinner/spinner.component.ts": true,
         "packages/components/src/components/spinner/spinner.styles.ts": true,
+        "packages/components/src/components/switch/switch.component.ts": true,
+        "packages/components/src/components/switch/switch.styles.ts": true,
+        "packages/components/src/components/switch/switch.test.ts": true,
+        "packages/components/src/components/switch/switch.ts": true,
         "packages/components/src/components/textarea/textarea.component.ts": true,
         "packages/components/src/components/textarea/textarea.styles.ts": true,
         "packages/components/src/components/textarea/textarea.test.ts": true,
@@ -96,18 +102,19 @@
         "packages/components/src/translations/en.ts": true,
         "packages/components/src/utilities/base-path.ts": true,
         "packages/components/src/utilities/form.ts": true,
+        "packages/components/src/utilities/icon-library.ts": true,
         "packages/components/src/utilities/localize.ts": true,
         "packages/components/tsconfig.json": true,
         "packages/components/tsconfig.prod.json": true,
         "packages/components/web-test-runner.config.js": true,
         "packages/docs/stories/components/alert.stories.ts": true,
         "packages/docs/stories/components/button.stories.ts": true,
-        "packages/docs/stories/components/radio-group.stories.ts": true,
-        "packages/docs/stories/components/radio.stories.ts": true,
-        "packages/docs/stories/components/textarea.stories.ts": true,
         "packages/react/src/**": true
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"
-    ]
+    ],
+    "files.readonlyExclude": {
+        "packages/docs/stories/components/button.stories.ts": true
+    }
 }

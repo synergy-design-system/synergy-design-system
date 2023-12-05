@@ -1,26 +1,31 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/button/button';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import type { SynButton } from '@synergy-design-system/components';
+import {
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-button');
 const { overrideArgs } = storybookHelpers('syn-button');
 const { generateTemplate } = storybookTemplate('syn-button');
 
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.button as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description',
-});
-
 const meta: Meta = {
-  component: 'button',
-  args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, defaultArgs),
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Button' }, defaultArgs),
   argTypes,
+  component: 'button',
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('button', 'default'),
+      },
     },
   },
   title: 'Components/syn-button',
@@ -32,16 +37,23 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('button', 'default'),
+      },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
 export const Variants: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('variant'),
+      description: {
+        story: generateStoryDescription('button', 'variant'),
+      },
     },
   },
   render: () => html`
@@ -57,8 +69,13 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('size'),
+      description: {
+        story: generateStoryDescription('button', 'size'),
+      },
     },
   },
   render: () => html`
@@ -74,12 +91,17 @@ export const Sizes: Story = {
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('button', 'focus'),
+      },
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
-    const button = canvasElement.querySelector('syn-button') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const button = canvasElement.querySelector('syn-button') as SynButton;
     if (button) {
       button.focus();
     }
@@ -89,8 +111,13 @@ export const Focus: Story = {
 
 export const LinkButtons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('link'),
+      description: {
+        story: generateStoryDescription('button', 'link'),
+      },
     },
   },
   render: () => html`
@@ -107,8 +134,13 @@ export const LinkButtons: Story = {
 
 export const SettingACustomWidth: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('width'),
+      description: {
+        story: generateStoryDescription('button', 'width'),
+      },
     },
   },
   render: () => html`
@@ -119,60 +151,65 @@ export const SettingACustomWidth: Story = {
 
 export const PrefixAndSuffixIcons: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('prefix-suffix'),
+      description: {
+        story: generateStoryDescription('button', 'prefix-suffix'),
+      },
     },
   },
   render: () => html`
   <syn-button size="small">
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button size="small">
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button size="small">
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
 
   <br/><br/>
 
   <syn-button>
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button>
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button>
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
 
   <br/><br/>
 
   <syn-button size="large">
-    <syn-icon slot="prefix" name="gear"></syn-icon>
+    <syn-icon slot="prefix" name="settings"></syn-icon>
     Settings
   </syn-button>
 
   <syn-button size="large">
-    <syn-icon slot="suffix" name="arrow-counterclockwise"></syn-icon>
+    <syn-icon slot="suffix" name="refresh"></syn-icon>
     Refresh
   </syn-button>
 
   <syn-button size="large">
-    <syn-icon slot="prefix" name="link-45deg"></syn-icon>
-    <syn-icon slot="suffix" name="box-arrow-up-right"></syn-icon>
+    <syn-icon slot="prefix" name="link"></syn-icon>
+    <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
   </syn-button>
   <style>
@@ -184,8 +221,13 @@ export const PrefixAndSuffixIcons: Story = {
 
 export const Caret: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('caret'),
+      description: {
+        story: generateStoryDescription('button', 'caret'),
+      },
     },
   },
   render: () => html`
@@ -201,8 +243,13 @@ export const Caret: Story = {
 
 export const Loading: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('loading'),
+      description: {
+        story: generateStoryDescription('button', 'loading'),
+      },
     },
   },
   render: () => html`
@@ -218,8 +265,13 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('button', 'disabled'),
+      },
     },
   },
   render: () => html`

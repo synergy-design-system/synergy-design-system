@@ -1,3 +1,45 @@
+# [@synergy-design-system/components-v1.0.0-main.20](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.19...components/1.0.0-main.20) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 Make all angular wrapper participate in form data ([#207](https://github.com/SickDesignSystem/synergy/issues/207)) ([21ab688](https://github.com/SickDesignSystem/synergy/commit/21ab688c091afb8763fc7d2e6a939fa36de03fbd))
+
+# [@synergy-design-system/components-v1.0.0-main.19](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.18...components/1.0.0-main.19) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix checked radio ([#204](https://github.com/SickDesignSystem/synergy/issues/204)) ([9aa24d0](https://github.com/SickDesignSystem/synergy/commit/9aa24d07a54a4937437f8bbbc66dd62bd8308b5d))
+
+# [@synergy-design-system/components-v1.0.0-main.18](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.17...components/1.0.0-main.18) (2023-12-05)
+
+
+### Features
+
+* ✨ add syn-switch ([#196](https://github.com/SickDesignSystem/synergy/issues/196)) ([3518960](https://github.com/SickDesignSystem/synergy/commit/35189604d44124450a85398d79c08b32b6dcc379))
+
+# [@synergy-design-system/components-v1.0.0-main.17](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.16...components/1.0.0-main.17) (2023-12-04)
+
+
+### Bug Fixes
+
+* 🤔 Storybooks play function does not work with custom component in forms ([#186](https://github.com/SickDesignSystem/synergy/issues/186)) ([0db602f](https://github.com/SickDesignSystem/synergy/commit/0db602f73c21d3ce3419c7d44fab0cda1c53cc6f))
+
+# [@synergy-design-system/components-v1.0.0-main.16](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.15...components/1.0.0-main.16) (2023-12-04)
+
+
+### Features
+
+* ✨add syn-icon ([#183](https://github.com/SickDesignSystem/synergy/issues/183)) ([add85f5](https://github.com/SickDesignSystem/synergy/commit/add85f553579b5806e1feb0ad78171ca26a7b20d))
+
+# [@synergy-design-system/components-v1.0.0-main.15](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.14...components/1.0.0-main.15) (2023-12-04)
+
+
+### Features
+
+* ✨ Add vue.js wrappers ([#200](https://github.com/SickDesignSystem/synergy/issues/200)) ([23b7e0d](https://github.com/SickDesignSystem/synergy/commit/23b7e0d4b222d6b5ea82f91dc6ff677d1e4c5bed))
+
 # [@synergy-design-system/components-v1.0.0-main.14](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.13...components/1.0.0-main.14) (2023-11-30)
 
 

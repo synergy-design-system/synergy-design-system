@@ -1,3 +1,24 @@
+# [@synergy-design-system/assets-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.5...assets/1.0.0-main.6) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix checked radio ([#204](https://github.com/SickDesignSystem/synergy/issues/204)) ([9aa24d0](https://github.com/SickDesignSystem/synergy/commit/9aa24d07a54a4937437f8bbbc66dd62bd8308b5d))
+
+# [@synergy-design-system/assets-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.4...assets/1.0.0-main.5) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix license file ([#205](https://github.com/SickDesignSystem/synergy/issues/205)) ([247ef50](https://github.com/SickDesignSystem/synergy/commit/247ef505e29fe59ca17c362855bd7095a359b305))
+
+# [@synergy-design-system/assets-v1.0.0-main.4](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.3...assets/1.0.0-main.4) (2023-12-04)
+
+
+### Features
+
+* ✨add syn-icon ([#183](https://github.com/SickDesignSystem/synergy/issues/183)) ([add85f5](https://github.com/SickDesignSystem/synergy/commit/add85f553579b5806e1feb0ad78171ca26a7b20d))
+
 # [@synergy-design-system/assets-v1.0.0-main.3](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.2...assets/1.0.0-main.3) (2023-11-16)
 
 

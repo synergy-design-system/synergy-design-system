@@ -1,28 +1,22 @@
-/* eslint-disable import/no-relative-packages */
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { SynButton, SynTextarea } from '@synergy-design-system/components';
 import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { waitUntil } from '@open-wc/testing-helpers';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
-const { overrideArgs } = storybookHelpers('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
 
-const generateStoryDescription = (attributeName: string) => ({
-  story: (docsTokens?.components?.textarea as any)?.[attributeName]?.description?.value ?? 'No Description',
-});
-
 const meta: Meta = {
-  component: 'textarea',
   args,
   argTypes,
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('textarea', 'default'),
+      },
     },
   },
   title: 'Components/syn-textarea',
@@ -34,16 +28,23 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     docs: {
-      description: generateStoryDescription('default'),
+      description: {
+        story: generateStoryDescription('textarea', 'default'),
+      },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Labels: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('labels'),
+      description: {
+        story: generateStoryDescription('textarea', 'labels'),
+      },
     },
   },
   render: () => html`<syn-textarea label="Comments"></syn-textarea>`,
@@ -51,8 +52,13 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('help-text'),
+      description: {
+        story: generateStoryDescription('textarea', 'help-text'),
+      },
     },
   },
   render: () => html`<syn-textarea label="Feedback" help-text="Please tell us what you think."> </syn-textarea>`,
@@ -60,8 +66,13 @@ export const HelpText: Story = {
 
 export const Rows: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('rows'),
+      description: {
+        story: generateStoryDescription('textarea', 'rows'),
+      },
     },
   },
   render: () => html`
@@ -77,8 +88,13 @@ export const Rows: Story = {
 
 export const Placeholders: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('placeholder'),
+      description: {
+        story: generateStoryDescription('textarea', 'placeholder'),
+      },
     },
   },
   render: () => html`<syn-textarea placeholder="Type something"></syn-textarea>`,
@@ -86,8 +102,13 @@ export const Placeholders: Story = {
 
 export const ReadonlyTextareas: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('readonly'),
+      description: {
+        story: generateStoryDescription('textarea', 'readonly'),
+      },
     },
   },
   render: () => html`<syn-textarea value="Read-only content"  readonly></syn-textarea>`,
@@ -98,17 +119,22 @@ export const Focus: Story = {
     placeholder: 'This is in focus',
   },
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('focus'),
+      description: {
+        story: generateStoryDescription('textarea', 'focus'),
+      },
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const textarea = canvasElement.querySelector('syn-textarea') as HTMLInputElement;
+  play: ({ canvasElement }) => {
+    const textarea = canvasElement.querySelector('syn-textarea') as SynTextarea;
     if (textarea) {
       textarea.focus();
     }
   },
-  render: (args: any) => html`
+  render: () => html`
       <form>
         ${generateTemplate({
     args,
@@ -119,8 +145,13 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('disabled'),
+      description: {
+        story: generateStoryDescription('textarea', 'disabled'),
+      },
     },
   },
   render: () => html`<syn-textarea placeholder="Textarea" help-text="Please tell us what you think." label="Label" disabled></syn-textarea>`,
@@ -128,8 +159,13 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('size'),
+      description: {
+        story: generateStoryDescription('textarea', 'size'),
+      },
     },
   },
   render: () => html`
@@ -144,54 +180,67 @@ export const Invalid: Story = {
     placeholder: 'Type something',
   },
   parameters: {
-    controls: { exclude: ['required'] },
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('invalid'),
+      description: {
+        story: generateStoryDescription('textarea', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
-      const textarea = canvasElement.querySelector('syn-textarea');
-      const button = canvasElement.querySelector('button');
+      const form = canvasElement.querySelector('form')!;
+      const textarea = form.querySelector('syn-textarea') as SynTextarea;
+      const button = form.querySelector('syn-button') as SynButton;
 
-      await waitUntil(() => textarea?.shadowRoot?.querySelector('textarea'));
-
-      if (button) {
+      if (button && textarea) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
         await userEvent.click(button);
+        button.click();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
-  render: (args: any) => html`
-  <form>
-   ${generateTemplate({
+  render: () => html`
+    <form class="custom-validity">
+  ${generateTemplate({
     args,
-    constants: [
-      { type: 'attribute', name: 'required', value: true },
-    ],
+    constants: [{
+      name: 'required',
+      type: 'attribute',
+      value: true,
+    }],
   })}
-    <button size="medium" type="submit">Submit</button>
-  </form>
-  <style>
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  button {
-    margin-top: 1rem;
-    align-self: flex-end;
-    padding: 0.5rem 1rem;
-    min-width: 5%;
-  }
-  </style>
-`,
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
 };
 
 export const PreventResizing: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('resize'),
+      description: {
+        story: generateStoryDescription('textarea', 'resize'),
+      },
     },
   },
   render: () => html`<syn-textarea resize="none"></syn-textarea>`,
@@ -199,8 +248,13 @@ export const PreventResizing: Story = {
 
 export const ExpandWithContent: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
-      description: generateStoryDescription('resize-auto'),
+      description: {
+        story: generateStoryDescription('textarea', 'resize-auto'),
+      },
     },
   },
   render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,

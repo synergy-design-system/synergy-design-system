@@ -14,7 +14,7 @@
     "dotenv": "^16.3.1",
     "eslint": "^8.47.0",
     "eslint-plugin-import": "^2.28.1",
-    "figma-export-assets": "github:mariohamann/figma-export-assets",
+    "figma-export-assets": "^1.0.1",
     "rimraf": "^5.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
@@ -22,8 +22,18 @@
     "svgo": "^3.0.2"
   },
   "exports": {
-    ".": "./build/js/index.js"
+    ".": {
+      "types": "./src/default-icons.d.ts",
+      "import": "./src/default-icons.js"
+    },
+    "./icons/*": "./src/icons/*",
+    "./logos/*": "./src/logos/*",
+    "./default-icons.js": {
+      "types": "./src/default-icons.js",
+      "import": "./src/default-icons.js"
+    }
   },
+  "types": "./src/default-icons.d.ts",
   "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/assets",
   "keywords": [
     "Static Assets",
@@ -36,9 +46,12 @@
   ],
   "files": [
     "src/logos",
+    "src/icons",
+    "src/default-icons.d.ts",
+    "src/default-icons.js",
     "CHANGELOG.md"
   ],
-  "license": "BSD-3-Clause",
+  "license": "SEE LICENSE IN LICENSE",
   "name": "@synergy-design-system/assets",
   "repository": {
     "type": "git",
@@ -101,6 +114,5 @@
     "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "types": "./build/js/index.d.ts",
-  "version": "1.0.0-main.3"
+  "version": "1.0.0-main.6"
 }

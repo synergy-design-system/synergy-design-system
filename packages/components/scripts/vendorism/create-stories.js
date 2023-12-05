@@ -41,6 +41,7 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
   const overrides = {
     alert: `args: overrideArgs([ { type: 'slot', value: 'This is a standard alert. You can customize its content and even the icon.', name: 'default' }, { type: 'attribute', value: true, name: 'open' }, { type: 'slot', value: '<${prefix}-icon slot="icon" name="info-circle"></${prefix}-icon>', name: 'icon' } ], args)`,
     button: "args: overrideArgs({ type: 'slot', value: 'Button', name: 'default' }, args)",
+    icon: "args: overrideArgs({ type: 'attribute', value: 'notifications', name: 'name' }, args)",
   };
 
   let storybookOutput = `
@@ -49,8 +50,7 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
 import '../../../components/src/components/${componentName}/${componentName}';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('${prefix}-${componentName}');
 const { overrideArgs } = storybookHelpers('${prefix}-${componentName}');
 const { generateTemplate } = storybookTemplate('${prefix}-${componentName}');
@@ -63,7 +63,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: docsTokens?.components?.['${componentName}']?.default?.description?.value ?? 'No Description',
+        component: generateStoryDescription('${componentName}', 'default'),
       },
     }
   }
@@ -79,7 +79,7 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens?.components?.['${componentName}']?.default?.description?.value ?? 'No Description',
+        story: generateStoryDescription('${componentName}', 'default'),
       }
     }
   }

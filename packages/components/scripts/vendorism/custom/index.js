@@ -1,5 +1,6 @@
 export * from './button.vendorism.js';
 export * from './customElements.vendorism.js';
+export * from './icon.vendorism.js';
 export * from './input.vendorism.js';
 export * from './icon-button.vendorism.js';
 export * from './textarea.vendorism.js';

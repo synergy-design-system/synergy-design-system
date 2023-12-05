@@ -18,6 +18,7 @@ export class AppComponent {
       test: '',
       pass: '',
       radio: '',
+      switch: false,
     });
 
     this.myLabel = 'here';
@@ -36,6 +37,7 @@ export class AppComponent {
       test: '',
       pass: '',
       radio: '',
+      switch: false,
     });
   }
 
@@ -46,6 +48,7 @@ export class AppComponent {
     console.log('pass', form.value.pass);
     console.log('agree', form.value.agree);
     console.log('radio', form.value.radio);
+    console.log('switch', form.value.switch);
     this.myLabel = `Label ${form.value.test}`;
   }
 }

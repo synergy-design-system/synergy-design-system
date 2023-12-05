@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.0.4",
     "@angular/router": "^17.0.4",
     "@synergy-design-system/angular": "workspace:*",
+    "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

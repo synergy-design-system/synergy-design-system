@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.4...assets/1.0.0-main.5) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix license file ([#205](https://github.com/SickDesignSystem/synergy/issues/205)) ([247ef50](https://github.com/SickDesignSystem/synergy/commit/247ef505e29fe59ca17c362855bd7095a359b305))
+
 # [@synergy-design-system/assets-v1.0.0-main.4](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.3...assets/1.0.0-main.4) (2023-12-04)
 
 

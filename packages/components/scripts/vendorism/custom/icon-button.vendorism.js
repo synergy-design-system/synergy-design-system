@@ -33,5 +33,18 @@ export const vendorIconButton = (path, content) => {
           'icon-button--neutral': this.color === 'neutral'`;
   output.content = output.content.replace("'icon-button--focused': this.hasFocus", modifiers);
 
+  // Adapt test to work with size property
+  output.content = output.content.replace(`<syn-icon-button
+          library="system"
+          name="check"
+          style="color: rgb(0, 136, 221); font-size: 2rem;"
+        ></syn-icon-button>`, `<syn-icon-button
+          library="system"
+          name="check"
+          size="large"
+          style="color: rgb(0, 136, 221);"
+        ></syn-icon-button>`,
+  );
+
   return output;
 };

@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.17",
+  "version": "1.0.0-main.19",
   "description": "",
   "repository": {
     "type": "git",
@@ -174,9 +174,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "9d26b99fd07a535f10f3ae111fdb6963649a4706",
-      "react": "73b675e5e28df4d46ed51e45479a82903b081c8a",
-      "vue": "7877a7fd1fcaffc90cd05d6c61d0a6b225fcf82d"
+      "angular": "0478496727f199ddf0c374c9cb848959a53de35a",
+      "react": "2cd9e1062feff3eed649406a1fb8c0da04e9432c",
+      "vue": "bfe2711837b73b54fd59846b961305a0fca33b3a"
     }
   }
 }

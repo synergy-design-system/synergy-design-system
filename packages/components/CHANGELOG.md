@@ -1,4 +1,20 @@
+
+# [@synergy-design-system/components-v1.0.0-main.19](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0-main.18...components/1.0.0-main.19) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix checked radio ([#204](https://github.com/synergy-design-system/synergy-design-system/issues/204)) ([9aa24d0](https://github.com/synergy-design-system/synergy-design-system/commit/9aa24d07a54a4937437f8bbbc66dd62bd8308b5d))
+
+# [@synergy-design-system/components-v1.0.0-main.18](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0-main.17...components/1.0.0-main.18) (2023-12-05)
+
+
+### Features
+
+* ✨ add syn-switch ([#196](https://github.com/synergy-design-system/synergy-design-system/issues/196)) ([3518960](https://github.com/synergy-design-system/synergy-design-system/commit/35189604d44124450a85398d79c08b32b6dcc379))
+
 # [@synergy-design-system/components-v1.0.0-main.17](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0-main.16...components/1.0.0-main.17) (2023-12-04)
+
 
 
 ### Bug Fixes

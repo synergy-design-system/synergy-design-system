@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          path: "synergy-design-system"
+
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -25,27 +30,25 @@ jobs:
           version: 8.6.12
 
       - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
+        working-directory: ./synergy-design-system
+        run: pnpm install && pnpm build
 
       # Clone the other repository
       - name: Checkout Other Repository
         uses: actions/checkout@v3
         with:
-          repository: "username/other-repo"
+          repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
-          path: "docs-repo"
+          path: "synergy-design-system.github.io"
 
       # Copy built docs to the other repo
       - name: Copy Built Docs to Other Repo
-        run: mkdir -p ./docs-repo/www && cp -r ./main-repo/packages/docs/dist/* ./docs-repo/www
+        run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./docs-repo/www
 
       # Commit and Push Changes
       - name: Commit and Push to Other Repo
+        working-directory: ./synergy-design-system.github.io
         run: |
-          cd ./docs-repo
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .

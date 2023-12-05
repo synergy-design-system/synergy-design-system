@@ -8,7 +8,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/components"
   },
   "exports": {
@@ -44,7 +44,7 @@
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/components",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components",
   "keywords": [
     "Web Components",
     "LIT Components",
@@ -174,9 +174,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "49cbcdb3497cfb2406f22b3904acf0e2ee20ee7e",
-      "react": "9937937285db5bcfd0105896c759490839ec1c8f",
-      "vue": "24514a50801e8d9655ffb4389fbc292cf7333aac"
+      "angular": "6e42337b0a3ef622c2d4eb8ba20e7d8488c46b4f",
+      "react": "801292b14aeef6d396316ed0508250a2749e6ab6",
+      "vue": "e1d2ed0357f1b2ada3aef4d8fc8e5bfb2195c04c"
     }
   }
 }

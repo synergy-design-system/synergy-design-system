@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { removeSection } from '../remove-section.js';
 
 export const vendorTag = (path, content) => {
@@ -29,8 +28,14 @@ export const vendorTag = (path, content) => {
   // Remove variant title from CSS
   output.content = removeSection(output.content, '/*\n   * Variant modifiers', '/*', { preserveEnd: true, removePrecedingWhitespace: false });
 
-  // Remove variant from tests
-  output.content = removeSection(output.content, 'describe("variant attribute"', '});');
+  // Remove variant test
+  output.content = removeSection(output.content, "it('should set variant by attribute'", '});');
+
+  // Remove pill test
+  output.content = removeSection(output.content, "it('should set pill-attribute by attribute'", '});');
+
+  // Fix tests
+  output.content = output.content.replaceAll(' tag--neutral', '');
 
   return output;
 };

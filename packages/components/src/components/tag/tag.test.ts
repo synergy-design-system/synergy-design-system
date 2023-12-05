@@ -16,15 +16,7 @@ describe('<syn-tag>', () => {
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
     expect(el.getAttribute('size')).to.equal('medium');
-    expect(base.getAttribute('class')).to.equal(' tag tag--neutral tag--medium ');
-  });
-
-  it('should set variant by attribute', async () => {
-    const el = await fixture<SynTag>(html` <syn-tag variant="danger">Test</syn-tag> `);
-
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
-
-    expect(base.getAttribute('class')).to.equal(' tag tag--danger tag--medium ');
+    expect(base.getAttribute('class')).to.equal(' tag tag--medium ');
   });
 
   it('should set size by attribute', async () => {
@@ -32,15 +24,7 @@ describe('<syn-tag>', () => {
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
-    expect(base.getAttribute('class')).to.equal(' tag tag--neutral tag--large ');
-  });
-
-  it('should set pill-attribute by attribute', async () => {
-    const el = await fixture<SynTag>(html` <syn-tag pill>Test</syn-tag> `);
-
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
-
-    expect(base.getAttribute('class')).to.equal(' tag tag--neutral tag--medium tag--pill ');
+    expect(base.getAttribute('class')).to.equal(' tag tag--large ');
   });
 
   it('should set removable by attribute', async () => {
@@ -50,7 +34,7 @@ describe('<syn-tag>', () => {
     const removeButton = el.shadowRoot!.querySelector('[part~="remove-button"]');
 
     expect(el.removable).to.equal(true);
-    expect(base.getAttribute('class')).to.equal(' tag tag--neutral tag--medium tag--removable ');
+    expect(base.getAttribute('class')).to.equal(' tag tag--medium tag--removable ');
     expect(removeButton).not.to.be.null;
   });
 

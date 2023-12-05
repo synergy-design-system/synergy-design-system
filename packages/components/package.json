@@ -174,8 +174,8 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "88983fb4d1b2b18572e7aacd52b64dbfc44087a7",
-      "react": "4dda849b07aeb290024c185f4a5be41607de11ce",
+      "angular": "9199c19c3b84106864647e2d154cc461a821ca32",
+      "react": "fb2329408e9b17b082be9e9c774c9b19e0a3cfca",
       "vue": "af87aa7df2807e94147147e6a98ced9d31667ae2"
     }
   }

@@ -5,6 +5,13 @@
 
 * correct the GitHub links ([#206](https://github.com/synergy-design-system/synergy-design-system/issues/206)) ([c4be101](https://github.com/synergy-design-system/synergy-design-system/commit/c4be101310dd8f27c8d3874554928c08bff1533f))
 
+# [@synergy-design-system/assets-v1.0.0-main.7](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.0.0-main.6...assets/1.0.0-main.7) (2023-12-05)
+
+
+### Bug Fixes
+
+* correct the GitHub links ([#206](https://github.com/synergy-design-system/synergy-design-system/issues/206)) ([c4be101](https://github.com/synergy-design-system/synergy-design-system/commit/c4be101310dd8f27c8d3874554928c08bff1533f))
+
 # [@synergy-design-system/assets-v1.0.0-main.6](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.0.0-main.5...assets/1.0.0-main.6) (2023-12-05)
 
 

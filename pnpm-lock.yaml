@@ -616,6 +616,9 @@ importers:
       storybook:
         specifier: ^7.5.3
         version: 7.5.3
+      storybook-addon-themes:
+        specifier: ^6.1.0
+        version: 6.1.0(react-dom@18.2.0)(react@18.2.0)
       stylelint:
         specifier: ^15.10.3
         version: 15.10.3(typescript@5.2.2)
@@ -5625,6 +5628,24 @@ packages:
       recast: 0.23.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@storybook/components@6.5.16(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LzBOFJKITLtDcbW9jXl0/PaG+4xAz25PK8JxPZpIALbmOpYWOAPcO6V9C2heX6e6NgWFMUxjplkULEk9RCQMNA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@storybook/client-logger': 6.5.16
+      '@storybook/csf': 0.0.2--canary.4566f4d.1
+      '@storybook/theming': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      core-js: 3.33.0
+      memoizerific: 1.11.3
+      qs: 6.11.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      regenerator-runtime: 0.13.11
+      util-deprecate: 1.0.2
     dev: true
 
   /@storybook/components@7.5.3(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
@@ -17591,6 +17612,33 @@ packages:
 
   /store2@2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
+    dev: true
+
+  /storybook-addon-themes@6.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ZT8aNgrwFVNEOmOPBLNS0WBacjvMFo/bZ83P8MmsJ3Ewqt0AbmPioghTZccARUn/EQ+LrDxyh2D0QgmLaKo07Q==}
+    peerDependencies:
+      react: '*'
+      svelte: '*'
+      vue: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@storybook/addons': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/api': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/components': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/core-events': 6.5.16
+      '@storybook/theming': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      core-js: 3.33.0
+      global: 4.4.0
+      memoizerific: 1.11.3
+      react: 18.2.0
+    transitivePeerDependencies:
+      - react-dom
     dev: true
 
   /storybook@7.5.3:

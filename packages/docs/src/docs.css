@@ -99,7 +99,7 @@ html {
 }
 
 body {
-  background-color: var(--docs-background-color);
+  background-color: var(--syn-color-neutral-0);
   color: var(--syn-color-neutral-900);
   font: 16px var(--syn-font-sans);
   -moz-osx-font-smoothing: grayscale;
@@ -682,7 +682,7 @@ pre:hover .copy-code-button--copied {
 
 /* Sidebar */
 #sidebar {
-  background-color: var(--docs-background-color);
+  background-color: var(--syn-color-neutral-0);
   border-radius: 0;
   border-right: solid var(--docs-border-width) var(--docs-border-color);
   bottom: 0;

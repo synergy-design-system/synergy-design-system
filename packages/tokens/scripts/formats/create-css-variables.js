@@ -9,7 +9,7 @@ export const createCssVariables = (prefix) => ({
       theme,
     } = options;
 
-    const bodySelector = `.${prefix}${theme}`;
+    const bodySelector = `.${prefix}theme-${theme}`;
 
     // Detects if the token name is valid.
     // If you need some other prefixes, append them to the array

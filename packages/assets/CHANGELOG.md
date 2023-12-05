@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.0.0-main.6](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.5...assets/1.0.0-main.6) (2023-12-05)
+
+
+### Bug Fixes
+
+* 🤔 fix checked radio ([#204](https://github.com/SickDesignSystem/synergy/issues/204)) ([9aa24d0](https://github.com/SickDesignSystem/synergy/commit/9aa24d07a54a4937437f8bbbc66dd62bd8308b5d))
+
 # [@synergy-design-system/assets-v1.0.0-main.5](https://github.com/SickDesignSystem/synergy/compare/assets/1.0.0-main.4...assets/1.0.0-main.5) (2023-12-05)
 
 

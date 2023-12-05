@@ -5,3 +5,4 @@ export * from './input.vendorism.js';
 export * from './icon-button.vendorism.js';
 export * from './textarea.vendorism.js';
 export * from './webTestRunner.vendorism.js';
+export * from './tag.vendorism.js';

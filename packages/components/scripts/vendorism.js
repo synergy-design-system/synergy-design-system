@@ -11,6 +11,7 @@ import {
   vendorIcon,
   vendorIconButton,
   vendorInput,
+  vendorTag,
   vendorTextarea,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
@@ -29,6 +30,7 @@ export const components = [
   'radio-group',
   'icon-button',
   'switch',
+  'tag',
 ].sort();
 
 /**
@@ -47,6 +49,7 @@ export const events = [
   'sl-change',
   'sl-clear',
   'sl-input',
+  'sl-remove',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
@@ -216,6 +219,7 @@ import customStyles from './${component}.custom.styles.js';`,
       vendorIcon,
       vendorInput,
       vendorTextarea,
+      vendorTag,
       vendorWebTestRunnerConfig,
     ],
   },

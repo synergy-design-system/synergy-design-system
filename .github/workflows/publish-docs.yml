@@ -43,7 +43,7 @@ jobs:
 
       # Copy built docs to the other repo
       - name: Copy Built Docs to Other Repo
-        run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./docs-repo/www
+        run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
 
       # Commit and Push Changes
       - name: Commit and Push to Other Repo

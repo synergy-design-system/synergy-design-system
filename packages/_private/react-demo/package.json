@@ -48,7 +48,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/synergy-design-system/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/_private/react-demo"
   },
   "scripts": {

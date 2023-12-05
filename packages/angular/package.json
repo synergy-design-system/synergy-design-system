@@ -19,7 +19,7 @@
   "name": "@synergy-design-system/angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/synergy-design-system/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/angular"
   },
   "version": "1.0.0-main.19",

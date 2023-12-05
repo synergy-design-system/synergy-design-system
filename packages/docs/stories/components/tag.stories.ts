@@ -39,7 +39,7 @@ export const Default = {
 export const Icon: Story = {
   render: () => html`
   <syn-tag>
-    <syn-icon name="auto_awesome"></syn-icon>
+    <syn-icon name="wallpaper"></syn-icon>
     Option
  </syn-tag>`,
 };
@@ -61,15 +61,15 @@ export const Sizes: Story = {
   <br>
   
   <syn-tag size="small">
-    <syn-icon name="auto_awesome"></syn-icon>
+    <syn-icon name="wallpaper"></syn-icon>
     Small
   </syn-tag>
   <syn-tag size="medium">
-    <syn-icon name="auto_awesome"></syn-icon>
+    <syn-icon name="wallpaper"></syn-icon>
     Medium
   </syn-tag>
   <syn-tag size="large">
-    <syn-icon name="auto_awesome"></syn-icon>
+    <syn-icon name="wallpaper"></syn-icon>
     Large
   </syn-tag>`,
 };

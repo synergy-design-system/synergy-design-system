@@ -6,6 +6,10 @@ export default css`
     color: var(--syn-input-color);
   }
 
+  .tag:hover {
+    background-color: var(--syn-color-neutral-100);
+  }
+
   .tag--small {
     font-size: var(--syn-font-size-small);
     height: var(--syn-font-size-x-large);
@@ -20,5 +24,6 @@ export default css`
     font-size: var(--syn-font-size-medium);
     height: var(--syn-font-size-3x-large);
   }
+
 
 `;

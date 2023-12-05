@@ -454,6 +454,16 @@
           "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
           "type": "text"
         }
+      },
+      "link": {
+        "title": {
+          "value": "Link Buttons",
+          "type": "text"
+        },
+        "description": {
+          "value": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an <a> under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.",
+          "type": "text"
+        }
       }
     },
     "icon": {

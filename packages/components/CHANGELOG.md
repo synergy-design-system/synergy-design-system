@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.0-main.18](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.17...components/1.0.0-main.18) (2023-12-05)
+
+
+### Features
+
+* ✨ add syn-switch ([#196](https://github.com/SickDesignSystem/synergy/issues/196)) ([3518960](https://github.com/SickDesignSystem/synergy/commit/35189604d44124450a85398d79c08b32b6dcc379))
+
 # [@synergy-design-system/components-v1.0.0-main.17](https://github.com/SickDesignSystem/synergy/compare/components/1.0.0-main.16...components/1.0.0-main.17) (2023-12-04)
 
 

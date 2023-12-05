@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable complexity */
 /* eslint-disable import/no-relative-packages */
 
@@ -10,9 +12,9 @@ import { generateStoryDescription, storybookDefaults } from '../../src/helpers/c
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 
 const meta: Meta = {
-  component: 'radio-group',
   args,
   argTypes,
+  component: 'radio-group',
   parameters: {
     docs: {
       description: generateStoryDescription('radio-group', 'default'),

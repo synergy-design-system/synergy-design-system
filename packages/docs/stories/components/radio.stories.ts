@@ -1,17 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
+import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
+const { overrideArgs } = storybookHelpers('syn-radio');
+const { generateTemplate } = storybookTemplate('syn-radio');
 
 const meta: Meta = {
-  component: 'radio',
-  args,
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
+  component: 'radio',
   parameters: {
     docs: {
       description: {
@@ -33,8 +37,9 @@ export const Default = {
       },
     },
   },
-  render: () => html`
-  <syn-radio value="1" size="medium">Option</syn-radio>`,
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
+  // render: () => html`
+  // <syn-radio value="1" size="medium">Option</syn-radio>`,
 } as Story;
 
 export const Disabled: Story = {

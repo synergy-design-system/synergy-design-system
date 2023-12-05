@@ -33,7 +33,7 @@ export const Default = {
       },
     },
   },
-  render: () => generateTemplate({ args }),
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Labels: Story = {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
@@ -10,7 +11,7 @@ import {
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
-  storybookTemplate
+  storybookTemplate,
 } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-switch');
@@ -18,11 +19,9 @@ const { overrideArgs } = storybookHelpers('syn-switch');
 const { generateTemplate } = storybookTemplate('syn-switch');
 
 const meta: Meta = {
-  component: 'switch',
-  args: overrideArgs([
-    { name: 'default', type: 'slot', value: 'Option' },
-  ]),
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
+  component: 'switch',
   parameters: {
     docs: {
       description: generateStoryDescription('switch', 'default'),
@@ -42,7 +41,7 @@ export const Default = {
       },
     },
   },
-  render: () => generateTemplate({ args }),
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Checked: Story = {

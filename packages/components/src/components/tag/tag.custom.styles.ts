@@ -1,5 +1,8 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+  .tag {
+    border-color: var(--syn-color-neutral-400);
+    color: var(--syn-input-color);
+  }
 `;

@@ -23,16 +23,11 @@ export const vendorTag = (path, content) => {
   // Remove pill prop from render method
   output.content = removeSection(output.content, '\'tag--pill\':', ',');
 
-  // Remove variant CSS styling for all variants except neutral
-  ['success', 'warning', 'danger', 'primary', 'neutral'].forEach((modifier) => {
-    output.content = removeSection(output.content, `.tag--${modifier}`, '}', { preserveEnd: false, removePrecedingWhitespace: false });
-  });
-
   // Remove pill from CSS
   output.content = removeSection(output.content, '/*\n   * Pill modifier', '}', { preserveEnd: false, removePrecedingWhitespace: false });
 
   // Remove variant title from CSS
-  output.content = removeSection(output.content, '/*\n   * Variant modifiers', '*/', { preserveEnd: false, removePrecedingWhitespace: false });
+  output.content = removeSection(output.content, '/*\n   * Variant modifiers', '/*', { preserveEnd: true, removePrecedingWhitespace: false });
 
   // Remove variant from tests
   output.content = removeSection(output.content, 'describe("variant attribute"', '});');

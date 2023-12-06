@@ -38,3 +38,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
         run: pnpm release && pnpm publish --recursive --access=public
+
+      # This triggers the Storybook deployment
+      - name: Releases done
+        run: echo "Releases done – Storybook deployment will be triggered now"

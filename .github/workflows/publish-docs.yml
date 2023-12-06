@@ -12,8 +12,16 @@ on:
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
-
     steps:
+      # This waits until releases in `release.yml` are done to get the latest version
+      - name: Wait for releases to be done
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Releases done'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:

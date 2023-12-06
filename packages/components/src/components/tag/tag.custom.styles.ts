@@ -30,7 +30,7 @@ export default css`
     margin-inline-start: var(--syn-spacing-medium);
   }
 
-  .tag:focus-visible ~ .tag__remove {
+  .tag.tag--removable:focus ~ .tag__remove {
     border: solid 1px var(--syn-color-primary-500);
   }
 

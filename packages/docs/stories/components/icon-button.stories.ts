@@ -5,6 +5,7 @@
 import '../../../components/src/components/icon-button/icon-button';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynIconButton } from '@synergy-design-system/components';
+import { html } from 'lit';
 import {
   generateStoryDescription,
   storybookDefaults,
@@ -50,60 +51,47 @@ export const Default = {
 
 export const Sizes: Story = {
   parameters: {
-    controls: { exclude: ['size'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'sizes'),
       },
     },
   },
-  render: (args: unknown) => generateTemplate({
-    args,
-    axis: {
-      x: {
-        name: 'size',
-        type: 'attribute',
-        values: ['small', 'medium', 'large'],
-      },
-    },
-  }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>`,
 };
 
 export const Colors: Story = {
   parameters: {
-    controls: { exclude: ['color'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: `${generateStoryDescription('icon-button', 'color')} If none of them is set, it's set to "currentColor". This enables to easily style the icon button from outside without any CSS variables.`,
+        story: `${generateStoryDescription('icon-button', 'color')}`,
       },
     },
   },
-  render: (args: unknown) => generateTemplate({
-    args,
-    axis: {
-      x: {
-        name: 'color',
-        type: 'attribute',
-      },
-    },
-  }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="primary"></syn-icon-button>`,
 };
 
 export const LinkButton: Story = {
   parameters: {
-    controls: { exclude: ['href'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'link'),
       },
     },
   },
-  render: (args: any) => generateTemplate({
-    args: overrideArgs([
-      { name: 'href', type: 'attribute', value: 'https://example.com' },
-      { name: 'target', type: 'attribute', value: '_blank' },
-    ], args),
-  }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" href="https://example.com" target="_blank"></syn-icon-button>`,
 };
 
 // TODO: uncomment this story as soon as the syn-tooltip is available
@@ -118,22 +106,23 @@ export const LinkButton: Story = {
 
 export const Disabled: Story = {
   parameters: {
-    controls: { exclude: ['disabled'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'disabled'),
       },
     },
   },
-  render: (args: any) => generateTemplate({
-    args: overrideArgs([
-      { name: 'disabled', type: 'attribute', value: true },
-    ], args),
-  }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled></syn-icon-button>`,
 };
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'focus'),
@@ -146,29 +135,34 @@ export const Focus: Story = {
       iconButton.focus();
     }
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" ></syn-icon-button>`,
 };
 
 export const Label: Story = {
   parameters: {
-    controls: { exclude: ['label'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'label'),
       },
     },
   },
-  render: (args: any) => generateTemplate({
-    args,
-    axis: {
-      x: {
-        name: 'label',
-        type: 'attribute',
-        values: [
-          { title: 'Unset label prop', value: '' },
-          { title: 'Set label prop', value: 'Setting' },
-        ],
-      },
-    },
-  }),
+  render: () => html`
+  <div class="grid">
+    <span>Unset label property: </span>
+    <syn-icon-button name="wallpaper" color="neutral"></syn-icon-button>
+    <span>Set label property: </span>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral"></syn-icon-button>
+  </div>
+  <style>
+    .grid {
+      font-size: var(--syn-font-size-x-small);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+  </style>`,
 };

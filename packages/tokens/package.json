@@ -48,11 +48,7 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      {
-        "name": "main",
-        "prerelease": true
-      },
+      "main",
       {
         "name": "beta",
         "prerelease": true
@@ -60,8 +56,7 @@
       {
         "name": "alpha",
         "prerelease": true
-      },
-      "release-fallback"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -111,5 +106,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "1.0.0-main.14"
+  "version": "1.0.0"
 }

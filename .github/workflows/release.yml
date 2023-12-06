@@ -37,4 +37,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: pnpm release && pnpm publish --recursive --tag main --access=public
+        run: pnpm release && pnpm publish --recursive --access=public

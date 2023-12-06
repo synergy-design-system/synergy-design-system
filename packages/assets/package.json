@@ -109,5 +109,5 @@
     "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

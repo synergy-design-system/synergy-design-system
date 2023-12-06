@@ -15,7 +15,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('textarea', 'default'),
+        component: generateStoryDescription('textarea', 'default'),
       },
     },
   },

@@ -11,3 +11,4 @@ export type * from './syn-focus.ts';
 export type * from './syn-input.ts';
 export type * from './syn-invalid.ts';
 export type * from './syn-load.ts';
+export type * from './syn-remove.ts';

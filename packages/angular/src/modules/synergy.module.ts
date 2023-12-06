@@ -9,12 +9,14 @@ import {
   SynButtonComponent,
   SynButtonGroupComponent,
   SynCheckboxComponent,
+  SynIconButtonComponent,
   SynIconComponent,
   SynInputComponent,
   SynRadioButtonComponent,
   SynRadioComponent,
   SynRadioGroupComponent,
   SynSwitchComponent,
+  SynTagComponent,
   SynTextareaComponent,
 } from '../components';
 
@@ -23,11 +25,13 @@ const components = [
   SynButtonGroupComponent,
   SynCheckboxComponent,
   SynIconComponent,
+  SynIconButtonComponent,
   SynInputComponent,
   SynRadioComponent,
   SynRadioButtonComponent,
   SynRadioGroupComponent,
   SynSwitchComponent,
+  SynTagComponent,
   SynTextareaComponent,
 ];
 

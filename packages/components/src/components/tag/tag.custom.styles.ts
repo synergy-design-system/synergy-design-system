@@ -6,8 +6,8 @@ export default css`
     color: var(--syn-input-color);
   }
 
-  .tag:hover {
-    background-color: var(--syn-color-neutral-100);
+  .tag:hover .tag__remove {
+    color: var(--syn-input-icon-color-hover);
   }
 
   .tag--small.tag--removable {

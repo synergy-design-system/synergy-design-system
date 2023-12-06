@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
@@ -47,53 +48,46 @@ export const Default = {
 
 export const Variants: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
+    controls: { exclude: ['variant'] },
     docs: {
       description: {
         story: generateStoryDescription('button', 'variant'),
       },
     },
   },
-  render: () => html`
-  <syn-button variant="filled">Filled</syn-button>
-  <syn-button variant="outline">Outline</syn-button>
-  <syn-button variant="text">Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  render: (args: any) => generateTemplate({
+    args,
+    axis: {
+      x: {
+        name: 'variant',
+        type: 'attribute',
+      },
+    },
+  }),
 };
 
 export const Sizes: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
+    controls: { exclude: ['size'] },
     docs: {
       description: {
         story: generateStoryDescription('button', 'size'),
       },
     },
   },
-  render: () => html`
-  <syn-button size="small">Small</syn-button>
-  <syn-button size="medium">Medium</syn-button>
-  <syn-button size="large">Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  render: (args: any) => generateTemplate({
+    args,
+    axis: {
+      x: {
+        name: 'size',
+        type: 'attribute',
+      },
+    },
+  }),
 };
 
 export const Focus: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'focus'),
@@ -106,13 +100,35 @@ export const Focus: Story = {
       button.focus();
     }
   },
-  render: () => html`<syn-button>Default</syn-button>`,
+  render: (args: unknown) => generateTemplate({ args }),
 };
 
+// export const LinkButtons: Story = {
+//   parameters: {
+//     controls: {
+//       disable: true,
+//     },
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('button', 'link'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//   <syn-button href="https://example.com/">Link</syn-button>
+//   <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
+//   <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
+//   <syn-button href="https://example.com/" disabled>Disabled</syn-button>
+//   <style>
+//     syn-button {
+//       margin: 0.2rem;
+//     }
+//   </style>`,
+// };
 export const LinkButtons: Story = {
   parameters: {
     controls: {
-      disable: true,
+      controls: { exclude: ['href', 'target', 'download'] },
     },
     docs: {
       description: {
@@ -120,16 +136,12 @@ export const LinkButtons: Story = {
       },
     },
   },
-  render: () => html`
-  <syn-button href="https://example.com/">Link</syn-button>
-  <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
-  <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
-  <syn-button href="https://example.com/" disabled>Disabled</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  render: (args: any) => html`${[
+    generateTemplate({ args: overrideArgs([{ name: 'href', type: 'attribute', value: 'https://example.com/' }, { name: 'default', type: 'slot', value: 'Link' }], args) }),
+    generateTemplate({ args: overrideArgs([{ name: 'href', type: 'attribute', value: 'https://example.com/' }, { name: 'default', type: 'slot', value: 'New Window' }, { name: 'target', type: 'attribute', value: '_blank' }], args) }),
+    generateTemplate({ args: overrideArgs([{ name: 'href', type: 'attribute', value: '/assets/images/wordmark.svg' }, { name: 'default', type: 'slot', value: 'Download' }, { name: 'download', type: 'attribute', value: 'synergy.svg' }], args) }),
+    generateTemplate({ args: overrideArgs([{ name: 'href', type: 'attribute', value: 'https://example.com/' }, { name: 'default', type: 'slot', value: 'Disabled' }, { name: 'disabled', type: 'attribute', value: true }], args) }),
+  ]}`,
 };
 
 export const SettingACustomWidth: Story = {
@@ -221,24 +233,16 @@ export const PrefixAndSuffixIcons: Story = {
 
 export const Caret: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
+    controls: { exclude: ['caret'] },
     docs: {
       description: {
         story: generateStoryDescription('button', 'caret'),
       },
     },
   },
-  render: () => html`
-  <syn-button size="small" caret>Small</syn-button>
-  <syn-button size="medium" caret>Medium</syn-button>
-  <syn-button size="large" caret>Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  render: (args: any) => generateTemplate({
+    args: overrideArgs({ name: 'caret', type: 'attribute', value: true }, args),
+  }),
 };
 
 export const Loading: Story = {
@@ -252,16 +256,20 @@ export const Loading: Story = {
       },
     },
   },
-  render: () => html`
-  <syn-button variant="filled" loading>Filled</syn-button>
-  <syn-button variant="outline" loading>Outline</syn-button>
-  <syn-button variant="text" loading>Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  render: (args: any) => generateTemplate({
+    args: overrideArgs({ name: 'caret', type: 'attribute', value: true }, args),
+  }),
 };
+//   render: () => html`
+//   <syn-button variant="filled" loading>Filled</syn-button>
+//   <syn-button variant="outline" loading>Outline</syn-button>
+//   <syn-button variant="text" loading>Text</syn-button>
+//   <style>
+//     syn-button {
+//       margin: 0.2rem;
+//     }
+//   </style>`,
+// };
 
 export const Disabled: Story = {
   parameters: {

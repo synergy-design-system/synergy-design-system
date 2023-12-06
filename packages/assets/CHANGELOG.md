@@ -1,1 +1,1 @@
-- ✨ add SICK logos, Material Icons and System Icons
+* ✨ add SICK logos, Material Icons and System Icons

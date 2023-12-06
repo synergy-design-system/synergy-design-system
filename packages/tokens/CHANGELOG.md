@@ -1,2 +1,2 @@
-- ✨ add CSS theme (light & dark)
-- ✨ add tokens for JS, SCSS
+* ✨ add CSS theme (light & dark)
+* ✨ add tokens for JS, SCSS

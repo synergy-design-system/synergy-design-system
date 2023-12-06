@@ -1,2 +1,2 @@
-- ✨ add syn-button, syn-checkbox, syn-icon, syn-input, syn-radio, syn-radio-group, syn-switch, syn-textarea
-- ✨ add Angular, React and Vue wrappers
+* ✨ add syn-button, syn-checkbox, syn-icon, syn-input, syn-radio, syn-radio-group, syn-switch, syn-textarea
+* ✨ add Angular, React and Vue wrappers

@@ -48,10 +48,7 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      {
-        "name": "main"
-      },
+      "main",
       {
         "name": "beta",
         "prerelease": true
@@ -59,8 +56,7 @@
       {
         "name": "alpha",
         "prerelease": true
-      },
-      "release-fallback"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

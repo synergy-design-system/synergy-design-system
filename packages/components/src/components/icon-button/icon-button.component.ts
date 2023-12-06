@@ -62,7 +62,7 @@ export default class SynIconButton extends SynergyElement {
   @property() label = '';
 
   /** The icon button's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' | 'inherit' = 'inherit';
 
   /**
   * The color of the icon button.

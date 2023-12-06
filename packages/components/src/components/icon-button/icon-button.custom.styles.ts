@@ -3,11 +3,12 @@ import { css } from 'lit';
 export default css`
   .icon-button {
     color: currentColor;
+    font-size: inherit;
   }
 
   /* Color variants */
   .icon-button--neutral,
-  .icon-button--neutral:focus-visible:not(.icon-button--disabled) {
+  .icon-button--neutral:focus-visible:not(.icon-button--disabled):not(:hover) {
     color: var(--syn-color-neutral-950);
   }
 

@@ -40,7 +40,8 @@ describe('<syn-icon-button>', () => {
         <syn-icon-button
           library="system"
           name="check"
-          style="color: rgb(0, 136, 221); font-size: 2rem;"
+          size="large"
+          style="color: rgb(0, 136, 221);"
         ></syn-icon-button>
       `);
       const icon = el.shadowRoot!.querySelector('syn-icon')!;

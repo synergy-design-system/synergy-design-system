@@ -9,7 +9,7 @@ export const vendorIconButton = (path, content) => {
   }
   // Add size property
   const sizeProp = `/** The icon button's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' | 'inherit' = 'inherit';
 
   /** Disables the button. */`;
   output.content = output.content.replace('/** Disables the button. */', sizeProp);
@@ -32,6 +32,19 @@ export const vendorIconButton = (path, content) => {
           'icon-button--primary': this.color === 'primary',
           'icon-button--neutral': this.color === 'neutral'`;
   output.content = output.content.replace("'icon-button--focused': this.hasFocus", modifiers);
+
+  // Adapt test to work with size property
+  output.content = output.content.replace(`<syn-icon-button
+          library="system"
+          name="check"
+          style="color: rgb(0, 136, 221); font-size: 2rem;"
+        ></syn-icon-button>`, `<syn-icon-button
+          library="system"
+          name="check"
+          size="large"
+          style="color: rgb(0, 136, 221);"
+        ></syn-icon-button>`,
+  );
 
   return output;
 };

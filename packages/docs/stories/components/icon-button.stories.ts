@@ -1,118 +1,98 @@
-/* eslint-disable */
-
-/* eslint-disable import/no-relative-packages */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import '../../../components/src/components/icon-button/icon-button';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import type { SynIconButton } from '@synergy-design-system/components';
+import { html } from 'lit';
+import {
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon-button');
 const { overrideArgs } = storybookHelpers('syn-icon-button');
 const { generateTemplate } = storybookTemplate('syn-icon-button');
 
-const generateStoryDescription = (attributeName: string) => {
-  return (docsTokens?.components?.['icon-button'] as Record<string, any>)?.[attributeName]?.description?.value ?? 'No Description';
-};
-
-
 const meta: Meta = {
-  component: 'icon-button',
   args: overrideArgs([
-    { type: 'attribute', value: 'gear', name: 'name' },
-    { type: 'attribute', value: 'Settings', name: 'label' },
-    { type: 'attribute', value: 'neutral', name: 'color' },
+    { name: 'name', type: 'attribute', value: 'wallpaper' },
+    { name: 'label', type: 'attribute', value: 'Wallpaper' },
+    { name: 'color', type: 'attribute', value: 'neutral' },
+    { name: 'size', type: 'attribute', value: 'medium' },
   ], defaultArgs),
   argTypes,
-  title: 'Components/syn-icon-button',
+  component: 'icon-button',
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('default'),
+        component: generateStoryDescription('icon-button', 'default'),
       },
-    }
-  }
+    },
+  },
+  title: 'Components/syn-icon-button',
 };
 export default meta;
 
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => {
-    return generateTemplate({ args });
-  },
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('default'),
-      }
-    }
-  }
+        story: generateStoryDescription('icon-button', 'default'),
+      },
+    },
+  },
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
-
 
 export const Sizes: Story = {
   parameters: {
-    controls: { exclude: ['size'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('sizes'),
-      }
-    }
-  },
-  render: (args: any) => {
-    return generateTemplate({
-      axis: {
-        x: {
-          type: 'attribute',
-          name: 'size',
-          values: ['small', 'medium', 'large']
-        }
+        story: generateStoryDescription('icon-button', 'sizes'),
       },
-      args
-    });
-  }
+    },
+  },
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>`,
 };
-
 
 export const Colors: Story = {
   parameters: {
-    controls: { exclude: ['color'] },
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('color'),
-      }
-    }
-  },
-  render: (args: any) => {
-    return generateTemplate({
-      axis: {
-        x: {
-          type: 'attribute',
-          name: 'color',
-        }
+        story: `${generateStoryDescription('icon-button', 'color')}`,
       },
-      args
-    });
-  }
+    },
+  },
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="primary" size="medium"></syn-icon-button>`,
 };
 
-
-/**
- * Use the href attribute to convert the icon button to a link.
- */
 export const LinkButton: Story = {
   parameters: {
-    controls: { exclude: ['href'] },
+    controls: {
+      disable: true,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('icon-button', 'link'),
+      },
+    },
   },
-  render: (args: any) => {
-    return generateTemplate({
-      args: overrideArgs([
-        { type: 'attribute', value: 'https://example.com', name: 'href' },
-        { type: 'attribute', value: '_blank', name: 'target' },
-      ], args)
-    });
-  }
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" href="https://example.com" target="_blank" size="medium"></syn-icon-button>`,
 };
 
 // TODO: uncomment this story as soon as the syn-tooltip is available
@@ -125,65 +105,65 @@ export const LinkButton: Story = {
 // </syn-tooltip>`,
 // };
 
-
 export const Disabled: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('disabled'),
-      }
+        story: generateStoryDescription('icon-button', 'disabled'),
+      },
     },
-    controls: { exclude: ['disabled'] },
   },
-  render: (args: any) => {
-    console.log(argTypes);
-    return generateTemplate({
-      args: overrideArgs([
-        { type: 'attribute', value: true, name: 'disabled' },
-      ], args)
-    });
-  }
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled size="medium"></syn-icon-button>`,
 };
-
 
 export const Focus: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('focus'),
-      }
+        story: generateStoryDescription('icon-button', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
-    const iconButton = canvasElement.querySelector('syn-icon-button') as HTMLInputElement;
+    const iconButton = canvasElement.querySelector('syn-icon-button') as SynIconButton;
     if (iconButton) {
       iconButton.focus();
     }
   },
-  render: (args: any) => generateTemplate({ args }),
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>`,
 };
-
 
 export const Label: Story = {
   parameters: {
+    controls: {
+      disable: true,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('label'),
-      }
+        story: generateStoryDescription('icon-button', 'label'),
+      },
     },
-    controls: { exclude: ['label'] },
   },
-  render: (args: any) => generateTemplate({
-    axis: {
-      x: {
-        type: 'attribute',
-        name: 'label',
-        values: [
-          { value: '', title: 'Unset label prop' },
-          { value: 'Setting', title: 'Set label prop' }
-        ]
-      }
-    },
-    args
-   }),
+  render: () => html`
+  <div class="grid">
+    <span>Unset label property: </span>
+    <syn-icon-button name="wallpaper" color="neutral" size="medium"></syn-icon-button>
+    <span>Set label property: </span>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+  </div>
+  <style>
+    .grid {
+      font-size: var(--syn-font-size-x-small);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+  </style>`,
 };

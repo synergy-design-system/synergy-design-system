@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   quality-gate:
-    name: Install and verify
+    name: Validate build, lint, vendor and git diff
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,6 +46,7 @@ jobs:
 
 
   test:
+    name: Validate tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -88,6 +89,7 @@ jobs:
     #     retention-days: 30
 
   chromatic-deployment:
+    name: Validate Chromatic
     runs-on: ubuntu-latest
     needs: [quality-gate,test]
     steps:

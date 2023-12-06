@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   .icon-button {
     color: currentColor;
+    font-size: inherit;
   }
 
   /* Color variants */

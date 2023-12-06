@@ -22,6 +22,7 @@ const meta: Meta = {
     { name: 'name', type: 'attribute', value: 'wallpaper' },
     { name: 'label', type: 'attribute', value: 'Wallpaper' },
     { name: 'color', type: 'attribute', value: 'neutral' },
+    { name: 'size', type: 'attribute', value: 'medium' },
   ], defaultArgs),
   argTypes,
   component: 'icon-button',
@@ -76,8 +77,8 @@ export const Colors: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral"></syn-icon-button>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="primary"></syn-icon-button>`,
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="primary" size="medium"></syn-icon-button>`,
 };
 
 export const LinkButton: Story = {
@@ -91,7 +92,7 @@ export const LinkButton: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" href="https://example.com" target="_blank"></syn-icon-button>`,
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" href="https://example.com" target="_blank" size="medium"></syn-icon-button>`,
 };
 
 // TODO: uncomment this story as soon as the syn-tooltip is available
@@ -115,7 +116,7 @@ export const Disabled: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled></syn-icon-button>`,
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled size="medium"></syn-icon-button>`,
 };
 
 export const Focus: Story = {
@@ -135,7 +136,7 @@ export const Focus: Story = {
       iconButton.focus();
     }
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" ></syn-icon-button>`,
+  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>`,
 };
 
 export const Label: Story = {
@@ -152,9 +153,9 @@ export const Label: Story = {
   render: () => html`
   <div class="grid">
     <span>Unset label property: </span>
-    <syn-icon-button name="wallpaper" color="neutral"></syn-icon-button>
+    <syn-icon-button name="wallpaper" color="neutral" size="medium"></syn-icon-button>
     <span>Set label property: </span>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral"></syn-icon-button>
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
   </div>
   <style>
     .grid {

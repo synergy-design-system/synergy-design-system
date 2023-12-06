@@ -9,7 +9,7 @@ export const vendorIconButton = (path, content) => {
   }
   // Add size property
   const sizeProp = `/** The icon button's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' | 'inherit' = 'inherit';
 
   /** Disables the button. */`;
   output.content = output.content.replace('/** Disables the button. */', sizeProp);

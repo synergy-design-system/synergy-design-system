@@ -6,6 +6,14 @@ export default css`
     color: var(--syn-input-color);
   }
 
+  .tag--medium .tag__remove {
+    margin-inline-start: var(--syn-spacing-small);
+  }
+
+  .tag--large .tag__remove {
+    margin-inline-start: var(--syn-spacing-medium);
+  }
+
   .tag:hover .tag__remove {
     color: var(--syn-input-icon-color-hover);
   }
@@ -20,14 +28,6 @@ export default css`
 
   .tag--large.tag--removable {
     padding-inline-end: var(--syn-spacing-small);
-  }
-
-  .tag--medium .tag__remove {
-    margin-inline-start: var(--syn-spacing-small);
-  }
-
-  .tag--large .tag__remove {
-    margin-inline-start: var(--syn-spacing-medium);
   }
 
   .tag.tag--removable:focus ~ .tag__remove {

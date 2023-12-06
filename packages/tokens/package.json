@@ -32,7 +32,7 @@
     "CHANGELOG.md",
     "src/figma-tokens"
   ],
-  "homepage": "https://github.com/SickDesignSystem/synergy/tree/main/packages/tokens",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/tokens",
   "keywords": [
     "SDS",
     "SICK",
@@ -43,16 +43,12 @@
   "name": "@synergy-design-system/tokens",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/tokens"
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      {
-        "name": "main",
-        "prerelease": true
-      },
+      "main",
       {
         "name": "beta",
         "prerelease": true
@@ -60,8 +56,7 @@
       {
         "name": "alpha",
         "prerelease": true
-      },
-      "release-fallback"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -111,5 +106,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "1.0.0-main.13"
+  "version": "1.0.1"
 }

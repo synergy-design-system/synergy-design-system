@@ -1,7 +1,7 @@
 {
   "name": "@synergy-design-system/root",
   "version": "0.1.0",
-  "homepage": "https://github.com/SickDesignSystem/synergy",
+  "homepage": "https://github.com/synergy-design-system/synergy",
   "author": {
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
@@ -16,13 +16,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SickDesignSystem/synergy.git"
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git"
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
     "build.release": "pnpm --recursive --filter '!docs' --if-present build",
     "lint": "pnpm --recursive --if-present lint",
-    "release": "pnpm --recursive --if-present release --workspace-concurrency 1"
+    "release": "pnpm --recursive --if-present --workspace-concurrency=1 release"
   },
   "private": true
 }

@@ -17,7 +17,9 @@ const meta: Meta = {
   component: 'radio-group',
   parameters: {
     docs: {
-      description: generateStoryDescription('radio-group', 'default'),
+      description: {
+        component: generateStoryDescription('radio-group', 'default'),
+      },
     },
   },
   title: 'Components/syn-radio-group',

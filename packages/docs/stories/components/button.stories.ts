@@ -24,7 +24,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('button', 'default'),
+        component: generateStoryDescription('button', 'default'),
       },
     },
   },

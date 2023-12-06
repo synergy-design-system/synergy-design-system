@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.0-main.20",
+  "version": "1.0.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -110,11 +110,7 @@
   },
   "release": {
     "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      {
-        "name": "main",
-        "prerelease": true
-      },
+      "main",
       {
         "name": "beta",
         "prerelease": true
@@ -122,8 +118,7 @@
       {
         "name": "alpha",
         "prerelease": true
-      },
-      "release-fallback"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -174,9 +169,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "4768c759e2638c14536eca392434e705566fc3ec",
-      "react": "266e1e65f3f9055c3ea51967ab8709bd6de6fabd",
-      "vue": "b416154640d8131f4fcc460091feb03bffdb4ab9"
+      "angular": "163909c667f933cbfb19b2186e334215351ddbaf",
+      "react": "ac97a464490e9a083b32a96743ed56062fd14f49",
+      "vue": "0c848058f6f9221a1876108697a102b0ff83d262"
     }
   }
 }

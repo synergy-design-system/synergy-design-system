@@ -6,7 +6,9 @@ import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
 const { overrideArgs } = storybookHelpers('syn-radio');
@@ -19,7 +21,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('radio', 'default'),
+        component: generateStoryDescription('radio', 'default'),
       },
     },
   },

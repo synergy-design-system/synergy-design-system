@@ -24,7 +24,9 @@ const meta: Meta = {
   component: 'switch',
   parameters: {
     docs: {
-      description: generateStoryDescription('switch', 'default'),
+      description: {
+        component: generateStoryDescription('switch', 'default'),
+      },
     },
   },
   title: 'Components/syn-switch',

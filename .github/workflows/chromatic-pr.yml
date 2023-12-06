@@ -10,6 +10,14 @@ jobs:
   chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
+      # This waits until releases in `release.yml` are done to get the latest version
+      - name: Wait for releases to be done
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'quality-gate'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
         # 👇 Version 2 of the action
       - name: Checkout repository
         uses: actions/checkout@v2

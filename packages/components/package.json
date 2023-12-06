@@ -169,9 +169,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "b0f8275079f968c0874ba32def9947479a09a7e4",
-      "react": "454920debbfd75fbe4265bef7f1e2468944ac0f9",
-      "vue": "32c14190fc45cf103337fa95aed342230d53fd78"
+      "angular": "32cb524aca3f7ad4a78e8bd8a1a604069b8c9901",
+      "react": "5feeae3d2968efeaf76e0b512c2e8d95925a3385",
+      "vue": "0adeb25c644523e9d0fa015135bd4548960fe88e"
     }
   }
 }

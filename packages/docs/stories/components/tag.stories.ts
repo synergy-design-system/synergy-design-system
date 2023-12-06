@@ -3,6 +3,7 @@
 
 import '../../../components/src/components/tag/tag';
 import type { Meta, StoryObj } from '@storybook/web-components';
+import type { SynTag } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
 
@@ -36,9 +37,33 @@ export const Default = {
   render: () => html`<syn-tag>Option</syn-tag>`,
 } as Story;
 
-export const Icon: Story = {
+export const Focus: Story = {
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
+  play: ({ canvasElement }) => {
+    const tag = canvasElement.querySelector('syn-tag') as SynTag;
+    if (tag) {
+      tag.focus();
+    }
+  },
+  render: () => html`
+  <syn-tag removable>Option</syn-tag>`,
+};
+
+export const WithIcon: Story = {
   render: () => html`
   <syn-tag>
+    <syn-icon name="wallpaper"></syn-icon>
+    Option
+ </syn-tag>`,
+};
+
+export const WithIconAndRemovable: Story = {
+  render: () => html`
+  <syn-tag removable>
     <syn-icon name="wallpaper"></syn-icon>
     Option
  </syn-tag>`,
@@ -55,23 +80,7 @@ export const Sizes: Story = {
   render: () => html`
   <syn-tag size="small">Small</syn-tag>
   <syn-tag size="medium">Medium</syn-tag>
-  <syn-tag size="large">Large</syn-tag>
-  
-  <br>
-  <br>
-  
-  <syn-tag size="small">
-    <syn-icon name="wallpaper"></syn-icon>
-    Small
-  </syn-tag>
-  <syn-tag size="medium">
-    <syn-icon name="wallpaper"></syn-icon>
-    Medium
-  </syn-tag>
-  <syn-tag size="large">
-    <syn-icon name="wallpaper"></syn-icon>
-    Large
-  </syn-tag>`,
+  <syn-tag size="large">Large</syn-tag>`,
 };
 
 export const Removable: Story = {
@@ -86,7 +95,7 @@ export const Removable: Story = {
     <div class="tags-removable">
       <syn-tag size="small" removable>Small</syn-tag>
       <syn-tag size="medium" removable>Medium</syn-tag>
-      <syn-tag size="large" removable>Large</syn-tag>
+      <syn-tag size="large" removable>Large</syn-tag> 
     </div>
 
     <script type="module">

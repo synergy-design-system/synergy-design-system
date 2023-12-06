@@ -7,7 +7,7 @@ export default css`
 
   /* Color variants */
   .icon-button--neutral,
-  .icon-button--neutral:focus-visible:not(.icon-button--disabled) {
+  .icon-button--neutral:focus-visible:not(.icon-button--disabled):not(:hover) {
     color: var(--syn-color-neutral-950);
   }
 

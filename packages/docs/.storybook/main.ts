@@ -28,10 +28,10 @@ const config: StorybookConfig = {
   ],
   stories: [
     "../stories/Index.mdx",
+    "../stories/packages/**/*.mdx",
     "../stories/components/**/*.stories.*",
     // "../stories/**/*.mdx",
     // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../stories/packages/**/*.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],

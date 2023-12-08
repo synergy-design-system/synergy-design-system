@@ -1,6 +1,6 @@
 # @synergy-design-system/react
 
-This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
+[This package](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/react) provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims for an improved UX when used in React applications:
 - Auto-completion

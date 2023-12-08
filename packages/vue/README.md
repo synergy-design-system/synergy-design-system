@@ -1,6 +1,6 @@
 # @synergy-design-system/vue
 
-This package provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
+[This package](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/vue) provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims to provide an improved developer experience in vue applications:
 

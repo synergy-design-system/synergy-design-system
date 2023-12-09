@@ -1,5 +1,5 @@
 # Synergy Design System
-<img src="./packages/docs/public/synergy-logo-light.png" alt="Synergy-Logo" width="400"/><br>
+<img src="./packages/docs/public/synergy_logo_transparent.png" alt="Synergy-Logo" width="400"/><br>
 Welcome to the home of the Synergy Design System.
 This project is mainly intended for usage in [SICK](https://www.sick.com) applications to ensure a unique look and feel across applications, however you may also use it [for your own projects for free](./LICENSE) as well.
 

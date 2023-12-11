@@ -1,6 +1,6 @@
 # @synergy-design-system/components
 
-[This package](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components) provides the base of the Synergy Design System as native web components.
+This package provides the base of the Synergy Design System as native web components.
 It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.style/).
 
 ## Getting started

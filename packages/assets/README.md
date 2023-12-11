@@ -1,6 +1,6 @@
 ## Documentation
 
-[This package](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets) is taking care about getting assets (like logos, system icons and default icons) from Figma.
+This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
 The folder structure of the assets corresponds to the structure of the Figma page.
  - **logos:** contains the variants of the SICK brand logo
  - **icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)

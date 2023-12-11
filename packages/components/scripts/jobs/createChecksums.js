@@ -28,7 +28,7 @@ export const runCreateChecksums = job('Checksums updated in package.json', async
     process.chdir(directory);
 
     // Run `npm publish --dry-run` and capture the output
-    const output = execSync('npm publish --dry-run 2>&1', { encoding: 'utf-8' });
+    const output = execSync('pnpm publish --dry-run --no-git-checks 2>&1', { encoding: 'utf-8' });
 
     // Return to the original directory
     process.chdir(originalDirectory);

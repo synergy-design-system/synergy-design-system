@@ -41,8 +41,8 @@ Please provide a summary of the tests affected by this work and any unique strat
 
 - [ ] I have tested my changes manually.
 - [ ] I have added automatic tests for my changes (unit- and visual regression tests).
-- [ ] I have created at least one dynamic (optionally static stories). Knobs must be visible only on dynamic stories!
+- [ ] I have updated the project documentation to reflect my changes (e.g. CHANGELOG, Storybook, ...).
 - [ ] I have made sure to follow the projects coding and contribution guides.
-- [ ] I have made sure that the bundle size has changed appropriately. External dependencies should be kept to a minimum.
+- [ ] I have made sure that the bundle size has changed appropriately.
 - [ ] I have validated that there are no accessibility errors.
-- [ ] I have used design tokens instead of fix css values.
+- [ ] I have used design tokens instead of fix css values

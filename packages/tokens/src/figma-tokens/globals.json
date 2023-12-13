@@ -411,5 +411,27 @@
   "font-sans-fallback": {
     "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
     "type": "other"
+  },
+  "typography": {
+    "heading": {
+      "x-small": {
+        "value": {
+          "fontFamily": "{font.sans}",
+          "fontWeight": "{font-weight.bold}",
+          "fontSize": "{font-size.x-small}",
+          "lineHeight": "{line-height.dense}"
+        },
+        "type": "typography"
+      },
+      "small": {
+        "value": {
+          "fontFamily": "{font.sans}",
+          "fontWeight": "{font-weight.bold}",
+          "fontSize": "{font-size.small}",
+          "lineHeight": "{line-height.dense}"
+        },
+        "type": "typography"
+      }
+    }
   }
 }

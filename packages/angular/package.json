@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "description": "Angular wrappers for the Synergy Design System",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/angular",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Angular Web Component Wrapper",
     "Angular Components",

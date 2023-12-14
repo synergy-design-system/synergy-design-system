@@ -34,7 +34,7 @@
     }
   },
   "types": "./src/default-icons.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Static Assets",
     "SDS",

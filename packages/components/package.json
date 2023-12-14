@@ -44,7 +44,7 @@
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Web Components",
     "LIT Components",
@@ -169,9 +169,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "3590f1e69d57dac5d865c6ad9e54d6c87c4088f5",
-      "react": "38a237a6bd1e322fa85db68df27b2c8f149a7f5d",
-      "vue": "09d274f770baf8c3cbad69d57c73287a66ee8c45"
+      "angular": "432be0e964528715800cd77deee1cf7b6c95fa92",
+      "react": "f5c1cbc6d4366f0189d8f4804cbb41e38e2985b0",
+      "vue": "b8394e739b437d8f4cfe8d8480d761cf58856b49"
     }
   }
 }

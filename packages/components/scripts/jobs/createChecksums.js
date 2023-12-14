@@ -9,35 +9,7 @@ import { job } from './shared.js';
  * for Semantic Release
  */
 export const runCreateChecksums = job('Checksums updated in package.json', async () => {
-  function extractShasum(output) {
-    const shasumRegex = /npm notice shasum:\s+([a-f0-9]{40})\s+/i;
-    const match = output.match(shasumRegex);
-
-    if (match && match[1]) {
-      return match[1];
-    }
-
-    throw new Error('Shasum not found in npm publish output');
-  }
-
-  function getChecksum(directory) {
-    // Save the current working directory
-    const originalDirectory = process.cwd();
-
-    // Change to the target directory
-    process.chdir(directory);
-
-    // Run `npm publish --dry-run` and capture the output
-    const output = execSync('pnpm publish --dry-run --no-git-checks 2>&1', { encoding: 'utf-8' });
-
-    // Return to the original directory
-    process.chdir(originalDirectory);
-
-    // Extract and return the shasum
-    return extractShasum(output);
-  }
-
-  function updatePackageJson(checksum, project) {
+  function updatePackageJson(project) {
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
@@ -46,20 +18,16 @@ export const runCreateChecksums = job('Checksums updated in package.json', async
     packageJson.meta.checksums = packageJson.meta.checksums || {};
 
     // Update the checksum
-    packageJson.meta.checksums[project] = checksum;
+    packageJson.meta.checksums[project] = execSync(`git rev-parse HEAD:packages/${project} 2>&1`, { encoding: 'utf-8' }).trim();
 
     // Write the updated package.json back to disk
     fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
   }
 
   try {
-    const angularChecksum = getChecksum('../angular');
-    const reactChecksum = getChecksum('../react');
-    const vueChecksum = getChecksum('../vue');
-
-    await updatePackageJson(angularChecksum, 'angular');
-    await updatePackageJson(reactChecksum, 'react');
-    await updatePackageJson(vueChecksum, 'vue');
+    await updatePackageJson('angular');
+    await updatePackageJson('react');
+    await updatePackageJson('vue');
   } catch (error) {
     console.error('An error occurred:', error);
   }

@@ -8,7 +8,7 @@ Welcome to the home of the Synergy Design System.
 This project is mainly intended for usage in [SICK](https://www.sick.com) applications to ensure a unique look and feel across applications, however you may also use it [for your own projects for free](./LICENSE) as well.
 
 ## Documentation
-The documentation is always up-to-date and can found on https://synergy-design-system.github.io/ .
+The documentation is always up-to-date and can be found on https://synergy-design-system.github.io/ .
 
 ## Source code
 The code resides on GitHub: https://github.com/synergy-design-system/synergy-design-system .

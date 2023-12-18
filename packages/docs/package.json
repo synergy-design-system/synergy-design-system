@@ -39,7 +39,7 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.5.3",
     "stylelint": "^15.10.3",
-    "vite": "^4.4.11",
+    "vite": "^4.4.12",
     "vite-plugin-cem": "^0.5.0",
     "vite-plugin-replace": "^0.1.1"
   },

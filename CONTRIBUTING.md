@@ -1,5 +1,26 @@
 # Synergy Design System Contribution Guidelines
 
+## Table of contents
+- [Contributing to Solid Components](#synergy-design-system-contribution-guidelines)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Getting started](#getting-started)
+  - [Breaking changes](#breaking-changes)
+  - [Quality assurance](#quality-assurance)
+  - [Managing icons](#managing-icons)
+  - [Update dependencies](#update-dependencies)
+  - [Coding conventions](#coding-conventions)
+    - [Ensure Accessibility](#ensure-accessibility)
+    - [API](#api)
+  - [Contribution workflow](#contribution-workflow)
+  - [Semantic release process](#semantic-release-process)
+    - [Pull requests and commits](#pull-requests-and-commits)
+      - [Assignees and reviewers](#assignees-and-reviewers)
+  - [Release changes in framework wrapper packages](#release-changes-in-framework-wrapper-packages)
+    - [Example Workflow](#example-workflow)
+    - [Automatic Checksum Verification and Update](#automatic-checksum-verification-and-update)
+  - [Issue tracking](#issue-tracking)
+
 ## Overview
 
 Thank you for investing your time to contribute to our project.
@@ -8,13 +29,13 @@ To achieve this, we are using some common conventions when contributing features
 
 ## Getting started
 
-- Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
+- Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/introduction--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
 
 - Have a look at the [storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of the design system and its components.
 
 - Synergy components are embedded in a monorepo structure with packages (e. g. `components`) managed by `pnpm` (instead of `npm`). Linting and formatting rules are centralized at root level. Packages have to be run individually (e.g. `cd packages/docs && pnpm start` to start the development server).
 
-### Breaking changes
+## Breaking changes
 
 We build robust and extendable APIs, to avoid future breaking changes as much as possible.
 We also ensure stable and reliable updates that align with semantic versioning. Breaking changes are documented prominently.

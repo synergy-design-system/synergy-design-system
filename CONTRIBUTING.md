@@ -86,7 +86,7 @@ In our development workflow, we use Semantic Release to automate the release pro
 
 ### Pull requests and commits
 
-When creating pull requests use structured PR titles: the PR templates gurantee that the following structure "`prefix`:`icon` `text`" is used.
+When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates gurantee that the following structure "`prefix`:`icon` `text`" is used.
 When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean. 
 The `prefix` is processed when the PR is merged and decides about the release version. Depending on the title, merged PRs can also create a new Synergy version.
 

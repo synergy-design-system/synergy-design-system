@@ -107,12 +107,12 @@ Examples for valid PR titles:
 
 ```
 fix: Fix accessability in syn-button
-feat: ✨ Added syn-radio
+feat: ✨ Add syn-radio
 docs: 📚 Add installation instructions
-chore: 🔧 Improved build scripts
+chore: 🔧 Improve build scripts
 ```
 
-If a change is breaking, be aware that the string "BREAKING CHANGE" must be part of the final commit message when doing the squash and merge. A change is breaking if a dependant project need to adapt (e.g. API has changed).
+If a change is breaking, be aware that the string "BREAKING CHANGE" must be part of the footer (!) of the final commit message when doing the squash and merge. A change is breaking if a dependant project need to adapt (e.g. API has changed).
 
 Before merging make sure that all sections are filled out properly and that all DoD checkmarks are checked.
 
@@ -121,7 +121,7 @@ When committing changes use meaningful commit messages. Always imagine the persp
 
 #### Assignees and reviewers
 
-When opening a PR assign yourself to the PR. Once a core team member is available he/she should assign him-/herself as a reviewer. For each PR it must be considered to involve also a designer, if there are design relevant changes. Design feedback is usually given via Chromatic.
+When opening a PR, assign yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
 
 
 ## Release changes in framework wrapper packages

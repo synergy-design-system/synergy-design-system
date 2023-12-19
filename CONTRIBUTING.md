@@ -31,7 +31,7 @@ To achieve this, we are using some common conventions when contributing features
 
 - Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/introduction--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
 
-- Have a look at the [storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of the design system and its components.
+- Have a look at the [Storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of the design system and its components.
 
 - Synergy components are embedded in a monorepo structure with packages (e. g. `components`) managed by `pnpm` (instead of `npm`). Linting and formatting rules are centralized at root level. Packages have to be run individually (e.g. `cd packages/docs && pnpm start` to start the development server).
 
@@ -53,8 +53,8 @@ The single source of truth for the Synergy icons is Figma. All icons are fetched
 
 We regularily check for updates of our dependencies. This ensures that Synergy should have less securtiy issues and that it stays easily maintainable. We also use GitHubs dependabot which creates automatic PRs as soon dependencies have been updated.
 
-The most important dependancy is not manages via npm but via vendorism: [Shoelace](https://shoelace.style/)
-We keep track of Shoelace and always integrate the latest versions from Shoelace using the vendorizm scripts. Read the components [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
+The most important dependency [Shoelace](https://shoelace.style/) is not managed via `pnpm` but via [vendorism](https://github.com/mariohamann/vendorism).
+We keep track of Shoelace and regurarly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
 
 
 ## Coding conventions
@@ -68,13 +68,13 @@ Components must be optimized for accessibility. Please use tools like AXE or Dev
 ### Ensure Accessibility
 
 We use semantic HTML elements, ARIA landmarks, roles, states, and properties in components and storybook stories.
-We implement tests and "mouseless" stories to ensure that interactive elements can be navigated and activated using the keyboard (tab-index) and ensure the correct sequence of navigation.
+We implement tests to ensure that interactive elements can be navigated and activated using the keyboard (tab-index) and ensure the correct sequence of navigation.
 We use descriptive text, labels, and instructions to provide context for non-text content.
 We ensure that dynamic content changes are announced to screen readers with ARIA live regions.
 
 ### API
 
-As stated in our goals, we focus on flexibility and adaptation. These goals are reached by providing proper APIs to our components. This means to prefer slots over attributes and to make use of css parts when meaningful.
+As stated in our goals, we focus on flexibility and adaptation. These goals are reached by providing proper APIs to our components. This means to prefer slots over attributes and to make use of CSS parts when meaningful.
 
 ## Contribution workflow
 
@@ -106,7 +106,7 @@ ICON and PREFIX are one of the following:
 Examples for valid PR titles:
 
 ```
-fix: Fix accessability in syn-button
+fix: 🐛 Fix accessibility in syn-button
 feat: ✨ Add syn-radio
 docs: 📚 Add installation instructions
 chore: 🔧 Improve build scripts

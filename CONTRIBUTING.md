@@ -1,7 +1,7 @@
 # Synergy Design System Contribution Guidelines
 
 ## Table of contents
-- [Contributing to Solid Components](#synergy-design-system-contribution-guidelines)
+- [Contributing to Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting started](#getting-started)

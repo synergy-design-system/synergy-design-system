@@ -47,14 +47,14 @@ Chromatic is used for checking visual differences. Open https://www.chromatic.co
 
 ## Managing icons
 
-The single source of truth for the Synergy icons is Figma. All icons are fetched from Figma into the assests project when calling the according script. Read the assets [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/assets/README.md) for further information.
+The single source of truth for the Synergy icons is Figma. All icons are fetched from Figma into the assets project when calling the according script. Read the assets [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/assets/README.md) for further information.
 
 ## Update dependencies
 
-We regularily check for updates of our dependencies. This ensures that Synergy should have less securtiy issues and that it stays easily maintainable. We also use GitHubs dependabot which creates automatic PRs as soon dependencies have been updated.
+We regularly check for updates of our dependencies. This ensures that Synergy should have less security issues and that it stays easily maintainable. We also use GitHubs dependabot which creates automatic PRs as soon dependencies have been updated.
 
 The most important dependency [Shoelace](https://shoelace.style/) is not managed via `pnpm` but via [vendorism](https://github.com/mariohamann/vendorism).
-We keep track of Shoelace and regurarly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
+We keep track of Shoelace and regularly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
 
 
 ## Coding conventions
@@ -86,7 +86,7 @@ In our development workflow, we use Semantic Release to automate the release pro
 
 ### Pull requests and commits
 
-When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates gurantee that the following structure "`prefix`:`icon` `text`" is used.
+When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates guarantee that the following structure "`prefix`:`icon` `text`" is used.
 When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean. 
 The `prefix` is processed when the PR is merged and decides about the release version. Depending on the title, merged PRs can also create a new Synergy version.
 

@@ -1,15 +1,17 @@
 {
   "words": [
-    "syn",
+    "autodocs",
+    "autowatch",
+    "checkmarks",
+    "csspart",
+    "fouc",
+    "liga",
+    "rgba",
     "stylelint",
     "stylelintrc",
+    "syn",
     "themeable",
-    "autowatch",
-    "fouc",
-    "rgba",
-    "liga",
-    "autodocs",
-    "csspart"
+    "vendorism"
   ],
   "ignorePaths": [
     "package.json",

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.0.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.1...components/1.0.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* 📚 improve links in documentation ([#224](https://github.com/synergy-design-system/synergy-design-system/issues/224)) ([f55934c](https://github.com/synergy-design-system/synergy-design-system/commit/f55934c34c6c53b0f7c9a5afa8d91bc520df4fdf))
+
 # [@synergy-design-system/components-v1.0.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.0.0...components/1.0.1) (2023-12-06)
 
 

@@ -21,7 +21,7 @@
     "CHANGELOG.md",
     "README.md"
   ],
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/react",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "React Web Component Wrapper",
     "React Components",
@@ -40,7 +40,7 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "devDependencies": {
     "@types/react": "^18.2.31",
     "react": "^18.2.0"

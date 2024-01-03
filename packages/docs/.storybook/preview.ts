@@ -10,6 +10,9 @@ import { stopAnimation } from '../src/decorators/StopAnimation';
 const preview: Preview = {
   decorators: [stopAnimation],
   parameters: {
+    chromatic: { 
+      disableSnapshot: true
+    },
     docs: {
       stories: { inline: false }
     },

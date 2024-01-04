@@ -29,6 +29,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'default'),
@@ -41,9 +44,6 @@ export const Default = {
 export const Labels: Story = {
   name: 'Labels',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'labels'),
@@ -56,9 +56,6 @@ export const Labels: Story = {
 export const HelpText: Story = {
   name: 'Help text',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'help-text'),
@@ -71,9 +68,6 @@ export const HelpText: Story = {
 export const Rows: Story = {
   name: 'Rows',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'rows'),
@@ -94,9 +88,6 @@ export const Rows: Story = {
 export const Placeholders: Story = {
   name: 'Placeholders',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'placeholder'),
@@ -109,9 +100,6 @@ export const Placeholders: Story = {
 export const ReadonlyTextareas: Story = {
   name: 'Readonly textareas',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'readonly'),
@@ -122,16 +110,10 @@ export const ReadonlyTextareas: Story = {
 };
 
 export const Focus: Story = {
-  args: {
-    placeholder: 'This is in focus',
-  },
   name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -147,9 +129,7 @@ export const Focus: Story = {
   },
   render: () => html`
       <form>
-        ${generateTemplate({
-    args,
-  })}
+        <syn-textarea placeholder="This is in focus"></syn-textarea>
       </form>
     `,
 };
@@ -157,9 +137,6 @@ export const Focus: Story = {
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'disabled'),
@@ -172,9 +149,6 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'size'),
@@ -192,9 +166,6 @@ export const Invalid: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -221,25 +192,13 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-  ${generateTemplate({
-    args,
-    constants: [{
-      name: 'required',
-      type: 'attribute',
-      value: true,
-    }],
-  })}
+    <form>
+      <syn-textarea placeholder="Type something" help-text="This textarea is required." required></syn-textarea>
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
     syn-button {
-      align-self: flex-start;
+      margin-top: 1rem;
     }
     </style>
   `,
@@ -248,9 +207,6 @@ export const Invalid: Story = {
 export const PreventResizing: Story = {
   name: 'Prevent resizing',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize'),
@@ -263,9 +219,6 @@ export const PreventResizing: Story = {
 export const ExpandWithContent: Story = {
   name: 'Expand with content',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize-auto'),

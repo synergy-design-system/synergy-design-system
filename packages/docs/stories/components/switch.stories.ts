@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
@@ -38,6 +37,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'default'),
@@ -50,9 +52,6 @@ export const Default = {
 export const Checked: Story = {
   name: 'Checked',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'checked'),
@@ -65,9 +64,6 @@ export const Checked: Story = {
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'disabled'),
@@ -82,9 +78,6 @@ export const Focus: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -108,9 +101,6 @@ export const Invalid: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -153,9 +143,6 @@ export const Invalid: Story = {
 export const Sizes: Story = {
   name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'sizes'),

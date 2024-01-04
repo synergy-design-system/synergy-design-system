@@ -29,6 +29,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'default'),
@@ -41,9 +44,6 @@ export const Default = {
 export const Labels: Story = {
   name: 'Labels',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'label'),
@@ -56,9 +56,6 @@ export const Labels: Story = {
 export const HelpText: Story = {
   name: 'Help text',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'help-text'),
@@ -71,9 +68,6 @@ export const HelpText: Story = {
 export const Placeholders: Story = {
   name: 'Placeholder',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'placeholder'),
@@ -86,24 +80,18 @@ export const Placeholders: Story = {
 export const Clearable: Story = {
   name: 'Clearable',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'clearable'),
       },
     },
   },
-  render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
+  render: () => html`<syn-input value="Clearable" placeholder="Clearable" clearable></syn-input>`,
 };
 
 export const TogglePassword: Story = {
   name: 'Toggle password',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'password-toggle'),
@@ -116,9 +104,6 @@ export const TogglePassword: Story = {
 export const ReadonlyInputs: Story = {
   name: 'Readonly inputs',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'readonly'),
@@ -129,18 +114,10 @@ export const ReadonlyInputs: Story = {
 };
 
 export const Focus: Story = {
-  args: {
-    helpText: 'This input is focused.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
-  },
   name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: generateStoryDescription('input', 'focus'),
@@ -154,9 +131,7 @@ export const Focus: Story = {
   },
   render: () => html`
       <form>
-        ${generateTemplate({
-    args,
-  })}
+        <syn-input help-text="This input is focused." label="Label" placeholder="Insert text here..."></syn-input>
       </form>
     `,
 };
@@ -164,9 +139,6 @@ export const Focus: Story = {
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'disabled'),
@@ -183,9 +155,6 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'size'),
@@ -199,18 +168,10 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    helpText: 'This input is required.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
-  },
   name: 'Invalid',
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: generateStoryDescription('input', 'invalid'),
@@ -236,14 +197,7 @@ export const Invalid: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-  ${generateTemplate({
-    args,
-    constants: [{
-      name: 'required',
-      type: 'attribute',
-      value: true,
-    }],
-  })}
+      <syn-input help-text="This input is required." label="Label" placeholder="Insert text here..." required></syn-input>
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <style>
@@ -273,9 +227,6 @@ export const InputTypes: Story = {
 export const PrefixSuffixIcons: Story = {
   name: 'Prefix and suffix icons',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'prefix-suffix'),

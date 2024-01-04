@@ -31,7 +31,7 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     controls: {
-      disable: true,
+      disable: false,
     },
     docs: {
       description: generateStoryDescription('radio-group', 'default'),
@@ -48,9 +48,6 @@ export const Default = {
 export const Labels: Story = {
   name: 'Labels',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: generateStoryDescription('radio-group', 'labels'),
     },
@@ -66,9 +63,6 @@ export const Labels: Story = {
 export const HelpText: Story = {
   name: 'Help text',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: generateStoryDescription('radio-group', 'help-text'),
     },
@@ -84,9 +78,6 @@ export const HelpText: Story = {
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: generateStoryDescription('radio-group', 'disabled'),
     },
@@ -115,9 +106,6 @@ export const Invalid: Story = {
     chromatic: {
       disableSnapshot: false,
     },
-    controls: {
-      disable: true,
-    },
     docs: {
       description: generateStoryDescription('radio-group', 'required'),
     },
@@ -139,7 +127,7 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-  <form class="custom-validity">
+  <form>
     <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
       <syn-radio value="1">Option 1</syn-radio>
       <syn-radio value="2">Option 2</syn-radio>
@@ -148,13 +136,8 @@ export const Invalid: Story = {
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>
   <style>
-  .custom-validity {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
   syn-button {
-    align-self: flex-start;
+    margin-top: 1rem;
   }
 </style>`,
 };
@@ -164,9 +147,6 @@ export const CustomValidity: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: generateStoryDescription('radio-group', 'setCustomValidity'),
@@ -211,7 +191,7 @@ export const CustomValidity: Story = {
   },
 
   render: () => html`
-  <form class="custom-validity">
+  <form>
     <syn-radio-group label="Select an option" name="a" value="1">
       <syn-radio value="1">Not me</syn-radio>
       <syn-radio value="2">Me neither</syn-radio>

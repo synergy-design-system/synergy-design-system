@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/icon/icon.js';
 import { type Meta, type StoryObj } from '@storybook/web-components';
@@ -15,11 +14,6 @@ export default meta;
 type Story = StoryObj;
 
 const createIconPage = (letter: string): Story => ({
-  parameters: {
-    controls: {
-      disable: true,
-    },
-  },
   render: () => {
     const regex = new RegExp(`^${letter}`);
     const iconKeys = Object.keys(defaultIcons);

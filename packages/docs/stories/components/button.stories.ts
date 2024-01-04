@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/button/button';
 import type { Meta, StoryObj } from '@storybook/web-components';
@@ -37,6 +36,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'default'),
@@ -49,9 +51,6 @@ export const Default = {
 export const Variants: Story = {
   name: 'Variants',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'variant'),
@@ -61,20 +60,12 @@ export const Variants: Story = {
   render: () => html`
   <syn-button variant="filled">Filled</syn-button>
   <syn-button variant="outline">Outline</syn-button>
-  <syn-button variant="text">Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  <syn-button variant="text">Text</syn-button>`,
 };
 
 export const Sizes: Story = {
   name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'size'),
@@ -84,12 +75,7 @@ export const Sizes: Story = {
   render: () => html`
   <syn-button size="small">Small</syn-button>
   <syn-button size="medium">Medium</syn-button>
-  <syn-button size="large">Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  <syn-button size="large">Large</syn-button>`,
 };
 
 export const Focus: Story = {
@@ -97,9 +83,6 @@ export const Focus: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -119,9 +102,6 @@ export const Focus: Story = {
 export const LinkButtons: Story = {
   name: 'Link buttons',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'link'),
@@ -132,20 +112,12 @@ export const LinkButtons: Story = {
   <syn-button href="https://example.com/">Link</syn-button>
   <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
   <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
-  <syn-button href="https://example.com/" disabled>Disabled</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  <syn-button href="https://example.com/" disabled>Disabled</syn-button>`,
 };
 
 export const SettingACustomWidth: Story = {
   name: 'Setting a custom width',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'width'),
@@ -161,9 +133,6 @@ export const SettingACustomWidth: Story = {
 export const PrefixAndSuffixIcons: Story = {
   name: 'Prefix and suffix icons',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'prefix-suffix'),
@@ -221,20 +190,12 @@ export const PrefixAndSuffixIcons: Story = {
     <syn-icon slot="prefix" name="link"></syn-icon>
     <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
-  </syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  </syn-button>`,
 };
 
 export const Caret: Story = {
   name: 'Caret',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'caret'),
@@ -244,20 +205,12 @@ export const Caret: Story = {
   render: () => html`
   <syn-button size="small" caret>Small</syn-button>
   <syn-button size="medium" caret>Medium</syn-button>
-  <syn-button size="large" caret>Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  <syn-button size="large" caret>Large</syn-button>`,
 };
 
 export const Loading: Story = {
   name: 'Loading',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'loading'),
@@ -267,20 +220,12 @@ export const Loading: Story = {
   render: () => html`
   <syn-button variant="filled" loading>Filled</syn-button>
   <syn-button variant="outline" loading>Outline</syn-button>
-  <syn-button variant="text" loading>Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+  <syn-button variant="text" loading>Text</syn-button>`,
 };
 
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'disabled'),

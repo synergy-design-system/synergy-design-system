@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
-  generateScreenshotStory, generateStoryDescription,
-  storybookDefaults, storybookHelpers, storybookTemplate,
+  generateScreenshotStory,
+  generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
@@ -34,6 +33,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'default'),
@@ -41,16 +43,11 @@ export const Default = {
     },
   },
   render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-  // render: () => html`
-  // <syn-radio value="1" size="medium">Option</syn-radio>`,
 } as Story;
 
 export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'disabled'),
@@ -67,9 +64,6 @@ export const Focus: Story = {
     chromatic: {
       disableSnapshot: false,
     },
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'focus'),
@@ -77,7 +71,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const radio = canvasElement.querySelector('syn-radio') as unknown as HTMLInputElement;
+    const radio = canvasElement.querySelector('syn-radio');
     if (radio) {
       radio.focus();
     }
@@ -91,9 +85,6 @@ export const Invalid: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-    },
-    controls: {
-      disable: true,
     },
     docs: {
       description: {
@@ -119,20 +110,15 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-  <form class="custom-validity">
+  <form>
     <syn-radio-group required>
       <syn-radio value="1">Option</syn-radio>
     </syn-radio-group>
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>
   <style>
-  .custom-validity {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
   syn-button {
-    align-self: flex-start;
+    margin-top: 1rem;
   }
   </style>`,
 };
@@ -140,9 +126,6 @@ export const Invalid: Story = {
 export const Sizes: Story = {
   name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'sizes'),

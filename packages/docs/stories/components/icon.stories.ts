@@ -4,7 +4,9 @@
 import '../../../components/src/components/icon/icon';
 import { type Meta, type StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
+} from '../../src/helpers/component.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 
@@ -151,6 +153,7 @@ export const Default = {
  * Icons inherit their color from the current text color. Thus, you can set the color property on the <syn-icon> element or an ancestor to change the color.
  */
 export const Colors: Story = {
+  name: 'Colors',
   render: () => html`<div style="color: var(--syn-color-primary-600);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
@@ -175,6 +178,7 @@ export const Colors: Story = {
  * Icons are sized relative to the current font size. To change their size, set the font-size property on the icon itself or on a parent element as shown below.
  */
 export const Sizing: Story = {
+  name: 'Sizing',
   render: () => html`<div style="font-size: var(--syn-font-size-2x-large);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
@@ -199,6 +203,7 @@ export const Sizing: Story = {
  * For non-decorative icons, use the label attribute to announce it to assistive devices.
  */
 export const Labels: Story = {
+  name: 'Labels',
   render: () => html`<syn-icon name="star" label="Add to favorites"></syn-icon>`,
 };
 
@@ -207,6 +212,7 @@ export const Labels: Story = {
  * If you're using more than one custom icon, it might make sense to register a custom icon library.
  */
 export const CustomIcons: Story = {
+  name: 'Custom icons',
   render: () => html`<syn-icon src="/logo-claim.svg" style="font-size: 10rem;"></syn-icon>`,
 };
 
@@ -256,6 +262,7 @@ export const CustomIcons: Story = {
  * to see how to handle this.
  */
 export const CDNIconLibrary: Story = {
+  name: 'CDN icon library',
   render: () => {
     registerIconLibrary('fa', {
       resolver: name => {
@@ -314,6 +321,7 @@ export const CDNIconLibrary: Story = {
 * ```
 */
 export const BundledIconLibrary: Story = {
+  name: 'Bundled icon library',
   render: () => {
     registerIconLibrary('bundled-default', {
       resolver: (name) => {
@@ -364,6 +372,7 @@ export const BundledIconLibrary: Story = {
 * ```
 */
 export const SpriteSheetUsage: Story = {
+  name: 'Sprite sheet usage',
   render: () => {
     registerIconLibrary('sprite', {
       resolver: name => `/sprite.svg#${name}`,
@@ -378,3 +387,15 @@ export const SpriteSheetUsage: Story = {
   },
 };
 
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Colors,
+  Sizing,
+  Labels,
+  CustomIcons,
+  CDNIconLibrary,
+  BundledIconLibrary,
+  SpriteSheetUsage,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories);

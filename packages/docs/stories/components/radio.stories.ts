@@ -7,7 +7,8 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
-  generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
+  generateScreenshotStory, generateStoryDescription,
+  storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
@@ -45,6 +46,7 @@ export const Default = {
 } as Story;
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -60,7 +62,11 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
+  name: 'Focus',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -81,7 +87,11 @@ export const Focus: Story = {
 };
 
 export const Invalid: Story = {
+  name: 'Invalid',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -128,6 +138,7 @@ export const Invalid: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     controls: {
       disable: true,
@@ -143,3 +154,11 @@ export const Sizes: Story = {
     <syn-radio value="2" size="medium">Option</syn-radio>
     <syn-radio value="3" size="large">Option</syn-radio>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Disabled,
+  Sizes,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories);

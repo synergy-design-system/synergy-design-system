@@ -4,7 +4,9 @@ import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
@@ -37,6 +39,7 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
+  name: 'Labels',
   parameters: {
     controls: {
       disable: true,
@@ -51,6 +54,7 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
+  name: 'Help text',
   parameters: {
     controls: {
       disable: true,
@@ -65,6 +69,7 @@ export const HelpText: Story = {
 };
 
 export const Rows: Story = {
+  name: 'Rows',
   parameters: {
     controls: {
       disable: true,
@@ -87,6 +92,7 @@ export const Rows: Story = {
 };
 
 export const Placeholders: Story = {
+  name: 'Placeholders',
   parameters: {
     controls: {
       disable: true,
@@ -101,6 +107,7 @@ export const Placeholders: Story = {
 };
 
 export const ReadonlyTextareas: Story = {
+  name: 'Readonly textareas',
   parameters: {
     controls: {
       disable: true,
@@ -118,7 +125,11 @@ export const Focus: Story = {
   args: {
     placeholder: 'This is in focus',
   },
+  name: 'Focus',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -144,6 +155,7 @@ export const Focus: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -158,6 +170,7 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     controls: {
       disable: true,
@@ -175,11 +188,11 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    helpText: 'This textarea is required.',
-    placeholder: 'Type something',
-  },
+  name: 'Invalid',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -233,6 +246,7 @@ export const Invalid: Story = {
 };
 
 export const PreventResizing: Story = {
+  name: 'Prevent resizing',
   parameters: {
     controls: {
       disable: true,
@@ -247,6 +261,7 @@ export const PreventResizing: Story = {
 };
 
 export const ExpandWithContent: Story = {
+  name: 'Expand with content',
   parameters: {
     controls: {
       disable: true,
@@ -259,3 +274,18 @@ export const ExpandWithContent: Story = {
   },
   render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Labels,
+  HelpText,
+  Rows,
+  Placeholders,
+  ReadonlyTextareas,
+  Disabled,
+  Sizes,
+  PreventResizing,
+  ExpandWithContent,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories, 500);

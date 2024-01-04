@@ -7,6 +7,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import type { SynButton } from '@synergy-design-system/components';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -46,6 +47,7 @@ export const Default = {
 } as Story;
 
 export const Variants: Story = {
+  name: 'Variants',
   parameters: {
     controls: {
       disable: true,
@@ -68,6 +70,7 @@ export const Variants: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     controls: {
       disable: true,
@@ -90,7 +93,11 @@ export const Sizes: Story = {
 };
 
 export const Focus: Story = {
+  name: 'Focus',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -110,6 +117,7 @@ export const Focus: Story = {
 };
 
 export const LinkButtons: Story = {
+  name: 'Link buttons',
   parameters: {
     controls: {
       disable: true,
@@ -133,6 +141,7 @@ export const LinkButtons: Story = {
 };
 
 export const SettingACustomWidth: Story = {
+  name: 'Setting a custom width',
   parameters: {
     controls: {
       disable: true,
@@ -150,6 +159,7 @@ export const SettingACustomWidth: Story = {
 };
 
 export const PrefixAndSuffixIcons: Story = {
+  name: 'Prefix and suffix icons',
   parameters: {
     controls: {
       disable: true,
@@ -220,6 +230,7 @@ export const PrefixAndSuffixIcons: Story = {
 };
 
 export const Caret: Story = {
+  name: 'Caret',
   parameters: {
     controls: {
       disable: true,
@@ -242,6 +253,7 @@ export const Caret: Story = {
 };
 
 export const Loading: Story = {
+  name: 'Loading',
   parameters: {
     controls: {
       disable: true,
@@ -264,6 +276,7 @@ export const Loading: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -279,3 +292,17 @@ export const Disabled: Story = {
   <syn-button variant="outline" disabled>Outline</syn-button>
   <syn-button variant="text" disabled>Text</syn-button>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Variants,
+  Sizes,
+  LinkButtons,
+  SettingACustomWidth,
+  PrefixAndSuffixIcons,
+  Caret,
+  Loading,
+  Disabled,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories, 280);

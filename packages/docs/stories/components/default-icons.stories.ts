@@ -16,9 +16,6 @@ type Story = StoryObj;
 
 const createIconPage = (letter: string): Story => ({
   parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
     controls: {
       disable: true,
     },

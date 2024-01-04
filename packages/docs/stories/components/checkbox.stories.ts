@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -45,6 +46,7 @@ export const Default = {
 } as Story;
 
 export const Checked: Story = {
+  name: 'Checked',
   parameters: {
     controls: {
       disable: true,
@@ -59,6 +61,7 @@ export const Checked: Story = {
 };
 
 export const Indeterminate: Story = {
+  name: 'Indeterminate',
   parameters: {
     controls: {
       disable: true,
@@ -73,6 +76,7 @@ export const Indeterminate: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -87,6 +91,7 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     controls: {
       disable: true,
@@ -107,7 +112,11 @@ export const Sizes: Story = {
 };
 
 export const CustomValidity: Story = {
+  name: 'Custom validity',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -169,3 +178,13 @@ export const CustomValidity: Story = {
     </script>
   `,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Checked,
+  Indeterminate,
+  Disabled,
+  Sizes,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories);

@@ -7,7 +7,7 @@ import '../../../components/src/components/radio-group/radio-group.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
+import { generateScreenshotStory, generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 
@@ -46,6 +46,7 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
+  name: 'Labels',
   parameters: {
     controls: {
       disable: true,
@@ -63,6 +64,7 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
+  name: 'Help text',
   parameters: {
     controls: {
       disable: true,
@@ -80,6 +82,7 @@ export const HelpText: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -97,6 +100,7 @@ export const Disabled: Story = {
 };
 
 export const Checked: Story = {
+  name: 'Checked',
   render: () => html`
   <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
     <syn-radio value="1">Option</syn-radio>
@@ -106,7 +110,11 @@ export const Checked: Story = {
 };
 
 export const Invalid: Story = {
+  name: 'Invalid',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -152,7 +160,11 @@ export const Invalid: Story = {
 };
 
 export const CustomValidity: Story = {
+  name: 'Custom validity',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -209,3 +221,13 @@ export const CustomValidity: Story = {
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Labels,
+  HelpText,
+  Disabled,
+  Checked,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories, 230);

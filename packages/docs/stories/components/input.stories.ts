@@ -4,7 +4,9 @@ import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -37,6 +39,7 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
+  name: 'Labels',
   parameters: {
     controls: {
       disable: true,
@@ -51,6 +54,7 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
+  name: 'Help text',
   parameters: {
     controls: {
       disable: true,
@@ -65,6 +69,7 @@ export const HelpText: Story = {
 };
 
 export const Placeholders: Story = {
+  name: 'Placeholder',
   parameters: {
     controls: {
       disable: true,
@@ -79,6 +84,7 @@ export const Placeholders: Story = {
 };
 
 export const Clearable: Story = {
+  name: 'Clearable',
   parameters: {
     controls: {
       disable: true,
@@ -93,6 +99,7 @@ export const Clearable: Story = {
 };
 
 export const TogglePassword: Story = {
+  name: 'Toggle password',
   parameters: {
     controls: {
       disable: true,
@@ -107,6 +114,7 @@ export const TogglePassword: Story = {
 };
 
 export const ReadonlyInputs: Story = {
+  name: 'Readonly inputs',
   parameters: {
     controls: {
       disable: true,
@@ -126,7 +134,11 @@ export const Focus: Story = {
     label: 'Label',
     placeholder: 'Insert text here...',
   },
+  name: 'Focus',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -150,6 +162,7 @@ export const Focus: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -168,6 +181,7 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     controls: {
       disable: true,
@@ -190,7 +204,11 @@ export const Invalid: Story = {
     label: 'Label',
     placeholder: 'Insert text here...',
   },
+  name: 'Invalid',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -245,6 +263,7 @@ export const Invalid: Story = {
  * The type attribute controls the type of input the browser renders.
  */
 export const InputTypes: Story = {
+  name: 'Input types',
   render: () => html`
   <syn-input type="email" placeholder="Email"></syn-input><br/>
   <syn-input type="number" placeholder="Number"></syn-input><br/>
@@ -252,6 +271,7 @@ export const InputTypes: Story = {
 };
 
 export const PrefixSuffixIcons: Story = {
+  name: 'Prefix and suffix icons',
   parameters: {
     controls: {
       disable: true,
@@ -286,6 +306,7 @@ export const PrefixSuffixIcons: Story = {
  * The same technique works for inputs, textareas, radio groups, and similar form controls.
  */
 export const CustomizingLabelPosition: Story = {
+  name: 'Customizing label position',
   render: () => html`
   <syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
   <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
@@ -317,3 +338,20 @@ export const CustomizingLabelPosition: Story = {
     }
   </style>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Labels,
+  HelpText,
+  Placeholders,
+  Clearable,
+  TogglePassword,
+  ReadonlyInputs,
+  Disabled,
+  Sizes,
+  InputTypes,
+  PrefixSuffixIcons,
+  CustomizingLabelPosition,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories, 360);

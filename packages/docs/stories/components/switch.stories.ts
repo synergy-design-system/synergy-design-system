@@ -8,6 +8,7 @@ import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -47,6 +48,7 @@ export const Default = {
 } as Story;
 
 export const Checked: Story = {
+  name: 'Checked',
   parameters: {
     controls: {
       disable: true,
@@ -61,6 +63,7 @@ export const Checked: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     controls: {
       disable: true,
@@ -75,7 +78,11 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
+  name: 'Focus',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -97,7 +104,11 @@ export const Focus: Story = {
 };
 
 export const Invalid: Story = {
+  name: 'Invalid',
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: true,
     },
@@ -140,10 +151,8 @@ export const Invalid: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
     controls: {
       disable: true,
     },
@@ -158,3 +167,11 @@ export const Sizes: Story = {
   <syn-switch size="medium">Medium</syn-switch><br>
   <syn-switch size="large">Large</syn-switch>`,
 };
+
+// Bundled screenshot story
+const bundledStories: Array<Story> = [
+  Disabled,
+  Sizes,
+];
+
+export const Screenshot: Story = generateScreenshotStory(bundledStories);

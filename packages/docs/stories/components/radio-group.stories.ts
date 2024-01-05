@@ -34,7 +34,9 @@ export const Default = {
       disable: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'default'),
+      description: {
+        story: generateStoryDescription('radio-group', 'default'),
+      },
     },
   },
   render: () => html`
@@ -49,7 +51,9 @@ export const Labels: Story = {
   name: 'Labels',
   parameters: {
     docs: {
-      description: generateStoryDescription('radio-group', 'labels'),
+      description: {
+        story: generateStoryDescription('radio-group', 'labels'),
+      },
     },
   },
   render: () => html`
@@ -64,7 +68,9 @@ export const HelpText: Story = {
   name: 'Help text',
   parameters: {
     docs: {
-      description: generateStoryDescription('radio-group', 'help-text'),
+      description: {
+        story: generateStoryDescription('radio-group', 'help-text'),
+      },
     },
   },
   render: () => html`
@@ -79,7 +85,9 @@ export const Disabled: Story = {
   name: 'Disabled',
   parameters: {
     docs: {
-      description: generateStoryDescription('radio-group', 'disabled'),
+      description: {
+        story: generateStoryDescription('radio-group', 'disabled'),
+      },
     },
   },
   render: () => html`
@@ -107,7 +115,9 @@ export const Invalid: Story = {
       disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'required'),
+      description: {
+        story: generateStoryDescription('radio-group', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }) => {
@@ -149,7 +159,9 @@ export const CustomValidity: Story = {
       disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'setCustomValidity'),
+      description: {
+        story: generateStoryDescription('radio-group', 'setCustomValidity'),
+      },
     },
   },
   play: async ({ canvasElement }) => {

@@ -615,10 +615,13 @@ export const generateScreenshotStory = (stories: Array<StoryObj>, heightPx: numb
       chromatic: {
         disableSnapshot: false,
       },
+      docs: {
+        disable: true
+      },
     },
     render: (args, context) => html`${stories.map((story) => html`
     <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-      <div style='margin-bottom: var(--syn-spacing-small)'>${story.name}</div>
+      <h3>${story.name}</h3>
       ${story.render?.(args, context)}
     </div>
     `)}`,

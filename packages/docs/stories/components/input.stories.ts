@@ -120,7 +120,9 @@ export const Focus: Story = {
       disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('input', 'focus'),
+      description: {
+        story: generateStoryDescription('input', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }) => {
@@ -174,7 +176,9 @@ export const Invalid: Story = {
       disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('input', 'invalid'),
+      description: {
+        story: generateStoryDescription('input', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }) => {

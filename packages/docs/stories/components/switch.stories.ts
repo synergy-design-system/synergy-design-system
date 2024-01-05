@@ -157,6 +157,7 @@ export const Sizes: Story = {
 
 // Bundled screenshot story
 const bundledStories: Array<Story> = [
+  Checked,
   Disabled,
   Sizes,
 ];

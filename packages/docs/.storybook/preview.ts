@@ -10,11 +10,15 @@ import { stopAnimation } from '../src/decorators/StopAnimation';
 const preview: Preview = {
   decorators: [stopAnimation],
   parameters: {
+    chromatic: { 
+      disableSnapshot: true
+    },
     docs: {
       stories: { inline: false }
     },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
+      disable: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,

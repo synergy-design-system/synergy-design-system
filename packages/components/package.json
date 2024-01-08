@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Web Components",
     "LIT Components",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@lit/react": "^1.0.0",
-    "@open-wc/testing": "^3.2.0",
+    "@open-wc/testing": "^4.0.0",
     "@playwright/test": "^1.39.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
@@ -169,9 +169,9 @@
   "web-types": "./dist/web-types.json",
   "meta": {
     "checksums": {
-      "angular": "1dabd1797d04ab3ff1e5dc1e2ea4878e4b4ab64e",
-      "react": "78ed4c9ba1c9c6f56c0e53ee25b14afeaaea528e",
-      "vue": "9c816987237d7c8013fd696167898ca50f482477"
+      "angular": "9760e508e700fb38c86cc04d2a27fd0687b9afbd",
+      "react": "4564414376bb48f54c847326d862303f28366540",
+      "vue": "260b2e7d31d22a7f19c43ce42af51769a03fdf9f"
     }
   }
 }

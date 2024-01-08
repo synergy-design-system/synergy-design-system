@@ -12,7 +12,11 @@ const preview: Preview = {
   decorators: [stopAnimation],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
+    chromatic: { 
+      disableSnapshot: true
+    },
     controls: {
+      disable: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,

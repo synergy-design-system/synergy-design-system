@@ -6,7 +6,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import format from 'html-format';
-import { setCustomElementsManifest } from '@storybook/web-components';
+import { StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 
 export default async function loadCustomElements() {
@@ -600,3 +600,30 @@ type AttributeDescription = {
 export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => (
    (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
 );
+
+
+/**
+ * Creates a bundled story for non-interactive stories, which does a chromatic screenshot
+ * 
+ * @param stories - all non-interactive stories which should be bundled
+ * @param heightPx - the height of each single story
+ * @returns the bundled story
+ */
+export const generateScreenshotStory = (stories: Array<StoryObj>, heightPx: number = 150): StoryObj => {
+  return {
+    parameters: {
+      chromatic: {
+        disableSnapshot: false,
+      },
+      docs: {
+        disable: true
+      },
+    },
+    render: (args, context) => html`${stories.map((story) => html`
+    <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
+      <h3>${story.name}</h3>
+      ${story.render?.(args, context)}
+    </div>
+    `)}`,
+  };
+}

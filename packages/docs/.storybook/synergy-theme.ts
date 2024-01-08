@@ -2,7 +2,7 @@ import { create } from '@storybook/theming/create';
 
 const baseConfig = {
   brandTitle: 'Synergy Design System',
-  brandUrl: 'https://github.com/synergy-design-system/synergy-design-system/',
+  brandUrl: '/',
   brandImage: '/synergy_logo_transparent.png',
   brandTarget: '_self',
 };

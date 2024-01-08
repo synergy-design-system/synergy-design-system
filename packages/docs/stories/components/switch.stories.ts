@@ -156,10 +156,8 @@ export const Sizes: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Checked,
   Disabled,
   Sizes,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories);
+]);

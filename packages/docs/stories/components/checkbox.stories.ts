@@ -168,11 +168,9 @@ export const CustomValidity: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Checked,
   Indeterminate,
   Disabled,
   Sizes,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories);
+]);

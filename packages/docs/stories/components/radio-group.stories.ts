@@ -137,7 +137,7 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-  <form>
+  <form class="custom-validity">
     <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
       <syn-radio value="1">Option 1</syn-radio>
       <syn-radio value="2">Option 2</syn-radio>
@@ -146,8 +146,13 @@ export const Invalid: Story = {
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>
   <style>
+  .custom-validity {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   syn-button {
-    margin-top: 1rem;
+    align-self: flex-start;
   }
 </style>`,
 };
@@ -215,11 +220,9 @@ export const CustomValidity: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Labels,
   HelpText,
   Disabled,
   Checked,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories, 230);
+], 230);

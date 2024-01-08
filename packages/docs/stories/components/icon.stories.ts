@@ -126,8 +126,9 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        // The docu has to be added like this as template string and not as block comment above,
-        //  because otherwise the example of the angular+webpack glob pattern would not work.
+        // The documentation has to be added like this as template string
+        // and not as block comment above, because otherwise the example of the
+        // angular+webpack glob pattern would not work.
         // The "*/" of "glob": "**/*" would close the block comment.
         // It could be escaped by doing "glob": "**\/*" but then the users would see the backslash
         // and also would copy it with the example.
@@ -405,7 +406,7 @@ export const SpriteSheetUsage: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Colors,
   Sizing,
   Labels,
@@ -413,6 +414,4 @@ const bundledStories: Array<Story> = [
   CDNIconLibrary,
   BundledIconLibrary,
   SpriteSheetUsage,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories);
+]);

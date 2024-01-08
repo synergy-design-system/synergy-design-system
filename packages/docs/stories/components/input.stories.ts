@@ -295,7 +295,7 @@ export const CustomizingLabelPosition: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Labels,
   HelpText,
   Placeholders,
@@ -307,6 +307,4 @@ const bundledStories: Array<Story> = [
   InputTypes,
   PrefixSuffixIcons,
   CustomizingLabelPosition,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories, 360);
+], 360);

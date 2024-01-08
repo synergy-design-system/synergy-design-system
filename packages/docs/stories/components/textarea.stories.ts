@@ -192,13 +192,18 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form>
+    <form class="custom-validity">
       <syn-textarea placeholder="Type something" help-text="This textarea is required." required></syn-textarea>
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
     syn-button {
-      margin-top: 1rem;
+      align-self: flex-start;
     }
     </style>
   `,
@@ -229,7 +234,7 @@ export const ExpandWithContent: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Labels,
   HelpText,
   Rows,
@@ -239,6 +244,4 @@ const bundledStories: Array<Story> = [
   Sizes,
   PreventResizing,
   ExpandWithContent,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories, 500);
+], 500);

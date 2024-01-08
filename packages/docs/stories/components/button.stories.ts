@@ -239,7 +239,7 @@ export const Disabled: Story = {
 };
 
 // Bundled screenshot story
-const bundledStories: Array<Story> = [
+export const Screenshot: Story = generateScreenshotStory([
   Variants,
   Sizes,
   LinkButtons,
@@ -248,6 +248,4 @@ const bundledStories: Array<Story> = [
   Caret,
   Loading,
   Disabled,
-];
-
-export const Screenshot: Story = generateScreenshotStory(bundledStories, 280);
+], 280);

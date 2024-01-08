@@ -106,7 +106,7 @@ ICON and PREFIX are one of the following:
 Examples for valid PR titles:
 
 ```
-fix: 🐛 Fix accessibility in syn-button
+fix: 🤔 Fix accessibility in syn-button
 feat: ✨ Add syn-radio
 docs: 📚 Add installation instructions
 chore: 🔧 Improve build scripts

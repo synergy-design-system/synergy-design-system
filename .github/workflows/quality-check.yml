@@ -1,6 +1,8 @@
 name: Quality Gate
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   quality-gate:
@@ -91,6 +93,7 @@ jobs:
   chromatic-deployment:
     name: Validate Chromatic
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
     needs: [quality-gate,test]
     steps:
         # 👇 Version 2 of the action

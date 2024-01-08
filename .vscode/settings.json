@@ -108,13 +108,9 @@
         "packages/components/tsconfig.prod.json": true,
         "packages/components/web-test-runner.config.js": true,
         "packages/docs/stories/components/alert.stories.ts": true,
-        "packages/docs/stories/components/button.stories.ts": true,
         "packages/react/src/**": true
     },
     "html.customData": [
         "packages/components/dist/vscode.html-custom-data.json"
-    ],
-    "files.readonlyExclude": {
-        "packages/docs/stories/components/button.stories.ts": true
-    }
+    ]
 }

@@ -4,7 +4,9 @@ import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -27,6 +29,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'default'),
@@ -37,10 +42,8 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
+  name: 'Labels',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'label'),
@@ -51,10 +54,8 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
+  name: 'Help text',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'help-text'),
@@ -65,10 +66,8 @@ export const HelpText: Story = {
 };
 
 export const Placeholders: Story = {
+  name: 'Placeholder',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'placeholder'),
@@ -79,24 +78,20 @@ export const Placeholders: Story = {
 };
 
 export const Clearable: Story = {
+  name: 'Clearable',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'clearable'),
       },
     },
   },
-  render: () => html`<syn-input placeholder="Clearable" clearable></syn-input>`,
+  render: () => html`<syn-input value="Clearable" placeholder="Clearable" clearable></syn-input>`,
 };
 
 export const TogglePassword: Story = {
+  name: 'Toggle password',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'password-toggle'),
@@ -107,10 +102,8 @@ export const TogglePassword: Story = {
 };
 
 export const ReadonlyInputs: Story = {
+  name: 'Readonly inputs',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'readonly'),
@@ -121,17 +114,15 @@ export const ReadonlyInputs: Story = {
 };
 
 export const Focus: Story = {
-  args: {
-    helpText: 'This input is focused.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
-  },
+  name: 'Focus',
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('input', 'focus'),
+      description: {
+        story: generateStoryDescription('input', 'focus'),
+      },
     },
   },
   play: ({ canvasElement }) => {
@@ -142,18 +133,14 @@ export const Focus: Story = {
   },
   render: () => html`
       <form>
-        ${generateTemplate({
-    args,
-  })}
+        <syn-input help-text="This input is focused." label="Label" placeholder="Insert text here..."></syn-input>
       </form>
     `,
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'disabled'),
@@ -168,10 +155,8 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'size'),
@@ -185,17 +170,15 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    helpText: 'This input is required.',
-    label: 'Label',
-    placeholder: 'Insert text here...',
-  },
+  name: 'Invalid',
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('input', 'invalid'),
+      description: {
+        story: generateStoryDescription('input', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }) => {
@@ -218,14 +201,7 @@ export const Invalid: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-  ${generateTemplate({
-    args,
-    constants: [{
-      name: 'required',
-      type: 'attribute',
-      value: true,
-    }],
-  })}
+      <syn-input help-text="This input is required." label="Label" placeholder="Insert text here..." required></syn-input>
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <style>
@@ -245,6 +221,7 @@ export const Invalid: Story = {
  * The type attribute controls the type of input the browser renders.
  */
 export const InputTypes: Story = {
+  name: 'Input types',
   render: () => html`
   <syn-input type="email" placeholder="Email"></syn-input><br/>
   <syn-input type="number" placeholder="Number"></syn-input><br/>
@@ -252,10 +229,8 @@ export const InputTypes: Story = {
 };
 
 export const PrefixSuffixIcons: Story = {
+  name: 'Prefix and suffix icons',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('input', 'prefix-suffix'),
@@ -286,6 +261,7 @@ export const PrefixSuffixIcons: Story = {
  * The same technique works for inputs, textareas, radio groups, and similar form controls.
  */
 export const CustomizingLabelPosition: Story = {
+  name: 'Customizing label position',
   render: () => html`
   <syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
   <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
@@ -317,3 +293,18 @@ export const CustomizingLabelPosition: Story = {
     }
   </style>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  Labels,
+  HelpText,
+  Placeholders,
+  Clearable,
+  TogglePassword,
+  ReadonlyInputs,
+  Disabled,
+  Sizes,
+  InputTypes,
+  PrefixSuffixIcons,
+  CustomizingLabelPosition,
+], 360);

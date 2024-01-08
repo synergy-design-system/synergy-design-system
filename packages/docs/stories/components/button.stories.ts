@@ -60,7 +60,12 @@ export const Variants: Story = {
   render: () => html`
   <syn-button variant="filled">Filled</syn-button>
   <syn-button variant="outline">Outline</syn-button>
-  <syn-button variant="text">Text</syn-button>`,
+  <syn-button variant="text">Text</syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const Sizes: Story = {
@@ -75,7 +80,12 @@ export const Sizes: Story = {
   render: () => html`
   <syn-button size="small">Small</syn-button>
   <syn-button size="medium">Medium</syn-button>
-  <syn-button size="large">Large</syn-button>`,
+  <syn-button size="large">Large</syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const Focus: Story = {
@@ -112,7 +122,12 @@ export const LinkButtons: Story = {
   <syn-button href="https://example.com/">Link</syn-button>
   <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
   <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
-  <syn-button href="https://example.com/" disabled>Disabled</syn-button>`,
+  <syn-button href="https://example.com/" disabled>Disabled</syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const SettingACustomWidth: Story = {
@@ -190,7 +205,12 @@ export const PrefixAndSuffixIcons: Story = {
     <syn-icon slot="prefix" name="link"></syn-icon>
     <syn-icon slot="suffix" name="launch"></syn-icon>
     Open
-  </syn-button>`,
+  </syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const Caret: Story = {
@@ -205,7 +225,12 @@ export const Caret: Story = {
   render: () => html`
   <syn-button size="small" caret>Small</syn-button>
   <syn-button size="medium" caret>Medium</syn-button>
-  <syn-button size="large" caret>Large</syn-button>`,
+  <syn-button size="large" caret>Large</syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const Loading: Story = {
@@ -220,7 +245,12 @@ export const Loading: Story = {
   render: () => html`
   <syn-button variant="filled" loading>Filled</syn-button>
   <syn-button variant="outline" loading>Outline</syn-button>
-  <syn-button variant="text" loading>Text</syn-button>`,
+  <syn-button variant="text" loading>Text</syn-button>
+  <style>
+    syn-button {
+      margin: 0.2rem;
+    }
+  </style>`,
 };
 
 export const Disabled: Story = {

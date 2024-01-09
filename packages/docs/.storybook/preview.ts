@@ -8,14 +8,15 @@ import '../../tokens/src/shoelace-fallbacks/_utility.css';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';
+import { LIGHT_THEME, DARK_THEME } from './modes.ts';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: '🌞 Synergy (light)',
-  themes: {
-    '🌞 Synergy (light)': 'syn-theme-light',
-    '🌙 Synergy (dark)': 'syn-theme-dark',
-  },
+  defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
+  themes: {
+    [LIGHT_THEME]: 'syn-theme-light',
+    [DARK_THEME]: 'syn-theme-dark',
+  },
 });
 
 const preview: Preview = {
@@ -41,7 +42,16 @@ const preview: Preview = {
       ],
     },
     chromatic: { 
-      disableSnapshot: true
+      disableSnapshot: true,
+      // @see https://www.chromatic.com/docs/themes/
+      modes: {
+        [LIGHT_THEME]: {
+          theme: LIGHT_THEME,
+        },
+        [DARK_THEME]: {
+          theme: DARK_THEME,
+        },
+      },
     },
     controls: {
       disable: true,
@@ -52,13 +62,6 @@ const preview: Preview = {
     },
     docs: {
       stories: { inline: false }
-    },
-    themes: {
-      default: 'Synergy (light)',
-      list: [
-        { name: 'Synergy (light)', class: 'syn-theme-light', color: '#36bbfa' },
-        { name: 'Synergy (dark)', class: 'syn-theme-dark', color: '#072E4A' },
-      ],
     },
   },
 };

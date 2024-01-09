@@ -24,5 +24,10 @@
     "lint": "pnpm --recursive --if-present lint",
     "release": "pnpm --recursive --if-present --workspace-concurrency=1 release"
   },
-  "private": true
+  "private": true,
+  "pnpm": {
+    "patchedDependencies": {
+      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
+    }
+  }
 }

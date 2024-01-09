@@ -40,7 +40,8 @@
     "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
     "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
     "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
-    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\""
+    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\"",
+    "release.dry": "semantic-release --dry-run --tagFormat 'components/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
@@ -150,14 +151,15 @@
             "package.json"
           ]
         }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
       ]
-    ]
+    ],
+    "monorepo": {
+      "dependencies": [
+        "packages/vue",
+        "packages/react",
+        "packages/angular"
+      ]
+    }
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.3",
@@ -166,12 +168,5 @@
     "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0"
   },
-  "web-types": "./dist/web-types.json",
-  "meta": {
-    "checksums": {
-      "angular": "9760e508e700fb38c86cc04d2a27fd0687b9afbd",
-      "react": "4564414376bb48f54c847326d862303f28366540",
-      "vue": "260b2e7d31d22a7f19c43ce42af51769a03fdf9f"
-    }
-  }
+  "web-types": "./dist/web-types.json"
 }

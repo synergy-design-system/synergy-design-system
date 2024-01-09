@@ -1,19 +1,19 @@
 import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
-import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/tokens/themes/dark.css';
+import '@synergy-design-system/tokens/themes/light.css';
 import '../../components/src/synergy';
 
-import '../src/docs.css';
 import '../../tokens/src/shoelace-fallbacks/_utility.css';
+import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: 'light',
+  defaultTheme: '🌞 Synergy (light)',
   themes: {
-    dark: 'syn-theme-dark',
-    light: 'syn-theme-light',
+    '🌞 Synergy (light)': 'syn-theme-light',
+    '🌙 Synergy (dark)': 'syn-theme-dark',
   },
   parentSelector: 'body',
 });
@@ -22,6 +22,24 @@ const preview: Preview = {
   decorators: [stopAnimation, themeByClassName],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
+    // Make sure we are able to check background colors when in our different themes
+    backgrounds: {
+      default: 'white',
+      values: [
+        {
+          name: 'neutral-1000',
+          value: 'var(--syn-color-neutral-0)',
+        },
+        {
+          name: 'neutral-50',
+          value: 'var(--syn-color-neutral-50)',
+        },
+        {
+          name: 'primary-100',
+          value: 'var(--syn-color-primary-50)',
+        },
+      ],
+    },
     chromatic: { 
       disableSnapshot: true
     },

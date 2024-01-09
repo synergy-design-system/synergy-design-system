@@ -11,9 +11,6 @@ index fbcb315b5bd2621991d4f657a82db8004b49f1c6..ab469853918f52a934d71621dbe8c557
 +  const dependencies = release.monorepo.dependencies;
 +
 +  debug('Filter commits by package path: "%s" and dependencies: %o', packagePath, dependencies);
-+
-+  console.log('Filter commits by package path: "%s" and dependencies: %o', packagePath, dependencies);
-+
    const commitsWithFiles = await withFiles(commits);
 -  // Convert package root path into segments - one for each folder
    const packageSegments = packagePath.split(path.sep);

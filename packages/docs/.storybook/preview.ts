@@ -25,7 +25,7 @@ const preview: Preview = {
     actions: { argTypesRegex: "^on[A-Z].*" },
     // Make sure we are able to check background colors when in our different themes
     backgrounds: {
-      default: 'white',
+      default: 'neutral-1000',
       values: [
         {
           name: 'neutral-1000',
@@ -41,7 +41,7 @@ const preview: Preview = {
         },
       ],
     },
-    chromatic: { 
+    chromatic: {
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
       modes: {

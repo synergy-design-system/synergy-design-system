@@ -46,6 +46,8 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
 
+      - name: Release (Dry)
+        run: pnpm release.dry
 
   test:
     name: Validate tests
@@ -94,9 +96,9 @@ jobs:
     name: Validate Chromatic
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
-    needs: [quality-gate,test]
+    needs: [quality-gate, test]
     steps:
-        # 👇 Version 2 of the action
+      # 👇 Version 2 of the action
       - name: Checkout repository
         uses: actions/checkout@v2
         with:

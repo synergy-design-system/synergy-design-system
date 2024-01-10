@@ -1,6 +1,7 @@
 # Synergy Design System Contribution Guidelines
 
 ## Table of contents
+
 - [Contributing to Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
@@ -43,7 +44,7 @@ We also ensure stable and reliable updates that align with semantic versioning. 
 ## Quality assurance
 
 All features and components must be automatically tested to catch regressions. We write tests to validate new features. We always provide storybook stories when authoring new components.
-Chromatic is used for checking visual differences. Open https://www.chromatic.com/build?appId=64f819d70a69cb8728e06daf to see and verify the latest changes. 
+Chromatic is used for checking visual differences. Open https://www.chromatic.com/build?appId=64f819d70a69cb8728e06daf to see and verify the latest changes.
 
 ## Managing icons
 
@@ -56,7 +57,6 @@ We regularly check for updates of our dependencies. This ensures that Synergy sh
 The most important dependency [Shoelace](https://shoelace.style/) is not managed via `pnpm` but via [vendorism](https://github.com/mariohamann/vendorism).
 We keep track of Shoelace and regularly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
 
-
 ## Coding conventions
 
 We are enforcing common code conventions via `eslint` and `stylelint`. Please make sure your code meets those conventions by linting your files or your PR may not be approved. You may use your editors eslint integration or run `pnpm lint` in the package that you are working on. Linting of all packages is also possible by issuing `pnpm lint` in the root of this repository.
@@ -64,6 +64,10 @@ We are enforcing common code conventions via `eslint` and `stylelint`. Please ma
 When writing components, use our defined list of design tokens for spacing, fonts or colors. As a rule of thumb, there should be no need to have a static color anywhere in your css code.
 
 Components must be optimized for accessibility. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.
+
+## Formatting
+
+Formatting rules are currently applied via `eslint` and `prettier`. You may format run `pnpm format` in the root of the repository to automatically format your code changes. Note that we are currently using `prettier` for non-code files only, `ts, tsx, js, jsx and vue` will be formatted using eslint.
 
 ### Ensure Accessibility
 
@@ -87,7 +91,7 @@ In our development workflow, we use Semantic Release to automate the release pro
 ### Pull requests and commits
 
 When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates guarantee that the following structure "`prefix`:`icon` `text`" is used.
-When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean. 
+When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean.
 The `prefix` is processed when the PR is merged and decides about the release version. Depending on the title, merged PRs can also create a new Synergy version.
 
 Title conventions for our PRs:
@@ -118,11 +122,9 @@ Before merging make sure that all sections are filled out properly and that all 
 
 When committing changes use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
 
-
 #### Assignees and reviewers
 
 When opening a PR, assign yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
-
 
 ## Release changes in framework wrapper packages
 
@@ -142,20 +144,15 @@ The `createChecksums` script is vital in these scenarios. It performs a dry run 
 
 The CI pipelines create and verify the wrapper project checksums. This check is automatically triggered after each commit. If discrepancies are found, the check fails and also the pipeline. This process helps to maintain the integrity and consistency of our release workflow, ensuring that manual changes are correctly accounted for in each release.
 
-
 ## Issue tracking
 
 When creating a new issue on GitHub we first decide which project to assign.
 
-|| synergy-design-system | design | internal |
-| -- | -- | -- | -- |
-| use for | code changes in the mono repo | changes in the Figma designs | maintenance stuff like CI pipelines or orga topics |
-| visibility | public | private | private |
-
+|            | synergy-design-system         | design                       | internal                                           |
+| ---------- | ----------------------------- | ---------------------------- | -------------------------------------------------- |
+| use for    | code changes in the mono repo | changes in the Figma designs | maintenance stuff like CI pipelines or orga topics |
+| visibility | public                        | private                      | private                                            |
 
 Continue with selecting a proper template from the list. The template helps to use a structured title and content. After the issue is created it needs to be refined in the team, so everybody has a common understanding and that it is clear what the exact outcome is desired. Before working on the implementation this refinement process needs to be performed by at least 2 team members, usually the whole team.
 
-
 > Note: We don't mention the names of internal or external colleagues in issues or other documents hosted on GitHub, as our project is public and can be accessed by anybody. The same goes for internal projects or products. Tagging/mentioning colleagues using their GitHub profiles is fine, as they decided to be visible on GitHub.
-
-

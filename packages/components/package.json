@@ -23,7 +23,9 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
     "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
@@ -35,6 +37,7 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
+    "format.eslint": "pnpm lint:js --fix",
     "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
     "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
     "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
@@ -144,12 +147,19 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
         }
       ]
     ],
     "monorepo": {
-      "dependencies": ["packages/vue", "packages/react", "packages/angular"]
+      "dependencies": [
+        "packages/vue",
+        "packages/react",
+        "packages/angular"
+      ]
     }
   },
   "dependencies": {

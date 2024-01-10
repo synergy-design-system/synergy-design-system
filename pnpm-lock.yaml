@@ -11,7 +11,11 @@ patchedDependencies:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
 
   packages/_private/angular-demo:
     dependencies:

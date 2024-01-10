@@ -21,6 +21,7 @@ const switchTheme: MouseEventHandler<SynButtonElement> = (e) => {
 
   // Will toggle between light to dark
   // with each call to switchTheme
+  // eslint-disable-next-line no-console
   console.log(bdy.className);
 };
 

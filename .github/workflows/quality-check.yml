@@ -34,6 +34,9 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
 
+      - name: Check for formatting issues
+        run: pnpm exec prettier . -c 
+
       - name: Lint
         run: pnpm lint
 

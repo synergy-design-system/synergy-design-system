@@ -7,10 +7,12 @@ import {
 } from '@synergy-design-system/angular';
 
 import { AppComponent } from './app.component';
+import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ThemeSwitchComponent,
   ],
   imports: [
     BrowserModule,

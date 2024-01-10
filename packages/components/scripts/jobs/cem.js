@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import prettier from 'prettier';
 import { execPromise, getPath, job } from './shared.js';
+// eslint-disable-next-line import/no-relative-packages
 import prettierConfig from '../../../../prettier.config.js';
 
 /**
@@ -16,7 +17,7 @@ export const runCem = job('Creating component manifest...', async () => {
   const packageData = await fs.readFile(packageJSON);
   const formattedPackageJSON = await prettier.format(packageData.toString(), {
     ...prettierConfig,
-    parser: 'json',
+    parser: 'json-stringify',
   });
 
   await fs.writeFile(packageJSON, formattedPackageJSON);

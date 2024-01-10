@@ -1,9 +1,21 @@
-import { execPromise, job } from './shared.js';
+import fs from 'fs/promises';
+import prettier from 'prettier';
+import { execPromise, getPath, job } from './shared.js';
 
 /**
- * Run esbuild for the components package
+ * Run cem for the components package
  */
-export const runCem = job('Creating component manifest...', async () => await execPromise(
-  'cem analyze --litelement --outdir dist',
-  { stdio: 'inherit' },
-));
+export const runCem = job('Creating component manifest...', async () => {
+  await execPromise(
+    'cem analyze --litelement --outdir dist',
+    { stdio: 'inherit' },
+  );
+
+  const packageJSON = getPath('../package.json');
+  const packageData = await fs.readFile(packageJSON);
+  const formattedPackageJSON = await prettier.format(packageData.toString(), {
+    parser: 'json',
+  });
+
+  await fs.writeFile(packageJSON, formattedPackageJSON);
+});

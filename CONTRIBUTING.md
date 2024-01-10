@@ -128,21 +128,7 @@ When opening a PR, assign yourself and everyone who should be involved to the PR
 
 ## Release changes in framework wrapper packages
 
-Framework wrappers (e.g., for Angular) are automatically released when there are changes in the components package, managed by Semantic Release. While most files in the framework packages are auto-generated during the `components` package build, there are cases where manual modifications are necessary (e.g., updating `angular/README.md` or `react/package.json`).
-
-The `createChecksums` script is vital in these scenarios. It performs a dry run of an npm publish and updates `components/package.json` with the checksums of the framework packages' tarballs. This process ensures that even manual changes in the framework packages are reflected in the components package without requiring manual intervention.
-
-### Example Workflow
-
-1. Modify `{framework-name}/package.json` or other files that get published on npm but are not automatically managed by `components`.
-2. Run `cd packages/components && pnpm create-checksums` or `(cd packages/components &&) pnpm build`.
-3. The script updates `components/package.json` with the new npm tarball's checksums.
-4. Commit these changes along with your original modifications, following our structured commit message format.
-5. Semantic Release will then automatically handle the release process based on these changes.
-
-### Automatic Checksum Verification and Update
-
-The CI pipelines create and verify the wrapper project checksums. This check is automatically triggered after each commit. If discrepancies are found, the check fails and also the pipeline. This process helps to maintain the integrity and consistency of our release workflow, ensuring that manual changes are correctly accounted for in each release.
+Framework wrappers (e.g., for Angular, Vue and React) are automatically released when there are changes in the components package, managed by Semantic Release. Changes to framework wrappers will also automatically create a release for the components package.
 
 ## Issue tracking
 

@@ -17,16 +17,16 @@ Thank you for taking your time to report a bug in the Synergy Design System. Ple
 
 # Version
 
-The bug occurred with the following version of the component library: **\_**
+The bug occurred with the following version of the component library:
 
 # Component
 
-The issue arises when using the following component(s): **\_**
+The issue arises when using the following component(s):
 
 # Environment
 
-The issue occurred with the following operating system(s): **\_**
-The issue occurred in the following browser(s): **\_**
+The issue occurred with the following operating system(s):
+The issue occurred in the following browser(s):
 
 # Description
 

@@ -19,7 +19,7 @@ Please make sure to read the existing documentation and confirm the functionalit
 
 # Component
 
-I suggest to add the feature to the following component: **\_**
+I suggest to add the feature to the following component:
 
 # Story
 

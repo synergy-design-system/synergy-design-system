@@ -19,8 +19,7 @@ Please make sure to read the existing documentation and confirm the functionalit
 
 # Component
 
-I suggest to add the feature to the following component: _____
-
+I suggest to add the feature to the following component: **\_**
 
 # Story
 
@@ -31,8 +30,8 @@ The Story should answer the following questions:
 - What should the component do and how should it behave?
 - What is the application context?
 -->
-As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].
 
+As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].
 
 # Acceptance criteria
 

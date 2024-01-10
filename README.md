@@ -1,4 +1,5 @@
 # Synergy Design System
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./packages/docs/public/synergy_logo_dark.png" width="400">
   <img alt="Logo" src="./packages/docs/public/synergy_logo_light.png" width="400">
@@ -8,12 +9,15 @@ Welcome to the home of the Synergy Design System.
 This project is mainly intended for usage in [SICK](https://www.sick.com) applications to ensure a unique look and feel across applications, however you may also use it [for your own projects for free](./LICENSE) as well.
 
 ## Documentation
+
 The documentation is always up-to-date and can be found on https://synergy-design-system.github.io/ .
 
 ## Source code
+
 The code resides on GitHub: https://github.com/synergy-design-system/synergy-design-system .
 
 ## Packages
+
 This repository is comprised of several sub-packages.
 |package|description|
 |--|--|
@@ -24,7 +28,6 @@ This repository is comprised of several sub-packages.
 |angular|angular wrappers for better DX in Angular (auto generated)|
 |react|react wrappers for better DX in React (auto generated)|
 |vue|vue wrappers for better DX in VueJS (auto generated)|
-
 
 ---
 

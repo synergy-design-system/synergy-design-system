@@ -17,17 +17,16 @@ Thank you for taking your time to report a bug in the Synergy Design System. Ple
 
 # Version
 
-The bug occurred with the following version of the component library: _____
+The bug occurred with the following version of the component library: **\_**
 
 # Component
 
-The issue arises when using the following component(s): _____
+The issue arises when using the following component(s): **\_**
 
 # Environment
 
-The issue occurred with the following operating system(s): _____
-The issue occurred in the following browser(s): _____
-
+The issue occurred with the following operating system(s): **\_**
+The issue occurred in the following browser(s): **\_**
 
 # Description
 
@@ -35,7 +34,6 @@ The issue occurred in the following browser(s): _____
 Please provide a description of the bug.
 If it is possible and meaningful please also consider to provide a screenshot or screencast.
 -->
-
 
 # Acceptance criteria
 

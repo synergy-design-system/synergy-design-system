@@ -23,7 +23,9 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
     "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
@@ -144,12 +146,25 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": ["CHANGELOG.md", "package.json"]
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
         }
       ]
     ],
     "monorepo": {
-      "dependencies": ["packages/vue", "packages/react", "packages/angular"]
+      "dependencies": [
+        "packages/vue",
+        "packages/react",
+        "packages/angular"
+      ]
     }
   },
   "dependencies": {

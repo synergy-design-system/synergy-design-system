@@ -27,3 +27,6 @@ docs/storybook-static
 
 # Do not format tokens!
 packages/tokens/src/**/*.json
+
+# Changelogs are automatically generated
+CHANGELOG.md

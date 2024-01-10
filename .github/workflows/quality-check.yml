@@ -35,7 +35,7 @@ jobs:
         run: git diff --exit-code
 
       - name: Check for formatting issues
-        run: pnpm exec prettier . -c 
+        run: pnpm exec prettier . -c
 
       - name: Lint
         run: pnpm lint

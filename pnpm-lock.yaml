@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   semantic-release-monorepo@7.0.5:
-    hash: dsuoow6xi6vylyexoop7m5y74u
+    hash: truyw3zny6xwfgnwjmnt4lw47m
     path: patches/semantic-release-monorepo@7.0.5.patch
 
 importers:
@@ -345,7 +345,7 @@ importers:
         version: 19.0.5
       semantic-release-monorepo:
         specifier: ^7.0.5
-        version: 7.0.5(patch_hash=dsuoow6xi6vylyexoop7m5y74u)(semantic-release@19.0.5)
+        version: 7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5)
       style-dictionary:
         specifier: ^3.8.0
         version: 3.8.0
@@ -499,7 +499,7 @@ importers:
         version: 19.0.5
       semantic-release-monorepo:
         specifier: ^7.0.5
-        version: 7.0.5(patch_hash=dsuoow6xi6vylyexoop7m5y74u)(semantic-release@19.0.5)
+        version: 7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5)
       sinon:
         specifier: ^16.1.0
         version: 16.1.0
@@ -687,7 +687,7 @@ importers:
         version: 19.0.5
       semantic-release-monorepo:
         specifier: ^7.0.5
-        version: 7.0.5(patch_hash=dsuoow6xi6vylyexoop7m5y74u)(semantic-release@19.0.5)
+        version: 7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5)
       style-dictionary:
         specifier: ^3.8.0
         version: 3.8.0
@@ -17005,7 +17005,7 @@ packages:
       node-forge: 1.3.1
     dev: true
 
-  /semantic-release-monorepo@7.0.5(patch_hash=dsuoow6xi6vylyexoop7m5y74u)(semantic-release@19.0.5):
+  /semantic-release-monorepo@7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5):
     resolution: {integrity: sha512-riOYD8eZ5PIST7o97Ltc01l8VQW7q01NmPDRPOBycaeZczJowyKkzkBfo92kTIWDFWbdO3G8A695JrrYjoTaiw==}
     peerDependencies:
       semantic-release: '>=15.11.x'

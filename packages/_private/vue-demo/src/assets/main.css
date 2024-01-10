@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-  align-items: center;
+  align-items: flex-start;
   background: var(--syn-color-neutral-100);
   color: var(--syn-color-neutral-950);
   display: flex;

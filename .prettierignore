@@ -21,6 +21,9 @@ dist/
 .angular
 angular/dist
 
+# Components should exclude tsconfig as this is handeled by vendorism
+packages/components/tsconfig*.*
+
 # Docs
 docs/dist
 docs/storybook-static

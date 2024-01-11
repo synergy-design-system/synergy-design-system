@@ -1,8 +1,9 @@
 # Synergy Design System Contribution Guidelines
 
 ## Table of contents
-- [Contributing to Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
-  - [Table of Contents](#table-of-contents)
+
+- [Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
+  - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting started](#getting-started)
   - [Breaking changes](#breaking-changes)
@@ -16,9 +17,6 @@
   - [Semantic release process](#semantic-release-process)
     - [Pull requests and commits](#pull-requests-and-commits)
       - [Assignees and reviewers](#assignees-and-reviewers)
-  - [Release changes in framework wrapper packages](#release-changes-in-framework-wrapper-packages)
-    - [Example Workflow](#example-workflow)
-    - [Automatic Checksum Verification and Update](#automatic-checksum-verification-and-update)
   - [Issue tracking](#issue-tracking)
 
 ## Overview
@@ -43,7 +41,7 @@ We also ensure stable and reliable updates that align with semantic versioning. 
 ## Quality assurance
 
 All features and components must be automatically tested to catch regressions. We write tests to validate new features. We always provide storybook stories when authoring new components.
-Chromatic is used for checking visual differences. Open https://www.chromatic.com/build?appId=64f819d70a69cb8728e06daf to see and verify the latest changes. 
+Chromatic is used for checking visual differences. Open https://www.chromatic.com/build?appId=64f819d70a69cb8728e06daf to see and verify the latest changes.
 
 ## Managing icons
 
@@ -55,7 +53,6 @@ We regularly check for updates of our dependencies. This ensures that Synergy sh
 
 The most important dependency [Shoelace](https://shoelace.style/) is not managed via `pnpm` but via [vendorism](https://github.com/mariohamann/vendorism).
 We keep track of Shoelace and regularly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
-
 
 ## Coding conventions
 
@@ -82,12 +79,13 @@ If you want to contribute to this project, please [make sure that a similar issu
 
 ## Semantic release process
 
-In our development workflow, we use Semantic Release to automate the release process for each package. This approach ensures that releases are consistent, predictable, and based on the analysis of relevant commit messages.
+In our development workflow, we use Semantic Release to automate the release process for each package by filtering relevant commits. This approach ensures that releases are consistent and predictable.
+`@synergy-design-system/vue`, `@synergy-design-system/react` and `@synergy-design-system/angular` always receive the version number of `@synergy-design-system/components` and are published together with it. To make this possible our patched version of `semantic-release-monorepo` takes care of analyzing relevant commits in either (!) of these packages.
 
 ### Pull requests and commits
 
 When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates guarantee that the following structure "`prefix`:`icon` `text`" is used.
-When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean. 
+When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean.
 The `prefix` is processed when the PR is merged and decides about the release version. Depending on the title, merged PRs can also create a new Synergy version.
 
 Title conventions for our PRs:
@@ -118,44 +116,19 @@ Before merging make sure that all sections are filled out properly and that all 
 
 When committing changes use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
 
-
 #### Assignees and reviewers
 
 When opening a PR, assign yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
-
-
-## Release changes in framework wrapper packages
-
-Framework wrappers (e.g., for Angular) are automatically released when there are changes in the components package, managed by Semantic Release. While most files in the framework packages are auto-generated during the `components` package build, there are cases where manual modifications are necessary (e.g., updating `angular/README.md` or `react/package.json`).
-
-The `createChecksums` script is vital in these scenarios. It performs a dry run of an npm publish and updates `components/package.json` with the checksums of the framework packages' tarballs. This process ensures that even manual changes in the framework packages are reflected in the components package without requiring manual intervention.
-
-### Example Workflow
-
-1. Modify `{framework-name}/package.json` or other files that get published on npm but are not automatically managed by `components`.
-2. Run `cd packages/components && pnpm create-checksums` or `(cd packages/components &&) pnpm build`.
-3. The script updates `components/package.json` with the new npm tarball's checksums.
-4. Commit these changes along with your original modifications, following our structured commit message format.
-5. Semantic Release will then automatically handle the release process based on these changes.
-
-### Automatic Checksum Verification and Update
-
-The CI pipelines create and verify the wrapper project checksums. This check is automatically triggered after each commit. If discrepancies are found, the check fails and also the pipeline. This process helps to maintain the integrity and consistency of our release workflow, ensuring that manual changes are correctly accounted for in each release.
-
 
 ## Issue tracking
 
 When creating a new issue on GitHub we first decide which project to assign.
 
-|| synergy-design-system | design | internal |
-| -- | -- | -- | -- |
-| use for | code changes in the mono repo | changes in the Figma designs | maintenance stuff like CI pipelines or orga topics |
-| visibility | public | private | private |
-
+|            | synergy-design-system         | design                       | internal                                           |
+| ---------- | ----------------------------- | ---------------------------- | -------------------------------------------------- |
+| use for    | code changes in the mono repo | changes in the Figma designs | maintenance stuff like CI pipelines or orga topics |
+| visibility | public                        | private                      | private                                            |
 
 Continue with selecting a proper template from the list. The template helps to use a structured title and content. After the issue is created it needs to be refined in the team, so everybody has a common understanding and that it is clear what the exact outcome is desired. Before working on the implementation this refinement process needs to be performed by at least 2 team members, usually the whole team.
 
-
 > Note: We don't mention the names of internal or external colleagues in issues or other documents hosted on GitHub, as our project is public and can be accessed by anybody. The same goes for internal projects or products. Tagging/mentioning colleagues using their GitHub profiles is fine, as they decided to be visible on GitHub.
-
-

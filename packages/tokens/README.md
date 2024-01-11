@@ -47,7 +47,14 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 
 #### Switching themes during runtime
 
-You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`. To switch the theme, proceed in the following way:
+You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
+
+| Theme | Stylesheet to use         | Body className
+|:------|:--------------------------|:---------------
+| light | `tokens/themes/light.css` | `syn-theme-light`
+| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`
+
+To switch the theme, proceed in the following way:
 
 ```html
 <!DOCTYPE html>

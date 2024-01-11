@@ -10,23 +10,19 @@ export class ThemeSwitchComponent {
   buttonText: string = 'Switch Theme';
 
   switchTheme() {
-    const bdy = document.body;
-    const currentTheme = bdy.classList.contains('syn-theme-dark') ? 'dark' : 'light';
+    const body = document.body;
+    const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
 
     if (currentTheme === 'light') {
       // Light theme
-      bdy.classList.remove('syn-theme-light');
-      bdy.classList.add('syn-theme-dark');
+      body.classList.remove('syn-theme-light');
+      body.classList.add('syn-theme-dark');
       this.buttonText = 'Switch to light theme';
     } else {
       // Dark theme
-      bdy.classList.remove('syn-theme-dark');
-      bdy.classList.add('syn-theme-light');
+      body.classList.remove('syn-theme-dark');
+      body.classList.add('syn-theme-light');
       this.buttonText = 'Switch to dark theme';
     }
-
-    // Will toggle between light to dark
-    // with each call to switchTheme
-    console.log(bdy.className);
   }
 }

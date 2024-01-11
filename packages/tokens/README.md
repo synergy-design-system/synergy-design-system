@@ -63,24 +63,20 @@ You are also able to switch themes during the runtime. For the time being, we do
     <button id="theme-switch">Switch Theme</button>
     <script>
     const switchTheme = ({ target }) => {
-      const bdy = document.body;
-      const currentTheme = bdy.classList.contains('syn-theme-dark') ? 'dark' : 'light';
+      const { body } = document;
+      const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
       
       if (currentTheme === 'light') {
         // Light theme
-        bdy.classList.remove('syn-theme-light');
-        bdy.classList.add('syn-theme-dark');
+        body.classList.remove('syn-theme-light');
+        body.classList.add('syn-theme-dark');
         target.innerText = 'Switch to light theme';
       } else {
         // Dark theme
-        bdy.classList.remove('syn-theme-dark');
-        bdy.classList.add('syn-theme-light');
+        body.classList.remove('syn-theme-dark');
+        body.classList.add('syn-theme-light');
         target.innerText = 'Switch to dark theme';
       }
-      
-      // Will toggle between light to dark
-      // with each call to switchTheme
-      console.log(bdy.className);
     }
 
     document

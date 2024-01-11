@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -35,6 +36,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'default'),
@@ -45,10 +49,8 @@ export const Default = {
 } as Story;
 
 export const Checked: Story = {
+  name: 'Checked',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'checked'),
@@ -59,10 +61,8 @@ export const Checked: Story = {
 };
 
 export const Indeterminate: Story = {
+  name: 'Indeterminate',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'indeterminate'),
@@ -73,10 +73,8 @@ export const Indeterminate: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'disabled'),
@@ -87,10 +85,8 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox', 'sizes'),
@@ -107,9 +103,10 @@ export const Sizes: Story = {
 };
 
 export const CustomValidity: Story = {
+  name: 'Custom validity',
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -169,3 +166,11 @@ export const CustomValidity: Story = {
     </script>
   `,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  Checked,
+  Indeterminate,
+  Disabled,
+  Sizes,
+]);

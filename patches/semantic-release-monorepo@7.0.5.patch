@@ -1,0 +1,47 @@
+diff --git a/src/only-package-commits.js b/src/only-package-commits.js
+index fbcb315b5bd2621991d4f657a82db8004b49f1c6..762aec708d278b5d5fb1746e2a52c35231ac10dd 100644
+--- a/src/only-package-commits.js
++++ b/src/only-package-commits.js
+@@ -33,21 +33,33 @@ const withFiles = async commits => {
+ 
+ const onlyPackageCommits = async commits => {
+   const packagePath = await getPackagePath();
+-  debug('Filter commits by package path: "%s"', packagePath);
++  const { release } = await readPkg();
++  const dependencies = release?.monorepo?.dependencies || [];
++
++  debug('Filter commits by package path: "%s" and dependencies: %o', packagePath, dependencies);
++
+   const commitsWithFiles = await withFiles(commits);
+-  // Convert package root path into segments - one for each folder
+   const packageSegments = packagePath.split(path.sep);
++  const dependencySegmentsList = dependencies.map(dep => dep.split(path.sep));
+ 
+   return commitsWithFiles.filter(({ files, subject }) => {
+-    // Normalise paths and check if any changed files' path segments start
+-    // with that of the package root.
+-    const packageFile = files.find(file => {
++    const isRelevantFile = file => {
+       const fileSegments = path.normalize(file).split(path.sep);
+-      // Check the file is a *direct* descendent of the package folder (or the folder itself)
+-      return packageSegments.every(
+-        (packageSegment, i) => packageSegment === fileSegments[i]
++
++      // Check if the file is in the current package
++      const isInPackage = packageSegments.every(
++        (seg, i) => seg === fileSegments[i]
+       );
+-    });
++
++      // Check if the file is in any of the specified dependencies
++      const isInDependencies = dependencySegmentsList.some(depSegments =>
++        depSegments.every((seg, i) => seg === fileSegments[i])
++      );
++
++      return isInPackage || isInDependencies;
++    };
++
++    const packageFile = files.find(isRelevantFile);
+ 
+     if (packageFile) {
+       debug(

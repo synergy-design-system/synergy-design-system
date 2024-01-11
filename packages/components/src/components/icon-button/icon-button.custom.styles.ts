@@ -38,18 +38,15 @@ export default css`
   /* Sizes */
   .icon-button--small {
     font-size: var(--syn-font-size-medium);
-    padding: var(--syn-spacing-x-small);    
   }
 
   .icon-button--medium {
     font-size: var(--syn-font-size-x-large);
-    padding: var(--syn-spacing-small);
 
   }
 
   .icon-button--large {
     font-size: var(--syn-font-size-2x-large);
-    padding: var(--syn-spacing-medium);
   }
 
   /* Force user to set "label" prop */

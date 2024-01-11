@@ -7,6 +7,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynIconButton } from '@synergy-design-system/components';
 import { html } from 'lit';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -41,6 +42,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'default'),
@@ -51,10 +55,8 @@ export const Default = {
 } as Story;
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'sizes'),
@@ -67,10 +69,8 @@ export const Sizes: Story = {
 };
 
 export const Colors: Story = {
+  name: 'Colors',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: `${generateStoryDescription('icon-button', 'color')}`,
@@ -82,10 +82,8 @@ export const Colors: Story = {
 };
 
 export const LinkButton: Story = {
+  name: 'Link buttons',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'link'),
@@ -106,10 +104,8 @@ export const LinkButton: Story = {
 // };
 
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'disabled'),
@@ -120,10 +116,8 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
+  name: 'Focus',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'focus'),
@@ -140,10 +134,8 @@ export const Focus: Story = {
 };
 
 export const Label: Story = {
+  name: 'Label',
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'label'),
@@ -167,3 +159,12 @@ export const Label: Story = {
 
   </style>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  Sizes,
+  Colors,
+  LinkButton,
+  Disabled,
+  Label,
+]);

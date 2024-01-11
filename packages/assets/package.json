@@ -34,7 +34,7 @@
     }
   },
   "types": "./src/default-icons.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Static Assets",
     "SDS",
@@ -106,8 +106,9 @@
   "scripts": {
     "lint": "eslint .",
     "fetch-assets": "node scripts/fetch-assets.js",
-    "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo"
+    "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo",
+    "release.dry": "semantic-release --dry-run --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

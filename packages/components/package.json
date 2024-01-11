@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -23,12 +23,9 @@
     "./utilities/*": "./dist/utilities/*",
     "./translations/*": "./dist/translations/*"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "node scripts/build.js",
-    "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
     "test": "web-test-runner --group default",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -40,11 +37,12 @@
     "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
     "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
     "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
-    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\""
+    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\"",
+    "release.dry": "semantic-release --dry-run --tagFormat 'components/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Web Components",
     "LIT Components",
@@ -58,7 +56,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
     "@lit/react": "^1.0.0",
-    "@open-wc/testing": "^3.2.0",
+    "@open-wc/testing": "^4.0.0",
     "@playwright/test": "^1.39.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
@@ -145,10 +143,7 @@
         "@semantic-release/git",
         {
           "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
+          "assets": ["CHANGELOG.md", "package.json"]
         }
       ],
       [
@@ -157,7 +152,10 @@
           "successComment": false
         }
       ]
-    ]
+    ],
+    "monorepo": {
+      "dependencies": ["packages/vue", "packages/react", "packages/angular"]
+    }
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.3",
@@ -166,12 +164,5 @@
     "composed-offset-position": "^0.0.4",
     "lit": "^3.0.0"
   },
-  "web-types": "./dist/web-types.json",
-  "meta": {
-    "checksums": {
-      "angular": "32cb524aca3f7ad4a78e8bd8a1a604069b8c9901",
-      "react": "5feeae3d2968efeaf76e0b512c2e8d95925a3385",
-      "vue": "ee6f356beec28d7cda7246052992a2d4ef570418"
-    }
-  }
+  "web-types": "./dist/web-types.json"
 }

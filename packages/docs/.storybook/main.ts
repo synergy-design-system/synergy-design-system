@@ -27,11 +27,13 @@ const config: StorybookConfig = {
     }
   ],
   stories: [
-    "../stories/index.mdx",
+    "../stories/Index.mdx",
+    "../stories/Introduction.mdx",
+    "../stories/Contributing.mdx",
+    "../stories/packages/**/*.mdx",
     "../stories/components/**/*.stories.*",
     // "../stories/**/*.mdx",
     // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../stories/packages/**/*.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],

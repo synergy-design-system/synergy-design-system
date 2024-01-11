@@ -11,6 +11,9 @@
     "import/no-extraneous-dependencies": 0,
 
     // We have to include our packages in a relative way to make autoreloads work
-    "import/no-relative-packages": 0
+    "import/no-relative-packages": 0,
+
+    // Disabled, because we need to use the name property to set the story name to generate the bundled screenshot story
+    "storybook/no-redundant-story-name": 0
   }
 }

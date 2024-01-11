@@ -1,9 +1,5 @@
 {
   "font-size": {
-    "2x-small": {
-      "value": "10px",
-      "type": "fontSizes"
-    },
     "x-small": {
       "value": "12px",
       "type": "fontSizes"

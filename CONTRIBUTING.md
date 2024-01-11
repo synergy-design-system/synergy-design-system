@@ -2,8 +2,8 @@
 
 ## Table of contents
 
-- [Contributing to Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
-  - [Table of Contents](#table-of-contents)
+- [Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
+  - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting started](#getting-started)
   - [Breaking changes](#breaking-changes)
@@ -17,9 +17,6 @@
   - [Semantic release process](#semantic-release-process)
     - [Pull requests and commits](#pull-requests-and-commits)
       - [Assignees and reviewers](#assignees-and-reviewers)
-  - [Release changes in framework wrapper packages](#release-changes-in-framework-wrapper-packages)
-    - [Example Workflow](#example-workflow)
-    - [Automatic Checksum Verification and Update](#automatic-checksum-verification-and-update)
   - [Issue tracking](#issue-tracking)
 
 ## Overview
@@ -86,7 +83,8 @@ If you want to contribute to this project, please [make sure that a similar issu
 
 ## Semantic release process
 
-In our development workflow, we use Semantic Release to automate the release process for each package. This approach ensures that releases are consistent, predictable, and based on the analysis of relevant commit messages.
+In our development workflow, we use Semantic Release to automate the release process for each package by filtering relevant commits. This approach ensures that releases are consistent and predictable.
+`@synergy-design-system/vue`, `@synergy-design-system/react` and `@synergy-design-system/angular` always receive the version number of `@synergy-design-system/components` and are published together with it. To make this possible our patched version of `semantic-release-monorepo` takes care of analyzing relevant commits in either (!) of these packages.
 
 ### Pull requests and commits
 
@@ -125,10 +123,6 @@ When committing changes use meaningful commit messages. Always imagine the persp
 #### Assignees and reviewers
 
 When opening a PR, assign yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
-
-## Release changes in framework wrapper packages
-
-Framework wrappers (e.g., for Angular, Vue and React) are automatically released when there are changes in the components package, managed by Semantic Release. Changes to framework wrappers will also automatically create a release for the components package.
 
 ## Issue tracking
 

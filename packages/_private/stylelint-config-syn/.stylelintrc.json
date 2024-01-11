@@ -16,6 +16,12 @@
     ],
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^[a-z][a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?$",
-    "selector-not-notation": "simple"
+    "selector-not-notation": "simple",
+    "value-keyword-case": [
+      "lower",
+      {
+          "camelCaseSvgKeywords": true
+      }
+  ]
   }
 }

@@ -1,5 +1,5 @@
 diff --git a/src/only-package-commits.js b/src/only-package-commits.js
-index fbcb315b5bd2621991d4f657a82db8004b49f1c6..6efbb2a6606e3b5175981186472692bec08f66a9 100644
+index fbcb315b5bd2621991d4f657a82db8004b49f1c6..762aec708d278b5d5fb1746e2a52c35231ac10dd 100644
 --- a/src/only-package-commits.js
 +++ b/src/only-package-commits.js
 @@ -33,21 +33,33 @@ const withFiles = async commits => {
@@ -8,7 +8,7 @@ index fbcb315b5bd2621991d4f657a82db8004b49f1c6..6efbb2a6606e3b5175981186472692be
    const packagePath = await getPackagePath();
 -  debug('Filter commits by package path: "%s"', packagePath);
 +  const { release } = await readPkg();
-+  const dependencies = release.monorepo.dependencies;
++  const dependencies = release?.monorepo?.dependencies || [];
 +
 +  debug('Filter commits by package path: "%s" and dependencies: %o', packagePath, dependencies);
 +

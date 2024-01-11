@@ -34,7 +34,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/dist/themes/light.css';
+import '@synergy-design-system/tokens/themes/light.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -48,10 +48,10 @@ createRoot(document.getElementById('root')!).render(
 You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a react component.
 
 ```tsx
-import { SynButton } from '../dist';
+import { SynButton } from '@synergy-design-system/react';
 
 export const MyButton = () => (
-  <SynButton type="button" variant="primary">
+  <SynButton type="button" variant="filled">
     SynButton Example
   </SynButton>
 );
@@ -64,7 +64,7 @@ All events will be automatically set up to work without the need to attach event
 Just use them with the default react `onEVENT` prefix, where `EVENT` is the camelCased name of the event.
 
 ```tsx
-import { SynButton } from '../dist';
+import { SynButton } from '@synergy-design-system/react';
 
 export const MyButton = () => (
   <SynButton

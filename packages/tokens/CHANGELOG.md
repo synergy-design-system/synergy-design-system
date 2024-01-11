@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.0.3](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.0.2...tokens/1.0.3) (2024-01-10)
+
+
+### Bug Fixes
+
+* 🤔 Replace primitive tokens of 'input.icon.icon-clearable' with core tokens ([#240](https://github.com/synergy-design-system/synergy-design-system/issues/240)) ([c2b8c18](https://github.com/synergy-design-system/synergy-design-system/commit/c2b8c18f6852c1abf95d2319730a321667435c0b))
+
 # [@synergy-design-system/tokens-v1.0.2](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.0.1...tokens/1.0.2) (2023-12-14)
 
 

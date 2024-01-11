@@ -113,8 +113,8 @@ import type { SynButton, SynInvalidEvent } from '@synergy-design-system/componen
 
 // Example 2: Load the type from the syn-button dir directly.
 // In this case you will have to load the event type from another file!
-import type { SynButton } from '@synergy-design-system/components/components/button/button';
-import type { SynInvalidEvent } from '@synergy-design-system/components/events/syn-invalid';
+import type { SynButton } from '@synergy-design-system/components/components/button/button.component';
+import type { SynInvalidEvent } from '@synergy-design-system/components/events/events';
 
 document.addEventListener('load', () => {
   const loadedSynButtons = document.querySelectorAll<SynButton>('syn-button');

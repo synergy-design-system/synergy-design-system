@@ -2,7 +2,7 @@
   "cSpell.language": "en,lorem",
   "cSpell.enableFiletypes": ["editorconfig"],
   "stylelint.packageManager": "pnpm",
-  "stylelint.validate": ["css", "less", "postcss", "javascript", "typescript"],
+  "stylelint.validate": ["css", "less", "postcss", "javascript"],
   "css.lint.unknownAtRules": "ignore",
   "cssVariables.lookupFiles": ["packages/tokens/dist/themes/light.css"],
   "eslint.workingDirectories": [

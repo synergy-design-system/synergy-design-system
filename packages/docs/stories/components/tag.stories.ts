@@ -1,18 +1,28 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/tag/tag';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynTag } from '@synergy-design-system/components';
 import { html } from 'lit';
-import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory,
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
 
-const { args, argTypes } = storybookDefaults('syn-tag');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-tag');
+const { generateTemplate } = storybookTemplate('syn-tag');
+const { overrideArgs } = storybookHelpers('syn-tag');
 
 const meta: Meta = {
-  component: 'tag',
-  args,
+  args: overrideArgs([
+    { name: 'default', type: 'slot', value: 'Option' },
+  ], defaultArgs),
   argTypes,
+  component: 'tag',
   parameters: {
     docs: {
       description: {
@@ -28,32 +38,39 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('tag', 'default'),
       },
     },
   },
-  render: () => html`<syn-tag>Option</syn-tag>`,
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-export const Focus: Story = {
-  parameters: {
-    controls: {
-      disable: true,
-    },
-  },
-  play: ({ canvasElement }) => {
-    const tag = canvasElement.querySelector('syn-tag') as SynTag;
-    if (tag) {
-      tag.focus();
-    }
-  },
-  render: () => html`
-  <syn-tag removable>Option</syn-tag>`,
-};
+// TODO: Currently focus is not working because shoelace does not allow tabbing the icon button. 
+// As soon as it`s possible, uncomment this story
+// export const Focus: Story = {
+//   name: 'Focus',
+//   parameters: {
+//     chromatic: {
+//       disableSnapshot: false,
+//     },
+//   },
+//   play: ({ canvasElement }) => {
+//     const tag = canvasElement.querySelector('syn-tag') as SynTag;
+//     if (tag) {
+//       tag.focus();
+//     }
+//   },
+//   render: () => html`
+//   <syn-tag removable>Option</syn-tag>`,
+// };
 
 export const WithIcon: Story = {
+  name: 'With icon',
   render: () => html`
   <syn-tag>
     <syn-icon name="wallpaper"></syn-icon>
@@ -62,6 +79,7 @@ export const WithIcon: Story = {
 };
 
 export const WithIconAndRemovable: Story = {
+  name: 'With icon and removable',
   render: () => html`
   <syn-tag removable>
     <syn-icon name="wallpaper"></syn-icon>
@@ -70,6 +88,7 @@ export const WithIconAndRemovable: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -84,6 +103,7 @@ export const Sizes: Story = {
 };
 
 export const Removable: Story = {
+  name: 'Removable',
   parameters: {
     docs: {
       description: {
@@ -114,3 +134,11 @@ export const Removable: Story = {
       }
     </style>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  WithIcon,
+  WithIconAndRemovable,
+  Sizes,
+  Removable,
+]);

@@ -1,5 +1,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import React, { FC, ReactNode } from 'react';
+import '../../components/src/components/icon-button/icon-button.js';
+
+// Make sure ts is not sad about custom elements
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      ['syn-icon-button']: unknown;
+    }
+  }
+}
 
 type ClipboardProps = {
   children: ReactNode;
@@ -18,6 +29,7 @@ export const CopyToClipBoard: FC<ClipboardProps> = ({ children, value = '' }) =>
       }
     }}
     style={{
+      alignItems: 'center',
       cursor: 'pointer',
       display: 'flex',
     }}
@@ -30,15 +42,6 @@ export const CopyToClipBoard: FC<ClipboardProps> = ({ children, value = '' }) =>
     >
       {children}
     </div>
-    <div
-      style={{
-        cursor: 'pointer',
-        display: 'inline-block',
-        marginLeft: '5px',
-        textAlign: 'center',
-      }}
-    >
-      💾
-    </div>
+    <syn-icon-button name="content_copy" label="Copy to Clipboard" size="small"></syn-icon-button>
   </div>
 );

@@ -12,13 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Echo PR title and commit
-        run: |
-          echo "PR title: ${{ github.event.pull_request.title }}"
-          echo "PR commit: ${{ github.event.head.message }}"
-          echo "PR commit: ${{ github.event.commits[0].message }}"
-          echo '${{toJSON(github.event)}}'
-          echo echo "$(git log --format=%B -n 1 HEAD | head -n 1)"
+      - name: Get PR title
+        id: pr_title
+        run: echo "::set-output name=pr_title::${{ github.event.pull_request.title }}"
+
+      - name: Get commit message
+        id: commit_message
+        run: echo "::set-output name=commit_message::$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})"
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -104,7 +104,7 @@ jobs:
     name: Validate Chromatic
     runs-on: ubuntu-latest
     # check pull request title
-    if: ${{ github.event.pull_request.draft == false && !contains(github.event.head_commit.message, '[skip chromatic]') && !contains(github.event.pull_request.title, '[skip chromatic]')}}
+    if: ${{ github.event.pull_request.draft == false && !contains(needs.quality-gate.outputs.pr, '[skip chromatic]') && !contains(needs.quality-gate.outputs.commit, '[skip chromatic]')}}
     needs: [quality-gate, test]
     steps:
       # 👇 Version 2 of the action

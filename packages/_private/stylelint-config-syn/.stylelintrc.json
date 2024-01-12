@@ -15,8 +15,8 @@
     "value-keyword-case": [
       "lower",
       {
-          "camelCaseSvgKeywords": true
+        "camelCaseSvgKeywords": true
       }
-  ]
+    ]
   }
 }

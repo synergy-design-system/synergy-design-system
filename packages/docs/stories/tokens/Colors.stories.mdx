@@ -18,7 +18,8 @@ import {
 
 <p>{docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}</p>
 
-{['light', 'dark'].map(theme => (
+{/* @todo: Make sure to add 'dark' when available! */}
+{['light'].map(theme => (
   <>
     <h2 key={`${theme}-headline`}>Colors / {theme}</h2>
     <table className={`syn-theme-${theme}`} key={`${theme}-table`}>

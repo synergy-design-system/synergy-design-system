@@ -16,7 +16,9 @@ jobs:
         run: |
           echo "PR title: ${{ github.event.pull_request.title }}"
           echo "PR commit: ${{ github.event.head.message }}"
+          echo "PR commit: ${{ github.event.commits[0].message }}"
           echo '${{toJSON(github.event)}}'
+          echo echo "$(git log --format=%B -n 1 HEAD | head -n 1)"
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm

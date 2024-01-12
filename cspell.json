@@ -13,9 +13,6 @@
     "themeable",
     "vendorism"
   ],
-  "ignorePaths": [
-    "package.json",
-    "pnpm-lock.yaml"
-  ],
+  "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true
 }

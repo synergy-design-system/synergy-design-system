@@ -62,6 +62,10 @@ When writing components, use our defined list of design tokens for spacing, font
 
 Components must be optimized for accessibility. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.
 
+## Formatting
+
+Formatting rules are currently applied via `eslint` and `prettier`. You may format run `pnpm format` in the root of the repository to automatically format your code changes. Note that we are currently using `prettier` for non-code files only, `ts, tsx, js, jsx and vue` will be formatted using eslint.
+
 ### Ensure Accessibility
 
 We use semantic HTML elements, ARIA landmarks, roles, states, and properties in components and storybook stories.

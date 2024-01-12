@@ -29,12 +29,12 @@ The components will not display correctly without the needed theme. Please inclu
 ```ts
 // src/main.ts
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+createApp(App).mount("#app");
 ```
 
 ### 3. Importing and rendering components
@@ -43,16 +43,14 @@ You may now use the components by importing them from the `@synergy-design-syste
 
 ```html
 <script setup lang="ts">
-// Note the name includes Vue here.
-// This is done because it would
-// clash with our native components otherwise
-import { SynVueButton } from '@synergy-design-system/vue';
+  // Note the name includes Vue here.
+  // This is done because it would
+  // clash with our native components otherwise
+  import { SynVueButton } from "@synergy-design-system/vue";
 </script>
 
 <template>
-  <SynVueButton type="submit">
-    Submit me
-  </SynVueButton>
+  <SynVueButton type="submit"> Submit me </SynVueButton>
 </template>
 ```
 
@@ -63,37 +61,37 @@ You may use it in one of the following ways:
 
 ```html
 <script setup lang="ts">
-import { ref } from 'vue';
-import {
-  SynVueButton,
-  SynVueCheckbox,
-  SynVueTextarea,
-  SynVueInput,
-} from '@synergy-design-system/vue';
+  import { ref } from "vue";
+  import {
+    SynVueButton,
+    SynVueCheckbox,
+    SynVueTextarea,
+    SynVueInput,
+  } from "@synergy-design-system/vue";
 
-const formValues = ref({
-  checkboxValue: false,
-  inputValue: '',
-  textAreaValue: '',
-});
+  const formValues = ref({
+    checkboxValue: false,
+    inputValue: "",
+    textAreaValue: "",
+  });
 
-const submit = (e: Event) => {
-  e.preventDefault();
-  e.stopPropagation();
-  const target = e.target as HTMLFormElement;
+  const submit = (e: Event) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const target = e.target as HTMLFormElement;
 
-  const isValid = target.reportValidity();
-  if (isValid) {
-    const data = [...new FormData(target)]
-      .map((v) => {
-        return `${v[0]}: ${v[1]}`;
-      })
-      .join(',\n')
-      .trim();
-    // Do something with the data
-    console.log(data);
-  }
-};
+    const isValid = target.reportValidity();
+    if (isValid) {
+      const data = [...new FormData(target)]
+        .map(v => {
+          return `${v[0]}: ${v[1]}`;
+        })
+        .join(",\n")
+        .trim();
+      // Do something with the data
+      console.log(data);
+    }
+  };
 </script>
 
 <template>
@@ -104,15 +102,13 @@ const submit = (e: Event) => {
       required
       v-model="formValues.inputValue"
     />
-    <SynVueTextarea
-      v-model="formValues.textAreaValue"
-      name="textAreaValue"
-    />
+    <SynVueTextarea v-model="formValues.textAreaValue" name="textAreaValue" />
     <SynVueCheckbox
       v-model="formValues.checkboxValue"
       required
       name="checkboxValue"
-    >Agree</SynVueCheckbox>
+      >Agree</SynVueCheckbox
+    >
   </form>
 </template>
 ```

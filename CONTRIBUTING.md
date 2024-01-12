@@ -16,6 +16,7 @@
   - [Contribution workflow](#contribution-workflow)
   - [Semantic release process](#semantic-release-process)
     - [Pull requests and commits](#pull-requests-and-commits)
+      - [Special command \[skip chromatic\]](#special-command-skip-chromatic)
       - [Assignees and reviewers](#assignees-and-reviewers)
   - [Issue tracking](#issue-tracking)
 
@@ -119,6 +120,12 @@ If a change is breaking, be aware that the string "BREAKING CHANGE" must be part
 Before merging make sure that all sections are filled out properly and that all DoD checkmarks are checked.
 
 When committing changes use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
+
+#### Special command [skip chromatic]
+
+Orientated at [GitHub's commit commands to skip workflows](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs), we added a special command to skip Chromatic actions in PRs and commits on main to save screenshots. This should be used with care, as it is only needed in cases where the visual appearance of the components is not affected. For example, when updating the README or the CI configuration.
+
+> Note: This command is only available for PRs and commits on main. It currently doesn't work for single commits on a PR.
 
 #### Assignees and reviewers
 

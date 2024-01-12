@@ -11,14 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      # We save the PR title and commit message as output so we can use it as condition for chromatic-deployment job
-      - name: Set PR title and commit message as output
-        run: |
-          echo "pr_title=${{ github.event.pull_request.title }}" >> $GITHUB_OUTPUT
-          echo "commit_message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})" >> $GITHUB_OUTPUT
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -104,7 +96,7 @@ jobs:
     name: Validate Chromatic
     runs-on: ubuntu-latest
     # check pull request title
-    if: ${{ github.event.pull_request.draft == false && !contains(needs.quality-gate.outputs.pr, '[skip chromatic]') && !contains(needs.quality-gate.outputs.commit, '[skip chromatic]')}}
+    if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
     needs: [quality-gate, test]
     steps:
       # 👇 Version 2 of the action

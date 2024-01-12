@@ -7,6 +7,7 @@ export { default as SynVueButton } from './components/SynVueButton.vue';
 export { default as SynVueButtonGroup } from './components/SynVueButtonGroup.vue';
 export { default as SynVueCheckbox } from './components/SynVueCheckbox.vue';
 export { default as SynVueIcon } from './components/SynVueIcon.vue';
+export { default as SynVueIconButton } from './components/SynVueIconButton.vue';
 export { default as SynVueInput } from './components/SynVueInput.vue';
 export { default as SynVueRadio } from './components/SynVueRadio.vue';
 export { default as SynVueRadioButton } from './components/SynVueRadioButton.vue';

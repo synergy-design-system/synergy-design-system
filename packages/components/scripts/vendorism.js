@@ -9,6 +9,7 @@ import {
   vendorButton,
   vendorCustomElementsManifest,
   vendorIcon,
+  vendorIconButton,
   vendorInput,
   vendorTextarea,
   vendorWebTestRunnerConfig,
@@ -26,6 +27,7 @@ export const components = [
   'checkbox',
   'radio',
   'radio-group',
+  'icon-button',
   'switch',
 ].sort();
 
@@ -210,6 +212,7 @@ import customStyles from './${component}.custom.styles.js';`,
       // specialized customizations
       vendorButton,
       vendorCustomElementsManifest,
+      vendorIconButton,
       vendorIcon,
       vendorInput,
       vendorTextarea,

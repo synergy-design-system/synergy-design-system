@@ -13,4 +13,5 @@ export { default as SynVueRadio } from './components/SynVueRadio.vue';
 export { default as SynVueRadioButton } from './components/SynVueRadioButton.vue';
 export { default as SynVueRadioGroup } from './components/SynVueRadioGroup.vue';
 export { default as SynVueSwitch } from './components/SynVueSwitch.vue';
+export { default as SynVueTag } from './components/SynVueTag.vue';
 export { default as SynVueTextarea } from './components/SynVueTextarea.vue';

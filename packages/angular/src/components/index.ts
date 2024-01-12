@@ -13,4 +13,5 @@ export { SynRadioButtonComponent } from './radio-button.component';
 export { SynRadioComponent } from './radio.component';
 export { SynRadioGroupComponent } from './radio-group.component';
 export { SynSwitchComponent } from './switch.component';
+export { SynTagComponent } from './tag.component';
 export { SynTextareaComponent } from './textarea.component';

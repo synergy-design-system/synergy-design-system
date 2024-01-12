@@ -1,0 +1,91 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { CopyRawHexValue } from '../../src/RawColorValue.tsx';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+
+import {
+  getAccentColorPalette,
+  getCSSToken,
+  getColorAsPalette,
+  getNeutralColorPalette,
+  getPrimaryColorPalette,
+  getSASSToken,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Colors" />
+
+# Colors
+
+<p>{docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Raw Value</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ['Neutral', getNeutralColorPalette(true)],
+      ['Primary', getPrimaryColorPalette(true)],
+      ['Accent', getAccentColorPalette(true)],
+      ['Error', getColorAsPalette('error', true)],
+      ['Warning', getColorAsPalette('warning', true)],
+      ['Success', getColorAsPalette('success', true)],
+    ].map(([title, palette]) => (
+      <>
+        <tr key={title}>
+          <th colSpan="5">{title}</th>
+        </tr>
+        {Object.entries(palette).map(([token, value]) => (
+          <tr>
+            <td>
+              <div className="color-swatch" style={{ backgroundColor: value }} />
+            </td>
+            <td>
+              <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
+            </td>
+            <td>
+              <CopyToClipBoard value={getCSSToken(token)}>
+                {getCSSToken(token)}
+              </CopyToClipBoard>
+            </td>
+            <td>
+              <CopyToClipBoard value={getSASSToken(token)}>
+                {getSASSToken(token)}
+              </CopyToClipBoard>
+            </td>
+            <td>
+              <CopyToClipBoard value={token}>
+                {token}
+              </CopyToClipBoard>
+            </td>
+          </tr>
+        ))}
+      </>
+    ))}
+  </tbody>
+</table>
+
+<style>
+{`
+  .color-swatch {
+    align-items: center;
+    border-radius: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+  }
+
+  .copy-to-clipboard {
+    text-align: center;
+    width: 20px;
+  }
+`}
+</style>

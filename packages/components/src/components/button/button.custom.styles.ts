@@ -1,27 +1,47 @@
 import { css } from 'lit';
 
 export default css`
-.button:focus-visible {
+  .button:focus-visible {
     outline: var(--syn-focus-ring-color) solid var(--syn-focus-ring-width);
     outline-offset: var(--syn-focus-ring-width);
   }
 
   /*
- * Size modifiers
- */
+   * Adjustments for button label paddings
+   * @see https://github.com/synergy-design-system/synergy-design-system/issues/243
+   */
+  .button--has-prefix.button--small .button__label {
+    padding-inline-start: var(--syn-spacing-2x-small);
+  }
 
+  .button--has-suffix.button--small .button__label,
+  .button--caret.button--small .button__label {
+    padding-inline-end: var(--syn-spacing-2x-small);
+  }
+
+  .button--has-prefix.button--medium .button__label {
+    padding-inline-start: var(--syn-spacing-x-small);
+  }
+
+  .button--has-suffix.button--medium .button__label,
+  .button--caret.button--medium .button__label {
+    padding-inline-end: var(--syn-spacing-x-small);
+  }
+
+  /**
+   * Size modifiers
+   */
   .button.button--medium.button--has-label .button__label {
     font-size: var(--syn-font-size-medium);
-   } 
+  } 
 
   .button.button--large.button--has-label .button__label {
     font-size: var(--syn-font-size-large);
   }
 
   /*
- * Standard buttons
- */
-
+   * Standard buttons
+   */
   .button--filled.button--primary.button--disabled {
     background-color: var(--syn-color-neutral-400);
     border-color: var(--syn-color-neutral-400);
@@ -41,9 +61,8 @@ export default css`
   }
 
   /*
- * Outline buttons
- */
-
+   * Outline buttons
+   */
   .button--outline.button--primary.button--disabled {
     background: none;
     border-color: var(--syn-color-neutral-400);
@@ -64,9 +83,8 @@ export default css`
   }
 
   /*
- * Text buttons
- */
-  
+   * Text buttons
+   */
   .button--text:hover:not(.button--disabled) {
     color: var(--syn-color-primary-900);
   }
@@ -81,12 +99,12 @@ export default css`
     color: var(--syn-color-neutral-400);
   }
 
-  /*
-* PADDING
- */
-   .button.button--small.button--has-label.button--has-prefix {
-      padding-inline-start: var(--syn-spacing-small);
-   }
+  /**
+   * Button spacing
+   */
+  .button.button--small.button--has-label.button--has-prefix {
+    padding-inline-start: var(--syn-spacing-small);
+  }
 
   .button.button--small.button--has-label.button--has-suffix {
     padding-inline-end: var(--syn-spacing-small);
@@ -99,7 +117,7 @@ export default css`
 
   .button.button--medium.button--has-label.button--has-prefix {
     padding-inline-start: var(--syn-spacing-medium);
-   } 
+  } 
 
   .button.button--medium.button--has-label.button--has-suffix {
     padding-inline-end: var(--syn-spacing-medium);
@@ -112,22 +130,22 @@ export default css`
 
   .button.button--large.button--has-label.button--has-prefix {
     padding-inline-start: var(--syn-spacing-large);
-   }
+  }
 
   .button.button--large.button--has-label.button--has-prefix .button__label {
-    padding-inline-start: var(--syn-spacing-medium);
-   }
+    padding-inline-start: var(--syn-spacing-small);
+  }
 
   .button.button--large.button--has-label.button--has-suffix {
     padding-inline-end: var(--syn-spacing-large);
   }
 
   .button.button--large.button--has-label.button--has-suffix .button__label {
-    padding-inline-end: var(--syn-spacing-medium);
+    padding-inline-end: var(--syn-spacing-small);
   }
 
   .button.button--large.button--has-prefix .button__prefix, 
   .button.button--large.button--has-suffix .button__suffix {
     font-size: var(--syn-font-size-2x-large);
   }
-  `;
+`;

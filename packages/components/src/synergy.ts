@@ -14,6 +14,7 @@ export { default as SynRadioButton } from './components/radio-button/radio-butto
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';
 export { default as SynRadio } from './components/radio/radio.js';
 export { default as SynSwitch } from './components/switch/switch.js';
+export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
 
 // Utilities

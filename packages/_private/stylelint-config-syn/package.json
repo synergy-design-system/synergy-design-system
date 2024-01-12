@@ -43,6 +43,7 @@
     "directory": "packages/stylelint-config-syn"
   },
   "scripts": {
+    "format.eslint": "pnpm lint:js --fix",
     "lint:css": "stylelint \"demo/*.{css,js,ts}\"",
     "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/"

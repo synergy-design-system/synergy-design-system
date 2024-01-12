@@ -39,7 +39,8 @@
     "directory": "packages/eslint-config-syn"
   },
   "scripts": {
-    "lint:js": "eslint ."
+    "lint:js": "eslint .",
+    "format.eslint": "eslint . --fix"
   },
   "version": "0.1.0"
 }

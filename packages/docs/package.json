@@ -66,6 +66,7 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
+    "format.eslint": "pnpm lint --fix",
     "chromatic": "chromatic ${CHROMATIC_PROJECT_TOKEN} --build-script-name=build",
     "start": "storybook dev -p 6006"
   },

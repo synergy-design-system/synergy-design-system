@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.0.2...assets/1.1.0) (2024-01-12)
+
+
+### Features
+
+* ✨ add syn-tag ([#217](https://github.com/synergy-design-system/synergy-design-system/issues/217)) ([da91945](https://github.com/synergy-design-system/synergy-design-system/commit/da91945d1e7f4e5bb5cc2efd36e70f790c5663ad))
+
 # [@synergy-design-system/assets-v1.0.2](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.0.1...assets/1.0.2) (2023-12-14)
 
 

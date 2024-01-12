@@ -18,58 +18,61 @@ import {
 
 <p>{docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Color</th>
-      <th>Raw Value</th>
-      <th>CSS Token</th>
-      <th>SCSS Token</th>
-      <th>JS Token</th>
-    </tr>
-  </thead>
-  <tbody>
-    {[
-      ['Neutral', getNeutralColorPalette(true)],
-      ['Primary', getPrimaryColorPalette(true)],
-      ['Accent', getAccentColorPalette(true)],
-      ['Error', getColorAsPalette('error', true)],
-      ['Warning', getColorAsPalette('warning', true)],
-      ['Success', getColorAsPalette('success', true)],
-    ].map(([title, palette]) => (
-      <>
-        <tr key={title}>
-          <th colSpan="5">{title}</th>
-        </tr>
-        {Object.entries(palette).map(([token, value]) => (
-          <tr>
-            <td>
-              <div className="color-swatch" style={{ backgroundColor: value }} />
-            </td>
-            <td>
-              <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
-            </td>
-            <td>
-              <CopyToClipBoard value={getCSSToken(token)}>
-                {getCSSToken(token)}
-              </CopyToClipBoard>
-            </td>
-            <td>
-              <CopyToClipBoard value={getSASSToken(token)}>
-                {getSASSToken(token)}
-              </CopyToClipBoard>
-            </td>
-            <td>
-              <CopyToClipBoard value={token}>
-                {token}
-              </CopyToClipBoard>
-            </td>
-          </tr>
+{['light', 'dark'].map(theme => (
+  <>
+    <h2 key={`${theme}-headline`}>Colors / {theme}</h2>
+    <table className={`syn-theme-${theme}`} key={`${theme}-table`}>
+      <tbody>
+        {[
+          ['Neutral', getNeutralColorPalette(true)],
+          ['Primary', getPrimaryColorPalette(true)],
+          ['Accent', getAccentColorPalette(true)],
+          ['Error', getColorAsPalette('error', true)],
+          ['Warning', getColorAsPalette('warning', true)],
+          ['Success', getColorAsPalette('success', true)],
+        ].map(([title, palette]) => (
+          <>
+            <tr key={title}>
+              <th colSpan="5">{title}</th>
+            </tr>
+            <tr key={title}>
+              <th>Color</th>
+              <th>Raw Value</th>
+              <th>CSS Token</th>
+              <th>SCSS Token</th>
+              <th>JS Token</th>
+            </tr>
+            {Object.entries(palette).map(([token, value]) => (
+              <tr>
+                <td>
+                  <div className="color-swatch" style={{ backgroundColor: value }} />
+                </td>
+                <td>
+                  <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getCSSToken(token)}>
+                    {getCSSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getSASSToken(token)}>
+                    {getSASSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+                <td>
+                  <CopyToClipBoard value={token}>
+                    {token}
+                  </CopyToClipBoard>
+                </td>
+              </tr>
+            ))}
+          </>
         ))}
-      </>
-    ))}
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </>
+))}
 
 <style>
 {`

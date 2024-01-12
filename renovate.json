@@ -1,6 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ]
+  "extends": ["config:recommended", ":dependencyDashboardApproval"],
+  "vulnerabilityAlerts": {
+    "assignees": ["kirchsuSICKAG", "klaarseSICKAG", "schilchSICKAG"],
+    "autoApprove": true,
+    "automerge": true,
+    "automergeStrategy": "squash",
+    "automergeType": "pr"
+  },
+  "draftPR": true
 }

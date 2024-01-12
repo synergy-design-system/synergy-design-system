@@ -78,30 +78,6 @@ export const WithIcon: Story = {
  </syn-tag>`,
 };
 
-export const WithIconAndRemovable: Story = {
-  name: 'With icon and removable',
-  render: () => html`
-  <syn-tag removable>
-    <syn-icon name="wallpaper"></syn-icon>
-    Option
- </syn-tag>`,
-};
-
-export const Sizes: Story = {
-  name: 'Sizes',
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('tag', 'size'),
-      },
-    },
-  },
-  render: () => html`
-  <syn-tag size="small">Small</syn-tag>
-  <syn-tag size="medium">Medium</syn-tag>
-  <syn-tag size="large">Large</syn-tag>`,
-};
-
 export const Removable: Story = {
   name: 'Removable',
   parameters: {
@@ -135,10 +111,24 @@ export const Removable: Story = {
     </style>`,
 };
 
+export const Sizes: Story = {
+  name: 'Sizes',
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tag', 'size'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tag size="small">Small</syn-tag>
+  <syn-tag size="medium">Medium</syn-tag>
+  <syn-tag size="large">Large</syn-tag>`,
+};
+
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory([
   WithIcon,
-  WithIconAndRemovable,
-  Sizes,
   Removable,
+  Sizes,
 ]);

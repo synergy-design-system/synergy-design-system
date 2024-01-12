@@ -12,13 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get PR title
-        id: pr_title
-        run: echo "::set-output name=pr_title::${{ github.event.pull_request.title }}"
-
-      - name: Get commit message
-        id: commit_message
-        run: echo "::set-output name=commit_message::$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})"
+      # We save the PR title and commit message as output so we can use it as condition for chromatic-deployment job
+      - name: Set PR title and commit message as output
+        run: |
+          echo "pr_title=${{ github.event.pull_request.title }}" >> $GITHUB_OUTPUT
+          echo "commit_message=$(git show -s --format=%s ${{ github.event.pull_request.head.sha }})" >> $GITHUB_OUTPUT
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm

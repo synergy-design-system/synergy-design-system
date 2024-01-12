@@ -95,7 +95,8 @@ jobs:
   chromatic-deployment:
     name: Validate Chromatic
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
+    # check pull request title
+    if: ${{ github.event.pull_request.draft == false && !contains(github.event.head_commit.message, '[skip chromatic]') && !contains(github.event.pull_request.title, '[skip chromatic]')}}
     needs: [quality-gate, test]
     steps:
       # 👇 Version 2 of the action

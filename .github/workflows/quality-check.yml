@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       # We save the PR title and commit message as output so we can use it as condition for chromatic-deployment job
       - name: Set PR title and commit message as output

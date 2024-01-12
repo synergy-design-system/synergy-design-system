@@ -5,20 +5,17 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  echo-pr-title-and-commit:
-    name: Echo PR title and commit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Echo PR title and commit
-        run: |
-          echo "PR title: ${{ github.event.pull_request.title }}"
-          echo "PR commit: ${{ github.event.pull_request.head.message }}"
   quality-gate:
     name: Validate build, lint, vendor and git diff
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Echo PR title and commit
+        run: |
+          echo "PR title: ${{ github.event.pull_request.title }}"
+          echo "PR commit: ${{ github.event.pull_request.head.message }}"
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm

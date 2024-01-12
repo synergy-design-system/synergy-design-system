@@ -44,4 +44,4 @@ Create a new `.eslintrc.json` file with the following content:
 You may extend the configuration as you like by adding your own overrides via the `rules` key as [described in the eslint configuration](https://eslint.org/docs/latest/use/configure/rules).
 
 > ⚠️ Make sure to point the `parserOptions.project` configuration key to a valid typescript configuration file.
-> The linter will not work if you omit this step! 
+> The linter will not work if you omit this step!

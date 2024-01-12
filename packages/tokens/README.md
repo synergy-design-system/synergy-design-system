@@ -51,7 +51,7 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 // Use this way when you already use a build system like webpack or vite
 // to make it part of your bundle.
 // Note this import should happen BEFORE you render any components!
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 ```
 
 ---
@@ -65,13 +65,13 @@ All tokens map to the corresponding css variables to make sure we have a single 
 // Using variables in JavaScript
 
 // Import the css variables first as they are our single source of truth
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
 // Imports all tokens
-import * as tokens from '@synergy-design-system/tokens';
+import * as tokens from "@synergy-design-system/tokens";
 
 // Set the background color of a queried div via JavaScript
-const elm = document.querySelector('div');
+const elm = document.querySelector("div");
 div.style.backgroundColor = tokens.SynColorPrimary500;
 
 // Get the value

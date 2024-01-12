@@ -6,6 +6,7 @@ import {
   SynRadio,
   SynRadioGroup,
   SynSwitch,
+  SynTag,
 } from '@synergy-design-system/react';
 
 export const App = () => (
@@ -62,6 +63,18 @@ export const App = () => (
       >
         Switch
       </SynSwitch>
+
+      <br />
+      <br />
+
+      <SynTag
+        name="tag"
+        required
+        removable
+      >
+        <SynIcon name="wallpaper" />
+        Option
+      </SynTag>
 
       <br />
       <br />

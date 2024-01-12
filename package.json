@@ -23,12 +23,18 @@
     "build.release": "pnpm --recursive --filter '!docs' --if-present build",
     "lint": "pnpm --recursive --if-present lint",
     "release": "pnpm --recursive --if-present --workspace-concurrency=1 release",
-    "release.dry": "pnpm --recursive --if-present --workspace-concurrency=1 release.dry"
+    "release.dry": "pnpm --recursive --if-present --workspace-concurrency=1 release.dry",
+    "format": "pnpm run /^format..*/",
+    "format.prettier": "pnpm exec prettier . -w",
+    "format.eslint": "pnpm --recursive --if-present format.eslint"
   },
   "private": true,
   "pnpm": {
     "patchedDependencies": {
       "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
     }
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }

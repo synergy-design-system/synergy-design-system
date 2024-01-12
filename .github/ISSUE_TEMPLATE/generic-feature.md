@@ -24,6 +24,7 @@ The Story should answer the following questions:
 - What should the component do and how should it behave?
 - What is the application context?
 -->
+
 As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [PRODUCT_VALUE].
 
 # Acceptance criteria

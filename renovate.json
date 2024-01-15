@@ -8,5 +8,6 @@
     "automergeStrategy": "squash",
     "automergeType": "pr"
   },
-  "draftPR": true
+  "draftPR": true,
+  "rebaseWhen": "never"
 }

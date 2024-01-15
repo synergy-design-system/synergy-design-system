@@ -18,6 +18,7 @@
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
     "@storybook/addon-mdx-gfm": "^7.5.3",
+    "@storybook/addon-viewport": "^7.6.8",
     "@storybook/blocks": "^7.5.3",
     "@storybook/manager-api": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",

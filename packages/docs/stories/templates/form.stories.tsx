@@ -1,17 +1,26 @@
+import React from 'react';
 import type { Meta } from '@storybook/web-components';
+import { Title, Subtitle, Description, Stories } from '@storybook/blocks';
 import { html } from 'lit';
 
 const meta: Meta = {
   parameters: {
-    controls: {
-      disable: true,
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Stories />
+        </>
+      ),
     },
   },
   title: 'Templates/Forms',
 };
 export default meta;
 
-export const Default = {
+export const ContactForm = {
   render: () => html`
     <style>
     .synergy-form-demo {
@@ -19,7 +28,8 @@ export const Default = {
       border: 1px dashed var(--syn-color-neutral-300);
       margin: 0 auto;
       padding: 10px 20px;
-      width: 750px;
+      max-width: 750px;
+      min-width: 360px;
     }
 
     .synergy-form-demo h1 {
@@ -61,13 +71,29 @@ export const Default = {
     }
 
     .synergy-form-demo .fields > * {
-      flex-basis: calc(50% - var(--syn-spacing-medium));
+      flex-basis: 100%;
     }
 
+    @media screen and (min-width: 641px) {
+      .synergy-form-demo .fields > * {
+        flex-basis: calc(50% - var(--syn-spacing-medium));
+      }
+    }
+
+    /*
+     * The form control inputs are using a css grid to be displayed.
+     * We just let them flow automatically mobile and arrange them
+     * in two columns when space is wide enough
+     */
     syn-radio-group::part(form-control-input) {
       display: grid;
-      grid-auto-flow: column;
-      grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    @media screen and (min-width: 641px) {
+      syn-radio-group::part(form-control-input) {
+        grid-auto-flow: column;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
     }
 
     .submit-actions {
@@ -99,7 +125,10 @@ export const Default = {
 
         <fieldset>
           <legend>Beschreiben Sie Ihre Anfrage</legend>
-          <p>Es ist sehr hilfreich, wenn die Beschreibung möglichst genau ist, so können wir noch spezieller auf Ihre Fragen eingehen. (Bei Applikationsbeschreibungen ggf. Material/Abmessungen/Geschwindigkeiten mit angeben).</p>
+          <p>
+            Es ist sehr hilfreich, wenn die Beschreibung möglichst genau ist, so können wir noch spezieller auf Ihre Fragen eingehen.
+            (Bei Applikationsbeschreibungen ggf. Material/Abmessungen/Geschwindigkeiten mit angeben).
+          </p>
 
           <syn-textarea label="Ihre Nachricht" name="message" required></syn-textarea>
         </fieldset>
@@ -120,8 +149,8 @@ export const Default = {
           </div>
           <syn-checkbox name="subscribeNewsletter">
             Ja, ich möchte regelmäßig aktuelle und interessanteInformationen zu Lösungen mit Produkten, Systemenund Services von SICK per E-Mail erhalten.
-            Ich kanndie Einwilligung jederzeit widerrufen.
-            Für einenWiderruf der Einwilligung kann ich jederzeit denAbmeldelink in jedem Newsletter/jeder E-Mail nutzen.
+            Ich kann die Einwilligung jederzeit widerrufen.
+            Für einen Widerruf der Einwilligung kann ich jederzeit den Abmeldelink in jedem Newsletter/jeder E-Mail nutzen.
           </syn-checkbox>
         </fieldset>
 
@@ -138,3 +167,16 @@ export const Default = {
     </div>
   `,
 };
+
+export const ContactFormTablet = {
+  ...ContactForm,
+  name: '↳ Tablet',
+  parameters: {
+    controls: {
+      exclude: ['default']
+    },
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+}

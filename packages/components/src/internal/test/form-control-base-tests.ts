@@ -50,6 +50,7 @@ export function runFormControlBaseTests<T extends SynergyFormControl = SynergyFo
 //   - `.checkValidity()`
 //   - `.reportValidity()`
 //   - `.setCustomValidity(msg)`
+//   - `.getForm()`
 //
 function runAllValidityTests(
   tagName: string, //
@@ -129,6 +130,27 @@ function runAllValidityTests(
         await control.updateComplete;
         const emittedEvents = checkEventEmissions(control, 'syn-invalid', () => control.reportValidity());
         expect(emittedEvents.length).to.equal(0);
+      });
+
+      it('Should find the correct form when given a form property', async () => {
+        const formId = 'test-form';
+        const form = await fixture(`<form id='${formId}'></form>`);
+        const control = await createControl();
+        expect(control.getForm()).to.equal(null);
+        control.form = 'test-form';
+        await control.updateComplete;
+        expect(control.getForm()).to.equal(form);
+      });
+
+      it('Should find the correct form when given a form attribute', async () => {
+        const formId = 'test-form';
+        const form = await fixture(`<form id='${formId}'></form>`);
+        const control = await createControl();
+        expect(control.getForm()).to.equal(null);
+        control.setAttribute('form', 'test-form');
+
+        await control.updateComplete;
+        expect(control.getForm()).to.equal(form);
       });
     }
 

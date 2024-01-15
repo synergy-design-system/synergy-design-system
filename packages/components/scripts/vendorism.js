@@ -70,7 +70,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.10.0';
+const shoelaceVersion = '2.12.0';
 
 // Command line options
 const optionDefinitions = [

@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.2.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.1...components/1.2.2) (2024-01-15)
+
+
+### Bug Fixes
+
+* 🤔 Update to shoelace 2.12.0 ([#257](https://github.com/synergy-design-system/synergy-design-system/issues/257)) ([42b1c26](https://github.com/synergy-design-system/synergy-design-system/commit/42b1c268688a32290ab67795c758c96b5a382aff))
+
+# [@synergy-design-system/components-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.0...components/1.2.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* 🤔 Syn-Button Spacing ([#254](https://github.com/synergy-design-system/synergy-design-system/issues/254)) ([808db09](https://github.com/synergy-design-system/synergy-design-system/commit/808db09668e0bd1871d894cfaf3433d39ce41637))
+
 # [@synergy-design-system/components-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.1.0...components/1.2.0) (2024-01-12)
 
 

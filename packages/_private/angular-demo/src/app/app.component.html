@@ -79,6 +79,17 @@
     <br>
     <br>
 
+    <syn-tag
+      size="medium"
+      [removable]="true"
+      (synRemoveEvent)="logMessage('Removed the icon!', $event)">
+      <syn-icon name="wallpaper"/>
+        Option
+    </syn-tag>
+
+    <br>
+    <br>
+
     <syn-button type="submit" variant="filled">Submit</syn-button>
 
     <br>

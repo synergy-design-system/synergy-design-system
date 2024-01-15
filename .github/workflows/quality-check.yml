@@ -34,6 +34,9 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
 
+      - name: Check for formatting issues
+        run: pnpm exec prettier . -c
+
       - name: Lint
         run: pnpm lint
 
@@ -95,7 +98,8 @@ jobs:
   chromatic-deployment:
     name: Validate Chromatic
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
+    # check pull request title
+    if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
     needs: [quality-gate, test]
     steps:
       # 👇 Version 2 of the action

@@ -52,6 +52,7 @@
     "directory": "packages/_private/react-demo"
   },
   "scripts": {
+    "format.eslint": "pnpm lint --fix",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "start": "vite"
   },

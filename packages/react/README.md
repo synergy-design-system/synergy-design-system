@@ -3,6 +3,7 @@
 This package provides [React.js](https://react.dev/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
 This package aims for an improved UX when used in React applications:
+
 - Auto-completion
 - Event handling
 
@@ -29,14 +30,14 @@ The components will not display correctly without the needed theme. Please inclu
 
 ```tsx
 // main.tsx
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { App } from './App';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
 
 // Add this line to enable the light theme for your application
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>,
@@ -48,7 +49,7 @@ createRoot(document.getElementById('root')!).render(
 You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a react component.
 
 ```tsx
-import { SynButton } from '@synergy-design-system/react';
+import { SynButton } from "@synergy-design-system/react";
 
 export const MyButton = () => (
   <SynButton type="button" variant="filled">
@@ -64,13 +65,13 @@ All events will be automatically set up to work without the need to attach event
 Just use them with the default react `onEVENT` prefix, where `EVENT` is the camelCased name of the event.
 
 ```tsx
-import { SynButton } from '@synergy-design-system/react';
+import { SynButton } from "@synergy-design-system/react";
 
 export const MyButton = () => (
   <SynButton
-    onSynBlur={e => console.log('button blur event', e)}
-    onSynFocus={e => console.log('button focus event', e)}
-    onSynInvalid={e => console.log('button flagged as invalid', e)}
+    onSynBlur={e => console.log("button blur event", e)}
+    onSynFocus={e => console.log("button focus event", e)}
+    onSynInvalid={e => console.log("button flagged as invalid", e)}
   >
     SynButton Example
   </SynButton>

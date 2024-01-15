@@ -16,6 +16,7 @@
   - [Contribution workflow](#contribution-workflow)
   - [Semantic release process](#semantic-release-process)
     - [Pull requests and commits](#pull-requests-and-commits)
+      - [Special command \[skip chromatic\]](#special-command-skip-chromatic)
       - [Assignees and reviewers](#assignees-and-reviewers)
   - [Issue tracking](#issue-tracking)
 
@@ -61,6 +62,10 @@ We are enforcing common code conventions via `eslint` and `stylelint`. Please ma
 When writing components, use our defined list of design tokens for spacing, fonts or colors. As a rule of thumb, there should be no need to have a static color anywhere in your css code.
 
 Components must be optimized for accessibility. Please use tools like AXE or Dev-Tools and have a look at the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) for further information.
+
+## Formatting
+
+Formatting rules are currently applied via `eslint` and `prettier`. You may format run `pnpm format` in the root of the repository to automatically format your code changes. Note that we are currently using `prettier` for non-code files only, `ts, tsx, js, jsx and vue` will be formatted using eslint.
 
 ### Ensure Accessibility
 
@@ -115,6 +120,12 @@ If a change is breaking, be aware that the string "BREAKING CHANGE" must be part
 Before merging make sure that all sections are filled out properly and that all DoD checkmarks are checked.
 
 When committing changes use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
+
+#### Special command [skip chromatic]
+
+Orientated at [GitHub's commit commands to skip workflows](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs), we added a special command to skip Chromatic actions in PRs and commits on main to save screenshots. This should be used with care, as it is only needed in cases where the visual appearance of the components is not affected. For example, when updating the README or the CI configuration.
+
+> Note: This command is only available for PRs and commits on main. It currently doesn't work for single commits on a PR.
 
 #### Assignees and reviewers
 

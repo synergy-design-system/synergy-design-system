@@ -4,6 +4,10 @@
 import fs from 'fs';
 import path from 'path';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
+import prettier from 'prettier';
+
+// eslint-disable-next-line import/no-relative-packages
+import prettierConfig from '../../../../prettier.config.js';
 
 export async function updateVsCodeReadOnlyFiles(
   remove,
@@ -87,7 +91,15 @@ export async function updateVsCodeReadOnlyFiles(
     // Write the updated settings back to settings.json
     console.log('🖊️ Writing to settings.json file...');
     await fs.mkdirSync(settingsPath.split('/').slice(0, -1).join('/'), { recursive: true });
-    await fs.writeFileSync(settingsPath, `${JSON.stringify(settings, null, 4)}\n`, 'utf8');
+    await fs.writeFileSync(settingsPath, JSON.stringify(settings), 'utf8');
+
+    const blob = fs.readFileSync(settingsPath);
+    const formattedFile = await prettier.format(blob.toString(), {
+      ...prettierConfig,
+      parser: 'json',
+    });
+
+    await fs.writeFileSync(settingsPath, formattedFile, 'utf8');
   } catch (error) {
     console.error('An error occurred while updating settings:', error);
   }

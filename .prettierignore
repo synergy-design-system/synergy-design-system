@@ -1,0 +1,35 @@
+# Default system files
+patches
+pnpm-lock.yaml
+
+# #181: Ignore all files currently linted via eslint/stylelint
+*.ts
+*.tsx
+*.cjs
+*.js
+*.jsx
+*.html
+*.css
+*.mdx
+*.vue
+
+# Build and dist directeories
+build/
+dist/
+
+# Demo repos and their caches
+.angular
+angular/dist
+
+# Components should exclude tsconfig as this is handeled by vendorism
+packages/components/tsconfig*.*
+
+# Docs
+docs/dist
+docs/storybook-static
+
+# Do not format tokens!
+packages/tokens/src/**/*.json
+
+# Changelogs are automatically generated
+CHANGELOG.md

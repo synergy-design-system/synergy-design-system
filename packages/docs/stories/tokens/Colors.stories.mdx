@@ -19,10 +19,10 @@ import {
 <p>{docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}</p>
 
 {/* @todo: Make sure to add 'dark' when available! */}
-{['light'].map(theme => (
-  <>
-    <h2 key={`${theme}-headline`}>Colors / {theme}</h2>
-    <table className={`syn-theme-${theme}`} key={`${theme}-table`}>
+{['light', 'dark'].map(theme => (
+  <div key={theme}>
+    <h2>Colors / {theme}</h2>
+    <table className={`syn-theme-${theme}`}>
       <tbody>
         {[
           ['Neutral', getNeutralColorPalette(true)],
@@ -33,10 +33,10 @@ import {
           ['Success', getColorAsPalette('success', true)],
         ].map(([title, palette]) => (
           <>
-            <tr key={title}>
+            <tr key={`${title}-header`}>
               <th colSpan="5">{title}</th>
             </tr>
-            <tr key={title}>
+            <tr key={`${title}-others`}>
               <th>Color</th>
               <th>Raw Value</th>
               <th>CSS Token</th>
@@ -44,7 +44,7 @@ import {
               <th>JS Token</th>
             </tr>
             {Object.entries(palette).map(([token, value]) => (
-              <tr>
+              <tr key={`${title}-row-${token}`}>
                 <td>
                   <div className="color-swatch" style={{ backgroundColor: value }} />
                 </td>
@@ -72,7 +72,7 @@ import {
         ))}
       </tbody>
     </table>
-  </>
+  </div>
 ))}
 
 <style>

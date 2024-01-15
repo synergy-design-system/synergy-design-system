@@ -8,6 +8,7 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import format from 'html-format';
 import { StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import storyBookPreviewConfig from '../../.storybook/preview.js';
 
 export default async function loadCustomElements() {
   await fetch('./custom-elements.json');
@@ -613,6 +614,7 @@ export const generateScreenshotStory = (stories: Array<StoryObj>, heightPx: numb
   return {
     parameters: {
       chromatic: {
+        ...storyBookPreviewConfig?.parameters?.chromatic,
         disableSnapshot: false,
       },
       docs: {

@@ -45,6 +45,56 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 </html>
 ```
 
+#### Switching themes during runtime
+
+You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
+
+| Theme | Stylesheet to use         | Body className    |
+| :---- | :------------------------ | :---------------- |
+| light | `tokens/themes/light.css` | `syn-theme-light` |
+| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`  |
+
+To switch the theme, proceed in the following way:
+
+```html
+<!DOCTYPE html>
+  <head>
+    <!--
+      -- Load both themes initially.
+      -- The last theme will be the default, in this case the light theme
+    -->
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/dark.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/light.css" />
+  </head>
+  <body>
+    <button id="theme-switch">Switch Theme</button>
+    <script>
+    const switchTheme = ({ target }) => {
+      const { body } = document;
+      const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
+
+      if (currentTheme === 'light') {
+        // Light theme
+        body.classList.remove('syn-theme-light');
+        body.classList.add('syn-theme-dark');
+        target.innerText = 'Switch to light theme';
+      } else {
+        // Dark theme
+        body.classList.remove('syn-theme-dark');
+        body.classList.add('syn-theme-light');
+        target.innerText = 'Switch to dark theme';
+      }
+    }
+
+    document
+      .querySelector('#theme-switch')
+      .addEventListener('click', switchTheme);
+    </script>
+  </body>
+</html>
+
+```
+
 ```javascript
 // Example 2: Importing for bundlers
 // In most build systems, you will be able to import css files directly
@@ -113,7 +163,7 @@ div {
 ## Optional: Configuring tokens in VSCode
 
 Using VSCode?
-You may also want to install vunguyentuan.vscode-css-variables to include css variable auto completion in your project.
+You may also want to install `vunguyentuan.vscode-css-variables` to include css variable auto completion in your project.
 Just make sure to add a valid path to the light theme in the `.vscode/settings.json` file like this:
 
 ```json

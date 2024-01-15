@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.0...components/1.2.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* 🤔 Syn-Button Spacing ([#254](https://github.com/synergy-design-system/synergy-design-system/issues/254)) ([808db09](https://github.com/synergy-design-system/synergy-design-system/commit/808db09668e0bd1871d894cfaf3433d39ce41637))
+
 # [@synergy-design-system/components-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.1.0...components/1.2.0) (2024-01-12)
 
 

@@ -1,4 +1,4 @@
-import { removeSection, removeSections } from '../remove-section.js';
+import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',

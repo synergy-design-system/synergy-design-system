@@ -249,15 +249,15 @@ export const CustomTags: Story = {
   class="custom-tag"
 >
   <syn-option value="email">
-    <syn-icon slot="prefix" name="envelope"></syn-icon>
+    <syn-icon slot="prefix" name="mail_lock"></syn-icon>
     Email
   </syn-option>
   <syn-option value="phone">
-    <syn-icon slot="prefix" name="telephone"></syn-icon>
+    <syn-icon slot="prefix" name="phone_callback"></syn-icon>
     Phone
   </syn-option>
   <syn-option value="chat">
-    <syn-icon slot="prefix" name="chat-dots"></syn-icon>
+    <syn-icon slot="prefix" name="chat_bubble"></syn-icon>
     Chat
   </syn-option>
 </syn-select>

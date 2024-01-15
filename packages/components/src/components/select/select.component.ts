@@ -154,9 +154,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   /** Draws a filled select. */
   @property({ type: Boolean, reflect: true }) filled = false;
 
-  /** Draws a pill-style select with rounded edges. */
-  @property({ type: Boolean, reflect: true }) pill = false;
-
   /** The select's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
@@ -194,7 +191,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               remove-button:tag__remove-button,
               remove-button__base:tag__remove-button__base
             "
-        ?pill=${this.pill}
         size=${this.size}
         removable
         @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
@@ -750,7 +746,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               select: true,
               'select--standard': true,
               'select--filled': this.filled,
-              'select--pill': this.pill,
               'select--open': this.open,
               'select--disabled': this.disabled,
               'select--multiple': this.multiple,

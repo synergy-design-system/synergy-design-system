@@ -120,17 +120,6 @@ export const FilledSelects: Story = {
 };
 
 /**
- * Use the pill attribute to give selects rounded edges.
- */
-export const Pill: Story = {
-  render: () => renderWithAdjustedHeight(html`<syn-select pill>
-  <syn-option value="option-1">Option 1</syn-option>
-  <syn-option value="option-2">Option 2</syn-option>
-  <syn-option value="option-3">Option 3</syn-option>
-</syn-select>`),
-};
-
-/**
  * Use the disabled attribute to disable a select.
  */
 export const Disabled: Story = {

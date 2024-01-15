@@ -246,22 +246,7 @@ export default css`
 
   .select--large .select__tags {
     gap: 4px;
-  }
-
-  /* Pills */
-  .select--pill.select--small .select__combobox {
-    border-radius: var(--syn-input-height-small);
-  }
-
-  .select--pill.select--medium .select__combobox {
-    border-radius: var(--syn-input-height-medium);
-  }
-
-  .select--pill.select--large .select__combobox {
-    border-radius: var(--syn-input-height-large);
-  }
-
-  /* Prefix */
+  }/* Prefix */
   .select__prefix {
     flex: 0;
     display: inline-flex;

@@ -49,10 +49,10 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 
 You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
 
-| Theme | Stylesheet to use         | Body className
-|:------|:--------------------------|:---------------
-| light | `tokens/themes/light.css` | `syn-theme-light`
-| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`
+| Theme | Stylesheet to use         | Body className    |
+| :---- | :------------------------ | :---------------- |
+| light | `tokens/themes/light.css` | `syn-theme-light` |
+| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`  |
 
 To switch the theme, proceed in the following way:
 
@@ -72,7 +72,7 @@ To switch the theme, proceed in the following way:
     const switchTheme = ({ target }) => {
       const { body } = document;
       const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
-      
+
       if (currentTheme === 'light') {
         // Light theme
         body.classList.remove('syn-theme-light');

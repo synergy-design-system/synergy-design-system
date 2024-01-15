@@ -6,9 +6,10 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 body {
   background: var(--syn-color-neutral-100);
+  color: var(--syn-color-neutral-900);
 }

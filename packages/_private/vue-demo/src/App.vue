@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import ThemeSwitch from './components/ThemeSwitch.vue';
 import SynContactForm from './components/SynContactForm.vue';
 </script>
 
 <template>
+  <ThemeSwitch />
   <main>
     <h1>@synergy-design-system/components</h1>
     <h2>Demo Application using <code>@synergy-design-system/components</code> web components in Vue.js</h2>

@@ -4,6 +4,10 @@
 ### Bug Fixes
 
 * 🤔 Update to shoelace 2.12.0 ([#257](https://github.com/synergy-design-system/synergy-design-system/issues/257)) ([42b1c26](https://github.com/synergy-design-system/synergy-design-system/commit/42b1c268688a32290ab67795c758c96b5a382aff))
+  * See detailed changelog at https://shoelace.style/resources/changelog#id_2_12_0.
+  * Added the ability to call form.checkValidity() and it will use Shoelace’s custom checkValidity() handler.
+  * Fixed a bug with form controls removing the custom validity handlers from the form
+  * Fixed a bug in form control components that used a form property, but not an attribute
 
 # [@synergy-design-system/components-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.0...components/1.2.1) (2024-01-15)
 

@@ -22,7 +22,7 @@ const renderWithAdjustedHeight = (template: TemplateResult) => html`
 `;
 
 const meta: Meta = {
-  component: 'select',
+  component: 'syn-select',
   args,
   argTypes,
   title: 'Components/syn-select',
@@ -63,6 +63,35 @@ export const Default = {
   }
 } as Story;
 
+/**
+ * @todo: Add this from docs tokens!
+ * The focus event gives the user feedback that the select has been focused by the keyboard interaction.
+ */
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        // story: generateStoryDescription('select', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const elm = canvasElement.querySelector('syn-select');
+    if (elm) {
+      elm.focus();
+    }
+  },
+  render: () => renderWithAdjustedHeight(html`
+    <syn-select label="Select one">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-select>
+  `),
+};
 
 /**
  * Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.

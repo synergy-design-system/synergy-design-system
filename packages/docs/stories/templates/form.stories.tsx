@@ -1,6 +1,11 @@
 import React from 'react';
 import type { Meta } from '@storybook/web-components';
-import { Title, Subtitle, Description, Stories } from '@storybook/blocks';
+import {
+  Description,
+  Stories,
+  Subtitle,
+  Title,
+} from '@storybook/blocks';
 import { html } from 'lit';
 
 const meta: Meta = {
@@ -64,6 +69,7 @@ export const ContactForm = {
     }
 
     .synergy-form-demo .fields {
+      container-type: inline-size;
       display: flex;
       flex-flow: wrap;
       margin-bottom: var(--syn-font-size-x-large);
@@ -74,7 +80,7 @@ export const ContactForm = {
       flex-basis: 100%;
     }
 
-    @media screen and (min-width: 641px) {
+    @container (min-width: 700px) {
       .synergy-form-demo .fields > * {
         flex-basis: calc(50% - var(--syn-spacing-medium));
       }
@@ -85,11 +91,14 @@ export const ContactForm = {
      * We just let them flow automatically mobile and arrange them
      * in two columns when space is wide enough
      */
+    syn-radio-group {
+      container-type: inline-size;
+    }
     syn-radio-group::part(form-control-input) {
       display: grid;
     }
 
-    @media screen and (min-width: 641px) {
+    @container (min-width: 700px) {
       syn-radio-group::part(form-control-input) {
         grid-auto-flow: column;
         grid-template-rows: 1fr 1fr 1fr;
@@ -173,10 +182,10 @@ export const ContactFormTablet = {
   name: '↳ Tablet',
   parameters: {
     controls: {
-      exclude: ['default']
+      exclude: ['default'],
     },
     viewport: {
       defaultViewport: 'mobile2',
     },
   },
-}
+};

@@ -6,8 +6,10 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
-    '@geometricpanda/storybook-addon-badges',
-    "@storybook/addon-mdx-gfm"
+    "@storybook/addon-themes",
+    // @fixme: Badges are disabled until we have proper support in our components
+    // '@geometricpanda/storybook-addon-badges',
+    "@storybook/addon-mdx-gfm",
   ],
   core: {
     disableTelemetry: true,
@@ -19,13 +21,10 @@ const config: StorybookConfig = {
     name: "@storybook/web-components-vite",
     options: {},
   },
-  staticDirs: [
-    '../public',
-    {
+  staticDirs: ['../public', {
       from: '../../assets/src',
       to: '/assets'
-    }
-  ],
+  }],
   stories: [
     "../stories/Index.mdx",
     "../stories/Introduction.mdx",

@@ -157,7 +157,7 @@ export const ContactForm = {
             <syn-input type="email" label="E-Mail-Adresse" name="mail" required></syn-input>
           </div>
           <syn-checkbox name="subscribeNewsletter">
-            Ja, ich möchte regelmäßig aktuelle und interessanteInformationen zu Lösungen mit Produkten, Systemenund Services von SICK per E-Mail erhalten.
+            Ja, ich möchte regelmäßig aktuelle und interessante Informationen zu Lösungen mit Produkten, Systemen und Services von SICK per E-Mail erhalten.
             Ich kann die Einwilligung jederzeit widerrufen.
             Für einen Widerruf der Einwilligung kann ich jederzeit den Abmeldelink in jedem Newsletter/jeder E-Mail nutzen.
           </syn-checkbox>

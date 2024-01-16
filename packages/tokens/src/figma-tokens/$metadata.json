@@ -8,6 +8,7 @@
     "semantic/input",
     "semantic/button",
     "semantic/toggle",
+    "semantic/typography",
     "_docs"
   ]
 }

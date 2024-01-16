@@ -335,13 +335,65 @@
       }
     },
     "divider": {
-      "description": {
-        "value": "Dividers are used to visually separate or group elements.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Dividers are used to visually separate or group elements.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Divider",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Divider",
-        "type": "text"
+      "width": {
+        "title": {
+          "value": "Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --width custom property to change the width of the divider.",
+          "type": "text"
+        }
+      },
+      "color": {
+        "title": {
+          "value": "Color",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --color custom property to change the color of the divider.",
+          "type": "text"
+        }
+      },
+      "spacing": {
+        "title": {
+          "value": "Spacing",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --spacing custom property to change the amount of space between the divider and it’s neighboring elements.",
+          "type": "text"
+        }
+      },
+      "vertical": {
+        "title": {
+          "value": "Vertical",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the vertical attribute to draw the divider in a vertical orientation. The divider will span the full height of its container. Vertical dividers work especially well inside of a flex container.",
+          "type": "text"
+        }
+      },
+      "menu": {
+        "title": {
+          "value": "Menu Dividers",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use dividers in menus to visually group menu items.",
+          "type": "text"
+        }
       }
     },
     "drawer": {
@@ -1228,14 +1280,8 @@
         }
       },
       "value": {
-        "title": {
-          "value": "Initial Value",
-          "type": "text"
-        },
-        "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-          "type": "text"
-        }
+        "title": "[object Object]",
+        "description": "[object Object]"
       },
       "type": "other"
     }

@@ -11,6 +11,10 @@ import { html } from 'lit';
 const meta: Meta = {
   parameters: {
     docs: {
+      story: {
+        inline: false,
+        iframeHeight: 1500,
+      },
       page: () => (
         <>
           <Title />
@@ -34,10 +38,9 @@ export const ContactForm = {
       margin: 0 auto;
       padding: 10px 20px;
       max-width: 750px;
-      min-width: 360px;
     }
 
-    .synergy-form-demo h1 {
+    h1 {
       font-size: var(--syn-font-size-3x-large);
       font-weight: normal;
       margin: 0 0 10px 0;
@@ -47,28 +50,28 @@ export const ContactForm = {
       margin: 0 0 var(--syn-spacing-2x-large) 0;
     }
 
-    .synergy-form-demo em {
+    em {
       font-size: var(--syn-font-size-x-small);
       font-style: normal;
     }
 
-    .synergy-form-demo fieldset {
+    fieldset {
       border: none;
       margin: 0 0 var(--syn-spacing-2x-large) 0;
       padding: 0;
     }
 
-    .synergy-form-demo fieldset legend {
+    fieldset legend {
       font-size: var(--syn-font-size-large);
       margin-bottom: var(--syn-font-size-small);
     }
 
-    .synergy-form-demo fieldset legend + p {
+    fieldset legend + p {
       font-size: var(--syn-font-size-medium);
       margin: 0 0 var(--syn-font-size-medium) 0;
     }
 
-    .synergy-form-demo .fields {
+    .fields {
       container-type: inline-size;
       display: flex;
       flex-flow: wrap;
@@ -76,12 +79,12 @@ export const ContactForm = {
       gap: var(--syn-spacing-large) var(--syn-font-size-small);
     }
 
-    .synergy-form-demo .fields > * {
+    .fields > * {
       flex-basis: 100%;
     }
 
     @container (min-width: 700px) {
-      .synergy-form-demo .fields > * {
+      .fields > * {
         flex-basis: calc(50% - var(--syn-spacing-medium));
       }
     }

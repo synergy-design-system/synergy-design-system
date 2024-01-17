@@ -10,10 +10,6 @@ export default css`
     margin-inline-start: var(--syn-spacing-small);
   }
 
-  .select__clear:hover {
-    color: red !important;
-  }
-
   /* Expand icon */
   .select__expand-icon {
     color: var(--syn-color-neutral-950);
@@ -40,4 +36,22 @@ export default css`
   .select__prefix {
     color: var(--syn-input-help-text-color);
   }
+
+  /* Multi Select */
+  .select__tags {
+    margin-inline-start: var(--syn-spacing-medium);
+  }
+
+  /* Listbox */
+  .select__listbox {
+    /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */
+    border-radius: 0;
+    box-shadow: var(--syn-shadow-medium);
+  }
+
+  /* Default Select should not show a shadow when open, just when focused */
+  .select--standard:not(.select--disabled).select--open .select__combobox {
+    box-shadow: none;
+  }
+
 `;

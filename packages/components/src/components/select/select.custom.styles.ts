@@ -1,7 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-  /* Clearable */
+  /* Clear button */
   .select__clear {
     color: var(--syn-input-icon-icon-clearable-color);
   }
@@ -18,7 +18,7 @@ export default css`
   }
 
   /* Change select border on hover */
-  .select--standard:hover .select__combobox {
+  .select:not(.select--disabled):hover .select__combobox {
     border-color: var(--syn-input-color-hover);
   }
 

@@ -46,6 +46,18 @@ export default css`
     margin-inline-start: var(--syn-spacing-medium);
   }
 
+  .select--small .select__tags {
+    gap: var(--syn-spacing-2x-small);
+  }
+
+  .select--medium .select__tags {
+    gap: var(--syn-spacing-x-small);
+  }
+
+  .select--large .select__tags {
+    gap: var(--syn-spacing-small);
+  }
+
   /* Listbox */
   .select__listbox {
     /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */

@@ -34,6 +34,7 @@ export const components = [
   'option',
   'switch',
   'tag',
+  'divider',
 ].sort();
 
 /**

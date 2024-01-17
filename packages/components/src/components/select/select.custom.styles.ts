@@ -26,16 +26,15 @@ export default css`
 
   /* Small */
   .select--small .select__prefix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
+    margin-inline-end: var(--syn-spacing-x-small);
   }
 
   .select--medium .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-small);
-    margin-inline-start: var(--syn-input-spacing-medium);
   }
 
   .select--large .select__prefix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-large);
+    margin-inline-end: var(--syn-input-spacing-medium);
   }
 
   .select__prefix {

@@ -93,6 +93,16 @@
         },
         "type": "typography"
       }
+    },
+    "color": {
+      "text": {
+        "value": "{neutral.950}",
+        "type": "color"
+      },
+      "text-inverse": {
+        "value": "{neutral.0}",
+        "type": "color"
+      }
     }
   }
 }

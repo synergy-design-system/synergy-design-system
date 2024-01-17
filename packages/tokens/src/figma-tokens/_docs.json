@@ -1218,14 +1218,8 @@
         }
       },
       "value": {
-        "title": {
-          "value": "Initial Value",
-          "type": "text"
-        },
-        "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-          "type": "text"
-        }
+        "title": "[object Object]",
+        "description": "[object Object]"
       },
       "type": "other"
     }

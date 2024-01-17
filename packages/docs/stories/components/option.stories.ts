@@ -45,6 +45,13 @@ export const Default = {
  * Use the disabled attribute to disable an option and prevent it from being selected.
  */
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      story: {
+        height: '250px',
+      }
+    }
+  },
   render: () => html`
     <syn-select label="Select one">
       <syn-option value="option-1">Option 1</syn-option>
@@ -58,6 +65,13 @@ export const Disabled: Story = {
  * Add icons to the start and end of menu items using the prefix and suffix slots.
  */
 export const PrefixSuffix: Story = {
+  parameters: {
+    docs: {
+      story: {
+        height: '250px',
+      }
+    }
+  },
   render: () => html`
     <syn-select label="Select one">
       <syn-option value="option-1">

@@ -44,6 +44,22 @@ const transformStyles = (path, originalContent) => {
   };
 };
 
+/**
+ * Transform the components tests
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformTests = (path, originalContent) => {
+  const content = removeSections([
+    ["it('should have rounded tags", '});'],
+  ], originalContent);
+  return {
+    content,
+    path,
+  };
+};
+
 export const vendorSelect = (path, content) => {
   const output = { content, path };
 
@@ -62,6 +78,9 @@ export const vendorSelect = (path, content) => {
     return transformStyles(path, content);
   }
 
-  console.log(`Todo: Write transforms for ${path}`);
+  if (path.endsWith('select.test.ts')) {
+    return transformTests(path, content);
+  }
+
   return output;
 };

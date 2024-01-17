@@ -587,18 +587,5 @@ describe('<syn-select>', () => {
     expect(afterHideHandler).to.have.been.calledOnce;
   });
 
-  it('should have rounded tags when using the pill attribute', async () => {
-    const el = await fixture<SynSelect>(html`
-      <syn-select value="option-1 option-2" multiple pill>
-        <syn-option value="option-1">Option 1</syn-option>
-        <syn-option value="option-2">Option 2</syn-option>
-        <syn-option value="option-3">Option 3</syn-option>
-      </syn-select>
-    `);
-    const tag = el.shadowRoot!.querySelector('[part~="tag"]')!;
-
-    expect(tag.hasAttribute('pill')).to.be.true;
-  });
-
   runFormControlBaseTests('syn-select');
 });

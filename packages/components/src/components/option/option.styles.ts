@@ -5,6 +5,7 @@
 
 /* eslint-disable */
 import { css } from 'lit';
+import customStyles from './option.custom.styles.js';
 import componentStyles from '../../styles/component.styles.js';
 
 export default css`
@@ -94,4 +95,7 @@ export default css`
       outline-offset: -1px;
     }
   }
+
+  ${customStyles}
 `;
+

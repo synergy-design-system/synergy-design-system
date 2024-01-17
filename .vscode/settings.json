@@ -49,6 +49,7 @@
     "packages/components/src/components/input/input.ts": true,
     "packages/components/src/components/option/option.component.ts": true,
     "packages/components/src/components/option/option.styles.ts": true,
+    "packages/components/src/components/option/option.test.ts": true,
     "packages/components/src/components/option/option.ts": true,
     "packages/components/src/components/popup/popup.component.ts": true,
     "packages/components/src/components/popup/popup.styles.ts": true,

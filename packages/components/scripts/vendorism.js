@@ -31,6 +31,7 @@ export const components = [
   'radio-group',
   'icon-button',
   'select',
+  'option',
   'switch',
   'tag',
 ].sort();

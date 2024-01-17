@@ -326,3 +326,34 @@ export const CustomTags: Story = {
     </script>
   `,
 };
+
+/**
+ * When there is not enough place to the bottom, the listbox should will appear above the combobox
+ */
+export const PlacementTop = {
+  render: () => html`
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu euismod est. Aliquam leo purus, dignissim vitae pretium et, scelerisque at sapien. Pellentesque vehicula vulputate orci a sagittis. Nunc aliquam enim ex, non mattis est scelerisque at. Suspendisse potenti. Phasellus in felis dolor. Aenean laoreet malesuada tristique. Sed consectetur dictum ex id imperdiet. Proin dapibus tellus eu dui rhoncus, at molestie arcu malesuada. Integer quis sollicitudin eros, eu auctor nibh. Donec pharetra nunc a tristique molestie. Aliquam vitae convallis libero, eget commodo lacus. Donec pellentesque ut turpis eu sagittis.</p>
+    <p>Aenean semper, ante ac aliquet varius, leo elit eleifend lacus, sed ullamcorper dolor felis in turpis. Morbi vestibulum vitae nibh et pulvinar. Fusce a tortor sed magna aliquet luctus id at mauris. Curabitur sed ex ligula. Phasellus porttitor metus ac nulla malesuada, eget convallis tellus sodales. Nullam eu interdum mauris. Etiam a quam id ligula suscipit dictum at nec velit. Sed ac faucibus tortor.</P>
+    <p>Fusce quam neque, euismod non ipsum vel, vehicula volutpat massa. Nam vulputate accumsan dolor eu elementum. Etiam semper a ligula vitae condimentum. Aenean imperdiet arcu libero, ut porttitor ante mollis id. Proin ullamcorper leo est, in auctor justo congue sed. Aliquam ut mi et nunc pharetra accumsan in sed neque. Nulla eu lacinia elit, id mattis sapien. Morbi in tellus convallis, tempus tortor id, facilisis augue. In ultricies faucibus vulputate. Suspendisse luctus dolor leo, ut rutrum velit condimentum at. Maecenas fermentum finibus quam eget rhoncus. Sed rhoncus scelerisque odio vel fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+    <syn-select placement="top">
+      <syn-option value="1">Option 1</syn-option>
+      <syn-option value="2">Option 2</syn-option>
+      <syn-option value="3">Option 3</syn-option>
+      <syn-option value="4">Option 4</syn-option>
+      <syn-option value="5">Option 5</syn-option>
+      <syn-option value="6">Option 6</syn-option>
+      <syn-option value="7">Option 7</syn-option>
+      <syn-option value="8">Option 8</syn-option>
+      <syn-option value="9">Option 9</syn-option>
+      <syn-option value="10">Option 10</syn-option>
+      <syn-option value="11">Option 11</syn-option>
+      <syn-option value="12">Option 12</syn-option>
+      <syn-option value="13">Option 13</syn-option>
+      <syn-option value="14">Option 14</syn-option>
+      <syn-option value="15">Option 15</syn-option>
+    </syn-select>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu euismod est. Aliquam leo purus, dignissim vitae pretium et, scelerisque at sapien. Pellentesque vehicula vulputate orci a sagittis. Nunc aliquam enim ex, non mattis est scelerisque at. Suspendisse potenti. Phasellus in felis dolor. Aenean laoreet malesuada tristique. Sed consectetur dictum ex id imperdiet. Proin dapibus tellus eu dui rhoncus, at molestie arcu malesuada. Integer quis sollicitudin eros, eu auctor nibh. Donec pharetra nunc a tristique molestie. Aliquam vitae convallis libero, eget commodo lacus. Donec pellentesque ut turpis eu sagittis.</p>
+    <p>Aenean semper, ante ac aliquet varius, leo elit eleifend lacus, sed ullamcorper dolor felis in turpis. Morbi vestibulum vitae nibh et pulvinar. Fusce a tortor sed magna aliquet luctus id at mauris. Curabitur sed ex ligula. Phasellus porttitor metus ac nulla malesuada, eget convallis tellus sodales. Nullam eu interdum mauris. Etiam a quam id ligula suscipit dictum at nec velit. Sed ac faucibus tortor.</P>
+    <p>Fusce quam neque, euismod non ipsum vel, vehicula volutpat massa. Nam vulputate accumsan dolor eu elementum. Etiam semper a ligula vitae condimentum. Aenean imperdiet arcu libero, ut porttitor ante mollis id. Proin ullamcorper leo est, in auctor justo congue sed. Aliquam ut mi et nunc pharetra accumsan in sed neque. Nulla eu lacinia elit, id mattis sapien. Morbi in tellus convallis, tempus tortor id, facilisis augue. In ultricies faucibus vulputate. Suspendisse luctus dolor leo, ut rutrum velit condimentum at. Maecenas fermentum finibus quam eget rhoncus. Sed rhoncus scelerisque odio vel fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+  `,
+}

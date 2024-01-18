@@ -11,6 +11,7 @@ export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynIconButton } from './components/icon-button/icon-button.js';
 export { default as SynIcon } from './components/icon/icon.js';
 export { default as SynInput } from './components/input/input.js';
+export { default as SynOptgroup } from './components/optgroup/optgroup.js';
 export { default as SynOption } from './components/option/option.js';
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';

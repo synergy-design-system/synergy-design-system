@@ -17,14 +17,24 @@ export default css`
 
   .option__check {
     color: var(--syn-color-primary-600);
+    font-size: var(--syn-spacing-large);
   }
 
   .option .option__check {
-    padding-inline-end: var(--syn-spacing-x-small);
+    padding-inline-end: var(--syn-spacing-small);
   }
 
   /* Invert the check mark when keyboard navigation is used */
   .option--current .option__check {
     color: var(--syn-color-neutral-0);
+  }
+
+  /* Use larger spacing between icons and content */
+  .option__prefix::slotted(*) {
+    margin-inline-end: var(--syn-spacing-small);
+  }
+
+  .option__suffix::slotted(*) {
+    margin-inline-start: var(--syn-spacing-small);
   }
 `;

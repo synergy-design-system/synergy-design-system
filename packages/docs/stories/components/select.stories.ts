@@ -21,7 +21,7 @@ const meta: Meta = {
         component: generateStoryDescription('select', 'default'),
       },
       story: {
-        height: '200px',
+        height: '250px',
       }
     }
   }

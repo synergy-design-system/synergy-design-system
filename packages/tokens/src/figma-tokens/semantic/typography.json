@@ -39,15 +39,6 @@
       }
     },
     "heading": {
-      "medium": {
-        "value": {
-          "fontFamily": "{font.sans}",
-          "fontWeight": "{font-weight.bold}",
-          "fontSize": "{font-size.medium}",
-          "lineHeight": "{line-height.normal}"
-        },
-        "type": "typography"
-      },
       "large": {
         "value": {
           "fontFamily": "{font.sans}",
@@ -99,7 +90,7 @@
         "value": "{neutral.950}",
         "type": "color"
       },
-      "text-inverse": {
+      "text-inverted": {
         "value": "{neutral.0}",
         "type": "color"
       }

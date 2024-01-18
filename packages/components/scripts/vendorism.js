@@ -31,6 +31,7 @@ export const components = [
   'icon-button',
   'switch',
   'tag',
+  'divider',
 ].sort();
 
 /**

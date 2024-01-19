@@ -701,13 +701,35 @@
       }
     },
     "option": {
-      "description": {
-        "value": "Options define the selectable items within various form controls such as select.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Options define the selectable items within various form controls such as select.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Option",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Option",
-        "type": "text"
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable an option and prevent it from being selected.",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "title": {
+          "value": "Prefix & Suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add icons to the start and end of menu items using the prefix and suffix slots.",
+          "type": "text"
+        }
       }
     },
     "popup": {
@@ -933,13 +955,13 @@
           "type": "text"
         }
       },
-      "filled": {
+      "read-only": {
         "title": {
-          "value": "Filled Selects",
+          "value": "Read-only",
           "type": "text"
         },
         "description": {
-          "value": "Add the filled attribute to draw a filled select.",
+          "value": "Add the read-only attribute to draw a read-only select.",
           "type": "text"
         }
       },
@@ -1388,6 +1410,28 @@
         },
         "description": {
           "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
+      }
+    },
+    "optiongroup": {
+      "default": {
+        "title": {
+          "value": "Option Group",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use <syn-optgroup> to group listbox items visually.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute in the <syn-optgroup> to disable the Section and prevent it from being selected.",
           "type": "text"
         }
       }

@@ -1,13 +1,20 @@
-import sinon from 'sinon';
-import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
+import {
+  aTimeout,
+  expect,
+  fixture,
+  html,
+} from '@open-wc/testing';
 import '../../../dist/synergy.js';
 
 import type SynOptgroup from './optgroup';
 import type SynOption from '../option/option';
 
 const getSynOptions = (el: SynOptgroup) => Array.from(el.querySelectorAll('syn-option'));
-const getEnabledOptions = (el: SynOptgroup) => getSynOptions(el).filter((opt: SynOption) => !opt.disabled);
-const getDisabledOptions = (el: SynOptgroup) => getSynOptions(el).filter((opt: SynOption) => opt.disabled);
+const getEnabledOptions = (el: SynOptgroup) => getSynOptions(el)
+  .filter((opt: SynOption) => !opt.disabled);
+
+const getDisabledOptions = (el: SynOptgroup) => getSynOptions(el)
+  .filter((opt: SynOption) => opt.disabled);
 
 describe('<syn-optgroup>', () => {
   it('passes accessability test', async () => {
@@ -38,7 +45,7 @@ describe('<syn-optgroup>', () => {
           <syn-option value="2" disabled>Value 2</syn-option>
         </syn-optgroup>
       `);
-   
+
       // Make sure we have the correct baseline of elements
       expect(getSynOptions(el)).to.have.length(2);
       expect(getEnabledOptions(el)).to.have.length(2);
@@ -52,7 +59,7 @@ describe('<syn-optgroup>', () => {
           <syn-option value="2" disabled>Value 2</syn-option>
         </syn-optgroup>
       `);
-  
+
       // Make sure we have the correct baseline of elements
       expect(getSynOptions(el)).to.have.length(2);
       expect(getEnabledOptions(el)).to.have.length(0);

@@ -11,6 +11,16 @@
     {
       "extends": ["plugin:@typescript-eslint/disable-type-checked"],
       "files": ["./**/*.js"]
+    },
+    {
+      "env": {
+        "jest": true
+      },
+      "files": ["./src/**/*.test.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/no-unused-expressions": "off"
+      }
     }
   ],
   "parserOptions": {

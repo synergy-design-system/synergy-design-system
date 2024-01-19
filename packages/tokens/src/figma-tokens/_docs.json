@@ -955,16 +955,6 @@
           "type": "text"
         }
       },
-      "read-only": {
-        "title": {
-          "value": "Read-only",
-          "type": "text"
-        },
-        "description": {
-          "value": "Add the read-only attribute to draw a read-only select.",
-          "type": "text"
-        }
-      },
       "disabled": {
         "title": {
           "value": "Disabled",
@@ -1042,6 +1032,16 @@
         },
         "description": {
           "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
+      },
+      "multiple-group": {
+        "title": {
+          "value": "Multiple with Grouping Options",
+          "type": "text"
+        },
+        "description": {
+          "value": "The function of <syn-optgroup> and  the multiple attribute can be used also combined.",
           "type": "text"
         }
       }

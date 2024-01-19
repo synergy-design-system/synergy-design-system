@@ -61,7 +61,8 @@ const preview: Preview = {
       },
     },
     docs: {
-      stories: { inline: false }
+      stories: { inline: false },
+      toc: true,
     },
   },
 };

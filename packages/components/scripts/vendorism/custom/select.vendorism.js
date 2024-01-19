@@ -14,10 +14,13 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   const content = removeSections([
+    ['/** Draws a filled', 'filled = false;'],
+    ["'select--filled", ','],
     ['/** Draws a pill-style', ';'],
     ['?pill', 'pill}'],
     ["'select--pill'", ','],
   ], originalContent);
+
   return {
     content,
     path,
@@ -33,6 +36,10 @@ const transformComponent = (path, originalContent) => {
 const transformStyles = (path, originalContent) => {
   // Remove the pill attribute
   const content = removeSections([
+    ['/* Filled selects', '/*', {
+      additionalNewlines: 2,
+      preserveEnd: true,
+    }],
     ['/* Pills', '/* Prefix', {
       preserveEnd: true,
     }],

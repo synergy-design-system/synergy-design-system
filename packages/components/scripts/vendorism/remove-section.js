@@ -27,6 +27,7 @@ const generatePrimaryRegex = (start, end, removePrecedingWhitespace) => {
 
 export const removeSection = (input, start, end, options = {}) => {
   const {
+    additionalNewlines = 0,
     removePrecedingWhitespace = true,
     preserveEnd = false,
     preserveStart = false,
@@ -36,6 +37,10 @@ export const removeSection = (input, start, end, options = {}) => {
 
   if (preserveStart) {
     replacement += start;
+  }
+
+  if (additionalNewlines > 0) {
+    replacement += new Array(additionalNewlines).fill('\n').join('');
   }
 
   if (preserveEnd) {

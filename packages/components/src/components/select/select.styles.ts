@@ -149,30 +149,7 @@ export default css`
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
   }
 
-  /* Filled selects */
-  .select--filled .select__combobox {
-    border: none;
-    background-color: var(--syn-input-filled-background-color);
-    color: var(--syn-input-color);
-  }
-
-  .select--filled:hover:not(.select--disabled) .select__combobox {
-    background-color: var(--syn-input-filled-background-color-hover);
-  }
-
-  .select--filled.select--disabled .select__combobox {
-    background-color: var(--syn-input-filled-background-color-disabled);
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .select--filled:not(.select--disabled).select--open .select__combobox,
-  .select--filled:not(.select--disabled).select--focused .select__combobox {
-    background-color: var(--syn-input-filled-background-color-focus);
-    outline: var(--syn-focus-ring);
-  }
-
-  /* Sizes */
+/* Sizes */
   .select--small .select__combobox {
     border-radius: var(--syn-input-border-radius-small);
     font-size: var(--syn-input-font-size-small);

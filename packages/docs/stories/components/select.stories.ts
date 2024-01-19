@@ -142,20 +142,6 @@ export const Clearable: Story = {
 };
 
 /**
- * Add the filled attribute to draw a filled select.
- */
-export const FilledSelects: Story = {
-  name: 'Filled Selects',
-  render: () => html`
-    <syn-select filled>
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-2">Option 2</syn-option>
-      <syn-option value="option-3">Option 3</syn-option>
-    </syn-select>
-  `,
-};
-
-/**
  * Use the disabled attribute to disable a select.
  */
 export const Disabled: Story = {
@@ -385,7 +371,6 @@ export const Screenshot: Story = generateScreenshotStory([
   HelpText,
   Placeholders,
   Clearable,
-  FilledSelects,
   Disabled,
   Multiple,
   MultipleGrouped,

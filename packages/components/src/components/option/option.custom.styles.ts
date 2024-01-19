@@ -37,4 +37,10 @@ export default css`
   .option__suffix::slotted(*) {
     margin-inline-start: var(--syn-spacing-small);
   }
+
+  /* Set correct icon size when someone uses syn-icon in the slots */
+  .option__prefix::slotted(syn-icon),
+  .option__suffix::slotted(syn-icon) {
+    font-size: var(--syn-spacing-large);
+  }
 `;

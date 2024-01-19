@@ -1,96 +1,108 @@
-/* eslint-disable */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/option/option';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory,
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
+} from '../../src/helpers/component.js';
+
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-option');
 const { overrideArgs } = storybookHelpers('syn-option');
 const { generateTemplate } = storybookTemplate('syn-option');
 
 const meta: Meta = {
-  component: 'syn-option',
-  args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, defaultArgs),
+  args: overrideArgs([
+    { name: 'default', type: 'slot', value: 'Option 1' },
+    { name: 'value', type: 'attribute', value: 'Option 1' },
+  ], defaultArgs),
   argTypes,
-  title: 'Components/syn-option',
+  component: 'syn-option',
   parameters: {
     docs: {
       description: {
         component: generateStoryDescription('option', 'default'),
       },
-    }
-  }
+      story: {
+        height: '250px',
+      },
+    },
+  },
+  title: 'Components/syn-option',
 };
 export default meta;
 
 type Story = StoryObj;
 
 export const Default = {
-  render: (args: any) => {
-    return generateTemplate({ args });
-  },
   parameters: {
     docs: {
       description: {
         story: generateStoryDescription('option', 'default'),
-      }
-    }
-  }
+      },
+    },
+  },
+  render: (args: any) => html`
+    <syn-select label="Select one">
+      ${generateTemplate({ args })}
+      <syn-option value="2">Option 2</syn-option>
+    </syn-select>
+  `,
 } as Story;
 
-
-/**
- * Use the disabled attribute to disable an option and prevent it from being selected.
- */
 export const Disabled: Story = {
+  name: 'Disabled',
   parameters: {
     docs: {
-      story: {
-        height: '250px',
-      }
-    }
+      description: {
+        story: generateStoryDescription('option', 'disabled'),
+      },
+    },
   },
   render: () => html`
-    <syn-select label="Select one">
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-2" disabled>Option 2</syn-option>
-      <syn-option value="option-3">Option 3</syn-option>
+    <syn-select label="Select one" label="Select one">
+      <syn-option value="option-1">Email</syn-option>
+      <syn-option value="option-2" disabled>Phone</syn-option>
     </syn-select>
   `,
 };
 
-/**
- * Add icons to the start and end of menu items using the prefix and suffix slots.
- */
-export const PrefixSuffix: Story = {
+export const PrefixAndSuffix: Story = {
+  name: 'Prefix and Suffix',
   parameters: {
     docs: {
-      story: {
-        height: '250px',
-      }
-    }
+      description: {
+        story: generateStoryDescription('option', 'prefix-suffix'),
+      },
+    },
   },
   render: () => html`
     <syn-select label="Select one">
       <syn-option value="option-1">
-        <syn-icon slot="prefix" name="alternate_email"></syn-icon>
+        <syn-icon slot="prefix" name="email"></syn-icon>
         Email
-        <syn-icon slot="suffix" name="check_circle"></syn-icon>
+        <syn-icon slot="suffix" name="check_circle_outline"></syn-icon>
       </syn-option>
 
       <syn-option value="option-2">
-        <syn-icon slot="prefix" name="contact_phone"></syn-icon>
+        <syn-icon slot="prefix" name="local_phone"></syn-icon>
         Phone
-        <syn-icon slot="suffix" name="check_circle"></syn-icon>
-      </syn-option>
-
-      <syn-option value="option-3">
-        <syn-icon slot="prefix" name="chat_bubble"></syn-icon>
-        Chat
-        <syn-icon slot="suffix" name="check_circle"></syn-icon>
+        <syn-icon slot="suffix" name="check_circle_outline"></syn-icon>
       </syn-option>
     </syn-select>
   `,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  Disabled,
+  PrefixAndSuffix,
+], 250);

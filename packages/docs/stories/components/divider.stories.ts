@@ -39,7 +39,6 @@ export const Default = {
 } as Story;
 
 export const Width: Story = {
-  name: 'Width',
   parameters: {
     docs: {
       description: {
@@ -51,7 +50,6 @@ export const Width: Story = {
 };
 
 export const Color: Story = {
-  name: 'Color',
   parameters: {
     docs: {
       description: {
@@ -63,7 +61,6 @@ export const Color: Story = {
 };
 
 export const Spacing: Story = {
-  name: 'Spacing',
   parameters: {
     docs: {
       description: {
@@ -81,7 +78,6 @@ export const Spacing: Story = {
 };
 
 export const Vertical: Story = {
-  name: 'Vertical',
   parameters: {
     docs: {
       description: {
@@ -117,9 +113,9 @@ export const Vertical: Story = {
 // };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Width,
   Color,
   Spacing,
   Vertical,
-], 180);
+}, 180);

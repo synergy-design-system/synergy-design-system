@@ -42,7 +42,6 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
-  name: 'Labels',
   parameters: {
     docs: {
       description: {
@@ -54,7 +53,6 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
-  name: 'Help text',
   parameters: {
     docs: {
       description: {
@@ -66,7 +64,6 @@ export const HelpText: Story = {
 };
 
 export const Rows: Story = {
-  name: 'Rows',
   parameters: {
     docs: {
       description: {
@@ -86,7 +83,6 @@ export const Rows: Story = {
 };
 
 export const Placeholders: Story = {
-  name: 'Placeholders',
   parameters: {
     docs: {
       description: {
@@ -98,7 +94,6 @@ export const Placeholders: Story = {
 };
 
 export const ReadonlyTextareas: Story = {
-  name: 'Readonly textareas',
   parameters: {
     docs: {
       description: {
@@ -110,7 +105,6 @@ export const ReadonlyTextareas: Story = {
 };
 
 export const Focus: Story = {
-  name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -135,7 +129,6 @@ export const Focus: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -147,7 +140,6 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -162,7 +154,6 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  name: 'Invalid',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -210,7 +201,6 @@ export const Invalid: Story = {
 };
 
 export const PreventResizing: Story = {
-  name: 'Prevent resizing',
   parameters: {
     docs: {
       description: {
@@ -222,7 +212,6 @@ export const PreventResizing: Story = {
 };
 
 export const ExpandWithContent: Story = {
-  name: 'Expand with content',
   parameters: {
     docs: {
       description: {
@@ -234,7 +223,7 @@ export const ExpandWithContent: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Labels,
   HelpText,
   Rows,
@@ -244,4 +233,4 @@ export const Screenshot: Story = generateScreenshotStory([
   Sizes,
   PreventResizing,
   ExpandWithContent,
-], 500);
+}, 500);

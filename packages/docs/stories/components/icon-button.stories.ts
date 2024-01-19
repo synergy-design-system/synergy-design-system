@@ -55,7 +55,6 @@ export const Default = {
 } as Story;
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -69,7 +68,6 @@ export const Sizes: Story = {
 };
 
 export const Colors: Story = {
-  name: 'Colors',
   parameters: {
     docs: {
       description: {
@@ -82,7 +80,6 @@ export const Colors: Story = {
 };
 
 export const LinkButton: Story = {
-  name: 'Link buttons',
   parameters: {
     docs: {
       description: {
@@ -104,7 +101,6 @@ export const LinkButton: Story = {
 // };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -116,7 +112,6 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
-  name: 'Focus',
   parameters: {
     docs: {
       description: {
@@ -134,7 +129,6 @@ export const Focus: Story = {
 };
 
 export const Label: Story = {
-  name: 'Label',
   parameters: {
     docs: {
       description: {
@@ -161,10 +155,10 @@ export const Label: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Sizes,
   Colors,
   LinkButton,
   Disabled,
   Label,
-]);
+});

@@ -49,7 +49,6 @@ export const Default = {
 } as Story;
 
 export const Variants: Story = {
-  name: 'Variants',
   parameters: {
     docs: {
       description: {
@@ -69,7 +68,6 @@ export const Variants: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -89,7 +87,6 @@ export const Sizes: Story = {
 };
 
 export const Focus: Story = {
-  name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -110,7 +107,6 @@ export const Focus: Story = {
 };
 
 export const LinkButtons: Story = {
-  name: 'Link buttons',
   parameters: {
     docs: {
       description: {
@@ -131,7 +127,6 @@ export const LinkButtons: Story = {
 };
 
 export const SettingACustomWidth: Story = {
-  name: 'Setting a custom width',
   parameters: {
     docs: {
       description: {
@@ -146,7 +141,6 @@ export const SettingACustomWidth: Story = {
 };
 
 export const PrefixAndSuffixIcons: Story = {
-  name: 'Prefix and suffix icons',
   parameters: {
     docs: {
       description: {
@@ -214,7 +208,6 @@ export const PrefixAndSuffixIcons: Story = {
 };
 
 export const Caret: Story = {
-  name: 'Caret',
   parameters: {
     docs: {
       description: {
@@ -234,7 +227,6 @@ export const Caret: Story = {
 };
 
 export const Loading: Story = {
-  name: 'Loading',
   parameters: {
     docs: {
       description: {
@@ -254,7 +246,6 @@ export const Loading: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -269,7 +260,7 @@ export const Disabled: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Variants,
   Sizes,
   LinkButtons,
@@ -278,4 +269,4 @@ export const Screenshot: Story = generateScreenshotStory([
   Caret,
   Loading,
   Disabled,
-], 280);
+}, 280);

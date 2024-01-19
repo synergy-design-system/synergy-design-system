@@ -13,7 +13,8 @@
     "syn",
     "themeable",
     "vendorism",
-    "slotchange"
+    "slotchange",
+    "optiongroup"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

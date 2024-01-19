@@ -1,28 +1,27 @@
-/* eslint-disable */
-
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-
 import '../../../components/src/components/optgroup/optgroup';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
+  generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
-  generateStoryDescription,
 } from '../../src/helpers/component.js';
+
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-optgroup');
 const { overrideArgs } = storybookHelpers('syn-optgroup');
 const { generateTemplate } = storybookTemplate('syn-optgroup');
 
 const meta: Meta = {
-  component: 'syn-optgroup',
   args: overrideArgs([
     {
       name: 'default',
       type: 'slot',
-      value: `<syn-option value="1">Option 1</syn-option>`,
+      value: '<syn-option value="1">Option 1</syn-option>',
     },
     {
       name: 'label',
@@ -31,25 +30,23 @@ const meta: Meta = {
     },
   ], defaultArgs),
   argTypes,
-  title: 'Components/syn-optgroup',
+  component: 'syn-optgroup',
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('optgroup', 'default'),
+        component: generateStoryDescription('optiongroup', 'default'),
       },
       story: {
         height: '250px',
       },
     },
   },
+  title: 'Components/syn-optgroup',
 };
 export default meta;
 
 type Story = StoryObj;
 
-/**
- * Use <syn-optgroup> to group listbox items visually.
- */
 export const Default = {
   parameters: {
     controls: {
@@ -57,18 +54,22 @@ export const Default = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('optgroup', 'default'),
+        story: generateStoryDescription('optiongroup', 'default'),
       },
     },
   },
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-/**
- * Use the disabled attribute in the <syn-optgroup> to disable the Section and prevent it from being selected.
- */
 export const Disabled = {
   name: 'Disabled',
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('optiongroup', 'disabled'),
+      },
+    },
+  },
   render: () => html`
     <syn-optgroup disabled>
       <em slot="label">Section 1</em>
@@ -77,8 +78,15 @@ export const Disabled = {
   `,
 };
 
-export const PrefixAndSuffixIcons = {
-  name: 'Prefix and Suffix Icons',
+export const PrefixAndSuffix = {
+  name: 'Prefix and Suffix',
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('optiongroup', 'prefix-suffix'),
+      },
+    },
+  },
   render: () => html`
     <syn-optgroup label="Section 1">
       <syn-icon name="settings" slot="prefix"></syn-icon>
@@ -103,5 +111,5 @@ export const PrefixAndSuffixIcons = {
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory([
   Disabled,
-  PrefixAndSuffixIcons,
+  PrefixAndSuffix,
 ], 280);

@@ -71,6 +71,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
   private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
+  private __mousedownHappened = false;
 
   /**
    * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
@@ -124,7 +125,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   /** Determines whether or not the password is currently visible. Only applies to password input types. */
   @property({ attribute: 'password-visible', type: Boolean }) passwordVisible = false;
 
-  /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
+  /** Hides the increment/decrement spin buttons for number inputs. */
   @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
 
   /**
@@ -239,8 +240,27 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleBlur() {
-    this.hasFocus = false;
-    this.emit('syn-blur');
+    if(!this.__mousedownHappened || this.type !== 'number'){
+      this.hasFocus = false;
+      this.emit('syn-blur');
+    }else {
+      this.__mousedownHappened = false;
+      this.input.focus();
+    }
+  }
+
+  private handleMouseDown() {
+    this.__mousedownHappened = true;
+  }
+  
+  private handleStepUp() {
+    this.stepUp();
+    this.input.focus();
+  }
+
+  private handleStepDown() {
+    this.stepDown();
+    this.input.focus();
   }
 
   private handleChange() {
@@ -410,6 +430,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
     const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
+    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min);
+    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max);
 
     return html`
       <div
@@ -451,7 +473,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons
+              'input--no-spin-buttons': this.noSpinButtons,
+							'input--no-browser-spin-buttons': true
             })}
           >
             <span part="prefix" class="input__prefix">
@@ -539,6 +562,43 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
             <span part="suffix" class="input__suffix">
               <slot name="suffix"></slot>
             </span>
+
+            ${this.type === 'number' && !this.noSpinButtons
+              ? html`
+              <div part="stepper" class="input__number-stepper">
+                <button
+                  part="decrement-number-stepper"
+                  class="input__number-stepper-button"
+                  type="button"
+                  ?disabled=${isDecrementStepperDisabled || this.disabled}
+                  aria-hidden="true"
+                  @click=${this.handleStepDown}
+                  @mousedown=${this.handleMouseDown}
+                  tabindex="-1"
+                  size="${this.size}"
+                  color="primary"
+                >
+                  <slot name="decrement-number-stepper">
+                    <syn-icon name="indeterminate" library="system"></syn-icon>
+                  </slot>
+                </button>
+                <button
+                  part="increment-number-stepper"
+                  class="input__number-stepper-button"
+                  type="button"
+                  ?disabled=${isIncrementStepperDisabled || this.disabled}
+                  aria-hidden="true"
+                  @click=${this.handleStepUp}
+                  @mousedown=${this.handleMouseDown}
+                  tabindex="-1"
+                >
+                  <slot name="increment-number-stepper">
+                    <syn-icon name="add" library="system"></syn-icon>
+                  </slot>
+                </button>
+              </div>
+                `
+            : ''}
           </div>
         </div>
 

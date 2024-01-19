@@ -293,8 +293,8 @@ export const Placement: Story = {
 /**
  * Use the prefix slot to prepend an icon to the control.
  */
-export const PrefixIcons: Story = {
-  name: 'Prefix Icons',
+export const PrefixSuffixTextAndIcons: Story = {
+  name: 'Prefix Suffix Text and Icons',
   render: () => html`
     <syn-select placeholder="Small" size="small" clearable>
       <syn-icon name="house" slot="prefix"></syn-icon>
@@ -378,6 +378,6 @@ export const Screenshot: Story = generateScreenshotStory([
   GroupingOptions,
   Sizes,
   // Placement,
-  PrefixIcons,
+  PrefixSuffixTextAndIcons,
   CustomTags,
 ], 280);

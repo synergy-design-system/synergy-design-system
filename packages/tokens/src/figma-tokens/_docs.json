@@ -1034,6 +1034,16 @@
           "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <yn-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.",
           "type": "text"
         }
+      },
+      "placeholder": {
+        "title": {
+          "value": "Placeholder",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
       }
     },
     "skeleton": {

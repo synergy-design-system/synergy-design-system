@@ -5,7 +5,7 @@
 import '../../../components/src/components/select/select';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
+import { generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('syn-select');
 const { overrideArgs } = storybookHelpers('syn-select');
 const { generateTemplate } = storybookTemplate('syn-select');
@@ -89,6 +89,7 @@ export const Focus: Story = {
  * Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.
  */
 export const Labels: Story = {
+  name: 'Labels',
   render: () => html`
     <syn-select label="Select one">
       <syn-option value="option-1">Option 1</syn-option>
@@ -102,6 +103,7 @@ export const Labels: Story = {
  * Add descriptive help text to a select with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.
  */
 export const HelpText: Story = {
+  name: 'Help Text',
   render: () => html`
     <syn-select label="Experience" help-text="Please tell us your skill level.">
       <syn-option value="1">Novice</syn-option>
@@ -115,6 +117,7 @@ export const HelpText: Story = {
  * Use the placeholder attribute to add a placeholder.
  */
 export const Placeholders: Story = {
+  name: 'Placeholders',
   render: () => html`
     <syn-select placeholder="Select one">
       <syn-option value="option-1">Option 1</syn-option>
@@ -128,6 +131,7 @@ export const Placeholders: Story = {
  * Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected.
  */
 export const Clearable: Story = {
+  name: 'Clearable',
   render: () => html`
     <syn-select clearable value="option-1">
       <syn-option value="option-1">Option 1</syn-option>
@@ -141,6 +145,7 @@ export const Clearable: Story = {
  * Add the filled attribute to draw a filled select.
  */
 export const FilledSelects: Story = {
+  name: 'Filled Selects',
   render: () => html`
     <syn-select filled>
       <syn-option value="option-1">Option 1</syn-option>
@@ -154,6 +159,7 @@ export const FilledSelects: Story = {
  * Use the disabled attribute to disable a select.
  */
 export const Disabled: Story = {
+  name: 'Disabled',
   render: () => html`
     <syn-select placeholder="Disabled" disabled>
       <syn-option value="option-1">Option 1</syn-option>
@@ -167,6 +173,7 @@ export const Disabled: Story = {
  * To allow multiple options to be selected, use the multiple attribute. It's a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values.
  */
 export const Multiple: Story = {
+  name: 'Multiple',
   render: () => html`
     <syn-select label="Select a Few" value="option-1 option-2 option-3" multiple clearable>
       <syn-option value="option-1">Option 1</syn-option>
@@ -180,9 +187,33 @@ export const Multiple: Story = {
 };
 
 /**
+ * To allow multiple options to be selected, use the multiple attribute. You may also group the options
+ */
+export const MultipleGrouped: Story = {
+  name: 'Multiple Grouped',
+  render: () => html`
+    <syn-select label="Select a Few" value="option-1 option-2 option-3" multiple clearable>
+      <syn-optgroup label="First Group">
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Second Group">
+        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="option-4">Option 4</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Third Group">
+        <syn-option value="option-5">Option 5</syn-option>
+        <syn-option value="option-6">Option 6</syn-option>
+      </syn-optgroup>
+    </syn-select>
+  `,
+};
+
+/**
  * Use the value attribute to set the initial selection.When using multiple, the value  uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you're accessing the value  through Javascript, it will be an array.
  */
 export const SettingInitialValues: Story = {
+  name: 'Setting Initial Values',
   render: () => html`
     <syn-select value="option-1 option-2" multiple clearable>
       <syn-option value="option-1">Option 1</syn-option>
@@ -194,20 +225,19 @@ export const SettingInitialValues: Story = {
 };
 
 /**
- * Use <syn-divider> to group listbox items visually. You can also use <small> to provide labels, but they won't be announced by most assistive devices.
+ * Use <syn-divider> to group listbox items visually.
  */
 export const GroupingOptions: Story = {
+  name: 'Grouping Options',
   render: () => html`
     <syn-select>
-      <small>Section 1</small>
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-2">Option 2</syn-option>
-      <syn-option value="option-3">Option 3</syn-option>
-      <syn-divider></syn-divider>
-      <small>Section 2</small>
-      <syn-option value="option-4">Option 4</syn-option>
-      <syn-option value="option-5">Option 5</syn-option>
-      <syn-option value="option-6">Option 6</syn-option>
+      <syn-optgroup label="Option">
+        <syn-option value="1">Option</syn-option>
+        <syn-option value="2">Option</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Option">
+        <syn-option value="3">Option</syn-option>
+      </syn-optgroup>
     </syn-select>
   `,
 };
@@ -216,6 +246,7 @@ export const GroupingOptions: Story = {
  * Use the size attribute to change a select's size. Note that size does not apply to listbox options.
  */
 export const Sizes: Story = {
+  name: 'Sizes',
   render: () => html`
     <syn-select placeholder="Small" size="small">
       <syn-option value="option-1">Option 1</syn-option>
@@ -245,6 +276,7 @@ export const Sizes: Story = {
  * The preferred placement of the select's listbox can be set with the placement attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are top and bottom.
  */
 export const Placement: Story = {
+  name: 'Placement',
   render: () => html`
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu euismod est. Aliquam leo purus, dignissim vitae pretium et, scelerisque at sapien. Pellentesque vehicula vulputate orci a sagittis. Nunc aliquam enim ex, non mattis est scelerisque at. Suspendisse potenti. Phasellus in felis dolor. Aenean laoreet malesuada tristique. Sed consectetur dictum ex id imperdiet. Proin dapibus tellus eu dui rhoncus, at molestie arcu malesuada. Integer quis sollicitudin eros, eu auctor nibh. Donec pharetra nunc a tristique molestie. Aliquam vitae convallis libero, eget commodo lacus. Donec pellentesque ut turpis eu sagittis.</p>
     <p>Aenean semper, ante ac aliquet varius, leo elit eleifend lacus, sed ullamcorper dolor felis in turpis. Morbi vestibulum vitae nibh et pulvinar. Fusce a tortor sed magna aliquet luctus id at mauris. Curabitur sed ex ligula. Phasellus porttitor metus ac nulla malesuada, eget convallis tellus sodales. Nullam eu interdum mauris. Etiam a quam id ligula suscipit dictum at nec velit. Sed ac faucibus tortor.</P>
@@ -276,6 +308,7 @@ export const Placement: Story = {
  * Use the prefix slot to prepend an icon to the control.
  */
 export const PrefixIcons: Story = {
+  name: 'Prefix Icons',
   render: () => html`
     <syn-select placeholder="Small" size="small" clearable>
       <syn-icon name="house" slot="prefix"></syn-icon>
@@ -304,6 +337,7 @@ export const PrefixIcons: Story = {
  * When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a <a href="https://lit.dev/docs/templates/overview/">Lit Template</a>, or an . The getTag() function will be called for each option. The first argument is an <syn-option> element and the second argument is the tag's index (its position in the tag list).Remember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own  and target them with the  selector.
  */
 export const CustomTags: Story = {
+  name: 'Custom Tags',
   render: () => html`
     <syn-select
       placeholder="Select one"
@@ -345,3 +379,20 @@ export const CustomTags: Story = {
   `,
 };
 
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory([
+  Labels,
+  HelpText,
+  Placeholders,
+  Clearable,
+  FilledSelects,
+  Disabled,
+  Multiple,
+  MultipleGrouped,
+  SettingInitialValues,
+  GroupingOptions,
+  Sizes,
+  // Placement,
+  PrefixIcons,
+  CustomTags,
+], 280);

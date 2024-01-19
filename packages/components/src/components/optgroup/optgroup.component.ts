@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
 import { property, query, state } from 'lit/decorators.js';
@@ -83,7 +84,7 @@ export default class SynOptgroup extends SynergyElement {
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
-    const hasLabel = this.label ?? !!hasLabelSlot;
+    const hasLabel = this.label ? true : !!hasLabelSlot;
     return html`
       <div
         class=${classMap({

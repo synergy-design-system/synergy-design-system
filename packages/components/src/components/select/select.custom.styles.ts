@@ -4,6 +4,7 @@ export default css`
   /* Clear button */
   .select__clear {
     color: var(--syn-input-icon-icon-clearable-color);
+    font-size: var(--syn-spacing-large);
   }
 
   .select--medium .select__clear {

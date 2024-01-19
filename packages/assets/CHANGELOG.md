@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.1.0...assets/1.2.0) (2024-01-19)
+
+
+### Features
+
+* ✨update icons ([#273](https://github.com/synergy-design-system/synergy-design-system/issues/273)) ([8677925](https://github.com/synergy-design-system/synergy-design-system/commit/8677925421d09f65c3aa8e056013b0cba8354f9a))
+
 # [@synergy-design-system/assets-v1.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.0.2...assets/1.1.0) (2024-01-12)
 
 

@@ -90,6 +90,7 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-lit": "^1.9.1",
     "eslint-plugin-lit-a11y": "^4.1.0",
+    "eslint-plugin-playwright": "^0.22.1",
     "eslint-plugin-vue": "^9.18.1",
     "eslint-plugin-wc": "^2.0.4",
     "globby": "^13.2.2",

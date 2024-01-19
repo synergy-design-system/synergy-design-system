@@ -47,12 +47,12 @@ export default class SynOptgroup extends SynergyElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
   /**
-   * The disabled state
+   * The disabled state. Used for setting correct aria roles
    */
   @state() private isDisabled = false;
 
   /**
-   * Provides a method that sets the disabled prop to all syn-options when it is triggered
+   * Syncs the disabled prop for all slotted syn-options when it is triggered
    */
   private handleDisableOptions() {
     const { disabled } = this;
@@ -70,11 +70,15 @@ export default class SynOptgroup extends SynergyElement {
     this.isDisabled = this.disabled;
   }
 
-  /** The optgroups label. If you need to display HTML, use the `label` slot instead. */
-  @property() label = '';
-
-  /** Disables all options in the optgroup. */
+  /**
+   * Disables all options in the optgroup.
+   */
   @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /**
+   * The optgroups label. If you need to display HTML, use the `label` slot instead.
+   */
+  @property() label = '';
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange(_: typeof this.disabled, newValue: typeof this.disabled) {

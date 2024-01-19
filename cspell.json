@@ -12,7 +12,8 @@
     "stylelintrc",
     "syn",
     "themeable",
-    "vendorism"
+    "vendorism",
+    "slotchange"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

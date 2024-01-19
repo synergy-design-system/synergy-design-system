@@ -1,11 +1,12 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
 import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynDivider from '../divider/divider.component.js';
+import type SynOption from '../option/option.component.js';
 import styles from './optgroup.styles.js';
 
 /**
@@ -39,27 +40,60 @@ export default class SynOptgroup extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix', 'label');
 
+  /**
+   * The default slot
+   */
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+
+  /**
+   * The disabled state
+   */
+  @state() private isDisabled = false;
+
+  /**
+   * Provides a method that sets the disabled prop to all syn-options when it is triggered
+   */
+  private handleDisableOptions() {
+    const { disabled } = this;
+    this.defaultSlot
+      .assignedElements()
+      .filter(opt => opt.tagName.toLowerCase() === 'syn-option')
+      .forEach((opt: SynOption) => {
+        // eslint-disable-next-line no-param-reassign
+        opt.disabled = disabled;
+      });
+  }
+
   connectedCallback() {
     super.connectedCallback();
-    this.setAttribute('role', 'group');
+    this.isDisabled = this.disabled;
   }
 
   /** The optgroups label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
-  // @todo: Add disabled prop
-  // @todo: Add watcher for disabled
+  /** Disables all options in the optgroup. */
+  @property({ reflect: true, type: Boolean }) disabled = false;
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange(_: typeof this.disabled, newValue: typeof this.disabled) {
+    this.isDisabled = newValue;
+    this.handleDisableOptions();
+  }
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
+    const hasLabel = this.label ?? !!hasLabelSlot;
     return html`
       <div
         class=${classMap({
           optgroup: true,
-          'optgroup--has-label': hasLabelSlot,
+          'optgroup--has-label': hasLabel,
           'optgroup--has-prefix': this.hasSlotController.test('prefix'),
           'optgroup--has-suffix': this.hasSlotController.test('suffix'),
+          'optgroup--is-disabled': this.disabled,
         })}
+        role="${this.isDisabled ? 'presentation' : 'group'}"
         part="base"
       >
         <syn-divider class="optgroup--divider" part="divider"></syn-divider>
@@ -73,7 +107,7 @@ export default class SynOptgroup extends SynergyElement {
           <slot name="suffix" part="suffix" class="optgroup__suffix"></slot>
         </div>
         <div class="optgroup__options" role="group" part="options">
-          <slot></slot>
+          <slot @slotchange=${this.handleDisableOptions}></slot>
         </div>
       </div>
     `;

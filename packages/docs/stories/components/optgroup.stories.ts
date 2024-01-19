@@ -48,7 +48,7 @@ export const Default = {
           <syn-option value="9">Option 9</syn-option>
           <syn-option value="10">Option 10</syn-option>
         </syn-optgroup>
-        <syn-optgroup label="Group 3 - Prefix only">
+        <syn-optgroup id="disable-toggle" disabled label="Group 3 - Prefix only">
           <syn-icon slot="prefix" name="email"></syn-icon>
           <syn-option value="11">Option 11</syn-option>
           <syn-option value="12">Option 12</syn-option>
@@ -58,7 +58,17 @@ export const Default = {
           <syn-option value="13">Option 13</syn-option>
           <syn-option value="14">Option 14</syn-option>
         </syn-optgroup>
+        <syn-optgroup>
+          <syn-option value="15">Option 15 (no label)</syn-option>
+        </syn-optgroup>
       </syn-select>
+      <syn-button>Toggle disabled</syn-button>
+      <script>
+      document.querySelector('syn-button').addEventListener('click', () => {
+        const elm = document.querySelector('#disable-toggle');
+        elm.disabled = !elm.disabled;
+      });
+      </script>
     `;
     // return generateTemplate({ args });
   },

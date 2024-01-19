@@ -723,7 +723,7 @@
       },
       "prefix-suffix": {
         "title": {
-          "value": "Prefix & Suffix",
+          "value": "Prefix and Suffix",
           "type": "text"
         },
         "description": {
@@ -991,7 +991,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <sl-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
+          "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <yn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
           "type": "text"
         }
       },
@@ -1031,7 +1031,7 @@
           "type": "text"
         },
         "description": {
-          "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <sl-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.",
+          "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <yn-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.",
           "type": "text"
         }
       }
@@ -1432,6 +1432,16 @@
         },
         "description": {
           "value": "Use the disabled attribute in the <syn-optgroup> to disable the Section and prevent it from being selected.",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "title": {
+          "value": "Prefix and suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add icons to the start and end of menu items using the prefix and suffix slots.",
           "type": "text"
         }
       }

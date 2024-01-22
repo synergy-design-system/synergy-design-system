@@ -31,7 +31,8 @@
   "private": true,
   "pnpm": {
     "patchedDependencies": {
-      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
+      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch",
+      "@open-wc/lit-helpers@0.5.1": "patches/@open-wc__lit-helpers@0.5.1.patch"
     }
   },
   "devDependencies": {

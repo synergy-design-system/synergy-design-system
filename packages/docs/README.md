@@ -17,5 +17,3 @@ This is achieved via bundling all non interactive stories of one component into 
 All interactive stories, this are stories with the _play_ functionality (e.g. focus stories or validation stories), need to remain as unique story.
 
 In order to ensure that stories are not accidentally taken as screenshot, the chromatic screenshot ability is disabled globally and needs to be explicitly allowed for each story. If the helper function is used it is not necessary, because it does this by itself.
-
-To make the helper function work correctly, all stories need to set the _name_ property with the story name, although it would not be necessary for storybook itself. The function needs this information, to be able to print the name of the story above each as headline.

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.2...components/1.3.0) (2024-01-19)
+
+
+### Features
+
+* ✨update icons ([#273](https://github.com/synergy-design-system/synergy-design-system/issues/273)) ([8677925](https://github.com/synergy-design-system/synergy-design-system/commit/8677925421d09f65c3aa8e056013b0cba8354f9a))
+
 # [@synergy-design-system/components-v1.2.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.1...components/1.2.2) (2024-01-15)
 
 

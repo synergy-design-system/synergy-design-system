@@ -42,7 +42,6 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
-  name: 'Labels',
   parameters: {
     docs: {
       description: {
@@ -54,7 +53,6 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
-  name: 'Help text',
   parameters: {
     docs: {
       description: {
@@ -66,7 +64,6 @@ export const HelpText: Story = {
 };
 
 export const Placeholders: Story = {
-  name: 'Placeholder',
   parameters: {
     docs: {
       description: {
@@ -78,7 +75,6 @@ export const Placeholders: Story = {
 };
 
 export const Clearable: Story = {
-  name: 'Clearable',
   parameters: {
     docs: {
       description: {
@@ -90,7 +86,6 @@ export const Clearable: Story = {
 };
 
 export const TogglePassword: Story = {
-  name: 'Toggle password',
   parameters: {
     docs: {
       description: {
@@ -102,7 +97,6 @@ export const TogglePassword: Story = {
 };
 
 export const ReadonlyInputs: Story = {
-  name: 'Readonly inputs',
   parameters: {
     docs: {
       description: {
@@ -114,7 +108,6 @@ export const ReadonlyInputs: Story = {
 };
 
 export const Focus: Story = {
-  name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -139,7 +132,6 @@ export const Focus: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -155,7 +147,6 @@ export const Disabled: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -170,7 +161,6 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  name: 'Invalid',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -221,7 +211,6 @@ export const Invalid: Story = {
  * The type attribute controls the type of input the browser renders.
  */
 export const InputTypes: Story = {
-  name: 'Input types',
   render: () => html`
   <syn-input type="email" placeholder="Email"></syn-input><br/>
   <syn-input type="number" placeholder="Number"></syn-input><br/>
@@ -229,7 +218,6 @@ export const InputTypes: Story = {
 };
 
 export const PrefixSuffixIcons: Story = {
-  name: 'Prefix and suffix icons',
   parameters: {
     docs: {
       description: {
@@ -261,7 +249,6 @@ export const PrefixSuffixIcons: Story = {
  * The same technique works for inputs, textareas, radio groups, and similar form controls.
  */
 export const CustomizingLabelPosition: Story = {
-  name: 'Customizing label position',
   render: () => html`
   <syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
   <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
@@ -295,7 +282,8 @@ export const CustomizingLabelPosition: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Labels,
   HelpText,
   Placeholders,
@@ -307,4 +295,4 @@ export const Screenshot: Story = generateScreenshotStory([
   InputTypes,
   PrefixSuffixIcons,
   CustomizingLabelPosition,
-], 360);
+}, 360);

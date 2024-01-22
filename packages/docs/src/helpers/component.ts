@@ -8,6 +8,8 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import format from 'html-format';
 import { StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import storyBookPreviewConfig from '../../.storybook/preview.js';
+import { sentenceCase } from 'change-case';
 
 export default async function loadCustomElements() {
   await fetch('./custom-elements.json');
@@ -609,21 +611,25 @@ export const generateStoryDescription = <T extends Component>(component: T, attr
  * @param heightPx - the height of each single story
  * @returns the bundled story
  */
-export const generateScreenshotStory = (stories: Array<StoryObj>, heightPx: number = 150): StoryObj => {
+export const generateScreenshotStory = (stories: { [key: string]: StoryObj }, heightPx: number = 150): StoryObj => {
   return {
     parameters: {
       chromatic: {
+        ...storyBookPreviewConfig?.parameters?.chromatic,
         disableSnapshot: false,
       },
       docs: {
         disable: true
       },
     },
-    render: (args, context) => html`${stories.map((story) => html`
+    render: (args, context) => html`${Object.entries(stories).map(([storyName, story]) => {
+      const name = sentenceCase(storyName)     
+      return html`
     <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-      <h3>${story.name}</h3>
+      <h3 data-chromatic="ignore">${name}</h3>
       ${story.render?.(args, context)}
     </div>
-    `)}`,
+    `;
+    })}`,
   };
 }

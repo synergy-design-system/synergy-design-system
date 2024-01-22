@@ -1,3 +1,17 @@
+# [@synergy-design-system/tokens-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.0...tokens/1.2.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* 🤔 Tokens of the radio get lost when pushing to GitHub ([#265](https://github.com/synergy-design-system/synergy-design-system/issues/265)) ([0643335](https://github.com/synergy-design-system/synergy-design-system/commit/06433355792459a382492b4ebc32d0de08b73030))
+
+# [@synergy-design-system/tokens-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.1.0...tokens/1.2.0) (2024-01-15)
+
+
+### Features
+
+* ✨ Implement dark mode for components and documentation ([#238](https://github.com/synergy-design-system/synergy-design-system/issues/238)) ([3defbb2](https://github.com/synergy-design-system/synergy-design-system/commit/3defbb25bdf6432d72e6ec7971628a3990b7a970))
+
 # [@synergy-design-system/tokens-v1.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.0.3...tokens/1.1.0) (2024-01-11)
 
 

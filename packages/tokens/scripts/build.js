@@ -56,6 +56,7 @@ StyleDictionary.registerFileHeader({
             format: 'syn/create-css-variables',
             options: {
               fileHeader: 'syn/header',
+              theme,
             },
           },
         ],

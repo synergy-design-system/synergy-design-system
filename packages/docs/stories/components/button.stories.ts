@@ -261,6 +261,7 @@ export const Disabled: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Variants,
   Sizes,
   LinkButtons,

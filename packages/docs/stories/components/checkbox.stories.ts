@@ -164,6 +164,7 @@ export const CustomValidity: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Checked,
   Indeterminate,
   Disabled,

@@ -283,6 +283,7 @@ export const CustomizingLabelPosition: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Labels,
   HelpText,
   Placeholders,

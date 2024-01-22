@@ -124,6 +124,7 @@ export const Sizes: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   WithIcon,
   Removable,
   Sizes,

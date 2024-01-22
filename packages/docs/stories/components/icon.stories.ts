@@ -400,6 +400,7 @@ export const SpriteSheetUsage: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Colors,
   Sizing,
   Labels,

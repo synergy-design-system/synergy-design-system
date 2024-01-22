@@ -626,7 +626,7 @@ export const generateScreenshotStory = (stories: { [key: string]: StoryObj }, he
       const name = sentenceCase(storyName)     
       return html`
     <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-      <h3>${name}</h3>
+      <h3 data-chromatic="ignore">${name}</h3>
       ${story.render?.(args, context)}
     </div>
     `;

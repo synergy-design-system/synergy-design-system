@@ -114,6 +114,7 @@ export const Vertical: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Width,
   Color,
   Spacing,

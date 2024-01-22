@@ -53,7 +53,6 @@ export const Default = {
 // TODO: Currently focus is not working because shoelace does not allow tabbing the icon button. 
 // As soon as it`s possible, uncomment this story
 // export const Focus: Story = {
-//   name: 'Focus',
 //   parameters: {
 //     chromatic: {
 //       disableSnapshot: false,
@@ -70,7 +69,6 @@ export const Default = {
 // };
 
 export const WithIcon: Story = {
-  name: 'With icon',
   render: () => html`
   <syn-tag>
     <syn-icon name="wallpaper"></syn-icon>
@@ -79,7 +77,6 @@ export const WithIcon: Story = {
 };
 
 export const Removable: Story = {
-  name: 'Removable',
   parameters: {
     docs: {
       description: {
@@ -112,7 +109,6 @@ export const Removable: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -127,8 +123,9 @@ export const Sizes: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
   WithIcon,
   Removable,
   Sizes,
-]);
+});

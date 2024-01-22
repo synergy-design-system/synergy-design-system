@@ -50,7 +50,6 @@ export const Default = {
 } as Story;
 
 export const Checked: Story = {
-  name: 'Checked',
   parameters: {
     docs: {
       description: {
@@ -62,7 +61,6 @@ export const Checked: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -74,7 +72,6 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
-  name: 'Focus',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -97,7 +94,6 @@ export const Focus: Story = {
 };
 
 export const Invalid: Story = {
-  name: 'Invalid',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -141,7 +137,6 @@ export const Invalid: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -156,8 +151,9 @@ export const Sizes: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Checked,
   Disabled,
   Sizes,
-]);
+});

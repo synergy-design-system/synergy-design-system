@@ -18,7 +18,8 @@ const headerComment = createHeader('vue');
 const vueModelEnabledComponents = [
   'checkbox',
   'input',
-  'radio',
+  'radio-group',
+  'select',
   'textarea',
 ];
 
@@ -29,8 +30,19 @@ const vueModelEnabledComponents = [
  */
 const getControlAttributeForVueModel = (componentName) => {
   switch (componentName) {
-    case 'checkbox': return 'checked';
-    default: return 'value';
+  case 'checkbox': return 'checked';
+  default: return 'value';
+  }
+};
+
+/**
+ * Get the event attributes name used for two way data binding
+ * @param {string} componentName Name of the component
+ * @returns The name of the event that should be used to add the binding
+ */
+const getEventAttributeForVueModel = (componentName) => {
+  switch (componentName) {
+  default: return 'syn-input';
   }
 };
 
@@ -119,15 +131,40 @@ const getEmitAttributes = (componentName, componentClass, events = []) => {
     event => ` @${event.name}="$emit('${event.name}', $event)"`,
   );
 
-  // Add support for custom vue vModel binding
-  if (getIsVModelEnabled(componentName)) {
-    // @todo: This would make types more explicit,
-    // however esbuild is not able to compile it unfortunately
-    // ($event.target as ${componentClass}).${getControlAttributeForVueModel(componentName)
-    templateEvents.push(` @input="$emit('update:modelValue', $event.target.${getControlAttributeForVueModel(componentName)})"`);
+  // Return the plain events if we do not have a vmodel component
+  if (!getIsVModelEnabled(componentName)) {
+    return templateEvents.join('\n');
   }
 
-  return templateEvents.join('\n');
+  // Add support for custom vue vModel binding
+  const eventName = getEventAttributeForVueModel(componentName);
+
+  // @todo: This would make types more explicit,
+  // however esbuild is not able to compile it unfortunately
+  // ($event.target as ${componentClass}).${getControlAttributeForVueModel(componentName)
+  const emitterValue = `$emit('update:modelValue', $event.target.${getControlAttributeForVueModel(componentName)})`;
+
+  // It may very well be that the event we need to hook into is already
+  // declared (e.g. when using sy-input for two way databinding and as a prop, too)
+  // For this reason, we have to look if there is already a bound event and adjust it
+  // accordingly so it includes the calls to update:modelValue, too.
+  const vmodelEvents = templateEvents.map((event) => {
+    // We have found the duplicated event
+    if (event.trim().startsWith(`@${eventName}`)) {
+      return ` @${eventName}="${emitterValue}; $emit('${eventName}', $event)"`;
+    }
+
+    // Not the wanted one, skip
+    return event;
+  });
+
+  // If the event is not in our events list, add it to the final output by hand
+  const hasEventAlreadySet = vmodelEvents.find(event => event.trim().startsWith(`@${eventName}`));
+  if (!hasEventAlreadySet) {
+    vmodelEvents.push(` @${eventName}="${emitterValue}"`);
+  }
+
+  return vmodelEvents.join('\n');
 };
 
 /**

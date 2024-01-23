@@ -4,6 +4,11 @@ import {
   SynVueCheckbox,
   SynVueInput,
   SynVueIcon,
+  SynVueOptgroup,
+  SynVueOption,
+  SynVueRadioGroup,
+  SynVueRadio,
+  SynVueSelect,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
 import type {
@@ -16,11 +21,13 @@ const btnRef = ref<typeof SynVueButton>();
 
 const formValues = ref({
   comment: '',
+  contactVia: '',
   givenName: '',
   // Prefilled only to demonstrate usage of v-model and settings up stuff by hand
   surName: 'Your Surname',
   email: '',
   tos: false,
+  position: '',
 });
 
 const errorMessage = ref('');
@@ -33,6 +40,8 @@ const submit = (e: Event) => {
   const target = e.target as HTMLFormElement;
 
   const isValid = target.reportValidity();
+
+  console.log(JSON.parse(JSON.stringify(formValues.value)));
 
   if (!isValid) {
     errorMessage.value = 'Please fill out all required form fields!';
@@ -93,13 +102,31 @@ const log = (...args: unknown[]) => console.log(...args);
         required
       />
 
+      <SynVueSelect
+        label="Position"
+        v-model="formValues.position"
+        name="position"
+        required
+      >
+        <SynVueOptgroup label="Engineering">
+          <SynVueOption value="DevOps">DevOps</SynVueOption>
+          <SynVueOption value="System_Administrator">System Administrator</SynVueOption>
+        </SynVueOptgroup>
+        <SynVueOptgroup label="Other">
+          <SynVueOption value="Teamlead">Teamlead</SynVueOption>
+          <SynVueOption value="Scrum_Master">Scrum Master</SynVueOption>
+        </SynVueOptgroup>
+      </SynVueSelect>
+
       <!-- Using labels as slot -->
       <SynVueInput
         :value="formValues.email"
         @syn-input="formValues.email = ($event.target as SynInput)!.value"
         name="email"
+        label="E-Mail"
         placeholder="Please insert your E-Mail address"
         type="email"
+        @input="log"
       >
         <span slot="label">E-Mail <em>(optional)</em></span>
       </SynVueInput>
@@ -109,6 +136,18 @@ const log = (...args: unknown[]) => console.log(...args);
         v-model="formValues.comment"
         name="comment"
       />
+    </fieldset>
+
+    <fieldset>
+      <SynVueRadioGroup
+        label="Contact options"
+        v-model="formValues.contactVia"
+        name="contactVia"
+      >
+        <SynVueRadio value="phone">Phone</SynVueRadio>
+        <SynVueRadio value="email">E-Mail</SynVueRadio>
+        <SynVueRadio value="fax">Fax</SynVueRadio>
+      </SynVueRadioGroup>
     </fieldset>
 
     <SynVueCheckbox
@@ -148,8 +187,15 @@ const log = (...args: unknown[]) => console.log(...args);
 </template>
 
 <style scoped>
+fieldset {
+  border: 1px solid var(--syn-color-neutral-400);
+  margin-bottom: 0.75rem;
+}
+
 syn-input,
-syn-checkbox {
+syn-checkbox,
+syn-select,
+syn-radio-group {
   margin-bottom: 0.75rem;
 }
 

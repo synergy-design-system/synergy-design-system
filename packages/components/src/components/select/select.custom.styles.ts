@@ -66,11 +66,6 @@ export default css`
     box-shadow: var(--syn-shadow-medium);
   }
 
-  /* Default Select should not show a shadow when open, just when focused */
-  .select--standard:not(.select--disabled).select--open .select__combobox {
-    box-shadow: none;
-  }
-
   /**
    * Make sure to hide the syn-divider for the first syn-optgroup
    * Note! ::slotted does currently not work with ::part, so we

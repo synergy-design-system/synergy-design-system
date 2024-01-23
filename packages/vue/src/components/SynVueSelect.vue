@@ -217,6 +217,11 @@ is the current tag's index.
 the specified value.
  */
   'getTag'?: SynSelect['getTag'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynSelect['value'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -280,6 +285,11 @@ defineEmits<{
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynSelect['value']];
 }>();
 </script>
 
@@ -289,7 +299,7 @@ defineEmits<{
     v-bind="visibleProps"
     ref="element"
     @syn-clear="$emit('syn-clear', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-show="$emit('syn-show', $event)"

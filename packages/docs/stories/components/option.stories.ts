@@ -59,7 +59,6 @@ export const Default = {
 } as Story;
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -76,7 +75,6 @@ export const Disabled: Story = {
 };
 
 export const PrefixAndSuffix: Story = {
-  name: 'Prefix and Suffix',
   parameters: {
     docs: {
       description: {
@@ -102,7 +100,7 @@ export const PrefixAndSuffix: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   PrefixAndSuffix,
-], 250);
+}, 250);

@@ -48,7 +48,6 @@ export const Default = {
 } as Story;
 
 export const Labels: Story = {
-  name: 'Labels',
   parameters: {
     docs: {
       description: {
@@ -65,7 +64,6 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
-  name: 'Help text',
   parameters: {
     docs: {
       description: {
@@ -82,7 +80,6 @@ export const HelpText: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -99,7 +96,6 @@ export const Disabled: Story = {
 };
 
 export const Checked: Story = {
-  name: 'Checked',
   render: () => html`
   <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
     <syn-radio value="1">Option</syn-radio>
@@ -109,7 +105,6 @@ export const Checked: Story = {
 };
 
 export const Invalid: Story = {
-  name: 'Invalid',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -158,7 +153,6 @@ export const Invalid: Story = {
 };
 
 export const CustomValidity: Story = {
-  name: 'Custom validity',
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -220,9 +214,10 @@ export const CustomValidity: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Labels,
   HelpText,
   Disabled,
   Checked,
-], 230);
+}, 230);

@@ -86,7 +86,6 @@ export const Focus: Story = {
 };
 
 export const Labels: Story = {
-  name: 'Labels',
   parameters: {
     docs: {
       description: {
@@ -104,7 +103,6 @@ export const Labels: Story = {
 };
 
 export const HelpText: Story = {
-  name: 'Help Text',
   parameters: {
     docs: {
       description: {
@@ -122,7 +120,6 @@ export const HelpText: Story = {
 };
 
 export const Placeholders: Story = {
-  name: 'Placeholders',
   parameters: {
     docs: {
       description: {
@@ -140,7 +137,6 @@ export const Placeholders: Story = {
 };
 
 export const Clearable: Story = {
-  name: 'Clearable',
   parameters: {
     docs: {
       description: {
@@ -158,7 +154,6 @@ export const Clearable: Story = {
 };
 
 export const Disabled: Story = {
-  name: 'Disabled',
   parameters: {
     docs: {
       description: {
@@ -176,7 +171,6 @@ export const Disabled: Story = {
 };
 
 export const Multiple: Story = {
-  name: 'Multiple',
   parameters: {
     docs: {
       description: {
@@ -197,7 +191,6 @@ export const Multiple: Story = {
 };
 
 export const SettingInitialValues: Story = {
-  name: 'Setting Initial Values',
   parameters: {
     docs: {
       description: {
@@ -216,7 +209,6 @@ export const SettingInitialValues: Story = {
 };
 
 export const GroupingOptions: Story = {
-  name: 'Grouping Options',
   parameters: {
     docs: {
       description: {
@@ -238,7 +230,6 @@ export const GroupingOptions: Story = {
 };
 
 export const MultipleWithGroupingOptions: Story = {
-  name: 'Multiple with Grouping Options',
   parameters: {
     docs: {
       description: {
@@ -260,7 +251,6 @@ export const MultipleWithGroupingOptions: Story = {
 };
 
 export const Sizes: Story = {
-  name: 'Sizes',
   parameters: {
     docs: {
       description: {
@@ -294,7 +284,6 @@ export const Sizes: Story = {
 };
 
 export const PrefixSuffixTextAndIcons: Story = {
-  name: 'Prefix Suffix Text and Icons',
   parameters: {
     docs: {
       description: {
@@ -327,7 +316,6 @@ export const PrefixSuffixTextAndIcons: Story = {
 };
 
 export const CustomTags: Story = {
-  name: 'Custom Tags',
   parameters: {
     docs: {
       description: {
@@ -388,7 +376,7 @@ export const CustomTags: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
   Labels,
   HelpText,
   Placeholders,
@@ -401,4 +389,4 @@ export const Screenshot: Story = generateScreenshotStory([
   Sizes,
   PrefixSuffixTextAndIcons,
   CustomTags,
-], 280);
+}, 280);

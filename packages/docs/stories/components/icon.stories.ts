@@ -159,7 +159,6 @@ export const Default = {
  * Thus, you can set the color property on the <syn-icon> element or an ancestor to change color.
  */
 export const Colors: Story = {
-  name: 'Colors',
   render: () => html`<div style="color: var(--syn-color-primary-600);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
@@ -186,7 +185,6 @@ export const Colors: Story = {
  * or on a parent element as shown below.
  */
 export const Sizing: Story = {
-  name: 'Sizing',
   render: () => html`<div style="font-size: var(--syn-font-size-2x-large);">
   <syn-icon name="warning"></syn-icon>
   <syn-icon name="inventory"></syn-icon>
@@ -211,7 +209,6 @@ export const Sizing: Story = {
  * For non-decorative icons, use the label attribute to announce it to assistive devices.
  */
 export const Labels: Story = {
-  name: 'Labels',
   render: () => html`<syn-icon name="star" label="Add to favorites"></syn-icon>`,
 };
 
@@ -221,7 +218,6 @@ export const Labels: Story = {
  * If you're using more than one custom icon, it might make sense to register a custom icon library.
  */
 export const CustomIcons: Story = {
-  name: 'Custom icons',
   render: () => html`<syn-icon src="/logo-claim.svg" style="font-size: 10rem;"></syn-icon>`,
 };
 
@@ -274,7 +270,6 @@ export const CustomIcons: Story = {
  * to see how to handle this.
  */
 export const CDNIconLibrary: Story = {
-  name: 'CDN icon library',
   render: () => {
     registerIconLibrary('fa', {
       resolver: name => {
@@ -334,7 +329,6 @@ export const CDNIconLibrary: Story = {
 * ```
 */
 export const BundledIconLibrary: Story = {
-  name: 'Bundled icon library',
   render: () => {
     registerIconLibrary('bundled-default', {
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
@@ -390,7 +384,6 @@ export const BundledIconLibrary: Story = {
 * ```
 */
 export const SpriteSheetUsage: Story = {
-  name: 'Sprite sheet usage',
   render: () => {
     registerIconLibrary('sprite', {
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
@@ -406,7 +399,8 @@ export const SpriteSheetUsage: Story = {
 };
 
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory([
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Colors,
   Sizing,
   Labels,
@@ -414,4 +408,4 @@ export const Screenshot: Story = generateScreenshotStory([
   CDNIconLibrary,
   BundledIconLibrary,
   SpriteSheetUsage,
-]);
+});

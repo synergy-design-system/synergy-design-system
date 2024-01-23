@@ -16,7 +16,7 @@ import type { SynOptgroup } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/optgroup/optgroup.js';
 
 /**
- * @summary The <syn-optgroup> element creates a grouping for <syn-option />s within a <syn-select>.
+ * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
  * @since 1.3.0
@@ -25,7 +25,7 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
  *
  * @slot - The given options. Must be `<syn-option>` elements.
  * @slot prefix - A presentational prefix icon or similar element.
- * @slot label - The label for the opt group
+ * @slot label - The label for the optgroup
  * @slot suffix - A presentational suffix icon or similar element.
  *
  * @csspart base - The component's base wrapper.

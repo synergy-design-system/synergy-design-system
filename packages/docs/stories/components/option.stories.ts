@@ -22,7 +22,7 @@ const { generateTemplate } = storybookTemplate('syn-option');
 const meta: Meta = {
   args: overrideArgs([
     { name: 'default', type: 'slot', value: 'Option 1' },
-    { name: 'value', type: 'attribute', value: 'Option 1' },
+    { name: 'value', type: 'attribute', value: 'Option_1' },
   ], defaultArgs),
   argTypes,
   component: 'syn-option',
@@ -101,6 +101,7 @@ export const PrefixAndSuffix: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Disabled,
   PrefixAndSuffix,
 }, 250);

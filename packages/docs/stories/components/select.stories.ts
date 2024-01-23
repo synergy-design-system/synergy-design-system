@@ -377,6 +377,7 @@ export const CustomTags: Story = {
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Labels,
   HelpText,
   Placeholders,

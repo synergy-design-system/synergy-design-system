@@ -5,7 +5,7 @@ export default css`
     --display-divider: block;
   }
 
-  .optgroup--divider {
+  .optgroup__divider {
     --spacing: var(--syn-spacing-x-small);
 
     display: var(--display-divider);

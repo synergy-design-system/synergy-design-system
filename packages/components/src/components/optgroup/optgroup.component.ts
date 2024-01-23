@@ -11,7 +11,7 @@ import type SynOption from '../option/option.component.js';
 import styles from './optgroup.styles.js';
 
 /**
- * @summary The <syn-optgroup> element creates a grouping for <syn-option />s within a <syn-select>.
+ * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
  * @since 1.3.0
@@ -20,7 +20,7 @@ import styles from './optgroup.styles.js';
  *
  * @slot - The given options. Must be `<syn-option>` elements.
  * @slot prefix - A presentational prefix icon or similar element.
- * @slot label - The label for the opt group
+ * @slot label - The label for the optgroup
  * @slot suffix - A presentational suffix icon or similar element.
  *
  * @csspart base - The component's base wrapper.
@@ -101,7 +101,7 @@ export default class SynOptgroup extends SynergyElement {
         role="${this.isDisabled ? 'presentation' : 'group'}"
         part="base"
       >
-        <syn-divider class="optgroup--divider" part="divider"></syn-divider>
+        <syn-divider class="optgroup__divider" part="divider"></syn-divider>
         <div class="optgroup__label-container" part="label-container">
           <slot name="prefix" part="prefix" class="optgroup__prefix"></slot>
           <slot name="label" part="label" class="optgroup__label">

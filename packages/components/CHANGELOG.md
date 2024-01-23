@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.3.0...components/1.4.0) (2024-01-22)
+
+
+### Features
+
+* ✨ add syn-divider ([#271](https://github.com/synergy-design-system/synergy-design-system/issues/271)) ([2848dea](https://github.com/synergy-design-system/synergy-design-system/commit/2848dea5fb5c976909b18fd20d66f5d7015724be))
+
+# [@synergy-design-system/components-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.2...components/1.3.0) (2024-01-19)
+
+
+### Features
+
+* ✨update icons ([#273](https://github.com/synergy-design-system/synergy-design-system/issues/273)) ([8677925](https://github.com/synergy-design-system/synergy-design-system/commit/8677925421d09f65c3aa8e056013b0cba8354f9a))
+
 # [@synergy-design-system/components-v1.2.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.2.1...components/1.2.2) (2024-01-15)
 
 

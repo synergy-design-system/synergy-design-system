@@ -111,5 +111,5 @@
     "release.dry": "semantic-release --dry-run --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

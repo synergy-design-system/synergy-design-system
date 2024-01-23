@@ -1035,13 +1035,13 @@
           "type": "text"
         }
       },
-      "multiple-group": {
+      "focus": {
         "title": {
-          "value": "Multiple with Grouping Options",
+          "value": "Focus",
           "type": "text"
         },
         "description": {
-          "value": "The function of <syn-optgroup> and  the multiple attribute can be used also combined.",
+          "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction.",
           "type": "text"
         }
       }

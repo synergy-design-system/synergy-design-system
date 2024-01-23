@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property, query, state } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
 import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -28,7 +28,7 @@ import styles from './optgroup.styles.js';
  * @csspart divider - The divider that is displayed above the content
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
- * @csspart options - The container that wraps the syn-options.
+ * @csspart options - The container that wraps the <syn-option> elements.
  *
  * @cssproperty --display-divider - Display property of the divider
  */
@@ -47,11 +47,6 @@ export default class SynOptgroup extends SynergyElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
   /**
-   * The disabled state. Used for setting correct aria roles
-   */
-  @state() private isDisabled = false;
-
-  /**
    * Syncs the disabled prop for all slotted syn-options when it is triggered
    */
   private handleDisableOptions() {
@@ -65,11 +60,6 @@ export default class SynOptgroup extends SynergyElement {
       });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.isDisabled = this.disabled;
-  }
-
   /**
    * Disables all options in the optgroup.
    */
@@ -81,12 +71,12 @@ export default class SynOptgroup extends SynergyElement {
   @property() label = '';
 
   @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange(_: typeof this.disabled, newValue: typeof this.disabled) {
-    this.isDisabled = newValue;
+  handleDisabledChange() {
     this.handleDisableOptions();
   }
 
   render() {
+    const { disabled } = this;
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     return html`
@@ -98,7 +88,7 @@ export default class SynOptgroup extends SynergyElement {
           'optgroup--has-suffix': this.hasSlotController.test('suffix'),
           'optgroup--is-disabled': this.disabled,
         })}
-        role="${this.isDisabled ? 'presentation' : 'group'}"
+        role="${disabled ? 'presentation' : 'group'}"
         part="base"
       >
         <syn-divider class="optgroup__divider" part="divider"></syn-divider>

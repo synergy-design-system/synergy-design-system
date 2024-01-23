@@ -229,27 +229,6 @@ export const GroupingOptions: Story = {
   `,
 };
 
-export const MultipleWithGroupingOptions: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('select', 'multiple'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-select value="option-1 option-2 option-3" multiple clearable>
-      <syn-optgroup label="Option">
-        <syn-option value="option-1">Option</syn-option>
-        <syn-option value="option-2">Option</syn-option>
-      </syn-optgroup>
-      <syn-optgroup label="Option">
-        <syn-option value="option-3">Option</syn-option>
-      </syn-optgroup>
-    </syn-select>
-  `,
-};
-
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -375,6 +354,28 @@ export const CustomTags: Story = {
   `,
 };
 
+const MultipleWithGroupingOptions: Story = {
+  name: 'Dev: Multiple With Grouping Options',
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('select', 'multiple'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-select value="option-1 option-2 option-3" multiple clearable>
+      <syn-optgroup label="Option">
+        <syn-option value="option-1">Option</syn-option>
+        <syn-option value="option-2">Option</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Option">
+        <syn-option value="option-3">Option</syn-option>
+      </syn-optgroup>
+    </syn-select>
+  `,
+};
+
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -386,8 +387,8 @@ export const Screenshot: Story = generateScreenshotStory({
   Multiple,
   SettingInitialValues,
   GroupingOptions,
-  MultipleWithGroupingOptions,
   Sizes,
   PrefixSuffixTextAndIcons,
   CustomTags,
+  MultipleWithGroupingOptions,
 }, 280);

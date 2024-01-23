@@ -623,13 +623,13 @@ export const generateScreenshotStory = (stories: { [key: string]: StoryObj }, he
       },
     },
     render: (args, context) => html`${Object.entries(stories).map(([storyName, story]) => {
-      const name = sentenceCase(storyName)     
+      const name = story.name ?? sentenceCase(storyName);
       return html`
-    <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-      <h3 data-chromatic="ignore">${name}</h3>
-      ${story.render?.(args, context)}
-    </div>
-    `;
+        <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
+          <h3 data-chromatic="ignore">${name}</h3>
+          ${story.render?.(args, context)}
+        </div>
+      `;
     })}`,
   };
 }

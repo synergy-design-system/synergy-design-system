@@ -23,7 +23,7 @@
  * @csspart divider - The divider that is displayed above the content
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
- * @csspart options - The container that wraps the syn-options.
+ * @csspart options - The container that wraps the <syn-option> elements.
  *
  * @cssproperty --display-divider - Display property of the divider
  */

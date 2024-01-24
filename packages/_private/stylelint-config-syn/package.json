@@ -4,9 +4,9 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "postcss-lit": "^1.1.0",
+    "postcss-lit": "^1.1.1",
     "stylelint-config-standard": "^34.0.0",
-    "stylelint-order": "^6.0.3"
+    "stylelint-order": "^6.0.4"
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
@@ -14,8 +14,8 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
-    "lit": "^3.0.0",
-    "stylelint": "^15.10.3"
+    "lit": "^3.1.1",
+    "stylelint": "^15.11.0"
   },
   "exports": {
     ".": "./index.js"

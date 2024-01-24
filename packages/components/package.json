@@ -101,7 +101,7 @@
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "sinon": "^16.1.0",
-    "stylelint": "^15.10.3",
+    "stylelint": "^15.11.0",
     "typescript": "^5.2.2",
     "unified": "^11.0.3",
     "unist-util-visit": "^5.0.0",

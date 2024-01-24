@@ -120,6 +120,10 @@ export default css`
     padding-right: var(--syn-spacing-small);
   }
 
+  :host([type='number']) .input--large:not(.input--no-spin-buttons) .input__clear,
+  :host([type='number']) .input--large:not(.input--no-spin-buttons) .input__password-toggle {
+    padding-right: var(--syn-spacing-medium);
+  }
 
   /* ICONS SIZE */
    .input--small .input__prefix ::slotted(syn-icon),
@@ -151,18 +155,6 @@ export default css`
     cursor: not-allowed;
   } 
 
-  :host([type='number']) .input--small:not(.input--no-spin-buttons) .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  :host([type='number']) .input--medium:not(.input--no-spin-buttons) .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  :host([type='number']) .input--large:not(.input--no-spin-buttons) .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-    // TODO adapt
-  }
 
   /**
   * Number stepper
@@ -170,6 +162,18 @@ export default css`
   .input__number-stepper {
     align-items: center;
     display: flex;
+  }
+
+  .input--small .input__number-stepper {
+    margin-left: var(--syn-spacing-2x-small);
+  }
+
+  .input--medium .input__number-stepper {
+    margin-right: var(--syn-spacing-2x-small);
+  }
+
+  .input--large .input__number-stepper {
+    margin-right: var(--syn-spacing-x-small);
   }
 
 

@@ -94,7 +94,7 @@
     "eslint-plugin-wc": "^2.0.4",
     "globby": "^13.2.2",
     "jsdom": "^22.1.0",
-    "ng-packagr": "^17.0.0",
+    "ng-packagr": "^17.1.1",
     "ora": "^7.0.1",
     "prettier": "^3.0.3",
     "remark-parse": "^11.0.0",
@@ -172,7 +172,7 @@
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.2",
     "composed-offset-position": "^0.0.4",
-    "lit": "^3.0.0"
+    "lit": "^3.1.1"
   },
   "web-types": "./dist/web-types.json"
 }

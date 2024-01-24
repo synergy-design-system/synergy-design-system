@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "jsx": "react"
+    "jsx": "react",
   },
   "include": [
     "**/*.js",
@@ -30,7 +30,7 @@
     "src/**/*.js",
     "stories/**/*.ts",
     "stories/**/*.tsx",
-    "stories/**/*.js"
+    "stories/**/*.js",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

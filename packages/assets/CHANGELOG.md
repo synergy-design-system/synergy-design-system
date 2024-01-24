@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.2.0...assets/1.2.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* 🤔 Update project dependencies ([#276](https://github.com/synergy-design-system/synergy-design-system/issues/276)) ([9aa94be](https://github.com/synergy-design-system/synergy-design-system/commit/9aa94beb8f1191862d7cf48617af2d1994a6df9c))
+
 # [@synergy-design-system/assets-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.1.0...assets/1.2.0) (2024-01-19)
 
 

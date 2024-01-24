@@ -142,4 +142,22 @@ export default css`
   .input--large .input__number-stepper-button {
     font-size: var(--syn-font-size-2x-large);
   }
+
+  /**
+  * Number stepper divider
+  */
+  .input--small .input__number-divider {
+    height: var(--syn-font-size-medium);
+    margin: 0;
+  }
+
+  .input--medium .input__number-divider {
+    height: var(--syn-font-size-x-large);
+    margin: 0 var(--syn-spacing-2x-small);
+  }
+
+  .input--large .input__number-divider {
+    height: var(--syn-font-size-2x-large);
+    margin: 0 var(--syn-spacing-x-small);
+  }
 `;

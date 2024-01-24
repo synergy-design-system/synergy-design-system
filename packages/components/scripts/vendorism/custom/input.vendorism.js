@@ -46,19 +46,18 @@ export const vendorInput = (path, content) => {
   output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
 
   // Add syn-divider as dependency
-  // TODO: add divider
-  // output.content = output.content.replace(
-  //   "import SynIcon from '../icon/icon.component.js';",
-  //   "import SynIcon from '../icon/icon.component.js';\nimport SynDivider from '../divider/divider.component.js';",
-  // );
-  // output.content = output.content.replace(
-  //   '* @dependency syn-icon',
-  //   '* @dependency syn-icon\n * @dependency syn-divider',
-  // );
-  // output.content = output.content.replace(
-  //   "static dependencies = { 'syn-icon': SynIcon };",
-  //   "static dependencies = {\n\t\t'syn-icon': SynIcon,\n\t\t'syn-divider': SynDivider\n\t};",
-  // );
+  output.content = output.content.replace(
+    "import SynIcon from '../icon/icon.component.js';",
+    "import SynIcon from '../icon/icon.component.js';\nimport SynDivider from '../divider/divider.component.js';",
+  );
+  output.content = output.content.replace(
+    '* @dependency syn-icon',
+    '* @dependency syn-icon\n * @dependency syn-divider',
+  );
+  output.content = output.content.replace(
+    "static dependencies = { 'syn-icon': SynIcon };",
+    "static dependencies = {\n\t\t'syn-icon': SynIcon,\n\t\t'syn-divider': SynDivider\n\t};",
+  );
 
   output.content = output.content.replace(
     '<slot name="suffix"></slot>\n            </span>',
@@ -84,6 +83,7 @@ export const vendorInput = (path, content) => {
                     <syn-icon name="indeterminate" library="system"></syn-icon>
                   </slot>
                 </button>
+                <syn-divider class="input__number-divider" part="divider" vertical></syn-divider>
                 <button
                   part="increment-number-stepper"
                   class="input__number-stepper-button"

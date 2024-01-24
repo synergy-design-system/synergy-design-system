@@ -16,6 +16,7 @@ import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
+import SynDivider from '../divider/divider.component.js';
 import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
@@ -27,6 +28,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @since 2.0
  *
  * @dependency syn-icon
+ * @dependency syn-divider
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
@@ -56,7 +58,10 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  */
 export default class SynInput extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = styles;
-  static dependencies = { 'syn-icon': SynIcon };
+  static dependencies = {
+		'syn-icon': SynIcon,
+		'syn-divider': SynDivider
+	};
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']
@@ -582,6 +587,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
                     <syn-icon name="indeterminate" library="system"></syn-icon>
                   </slot>
                 </button>
+                <syn-divider class="input__number-divider" part="divider" vertical></syn-divider>
                 <button
                   part="increment-number-stepper"
                   class="input__number-stepper-button"

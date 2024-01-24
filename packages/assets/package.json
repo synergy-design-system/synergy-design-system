@@ -16,7 +16,7 @@
     "figma-export-assets": "^1.0.4",
     "rimraf": "^5.0.5",
     "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "^7.0.8",
+    "semantic-release-monorepo": "^7.0.5",
     "svgo": "^3.2.0"
   },
   "exports": {

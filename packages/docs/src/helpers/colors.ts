@@ -96,7 +96,16 @@ export const getSASSToken = (token: string) => `$${paramCase(token, {
   splitRegexp: /([a-z])([A-Z0-9])/g,
 })}`;
 
-export const getRawValueFromToken = (token: string) => {
-  const rawValue = getComputedStyle(document.body).getPropertyValue(token);
+/**
+ * Get the raw token value from a design token
+ * @param token The token to get the value from
+ * @param parentElement The parent element to search from. Will try to get the closest theme enabled element
+ * @returns The found value or false otherwise
+ */
+export const getRawValueFromToken = (token: string, parentElement?: HTMLElement) => {
+  const elementWithClass = parentElement ? parentElement.closest('.syn-theme-dark,.syn-theme-light') : document.body;
+  const finalElement = elementWithClass ?? document.body;
+
+  const rawValue = getComputedStyle(finalElement).getPropertyValue(token);
   return rawValue ?? 'unknown!';
 };

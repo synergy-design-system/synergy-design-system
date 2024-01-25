@@ -16,6 +16,14 @@ const { args: defaultArgs, argTypes } = storybookDefaults('syn-optgroup');
 const { overrideArgs } = storybookHelpers('syn-optgroup');
 const { generateTemplate } = storybookTemplate('syn-optgroup');
 
+const autoOpen = html`
+  <script>
+  customElements.whenDefined('syn-select').then(() => {
+    document.querySelector('syn-select').show();
+  });
+  </script>
+`;
+
 const meta: Meta = {
   args: overrideArgs([
     {
@@ -58,7 +66,12 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args: unknown) => html`
+    <syn-select>
+      ${generateTemplate({ args })}
+    </syn-select>
+    ${autoOpen}
+  `,
 } as Story;
 
 export const Disabled = {
@@ -70,10 +83,14 @@ export const Disabled = {
     },
   },
   render: () => html`
-    <syn-optgroup disabled>
-      <em slot="label">Section 1</em>
-      <syn-option value="1">Option 1</syn-option>
-    </syn-optgroup>
+    <syn-select>
+      <syn-optgroup disabled>
+        <span slot="label">Section 1</span>
+        <syn-option value="1">Option 1</syn-option>
+        <syn-option value="2">Option 2</syn-option>
+      </syn-optgroup>
+    </syn-select>
+    ${autoOpen}
   `,
 };
 
@@ -86,28 +103,30 @@ export const PrefixAndSuffix = {
     },
   },
   render: () => html`
-    <syn-optgroup label="Section 1">
-      <syn-icon name="settings" slot="prefix"></syn-icon>
-      <syn-option value="1">Option 1</syn-option>
-    </syn-optgroup>
+    <syn-select>
+      <syn-optgroup label="Section 1">
+        <syn-option value="1">Option 1</syn-option>
+      </syn-optgroup>
 
-    <syn-optgroup>
-      <syn-icon name="refresh" slot="suffix"></syn-icon>
-      <em slot="label">Section 1</em>
-      <syn-option value="1">Option 1</syn-option>
-    </syn-optgroup>
+      <syn-optgroup>
+        <span slot="label">Section 1</span>
+        <syn-option value="1">Option 1</syn-option>
+      </syn-optgroup>
 
-    <syn-optgroup>
-      <syn-icon name="settings" slot="prefix"></syn-icon>
-      <syn-icon name="refresh" slot="suffix"></syn-icon>
-      <em slot="label">Section 1</em>
-      <syn-option value="1">Option 1</syn-option>
-    </syn-optgroup>
+      <syn-optgroup>
+        <syn-icon name="settings" slot="prefix"></syn-icon>
+        <syn-icon name="refresh" slot="suffix"></syn-icon>
+        <span slot="label">Section 1</span>
+        <syn-option value="1">Option 1</syn-option>
+      </syn-optgroup>
+    </syn-select>
+    ${autoOpen}
   `,
 };
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
+  Default,
   Disabled,
   PrefixAndSuffix,
 }, 280);

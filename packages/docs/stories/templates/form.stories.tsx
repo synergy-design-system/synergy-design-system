@@ -7,17 +7,23 @@ import {
   Title,
 } from '@storybook/blocks';
 import { html } from 'lit';
+import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { getLabel, getTranslation } from '../../src/translations.js';
 
 const meta: Meta = {
   parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    chromatic: {
+      ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
+    },
     docs: {
       page: () => (
         <>
           <Title />
           <Subtitle />
           <Description />
-          <Stories />
+          <Stories title="" />
         </>
       ),
       story: {

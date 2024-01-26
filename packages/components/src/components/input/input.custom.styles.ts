@@ -47,33 +47,27 @@ export default css`
   }
 
   .input--small .input__prefix ::slotted(*) {
-    margin-inline-end: var(--syn-spacing-x-small);
-    margin-inline-start: var(--syn-input-spacing-small);
+    margin-inline: var(--syn-input-spacing-small) var(--syn-spacing-x-small);
   }
 
   .input--medium .input__prefix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-    margin-inline-start: var(--syn-input-spacing-medium);
+    margin-inline: var(--syn-input-spacing-medium) var(--syn-input-spacing-small);
   }
 
   .input--large .input__prefix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-medium);
-    margin-inline-start: var(--syn-input-spacing-large);
+    margin-inline: var(--syn-input-spacing-large) var(--syn-input-spacing-medium);
   }
 
   .input--small .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-    margin-inline-start: var(--syn-spacing-x-small);
+    margin-inline: var(--syn-spacing-x-small) var(--syn-input-spacing-small);
   }
 
   .input--medium .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-medium);
-    margin-inline-start: var(--syn-input-spacing-small);
+    margin-inline: var(--syn-input-spacing-small) var(--syn-input-spacing-medium);
   }
 
   .input--large .input__suffix ::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-large);
-    margin-inline-start: var(--syn-input-spacing-medium);
+    margin-inline: var(--syn-input-spacing-medium) var(--syn-input-spacing-large);
   }
 
   .input__clear + .input__suffix ::slotted(*),

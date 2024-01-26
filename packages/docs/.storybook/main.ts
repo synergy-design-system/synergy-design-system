@@ -7,8 +7,6 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
-    // @fixme: Badges are disabled until we have proper support in our components
-    // '@geometricpanda/storybook-addon-badges',
     "@storybook/addon-mdx-gfm",
   ],
   core: {

@@ -100,6 +100,12 @@ export const formatFile = async (filePath, parser) => {
 };
 
 /**
+ * Get the path to the components package.json file
+ * @returns {object} Contents of to package.json
+ */
+export const getPackageJSONAsObject = () => JSON.parse(fsSync.readFileSync(getPath('../package.json')), 'utf-8');
+
+/**
  * Sync the package.json version field located in outputPackageDir
  * with the one provided from componentsPackageDir
  * @param {string} label The label

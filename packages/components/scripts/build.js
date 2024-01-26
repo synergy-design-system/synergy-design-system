@@ -1,11 +1,10 @@
 /**
  * Synergy Build Steps
  */
-import { readFileSync } from 'fs';
 import * as jobs from './jobs/index.js';
-import { getPath } from './jobs/shared.js';
+import { getPackageJSONAsObject, getPath } from './jobs/shared.js';
 
-const { version } = JSON.parse(readFileSync(getPath('../package.json')), 'utf-8');
+const { version } = getPackageJSONAsObject();
 
 // eslint-disable-next-line no-underscore-dangle
 const __PACKAGE_VERSION__ = JSON.stringify(version.toString());

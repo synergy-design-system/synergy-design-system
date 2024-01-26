@@ -28,8 +28,5 @@ export const runCreateVueWrappers = async ({
   await jobs.runCreateWrappers(metadata, outDir);
   await jobs.runFormat(outDir, vuePackageDir);
 
-  // @todo: This is currently disabled. We ship the vue files directly instead.
-  // Enabling this will be tackled in another ticket after v1.0.0
-  // await jobs.runEsBuild(distDir);
   await jobs.runVueTypeScript(distDir, vuePackageDir);
 };

@@ -143,8 +143,8 @@ export const vendorInput = (path, content) => {
   output.content = output.content.replace(
     "const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);",
     `const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
-    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min);
-    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max);`,
+    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.min ? this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min) : false);
+    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.max ? this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max) : false);`,
   );
 
   // Always hide the built-in number spinner

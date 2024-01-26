@@ -438,8 +438,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
     const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
-    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min);
-    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max);
+    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.min ? this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min) : false);
+    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.max ? this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max) : false);
 
     return html`
       <div

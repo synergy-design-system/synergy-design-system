@@ -5,7 +5,7 @@ import '../../../components/src/components/select/select';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generateScreenshotStory,
+  // generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -59,32 +59,6 @@ export const Default = {
   render: (renderArgs: unknown) => generateTemplate({ args: renderArgs }),
 } as Story;
 
-export const Focus: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('select', 'focus'),
-      },
-    },
-  },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const elm = canvasElement.querySelector('syn-select');
-    if (elm) {
-      elm.focus();
-    }
-  },
-  render: () => html`
-    <syn-select label="Select one">
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-2">Option 2</syn-option>
-      <syn-option value="option-3">Option 3</syn-option>
-    </syn-select>
-  `,
-};
-
 export const Labels: Story = {
   parameters: {
     docs: {
@@ -119,7 +93,7 @@ export const HelpText: Story = {
   `,
 };
 
-export const Placeholders: Story = {
+export const Placeholder: Story = {
   parameters: {
     docs: {
       description: {
@@ -146,6 +120,32 @@ export const Clearable: Story = {
   },
   render: () => html`
     <syn-select clearable value="option-1">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-select>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('select', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const elm = canvasElement.querySelector('syn-select');
+    if (elm) {
+      elm.focus();
+    }
+  },
+  render: () => html`
+    <syn-select label="Select one">
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -199,12 +199,41 @@ export const SettingInitialValues: Story = {
     },
   },
   render: () => html`
-    <syn-select value="option-1 option-2 option-3 option-4" multiple clearable>
-      <syn-option value="option-1">Option</syn-option>
+    <syn-select value="option-1 option-2 option-3 option-4" multiple clearable class="custom-tag">
+      <syn-option value="option-1">
+        <syn-icon slot="prefix" name="wallpaper"></syn-icon>
+        Option
+      </syn-option>
       <syn-option value="option-2">Option 1</syn-option>
       <syn-option value="option-3">Option 2</syn-option>
       <syn-option value="option-4">Option 3</syn-option>
     </syn-select>
+    <script type="module">
+      const select = document.querySelector('.custom-tag');
+
+      select.getTag = (option, index) => {
+        // Use the same icon used in the <syn-option>
+        const optionElement = option.querySelector('syn-icon[slot="prefix"]');
+        
+        if (!optionElement) {
+          return \`
+          <syn-tag removable>
+          \${option.getTextLabel()}
+          </syn-tag>
+          \`;
+        }
+        
+        const { name } = optionElement;
+
+        // You can return a string, a Lit Template, or an HTMLElement here
+        return \`
+          <syn-tag removable>
+            <syn-icon name="\${name}"></syn-icon>
+            \${option.getTextLabel()}
+          </syn-tag>
+        \`;
+      };
+    </script>
   `,
 };
 
@@ -217,13 +246,14 @@ export const GroupingOptions: Story = {
     },
   },
   render: () => html`
-    <syn-select>
-      <syn-optgroup label="Option">
+    <syn-select placeholder="This is a value">
+      <syn-optgroup label="Section 1">
         <syn-option value="1">Option</syn-option>
         <syn-option value="2">Option</syn-option>
       </syn-optgroup>
-      <syn-optgroup label="Option">
+      <syn-optgroup label="Section 2">
         <syn-option value="3">Option</syn-option>
+        <syn-option value="4">Option</syn-option>
       </syn-optgroup>
     </syn-select>
   `,
@@ -305,22 +335,21 @@ export const CustomTags: Story = {
   render: () => html`
     <syn-select
       placeholder="Select one"
-      value="option email phone"
+      value="phone email"
       multiple
       clearable
       class="custom-tag"
     >
-      <syn-option value="option">Option</syn-option>
       <syn-option value="email">
-        <syn-icon slot="prefix" name="mail_lock"></syn-icon>
+        <syn-icon slot="prefix" name="mail_outline"></syn-icon>
         Email
       </syn-option>
       <syn-option value="phone">
-        <syn-icon slot="prefix" name="phone_callback"></syn-icon>
+        <syn-icon slot="prefix" name="phone"></syn-icon>
         Phone
       </syn-option>
       <syn-option value="chat">
-        <syn-icon slot="prefix" name="chat_bubble"></syn-icon>
+        <syn-icon slot="prefix" name="chat_bubble_outline"></syn-icon>
         Chat
       </syn-option>
     </syn-select>
@@ -354,41 +383,43 @@ export const CustomTags: Story = {
   `,
 };
 
-const MultipleWithGroupingOptions: Story = {
-  name: 'Dev: Multiple With Grouping Options',
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('select', 'multiple'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-select value="option-1 option-2 option-3" multiple clearable>
-      <syn-optgroup label="Option">
-        <syn-option value="option-1">Option</syn-option>
-        <syn-option value="option-2">Option</syn-option>
-      </syn-optgroup>
-      <syn-optgroup label="Option">
-        <syn-option value="option-3">Option</syn-option>
-      </syn-optgroup>
-    </syn-select>
-  `,
-};
+// @todo: Disabled until we have sceenshots back
+// const MultipleWithGroupingOptions: Story = {
+//   name: 'Dev: Multiple With Grouping Options',
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('select', 'multiple'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//     <syn-select value="option-1 option-2 option-3" multiple clearable>
+//       <syn-optgroup label="Option">
+//         <syn-option value="option-1">Option</syn-option>
+//         <syn-option value="option-2">Option</syn-option>
+//       </syn-optgroup>
+//       <syn-optgroup label="Option">
+//         <syn-option value="option-3">Option</syn-option>
+//       </syn-optgroup>
+//     </syn-select>
+//   `,
+// };
 
+// @todo: Disabled until we know what we want to do with selects screenshots
 // Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory({
-  Default,
-  Labels,
-  HelpText,
-  Placeholders,
-  Clearable,
-  Disabled,
-  Multiple,
-  SettingInitialValues,
-  GroupingOptions,
-  Sizes,
-  PrefixSuffixTextAndIcons,
-  CustomTags,
-  MultipleWithGroupingOptions,
-}, 280);
+// export const Screenshot: Story = generateScreenshotStory({
+//   Default,
+//   Labels,
+//   HelpText,
+//   Placeholder,
+//   Clearable,
+//   Disabled,
+//   Multiple,
+//   SettingInitialValues,
+//   GroupingOptions,
+//   Sizes,
+//   PrefixSuffixTextAndIcons,
+//   CustomTags,
+//   MultipleWithGroupingOptions,
+// }, 280);

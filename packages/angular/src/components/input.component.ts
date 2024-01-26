@@ -23,6 +23,7 @@ import '@synergy-design-system/components/components/input/input.js';
  * @since 2.0
  *
  * @dependency syn-icon
+ * @dependency syn-divider
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
@@ -232,7 +233,7 @@ to `text`.
   }
 
   /**
-* Hides the browser's built-in increment/decrement spin buttons for number inputs.
+* Hides the increment/decrement spin buttons for number inputs.
  */
   @Input()
   set noSpinButtons(v: SynInput['noSpinButtons']) {

@@ -35,7 +35,7 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
  * @csspart suffix - The container that wraps the suffix.
  * @csspart options - The container that wraps the <syn-option> elements.
  *
- * @cssproperty --display-divider - Display property of the divider
+ * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */
 @Component({
   selector: 'syn-optgroup',

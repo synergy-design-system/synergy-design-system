@@ -30,7 +30,7 @@ import styles from './optgroup.styles.js';
  * @csspart suffix - The container that wraps the suffix.
  * @csspart options - The container that wraps the <syn-option> elements.
  *
- * @cssproperty --display-divider - Display property of the divider
+ * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */
 export default class SynOptgroup extends SynergyElement {
   static styles: CSSResultGroup = styles;
@@ -41,9 +41,6 @@ export default class SynOptgroup extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix', 'label');
 
-  /**
-   * The default slot
-   */
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
   /**

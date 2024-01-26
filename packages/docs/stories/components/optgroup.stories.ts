@@ -5,7 +5,7 @@ import '../../../components/src/components/optgroup/optgroup';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generateScreenshotStory,
+  // generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -16,11 +16,16 @@ const { args: defaultArgs, argTypes } = storybookDefaults('syn-optgroup');
 const { overrideArgs } = storybookHelpers('syn-optgroup');
 const { generateTemplate } = storybookTemplate('syn-optgroup');
 
-const autoOpen = html`
+const afterRender = (selector: string) => html`
   <script>
-  customElements.whenDefined('syn-select').then(() => {
-    document.querySelector('syn-select').show();
-  });
+      Promise.all([
+      customElements.whenDefined('syn-select'),
+      customElements.whenDefined('syn-optgroup'),
+      customElements.whenDefined('syn-option')
+    ]).then(async () => {
+      const elm = document.querySelector('${selector}');
+        await elm?.show();
+    });
   </script>
 `;
 
@@ -29,7 +34,11 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: '<syn-option value="1">Option 1</syn-option>',
+      value: `
+        <syn-option value="1">Option 1</syn-option>
+        <syn-option value="2">Option 2</syn-option>
+        <syn-option value="3">Option 3</syn-option>
+      `,
     },
     {
       name: 'label',
@@ -45,7 +54,8 @@ const meta: Meta = {
         component: generateStoryDescription('optiongroup', 'default'),
       },
       story: {
-        height: '250px',
+        height: '400px',
+        inline: false,
       },
     },
   },
@@ -55,7 +65,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -67,10 +77,13 @@ export const Default = {
     },
   },
   render: (args: unknown) => html`
-    <syn-select>
+    <syn-select id="optgroup-default">
       ${generateTemplate({ args })}
+      <syn-optgroup label="Section 2">
+        <syn-option value="4">Option 4</syn-option>
+      </syn-optgroup>
     </syn-select>
-    ${autoOpen}
+    ${afterRender('#optgroup-default')}
   `,
 } as Story;
 
@@ -83,14 +96,15 @@ export const Disabled = {
     },
   },
   render: () => html`
-    <syn-select>
+    <syn-select id="optgroup-disabled">
       <syn-optgroup disabled>
         <span slot="label">Section 1</span>
-        <syn-option value="1">Option 1</syn-option>
-        <syn-option value="2">Option 2</syn-option>
+        <syn-option value="1">Option</syn-option>
+        <syn-option value="2">Option</syn-option>
+        <syn-option value="3">Option</syn-option>
       </syn-optgroup>
     </syn-select>
-    ${autoOpen}
+    ${afterRender('#optgroup-disabled')}
   `,
 };
 
@@ -103,30 +117,41 @@ export const PrefixAndSuffix = {
     },
   },
   render: () => html`
-    <syn-select>
-      <syn-optgroup label="Section 1">
-        <syn-option value="1">Option 1</syn-option>
-      </syn-optgroup>
+    <syn-select id="optgroup-prefix-suffix">
+      <syn-optgroup label="Contact Support">
+        <syn-icon name="contact_support" slot="prefix"></syn-icon>
+        <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>
+        
+        <syn-option value="1">
+          <syn-icon name="mail" slot="prefix"></syn-icon>
+          <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>
+          E-Mail
+        </syn-option>
 
-      <syn-optgroup>
-        <span slot="label">Section 1</span>
-        <syn-option value="1">Option 1</syn-option>
-      </syn-optgroup>
-
-      <syn-optgroup>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        <syn-icon name="refresh" slot="suffix"></syn-icon>
-        <span slot="label">Section 1</span>
-        <syn-option value="1">Option 1</syn-option>
+        <syn-option value="2">
+          <syn-icon name="phone" slot="prefix"></syn-icon>
+          <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>  
+          Phone
+        </syn-option>
+        
+        <syn-option value="3">
+          <syn-icon name="chat_bubble_outline" slot="prefix"></syn-icon>
+          <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>  
+          Chat
+        </syn-option>
       </syn-optgroup>
     </syn-select>
-    ${autoOpen}
+    ${afterRender('#optgroup-prefix-suffix')}
   `,
 };
 
-// Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory({
-  Default,
-  Disabled,
-  PrefixAndSuffix,
-}, 280);
+// @todo: Disabled until we know what we want to do with selects screenshots
+// // Bundled screenshot story
+// export const Screenshot: Story = generateScreenshotStory({
+//   Default,
+//   Disabled,
+//   PrefixAndSuffix,
+// }, {
+//   afterRender: afterRender('syn-select'),
+//   heightPx: 600,
+// });

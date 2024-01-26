@@ -7,6 +7,7 @@
 import { esbuildPlugin } from '@web/dev-server-esbuild';
 import { globbySync } from 'globby';
 import { playwrightLauncher } from '@web/test-runner-playwright';
+import synTestPlugins from './scripts/tests/index.js';
 
 export default {
   rootDir: '.',
@@ -20,6 +21,7 @@ export default {
     }
   },
   plugins: [
+    ...synTestPlugins.plugins,
     esbuildPlugin({
       ts: true,
       target: 'es2020'

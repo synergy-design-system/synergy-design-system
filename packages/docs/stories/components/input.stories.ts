@@ -281,6 +281,23 @@ export const CustomizingLabelPosition: Story = {
   </style>`,
 };
 
+export const Stepper: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // @TODO: add description as soon as the token is provided
+        // story: generateStoryDescription('input', 'prefix-suffix'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-input type="number" min="0" max="10" value="0"></syn-input>
+  <br/>
+  <syn-input type="number" min="0" max="10" value="2"></syn-input>
+  <br/>
+  <syn-input type="number" min="0" max="10" value="10"></syn-input>`,
+};
+
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -295,4 +312,5 @@ export const Screenshot: Story = generateScreenshotStory({
   InputTypes,
   PrefixSuffixIcons,
   CustomizingLabelPosition,
+  Stepper,
 }, 360);

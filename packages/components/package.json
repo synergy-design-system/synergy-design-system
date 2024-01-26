@@ -29,6 +29,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
+    "test.watch": "pnpm test -- --watch",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",

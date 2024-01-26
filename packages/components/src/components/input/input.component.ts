@@ -17,6 +17,7 @@ import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynDivider from '../divider/divider.component.js';
+import { longPress } from '../../internal/longpress.js';
 import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
@@ -254,18 +255,20 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     }
   }
 
-  private handleMouseDown() {
+  private handleStep(){
     this.__mousedownHappened = true;
+    this.handleInput();
+    this.input.focus();
   }
-  
+
   private handleStepUp() {
     this.stepUp();
-    this.input.focus();
+    this.handleStep();
   }
 
   private handleStepDown() {
     this.stepDown();
-    this.input.focus();
+    this.handleStep();
   }
 
   private handleChange() {
@@ -577,11 +580,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
                   type="button"
                   ?disabled=${isDecrementStepperDisabled || this.disabled}
                   aria-hidden="true"
-                  @click=${this.handleStepDown}
-                  @mousedown=${this.handleMouseDown}
+                  ${longPress({ start: () => this.handleStepDown(), end: () => this.handleChange()})}
                   tabindex="-1"
-                  size="${this.size}"
-                  color="primary"
                 >
                   <slot name="decrement-number-stepper">
                     <syn-icon name="indeterminate" library="system"></syn-icon>
@@ -594,8 +594,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
                   type="button"
                   ?disabled=${isIncrementStepperDisabled || this.disabled}
                   aria-hidden="true"
-                  @click=${this.handleStepUp}
-                  @mousedown=${this.handleMouseDown}
+                  ${longPress({ start: () => this.handleStepUp(), end: () => this.handleChange()})}
                   tabindex="-1"
                 >
                   <slot name="increment-number-stepper">

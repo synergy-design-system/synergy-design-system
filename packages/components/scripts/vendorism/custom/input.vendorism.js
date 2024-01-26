@@ -45,11 +45,13 @@ export const vendorInput = (path, content) => {
   // @todo remove this when syn-textarea and syn-checkbox are available
   output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
 
-  // Add syn-divider as dependency
+  // Add all necessary imports
   output.content = output.content.replace(
     "import SynIcon from '../icon/icon.component.js';",
-    "import SynIcon from '../icon/icon.component.js';\nimport SynDivider from '../divider/divider.component.js';",
+    "import SynIcon from '../icon/icon.component.js';\nimport SynDivider from '../divider/divider.component.js';\nimport { longPress } from '../../internal/longpress.js';",
   );
+
+  // Add syn-divider
   output.content = output.content.replace(
     '* @dependency syn-icon',
     '* @dependency syn-icon\n * @dependency syn-divider',
@@ -59,6 +61,7 @@ export const vendorInput = (path, content) => {
     "static dependencies = {\n\t\t'syn-icon': SynIcon,\n\t\t'syn-divider': SynDivider\n\t};",
   );
 
+  // Add number input stepper
   output.content = output.content.replace(
     '<slot name="suffix"></slot>\n            </span>',
     `<slot name="suffix"></slot>
@@ -73,11 +76,8 @@ export const vendorInput = (path, content) => {
                   type="button"
                   ?disabled=\${isDecrementStepperDisabled || this.disabled}
                   aria-hidden="true"
-                  @click=\${this.handleStepDown}
-                  @mousedown=\${this.handleMouseDown}
+                  \${longPress({ start: () => this.handleStepDown(), end: () => this.handleChange()})}
                   tabindex="-1"
-                  size="\${this.size}"
-                  color="primary"
                 >
                   <slot name="decrement-number-stepper">
                     <syn-icon name="indeterminate" library="system"></syn-icon>
@@ -90,8 +90,7 @@ export const vendorInput = (path, content) => {
                   type="button"
                   ?disabled=\${isIncrementStepperDisabled || this.disabled}
                   aria-hidden="true"
-                  @click=\${this.handleStepUp}
-                  @mousedown=\${this.handleMouseDown}
+                  \${longPress({ start: () => this.handleStepUp(), end: () => this.handleChange()})}
                   tabindex="-1"
                 >
                   <slot name="increment-number-stepper">
@@ -124,18 +123,20 @@ export const vendorInput = (path, content) => {
     }
   }
 
-  private handleMouseDown() {
+  private handleStep(){
     this.__mousedownHappened = true;
+    this.handleInput();
+    this.input.focus();
   }
-  
+
   private handleStepUp() {
     this.stepUp();
-    this.input.focus();
+    this.handleStep();
   }
 
   private handleStepDown() {
     this.stepDown();
-    this.input.focus();
+    this.handleStep();
   }`,
   );
 

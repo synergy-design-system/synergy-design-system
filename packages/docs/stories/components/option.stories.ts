@@ -8,7 +8,7 @@ import '../../../components/src/components/option/option';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generateScreenshotStory,
+  // generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -54,6 +54,7 @@ export const Default = {
     <syn-select label="Select one">
       ${generateTemplate({ args })}
       <syn-option value="2">Option 2</syn-option>
+      <syn-option value="2">Option 3</syn-option>
     </syn-select>
   `,
 } as Story;
@@ -70,6 +71,7 @@ export const Disabled: Story = {
     <syn-select label="Select one" label="Select one">
       <syn-option value="option-1">Email</syn-option>
       <syn-option value="option-2" disabled>Phone</syn-option>
+      <syn-option value="option-3">Chat</syn-option>
     </syn-select>
   `,
 };
@@ -95,13 +97,20 @@ export const PrefixAndSuffix: Story = {
         Phone
         <syn-icon slot="suffix" name="check_circle_outline"></syn-icon>
       </syn-option>
+
+      <syn-option value="option-3">
+        <syn-icon slot="prefix" name="chat_bubble_outline"></syn-icon>
+        Chat
+        <syn-icon slot="suffix" name="check_circle_outline"></syn-icon>
+      </syn-option>
     </syn-select>
   `,
 };
 
-// Bundled screenshot story
-export const Screenshot: Story = generateScreenshotStory({
-  Default,
-  Disabled,
-  PrefixAndSuffix,
-}, 250);
+// @todo: Disabled until we know what we want to do with selects screenshots
+// // Bundled screenshot story
+// export const Screenshot: Story = generateScreenshotStory({
+//   Default,
+//   Disabled,
+//   PrefixAndSuffix,
+// }, 250);

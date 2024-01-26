@@ -25,7 +25,7 @@
       "import": "./dist/js/index.js"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss": "./dist/scss/_tokens.scss"
+    "./scss/*": "./dist/scss/*"
   },
   "files": [
     "dist",

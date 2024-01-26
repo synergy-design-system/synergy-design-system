@@ -32,10 +32,10 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
   <head>
     <!-- Example 1: Referencing directly in a HTML document -->
     <!-- Make sure to add the stylesheet before using any components -->
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/light.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
 
     <!-- Alternative: Use the dark theme -->
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/dark.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
   </head>
   <body>
     <div style="background: var(--syn-color-primary-500)">
@@ -63,8 +63,8 @@ To switch the theme, proceed in the following way:
       -- Load both themes initially.
       -- The last theme will be the default, in this case the light theme
     -->
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/dark.css" />
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/light.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
   </head>
   <body>
     <button id="theme-switch">Switch Theme</button>
@@ -135,14 +135,17 @@ console.log(div.style.backgroundColor);
 
 Our variables are also available as scss variables that make it possible to consume them in sass based projects.
 
+> Note that the SASS compiler does not ship with built in support for `node_modules`. You will either have to use relative paths or use a loader like [node-sass-package-importer](https://www.npmjs.com/package/node-sass-package-importer) or [sass-module-importer](https://www.npmjs.com/package/sass-module-importer).
+> Configuration for this is NOT part of this guide.
+
 ```scss
 // Import the design tokens first.
 // This can be done in a sass file or in any other way described above.
 // Make sure to NOT add the .css file suffix, this will not work in sass
-@import "~@synergy-design-system/tokens/themes/light";
+@import "./node_modules/@synergy-design-system/tokens/themes/light";
 
 // Import the scss variables
-@import "@synergy-design-system/tokens/scss/tokens";
+@import "./node_modules/@synergy-design-system/tokens/dist/scss/tokens";
 
 div {
   background: $SynColorPrimary500;
@@ -168,7 +171,7 @@ Just make sure to add a valid path to the light theme in the `.vscode/settings.j
 
 ```json
 "cssVariables.lookupFiles": [
-    "node_modules/@synergy-design-system/tokens/themes/light.css"
+    "node_modules/@synergy-design-system/tokens/dist/themes/light.css"
 ],
 ```
 

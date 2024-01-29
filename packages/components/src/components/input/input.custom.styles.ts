@@ -183,7 +183,6 @@ export default css`
     display: flex;
     padding: var(--syn-spacing-x-small);
     transition: var(--syn-transition-x-fast) color;
-    -webkit-appearance: none;
   }
 
   .input--small .input__number-stepper-button {

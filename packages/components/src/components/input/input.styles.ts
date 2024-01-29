@@ -288,7 +288,7 @@ export default css`
     display: none;
   }
 
-  .input--no-spin-buttons input[type='number'] {
+  .input--no-browser-spin-buttons input[type='number'] {
     -moz-appearance: textfield;
   }
 

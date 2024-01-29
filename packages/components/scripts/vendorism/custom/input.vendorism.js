@@ -195,12 +195,7 @@ const transformStyles = (path, originalContent) => {
   content = content.replaceAll('filled', 'readonly');
 
   // Always hide browser built-in spin buttons
-  content = content.replace(
-    `.input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
-  .input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {`,
-    `.input--no-browser-spin-buttons input[type='number']::-webkit-outer-spin-button,
-  .input--no-browser-spin-buttons input[type='number']::-webkit-inner-spin-button {`,
-  );
+  content = content.replaceAll('.input--no-spin-buttons input[type=\'number\']', '.input--no-browser-spin-buttons input[type=\'number\']');
 
   return {
     content,

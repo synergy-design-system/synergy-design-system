@@ -59,10 +59,3 @@ export const getTranslation = (key: string, fallback = 'Not found', debug = true
     ) => prev?.[current], translations);
   return data ?? `${fallback}${debug ? ` (Key: ${key})` : ''}`;
 };
-
-/**
- * Get a label from the translations table
- * @param key The key to search for
- * @returns The found translation or a fallback otherwise
- */
-export const getLabel = (key: string) => getTranslation(key);

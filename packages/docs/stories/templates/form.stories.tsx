@@ -8,7 +8,7 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
-import { getLabel, getTranslation } from '../../src/translations.js';
+import { getTranslation } from '../../src/translations.js';
 
 const meta: Meta = {
   parameters: {
@@ -130,7 +130,7 @@ export const ContactForm = {
         
         <fieldset>
           <syn-radio-group
-            label="${getLabel('contactForm.topicLabel')}"
+            label="${getTranslation('contactForm.topicLabel')}"
             name="topic"
             required
           >
@@ -141,13 +141,13 @@ export const ContactForm = {
         </fieldset>
 
         <fieldset>
-          <legend>${getLabel('contactForm.requestLabel')}</legend>
+          <legend>${getTranslation('contactForm.requestLabel')}</legend>
           <p>
-            ${getLabel('contactForm.requestContent')}
+            ${getTranslation('contactForm.requestContent')}
           </p>
 
           <syn-textarea
-            label="${getLabel('contactForm.messageLabel')}"
+            label="${getTranslation('contactForm.messageLabel')}"
             name="message"
             required
           ></syn-textarea>
@@ -156,28 +156,28 @@ export const ContactForm = {
         <fieldset>
           <legend>${getTranslation('contactForm.contactDetailsLabel')}</legend>
           <div class="fields">
-            <syn-input label="${getLabel('contactForm.customerNumberLabel')}" name="customerNr"></syn-input>
-            <syn-input label="${getLabel('contactForm.companyNameLabel')}" name="companyName" required></syn-input>
-            <syn-input label="${getLabel('contactForm.addressLabel')}" name="address" required></syn-input>
-            <syn-input label="${getLabel('contactForm.zipLabel')}" name="zip" required></syn-input>
-            <syn-input label="${getLabel('contactForm.cityLabel')}" name="city" required></syn-input>
-            <syn-input label="${getLabel('contactForm.countryLabel')}" name="country" required></syn-input>
-            <syn-input label="${getLabel('contactForm.referenceContactLabel')}" name="salesPerson" required></syn-input>
-            <syn-input type="tel" label="${getLabel('contactForm.phoneLabel')}" name="phone"></syn-input>
-            <syn-input type="tel" label="${getLabel('contactForm.faxLabel')}" name="fax"></syn-input>
-            <syn-input type="email" label="${getLabel('contactForm.emailLabel')}" name="mail" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.customerNumberLabel')}" name="customerNr"></syn-input>
+            <syn-input label="${getTranslation('contactForm.companyNameLabel')}" name="companyName" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.addressLabel')}" name="address" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.zipLabel')}" name="zip" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.cityLabel')}" name="city" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.countryLabel')}" name="country" required></syn-input>
+            <syn-input label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required></syn-input>
+            <syn-input type="tel" label="${getTranslation('contactForm.phoneLabel')}" name="phone"></syn-input>
+            <syn-input type="tel" label="${getTranslation('contactForm.faxLabel')}" name="fax"></syn-input>
+            <syn-input type="email" label="${getTranslation('contactForm.emailLabel')}" name="mail" required></syn-input>
           </div>
           <syn-checkbox name="subscribeNewsletter">
-            ${getLabel('contactForm.newsletterLabel')}
+            ${getTranslation('contactForm.newsletterLabel')}
           </syn-checkbox>
         </fieldset>
 
         <div class="submit-actions">
-          <syn-button type="submit" variant="filled">${getLabel('contactForm.submitLabel')}</syn-button>
+          <syn-button type="submit" variant="filled">${getTranslation('contactForm.submitLabel')}</syn-button>
         </div>
 
         <em>
-          ${getLabel('contactForm.requiredFieldInfo')}
+          ${getTranslation('contactForm.requiredFieldInfo')}
         </em>
       </form>
     </div>

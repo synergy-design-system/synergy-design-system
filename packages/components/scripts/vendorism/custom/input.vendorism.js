@@ -1,68 +1,117 @@
-import { removeSection } from '../remove-section.js';
+import { removeSections } from '../remove-section.js';
 
-export const vendorInput = (path, content) => {
-  const output = { content, path };
-  if (!path.includes('input.component.ts')
-    && !path.includes('input.styles.ts')
-    && !path.includes('input.stories.ts')
-    && !path.includes('input.test.ts')
-  ) {
-    return output;
-  }
-  // We don't provide a filled property in Synergy, but instead use the filled styles for readonly
-  // update stories
-  output.content = output.content.replace('<syn-input placeholder="Type something" filled>', '<syn-input value="Readonly content" readonly>');
-  output.content = output.content.replaceAll('Filled', 'Readonly');
+const FILES_TO_TRANSFORM = [
+  'input.component.ts',
+  'input.styles.ts',
+  'input.test.ts',
+];
 
-  // update component and styles
-  output.content = removeSection(output.content, '/** Draws a filled', 'filled = false;');
-  output.content = output.content.replaceAll('filled', 'readonly'); // makes changes in styles and components
-  // Pill is not supported in Synergy
-  output.content = removeSection(output.content, "'input--pill':", ',');
-  output.content = removeSection(output.content, '/** Draws a pill-style', 'pill = false;');
-  output.content = removeSection(
-    output.content,
-    '  /*\n   * Pill modifier',
-    '  /*',
-    { preserveEnd: true, removePrecedingWhitespace: false },
-  );
+/**
+ * Transform the component code
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformComponent = (path, originalContent) => {
+  let content = removeSections([
+    ['/** Draws a filled', 'filled = false;'],
+    ['/** Draws a pill-style', 'pill = false;'],
+    ["'input--pill':", ','],
+  ], originalContent);
+
+  // Replace filled with readonly
+  content = content.replaceAll('filled', 'readonly');
+
   // We need to add classes depending on prefix and suffix slots to use them in CSS
-  output.content = output.content.replace(
+  content = content.replace(
     "HasSlotController(this, 'help-text', 'label')",
     "HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix')",
   );
-  output.content = output.content.replace(
+  content = content.replace(
     "const hasHelpTextSlot = this.hasSlotController.test('help-text');",
     "const hasHelpTextSlot = this.hasSlotController.test('help-text');\n    const hasPrefixSlot = this.hasSlotController.test('prefix');\n    const hasSuffixSlot = this.hasSlotController.test('suffix');",
   );
-  output.content = output.content.replace(
+  content = content.replace(
     "'form-control--has-help-text': hasHelpText",
     "'form-control--has-help-text': hasHelpText,\n          'form-control--has-prefix': hasPrefixSlot,\n          'form-control--has-suffix': hasSuffixSlot",
   );
-  // remove tests for pill and filled
-  output.content = removeSection(output.content, 'expect(el.filled)', ';');
-  output.content = removeSection(output.content, 'expect(el.pill)', ';');
-  // @todo remove this when syn-textarea and syn-checkbox are available
-  output.content = output.content.replace(/syn-checkbox/g, 'syn-input');
 
-  // Add all necessary imports
-  output.content = output.content.replace(
+  // Replace browser number built-in comments
+  content = content.replace(
+    "Hides the browser's built-in increment/decrement",
+    'Hides the increment/decrement',
+  );
+
+  // Always hide the built-in number spinner
+  content = content.replace(
+    "'input--no-spin-buttons': this.noSpinButtons",
+    "'input--no-spin-buttons': this.noSpinButtons,\n\t\t\t\t\t\t\t'input--no-browser-spin-buttons': true",
+  );
+
+  // Add divider and longpress directive as imports
+  content = content.replace(
     "import SynIcon from '../icon/icon.component.js';",
     "import SynIcon from '../icon/icon.component.js';\nimport SynDivider from '../divider/divider.component.js';\nimport { longPress } from '../../internal/longpress.js';",
   );
 
-  // Add syn-divider
-  output.content = output.content.replace(
+  // Add syn-divider as dependency
+  content = content.replace(
     '* @dependency syn-icon',
     '* @dependency syn-icon\n * @dependency syn-divider',
   );
-  output.content = output.content.replace(
+  content = content.replace(
     "static dependencies = { 'syn-icon': SynIcon };",
     "static dependencies = {\n\t\t'syn-icon': SynIcon,\n\t\t'syn-divider': SynDivider\n\t};",
   );
 
-  // Add number input stepper
-  output.content = output.content.replace(
+  // Add focus and increment / decrement handling for number type
+  content = content.replace(
+    "private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });",
+    `private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
+  private __mousedownHappened = false;`,
+  );
+  content = content.replace(
+    `private handleBlur() {
+    this.hasFocus = false;
+    this.emit('syn-blur');
+  }`,
+    `private handleBlur() {
+    if(!this.__mousedownHappened || this.type !== 'number'){
+      this.hasFocus = false;
+      this.emit('syn-blur');
+    }else {
+      this.__mousedownHappened = false;
+      this.input.focus();
+    }
+  }
+
+  private handleStep(){
+    this.__mousedownHappened = true;
+    this.handleInput();
+    this.input.focus();
+  }
+
+  private handleStepUp() {
+    this.stepUp();
+    this.handleStep();
+  }
+
+  private handleStepDown() {
+    this.stepDown();
+    this.handleStep();
+  }`,
+  );
+
+  // Add check for disabled increment / decrement number stepper
+  content = content.replace(
+    "const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);",
+    `const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
+    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.min ? this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min) : false);
+    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.max ? this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max) : false);`,
+  );
+
+  // Add rendering of number input stepper
+  content = content.replace(
     '<slot name="suffix"></slot>\n            </span>',
     `<slot name="suffix"></slot>
             </span>
@@ -102,69 +151,84 @@ export const vendorInput = (path, content) => {
             : ''}`,
   );
 
-  output.content = output.content.replace(
-    "private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });",
-    `private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
-  private __mousedownHappened = false;`,
-  );
+  return {
+    content,
+    path,
+  };
+};
 
-  output.content = output.content.replace(
-    `private handleBlur() {
-    this.hasFocus = false;
-    this.emit('syn-blur');
-  }`,
-    `private handleBlur() {
-    if(!this.__mousedownHappened || this.type !== 'number'){
-      this.hasFocus = false;
-      this.emit('syn-blur');
-    }else {
-      this.__mousedownHappened = false;
-      this.input.focus();
-    }
-  }
+/**
+ * Transform the components tests
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformTests = (path, originalContent) => {
+  const content = removeSections([
+    ['expect(el.filled)', ';'],
+    ['expect(el.pill)', ';'],
+  ], originalContent);
 
-  private handleStep(){
-    this.__mousedownHappened = true;
-    this.handleInput();
-    this.input.focus();
-  }
+  return {
+    content,
+    path,
+  };
+};
 
-  private handleStepUp() {
-    this.stepUp();
-    this.handleStep();
-  }
+/**
+ * Transform the components styles
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformStyles = (path, originalContent) => {
+  // Remove the pill attribute
+  let content = removeSections([
+    ['/*\n   * Pill modifier', '  /*', {
+      additionalNewlines: 2,
+      preserveEnd: true,
+    }],
+  ], originalContent);
 
-  private handleStepDown() {
-    this.stepDown();
-    this.handleStep();
-  }`,
-  );
+  // Replace filled with readonly
+  content = content.replaceAll('Filled', 'Readonly');
+  content = content.replaceAll('filled', 'readonly');
 
-  output.content = output.content.replace(
-    "const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);",
-    `const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
-    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.min ? this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min) : false);
-    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.max ? this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max) : false);`,
-  );
-
-  // Always hide the built-in number spinner
-  output.content = output.content.replace(
-    "'input--no-spin-buttons': this.noSpinButtons",
-    "'input--no-spin-buttons': this.noSpinButtons,\n\t\t\t\t\t\t\t'input--no-browser-spin-buttons': true",
-  );
-  output.content = output.content.replace(
+  // Always hide browser built-in spin buttons
+  content = content.replace(
     `.input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
   .input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {`,
     `.input--no-browser-spin-buttons input[type='number']::-webkit-outer-spin-button,
   .input--no-browser-spin-buttons input[type='number']::-webkit-inner-spin-button {`,
   );
 
-  // Replace browser number built-in comments
-  output.content = output.content.replace(
-    "Hides the browser's built-in increment/decrement",
-    'Hides the increment/decrement',
-  );
+  return {
+    content,
+    path,
+  };
+};
 
-  // TODO: handle spinner functionality by clicking button down
+export const vendorInput = (path, content) => {
+  const output = { content, path };
+
+  // Skip for non select
+  const isValidFile = !!FILES_TO_TRANSFORM.find(p => path.includes(p));
+
+  if (!isValidFile) {
+    return output;
+  }
+
+  if (path.endsWith('input.component.ts')) {
+    return transformComponent(path, content);
+  }
+
+  if (path.endsWith('input.styles.ts')) {
+    return transformStyles(path, content);
+  }
+
+  if (path.endsWith('input.test.ts')) {
+    return transformTests(path, content);
+  }
+
   return output;
 };

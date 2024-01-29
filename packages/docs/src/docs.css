@@ -43,6 +43,15 @@ body {
   background: var(--syn-color-neutral-0);
 }
 
+/*
+ * Make sure we have a small amount of inner padding
+ * This will make it possible to see outlines
+ * more clearly without them being cut on the sides
+ */
+.sb-story {
+  padding: 1rem;
+}
+
 /* Common elements */
 .sbdocs h1,
 .sbdocs h2,

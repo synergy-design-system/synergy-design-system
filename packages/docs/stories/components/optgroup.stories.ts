@@ -43,7 +43,6 @@ const meta: Meta = {
       },
       story: {
         height: '400px',
-        inline: false,
       },
     },
   },
@@ -65,13 +64,12 @@ export const Default: Story = {
     },
   },
   render: (args: unknown) => html`
-    <syn-select id="optgroup-default">
+    <syn-select>
       ${generateTemplate({ args })}
       <syn-optgroup label="Section 2">
         <syn-option value="4">Option 4</syn-option>
       </syn-optgroup>
     </syn-select>
-    ${openSelect('#optgroup-default')}
   `,
 } as Story;
 
@@ -84,7 +82,7 @@ export const Disabled = {
     },
   },
   render: () => html`
-    <syn-select id="optgroup-disabled">
+    <syn-select>
       <syn-optgroup disabled>
         <span slot="label">Section 1</span>
         <syn-option value="1">Option</syn-option>
@@ -92,7 +90,6 @@ export const Disabled = {
         <syn-option value="3">Option</syn-option>
       </syn-optgroup>
     </syn-select>
-    ${openSelect('#optgroup-disabled')}
   `,
 };
 
@@ -105,7 +102,7 @@ export const PrefixAndSuffix = {
     },
   },
   render: () => html`
-    <syn-select id="optgroup-prefix-suffix">
+    <syn-select>
       <syn-optgroup label="Contact Support">
         <syn-icon name="contact_support" slot="prefix"></syn-icon>
         <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>
@@ -129,7 +126,6 @@ export const PrefixAndSuffix = {
         </syn-option>
       </syn-optgroup>
     </syn-select>
-    ${openSelect('#optgroup-prefix-suffix')}
   `,
 };
 

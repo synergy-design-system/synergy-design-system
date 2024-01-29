@@ -33,8 +33,7 @@ const meta: Meta = {
         component: generateStoryDescription('option', 'default'),
       },
       story: {
-        height: '400px',
-        inline: false,
+        height: '250px',
       },
     },
   },
@@ -58,7 +57,6 @@ export const Default = {
       <syn-option value="Option_2">Option 2</syn-option>
       <syn-option value="Option_3">Option 3</syn-option>
     </syn-select>
-    ${openSelect('syn-select')}
   `,
 } as Story;
 
@@ -76,7 +74,6 @@ export const Disabled: Story = {
       <syn-option value="option-2" disabled>Phone</syn-option>
       <syn-option value="option-3">Chat</syn-option>
     </syn-select>
-    ${openSelect('syn-select')}
   `,
 };
 
@@ -108,7 +105,6 @@ export const PrefixAndSuffix: Story = {
         <syn-icon slot="suffix" name="check_circle_outline"></syn-icon>
       </syn-option>
     </syn-select>
-    ${openSelect('syn-select')}
   `,
 };
 

@@ -135,7 +135,7 @@ console.log(div.style.backgroundColor);
 
 Our variables are also available as scss variables that make it possible to consume them in sass based projects.
 
-> Note that because of the complexity of sass based toolchains (e.g. vite ones differ from webpack ones and there are [multiple](https://www.npmjs.com/package/node-sass-package-importer) [loaders](https://www.npmjs.com/package/sass-module-importer) for `node_modules`), we only show examples using the __relative path__ to the filesystem.
+> Note that because of the complexity of sass based toolchains (e.g. vite ones differ from webpack ones and there are [multiple](https://www.npmjs.com/package/node-sass-package-importer) [loaders](https://www.npmjs.com/package/sass-module-importer) for `node_modules`), we only show examples using the **relative path** to the filesystem.
 > Configuration for those systems is NOT part of this guide.
 
 ```scss

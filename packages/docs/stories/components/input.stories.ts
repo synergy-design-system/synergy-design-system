@@ -207,6 +207,7 @@ export const Invalid: Story = {
   `,
 };
 
+// Intentionally not aligned with design.
 /**
  * The type attribute controls the type of input the browser renders.
  */
@@ -217,7 +218,7 @@ export const InputTypes: Story = {
   <syn-input type="date" placeholder="Date"></syn-input>`,
 };
 
-export const PrefixSuffixIcons: Story = {
+export const PrefixSuffixTextAndIcons: Story = {
   parameters: {
     docs: {
       description: {
@@ -227,21 +228,37 @@ export const PrefixSuffixIcons: Story = {
   },
   render: () => html`
   <syn-input placeholder="Small" size="small">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
   </syn-input>
   <br/>
   <syn-input placeholder="Medium" size="medium">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
   </syn-input>
   <br/>
   <syn-input placeholder="Large" size="large">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Small" size="small">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Medium" size="medium">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Large" size="large">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-input>`,
 };
 
+// Intentionally not aligned with design.
 /**
  * Use  to customize the way form controls are drawn.
  * This example uses CSS grid to position the label to the left of the control,
@@ -285,8 +302,7 @@ export const Stepper: Story = {
   parameters: {
     docs: {
       description: {
-        // @TODO: add description as soon as the token is provided
-        // story: generateStoryDescription('input', 'prefix-suffix'),
+        story: generateStoryDescription('input', 'stepper'),
       },
     },
   },
@@ -310,7 +326,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   InputTypes,
-  PrefixSuffixIcons,
+  PrefixSuffixTextAndIcons,
   CustomizingLabelPosition,
   Stepper,
-}, 360);
+}, 500);

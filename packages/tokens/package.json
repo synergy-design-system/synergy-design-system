@@ -25,7 +25,7 @@
       "import": "./dist/js/index.js"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss": "./dist/scss/_tokens.scss"
+    "./scss/*": "./dist/scss/*"
   },
   "files": [
     "dist",
@@ -108,5 +108,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "1.2.2"
+  "version": "1.2.3"
 }

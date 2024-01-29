@@ -3,9 +3,11 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/select/select';
 import type { Meta, StoryObj } from '@storybook/web-components';
+import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
+import { openSelect } from '../../src/helpers/select.js';
 import {
-  // generateScreenshotStory,
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -42,9 +44,9 @@ export const Default = {
       name: 'default',
       type: 'slot',
       value: `
-        <syn-option value="option-1">Option 1</syn-option>
-        <syn-option value="option-2">Option 2</syn-option>
-        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="Option_1">Option 1</syn-option>
+        <syn-option value="Option_2">Option 2</syn-option>
+        <syn-option value="Option_3">Option 3</syn-option>
       `,
     }, args),
     controls: {
@@ -139,10 +141,10 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const elm = canvasElement.querySelector('syn-select');
-    if (elm) {
-      elm.focus();
-    }
+    const elm = canvasElement.querySelector<SynSelect>('syn-select');
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    elm?.focus();
   },
   render: () => html`
     <syn-select label="Select one">
@@ -179,13 +181,13 @@ export const Multiple: Story = {
     },
   },
   render: () => html`
-    <syn-select label="Select a Few" value="option-1 option-2 option-3" multiple clearable>
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-2">Option 2</syn-option>
-      <syn-option value="option-3">Option 3</syn-option>
-      <syn-option value="option-4">Option 4</syn-option>
-      <syn-option value="option-5">Option 5</syn-option>
-      <syn-option value="option-6">Option 6</syn-option>
+    <syn-select label="Select a Few" value="Option_1 Option_2 Option_3" multiple clearable>
+      <syn-option value="Option_1">Option 1</syn-option>
+      <syn-option value="Option_2">Option 2</syn-option>
+      <syn-option value="Option_3">Option 3</syn-option>
+      <syn-option value="Option_4">Option 4</syn-option>
+      <syn-option value="Option_5">Option 5</syn-option>
+      <syn-option value="Option_6">Option 6</syn-option>
     </syn-select>
   `,
 };
@@ -303,6 +305,7 @@ export const PrefixSuffixTextAndIcons: Story = {
   render: () => html`
     <syn-select placeholder="Small" size="small" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -310,6 +313,7 @@ export const PrefixSuffixTextAndIcons: Story = {
     <br />
     <syn-select placeholder="Medium" size="medium" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -317,6 +321,7 @@ export const PrefixSuffixTextAndIcons: Story = {
     <br />
     <syn-select placeholder="Large" size="large" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -383,43 +388,97 @@ export const CustomTags: Story = {
   `,
 };
 
-// @todo: Disabled until we have sceenshots back
-// const MultipleWithGroupingOptions: Story = {
-//   name: 'Dev: Multiple With Grouping Options',
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('select', 'multiple'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//     <syn-select value="option-1 option-2 option-3" multiple clearable>
-//       <syn-optgroup label="Option">
-//         <syn-option value="option-1">Option</syn-option>
-//         <syn-option value="option-2">Option</syn-option>
-//       </syn-optgroup>
-//       <syn-optgroup label="Option">
-//         <syn-option value="option-3">Option</syn-option>
-//       </syn-optgroup>
-//     </syn-select>
-//   `,
-// };
+const ScreenshotStoryDefault: Story = {
+  render: () => html`
+    <syn-select
+      clearable
+      help-text="Help-Text"
+      label="Label"
+      placeholder="Placeholder"
+    >
+      <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      <syn-option value="Option_1">Option 1</syn-option>
+      <syn-option value="Option_2">Option 2</syn-option>
+      <syn-option value="Option_3">Option 3</syn-option>
+    </syn-select>
+  `,
+};
 
-// @todo: Disabled until we know what we want to do with selects screenshots
+const ScreenshotStoryMultiple: Story = {
+  render: () => html`
+    <syn-select
+      class="custom-tag"
+      clearable
+      help-text="Help-Text"
+      label="Label"
+      multiple
+      placeholder="Placeholder"
+      value="Option_1 Option_2 Option_3 Option_7"
+    >
+      <syn-option value="Option_1">
+        <syn-icon slot="prefix" name="wallpaper"></syn-icon>
+        Option 1
+      </syn-option>
+      <syn-option value="Option_2">Option 2</syn-option>
+      <syn-option value="Option_3">Option 3</syn-option>
+      <syn-option value="Option_4">Option 4</syn-option>
+      <syn-option value="Option_5">Option 5</syn-option>
+      <syn-option value="Option_6">Option 6</syn-option>
+      
+      <syn-optgroup label="Section 1">
+        <syn-option value="Option_7">Option 7</syn-option>
+        <syn-option value="Option_8">Option 8</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Section 2">
+        <syn-option value="Option_9">Option 9</syn-option>
+      </syn-optgroup>
+
+    </syn-select>
+    <script type="module">
+      const select = document.querySelector('.custom-tag');
+
+      select.getTag = (option, index) => {
+        // Use the same icon used in the <syn-option>
+        const optionElement = option.querySelector('syn-icon[slot="prefix"]');
+        
+        if (!optionElement) {
+          return \`
+          <syn-tag removable>
+          \${option.getTextLabel()}
+          </syn-tag>
+          \`;
+        }
+        
+        const { name } = optionElement;
+
+        // You can return a string, a Lit Template, or an HTMLElement here
+        return \`
+          <syn-tag removable>
+            <syn-icon name="\${name}"></syn-icon>
+            \${option.getTextLabel()}
+          </syn-tag>
+        \`;
+      };
+    </script>
+  `,
+};
+
 // Bundled screenshot story
-// export const Screenshot: Story = generateScreenshotStory({
-//   Default,
-//   Labels,
-//   HelpText,
-//   Placeholder,
-//   Clearable,
-//   Disabled,
-//   Multiple,
-//   SettingInitialValues,
-//   GroupingOptions,
-//   Sizes,
-//   PrefixSuffixTextAndIcons,
-//   CustomTags,
-//   MultipleWithGroupingOptions,
-// }, 280);
+// Note we are not able to screenshot more than the Screenshot story
+// because of the reasons outlined above!
+export const ScreenshotDefault: Story = generateScreenshotStory({
+  ScreenshotStoryDefault,
+}, {
+  afterRender: openSelect('syn-select'),
+  heightPx: 400,
+});
+
+// Bundled screenshot story
+// Note we are not able to screenshot more than the Screenshot story
+// because of the reasons outlined above!
+export const ScreenshotMultiple: Story = generateScreenshotStory({
+  ScreenshotStoryMultiple,
+}, {
+  afterRender: openSelect('syn-select'),
+  heightPx: 400,
+});

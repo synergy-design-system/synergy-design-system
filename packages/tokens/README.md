@@ -135,24 +135,29 @@ console.log(div.style.backgroundColor);
 
 Our variables are also available as scss variables that make it possible to consume them in sass based projects.
 
-> Note that the SASS compiler does not ship with built in support for `node_modules`. You will either have to use relative paths or use a loader like [node-sass-package-importer](https://www.npmjs.com/package/node-sass-package-importer) or [sass-module-importer](https://www.npmjs.com/package/sass-module-importer).
-> Configuration for this is NOT part of this guide.
+> Note that because of the complexity of sass based toolchains (e.g. vite ones differ from webpack ones and there are [multiple](https://www.npmjs.com/package/node-sass-package-importer) [loaders](https://www.npmjs.com/package/sass-module-importer) for `node_modules`), we only show examples using the __relative path__ to the filesystem.
+> Configuration for those systems is NOT part of this guide.
 
 ```scss
+// ! All paths are relative, we assume your input file is named src/example.scss
+
 // Import the design tokens first.
 // This can be done in a sass file or in any other way described above.
 // Make sure to NOT add the .css file suffix, this will not work in sass
-@import "./node_modules/@synergy-design-system/tokens/themes/light";
+@import "../node_modules/@synergy-design-system/tokens/dist/themes/light";
 
 // Import the scss variables
-@import "./node_modules/@synergy-design-system/tokens/dist/scss/tokens";
+@import "../node_modules/@synergy-design-system/tokens/dist/scss/tokens";
 
+// You are now able to use the provided tokens
 div {
   background: $SynColorPrimary500;
 }
 
-// This will render the following output:
-:root {
+// When compiled, this should render the following output
+:root,
+.syn-theme-light {
+  // Other syn- variables truncated
   --syn-color-primary-500: #0ca2eb;
 }
 

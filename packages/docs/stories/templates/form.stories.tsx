@@ -194,14 +194,17 @@ export const ContactForm = {
     const firstTopic = document.querySelector('syn-checkbox:first-child');
     const firstTopicError = '${getTranslation('contactForm.topicsErrorMessage')}';
 
-    document.querySelector('#topics').addEventListener('syn-input', (e) => {
-      const checkedElements = document.querySelectorAll('#topics syn-checkbox[checked]');
-      const validationMessage = (checkedElements.length > 0 || e.target.checked)
-        ? ''
-        : firstTopicError;
-      
-      firstTopic.setCustomValidity(validationMessage);
+    customElements.whenDefined('syn-select').then(() => {
+      firstTopic.setCustomValidity(firstTopicError);
     });
+
+    const setValidationForTopics = () => {
+      const hasCheckedElements = document.querySelectorAll('#topics syn-checkbox[checked]').length > 0;
+      const validationMessage = hasCheckedElements ? '' : firstTopicError;
+      firstTopic.setCustomValidity(validationMessage);
+    }
+
+    document.querySelector('form').addEventListener('input', setValidationForTopics);
 
     document.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();

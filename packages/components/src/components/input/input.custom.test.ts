@@ -48,6 +48,15 @@ describe('<syn-input>', () => {
       expect(incrementButton.disabled).to.be.true;
     });
 
+    it('should disable the stepper buttons if element is readonly', async () => {
+      const el = await fixture<SynInput>(html` <syn-input type="number" readonly></syn-input> `);
+      const decrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]')!;
+      const incrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="increment-number-stepper"]')!;
+      
+      expect(decrementButton.disabled).to.be.true;
+      expect(incrementButton.disabled).to.be.true;
+    });
+
     it('should disable decrement button if min value is reached', async () => {
       const el = await fixture<SynInput>(html` <syn-input type="number" value="1" min="0"></syn-input>`);
       const decrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]')!;

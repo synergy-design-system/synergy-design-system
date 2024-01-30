@@ -333,11 +333,11 @@ export const CustomTags: Story = {
   },
   render: () => html`
     <syn-select
+      clearable
+      id="custom-tags-story"
+      multiple
       placeholder="Select one"
       value="phone email"
-      multiple
-      clearable
-      class="custom-tag"
     >
       <syn-option value="email">
         <syn-icon slot="prefix" name="mail_outline"></syn-icon>
@@ -354,7 +354,7 @@ export const CustomTags: Story = {
     </syn-select>
 
     <script type="module">
-      const select = document.querySelector('.custom-tag');
+      const select = document.querySelector('#custom-tags-story');
 
       select.getTag = (option, index) => {
         // Use the same icon used in the <syn-option>

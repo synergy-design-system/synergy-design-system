@@ -50,7 +50,7 @@ export const ContactForm = {
 
     h1 {
       font-size: var(--syn-font-size-3x-large);
-      font-weight: normal;
+      font-weight: var(--syn-font-weight-bold);
       margin: 0 0 var(--syn-spacing-medium) 0;
     }
 
@@ -185,7 +185,7 @@ export const ContactForm = {
         </div>
 
         <em>
-          ${getTranslation('contactForm.requiredFieldInfo')}
+          ${getTranslation('contactForm.requiredFieldInfo')} <a href="#">${getTranslation('contactForm.requiredFieldLink')}</a>.
         </em>
       </form>
     </div>

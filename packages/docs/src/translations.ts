@@ -5,7 +5,7 @@
 /* eslint-disable sort-keys */
 export const contactForm = {
   headline: 'Contact Form',
-  subHeadline: 'Please enter your contact details and describe how we can support you.',
+  subHeadline: 'Please fill in your personal information and let us know how we can help you.',
   topicLabel: 'Your question concerns? *',
   topicsErrorMessage: 'Please select at least one topic',
   topics: [
@@ -17,7 +17,7 @@ export const contactForm = {
     'Application review',
     'Commissioning support',
   ],
-  requestLabel: 'Describe your request',
+  requestLabel: 'Please fill in your personal information and let us know how we can help you.',
   requestContent: 'It is very helpful if the description is as precise as possible to enable us to process your enquiry correctly. When describing applications, please specify the material/dimensions/speed, if applicable.',
   messageLabel: 'Message',
   contactDetailsLabel: 'Your contact details:',
@@ -40,6 +40,7 @@ export const contactForm = {
   newsletterLabel: 'Yes, I would like to receive up-to-date and interesting information on solutions with products, systems and services from SICK by email on a regular basis. I can withdraw my consent at any time. To withdraw my consent, I can use the unsubscribe link in every newsletter / email at any time.',
   submitLabel: 'Send',
   requiredFieldInfo: 'Fields marked * are required. Your data will be treated accordingly to Data protection law.',
+  requiredFieldLink: 'Data protection law',
 };
 
 export const translations = {

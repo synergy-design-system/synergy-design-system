@@ -102,16 +102,19 @@ export const ContactForm = {
      * We just let them flow automatically mobile and arrange them
      * in two columns when space is wide enough
      */
-    syn-radio-group {
+    #topics-wrapper {
       container-type: inline-size;
     }
-    syn-radio-group::part(form-control-input) {
+
+    #topics {
+      gap: var(--syn-spacing-x-small);
       display: grid;
     }
 
     @container (min-width: 640px) {
-      syn-radio-group::part(form-control-input) {
+      #topics {
         grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
       }
     }
@@ -128,16 +131,15 @@ export const ContactForm = {
 
       <form method="post" id="syn-form-demo">
         
-        <fieldset>
-          <syn-radio-group
-            label="${getTranslation('contactForm.topicLabel')}"
-            name="topic"
-            required
-          >
+        <fieldset id="topics-wrapper">
+          <legend>${getTranslation('contactForm.topicLabel')}</legend>
+          <div id="topics">
             ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
-              <syn-radio value=${index}>${topic}</syn-radio>
+              <syn-checkbox name="topic[${index}]" value="${topic}">
+                ${topic}
+              </syn-checkbox>
             `)}
-          </syn-radio-group>
+          </div>
         </fieldset>
 
         <fieldset>
@@ -161,7 +163,13 @@ export const ContactForm = {
             <syn-input label="${getTranslation('contactForm.addressLabel')}" name="address" required></syn-input>
             <syn-input label="${getTranslation('contactForm.zipLabel')}" name="zip" required></syn-input>
             <syn-input label="${getTranslation('contactForm.cityLabel')}" name="city" required></syn-input>
-            <syn-input label="${getTranslation('contactForm.countryLabel')}" name="country" required></syn-input>
+
+            <syn-select label="${getTranslation('contactForm.countryLabel')}" name="country" required>
+              ${(getTranslation('contactForm.countries') as string[]).map((country, index) => html`
+                <syn-option value=${index}>${country}</syn-option>
+              `)}
+            </syn-select>
+
             <syn-input label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required></syn-input>
             <syn-input type="tel" label="${getTranslation('contactForm.phoneLabel')}" name="phone"></syn-input>
             <syn-input type="tel" label="${getTranslation('contactForm.faxLabel')}" name="fax"></syn-input>
@@ -183,11 +191,35 @@ export const ContactForm = {
     </div>
 
     <script>
+    const firstTopic = document.querySelector('syn-checkbox:first-child');
+    const firstTopicError = '${getTranslation('contactForm.topicsErrorMessage')}';
+
+    document.querySelector('#topics').addEventListener('syn-input', (e) => {
+      const checkedElements = document.querySelectorAll('#topics syn-checkbox[checked]');
+      const validationMessage = (checkedElements.length > 0 || e.target.checked)
+        ? ''
+        : firstTopicError;
+      
+      firstTopic.setCustomValidity(validationMessage);
+    });
+
     document.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();
+
       const fd = new FormData(e.target);
-      console.log(...fd);
-    })
+
+      const hasOneTopicChecked = Array
+        .from(fd)
+        .some(([key, value]) => (key.startsWith('topic[') && value));
+
+      // Set validation message for topics dependent if a topic was checked or not
+      const topicValidity = hasOneTopicChecked ? '' : firstTopicError;
+      firstTopic.setCustomValidity(topicValidity);
+
+      if (e.target.reportValidity()) {
+        console.log(...fd, hasOneTopicChecked);
+      }
+    });
     </script>
   `,
 };

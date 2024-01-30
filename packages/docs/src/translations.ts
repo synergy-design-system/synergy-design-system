@@ -6,7 +6,8 @@
 export const contactForm = {
   headline: 'Contact Form',
   subHeadline: 'Please enter your contact details and describe how we can support you.',
-  topicLabel: 'Your question concerns?',
+  topicLabel: 'Your question concerns? *',
+  topicsErrorMessage: 'Please select at least one topic',
   topics: [
     'Inquiry/offer',
     'Orders/invoices',

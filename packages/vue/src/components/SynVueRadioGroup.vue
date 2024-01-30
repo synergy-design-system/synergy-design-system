@@ -114,6 +114,11 @@ the same document or shadow root for this to work.
 * Ensures a child radio is checked before allowing the containing form to submit.
  */
   'required'?: SynRadioGroup['required'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynRadioGroup['value'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -142,6 +147,11 @@ defineEmits<{
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynRadioGroup['value']];
 }>();
 </script>
 
@@ -150,7 +160,7 @@ defineEmits<{
     v-bind="visibleProps"
     ref="element"
     @syn-change="$emit('syn-change', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />

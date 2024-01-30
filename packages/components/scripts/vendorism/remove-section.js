@@ -27,6 +27,7 @@ const generatePrimaryRegex = (start, end, removePrecedingWhitespace) => {
 
 export const removeSection = (input, start, end, options = {}) => {
   const {
+    additionalNewlines = 0,
     removePrecedingWhitespace = true,
     preserveEnd = false,
     preserveStart = false,
@@ -36,6 +37,10 @@ export const removeSection = (input, start, end, options = {}) => {
 
   if (preserveStart) {
     replacement += start;
+  }
+
+  if (additionalNewlines > 0) {
+    replacement += new Array(additionalNewlines).fill('\n').join('');
   }
 
   if (preserveEnd) {
@@ -49,3 +54,14 @@ export const removeSection = (input, start, end, options = {}) => {
 
   return result;
 };
+
+/**
+ * Takes an array of section options and applies them via removeSection one by one
+ * @param {array} sections The sections you want to replace
+ * @param {string} initialContent The initial content
+ * @returns {string} Output after all transforms ran
+ */
+export const removeSections = (sections, initialContent) => sections.reduce(
+  (prev, options) => removeSection(prev, ...options),
+  initialContent,
+);

@@ -8,21 +8,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   myForm: FormGroup;
-  myLabel: string;
-  myPass: string;
+
+  errorMessage: string = '';
+  result: string = '';
 
   constructor(private fb: FormBuilder) {
     this.myForm = this.fb.group({
-      agree: false,
-      name: '',
-      test: '',
-      pass: '',
-      radio: '',
-      switch: false,
+      comment: '',
+      contactVia: '',
+      givenName: '',
+      // Prefilled only to demonstrate usage of v-model and settings up stuff by hand
+      surName: 'Your Surname',
+      email: '',
+      tos: false,
+      position: '',
     });
-
-    this.myLabel = 'here';
-    this.myPass = '';
   }
 
   logMessage(...args: unknown[]) {
@@ -32,23 +32,38 @@ export class AppComponent {
   clearDemo() {
     if (!window.confirm('Are you sure to reset this form?')) return;
     this.myForm.setValue({
-      agree: false,
-      name: '',
-      test: '',
-      pass: '',
-      radio: '',
-      switch: false,
+      comment: '',
+      contactVia: '',
+      givenName: '',
+      // Prefilled only to demonstrate usage of binding and settings up stuff by hand
+      surName: 'Your Surname',
+      email: '',
+      tos: false,
+      position: '',
     });
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('Name', form.value.name);
-    console.log('test', form.value.test);
-    console.log('pass', form.value.pass);
-    console.log('agree', form.value.agree);
-    console.log('radio', form.value.radio);
-    console.log('switch', form.value.switch);
-    this.myLabel = `Label ${form.value.test}`;
+    const isValid = form.valid;
+
+    console.log(JSON.parse(JSON.stringify(form.value)));
+
+    if (!isValid) {
+      this.errorMessage = 'Please fill out all required form fields!';
+      this.result = '';
+      return;
+    }
+
+    this.errorMessage = '';
+
+    console.log(form.value);
+
+    const data = Object.entries(form.value)
+      .map((v) => {
+        return `${v[0]}: ${v[1]}`;
+      })
+      .join(',\n')
+      .trim();
+    this.result = data;
   }
 }

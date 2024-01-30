@@ -13,7 +13,7 @@ const { generateTemplate } = storybookTemplate('syn-divider');
 const meta: Meta = {
   args: defaultArgs,
   argTypes,
-  component: 'divider',
+  component: 'syn-divider',
   parameters: {
     docs: {
       description: {

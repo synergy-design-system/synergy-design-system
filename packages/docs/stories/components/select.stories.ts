@@ -202,10 +202,7 @@ export const SettingInitialValues: Story = {
   },
   render: () => html`
     <syn-select value="option-1 option-2 option-3 option-4" multiple clearable class="custom-tag">
-      <syn-option value="option-1">
-        <syn-icon slot="prefix" name="wallpaper"></syn-icon>
-        Option
-      </syn-option>
+      <syn-option value="option-1">Option</syn-option>
       <syn-option value="option-2">Option 1</syn-option>
       <syn-option value="option-3">Option 2</syn-option>
       <syn-option value="option-4">Option 3</syn-option>
@@ -294,7 +291,7 @@ export const Sizes: Story = {
   `,
 };
 
-export const PrefixSuffixTextAndIcons: Story = {
+export const PrefixIcons: Story = {
   parameters: {
     docs: {
       description: {
@@ -305,7 +302,6 @@ export const PrefixSuffixTextAndIcons: Story = {
   render: () => html`
     <syn-select placeholder="Small" size="small" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -313,7 +309,6 @@ export const PrefixSuffixTextAndIcons: Story = {
     <br />
     <syn-select placeholder="Medium" size="medium" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -321,7 +316,6 @@ export const PrefixSuffixTextAndIcons: Story = {
     <br />
     <syn-select placeholder="Large" size="large" clearable>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-      <syn-icon name="north" slot="expand-icon"></syn-icon>
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>

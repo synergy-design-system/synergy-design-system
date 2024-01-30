@@ -276,6 +276,32 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     this.stepDown();
     this.handleStep();
   }
+  
+  private isDecrementDisabled() {
+    if(this.disabled || this.readonly) {
+      return true;
+    }
+
+    if (this.min === undefined || this.min === null || this.disabled) {
+      return false;
+    }
+
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    return this.valueAsNumber <= min;
+  }
+
+  private isIncrementDisabled() {
+    if(this.disabled || this.readonly) {
+      return true;
+    }
+
+    if (this.max === undefined || this.max === null) {
+      return false;
+    }
+
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    return this.valueAsNumber >= max;
+  }
 
   private handleChange() {
     this.value = this.input.value;
@@ -444,8 +470,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
     const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
-    const isDecrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.min ? this.valueAsNumber <= (typeof this.min === 'string' ? parseFloat(this.min) : this.min) : false);
-    const isIncrementStepperDisabled = this.type === 'number' && !this.noSpinButtons && (this.max ? this.valueAsNumber >= (typeof this.max === 'string' ? parseFloat(this.max) : this.max) : false);
 
     return html`
       <div
@@ -584,7 +608,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
                   part="decrement-number-stepper"
                   class="input__number-stepper-button"
                   type="button"
-                  ?disabled=${isDecrementStepperDisabled || this.disabled}
+                  ?disabled=${this.isDecrementDisabled()}
                   aria-hidden="true"
                   ${longPress({ start: () => this.handleStepDown(), end: () => this.handleChange()})}
                   tabindex="-1"
@@ -598,7 +622,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
                   part="increment-number-stepper"
                   class="input__number-stepper-button"
                   type="button"
-                  ?disabled=${isIncrementStepperDisabled || this.disabled}
+                  ?disabled=${this.isIncrementDisabled()}
                   aria-hidden="true"
                   ${longPress({ start: () => this.handleStepUp(), end: () => this.handleChange()})}
                   tabindex="-1"

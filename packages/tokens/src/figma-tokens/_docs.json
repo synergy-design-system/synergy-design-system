@@ -1017,11 +1017,11 @@
       },
       "prefix": {
         "title": {
-          "value": "Prefix Suffix Text and Icons",
+          "value": "Prefix Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add text and icons.",
+          "value": "Use the prefix slot to prepend an icon to the control.",
           "type": "text"
         }
       },

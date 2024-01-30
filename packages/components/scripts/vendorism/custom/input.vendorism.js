@@ -64,29 +64,18 @@ const transformComponent = (path, originalContent) => {
     "static dependencies = {\n\t\t'syn-icon': SynIcon,\n\t\t'syn-divider': SynDivider\n\t};",
   );
 
-  // Add focus and increment / decrement handling for number type
-  content = content.replace(
-    "private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });",
-    `private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
-  private __mousedownHappened = false;`,
-  );
+  // Add increment / decrement handling for number type
   content = content.replace(
     `private handleBlur() {
     this.hasFocus = false;
     this.emit('syn-blur');
   }`,
     `private handleBlur() {
-    if(!this.__mousedownHappened || this.type !== 'number'){
-      this.hasFocus = false;
-      this.emit('syn-blur');
-    }else {
-      this.__mousedownHappened = false;
-      this.input.focus();
-    }
+    this.hasFocus = false;
+    this.emit('syn-blur');
   }
 
   private handleStep(){
-    this.__mousedownHappened = true;
     this.handleInput();
     this.input.focus();
   }

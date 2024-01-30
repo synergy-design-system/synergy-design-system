@@ -83,7 +83,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
   private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
-  private __mousedownHappened = false;
 
   /**
    * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
@@ -252,17 +251,11 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleBlur() {
-    if(!this.__mousedownHappened || this.type !== 'number'){
-      this.hasFocus = false;
-      this.emit('syn-blur');
-    }else {
-      this.__mousedownHappened = false;
-      this.input.focus();
-    }
+    this.hasFocus = false;
+    this.emit('syn-blur');
   }
 
   private handleStep(){
-    this.__mousedownHappened = true;
     this.handleInput();
     this.input.focus();
   }

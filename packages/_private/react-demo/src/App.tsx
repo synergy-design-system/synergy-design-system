@@ -3,8 +3,11 @@ import {
   SynCheckbox,
   SynIcon,
   SynInput,
+  SynOptgroup,
+  SynOption,
   SynRadio,
   SynRadioGroup,
+  SynSelect,
   SynSwitch,
   SynTag,
 } from '@synergy-design-system/react';
@@ -67,17 +70,27 @@ export const App = () => (
       <br />
       <br />
 
-      <SynTag
-        name="tag"
-        required
-        removable
-      >
+      <SynTag removable>
         <SynIcon name="wallpaper" />
         Option
       </SynTag>
 
-      <br />
-      <br />
+      <SynSelect
+        label="Select"
+        name="select"
+        required
+      >
+        <SynOptgroup>
+          <SynOption value="1">Option 1</SynOption>
+          <SynOption value="2">Option 2</SynOption>
+          <SynOption value="3">Option 3</SynOption>
+        </SynOptgroup>
+        <SynOptgroup>
+          <SynOption value="4">Option 4</SynOption>
+          <SynOption value="5">Option 5</SynOption>
+          <SynOption value="6">Option 6</SynOption>
+        </SynOptgroup>
+      </SynSelect>
 
       <SynButton
         type="submit"

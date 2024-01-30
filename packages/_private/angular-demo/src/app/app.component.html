@@ -2,102 +2,105 @@
 <main>
   <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
-    <div>
-      <label>
-        Name:
-        <input formControlName="name" placeholder="Your name" required>
-      </label>
-    </div>
+    <p class="error" *ngIf="errorMessage.length > 0">
+      <strong>An error happened during registration!</strong><br />
+      {{ errorMessage }}
+    </p>
 
-    <syn-input
-      formControlName="test"
-      name="test"
-      [title]="myLabel"
-      type="text"
-      (click)="logMessage('Clicked the field!', $event)"
-      (synBlurEvent)="logMessage('Left the field', $event)"
-      (synInputEvent)="logMessage('Added to the field', $event)"
-      pattern="whatever"
-      [autofocus]="true"
-    >
-      <span slot="label">
-        DISABLED
-        Inline Slot Demo {{myLabel}}
-      </span>
-      <span slot="suffix" (click)="clearDemo()">
-        Cancel
-      </span>
-    </syn-input>
+    <p class="success" *ngIf="result.length > 0">
+      <strong>Thank you for your registration!</strong><br />
+      {{ result }}
+    </p>
 
-    <syn-input
-      formControlName="pass"
-      type="password"
-      name="pass"
-      ngDefaultControl
-      [title]="myPass"
-      (click)="logMessage('Clicked the field!', $event)"
-      (synBlurEvent)="logMessage('Left the field', $event)"
-      (synInputEvent)="logMessage('Added to the field', $event)"
-    >
-      <span slot="label">
-        Inline Slot Demo {{myLabel}}
-      </span>
-      <span slot="suffix" (click)="clearDemo()">
-        Cancel
-      </span>
-    </syn-input>
+    <fieldset>
+      <legend>Personal Information</legend>
+
+      <syn-input
+        formControlName="givenName"
+        name="givenName"
+        label="Given Name"
+        placeholder="Please insert your given name"
+        [required]="true"
+        type="text"
+        [autofocus]="true"
+      ></syn-input>
+
+      <syn-input
+        formControlName="surName"
+        name="surName"
+        label="Surname"
+        placeholder="Please insert your name"
+        [required]="true"
+        type="text"
+      ></syn-input>
+
+      <syn-select
+        formControlName="position"
+        name="position"
+        label="Position"
+        [required]="true"
+      >
+        <syn-optgroup label="Engineering">
+          <syn-option value="DevOps">DevOps</syn-option>
+          <syn-option value="System_Administrator">System Administrator</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Other">
+          <syn-option value="Teamlead">Teamlead</syn-option>
+          <syn-option value="Scrum_Master">Scrum Master</syn-option>
+        </syn-optgroup>
+      </syn-select>
+
+      <syn-input
+        formControlName="email"
+        name="email"
+        type="email"
+        placeholder="Please insert your E-Mail address"
+      >
+        <span slot="label">E-Mail <em>(optional)</em></span>
+      </syn-input>
+
+      <syn-textarea
+        name="comment"
+        formControlName="comment"
+        label="Comment"
+      >
+      </syn-textarea>
+
+    </fieldset>
+
+    <fieldset>
+      <syn-radio-group
+        label="Contact options"
+        formControlName="contactVia"
+        name="contactVia"
+        [required]="true"
+      >
+        <syn-radio value="phone">Phone</syn-radio>
+        <syn-radio value="email">E-Mail</syn-radio>
+        <syn-radio value="fax">Fax</syn-radio>
+      </syn-radio-group>
+    </fieldset>
 
     <syn-checkbox
-      formControlName="agree"
-      name="agree"
+      name="tos"
+      formControlName="tos"
       [required]="true"
     >
-      Agree to ToS
+      I agree to to the <strong>T</strong>erms <strong>o</strong>f <strong>S</strong>ervice
     </syn-checkbox>
 
-    <br>
-    <br>
+    <div class="buttons">
+      <syn-button
+        type="submit"
+        variant="filled"
+      >
+        <syn-icon slot="prefix" name="send"></syn-icon>
+        Submit
+      </syn-button>
+      <syn-button type="reset" variant="outline">
+        Reset form
+      </syn-button>
+    </div>
 
-    <syn-radio-group
-      formControlName="radio"
-      name="radio"
-      label="Radio Group"
-      [required]="true">
-      <syn-radio value="1">Option One</syn-radio>
-      <syn-radio value="2">Option Two</syn-radio>
-    </syn-radio-group>
-
-    <br>
-
-    <syn-switch
-      formControlName="switch"
-      name="switch"
-      [required]="true">
-      Switch
-    </syn-switch>
-
-    <br>
-    <br>
-
-    <syn-tag
-      size="medium"
-      [removable]="true"
-      (synRemoveEvent)="logMessage('Removed the icon!', $event)">
-      <syn-icon name="wallpaper"/>
-        Option
-    </syn-tag>
-
-    <br>
-    <br>
-
-    <syn-button type="submit" variant="filled">Submit</syn-button>
-
-    <br>
-    <br>
-
-    <syn-button type="submit" variant="filled">
-      <syn-icon name="send" slot="prefix" />
-      Submit
-    </syn-button>
   </form>
 </main>

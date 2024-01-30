@@ -151,6 +151,22 @@ const transformComponent = (path, originalContent) => {
             : ''}`,
   );
 
+  // Add cssparts and slots documentations
+  content = content.replace(
+    '* @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.',
+    `* @slot help-text - Text that describes how to use the input. Alternatively, you can use the \`help-text\` attribute.
+ * @slot increment-number-stepper - An icon to use in lieu of the default increment number stepper icon.
+ * @slot decrement-number-stepper - An icon to use in lieu of the default decrement number stepper icon.`,
+  );
+  content = content.replace(
+    '* @csspart suffix - The container that wraps the suffix.',
+    `* @csspart suffix - The container that wraps the suffix.
+ * @csspart stepper - The container that wraps the number stepper.
+ * @csspart decrement-number-stepper - The decrement number stepper button.
+ * @csspart increment-number-stepper - The increment number stepper button.
+ * @csspart divider - The divider between the increment and decrement number stepper buttons.`,
+  );
+
   return {
     content,
     path,

@@ -658,6 +658,16 @@
           "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
           "type": "text"
         }
+      },
+      "stepper": {
+        "title": {
+          "value": "Stepper",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
+          "type": "text"
+        }
       }
     },
     "menu-item": {
@@ -1007,11 +1017,11 @@
       },
       "prefix": {
         "title": {
-          "value": "Prefix Suffix Text and Icons",
+          "value": "Prefix Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add text and icons.",
+          "value": "Use the prefix slot to prepend an icon to the control.",
           "type": "text"
         }
       },

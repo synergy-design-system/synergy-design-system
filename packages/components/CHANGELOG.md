@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.4.1...components/1.5.0) (2024-01-30)
+
+
+### Features
+
+* ✨ syn-select / syn-option / syn-optgroup ([#274](https://github.com/synergy-design-system/synergy-design-system/issues/274)) ([25c6788](https://github.com/synergy-design-system/synergy-design-system/commit/25c678829e58a173c0fc23005a4f724b6d792dd7))
+
 # [@synergy-design-system/components-v1.4.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.4.0...components/1.4.1) (2024-01-24)
 
 

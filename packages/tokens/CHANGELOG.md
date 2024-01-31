@@ -1,3 +1,17 @@
+# [@synergy-design-system/tokens-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.3...tokens/1.3.0) (2024-01-30)
+
+
+### Features
+
+* ✨ syn-select / syn-option / syn-optgroup ([#274](https://github.com/synergy-design-system/synergy-design-system/issues/274)) ([25c6788](https://github.com/synergy-design-system/synergy-design-system/commit/25c678829e58a173c0fc23005a4f724b6d792dd7))
+
+# [@synergy-design-system/tokens-v1.2.3](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.2...tokens/1.2.3) (2024-01-29)
+
+
+### Bug Fixes
+
+* 🤔 SCSS tokens cannot be loaded via postcss because of defunct exports map ([#286](https://github.com/synergy-design-system/synergy-design-system/issues/286)) ([cc6a9c1](https://github.com/synergy-design-system/synergy-design-system/commit/cc6a9c1cee33377c313611c89bfa98119e0c2377))
+
 # [@synergy-design-system/tokens-v1.2.2](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.1...tokens/1.2.2) (2024-01-24)
 
 

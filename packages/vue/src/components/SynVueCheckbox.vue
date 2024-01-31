@@ -194,9 +194,8 @@ defineEmits<{
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.checked); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-    @input="$emit('update:modelValue', $event.target.checked)"
   >
     <slot />
   </syn-checkbox>

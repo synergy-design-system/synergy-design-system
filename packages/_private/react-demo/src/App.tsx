@@ -37,6 +37,15 @@ export const App = () => (
         name="checkme2"
       />
 
+      <SynInput
+        label="Number"
+        value=""
+        name="number"
+        required
+        type="number"
+        min="0"
+      />
+
       <div>
         <SynCheckbox name="agree" required>
           Agree to ToS

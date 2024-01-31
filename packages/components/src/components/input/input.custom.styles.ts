@@ -6,15 +6,15 @@ export default css`
   * Min-width size adjusted for each size so 2 full digits are shown for type number
   */ 
   :host([size="small"]) {
-    min-width: 115px;
+    min-width: calc(var(--syn-input-font-size-small)*8.3);
   }
 
   :host([size="medium"]) {
-    min-width: 150px;
+    min-width: calc(var(--syn-input-font-size-medium)*9.4);
   }
 
   :host([size="large"]) {
-    min-width: 200px;
+    min-width: calc(var(--syn-input-font-size-large)*10);
   }
 
    /**

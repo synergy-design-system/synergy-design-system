@@ -45,7 +45,7 @@ export default css`
   .button--filled.button--primary.button--disabled {
     background-color: var(--syn-color-neutral-600);
     border-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-600);
+    color: var(--syn-color-neutral-0);
   }
 
   .button--filled.button--primary:hover:not(.button--disabled) {

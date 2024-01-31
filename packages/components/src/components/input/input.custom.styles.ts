@@ -122,12 +122,12 @@ export default css`
   /* ICONS SIZE */
    .input--small .input__prefix ::slotted(syn-icon),
    .input--small .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-medium);
+    font-size: var(--syn-font-size-medium);
    }
 
   .input--medium .input__prefix ::slotted(syn-icon),
   .input--medium .input__suffix ::slotted(syn-icon) {
-    font-size: var(--syn-input-spacing-large);
+    font-size: var(--syn-font-size-x-large);
    }
 
   .input--large .input__prefix ::slotted(syn-icon),

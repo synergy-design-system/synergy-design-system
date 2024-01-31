@@ -641,7 +641,7 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {
@@ -1047,11 +1047,11 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction.",
+          "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
           "type": "text"
         }
       }
@@ -1313,7 +1313,7 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {

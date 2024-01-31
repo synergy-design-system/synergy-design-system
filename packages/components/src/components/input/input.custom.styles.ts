@@ -1,6 +1,22 @@
 import { css } from 'lit';
 
 export default css`
+
+  /**
+  * Min-width size adjusted for each size so 2 full digits are shown for type number
+  */ 
+  :host([size="small"]) {
+    min-width: 115px;
+  }
+
+  :host([size="medium"]) {
+    min-width: 150px;
+  }
+
+  :host([size="large"]) {
+    min-width: 200px;
+  }
+
    /**
    * Clearable + Password Toggle
    */

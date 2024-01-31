@@ -4,6 +4,7 @@
     "autowatch",
     "checkmarks",
     "csspart",
+    "cssproperty",
     "fouc",
     "liga",
     "rgba",
@@ -11,7 +12,9 @@
     "stylelintrc",
     "syn",
     "themeable",
-    "vendorism"
+    "vendorism",
+    "slotchange",
+    "optiongroup"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

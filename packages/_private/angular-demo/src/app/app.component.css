@@ -6,3 +6,38 @@ main {
   box-shadow: 0 0 25px 0 var(--syn-color-neutral-200);
   padding: 10px;
 }
+
+fieldset {
+  border: 1px solid var(--syn-color-neutral-400);
+  margin-bottom: 0.75rem;
+}
+
+syn-input,
+syn-checkbox,
+syn-select,
+syn-radio-group {
+  margin-bottom: 0.75rem;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.error,
+.success {
+  border-radius: .25rem;
+  margin-bottom: .5rem;
+  padding: .5rem;
+}
+
+.error {
+  background: var(--syn-color-error-100);
+  border-color: var(--syn-color-error-950);
+  color: var(--syn-color-error-950);
+}
+
+.success {
+  background: var(--syn-color-success-100);
+  border-color: var(--syn-color-success-950);
+  color: var(--syn-color-success-950);
+}

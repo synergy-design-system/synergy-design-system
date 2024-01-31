@@ -6,10 +6,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import format from 'html-format';
-import { StoryObj, setCustomElementsManifest } from '@storybook/web-components';
+import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { sentenceCase } from 'change-case';
+import type { TemplateResult } from 'lit';
 
 export default async function loadCustomElements() {
   await fetch('./custom-elements.json');
@@ -603,33 +604,108 @@ export const generateStoryDescription = <T extends Component>(component: T, attr
    (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
 );
 
+/**
+ * Parameters for the generateScreenshotStory function
+ * It accepts either
+ */
+type screenshotStoryOptions = {
+  /**
+   * String or lit template that should be included directly after all stories
+   */
+  afterRender?: '' | TemplateResult,
+
+  /**
+   * Use this to set additional options for chromatic
+   */
+  additionalChromaticOptions?: Parameters,
+
+  /**
+   * The height of the drawn container
+   */
+  heightPx?: number,
+};
 
 /**
  * Creates a bundled story for non-interactive stories, which does a chromatic screenshot
  * 
  * @param stories - all non-interactive stories which should be bundled
- * @param heightPx - the height of each single story
+ * @param options - When numeric, this is used as the height of the iframe. Options object otherwise
  * @returns the bundled story
+ * 
+ * @example Simple usage. Will use 150 Pixels as height
+ * ```
+ * generateScreenshotStory({
+ *   story1,
+ *   story2,
+ * });
+ * ```
+ * 
+ * @example Using another height
+ * ```
+ * generateScreenshotStory({
+ *   story1,
+ *   story2,
+ * }, 300);
+ * ```
+ * 
+ * @example Configuring an after render call and custom height
+ * ```
+ * generateScreenshotStory({
+ *   story1,
+ *   story2,
+ * }, {
+ *   afterRender: html`I will be available as html!`,
+ *   heightPx: 300,
+ * });
+ * ```
+ * 
+ * @example Adding a custom option for chromatics configuration
+ * // @see  For this example, see https://docs.chromatic.com/docs/delay/
+ * generateScreenshotStory({
+ *   story1,
+ *   story2,
+ * }, {
+ *   additionalChromaticOptions: {
+ *     delay: 500,
+ *   }
+ * });
+ * ```
  */
-export const generateScreenshotStory = (stories: { [key: string]: StoryObj }, heightPx: number = 150): StoryObj => {
+export const generateScreenshotStory = (
+  stories: { [key: string]: StoryObj },
+  options: number | screenshotStoryOptions = 150,
+): StoryObj => {
+  const usedOptions = !isNaN(options as number)
+    ? ({ heightPx: options } as screenshotStoryOptions)
+    : options as screenshotStoryOptions;
+
+  const {
+    afterRender = '',
+    additionalChromaticOptions = {},
+    heightPx = 150,
+  } = usedOptions;
+
   return {
     parameters: {
       chromatic: {
         ...storyBookPreviewConfig?.parameters?.chromatic,
+        ...additionalChromaticOptions,
         disableSnapshot: false,
       },
       docs: {
         disable: true
       },
     },
-    render: (args, context) => html`${Object.entries(stories).map(([storyName, story]) => {
-      const name = sentenceCase(storyName)     
-      return html`
-    <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-      <h3 data-chromatic="ignore">${name}</h3>
-      ${story.render?.(args, context)}
-    </div>
-    `;
-    })}`,
+    render: (args, context) => html`
+      ${Object.entries(stories).map(([storyName, story]) => {
+        const name = story.name ?? sentenceCase(storyName);
+        return html`
+          <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
+            <h3 data-chromatic="ignore">${name}</h3>
+            ${story.render?.(args, context)}
+          </div>
+      `})}
+      ${afterRender}
+    `,
   };
 }

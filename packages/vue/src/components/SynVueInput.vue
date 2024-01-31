@@ -354,9 +354,8 @@ defineEmits<{
     @syn-change="$emit('syn-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-    @input="$emit('update:modelValue', $event.target.value)"
   >
     <slot name="label" />
     <slot name="prefix" />

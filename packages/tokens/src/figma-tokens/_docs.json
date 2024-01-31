@@ -641,7 +641,7 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {
@@ -666,6 +666,26 @@
         },
         "description": {
           "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
+          "type": "text"
+        }
+      },
+      "types": {
+        "title": {
+          "value": "Input Types",
+          "type": "text"
+        },
+        "description": {
+          "value": "The type attribute controls the type of input the browser renders.",
+          "type": "text"
+        }
+      },
+      "label-position": {
+        "title": {
+          "value": "Customizing Label Position",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",
           "type": "text"
         }
       }
@@ -1017,11 +1037,11 @@
       },
       "prefix": {
         "title": {
-          "value": "Prefix Suffix Text and Icons",
+          "value": "Prefix Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add text and icons.",
+          "value": "Use the prefix slot to prepend an icon to the control.",
           "type": "text"
         }
       },
@@ -1047,11 +1067,11 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction.",
+          "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
           "type": "text"
         }
       }
@@ -1313,7 +1333,7 @@
       },
       "focus": {
         "title": {
-          "value": "Focus",
+          "value": "Focus / Active",
           "type": "text"
         },
         "description": {

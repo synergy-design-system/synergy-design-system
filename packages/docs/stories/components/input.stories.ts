@@ -207,15 +207,19 @@ export const Invalid: Story = {
   `,
 };
 
-// Intentionally not aligned with design.
-/**
- * The type attribute controls the type of input the browser renders.
- */
 export const InputTypes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('input', 'types'),
+      },
+    },
+  },
   render: () => html`
-  <syn-input type="email" placeholder="Email"></syn-input><br/>
-  <syn-input type="number" placeholder="Number"></syn-input><br/>
-  <syn-input type="date" placeholder="Date"></syn-input>`,
+    <syn-input type="email" placeholder="Email"></syn-input><br/>
+    <syn-input type="number" placeholder="Number"></syn-input><br/>
+    <syn-input type="date" placeholder="Date"></syn-input>
+  `,
 };
 
 export const PrefixSuffixTextAndIcons: Story = {
@@ -258,44 +262,45 @@ export const PrefixSuffixTextAndIcons: Story = {
   </syn-input>`,
 };
 
-// Intentionally not aligned with design.
-/**
- * Use  to customize the way form controls are drawn.
- * This example uses CSS grid to position the label to the left of the control,
- * but the possible orientations are nearly endless.
- * The same technique works for inputs, textareas, radio groups, and similar form controls.
- */
 export const CustomizingLabelPosition: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('input', 'label-position'),
+      },
+    },
+  },
   render: () => html`
-  <syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
-  <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
-  <syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
+    <syn-input class="label-on-left" label="Name" help-text="Enter your name"></syn-input>
+    <syn-input class="label-on-left" label="Email" type="email" help-text="Enter your email"></syn-input>
+    <syn-textarea class="label-on-left" label="Bio" help-text="Tell us something about yourself"></syn-textarea>
 
-  <style>
-    .label-on-left {
-      --label-width: 3.75rem;
-      --gap-width: 1rem;
-    }
+    <style>
+      .label-on-left {
+        --label-width: 3.75rem;
+        --gap-width: 1rem;
+      }
 
-    .label-on-left + .label-on-left {
-      margin-top: var(--syn-spacing-medium);
-    }
+      .label-on-left + .label-on-left {
+        margin-top: var(--syn-spacing-medium);
+      }
 
-    .label-on-left::part(form-control) {
-      display: grid;
-      grid: auto / var(--label-width) 1fr;
-      gap: var(--syn-spacing-3x-small) var(--gap-width);
-      align-items: center;
-    }
+      .label-on-left::part(form-control) {
+        display: grid;
+        grid: auto / var(--label-width) 1fr;
+        gap: var(--syn-spacing-3x-small) var(--gap-width);
+        align-items: center;
+      }
 
-    .label-on-left::part(form-control-label) {
-      text-align: right;
-    }
+      .label-on-left::part(form-control-label) {
+        text-align: right;
+      }
 
-    .label-on-left::part(form-control-help-text) {
-      grid-column-start: 2;
-    }
-  </style>`,
+      .label-on-left::part(form-control-help-text) {
+        grid-column-start: 2;
+      }
+    </style>
+  `,
 };
 
 export const Stepper: Story = {

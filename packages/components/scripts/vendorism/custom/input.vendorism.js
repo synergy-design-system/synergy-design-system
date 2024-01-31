@@ -42,12 +42,6 @@ const transformComponent = (path, originalContent) => {
     'Hides the increment/decrement',
   );
 
-  // Always hide the built-in number spinner
-  content = content.replace(
-    "'input--no-spin-buttons': this.noSpinButtons",
-    "'input--no-spin-buttons': this.noSpinButtons,\n\t\t\t\t\t\t\t'input--no-browser-spin-buttons': true",
-  );
-
   // Add divider and longpress directive as imports
   content = content.replace(
     "import SynIcon from '../icon/icon.component.js';",
@@ -218,7 +212,7 @@ const transformStyles = (path, originalContent) => {
   content = content.replaceAll('filled', 'readonly');
 
   // Always hide browser built-in spin buttons
-  content = content.replaceAll('.input--no-spin-buttons input[type=\'number\']', '.input--no-browser-spin-buttons input[type=\'number\']');
+  content = content.replaceAll('.input--no-spin-buttons ', '');
 
   return {
     content,

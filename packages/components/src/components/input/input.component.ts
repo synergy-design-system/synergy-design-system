@@ -504,8 +504,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               'input--disabled': this.disabled,
               'input--focused': this.hasFocus,
               'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons,
-							'input--no-browser-spin-buttons': true
+              'input--no-spin-buttons': this.noSpinButtons
             })}
           >
             <span part="prefix" class="input__prefix">

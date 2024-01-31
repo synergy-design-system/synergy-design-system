@@ -282,13 +282,13 @@ export default css`
   }
 
   /* Hide the built-in number spinner */
-  .input--no-browser-spin-buttons input[type='number']::-webkit-outer-spin-button,
-  .input--no-browser-spin-buttons input[type='number']::-webkit-inner-spin-button {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
   }
 
-  .input--no-browser-spin-buttons input[type='number'] {
+  input[type='number'] {
     -moz-appearance: textfield;
   }
 

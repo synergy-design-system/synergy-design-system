@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.5.1...components/1.6.0) (2024-02-01)
+
+
+### Features
+
+* ✨ update number input ([#287](https://github.com/synergy-design-system/synergy-design-system/issues/287)) ([123bffd](https://github.com/synergy-design-system/synergy-design-system/commit/123bffd3ec2d915e9fde84ed987da9e97d407563))
+
 # [@synergy-design-system/components-v1.5.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.5.0...components/1.5.1) (2024-01-31)
 
 

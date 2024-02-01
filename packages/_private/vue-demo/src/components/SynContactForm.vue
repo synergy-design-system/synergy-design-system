@@ -28,6 +28,7 @@ const formValues = ref({
   email: '',
   tos: false,
   position: '',
+  age: '',
 });
 
 const errorMessage = ref('');
@@ -99,6 +100,15 @@ const log = (...args: unknown[]) => console.log(...args);
         @syn-input="formValues.surName = ($event.target as SynInput)!.value"
         name="surName"
         placeholder="Please insert your surname"
+        required
+      />
+
+      <SynVueInput
+        label="Age"
+        name="age"
+        v-model="formValues.age"
+        type="number"
+        min="0"
         required
       />
 

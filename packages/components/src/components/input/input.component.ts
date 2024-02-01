@@ -16,6 +16,8 @@ import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
+import SynDivider from '../divider/divider.component.js';
+import { longPress } from '../../internal/longpress.js';
 import styles from './input.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
@@ -27,6 +29,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @since 2.0
  *
  * @dependency syn-icon
+ * @dependency syn-divider
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
@@ -35,6 +38,8 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @slot show-password-icon - An icon to use in lieu of the default show password icon.
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot increment-number-stepper - An icon to use in lieu of the default increment number stepper icon.
+ * @slot decrement-number-stepper - An icon to use in lieu of the default decrement number stepper icon.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -53,10 +58,17 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart clear-button - The clear button.
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
+ * @csspart stepper - The container that wraps the number stepper.
+ * @csspart decrement-number-stepper - The decrement number stepper button.
+ * @csspart increment-number-stepper - The increment number stepper button.
+ * @csspart divider - The divider between the increment and decrement number stepper buttons.
  */
 export default class SynInput extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = styles;
-  static dependencies = { 'syn-icon': SynIcon };
+  static dependencies = {
+		'syn-icon': SynIcon,
+		'syn-divider': SynDivider
+	};
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']
@@ -124,7 +136,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   /** Determines whether or not the password is currently visible. Only applies to password input types. */
   @property({ attribute: 'password-visible', type: Boolean }) passwordVisible = false;
 
-  /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
+  /** Hides the increment/decrement spin buttons for number inputs. */
   @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
 
   /**
@@ -241,6 +253,47 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   private handleBlur() {
     this.hasFocus = false;
     this.emit('syn-blur');
+  }
+
+  private handleStep(){
+    this.handleInput();
+    this.input.focus();
+  }
+
+  private handleStepUp() {
+    this.stepUp();
+    this.handleStep();
+  }
+
+  private handleStepDown() {
+    this.stepDown();
+    this.handleStep();
+  }
+  
+  private isDecrementDisabled() {
+    if(this.disabled || this.readonly) {
+      return true;
+    }
+
+    if (this.min === undefined || this.min === null || this.disabled) {
+      return false;
+    }
+
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    return this.valueAsNumber <= min;
+  }
+
+  private isIncrementDisabled() {
+    if(this.disabled || this.readonly) {
+      return true;
+    }
+
+    if (this.max === undefined || this.max === null) {
+      return false;
+    }
+
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    return this.valueAsNumber >= max;
   }
 
   private handleChange() {
@@ -539,6 +592,40 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
             <span part="suffix" class="input__suffix">
               <slot name="suffix"></slot>
             </span>
+
+            ${this.type === 'number' && !this.noSpinButtons
+              ? html`
+              <div part="stepper" class="input__number-stepper">
+                <button
+                  part="decrement-number-stepper"
+                  class="input__number-stepper-button"
+                  type="button"
+                  ?disabled=${this.isDecrementDisabled()}
+                  aria-hidden="true"
+                  ${longPress({ start: () => this.handleStepDown(), end: () => this.handleChange()})}
+                  tabindex="-1"
+                >
+                  <slot name="decrement-number-stepper">
+                    <syn-icon name="indeterminate" library="system"></syn-icon>
+                  </slot>
+                </button>
+                <syn-divider class="input__number-divider" part="divider" vertical></syn-divider>
+                <button
+                  part="increment-number-stepper"
+                  class="input__number-stepper-button"
+                  type="button"
+                  ?disabled=${this.isIncrementDisabled()}
+                  aria-hidden="true"
+                  ${longPress({ start: () => this.handleStepUp(), end: () => this.handleChange()})}
+                  tabindex="-1"
+                >
+                  <slot name="increment-number-stepper">
+                    <syn-icon name="add" library="system"></syn-icon>
+                  </slot>
+                </button>
+              </div>
+                `
+            : ''}
           </div>
         </div>
 

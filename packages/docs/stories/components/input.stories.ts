@@ -222,7 +222,7 @@ export const InputTypes: Story = {
   `,
 };
 
-export const PrefixSuffixIcons: Story = {
+export const PrefixSuffixTextAndIcons: Story = {
   parameters: {
     docs: {
       description: {
@@ -232,18 +232,33 @@ export const PrefixSuffixIcons: Story = {
   },
   render: () => html`
   <syn-input placeholder="Small" size="small">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
   </syn-input>
   <br/>
   <syn-input placeholder="Medium" size="medium">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
   </syn-input>
   <br/>
   <syn-input placeholder="Large" size="large">
-    <syn-icon name="house" slot="prefix"></syn-icon>
-    <syn-icon name="chat" slot="suffix"></syn-icon>
+    <span slot="prefix">prefix</span>
+    <span slot="suffix">suffix</span>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Small" size="small">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Medium" size="medium">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+  </syn-input>
+  <br/>
+  <syn-input placeholder="Large" size="large">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-input>`,
 };
 
@@ -288,6 +303,22 @@ export const CustomizingLabelPosition: Story = {
   `,
 };
 
+export const Stepper: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('input', 'stepper'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-input type="number" min="0" max="10" value="0"></syn-input>
+  <br/>
+  <syn-input type="number" min="0" max="10" value="2"></syn-input>
+  <br/>
+  <syn-input type="number" min="0" max="10" value="10"></syn-input>`,
+};
+
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -300,6 +331,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   InputTypes,
-  PrefixSuffixIcons,
+  PrefixSuffixTextAndIcons,
   CustomizingLabelPosition,
-}, 360);
+  Stepper,
+}, 500);

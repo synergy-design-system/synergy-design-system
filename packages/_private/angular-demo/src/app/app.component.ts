@@ -22,6 +22,7 @@ export class AppComponent {
       email: '',
       tos: false,
       position: '',
+      age: '',
     });
   }
 
@@ -40,6 +41,7 @@ export class AppComponent {
       email: '',
       tos: false,
       position: '',
+      age: '',
     });
   }
 

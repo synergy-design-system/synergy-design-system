@@ -241,22 +241,6 @@ export default css`
   }
 
   /*
-   * Pill modifier
-   */
-
-  .input--pill.input--small {
-    border-radius: var(--syn-input-height-small);
-  }
-
-  .input--pill.input--medium {
-    border-radius: var(--syn-input-height-medium);
-  }
-
-  .input--pill.input--large {
-    border-radius: var(--syn-input-height-large);
-  }
-
-  /*
    * Clearable + Password Toggle
    */
 
@@ -298,13 +282,13 @@ export default css`
   }
 
   /* Hide the built-in number spinner */
-  .input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
-  .input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
   }
 
-  .input--no-spin-buttons input[type='number'] {
+  input[type='number'] {
     -moz-appearance: textfield;
   }
 

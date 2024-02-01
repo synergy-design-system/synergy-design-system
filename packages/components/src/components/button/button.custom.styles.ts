@@ -43,9 +43,9 @@ export default css`
    * Standard buttons
    */
   .button--filled.button--primary.button--disabled {
-    background-color: var(--syn-color-neutral-400);
-    border-color: var(--syn-color-neutral-400);
-    color: var(--syn-color-neutral-600);
+    background-color: var(--syn-color-neutral-600);
+    border-color: var(--syn-color-neutral-600);
+    color: var(--syn-color-neutral-0);
   }
 
   .button--filled.button--primary:hover:not(.button--disabled) {
@@ -65,8 +65,8 @@ export default css`
    */
   .button--outline.button--primary.button--disabled {
     background: none;
-    border-color: var(--syn-color-neutral-400);
-    color: var(--syn-color-neutral-400);
+    border-color: var(--syn-color-neutral-600);
+    color: var(--syn-color-neutral-600);
   }
 
   .button--outline.button--primary:hover:not(.button--disabled),
@@ -96,7 +96,7 @@ export default css`
   }
 
   .button--text.button--primary.button--disabled {
-    color: var(--syn-color-neutral-400);
+    color: var(--syn-color-neutral-600);
   }
 
   /**

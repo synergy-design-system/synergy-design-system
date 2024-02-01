@@ -27,7 +27,6 @@ describe('<syn-input>', () => {
     expect(el.value).to.equal('');
     expect(el.defaultValue).to.equal('');
     expect(el.title).to.equal('');
-    expect(el.readonly).to.be.false;
     expect(el.label).to.equal('');
     expect(el.helpText).to.equal('');
     expect(el.clearable).to.be.false;
@@ -536,7 +535,7 @@ describe('<syn-input>', () => {
             <syn-input name="e" value="5"></syn-input>
             <textarea name="f">6</textarea>
             <syn-textarea name="g" value="7"></syn-textarea>
-            <syn-input name="h" value="8"></syn-input>
+            <syn-checkbox name="h" value="8"></syn-checkbox>
           </form>
           <input type="text" name="i" value="9" form="f1" />
           <syn-input type="text" name="j" value="10" form="f1"></syn-input>

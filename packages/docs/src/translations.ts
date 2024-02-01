@@ -39,8 +39,9 @@ export const contactForm = {
   emailLabel: 'E-Mail address',
   newsletterLabel: 'Yes, I would like to receive up-to-date and interesting information on solutions with products, systems and services from SICK by email on a regular basis. I can withdraw my consent at any time. To withdraw my consent, I can use the unsubscribe link in every newsletter / email at any time.',
   submitLabel: 'Send',
-  requiredFieldInfo: 'Fields marked * are required. Your data will be treated accordingly to Data protection law.',
-  requiredFieldLink: 'Data protection law',
+  requiredFieldInfo: 'Fields marked * are required. Your data will be treated accordingly to',
+  requiredFieldLink: 'Data protection',
+  requiredFieldEnd: 'law',
 };
 
 export const translations = {

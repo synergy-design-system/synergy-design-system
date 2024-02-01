@@ -185,7 +185,9 @@ export const ContactForm = {
         </div>
 
         <em>
-          ${getTranslation('contactForm.requiredFieldInfo')} <a href="#">${getTranslation('contactForm.requiredFieldLink')}</a>.
+          ${getTranslation('contactForm.requiredFieldInfo')}
+          <a href="#">${getTranslation('contactForm.requiredFieldLink')}</a>
+          ${getTranslation('contactForm.requiredFieldEnd')}.
         </em>
       </form>
     </div>

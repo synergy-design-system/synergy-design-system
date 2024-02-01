@@ -19,5 +19,9 @@
     "stylelint": "^15.11.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^"
   }
 }

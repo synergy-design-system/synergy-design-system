@@ -4,9 +4,13 @@
     "url": "https://www.sick.com"
   },
   "description": "CSS Utility classes and styles for the Synergy Design System",
-  "_exports": {},
+  "exports": {
+    ".": "./dist/app.css",
+    "./css/*": "./dist/*"
+  },
   "files": [
     "dist",
+    "fonts",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -27,8 +31,11 @@
     "directory": "packages/css"
   },
   "scripts": {
-    "start": "node scripts/build.js",
-    "build": "node scripts/build.js",
+    "start": "pnpm build:postcss",
+    "build:watch": "pnpm build:postcss --watch",
+    "build:clean": "rimraf dist",
+    "build:postcss": "postcss src/outputs/**/*.css --base src/outputs --dir dist",
+    "build": "pnpm build:clean && build:postcss",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
@@ -39,10 +46,13 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "eslint": "^8.56.0",
+    "normalize.css": "^8.0.1",
     "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.0.0",
     "postcss-inline-base64": "^7.3.1",
+    "rimraf": "^5.0.5",
     "stylelint": "^15.11.0"
   },
   "dependencies": {

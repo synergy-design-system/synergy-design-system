@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
+import { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
@@ -14,39 +15,63 @@ import {
 } from '@synergy-design-system/react';
 import { Fieldset } from './Fieldset';
 import { normalizeData } from './shared';
-import { SynChangeEvent } from '@synergy-design-system/components';
+
+type FormEnabledElements = HTMLElement & {
+  checked?: boolean;
+  name: string;
+  value?: string;
+};
+
+const initialFormData = {
+  code: '',
+  date: '',
+  email: '',
+  gender: '',
+  name: '',
+  newsletterAngular: '',
+  newsletterBeta: '',
+  newsletterReact: 'on',
+  newsletterStandard: '',
+  newsletterVanilla: '',
+  newsletterVue: '',
+  password: 'abAB1234',
+  phone: '',
+  role: '',
+  topics: [],
+};
 
 export const App = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [formData, setFormData] = useState({
-    code: '',
-    date: '',
-    email: '',
-    gender: '',
-    marketing: {
-      angular: false,
-      beta: false,
-      react: false,
-      standard: false,
-      vanilla: false,
-      vue: false,
-    },
-    name: '',
-    password: 'abAB1234',
-    phone: '',
-    role: '',
-    topics: '',
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitary custom events :(
   useEffect(() => {
     const listener = (e: SynChangeEvent) => {
-      console.log(e);
       const form = formRef.current as HTMLFormElement;
 
+      const normalizedData = normalizeData(new FormData(form));
+
       // Log the normalized data
-      console.log(normalizeData(new FormData(form)));
+      console.log(normalizedData);
+
+      // Set the field into state
+      const element = e.target as FormEnabledElements;
+      const { checked, name, value } = element;
+
+      const isCheckbox = typeof checked !== 'undefined';
+      let finalValue: string | undefined;
+
+      if (isCheckbox) {
+        finalValue = checked ? 'on' : '';
+      } else {
+        finalValue = value;
+      }
+
+      setFormData((curr) => ({
+        ...curr,
+        [name]: finalValue,
+      }));
     };
 
     formRef.current?.addEventListener('syn-change', listener);
@@ -56,7 +81,26 @@ export const App = () => {
   }, []);
 
   return (
-    <form ref={formRef}>
+    <form
+      onReset={() => {
+        setFormData(initialFormData);
+      }}
+      onSubmit={e => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const formElement = e.target as HTMLFormElement;
+        const isValid = formElement.checkValidity();
+
+        const content = isValid
+          ? 'Your data was successfully submitted'
+          : 'Your data could not be submitted! Please provide all required information!';
+
+        // eslint-disable-next-line no-alert
+        alert(content);
+      }}
+      ref={formRef}
+    >
 
       {/* PersonalInformation */}
       <Fieldset legend="Personal Information">
@@ -66,6 +110,7 @@ export const App = () => {
           name="gender"
           label="Please tell us your gender"
           required
+          value={formData.gender}
         >
           <SynRadio value="f">Female</SynRadio>
           <SynRadio value="m">Male</SynRadio>
@@ -77,6 +122,7 @@ export const App = () => {
           label="Current position"
           name="role"
           required
+          value={formData.role}
         >
           <SynOptgroup label="Developers">
             <SynOption value="backend">Backend Developer</SynOption>
@@ -93,35 +139,39 @@ export const App = () => {
           label="Name"
           minlength={5}
           maxlength={20}
-          name="input-text"
+          name="name"
           placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
           required
+          value={formData.name}
           type="text"
         />
 
         <SynInput
           id="input-email"
           label="E-Mail"
-          name="input-email"
+          name="email"
           placeholder="Please insert your E-mail address"
           required
+          value={formData.email}
           type="email"
         />
 
         <SynInput
           id="input-phone"
           label="Phone"
-          name="input-phone"
+          name="phone"
           placeholder="Please provide your phone number"
           required
+          value={formData.phone}
           type="tel"
         />
 
         <SynInput
           id="input-date"
           label="Date of birth"
-          name="input-date"
+          name="date"
           placeholder="Please insert your E-mail address"
+          value={formData.date}
           type="date"
         />
 
@@ -135,13 +185,13 @@ export const App = () => {
         <SynInput
           id="input-password"
           label="Provide a secure password"
-          name="input-password"
+          name="password"
           password-toggle
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           placeholder="Please provide at least one uppercase and lowercase letter and a number"
           required
           type="password"
-          value="abAB1234"
+          value={formData.password}
         />
 
         <SynInput
@@ -149,9 +199,10 @@ export const App = () => {
           label="Please provide a fallback numeric value that may be used for password recovery"
           min="1000"
           max="9999"
-          name="input-number"
+          name="code"
           placeholder="Please choose a value with four digits, e.g. 1234"
           type="number"
+          value={formData.code}
         />
       </Fieldset>
       {/* /Security */}
@@ -166,6 +217,7 @@ export const App = () => {
           label="I am interested in the following technologies"
           multiple
           name="select-topics"
+          value={formData.topics.join(' ')}
         >
           <SynOptgroup label="Frontend">
             <SynOption value="angular">Angular</SynOption>
@@ -186,38 +238,44 @@ export const App = () => {
       {/* Marketing */}
       <Fieldset legend="Please inform me about the following technologies">
         <SynCheckbox
+          checked={formData.newsletterStandard === 'on'}
           id="checkbox-newsletter-default"
-          name="checkbox-newsletter-default"
+          name="newsletterDefault"
         >
           Please subscribe me to the synergy newsletter
         </SynCheckbox>
         <SynCheckbox
+          checked={formData.newsletterAngular === 'on'}
           id="checkbox-newsletter-angular"
-          name="checkbox-newsletter-angular"
+          name="newsletterAngular"
         >
           Please subscribe me to all things related to angular
         </SynCheckbox>
         <SynCheckbox
+          checked={formData.newsletterReact === 'on'}
           id="checkbox-newsletter-react"
-          name="checkbox-newsletter-react"
+          name="newsletterReact"
         >
           Please subscribe me to all things related to react
         </SynCheckbox>
         <SynCheckbox
+          checked={formData.newsletterVanilla === 'on'}
           id="checkbox-newsletter-vanilla"
-          name="checkbox-newsletter-vanilla"
+          name="newsletterVanilla"
         >
           Please subscribe me to all things related to vanilla.js
         </SynCheckbox>
         <SynCheckbox
+          checked={formData.newsletterVue === 'on'}
           id="checkbox-newsletter-vue"
-          name="checkbox-newsletter-vue"
+          name="newsletterVue"
         >
           Please subscribe me to all things related to vue
         </SynCheckbox>
         <SynSwitch
+          checked={formData.newsletterBeta === 'on'}
           id="checkbox-newsletter-beta"
-          name="checkbox-newsletter-beta"
+          name="newsletterBeta"
         >
           I am interested in the Synergy Beta Program
         </SynSwitch>

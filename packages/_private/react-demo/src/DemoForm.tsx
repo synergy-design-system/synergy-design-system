@@ -12,6 +12,7 @@ import {
   SynRadioGroup,
   SynSelect,
   SynSwitch,
+  SynTextarea,
 } from '@synergy-design-system/react';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
@@ -24,6 +25,7 @@ type FormEnabledElements = HTMLElement & {
 
 const initialFormData = {
   code: '',
+  comment: '',
   date: '',
   email: '',
   gender: '',
@@ -276,6 +278,22 @@ export const DemoForm = () => {
         </SynSwitch>
       </DemoFieldset>
       {/* /Marketing */}
+
+      <SynDivider />
+
+      { /* AdditionalInformation */ }
+      <DemoFieldset legend="Additional Information">
+        <SynTextarea
+          label="Comment"
+          name="comment"
+          placeholder="Please provide additional information that might be helpful for your inquiry"
+          rows={10}
+        >
+          {formData.comment}
+        </SynTextarea>
+      </DemoFieldset>
+
+      { /* /AdditionalInformation */ }
 
       <SynDivider />
 

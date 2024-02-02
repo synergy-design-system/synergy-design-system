@@ -1,6 +1,0 @@
-header {
-  display: flex;
-  margin-bottom: var(--syn-spacing-large);
-  padding: var(--syn-spacing-small);
-  justify-content: center;
-}

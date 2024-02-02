@@ -5,13 +5,16 @@ import {
   SynergyFormsModule,
   SynergyComponentsModule,
 } from '@synergy-design-system/angular';
-
 import { AppComponent } from './app.component';
+import { DemoFieldset } from './demofieldset/demofieldset.component';
+import { DemoForm } from './demoform/demoform.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DemoFieldset,
+    DemoForm,
     ThemeSwitchComponent,
   ],
   imports: [
@@ -21,6 +24,6 @@ import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
     SynergyFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

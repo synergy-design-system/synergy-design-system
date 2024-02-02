@@ -1,29 +1,25 @@
-import type { SynButton as SynButtonElement } from '@synergy-design-system/components';
-import { SynButton } from '@synergy-design-system/react';
-import { MouseEventHandler } from 'react';
+import { useState } from 'react';
+import { SynSwitch } from '@synergy-design-system/react';
+import type {
+  SynChangeEvent,
+  SynSwitch as SynSwitchElement,
+} from '@synergy-design-system/components';
 
-const switchTheme: MouseEventHandler<SynButtonElement> = (e) => {
-  const { body } = document;
-  const btn = (e.target as SynButtonElement);
-  const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
+export const ThemeSwitch = () => {
+  const [currentTheme, setCurrentTheme] = useState('🌙');
+  return (
+    <SynSwitch
+      onSynChange={(e: SynChangeEvent) => {
+        const { body } = document;
+        const { checked } = e.target as SynSwitchElement;
+        const theme = checked ? 'dark' : 'light';
+        body.classList.remove('syn-theme-light', 'syn-theme-dark');
+        body.classList.add(`syn-theme-${theme}`);
 
-  if (currentTheme === 'light') {
-    // Light theme
-    body.classList.remove('syn-theme-light');
-    body.classList.add('syn-theme-dark');
-    btn.innerText = 'Switch to light theme';
-  } else {
-    // Dark theme
-    body.classList.remove('syn-theme-dark');
-    body.classList.add('syn-theme-light');
-    btn.innerText = 'Switch to dark theme';
-  }
+        setCurrentTheme(theme === 'light' ? '🌙' : '☀️');
+      }}
+    >
+      {currentTheme}
+    </SynSwitch>
+  );
 };
-
-export const ThemeSwitch = () => (
-  <header>
-    <SynButton onClick={switchTheme}>
-      Switch Theme
-    </SynButton>
-  </header>
-);

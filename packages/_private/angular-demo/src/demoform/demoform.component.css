@@ -1,0 +1,29 @@
+form syn-divider {
+  --spacing: var(--syn-spacing-2x-large);
+}
+
+form .syn-fieldset:last-of-type {
+  margin-bottom: 0;
+}
+
+.syn-legend {
+  font-size: var(--syn-font-size-large);
+  margin-bottom: var(--syn-spacing-medium);
+}
+
+.syn-submit-buttons {
+  align-items: center;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  gap: var(--syn-spacing-large);
+  margin: 0 0 var(--syn-spacing-2x-large) 0;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Special overrides */
+#radiogroup-gender::part(form-control-input) {
+  display: flex;
+  gap: var(--syn-spacing-medium);
+}

@@ -5,10 +5,10 @@ type Props = {
   legend: string;
 };
 
-export const Fieldset: FC<Props> = ({ children, legend = '' }) => (
+export const DemoFieldset: FC<Props> = ({ children, legend = '' }) => (
   <fieldset className="syn-fieldset">
     {legend && (
-      <legend className="syn-legend">Personal Information</legend>
+      <legend className="syn-legend">{legend}</legend>
     )}
     {children}
   </fieldset>

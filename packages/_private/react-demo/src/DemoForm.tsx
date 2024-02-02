@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
@@ -13,7 +13,7 @@ import {
   SynSelect,
   SynSwitch,
 } from '@synergy-design-system/react';
-import { Fieldset } from './Fieldset';
+import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
 
 type FormEnabledElements = HTMLElement & {
@@ -28,19 +28,19 @@ const initialFormData = {
   email: '',
   gender: '',
   name: '',
-  newsletterAngular: '',
-  newsletterBeta: '',
-  newsletterReact: 'on',
-  newsletterStandard: '',
-  newsletterVanilla: '',
-  newsletterVue: '',
+  newsletterAngular: false,
+  newsletterBeta: false,
+  newsletterReact: true,
+  newsletterStandard: false,
+  newsletterVanilla: false,
+  newsletterVue: false,
   password: 'abAB1234',
   phone: '',
   role: '',
   topics: [],
 };
 
-export const Form = () => {
+export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
@@ -59,14 +59,9 @@ export const Form = () => {
       const element = e.target as FormEnabledElements;
       const { checked, name, value } = element;
 
-      const isCheckbox = typeof checked !== 'undefined';
-      let finalValue: string | undefined;
-
-      if (isCheckbox) {
-        finalValue = checked ? 'on' : '';
-      } else {
-        finalValue = value;
-      }
+      const finalValue = typeof checked !== 'undefined'
+        ? checked
+        : value;
 
       setFormData((curr) => ({
         ...curr,
@@ -103,7 +98,7 @@ export const Form = () => {
     >
 
       {/* PersonalInformation */}
-      <Fieldset legend="Personal Information">
+      <DemoFieldset legend="Personal Information">
 
         <SynRadioGroup
           id="radiogroup-gender"
@@ -175,13 +170,13 @@ export const Form = () => {
           type="date"
         />
 
-      </Fieldset>
+      </DemoFieldset>
       {/* /PersonalInformation */}
 
       <SynDivider />
 
       {/* Security */}
-      <Fieldset legend="Security">
+      <DemoFieldset legend="Security">
         <SynInput
           id="input-password"
           label="Provide a secure password"
@@ -204,19 +199,19 @@ export const Form = () => {
           type="number"
           value={formData.code}
         />
-      </Fieldset>
+      </DemoFieldset>
       {/* /Security */}
 
       <SynDivider />
 
       {/* Topics */}
-      <Fieldset legend="Topics">
+      <DemoFieldset legend="Topics">
         <SynSelect
           clearable
           id="topics"
           label="I am interested in the following technologies"
           multiple
-          name="select-topics"
+          name="topics"
           value={formData.topics.join(' ')}
         >
           <SynOptgroup label="Frontend">
@@ -230,56 +225,56 @@ export const Form = () => {
             <SynOption value="Python">Python</SynOption>
           </SynOptgroup>
         </SynSelect>
-      </Fieldset>
+      </DemoFieldset>
       {/* /Topics */}
 
       <SynDivider />
 
       {/* Marketing */}
-      <Fieldset legend="Please inform me about the following technologies">
+      <DemoFieldset legend="Please inform me about the following technologies">
         <SynCheckbox
-          checked={formData.newsletterStandard === 'on'}
+          checked={formData.newsletterStandard}
           id="checkbox-newsletter-default"
           name="newsletterDefault"
         >
           Please subscribe me to the synergy newsletter
         </SynCheckbox>
         <SynCheckbox
-          checked={formData.newsletterAngular === 'on'}
+          checked={formData.newsletterAngular}
           id="checkbox-newsletter-angular"
           name="newsletterAngular"
         >
           Please subscribe me to all things related to angular
         </SynCheckbox>
         <SynCheckbox
-          checked={formData.newsletterReact === 'on'}
+          checked={formData.newsletterReact}
           id="checkbox-newsletter-react"
           name="newsletterReact"
         >
           Please subscribe me to all things related to react
         </SynCheckbox>
         <SynCheckbox
-          checked={formData.newsletterVanilla === 'on'}
+          checked={formData.newsletterVanilla}
           id="checkbox-newsletter-vanilla"
           name="newsletterVanilla"
         >
           Please subscribe me to all things related to vanilla.js
         </SynCheckbox>
         <SynCheckbox
-          checked={formData.newsletterVue === 'on'}
+          checked={formData.newsletterVue}
           id="checkbox-newsletter-vue"
           name="newsletterVue"
         >
           Please subscribe me to all things related to vue
         </SynCheckbox>
         <SynSwitch
-          checked={formData.newsletterBeta === 'on'}
+          checked={formData.newsletterBeta}
           id="checkbox-newsletter-beta"
           name="newsletterBeta"
         >
           I am interested in the Synergy Beta Program
         </SynSwitch>
-      </Fieldset>
+      </DemoFieldset>
       {/* /Marketing */}
 
       <SynDivider />

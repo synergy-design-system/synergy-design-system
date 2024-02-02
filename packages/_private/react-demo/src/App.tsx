@@ -1,4 +1,4 @@
-import { Form } from './Form';
+import { DemoForm } from './DemoForm';
 import { ThemeSwitch } from './ThemeSwitch';
 
 export const App = () => (
@@ -8,7 +8,7 @@ export const App = () => (
       <ThemeSwitch />
     </header>
     <main>
-      <Form />
+      <DemoForm />
     </main>
   </>
 );

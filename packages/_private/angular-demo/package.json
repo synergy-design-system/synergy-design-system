@@ -1,5 +1,5 @@
 {
-  "name": "angular-demo",
+  "name": "@synergy-design-system/demo-angular",
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Form from './DemoForm.vue';
+import DemoForm from './DemoForm.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 </script>
 
@@ -10,7 +10,7 @@ import ThemeSwitch from './ThemeSwitch.vue';
   </header>
 
   <main>
-    <Form />
+    <DemoForm />
   </main>
 </template>
 

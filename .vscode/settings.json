@@ -8,6 +8,7 @@
   "eslint.workingDirectories": [
     "packages/_private/eslint-config-syn",
     "packages/_private/react-demo",
+    "packages/_private/vanilla-demo",
     "packages/_private/stylelint-config-syn",
     "packages/assets",
     "packages/components",

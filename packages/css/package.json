@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "CSS Utility classes and styles for the Synergy Design System",
+  "_exports": {},
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "CSS Utilities",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/css"
+  },
+  "scripts": {
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "eslint": "^8.56.0",
+    "stylelint": "^15.11.0"
+  },
+  "dependencies": {
+    "@synergy-design-system/tokens": "workspace:*"
+  }
+}

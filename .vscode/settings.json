@@ -12,6 +12,7 @@
     "packages/_private/stylelint-config-syn",
     "packages/assets",
     "packages/components",
+    "packages/css",
     "packages/docs",
     "packages/angular",
     "packages/react",

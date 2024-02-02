@@ -1,0 +1,27 @@
+{
+  "name": "@synergy-design-system/vanilla-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "_build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "eslint": "^8.56.0",
+    "stylelint": "^15.11.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^"
+  }
+}

@@ -12,6 +12,7 @@ import {
   SynVueRadioGroup,
   SynVueSelect,
   SynVueSwitch,
+  SynVueTextarea,
 } from '@synergy-design-system/vue';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';
@@ -24,6 +25,7 @@ type FormEnabledElements = HTMLElement & {
 
 const initialFormData = {
   code: '',
+  comment: '',
   date: '',
   email: '',
   gender: '',
@@ -133,7 +135,7 @@ const synChange = (e: SynChangeEvent) => {
       <SynVueInput
         id="input-text"
         label="Name"
-        :minlength="10"
+        :minlength="5"
         :maxlength="20"
         name="name"
         placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
@@ -277,6 +279,20 @@ const synChange = (e: SynChangeEvent) => {
       </SynVueSwitch>
     </DemoFieldset>
     <!-- /Marketing -->
+
+    <SynVueDivider />
+
+    <!-- AdditionalInformation -->
+    <DemoFieldset legend="Additional Information">
+      <SynVueTextarea
+        label="Comment"
+        name="comment"
+        placeholder="Please provide additional information that might be helpful for your inquiry"
+        :rows="10"
+        v-model="formData.comment"
+      />
+    </DemoFieldset>
+    <!-- /AdditionalInformation -->
 
     <SynVueDivider />
 

@@ -42,7 +42,7 @@
       formControlName="name"
       id="input-text"
       label="Name"
-      [minlength]="10"
+      [minlength]="5"
       [maxlength]="20"
       name="name"
       placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
@@ -184,6 +184,20 @@
     </syn-switch>
   </demo-fieldset>
   <!-- /Marketing -->
+
+  <syn-divider />
+
+  <!-- AdditionalInformation -->
+  <demo-fieldset legend="Additional Information">
+    <syn-textarea
+      formControlName="comment"
+      label="Comment"
+      name="comment"
+      placeholder="Please provide additional information that might be helpful for your inquiry"
+      [rows]="10"
+    />
+  </demo-fieldset>
+  <!-- /AdditionalInformation -->
 
   <syn-divider />
 

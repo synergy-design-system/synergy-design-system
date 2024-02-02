@@ -5,6 +5,7 @@ import { normalizeData } from '../shared'
 
 const initialData = {
   code: '',
+  comment: '',
   date: '',
   email: '',
   gender: '',

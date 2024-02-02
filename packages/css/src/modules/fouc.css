@@ -1,0 +1,10 @@
+/*
+ * This file prevents the flash of unstyled components
+ * @see https://web.dev/custom-elements-v1/#styling-a-custom-element
+ * @todo: Create a better matching version after the first components are ready!
+ */
+ :not(:defined) {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}

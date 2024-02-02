@@ -1,0 +1,35 @@
+/**
+ * Default Baseline css for usage in applications.
+ * This file provides defaults for new applications.
+ */
+ body {
+  background: var(--syn-color-neutral-0);
+  color: var(--syn-color-neutral-800);
+  font-family: var(--syn-font-sans);
+  font-size: var(--syn-font-size-medium);
+}
+
+/* Defaults for links */
+a:link,
+a:visited {
+  color: var(--syn-color-primary-500);
+  font-weight: var(--syn-font-weight-normal);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--syn-color-primary-400);
+  text-decoration: var(--sds-font-text-underline);
+}
+
+a:focus-visible {
+  color: var(--syn-color-primary-500);
+  outline: 1px solid var(--syn-color-primary-500);
+  outline-offset: var(--syn-focus-ring-offset);
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--syn-color-primary-600);
+  outline: none;
+}

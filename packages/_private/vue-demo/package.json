@@ -1,6 +1,6 @@
 {
-  "name": "vue-demo",
-  "version": "0.0.0",
+  "name": "@synergy-design-system/demo-vue",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "pnpm run dev",

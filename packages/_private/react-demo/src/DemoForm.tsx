@@ -167,7 +167,6 @@ export const DemoForm = () => {
           id="input-date"
           label="Date of birth"
           name="date"
-          placeholder="Please insert your E-mail address"
           value={formData.date}
           type="date"
         />
@@ -236,8 +235,8 @@ export const DemoForm = () => {
       <DemoFieldset legend="Please inform me about the following technologies">
         <SynCheckbox
           checked={formData.newsletterStandard}
-          id="checkbox-newsletter-default"
-          name="newsletterDefault"
+          id="checkbox-newsletter-standard"
+          name="newsletterStandard"
         >
           Please subscribe me to the synergy newsletter
         </SynCheckbox>

@@ -49,12 +49,9 @@ const formData = ref({
 const formRef = ref<HTMLFormElement>();
 
 const reset = () => {
-  console.log('here')
-  console.log(formData.value)
   formData.value = {
     ...initialFormData,
   };
-  console.log(formData.value)
 }
 
 const submit = (e: Event) => {
@@ -167,7 +164,6 @@ const synChange = (e: SynChangeEvent) => {
       <SynVueInput
         id="input-date"
         label="Date of birth"
-        name="date"
         placeholder="Please insert your E-mail address"
         v-model="formData.date"
         type="date"
@@ -236,8 +232,8 @@ const synChange = (e: SynChangeEvent) => {
     <!-- Marketing -->
     <DemoFieldset legend="Please inform me about the following technologies">
       <SynVueCheckbox
-        id="checkbox-newsletter-default"
-        name="newsletterDefault"
+        id="checkbox-newsletter-standard"
+        name="newsletterStandard"
         v-model="formData.newsletterStandard"
       >
         Please subscribe me to the synergy newsletter

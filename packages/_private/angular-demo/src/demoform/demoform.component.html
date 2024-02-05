@@ -26,7 +26,6 @@
       label="Current position"
       name="role"
       [required]="true"
-      v-model="formData.role"
     >
       <syn-optgroup label="Developers">
         <syn-option value="backend">Backend Developer</syn-option>
@@ -75,7 +74,6 @@
       id="input-date"
       label="Date of birth"
       name="date"
-      placeholder="Please insert your E-mail address"
       type="date"
     />
 
@@ -111,6 +109,8 @@
   </demo-fieldset>
   <!-- /Security -->
 
+  <syn-divider />
+
   <!-- Topics -->
   <demo-fieldset legend="Topics">
     <syn-select
@@ -120,7 +120,6 @@
       label="I am interested in the following technologies"
       [multiple]="true"
       name="topics"
-      v-model="formData.topics"
     >
       <syn-optgroup label="Frontend">
         <syn-option value="angular">Angular</syn-option>
@@ -142,8 +141,8 @@
   <demo-fieldset legend="Please inform me about the following technologies">
     <syn-checkbox
       formControlName="newsletterStandard"
-      id="checkbox-newsletter-default"
-      name="newsletterDefault"
+      id="checkbox-newsletter-standard"
+      name="newsletterStandard"
     >
       Please subscribe me to the synergy newsletter
     </syn-checkbox>

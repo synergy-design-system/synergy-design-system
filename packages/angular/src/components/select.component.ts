@@ -432,14 +432,3 @@ the specified value.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 }
-
-export type { SynChangeEvent } from '@synergy-design-system/components';
-export type { SynClearEvent } from '@synergy-design-system/components';
-export type { SynInputEvent } from '@synergy-design-system/components';
-export type { SynFocusEvent } from '@synergy-design-system/components';
-export type { SynBlurEvent } from '@synergy-design-system/components';
-export type { SynShowEvent } from '@synergy-design-system/components';
-export type { SynAfterShowEvent } from '@synergy-design-system/components';
-export type { SynHideEvent } from '@synergy-design-system/components';
-export type { SynAfterHideEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';

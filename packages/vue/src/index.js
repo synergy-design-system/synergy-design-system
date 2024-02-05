@@ -19,3 +19,4 @@ export { default as SynVueSelect } from './components/SynVueSelect.vue';
 export { default as SynVueSwitch } from './components/SynVueSwitch.vue';
 export { default as SynVueTag } from './components/SynVueTag.vue';
 export { default as SynVueTextarea } from './components/SynVueTextarea.vue';
+export * from '@synergy-design-system/components/events/events.js';

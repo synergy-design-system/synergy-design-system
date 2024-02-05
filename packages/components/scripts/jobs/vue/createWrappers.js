@@ -301,7 +301,8 @@ defineEmits<{
     fs.writeFileSync(componentFile, `${source}\n`, 'utf8');
   });
 
-  const frameworkIndex = createFrameworkIndex(headerComment, index, true);
+  const additionalExports = ["export * from '@synergy-design-system/components/events/events.js';"];
+  const frameworkIndex = createFrameworkIndex(headerComment, index, additionalExports, true);
 
   // Generate the index file
   fs.writeFileSync(path.join(outDir, 'index.js'), frameworkIndex, 'utf8');

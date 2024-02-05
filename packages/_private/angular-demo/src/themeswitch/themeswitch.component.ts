@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import type {
-  SynChangeEvent,
-  SynSwitch as SynSwitchElement,
-} from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/angular';
+import type { SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
 
 @Component({
   selector: 'theme-switch',

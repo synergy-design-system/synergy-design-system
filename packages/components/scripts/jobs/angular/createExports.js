@@ -13,7 +13,8 @@ export const runCreateExports = job('Angular: Creating exports file...', async (
 ${headerComment}
 export * from './components';
 export * from './modules/forms.module';
-export * from './modules/synergy.module'; 
+export * from './modules/synergy.module';
+export type * from '@synergy-design-system/components';
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');

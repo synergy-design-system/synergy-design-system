@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynVueButton,
   SynVueCheckbox,
@@ -13,6 +12,7 @@ import {
   SynVueSelect,
   SynVueSwitch,
   SynVueTextarea,
+  type SynChangeEvent
 } from '@synergy-design-system/vue';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';

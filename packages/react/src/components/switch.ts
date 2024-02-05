@@ -51,9 +51,3 @@ export const SynSwitch = createComponent({
   react: React,
   tagName,
 });
-
-export type { SynBlurEvent } from '@synergy-design-system/components';
-export type { SynChangeEvent } from '@synergy-design-system/components';
-export type { SynInputEvent } from '@synergy-design-system/components';
-export type { SynFocusEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';

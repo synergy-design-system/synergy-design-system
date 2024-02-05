@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { SynSwitch } from '@synergy-design-system/react';
-import type {
-  SynChangeEvent,
-  SynSwitch as SynSwitchElement,
-} from '@synergy-design-system/components';
+import {
+  type SynChangeEvent,
+  SynSwitch,
+} from '@synergy-design-system/react';
+import type { SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
 
 export const ThemeSwitch = () => {
   const [currentTheme, setCurrentTheme] = useState('🌙');

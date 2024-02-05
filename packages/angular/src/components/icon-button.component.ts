@@ -206,6 +206,3 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 }
-
-export type { SynBlurEvent } from '@synergy-design-system/components';
-export type { SynFocusEvent } from '@synergy-design-system/components';

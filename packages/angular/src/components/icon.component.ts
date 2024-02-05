@@ -118,6 +118,3 @@ ignored by assistive devices.
  */
   @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
 }
-
-export type { SynLoadEvent } from '@synergy-design-system/components';
-export type { SynErrorEvent } from '@synergy-design-system/components';

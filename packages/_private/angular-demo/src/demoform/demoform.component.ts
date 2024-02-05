@@ -1,4 +1,4 @@
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/angular'
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { normalizeData } from '../shared'

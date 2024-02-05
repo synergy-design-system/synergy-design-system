@@ -26,6 +26,8 @@ export const runEsBuildComponents = job('Running esbuild...', async (distDir, __
       ...(await globby('./src/translations/**/*.ts')),
       // Public utilities
       ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
+      // Events
+      ...(await globby('./src/events/**/!(*.(style|test)).ts')),
     ],
     external: undefined,
     format: 'esm',

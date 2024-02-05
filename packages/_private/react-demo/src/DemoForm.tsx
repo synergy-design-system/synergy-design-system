@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynButton,
+  type SynChangeEvent,
   SynCheckbox,
   SynDivider,
   SynInput,

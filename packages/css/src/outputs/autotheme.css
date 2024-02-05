@@ -1,0 +1,7 @@
+/**
+ * This theme will automatically load either dark or light mode,
+ * depending on the users preferences.
+ */
+@import url("@synergy-design-system/tokens/dist/themes/light.css") (prefers-color-scheme: light);
+@import url("@synergy-design-system/tokens/dist/themes/dark.css") (prefers-color-scheme: dark);
+@import url("./utilities.css");

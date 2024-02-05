@@ -16,7 +16,7 @@
     "eslint-plugin-import": "^2.29.1",
     "rimraf": "^5.0.5",
     "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "^7.0.5",
+    "semantic-release-monorepo": "7.0.5",
     "style-dictionary": "^3.9.2"
   },
   "exports": {

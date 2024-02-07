@@ -296,9 +296,10 @@ defineEmits<{
 <template>
   <syn-select
     @syn-change="$emit('syn-change', $event)"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
+    @syn-clear="$emit('syn-clear', $event)"
     v-bind="visibleProps"
     ref="element"
-    @syn-clear="$emit('syn-clear', $event)"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"

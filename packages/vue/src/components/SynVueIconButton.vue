@@ -135,6 +135,7 @@ defineEmits<{
   <syn-icon-button
     v-bind="visibleProps"
     ref="element"
+
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
   />

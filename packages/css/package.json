@@ -52,7 +52,7 @@
     "postcss-import": "^16.0.0",
     "postcss-inline-base64": "^7.3.1",
     "rimraf": "^5.0.5",
-    "stylelint": "^15.11.0"
+    "stylelint": "^16.2.1"
   },
   "dependencies": {
     "@synergy-design-system/tokens": "workspace:*"

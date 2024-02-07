@@ -107,7 +107,7 @@
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "github:mariohamann/vendorism",
+    "vendorism": "^3.0.0",
     "vue-tsc": "^1.8.27"
   },
   "release": {

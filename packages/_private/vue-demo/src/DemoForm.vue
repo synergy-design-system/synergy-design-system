@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynVueButton,
   SynVueCheckbox,
@@ -16,12 +15,6 @@ import {
 } from '@synergy-design-system/vue';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';
-
-type FormEnabledElements = HTMLElement & {
-  checked?: boolean;
-  name: string;
-  value?: string;
-};
 
 const initialFormData = {
   code: '',
@@ -67,26 +60,11 @@ const submit = (e: Event) => {
   }
 }
 
-const synChange = (e: SynChangeEvent) => {
-  const form = formRef.value;
-
-  const normalizedData = normalizeData(new FormData(form));
+const synChange = () => {
+  const normalizedData = normalizeData(new FormData(formRef.value));
 
   // Log the normalized data
   console.log(normalizedData);
-
-  // Set the field into state
-  const element = e.target as FormEnabledElements;
-  const { checked, name, value } = element;
-
-  const finalValue = typeof checked !== 'undefined'
-    ? !!checked
-    : value;
-
-  formData.value = {
-    ...formData.value,
-    [name]: finalValue,
-  }
 };
 </script>
 
@@ -164,6 +142,7 @@ const synChange = (e: SynChangeEvent) => {
       <SynVueInput
         id="input-date"
         label="Date of birth"
+        name="date"
         placeholder="Please insert your E-mail address"
         v-model="formData.date"
         type="date"
@@ -204,7 +183,7 @@ const synChange = (e: SynChangeEvent) => {
     <SynVueDivider />
 
     <!-- Topics -->
-    <SynFieldset legend="Topics">
+    <DemoFieldset legend="Topics">
       <SynVueSelect
         clearable
         id="topics"
@@ -224,7 +203,7 @@ const synChange = (e: SynChangeEvent) => {
           <SynVueOption value="Python">Python</SynVueOption>
         </SynVueOptgroup>
       </SynVueSelect>
-    </SynFieldset>
+    </DemoFieldset>
     <!-- /Topics -->
 
     <SynVueDivider />

@@ -90,6 +90,7 @@ defineEmits<{
   <syn-radio
     v-bind="visibleProps"
     ref="element"
+
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
   >

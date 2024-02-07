@@ -71,6 +71,7 @@ defineEmits<{
 <template>
   <syn-tag
     v-bind="visibleProps"
+
     ref="element"
     @syn-remove="$emit('syn-remove', $event)"
   >

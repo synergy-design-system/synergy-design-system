@@ -159,6 +159,7 @@ defineEmits<{
   <syn-radio-group
     v-bind="visibleProps"
     ref="element"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-change="$emit('syn-change', $event)"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"

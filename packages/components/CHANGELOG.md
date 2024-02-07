@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.6.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.6.0...components/1.6.1) (2024-02-07)
+
+
+### Bug Fixes
+
+* 🤔 Vue two way data binding does not honor the provided default value ([#308](https://github.com/synergy-design-system/synergy-design-system/issues/308)) ([507f0ca](https://github.com/synergy-design-system/synergy-design-system/commit/507f0ca31d8bfb301edc47582aefbece6decab40))
+
 # [@synergy-design-system/components-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.5.1...components/1.6.0) (2024-02-01)
 
 

@@ -230,6 +230,7 @@ defineEmits<{
     v-bind="visibleProps"
     ref="element"
     @syn-blur="$emit('syn-blur', $event)"
+
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >

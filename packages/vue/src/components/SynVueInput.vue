@@ -350,6 +350,7 @@ defineEmits<{
   <syn-input
     v-bind="visibleProps"
     ref="element"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"

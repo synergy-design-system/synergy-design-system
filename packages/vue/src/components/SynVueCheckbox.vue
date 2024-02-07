@@ -191,6 +191,7 @@ defineEmits<{
   <syn-checkbox
     v-bind="visibleProps"
     ref="element"
+    :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"

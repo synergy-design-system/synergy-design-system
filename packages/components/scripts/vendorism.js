@@ -2,7 +2,7 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 import commandLineArgs from 'command-line-args';
-import { eject, setSource, setTarget } from 'vendorism';
+import { eject, get, set } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
@@ -91,7 +91,7 @@ const optionDefinitions = [
 const options = commandLineArgs(optionDefinitions);
 
 const config = {
-  source: {
+  get: {
     downloadConfig: { extract: true, strip: 1 },
     hooks: {
       after: 'echo ✅ Source setup complete.',
@@ -100,7 +100,7 @@ const config = {
     path: './vendor',
     url: `https://github.com/shoelace-style/shoelace/archive/refs/tags/v${shoelaceVersion}.tar.gz`,
   },
-  target: {
+  set: {
     hooks: {
       after: 'echo ✅ Target setup complete.',
       before: 'echo ⌛️ Setting up target...',
@@ -246,7 +246,7 @@ if (options.eject) {
     process.exit(1);
   }
 
-  await eject(config, filePath);
+  await eject(filePath);
   await updateVsCodeReadOnlyFiles([optimizedPath], []);
 
   process.exit(0);
@@ -254,7 +254,7 @@ if (options.eject) {
 
 // Downloads Shoelace and sets up the source
 if (!options.setOnly) {
-  await setSource(config);
+  await get(config);
   // Don`t know exactly why, but this is needed for Windows.
   // Otherwise the last three files (tsconfig.(prod).json, web-test-runner.config.js)
   // from shoelace are missing after the download.
@@ -280,7 +280,7 @@ if (!options.getOnly) {
   // Move all files from '../docs/src/components' to './src/temp'
   await execSync('mv ../docs/stories/components ./src/temp');
 
-  const { removedFiles, newFiles } = await setTarget(config);
+  const { removedFiles, newFiles } = await set(config);
 
   await updateVsCodeReadOnlyFiles(removedFiles, newFiles.filter(f => !f.includes('stories.ts')));
 

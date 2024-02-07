@@ -545,8 +545,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2
       vendorism:
-        specifier: github:mariohamann/vendorism
-        version: github.com/mariohamann/vendorism/52c4e50aa327c1f1c4372d31dfc0aa2bfbe10402
+        specifier: ^3.0.0
+        version: 3.0.0
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.3.3)
@@ -10334,8 +10334,8 @@ packages:
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
     dependencies:
       is-url: 1.2.4
-      postcss: 8.4.33
-      postcss-values-parser: 6.0.2(postcss@8.4.33)
+      postcss: 8.4.34
+      postcss-values-parser: 6.0.2(postcss@8.4.34)
     dev: true
 
   /detective-sass@5.0.3:
@@ -15322,7 +15322,7 @@ packages:
     resolution: {integrity: sha512-jn9vOIK/nfqoFCcpK89/VCVaLg1IHE6UVfDOzvqmANaJ/rWCTEdH8RZ1V278nv2jr36BJdyQXIAavBLXpzdlag==}
     engines: {node: '>=14'}
     dependencies:
-      '@babel/parser': 7.23.6
+      '@babel/parser': 7.23.9
     dev: true
 
   /node-stream-zip@1.15.0:
@@ -16380,7 +16380,7 @@ packages:
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  /postcss-values-parser@6.0.2(postcss@8.4.33):
+  /postcss-values-parser@6.0.2(postcss@8.4.34):
     resolution: {integrity: sha512-YLJpK0N1brcNJrs9WatuJFtHaV9q5aAOj+S4DI5S7jgHlRfm0PIbDCAFRYMQD5SHq7Fy6xsDhyutgS0QOAs0qw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -16388,7 +16388,7 @@ packages:
     dependencies:
       color-name: 1.1.4
       is-url-superb: 4.0.0
-      postcss: 8.4.33
+      postcss: 8.4.34
       quote-unquote: 1.0.0
     dev: true
 
@@ -16407,7 +16407,6 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
 
   /precinct@11.0.5:
     resolution: {integrity: sha512-oHSWLC8cL/0znFhvln26D14KfCQFFn4KOLSw6hmLhd+LQ2SKt9Ljm89but76Pc7flM9Ty1TnXyrA2u16MfRV3w==}
@@ -19178,6 +19177,16 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  /vendorism@3.0.0:
+    resolution: {integrity: sha512-QdmbtoICR7QHhGatgh0flU1q55CzOEuKDCqQlzHwL+bNFFj8uhW3MMQycouNSadPVifGB2FvTx/vkFhik0QuKA==}
+    dependencies:
+      '@guoyunhe/downloader': 1.3.0
+      dependency-tree: 10.0.9
+      globby: 13.2.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /vfile-message@3.1.4:
     resolution: {integrity: sha512-fa0Z6P8HUrQN4BZaX05SIVXic+7kE3b05PWAtPuYP9QLHsLKYR7/AlLW3NtOrpXRLeawpDLMsVkmk5DG0NXgWw==}
     dependencies:
@@ -20016,16 +20025,4 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-    dev: true
-
-  github.com/mariohamann/vendorism/52c4e50aa327c1f1c4372d31dfc0aa2bfbe10402:
-    resolution: {tarball: https://codeload.github.com/mariohamann/vendorism/tar.gz/52c4e50aa327c1f1c4372d31dfc0aa2bfbe10402}
-    name: vendorism
-    version: 1.0.0
-    dependencies:
-      '@guoyunhe/downloader': 1.3.0
-      dependency-tree: 10.0.9
-      globby: 13.2.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true

@@ -3,6 +3,6 @@
   "include": ["src/**/*", "src/**/*.vue"],
   "compilerOptions": {
     "allowJs": true,
-    "rootDir": "src",
-  },
+    "rootDir": "src"
+  }
 }

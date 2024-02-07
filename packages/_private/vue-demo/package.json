@@ -5,9 +5,8 @@
   "scripts": {
     "start": "pnpm run dev",
     "dev": "vite",
-    "_build": "run-p type-check \"_build-only {@}\" --",
     "preview": "vite preview",
-    "_build-only": "vite build",
+    "_build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format.eslint": "pnpm lint --fix",

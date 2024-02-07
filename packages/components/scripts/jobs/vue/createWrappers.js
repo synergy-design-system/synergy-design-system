@@ -20,6 +20,7 @@ const vueModelEnabledComponents = [
   'input',
   'radio-group',
   'select',
+  'switch',
   'textarea',
 ];
 
@@ -30,8 +31,11 @@ const vueModelEnabledComponents = [
  */
 const getControlAttributeForVueModel = (componentName) => {
   switch (componentName) {
-  case 'checkbox': return 'checked';
-  default: return 'value';
+  case 'checkbox':
+  case 'switch':
+    return 'checked';
+  default:
+    return 'value';
   }
 };
 
@@ -235,6 +239,16 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
       component.events,
     );
 
+    // #300: We want to provide the default value for the prop and
+    // let it still be usable with unidirectional and bidirectional dataflow
+    // For this to work, we will have to add the attribute directly to the component binding
+    let defaultValueBinding = '';
+
+    if (getIsVModelEnabled(component.tagNameWithoutPrefix)) {
+      const controlAttribute = getControlAttributeForVueModel(component.tagNameWithoutPrefix);
+      defaultValueBinding = `:${controlAttribute}="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.${controlAttribute} !== 'undefined' ? props.${controlAttribute} : undefined"`;
+    }
+
     // Prepare slots
     const slots = getSlots(component.slots);
 
@@ -285,6 +299,7 @@ defineEmits<{
 <template>
   <${component.tagName}
     ${emitAttributes}
+    ${defaultValueBinding}
     v-bind="visibleProps"
     ref="element"
   >

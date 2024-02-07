@@ -126,6 +126,11 @@ the same document or shadow root for this to work.
 * Makes the switch a required field.
  */
   'required'?: SynSwitch['required'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynSwitch['checked'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -164,6 +169,11 @@ defineEmits<{
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynSwitch['checked']];
 }>();
 </script>
 
@@ -171,9 +181,10 @@ defineEmits<{
   <syn-switch
     v-bind="visibleProps"
     ref="element"
+    :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.checked); $emit('syn-input', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >

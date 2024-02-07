@@ -92,6 +92,7 @@ defineEmits<{
   <syn-icon
     v-bind="visibleProps"
     ref="element"
+
     @syn-load="$emit('syn-load', $event)"
     @syn-error="$emit('syn-error', $event)"
   />

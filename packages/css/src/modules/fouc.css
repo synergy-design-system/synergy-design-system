@@ -2,9 +2,30 @@
  * This file prevents the flash of unstyled components
  * @see https://web.dev/custom-elements-v1/#styling-a-custom-element
  * @todo: Create a better matching version after the first components are ready!
+ * @todo: Each component should be defined using its default height and display type.
  */
  :not(:defined) {
   display: inline-block;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
+
+/**
+ * @example:
+ * This example shows how we could provide defaults for the syn-button
+ * in all three sizes.
+ */
+
+/*
+  syn-button[size="small"]:not(:defined) {
+    height: 30px;
+  }
+
+  syn-button[size="medium"]:not(:defined) {
+    height: 40px;
+  }
+
+  syn-button[size="large"]:not(:defined) {
+    height: 50px;
+  }
+*/

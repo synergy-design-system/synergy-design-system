@@ -1,3 +1,39 @@
 /**
  * Basic form styling
  */
+
+/**
+ * The following styles can be used to archive the form styling
+ * that is used in the synergy contact form template.
+ * @example
+ * html```
+ * <form>
+ *  <fieldset class="syn-fieldset">
+ *    <legend class="syn-legend">My Legend</legend>
+ *    <syn-input></syn-input>
+ *  </fieldset>
+ *  <syn-divider></syn-divider>
+ * </form>
+ * ```
+ */
+.syn-fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-spacing-large);
+  margin: 0 0 var(--syn-spacing-2x-large);
+  padding: 0;
+}
+
+.syn-fieldset + syn-divider {
+  --spacing: var(--syn-spacing-2x-large);
+}
+
+.syn-fieldset:last-of-type {
+  margin-bottom: 0;
+}
+
+.syn-legend {
+  font-size: var(--syn-font-size-large);
+  margin-bottom: var(--syn-spacing-medium);
+}

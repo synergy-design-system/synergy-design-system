@@ -21,8 +21,7 @@
     "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
     "./components/*": "./dist/components/*",
     "./utilities/*": "./dist/utilities/*",
-    "./translations/*": "./dist/translations/*",
-    "./events/*": "./dist/events/*"
+    "./translations/*": "./dist/translations/*"
   },
   "files": [
     "dist"

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
@@ -13,7 +14,6 @@ import {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
 

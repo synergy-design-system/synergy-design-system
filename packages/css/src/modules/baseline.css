@@ -4,9 +4,9 @@
  */
  body {
   background: var(--syn-color-neutral-0);
-  color: var(--syn-color-neutral-800);
+  color: var(--syn-typography-color-text);
   font-family: var(--syn-font-sans);
-  font-size: var(--syn-font-size-medium);
+  font-size: var(--syn-typography-body-medium);
 }
 
 /* Defaults for links */

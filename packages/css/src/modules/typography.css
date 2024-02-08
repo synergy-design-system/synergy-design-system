@@ -2,3 +2,54 @@
  * Core typographic styles.
  * Please note we are using classes here instead of elements
  */
+
+/* Temporary copy of typo until it lands in main */
+:root {
+  --syn-typography-body-x-small: 400 12px/1.4 var(--syn-font-sans);
+  --syn-typography-body-small: 400 14px/1.4 var(--syn-font-sans);
+  --syn-typography-body-medium: 400 16px/1.4 var(--syn-font-sans);
+  --syn-typography-body-large: 400 20px/1.4 var(--syn-font-sans);
+  --syn-typography-heading-large: 700 20px/1.4 var(--syn-font-sans);
+  --syn-typography-heading-x-large: 700 24px/1.2 var(--syn-font-sans);
+  --syn-typography-heading-2x-large: 700 28px/1.2 var(--syn-font-sans);
+  --syn-typography-heading-3x-large: 700 32px/1.2 var(--syn-font-sans);
+  --syn-typography-heading-4x-large: 700 40px/1.2 var(--syn-font-sans);
+  --syn-typography-color-text: var(--syn-color-neutral-950);
+  --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+}
+
+.syn-typo-body-x-small {
+  font: var(--syn-typography-body-x-small);
+}
+
+.syn-typo-body-small {
+  font: var(--syn-typography-body-small);
+}
+
+.syn-typo-body-medium {
+  font: var(--syn-typography-body-medium);
+}
+
+.syn-typo-body-large {
+  font: var(--syn-typography-body-large);
+}
+
+.syn-typo-heading-large {
+  font: var(--syn-typography-heading-large);
+}
+
+.syn-typo-heading-x-large {
+  font: var(--syn-typography-heading-x-large);
+}
+
+.syn-typo-heading-2x-large {
+  font: var(--syn-typography-heading-2x-large);
+}
+
+.syn-typo-heading-3x-large {
+  font: var(--syn-typography-heading-3x-large);
+}
+
+.syn-typo-heading-4x-large {
+  font: var(--syn-typography-heading-4x-large);
+}

@@ -47,3 +47,7 @@ export const SynRadioGroup = createComponent({
   react: React,
   tagName,
 });
+
+export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';

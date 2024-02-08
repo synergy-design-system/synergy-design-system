@@ -84,3 +84,7 @@ defineEmits<{
     <slot name="suffix" />
   </syn-optgroup>
 </template>
+
+<script lang="ts">
+
+</script>

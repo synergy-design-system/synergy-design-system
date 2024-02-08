@@ -283,3 +283,11 @@ defineEmits<{
     <slot name="help-text" />
   </syn-textarea>
 </template>
+
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';
+</script>

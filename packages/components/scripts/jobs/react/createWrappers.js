@@ -27,6 +27,10 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
       .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
       .join('\n');
 
+    const eventExports = (component.events || [])
+      .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
+      .join('\n');
+
     const eventNameImport = (component.events || []).length > 0 ? 'import { type EventName } from \'@lit/react\';' : '';
 
     const events = (component.events || [])
@@ -57,6 +61,8 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
         react: React,
         tagName,
       });
+
+      ${eventExports}
     `;
 
     index.push({
@@ -67,8 +73,7 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
     fs.writeFileSync(componentFile, source, 'utf8');
   });
 
-  const additionalExports = ["export type * from '@synergy-design-system/components/events/events.js';"];
-  const frameworkIndex = createFrameworkIndex(headerComment, index, additionalExports);
+  const frameworkIndex = createFrameworkIndex(headerComment, index);
 
   // Generate the index file
   fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');

@@ -76,3 +76,5 @@ export class SynTagComponent {
  */
   @Output() synRemoveEvent = new EventEmitter<SynRemoveEvent>();
 }
+
+export type { SynRemoveEvent } from '@synergy-design-system/components';

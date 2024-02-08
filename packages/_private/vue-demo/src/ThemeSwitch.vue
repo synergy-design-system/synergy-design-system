@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { 
-  type SynChangeEvent,
-  SynVueSwitch,
-} from '@synergy-design-system/vue';
-import type { SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
+import { SynVueSwitch } from '@synergy-design-system/vue';
+import type { SynChangeEvent, SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
 
 const currentTheme = ref('🌙');
 

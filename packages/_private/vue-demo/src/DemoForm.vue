@@ -12,8 +12,8 @@ import {
   SynVueSelect,
   SynVueSwitch,
   SynVueTextarea,
-  type SynChangeEvent
 } from '@synergy-design-system/vue';
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';
 
@@ -61,11 +61,12 @@ const submit = (e: Event) => {
   }
 }
 
-const synChange = () => {
+const synChange = (e: SynChangeEvent) => {
   const normalizedData = normalizeData(new FormData(formRef.value));
 
   // Log the normalized data
   console.log(normalizedData);
+  console.log(e);
 };
 </script>
 

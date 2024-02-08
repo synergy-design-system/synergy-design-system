@@ -43,3 +43,6 @@ export const SynRadioButton = createComponent({
   react: React,
   tagName,
 });
+
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';

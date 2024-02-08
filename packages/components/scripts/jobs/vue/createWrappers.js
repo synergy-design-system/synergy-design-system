@@ -75,6 +75,10 @@ const getEventImports = (events = []) => events
   .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
   .join('\n');
 
+const getEventExports = (events = []) => events
+  .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
 const filterMethods = (members = []) => members
   // Only include methods
   .filter(method => method.kind === 'method')
@@ -219,6 +223,7 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     const importPath = `@synergy-design-system/components/${component.path}`;
 
     const eventImports = getEventImports(component.events);
+    const eventExports = getEventExports(component.events);
 
     // Prepare methods
     const methods = getMethodInputs(component.name, component.members);
@@ -306,6 +311,10 @@ defineEmits<{
     ${slots}
   </${component.tagName}>
 </template>
+
+<script lang="ts">
+  ${eventExports}
+</script>
 `.trim();
 
     index.push({
@@ -316,8 +325,7 @@ defineEmits<{
     fs.writeFileSync(componentFile, `${source}\n`, 'utf8');
   });
 
-  const additionalExports = ["export * from '@synergy-design-system/components/events/events.js';"];
-  const frameworkIndex = createFrameworkIndex(headerComment, index, additionalExports, true);
+  const frameworkIndex = createFrameworkIndex(headerComment, index, true);
 
   // Generate the index file
   fs.writeFileSync(path.join(outDir, 'index.js'), frameworkIndex, 'utf8');

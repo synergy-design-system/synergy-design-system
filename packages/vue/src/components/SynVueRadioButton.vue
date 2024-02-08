@@ -108,3 +108,8 @@ defineEmits<{
     <slot name="suffix" />
   </syn-radio-button>
 </template>
+
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+</script>

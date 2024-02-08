@@ -278,7 +278,6 @@ export const ucFirstLetter = changeFirstLetter('toUpperCase');
 export const createFrameworkIndex = (
   headerComment,
   components = [],
-  additionalExports = [],
   useDefaultExport = false,
 ) => {
   // Always sort the included scripts as otherwise we would have unneeded index.js changes
@@ -293,10 +292,9 @@ export const createFrameworkIndex = (
       return `export { ${exportStatement} } from '${outputPath}';`;
     });
 
-  const exportsContent = [...alphabeticIndex, ...additionalExports].join('\n');
   return [
     headerComment,
-    exportsContent,
+    alphabeticIndex.join('\n'),
     '',
   ].join('\n');
 };

@@ -19,4 +19,3 @@ export { SynSelect } from './components/select.js';
 export { SynSwitch } from './components/switch.js';
 export { SynTag } from './components/tag.js';
 export { SynTextarea } from './components/textarea.js';
-export type * from '@synergy-design-system/components/events/events.js';

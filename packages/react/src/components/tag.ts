@@ -39,3 +39,5 @@ export const SynTag = createComponent({
   react: React,
   tagName,
 });
+
+export type { SynRemoveEvent } from '@synergy-design-system/components';

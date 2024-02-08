@@ -140,3 +140,8 @@ defineEmits<{
     @syn-focus="$emit('syn-focus', $event)"
   />
 </template>
+
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+</script>

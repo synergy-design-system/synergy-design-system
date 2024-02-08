@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   SynButton,
-  type SynChangeEvent,
   SynCheckbox,
   SynDivider,
   SynInput,
@@ -14,6 +13,7 @@ import {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/react';
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
 

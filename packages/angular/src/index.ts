@@ -6,4 +6,3 @@
 export * from './components';
 export * from './modules/forms.module';
 export * from './modules/synergy.module';
-export type * from '@synergy-design-system/components/dist/events/events.js';

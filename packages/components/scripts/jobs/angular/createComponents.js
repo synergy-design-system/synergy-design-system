@@ -36,6 +36,10 @@ const getEventImports = (events = []) => events
   .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
   .join('\n');
 
+const getEventExports = (events = []) => events
+  .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
 const getEventListeners = (events = []) => events
   .map(event => `this._el.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); });`)
   .join('\n');
@@ -86,6 +90,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const importPath = `@synergy-design-system/components/${component.path}`;
 
     const eventImports = getEventImports(component.events);
+    const eventExports = getEventExports(component.events);
     const eventListeners = getEventListeners(component.events);
     const eventOutputs = getEventOutputs(component.events);
 
@@ -128,6 +133,8 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
         ${eventOutputs}
       }
+
+      ${eventExports}
     `.trim();
 
     index.push({

@@ -35,3 +35,6 @@ export const SynIcon = createComponent({
   react: React,
   tagName,
 });
+
+export type { SynLoadEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';

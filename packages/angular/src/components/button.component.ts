@@ -379,3 +379,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 }
+
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';

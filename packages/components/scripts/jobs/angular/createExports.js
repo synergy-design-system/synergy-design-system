@@ -14,7 +14,7 @@ ${headerComment}
 export * from './components';
 export * from './modules/forms.module';
 export * from './modules/synergy.module';
-export type * from '@synergy-design-system/components';
+export type * from '@synergy-design-system/components/dist/events/events.js';
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');

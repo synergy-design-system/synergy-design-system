@@ -67,7 +67,7 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
     fs.writeFileSync(componentFile, source, 'utf8');
   });
 
-  const additionalExports = ["export type * from '@synergy-design-system/components';"];
+  const additionalExports = ["export type * from '@synergy-design-system/components/events/events.js';"];
   const frameworkIndex = createFrameworkIndex(headerComment, index, additionalExports);
 
   // Generate the index file

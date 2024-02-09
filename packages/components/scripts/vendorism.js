@@ -8,6 +8,7 @@ import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/in
 import {
   vendorButton,
   vendorCustomElementsManifest,
+  vendorDrawer,
   vendorIcon,
   vendorIconButton,
   vendorInput,
@@ -35,6 +36,7 @@ export const components = [
   'switch',
   'tag',
   'divider',
+  'drawer',
 ].sort();
 
 /**
@@ -58,6 +60,8 @@ export const events = [
   'sl-hide',
   'sl-after-hide',
   'sl-reposition',
+  'sl-initial-focus',
+  'sl-request-close',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
@@ -223,6 +227,7 @@ import customStyles from './${component}.custom.styles.js';`,
       // specialized customizations
       vendorButton,
       vendorCustomElementsManifest,
+      vendorDrawer,
       vendorIconButton,
       vendorIcon,
       vendorInput,

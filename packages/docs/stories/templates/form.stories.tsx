@@ -8,14 +8,14 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
+import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 
 const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        // @todo: Draw this from a docs token?
-        component: getTranslation('contactForm.description'),
+        component: generateStoryDescription('templates', 'default'),
       },
       page: () => (
         <>
@@ -27,7 +27,7 @@ const meta: Meta = {
       ),
       story: {
         iframeHeight: 1600,
-        inline: false,
+        inline: true,
       },
     },
   },
@@ -239,11 +239,11 @@ export const ContactFormTablet = {
   ...ContactForm,
   name: '↳ Tablet',
   parameters: {
-    docs: {
-      disable: true,
-    },
     controls: {
       exclude: ['default'],
+    },
+    docs: {
+      disable: true,
     },
     viewport: {
       defaultViewport: 'mobile2',

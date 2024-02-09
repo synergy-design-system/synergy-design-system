@@ -13,6 +13,10 @@ import { getTranslation } from '../../src/translations.js';
 const meta: Meta = {
   parameters: {
     docs: {
+      description: {
+        // @todo: Draw this from a docs token?
+        component: getTranslation('contactForm.description'),
+      },
       page: () => (
         <>
           <Title />
@@ -71,6 +75,8 @@ export const ContactForm = {
 
     fieldset legend {
       font-size: var(--syn-font-size-large);
+      font-weight: var(--syn-font-weight-bold);
+      line-height: var(--syn-line-height-normal);
       margin-bottom: var(--syn-spacing-medium);
     }
 

@@ -19,8 +19,11 @@
 <style scoped>
 .syn-legend {
   font-size: var(--syn-font-size-large);
+  font-weight: var(--syn-font-weight-bold);
+  line-height: var(--syn-line-height-normal);
   margin-bottom: var(--syn-spacing-medium);
 }
+
 .syn-fieldset {
   border: none;
   display: flex;

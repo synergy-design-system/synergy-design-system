@@ -239,6 +239,9 @@ export const ContactFormTablet = {
   ...ContactForm,
   name: '↳ Tablet',
   parameters: {
+    docs: {
+      disable: true,
+    },
     controls: {
       exclude: ['default'],
     },

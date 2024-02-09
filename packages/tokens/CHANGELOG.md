@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.0...tokens/1.3.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* 🤔 adjust synergy form template ([#314](https://github.com/synergy-design-system/synergy-design-system/issues/314)) ([595de16](https://github.com/synergy-design-system/synergy-design-system/commit/595de16fd9afd43a920045274c9ced16bbd6e5d8))
+
 # [@synergy-design-system/tokens-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.3...tokens/1.3.0) (2024-01-30)
 
 

@@ -61,7 +61,3 @@ defineEmits<{
     ref="element"
   />
 </template>
-
-<script lang="ts">
-
-</script>

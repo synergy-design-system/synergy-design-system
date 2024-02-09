@@ -86,6 +86,11 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-radio
     v-bind="visibleProps"
@@ -97,8 +102,3 @@ defineEmits<{
     <slot />
   </syn-radio>
 </template>
-
-<script lang="ts">
-export type { SynBlurEvent } from '@synergy-design-system/components';
-export type { SynFocusEvent } from '@synergy-design-system/components';
-</script>

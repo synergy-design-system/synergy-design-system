@@ -88,6 +88,11 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynLoadEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-icon
     v-bind="visibleProps"
@@ -97,8 +102,3 @@ defineEmits<{
     @syn-error="$emit('syn-error', $event)"
   />
 </template>
-
-<script lang="ts">
-export type { SynLoadEvent } from '@synergy-design-system/components';
-export type { SynErrorEvent } from '@synergy-design-system/components';
-</script>

@@ -68,6 +68,10 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynRemoveEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-tag
     v-bind="visibleProps"
@@ -78,7 +82,3 @@ defineEmits<{
     <slot />
   </syn-tag>
 </template>
-
-<script lang="ts">
-export type { SynRemoveEvent } from '@synergy-design-system/components';
-</script>

@@ -155,6 +155,12 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-radio-group
     v-bind="visibleProps"
@@ -168,9 +174,3 @@ defineEmits<{
     <slot name="label" />
   </syn-radio-group>
 </template>
-
-<script lang="ts">
-export type { SynChangeEvent } from '@synergy-design-system/components';
-export type { SynInputEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';
-</script>

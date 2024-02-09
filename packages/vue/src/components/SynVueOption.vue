@@ -92,7 +92,3 @@ defineEmits<{
     <slot name="suffix" />
   </syn-option>
 </template>
-
-<script lang="ts">
-
-</script>

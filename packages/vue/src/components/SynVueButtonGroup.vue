@@ -64,7 +64,3 @@ defineEmits<{
     <slot />
   </syn-button-group>
 </template>
-
-<script lang="ts">
-
-</script>

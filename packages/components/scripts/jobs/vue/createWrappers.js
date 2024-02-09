@@ -224,6 +224,7 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
 
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
+    const exports = eventExports.length > 0 ? `<script lang="ts">\n${eventExports}\n</script>\n` : '';
 
     // Prepare methods
     const methods = getMethodInputs(component.name, component.members);
@@ -301,6 +302,7 @@ defineEmits<{
 }>();
 </script>
 
+${exports}
 <template>
   <${component.tagName}
     ${emitAttributes}
@@ -311,10 +313,6 @@ defineEmits<{
     ${slots}
   </${component.tagName}>
 </template>
-
-<script lang="ts">
-  ${eventExports}
-</script>
 `.trim();
 
     index.push({

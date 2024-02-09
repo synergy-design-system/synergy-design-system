@@ -1,7 +1,7 @@
-import type { SynChangeEvent } from '@synergy-design-system/components'
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { normalizeData } from '../shared'
+import { normalizeData } from '../shared';
 
 const initialData = {
   code: '',

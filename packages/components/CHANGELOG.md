@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.6.1...components/1.7.0) (2024-02-09)
+
+
+### Features
+
+* ✨ Improve events export in framework wrapper ([#307](https://github.com/synergy-design-system/synergy-design-system/issues/307)) ([fc33867](https://github.com/synergy-design-system/synergy-design-system/commit/fc33867dcbb3e602479b67999f76234d51ff31aa))
+
 # [@synergy-design-system/components-v1.6.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.6.0...components/1.6.1) (2024-02-07)
 
 

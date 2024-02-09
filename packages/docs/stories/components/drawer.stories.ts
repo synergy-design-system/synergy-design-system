@@ -65,6 +65,30 @@ export const SlideInFromStart: Story = {
 };
 
 /**
+ * By default, drawers slide in from the end.
+ * To make the drawer slide in from the start, set the placement attribute to start.
+ * @todo: Remove when ready with base design!
+ */
+export const BuilderDemo: Story = {
+  render: () => html`<syn-drawer open label="Drawer" placement="end" class="drawer-placement-start">
+  This drawer slides in from the start.
+  <syn-button slot="footer" variant="filled">Close</syn-button>
+</syn-drawer>
+
+<syn-button>Open Drawer</syn-button>
+
+<script type="module">
+  const drawer = document.querySelector('.drawer-placement-start');
+  const openButton = drawer.nextElementSibling;
+  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+
+  openButton.addEventListener('click', () => drawer.show());
+  closeButton.addEventListener('click', () => drawer.hide());
+</script>`,
+};
+
+
+/**
  * To make the drawer slide in from the top, set the placement attribute to top.
  */
 export const SlideInFromTop: Story = {

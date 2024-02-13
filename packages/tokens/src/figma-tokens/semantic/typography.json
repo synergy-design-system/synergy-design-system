@@ -153,15 +153,6 @@
         "lineHeight": "{line-height.dense}"
       },
       "type": "typography"
-    },
-    "4x-large": {
-      "value": {
-        "fontFamily": "{font.sans}",
-        "fontWeight": "{font-weight.bold}",
-        "fontSize": "{font-size.4x-large}",
-        "lineHeight": "{line-height.dense}"
-      },
-      "type": "typography"
     }
   },
   "typography": {

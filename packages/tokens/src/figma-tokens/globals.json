@@ -21,14 +21,10 @@
       "type": "fontSizes"
     },
     "2x-large": {
-      "value": "28px",
-      "type": "fontSizes"
-    },
-    "3x-large": {
       "value": "32px",
       "type": "fontSizes"
     },
-    "4x-large": {
+    "3x-large": {
       "value": "40px",
       "type": "fontSizes"
     }

@@ -87,15 +87,15 @@
       },
       "icon-clearable": {
         "color": {
-          "value": "{gray.500}",
+          "value": "{neutral.500}",
           "type": "color"
         },
         "color-hover": {
-          "value": "{gray.500}",
+          "value": "{neutral.500}",
           "type": "color"
         },
         "color-focus": {
-          "value": "{gray.500}",
+          "value": "{neutral.500}",
           "type": "color"
         }
       }

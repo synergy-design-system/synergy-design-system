@@ -2,7 +2,19 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    /**
+     * Used as the default padding for the drawer title
+     */
+    --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) 0 var(--syn-spacing-large);
+
+    /**
+     * Defines the default body spacing
+     */
     --body-spacing: var(--syn-spacing-medium) var(--syn-spacing-large);
+
+    /**
+     * Defines the default footer spacing
+     */
     --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 
@@ -38,6 +50,7 @@ export default css`
 
   .drawer__header-actions {
     align-items: flex-end;
+    gap: var(--syn-spacing-x-small);
     padding-right: var(--syn-spacing-x-small);
   }
 
@@ -46,7 +59,6 @@ export default css`
     font-size: var(--syn-font-size-x-large);
     font-weight: var(--syn-font-weight-bold);
     line-height: var(--syn-line-height-normal);
-    padding-bottom: 0;
   }
 
   .drawer__header-actions syn-icon-button,

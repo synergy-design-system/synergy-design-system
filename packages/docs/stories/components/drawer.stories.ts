@@ -9,6 +9,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
 const { overrideArgs } = storybookHelpers('syn-drawer');
 const { generateTemplate } = storybookTemplate('syn-drawer');
@@ -57,7 +58,7 @@ export const SlideInFromStart: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-placement-start');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -80,7 +81,7 @@ export const BuilderDemo: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-placement-start');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -102,7 +103,7 @@ export const SlideInFromTop: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-placement-top');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -123,7 +124,7 @@ export const SlideInFromBottom: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-placement-bottom');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -156,7 +157,7 @@ export const ContainedToAnElement: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-contained');
   const openButton = drawer.parentElement.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => (drawer.open = !drawer.open));
   closeButton.addEventListener('click', () => drawer.hide());
@@ -178,7 +179,7 @@ export const CustomSize: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-custom-size');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -203,7 +204,7 @@ export const Scrolling: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-scrolling');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -226,7 +227,7 @@ export const HeaderActions: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-header-actions');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
   const newWindowButton = drawer.querySelector('.new-window');
 
   openButton.addEventListener('click', () => drawer.show());
@@ -257,7 +258,7 @@ export const PreventingTheDrawerFromClosing: Story = {
 <script type="module">
   const drawer = document.querySelector('.drawer-deny-close');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
@@ -288,7 +289,7 @@ export const CustomizingInitialFocus: Story = {
   const drawer = document.querySelector('.drawer-focus');
   const input = drawer.querySelector('syn-input');
   const openButton = drawer.nextElementSibling;
-  const closeButton = drawer.querySelector('syn-button[variant="primary"]');
+  const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());

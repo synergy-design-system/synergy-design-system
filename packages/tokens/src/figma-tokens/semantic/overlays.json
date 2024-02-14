@@ -1,0 +1,10 @@
+{
+  "overlay-color": {
+    "value": "{neutral.1000}",
+    "type": "color"
+  },
+  "Overlay-opacity": {
+    "value": "40%",
+    "type": "opacity"
+  }
+}

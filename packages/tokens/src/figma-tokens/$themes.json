@@ -5,7 +5,9 @@
     "group": "Theme",
     "selectedTokenSets": {
       "color/light": "enabled",
-      "color/primitives": "source"
+      "color/primitives": "source",
+      "semantic/overlays": "disabled",
+      "semantic/panels": "disabled"
     },
     "$figmaStyleReferences": {
       "primary.50": "S:eb21790c7e19e4a2f70b605f29d45573656ac66e,",
@@ -156,7 +158,9 @@
     "group": "Theme",
     "selectedTokenSets": {
       "color/dark": "enabled",
-      "color/primitives": "source"
+      "color/primitives": "source",
+      "semantic/overlays": "disabled",
+      "semantic/panels": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -236,7 +240,9 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled"
+      "globals": "enabled",
+      "semantic/overlays": "disabled",
+      "semantic/panels": "disabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -317,7 +323,9 @@
       "color/primitives": "source",
       "semantic/input": "enabled",
       "semantic/button": "enabled",
-      "semantic/toggle": "enabled"
+      "semantic/toggle": "enabled",
+      "semantic/overlays": "disabled",
+      "semantic/panels": "disabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

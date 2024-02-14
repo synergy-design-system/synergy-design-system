@@ -51,7 +51,7 @@ export default css`
   .drawer__header-actions {
     align-items: flex-end;
     gap: var(--syn-spacing-x-small);
-    padding-right: var(--syn-spacing-x-small);
+    padding: 0 var(--syn-spacing-x-small) 0 0;
   }
 
   .drawer__title {
@@ -61,8 +61,18 @@ export default css`
     line-height: var(--syn-line-height-normal);
   }
 
+  /**
+   * We need this to make sure we are big enough as defined in the layout
+   * When omitting this statement, we will get rounding problems via line-height
+   */
+  .drawer__title,
+  .header-actions {
+    min-height: 64px;
+  }
+
   .drawer__header-actions syn-icon-button,
   .drawer__header-actions ::slotted(syn-icon-button) {
+    color: var(--syn-color-neutral-950);
     font-size: var(--syn-font-size-x-large);
   }
 `;

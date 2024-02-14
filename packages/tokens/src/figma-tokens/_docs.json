@@ -387,13 +387,105 @@
       }
     },
     "drawer": {
-      "description": {
-        "value": "Drawers slide in from a container to expose additional options and information.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Drawers slide in from a container to expose additional options and information.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Drawer",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Drawer",
-        "type": "text"
+      "start": {
+        "title": {
+          "value": "Slide in From Start",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, drawers slide in from the end. To make the drawer slide in from the start, set the placement attribute to start.",
+          "type": "text"
+        }
+      },
+      "top": {
+        "title": {
+          "value": "Slide in From Top",
+          "type": "text"
+        },
+        "description": {
+          "value": "To make the drawer slide in from the top, set the placement attribute to top.",
+          "type": "text"
+        }
+      },
+      "bottom": {
+        "title": {
+          "value": "Slide in From Bottom",
+          "type": "text"
+        },
+        "description": {
+          "value": "To make the drawer slide in from the bottom, set the placement attribute to bottom.",
+          "type": "text"
+        }
+      },
+      "contained": {
+        "title": {
+          "value": "Contained to an Element",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, drawers slide out of their containing block, which is usually the viewport. To make a drawer slide out of a parent element, add the contained attribute to the drawer and apply position: relative to its parent.\n\nUnlike normal drawers, contained drawers are not modal. This means they do not show an overlay, they do not trap focus, and they are not dismissible with Escape. This is intentional to allow users to interact with elements outside of the drawer.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Custom Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --size custom property to set the drawer’s size. This will be applied to the drawer’s width or height depending on its placement.",
+          "type": "text"
+        }
+      },
+      "scrolling": {
+        "title": {
+          "value": "Scrolling",
+          "type": "text"
+        },
+        "description": {
+          "value": "By design, a drawer’s height will never exceed 100% of its container. As such, drawers will not scroll with the page to ensure the header and footer are always accessible to the user.",
+          "type": "text"
+        }
+      },
+      "action": {
+        "title": {
+          "value": "Header Actions",
+          "type": "text"
+        },
+        "description": {
+          "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed.",
+          "type": "text"
+        }
+      },
+      "closing": {
+        "title": {
+          "value": "Preventing the Drawer from Closing",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the drawer open in such cases, you can cancel the sl-request-close event. When canceled, the drawer will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.",
+          "type": "text"
+        }
+      },
+      "fokus": {
+        "title": {
+          "value": "Customizing Initial Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, the drawer’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the drawer. If you want a different element to have focus, add the autofocus attribute to it as shown below.",
+          "type": "text"
+        }
       }
     },
     "dropdown": {
@@ -1482,6 +1574,28 @@
         },
         "description": {
           "value": "Add icons to the start and end of menu items using the prefix and suffix slots.",
+          "type": "text"
+        }
+      }
+    },
+    "templates": {
+      "default": {
+        "title": {
+          "value": "Forms",
+          "type": "text"
+        },
+        "description": {
+          "value": "Forms usually contain form components such as checkboxes, selects, input fields, radio buttons, toggle switches and more. \nClear and simple forms help prevent user confusion and incorrect data submission. \n\nForms should be designed in columns as this improves scanability. One-column layout is preferred, but use two or more column layouts when there are too many components to fit in an area of the page.\n\nForms can be simple or complex, and may be presented as dedicated pages, side panels, or dialogs depending on the use case and the situation.",
+          "type": "text"
+        }
+      },
+      "templates": {
+        "title": {
+          "value": "Templates",
+          "type": "text"
+        },
+        "description": {
+          "value": "Contact Form",
           "type": "text"
         }
       }

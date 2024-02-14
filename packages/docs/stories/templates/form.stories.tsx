@@ -8,11 +8,15 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
+import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 
 const meta: Meta = {
   parameters: {
     docs: {
+      description: {
+        component: generateStoryDescription('templates', 'default'),
+      },
       page: () => (
         <>
           <Title />
@@ -23,7 +27,7 @@ const meta: Meta = {
       ),
       story: {
         iframeHeight: 1600,
-        inline: false,
+        inline: true,
       },
     },
   },
@@ -71,6 +75,8 @@ export const ContactForm = {
 
     fieldset legend {
       font-size: var(--syn-font-size-large);
+      font-weight: var(--syn-font-weight-bold);
+      line-height: var(--syn-line-height-normal);
       margin-bottom: var(--syn-spacing-medium);
     }
 
@@ -235,6 +241,9 @@ export const ContactFormTablet = {
   parameters: {
     controls: {
       exclude: ['default'],
+    },
+    docs: {
+      disable: true,
     },
     viewport: {
       defaultViewport: 'mobile2',

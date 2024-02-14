@@ -6,8 +6,12 @@ export default css`
     --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 
+  /**
+   * Synergy uses a border to distinguish the drawer from its background and
+   * removes the default shoelace shadow completely
+   */
   .drawer__panel {
-    border: 1px solid var(--syn-color-neutral-300);
+    border: 0 solid var(--syn-color-neutral-300);
     box-shadow: none;
     color: var(--syn-color-neutral-950);
   }
@@ -17,19 +21,19 @@ export default css`
    * depending on the position of the drawer itself
    */
   :host([placement="end"]) .drawer__panel {
-    border-width: 0 0 0 1px;
+    border-left-width: 1px;
   }
 
   :host([placement="start"]) .drawer__panel {
-    border-width: 0 1px 0 0;
+    border-right-width: 1px;
   }
 
   :host([placement="top"]) .drawer__panel {
-    border-width: 1px 0 0;
+    border-bottom-width: 1px;
   }
 
   :host([placement="bottom"]) .drawer__panel {
-    border-width: 0 0 1px;
+    border-top-width: 1px;
   }
 
   .drawer__header-actions {

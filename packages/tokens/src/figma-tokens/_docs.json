@@ -1651,6 +1651,28 @@
           "type": "text"
         }
       }
+    },
+    "horizontal-nav": {
+      "default": {
+        "title": {
+          "value": "Horizontal Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Textareas collect data from the user and allow multiple lines of text.",
+          "type": "text"
+        }
+      },
+      "priority": {
+        "title": {
+          "value": "Priority Menu",
+          "type": "text"
+        },
+        "description": {
+          "value": "If there is not enough space, elements will move into a dropdown. If there is not enough space, elements will move into a dropdown.",
+          "type": "text"
+        }
+      }
     }
   },
   "frameworks": {

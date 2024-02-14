@@ -3,7 +3,7 @@
     "value": "{neutral.1000}",
     "type": "color"
   },
-  "Overlay-opacity": {
+  "overlay-opacity": {
     "value": "40%",
     "type": "opacity"
   }

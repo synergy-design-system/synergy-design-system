@@ -1599,6 +1599,58 @@
           "type": "text"
         }
       }
+    },
+    "side-nav": {
+      "default": {
+        "title": {
+          "value": "Side Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Textareas collect data from the user and allow multiple lines of text.",
+          "type": "text"
+        }
+      },
+      "rail": {
+        "title": {
+          "value": "Rail",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation.\nNote: On touch devices the navigation opens on click and will show an overlay then.",
+          "type": "text"
+        }
+      },
+      "footer": {
+        "title": {
+          "value": "Footer",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Side navigation can have a optional bottom navigation \"slot\" to split up the navigation entries.\n\nPlease avoid having to many navigation entries (at the bottom) as it can massively influence the user experience.",
+          "type": "text"
+        }
+      },
+      "fixed": {
+        "title": {
+          "value": "Fixed Content",
+          "type": "text"
+        },
+        "description": {
+          "value": "Per default, the side navigatoin shows an overlay. This should always be the case, if the content of the app is not shrinking. This makes especially sense for applications, where you navigate to a place and stay there for a longer time.",
+          "type": "text"
+        }
+      },
+      "shrinking": {
+        "title": {
+          "value": "Shrinking Content",
+          "type": "text"
+        },
+        "description": {
+          "value": "For specific cases it might make sense to have the navigation open while still being able to interact with the app. This especially makes sense for cases where you switch a lot between areas to interact with an app.\n\nYou can decide yourself depending on your app and screen size, when it makes sense to omit the overlay and shrink the content.\n\nThis should never be used in combination with a Rail navigation, as this would lead to too much friction on hover.",
+          "type": "text"
+        }
+      }
     }
   },
   "frameworks": {

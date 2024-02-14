@@ -1,12 +1,16 @@
 {
-  "overlay": {
-    "color": {
-      "value": "{neutral.1000}",
-      "type": "color"
+  "overlays": {
+    "background": {
+      "color": {
+        "value": "{neutral.1000}",
+        "type": "color"
+      }
     }
   },
-  "overlay-opacity": {
-    "value": "40%",
-    "type": "opacity"
+  "overlay": {
+    "opacity": {
+      "value": "0,4",
+      "type": "opacity"
+    }
   }
 }

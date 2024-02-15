@@ -1,3 +1,24 @@
+# [@synergy-design-system/tokens-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.2...tokens/1.4.0) (2024-02-15)
+
+
+### Features
+
+* ✨ Added text-styles for typography ([#318](https://github.com/synergy-design-system/synergy-design-system/issues/318)) ([a9758ee](https://github.com/synergy-design-system/synergy-design-system/commit/a9758ee7c8242fac4b0e6e6d7d4006d9b59cc51d))
+
+# [@synergy-design-system/tokens-v1.3.2](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.1...tokens/1.3.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* 🤔 color tokens to variables sync ([#321](https://github.com/synergy-design-system/synergy-design-system/issues/321)) ([41c7195](https://github.com/synergy-design-system/synergy-design-system/commit/41c719571cf4905125420343e91a349597da16d5))
+
+# [@synergy-design-system/tokens-v1.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.0...tokens/1.3.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* 🤔 adjust synergy form template ([#314](https://github.com/synergy-design-system/synergy-design-system/issues/314)) ([595de16](https://github.com/synergy-design-system/synergy-design-system/commit/595de16fd9afd43a920045274c9ced16bbd6e5d8))
+
 # [@synergy-design-system/tokens-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.2.3...tokens/1.3.0) (2024-01-30)
 
 

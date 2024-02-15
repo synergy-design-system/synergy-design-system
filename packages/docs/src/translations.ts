@@ -6,7 +6,7 @@
 export const contactForm = {
   headline: 'Contact Form',
   subHeadline: 'Please fill in your personal information and let us know how we can help you.',
-  topicLabel: 'Your question concerns? *',
+  topicLabel: 'Topic',
   topicsErrorMessage: 'Please select at least one topic',
   topics: [
     'Inquiry/offer',
@@ -17,10 +17,10 @@ export const contactForm = {
     'Application review',
     'Commissioning support',
   ],
-  requestLabel: 'Please fill in your personal information and let us know how we can help you.',
+  requestLabel: 'Question',
   requestContent: 'It is very helpful if the description is as precise as possible to enable us to process your enquiry correctly. When describing applications, please specify the material/dimensions/speed, if applicable.',
   messageLabel: 'Message',
-  contactDetailsLabel: 'Your contact details:',
+  contactDetailsLabel: 'Contact Details',
   customerNumberLabel: 'Customer Number',
   companyNameLabel: 'Company name',
   nameLabel: 'Your Name',

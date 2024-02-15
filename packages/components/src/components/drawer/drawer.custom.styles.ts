@@ -49,9 +49,9 @@ export default css`
   }
 
   .drawer__header-actions {
-    align-items: flex-end;
+    align-items: flex-start;
     gap: var(--syn-spacing-x-small);
-    padding: 0 var(--syn-spacing-x-small) 0 0;
+    padding: var(--syn-spacing-large) var(--syn-spacing-x-small) 0 0;
   }
 
   .drawer__title {

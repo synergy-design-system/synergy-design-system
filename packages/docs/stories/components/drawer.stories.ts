@@ -3,6 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/drawer/drawer';
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { userEvent } from '@storybook/testing-library';
 import { html } from 'lit';
 import {
   generateStoryDescription,
@@ -57,8 +58,26 @@ export const Default = {
       type: 'slot',
       value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
+    {
+      name: 'footer',
+      type: 'slot',
+      value: `
+        <syn-button id="close-icon" slot="footer" variant="filled">Close</syn-button>
+        <script>
+          document.querySelector('#close-icon').addEventListener('click', (e) => {
+            e.target.closest('syn-drawer').hide();
+          });
+        </script>
+      `,
+    },
   ], defaultArgs),
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'default'),
@@ -70,6 +89,9 @@ export const Default = {
 
 export const SlideInFromStart: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'start'),
@@ -97,6 +119,9 @@ export const SlideInFromStart: Story = {
 
 export const SlideInFromTop: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'top'),
@@ -124,6 +149,9 @@ export const SlideInFromTop: Story = {
 
 export const SlideInFromBottom: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'bottom'),
@@ -151,6 +179,9 @@ export const SlideInFromBottom: Story = {
 
 export const ContainedToAnElement: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'contained'),
@@ -184,6 +215,9 @@ export const ContainedToAnElement: Story = {
 
 export const CustomSize: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'size'),
@@ -191,7 +225,7 @@ export const CustomSize: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" open class="drawer-custom-size" style="--size: 50vw;">
+    <syn-drawer label="Drawer" open placement="start" class="drawer-custom-size" style="--size: 50vw;">
       This drawer is always 50% of the viewport.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -211,6 +245,9 @@ export const CustomSize: Story = {
 
 export const Scrolling: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'scrolling'),
@@ -218,9 +255,29 @@ export const Scrolling: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" open class="drawer-scrolling">
+    <syn-drawer label="Drawer" open placement="start" class="drawer-scrolling">
       <div style="height: 150vh; border: dashed 2px var(--syn-color-neutral-200); padding: 0 1rem;">
         <p>Scroll down and give it a try! 👇</p>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
       </div>
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -240,6 +297,9 @@ export const Scrolling: Story = {
 
 export const HeaderActions: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'action'),
@@ -247,7 +307,7 @@ export const HeaderActions: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" open class="drawer-header-actions">
+    <syn-drawer label="Drawer" open placement="start" class="drawer-header-actions">
       <syn-icon-button
         class="new-window"
         slot="header-actions"
@@ -275,11 +335,21 @@ export const HeaderActions: Story = {
 
 export const PreventingTheDrawerFromClosing: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'closing'),
       },
     },
+  },
+  play: async ({ canvasElement }) => {
+    const drawer = canvasElement.querySelector('syn-drawer');
+    const overlay = drawer?.shadowRoot?.querySelector<HTMLDivElement>('.drawer__overlay');
+    if (drawer && overlay) {
+      await userEvent.click(overlay);
+    }
   },
   render: () => html`
     <syn-drawer label="Drawer" open class="drawer-deny-close">

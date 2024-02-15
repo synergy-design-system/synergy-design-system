@@ -8,13 +8,24 @@ import * as tokens from '@synergy-design-system/tokens';
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete color palette
  */
-const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(
+export const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(
   Object.entries(tokens)
     .filter(([token]) => token.toLowerCase().startsWith(`syncolor${palette}`))
     .map(([token, value]) => [
       useFullTokenName ? token : token.toLowerCase().replace('syncolor', ''),
       value,
-    ]),
+    ])
+    .sort((a, b) => {
+      const [aName] = a;
+      const [bName] = b;
+
+      const aValue = parseInt(aName.toLowerCase().replaceAll(`syncolor${palette}`, '').trim(), 10);
+      const bValue = parseInt(bName.toLowerCase().replaceAll(`syncolor${palette}`, '').trim(), 10);
+
+      if (bValue > aValue) return -1;
+      if (bValue < aValue) return 1;
+      return 0;
+    }),
 );
 
 /**
@@ -41,8 +52,6 @@ const getPaletteMembersByWeight = (
  * Get the primary color palette
  */
 export const getPrimaryColorPalette = (useFullTokenName = false) => getColorAsPalette('primary', useFullTokenName);
-
-export const getSecondaryColorPalette = (useFullTokenName = false) => getColorAsPalette('secondary', useFullTokenName);
 
 export const getAccentColorPalette = (useFullTokenName = false) => getColorAsPalette('accent', useFullTokenName);
 
@@ -86,3 +95,17 @@ export const getCSSToken = (token: string) => `--${paramCase(token, {
 export const getSASSToken = (token: string) => `$${paramCase(token, {
   splitRegexp: /([a-z])([A-Z0-9])/g,
 })}`;
+
+/**
+ * Get the raw token value from a design token
+ * @param token The token to get the value from
+ * @param parentElement The parent element to search from. Will try to get the closest theme enabled element
+ * @returns The found value or false otherwise
+ */
+export const getRawValueFromToken = (token: string, parentElement?: HTMLElement) => {
+  const elementWithClass = parentElement ? parentElement.closest('.syn-theme-dark,.syn-theme-light') : document.body;
+  const finalElement = elementWithClass ?? document.body;
+
+  const rawValue = getComputedStyle(finalElement).getPropertyValue(token);
+  return rawValue ?? 'unknown!';
+};

@@ -7,7 +7,7 @@ import '../../../components/src/components/radio-group/radio-group.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
+import { generateScreenshotStory, generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 
@@ -31,10 +31,12 @@ type Story = StoryObj;
 export const Default = {
   parameters: {
     controls: {
-      disable: true,
+      disable: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'default'),
+      description: {
+        story: generateStoryDescription('radio-group', 'default'),
+      },
     },
   },
   render: () => html`
@@ -47,11 +49,10 @@ export const Default = {
 
 export const Labels: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
-      description: generateStoryDescription('radio-group', 'labels'),
+      description: {
+        story: generateStoryDescription('radio-group', 'labels'),
+      },
     },
   },
   render: () => html`
@@ -64,11 +65,10 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
-      description: generateStoryDescription('radio-group', 'help-text'),
+      description: {
+        story: generateStoryDescription('radio-group', 'help-text'),
+      },
     },
   },
   render: () => html`
@@ -81,11 +81,10 @@ export const HelpText: Story = {
 
 export const Disabled: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
-      description: generateStoryDescription('radio-group', 'disabled'),
+      description: {
+        story: generateStoryDescription('radio-group', 'disabled'),
+      },
     },
   },
   render: () => html`
@@ -107,11 +106,13 @@ export const Checked: Story = {
 
 export const Invalid: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'required'),
+      description: {
+        story: generateStoryDescription('radio-group', 'invalid'),
+      },
     },
   },
   play: async ({ canvasElement }) => {
@@ -153,11 +154,13 @@ export const Invalid: Story = {
 
 export const CustomValidity: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
-      description: generateStoryDescription('radio-group', 'setCustomValidity'),
+      description: {
+        story: generateStoryDescription('radio-group', 'setCustomValidity'),
+      },
     },
   },
   play: async ({ canvasElement }) => {
@@ -199,7 +202,7 @@ export const CustomValidity: Story = {
   },
 
   render: () => html`
-  <form class="custom-validity">
+  <form>
     <syn-radio-group label="Select an option" name="a" value="1">
       <syn-radio value="1">Not me</syn-radio>
       <syn-radio value="2">Me neither</syn-radio>
@@ -209,3 +212,12 @@ export const CustomValidity: Story = {
     <syn-button type="submit" variant="filled">Submit</syn-button>
   </form>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Labels,
+  HelpText,
+  Disabled,
+  Checked,
+}, 230);

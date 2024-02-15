@@ -1,8 +1,0 @@
-main {
-  width: 400px;
-  background: var(--syn-color-neutral-0);
-  border: 1px solid var(--syn-color-neutral-200);
-  border-radius: var(--syn-border-radius-small);
-  box-shadow: 0 0 25px 0 var(--syn-color-neutral-200);
-  padding: 10px;
-}

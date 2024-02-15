@@ -4,18 +4,18 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "postcss-lit": "^1.1.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-order": "^6.0.3"
+    "postcss-lit": "^1.1.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4"
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
     "@microsoft/fast-element": "^1.12.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "eslint": "^8.47.0",
-    "eslint-plugin-import": "^2.28.1",
-    "lit": "^3.0.0",
-    "stylelint": "^15.10.3"
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "lit": "^3.1.2",
+    "stylelint": "^16.2.1"
   },
   "exports": {
     ".": "./index.js"
@@ -43,6 +43,7 @@
     "directory": "packages/stylelint-config-syn"
   },
   "scripts": {
+    "format.eslint": "pnpm lint:js --fix",
     "lint:css": "stylelint \"demo/*.{css,js,ts}\"",
     "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/"

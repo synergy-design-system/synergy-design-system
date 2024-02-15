@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/button/button';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import type { SynButton } from '@synergy-design-system/components';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -36,6 +36,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'default'),
@@ -47,9 +50,6 @@ export const Default = {
 
 export const Variants: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'variant'),
@@ -69,9 +69,6 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'size'),
@@ -91,8 +88,8 @@ export const Sizes: Story = {
 
 export const Focus: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -111,9 +108,6 @@ export const Focus: Story = {
 
 export const LinkButtons: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'link'),
@@ -134,9 +128,6 @@ export const LinkButtons: Story = {
 
 export const SettingACustomWidth: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'width'),
@@ -151,9 +142,6 @@ export const SettingACustomWidth: Story = {
 
 export const PrefixAndSuffixIcons: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'prefix-suffix'),
@@ -221,9 +209,6 @@ export const PrefixAndSuffixIcons: Story = {
 
 export const Caret: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'caret'),
@@ -243,9 +228,6 @@ export const Caret: Story = {
 
 export const Loading: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'loading'),
@@ -265,9 +247,6 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('button', 'disabled'),
@@ -279,3 +258,16 @@ export const Disabled: Story = {
   <syn-button variant="outline" disabled>Outline</syn-button>
   <syn-button variant="text" disabled>Text</syn-button>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Variants,
+  Sizes,
+  LinkButtons,
+  SettingACustomWidth,
+  PrefixAndSuffixIcons,
+  Caret,
+  Loading,
+  Disabled,
+}, 280);

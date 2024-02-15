@@ -1,0 +1,210 @@
+<form
+  [formGroup]="formData"
+  (reset)="reset()"
+  (ngSubmit)="submit(formData)"
+  (syn-change)="synChange($event)"
+  #form
+>
+  <!-- PersonalInformation -->
+  <demo-fieldset legend="Personal Information">
+
+    <syn-radio-group
+      formControlName="gender"
+      id="radiogroup-gender"
+      name="gender"
+      label="Please tell us your gender"
+      [required]="true"
+    >
+      <syn-radio value="f">Female</syn-radio>
+      <syn-radio value="m">Male</syn-radio>
+      <syn-radio value="other">Other</syn-radio>
+    </syn-radio-group>
+
+    <syn-select
+      formControlName="role"
+      id="select-role"
+      label="Current position"
+      name="role"
+      [required]="true"
+    >
+      <syn-optgroup label="Developers">
+        <syn-option value="backend">Backend Developer</syn-option>
+        <syn-option value="frontend">Frontend Developer</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Other">
+        <syn-option value="lead">Team Lead</syn-option>
+        <syn-option value="other">Other (please specify in comment section below)</syn-option>
+      </syn-optgroup>
+    </syn-select>
+
+    <syn-input
+      formControlName="name"
+      id="input-text"
+      label="Name"
+      [minlength]="5"
+      [maxlength]="20"
+      name="name"
+      placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
+      [required]="true"
+      type="text"
+    />
+
+    <syn-input
+      formControlName="email"
+      id="input-email"
+      label="E-Mail"
+      name="email"
+      placeholder="Please insert your E-mail address"
+      [required]="true"
+      type="email"
+    />
+
+    <syn-input
+      formControlName="phone"
+      id="input-phone"
+      label="Phone"
+      name="phone"
+      placeholder="Please provide your phone number"
+      [required]="true"
+      type="tel"
+    />
+
+    <syn-input
+      formControlName="date"
+      id="input-date"
+      label="Date of birth"
+      name="date"
+      type="date"
+    />
+
+  </demo-fieldset>
+  <!-- /PersonalInformation -->
+
+  <syn-divider />
+
+  <!-- Security -->
+  <demo-fieldset legend="Security">
+    <syn-input
+      formControlName="password"
+      id="input-password"
+      label="Provide a secure password"
+      name="password"
+      password-toggle
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      placeholder="Please provide at least one uppercase and lowercase letter and a number"
+      [required]="true"
+      type="password"
+    />
+
+    <syn-input
+      formControlName="code"
+      id="input-number"
+      label="Please provide a fallback numeric value that may be used for password recovery"
+      min="1000"
+      max="9999"
+      name="code"
+      placeholder="Please choose a value with four digits, e.g. 1234"
+      type="number"
+    />
+  </demo-fieldset>
+  <!-- /Security -->
+
+  <syn-divider />
+
+  <!-- Topics -->
+  <demo-fieldset legend="Topics">
+    <syn-select
+      [clearable]="true"
+      formControlName="topics"
+      id="topics"
+      label="I am interested in the following technologies"
+      [multiple]="true"
+      name="topics"
+    >
+      <syn-optgroup label="Frontend">
+        <syn-option value="angular">Angular</syn-option>
+        <syn-option value="react">React.js</syn-option>
+        <syn-option value="vanilla">Vanilla.js</syn-option>
+        <syn-option value="vue">Vue</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Backend">
+        <syn-option value="node">Node.js</syn-option>
+        <syn-option value="Python">Python</syn-option>
+      </syn-optgroup>
+    </syn-select>
+  </demo-fieldset>
+  <!-- /Topics -->
+
+  <syn-divider />
+
+  <!-- Marketing -->
+  <demo-fieldset legend="Please inform me about the following technologies">
+    <syn-checkbox
+      formControlName="newsletterStandard"
+      id="checkbox-newsletter-standard"
+      name="newsletterStandard"
+    >
+      Please subscribe me to the synergy newsletter
+    </syn-checkbox>
+    <syn-checkbox
+      formControlName="newsletterAngular"
+      id="checkbox-newsletter-angular"
+      name="newsletterAngular"
+    >
+      Please subscribe me to all things related to angular
+    </syn-checkbox>
+    <syn-checkbox
+      formControlName="newsletterReact"
+      id="checkbox-newsletter-react"
+      name="newsletterReact"
+    >
+      Please subscribe me to all things related to react
+    </syn-checkbox>
+    <syn-checkbox
+      formControlName="newsletterVanilla"
+      id="checkbox-newsletter-vanilla"
+      name="newsletterVanilla"
+    >
+      Please subscribe me to all things related to vanilla.js
+    </syn-checkbox>
+    <syn-checkbox
+      formControlName="newsletterVue"
+      id="checkbox-newsletter-vue"
+      name="newsletterVue"
+    >
+      Please subscribe me to all things related to vue
+    </syn-checkbox>
+    <syn-switch
+      formControlName="newsletterBeta"
+      id="checkbox-newsletter-beta"
+      name="newsletterBeta"
+    >
+      I am interested in the Synergy Beta Program
+    </syn-switch>
+  </demo-fieldset>
+  <!-- /Marketing -->
+
+  <syn-divider />
+
+  <!-- AdditionalInformation -->
+  <demo-fieldset legend="Additional Information">
+    <syn-textarea
+      formControlName="comment"
+      label="Comment"
+      name="comment"
+      placeholder="Please provide additional information that might be helpful for your inquiry"
+      [rows]="10"
+    />
+  </demo-fieldset>
+  <!-- /AdditionalInformation -->
+
+  <syn-divider />
+
+  <!-- Actions -->
+  <div class="syn-submit-buttons">
+    <syn-button variant="outline" type="reset">Reset</syn-button>
+    <syn-button variant="filled" type="submit">Send</syn-button>
+  </div>
+  <!-- /Actions -->
+
+</form>

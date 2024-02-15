@@ -1,47 +1,40 @@
 <script setup lang="ts">
-import SynContactForm from './components/SynContactForm.vue';
+import DemoForm from './DemoForm.vue';
+import ThemeSwitch from './ThemeSwitch.vue';
 </script>
 
 <template>
+  <header>
+    <h1>@synergy-design-system/vue Form Demo</h1>
+    <ThemeSwitch />
+  </header>
+
   <main>
-    <h1>@synergy-design-system/components</h1>
-    <h2>Demo Application using <code>@synergy-design-system/components</code> web components in Vue.js</h2>
-    <hr />
-    <SynContactForm />
+    <DemoForm />
   </main>
 </template>
 
 <style scoped>
+header {
+  align-items: center;
+  background: var(--syn-color-neutral-50);
+  border-bottom: 1px solid var(--syn-color-neutral-400);
+  box-shadow: var(--syn-shadow-large);
+  display: flex;
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+header h1 {
+  flex: 1;
+  font-size: var(--syn-font-size-large);
+  margin: 0;
+}
+
 main {
-  background: var(--syn-color-neutral-0);  
-  box-shadow: 0 0 10px var(--syn-color-neutral-500);
-  border-radius: .25rem;
-  width: 500px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-h1 {
-  font-size: 1.5rem;
-  margin: 0 0 0.75rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin: 0 0 1.2rem;
-}
-
-code {
-  background: var(--syn-color-neutral-950);
-  color: var(--syn-color-neutral-0);
-  font-size: .8rem;
-  padding: 0.25rem;
-}
-
-hr {
-  border: 1px dotted var(--syn-color-neutral-500);
-  border-width: 1px 0 0 0;
-  margin: 0.25rem 0 0.75rem;
+  background: var(--syn-color-neutral-0);
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
 }
 </style>

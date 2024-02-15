@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "@synergy-design-system/eslint-config-syn/ts",
+  ],
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/disable-type-checked"],
+      "files": ["./**/*.js"]
+    }
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

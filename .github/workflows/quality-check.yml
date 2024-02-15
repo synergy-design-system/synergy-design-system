@@ -1,6 +1,8 @@
 name: Quality Gate
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   quality-gate:
@@ -32,6 +34,9 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
 
+      - name: Check for formatting issues
+        run: pnpm exec prettier . -c
+
       - name: Lint
         run: pnpm lint
 
@@ -44,13 +49,15 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
 
+      - name: Release (Dry)
+        run: pnpm release.dry
 
   test:
     name: Validate tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+      image: mcr.microsoft.com/playwright:v1.41.2-jammy
     steps:
       - uses: actions/checkout@v2
 
@@ -91,9 +98,11 @@ jobs:
   chromatic-deployment:
     name: Validate Chromatic
     runs-on: ubuntu-latest
-    needs: [quality-gate,test]
+    # check pull request title
+    if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
+    needs: [quality-gate, test]
     steps:
-        # 👇 Version 2 of the action
+      # 👇 Version 2 of the action
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -109,7 +118,7 @@ jobs:
         run: pnpm run build
       # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@latest
         # Options required to the GitHub Chromatic Action
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
@@ -117,6 +126,6 @@ jobs:
           # Speedup the build by not waiting until everything is sent to Chromatic
           exitOnceUploaded: true
           # TurboSnap is an advanced Chromatic feature that speeds up builds for faster UI testing and review using Git and Webpack’s dependency graph
-          onlyChanged: true
+          onlyChanged: false
           # We need to manually build storybook with pnpm
           storybookBuildDir: packages/docs/dist

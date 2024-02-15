@@ -6,8 +6,8 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
-    '@geometricpanda/storybook-addon-badges',
-    "@storybook/addon-mdx-gfm"
+    "@storybook/addon-themes",
+    "@storybook/addon-mdx-gfm",
   ],
   core: {
     disableTelemetry: true,
@@ -19,19 +19,18 @@ const config: StorybookConfig = {
     name: "@storybook/web-components-vite",
     options: {},
   },
-  staticDirs: [
-    '../public',
-    {
+  staticDirs: ['../public', {
       from: '../../assets/src',
       to: '/assets'
-    }
-  ],
+  }],
   stories: [
     "../stories/Index.mdx",
+    "../stories/Introduction.mdx",
+    "../stories/Contributing.mdx",
     "../stories/packages/**/*.mdx",
+    "../stories/tokens/**/*.stories.*",
     "../stories/components/**/*.stories.*",
-    // "../stories/**/*.mdx",
-    // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../stories/templates/**/*.stories.*",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],

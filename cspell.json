@@ -1,19 +1,21 @@
 {
   "words": [
-    "syn",
+    "autodocs",
+    "autowatch",
+    "checkmarks",
+    "csspart",
+    "cssproperty",
+    "fouc",
+    "liga",
+    "rgba",
     "stylelint",
     "stylelintrc",
+    "syn",
     "themeable",
-    "autowatch",
-    "fouc",
-    "rgba",
-    "liga",
-    "autodocs",
-    "csspart"
+    "vendorism",
+    "slotchange",
+    "optiongroup"
   ],
-  "ignorePaths": [
-    "package.json",
-    "pnpm-lock.yaml"
-  ],
+  "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true
 }

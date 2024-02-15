@@ -5,12 +5,16 @@ import path from 'path';
 import url from 'url';
 import { exec } from 'child_process';
 import util from 'util';
+import prettier from 'prettier';
 import { deleteAsync } from 'del';
 import { globby } from 'globby';
 import chalk from 'chalk';
 import ora from 'ora';
 import { pascalCase } from 'change-case';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
+
+// eslint-disable-next-line import/no-relative-packages
+import prettierConfig from '../../../../prettier.config.js';
 
 const spinner = ora({ hideCursor: false });
 
@@ -81,6 +85,27 @@ export const getPath = (wantedPath) => path.join(
 );
 
 /**
+ * Format a file using prettier
+ * @param {String} filePath Path to the wanted file
+ * @param {String} parser One of the parsers available in prettier
+ */
+export const formatFile = async (filePath, parser) => {
+  const blob = await fs.readFile(filePath);
+  const formattedFile = await prettier.format(blob.toString(), {
+    ...prettierConfig,
+    parser,
+  });
+
+  await fs.writeFile(filePath, formattedFile);
+};
+
+/**
+ * Get the path to the components package.json file
+ * @returns {object} Contents of to package.json
+ */
+export const getPackageJSONAsObject = () => JSON.parse(fsSync.readFileSync(getPath('../package.json')), 'utf-8');
+
+/**
  * Sync the package.json version field located in outputPackageDir
  * with the one provided from componentsPackageDir
  * @param {string} label The label
@@ -96,18 +121,19 @@ export const runAdjustPackageVersion = (label) => job(label, async (
   });
   const { version } = JSON.parse(componentPackageAsString);
 
-  // Get the react packages package.json
-  const reactPackageAsString = await fs.readFile(path.join(outputPackageDir, 'package.json'));
-  const reactPackageAsJSON = JSON.parse(reactPackageAsString);
+  // Get the wrappers package.json
+  const packageJSONPath = path.join(outputPackageDir, 'package.json');
+  const packageAsString = await fs.readFile(packageJSONPath);
+  const packageAsJSON = JSON.parse(packageAsString);
 
   // Write out the changed package.json file with adjusted version
-  return await fs.writeFile(
-    path.join(outputPackageDir, 'package.json'),
-    [
-      JSON.stringify({ ...reactPackageAsJSON, version }, null, 2).trim(),
-      '',
-    ].join('\n'),
+  // and format it using prettier
+  await fs.writeFile(
+    packageJSONPath,
+    JSON.stringify({ ...packageAsJSON, version }),
   );
+
+  await formatFile(packageJSONPath, 'json-stringify');
 });
 
 /**

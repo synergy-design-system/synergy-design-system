@@ -32,10 +32,10 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
   <head>
     <!-- Example 1: Referencing directly in a HTML document -->
     <!-- Make sure to add the stylesheet before using any components -->
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/light.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
 
     <!-- Alternative: Use the dark theme -->
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/themes/dark.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
   </head>
   <body>
     <div style="background: var(--syn-color-primary-500)">
@@ -45,13 +45,63 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 </html>
 ```
 
+#### Switching themes during runtime
+
+You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
+
+| Theme | Stylesheet to use         | Body className    |
+| :---- | :------------------------ | :---------------- |
+| light | `tokens/themes/light.css` | `syn-theme-light` |
+| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`  |
+
+To switch the theme, proceed in the following way:
+
+```html
+<!DOCTYPE html>
+  <head>
+    <!--
+      -- Load both themes initially.
+      -- The last theme will be the default, in this case the light theme
+    -->
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
+  </head>
+  <body>
+    <button id="theme-switch">Switch Theme</button>
+    <script>
+    const switchTheme = ({ target }) => {
+      const { body } = document;
+      const currentTheme = body.classList.contains('syn-theme-dark') ? 'dark' : 'light';
+
+      if (currentTheme === 'light') {
+        // Light theme
+        body.classList.remove('syn-theme-light');
+        body.classList.add('syn-theme-dark');
+        target.innerText = 'Switch to light theme';
+      } else {
+        // Dark theme
+        body.classList.remove('syn-theme-dark');
+        body.classList.add('syn-theme-light');
+        target.innerText = 'Switch to dark theme';
+      }
+    }
+
+    document
+      .querySelector('#theme-switch')
+      .addEventListener('click', switchTheme);
+    </script>
+  </body>
+</html>
+
+```
+
 ```javascript
 // Example 2: Importing for bundlers
 // In most build systems, you will be able to import css files directly
 // Use this way when you already use a build system like webpack or vite
 // to make it part of your bundle.
 // Note this import should happen BEFORE you render any components!
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 ```
 
 ---
@@ -65,13 +115,13 @@ All tokens map to the corresponding css variables to make sure we have a single 
 // Using variables in JavaScript
 
 // Import the css variables first as they are our single source of truth
-import '@synergy-design-system/tokens/themes/light.css';
+import "@synergy-design-system/tokens/themes/light.css";
 
 // Imports all tokens
-import * as tokens from '@synergy-design-system/tokens';
+import * as tokens from "@synergy-design-system/tokens";
 
 // Set the background color of a queried div via JavaScript
-const elm = document.querySelector('div');
+const elm = document.querySelector("div");
 div.style.backgroundColor = tokens.SynColorPrimary500;
 
 // Get the value
@@ -85,21 +135,29 @@ console.log(div.style.backgroundColor);
 
 Our variables are also available as scss variables that make it possible to consume them in sass based projects.
 
+> Note that because of the complexity of sass based toolchains (e.g. vite ones differ from webpack ones and there are [multiple](https://www.npmjs.com/package/node-sass-package-importer) [loaders](https://www.npmjs.com/package/sass-module-importer) for `node_modules`), we only show examples using the **relative path** to the filesystem.
+> Configuration for those systems is NOT part of this guide.
+
 ```scss
+// ! All paths are relative, we assume your input file is named src/example.scss
+
 // Import the design tokens first.
 // This can be done in a sass file or in any other way described above.
 // Make sure to NOT add the .css file suffix, this will not work in sass
-@import "~@synergy-design-system/tokens/themes/light";
+@import "../node_modules/@synergy-design-system/tokens/dist/themes/light";
 
 // Import the scss variables
-@import "@synergy-design-system/tokens/scss/tokens";
+@import "../node_modules/@synergy-design-system/tokens/dist/scss/tokens";
 
+// You are now able to use the provided tokens
 div {
   background: $SynColorPrimary500;
 }
 
-// This will render the following output:
-:root {
+// When compiled, this should render the following output
+:root,
+.syn-theme-light {
+  // Other syn- variables truncated
   --syn-color-primary-500: #0ca2eb;
 }
 
@@ -113,12 +171,12 @@ div {
 ## Optional: Configuring tokens in VSCode
 
 Using VSCode?
-You may also want to install vunguyentuan.vscode-css-variables to include css variable auto completion in your project.
+You may also want to install `vunguyentuan.vscode-css-variables` to include css variable auto completion in your project.
 Just make sure to add a valid path to the light theme in the `.vscode/settings.json` file like this:
 
 ```json
 "cssVariables.lookupFiles": [
-    "node_modules/@synergy-design-system/tokens/themes/light.css"
+    "node_modules/@synergy-design-system/tokens/dist/themes/light.css"
 ],
 ```
 

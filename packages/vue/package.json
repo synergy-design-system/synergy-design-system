@@ -21,7 +21,7 @@
     "CHANGELOG.md",
     "README.md"
   ],
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/vue",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Vue Web Component Wrapper",
     "Vue Components",
@@ -40,9 +40,9 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.7.0",
   "devDependencies": {
-    "@vue/tsconfig": "^0.4.0",
-    "vue": "^3.3.9"
+    "@vue/tsconfig": "^0.5.1",
+    "vue": "^3.4.15"
   }
 }

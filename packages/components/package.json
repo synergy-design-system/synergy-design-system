@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.0.1",
+  "version": "1.7.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "create-checksums": "node -e 'import(\"./scripts/jobs/createChecksums.js\").then( loadedModule => loadedModule.runCreateChecksums() )'",
     "test": "web-test-runner --group default",
+    "test.watch": "pnpm test -- --watch",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",
@@ -37,14 +37,16 @@
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
+    "format.eslint": "pnpm lint:js --fix",
     "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
     "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
     "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
-    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\""
+    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\"",
+    "release.dry": "semantic-release --dry-run --tagFormat 'components/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components",
+  "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Web Components",
     "LIT Components",
@@ -56,57 +58,57 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.8.4",
-    "@lit/react": "^1.0.0",
-    "@open-wc/testing": "^3.2.0",
-    "@playwright/test": "^1.39.0",
+    "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@open-wc/testing": "^4.0.0",
+    "@playwright/test": "^1.41.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "@types/mocha": "^10.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "@web/dev-server-esbuild": "^0.4.1",
-    "@web/test-runner": "^0.17.2",
-    "@web/test-runner-commands": "^0.8.1",
-    "@web/test-runner-playwright": "^0.10.1",
+    "@types/mocha": "^10.0.6",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@web/dev-server-esbuild": "^1.0.2",
+    "@web/test-runner": "^0.18.0",
+    "@web/test-runner-commands": "^0.9.0",
+    "@web/test-runner-playwright": "^0.11.0",
     "chalk": "^5.3.0",
-    "change-case": "^4.1.2",
+    "change-case": "^5.4.2",
     "command-line-args": "^5.2.1",
-    "comment-parser": "^1.4.0",
-    "custom-element-jet-brains-integration": "^1.3.1",
-    "custom-element-vs-code-integration": "^1.2.1",
+    "comment-parser": "^1.4.1",
+    "custom-element-jet-brains-integration": "^1.4.3",
+    "custom-element-vs-code-integration": "^1.2.2",
     "del": "^7.1.0",
-    "esbuild": "^0.19.4",
+    "esbuild": "^0.20.0",
     "esbuild-plugin-replace": "^1.4.0",
-    "esbuild-plugin-vue3": "^0.3.2",
-    "eslint": "^8.47.0",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-lit": "^1.9.1",
-    "eslint-plugin-lit-a11y": "^4.1.0",
-    "eslint-plugin-vue": "^9.18.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^27.6.3",
+    "eslint-plugin-lit": "^1.11.0",
+    "eslint-plugin-lit-a11y": "^4.1.2",
+    "eslint-plugin-playwright": "^0.22.2",
+    "eslint-plugin-vue": "^9.21.1",
     "eslint-plugin-wc": "^2.0.4",
-    "globby": "^13.2.2",
-    "jsdom": "^22.1.0",
-    "ng-packagr": "^17.0.0",
-    "ora": "^7.0.1",
-    "prettier": "^3.0.3",
+    "globby": "^14.0.0",
+    "jsdom": "^24.0.0",
+    "ng-packagr": "^17.1.2",
+    "ora": "^8.0.1",
+    "prettier": "^3.2.5",
     "remark-parse": "^11.0.0",
     "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "^7.0.5",
-    "sinon": "^16.1.0",
-    "stylelint": "^15.10.3",
-    "typescript": "^5.2.2",
-    "unified": "^11.0.3",
+    "semantic-release-monorepo": "7.0.5",
+    "sinon": "^17.0.1",
+    "stylelint": "^16.2.1",
+    "typescript": "^5.3.3",
+    "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "github:mariohamann/vendorism",
-    "vue-tsc": "^1.8.24"
+    "vendorism": "^3.0.0",
+    "vue-tsc": "^1.8.27"
   },
   "release": {
     "branches": [
@@ -157,21 +159,21 @@
           "successComment": false
         }
       ]
-    ]
+    ],
+    "monorepo": {
+      "dependencies": [
+        "packages/vue",
+        "packages/react",
+        "packages/angular"
+      ]
+    }
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.5.3",
+    "@floating-ui/dom": "^1.6.1",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.2",
     "composed-offset-position": "^0.0.4",
-    "lit": "^3.0.0"
+    "lit": "^3.1.2"
   },
-  "web-types": "./dist/web-types.json",
-  "meta": {
-    "checksums": {
-      "angular": "03e72b75bbadce795c01f535e61e9bc20d710897",
-      "react": "d64e473174a11c422b16a9d8778cd715c937a7d7",
-      "vue": "3474445ab6bd612ccc2cad15ef00a3e274f90518"
-    }
-  }
+  "web-types": "./dist/web-types.json"
 }

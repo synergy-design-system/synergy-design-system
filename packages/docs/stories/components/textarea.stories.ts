@@ -4,7 +4,9 @@ import '../../../components/src/components/textarea/textarea';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
-import { generateStoryDescription, storybookDefaults, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
@@ -27,6 +29,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'default'),
@@ -38,9 +43,6 @@ export const Default = {
 
 export const Labels: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'labels'),
@@ -52,9 +54,6 @@ export const Labels: Story = {
 
 export const HelpText: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'help-text'),
@@ -66,9 +65,6 @@ export const HelpText: Story = {
 
 export const Rows: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'rows'),
@@ -88,9 +84,6 @@ export const Rows: Story = {
 
 export const Placeholders: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'placeholder'),
@@ -102,9 +95,6 @@ export const Placeholders: Story = {
 
 export const ReadonlyTextareas: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'readonly'),
@@ -115,12 +105,9 @@ export const ReadonlyTextareas: Story = {
 };
 
 export const Focus: Story = {
-  args: {
-    placeholder: 'This is in focus',
-  },
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -136,18 +123,13 @@ export const Focus: Story = {
   },
   render: () => html`
       <form>
-        ${generateTemplate({
-    args,
-  })}
+        <syn-textarea placeholder="This is in focus"></syn-textarea>
       </form>
     `,
 };
 
 export const Disabled: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'disabled'),
@@ -159,9 +141,6 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'size'),
@@ -175,13 +154,9 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    helpText: 'This textarea is required.',
-    placeholder: 'Type something',
-  },
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -209,14 +184,7 @@ export const Invalid: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-  ${generateTemplate({
-    args,
-    constants: [{
-      name: 'required',
-      type: 'attribute',
-      value: true,
-    }],
-  })}
+      <syn-textarea placeholder="Type something" help-text="This textarea is required." required></syn-textarea>
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <style>
@@ -234,9 +202,6 @@ export const Invalid: Story = {
 
 export const PreventResizing: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize'),
@@ -248,9 +213,6 @@ export const PreventResizing: Story = {
 
 export const ExpandWithContent: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('textarea', 'resize-auto'),
@@ -259,3 +221,17 @@ export const ExpandWithContent: Story = {
   },
   render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Labels,
+  HelpText,
+  Rows,
+  Placeholders,
+  ReadonlyTextareas,
+  Disabled,
+  Sizes,
+  PreventResizing,
+  ExpandWithContent,
+}, 500);

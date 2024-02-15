@@ -1,7 +1,7 @@
 {
   "name": "@synergy-design-system/root",
   "version": "0.1.0",
-  "homepage": "https://github.com/synergy-design-system/synergy",
+  "homepage": "https://synergy-design-system.github.io",
   "author": {
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
@@ -22,7 +22,20 @@
     "build": "pnpm --recursive --if-present build",
     "build.release": "pnpm --recursive --filter '!docs' --if-present build",
     "lint": "pnpm --recursive --if-present lint",
-    "release": "pnpm --recursive --if-present --workspace-concurrency=1 release"
+    "release": "pnpm --recursive --if-present --workspace-concurrency=1 release",
+    "release.dry": "pnpm --recursive --if-present --workspace-concurrency=1 release.dry",
+    "format": "pnpm run /^format..*/",
+    "format.prettier": "pnpm exec prettier . -w",
+    "format.eslint": "pnpm --recursive --if-present format.eslint"
   },
-  "private": true
+  "private": true,
+  "pnpm": {
+    "patchedDependencies": {
+      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch",
+      "@open-wc/lit-helpers@0.5.1": "patches/@open-wc__lit-helpers@0.5.1.patch"
+    }
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
 }

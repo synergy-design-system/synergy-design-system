@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
@@ -8,6 +7,7 @@ import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -37,6 +37,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'default'),
@@ -48,9 +51,6 @@ export const Default = {
 
 export const Checked: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'checked'),
@@ -62,9 +62,6 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'disabled'),
@@ -76,8 +73,8 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -98,8 +95,8 @@ export const Focus: Story = {
 
 export const Invalid: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -141,12 +138,6 @@ export const Invalid: Story = {
 
 export const Sizes: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('switch', 'sizes'),
@@ -158,3 +149,11 @@ export const Sizes: Story = {
   <syn-switch size="medium">Medium</syn-switch><br>
   <syn-switch size="large">Large</syn-switch>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Checked,
+  Disabled,
+  Sizes,
+});

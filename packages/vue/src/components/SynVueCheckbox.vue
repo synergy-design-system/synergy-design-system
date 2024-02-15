@@ -187,16 +187,24 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-checkbox
     v-bind="visibleProps"
     ref="element"
+    :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.checked); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-    @input="$emit('update:modelValue', $event.target.checked)"
   >
     <slot />
   </syn-checkbox>

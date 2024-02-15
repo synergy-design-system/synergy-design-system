@@ -12,6 +12,7 @@
  * @since 2.0
  *
  * @dependency syn-icon
+ * @dependency syn-divider
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the input.
@@ -20,6 +21,8 @@
  * @slot show-password-icon - An icon to use in lieu of the default show password icon.
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot increment-number-stepper - An icon to use in lieu of the default increment number stepper icon.
+ * @slot decrement-number-stepper - An icon to use in lieu of the default decrement number stepper icon.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -38,6 +41,10 @@
  * @csspart clear-button - The clear button.
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The container that wraps the suffix.
+ * @csspart stepper - The container that wraps the number stepper.
+ * @csspart decrement-number-stepper - The decrement number stepper button.
+ * @csspart increment-number-stepper - The increment number stepper button.
+ * @csspart divider - The divider between the increment and decrement number stepper buttons.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/input/input.js';
@@ -194,7 +201,7 @@ to `text`.
   'passwordVisible'?: SynInput['passwordVisible'];
 
   /**
-* Hides the browser's built-in increment/decrement spin buttons for number inputs.
+* Hides the increment/decrement spin buttons for number inputs.
  */
   'noSpinButtons'?: SynInput['noSpinButtons'];
 
@@ -339,17 +346,26 @@ defineEmits<{
 }>();
 </script>
 
+<script lang="ts">
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynClearEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';
+</script>
+
 <template>
   <syn-input
     v-bind="visibleProps"
     ref="element"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-    @input="$emit('update:modelValue', $event.target.value)"
   >
     <slot name="label" />
     <slot name="prefix" />
@@ -358,5 +374,7 @@ defineEmits<{
     <slot name="show-password-icon" />
     <slot name="hide-password-icon" />
     <slot name="help-text" />
+    <slot name="increment-number-stepper" />
+    <slot name="decrement-number-stepper" />
   </syn-input>
 </template>

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/testing-library';
 import {
+  generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 
@@ -33,6 +33,9 @@ type Story = StoryObj;
 
 export const Default = {
   parameters: {
+    controls: {
+      disable: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'default'),
@@ -40,15 +43,10 @@ export const Default = {
     },
   },
   render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-  // render: () => html`
-  // <syn-radio value="1" size="medium">Option</syn-radio>`,
 } as Story;
 
 export const Disabled: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'disabled'),
@@ -61,8 +59,8 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -71,7 +69,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const radio = canvasElement.querySelector('syn-radio') as unknown as HTMLInputElement;
+    const radio = canvasElement.querySelector('syn-radio');
     if (radio) {
       radio.focus();
     }
@@ -82,8 +80,8 @@ export const Focus: Story = {
 
 export const Invalid: Story = {
   parameters: {
-    controls: {
-      disable: true,
+    chromatic: {
+      disableSnapshot: false,
     },
     docs: {
       description: {
@@ -129,9 +127,6 @@ export const Invalid: Story = {
 
 export const Sizes: Story = {
   parameters: {
-    controls: {
-      disable: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('radio', 'sizes'),
@@ -143,3 +138,10 @@ export const Sizes: Story = {
     <syn-radio value="2" size="medium">Option</syn-radio>
     <syn-radio value="3" size="large">Option</syn-radio>`,
 };
+
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Disabled,
+  Sizes,
+});

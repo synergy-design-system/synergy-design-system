@@ -6,7 +6,7 @@ on:
       - opened
       - edited
       - synchronize
-  
+
 permissions:
   pull-requests: read
 
@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
         with:
-            types: |
-                fix
-                feat
-                chore
-                docs
+          types: |
+            fix
+            feat
+            chore
+            docs

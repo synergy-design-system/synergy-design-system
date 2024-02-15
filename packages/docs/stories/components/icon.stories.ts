@@ -1,14 +1,16 @@
-/* eslint-disable */
-/* eslint-disable import/no-relative-packages */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import '../../../components/src/components/icon/icon';
 import { type Meta, type StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { storybookDefaults, storybookHelpers, storybookTemplate } from '../../src/helpers/component.js';
+import {
+  generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
+} from '../../src/helpers/component.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 
-const { args, argTypes } = storybookDefaults('syn-icon');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon');
 const { overrideArgs } = storybookHelpers('syn-icon');
 const { generateTemplate } = storybookTemplate('syn-icon');
 
@@ -118,15 +120,18 @@ Most of the magic behind assets is handled internally by Synergy, but if you nee
 `;
 
 const meta: Meta = {
-  component: 'icon',
-  args: overrideArgs({ type: 'attribute', value: 'wallpaper', name: 'name' }, args),
+  args: overrideArgs({ name: 'name', type: 'attribute', value: 'wallpaper' }, defaultArgs),
   argTypes,
+  component: 'icon',
   parameters: {
     docs: {
       description: {
-        // The documentation has to be added like this as template string and not as block comment above, because otherwise the example of the angular+webpack glob pattern would not work.
+        // The documentation has to be added like this as template string
+        // and not as block comment above, because otherwise the example of the
+        // angular+webpack glob pattern would not work.
         // The "*/" of "glob": "**/*" would close the block comment.
-        // It could be escaped by doing "glob": "**\/*" but then the users would see the backslash and also would copy it with the example.
+        // It could be escaped by doing "glob": "**\/*" but then the users would see the backslash
+        // and also would copy it with the example.
         component: iconDocumentation,
       },
     },
@@ -141,14 +146,17 @@ type Story = StoryObj;
  * This shows the syn-icon in its default state
  */
 export const Default = {
-  render: (args: any) => {
-    return generateTemplate({ args });
+  parameters: {
+    controls: {
+      disable: false,
+    },
   },
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-
 /**
- * Icons inherit their color from the current text color. Thus, you can set the color property on the <syn-icon> element or an ancestor to change the color.
+ * Icons inherit their color from the current text color.
+ * Thus, you can set the color property on the <syn-icon> element or an ancestor to change color.
  */
 export const Colors: Story = {
   render: () => html`<div style="color: var(--syn-color-primary-600);">
@@ -172,7 +180,9 @@ export const Colors: Story = {
 };
 
 /**
- * Icons are sized relative to the current font size. To change their size, set the font-size property on the icon itself or on a parent element as shown below.
+ * Icons are sized relative to the current font size.
+ * To change their size, set the font-size property on the icon itself
+ * or on a parent element as shown below.
  */
 export const Sizing: Story = {
   render: () => html`<div style="font-size: var(--syn-font-size-2x-large);">
@@ -203,7 +213,8 @@ export const Labels: Story = {
 };
 
 /**
- * Custom icons can be loaded individually with the src attribute. Only SVGs on a local or CORS-enabled endpoint are supported.
+ * Custom icons can be loaded individually with the src attribute.
+ * Only SVGs on a local or CORS-enabled endpoint are supported.
  * If you're using more than one custom icon, it might make sense to register a custom icon library.
  */
 export const CustomIcons: Story = {
@@ -215,9 +226,11 @@ export const CustomIcons: Story = {
  *
  * The following example demonstrates how to register the open source icon library [Font Awesome](https://fontawesome.com/) using the jsDelivr CDN.
  * Icons in this library are licensed under the [Font Awesome Free License](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt).
- * Some of the icons that appear on the Font Awesome website require a license and are therefore not available in the CDN.
+ * Some of the icons that appear on the Font Awesome website require a license
+ * and are therefore not available in the CDN.
  *
- * This library has three variations: regular (far-*), solid (fas-*), and brands (fab-*). A mutator function is required to set the SVG’s fill to currentColor. 
+ * This library has three variations: regular (far-*), solid (fas-*), and brands (fab-*).
+ * A mutator function is required to set the SVG’s fill to currentColor.
  *
  * Feel free to adapt the code as you see fit to use your own origin or naming conventions.
  *
@@ -251,7 +264,8 @@ export const CustomIcons: Story = {
  *    <syn-icon library="fa" name="fab-edge"></syn-icon>
  *  </div>
  * ```
- * If an icon is used before registration occurs, it will be empty initially but shown when registered.
+ * If an icon is used before registration occurs, it will be empty initially,
+ * but shown when registered.
  * Check out the example below or the [Shoelace Docs](https://shoelace.style/components/icon?id=icon-libraries)
  * to see how to handle this.
  */
@@ -286,7 +300,8 @@ export const CDNIconLibrary: Story = {
 /**
 * The package [@synergy-design-system/assets](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/assets) provides the possibility to get all default icons via a bundled file.
 *
-* > **Warning:** Please keep in mind that via this way of using icons **all** icons will be bundled into your application and it will create larger bundle sizes!
+* > **Warning:** Please keep in mind that via this way of using icons **all** icons
+* will be bundled into your application and it will create larger bundle sizes!
 *
 * ```html
 * <script type="module">
@@ -316,6 +331,7 @@ export const CDNIconLibrary: Story = {
 export const BundledIconLibrary: Story = {
   render: () => {
     registerIconLibrary('bundled-default', {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
       resolver: (name) => {
         if (name in defaultIcons) {
           const defaultName = name as keyof typeof defaultIcons;
@@ -323,7 +339,6 @@ export const BundledIconLibrary: Story = {
         }
         return '';
       },
-      mutator: svg => svg.setAttribute('fill', 'currentColor'),
     });
 
     return html`<div style="font-size: var(--syn-font-size-x-large);">
@@ -337,13 +352,18 @@ export const BundledIconLibrary: Story = {
 
 /**
 * To improve performance you can use a SVG sprites to avoid multiple trips for each SVG.
-* The browser will load the sprite sheet once and then you reference the particular SVG within the sprite sheet using hash selector.
+* The browser will load the sprite sheet once and
+* then you reference the particular SVG within the sprite sheet using hash selector.
 *
-* As always, make sure to benchmark these changes. When using HTTP/2, it may in fact be more bandwidth-friendly to use multiple small requests instead of 1 large sprite sheet.
+* As always, make sure to benchmark these changes. When using HTTP/2, it may in fact be more
+* bandwidth-friendly to use multiple small requests instead of 1 large sprite sheet.
 *
 * > **Warning:** When using sprite sheets, the syn-load and syn-error events will not fire.
 *
-* > **Warning:** For security reasons, browsers may apply the same-origin policy on <use> elements located in the <syn-icon> shadow DOM and may refuse to load a cross-origin URL. There is currently no defined way to set a cross-origin policy for <use> elements. For this reason, sprite sheets should only be used if you’re self-hosting them.
+* > **Warning:** For security reasons, browsers may apply the same-origin policy on <use> elements
+* located in the <syn-icon> shadow DOM and may refuse to load a cross-origin URL.
+* There is currently no defined way to set a cross-origin policy for <use> elements.
+* For this reason, sprite sheets should only be used if you’re self-hosting them.
 *
 * ```html
 * <script type="module">
@@ -366,9 +386,9 @@ export const BundledIconLibrary: Story = {
 export const SpriteSheetUsage: Story = {
   render: () => {
     registerIconLibrary('sprite', {
-      resolver: name => `/sprite.svg#${name}`,
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
-      spriteSheet: true
+      resolver: name => `/sprite.svg#${name}`,
+      spriteSheet: true,
     });
 
     return html`<div style="font-size: var(--syn-font-size-x-large);">
@@ -378,3 +398,14 @@ export const SpriteSheetUsage: Story = {
   },
 };
 
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Colors,
+  Sizing,
+  Labels,
+  CustomIcons,
+  CDNIconLibrary,
+  BundledIconLibrary,
+  SpriteSheetUsage,
+});

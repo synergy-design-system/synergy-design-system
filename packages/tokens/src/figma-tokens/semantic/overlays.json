@@ -1,5 +1,5 @@
 {
-  "overlays": {
+  "overlay": {
     "background": {
       "color": {
         "value": "rgba(0, 0, 0, 0.4)",

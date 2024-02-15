@@ -32,19 +32,19 @@ export default css`
    * The border of the panel is always placed in direction to the content,
    * depending on the position of the drawer itself
    */
-  :host([placement="end"]) .drawer__panel {
+  .drawer--end .drawer__panel {
     border-left-width: 1px;
   }
 
-  :host([placement="start"]) .drawer__panel {
+  .drawer--start .drawer__panel {
     border-right-width: 1px;
   }
 
-  :host([placement="top"]) .drawer__panel {
+  .drawer--top .drawer__panel {
     border-bottom-width: 1px;
   }
 
-  :host([placement="bottom"]) .drawer__panel {
+  .drawer--bottom .drawer__panel {
     border-top-width: 1px;
   }
 

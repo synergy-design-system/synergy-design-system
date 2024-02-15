@@ -95,9 +95,6 @@ export const SlideInFromStart: Story = {
   `,
 };
 
-/**
- * To make the drawer slide in from the top, set the placement attribute to top.
- */
 export const SlideInFromTop: Story = {
   parameters: {
     docs: {
@@ -311,14 +308,23 @@ export const PreventingTheDrawerFromClosing: Story = {
 
 export const CustomizingInitialFocus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('drawer', 'fokus'),
       },
     },
   },
+  play: ({ canvasElement }) => {
+    const drawer = canvasElement.querySelector('syn-drawer');
+    if (drawer) {
+      drawer.open = true;
+    }
+  },
   render: () => html`
-    <syn-drawer label="Drawer" open class="drawer-focus">
+    <syn-drawer label="Drawer" class="drawer-focus">
       <syn-input autofocus placeholder="I will have focus when the drawer is opened"></syn-input>
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>

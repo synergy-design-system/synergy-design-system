@@ -8,6 +8,7 @@
     "semantic/input",
     "semantic/button",
     "semantic/toggle",
+    "semantic/typography",
     "semantic/overlays",
     "semantic/panels",
     "_docs"

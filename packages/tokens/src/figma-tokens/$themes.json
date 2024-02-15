@@ -296,6 +296,7 @@
       "input.filled.color-disabled": "S:50d5ea5eca1de474be32aa6343b7643c5cc40049,",
       "input.filled.color-hover": "S:5eefc6417572b45a2142265f8686ce798ac04e80,",
       "input.filled.color-focus": "S:bc4ba1f6b31a61949d3c4186b243633dba518ae6,"
+
     },
     "selectedTokenSets": {
       "globals": "source",
@@ -303,11 +304,14 @@
       "color/primitives": "source",
       "semantic/input": "enabled",
       "semantic/button": "enabled",
-      "semantic/toggle": "enabled"
+      "semantic/toggle": "enabled",
+      "semantic/typography": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",
     "$figmaVariableReferences": {
+      "typography.color.text": "0bce8a23c955ec27b2edc35101d7c955ac12dc13",
+      "typography.color.text-inverted": "1411de66484c1b8ca3c0034b32473973ed6838fb",
       "toggle.size.small": "59e798ea0cba4be9ea32e894e79cecd7b82cfded",
       "toggle.size.medium": "c853d6f661e4380daff9745e0e4b39e2b56637f3",
       "toggle.size.large": "8c9580c2db9de0c2ceb7553e99520d3a5c4a90d3",

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.3.2](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.1...tokens/1.3.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* 🤔 color tokens to variables sync ([#321](https://github.com/synergy-design-system/synergy-design-system/issues/321)) ([41c7195](https://github.com/synergy-design-system/synergy-design-system/commit/41c719571cf4905125420343e91a349597da16d5))
+
 # [@synergy-design-system/tokens-v1.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.0...tokens/1.3.1) (2024-02-09)
 
 

@@ -2,15 +2,9 @@
   "overlays": {
     "background": {
       "color": {
-        "value": "{neutral.1000}",
+        "value": "rgba(0, 0, 0, 0.4)",
         "type": "color"
       }
-    }
-  },
-  "overlay": {
-    "opacity": {
-      "value": "0,4",
-      "type": "opacity"
     }
   }
 }

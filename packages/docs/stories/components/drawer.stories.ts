@@ -24,9 +24,9 @@ const meta: Meta = {
       description: {
         component: generateStoryDescription('drawer', 'default'),
       },
-      // story: {
-      //   inline: false,
-      // },
+      story: {
+        height: '400px',
+      },
     },
   },
   title: 'Components/syn-drawer',
@@ -45,7 +45,17 @@ export const Default = {
     {
       name: 'contained',
       type: 'attribute',
-      value: true,
+      value: false,
+    },
+    {
+      name: 'label',
+      type: 'attribute',
+      value: 'Drawer',
+    },
+    {
+      name: 'default',
+      type: 'slot',
+      value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
   ], defaultArgs),
   parameters: {
@@ -67,7 +77,7 @@ export const SlideInFromStart: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" placement="start" class="drawer-placement-start">
+    <syn-drawer label="Drawer" open placement="start" class="drawer-placement-start">
       This drawer slides in from the start.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -97,7 +107,7 @@ export const SlideInFromTop: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" placement="top" class="drawer-placement-top">
+    <syn-drawer label="Drawer" open placement="top" class="drawer-placement-top">
       This drawer slides in from the top.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -124,7 +134,7 @@ export const SlideInFromBottom: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" placement="bottom" class="drawer-placement-bottom">
+    <syn-drawer label="Drawer" open placement="bottom" class="drawer-placement-bottom">
       This drawer slides in from the bottom.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -156,7 +166,7 @@ export const ContainedToAnElement: Story = {
     >
       The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer opens.
 
-      <syn-drawer label="Drawer" contained class="drawer-contained" style="--size: 50%;">
+      <syn-drawer label="Drawer" open contained class="drawer-contained" style="--size: 50%;">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         <syn-button slot="footer" variant="filled">Close</syn-button>
       </syn-drawer>
@@ -184,7 +194,7 @@ export const CustomSize: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" class="drawer-custom-size" style="--size: 50vw;">
+    <syn-drawer label="Drawer" open class="drawer-custom-size" style="--size: 50vw;">
       This drawer is always 50% of the viewport.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -211,7 +221,7 @@ export const Scrolling: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" class="drawer-scrolling">
+    <syn-drawer label="Drawer" open class="drawer-scrolling">
       <div style="height: 150vh; border: dashed 2px var(--syn-color-neutral-200); padding: 0 1rem;">
         <p>Scroll down and give it a try! 👇</p>
       </div>
@@ -240,7 +250,7 @@ export const HeaderActions: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" class="drawer-header-actions">
+    <syn-drawer label="Drawer" open class="drawer-header-actions">
       <syn-icon-button
         class="new-window"
         slot="header-actions"
@@ -275,7 +285,7 @@ export const PreventingTheDrawerFromClosing: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" class="drawer-deny-close">
+    <syn-drawer label="Drawer" open class="drawer-deny-close">
       This drawer will not close when you click on the overlay.
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>
@@ -308,7 +318,7 @@ export const CustomizingInitialFocus: Story = {
     },
   },
   render: () => html`
-    <syn-drawer label="Drawer" class="drawer-focus">
+    <syn-drawer label="Drawer" open class="drawer-focus">
       <syn-input autofocus placeholder="I will have focus when the drawer is opened"></syn-input>
       <syn-button slot="footer" variant="filled">Close</syn-button>
     </syn-drawer>

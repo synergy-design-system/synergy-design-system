@@ -1810,12 +1810,42 @@
     },
     "typography": {
       "description": {
-        "value": "Typography tokens are used to maintain a consistent set of font styles throughout your app.",
+        "value": "Typography tokens are used to define typographic style of headings, body text, and UI components. They are used to maintain a consistent set of font styles throughout your app.",
         "type": "text"
       },
       "title": {
         "value": "Typography",
         "type": "text"
+      },
+      "text-styles": {
+        "description": {
+          "value": "The Synergy text styles are made up of two categories to cover the range of different needs in designs: Headings and Body / UI text.\n\nUnless explicitly mentioned otherwise in a component, Synergy recommends using sentence case capitalization throughout your applications.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Text styles",
+          "type": "text"
+        },
+        "headings": {
+          "description": {
+            "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\nbuilding page hierarchy,\nhelping users scan large chunks of text,\nproviding a title to a page or piece of content,\nas subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Headings",
+            "type": "text"
+          }
+        },
+        "body": {
+          "description": {
+            "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values. \nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\nIt is also possible to format the text bold for certain text passages.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Body and UI text",
+            "type": "text"
+          }
+        }
       }
     },
     "z-index": {

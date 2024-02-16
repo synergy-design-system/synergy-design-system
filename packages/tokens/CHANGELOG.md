@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.2...tokens/1.4.0) (2024-02-15)
+
+
+### Features
+
+* ✨ Added text-styles for typography ([#318](https://github.com/synergy-design-system/synergy-design-system/issues/318)) ([a9758ee](https://github.com/synergy-design-system/synergy-design-system/commit/a9758ee7c8242fac4b0e6e6d7d4006d9b59cc51d))
+
 # [@synergy-design-system/tokens-v1.3.2](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.1...tokens/1.3.2) (2024-02-15)
 
 

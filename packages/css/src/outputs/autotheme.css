@@ -4,4 +4,4 @@
  */
 @import url("@synergy-design-system/tokens/dist/themes/light.css") (prefers-color-scheme: light);
 @import url("@synergy-design-system/tokens/dist/themes/dark.css") (prefers-color-scheme: dark);
-@import url("./utilities.css");
+@import url("../modules/index.css");

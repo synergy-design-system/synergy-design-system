@@ -3,7 +3,7 @@
  */
 
 /**
- * The following styles can be used to archive the form styling
+ * The following styles can be used to create the form styling
  * that is used in the synergy contact form template.
  * @example
  * html```
@@ -33,7 +33,25 @@
   margin-bottom: 0;
 }
 
-.syn-legend {
+/**
+ * Default fieldset legend for synergy form fields.
+ * @example
+ * ```html
+ * <!-- Using the syn-legend class directly -->
+ * <legend class="syn-legend">Legend</legend>
+ *
+ * <!-- Apply the styling via .syn-fieldset -->
+ * <form>
+ *   <fieldset class="syn-fieldset">
+ *     <legend>Legend</legend>
+ *   </fieldset>
+ * </form>
+ * ```
+ */
+.syn-legend,
+.syn-fieldset > legend {
   font-size: var(--syn-font-size-large);
+  font-weight: var(--syn-font-weight-bold);
+  line-height: var(--syn-line-height-normal);
   margin-bottom: var(--syn-spacing-medium);
 }

@@ -1,55 +1,89 @@
 /**
- * Core typographic styles.
- * Please note we are using classes here instead of elements
+ * Core typographic styles
  */
 
-/* Temporary copy of typo until it lands in main */
-:root {
-  --syn-typography-body-x-small: 400 12px/1.4 var(--syn-font-sans);
-  --syn-typography-body-small: 400 14px/1.4 var(--syn-font-sans);
-  --syn-typography-body-medium: 400 16px/1.4 var(--syn-font-sans);
-  --syn-typography-body-large: 400 20px/1.4 var(--syn-font-sans);
-  --syn-typography-heading-large: 700 20px/1.4 var(--syn-font-sans);
-  --syn-typography-heading-x-large: 700 24px/1.2 var(--syn-font-sans);
-  --syn-typography-heading-2x-large: 700 28px/1.2 var(--syn-font-sans);
-  --syn-typography-heading-3x-large: 700 32px/1.2 var(--syn-font-sans);
-  --syn-typography-heading-4x-large: 700 40px/1.2 var(--syn-font-sans);
-  --syn-typography-color-text: var(--syn-color-neutral-950);
-  --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+/**
+ * Defines a font weight of normal (e.g. default font-weight for body copy), according to synergy specs
+ */
+.syn-weight-normal {
+  font-weight: var(--syn-font-weight-normal);
 }
 
-.syn-typo-body-x-small {
-  font: var(--syn-typography-body-x-small);
+/**
+ * Defines a font weight of semi-bold, according to synergy specs
+ */
+.syn-weight-semibold {
+  font-weight: var(--syn-font-weight-semibold);
 }
 
-.syn-typo-body-small {
-  font: var(--syn-typography-body-small);
+/**
+ * Defines a font weight of bold, according to synergy specs
+ */
+.syn-weight-bold {
+  font-weight: var(--syn-font-weight-bold);
 }
 
-.syn-typo-body-medium {
-  font: var(--syn-typography-body-medium);
+/**
+ * Utility class for setting a very small body copy font style
+ * May be combined with weight classes defined above
+ */
+.syn-body-x-small {
+  font: var(--syn-body-x-small-regular);
 }
 
-.syn-typo-body-large {
-  font: var(--syn-typography-body-large);
+/**
+ * Utility class for setting a small body copy font style
+ * May be combined with weight classes defined above
+ */
+.syn-body-small {
+  font: var(--syn-body-small-regular);
 }
 
-.syn-typo-heading-large {
-  font: var(--syn-typography-heading-large);
+/**
+ * Utility class for setting a medium body copy font style
+ * This is the default style for elements for synergy applications
+ * May be combined with weight classes defined above
+ */
+.syn-body-medium {
+  font: var(--syn-body-medium-regular);
 }
 
-.syn-typo-heading-x-large {
-  font: var(--syn-typography-heading-x-large);
+/**
+ * Utility class for setting a large body copy font style
+ * May be combined with weight classes defined above
+ */
+.syn-body-large {
+  font: var(--syn-body-large-regular);
 }
 
-.syn-typo-heading-2x-large {
-  font: var(--syn-typography-heading-2x-large);
+/**
+ * Utility class for setting a large headline
+ * This is usually seen on smaller weight headline elements as <h5> or <h6>
+ */
+.syn-heading-large {
+  font: var(--syn-heading-large);
 }
 
-.syn-typo-heading-3x-large {
-  font: var(--syn-typography-heading-3x-large);
+/**
+ * Utility class for setting a extra large headline
+ * This is usually seen on medium weight headline elements as <h4> or <h3>
+ */
+.syn-heading-x-large {
+  font: var(--syn-heading-x-large);
 }
 
-.syn-typo-heading-4x-large {
-  font: var(--syn-typography-heading-4x-large);
+/**
+ * Utility class for setting a even larger headline
+ * This is usually seen on larger weight headline elements as <h2> or <h3>
+ */
+.syn-heading-2x-large {
+  font: var(--syn-heading-2x-large);
+}
+
+/**
+ * Utility class for setting the largest headline
+ * This is usually seen on primary headline elements, usually <h1>
+ */
+.syn-heading-3x-large {
+  font: var(--syn-heading-3x-large);
 }

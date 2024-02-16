@@ -24,6 +24,7 @@
     "SICK Design System"
   ],
   "license": "MIT",
+  "main": "./dist/app.css",
   "name": "@synergy-design-system/css",
   "repository": {
     "type": "git",

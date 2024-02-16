@@ -1,6 +1,6 @@
 # @synergy-design-system/css
 
-This packages provides utility classes and basic document stylings for new projects created using `@synergy-design-system/components` or one of its derived wrapper packages.
+This packages provides utility classes and some **opinionated** basic document stylings intended for **new applications and websites** using `@synergy-design-system/components` or one of its derived wrapper packages.
 
 ---
 

@@ -10,4 +10,4 @@
  */
 @import url("@synergy-design-system/tokens/dist/themes/dark.css");
 @import url("@synergy-design-system/tokens/dist/themes/light.css");
-@import url("./utilities.css");
+@import url("../modules/index.css");

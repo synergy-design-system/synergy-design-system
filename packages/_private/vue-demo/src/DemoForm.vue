@@ -29,7 +29,6 @@ const initialFormData = {
   newsletterStandard: false,
   newsletterVanilla: false,
   newsletterVue: true,
-  password: 'abAB1234',
   phone: '',
   role: '',
   topics: [],
@@ -260,6 +259,7 @@ const synChange = () => {
     <!-- AdditionalInformation -->
     <DemoFieldset legend="Additional Information">
       <SynVueTextarea
+        id="additional-info"
         label="Comment"
         name="comment"
         placeholder="Please provide additional information that might be helpful for your inquiry"

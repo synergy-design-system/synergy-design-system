@@ -36,7 +36,6 @@ const initialFormData = {
   newsletterStandard: false,
   newsletterVanilla: false,
   newsletterVue: false,
-  password: 'abAB1234',
   phone: '',
   role: '',
   topics: [],
@@ -283,6 +282,7 @@ export const DemoForm = () => {
       { /* AdditionalInformation */ }
       <DemoFieldset legend="Additional Information">
         <SynTextarea
+          id="additional-info"
           label="Comment"
           name="comment"
           placeholder="Please provide additional information that might be helpful for your inquiry"

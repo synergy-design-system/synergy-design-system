@@ -16,7 +16,7 @@ const initialData = {
   newsletterStandard: false,
   newsletterVanilla: false,
   newsletterVue: false,
-  password: 'abAB1234',
+  password: '',
   phone: '',
   role: '',
   topics: [],

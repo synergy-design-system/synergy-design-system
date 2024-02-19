@@ -5,6 +5,7 @@ export default css`
   /**
   * Min-width size adjusted for each size so 2 full digits are shown for type number
   */ 
+ 
   :host([size="small"]) {
     min-width: calc(var(--syn-input-font-size-small)*8.3);
   }

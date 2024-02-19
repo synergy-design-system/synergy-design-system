@@ -1,0 +1,21 @@
+export default {
+  formLoc: 'form',
+  genderLoc: '#radiogroup-gender',
+  roleLoc: '#select-role',
+  nameLoc: '#input-text',
+  emailLoc: '#input-email',
+  phoneLoc: '#input-phone',
+  birth: '#input-date',
+  passLoc: '#input-password',
+  passRcvryLoc: '#input-number',
+  topicLoc: '#topics',
+  newsLocSyn: '#checkbox-newsletter-default',
+  newsLocSynNg: '#checkbox-newsletter-angular',
+  newsLocSynReact: '#checkbox-newsletter-react',
+  newsLocVanilla: '#checkbox-newsletter-vanilla',
+  newsLocSynVue: '#checkbox-newsletter-vue',
+  newsLocBeta: '#checkbox-newsletter-beta',
+  addInfoLoc: '#additional-info',
+  submit: '.syn-submit-buttons > syn-button[type=submit]',
+  reset: '.syn-submit-buttons > syn-button[type=reset]'
+};

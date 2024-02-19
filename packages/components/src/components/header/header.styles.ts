@@ -1,20 +1,15 @@
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
-  /* stylelint-disable */
-  ${componentStyles}
-  /* stylelint-enable */
-
   :host {
+    /* @todo: Debug only, remove this when ready! */
+    box-shadow: 0 0 0 15px #efefef;
     display: block;
   }
 
   .header {
     background: var(--syn-color-neutral-0);
-    border-bottom: 1px solid var(--syn-color-neutral-400);
-    box-shadow: 0 0 0 5px #efefef;
-    padding: var(--syn-spacing-large) var(--syn-spacing-large) 0;
+    box-shadow: inset 0 -1px 0 0 var(--syn-color-neutral-400);
   }
 
   /**
@@ -27,8 +22,10 @@ export default css`
    */
   .primary-content-area {
     align-items: center;
+    box-sizing: content-box;
     display: flex;
-    padding-bottom: var(--syn-spacing-large);
+    min-height: 40px;
+    padding: var(--syn-spacing-large);
   }
 
   /**
@@ -57,7 +54,18 @@ export default css`
   /**
    * The logo slot includes the application or company logo
    */
-  .header__logo {
+  .header__logo ::slotted(*),
+  .header__logo svg {
+    display: block;
+  }
+
+  /**
+   * Styles for the default logo.
+   * @todo: Will have to be adjusted after using <syn-icon />
+   */
+  .header__logo svg {
+    max-height: 32px;
+    width: auto;
   }
 
   /**
@@ -71,14 +79,14 @@ export default css`
   /**
    * The options menu holds an arbitary list of <syn-icon-button />
    */
-  .header__option_menu {
+  .header__option-menu {
     display: flex;
     flex: 1;
-    justify-content: end;
     gap: var(--syn-spacing-x-small);
+    justify-content: end;
   }
 
-  .header__option_menu ::slotted(*) {
+  .header__option-menu ::slotted(*) {
     display: contents;
     font-size: var(--syn-font-size-x-large);
   }

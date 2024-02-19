@@ -86,7 +86,7 @@ export const Logo: Story = {
   render: () => html`
     <syn-header>
       <span
-        style="width: 40px; height: 40px; border-radius: 40px; background: var(--syn-color-primary-500); display: block;"
+        style="width: 32px; height: 32px; border-radius: 32px; background: var(--syn-color-primary-500); display: block;"
         slot="logo"
       ></span>
       App Name

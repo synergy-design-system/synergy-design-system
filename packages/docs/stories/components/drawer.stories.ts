@@ -62,9 +62,9 @@ export const Default = {
       name: 'footer',
       type: 'slot',
       value: `
-        <syn-button id="close-icon" slot="footer" variant="filled">Close</syn-button>
+        <syn-button class="close-icon" slot="footer" variant="filled">Close</syn-button>
         <script>
-          document.querySelector('#close-icon').addEventListener('click', (e) => {
+          document.querySelector('.close-icon').addEventListener('click', (e) => {
             e.target.closest('syn-drawer').hide();
           });
         </script>
@@ -84,7 +84,18 @@ export const Default = {
       },
     },
   },
-  render: (args) => generateTemplate({ args }),
+  render: (args) => html`
+    ${generateTemplate({ args })}
+    <syn-button class="drawer-default-story-opener">Open Drawer</syn-button>
+    <script type="module">
+      const openButton = document.querySelector('.drawer-default-story-opener');
+      const drawer = openButton.parentElement.querySelector('syn-drawer')
+      const closeButton = drawer.querySelector('syn-button[variant="filled"]');
+
+      openButton.addEventListener('click', () => drawer.show());
+      closeButton.addEventListener('click', () => drawer.hide());
+    </script>
+  `,
 } as Story;
 
 export const SlideInFromStart: Story = {
@@ -256,7 +267,7 @@ export const Scrolling: Story = {
   },
   render: () => html`
     <syn-drawer label="Drawer" open placement="start" class="drawer-scrolling">
-      <div style="height: 150vh; border: dashed 2px var(--syn-color-neutral-200); padding: 0 1rem;">
+      <div style="height: 400px; border: dashed 2px var(--syn-color-neutral-200); padding: 0 1rem;">
         <p>Scroll down and give it a try! 👇</p>
         <p>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.

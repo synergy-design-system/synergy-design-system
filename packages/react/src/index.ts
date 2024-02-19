@@ -7,6 +7,7 @@ export { SynButton } from './components/button.js';
 export { SynButtonGroup } from './components/button-group.js';
 export { SynCheckbox } from './components/checkbox.js';
 export { SynDivider } from './components/divider.js';
+export { SynHeader } from './components/header.js';
 export { SynIcon } from './components/icon.js';
 export { SynIconButton } from './components/icon-button.js';
 export { SynInput } from './components/input.js';

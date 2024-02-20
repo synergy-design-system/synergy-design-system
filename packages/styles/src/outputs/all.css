@@ -1,12 +1,6 @@
 /**
  * This is the app output bundle.
- * It includes:
- * - fouc styling
- * - Light and dark theme variables
- * - Inlined Open Sans Font
- * - CSS Baseline settings for body
- * - Table styling
- * - Basic typography
+ * It includes all dark and light themes and utility classes
  */
 @import url("@synergy-design-system/tokens/dist/themes/dark.css");
 @import url("@synergy-design-system/tokens/dist/themes/light.css");

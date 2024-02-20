@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { readFileSync } from 'fs';
 import atImport from 'postcss-import';
-import postcssInlineBase64 from 'postcss-inline-base64';
 import header from 'postcss-header';
 
 const packageJSON = readFileSync('./package.json', {
@@ -25,7 +24,6 @@ export default {
       allowDuplicates: true,
       filter: path => !path.startsWith('b64---'), // Prevent inlined items to be imported
     }),
-    postcssInlineBase64(),
     header({
       header: banner,
     }),

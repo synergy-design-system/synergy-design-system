@@ -23,7 +23,6 @@ import '@synergy-design-system/components/components/header/header.js';
  * @status stable
  * @since 1.8.0
  *
- * @dependency syn-icon-button
  *
  * @slot - The label for the header. Will automatically be hidden on mobile.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
@@ -54,20 +53,6 @@ export class SynHeaderComponent {
   }
 
   /**
-* Can be used to indicate the state of a connected `<syn-side-navigation />`
-Please be aware that this is __NOT functional__ yet and the full version will only be
-__available after initial release of this component__!
- */
-  @Input()
-  set sideNavigation(v: SynHeader['sideNavigation']) {
-    this._ngZone.runOutsideAngular(() => (this._el.sideNavigation = v));
-  }
-
-  get sideNavigation() {
-    return this._el.sideNavigation;
-  }
-
-  /**
 * The headers label.
 * If you need to display HTML, use the `label` slot instead.
  */
@@ -78,29 +63,5 @@ __available after initial release of this component__!
 
   get label() {
     return this._el.label;
-  }
-
-  /**
-* Label that should be used for the side navigation menu when it is in closed state
- */
-  @Input()
-  set menuLabelClosed(v: SynHeader['menuLabelClosed']) {
-    this._ngZone.runOutsideAngular(() => (this._el.menuLabelClosed = v));
-  }
-
-  get menuLabelClosed() {
-    return this._el.menuLabelClosed;
-  }
-
-  /**
-* Label that should be used for the side navigation menu if it is in open state
- */
-  @Input()
-  set menuLabelOpened(v: SynHeader['menuLabelOpened']) {
-    this._ngZone.runOutsideAngular(() => (this._el.menuLabelOpened = v));
-  }
-
-  get menuLabelOpened() {
-    return this._el.menuLabelOpened;
   }
 }

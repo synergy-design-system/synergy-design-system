@@ -18,7 +18,6 @@ Component.define('syn-header');
  * @status stable
  * @since 1.8.0
  *
- * @dependency syn-icon-button
  *
  * @slot - The label for the header. Will automatically be hidden on mobile.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.

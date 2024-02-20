@@ -2,8 +2,6 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    /* @todo: Debug only, remove this when ready! */
-    box-shadow: 0 0 0 15px #efefef;
     display: block;
   }
 
@@ -34,21 +32,6 @@ export default css`
    */
   .header--has-top-navigation .primary-content-area {
     padding-bottom: var(--syn-spacing-medium);
-  }
-
-  /**
-   * The optional side navigation control will be displayed as the most left item
-   */
-  .header__side-navigation-button {
-    padding-right: var(--syn-spacing-small);
-  }
-
-  /**
-   * The menu icon button should not have extra spacing on the left side
-   * to better align it with the boundaries of the header component.
-   */
-  .header__side-navigation-button syn-icon-button::part(base) {
-    padding-left: 0;
   }
 
   /**
@@ -93,9 +76,8 @@ export default css`
 
   /**
    * The top navigation is displayed underneath the primary content area
-   * @todo: This is currently disabled
    */
   .header__top-navigation {
-    display: none;
+    padding: 0 var(--syn-spacing-large);
   }
 `;

@@ -138,49 +138,29 @@ export const TopNavigation: Story = {
   },
   render: () => html`
     <syn-header>
-      App Name
-      <nav slot="top-navigation">
-        Not yet available!
+      App with Top Navigation
+      <nav class="demo-header-navigation" slot="top-navigation">
+        <syn-button variant="text">Domains</syn-button>
+        <syn-button variant="text">Projects</syn-button>
+        <syn-button variant="text">Trainings</syn-button>
+        <syn-button variant="text">Evaluations</syn-button>
+        <syn-button variant="text">Deployments</syn-button>
       </nav>
     </syn-header>
-  `,
-} as Story;
+    <style>
+    .demo-header-navigation {
+      padding: 0;
+    }
 
-/**
- * Use the side-navigation attribute to activate a button to open and close side navigations.
- * This will be hidden, if you use a rail navigation.
- */
-export const SideNavigationClosed: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('header', 'side-navigation-closed'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-header side-navigation="closed">
-      Closed side navigation
-    </syn-header>
-  `,
-} as Story;
-
-/**
- * Use the side-navigation attribute to activate a button to open and close side navigations.
- * This will be hidden, if you use a rail navigation.
- */
-export const SideNavigationOpened: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('header', 'side-navigation-opened'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-header side-navigation="open">
-      Opened side navigation
-    </syn-header>
+    /**
+     * The slot itself has a padding of --syn-spacing-large,
+     * so we have to adjust the button position slightly to make it
+     * appear as it has the same left alignment as the logo
+     */
+    .demo-header-navigation syn-button:first-of-type {
+      margin-left: calc(var(--syn-spacing-medium) * -1);
+    }
+    </style>
   `,
 } as Story;
 
@@ -190,8 +170,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Logo,
   OptionMenu,
   TopNavigation,
-  SideNavigationClosed,
-  SideNavigationOpened,
 }, {
-  heightPx: 300,
+  heightPx: 150,
 });

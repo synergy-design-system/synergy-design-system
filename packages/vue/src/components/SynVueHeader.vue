@@ -13,7 +13,6 @@
  * @status stable
  * @since 1.8.0
  *
- * @dependency syn-icon-button
  *
  * @slot - The label for the header. Will automatically be hidden on mobile.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
@@ -45,27 +44,10 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Can be used to indicate the state of a connected `<syn-side-navigation />`
-Please be aware that this is __NOT functional__ yet and the full version will only be
-__available after initial release of this component__!
- */
-  'sideNavigation'?: SynHeader['sideNavigation'];
-
-  /**
 * The headers label.
 * If you need to display HTML, use the `label` slot instead.
  */
   'label'?: SynHeader['label'];
-
-  /**
-* Label that should be used for the side navigation menu when it is in closed state
- */
-  'menuLabelClosed'?: SynHeader['menuLabelClosed'];
-
-  /**
-* Label that should be used for the side navigation menu if it is in open state
- */
-  'menuLabelOpened'?: SynHeader['menuLabelOpened'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

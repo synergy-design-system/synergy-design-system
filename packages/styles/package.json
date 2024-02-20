@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "main": "./dist/app.css",
-  "name": "@synergy-design-system/css",
+  "name": "@synergy-design-system/styles",
   "repository": {
     "type": "git",
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",

@@ -28,7 +28,8 @@ const initialFormData = {
   newsletterReact: false,
   newsletterStandard: false,
   newsletterVanilla: false,
-  newsletterVue: true,
+  newsletterVue: false,
+  password: 'invalid',
   phone: '',
   role: '',
   topics: [],
@@ -210,7 +211,7 @@ const synChange = () => {
     <!-- Marketing -->
     <DemoFieldset legend="Please inform me about the following technologies">
       <SynVueCheckbox
-        id="checkbox-newsletter-standard"
+        id="checkbox-newsletter-default"
         name="newsletterStandard"
         v-model="formData.newsletterStandard"
       >

@@ -23,7 +23,7 @@ export default class TestPage {
   /**
    * Load url page promise
    */
-  async goto(url): Promise<Response | null> {
+  async goto(url: string): Promise<Response | null> {
     return this._page.goto(url);
   }
 
@@ -123,6 +123,10 @@ export default class TestPage {
       this.phone,
       this.gender
     ];
+  }
+
+  get frontend(): Locator {
+    return this._page.locator(locators.frontend);
   }
 
 }

@@ -16,6 +16,7 @@ export default {
   newsLocSynVue: '#checkbox-newsletter-vue',
   newsLocBeta: '#checkbox-newsletter-beta',
   addInfoLoc: '#additional-info',
-  submit: '.syn-submit-buttons > syn-button[type=submit]',
-  reset: '.syn-submit-buttons > syn-button[type=reset]'
+  submit: '.syn-submit-buttons > syn-button:nth-child(2)',
+  reset: '.syn-submit-buttons > syn-button:nth-child(1)',
+  frontend: 'syn-option[value=frontend]'
 };

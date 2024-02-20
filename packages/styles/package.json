@@ -6,11 +6,12 @@
   "description": "CSS Utility classes and styles for the Synergy Design System",
   "exports": {
     ".": "./dist/app.css",
-    "./css/*": "./dist/*"
+    "./css/*": "./dist/*",
+    "./src/*": "./src/*"
   },
   "files": [
     "dist",
-    "fonts",
+    "src",
     "CHANGELOG.md",
     "README.md"
   ],

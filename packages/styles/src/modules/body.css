@@ -1,8 +1,11 @@
 /**
- * Default Baseline css for usage in applications.
- * This file provides defaults for new applications.
+ * Default body settings for new applications
+ * @example
+ * ```html
+ * <body class="syn-body"></body>
+ * ```
  */
- body {
+ .syn-body {
   background: var(--syn-color-neutral-0);
   color: var(--syn-typography-color-text);
   font: var(--syn-body-medium-regular);

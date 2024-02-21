@@ -31,8 +31,7 @@
               }
             ],
             "styles": [
-              "@synergy-design-system/tokens/themes/dark.css",
-              "@synergy-design-system/tokens/themes/light.css",
+              "@synergy-design-system/styles/css/all.css",
               "src/app.css"
             ],
             "scripts": []

@@ -21,7 +21,7 @@
     "@synergy-design-system/angular": "workspace:*",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
-    "@synergy-design-system/tokens": "workspace:*",
+    "@synergy-design-system/styles": "workspace:^",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

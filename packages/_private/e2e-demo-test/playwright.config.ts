@@ -7,35 +7,28 @@ export default defineConfig({
   retries: 0,
   workers: 1,
   reporter: [ ['html', { open: 'never' }], ['list'] ],
-  
-  use: {
-    // baseURL: 'http://localhost:30004',/*process.env.PORT */
-  },
 
   projects: [
     {
       name: 'chromium',
       use: { 
-        ...devices['Desktop Chrome'],
-        contextOptions: {
-          // chromium-specific permissions
-          permissions: ['clipboard-read', 'clipboard-write'],
-        },
+        ...devices['Desktop Chrome']
       },
     },
-/*
+
     {
       name: 'firefox',
       use: { 
         ...devices['Desktop Firefox'],
-        launchOptions: {
-          firefoxUserPrefs: {
-            'dom.events.asyncClipboard.readText': true,
-            'dom.events.testing.asyncClipboard': true,
-          },
-        }
       },
-    }
-    */
+    },
+
+    {
+      name: 'webkit',
+      use: { 
+        ...devices['Desktop Safari'],
+      },
+    },
+    
   ],
 });

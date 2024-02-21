@@ -29,7 +29,7 @@
 
 /**
  * Utility class for setting a large body copy font style
- * May be combined with weight classes defined above
+ * May be combined with weight classes defined below
  */
 .syn-body-large {
   font: var(--syn-body-large-regular);

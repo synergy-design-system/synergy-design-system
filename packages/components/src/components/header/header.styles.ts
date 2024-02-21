@@ -18,7 +18,7 @@ export default css`
    * - application name
    * - meta-navigation
    */
-  .primary-content-area {
+  .header__content {
     align-items: center;
     box-sizing: content-box;
     display: flex;
@@ -27,10 +27,10 @@ export default css`
   }
 
   /**
-   * If the top navigation is provided, use a smaller spacing
-   * between the primary content area and the top navigation
+   * If the primary navigation is provided, use a smaller spacing
+   * between the primary content area and the navigation area
    */
-  .header--has-top-navigation .primary-content-area {
+  .header--has-navigation .header__content {
     padding-bottom: var(--syn-spacing-medium);
   }
 
@@ -74,7 +74,7 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
-  .header__top-navigation {
+  .header__navigation {
     padding: 0 var(--syn-spacing-large);
   }
 `;

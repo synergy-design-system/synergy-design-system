@@ -20,14 +20,14 @@ import styles from './header.styles.js';
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
  * @slot meta-navigation - Used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
- * @slot top-navigation - Used to add an optional horizontal navigation
+ * @slot navigation - Used to add an optional horizontal navigation
  *
  * @csspart base - The component's base wrapper.
- * @csspart side-navigation-button - Can be used to apply styles to the side-navigation menu icon
+ * @csspart content - The wrapper where most content items reside
  * @csspart logo - The wrapper where the application logo resides in
  * @csspart label - Wrapper of the application name label
  * @csspart meta-navigation - Item that wraps the optional application menu
- * @csspart top-navigation - Wrapper that holds the optional top navigation section
+ * @csspart navigation - Wrapper that holds the optional top navigation section
  */
 export default class SynHeader extends SynergyElement {
   static styles: CSSResultGroup = [
@@ -38,7 +38,7 @@ export default class SynHeader extends SynergyElement {
   static dependencies = {
   };
 
-  private readonly hasSlotController = new HasSlotController(this, '[default]', 'logo', 'label', 'meta-navigation', 'top-navigation');
+  private readonly hasSlotController = new HasSlotController(this, '[default]', 'logo', 'label', 'meta-navigation', 'navigation');
 
   /**
    * The headers label. If you need to display HTML, use the `label` slot instead.
@@ -46,19 +46,18 @@ export default class SynHeader extends SynergyElement {
   @property() label = '';
 
   render() {
-    const hasTopNavigation = this.hasSlotController.test('top-navigation');
+    const hasNavigation = this.hasSlotController.test('navigation');
 
     return html`
       <header
         class=${classMap({
           header: true,
-
-          'header--has-top-navigation': hasTopNavigation,
+          'header--has-navigation': hasNavigation,
         })}
-        part="header"
+        part="base"
       >
-        <!-- .primary-content-area -->
-        <div part="primary-content-area" class="primary-content-area">
+        <!-- .header__content -->
+        <div part="content" class="header__content">
 
           <div part="logo" class="header__logo">
             <slot name="logo">
@@ -86,10 +85,10 @@ export default class SynHeader extends SynergyElement {
             <slot name="meta-navigation"></slot>
           </div>
         </div>
-        <!-- /.primary-content-area -->
+        <!-- /.header__content -->
 
-        <div part="top-navigation" class="header__top-navigation">
-          <slot name="top-navigation"></slot>
+        <div part="navigation" class="header__navigation">
+          <slot name="navigation"></slot>
         </div>
       </header>
     `;

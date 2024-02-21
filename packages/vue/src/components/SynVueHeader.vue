@@ -13,19 +13,18 @@
  * @status stable
  * @since 1.8.0
  *
- *
  * @slot - The label for the header. Will automatically be hidden on mobile.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
- * @slot option-menu - Used to add various application toolbar icons.
+ * @slot meta-navigation - Used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
- * @slot top-navigation - Used to add an optional horizontal navigation
+ * @slot navigation - Used to add an optional horizontal navigation
  *
  * @csspart base - The component's base wrapper.
- * @csspart side-navigation-button - Can be used to apply styles to the side-navigation menu icon
+ * @csspart content - The wrapper where most content items reside
  * @csspart logo - The wrapper where the application logo resides in
  * @csspart label - Wrapper of the application name label
- * @csspart option-menu - Item that wraps the optional application menu
- * @csspart top-navigation - Wrapper that holds the optional top navigation section
+ * @csspart meta-navigation - Item that wraps the optional application menu
+ * @csspart navigation - Wrapper that holds the optional top navigation section
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
@@ -74,7 +73,7 @@ defineEmits<{
   >
     <slot />
     <slot name="logo" />
-    <slot name="option-menu" />
-    <slot name="top-navigation" />
+    <slot name="meta-navigation" />
+    <slot name="navigation" />
   </syn-header>
 </template>

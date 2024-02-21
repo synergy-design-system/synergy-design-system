@@ -101,7 +101,7 @@ export const MetaNavigation: Story = {
   `,
 } as Story;
 
-export const TopNavigation: Story = {
+export const Navigation: Story = {
   parameters: {
     docs: {
       description: {
@@ -111,8 +111,8 @@ export const TopNavigation: Story = {
   },
   render: () => html`
     <syn-header>
-      App with Top Navigation
-      <nav class="demo-header-navigation" slot="top-navigation">
+      App with Navigation
+      <nav class="demo-header-navigation" slot="navigation">
         <syn-button variant="text">Domains</syn-button>
         <syn-button variant="text">Projects</syn-button>
         <syn-button variant="text">Trainings</syn-button>
@@ -142,7 +142,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Label,
   Logo,
   MetaNavigation,
-  TopNavigation,
+  Navigation,
 }, {
   heightPx: 150,
 });

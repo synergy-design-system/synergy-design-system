@@ -26,6 +26,10 @@ main {
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
 }
 
+.syn-fieldset {
+  gap: var(--syn-spacing-large);
+}
+
 .syn-submit-buttons {
   align-items: center;
   display: flex;

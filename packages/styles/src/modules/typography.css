@@ -12,7 +12,7 @@
 
 /**
  * Utility class for setting a small body copy font style
- * May be combined with weight classes defined above
+ * May be combined with weight classes defined below
  */
 .syn-body-small {
   font: var(--syn-body-small-regular);

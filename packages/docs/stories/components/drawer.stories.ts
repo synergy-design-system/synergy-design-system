@@ -267,9 +267,12 @@ export const Scrolling: Story = {
   },
   render: () => html`
     <syn-drawer label="Drawer" open placement="start" class="drawer-scrolling">
-      <div style="height: 400px; border: dashed 2px var(--syn-color-neutral-200); padding: 0 1rem;">
+      <div>
         <p>Scroll down and give it a try! 👇</p>
         <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+          At vero eos et accusam et justo duo dolores et ea rebum.
+          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
           At vero eos et accusam et justo duo dolores et ea rebum.
           Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.

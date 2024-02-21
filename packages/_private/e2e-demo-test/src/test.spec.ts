@@ -1,24 +1,23 @@
-import { test, expect, Locator } from '@playwright/test';
-import TestPage from './test.page';
+import { Locator, expect, test } from '@playwright/test';
 import type SynInput from '../../../components/src/components/input/input.component';
 import type SynTextarea from '../../../components/src/components/textarea/textarea.component';
 import type SynCheckbox from '../../../components/src/components/checkbox/checkbox.component';
 import type SynSwitch from '../../../components/src/components/switch/switch.component';
 import type SynSelect from '../../../components/src/components/select/select.component';
+import TestPage from './test.page';
 
-const defaultPort = 5173; //4200
+const defaultPort = 5173;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;
 
 async function getInputValue(locator: Locator) {
-  return locator.evaluate((el: SynInput|SynTextarea|SynSelect) => el.value);
+  return locator.evaluate((el: SynInput | SynTextarea | SynSelect) => el.value);
 }
 
 async function getCheckedValue(locator: Locator) {
-  return locator.evaluate((el: SynCheckbox|SynSwitch) => el.checked);
+  return locator.evaluate((el: SynCheckbox | SynSwitch) => el.checked);
 }
 
 async function fillForm(form: TestPage) {
-
   await form.gender.getByText('Female').check();
   await form.name.locator('input').fill('Maxim');
   await form.email.locator('input').fill('max@musterman.de');
@@ -31,10 +30,9 @@ async function fillForm(form: TestPage) {
   await form.birth.locator('input').fill('2000-02-29');
   await form.password.locator('input').fill('Password123');
   await form.passwordRecovery.locator('input').fill('1234');
-  await form.topics.evaluate(topics =>  (topics as SynSelect).value = 'angular');
-  await form.additionalInfo.locator('textarea').fill('gimme more');
+  await form.topics.click();
+  await form.angular.click();
 }
-
 
 async function checkInitialState(form: TestPage) {
   expect(await getInputValue(form.gender)).toBe('');
@@ -57,8 +55,7 @@ async function checkInitialState(form: TestPage) {
     .forEach((val) => expect(val).toBeFalsy());
 }
 
-
-test('Form reset', async({page}) => {
+test('Form reset', async ({ page }) => {
   const form = new TestPage(page);
   await form.goto(host);
 
@@ -68,13 +65,11 @@ test('Form reset', async({page}) => {
   // submit valid form
   await form.reset.click();
 
-  // check resetted state
+  // check reset state
   await checkInitialState(form);
-
 });
 
-test('Invalid form submit', async({page}) => {
-
+test('Invalid form submit', async ({ page }) => {
   const form = new TestPage(page);
   await form.goto(host);
 
@@ -83,14 +78,14 @@ test('Invalid form submit', async({page}) => {
 
   // check invalid states of required inputs
   (await Promise.all(form.allRequiredInputs.map((input) => input.getAttribute('data-user-invalid'))))
-    .forEach( (val) => expect(val).toBe('') );
+    .forEach((val) => expect(val).toBe(''));
 
   // check not-invalid states of non-required inputs
   expect(await form.birth.getAttribute('data-user-invalid')).toBeFalsy();
   expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
 });
 
-test('Form submit', async({page}) => {
+test('Form submit', async ({ page }) => {
   const form = new TestPage(page);
   await form.goto(host);
 
@@ -98,7 +93,7 @@ test('Form submit', async({page}) => {
   let submitted = false;
   page.on('dialog', dialog => {
     submitted = true;
-    dialog.accept();
+    dialog.accept();  //eslint-disable-line
   });
 
   // check initial state
@@ -112,10 +107,5 @@ test('Form submit', async({page}) => {
 
   expect(submitted).toBe(true);
 
-  expect( await form.form.evaluate((form) => {
-    return (form as HTMLFormElement).checkValidity();
-  })).toBe(true);
-
+  expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
 });
-
-

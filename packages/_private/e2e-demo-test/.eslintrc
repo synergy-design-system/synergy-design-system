@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "@synergy-design-system/eslint-config-syn/ts",
+    "plugin:playwright/jest-playwright"
+  ],
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/disable-type-checked"],
+      "files": ["./**/*.js"]
+    },{
+      "files": ["*.config.ts"],
+      "excludedFiles": "*.config.ts"
+    }
+  ],
+  "rules": {
+      "@typescript-eslint/await-thenable": "off",
+      "import/no-relative-packages": "off"
+    },  
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

@@ -17,7 +17,6 @@ import { SynVueHeader } from '@synergy-design-system/vue';
 
 <style scoped>
 syn-header {
-  box-shadow: var(--syn-shadow-large);
   position: sticky;
   top: 0;
   z-index: 50;

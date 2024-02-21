@@ -1,14 +1,35 @@
-/*
+/**
  * This file prevents the flash of unstyled components
  * @see https://web.dev/custom-elements-v1/#styling-a-custom-element
  * @todo: Create a better matching version after the first components are ready!
  * @todo: Each component should be defined using its default height and display type.
+ *
+ * This file is created automatically in the build process!
+ * All changes applied will get lost!
+ * To recreate it, please use "pnpm build"!
  */
- :not(:defined) {
+syn-button:not(:defined),
+syn-button-group:not(:defined),
+syn-checkbox:not(:defined),
+syn-divider:not(:defined),
+syn-icon:not(:defined),
+syn-icon-button:not(:defined),
+syn-input:not(:defined),
+syn-optgroup:not(:defined),
+syn-option:not(:defined),
+syn-popup:not(:defined),
+syn-radio:not(:defined),
+syn-radio-button:not(:defined),
+syn-radio-group:not(:defined),
+syn-select:not(:defined),
+syn-spinner:not(:defined),
+syn-switch:not(:defined),
+syn-tag:not(:defined),
+syn-textarea:not(:defined) {
   display: inline-block;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
+ }
 
 /**
  * @example:

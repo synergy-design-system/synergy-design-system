@@ -55,9 +55,9 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
-      '@synergy-design-system/tokens':
-        specifier: workspace:*
-        version: link:../../tokens
+      '@synergy-design-system/styles':
+        specifier: workspace:^
+        version: link:../../styles
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -17613,6 +17613,7 @@ packages:
   /semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
+    requiresBuild: true
     dev: true
 
   /semver@6.3.1:

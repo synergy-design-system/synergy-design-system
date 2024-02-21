@@ -1,0 +1,100 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+
+import {
+  getCSSToken,
+  getSASSToken,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Typography" />
+
+# Text Styles
+
+The Synergy text styles are made up of two categories to cover the range of different needs in designs: Headings and Body / UI text.
+Unless explicitly mentioned otherwise in a component, Synergy recommends using sentence case capitalization throughout your applications.
+
+## Headings
+
+Heading styles come in a range of sizes, and can be used in a range of contexts, such as:
+
+- building page hierarchy,
+- helping users scan large chunks of text,
+- providing a title to a page or piece of content,
+- as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).
+
+Our heading styles are consistently bold, to better address the visual hierarchy.
+
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      'SynHeadingLarge',
+      'SynHeading-X-Large',
+      'SynHeading2xLarge',
+      'SynHeading3xLarge',
+    ].map(token => (
+      <tr key={token}>
+        <td>
+          <CopyToClipBoard value={`<span style='font: var(${getCSSToken(token)});'>The quick brown fox jumped over the lazy dog.</span>`}>
+            <span style={{ font: `var(${getCSSToken(token)})` }}>
+              The quick brown fox jumped over the lazy dog.
+            </span>
+          </CopyToClipBoard>
+        </td>
+        <td><CopyToClipBoard value={getCSSToken(token)}>{getCSSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={getSASSToken(token)}>{getSASSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={token}>{token}</CopyToClipBoard></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## Body and UI text
+
+Body text is used for long-form content where a paragraph or multiple lines of text are required.
+Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing.
+Inline links sit within body text styles and inherit the same font values. 
+UI text is text used in UI components and uses the same text stylings.
+
+The default font size is medium (16 px).
+Synergy supports three additional font sizes for body copy.
+It is also possible to format the text bold or semibold for certain text passages and UI elements such as label.
+
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      'SynBody-X-SmallRegular',
+      'SynBody-Small-Regular',
+      'SynBody-Medium-Regular',
+      'SynBody-Large-Regular',
+    ].map(token => (
+      <tr key={token}>
+        <td>
+          <CopyToClipBoard value={`<span style='font: var(${getCSSToken(token)});'>The quick brown fox jumped over the lazy dog.</span>`}>
+            <span style={{ font: `var(${getCSSToken(token)})` }}>
+              The quick brown fox jumped over the lazy dog.
+            </span>
+          </CopyToClipBoard>
+        </td>
+        <td><CopyToClipBoard value={getCSSToken(token)}>{getCSSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={getSASSToken(token)}>{getSASSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={token}>{token}</CopyToClipBoard></td>
+      </tr>
+    ))}
+  </tbody>
+</table>

@@ -282,19 +282,6 @@ const synChange = () => {
 </template>
 
 <style scoped>
-form syn-divider {
-  --spacing: var(--syn-spacing-2x-large);
-}
-
-form .syn-fieldset:last-of-type {
-  margin-bottom: 0;
-}
-
-.syn-legend {
-  font-size: var(--syn-font-size-large);
-  margin-bottom: var(--syn-spacing-medium);
-}
-
 .syn-submit-buttons {
   align-items: center;
   border: none;

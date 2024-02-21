@@ -20,17 +20,12 @@
   border: none;
   display: flex;
   flex-direction: column;
-  gap: var(--syn-spacing-large);
   margin: 0 0 var(--syn-spacing-2x-large);
   padding: 0;
 }
 
 .syn-fieldset + syn-divider {
   --spacing: var(--syn-spacing-2x-large);
-}
-
-.syn-fieldset:last-of-type {
-  margin-bottom: 0;
 }
 
 /**

@@ -16,10 +16,9 @@ import styles from './header.styles.js';
  * @status stable
  * @since 1.8.0
  *
- *
  * @slot - The label for the header. Will automatically be hidden on mobile.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
- * @slot option-menu - Used to add various application toolbar icons.
+ * @slot meta-navigation - Used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
  * @slot top-navigation - Used to add an optional horizontal navigation
  *
@@ -27,7 +26,7 @@ import styles from './header.styles.js';
  * @csspart side-navigation-button - Can be used to apply styles to the side-navigation menu icon
  * @csspart logo - The wrapper where the application logo resides in
  * @csspart label - Wrapper of the application name label
- * @csspart option-menu - Item that wraps the optional application menu
+ * @csspart meta-navigation - Item that wraps the optional application menu
  * @csspart top-navigation - Wrapper that holds the optional top navigation section
  */
 export default class SynHeader extends SynergyElement {
@@ -39,7 +38,7 @@ export default class SynHeader extends SynergyElement {
   static dependencies = {
   };
 
-  private readonly hasSlotController = new HasSlotController(this, '[default]', 'logo', 'label', 'option-menu', 'top-navigation');
+  private readonly hasSlotController = new HasSlotController(this, '[default]', 'logo', 'label', 'meta-navigation', 'top-navigation');
 
   /**
    * The headers label. If you need to display HTML, use the `label` slot instead.
@@ -54,7 +53,6 @@ export default class SynHeader extends SynergyElement {
         class=${classMap({
           header: true,
 
-          // Is the top navigation available?
           'header--has-top-navigation': hasTopNavigation,
         })}
         part="header"
@@ -84,8 +82,8 @@ export default class SynHeader extends SynergyElement {
             </slot>
           </div>
 
-          <div part="option-menu" class="header__option-menu">
-            <slot name="option-menu"></slot>
+          <div part="meta-navigation" class="header__meta-navigation">
+            <slot name="meta-navigation"></slot>
           </div>
         </div>
         <!-- /.primary-content-area -->

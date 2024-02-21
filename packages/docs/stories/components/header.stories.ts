@@ -35,10 +35,6 @@ export default meta;
 
 type Story = StoryObj;
 
-/**
- * The header is used to indicate the name of the app,
- * provide important actions in a toolbar and a navigation.
- */
 export const Default: Story = {
   parameters: {
     controls: {
@@ -53,10 +49,6 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-/**
- * Use the label attribute to change the app name.
- * Important: The label will be hidden on mobile, if there are items in the toolbar.
- */
 export const Label: Story = {
   parameters: {
     docs: {
@@ -70,11 +62,6 @@ export const Label: Story = {
   `,
 } as Story;
 
-/**
- * Use the logo slot to change the app logo.
- * Usually this is only needed in whitelabel solutions,
- * when the SICK branding explicitly has to be hidden.
- */
 export const Logo: Story = {
   parameters: {
     docs: {
@@ -94,40 +81,26 @@ export const Logo: Story = {
   `,
 } as Story;
 
-/**
- * Use the Option Menu slot to add additional functionalities to your application.
- * Please be aware of the guidelines regarding the order of icons in the toolbar.
- *
- * Important: The Options Menu doesn’t handle any responsive behaviour,
- * e. g. if there is not enough space for all items in different screen sizes.
- *
- * You have to make sure yourself, that your app works correctly and
- * e. g. move elements into the footer of the side navigation or inside
- * a “more” button in the Options Menu.
- */
-export const OptionMenu: Story = {
+export const MetaNavigation: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('header', 'option-menu'),
+        story: generateStoryDescription('header', 'meta-navigation'),
       },
     },
   },
   render: () => html`
     <syn-header>
-      <nav slot="option-menu">
+      <nav slot="meta-navigation">
         <syn-icon-button color="neutral" name="apps" label="Apps"></syn-icon-button>
         <syn-icon-button color="neutral" name="account_circle" label="Account"></syn-icon-button>
         <syn-icon-button color="neutral" name="more_vert" label="More"></syn-icon-button>
       </nav>
-      Options Menu
+      Meta Navigation
     </syn-header>
   `,
 } as Story;
 
-/**
- * Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items
- */
 export const TopNavigation: Story = {
   parameters: {
     docs: {
@@ -168,7 +141,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   Logo,
-  OptionMenu,
+  MetaNavigation,
   TopNavigation,
 }, {
   heightPx: 150,

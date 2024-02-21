@@ -16,7 +16,7 @@ export default css`
    * - side nav state icon (OPTIONAL)
    * - company or application logo
    * - application name
-   * - option-menu
+   * - meta-navigation
    */
   .primary-content-area {
     align-items: center;
@@ -62,21 +62,18 @@ export default css`
   /**
    * The options menu holds an arbitary list of <syn-icon-button />
    */
-  .header__option-menu {
+  .header__meta-navigation {
     display: flex;
     flex: 1;
     gap: var(--syn-spacing-x-small);
     justify-content: end;
   }
 
-  .header__option-menu ::slotted(*) {
+  .header__meta-navigation ::slotted(*) {
     display: contents;
     font-size: var(--syn-font-size-x-large);
   }
 
-  /**
-   * The top navigation is displayed underneath the primary content area
-   */
   .header__top-navigation {
     padding: 0 var(--syn-spacing-large);
   }

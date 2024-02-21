@@ -135,9 +135,9 @@ importers:
       '@synergy-design-system/react':
         specifier: workspace:*
         version: link:../../react
-      '@synergy-design-system/tokens':
-        specifier: workspace:*
-        version: link:../../tokens
+      '@synergy-design-system/styles':
+        specifier: workspace:^
+        version: link:../../styles
     devDependencies:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*

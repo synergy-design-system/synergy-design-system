@@ -21,7 +21,7 @@
 /**
  * Utility class for setting a medium body copy font style
  * This is the default style for elements for synergy applications
- * May be combined with weight classes defined above
+ * May be combined with weight classes defined below
  */
 .syn-body-medium {
   font: var(--syn-body-medium-regular);

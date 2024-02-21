@@ -3,13 +3,6 @@ html, body {
   padding: 0;
 }
 
-body {
-  background: var(--syn-color-neutral-50);
-  color: var(--syn-color-neutral-900);
-  font-family: var(--syn-font-sans);
-  font-size: var(--syn-font-size-medium);
-}
-
 header {
   align-items: center;
   background: var(--syn-color-neutral-50);
@@ -34,30 +27,6 @@ main {
 }
 
 /* Form Wrappers */
-.syn-fieldset {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--syn-spacing-large);
-  margin: 0 0 var(--syn-spacing-2x-large) 0;
-  padding: 0;
-}
-
-form syn-divider {
-  --spacing: var(--syn-spacing-2x-large);
-}
-
-form .syn-fieldset:last-of-type {
-  margin-bottom: 0;
-}
-
-.syn-legend {
-  font-size: var(--syn-font-size-large);
-  font-weight: var(--syn-font-weight-bold);
-  line-height: var(--syn-line-height-normal);
-  margin-bottom: var(--syn-spacing-medium);
-}
-
 .syn-submit-buttons {
   align-items: center;
   display: flex;

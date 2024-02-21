@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import type { SynChangeEvent, SynSwitch } from '@synergy-design-system/components';
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/styles';
 import './app.css';
 import '@synergy-design-system/components';
 

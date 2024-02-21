@@ -88,12 +88,20 @@ export const Default = {
     ${generateTemplate({ args })}
     <syn-button class="drawer-default-story-opener">Open Drawer</syn-button>
     <script type="module">
-      const openButton = document.querySelector('.drawer-default-story-opener');
-      const drawer = openButton.parentElement.querySelector('syn-drawer')
-      const closeButton = drawer.querySelector('syn-button[variant="filled"]');
+    const openButtons = document.querySelectorAll('.drawer-default-story-opener');
 
-      openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+    // Make sure to add each event only once!
+    Array.from(openButtons).forEach((btn) => {
+      if (!btn.classList.contains('story-loaded')) {
+        const drawer = btn.parentElement.querySelector('syn-drawer')
+        const closeButton = drawer.querySelector('syn-button[variant="filled"]');
+
+        btn.addEventListener('click', () => drawer.show());
+        closeButton.addEventListener('click', () => drawer.hide());
+
+        btn.classList.add('story-loaded');
+      }
+    });
     </script>
   `,
 } as Story;

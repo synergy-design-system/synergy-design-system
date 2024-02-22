@@ -333,7 +333,7 @@ export const HeaderActions: Story = {
       <syn-icon-button
         class="new-window"
         slot="header-actions"
-        name="wallpaper"
+        name="open_in_new"
         label="Arrow Up"
       ></syn-icon-button>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -7,7 +7,7 @@
   "exports": {
     ".": "./dist/all.css",
     "./css/*": "./dist/*",
-    "./src/*": "./src/*"
+    "./modules/*": "./src/modules/*"
   },
   "files": [
     "dist",

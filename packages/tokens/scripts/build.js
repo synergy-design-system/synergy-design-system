@@ -6,6 +6,7 @@ import {
   addColorName,
   addFallbackFonts,
   addQuotesForStrings,
+  adjustFontStylesValues,
   calc,
   log,
 } from './transforms/index.js';
@@ -30,6 +31,7 @@ StyleDictionary.registerTransform(calc);
 StyleDictionary.registerTransform(addColorName);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addQuotesForStrings);
+StyleDictionary.registerTransform(adjustFontStylesValues);
 StyleDictionary.registerTransform(log);
 
 StyleDictionary.registerFormat(createCssVariables(config.prefix));
@@ -79,6 +81,7 @@ StyleDictionary.registerFileHeader({
           'syn/add-fallback-fonts',
           'syn/calc',
           'syn/add-missing-quotes-for-strings',
+          'syn/adjust-font-styles-values',
         ],
       },
     },

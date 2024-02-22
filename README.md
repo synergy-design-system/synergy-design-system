@@ -22,6 +22,7 @@ This repository is comprised of several sub-packages.
 |package|description|
 |--|--|
 |tokens|design tokens which contain basic design variables for colors, spacings, sizes, fonts etc. They are always in sync with the Figma library, and the base for CSS styles|
+|styles|CSS utility package, providing default styles for typography, theming and other useful utilities|
 |assets|icons and logos|
 |components|user interface components based on custom elements and lit|
 |docs|storybook documentation showing all components and their properties in an interative environment |

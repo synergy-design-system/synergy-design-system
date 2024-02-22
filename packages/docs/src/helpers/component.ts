@@ -3,9 +3,9 @@
 
 /* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
-import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
+import { getWcStorybookHelpers } from "wc-storybook-helpers";
+// import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import format from 'html-format';
 import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
@@ -578,7 +578,7 @@ export const storybookUtilities = {
       .replace(/<style>\n<\/style>/g, '')
       .replace(/<script>\s*component = document\.querySelector\('(.+?)'\);\s*<\/script>/g, '');
     // return templateInnerHTML;
-    return format(templateInnerHTML);
+    return templateInnerHTML;
   },
 };
 

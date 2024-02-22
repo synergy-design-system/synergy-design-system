@@ -1633,11 +1633,11 @@
       },
       "options": {
         "title": {
-          "value": "Options Menu",
+          "value": "Meta Navigation",
           "type": "text"
         },
         "description": {
-          "value": "Use the Option Menu slot to add additional functionalities to your application. Please be aware of the guidelines regarding the order of icons in the toolbar.\nImportant: The Options Menu doesn’t handle any responsive behaviour, e. g. if there is not enough space for all items in different screen sizes. You have to make sure yourself, that your app works correctly and e. g. move elements into the footer of the side navigation or inside a “more” button in the Options Menu.",
+          "value": "Use the Meta Navigation slot to add additional functionalities to your application. Please be aware of the guidelines regarding the order of icons in the toolbar.\nImportant: The Options Menu doesn’t handle any responsive behaviour, e. g. if there is not enough space for all items in different screen sizes. You have to make sure yourself, that your app works correctly and e. g. move elements into the footer of the side navigation or inside a “more” button in the Options Menu.",
           "type": "text"
         }
       },

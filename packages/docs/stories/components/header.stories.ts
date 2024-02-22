@@ -85,7 +85,7 @@ export const MetaNavigation: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('header', 'meta-navigation'),
+        story: generateStoryDescription('header', 'options'),
       },
     },
   },
@@ -101,48 +101,11 @@ export const MetaNavigation: Story = {
   `,
 } as Story;
 
-export const Navigation: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('header', 'top-navigation'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-header>
-      App with Navigation
-      <nav class="demo-header-navigation" slot="navigation">
-        <syn-button variant="text">Domains</syn-button>
-        <syn-button variant="text">Projects</syn-button>
-        <syn-button variant="text">Trainings</syn-button>
-        <syn-button variant="text">Evaluations</syn-button>
-        <syn-button variant="text">Deployments</syn-button>
-      </nav>
-    </syn-header>
-    <style>
-    .demo-header-navigation {
-      padding: 0;
-    }
-
-    /**
-     * The slot itself has a padding of --syn-spacing-large,
-     * so we have to adjust the button position slightly to make it
-     * appear as it has the same left alignment as the logo
-     */
-    .demo-header-navigation syn-button:first-of-type {
-      margin-left: calc(var(--syn-spacing-medium) * -1);
-    }
-    </style>
-  `,
-} as Story;
-
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   Logo,
   MetaNavigation,
-  Navigation,
 }, {
   heightPx: 150,
 });

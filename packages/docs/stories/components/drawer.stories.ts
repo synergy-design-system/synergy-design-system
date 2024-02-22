@@ -36,6 +36,9 @@ export default meta;
 
 type Story = StoryObj;
 
+// Helper function that closes all drawers on the overview page
+const closeAllDrawers = 'document.querySelectorAll(\'syn-drawer\').forEach(d => {d.hide(); })';
+
 export const Default = {
   args: overrideArgs([
     {
@@ -97,7 +100,7 @@ export const Default = {
         const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
         btn.addEventListener('click', () => drawer.show());
-        closeButton.addEventListener('click', () => drawer.hide());
+        closeButton.addEventListener('click', () => ${closeAllDrawers});
 
         btn.classList.add('story-loaded');
       }
@@ -131,7 +134,7 @@ export const SlideInFromStart: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -161,7 +164,7 @@ export const SlideInFromTop: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -191,7 +194,7 @@ export const SlideInFromBottom: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -227,7 +230,7 @@ export const ContainedToAnElement: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => (drawer.open = !drawer.open));
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -257,7 +260,7 @@ export const CustomSize: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -312,7 +315,7 @@ export const Scrolling: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };
@@ -349,7 +352,7 @@ export const HeaderActions: Story = {
       const newWindowButton = drawer.querySelector('.new-window');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
       newWindowButton.addEventListener('click', () => window.open(location.href));
     </script>
   `,
@@ -387,7 +390,7 @@ export const PreventingTheDrawerFromClosing: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
 
       // Prevent the drawer from closing when the user clicks on the overlay
       drawer.addEventListener('syn-request-close', event => {
@@ -430,7 +433,7 @@ export const CustomizingInitialFocus: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => drawer.hide());
+      closeButton.addEventListener('click', () => ${closeAllDrawers});
     </script>
   `,
 };

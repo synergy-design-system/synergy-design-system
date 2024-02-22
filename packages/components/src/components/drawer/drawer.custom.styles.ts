@@ -33,19 +33,19 @@ export default css`
    * depending on the position of the drawer itself
    */
   .drawer--end .drawer__panel {
-    border-left-width: 1px;
+    border-left-width: var(--syn-border-width-small);
   }
 
   .drawer--start .drawer__panel {
-    border-right-width: 1px;
+    border-right-width: var(--syn-border-width-small);
   }
 
   .drawer--top .drawer__panel {
-    border-bottom-width: 1px;
+    border-bottom-width: var(--syn-border-width-small);
   }
 
   .drawer--bottom .drawer__panel {
-    border-top-width: 1px;
+    border-top-width: var(--syn-border-width-small);
   }
 
   .drawer__header-actions {

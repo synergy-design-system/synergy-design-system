@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.4.0...tokens/1.5.0) (2024-02-22)
+
+
+### Features
+
+* ✨ adjust the size tokens for syn-Input and syn-Button ([#324](https://github.com/synergy-design-system/synergy-design-system/issues/324)) ([ac00d58](https://github.com/synergy-design-system/synergy-design-system/commit/ac00d58db394490e852c627f90209e37bfb8a4bb))
+
 # [@synergy-design-system/tokens-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.2...tokens/1.4.0) (2024-02-15)
 
 

@@ -5,17 +5,10 @@
     "value-keyword-case": [
       "lower",
       {
-        "ignoreProperties": [
-          "/font/",
-          "/body/",
-          "/heading/"
-        ]
+        "ignoreProperties": ["/font/", "/body/", "/heading/"]
       }
     ],
-    "order/order": [
-      "declarations",
-      "custom-properties"
-    ],
+    "order/order": ["declarations", "custom-properties"],
     "color-function-notation": "legacy",
     "custom-property-empty-line-before": null,
     "alpha-value-notation": "number"

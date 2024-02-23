@@ -464,15 +464,6 @@
   --syn-input-focus-ring-color: hsl(198.6 88.7% 48.4% / 40%);
   --syn-input-focus-ring-offset: 0;
 
-  --syn-input-filled-background-color: var(--syn-color-neutral-100);
-  --syn-input-filled-background-color-hover: var(--syn-color-neutral-100);
-  --syn-input-filled-background-color-focus: var(--syn-color-neutral-100);
-  --syn-input-filled-background-color-disabled: var(--syn-color-neutral-100);
-  --syn-input-filled-color: var(--syn-color-neutral-800);
-  --syn-input-filled-color-hover: var(--syn-color-neutral-800);
-  --syn-input-filled-color-focus: var(--syn-color-neutral-700);
-  --syn-input-filled-color-disabled: var(--syn-color-neutral-800);
-
   /* Labels */
   --syn-input-label-font-size-small: var(--syn-font-size-small);
   --syn-input-label-font-size-medium: var(--syn-font-size-medium);

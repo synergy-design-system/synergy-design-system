@@ -330,11 +330,11 @@
    * Elevations
    */
 
-  --syn-shadow-x-small: 0 1px 2px hsl(240 3.8% 46.1% / 6%);
-  --syn-shadow-small: 0 1px 2px hsl(240 3.8% 46.1% / 12%);
-  --syn-shadow-medium: 0 2px 4px hsl(240 3.8% 46.1% / 12%);
-  --syn-shadow-large: 0 2px 8px hsl(240 3.8% 46.1% / 12%);
-  --syn-shadow-x-large: 0 4px 16px hsl(240 3.8% 46.1% / 12%);
+  --syn-shadow-x-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.06);
+  --syn-shadow-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.12);
+  --syn-shadow-medium: 0 2px 4px hsla(240, 3.8%, 46.1%, 0.12);
+  --syn-shadow-large: 0 2px 8px hsla(240, 3.8%, 46.1%, 0.12);
+  --syn-shadow-x-large: 0 4px 16px hsla(240, 3.8%, 46.1%, 0.12);
 
   /*
    * Spacings
@@ -461,7 +461,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-large: var(--syn-spacing-large);
 
-  --syn-input-focus-ring-color: hsl(198.6 88.7% 48.4% / 40%);
+  --syn-input-focus-ring-color: hsla(198.6, 88.7%, 48.4%, 0.4);
   --syn-input-focus-ring-offset: 0;
 
   /* Labels */
@@ -485,7 +485,7 @@
    * Overlays
    */
 
-  --syn-overlay-background-color: hsl(240 3.8% 46.1% / 33%);
+  --syn-overlay-background-color: hsla(240, 3.8%, 46.1%, 0.33);
 
   /*
    * Panels

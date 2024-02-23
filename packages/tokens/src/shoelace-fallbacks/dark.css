@@ -330,11 +330,11 @@
    * Elevations
    */
 
-  --syn-shadow-x-small: 0 1px 2px rgb(0 0 0 / 18%);
-  --syn-shadow-small: 0 1px 2px rgb(0 0 0 / 24%);
-  --syn-shadow-medium: 0 2px 4px rgb(0 0 0 / 24%);
-  --syn-shadow-large: 0 2px 8px rgb(0 0 0 / 24%);
-  --syn-shadow-x-large: 0 4px 16px rgb(0 0 0 / 24%);
+  --syn-shadow-x-small: 0 1px 2px rgba(0, 0, 0, 0.18);
+  --syn-shadow-small: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --syn-shadow-medium: 0 2px 4px rgba(0, 0, 0, 0.24);
+  --syn-shadow-large: 0 2px 8px rgba(0, 0, 0, 0.24);
+  --syn-shadow-x-large: 0 4px 16px rgba(0, 0, 0, 0.24);
 
   /*
    * Spacings
@@ -461,7 +461,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-large: var(--syn-spacing-large);
 
-  --syn-input-focus-ring-color: hsl(198.6 88.7% 48.4% / 40%);
+  --syn-input-focus-ring-color: hsla(198.6, 88.7%, 48.4%, 0.4);
   --syn-input-focus-ring-offset: 0;
 
   /* Labels */
@@ -485,7 +485,7 @@
    * Overlays
    */
 
-  --syn-overlay-background-color: hsl(0 0% 0% / 43%);
+  --syn-overlay-background-color: hsla(0, 0%, 0%, 0.43);
 
   /*
    * Panels

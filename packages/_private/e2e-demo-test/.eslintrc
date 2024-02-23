@@ -11,9 +11,9 @@
     }
   ],
   "rules": {
-      "@typescript-eslint/await-thenable": "off",
-      "import/no-relative-packages": "off"
-    },  
+    "@typescript-eslint/await-thenable": "off",
+    "import/no-relative-packages": "off"
+  },
   "parserOptions": {
     "project": "./tsconfig.json"
   }

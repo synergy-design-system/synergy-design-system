@@ -93,7 +93,11 @@ test('Form submit', async ({ page }) => {
   let submitted = false;
   page.on('dialog', dialog => {
     submitted = true;
-    dialog.accept();  //eslint-disable-line
+    dialog
+      .accept()
+      .catch(() => {
+        submitted = false;
+      });
   });
 
   // check initial state

@@ -1,5 +1,5 @@
 diff --git a/dist/cem-utilities.js b/dist/cem-utilities.js
-index 3c02b5140faf8b9943adeb5921a7cd0df45e7562..2de3391e841ad25ddbfcbcf0f3362e18f520ca84 100644
+index 3c02b5140faf8b9943adeb5921a7cd0df45e7562..b9663266952cca759d36694fb749ad7a433a678b 100644
 --- a/dist/cem-utilities.js
 +++ b/dist/cem-utilities.js
 @@ -145,6 +145,8 @@ export function getCssParts(component) {
@@ -62,15 +62,24 @@ index 3c02b5140faf8b9943adeb5921a7cd0df45e7562..2de3391e841ad25ddbfcbcf0f3362e18
  }
  function getDefaultValue(controlType, defaultValue) {
      const initialValue = removeQuoteWrappers(defaultValue);
-@@ -203,7 +211,11 @@ function getControl(type, isAttribute = false) {
-         return "date";
+@@ -196,14 +204,17 @@ function getControl(type, isAttribute = false) {
+     if (hasType(options, "boolean")) {
+         return "boolean";
+     }
+-    if (hasType(options, "number") && !hasType(options, "string")) {
+-        return "number";
++    if (hasType(options, "number") && !hasType(options, "string") && options.every((x) => !x.includes("'"))) {
++          return "number";
+     }
+     if (hasType(options, "date")) {
+-        return "date";
++          return "date";
      }
      // if types is a list of string options
 -    return options.length > 1 ? "select" : "text";
 +    if (options.length > 1 && options.every((x) => x.includes("'"))){
 +        return "select";
 +    }
-+
 +    return "text";
  }
  function isObject(type) {

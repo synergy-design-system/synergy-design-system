@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { DocTokenText } from '../../src/DocTokenText.tsx';
 
 import {
   getCSSToken,
@@ -8,21 +9,13 @@ import {
 
 <Meta title="Tokens/Typography" />
 
-# Text Styles
+# <DocTokenText path="tokens.typography.title" />
 
-The Synergy text styles are made up of two categories to cover the range of different needs in designs: Headings and Body / UI text.
-Unless explicitly mentioned otherwise in a component, Synergy recommends using sentence case capitalization throughout your applications.
+## <DocTokenText path="tokens.typography.text-styles.title" />
+<p><DocTokenText path="tokens.typography.text-styles.description" /></p>
 
-## Headings
-
-Heading styles come in a range of sizes, and can be used in a range of contexts, such as:
-
-- building page hierarchy,
-- helping users scan large chunks of text,
-- providing a title to a page or piece of content,
-- as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).
-
-Our heading styles are consistently bold, to better address the visual hierarchy.
+## <DocTokenText path="tokens.typography.text-styles.headings.title" />
+<p><DocTokenText path="tokens.typography.text-styles.headings.description" /></p>
 
 <table>
   <thead>
@@ -56,16 +49,8 @@ Our heading styles are consistently bold, to better address the visual hierarchy
   </tbody>
 </table>
 
-## Body and UI text
-
-Body text is used for long-form content where a paragraph or multiple lines of text are required.
-Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing.
-Inline links sit within body text styles and inherit the same font values. 
-UI text is text used in UI components and uses the same text stylings.
-
-The default font size is medium (16 px).
-Synergy supports three additional font sizes for body copy.
-It is also possible to format the text bold or semibold for certain text passages and UI elements such as label.
+## <DocTokenText path="tokens.typography.text-styles.body.title" />
+<p><DocTokenText path="tokens.typography.text-styles.body.description" /></p>
 
 <table>
   <thead>

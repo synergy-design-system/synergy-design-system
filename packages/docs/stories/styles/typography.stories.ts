@@ -38,6 +38,7 @@ const meta: Meta = {
       control: { type: 'select' },
       description: 'CSS Font definitions for body text and headlines.',
       options: [
+        '',
         'syn-body-x-small',
         'syn-body-small',
         'syn-body-medium',
@@ -57,6 +58,7 @@ const meta: Meta = {
       control: { type: 'select' },
       description: 'The font weight to apply',
       options: [
+        '',
         'syn-weight-normal',
         'syn-weight-semibold',
         'syn-weight-bold',

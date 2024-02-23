@@ -3,14 +3,16 @@
 
 /* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
-import { getWcStorybookHelpers } from "wc-storybook-helpers";
-// import { getWcStorybookHelpers } from '@mariohamann/wc-storybook-helpers';
+import { getWcStorybookHelpers, setWcStorybookHelpersConfig } from "wc-storybook-helpers";
+import { getComponentByTagName } from 'wc-storybook-helpers/dist/cem-utilities.js';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { sentenceCase } from 'change-case';
 import type { TemplateResult } from 'lit';
+
+setWcStorybookHelpersConfig({ hideArgRef: true, hideScriptTag: true });
 
 export default async function loadCustomElements() {
   await fetch('./custom-elements.json');
@@ -50,9 +52,9 @@ await loadCustomElements();
  */
 export const storybookDefaults = (customElementTag: string): any => {
   const {
-    args, events, argTypes: initialArgTypes, manifest,
-  } = getWcStorybookHelpers(customElementTag);
-
+    args, events, argTypes: initialArgTypes,
+  } = getWcStorybookHelpers(customElementTag,);
+  const manifest = getComponentByTagName(customElementTag,( window as any).__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__);
   const argTypes = Object.fromEntries(
     Object
       .entries(initialArgTypes)
@@ -130,6 +132,7 @@ export const storybookDefaults = (customElementTag: string): any => {
         return acc;
       }, {}),
     };
+
 
     return output;
   };

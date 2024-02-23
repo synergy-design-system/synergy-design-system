@@ -63,4 +63,20 @@ export class SynHeaderComponent {
   get label() {
     return this._el.label;
   }
+
+  /**
+* The logo-label attribute can be used as fallback description text
+in cases where the logo cannot be loaded.
+This only works for the `syn-icon` that gets slotted into the `navigation` as fallback.
+If custom content is provided in the `logo` slot,
+please take care that it is accessible by yourself!
+ */
+  @Input()
+  set logoLabel(v: SynHeader['logoLabel']) {
+    this._ngZone.runOutsideAngular(() => (this._el.logoLabel = v));
+  }
+
+  get logoLabel() {
+    return this._el.logoLabel;
+  }
 }

@@ -7,7 +7,7 @@ import { SynVueHeader } from '@synergy-design-system/vue';
 <template>
   <SynVueHeader>
     @synergy-design-system/vue Form Demo
-    <ThemeSwitch slot="option-menu" />
+    <ThemeSwitch slot="meta-navigation" />
   </SynVueHeader>
 
   <main>

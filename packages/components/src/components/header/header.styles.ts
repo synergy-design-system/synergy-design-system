@@ -38,16 +38,17 @@ export default css`
    * The logo slot includes the application or company logo
    */
   .header__logo ::slotted(*),
-  .header__logo svg {
+  .header__logo syn-icon {
     display: block;
   }
 
   /**
-   * Styles for the default logo.
-   * @todo: Will have to be adjusted after using <syn-icon />
+   * Styles for the default logo. This makes sure the default SICK logo has the correct size and color
    */
-  .header__logo svg {
-    max-height: 32px;
+  .header__logo syn-icon,
+  .header__logo syn-icon::part(svg) {
+    color: var(--syn-color-primary-600);
+    height: 32px;
     width: auto;
   }
 

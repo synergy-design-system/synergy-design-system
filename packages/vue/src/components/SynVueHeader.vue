@@ -47,6 +47,15 @@ const props = defineProps<{
 * If you need to display HTML, use the `label` slot instead.
  */
   'label'?: SynHeader['label'];
+
+  /**
+* The logo-label attribute can be used as fallback description text
+in cases where the logo cannot be loaded.
+This only works for the `syn-icon` that gets slotted into the `navigation` as fallback.
+If custom content is provided in the `logo` slot,
+please take care that it is accessible by yourself!
+ */
+  'logoLabel'?: SynHeader['logoLabel'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

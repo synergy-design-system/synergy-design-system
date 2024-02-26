@@ -369,6 +369,14 @@
     "circle": {
       "value": "9999px",
       "type": "borderRadius"
+    },
+    "small": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "medium": {
+      "value": "8px",
+      "type": "borderRadius"
     }
   },
   "dimension": {

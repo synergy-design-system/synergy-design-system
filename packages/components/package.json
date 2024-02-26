@@ -78,7 +78,6 @@
     "change-case": "^5.4.2",
     "command-line-args": "^5.2.1",
     "comment-parser": "^1.4.1",
-    "custom-element-jet-brains-integration": "^1.4.3",
     "custom-element-vs-code-integration": "^1.2.2",
     "del": "^7.1.0",
     "esbuild": "^0.20.0",
@@ -174,6 +173,5 @@
     "@shoelace-style/localize": "^3.1.2",
     "composed-offset-position": "^0.0.4",
     "lit": "^3.1.2"
-  },
-  "web-types": "./dist/web-types.json"
+  }
 }

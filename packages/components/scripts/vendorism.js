@@ -7,7 +7,6 @@ import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
   vendorButton,
-  vendorCustomElementsManifest,
   vendorIcon,
   vendorIconButton,
   vendorInput,
@@ -222,7 +221,6 @@ import customStyles from './${component}.custom.styles.js';`,
       },
       // specialized customizations
       vendorButton,
-      vendorCustomElementsManifest,
       vendorIconButton,
       vendorIcon,
       vendorInput,

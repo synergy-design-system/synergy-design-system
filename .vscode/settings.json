@@ -20,7 +20,6 @@
   ],
   "files.readonlyInclude": {
     "packages/angular/src/**": true,
-    "packages/components/custom-elements-manifest.config.js": true,
     "packages/components/src/components/button-group/button-group.component.ts": true,
     "packages/components/src/components/button-group/button-group.styles.ts": true,
     "packages/components/src/components/button-group/button-group.test.ts": true,

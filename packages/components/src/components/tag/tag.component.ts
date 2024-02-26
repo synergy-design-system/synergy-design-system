@@ -8,6 +8,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property } from 'lit/decorators.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './tag.styles.js';
@@ -31,7 +32,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart remove-button__base - The remove button's exported `base` part.
  */
 export default class SynTag extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private readonly localize = new LocalizeController(this);

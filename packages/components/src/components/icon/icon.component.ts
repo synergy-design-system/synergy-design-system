@@ -9,9 +9,9 @@ import { html } from 'lit';
 import { isTemplateResult } from 'lit/directive-helpers.js';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './icon.styles.js';
-
 import type { CSSResultGroup, HTMLTemplateResult } from 'lit';
 
 const CACHEABLE_ERROR = Symbol();
@@ -39,7 +39,7 @@ interface IconSource {
  * @csspart use - The <use> element generated when using `spriteSheet: true`
  */
 export default class SynIcon extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private initialRender = false;
 

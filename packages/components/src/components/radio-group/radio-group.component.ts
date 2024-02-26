@@ -15,6 +15,8 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
@@ -34,6 +36,7 @@ import type SynRadioButton from '../radio-button/radio-button.js';
  * @slot - The default slot where `<syn-radio>` or `<syn-radio-button>` elements are placed.
  * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
  *  attribute.
+ * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the radio group's selected value changes.
  * @event syn-input - Emitted when the radio group receives user input.
@@ -47,7 +50,7 @@ import type SynRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group__base - The button group's `base` part.
  */
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static dependencies = { 'syn-button-group': SynButtonGroup };
 
   protected readonly formControlController = new FormControlController(this);
@@ -224,7 +227,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
     this.hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'syn-radio-button');
 
-    if (!radios.some(radio => radio.checked)) {
+    if (radios.length > 0 && !radios.some(radio => radio.checked)) {
       if (this.hasButtonGroup) {
         const buttonRadio = radios[0].shadowRoot?.querySelector('button');
 

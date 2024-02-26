@@ -12,6 +12,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynSpinner from '../spinner/spinner.component.js';
@@ -44,7 +45,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
 export default class SynButton extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-spinner': SynSpinner

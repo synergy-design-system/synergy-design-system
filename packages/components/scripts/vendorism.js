@@ -78,7 +78,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.12.0';
+const shoelaceVersion = '2.14.0';
 
 // Command line options
 const optionDefinitions = [

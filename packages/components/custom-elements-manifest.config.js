@@ -7,6 +7,7 @@
 import * as path from 'path';
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
+import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'change-case';
 import commandLineArgs from 'command-line-args';
@@ -44,6 +45,7 @@ export default {
         customElementsManifest.package = { name, description, version, author, homepage, license };
       }
     },
+
     // Infer tag names because we no longer use @customElement decorators.
     {
       name: 'synergy-infer-tag-names',
@@ -72,6 +74,7 @@ export default {
         }
       }
     },
+
     // Parse custom jsDoc tags
     {
       name: 'synergy-custom-tags',
@@ -143,6 +146,7 @@ export default {
         }
       }
     },
+
     {
       name: 'synergy-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
@@ -161,6 +165,7 @@ export default {
         }
       }
     },
+
     {
       name: 'synergy-translate-module-paths',
       packageLinkPhase({ customElementsManifest }) {
@@ -197,6 +202,7 @@ export default {
         });
       }
     },
+
     // Generate custom VS Code data
     customElementVsCodePlugin({
       outdir,
@@ -208,6 +214,7 @@ export default {
         }
       ]
     }),
+
     customElementJetBrainsPlugin({
       outdir: './dist',
       excludeCss: true,
@@ -218,6 +225,12 @@ export default {
           url: `https://synergy.style/components/${tag.replace('syn-', '')}`
         };
       }
+    }),
+
+    customElementVuejsPlugin({
+      outdir: './dist/types/vue',
+      fileName: 'index.d.ts',
+      componentTypePath: (_, tag) => `../../components/${tag.replace('syn-', '')}/${tag.replace('syn-', '')}.component.js`
     })
   ]
 };

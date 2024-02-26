@@ -6,12 +6,9 @@
 /* eslint-disable */
 import { css } from 'lit';
 import customStyles from './tag.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: inline-block;
   }

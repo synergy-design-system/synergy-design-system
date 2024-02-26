@@ -22,7 +22,7 @@
 
 ## Overview
 
-Thank you for investing your time to contribute to our project.
+Thank you for investing your time to contribute to this project.
 We want to make sure to provide our users with a set of feature rich, high quality and easy to use web-components.
 To achieve this, we are using some common conventions when contributing features or components to this repository.
 

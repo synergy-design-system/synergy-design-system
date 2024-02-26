@@ -23,6 +23,7 @@ import '@synergy-design-system/components/components/switch/switch.js';
  * @since 2.0
  *
  * @slot - The switch's label.
+ * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when the control's checked state changes.
@@ -34,6 +35,7 @@ import '@synergy-design-system/components/components/switch/switch.js';
  * @csspart control - The control that houses the switch's thumb.
  * @csspart thumb - The switch's thumb.
  * @csspart label - The switch's label.
+ * @csspart form-control-help-text - The help text's wrapper.
  *
  * @cssproperty --width - The width of the switch.
  * @cssproperty --height - The height of the switch.
@@ -154,6 +156,19 @@ the same document or shadow root for this to work.
 
   get required() {
     return this._el.required;
+  }
+
+  /**
+* The switch's help text.
+* If you need to display HTML, use the `help-text` slot instead.
+ */
+  @Input()
+  set helpText(v: SynSwitch['helpText']) {
+    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+  }
+
+  get helpText() {
+    return this._el.helpText;
   }
 
   @Input()

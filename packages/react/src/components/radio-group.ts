@@ -24,6 +24,7 @@ Component.define('syn-radio-group');
  * @slot - The default slot where `<syn-radio>` or `<syn-radio-button>` elements are placed.
  * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
  *  attribute.
+ * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the radio group's selected value changes.
  * @event syn-input - Emitted when the radio group receives user input.

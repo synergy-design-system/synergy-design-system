@@ -5,19 +5,19 @@
  */
 
 .syn-scroll-lock {
-  padding-right: var(--syn-scroll-lock-size) !important;
   overflow: hidden !important;
+  padding-right: var(--syn-scroll-lock-size) !important;
 }
 
 .syn-toast-stack {
+  inset-inline-end: 0;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
   position: fixed;
   top: 0;
-  inset-inline-end: 0;
-  z-index: var(--syn-z-index-toast);
   width: 28rem;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
+  z-index: var(--syn-z-index-toast);
 }
 
 .syn-toast-stack syn-alert {

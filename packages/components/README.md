@@ -63,7 +63,7 @@ import "@synergy-design-system/tokens/themes/light.css";
 
 // Optional, but highly recommended:
 // Add the css utility functions.
-import "@synergy-design-system/components/src/themes/utility.css";
+import "@synergy-design-system/components/themes/utility.css";
 
 // This will load synergy.js via the exports map
 import "@synergy-design-system/components";
@@ -104,7 +104,7 @@ import "@synergy-design-system/tokens/themes/light.css";
 
 // Optional, but highly recommended:
 // Add the css utility functions.
-import "@synergy-design-system/components/src/themes/utility.css";
+import "@synergy-design-system/components/themes/utility.css";
 
 // This will only load and define the button itself
 import "@synergy-design-system/components/components/button/button.js";

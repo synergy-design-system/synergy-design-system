@@ -1599,6 +1599,108 @@
           "type": "text"
         }
       }
+    },
+    "nav-item": {
+      "default": {
+        "title": {
+          "value": "Navigation Item",
+          "type": "text"
+        },
+        "description": {
+          "value": "The navigation item is used to trigger page switches.",
+          "type": "text"
+        }
+      },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to change the content of a navigtion item.",
+          "type": "text"
+        }
+      },
+      "current": {
+        "title": {
+          "value": "Current",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "type": "text"
+        }
+      },
+      "nav-horizontal": {
+        "title": {
+          "value": "Horizontal Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "title": {
+          "value": "Prefix and suffix Slot",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
+          "type": "text"
+        }
+      },
+      "children": {
+        "title": {
+          "value": "Children closed / open (vertical only)",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the *children attribute to indicate that show a chevron. In development this will be handled automatically as soon as an element has children.:",
+          "type": "text"
+        }
+      },
+      "divider": {
+        "title": {
+          "value": "Divider",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
+          "type": "text"
+        }
+      },
+      "indentation": {
+        "title": {
+          "value": "Indentation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a navigation-item.",
+          "type": "text"
+        }
+      }
     }
   },
   "frameworks": {

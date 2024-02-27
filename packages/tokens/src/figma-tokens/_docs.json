@@ -1701,6 +1701,68 @@
           "type": "text"
         }
       }
+    },
+    "header": {
+      "default": {
+        "title": {
+          "value": "Header",
+          "type": "text"
+        },
+        "description": {
+          "value": "The header is used to indicate the name of the app, provide important actions in a toolbar and a navigation.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Label",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to change the app name.",
+          "type": "text"
+        }
+      },
+      "logo": {
+        "title": {
+          "value": "Logo",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the logo slot to change the app logo. Usually this is only needed in whitelabel solutions, when the SICK branding explicitly has to be hidden.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that a link in the logo has been focused by the keyboard interaction and that the link is ready to be navigated to.",
+          "type": "text"
+        }
+      },
+      "options": {
+        "title": {
+          "value": "Meta Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the Meta Navigation slot to add additional functionalities to your application. Please be aware of the guidelines regarding the order of icons in the toolbar.\nImportant: The Options Menu doesn’t handle any responsive behaviour, e. g. if there is not enough space for all items in different screen sizes. You have to make sure yourself, that your app works correctly and e. g. move elements into the footer of the side navigation or inside a “more” button in the Options Menu.",
+          "type": "text"
+        }
+      },
+      "navigation": {
+        "title": {
+          "value": "Top Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
+          "type": "text"
+        }
+      }
     }
   },
   "frameworks": {

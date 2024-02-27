@@ -296,7 +296,6 @@
       "input.filled.color-disabled": "S:50d5ea5eca1de474be32aa6343b7643c5cc40049,",
       "input.filled.color-hover": "S:5eefc6417572b45a2142265f8686ce798ac04e80,",
       "input.filled.color-focus": "S:bc4ba1f6b31a61949d3c4186b243633dba518ae6,"
-
     },
     "selectedTokenSets": {
       "globals": "source",

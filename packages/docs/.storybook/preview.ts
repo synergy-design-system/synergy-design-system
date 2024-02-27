@@ -3,7 +3,6 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import '@synergy-design-system/styles/css/all.css';
 import '../../components/src/synergy';
 
-import '../../tokens/src/shoelace-fallbacks/_utility.css';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';

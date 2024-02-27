@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
     "./components/*": "./dist/components/*",
     "./utilities/*": "./dist/utilities/*",
+    "./themes/*": "./dist/themes/*",
     "./translations/*": "./dist/translations/*"
   },
   "files": [

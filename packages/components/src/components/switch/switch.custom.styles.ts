@@ -31,6 +31,11 @@ export default css`
     padding: var(--syn-spacing-3x-small) 0;
   }
 
+  /* Hint: can be removed, if the padding stylings for sizes from above are removed */
+  .form-control--has-help-text .switch {
+    padding-bottom: 0;
+  }
+
   .switch__control {
     background-color: var(--syn-color-neutral-600);
     border: solid var(--syn-border-width-medium) var(--syn-color-neutral-600);

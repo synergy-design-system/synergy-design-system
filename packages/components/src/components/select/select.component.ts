@@ -19,11 +19,13 @@ import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
+import customStyles from './select.custom.styles.js';
 import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
@@ -75,7 +77,7 @@ import type SynOption from '../option/option.component.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  */
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-popup': SynPopup,

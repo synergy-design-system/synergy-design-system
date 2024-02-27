@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './input.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -286,7 +285,4 @@ export default css`
   input[type='number'] {
     -moz-appearance: textfield;
   }
-
-  ${customStyles}
 `;
-

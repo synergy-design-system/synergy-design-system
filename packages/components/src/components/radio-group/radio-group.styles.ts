@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './radio-group.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -40,7 +39,4 @@ export default css`
     white-space: nowrap;
     border: 0;
   }
-
-  ${customStyles}
 `;
-

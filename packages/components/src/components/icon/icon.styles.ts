@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './icon.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -21,7 +20,4 @@ export default css`
     height: 100%;
     width: 100%;
   }
-
-  ${customStyles}
 `;
-

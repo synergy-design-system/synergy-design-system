@@ -188,32 +188,67 @@ const config = {
           path,
         };
       },
-      // add custom styles to the end of `${component}.styles.ts`
+      // create a custom styles file `${component}.custom.styles.ts` if it doesn't exist
       (path, content) => {
-        let newContent;
         [...components, 'form-control'].forEach((component) => {
           if (optimizePathForWindows(path).includes(`/${component}.styles.ts`)) {
-            newContent = content
-              .replace(
-                // eslint-disable-next-line @typescript-eslint/quotes
-                `import { css } from 'lit';`,
-                `import { css } from 'lit';
-import customStyles from './${component}.custom.styles.js';`,
-              )
-              .replace(
-                '}\n`;',
-                // eslint-disable-next-line @typescript-eslint/quotes
-                `}\n\n  $\{customStyles}\n\`;\n`,
-              );
-
-            // create file if it doesn't exist
             const customStylesPath = path.replace(`${component}.styles.ts`, `${component}.custom.styles.ts`);
             if (!fs.existsSync(customStylesPath)) {
               fs.writeFileSync(customStylesPath, 'import { css } from \'lit\';\n\nexport default css`\n  /* Write custom CSS here */\n`;\n');
             }
           }
         });
+        return {
+          content,
+          path,
+        };
+      },
+      // import the custom style file in the component into the style array
+      (path, content) => {
+        let newContent;
+        [...components].forEach((component) => {
+          if (optimizePathForWindows(path).includes(`/${component}.component.ts`)) {
+            const customStylesPath = path.replace(`${component}.component.ts`, `${component}.custom.styles.ts`);
+            if (fs.existsSync(customStylesPath)) {
+              newContent = content
+                .replace(
+                  `import styles from './${component}.styles.js';`,
+                  `import styles from './${component}.styles.js';\nimport customStyles from './${component}.custom.styles.js';`,
+                );
 
+              // TODO: Can be removed as soon as following bug is fixed in shoelace (https://github.com/shoelace-style/shoelace/issues/1896) (our issue https://github.com/synergy-design-system/synergy-design-system/issues/347)
+              if (component === 'checkbox') {
+                newContent = newContent
+                  .replace(
+                    `import styles from './${component}.styles.js';`,
+                    `import styles from './${component}.styles.js';\nimport formControlStyles from \'../../styles/form-control.styles.js\';`,
+                  );
+              }
+
+              newContent = newContent
+              .replace(
+                'import formControlStyles from \'../../styles/form-control.styles.js\';',
+                'import formControlStyles from \'../../styles/form-control.styles.js\';\nimport formControlCustomStyles from \'../../styles/form-control.custom.styles.js\';',
+                );
+                
+              // We need to respect the order of the styles! Our custom styles need to be
+              // included last, so we will override the shoelace styling
+              const regex = /static styles: CSSResultGroup = \[([^\]]+)\]/;
+              newContent = newContent.replace(regex, (_, value) => {
+                let styleValues = value;
+                // TODO: remove this if clause as soon as following bug is fixed in shoelace (https://github.com/shoelace-style/shoelace/issues/1896) (our issue https://github.com/synergy-design-system/synergy-design-system/issues/347)
+                if (component === 'checkbox') {
+                  styleValues += ', formControlStyles';
+                }
+
+                if (styleValues.includes('formControlStyles')) {
+                  styleValues += ', formControlCustomStyles';
+                }
+                return `static styles: CSSResultGroup = [${styleValues}, customStyles]`;
+              });
+            }
+          }
+        });
         return {
           content: newContent,
           path,

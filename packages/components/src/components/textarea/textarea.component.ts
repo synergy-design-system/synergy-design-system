@@ -15,8 +15,10 @@ import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './textarea.styles.js';
+import customStyles from './textarea.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 
@@ -43,7 +45,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart textarea - The internal `<textarea>` control.
  */
 export default class SynTextarea extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']

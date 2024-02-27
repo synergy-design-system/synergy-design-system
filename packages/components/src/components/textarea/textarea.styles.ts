@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './textarea.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -173,7 +172,4 @@ export default css`
     resize: none;
     overflow-y: hidden;
   }
-
-  ${customStyles}
 `;
-

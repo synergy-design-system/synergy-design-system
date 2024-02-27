@@ -13,6 +13,7 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './option.styles.js';
+import customStyles from './option.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -34,7 +35,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart suffix - The container that wraps the suffix.
  */
 export default class SynOption extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private cachedTextLabel: string;

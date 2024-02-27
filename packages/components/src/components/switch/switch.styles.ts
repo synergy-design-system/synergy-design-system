@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './switch.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -172,7 +171,4 @@ export default css`
       background-color: ButtonText;
     }
   }
-
-  ${customStyles}
 `;
-

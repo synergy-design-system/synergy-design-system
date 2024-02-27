@@ -12,6 +12,7 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './tag.styles.js';
+import customStyles from './tag.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -32,7 +33,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart remove-button__base - The remove button's exported `base` part.
  */
 export default class SynTag extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private readonly localize = new LocalizeController(this);

@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './button.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -364,7 +363,4 @@ export default css`
   :host(.syn-button-group__button[checked]) {
     z-index: 2;
   }
-
-  ${customStyles}
 `;
-

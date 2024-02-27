@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './icon-button.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -55,7 +54,4 @@ export default css`
   .icon-button__icon {
     pointer-events: none;
   }
-
-  ${customStyles}
 `;
-

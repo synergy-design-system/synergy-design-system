@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './divider.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -27,7 +26,4 @@ export default css`
     border-left: solid var(--width) var(--color);
     margin: 0 var(--spacing);
   }
-
-  ${customStyles}
 `;
-

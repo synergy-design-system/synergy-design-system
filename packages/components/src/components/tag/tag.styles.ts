@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './tag.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -61,7 +60,4 @@ export default css`
   }
 
   
-
-  ${customStyles}
 `;
-

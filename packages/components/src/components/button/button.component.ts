@@ -17,6 +17,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynSpinner from '../spinner/spinner.component.js';
 import styles from './button.styles.js';
+import customStyles from './button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 
@@ -45,7 +46,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
 export default class SynButton extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-spinner': SynSpinner

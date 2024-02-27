@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './radio.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -120,7 +119,4 @@ export default css`
     user-select: none;
     -webkit-user-select: none;
   }
-
-  ${customStyles}
 `;
-

@@ -5,7 +5,6 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './select.custom.styles.js';
 
 export default css`
 	/* stylelint-disable */
@@ -294,7 +293,4 @@ export default css`
     padding-block: var(--syn-spacing-x-small);
     padding-inline: var(--syn-spacing-x-large);
   }
-
-  ${customStyles}
 `;
-

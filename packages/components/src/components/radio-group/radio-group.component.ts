@@ -17,9 +17,11 @@ import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
+import customStyles from './radio-group.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
@@ -50,7 +52,7 @@ import type SynRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group__base - The button group's `base` part.
  */
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-button-group': SynButtonGroup };
 
   protected readonly formControlController = new FormControlController(this);

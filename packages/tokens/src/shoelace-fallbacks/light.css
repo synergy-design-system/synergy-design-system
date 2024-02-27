@@ -491,20 +491,6 @@
   --syn-toggle-size-large: 1.375rem; /* 22px */
 
   /*
-   * Overlays
-   */
-
-  --syn-overlay-background-color: hsl(240 3.8% 46.1% / 33%);
-
-  /*
-   * Panels
-   */
-
-  --syn-panel-background-color: var(--syn-color-neutral-0);
-  --syn-panel-border-color: var(--syn-color-neutral-300);
-  --syn-panel-border-width: 1px;
-
-  /*
    * Tooltips
    */
 

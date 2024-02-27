@@ -7,6 +7,7 @@ export { SynButtonComponent } from './button.component';
 export { SynButtonGroupComponent } from './button-group.component';
 export { SynCheckboxComponent } from './checkbox.component';
 export { SynDividerComponent } from './divider.component';
+export { SynDrawerComponent } from './drawer.component';
 export { SynHeaderComponent } from './header.component';
 export { SynIconButtonComponent } from './icon-button.component';
 export { SynIconComponent } from './icon.component';

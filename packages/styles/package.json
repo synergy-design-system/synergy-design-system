@@ -1,0 +1,120 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "CSS Utility classes and styles for the Synergy Design System",
+  "exports": {
+    ".": "./dist/all.css",
+    "./css/*": "./dist/*",
+    "./modules/*": "./src/modules/*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "CSS Utilities",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "main": "./dist/app.css",
+  "name": "@synergy-design-system/styles",
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release/tokens): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/styles"
+  },
+  "scripts": {
+    "start": "pnpm build:postcss",
+    "build:watch": "pnpm build:postcss --watch",
+    "build:clean": "rimraf dist",
+    "build:postcss": "postcss src/outputs/**/*.css --base src/outputs --dir dist",
+    "build": "pnpm build:clean && pnpm build:postcss",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
+    "release": "semantic-release  --tagFormat 'styles/${version}' -e semantic-release-monorepo",
+    "release.dry": "semantic-release -b feat/269-add-css-utility-package --dry-run --tagFormat 'styles/${version}' -e semantic-release-monorepo"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "eslint": "^8.56.0",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^16.0.0",
+    "rimraf": "^5.0.5",
+    "semantic-release": "^19.0.5",
+    "semantic-release-monorepo": "7.0.5",
+    "stylelint": "^16.2.1"
+  },
+  "dependencies": {
+    "@synergy-design-system/tokens": "workspace:*"
+  }
+}

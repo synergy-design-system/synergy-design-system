@@ -1,0 +1,85 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { DocTokenText } from '../../src/DocTokenText.tsx';
+
+import {
+  getCSSToken,
+  getSASSToken,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Typography" />
+
+# <DocTokenText path="tokens.typography.title" />
+
+## <DocTokenText path="tokens.typography.text-styles.title" />
+<p><DocTokenText path="tokens.typography.text-styles.description" /></p>
+
+## <DocTokenText path="tokens.typography.text-styles.headings.title" />
+<p><DocTokenText path="tokens.typography.text-styles.headings.description" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      'SynHeadingLarge',
+      'SynHeading-X-Large',
+      'SynHeading2xLarge',
+      'SynHeading3xLarge',
+    ].map(token => (
+      <tr key={token}>
+        <td>
+          <CopyToClipBoard value={`<span style='font: var(${getCSSToken(token)});'>The quick brown fox jumped over the lazy dog.</span>`}>
+            <span style={{ font: `var(${getCSSToken(token)})` }}>
+              The quick brown fox jumped over the lazy dog.
+            </span>
+          </CopyToClipBoard>
+        </td>
+        <td><CopyToClipBoard value={getCSSToken(token)}>{getCSSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={getSASSToken(token)}>{getSASSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={token}>{token}</CopyToClipBoard></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## <DocTokenText path="tokens.typography.text-styles.body.title" />
+<p><DocTokenText path="tokens.typography.text-styles.body.description" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>CSS Token</th>
+      <th>SCSS Token</th>
+      <th>JS Token</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      'SynBody-X-SmallRegular',
+      'SynBody-Small-Regular',
+      'SynBody-Medium-Regular',
+      'SynBody-Large-Regular',
+    ].map(token => (
+      <tr key={token}>
+        <td>
+          <CopyToClipBoard value={`<span style='font: var(${getCSSToken(token)});'>The quick brown fox jumped over the lazy dog.</span>`}>
+            <span style={{ font: `var(${getCSSToken(token)})` }}>
+              The quick brown fox jumped over the lazy dog.
+            </span>
+          </CopyToClipBoard>
+        </td>
+        <td><CopyToClipBoard value={getCSSToken(token)}>{getCSSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={getSASSToken(token)}>{getSASSToken(token)}</CopyToClipBoard></td>
+        <td><CopyToClipBoard value={token}>{token}</CopyToClipBoard></td>
+      </tr>
+    ))}
+  </tbody>
+</table>

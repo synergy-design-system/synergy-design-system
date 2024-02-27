@@ -1,0 +1,4 @@
+/**
+ * This imports the global utilities available in the components package
+ */
+@import url("@synergy-design-system/components/src/themes/utility.css");

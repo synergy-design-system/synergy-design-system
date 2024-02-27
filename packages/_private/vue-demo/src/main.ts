@@ -1,6 +1,4 @@
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
-import '@synergy-design-system/components/themes/utility.css';
+import '@synergy-design-system/styles';
 import './app.css';
 
 import { createApp } from 'vue';

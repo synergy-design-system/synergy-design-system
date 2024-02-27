@@ -67,19 +67,6 @@ export const ContactForm = {
       font-style: normal;
     }
 
-    fieldset {
-      border: none;
-      margin: 0 0 var(--syn-spacing-2x-large) 0;
-      padding: 0;
-    }
-
-    fieldset legend {
-      font-size: var(--syn-font-size-large);
-      font-weight: var(--syn-font-weight-bold);
-      line-height: var(--syn-line-height-normal);
-      margin-bottom: var(--syn-spacing-medium);
-    }
-
     fieldset legend + p {
       font-size: var(--syn-font-size-medium);
       margin: 0 0 var(--syn-font-size-large) 0;
@@ -137,7 +124,7 @@ export const ContactForm = {
 
       <form method="post" id="syn-form-demo">
         
-        <fieldset id="topics-wrapper">
+        <fieldset class="syn-fieldset" id="topics-wrapper">
           <legend>${getTranslation('contactForm.topicLabel')}</legend>
           <div id="topics">
             ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
@@ -148,7 +135,7 @@ export const ContactForm = {
           </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="syn-fieldset">
           <legend>${getTranslation('contactForm.requestLabel')}</legend>
           <p>
             ${getTranslation('contactForm.requestContent')}
@@ -161,7 +148,7 @@ export const ContactForm = {
           ></syn-textarea>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="syn-fieldset">
           <legend>${getTranslation('contactForm.contactDetailsLabel')}</legend>
           <div class="fields">
             <syn-input label="${getTranslation('contactForm.customerNumberLabel')}" name="customerNr"></syn-input>

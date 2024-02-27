@@ -21,8 +21,12 @@ export const createCssVariables = (prefix) => ({
       .some(p => name.startsWith(p))
     );
 
-    // Check if a given token is valid
-    const isValidToken = (token) => {
+    /**
+     * Check if the given token is a valid string token
+     * @param {object} token
+     * @returns {boolean}
+     */
+    const isValidStringToken = (token) => {
       // Skip if the prefix is not allowed
       if (!isValidTokenName(token.name)) return false;
 
@@ -30,14 +34,57 @@ export const createCssVariables = (prefix) => ({
       return typeof token?.original?.value === 'string' && token.original.value.includes('{');
     };
 
+    /**
+     * Check if the given token is a valid typography token
+     * @param {object} token
+     * @returns {boolean}
+     */
+    const isValidTypographyToken = (token) => {
+      // Skip if the prefix is not allowed
+      if (!isValidTokenName(token.name)) return false;
+
+      // We only operate on typography tokens
+      return token.type === 'typography';
+    };
+
+    /**
+     * Changes the given tokens value by stripping the special {} syntax chars
+     * @param {string} tokenValue The token value to change
+     * @returns {string} The changed token
+     */
+    const createCssVarName = (tokenValue) => `var(--${prefix}${tokenValue
+      .replace('{', '')
+      .replace('}', '')
+      .replace('.', '-')
+    })`;
+
     const convertOriginalToCssVar = (token) => {
-      if (isValidToken(token)) {
-        token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
-          .replace('{', '')
-          .replace('}', '')
-          .replace('.', '-')
-        })`;
+      if (isValidStringToken(token)) {
+        // Make sure to include the color prefix if it is not provided in the token.
+        // This is done as we did not want the part "color" to appear twice when using the tokens.
+        // However, this makes it needed to add it later on in the transformation
+        const usedPrefix = token.original.type === 'color' && !token.original.value.includes('color')
+          ? 'color-'
+          : '';
+
+        const nextValue = `${usedPrefix}${token.original.value}`;
+        token.value = createCssVarName(nextValue);
       }
+
+      // When operating on typography tokens, make sure to take all sub keys into account
+      // Also we will remove the fontWeight from the original files as we do not want this here
+      if (isValidTypographyToken(token)) {
+        const {
+          fontFamily,
+          // Ignore the font weight.
+          // We opt to just use helper classes for this to work
+          // fontWeight,
+          fontSize,
+          lineHeight,
+        } = token.original.value;
+        token.value = `${createCssVarName(fontSize)}/${createCssVarName(lineHeight)} ${createCssVarName(fontFamily)}`;
+      }
+
       return token;
     };
 

@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import { registerTransforms } from '@tokens-studio/sd-transforms';
+import { synFilterDefault } from './filters/index.js';
 import {
   addColorName,
   addFallbackFonts,
@@ -32,6 +33,8 @@ StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addQuotesForStrings);
 StyleDictionary.registerTransform(log);
 
+StyleDictionary.registerFilter(synFilterDefault);
+
 StyleDictionary.registerFormat(createCssVariables(config.prefix));
 
 // Sets up custom file header
@@ -52,7 +55,7 @@ StyleDictionary.registerFileHeader({
         files: [
           {
             destination: `${theme}.css`,
-            filter(token) { return !token.filePath.includes('primitive'); },
+            filter: 'syn-filter-default',
             format: 'syn/create-css-variables',
             options: {
               fileHeader: 'syn/header',

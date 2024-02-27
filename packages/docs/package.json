@@ -6,6 +6,7 @@
   "dependencies": {
     "@open-wc/testing-helpers": "^3.0.0",
     "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/styles": "workspace:^",
     "@synergy-design-system/tokens": "workspace:*",
     "change-case": "^4.1.2"
   },

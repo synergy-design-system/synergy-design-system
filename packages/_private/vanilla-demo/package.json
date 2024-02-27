@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "@synergy-design-system/components": "workspace:^",
-    "@synergy-design-system/tokens": "workspace:^"
+    "@synergy-design-system/styles": "workspace:^"
   }
 }

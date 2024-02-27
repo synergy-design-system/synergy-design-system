@@ -1617,7 +1617,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to change the app name.\nImportant: The label will be hidden on mobile, if there are items in the toolbar.",
+          "value": "Use the label attribute to change the app name.",
           "type": "text"
         }
       },

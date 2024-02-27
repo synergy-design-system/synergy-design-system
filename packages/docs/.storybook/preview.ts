@@ -2,9 +2,9 @@ import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/components/themes/utility.css';
 import '../../components/src/synergy';
 
-import '../../tokens/src/shoelace-fallbacks/_utility.css';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';

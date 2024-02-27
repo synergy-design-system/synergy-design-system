@@ -1600,34 +1600,34 @@
         }
       }
     },
-    "header": {
+    "nav-item": {
       "default": {
         "title": {
-          "value": "Header",
+          "value": "Navigation Item",
           "type": "text"
         },
         "description": {
-          "value": "The header is used to indicate the name of the app, provide important actions in a toolbar and a navigation.",
+          "value": "The navigation item is used to trigger page switches.",
           "type": "text"
         }
       },
-      "label": {
+      "labels": {
         "title": {
-          "value": "Label",
+          "value": "Labels",
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to change the app name.",
+          "value": "Use the label attribute to change the content of a navigtion item.",
           "type": "text"
         }
       },
-      "logo": {
+      "current": {
         "title": {
-          "value": "Logo",
+          "value": "Current",
           "type": "text"
         },
         "description": {
-          "value": "Use the logo slot to change the app logo. Usually this is only needed in whitelabel solutions, when the SICK branding explicitly has to be hidden.",
+          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
           "type": "text"
         }
       },
@@ -1637,27 +1637,67 @@
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that a link in the logo has been focused by the keyboard interaction and that the link is ready to be navigated to.",
+          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
           "type": "text"
         }
       },
-      "options": {
+      "nav-horizontal": {
         "title": {
-          "value": "Meta Navigation",
+          "value": "Horizontal Navigation",
           "type": "text"
         },
         "description": {
-          "value": "Use the Meta Navigation slot to add additional functionalities to your application. Please be aware of the guidelines regarding the order of icons in the toolbar.\nImportant: The Options Menu doesn’t handle any responsive behaviour, e. g. if there is not enough space for all items in different screen sizes. You have to make sure yourself, that your app works correctly and e. g. move elements into the footer of the side navigation or inside a “more” button in the Options Menu.",
+          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
           "type": "text"
         }
       },
-      "navigation": {
+      "prefix-suffix": {
         "title": {
-          "value": "Top Navigation",
+          "value": "Prefix and suffix Slot",
           "type": "text"
         },
         "description": {
-          "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
+          "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
+          "type": "text"
+        }
+      },
+      "children": {
+        "title": {
+          "value": "Children closed / open (vertical only)",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the *children attribute to indicate that show a chevron. In development this will be handled automatically as soon as an element has children.:",
+          "type": "text"
+        }
+      },
+      "divider": {
+        "title": {
+          "value": "Divider",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
+          "type": "text"
+        }
+      },
+      "indentation": {
+        "title": {
+          "value": "Indentation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a navigation-item.",
           "type": "text"
         }
       }

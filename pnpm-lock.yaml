@@ -695,7 +695,7 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@19.0.5)
       '@synergy-design-system/components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../components
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*

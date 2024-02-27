@@ -61,6 +61,10 @@ When using a build system, you should load the bundle in JavaScript or TypeScrip
 // Do not forget to load the design tokens!
 import "@synergy-design-system/tokens/themes/light.css";
 
+// Optional, but highly recommended:
+// Add the css utility functions.
+import "@synergy-design-system/components/src/themes/utility.css";
+
 // This will load synergy.js via the exports map
 import "@synergy-design-system/components";
 ```
@@ -97,6 +101,10 @@ When using a build system, you may also load the bundle in JavaScript or TypeScr
 
 // Do not forget to load the design tokens!
 import "@synergy-design-system/tokens/themes/light.css";
+
+// Optional, but highly recommended:
+// Add the css utility functions.
+import "@synergy-design-system/components/src/themes/utility.css";
 
 // This will only load and define the button itself
 import "@synergy-design-system/components/components/button/button.js";

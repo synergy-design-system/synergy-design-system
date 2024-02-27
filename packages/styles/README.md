@@ -33,3 +33,4 @@ Instead of choosing the predefined exports as defined above, you may also includ
 | `body.css`       | Basic formats that may be used for the `<body />` tag                                                             |
 | `fouc.css`       | Opinionated utility for working around [FOUC](https://www.jacobmilhorn.com/posts/solving-fouc-in-web-components/) |
 | `typography.css` | Typographic helpers for font-sizes on body and headlines                                                          |
+| `utility.css`    | Reexport of the utility functions available in `@synergy-design-system/components`                                |

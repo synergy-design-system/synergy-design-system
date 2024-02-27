@@ -24,6 +24,7 @@ export default css`
     display: flex;
     min-height: 40px;
     padding: var(--syn-spacing-large);
+    padding-left: calc(var(--syn-spacing-large) + var(--syn-spacing-x-small));
   }
 
   /**
@@ -40,6 +41,19 @@ export default css`
   .header__logo ::slotted(*),
   .header__logo syn-icon {
     display: block;
+  }
+
+  /**
+   * Make sure to use the correct color and outline for links
+   */
+  .header__logo ::slotted(a),
+  .header__logo ::slotted(a:hover) {
+    color: var(--syn-color-primary-600);
+  }
+
+  .header__logo ::slotted(a:is(:focus)) {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
   }
 
   /**

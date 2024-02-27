@@ -23,18 +23,18 @@ import '@synergy-design-system/components/components/header/header.js';
  * @status stable
  * @since 1.8.0
  *
- * @slot - The label for the header. Will automatically be hidden on mobile.
- * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not applied.
- * @slot meta-navigation - Used to add various application toolbar icons.
+ * @slot - The label for the header.
+ * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided.
+ * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
- * @slot navigation - Used to add an optional horizontal navigation
+ * @slot navigation - This slot can be used to add an optional horizontal navigation
  *
  * @csspart base - The component's base wrapper.
- * @csspart content - The wrapper where most content items reside
- * @csspart logo - The wrapper where the application logo resides in
- * @csspart label - Wrapper of the application name label
- * @csspart meta-navigation - Item that wraps the optional application menu
- * @csspart navigation - Wrapper that holds the optional top navigation section
+ * @csspart content - The wrapper most content items reside
+ * @csspart logo - The wrapper the application logo resides in
+ * @csspart label - The element wrapping the application name
+ * @csspart meta-navigation - The Item wrapping the optional application menu
+ * @csspart navigation - The wrapper that is holding the optional top navigation section
  */
 @Component({
   selector: 'syn-header',
@@ -62,21 +62,5 @@ export class SynHeaderComponent {
 
   get label() {
     return this._el.label;
-  }
-
-  /**
-* The logo-label attribute can be used as fallback description text
-in cases where the logo cannot be loaded.
-This only works for the `syn-icon` that gets slotted into the `navigation` as fallback.
-If custom content is provided in the `logo` slot,
-please take care that it is accessible by yourself!
- */
-  @Input()
-  set logoLabel(v: SynHeader['logoLabel']) {
-    this._ngZone.runOutsideAngular(() => (this._el.logoLabel = v));
-  }
-
-  get logoLabel() {
-    return this._el.logoLabel;
   }
 }

@@ -1631,6 +1631,16 @@
           "type": "text"
         }
       },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that a link in the logo has been focused by the keyboard interaction and that the link is ready to be navigated to.",
+          "type": "text"
+        }
+      },
       "options": {
         "title": {
           "value": "Meta Navigation",

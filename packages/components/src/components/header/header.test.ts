@@ -18,11 +18,6 @@ describe('<syn-header>', () => {
       const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
       await expect(el).to.be.accessible();
     });
-
-    it('default values are set correctly', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
-      await expect(el.logoLabel).to.equal('SICK Sensor Intelligence');
-    });
   });
 
   describe('logo', () => {
@@ -31,13 +26,6 @@ describe('<syn-header>', () => {
       const logoPart = getComponentPart<HTMLDivElement>(el, 'logo');
 
       expect(logoPart?.querySelector('syn-icon[name="logo-color"]')).to.not.be.null;
-    });
-
-    it('should use the provided logo-label attribute as the logos label', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header logo-label="Test"></syn-header>`);
-      const logoPart = getComponentPart<HTMLDivElement>(el, 'logo');
-
-      expect(logoPart?.querySelector('syn-icon')).to.have.attribute('label', 'Test');
     });
   });
 });

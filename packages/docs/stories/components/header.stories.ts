@@ -81,6 +81,41 @@ export const Logo: Story = {
   `,
 } as Story;
 
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const link = canvasElement.querySelector('a');
+    link?.focus();
+  },
+  render: () => html`
+    <style>
+    .custom-header-link-with-logo {
+      color: var(--syn-color-primary-600) !important;
+    }
+    .custom-header-link-with-logo syn-icon {
+      display: block;
+      width: auto;
+      height: 32px;
+    }
+    </style>
+    <syn-header>
+      <a href="#" slot="logo" class="custom-header-link-with-logo">
+        <syn-icon name="logo-color" library="system" label="Custom Logo with link"></syn-icon>
+      </a>
+      App Name
+    </syn-header>
+  `,
+} as Story;
+
 export const MetaNavigation: Story = {
   parameters: {
     docs: {

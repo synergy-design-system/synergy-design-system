@@ -691,7 +691,7 @@ importers:
         specifier: workspace:*
         version: link:../_private/eslint-config-syn
       '@synergy-design-system/stylelint-config-syn':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../_private/stylelint-config-syn
       '@tokens-studio/sd-transforms':
         specifier: ^0.14.2

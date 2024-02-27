@@ -120,3 +120,7 @@ button:focus-visible {
 img {
   max-width: 100%;
 }
+
+.docs-syn-style ul {
+  margin: 0;
+}

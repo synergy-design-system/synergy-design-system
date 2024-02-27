@@ -1,4 +1,5 @@
 import { css } from 'lit';
+import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
   .checkbox__control {
@@ -36,4 +37,8 @@ export default css`
   .checkbox--disabled .checkbox__label {
     color: var(--syn-color-neutral-700);
   }
+
+  /* TODO: Can be removed as soon as following bug is fixed in shoelace (https://github.com/shoelace-style/shoelace/issues/1896) (our issue https://github.com/synergy-design-system/synergy-design-system/issues/347) */
+
+  ${formControlStyles}
 `;

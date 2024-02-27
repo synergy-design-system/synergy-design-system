@@ -1748,12 +1748,52 @@
     },
     "color": {
       "description": {
-        "value": "Color tokens help maintain consistent use of color throughout your app.",
+        "value": "Color tokens help maintain consistent use of color throughout our products.",
         "type": "text"
       },
       "title": {
         "value": "Color Tokens",
         "type": "text"
+      },
+      "light": {
+        "description": {
+          "value": "Our light theme is the default theme for all applications",
+          "type": "text"
+        },
+        "title": {
+          "value": "Colors / light",
+          "type": "text"
+        }
+      },
+      "dark": {
+        "description": {
+          "value": "Use the dark theme as a low-light UI that displays mostly dark surfaces.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Colors / dark",
+          "type": "text"
+        }
+      },
+      "semantic": {
+        "description": {
+          "value": "Semantic color information for general or specific components.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Semantic colors",
+          "type": "text"
+        },
+        "text": {
+          "description": {
+            "value": "Primary color used for text within the application",
+            "type": "text"
+          },
+          "title": {
+            "value": "Text colors",
+            "type": "text"
+          }
+        }
       }
     },
     "elevation": {
@@ -1833,6 +1873,16 @@
             "value": "Body and UI text",
             "type": "text"
           }
+        }
+      },
+      "font-family": {
+        "description": {
+          "value": "Synergy uses the open source typeface Open Sans for all elements, but system fonts can also be used.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Font family",
+          "type": "text"
         }
       }
     },

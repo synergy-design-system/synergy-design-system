@@ -24,7 +24,6 @@ export default css`
     display: flex;
     min-height: 40px;
     padding: var(--syn-spacing-large);
-    padding-left: calc(var(--syn-spacing-large) + var(--syn-spacing-x-small));
   }
 
   /**
@@ -51,7 +50,7 @@ export default css`
     color: var(--syn-color-primary-600);
   }
 
-  .header__logo ::slotted(a:is(:focus)) {
+  .header__logo ::slotted(a:is(:focus-visible)) {
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }

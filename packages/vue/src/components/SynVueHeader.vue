@@ -11,7 +11,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs
  * @status stable
- * @since 1.8.0
+ * @since 1.10.0
  *
  * @slot - The label for the header.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided.

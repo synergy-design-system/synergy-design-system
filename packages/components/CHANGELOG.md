@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.9.0...components/1.10.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
 # [@synergy-design-system/components-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.8.0...components/1.9.0) (2024-02-28)
 
 

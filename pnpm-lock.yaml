@@ -457,9 +457,6 @@ importers:
       comment-parser:
         specifier: ^1.4.1
         version: 1.4.1
-      custom-element-jet-brains-integration:
-        specifier: ^1.4.3
-        version: 1.4.3
       custom-element-vs-code-integration:
         specifier: ^1.2.2
         version: 1.2.2
@@ -9990,12 +9987,6 @@ packages:
 
   /csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-
-  /custom-element-jet-brains-integration@1.4.3:
-    resolution: {integrity: sha512-UMNI6/c5bO2lPlKpaYZHoiAMcmUdECT4BjIoBs0RLrBmBHGECoN+ppTVl9WLs4m/NUR70iXbTIYN6srXmC+m9w==}
-    dependencies:
-      prettier: 2.8.8
-    dev: true
 
   /custom-element-vs-code-integration@1.2.2:
     resolution: {integrity: sha512-nts++86m/ujE4PZ8HSsxQ6a8ukrWF0J4LdCTFqCnErELCfCO+qozUDGcZ9Ufm5CnL7fYEygproFAZObEmJE8og==}

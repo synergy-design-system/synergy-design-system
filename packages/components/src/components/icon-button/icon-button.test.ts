@@ -7,7 +7,7 @@
 import '../../../dist/synergy.js';
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SynIconButton from './icon-button';
+import type SynIconButton from './icon-button.js';
 
 type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 

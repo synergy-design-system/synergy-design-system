@@ -14,11 +14,15 @@ import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynDivider from '../divider/divider.component.js';
 import { longPress } from '../../internal/longpress.js';
 import styles from './input.styles.js';
+import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 
@@ -64,7 +68,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart divider - The divider between the increment and decrement number stepper buttons.
  */
 export default class SynInput extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {
 		'syn-icon': SynIcon,
 		'syn-divider': SynDivider
@@ -400,10 +404,12 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     replacement: string,
     start?: number,
     end?: number,
-    selectMode?: 'select' | 'start' | 'end' | 'preserve'
+    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
   ) {
-    // @ts-expect-error - start, end, and selectMode are optional
-    this.input.setRangeText(replacement, start, end, selectMode);
+    const selectionStart = start ?? this.input.selectionStart!;
+    const selectionEnd = end ?? this.input.selectionEnd!;
+
+    this.input.setRangeText(replacement, selectionStart, selectionEnd, selectMode);
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;

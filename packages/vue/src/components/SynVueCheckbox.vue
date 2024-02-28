@@ -14,6 +14,7 @@
  * @dependency syn-icon
  *
  * @slot - The checkbox's label.
+ * @slot help-text - Text that describes how to use the checkbox. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-blur - Emitted when the checkbox loses focus.
  * @event syn-change - Emitted when the checked state changes.
@@ -28,6 +29,7 @@
  * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
  * @csspart indeterminate-icon - The indeterminate icon, an `<syn-icon>` element.
  * @csspart label - The container that wraps the checkbox's label.
+ * @csspart form-control-help-text - The help text's wrapper.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/checkbox/checkbox.js';
@@ -138,6 +140,12 @@ the same document or shadow root for this to work.
   'required'?: SynCheckbox['required'];
 
   /**
+* The checkbox's help text.
+* If you need to display HTML, use the `help-text` slot instead.
+ */
+  'helpText'?: SynCheckbox['helpText'];
+
+  /**
 * Support for two way data binding
  */
   modelValue?: SynCheckbox['checked'];
@@ -207,5 +215,6 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
+    <slot name="help-text" />
   </syn-checkbox>
 </template>

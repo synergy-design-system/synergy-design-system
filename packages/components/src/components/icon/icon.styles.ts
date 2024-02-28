@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './icon.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: inline-block;
     width: 1em;
@@ -24,7 +20,4 @@ export default css`
     height: 100%;
     width: 100%;
   }
-
-  ${customStyles}
 `;
-

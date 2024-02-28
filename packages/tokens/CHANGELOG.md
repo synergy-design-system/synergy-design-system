@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.1...tokens/1.8.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
 # [@synergy-design-system/tokens-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.0...tokens/1.7.1) (2024-02-27)
 
 

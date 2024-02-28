@@ -10,7 +10,7 @@ import { getFormControls, serialize } from '../../../dist/synergy.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands'; // must come from the same module
 import sinon from 'sinon';
-import type SynInput from './input';
+import type SynInput from './input.js';
 
 describe('<syn-input>', () => {
   it('should pass accessibility tests', async () => {
@@ -546,6 +546,18 @@ describe('<syn-input>', () => {
       const formControls = getFormControls(form); // eslint-disable-line
       expect(formControls.length).to.equal(10); // eslint-disable-line
       expect(formControls.map((fc: HTMLInputElement) => fc.value).join('')).to.equal('12345678910'); // eslint-disable-line
+    });
+  });
+
+  describe('when using the setRangeText() function', () => {
+    it('should set replacement text in the correct location', async () => {
+      const el = await fixture<SynInput>(html` <syn-input value="test"></syn-input> `);
+
+      el.focus();
+      el.setSelectionRange(1, 3);
+      el.setRangeText('boom');
+      await el.updateComplete;
+      expect(el.value).to.equal('tboomt'); // cspell:disable-line
     });
   });
 

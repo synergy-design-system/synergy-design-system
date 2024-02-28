@@ -29,6 +29,7 @@ describe('<syn-checkbox>', () => {
     expect(el.checked).to.be.false;
     expect(el.indeterminate).to.be.false;
     expect(el.defaultChecked).to.be.false;
+    expect(el.helpText).to.equal('');
   });
 
   it('should have title if title attribute is set', async () => {

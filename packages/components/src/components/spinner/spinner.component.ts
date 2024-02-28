@@ -6,6 +6,7 @@
 /* eslint-disable */
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './spinner.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -24,7 +25,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
 export default class SynSpinner extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly localize = new LocalizeController(this);
 

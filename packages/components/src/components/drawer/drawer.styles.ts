@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './drawer.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     --size: 25rem;
     --header-spacing: var(--syn-spacing-large);
@@ -164,7 +160,4 @@ export default css`
       border: solid 1px var(--syn-color-neutral-0);
     }
   }
-
-  ${customStyles}
 `;
-

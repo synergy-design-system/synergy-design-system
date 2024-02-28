@@ -1,3 +1,27 @@
+# [@synergy-design-system/components-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.9.0...components/1.10.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
+# [@synergy-design-system/components-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.8.0...components/1.9.0) (2024-02-28)
+
+
+### Features
+
+* ✨ upgrade shoelace to 2.14.0 ([#348](https://github.com/synergy-design-system/synergy-design-system/issues/348)) ([a00dcb9](https://github.com/synergy-design-system/synergy-design-system/commit/a00dcb9fd85e7271c8923d8256a6fea3ecdcb5d6))
+  * See detailed changelog at https://shoelace.style/resources/changelog#id_2_14_0.
+  * Added help text to <syn-checkbox>
+  * Added help text to <syn-switch>
+  * Fixed a bug in <syn-option> that caused HTML tags to be included in getTextLabel()
+  * Fixed a bug in <syn-option> that caused slotted content to show up when calling getTextLabel()
+  * Fixed a bug in <syn-input> and <syn-textarea> that made it work differently from <input> and <textarea> when using defaults
+  * Fixed a bug in <syn-select> that prevented it from closing when tabbing to another select inside a shadow root
+  * Fixed a bug that caused form controls to submit even after they were removed from the DOM
+  * Fixed a bug that caused empty <sl-radio-group> elements to log an error in the console
+  * Improved “close” behavior of multiple components in supportive browsers using the CloseWatcher API
+  
 # [@synergy-design-system/components-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.7.0...components/1.8.0) (2024-02-27)
 
 

@@ -6,8 +6,10 @@
 /* eslint-disable */
 import { property } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './divider.styles.js';
+import customStyles from './divider.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -21,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --spacing - The spacing of the divider.
  */
 export default class SynDivider extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   /** Draws the divider in a vertical orientation. */
   @property({ type: Boolean, reflect: true }) vertical = false;

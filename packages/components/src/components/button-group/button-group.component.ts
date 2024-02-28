@@ -6,6 +6,7 @@
 /* eslint-disable */
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './button-group.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -21,7 +22,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  */
 export default class SynButtonGroup extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 

@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './button.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: inline-block;
     position: relative;
@@ -367,7 +363,4 @@ export default css`
   :host(.syn-button-group__button[checked]) {
     z-index: 2;
   }
-
-  ${customStyles}
 `;
-

@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './checkbox.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: inline-block;
   }
@@ -128,7 +124,4 @@ export default css`
     content: var(--syn-input-required-content);
     margin-inline-start: var(--syn-input-required-content-offset);
   }
-
-  ${customStyles}
 `;
-

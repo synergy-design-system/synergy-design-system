@@ -22,6 +22,7 @@ Component.define('syn-switch');
  * @since 2.0
  *
  * @slot - The switch's label.
+ * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when the control's checked state changes.
@@ -33,6 +34,7 @@ Component.define('syn-switch');
  * @csspart control - The control that houses the switch's thumb.
  * @csspart thumb - The switch's thumb.
  * @csspart label - The switch's label.
+ * @csspart form-control-help-text - The help text's wrapper.
  *
  * @cssproperty --width - The width of the switch.
  * @cssproperty --height - The height of the switch.

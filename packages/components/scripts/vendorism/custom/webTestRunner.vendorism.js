@@ -29,6 +29,13 @@ import synTestPlugins from './scripts/tests/index.js';`,
     esbuildPlugin({`,
   );
 
+  // TODO: Remove this as soon as as shoelace enabled firefox for tests again
+  nextContent = nextContent.replaceAll(
+    `// Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
+    // sure what's happening.
+    // playwrightLauncher({ product: 'firefox' }),`,
+    "playwrightLauncher({ product: 'firefox' }),",
+  );
   return {
     content: nextContent,
     path,

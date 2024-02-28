@@ -1,5 +1,6 @@
 export * from './angular.js';
 export * from './cem.js';
+export * from './copyFiles.js';
 export * from './createEventsFile.js';
 export * from './createExports.js';
 export * from './esbuildComponents.js';

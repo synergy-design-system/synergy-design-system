@@ -1,3 +1,17 @@
+# [@synergy-design-system/tokens-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.0...tokens/1.7.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* 🤔 Fix broken theme tokens and add automatic check ([#342](https://github.com/synergy-design-system/synergy-design-system/issues/342)) ([3fea98a](https://github.com/synergy-design-system/synergy-design-system/commit/3fea98a242d0994f8c3aa9be81ef38a9cd43e48e))
+
+# [@synergy-design-system/tokens-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.6.0...tokens/1.7.0) (2024-02-27)
+
+
+### Features
+
+* ✨ syn-drawer ([#320](https://github.com/synergy-design-system/synergy-design-system/issues/320)) ([ce20a42](https://github.com/synergy-design-system/synergy-design-system/commit/ce20a42f9f90eb5b38c0ae84f99d4a8db2e08613))
+
 # [@synergy-design-system/tokens-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.5.0...tokens/1.6.0) (2024-02-26)
 
 

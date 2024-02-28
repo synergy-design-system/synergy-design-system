@@ -7,6 +7,7 @@ import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
   vendorButton,
+  vendorDrawer,
   vendorIcon,
   vendorIconButton,
   vendorInput,
@@ -34,6 +35,7 @@ export const components = [
   'switch',
   'tag',
   'divider',
+  'drawer',
 ].sort();
 
 /**
@@ -57,6 +59,8 @@ export const events = [
   'sl-hide',
   'sl-after-hide',
   'sl-reposition',
+  'sl-initial-focus',
+  'sl-request-close',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
@@ -256,6 +260,7 @@ const config = {
       },
       // specialized customizations
       vendorButton,
+      vendorDrawer,
       vendorIconButton,
       vendorIcon,
       vendorInput,

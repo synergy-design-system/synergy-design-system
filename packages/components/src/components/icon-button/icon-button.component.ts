@@ -8,9 +8,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, state } from 'lit/decorators.js';
+import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './icon-button.styles.js';
+import customStyles from './icon-button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -27,7 +29,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  */
 export default class SynIconButton extends SynergyElement {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };
 
   @query('.icon-button') button: HTMLButtonElement | HTMLLinkElement;

@@ -6,8 +6,8 @@ import {
 } from '@open-wc/testing';
 import '../../../dist/synergy.js';
 
-import type SynOptgroup from './optgroup';
-import type SynOption from '../option/option';
+import type SynOptgroup from './optgroup.js';
+import type SynOption from '../option/option.js';
 
 const getSynOptions = (el: SynOptgroup) => Array.from(el.querySelectorAll('syn-option'));
 const getEnabledOptions = (el: SynOptgroup) => getSynOptions(el)

@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './divider.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     --color: var(--syn-panel-border-color);
     --width: var(--syn-panel-border-width);
@@ -30,7 +26,4 @@ export default css`
     border-left: solid var(--width) var(--color);
     margin: 0 var(--spacing);
   }
-
-  ${customStyles}
 `;
-

@@ -5,12 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     --arrow-color: var(--syn-color-neutral-1000);
     --arrow-size: 6px;
@@ -47,5 +44,25 @@ export default css`
     rotate: 45deg;
     background: var(--arrow-color);
     z-index: -1;
+  }
+
+  /* Hover bridge */
+  .popup-hover-bridge:not(.popup-hover-bridge--visible) {
+    display: none;
+  }
+
+  .popup-hover-bridge {
+    position: fixed;
+    z-index: calc(var(--syn-z-index-dropdown) - 1);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    clip-path: polygon(
+      var(--hover-bridge-top-left-x, 0) var(--hover-bridge-top-left-y, 0),
+      var(--hover-bridge-top-right-x, 0) var(--hover-bridge-top-right-y, 0),
+      var(--hover-bridge-bottom-right-x, 0) var(--hover-bridge-bottom-right-y, 0),
+      var(--hover-bridge-bottom-left-x, 0) var(--hover-bridge-bottom-left-y, 0)
+    );
   }
 `;

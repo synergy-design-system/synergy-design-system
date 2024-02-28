@@ -7,7 +7,7 @@
 import '../../../dist/synergy.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SynTag from './tag';
+import type SynTag from './tag.js';
 
 describe('<syn-tag>', () => {
   it('should render default tag', async () => {

@@ -6,8 +6,8 @@
 /* eslint-disable */
 import '../../../dist/synergy.js';
 import { expect, fixture, html } from '@open-wc/testing';
-import type SynRadio from './radio';
-import type SynRadioGroup from '../radio-group/radio-group';
+import type SynRadio from './radio.js';
+import type SynRadioGroup from '../radio-group/radio-group.js';
 
 describe('<syn-radio>', () => {
   it('should not get checked when disabled', async () => {

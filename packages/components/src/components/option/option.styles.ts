@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './option.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: block;
     user-select: none;
@@ -95,7 +91,4 @@ export default css`
       outline-offset: -1px;
     }
   }
-
-  ${customStyles}
 `;
-

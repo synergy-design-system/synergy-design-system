@@ -3,6 +3,7 @@ import type { CSSResultGroup } from 'lit';
 import { html, literal } from 'lit/static-html.js';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import SynDivider from '../divider/divider.component';
 import { HasSlotController } from '../../internal/slot.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -16,7 +17,9 @@ import styles from './nav-item.styles.js';
  * - or accordion (if 'children' slot defined).
  *
  * @status stable
- * @since 1.10.0
+ * @since 1.11.0
+ * 
+ * @dependency syn-divider
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,
@@ -38,12 +41,18 @@ import styles from './nav-item.styles.js';
  * @csspart base - The component's base wrapper including children.
  * @csspart content-wrapper - The component's content wrapper.
  * @csspart content - The component's content excluding children.
+ * @csspart current-indicator - The indicator used when current is set to true
  * @csspart chevron - The container that wraps the chevron.
+ * @csspart divider - The components optional top divider.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  */
 export default class SynNavItem extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
+
+  static dependencies = {
+    'syn-divider': SynDivider,
+  };
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');
 
@@ -82,6 +91,12 @@ export default class SynNavItem extends SynergyElement {
    */
   @property({ reflect: true, type: Boolean }) open = false;
 
+  /**
+   * Toggle to true to show a divider above the element.
+   * Only available when vertical
+   */
+  @property({ reflect: true, type: Boolean }) divider = false;
+
   private isLink(): boolean {
     return !!this.href;
   }
@@ -98,7 +113,7 @@ export default class SynNavItem extends SynergyElement {
     const tag = isLink ? literal`a` : literal`button`;
 
     const hasChildren = this.hasSlotController.test('children');
-    const hasChevron = this.chevron || ((this.chevron || hasChildren) && this.vertical);
+    const hasChevron = (this.chevron || hasChildren) && this.vertical;
 
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable lit/binding-positions */
@@ -109,6 +124,8 @@ export default class SynNavItem extends SynergyElement {
         aria-disabled=${this.disabled}
         class=${classMap({
           'nav-item': true,
+          'nav-item--current': this.current,
+          'nav-item--disabled': this.disabled,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
         })}
@@ -116,8 +133,22 @@ export default class SynNavItem extends SynergyElement {
         part="base"
         role=${isLink ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}
-        type=${ifDefined(isLink ? undefined : this.type)}
       >
+        
+        <hr
+          class=${classMap({
+            'current-indicator': true,
+            'current-indicator--disabled': this.disabled,
+            'current-indicator--horizontal': !this.vertical,
+            'current-indicator--vertical': this.vertical,
+            'current-indicator--visible': this.current,
+          })}
+          part="current-indicator"
+        />
+
+        ${this.divider && this.vertical ? html`<syn-divider class="divider" part="divider"></sd-divider>` : ''}
+
+
         <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
         <div part="content-container" class="nav-item__content-container">
           <slot part="content"></slot>

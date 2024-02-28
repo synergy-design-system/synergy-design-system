@@ -87,7 +87,7 @@ export const HorizontalNavigation: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
+    <syn-nav-item current>Horizontal navigation item</syn-nav-item>
   `,
 };
 
@@ -114,7 +114,7 @@ export const PrefixAndSuffixSlot: Story = {
   },
   render: () => html`
     <style>
-    .docu-number-helper {
+    .doc-number-helper {
       align-items: center;
       border: 1px solid var(--syn-color-neutral-400);
       border-radius: var(--syn-border-radius-circle);
@@ -126,14 +126,14 @@ export const PrefixAndSuffixSlot: Story = {
       justify-content: center;
     }
     </style>
-    <syn-nav-item chevron>
+    <syn-nav-item>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Item with icon slots
       <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-nav-item>
     <br />
     <syn-nav-item>
-      <span class="docu-number-helper" slot="prefix">1</span>
+      <span class="doc-number-helper" slot="prefix">1</span>
       Step like item with a number
     </syn-nav-item>
   `,
@@ -156,7 +156,7 @@ export const ChildrenClosedOrOpenVerticalOnly: Story = {
       </nav>
     </syn-nav-item>
     <br />
-    <syn-nav-item>
+    <syn-nav-item open>
       Children open
       <nav slot="children">
         <syn-nav-item>Item 1</syn-nav-item>
@@ -190,6 +190,31 @@ export const Disabled: Story = {
   },
   render: () => html`
     <syn-nav-item disabled>Parent Element</syn-nav-item>
+  `,
+};
+
+export const CS: Story = {
+  render: () => html`
+    <style>
+    nav {
+      border: 1px solid var(--syn-color-neutral-500);
+      width: 275px;
+    }
+    </style>
+    <nav>
+      <syn-nav-item>
+        <syn-icon name="home" slot="prefix"></syn-icon>
+        Home
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="settings" slot="prefix"></syn-icon>
+        Settings
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
+        Children
+      </syn-nav-item>
+    </nav>
   `,
 };
 

@@ -1742,7 +1742,17 @@
         "type": "text"
       },
       "title": {
-        "value": "Border Radius",
+        "value": "Border radius",
+        "type": "text"
+      }
+    },
+    "border-width": {
+      "description": {
+        "value": "The border is primarily used to outline the frame of a component or to structure content. The border color varies depending on the component and context, but the width stays constant.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Border width",
         "type": "text"
       }
     },
@@ -1796,23 +1806,13 @@
         }
       }
     },
-    "elevation": {
+    "shadow": {
       "description": {
-        "value": "Elevation tokens are used to give elements the appearance of being raised off the page.",
+        "value": "Shadow and elevation tokens are used to give elements the appearance of being raised off the page.",
         "type": "text"
       },
       "title": {
-        "value": "Elevation",
-        "type": "text"
-      }
-    },
-    "more": {
-      "description": {
-        "value": "Additional design tokens can be found here.",
-        "type": "text"
-      },
-      "title": {
-        "value": "More Design Tokens",
+        "value": "Shadow and elevation",
         "type": "text"
       }
     },
@@ -1822,13 +1822,13 @@
         "type": "text"
       },
       "title": {
-        "value": "Spacing Tokens",
+        "value": "Spacing",
         "type": "text"
       }
     },
     "transition": {
       "description": {
-        "value": "Transition tokens are used to provide consistent transitions throughout your app.",
+        "value": "Transition tokens are used to provide consistent transitions throughout our applications.",
         "type": "text"
       },
       "title": {

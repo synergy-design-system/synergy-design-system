@@ -128,7 +128,7 @@ export default css`
   /**
    * Hide the divider for active elements
    */
-  .nav-item:focus .divider {
+  .nav-item:focus-visible .divider {
     --color: transparent;
   }
 

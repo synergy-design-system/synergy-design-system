@@ -38,8 +38,8 @@ export default css`
   }
 
   .nav-item:focus {
-    box-shadow: 0 0 2px red;
-    outline: none;
+    outline: var(--syn-focus-ring);
+    outline-offset: -2px;
   }
 
   /**
@@ -100,7 +100,7 @@ export default css`
   }
 
   /**
-   * Dividers are optionally displayed in horizontal nav items and share 
+   * Dividers are optionally displayed in horizontal nav items
    */
   .divider {
     position: absolute;
@@ -109,6 +109,13 @@ export default css`
     margin: 0;
     top: 0;
     --color: var(--syn-color-neutral-200);
+  }
+
+  /**
+   * Hide the divider for active elements
+   */
+  .nav-item:focus .divider {
+    --color: transparent;
   }
 
   /**

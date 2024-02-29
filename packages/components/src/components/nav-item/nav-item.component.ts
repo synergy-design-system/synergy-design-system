@@ -146,14 +146,19 @@ export default class SynNavItem extends SynergyElement {
           part="current-indicator"
         />
 
-        ${this.divider && this.vertical ? html`<syn-divider class="divider" part="divider"></sd-divider>` : ''}
-
+        ${this.divider && this.vertical
+          ? html`<syn-divider class="divider" part="divider"></sd-divider>`
+          : ''
+        }
 
         <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
+
         <div part="content-container" class="nav-item__content-container">
           <slot part="content"></slot>
         </div>
+
         <slot name="suffix" part="suffix" class="nav-item__suffix"></slot>
+
         ${hasChevron ? html`
           <syn-icon
             class="nav-item__chevron"
@@ -163,6 +168,7 @@ export default class SynNavItem extends SynergyElement {
             color="currentColor"
           /></syn-icon>`
         : ''}
+
       </${tag}>
     `;
     /* eslint-enable lit/no-invalid-html */

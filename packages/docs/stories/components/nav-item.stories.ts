@@ -206,13 +206,33 @@ export const CS: Story = {
         <syn-icon name="home" slot="prefix"></syn-icon>
         Home
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item current divider vertical>
         <syn-icon name="settings" slot="prefix"></syn-icon>
         Settings
       </syn-nav-item>
       <syn-nav-item divider vertical>
         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
         Children
+        <!-- second-level -->
+        <nav slot="children">
+          <syn-nav-item divider vertical>
+            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            Item 1.1
+          </syn-nav-item>
+          <syn-nav-item divider vertical>
+            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            Item 1.2
+          </syn-nav-item>
+          <syn-nav-item divider vertical>
+            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            Item 1.3
+          </syn-nav-item>
+        </nav>
+        <!-- /second-level -->
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="area_chart" slot="prefix"></syn-icon>
+        Other Option
       </syn-nav-item>
     </nav>
   `,

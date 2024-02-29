@@ -37,6 +37,11 @@ export default css`
     background: var(--syn-color-neutral-100);
   }
 
+  .nav-item:focus {
+    box-shadow: 0 0 2px red;
+    outline: none;
+  }
+
   /**
    * Slotted icons should use a default font size of large
    */

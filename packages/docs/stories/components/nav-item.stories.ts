@@ -202,7 +202,7 @@ export const CS: Story = {
     }
     </style>
     <nav>
-      <syn-nav-item>
+      <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
         Home
       </syn-nav-item>
@@ -229,6 +229,10 @@ export const CS: Story = {
           </syn-nav-item>
         </nav>
         <!-- /second-level -->
+      </syn-nav-item>
+      <syn-nav-item disabled divider vertical>
+        <syn-icon name="area_chart" slot="prefix"></syn-icon>
+        Disabled option
       </syn-nav-item>
       <syn-nav-item divider vertical>
         <syn-icon name="area_chart" slot="prefix"></syn-icon>

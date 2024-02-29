@@ -2,7 +2,6 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    // box-shadow: 0 0 15px rgba(0 0 0 0.3);
     display: block;
   }
 
@@ -10,11 +9,9 @@ export default css`
    * Core nav item wrapper
    */
   .nav-item {
-    align-items: center;
     background: transparent;
     border: none;
     cursor: pointer;
-    display: flex;
     font: var(--syn-font-sans);
     font-size: var(--syn-font-size-small);
     min-height: var(--syn-spacing-2x-large);
@@ -26,20 +23,36 @@ export default css`
 
   .nav-item--disabled {
     cursor: not-allowed;
-    opacity: 0.5;
   }
 
   .nav-item--current {
     font-weight: var(--syn-font-weight-bold);
   }
 
-  .nav-item:hover {
+  .nav-item:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: -2px;
+  }
+
+  .nav-item:not(.nav-item--disabled):hover {
     background: var(--syn-color-neutral-100);
   }
 
-  .nav-item:focus {
-    outline: var(--syn-focus-ring);
-    outline-offset: -2px;
+  /**
+   * The content wrapper is needed to get the disabled state right.
+   * Normally, we would just use opacity directly on the button.
+   * When using the divider prop, this leads to problems
+   * as the divider itself will also get opaque.
+   * Therefore, we opted to add the wrapper element and apply the opacity there.
+   */
+  .nav-item__content {
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+
+  .nav-item--disabled .nav-item__content {
+    opacity: 0.5;
   }
 
   /**
@@ -103,12 +116,13 @@ export default css`
    * Dividers are optionally displayed in horizontal nav items
    */
   .divider {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    top: 0;
     --color: var(--syn-color-neutral-200);
+
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
   /**

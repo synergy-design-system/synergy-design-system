@@ -3,7 +3,7 @@ import type { CSSResultGroup } from 'lit';
 import { html, literal } from 'lit/static-html.js';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import SynDivider from '../divider/divider.component';
+import SynDivider from '../divider/divider.component.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -18,7 +18,7 @@ import styles from './nav-item.styles.js';
  *
  * @status stable
  * @since 1.11.0
- * 
+ *
  * @dependency syn-divider
  *
  * @event syn-show - Emitted when the navigation item:
@@ -147,27 +147,29 @@ export default class SynNavItem extends SynergyElement {
         />
 
         ${this.divider && this.vertical
-          ? html`<syn-divider class="divider" part="divider"></sd-divider>`
+          ? html`<syn-divider class="divider" part="divider"></syn-divider>`
           : ''
         }
 
-        <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
+        <div class="nav-item__content">
+          <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
 
-        <div part="content-container" class="nav-item__content-container">
-          <slot part="content"></slot>
+          <div part="content-container" class="nav-item__content-container">
+            <slot part="content"></slot>
+          </div>
+
+          <slot name="suffix" part="suffix" class="nav-item__suffix"></slot>
+
+          ${hasChevron ? html`
+            <syn-icon
+              class="nav-item__chevron"
+              name="chevron-down"
+              part="chevron"
+              library="system"
+              color="currentColor"
+            /></syn-icon>`
+          : ''}
         </div>
-
-        <slot name="suffix" part="suffix" class="nav-item__suffix"></slot>
-
-        ${hasChevron ? html`
-          <syn-icon
-            class="nav-item__chevron"
-            name="chevron-down"
-            part="chevron"
-            library="system"
-            color="currentColor"
-          /></syn-icon>`
-        : ''}
 
       </${tag}>
     `;

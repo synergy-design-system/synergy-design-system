@@ -43,6 +43,7 @@ import styles from './nav-item.styles.js';
  * @csspart content - The component's content excluding children.
  * @csspart current-indicator - The indicator used when current is set to true
  * @csspart chevron - The container that wraps the chevron.
+ * @csspart details - The details element rendered when there are children available
  * @csspart divider - The components optional top divider.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
@@ -97,6 +98,10 @@ export default class SynNavItem extends SynergyElement {
    */
   @property({ reflect: true, type: Boolean }) divider = false;
 
+  private isButton(): boolean {
+    return !this.href && !this.hasSlotController.test('children');
+  }
+
   private isLink(): boolean {
     return !!this.href;
   }
@@ -105,19 +110,66 @@ export default class SynNavItem extends SynergyElement {
     return !this.href && this.hasSlotController.test('children');
   }
 
+  private handleClickButton(e: MouseEvent) {
+    if (this.disabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }
+
+  private handleClickSummary(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (this.disabled) return;
+
+    if (this.open) {
+      this.hideDetails();
+    } else {
+      this.showDetails();
+    }
+  }
+
+  private hideDetails() {
+    this.open = false;
+    this.emit('syn-hide', {
+      cancelable: true,
+    });
+  }
+
+  private showDetails() {
+    this.open = true;
+    this.emit('syn-show', {
+      cancelable: true,
+    });
+  }
+
   /* eslint-disable complexity */
   render() {
+    const isButton = this.isButton();
     const isLink = this.isLink();
     const isAccordion = this.isAccordion();
 
-    const tag = isLink ? literal`a` : literal`button`;
+    let tag = literal`button`;
+    if (isLink) tag = literal`a`;
+    else if (isAccordion) tag = literal`summary`;
 
     const hasChildren = this.hasSlotController.test('children');
     const hasChevron = (this.chevron || hasChildren) && this.vertical;
 
+    // Define the click method to use
+    let clickAction;
+    if (isAccordion) {
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      clickAction = this.handleClickSummary;
+    } else if (isButton) {
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      clickAction = this.handleClickButton;
+    }
+
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable lit/binding-positions */
-    return html`
+    const root = html`
       <${tag}
         aria-controls=${ifDefined(isAccordion ? 'navigation-item-details' : undefined)}
         aria-current=${ifDefined(this.current ? 'page' : undefined)}
@@ -128,7 +180,9 @@ export default class SynNavItem extends SynergyElement {
           'nav-item--disabled': this.disabled,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
+          'nav-item-is-accordion': isAccordion,
         })}
+        @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         part="base"
         role=${isLink ? 'link' : 'button'}
@@ -176,5 +230,16 @@ export default class SynNavItem extends SynergyElement {
     /* eslint-enable lit/no-invalid-html */
     /* eslint-enable lit/binding-positions */
     /* eslint-enable complexity */
+
+    return isAccordion ? html`
+      <details
+        id="navigation-item-details"
+        ?open=${this.open}
+        part="details"
+      >
+        ${root}
+        <slot name="children"></slot>
+      </details>
+    ` : root;
   }
 }

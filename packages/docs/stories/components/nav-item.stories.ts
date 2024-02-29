@@ -196,12 +196,12 @@ export const Disabled: Story = {
 export const CS: Story = {
   render: () => html`
     <style>
-    nav {
+    .doc-nav {
       border: 1px solid var(--syn-color-neutral-500);
-      width: 275px;
+      width: 400px;
     }
     </style>
-    <nav>
+    <nav class="doc-nav">
       <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
         Home
@@ -212,7 +212,7 @@ export const CS: Story = {
       </syn-nav-item>
       <syn-nav-item divider vertical>
         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-        Children
+        Item 1.0
         <!-- second-level -->
         <nav slot="children">
           <syn-nav-item divider vertical>
@@ -222,6 +222,26 @@ export const CS: Story = {
           <syn-nav-item divider vertical>
             <syn-icon name="area_chart" slot="prefix"></syn-icon>
             Item 1.2
+            <!-- third-level -->
+            <nav slot="children">
+              
+              <syn-nav-item divider vertical>
+                <syn-icon name="area_chart" slot="prefix"></syn-icon>
+                Item 1.2.1
+              </syn-nav-item>
+
+              <syn-nav-item divider vertical>
+                <syn-icon name="area_chart" slot="prefix"></syn-icon>
+                Item 1.2.2
+              </syn-nav-item>
+
+              <syn-nav-item divider vertical>
+                <syn-icon name="area_chart" slot="prefix"></syn-icon>
+                Item 1.2.3
+              </syn-nav-item>
+
+            </nav>
+            <!-- /third-level -->
           </syn-nav-item>
           <syn-nav-item divider vertical>
             <syn-icon name="area_chart" slot="prefix"></syn-icon>

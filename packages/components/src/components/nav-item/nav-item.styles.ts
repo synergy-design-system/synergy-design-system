@@ -2,6 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    display: inline-block;
+  }
+
+  :host([vertical]) {
     display: block;
   }
 
@@ -49,6 +53,7 @@ export default css`
     align-items: center;
     display: flex;
     position: relative;
+    width: 100%;
   }
 
   .nav-item--disabled .nav-item__content {
@@ -138,5 +143,17 @@ export default css`
   .nav-item__chevron {
     font-size: var(--syn-font-size-x-large);
     padding-left: var(--syn-spacing-x-small);
+  }
+
+  /**
+   * Sub menu styling
+   */
+  summary.nav-item {
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  details summary::-webkit-details-marker {
+    visibility: hidden;
   }
 `;

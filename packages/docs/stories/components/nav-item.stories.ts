@@ -213,6 +213,7 @@ export const CS: Story = {
       <syn-nav-item divider vertical>
         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
         Item 1.0
+        <syn-icon name="home" slot="suffix"></syn-icon>
         <!-- second-level -->
         <nav slot="children">
           <syn-nav-item divider vertical>

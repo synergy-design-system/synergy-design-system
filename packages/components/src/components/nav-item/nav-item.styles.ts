@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --level: 0;
+
     display: inline-block;
   }
 
@@ -69,20 +71,29 @@ export default css`
 
   /**
    * Make the primary content container fill all available space
+   * This also makes sure we add some inner padding when having nested items
    */
   .nav-item__content-container {
     flex: 1;
+    padding-inline-start: calc(var(--level) * 100px);
+  }
+
+  /**
+   * We allow three levels of navigation per default
+   */
+  .children::slotted(*) {
+    --level: calc(var(--level) + 1);
   }
 
   /**
    * Adjust the paddings for the label, depending if there is a pre- and/or suffix available
    */
   .nav-item--has-prefix .nav-item__content-container {
-    padding-left: var(--syn-spacing-x-small);
+    margin-inline-start: var(--syn-spacing-x-small);
   }
 
   .nav-item--has-suffix .nav-item__content-container {
-    padding-right: var(--syn-spacing-x-small);
+    margin-inline-end: var(--syn-spacing-x-small);
   }
 
   /**
@@ -142,7 +153,13 @@ export default css`
    */
   .nav-item__chevron {
     font-size: var(--syn-font-size-x-large);
-    padding-left: var(--syn-spacing-x-small);
+    margin-inline-start: var(--syn-spacing-x-small);
+    rotate: 0deg;
+    transition: var(--syn-transition-medium) rotate ease;
+  }
+
+  .nav-item__chevron-open {
+    rotate: -180deg;
   }
 
   /**

@@ -39,6 +39,7 @@ import styles from './nav-item.styles.js';
  * A chevron will be shown on the right side regardless of the chevron property.
  *
  * @csspart base - The component's base wrapper including children.
+ * @csspart children - The wrapper that holds the children
  * @csspart content-wrapper - The component's content wrapper.
  * @csspart content - The component's content excluding children.
  * @csspart current-indicator - The indicator used when current is set to true
@@ -216,7 +217,10 @@ export default class SynNavItem extends SynergyElement {
 
           ${hasChevron ? html`
             <syn-icon
-              class="nav-item__chevron"
+              class=${classMap({
+                'nav-item__chevron': true,
+                'nav-item__chevron-open': this.open,
+              })}
               name="chevron-down"
               part="chevron"
               library="system"
@@ -238,7 +242,7 @@ export default class SynNavItem extends SynergyElement {
         part="details"
       >
         ${root}
-        <slot name="children"></slot>
+        <slot class="children" name="children" part="children"></slot>
       </details>
     ` : root;
   }

@@ -118,6 +118,7 @@ export const PrefixAndSuffixSlot: Story = {
       align-items: center;
       border: 1px solid var(--syn-color-neutral-400);
       border-radius: var(--syn-border-radius-circle);
+      box-sizing: border-box;
       color: var(--syn-color-neutral-950);
       display: inline-flex;
       font-size: var(--syn-font-size-x-small);

@@ -56,7 +56,8 @@ export default css`
     outline-offset: -2px;
   }
 
-  .nav-item:not(.nav-item--disabled):hover {
+  .nav-item:not(.nav-item--disabled):hover,
+  .nav-item:not(.nav-item--disabled):focus {
     background: var(--syn-color-neutral-100);
   }
 
@@ -113,6 +114,10 @@ export default css`
     border: none;
     margin: 0;
     position: absolute;
+    transition: var(--syn-transition-medium) top ease,
+      var(--syn-transition-medium) right ease,
+      var(--syn-transition-medium) bottom ease,
+      var(--syn-transition-medium) left ease;
   }
 
   .current-indicator--visible.current-indicator--disabled {
@@ -130,11 +135,23 @@ export default css`
     right: var(--syn-spacing-x-small);
   }
 
+  .nav-item:hover .current-indicator--visible.current-indicator--horizontal,
+  .nav-item:focus > .current-indicator--visible.current-indicator--horizontal {
+    left: 0;
+    right: 0;
+  }
+
   .current-indicator--vertical {
     bottom: var(--syn-spacing-x-small);
     left: 0;
     top: var(--syn-spacing-x-small);
     width: var(--syn-spacing-2x-small);
+  }
+
+  .nav-item:hover .current-indicator--visible.current-indicator--vertical,
+  .nav-item:focus > .current-indicator--visible.current-indicator--vertical {
+    bottom: 0;
+    top: 0;
   }
 
   /**

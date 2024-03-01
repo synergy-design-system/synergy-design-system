@@ -48,6 +48,9 @@ import styles from './nav-item.styles.js';
  * @csspart divider - The components optional top divider.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
+ *
+ * @cssproperty --level - Numeric value, indicating the level the item is placed at.
+ * @cssproperty --level-stepping - The amount of pixels each level will indent.
  */
 export default class SynNavItem extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];

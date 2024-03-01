@@ -157,22 +157,22 @@ export default class SynNavItem extends SynergyElement {
    * Automatically add the correct level of indentation for sub items if none is provided
    */
   private handleSlotChange() {
+    // Use the current level of the component
     const level = getComputedStyle(this).getPropertyValue('--level');
 
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);
 
-    const foundNavItems = Array.from(
+    Array.from(
       this.childrenSlot.assignedElements({
         flatten: true,
       }) as HTMLElement[],
     )
-      .map(slottedElement => Array.from(slottedElement.querySelectorAll(':scope > syn-nav-item')))
-      .flat() as SynNavItem[];
-
-    foundNavItems.forEach(item => {
-      item.style.setProperty('--level', nextLevel.toFixed(0));
-    });
+      .map(slottedElement => Array.from(slottedElement.querySelectorAll<SynNavItem>(':scope > syn-nav-item')))
+      .flat()
+      .forEach(item => {
+        item.style.setProperty('--level', nextLevel.toFixed(0));
+      });
   }
 
   // eslint-disable-next-line complexity
@@ -181,6 +181,7 @@ export default class SynNavItem extends SynergyElement {
     const isLink = this.isLink();
     const isAccordion = this.isAccordion();
 
+    // Defines the initial tag to use for the root component
     let tag = literal`button`;
     if (isLink) tag = literal`a`;
     else if (isAccordion) tag = literal`summary`;

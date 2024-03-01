@@ -98,7 +98,7 @@ body {
 }
 
 .sbdocs a {
-  color: var(--syn-color-primary-500);
+  color: var(--syn-color-primary-600);
 }
 
 .sbdocs a:focus,
@@ -119,4 +119,8 @@ button:focus-visible {
 
 img {
   max-width: 100%;
+}
+
+.docs-syn-style ul {
+  margin: 0;
 }

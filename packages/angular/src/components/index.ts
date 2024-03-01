@@ -12,6 +12,7 @@ export { SynHeaderComponent } from './header.component';
 export { SynIconButtonComponent } from './icon-button.component';
 export { SynIconComponent } from './icon.component';
 export { SynInputComponent } from './input.component';
+export { SynNavItemComponent } from './nav-item.component';
 export { SynOptgroupComponent } from './optgroup.component';
 export { SynOptionComponent } from './option.component';
 export { SynRadioButtonComponent } from './radio-button.component';

@@ -12,6 +12,7 @@ export { SynHeader } from './components/header.js';
 export { SynIcon } from './components/icon.js';
 export { SynIconButton } from './components/icon-button.js';
 export { SynInput } from './components/input.js';
+export { SynNavItem } from './components/nav-item.js';
 export { SynOptgroup } from './components/optgroup.js';
 export { SynOption } from './components/option.js';
 export { SynRadio } from './components/radio.js';

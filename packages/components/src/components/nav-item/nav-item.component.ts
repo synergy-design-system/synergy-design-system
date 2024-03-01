@@ -207,7 +207,6 @@ export default class SynNavItem extends SynergyElement {
         aria-disabled=${this.disabled}
         class=${classMap({
           'nav-item': true,
-          [`nav-item-level-${this.level}`]: true,
           'nav-item--current': this.current,
           'nav-item--disabled': this.disabled,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),

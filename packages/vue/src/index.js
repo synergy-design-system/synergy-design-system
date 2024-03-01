@@ -12,6 +12,7 @@ export { default as SynVueHeader } from './components/SynVueHeader.vue';
 export { default as SynVueIcon } from './components/SynVueIcon.vue';
 export { default as SynVueIconButton } from './components/SynVueIconButton.vue';
 export { default as SynVueInput } from './components/SynVueInput.vue';
+export { default as SynVueNavItem } from './components/SynVueNavItem.vue';
 export { default as SynVueOptgroup } from './components/SynVueOptgroup.vue';
 export { default as SynVueOption } from './components/SynVueOption.vue';
 export { default as SynVueRadio } from './components/SynVueRadio.vue';

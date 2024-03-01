@@ -1,12 +1,27 @@
 import { css } from 'lit';
 
 export default css`
+  /**
+   * Default alignment is inline block when we are in horizontal mode
+   */
   :host {
+    /**
+     * The level property defines the current indention level
+     * It may be set per hand, but is normally set during the render phase of a <syn-nav-item />
+     */
     --level: 0;
+
+    /**
+     * The level amount of pixels each level will shift the content 
+     */
+    --level-stepping: var(--syn-spacing-x-large);
 
     display: inline-block;
   }
 
+  /**
+   * Default alignment is block when we are in vertical mode
+   */
   :host([vertical]) {
     display: block;
   }
@@ -17,6 +32,7 @@ export default css`
   .nav-item {
     background: transparent;
     border: none;
+    color: var(--syn-color-neutral-950);
     cursor: pointer;
     font: var(--syn-font-sans);
     font-size: var(--syn-font-size-small);
@@ -45,15 +61,17 @@ export default css`
   }
 
   /**
-   * The content wrapper is needed to get the disabled state right.
+   * The content wrapper is needed to get the disabled state right
+   * and also sets the left padding, according to the given indentation level.
+   *
    * Normally, we would just use opacity directly on the button.
-   * When using the divider prop, this leads to problems
+   * However, when using the divider prop, this leads to problems
    * as the divider itself will also get opaque.
-   * Therefore, we opted to add the wrapper element and apply the opacity there.
    */
   .nav-item__content {
     align-items: center;
     display: flex;
+    padding-inline-start: calc(var(--level) * var(--level-stepping));
     position: relative;
     width: 100%;
   }
@@ -71,18 +89,9 @@ export default css`
 
   /**
    * Make the primary content container fill all available space
-   * This also makes sure we add some inner padding when having nested items
    */
   .nav-item__content-container {
     flex: 1;
-    padding-inline-start: calc(var(--level) * 100px);
-  }
-
-  /**
-   * We allow three levels of navigation per default
-   */
-  .children::slotted(*) {
-    --level: calc(var(--level) + 1);
   }
 
   /**

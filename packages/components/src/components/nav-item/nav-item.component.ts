@@ -1,7 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import type { CSSResultGroup } from 'lit';
 import { html, literal } from 'lit/static-html.js';
-import { property } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import SynDivider from '../divider/divider.component.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -57,6 +57,11 @@ export default class SynNavItem extends SynergyElement {
   };
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');
+
+  /**
+   * Reference to the default slot
+   */
+  @query('slot[name="children"]') childrenSlot: HTMLSlotElement;
 
   /**
    * The navigation item's href target.
@@ -145,7 +150,29 @@ export default class SynNavItem extends SynergyElement {
     });
   }
 
-  /* eslint-disable complexity */
+  /**
+   * Automatically add the correct level of indentation for sub items if none is provided
+   */
+  private handleSlotChange() {
+    const level = getComputedStyle(this).getPropertyValue('--level');
+
+    // We allow at most 3 levels
+    const nextLevel = Math.min(parseInt(level, 10) + 1, 2);
+
+    const foundNavItems = Array.from(
+      this.childrenSlot.assignedElements({
+        flatten: true,
+      }) as HTMLElement[],
+    )
+      .map(slottedElement => Array.from(slottedElement.querySelectorAll(':scope > syn-nav-item')))
+      .flat() as SynNavItem[];
+
+    foundNavItems.forEach(item => {
+      item.style.setProperty('--level', nextLevel.toFixed(0));
+    });
+  }
+
+  // eslint-disable-next-line complexity
   render() {
     const isButton = this.isButton();
     const isLink = this.isLink();
@@ -177,6 +204,7 @@ export default class SynNavItem extends SynergyElement {
         aria-disabled=${this.disabled}
         class=${classMap({
           'nav-item': true,
+          [`nav-item-level-${this.level}`]: true,
           'nav-item--current': this.current,
           'nav-item--disabled': this.disabled,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
@@ -221,10 +249,10 @@ export default class SynNavItem extends SynergyElement {
                 'nav-item__chevron': true,
                 'nav-item__chevron-open': this.open,
               })}
+              color="currentColor"
+              library="system"
               name="chevron-down"
               part="chevron"
-              library="system"
-              color="currentColor"
             /></syn-icon>`
           : ''}
         </div>
@@ -233,8 +261,8 @@ export default class SynNavItem extends SynergyElement {
     `;
     /* eslint-enable lit/no-invalid-html */
     /* eslint-enable lit/binding-positions */
-    /* eslint-enable complexity */
 
+    /* eslint-disable @typescript-eslint/unbound-method */
     return isAccordion ? html`
       <details
         id="navigation-item-details"
@@ -242,8 +270,14 @@ export default class SynNavItem extends SynergyElement {
         part="details"
       >
         ${root}
-        <slot class="children" name="children" part="children"></slot>
+        <slot
+          class="children"
+          name="children"
+          part="children"
+          @slotchange=${this.handleSlotChange}
+        ></slot>
       </details>
     ` : root;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
 }

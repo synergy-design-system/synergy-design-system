@@ -98,7 +98,7 @@ body {
 }
 
 .sbdocs a {
-  color: var(--syn-color-primary-500);
+  color: var(--syn-color-primary-600);
 }
 
 .sbdocs a:focus,

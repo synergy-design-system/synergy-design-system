@@ -6,21 +6,22 @@ export default css`
    */
   :host {
     /**
-     * The level property defines the current indention level
-     * It may be set per hand, but is normally set during the render phase of a <syn-nav-item />
+     * The indentation property defines the current "level" the component is on
+     * It may be set per hand, but is normally set during the render phase
+     * of a <syn-nav-item /> for slotted children
      */
-    --level: 0;
+    --indentation: 0;
 
     /**
-     * The level amount of pixels each level will shift the content 
+     * Defines the amount of pixels each indentation level will shift the content to the left
      */
-    --level-stepping: var(--syn-spacing-x-large);
+    --indentation-stepping: var(--syn-spacing-x-large);
 
     display: inline-block;
   }
 
   /**
-   * Default alignment is block when we are in vertical mode
+   * Switch alignment to block when we are in vertical mode
    */
   :host([vertical]) {
     display: block;
@@ -56,8 +57,7 @@ export default css`
     outline-offset: -2px;
   }
 
-  .nav-item:not(.nav-item--disabled):hover,
-  .nav-item:not(.nav-item--disabled):focus {
+  .nav-item:not(.nav-item--disabled):hover {
     background: var(--syn-color-neutral-100);
   }
 
@@ -72,7 +72,7 @@ export default css`
   .nav-item__content {
     align-items: center;
     display: flex;
-    padding-inline-start: calc(var(--level) * var(--level-stepping));
+    padding-inline-start: calc(var(--indentation) * var(--indentation-stepping));
     position: relative;
     width: 100%;
   }

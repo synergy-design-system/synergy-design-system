@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { SynNavItem } from '@synergy-design-system/components';
 import '../../../components/src/components/nav-item/nav-item.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
@@ -74,7 +75,7 @@ export const Current: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item current>Current Navigation item</syn-nav-item>
+    <syn-nav-item current vertical>Current Navigation item</syn-nav-item>
   `,
 };
 
@@ -93,11 +94,20 @@ export const HorizontalNavigation: Story = {
 
 export const Focus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('nav-item', 'focus'),
       },
     },
+  },
+  play: ({ canvasElement }) => {
+    const item = canvasElement.querySelector('syn-nav-item') as SynNavItem;
+    if (item) {
+      item.focus();
+    }
   },
   render: () => html`
     <syn-nav-item>Current navigation item</syn-nav-item>
@@ -149,21 +159,23 @@ export const ChildrenClosedOrOpenVerticalOnly: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item>
-      Children closed
-      <nav slot="children">
-        <syn-nav-item>Item 1</syn-nav-item>
-        <syn-nav-item>Item 2</syn-nav-item>
-      </nav>
-    </syn-nav-item>
-    <br />
-    <syn-nav-item open>
-      Children open
-      <nav slot="children">
-        <syn-nav-item>Item 1</syn-nav-item>
-        <syn-nav-item>Item 2</syn-nav-item>
-      </nav>
-    </syn-nav-item>
+    <nav style="width: 320px">
+      <syn-nav-item vertical>
+        Children closed
+        <nav slot="children">
+          <syn-nav-item vertical>Item 1</syn-nav-item>
+          <syn-nav-item vertical divider>Item 2</syn-nav-item>
+        </nav>
+      </syn-nav-item>
+      <br />
+      <syn-nav-item open vertical>
+        Children open
+        <nav slot="children">
+          <syn-nav-item vertical>Item 1</syn-nav-item>
+          <syn-nav-item vertical divider>Item 2</syn-nav-item>
+        </nav>
+      </syn-nav-item>
+    </nav>
   `,
 };
 
@@ -176,10 +188,30 @@ export const Divider: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item>Dividing element</syn-nav-item>
-    <syn-nav-item divider>Dividing element</syn-nav-item>
+    <nav style="width: 320px;">
+      <syn-nav-item vertical>Dividing element</syn-nav-item>
+      <syn-nav-item divider vertical>Dividing element</syn-nav-item>
+    </nav>
   `,
 };
+
+export const Indentation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('nav-item', 'indentation'),
+      },
+    },
+  },
+  render: () => html`
+    <nav style="width: 320px; gap: 24px; display: flex; flex-direction: column;">
+      <syn-nav-item current vertical>Indentation: none</syn-nav-item>
+      <syn-nav-item current vertical style="--indentation: 1">Indentation: 1</syn-nav-item>
+      <syn-nav-item current vertical style="--indentation: 2">Indentation: 2</syn-nav-item>
+    </nav>
+  `,
+};
+
 
 export const Disabled: Story = {
   parameters: {
@@ -270,7 +302,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Labels,
   Current,
   HorizontalNavigation,
-  Focus,
   PrefixAndSuffixSlot,
   ChildrenClosedOrOpenVerticalOnly,
   Divider,

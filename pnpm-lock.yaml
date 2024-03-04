@@ -427,6 +427,9 @@ importers:
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
+      '@types/sinon':
+        specifier: ^17.0.3
+        version: 17.0.3
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.21.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -7455,11 +7458,11 @@ packages:
     resolution: {integrity: sha512-D+VFqUjMqeku/FGl4Ioo+fDeWOaIfbZ6Oj+glgFUgz5m5RJ4kgCER3FdV1uvhmEt0A+FRz+juPdybFlg5Hxfow==}
     dependencies:
       '@types/chai': 4.3.8
-      '@types/sinon': 10.0.19
+      '@types/sinon': 17.0.3
     dev: true
 
-  /@types/sinon@10.0.19:
-    resolution: {integrity: sha512-MWZNGPSchIdDfb5FL+VFi4zHsHbNOTQEgjqFQk7HazXSXwUU9PAX3z9XBqb3AJGYr9YwrtCtaSMsT3brYsN/jQ==}
+  /@types/sinon@17.0.3:
+    resolution: {integrity: sha512-j3uovdn8ewky9kRBG19bOwaZbexJu/XjtkHyjvUgt4xfPFz18dcORIMqnYh66Fx3Powhcr85NT5+er3+oViapw==}
     dependencies:
       '@types/sinonjs__fake-timers': 8.1.3
     dev: true

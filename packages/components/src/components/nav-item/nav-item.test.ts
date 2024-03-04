@@ -1,6 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-floating-promises */
+import sinon from 'sinon';
 import '../../../dist/synergy.js';
-import { expect, fixture, html } from '@open-wc/testing';
+import {
+  expect,
+  fixture,
+  html,
+  waitUntil,
+} from '@open-wc/testing';
 import type SynNavItem from './nav-item.js';
 
 describe('<syn-nav-item>', () => {
@@ -44,8 +54,8 @@ describe('<syn-nav-item>', () => {
 
     it('should disable the button if disabled is set to true', async () => {
       const el = await fixture<SynNavItem>(html`<syn-nav-item disabled>Label</syn-nav-item>`);
-      expect(el.shadowRoot!.querySelector('button').ariaDisabled).to.equal('true');
-      expect(el.shadowRoot!.querySelector('button').tabIndex).to.equal(-1);
+      expect(el.shadowRoot!.querySelector('button')!.ariaDisabled).to.equal('true');
+      expect(el.shadowRoot!.querySelector('button')!.tabIndex).to.equal(-1);
     });
 
     it('should not have a chevron present', async () => {
@@ -69,8 +79,8 @@ describe('<syn-nav-item>', () => {
 
     it('should disable the link if disabled is set to true', async () => {
       const el = await fixture<SynNavItem>(html`<syn-nav-item href="#" disabled>Label</syn-nav-item>`);
-      expect(el.shadowRoot!.querySelector('a').ariaDisabled).to.equal('true');
-      expect(el.shadowRoot!.querySelector('a').tabIndex).to.equal(-1);
+      expect(el.shadowRoot!.querySelector('a')!.ariaDisabled).to.equal('true');
+      expect(el.shadowRoot!.querySelector('a')!.tabIndex).to.equal(-1);
     });
   });
 
@@ -115,6 +125,49 @@ describe('<syn-nav-item>', () => {
         </syn-nav-item>
       `);
       expect(el.shadowRoot!.querySelector('[part~="chevron"]')).to.exist;
+    });
+  });
+
+  describe('when using methods', () => {
+    it('should emit syn-focus and syn-blur when the nav-item is focused and blurred', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item></syn-nav-item>`);
+      const focusHandler = sinon.spy();
+      const blurHandler = sinon.spy();
+
+      el.addEventListener('syn-focus', focusHandler);
+      el.addEventListener('syn-blur', blurHandler);
+
+      el.focus();
+      await waitUntil(() => focusHandler.calledOnce);
+
+      el.blur();
+      await waitUntil(() => blurHandler.calledOnce);
+
+      expect(focusHandler).to.have.been.calledOnce;
+      expect(blurHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit a blur event when calling blur()', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item></syn-nav-item>`);
+      const blurHandler = sinon.spy();
+
+      el.addEventListener('syn-blur', blurHandler);
+      el.focus();
+      el.blur();
+      await waitUntil(() => blurHandler.calledOnce);
+
+      expect(blurHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit a click event when calling click()', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item></syn-nav-item>`);
+      const clickHandler = sinon.spy();
+
+      el.addEventListener('click', clickHandler);
+      el.click();
+      await waitUntil(() => clickHandler.calledOnce);
+
+      expect(clickHandler).to.have.been.calledOnce;
     });
   });
 });

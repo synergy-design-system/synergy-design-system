@@ -1,7 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import type { CSSResultGroup } from 'lit';
 import { html, literal } from 'lit/static-html.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import SynDivider from '../divider/divider.component.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -31,6 +31,9 @@ import styles from './nav-item.styles.js';
  * - has no href
  * - and is clicked while HTML details are shown.
  *
+ * @event syn-blur - Emitted when the button loses focus.
+ * @event syn-focus - Emitted when the button gains focus.
+ *
  * @slot - The navigation item's label.
  * @slot prefix - A presentational prefix icon or similar element.
  * @slot suffix - A presentational suffix icon or similar element.
@@ -49,8 +52,8 @@ import styles from './nav-item.styles.js';
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  *
- * @cssproperty --level - Numeric value, indicating the level the item is placed at.
- * @cssproperty --level-stepping - The amount of pixels each level will indent.
+ * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
+ * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  */
 export default class SynNavItem extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -62,9 +65,19 @@ export default class SynNavItem extends SynergyElement {
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');
 
   /**
-   * Reference to the default slot
+   * The current focus state
+   */
+  @state() private hasFocus = false;
+
+  /**
+   * Reference to the children slot
    */
   @query('slot[name="children"]') childrenSlot: HTMLSlotElement;
+
+  /**
+   * Reference to the outermost button
+   */
+  @query('.nav-item') control: HTMLButtonElement | HTMLLinkElement | HTMLElement;
 
   /**
    * The navigation item's href target.
@@ -158,7 +171,7 @@ export default class SynNavItem extends SynergyElement {
    */
   private handleSlotChange() {
     // Use the current level of the component
-    const level = getComputedStyle(this).getPropertyValue('--level');
+    const level = getComputedStyle(this).getPropertyValue('--indentation');
 
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);
@@ -171,8 +184,39 @@ export default class SynNavItem extends SynergyElement {
       .map(slottedElement => Array.from(slottedElement.querySelectorAll<SynNavItem>(':scope > syn-nav-item')))
       .flat()
       .forEach(item => {
-        item.style.setProperty('--level', nextLevel.toFixed(0));
+        item.style.setProperty('--indentation', nextLevel.toFixed(0));
       });
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('syn-blur');
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('syn-focus');
+  }
+
+  /**
+   * Removes focus from the button.
+   */
+  blur() {
+    this.control.blur();
+  }
+
+  /**
+   * Simulates a click on the nav-items button, link or summary.
+   */
+  click() {
+    this.control.click();
+  }
+
+  /**
+   * Sets focus on the nav-item
+   */
+  focus(options?: FocusOptions) {
+    this.control.focus(options);
   }
 
   // eslint-disable-next-line complexity
@@ -201,21 +245,25 @@ export default class SynNavItem extends SynergyElement {
 
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable lit/binding-positions */
+    /* eslint-disable @typescript-eslint/unbound-method */
     const root = html`
       <${tag}
         aria-controls=${ifDefined(isAccordion ? 'navigation-item-details' : undefined)}
         aria-current=${ifDefined(this.current ? 'page' : undefined)}
         aria-disabled=${this.disabled}
+        @blur=${this.handleBlur}
         class=${classMap({
           'nav-item': true,
           'nav-item--current': this.current,
           'nav-item--disabled': this.disabled,
+          'nav-item--focused': this.hasFocus,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
           'nav-item-is-accordion': isAccordion,
         })}
         @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
+        @focus=${this.handleFocus}
         part="base"
         role=${isLink ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}
@@ -265,7 +313,6 @@ export default class SynNavItem extends SynergyElement {
     /* eslint-enable lit/no-invalid-html */
     /* eslint-enable lit/binding-positions */
 
-    /* eslint-disable @typescript-eslint/unbound-method */
     return isAccordion ? html`
       <details
         id="navigation-item-details"

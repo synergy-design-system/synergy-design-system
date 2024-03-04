@@ -30,9 +30,9 @@ export default class SynHorizontalNav extends SynergyElement {
   };
 
   /**
-   * Internal intersection observer that decides when to move items into the priority menu
+   * Internal resize observer
    */
-  private intersectionObserver: IntersectionObserver;
+  private resizeObserver: ResizeObserver;
 
   /**
    * Reference to the rendered children slot
@@ -55,14 +55,26 @@ export default class SynHorizontalNav extends SynergyElement {
     return slottedItems.filter(i => i instanceof SynNavItem) as SynNavItem[];
   }
 
+  private handlePriorityMenu() {
+    const navItems = this.getSlottedNavItems();
+    const { width } = this.getBoundingClientRect();
+
+    navItems.forEach(item => {
+      const { right } = item.getBoundingClientRect();
+      const visibility = right > width ? 'hidden' : 'visible';
+
+      // eslint-disable-next-line no-param-reassign
+      item.style.visibility = visibility;
+    });
+
+    this.priorityMenuItems = navItems.filter(i => i.style.visibility === 'hidden');
+  }
+
   /**
    * Make sure that items will get moved to the priority menu.
    */
   private handleSlotChange() {
-    // Add all slotted nav-items to the intersection observer
-    this.getSlottedNavItems().forEach(navItem => {
-      this.intersectionObserver.observe(navItem);
-    });
+    this.handlePriorityMenu();
   }
 
   private renderPriorityMenu() {
@@ -98,30 +110,13 @@ export default class SynHorizontalNav extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      console.log(entries);
-      entries.forEach(({ isIntersecting, target }) => {
-        const ariaHidden = isIntersecting ? 'false' : 'true';
-        const display = isIntersecting ? 'block' : 'none';
-        target.setAttribute('aria-hidden', ariaHidden);
-        target.style.display = display;
-      });
-
-      this.priorityMenuItems = entries
-        .filter(({ isIntersecting }) => !isIntersecting)
-        .map(({ target }) => (target as SynNavItem));
-    };
-
-    this.intersectionObserver = new IntersectionObserver(callback, {
-      root: this,
-      threshold: 1.0,
-    });
+    this.resizeObserver = new ResizeObserver(() => this.handlePriorityMenu());
+    this.resizeObserver.observe(this);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.intersectionObserver.disconnect();
+    this.resizeObserver.unobserve(this);
   }
 
   render() {

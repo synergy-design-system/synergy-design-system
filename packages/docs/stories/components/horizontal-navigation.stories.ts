@@ -66,7 +66,7 @@ export const PriorityMenu = {
     },
   },
   render: () => html`
-    <syn-horizontal-nav style="width: 255px;">
+    <syn-horizontal-nav style="width: 30%;">
       <syn-nav-item current>Domains</syn-nav-item>
       <syn-nav-item>Projects</syn-nav-item>
       <syn-nav-item>Trainings</syn-nav-item>

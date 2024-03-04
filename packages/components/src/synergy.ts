@@ -10,6 +10,7 @@ export { default as SynCheckbox } from './components/checkbox/checkbox.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynHeader } from './components/header/header.js';
+export { default as SynHorizontalNav } from './components/horizontal-nav/horizontal-nav.js';
 export { default as SynIconButton } from './components/icon-button/icon-button.js';
 export { default as SynIcon } from './components/icon/icon.js';
 export { default as SynInput } from './components/input/input.js';

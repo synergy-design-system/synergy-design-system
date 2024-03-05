@@ -8,7 +8,9 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 
 import { type EventName } from '@lit/react';
-import type { SynHideEvent, SynShowEvent } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynFocusEvent, SynHideEvent, SynShowEvent,
+} from '@synergy-design-system/components';
 
 const tagName = 'syn-nav-item';
 Component.define('syn-nav-item');
@@ -35,6 +37,9 @@ Component.define('syn-nav-item');
  * - has no href
  * - and is clicked while HTML details are shown.
  *
+ * @event syn-blur - Emitted when the button loses focus.
+ * @event syn-focus - Emitted when the button gains focus.
+ *
  * @slot - The navigation item's label.
  * @slot prefix - A presentational prefix icon or similar element.
  * @slot suffix - A presentational suffix icon or similar element.
@@ -53,8 +58,8 @@ Component.define('syn-nav-item');
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  *
- * @cssproperty --level - Numeric value, indicating the level the item is placed at.
- * @cssproperty --level-stepping - The amount of pixels each level will indent.
+ * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
+ * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  */
 export const SynNavItem = createComponent({
   displayName: 'SynNavItem',
@@ -62,6 +67,8 @@ export const SynNavItem = createComponent({
   events: {
     onSynShow: 'syn-show' as EventName<SynShowEvent>,
     onSynHide: 'syn-hide' as EventName<SynHideEvent>,
+    onSynBlur: 'syn-blur' as EventName<SynBlurEvent>,
+    onSynFocus: 'syn-focus' as EventName<SynFocusEvent>,
   },
   react: React,
   tagName,
@@ -69,3 +76,5 @@ export const SynNavItem = createComponent({
 
 export type { SynShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';

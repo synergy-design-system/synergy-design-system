@@ -212,7 +212,6 @@ export const Indentation: Story = {
   `,
 };
 
-
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -306,5 +305,5 @@ export const Screenshot: Story = generateScreenshotStory({
   ChildrenClosedOrOpenVerticalOnly,
   Divider,
   Disabled,
-});
+}, 300);
 /* eslint-enable sort-keys */

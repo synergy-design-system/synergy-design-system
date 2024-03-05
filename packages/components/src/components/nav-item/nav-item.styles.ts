@@ -39,11 +39,18 @@ export default css`
     font: var(--syn-font-sans);
     font-size: var(--syn-font-size-small);
     min-height: var(--syn-spacing-2x-large);
-    padding: var(--syn-spacing-small) var(--syn-spacing-medium) var(--syn-spacing-small) var(--syn-spacing-large);
+    padding: var(--syn-spacing-small) var(--syn-spacing-large);
     position: relative;
     text-align: left;
     transition: background-color var(--syn-transition-fast) ease-in-out;
     width: 100%;
+  }
+
+  /**
+   * Nav Items acting as accordion use a slightly narrower padding on the right side
+   */
+  .nav-item.nav-item-is-accordion {
+    padding-right: var(--syn-spacing-medium);
   }
 
   .nav-item--disabled {

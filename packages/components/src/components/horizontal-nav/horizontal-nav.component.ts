@@ -44,7 +44,15 @@ export default class SynHorizontalNav extends SynergyElement {
    */
   @query('slot') defaultSlot: HTMLSlotElement;
 
+  /**
+   * The wrapper that holds the horizontal navigation items
+   */
   @query('.horizontal-nav-items') navItemWrapper: HTMLDivElement;
+
+  /**
+   * The priority menu wrapper
+   */
+  @query('.priority-menu') priorityMenu: HTMLDivElement;
 
   /**
    * The components priority menu label.
@@ -69,24 +77,50 @@ export default class SynHorizontalNav extends SynergyElement {
   }
 
   /**
+   * Adjust the visual placement of the priority menu
+   * @param startPos The start position to calculate from
+   */
+  private adjustPriorityMenuPosition(startPos: number) {
+    const relativeX = startPos - this.priorityMenu.offsetLeft;
+    this.priorityMenu.style.transform = `translate(${relativeX}px, 0)`;
+  }
+
+  /**
    * Determines which items should be shown or hidden, depending on the current width
    */
   private handlePriorityMenu() {
     const navItems = this.getSlottedNavItems();
     const { width } = this.navItemWrapper.getBoundingClientRect();
 
+    let firstHiddenItemRightPos: number | undefined;
+    const nextPriorityMenuItems: SynNavItem[] = [];
+
     navItems.forEach(item => {
-      const { right } = item.getBoundingClientRect();
+      const { right, x } = item.getBoundingClientRect();
       const isHidden = right > width;
 
       // eslint-disable-next-line no-param-reassign
       item.style.visibility = isHidden ? 'hidden' : 'visible';
       item.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+
+      if (isHidden) {
+        // Save a reference to the currently hidden elements.
+        // This makes it possible to render them via renderPriorityMenu
+        nextPriorityMenuItems.push(item);
+
+        // Get the position of the first item
+        // Will get used to position the priority menu
+        if (!firstHiddenItemRightPos) {
+          firstHiddenItemRightPos = x;
+        }
+      }
     });
 
-    // Save a reference to the currently hidden elements.
-    // This makes it possible to render them via renderPriorityMenu
-    this.priorityMenuItems = navItems.filter(i => i.style.visibility === 'hidden');
+    this.priorityMenuItems = nextPriorityMenuItems;
+
+    if (firstHiddenItemRightPos) {
+      this.adjustPriorityMenuPosition(firstHiddenItemRightPos);
+    }
   }
 
   /**

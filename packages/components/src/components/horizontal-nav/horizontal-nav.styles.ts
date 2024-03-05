@@ -26,6 +26,7 @@ export default css`
    */
   .priority-menu {
     position: relative;
+    transform: translate(0, 0);
   }
 
   .priority-menu--hidden {

@@ -25,6 +25,8 @@ import SynNavItem from '../nav-item/nav-item.component.js';
  * @csspart base - The component's base wrapper.
  * @csspart nav-item-wrapper - The wrapper around the slotted `<syn-nav-item />` elements
  * @csspart priority-menu - The wrapper around the priority menu
+ *
+ * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
  */
 export default class SynHorizontalNav extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];

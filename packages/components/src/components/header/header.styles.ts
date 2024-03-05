@@ -74,7 +74,7 @@ export default css`
   }
 
   /**
-   * The options menu holds an arbitary list of <syn-icon-button />
+   * The options menu holds an arbitrary list of <syn-icon-button />
    */
   .header__meta-navigation {
     display: flex;
@@ -88,7 +88,17 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
+  /**
+   * The horizontal top navigation section
+   */
   .header__navigation {
-    padding: 0 var(--syn-spacing-large);
+    padding: 0;
+  }
+
+  /**
+   * Make sure to remove the default paddings from the slotted <syn-horizontal-nav />
+   */
+  .header__navigation ::slotted(syn-horizontal-nav) {
+    --navigation-spacing: 0;
   }
 `;

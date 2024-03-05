@@ -2,12 +2,17 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    /**
+     * The inner padding to use for the wrapper
+     */
+    --navigation-spacing: 0 var(--syn-spacing-large);
+
     display: block;
   }
 
   .horizontal-nav {
     display: flex;
-    padding: 0 var(--syn-spacing-large);
+    padding: var(--navigation-spacing);
   }
 
   /**

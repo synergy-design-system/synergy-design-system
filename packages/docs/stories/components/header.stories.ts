@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/optgroup/optgroup';
+import '../../../components/src/components/horizontal-nav/horizontal-nav.js';
+import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
@@ -136,11 +137,34 @@ export const MetaNavigation: Story = {
   `,
 } as Story;
 
+export const Navigation = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'navigation'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header>
+      <syn-horizontal-nav slot="navigation">
+        <syn-nav-item current>Domains</syn-nav-item>
+        <syn-nav-item>Projects</syn-nav-item>
+        <syn-nav-item>Trainings</syn-nav-item>
+        <syn-nav-item>Evaluations</syn-nav-item>
+        <syn-nav-item>Deployments</syn-nav-item>
+      </syn-horizontal-nav>
+      App with Navigation
+    </syn-header>
+  `,
+};
+
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   Logo,
   MetaNavigation,
+  Navigation,
 }, {
   heightPx: 150,
 });

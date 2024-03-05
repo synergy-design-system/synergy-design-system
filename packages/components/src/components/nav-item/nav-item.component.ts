@@ -285,7 +285,7 @@ export default class SynNavItem extends SynergyElement {
           : ''
         }
 
-        <div class="nav-item__content">
+        <div class="nav-item__content" part="content-wrapper">
           <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
 
           <div part="content-container" class="nav-item__content-container">

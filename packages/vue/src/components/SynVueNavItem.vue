@@ -27,6 +27,9 @@
  * - has no href
  * - and is clicked while HTML details are shown.
  *
+ * @event syn-blur - Emitted when the button loses focus.
+ * @event syn-focus - Emitted when the button gains focus.
+ *
  * @slot - The navigation item's label.
  * @slot prefix - A presentational prefix icon or similar element.
  * @slot suffix - A presentational suffix icon or similar element.
@@ -45,21 +48,37 @@
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  *
- * @cssproperty --level - Numeric value, indicating the level the item is placed at.
- * @cssproperty --level-stepping - The amount of pixels each level will indent.
+ * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
+ * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/nav-item/nav-item.js';
 
-import type { SynHideEvent, SynNavItem, SynShowEvent } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynFocusEvent, SynHideEvent, SynNavItem, SynShowEvent,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynNavItem>();
 
 // Map methods
+/**
+* Removes focus from the button.
+ */
+const callBlur = (...args: Parameters<SynNavItem['blur']>) => element.value?.blur(...args);
+/**
+* Simulates a click on the nav-items button, link or summary.
+ */
+const callClick = (...args: Parameters<SynNavItem['click']>) => element.value?.click(...args);
+/**
+* Sets focus on the nav-item
+ */
+const callFocus = (...args: Parameters<SynNavItem['focus']>) => element.value?.focus(...args);
 
 defineExpose({
-
+  callBlur,
+  callClick,
+  callFocus,
 });
 
 // Map attributes
@@ -123,21 +142,35 @@ defineEmits<{
 * Emitted when the navigation item: - has children, - has no href - and is clicked while HTML details are shown.
  */
   'syn-hide': [e: SynHideEvent];
+
+  /**
+* Emitted when the button loses focus.
+ */
+  'syn-blur': [e: SynBlurEvent];
+
+  /**
+* Emitted when the button gains focus.
+ */
+  'syn-focus': [e: SynFocusEvent];
 }>();
 </script>
 
 <script lang="ts">
 export type { SynShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
   <syn-nav-item
     v-bind="visibleProps"
     ref="element"
-
     @syn-show="$emit('syn-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
+
+    @syn-blur="$emit('syn-blur', $event)"
+    @syn-focus="$emit('syn-focus', $event)"
   >
     <slot />
     <slot name="prefix" />

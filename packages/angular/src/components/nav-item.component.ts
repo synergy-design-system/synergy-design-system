@@ -11,7 +11,9 @@ import {
   NgZone,
   Output,
 } from '@angular/core';
-import type { SynHideEvent, SynNavItem, SynShowEvent } from '@synergy-design-system/components';
+import type {
+  SynBlurEvent, SynFocusEvent, SynHideEvent, SynNavItem, SynShowEvent,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/nav-item/nav-item.js';
 
 /**
@@ -36,6 +38,9 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  * - has no href
  * - and is clicked while HTML details are shown.
  *
+ * @event syn-blur - Emitted when the button loses focus.
+ * @event syn-focus - Emitted when the button gains focus.
+ *
  * @slot - The navigation item's label.
  * @slot prefix - A presentational prefix icon or similar element.
  * @slot suffix - A presentational suffix icon or similar element.
@@ -54,8 +59,8 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  *
- * @cssproperty --level - Numeric value, indicating the level the item is placed at.
- * @cssproperty --level-stepping - The amount of pixels each level will indent.
+ * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
+ * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  */
 @Component({
   selector: 'syn-nav-item',
@@ -72,6 +77,8 @@ export class SynNavItemComponent {
     this._ngZone = ngZone;
     this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
     this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
   }
 
   /**
@@ -161,6 +168,30 @@ Only available when vertical
   }
 
   /**
+* Removes focus from the button.
+ */
+  @Input()
+  callBlur(...args: Parameters<SynNavItem['blur']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+  }
+
+  /**
+* Simulates a click on the nav-items button, link or summary.
+ */
+  @Input()
+  callClick(...args: Parameters<SynNavItem['click']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
+  }
+
+  /**
+* Sets focus on the nav-item
+ */
+  @Input()
+  callFocus(...args: Parameters<SynNavItem['focus']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+  }
+
+  /**
 * Emitted when the navigation item: - has children, - has no href - and is clicked while HTML details are hidden.
  */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
@@ -169,7 +200,19 @@ Only available when vertical
 * Emitted when the navigation item: - has children, - has no href - and is clicked while HTML details are shown.
  */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
+
+  /**
+* Emitted when the button loses focus.
+ */
+  @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
+
+  /**
+* Emitted when the button gains focus.
+ */
+  @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 }
 
 export type { SynShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynFocusEvent } from '@synergy-design-system/components';

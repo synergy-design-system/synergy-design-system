@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
+import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/horizontal-nav/horizontal-nav.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
@@ -35,6 +36,9 @@ const meta: Meta = {
       description: {
         component: generateStoryDescription('horizontal-nav', 'default'),
       },
+      story: {
+        height: '200px',
+      },
     },
   },
   title: 'Components/syn-horizontal-nav',
@@ -66,16 +70,10 @@ export const PriorityMenu = {
     },
   },
   render: () => html`
-    <syn-horizontal-nav style="width: 80%;">
+    <syn-horizontal-nav style="width: 500px;">
       <syn-nav-item current>Domains</syn-nav-item>
       <syn-nav-item>Projects</syn-nav-item>
       <syn-nav-item>Trainings</syn-nav-item>
-      <syn-nav-item>Item 1</syn-nav-item>
-      <syn-nav-item>Item 2</syn-nav-item>
-      <syn-nav-item>Item 3</syn-nav-item>
-      <syn-nav-item>Item 4</syn-nav-item>
-      <syn-nav-item>Item 5</syn-nav-item>
-      <syn-nav-item>Item 6</syn-nav-item>
     </syn-horizontal-nav>
   `,
 };

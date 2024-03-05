@@ -98,7 +98,7 @@ export default class SynHorizontalNav extends SynergyElement {
     const nextPriorityMenuItems: SynNavItem[] = [];
 
     navItems.forEach(item => {
-      const { right, x } = item.getBoundingClientRect();
+      const { right } = item.getBoundingClientRect();
       const isHidden = right > width;
 
       // eslint-disable-next-line no-param-reassign
@@ -113,7 +113,7 @@ export default class SynHorizontalNav extends SynergyElement {
         // Get the position of the first item
         // Will get used to position the priority menu
         if (!firstHiddenItemRightPos) {
-          firstHiddenItemRightPos = x;
+          firstHiddenItemRightPos = item.offsetLeft;
         }
       }
     });

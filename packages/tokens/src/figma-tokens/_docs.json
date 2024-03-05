@@ -528,6 +528,28 @@
         "type": "text"
       }
     },
+    "horizontal-nav": {
+      "default": {
+        "description": {
+          "value": "Horizontal navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the horizontal navigation does not have a child menu navigation, if you want to have a child navigation, combine the horizontal navigation and the side navigation",
+          "type": "text"
+        },
+        "title": {
+          "value": "Horizontal Navigation",
+          "type": "text"
+        }
+      },
+      "priority-menu": {
+        "description": {
+          "value": "If there is not enough space, elements will move into a dropdown.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Priority Menu",
+          "type": "text"
+        }
+      }
+    },
     "icon-button": {
       "default": {
         "description": {
@@ -1647,7 +1669,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
+          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation.(The example shows it in combination with the current attribute, to indicate the difference.)",
           "type": "text"
         }
       },

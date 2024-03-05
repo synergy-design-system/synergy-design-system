@@ -2,43 +2,42 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    background: rgba(255, 0, 0, 0.3);
     display: block;
   }
 
   .horizontal-nav {
     display: flex;
-    gap: var(--syn-spacing-large);
     padding: 0 var(--syn-spacing-large);
   }
 
   /**
-   * WIP: Priority menu
+   * The wrapper that holds the default slot
+   */
+  .horizontal-nav-items {
+    display: flex;
+    flex: 1;
+    gap: var(--syn-spacing-large);
+    overflow: hidden;
+  }
+
+  /**
+   * Priority Menu adjustments
+   * @todo: Remove when <syn-dropdown /> is available
    */
   .priority-menu {
     position: relative;
   }
 
+  .priority-menu--hidden {
+    visibility: hidden;
+  }
+
   .priority-menu-list {
-    background: lightgrey;
-    left: -10000px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    background: var(--syn-color-neutral-0);
+    border: 1px solid var(--syn-color-neutral-300);
+    box-shadow: var(--syn-shadow-medium);
     position: absolute;
-    width: 400px;
-  }
-
-  .priority-menu:hover .priority-menu-list {
-    left: 0;
-  }
-
-  .priority-menu-list li {
-    border-bottom: 1px solid grey;
-    padding: 16px;
-  }
-
-  .priority-menu-list li:last-child {
-    border-bottom: 0;
+    right: 0;
+    width: 300px;
   }
 `;

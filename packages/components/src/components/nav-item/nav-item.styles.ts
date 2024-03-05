@@ -33,6 +33,7 @@ export default css`
   .nav-item {
     background: transparent;
     border: none;
+    box-sizing: border-box;
     color: var(--syn-color-neutral-950);
     cursor: pointer;
     font: var(--syn-font-sans);
@@ -104,6 +105,13 @@ export default css`
 
   .nav-item--has-suffix .nav-item__content-container {
     margin-inline-end: var(--syn-spacing-x-small);
+  }
+
+  /**
+   * Vertical navigation items should not break words
+   */
+  :host(:not([vertical])) .nav-item__content-container {
+    white-space: nowrap;
   }
 
   /**

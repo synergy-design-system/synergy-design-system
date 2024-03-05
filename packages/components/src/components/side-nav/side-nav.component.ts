@@ -71,14 +71,23 @@ export default class SynSideNav extends SynergyElement {
    * Get all nav-items from the default and footer slot.
    */
   private getAllNavItems(): SynNavItem[] {
-    const navItems: SynNavItem[] = [];
-    const defaultSlotItems = (this.defaultSlot?.assignedElements() || [])
-      .filter(navItem => (navItem.tagName.toLowerCase() === 'syn-nav-item')) as SynNavItem[];
+    const navItemsAll: SynNavItem[] = [];
 
-    const footerSlotItems = (this.footerSlot?.assignedElements() || [])
-      .filter(navItem => (navItem.tagName.toLowerCase() === 'syn-nav-item')) as SynNavItem[];
+    const addNavItems = (element: Element) => {
+      if (element.tagName.toLowerCase() === 'syn-nav-item') {
+        navItemsAll.push(element as SynNavItem);
+      } else {
+        // Check for first child nav-items.
+        // It`s possible that they were wrapped in another element (e.g. div or nav)
+        const nestedNavItems = Array.from(element.children).filter(nestedElement => (nestedElement.tagName.toLowerCase() === 'syn-nav-item')) as SynNavItem[];
+        navItemsAll.push(...nestedNavItems);
+      }
+    };
 
-    return navItems.concat(defaultSlotItems, footerSlotItems);
+    (this.defaultSlot?.assignedElements({ flatten: true }) || []).forEach(addNavItems);
+    (this.footerSlot?.assignedElements({ flatten: true }) || []).forEach(addNavItems);
+
+    return navItemsAll;
   }
 
   /**

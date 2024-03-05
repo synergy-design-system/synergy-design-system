@@ -131,16 +131,18 @@ export const Rail: Story = {
 
       Other Option
     </syn-nav-item>
-    <syn-nav-item vertical slot="footer">
-    <syn-icon name="area_chart" slot="prefix"></syn-icon>
+    <nav slot="footer">
+      <syn-nav-item vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
 
-      Other Option
-    </syn-nav-item>
-    <syn-nav-item divider vertical slot="footer">
-    <syn-icon name="area_chart" slot="prefix"></syn-icon>
+        Other Option
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
 
-      Other Option
-    </syn-nav-item>
+        Other Option
+      </syn-nav-item>
+    </nav>
   </syn-side-nav>
   `,
 };
@@ -226,9 +228,11 @@ export const Footer: Story = {
         Other Option
       </syn-nav-item>
       <syn-nav-item vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
         Other Option
       </syn-nav-item>
       <syn-nav-item divider vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
         Other Option
       </syn-nav-item>
   </syn-side-nav>

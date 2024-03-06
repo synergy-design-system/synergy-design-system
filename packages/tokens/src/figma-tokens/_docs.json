@@ -1647,7 +1647,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
+          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
           "type": "text"
         }
       },
@@ -1762,6 +1762,200 @@
           "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
           "type": "text"
         }
+      }
+    }
+  },
+  "assets": {
+    "sick-logo": {
+      "description": {
+        "value": "The logo represents the company and forms the core of the brand identity. Therefore, the logo has a very special meaning in communication: It is always in a prominent position and retains its absolute independence in all applications. The logo is always used as original graphic. It may not be changed or translated.",
+        "type": "text"
+      },
+      "title": {
+        "value": "SICK Logo",
+        "type": "text"
+      }
+    },
+    "material-icons": {
+      "description": {
+        "value": "Icons are small standard symbols that are primarily used in screen design. Due to their intended use, the icons must be recognizable min size of 16 x 16 pixels.\n\nIf you need to create a new icon, you have to follow the Material Icons Guide. Please also inform the Synergy design system team, so we can include this icon to prevent duplicates.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Material Icons",
+        "type": "text"
+      }
+    },
+    "system-icons": {
+      "description": {
+        "value": "The system-icons contain only a small subset of icons that are used internally by Synergy components.\nEach icon wraps the original icon in an own component.\nThe names are aligned with dev and could deviate from Material Icons.",
+        "type": "text"
+      },
+      "title": {
+        "value": "System Icons",
+        "type": "text"
+      }
+    }
+  },
+  "tokens": {
+    "border-radius": {
+      "description": {
+        "value": "Border radius tokens are used to give sharp edges a more subtle, rounded effect.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Border radius",
+        "type": "text"
+      }
+    },
+    "border-width": {
+      "description": {
+        "value": "The border is primarily used to outline the frame of a component or to structure content. The border color varies depending on the component and context, but the width stays constant.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Border width",
+        "type": "text"
+      }
+    },
+    "color": {
+      "description": {
+        "value": "Color tokens help maintain consistent use of color throughout our products.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Color Tokens",
+        "type": "text"
+      },
+      "light": {
+        "description": {
+          "value": "Our light theme is the default theme for all applications",
+          "type": "text"
+        },
+        "title": {
+          "value": "Colors / light",
+          "type": "text"
+        }
+      },
+      "dark": {
+        "description": {
+          "value": "Use the dark theme as a low-light UI that displays mostly dark surfaces.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Colors / dark",
+          "type": "text"
+        }
+      },
+      "semantic": {
+        "description": {
+          "value": "Semantic color information for general or specific components.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Semantic colors",
+          "type": "text"
+        },
+        "text": {
+          "description": {
+            "value": "Primary color used for text within the application",
+            "type": "text"
+          },
+          "title": {
+            "value": "Text colors",
+            "type": "text"
+          }
+        }
+      }
+    },
+    "shadow": {
+      "description": {
+        "value": "Shadow and elevation tokens are used to give elements the appearance of being raised off the page.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Shadow and elevation",
+        "type": "text"
+      }
+    },
+    "spacing": {
+      "description": {
+        "value": "Spacing tokens are used to provide consistent spacing between content in your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Spacing",
+        "type": "text"
+      }
+    },
+    "transition": {
+      "description": {
+        "value": "Transition tokens are used to provide consistent transitions throughout our applications.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Transition Tokens",
+        "type": "text"
+      }
+    },
+    "typography": {
+      "description": {
+        "value": "Typography tokens are used to define typographic style of headings, body text, and UI components. They are used to maintain a consistent set of font styles throughout your app.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Typography",
+        "type": "text"
+      },
+      "text-styles": {
+        "description": {
+          "value": "The Synergy text styles are made up of two categories to cover the range of different needs in designs: Headings and Body / UI text.\n\nUnless explicitly mentioned otherwise in a component, Synergy recommends using sentence case capitalization throughout your applications.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Text styles",
+          "type": "text"
+        },
+        "headings": {
+          "description": {
+            "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\nbuilding page hierarchy,\nhelping users scan large chunks of text,\nproviding a title to a page or piece of content,\nas subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Headings",
+            "type": "text"
+          }
+        },
+        "body": {
+          "description": {
+            "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values. \nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\nIt is also possible to format the text bold for certain text passages.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Body and UI text",
+            "type": "text"
+          }
+        }
+      },
+      "font-family": {
+        "description": {
+          "value": "Synergy uses the open source typeface Open Sans for all elements, but system fonts can also be used.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Font family",
+          "type": "text"
+        }
+      }
+    },
+    "z-index": {
+      "description": {
+        "value": "Z-indexes are used to stack components in a logical manner.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Z-Index Tokens",
+        "type": "text"
       }
     }
   },
@@ -1907,118 +2101,6 @@
       },
       "title": {
         "value": "Contributing",
-        "type": "text"
-      }
-    }
-  },
-  "tokens": {
-    "border-radius": {
-      "description": {
-        "value": "Border radius tokens are used to give sharp edges a more subtle, rounded effect.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Border Radius",
-        "type": "text"
-      }
-    },
-    "color": {
-      "description": {
-        "value": "Color tokens help maintain consistent use of color throughout your app.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Color Tokens",
-        "type": "text"
-      }
-    },
-    "elevation": {
-      "description": {
-        "value": "Elevation tokens are used to give elements the appearance of being raised off the page.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Elevation",
-        "type": "text"
-      }
-    },
-    "more": {
-      "description": {
-        "value": "Additional design tokens can be found here.",
-        "type": "text"
-      },
-      "title": {
-        "value": "More Design Tokens",
-        "type": "text"
-      }
-    },
-    "spacing": {
-      "description": {
-        "value": "Spacing tokens are used to provide consistent spacing between content in your app.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Spacing Tokens",
-        "type": "text"
-      }
-    },
-    "transition": {
-      "description": {
-        "value": "Transition tokens are used to provide consistent transitions throughout your app.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Transition Tokens",
-        "type": "text"
-      }
-    },
-    "typography": {
-      "description": {
-        "value": "Typography tokens are used to define typographic style of headings, body text, and UI components. They are used to maintain a consistent set of font styles throughout your app.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Typography",
-        "type": "text"
-      },
-      "text-styles": {
-        "description": {
-          "value": "The Synergy text styles are made up of two categories to cover the range of different needs in designs: Headings and Body / UI text.\n\nUnless explicitly mentioned otherwise in a component, Synergy recommends using sentence case capitalization throughout your applications.",
-          "type": "text"
-        },
-        "title": {
-          "value": "Text styles",
-          "type": "text"
-        },
-        "headings": {
-          "description": {
-            "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\nbuilding page hierarchy,\nhelping users scan large chunks of text,\nproviding a title to a page or piece of content,\nas subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
-            "type": "text"
-          },
-          "title": {
-            "value": "Headings",
-            "type": "text"
-          }
-        },
-        "body": {
-          "description": {
-            "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values. \nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\nIt is also possible to format the text bold for certain text passages.",
-            "type": "text"
-          },
-          "title": {
-            "value": "Body and UI text",
-            "type": "text"
-          }
-        }
-      }
-    },
-    "z-index": {
-      "description": {
-        "value": "Z-indexes are used to stack components in a logical manner.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Z-Index Tokens",
         "type": "text"
       }
     }

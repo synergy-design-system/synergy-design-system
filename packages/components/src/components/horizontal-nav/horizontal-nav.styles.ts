@@ -26,6 +26,13 @@ export default css`
   }
 
   /**
+   * Slotted nav items use a custom color
+   */
+  ::slotted(syn-nav-item) {
+    --border-bottom-hover-color: var(--syn-color-neutral-400);
+  }
+
+  /**
    * Priority Menu adjustments
    * @todo: Remove when <syn-dropdown /> is available
    */
@@ -40,7 +47,7 @@ export default css`
 
   .priority-menu-list {
     background: var(--syn-color-neutral-0);
-    border: 1px solid var(--syn-color-neutral-300);
+    border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
     box-shadow: var(--syn-shadow-medium);
     position: absolute;
     right: 0;

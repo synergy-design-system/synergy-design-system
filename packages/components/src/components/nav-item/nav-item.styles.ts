@@ -17,6 +17,11 @@ export default css`
      */
     --indentation-stepping: var(--syn-spacing-x-large);
 
+    /**
+     * The border bottom that is applied on hover
+     */
+    --border-bottom-hover-color: transparent;
+
     display: inline-block;
   }
 
@@ -33,6 +38,7 @@ export default css`
   .nav-item {
     background: transparent;
     border: none;
+    box-shadow: inset 0 -1px 0 0 transparent;
     box-sizing: border-box;
     color: var(--syn-color-neutral-950);
     cursor: pointer;
@@ -42,7 +48,7 @@ export default css`
     padding: var(--syn-spacing-small) var(--syn-spacing-large);
     position: relative;
     text-align: left;
-    transition: background-color var(--syn-transition-fast) ease-in-out;
+    transition: background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     width: 100%;
   }
 
@@ -68,11 +74,7 @@ export default css`
 
   .nav-item:not(.nav-item--disabled):hover {
     background: var(--syn-color-neutral-100);
-    
-    /**
-     * @todo: Find a better way to do this
-     * box-shadow: inset 0 -1px 0 0 var(--syn-color-neutral-400);
-     */
+    box-shadow: inset 0 -1px 0 0 var(--border-bottom-hover-color);
   }
 
   /**

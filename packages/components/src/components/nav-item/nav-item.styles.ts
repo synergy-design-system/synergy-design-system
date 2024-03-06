@@ -184,17 +184,25 @@ export default css`
   .divider {
     --color: var(--syn-color-neutral-200);
 
-    left: 0;
+    left: var(--syn-spacing-medium);
     margin: 0;
     position: absolute;
+    right: var(--syn-spacing-medium);
     top: 0;
-    width: 100%;
+    transition: border var(--syn-transition-fast) ease-in-out;
   }
 
   /**
    * Hide the divider for active elements
    */
   .nav-item:focus-visible .divider {
+    --color: transparent;
+  }
+
+  /**
+   * Make sure the divider is not visible anymore when hovering
+   */
+  .nav-item:not(.nav-item--disabled):hover .divider {
     --color: transparent;
   }
 

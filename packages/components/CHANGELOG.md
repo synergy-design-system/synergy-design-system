@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.0...components/1.10.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* 🤔 syn-icon-button has a border-radius ([#358](https://github.com/synergy-design-system/synergy-design-system/issues/358)) ([fc59185](https://github.com/synergy-design-system/synergy-design-system/commit/fc591858578f2a7f64a38548e98a14abee4621ac))
+
 # [@synergy-design-system/components-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.9.0...components/1.10.0) (2024-02-28)
 
 

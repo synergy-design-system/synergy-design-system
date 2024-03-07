@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.1...components/1.11.0) (2024-03-07)
+
+
+### Features
+
+* ✨ add border-radius and roundings to syn-tag ([#357](https://github.com/synergy-design-system/synergy-design-system/issues/357)) ([72ca994](https://github.com/synergy-design-system/synergy-design-system/commit/72ca994be047a04c07c49873578d74ed6adbe548))
+
 # [@synergy-design-system/components-v1.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.0...components/1.10.1) (2024-03-07)
 
 

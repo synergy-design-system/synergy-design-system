@@ -4,6 +4,7 @@ export default css`
   .tag {
     background-color: var(--syn-color-neutral-0);
     border-color: var(--syn-color-neutral-400);
+    border-radius: var(--syn-border-radius-small);
     color: var(--syn-input-color);
   }
 

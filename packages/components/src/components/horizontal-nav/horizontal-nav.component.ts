@@ -97,9 +97,12 @@ export default class SynHorizontalNav extends SynergyElement {
     let firstHiddenItemRightPos: number | undefined;
     const nextPriorityMenuItems: SynNavItem[] = [];
 
+    // eslint-disable-next-line complexity
     navItems.forEach(item => {
-      const { right } = item.getBoundingClientRect();
-      const isHidden = right > width;
+      // If we already have found an item,
+      // skip the position check as we already know the first hidden item.
+      // Else, check if the most right position of the item is in the view
+      const isHidden = firstHiddenItemRightPos || item.getBoundingClientRect().right > width;
 
       // eslint-disable-next-line no-param-reassign
       item.style.visibility = isHidden ? 'hidden' : 'visible';

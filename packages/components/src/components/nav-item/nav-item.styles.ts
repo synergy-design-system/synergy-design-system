@@ -123,6 +123,16 @@ export default css`
   }
 
   /**
+   * Show prefix only
+   */
+  .nav-item--show-prefix-only .nav-item__content-container,
+  .nav-item--show-prefix-only .nav-item__suffix,
+  .nav-item--show-prefix-only .nav-item__chevron {
+    display: none;
+  }
+
+
+  /**
    * Vertical navigation items should not break words
    */
   :host(:not([vertical])) .nav-item__content-container {

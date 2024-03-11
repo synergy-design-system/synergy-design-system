@@ -23,7 +23,7 @@ import type { SynRequestCloseEvent } from '../../events/events.js';
 * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
 * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
 *    Please avoid having to many nav-items as it can massively influence the user experience.
- *
+*
 * @csspart base - The components base wrapper
 * @csspart drawer - The drawer that is used under the hood for creating the side-nav
 * @csspart content-container - The components main content container
@@ -127,10 +127,13 @@ export default class SynSideNav extends SynergyElement {
       if (!this.querySelector('style.hide-parts-style')) {
         const partsHideStyle = document.createElement('style');
         partsHideStyle.className = 'hide-parts-style';
-        partsHideStyle.textContent = `syn-nav-item::part(content-container),
-        syn-nav-item::part(suffix),
-        syn-nav-item::part(chevron),
-        syn-nav-item [slot="children"] {
+        //   partsHideStyle.textContent = `syn-nav-item::part(content-container),
+        // syn-nav-item::part(suffix),
+        // syn-nav-item::part(chevron),
+        // syn-nav-item [slot="children"] {
+        //   display: none
+        // }`;
+        partsHideStyle.textContent = `syn-nav-item [slot="children"] {
           display: none
         }`;
         this.append(partsHideStyle);

@@ -65,10 +65,17 @@ export default class SynNavItem extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');
 
+  private resizeObserver: ResizeObserver;
+
   /**
    * The current focus state
    */
   @state() private hasFocus = false;
+
+  /**
+   * Only the prefix should be displayed
+   */
+  @state() private showPrefixOnly = false;
 
   /**
    * Reference to the children slot
@@ -199,6 +206,28 @@ export default class SynNavItem extends SynergyElement {
     this.emit('syn-focus');
   }
 
+  private handleWidth(entries: ResizeObserverEntry[]) {
+    entries.forEach(entry => {
+      // TODO: Which breakpoint do we want?
+      if (entry.contentRect.width < 100) {
+        const hasPrefix = this.hasSlotController.test('prefix');
+        // TODO: Do we want to shrink the content of the nav-item to prefix,
+        // only if the prefix is a syn-icon or always?
+        // const prefixIconSlot = this.querySelector(':scope > syn-icon[slot="prefix"]');
+        // this.showPrefixOnly = hasPrefix && !!prefixIconSlot;
+        this.showPrefixOnly = hasPrefix;
+      } else {
+        this.showPrefixOnly = false;
+      }
+    });
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.resizeObserver = new ResizeObserver((entries) => this.handleWidth(entries));
+    this.resizeObserver.observe(this);
+  }
+
   /**
    * Removes focus from the button.
    */
@@ -260,6 +289,7 @@ export default class SynNavItem extends SynergyElement {
           'nav-item--focused': this.hasFocus,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
+          'nav-item--show-prefix-only': this.showPrefixOnly,
           'nav-item-is-accordion': isAccordion,
         })}
         @click=${clickAction}

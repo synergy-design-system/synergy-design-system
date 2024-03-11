@@ -10,6 +10,10 @@ import SynDrawer from '../drawer/drawer.component.js';
 import type SynNavItem from '../nav-item/nav-item.component.js';
 import SynDivider from '../divider/divider.component.js';
 import type { SynRequestCloseEvent } from '../../events/events.js';
+import { waitForEvent } from '../../internal/event.js';
+import { watch } from '../../internal/watch.js';
+
+type NavMode = 'fix' | 'rail' | 'shrink';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
@@ -45,43 +49,74 @@ export default class SynSideNav extends SynergyElement {
 
   private isInitial: boolean = true;
 
-  constructor() {
-    super();
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-
   /**
    * Reference to the default slot.
    */
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   /**
    * Reference to the footer slot.
    */
-  @query('slot[name="footer"]') footerSlot: HTMLSlotElement;
+  @query('slot[name="footer"]') private footerSlot: HTMLSlotElement;
 
   /**
    * Reference to the drawer
    */
-  @query('.side-nav__drawer') drawer: SynDrawer;
+  @query('.side-nav__drawer') private drawer: SynDrawer;
 
   /**
    * State if all nav-items have a prefix icon.
    */
   @state() private hasPrefixIcons = false;
 
-  @state() private hasHoverOnRail = false;
+  @state() private isTouch = false;
 
   /**
-   * Use the rail attribute to only show the prefix of navigation items.
+   * Indicates whether or not the side-nav is open.
+   * You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
+   * `hide()` methods and this attribute will reflect the side-nav's open state.
+   */
+  @property({ reflect: true, type: Boolean }) open = false;
+
+  /**
+   * Different side-nav modes.
+   *
+   * __Fixed mode (default):__
+   *
+   * With `open` will show the side-nav with an overlay.
+   * Without `open`, the side-nav will be hidden.
+   *
+   * This should always be the case, if the content of the app is not shrinking.
+   * This makes especially sense for applications, where you navigate to a place and
+   * stay there for a longer time.
+   *
+   *
+   *
+   * __Rail mode:__
+   *
+   * With `open` will show the whole side-nav with an overlay (on touch devices)
+   * or without an overlay for non-touch devices.
+   * Without `open`, the side-nav will only show the prefix of nav-item's.
+   *
+   * Use the rail mode to only show the prefix of navigation items.
    * This will open on hover on the rail navigation.
    * On touch devices the navigation opens on click and shows an overlay.
    *
    * Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
    * If this is not the case you should use a burger navigation.
+   *
+   *
+   * __Shrink mode:__
+   *
+   * For specific cases it might make sense to have the navigation open
+   * while still being able to interact with the app. This especially makes sense
+   * for cases where you switch a lot between areas to interact with an app.
+   *
+   * With `open` will show the side-nav without any overlay.
+   * Without `open`, the side-nav will be hidden.
+   *
    */
-  @property({ reflect: true, type: Boolean }) rail = false;
+  @property({ reflect: true }) mode: NavMode = 'fix';
 
   /**
    * Get all nav-items from the default and footer slot.
@@ -112,6 +147,10 @@ export default class SynSideNav extends SynergyElement {
    */
   // eslint-disable-next-line complexity
   private handleRailMode() {
+    if (this.mode !== 'rail') {
+      return;
+    }
+
     const navItems = this.getAllNavItems();
 
     const itemsWithPrefixIcon = navItems.filter((navItem) => {
@@ -123,7 +162,7 @@ export default class SynSideNav extends SynergyElement {
 
     // Only do rail mode, if every nav-item has a syn-icon as prefix
     // TODO: do we only want to allow syn-icon as prefix or also other elements?
-    if (this.hasPrefixIcons && this.rail && !this.hasHoverOnRail) {
+    if (this.hasPrefixIcons && !this.open) {
       if (!this.querySelector('style.hide-parts-style')) {
         const partsHideStyle = document.createElement('style');
         partsHideStyle.className = 'hide-parts-style';
@@ -144,14 +183,14 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private handleMouseEnter() {
-    if (this.rail && this.hasPrefixIcons) {
-      this.hasHoverOnRail = true;
+    if (this.hasPrefixIcons) {
+      this.open = true;
     }
   }
 
   private handleMouseLeave() {
-    if (this.rail && this.hasPrefixIcons) {
-      this.hasHoverOnRail = false;
+    if (this.hasPrefixIcons) {
+      this.open = false;
     }
   }
 
@@ -159,19 +198,72 @@ export default class SynSideNav extends SynergyElement {
    * Prevent drawer from being closed.
    * @param event - The requested close event emitted from the drawer
    */
+  // eslint-disable-next-line class-methods-use-this
   private handleRequestClose(event: SynRequestCloseEvent) {
     event.preventDefault();
-    this.hasHoverOnRail = false;
+  }
+
+  private addMouseListener() {
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', this.handleMouseEnter);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', this.handleMouseLeave);
+  }
+
+  private removeMouseListener() {
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', this.handleMouseEnter);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
+  }
+
+  @watch('mode', { waitUntilFirstUpdate: true })
+  handleModeChange(oldValue: NavMode, newValue: NavMode) {
+    if (oldValue === 'rail') {
+      this.removeMouseListener();
+    }
+
+    if (newValue === 'rail') {
+      this.addMouseListener();
+    }
+
+    // TODO: what shall happen on shrink mode with open=false?
+  }
+
+  constructor() {
+    super();
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  /** Shows the side-nav. */
+  async show() {
+    if (this.open) {
+      return undefined;
+    }
+    this.open = true;
+    // TODO: handle waitForEvent and emit syn-show syn-after-show for mode!==rail
+    return waitForEvent(this, 'syn-after-show');
+  }
+
+  /** Hides the side-nav */
+  async hide() {
+    if (!this.open) {
+      return undefined;
+    }
+
+    this.open = false;
+    // TODO: handle waitForEvent and emit syn-hide syn-after-hide for mode!==rail
+    return waitForEvent(this, 'syn-after-hide');
   }
 
   /* eslint-disable complexity */
   render() {
+    // Needed to add initial listener to element in drawer shadow dom
     if (this.isInitial && this.drawer) {
       this.isInitial = false;
-      this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', this.handleMouseEnter);
-      this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', this.handleMouseLeave);
+      if (this.mode === 'rail') {
+        this.addMouseListener();
+      }
     }
-    const isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
+
+    this.isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
 
     const hasFooter = this.hasSlotController.test('footer');
     this.handleRailMode();
@@ -182,11 +274,13 @@ export default class SynSideNav extends SynergyElement {
       <nav
         class=${classMap({
       'side-nav': true,
+      'side-nav--fix': this.mode === 'fix',
       'side-nav--has-footer': hasFooter,
       'side-nav--has-prefix-icons': this.hasPrefixIcons,
-      'side-nav--rail': this.rail,
-      'side-nav--rail-hover': this.hasHoverOnRail,
-      'side-nav--rail-touch': isTouch,
+      'side-nav--open': this.open,
+      'side-nav--rail': this.mode === 'rail',
+      'side-nav--shrink': this.mode === 'shrink',
+      'side-nav--touch': this.isTouch,
     })}
         part="base"
       >
@@ -195,7 +289,7 @@ export default class SynSideNav extends SynergyElement {
           class="side-nav__drawer"
           contained
           no-header
-          open
+          ?open=${this.mode === 'fix' ? this.open : true}
           part="drawer"
           placement="start"
           @syn-request-close=${this.handleRequestClose}          

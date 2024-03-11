@@ -6,38 +6,48 @@ export default css`
   }
 
   /**
-  * Syn-drawer styling
-  */
+   * Syn-drawer styling
+   */
 
   syn-drawer::part(body), syn-drawer::part(footer) {
     padding: 0;
   }
 
   /** 
-  * Overlay 
-  */
-
+   * Overlay 
+   */
   .side-nav__drawer::part(overlay){
     position: absolute;
   }
 
- /**
-  * Footer divider
-  */
-
-  .side-nav__footer-divider{
-    --spacing: 0;
-    --color: var(--syn-color-neutral-300);
+  /**
+   * Fixed mode
+   */
+  .side-nav--open.side-nav--fix .side-nav__drawer::part(overlay){
+    display: block;
   }
 
   /**
-  * Rail mode
-  */
-  .side-nav--has-prefix-icons.side-nav--rail:not(.side-nav--rail-hover) .side-nav__drawer {
+   * Rail mode
+   */
+  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail .side-nav__drawer {
     --size: 72px;
   }
 
-  .side-nav--rail-touch.side-nav--rail-hover .side-nav__drawer::part(overlay){
+  .side-nav--open.side-nav--rail.side-nav--touch .side-nav__drawer::part(overlay){
     display: block;
+  }
+
+  /** 
+   * Shrink mode 
+   */
+
+
+  /**
+   * Footer divider
+   */
+  .side-nav__footer-divider{
+    --spacing: 0;
+    --color: var(--syn-color-neutral-300);
   }
 `;

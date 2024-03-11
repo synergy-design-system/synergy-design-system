@@ -12,25 +12,25 @@ import SynDivider from '../divider/divider.component.js';
 import type { SynRequestCloseEvent } from '../../events/events.js';
 
 /**
-* @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
+ * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
  *
-* @status stable
-* @since 1.11.0
+ * @status stable
+ * @since 1.11.0
  *
-* @dependency syn-divider
-* @dependency syn-drawer
+ * @dependency syn-divider
+ * @dependency syn-drawer
  *
-* @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
-* @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
-*    Please avoid having to many nav-items as it can massively influence the user experience.
-*
-* @csspart base - The components base wrapper
-* @csspart drawer - The drawer that is used under the hood for creating the side-nav
-* @csspart content-container - The components main content container
-* @csspart content - The components main content
-* @csspart footer-container - The components footer content container
-* @csspart footer-divider - The components footer divider
-* @csspart footer - The components footer content
+ * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
+ * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
+ *    Please avoid having to many nav-items as it can massively influence the user experience.
+ *
+ * @csspart base - The components base wrapper
+ * @csspart drawer - The drawer that is used under the hood for creating the side-nav
+ * @csspart content-container - The components main content container
+ * @csspart content - The components main content
+ * @csspart footer-container - The components footer content container
+ * @csspart footer-divider - The components footer divider
+ * @csspart footer - The components footer content
  *
  */
 export default class SynSideNav extends SynergyElement {
@@ -52,39 +52,39 @@ export default class SynSideNav extends SynergyElement {
   }
 
   /**
-* Reference to the default slot.
+   * Reference to the default slot.
    */
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
   /**
-* Reference to the footer slot.
+   * Reference to the footer slot.
    */
   @query('slot[name="footer"]') footerSlot: HTMLSlotElement;
 
   /**
-* Reference to the drawer
+   * Reference to the drawer
    */
   @query('.side-nav__drawer') drawer: SynDrawer;
 
   /**
-* State if all nav-items have a prefix icon.
+   * State if all nav-items have a prefix icon.
    */
   @state() private hasPrefixIcons = false;
 
   @state() private hasHoverOnRail = false;
 
   /**
-* Use the rail attribute to only show the prefix of navigation items.
-* This will open on hover on the rail navigation.
-* On touch devices the navigation opens on click and shows an overlay.
-  *
-* Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
-* If this is not the case you should use a burger navigation.
+   * Use the rail attribute to only show the prefix of navigation items.
+   * This will open on hover on the rail navigation.
+   * On touch devices the navigation opens on click and shows an overlay.
+   *
+   * Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
+   * If this is not the case you should use a burger navigation.
    */
   @property({ reflect: true, type: Boolean }) rail = false;
 
   /**
-* Get all nav-items from the default and footer slot.
+   * Get all nav-items from the default and footer slot.
    */
   private getAllNavItems(): SynNavItem[] {
     const navItemsAll: SynNavItem[] = [];
@@ -107,8 +107,8 @@ export default class SynSideNav extends SynergyElement {
   }
 
   /**
-* This function handles the rail mode.
-* Rail mode is only valid if every nav-item has a syn-icon as prefix.
+   * This function handles the rail mode.
+   * Rail mode is only valid if every nav-item has a syn-icon as prefix.
    */
   // eslint-disable-next-line complexity
   private handleRailMode() {
@@ -156,8 +156,8 @@ export default class SynSideNav extends SynergyElement {
   }
 
   /**
-* Prevent drawer from being closed.
-* @param event - The requested close event emitted from the drawer
+   * Prevent drawer from being closed.
+   * @param event - The requested close event emitted from the drawer
    */
   private handleRequestClose(event: SynRequestCloseEvent) {
     event.preventDefault();
@@ -181,13 +181,13 @@ export default class SynSideNav extends SynergyElement {
     return html`
       <nav
         class=${classMap({
-          'side-nav': true,
-          'side-nav--has-footer': hasFooter,
-          'side-nav--has-prefix-icons': this.hasPrefixIcons,
-          'side-nav--rail': this.rail,
-          'side-nav--rail-hover': this.hasHoverOnRail,
-          'side-nav--rail-touch': isTouch,
-        })}
+      'side-nav': true,
+      'side-nav--has-footer': hasFooter,
+      'side-nav--has-prefix-icons': this.hasPrefixIcons,
+      'side-nav--rail': this.rail,
+      'side-nav--rail-hover': this.hasHoverOnRail,
+      'side-nav--rail-touch': isTouch,
+    })}
         part="base"
       >
         

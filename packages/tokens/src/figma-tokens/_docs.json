@@ -1800,7 +1800,7 @@
   "tokens": {
     "border-radius": {
       "description": {
-        "value": "Border radius tokens are used to give sharp edges a more subtle, rounded effect.",
+        "value": "Border radius tokens are used to give sharp edges a more subtle, rounded effect. In general, rounding in SICK user interfaces should be avoided and only used in carefully considered cases. The following points provide some guidance for when and how rounding may be appropriate.\n\nPurpose and usage:\n\nThe use of rounding in UI design should primarily serve a functional purpose, enhancing user experience and visual hierarchy.\nRounding should be applied judiciously, considering both aesthetic appeal and usability.\nRounding should only be applied to selected components where it enhances clarity, visual distinction, or interaction affordance.\nAvoid excessive rounding, which can compromise clarity and readability.\nRounding Tokens:\n\n4px: Suitable for compact elements typically nested within another element (e.g. tags within select component).\n8px: Ideal for container elements like cards, aiding in visually distinguishing multiple containers from one another.\nFull roundings: Reserved for status elements like badges, offering a distinct visual cue to draw attention.\n\nFor any questions or uncertainties, feel free to reach out to the team for clarification and support.",
         "type": "text"
       },
       "title": {

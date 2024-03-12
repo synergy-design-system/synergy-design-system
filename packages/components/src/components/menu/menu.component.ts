@@ -9,6 +9,7 @@ import { query } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './menu.styles.js';
+import customStyles from './menu.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type SynMenuItem from '../menu-item/menu-item.component.js';
 
@@ -27,7 +28,7 @@ export interface MenuSelectEventDetail {
  * @event {{ item: SynMenuItem }} syn-select - Emitted when a menu item is selected.
  */
 export default class SynMenu extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 

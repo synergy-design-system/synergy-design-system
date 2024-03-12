@@ -12,6 +12,7 @@ import SynDivider from '../divider/divider.component.js';
 import type { SynRequestCloseEvent } from '../../events/events.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
+import { setAnimation } from '../../utilities/animation-registry.js';
 
 type NavMode = 'fix' | 'rail' | 'shrink';
 
@@ -191,6 +192,8 @@ export default class SynSideNav extends SynergyElement {
   private handleMouseLeave() {
     if (this.hasPrefixIcons) {
       this.open = false;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.forceDrawerVisibilityForRailMode();
     }
   }
 
@@ -211,6 +214,14 @@ export default class SynSideNav extends SynergyElement {
   private removeMouseListener() {
     this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', this.handleMouseEnter);
     this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
+  }
+
+  private forceDrawerVisibilityForRailMode() {
+    return waitForEvent(this, 'syn-after-hide').then(() => {
+      if (this.mode === 'rail') {
+        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      }
+    });
   }
 
   @watch('mode', { waitUntilFirstUpdate: true })
@@ -249,8 +260,8 @@ export default class SynSideNav extends SynergyElement {
     }
 
     this.open = false;
-    // TODO: handle waitForEvent and emit syn-hide syn-after-hide for mode!==rail
-    return waitForEvent(this, 'syn-after-hide');
+
+    return this.forceDrawerVisibilityForRailMode();
   }
 
   /* eslint-disable complexity */
@@ -258,6 +269,18 @@ export default class SynSideNav extends SynergyElement {
     // Needed to add initial listener to element in drawer shadow dom
     if (this.isInitial && this.drawer) {
       this.isInitial = false;
+      const animation = {
+        keyframes: [],
+        options: {},
+        rtlKeyframes: [],
+      };
+      // Disable all drawer animations.
+      // TODO: do we want any animation? If yes we need to add different animations for the modes
+      setAnimation(this.drawer, 'drawer.showStart', animation);
+      setAnimation(this.drawer, 'drawer.hideStart', animation);
+      setAnimation(this.drawer, 'drawer.overlay.hide', animation);
+      setAnimation(this.drawer, 'drawer.overlay.show', animation);
+
       if (this.mode === 'rail') {
         this.addMouseListener();
       }
@@ -289,7 +312,7 @@ export default class SynSideNav extends SynergyElement {
           class="side-nav__drawer"
           contained
           no-header
-          ?open=${this.mode === 'fix' ? this.open : true}
+          ?open=${this.open}
           part="drawer"
           placement="start"
           @syn-request-close=${this.handleRequestClose}          

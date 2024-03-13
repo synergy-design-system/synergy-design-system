@@ -151,7 +151,7 @@ export const ValueSelection: Story = {
       <syn-menu-item value="opt-2">Option 2</syn-menu-item>
       <syn-menu-item value="opt-3">Option 3</syn-menu-item>
       <syn-divider></syn-divider>
-      <syn-menu-item type="checkbox" value="opt-4">Checkbox 4</syn-menu-item>
+      <syn-menu-item type="checkbox" value="opt-4" checked>Checkbox 4</syn-menu-item>
       <syn-menu-item type="checkbox" value="opt-5">Checkbox 5</syn-menu-item>
       <syn-menu-item type="checkbox" value="opt-6">Checkbox 6</syn-menu-item>
     </syn-menu>

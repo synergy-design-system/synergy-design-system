@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   .menu-item {
     color: var(--syn-typography-color-text);
+    font: var(--syn-font-size-medium);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
   }
 
@@ -34,16 +35,31 @@ export default css`
     width: var(--syn-font-size-x-large);
   }
 
+  /**
+   * This makes sure the chevron does not take any space if we do not have children
+   */
   .menu-item .menu-item__chevron {
-    /**
-     * This makes sure the chevron does not take any space if we do not have children
-     */
     display: none;
     margin-inline-start: var(--syn-spacing-small);
   }
 
   .menu-item .menu-item__check {
+    color: var(--syn-color-primary-600);
     margin-inline-end: var(--syn-spacing-small);
+  }
+
+  /**
+   * When in loading state, do not show the checkmark as it would bleed through
+   */
+  .menu-item--loading .menu-item__check {
+    visibility: hidden;
+  }
+
+  /**
+   * Make sure the checkbox is also visible when the item is active
+   */
+  :host(:focus-visible) .menu-item--checked .menu-item__check {
+    color: var(--syn-color-neutral-0);
   }
 
   /**
@@ -82,9 +98,9 @@ export default css`
   }
 
   /**
-   * When in loading state, do not show the checkmark as it would bleed through
+   * Highlight checked items
    */
-  .menu-item--loading .menu-item__check {
-    visibility: hidden;
+  .menu-item--checked .menu-item__label {
+    font-weight: var(--syn-font-weight-semibold);
   }
 `;

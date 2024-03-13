@@ -1,5 +1,8 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+  :host {
+    border-radius: 0;
+    box-shadow: var(--syn-shadow-large);
+  }
 `;

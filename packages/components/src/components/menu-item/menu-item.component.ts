@@ -192,7 +192,7 @@ export default class SynMenuItem extends SynergyElement {
         <slot name="suffix" part="suffix" class="menu-item__suffix"></slot>
 
         <span part="submenu-icon" class="menu-item__chevron">
-          <syn-icon name=${isRtl ? 'chevron-left' : 'chevron-right'} library="system" aria-hidden="true"></syn-icon>
+          <syn-icon name="chevron-down" library="system" aria-hidden="true"></syn-icon>
         </span>
 
         ${this.submenuController.renderSubmenu()}

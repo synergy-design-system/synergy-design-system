@@ -37,6 +37,7 @@ export const components = [
   'tag',
   'divider',
   'drawer',
+  'dropdown',
   'menu',
   'menu-item',
 ].sort();

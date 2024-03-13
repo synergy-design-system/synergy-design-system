@@ -79,7 +79,7 @@ export const PrefixAndSuffix: Story = {
       <syn-divider></syn-divider>
 
       <syn-menu-item>
-        <syn-icon slot="prefix" name="gear"></syn-icon>
+        <syn-icon slot="prefix" name="settings"></syn-icon>
         Settings
       </syn-menu-item>
     </syn-menu>

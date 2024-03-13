@@ -29,6 +29,13 @@ type NavMode = 'fix' | 'rail' | 'shrink';
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
  *
+ * // TODO: what about the other two events? Do we want them also exposed?
+ *     And do we want the css-properties of the drawer be exposed?
+ * @event syn-show - Emitted when the drawer opens.
+ * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
+ * @event syn-hide - Emitted when the drawer closes.
+ * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
+ *
  * @csspart base - The components base wrapper
  * @csspart drawer - The drawer that is used under the hood for creating the side-nav
  * @csspart content-container - The components main content container
@@ -69,8 +76,6 @@ export default class SynSideNav extends SynergyElement {
    * State if all nav-items have a prefix icon.
    */
   @state() private hasPrefixIcons = false;
-
-  @state() private isTouch = false;
 
   /**
    * Indicates whether or not the side-nav is open.
@@ -149,6 +154,7 @@ export default class SynSideNav extends SynergyElement {
   // eslint-disable-next-line complexity
   private handleRailMode() {
     if (this.mode !== 'rail') {
+      this.querySelector('style.hide-parts-style')?.remove();
       return;
     }
 
@@ -161,18 +167,13 @@ export default class SynSideNav extends SynergyElement {
 
     this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefixIcon.length === navItems.length;
 
-    // Only do rail mode, if every nav-item has a syn-icon as prefix
+    // Only show shrunk rail mode, if every nav-item has a syn-icon as prefix
     // TODO: do we only want to allow syn-icon as prefix or also other elements?
     if (this.hasPrefixIcons && !this.open) {
       if (!this.querySelector('style.hide-parts-style')) {
+        // if in closed rail mode, hide all nested nav-items
         const partsHideStyle = document.createElement('style');
         partsHideStyle.className = 'hide-parts-style';
-        //   partsHideStyle.textContent = `syn-nav-item::part(content-container),
-        // syn-nav-item::part(suffix),
-        // syn-nav-item::part(chevron),
-        // syn-nav-item [slot="children"] {
-        //   display: none
-        // }`;
         partsHideStyle.textContent = `syn-nav-item [slot="children"] {
           display: none
         }`;
@@ -192,8 +193,6 @@ export default class SynSideNav extends SynergyElement {
   private handleMouseLeave() {
     if (this.hasPrefixIcons) {
       this.open = false;
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.forceDrawerVisibilityForRailMode();
     }
   }
 
@@ -224,6 +223,35 @@ export default class SynSideNav extends SynergyElement {
     });
   }
 
+  /**
+   * Initial setup for first render like special rail mode handling and animations reset.
+   */
+  private initialSetup() {
+    // Needed to add initial listener to element in drawer shadow dom
+    if (this.isInitial && this.drawer) {
+      this.isInitial = false;
+      const animation = {
+        keyframes: [],
+        options: {},
+        rtlKeyframes: [],
+      };
+      // Disable all drawer animations.
+      // TODO: do we want any animation? If yes we need to add different animations for the modes
+      // and maybe instead of expose the `drawer` animation names reexpose them like
+      // following: `drawer.showStart`-->`sideNav.show`, `drawer.hideStart` --> `sideNav.hide`
+      setAnimation(this.drawer, 'drawer.showStart', animation);
+      setAnimation(this.drawer, 'drawer.hideStart', animation);
+      setAnimation(this.drawer, 'drawer.overlay.hide', animation);
+      setAnimation(this.drawer, 'drawer.overlay.show', animation);
+
+      if (this.mode === 'rail') {
+        this.addMouseListener();
+        // set initial visibility of drawer for rail mode
+        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      }
+    }
+  }
+
   @watch('mode', { waitUntilFirstUpdate: true })
   handleModeChange(oldValue: NavMode, newValue: NavMode) {
     if (oldValue === 'rail') {
@@ -235,6 +263,14 @@ export default class SynSideNav extends SynergyElement {
     }
 
     // TODO: what shall happen on shrink mode with open=false?
+  }
+
+  @watch('open', { waitUntilFirstUpdate: true })
+  handleOpenChange() {
+    if (!this.open && this.mode === 'rail') {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.forceDrawerVisibilityForRailMode();
+    }
   }
 
   constructor() {
@@ -249,7 +285,7 @@ export default class SynSideNav extends SynergyElement {
       return undefined;
     }
     this.open = true;
-    // TODO: handle waitForEvent and emit syn-show syn-after-show for mode!==rail
+
     return waitForEvent(this, 'syn-after-show');
   }
 
@@ -261,34 +297,14 @@ export default class SynSideNav extends SynergyElement {
 
     this.open = false;
 
-    return this.forceDrawerVisibilityForRailMode();
+    return waitForEvent(this, 'syn-after-hide');
   }
 
-  /* eslint-disable complexity */
   render() {
-    // Needed to add initial listener to element in drawer shadow dom
-    if (this.isInitial && this.drawer) {
-      this.isInitial = false;
-      const animation = {
-        keyframes: [],
-        options: {},
-        rtlKeyframes: [],
-      };
-      // Disable all drawer animations.
-      // TODO: do we want any animation? If yes we need to add different animations for the modes
-      setAnimation(this.drawer, 'drawer.showStart', animation);
-      setAnimation(this.drawer, 'drawer.hideStart', animation);
-      setAnimation(this.drawer, 'drawer.overlay.hide', animation);
-      setAnimation(this.drawer, 'drawer.overlay.show', animation);
-
-      if (this.mode === 'rail') {
-        this.addMouseListener();
-      }
-    }
-
-    this.isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
-
+    const isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
     const hasFooter = this.hasSlotController.test('footer');
+
+    this.initialSetup();
     this.handleRailMode();
 
     /* eslint-disable lit/no-invalid-html */
@@ -303,7 +319,7 @@ export default class SynSideNav extends SynergyElement {
       'side-nav--open': this.open,
       'side-nav--rail': this.mode === 'rail',
       'side-nav--shrink': this.mode === 'shrink',
-      'side-nav--touch': this.isTouch,
+      'side-nav--touch': isTouch,
     })}
         part="base"
       >
@@ -334,7 +350,6 @@ export default class SynSideNav extends SynergyElement {
       </nav>
     `;
     /* eslint-enable lit/no-invalid-html */
-    /* eslint-enable complexity */
     /* eslint-enable @typescript-eslint/unbound-method */
   }
 }

@@ -855,13 +855,23 @@
       }
     },
     "popup": {
-      "description": {
-        "value": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Popup",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.\nThis component’s name is inspired by <popup>. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.\n\nPopup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Popup",
+          "type": "text"
+        },
+        "warning": {
+          "value": "Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a tooltip or similar because it does not facilitate an accessible experience! Almost every correct usage of <syn-popup> will involve building other components. It should rarely, if ever, occur directly in your HTML.\n\nFor all Figma Designers, please refer for this component in Storybook.",
+          "type": "text"
+        },
+        "info": {
+          "value": "A popup’s anchor should not be styled with display: contents since the coordinates will not be eligible for calculation. However, if the anchor is a <slot> element, popup will use the first assigned element as the anchor. This behavior allows other components to pass anchors through more easily via composition.",
+          "type": "text"
+        }
       }
     },
     "progress-bar": {

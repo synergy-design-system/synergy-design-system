@@ -149,7 +149,7 @@ export default class SynSideNav extends SynergyElement {
 
   /**
    * This function handles the rail mode.
-   * Rail mode is only valid if every nav-item has a syn-icon as prefix.
+   * Rail mode is only valid if every nav-item has a prefix.
    */
   // eslint-disable-next-line complexity
   private handleRailMode() {
@@ -160,15 +160,11 @@ export default class SynSideNav extends SynergyElement {
 
     const navItems = this.getAllNavItems();
 
-    const itemsWithPrefixIcon = navItems.filter((navItem) => {
-      const prefixSlot = navItem.querySelector(':scope > [slot="prefix"]');
-      return (prefixSlot && prefixSlot.tagName.toLowerCase() === 'syn-icon');
-    });
+    const itemsWithPrefix = navItems.filter((navItem) => !!navItem.querySelector(':scope > [slot="prefix"]'));
 
-    this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefixIcon.length === navItems.length;
+    this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefix.length === navItems.length;
 
-    // Only show shrunk rail mode, if every nav-item has a syn-icon as prefix
-    // TODO: do we only want to allow syn-icon as prefix or also other elements?
+    // Only show shrunk rail mode, if every nav-item has prefix
     if (this.hasPrefixIcons && !this.open) {
       if (!this.querySelector('style.hide-parts-style')) {
         // if in closed rail mode, hide all nested nav-items

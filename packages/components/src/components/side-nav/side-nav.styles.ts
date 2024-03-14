@@ -39,6 +39,13 @@ export default css`
   }
 
   /**
+   * Hide the scrollbars in closed rail mode
+   */ 
+  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail .side-nav__drawer::part(body){
+    overflow: hidden;
+  }
+
+  /**
    * Footer divider
    */
   .side-nav__footer-divider{

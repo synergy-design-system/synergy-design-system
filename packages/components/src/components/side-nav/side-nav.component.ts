@@ -14,8 +14,6 @@ import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import { setAnimation } from '../../utilities/animation-registry.js';
 
-type NavMode = 'fix' | 'rail' | 'shrink';
-
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
  *
@@ -43,6 +41,7 @@ type NavMode = 'fix' | 'rail' | 'shrink';
  * @csspart footer-container - The components footer content container
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
+ * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
  */
 export default class SynSideNav extends SynergyElement {
@@ -81,48 +80,30 @@ export default class SynSideNav extends SynergyElement {
    * Indicates whether or not the side-nav is open.
    * You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
    * `hide()` methods and this attribute will reflect the side-nav's open state.
+   *
+   * Depending if the rail attribute is set or not, the behavior will differ.
+   *
+   * __Non rail__:
+   * With `open` will show the side-nav.
+   * Without `open`, the side-nav will be hidden.
+   *
+   * __Rail__:
+   * With `open` will show the whole side-nav with an overlay for touch devices
+   * or without an overlay for non-touch devices.
+   * Without `open`, the side-nav will only show the prefix of nav-item's.
+   *
    */
   @property({ reflect: true, type: Boolean }) open = false;
 
   /**
-   * Different side-nav modes.
-   *
-   * __Fixed mode (default):__
-   *
-   * With `open` will show the side-nav with an overlay.
-   * Without `open`, the side-nav will be hidden.
-   *
-   * This should always be the case, if the content of the app is not shrinking.
-   * This makes especially sense for applications, where you navigate to a place and
-   * stay there for a longer time.
-   *
-   *
-   *
-   * __Rail mode:__
-   *
-   * With `open` will show the whole side-nav with an overlay (on touch devices)
-   * or without an overlay for non-touch devices.
-   * Without `open`, the side-nav will only show the prefix of nav-item's.
-   *
-   * Use the rail mode to only show the prefix of navigation items.
+   * Use the rail attribute to only show the prefix of navigation items in closed state.
    * This will open on hover on the rail navigation.
    * On touch devices the navigation opens on click and shows an overlay.
    *
    * Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
    * If this is not the case you should use a burger navigation.
-   *
-   *
-   * __Shrink mode:__
-   *
-   * For specific cases it might make sense to have the navigation open
-   * while still being able to interact with the app. This especially makes sense
-   * for cases where you switch a lot between areas to interact with an app.
-   *
-   * With `open` will show the side-nav without any overlay.
-   * Without `open`, the side-nav will be hidden.
-   *
    */
-  @property({ reflect: true }) mode: NavMode = 'fix';
+  @property({ reflect: true, type: Boolean }) rail = false;
 
   /**
    * Get all nav-items from the default and footer slot.
@@ -153,7 +134,7 @@ export default class SynSideNav extends SynergyElement {
    */
   // eslint-disable-next-line complexity
   private handleRailMode() {
-    if (this.mode !== 'rail') {
+    if (!this.rail) {
       this.querySelector('style.hide-parts-style')?.remove();
       return;
     }
@@ -165,6 +146,8 @@ export default class SynSideNav extends SynergyElement {
     this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefix.length === navItems.length;
 
     // Only show shrunk rail mode, if every nav-item has prefix
+    // TODO: what if someone uses rail mode and not all nav-items have a prefix?
+    // Should we then hide the side-nav if `open: false` or throw an error / warning in the console?
     if (this.hasPrefixIcons && !this.open) {
       if (!this.querySelector('style.hide-parts-style')) {
         // if in closed rail mode, hide all nested nav-items
@@ -213,7 +196,7 @@ export default class SynSideNav extends SynergyElement {
 
   private forceDrawerVisibilityForRailMode() {
     return waitForEvent(this, 'syn-after-hide').then(() => {
-      if (this.mode === 'rail') {
+      if (this.rail) {
         (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
       }
     });
@@ -240,7 +223,7 @@ export default class SynSideNav extends SynergyElement {
       setAnimation(this.drawer, 'drawer.overlay.hide', animation);
       setAnimation(this.drawer, 'drawer.overlay.show', animation);
 
-      if (this.mode === 'rail') {
+      if (this.rail) {
         this.addMouseListener();
         // set initial visibility of drawer for rail mode
         (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
@@ -248,22 +231,18 @@ export default class SynSideNav extends SynergyElement {
     }
   }
 
-  @watch('mode', { waitUntilFirstUpdate: true })
-  handleModeChange(oldValue: NavMode, newValue: NavMode) {
-    if (oldValue === 'rail') {
+  @watch('rail', { waitUntilFirstUpdate: true })
+  handleModeChange() {
+    if (this.rail) {
+      this.addMouseListener();
+    } else {
       this.removeMouseListener();
     }
-
-    if (newValue === 'rail') {
-      this.addMouseListener();
-    }
-
-    // TODO: what shall happen on shrink mode with open=false?
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (!this.open && this.mode === 'rail') {
+    if (!this.open && this.rail) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.forceDrawerVisibilityForRailMode();
     }
@@ -309,12 +288,11 @@ export default class SynSideNav extends SynergyElement {
       <nav
         class=${classMap({
       'side-nav': true,
-      'side-nav--fix': this.mode === 'fix',
+      'side-nav--fix': !this.rail,
       'side-nav--has-footer': hasFooter,
       'side-nav--has-prefix-icons': this.hasPrefixIcons,
       'side-nav--open': this.open,
-      'side-nav--rail': this.mode === 'rail',
-      'side-nav--shrink': this.mode === 'shrink',
+      'side-nav--rail': this.rail,
       'side-nav--touch': isTouch,
     })}
         part="base"
@@ -323,6 +301,7 @@ export default class SynSideNav extends SynergyElement {
         <syn-drawer
           class="side-nav__drawer"
           contained
+          exportparts="overlay"
           no-header
           ?open=${this.open}
           part="drawer"
@@ -330,15 +309,15 @@ export default class SynSideNav extends SynergyElement {
           @syn-request-close=${this.handleRequestClose}          
         >
           <main part="content-container" class="side-nav__content-container">
-            <slot part="content" @slotchange=${this.handleRailMode}></slot>
+            <slot part="content" ></slot>
           </main>
 
           
           <footer class="side-nav__footer" part="footer-container" slot="footer">  
 
             ${hasFooter ? html`<syn-divider part="footer-divider" class="side-nav__footer-divider"></syn-divider>` : ''}
-            <slot name="footer" part="footer"></slot> 
-
+            <slot name="footer" part="footer" ></slot> 
+          
           </footer>
 
         </syn-drawer>

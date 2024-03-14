@@ -38,11 +38,6 @@ export default css`
     display: block;
   }
 
-  /** 
-   * Shrink mode 
-   */
-
-
   /**
    * Footer divider
    */

@@ -56,7 +56,7 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <syn-side-nav mode="fix" open>
+  <syn-side-nav open>
     <syn-nav-item vertical>
       <syn-icon name="home" slot="prefix"></syn-icon>
       Home
@@ -120,7 +120,6 @@ export const Fixed: Story = {
       Disabled option
     </syn-nav-item>
     <syn-nav-item divider vertical>
-      <!-- <span slot="prefix">sdf</span> -->
       <syn-icon name="area_chart" slot="prefix"></syn-icon>
       <syn-icon name="area_chart" slot="suffix"></syn-icon>
 
@@ -151,7 +150,7 @@ export const Rail: Story = {
     },
   },
   render: () => html`
-  <syn-side-nav mode="rail">
+  <syn-side-nav rail >
     <syn-nav-item vertical>
       <syn-icon name="home" slot="prefix"></syn-icon>
       Home
@@ -215,7 +214,6 @@ export const Rail: Story = {
       Disabled option
     </syn-nav-item>
     <syn-nav-item divider vertical>
-      <!-- <span slot="prefix">sdf</span> -->
       <syn-icon name="area_chart" slot="prefix"></syn-icon>
       <syn-icon name="area_chart" slot="suffix"></syn-icon>
 
@@ -246,7 +244,107 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <syn-side-nav mode="shrink" open>
+  <syn-side-nav class="shrink" open>
+    <syn-nav-item vertical>
+      <syn-icon name="home" slot="prefix"></syn-icon>
+      Home
+    </syn-nav-item>
+    <syn-nav-item current divider vertical>
+      <syn-icon name="settings" slot="prefix"></syn-icon>
+      Settings
+    </syn-nav-item>
+    <syn-nav-item divider vertical open>
+      <syn-icon name="area_chart" slot="suffix"></syn-icon>
+      <syn-icon name="add_alarm" slot="prefix"></syn-icon>
+      Children
+      <!-- second-level -->
+      <nav slot="children">
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.1
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.2
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Itemsdf
+          <nav slot="children">
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.1
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.2
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Itemsdf
+          <nav slot="children">
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.1
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Item 1.2
+        </syn-nav-item>
+        <syn-nav-item divider vertical>
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Itemsdf
+          
+        </syn-nav-item>
+      </nav>
+        </syn-nav-item>
+      </nav>
+        </syn-nav-item>
+      </nav>
+      <!-- /second-level -->
+    </syn-nav-item>
+    <syn-nav-item disabled divider vertical>
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
+      Disabled option
+    </syn-nav-item>
+    <syn-nav-item divider vertical>
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
+      <syn-icon name="area_chart" slot="suffix"></syn-icon>
+
+      Other Option
+    </syn-nav-item>
+    <nav slot="footer">
+      <syn-nav-item vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
+
+        Other Option
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+      <syn-icon name="area_chart" slot="prefix"></syn-icon>
+
+        Other Option
+      </syn-nav-item>
+    </nav>
+  </syn-side-nav>
+  <style>
+    .shrink::part(overlay) {
+      display: none;
+    }
+  </style>
+  `,
+};
+
+export const Methods: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('nav-item', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+  <div style="position: relative; height:300px;">
+  <syn-side-nav open>
     <syn-nav-item vertical>
       <syn-icon name="home" slot="prefix"></syn-icon>
       Home
@@ -329,6 +427,18 @@ export const Shrink: Story = {
       </syn-nav-item>
     </nav>
   </syn-side-nav>
+</div>
+  <button id="show">show</button>
+  <button id="hide">hide</button>
+  <script>
+    const sideNav = document.querySelector('syn-side-nav');
+    sideNav.addEventListener('syn-show', () => console.log('syn-show'));
+    sideNav.addEventListener('syn-hide', () => console.log('syn-hide'));
+    sideNav.addEventListener('syn-after-show', () => console.log('syn-after-show'));
+    sideNav.addEventListener('syn-after-hide', () => console.log('syn-after-hide'));
+    document.getElementById('show').addEventListener('click', () => sideNav.show());
+    document.getElementById('hide').addEventListener('click', () => sideNav.hide());
+  </script>
   `,
 };
 

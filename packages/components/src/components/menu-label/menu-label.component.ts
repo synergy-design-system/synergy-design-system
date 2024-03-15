@@ -5,6 +5,7 @@
 
 /* eslint-disable */
 import { html } from 'lit';
+import SynDivider from '../divider/divider.component.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './menu-label.styles.js';
@@ -17,15 +18,30 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  *
+ * @dependency syn-divider
+ *
  * @slot - The menu label's content.
  *
  * @csspart base - The component's base wrapper.
+ * @csspart divider - The divider that is displayed above the content
+ * @csspart label - The label that is displayed below the divider
+ *
+ * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */
 export default class SynMenuLabel extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
+  static dependencies = {
+    'syn-divider': SynDivider,
+  };
+    
   render() {
-    return html` <slot part="base" class="menu-label"></slot> `;
+    return html`
+      <div part="base" class="menu-label-wrapper">
+        <syn-divider class="menu-label__divider" part="divider"></syn-divider>
+        <slot part="label" class="menu-label"></slot>
+      </div>
+    `;
   }
 }
 

@@ -53,7 +53,7 @@ export const Default: Story = {
     },
   },
   render: (args: unknown) => html`
-    <syn-menu>
+    <syn-menu style="width: 200px;">
       ${generateTemplate({ args })}
       <syn-menu-item>Apple</syn-menu-item>
       <syn-menu-item>Banana</syn-menu-item>

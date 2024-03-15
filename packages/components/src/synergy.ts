@@ -15,6 +15,7 @@ export { default as SynIconButton } from './components/icon-button/icon-button.j
 export { default as SynIcon } from './components/icon/icon.js';
 export { default as SynInput } from './components/input/input.js';
 export { default as SynMenuItem } from './components/menu-item/menu-item.js';
+export { default as SynMenuLabel } from './components/menu-label/menu-label.js';
 export { default as SynMenu } from './components/menu/menu.js';
 export { default as SynOptgroup } from './components/optgroup/optgroup.js';
 export { default as SynOption } from './components/option/option.js';

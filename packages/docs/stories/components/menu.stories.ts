@@ -71,19 +71,24 @@ export const InDropdowns: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('menu', 'in-dropdowns'),
+        story: generateStoryDescription('menu', 'dropdown'),
+      },
+      story: {
+        height: '250px',
       },
     },
   },
   render: () => html`
-    <syn-dropdown>
-      <syn-button slot="trigger" caret>Edit</syn-button>
-      <syn-menu>
-        <syn-menu-item value="cut">Cut</syn-menu-item>
-        <syn-menu-item value="copy">Copy</syn-menu-item>
-        <syn-menu-item value="paste">Paste</syn-menu-item>
-      </syn-menu>
-    </syn-dropdown>
+    <div style="position: relative">
+      <syn-dropdown>
+        <syn-button slot="trigger" caret>Edit</syn-button>
+        <syn-menu style="width: 200px;">
+          <syn-menu-item value="cut">Cut</syn-menu-item>
+          <syn-menu-item value="copy">Copy</syn-menu-item>
+          <syn-menu-item value="paste">Paste</syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </div>
   `,
 };
 

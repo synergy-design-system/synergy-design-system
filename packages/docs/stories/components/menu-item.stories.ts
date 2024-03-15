@@ -59,7 +59,7 @@ export const PrefixAndSuffix: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('menu-item', 'prefix-suffix'),
+        story: generateStoryDescription('menu-item', 'prefixsuffix'),
       },
     },
   },
@@ -124,7 +124,7 @@ export const CheckboxMenuItems: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('menu-item', 'checkbox-menu-items'),
+        story: generateStoryDescription('menu-item', 'checkbox'),
       },
     },
   },
@@ -141,7 +141,7 @@ export const ValueSelection: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('menu-item', 'value-selection'),
+        story: generateStoryDescription('menu-item', 'selection'),
       },
     },
   },

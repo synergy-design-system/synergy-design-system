@@ -1,6 +1,14 @@
+/**
+ * NOTE WE ARE NOT USING BUNDLED STORIES FOR CHROMATIC,
+ * AS THIS WOULD CAUSE OVERLAPS IN THE SCREENSHOTS!
+ *
+ * The open attribute of the stories will be set to true when using chromatic per default
+ */
+
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
+import isChromatic from 'chromatic/isChromatic';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/dropdown/dropdown.js';
@@ -8,7 +16,6 @@ import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
-  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -45,6 +52,11 @@ const meta: Meta = {
         </syn-menu>    
       `,
     },
+    {
+      name: 'open',
+      type: 'attribute',
+      value: isChromatic(),
+    },
   ], defaultArgs),
   argTypes,
   component: 'syn-dropdown',
@@ -66,6 +78,9 @@ type Story = StoryObj;
 
 export const Default: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     controls: {
       disable: false,
     },
@@ -84,16 +99,19 @@ export const Default: Story = {
 
 export const GettingTheSelectedItem: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('dropdown', 'getting-the-selected-item'),
+        story: generateStoryDescription('dropdown', 'selected'),
       },
     },
   },
   render: () => html`
     <div style="position: relative">
       <div class="dropdown-selection">
-        <syn-dropdown>
+        <syn-dropdown ?open=${isChromatic()}>
           <syn-button slot="trigger" caret>Edit</syn-button>
           <syn-menu style="min-width: 240px;">
             <syn-menu-item value="cut">Cut</syn-menu-item>
@@ -118,6 +136,9 @@ export const GettingTheSelectedItem: Story = {
 
 export const Placement: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('dropdown', 'placement'),
@@ -126,7 +147,7 @@ export const Placement: Story = {
   },
   render: () => html`
     <div style="position: relative">
-      <syn-dropdown placement="right-start">
+      <syn-dropdown ?open=${isChromatic()} placement="right-start">
         <syn-button slot="trigger" caret>Edit</syn-button>
         <syn-menu style="min-width: 240px;">
           <syn-menu-item>Cut</syn-menu-item>
@@ -143,6 +164,9 @@ export const Placement: Story = {
 
 export const Distance: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('dropdown', 'distance'),
@@ -151,7 +175,7 @@ export const Distance: Story = {
   },
   render: () => html`
     <div style="position: relative">
-      <syn-dropdown distance="30">
+      <syn-dropdown ?open=${isChromatic()} distance="30">
         <syn-button slot="trigger" caret>Edit</syn-button>
         <syn-menu style="min-width: 240px;">
           <syn-menu-item>Cut</syn-menu-item>
@@ -168,6 +192,9 @@ export const Distance: Story = {
 
 export const Skidding: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('dropdown', 'skidding'),
@@ -176,7 +203,7 @@ export const Skidding: Story = {
   },
   render: () => html`
     <div style="position: relative">
-      <syn-dropdown skidding="30">
+      <syn-dropdown ?open=${isChromatic()} skidding="30">
         <syn-button slot="trigger" caret>Edit</syn-button>
         <syn-menu style="min-width: 240px;">
           <syn-menu-item>Cut</syn-menu-item>
@@ -193,15 +220,18 @@ export const Skidding: Story = {
 
 export const Submenus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('dropdown', 'submenus'),
+        story: generateStoryDescription('dropdown', 'submenu'),
       },
     },
   },
   render: () => html`
     <div style="position: relative">
-      <syn-dropdown>
+      <syn-dropdown ?open=${isChromatic()}>
         <syn-button slot="trigger" caret>Edit</syn-button>
 
         <syn-menu style="min-width: 240px;">
@@ -233,14 +263,3 @@ export const Submenus: Story = {
     </div>
   `,
 };
-
-/* eslint-disable sort-keys */
-export const Screenshot: Story = generateScreenshotStory({
-  Default,
-  GettingTheSelectedItem,
-  Placement,
-  Distance,
-  Skidding,
-  Submenus,
-}, 100);
-/* eslint-enable sort-keys */

@@ -40,6 +40,7 @@ export const components = [
   'dropdown',
   'menu',
   'menu-item',
+  'menu-label',
 ].sort();
 
 /**

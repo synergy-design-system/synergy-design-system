@@ -26,7 +26,7 @@ const meta: Meta = {
       type: 'slot',
       value: `
         <syn-button slot="trigger" caret>Dropdown</syn-button>
-        <syn-menu>
+        <syn-menu style="min-width: 240px;">
           <syn-menu-item>Dropdown Item 1</syn-menu-item>
           <syn-menu-item>Dropdown Item 2</syn-menu-item>
           <syn-menu-item>Dropdown Item 3</syn-menu-item>
@@ -53,6 +53,9 @@ const meta: Meta = {
       description: {
         component: generateStoryDescription('dropdown', 'default'),
       },
+      story: {
+        height: '250px',
+      },
     },
   },
   title: 'Components/syn-dropdown',
@@ -72,7 +75,11 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args: unknown) => html`
+    <div style="position: relative">
+      ${generateTemplate({ args })}
+    </div>
+  `,
 } as Story;
 
 export const GettingTheSelectedItem: Story = {
@@ -84,15 +91,17 @@ export const GettingTheSelectedItem: Story = {
     },
   },
   render: () => html`
-    <div class="dropdown-selection">
-      <syn-dropdown>
-        <syn-button slot="trigger" caret>Edit</syn-button>
-        <syn-menu>
-          <syn-menu-item value="cut">Cut</syn-menu-item>
-          <syn-menu-item value="copy">Copy</syn-menu-item>
-          <syn-menu-item value="paste">Paste</syn-menu-item>
-        </syn-menu>
-      </syn-dropdown>
+    <div style="position: relative">
+      <div class="dropdown-selection">
+        <syn-dropdown>
+          <syn-button slot="trigger" caret>Edit</syn-button>
+          <syn-menu style="min-width: 240px;">
+            <syn-menu-item value="cut">Cut</syn-menu-item>
+            <syn-menu-item value="copy">Copy</syn-menu-item>
+            <syn-menu-item value="paste">Paste</syn-menu-item>
+          </syn-menu>
+        </syn-dropdown>
+      </div>
     </div>
 
     <script type="module">
@@ -107,21 +116,30 @@ export const GettingTheSelectedItem: Story = {
   `,
 };
 
-/*
 export const Placement: Story = {
-  render: () => html`<syn-dropdown placement="top-start">
-  <syn-button slot="trigger" caret>Edit</syn-button>
-  <syn-menu>
-    <syn-menu-item>Cut</syn-menu-item>
-    <syn-menu-item>Copy</syn-menu-item>
-    <syn-menu-item>Paste</syn-menu-item>
-    <syn-divider></syn-divider>
-    <syn-menu-item>Find</syn-menu-item>
-    <syn-menu-item>Replace</syn-menu-item>
-  </syn-menu>
-</syn-dropdown>`,
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('dropdown', 'placement'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="position: relative">
+      <syn-dropdown placement="right-start">
+        <syn-button slot="trigger" caret>Edit</syn-button>
+        <syn-menu style="min-width: 240px;">
+          <syn-menu-item>Cut</syn-menu-item>
+          <syn-menu-item>Copy</syn-menu-item>
+          <syn-menu-item>Paste</syn-menu-item>
+          <syn-divider></syn-divider>
+          <syn-menu-item>Find</syn-menu-item>
+          <syn-menu-item>Replace</syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </div>
+  `,
 };
-*/
 
 export const Distance: Story = {
   parameters: {
@@ -132,17 +150,19 @@ export const Distance: Story = {
     },
   },
   render: () => html`
-    <syn-dropdown distance="30">
-      <syn-button slot="trigger" caret>Edit</syn-button>
-      <syn-menu>
-        <syn-menu-item>Cut</syn-menu-item>
-        <syn-menu-item>Copy</syn-menu-item>
-        <syn-menu-item>Paste</syn-menu-item>
-        <syn-divider></syn-divider>
-        <syn-menu-item>Find</syn-menu-item>
-        <syn-menu-item>Replace</syn-menu-item>
-      </syn-menu>
-    </syn-dropdown>
+    <div style="position: relative">
+      <syn-dropdown distance="30">
+        <syn-button slot="trigger" caret>Edit</syn-button>
+        <syn-menu style="min-width: 240px;">
+          <syn-menu-item>Cut</syn-menu-item>
+          <syn-menu-item>Copy</syn-menu-item>
+          <syn-menu-item>Paste</syn-menu-item>
+          <syn-divider></syn-divider>
+          <syn-menu-item>Find</syn-menu-item>
+          <syn-menu-item>Replace</syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </div>
   `,
 };
 
@@ -155,17 +175,19 @@ export const Skidding: Story = {
     },
   },
   render: () => html`
-    <syn-dropdown skidding="30">
-      <syn-button slot="trigger" caret>Edit</syn-button>
-      <syn-menu>
-        <syn-menu-item>Cut</syn-menu-item>
-        <syn-menu-item>Copy</syn-menu-item>
-        <syn-menu-item>Paste</syn-menu-item>
-        <syn-divider></syn-divider>
-        <syn-menu-item>Find</syn-menu-item>
-        <syn-menu-item>Replace</syn-menu-item>
-      </syn-menu>
-    </syn-dropdown>
+    <div style="position: relative">
+      <syn-dropdown skidding="30">
+        <syn-button slot="trigger" caret>Edit</syn-button>
+        <syn-menu style="min-width: 240px;">
+          <syn-menu-item>Cut</syn-menu-item>
+          <syn-menu-item>Copy</syn-menu-item>
+          <syn-menu-item>Paste</syn-menu-item>
+          <syn-divider></syn-divider>
+          <syn-menu-item>Find</syn-menu-item>
+          <syn-menu-item>Replace</syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </div>
   `,
 };
 
@@ -178,35 +200,37 @@ export const Submenus: Story = {
     },
   },
   render: () => html`
-    <syn-dropdown>
-      <syn-button slot="trigger" caret>Edit</syn-button>
+    <div style="position: relative">
+      <syn-dropdown>
+        <syn-button slot="trigger" caret>Edit</syn-button>
 
-      <syn-menu style="max-width: 200px;">
-        <syn-menu-item value="undo">Undo</syn-menu-item>
-        <syn-menu-item value="redo">Redo</syn-menu-item>
-        <syn-divider></syn-divider>
-        <syn-menu-item value="cut">Cut</syn-menu-item>
-        <syn-menu-item value="copy">Copy</syn-menu-item>
-        <syn-menu-item value="paste">Paste</syn-menu-item>
-        <syn-divider></syn-divider>
-        <syn-menu-item>
-          Find
-          <syn-menu slot="submenu">
-            <syn-menu-item value="find">Find…</syn-menu-item>
-            <syn-menu-item value="find-previous">Find Next</syn-menu-item>
-            <syn-menu-item value="find-next">Find Previous</syn-menu-item>
-          </syn-menu>
-        </syn-menu-item>
-        <syn-menu-item>
-          Transformations
-          <syn-menu slot="submenu">
-            <syn-menu-item value="uppercase">Make uppercase</syn-menu-item>
-            <syn-menu-item value="lowercase">Make lowercase</syn-menu-item>
-            <syn-menu-item value="capitalize">Capitalize</syn-menu-item>
-          </syn-menu>
-        </syn-menu-item>
-      </syn-menu>
-    </syn-dropdown>
+        <syn-menu style="min-width: 240px;">
+          <syn-menu-item value="undo">Undo</syn-menu-item>
+          <syn-menu-item value="redo">Redo</syn-menu-item>
+          <syn-divider></syn-divider>
+          <syn-menu-item value="cut">Cut</syn-menu-item>
+          <syn-menu-item value="copy">Copy</syn-menu-item>
+          <syn-menu-item value="paste">Paste</syn-menu-item>
+          <syn-divider></syn-divider>
+          <syn-menu-item>
+            Find
+            <syn-menu slot="submenu">
+              <syn-menu-item value="find">Find…</syn-menu-item>
+              <syn-menu-item value="find-previous">Find Next</syn-menu-item>
+              <syn-menu-item value="find-next">Find Previous</syn-menu-item>
+            </syn-menu>
+          </syn-menu-item>
+          <syn-menu-item>
+            Transformations
+            <syn-menu slot="submenu">
+              <syn-menu-item value="uppercase">Make uppercase</syn-menu-item>
+              <syn-menu-item value="lowercase">Make lowercase</syn-menu-item>
+              <syn-menu-item value="capitalize">Capitalize</syn-menu-item>
+            </syn-menu>
+          </syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </div>
   `,
 };
 
@@ -214,6 +238,7 @@ export const Submenus: Story = {
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   GettingTheSelectedItem,
+  Placement,
   Distance,
   Skidding,
   Submenus,

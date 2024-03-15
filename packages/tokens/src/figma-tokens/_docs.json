@@ -839,33 +839,121 @@
       }
     },
     "menu-item": {
-      "description": {
-        "value": "Menu items provide options for the user to pick from in a menu.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menu items provide options for the user to pick from in a menu.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu Item",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Menu Item",
-        "type": "text"
+      "prefixsuffix": {
+        "title": {
+          "value": "Prefix and Suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add content to the start and end of menu items using the prefix and suffix slots.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable an option and prevent it from being selected.",
+          "type": "text"
+        }
+      },
+      "loading": {
+        "title": {
+          "value": "Loading",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the loading attribute to indicate that a menu item is busy. Like a disabled menu item, clicks will be suppressed until the loading state is removed.",
+          "type": "text"
+        }
+      },
+      "checkbox": {
+        "title": {
+          "value": "Checkbox Menu Items",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the type attribute to checkbox to create a menu item that will toggle on and off when selected. You can use the checked attribute to set the initial state.\n\nCheckbox menu items are visually indistinguishable from regular menu items. Their ability to be toggled is primarily inferred from context, much like you’d find in the menu of a native app.",
+          "type": "text"
+        }
+      },
+      "selection": {
+        "title": {
+          "value": "Value & Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "The value attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the sl-select event will be emitted and a reference to the item will be available at event.detail.item. You can use this reference to access the selected item’s value, its checked state, and more.",
+          "type": "text"
+        }
       }
     },
     "menu-label": {
-      "description": {
-        "value": "Menu labels are used to describe a group of menu items.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Menu Label",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menu labels are used to describe a group of menu items.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu Label",
+          "type": "text"
+        }
       }
     },
     "menu": {
-      "description": {
-        "value": "Menus provide a list of options for the user to choose from.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu",
+          "type": "text"
+        },
+        "info": {
+          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-horizontal-nav)",
+          "type": "text"
+        },
+        "warning": {
+          "value": "Deviation between dev and design, For implementation reasons design nests the dropdown inside the menu, development the other way round",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Menu",
-        "type": "text"
+      "dropdown": {
+        "title": {
+          "value": "In Dropdowns",
+          "type": "text"
+        },
+        "description": {
+          "value": "Menus work really well when used inside dropdowns.",
+          "type": "text"
+        }
+      },
+      "submenu": {
+        "title": {
+          "value": "Submenus",
+          "type": "text"
+        },
+        "description": {
+          "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
+          "type": "text"
+        },
+        "warning": {
+          "value": "As a UX best practice, avoid using more than one level of submenus when possible.",
+          "type": "text"
+        }
       }
     },
     "mutation-observer": {

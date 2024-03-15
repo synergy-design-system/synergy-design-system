@@ -299,17 +299,6 @@ export default class SynNavItem extends SynergyElement {
         role=${isLink ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}
       >
-        
-        <hr
-          class=${classMap({
-            'current-indicator': true,
-            'current-indicator--disabled': this.disabled,
-            'current-indicator--horizontal': !this.vertical,
-            'current-indicator--vertical': this.vertical,
-            'current-indicator--visible': this.current,
-          })}
-          part="current-indicator"
-        />
 
         ${this.divider && this.vertical
           ? html`<syn-divider class="divider" part="divider"></syn-divider>`
@@ -337,6 +326,17 @@ export default class SynNavItem extends SynergyElement {
               part="chevron"
             /></syn-icon>`
           : ''}
+
+          <hr
+            class=${classMap({
+              'current-indicator': true,
+              'current-indicator--disabled': this.disabled,
+              'current-indicator--horizontal': !this.vertical,
+              'current-indicator--vertical': this.vertical,
+              'current-indicator--visible': this.current,
+            })}
+            part="current-indicator"
+          />
         </div>
 
       </${tag}>

@@ -225,6 +225,78 @@ export const Disabled: Story = {
   `,
 };
 
+// Debug story
+// Enable to see multiple levels of navigation
+// export const CS: Story = {
+//   render: () => html`
+//     <style>
+//     .doc-nav {
+//       border: 1px solid var(--syn-color-neutral-500);
+//       width: 400px;
+//     }
+//     </style>
+//     <nav class="doc-nav">
+//       <syn-nav-item vertical>
+//         <syn-icon name="home" slot="prefix"></syn-icon>
+//         Home
+//       </syn-nav-item>
+//       <syn-nav-item current divider vertical>
+//         <syn-icon name="settings" slot="prefix"></syn-icon>
+//         Settings
+//       </syn-nav-item>
+//       <syn-nav-item divider vertical>
+//         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
+//         Item 1.0
+//         <syn-icon name="home" slot="suffix"></syn-icon>
+//         <!-- second-level -->
+//         <nav slot="children">
+//           <syn-nav-item divider vertical>
+//             <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//             Item 1.1
+//           </syn-nav-item>
+//           <syn-nav-item divider vertical>
+//             <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//             Item 1.2
+//             <!-- third-level -->
+//             <nav slot="children">
+              
+//               <syn-nav-item divider vertical>
+//                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//                 Item 1.2.1
+//               </syn-nav-item>
+
+//               <syn-nav-item divider vertical>
+//                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//                 Item 1.2.2
+//               </syn-nav-item>
+
+//               <syn-nav-item divider vertical>
+//                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//                 Item 1.2.3
+//               </syn-nav-item>
+
+//             </nav>
+//             <!-- /third-level -->
+//           </syn-nav-item>
+//           <syn-nav-item divider vertical>
+//             <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//             Item 1.3
+//           </syn-nav-item>
+//         </nav>
+//         <!-- /second-level -->
+//       </syn-nav-item>
+//       <syn-nav-item disabled divider vertical>
+//         <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//         Disabled option
+//       </syn-nav-item>
+//       <syn-nav-item divider vertical>
+//         <syn-icon name="area_chart" slot="prefix"></syn-icon>
+//         Other Option
+//       </syn-nav-item>
+//     </nav>
+//   `,
+// };
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,

@@ -97,8 +97,9 @@ export default css`
 
   /**
    * Make sure to remove the default paddings from the slotted <syn-horizontal-nav />
+   * This makes sure the first navigation item is aligned with the logo
    */
   .header__navigation ::slotted(syn-horizontal-nav) {
-    --navigation-spacing: 0;
+    --navigation-spacing: 0 var(--syn-spacing-medium);
   }
 `;

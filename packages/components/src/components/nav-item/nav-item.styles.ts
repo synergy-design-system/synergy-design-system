@@ -53,6 +53,13 @@ export default css`
   }
 
   /**
+   * Horizontal nav items use narrower paddings
+   */
+  :host(:not([vertical])) .nav-item {
+    padding: var(--syn-spacing-small) var(--syn-spacing-x-small);
+  }
+
+  /**
    * Nav Items acting as accordion use a slightly narrower padding on the right side
    */
   .nav-item.nav-item-is-accordion {
@@ -89,7 +96,6 @@ export default css`
     align-items: center;
     display: flex;
     padding-inline-start: calc(var(--indentation) * var(--indentation-stepping));
-    position: relative;
     width: 100%;
   }
 
@@ -165,12 +171,12 @@ export default css`
   .current-indicator--horizontal {
     bottom: 0;
     height: var(--syn-spacing-2x-small);
-    left: var(--syn-spacing-x-small);
-    right: var(--syn-spacing-x-small);
+    left: var(--syn-spacing-2x-small);
+    right: var(--syn-spacing-2x-small);
   }
 
   .nav-item:hover .current-indicator--visible.current-indicator--horizontal,
-  .nav-item:focus > .current-indicator--visible.current-indicator--horizontal {
+  .nav-item:focus .current-indicator--visible.current-indicator--horizontal {
     left: 0;
     right: 0;
   }
@@ -183,7 +189,7 @@ export default css`
   }
 
   .nav-item:hover .current-indicator--visible.current-indicator--vertical,
-  .nav-item:focus > .current-indicator--visible.current-indicator--vertical {
+  .nav-item:focus .current-indicator--visible.current-indicator--vertical {
     bottom: 0;
     top: 0;
   }

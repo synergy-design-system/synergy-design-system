@@ -52,6 +52,11 @@ export default css`
     width: 100%;
   }
 
+  .nav-item:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: -2px;
+  }
+
   /**
    * Horizontal nav items use narrower paddings
    */
@@ -72,11 +77,6 @@ export default css`
 
   .nav-item--current {
     font-weight: var(--syn-font-weight-bold);
-  }
-
-  .nav-item:focus-visible {
-    outline: var(--syn-focus-ring);
-    outline-offset: -2px;
   }
 
   .nav-item:not(.nav-item--disabled):hover {
@@ -129,6 +129,20 @@ export default css`
   }
 
   /**
+   * The chevron indicates the use as a <details /> element
+   */
+  .nav-item__chevron {
+    font-size: var(--syn-font-size-x-large);
+    margin-inline-start: var(--syn-spacing-x-small);
+    rotate: 0deg;
+    transition: var(--syn-transition-medium) rotate ease;
+  }
+
+  .nav-item__chevron-open {
+    rotate: -180deg;
+  }
+
+  /**
    * Show prefix only
    */
   .nav-item--show-prefix-only .nav-item__content-container,
@@ -136,7 +150,6 @@ export default css`
   .nav-item--show-prefix-only .nav-item__chevron {
     display: none;
   }
-
 
   /**
    * Vertical navigation items should not break words
@@ -220,20 +233,6 @@ export default css`
    */
   .nav-item:not(.nav-item--disabled):hover .divider {
     --color: transparent;
-  }
-
-  /**
-   * The chevron indicates the use as a <details /> element
-   */
-  .nav-item__chevron {
-    font-size: var(--syn-font-size-x-large);
-    margin-inline-start: var(--syn-spacing-x-small);
-    rotate: 0deg;
-    transition: var(--syn-transition-medium) rotate ease;
-  }
-
-  .nav-item__chevron-open {
-    rotate: -180deg;
   }
 
   /**

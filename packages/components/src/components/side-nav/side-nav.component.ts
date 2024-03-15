@@ -9,7 +9,6 @@ import styles from './side-nav.styles.js';
 import SynDrawer from '../drawer/drawer.component.js';
 import type SynNavItem from '../nav-item/nav-item.component.js';
 import SynDivider from '../divider/divider.component.js';
-import type { SynRequestCloseEvent } from '../../events/events.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import { setAnimation } from '../../utilities/animation-registry.js';
@@ -134,33 +133,11 @@ export default class SynSideNav extends SynergyElement {
    */
   // eslint-disable-next-line complexity
   private handleRailMode() {
-    if (!this.rail) {
-      this.querySelector('style.hide-parts-style')?.remove();
-      return;
-    }
-
     const navItems = this.getAllNavItems();
 
     const itemsWithPrefix = navItems.filter((navItem) => !!navItem.querySelector(':scope > [slot="prefix"]'));
 
     this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefix.length === navItems.length;
-
-    // Only show shrunk rail mode, if every nav-item has prefix
-    // TODO: what if someone uses rail mode and not all nav-items have a prefix?
-    // Should we then hide the side-nav if `open: false` or throw an error / warning in the console?
-    if (this.hasPrefixIcons && !this.open) {
-      if (!this.querySelector('style.hide-parts-style')) {
-        // if in closed rail mode, hide all nested nav-items
-        const partsHideStyle = document.createElement('style');
-        partsHideStyle.className = 'hide-parts-style';
-        partsHideStyle.textContent = `syn-nav-item [slot="children"] {
-          display: none
-        }`;
-        this.append(partsHideStyle);
-      }
-    } else {
-      this.querySelector('style.hide-parts-style')?.remove();
-    }
   }
 
   private handleMouseEnter() {
@@ -175,23 +152,14 @@ export default class SynSideNav extends SynergyElement {
     }
   }
 
-  /**
-   * Prevent drawer from being closed.
-   * @param event - The requested close event emitted from the drawer
-   */
-  // eslint-disable-next-line class-methods-use-this
-  private handleRequestClose(event: SynRequestCloseEvent) {
-    event.preventDefault();
-  }
-
   private addMouseListener() {
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', this.handleMouseEnter);
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', this.handleMouseLeave);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', () => this.handleMouseEnter());
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', () => this.handleMouseLeave());
   }
 
   private removeMouseListener() {
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', this.handleMouseEnter);
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', () => this.handleMouseEnter());
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', () => this.handleMouseLeave());
   }
 
   private forceDrawerVisibilityForRailMode() {
@@ -248,12 +216,6 @@ export default class SynSideNav extends SynergyElement {
     }
   }
 
-  constructor() {
-    super();
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-
   /** Shows the side-nav. */
   async show() {
     if (this.open) {
@@ -306,7 +268,6 @@ export default class SynSideNav extends SynergyElement {
           ?open=${this.open}
           part="drawer"
           placement="start"
-          @syn-request-close=${this.handleRequestClose}          
         >
           <main part="content-container" class="side-nav__content-container">
             <slot part="content" ></slot>

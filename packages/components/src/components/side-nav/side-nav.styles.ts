@@ -52,4 +52,8 @@ export default css`
     --spacing: 0;
     --color: var(--syn-color-neutral-300);
   }
+
+  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail ::slotted(syn-nav-item){
+    --display-children: none;
+  }
 `;

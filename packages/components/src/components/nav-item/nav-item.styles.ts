@@ -22,6 +22,11 @@ export default css`
      */
     --border-bottom-hover-color: transparent;
 
+    /**
+     * The border bottom that is applied on hover
+     */
+    --display-children: contents;
+
     display: inline-block;
   }
 
@@ -245,5 +250,9 @@ export default css`
 
   details summary::-webkit-details-marker {
     visibility: hidden;
+  }
+
+  .children {
+    display: var(--display-children)
   }
 `;

@@ -55,6 +55,7 @@ import styles from './nav-item.styles.js';
  * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
  * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  * @cssproperty --border-bottom-hover-color - The border bottom color that gets applied on hover
+ * @cssproperty --display-children - Display property of the children. Defaults to "contents"
  */
 export default class SynNavItem extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -140,6 +141,23 @@ export default class SynNavItem extends SynergyElement {
     return !this.href && this.hasSlotController.test('children');
   }
 
+  private getNavItemChildren(): SynNavItem[] {
+    return Array.from(
+      this.childrenSlot?.assignedElements({
+        flatten: true,
+      }) as HTMLElement[]
+      || [],
+    )
+      .map(slottedElement => (slottedElement.tagName.toLowerCase() === 'syn-nav-item' ? slottedElement as SynNavItem : Array.from(slottedElement.querySelectorAll<SynNavItem>(':scope > syn-nav-item'))))
+      .flat();
+  }
+
+  private hasCurrentMarkedChild(): boolean {
+    const currentMarkedItem = this.getNavItemChildren()
+      .findIndex((item) => !!item.shadowRoot?.querySelector('.nav-item--current'));
+    return currentMarkedItem !== -1;
+  }
+
   private handleClickButton(e: MouseEvent) {
     if (this.disabled) {
       e.preventDefault();
@@ -184,13 +202,7 @@ export default class SynNavItem extends SynergyElement {
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);
 
-    Array.from(
-      this.childrenSlot.assignedElements({
-        flatten: true,
-      }) as HTMLElement[],
-    )
-      .map(slottedElement => Array.from(slottedElement.querySelectorAll<SynNavItem>(':scope > syn-nav-item')))
-      .flat()
+    this.getNavItemChildren()
       .forEach(item => {
         item.style.setProperty('--indentation', nextLevel.toFixed(0));
       });
@@ -228,6 +240,11 @@ export default class SynNavItem extends SynergyElement {
     this.resizeObserver.observe(this);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver.disconnect();
+  }
+
   /**
    * Removes focus from the button.
    */
@@ -254,6 +271,13 @@ export default class SynNavItem extends SynergyElement {
     const isButton = this.isButton();
     const isLink = this.isLink();
     const isAccordion = this.isAccordion();
+    const markedChildren = this.hasCurrentMarkedChild();
+
+    // TODO: currently in rail mode if the nested of a nested nav-item has current state,
+    // it is not reflected right, on closed rail
+    const sideNav = this.closest('syn-side-nav');
+    const showCurrentIndicatorForNested = (markedChildren && !this.open)
+      || (markedChildren && this.open && !!sideNav?.rail && !sideNav?.open);
 
     // Defines the initial tag to use for the root component
     let tag = literal`button`;
@@ -284,7 +308,7 @@ export default class SynNavItem extends SynergyElement {
         @blur=${this.handleBlur}
         class=${classMap({
           'nav-item': true,
-          'nav-item--current': this.current,
+          'nav-item--current': this.current || showCurrentIndicatorForNested,
           'nav-item--disabled': this.disabled,
           'nav-item--focused': this.hasFocus,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
@@ -333,7 +357,7 @@ export default class SynNavItem extends SynergyElement {
               'current-indicator--disabled': this.disabled,
               'current-indicator--horizontal': !this.vertical,
               'current-indicator--vertical': this.vertical,
-              'current-indicator--visible': this.current,
+              'current-indicator--visible': this.current || showCurrentIndicatorForNested,
             })}
             part="current-indicator"
           />

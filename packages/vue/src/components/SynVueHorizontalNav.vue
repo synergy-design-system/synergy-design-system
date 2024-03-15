@@ -22,6 +22,7 @@
  * @csspart base - The component's base wrapper.
  * @csspart nav-item-wrapper - The wrapper around the slotted `<syn-nav-item />` elements
  * @csspart priority-menu - The wrapper around the priority menu
+ * @csspart priority-menu-label - The label for the priority menu
  *
  * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
  */

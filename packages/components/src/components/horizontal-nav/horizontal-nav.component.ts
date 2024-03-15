@@ -25,6 +25,7 @@ import SynNavItem from '../nav-item/nav-item.component.js';
  * @csspart base - The component's base wrapper.
  * @csspart nav-item-wrapper - The wrapper around the slotted `<syn-nav-item />` elements
  * @csspart priority-menu - The wrapper around the priority menu
+ * @csspart priority-menu-label - The label for the priority menu
  *
  * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
  */
@@ -57,6 +58,11 @@ export default class SynHorizontalNav extends SynergyElement {
   @query('.priority-menu') priorityMenu: HTMLDivElement;
 
   /**
+   * Reference to the priority menu label
+   */
+  @query('.priority-menu__label') priorityMenuLabelElement: HTMLSpanElement;
+
+  /**
    * The components priority menu label.
    * This will be shown after the priority menu 3 dots link
    */
@@ -65,7 +71,7 @@ export default class SynHorizontalNav extends SynergyElement {
   /**
    * The items that are currently not completely visible and moved to the priority menu
    */
-  @state() priorityMenuItems: SynNavItem[] = [];
+  @state() protected priorityMenuItems: SynNavItem[] = [];
 
   /**
    * Get a list of all slotted `<syn-nav-item />` elements
@@ -123,6 +129,10 @@ export default class SynHorizontalNav extends SynergyElement {
 
     this.priorityMenuItems = nextPriorityMenuItems;
 
+    // Only show the priority menu label if there are no visible items anymore
+    const labelVisibility = nextPriorityMenuItems.length === navItems.length ? 'visible' : 'hidden';
+    this.priorityMenuLabelElement.style.visibility = labelVisibility;
+
     if (firstHiddenItemRightPos) {
       this.adjustPriorityMenuPosition(firstHiddenItemRightPos);
     }
@@ -144,8 +154,8 @@ export default class SynHorizontalNav extends SynergyElement {
       >
         <syn-nav-item>
           <syn-icon name="more_horiz" label="More" slot="prefix"></syn-icon>
-          ${this.priorityMenuLabel}
-          <nav class="priority-menu-list" slot="children">
+          <span class="priority-menu__label" part="priority-menu-label">${this.priorityMenuLabel}</span>
+          <nav class="priority-menu__list" slot="children">
             ${items.map((item, index) => html`
               <syn-nav-item
                 ?divider=${index !== 0}

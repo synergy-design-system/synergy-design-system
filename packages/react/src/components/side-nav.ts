@@ -7,6 +7,11 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/side-nav/side-nav.component.js';
 
+import { type EventName } from '@lit/react';
+import type {
+  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent,
+} from '@synergy-design-system/components';
+
 const tagName = 'syn-side-nav';
 Component.define('syn-side-nav');
 
@@ -23,6 +28,13 @@ Component.define('syn-side-nav');
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
  *
+ * // TODO: what about the other two events? Do we want them also exposed?
+ *     And do we want the css-properties of the drawer be exposed?
+ * @event syn-show - Emitted when the drawer opens.
+ * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
+ * @event syn-hide - Emitted when the drawer closes.
+ * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
+ *
  * @csspart base - The components base wrapper
  * @csspart drawer - The drawer that is used under the hood for creating the side-nav
  * @csspart content-container - The components main content container
@@ -36,8 +48,16 @@ export const SynSideNav = createComponent({
   displayName: 'SynSideNav',
   elementClass: Component,
   events: {
-
+    onSynShow: 'syn-show' as EventName<SynShowEvent>,
+    onSynAfterShow: 'syn-after-show' as EventName<SynAfterShowEvent>,
+    onSynHide: 'syn-hide' as EventName<SynHideEvent>,
+    onSynAfterHide: 'syn-after-hide' as EventName<SynAfterHideEvent>,
   },
   react: React,
   tagName,
 });
+
+export type { SynShowEvent } from '@synergy-design-system/components';
+export type { SynAfterShowEvent } from '@synergy-design-system/components';
+export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynAfterHideEvent } from '@synergy-design-system/components';

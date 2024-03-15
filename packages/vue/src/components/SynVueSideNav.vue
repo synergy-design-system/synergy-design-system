@@ -18,6 +18,13 @@
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
  *
+ * // TODO: what about the other two events? Do we want them also exposed?
+ *     And do we want the css-properties of the drawer be exposed?
+ * @event syn-show - Emitted when the drawer opens.
+ * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
+ * @event syn-hide - Emitted when the drawer closes.
+ * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
+ *
  * @csspart base - The components base wrapper
  * @csspart drawer - The drawer that is used under the hood for creating the side-nav
  * @csspart content-container - The components main content container
@@ -30,28 +37,77 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/side-nav/side-nav.js';
 
-import type { SynSideNav } from '@synergy-design-system/components';
+import type {
+  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynSideNav,
+} from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynSideNav>();
 
 // Map methods
+const callHandleModeChange = (...args: Parameters<SynSideNav['handleModeChange']>) => element.value?.handleModeChange(...args);
+const callHandleOpenChange = (...args: Parameters<SynSideNav['handleOpenChange']>) => element.value?.handleOpenChange(...args);
+/**
+* Shows the side-nav.
+ */
+const callShow = (...args: Parameters<SynSideNav['show']>) => element.value?.show(...args);
+/**
+* Hides the side-nav
+ */
+const callHide = (...args: Parameters<SynSideNav['hide']>) => element.value?.hide(...args);
 
 defineExpose({
-
+  callHandleModeChange,
+  callHandleOpenChange,
+  callShow,
+  callHide,
 });
 
 // Map attributes
 const props = defineProps<{
   /**
-* Use the rail attribute to only show the prefix of navigation items.
+* Indicates whether or not the side-nav is open.
+You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
+`hide()` methods and this attribute will reflect the side-nav's open state.
+ */
+  'open'?: SynSideNav['open'];
+
+  /**
+* Different side-nav modes.
+
+__Fixed mode (default):__
+
+With `open` will show the side-nav with an overlay.
+Without `open`, the side-nav will be hidden.
+
+This should always be the case, if the content of the app is not shrinking.
+This makes especially sense for applications, where you navigate to a place and
+stay there for a longer time.
+
+__Rail mode:__
+
+With `open` will show the whole side-nav with an overlay (on touch devices)
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
+
+Use the rail mode to only show the prefix of navigation items.
 This will open on hover on the rail navigation.
 On touch devices the navigation opens on click and shows an overlay.
 
 Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
 If this is not the case you should use a burger navigation.
+
+__Shrink mode:__
+
+For specific cases it might make sense to have the navigation open
+while still being able to interact with the app.
+* This especially makes sense
+for cases where you switch a lot between areas to interact with an app.
+
+With `open` will show the side-nav without any overlay.
+Without `open`, the side-nav will be hidden.
  */
-  'rail'?: SynSideNav['rail'];
+  'mode'?: SynSideNav['mode'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -66,15 +122,44 @@ const visibleProps = computed(() => Object.fromEntries(
 
 // Map events
 defineEmits<{
+  /**
+* Emitted when the drawer opens.
+ */
+  'syn-show': [e: SynShowEvent];
 
+  /**
+* Emitted after the drawer opens and all animations are complete.
+ */
+  'syn-after-show': [e: SynAfterShowEvent];
+
+  /**
+* Emitted when the drawer closes.
+ */
+  'syn-hide': [e: SynHideEvent];
+
+  /**
+* Emitted after the drawer closes and all animations are complete.
+ */
+  'syn-after-hide': [e: SynAfterHideEvent];
 }>();
+</script>
+
+<script lang="ts">
+export type { SynShowEvent } from '@synergy-design-system/components';
+export type { SynAfterShowEvent } from '@synergy-design-system/components';
+export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynAfterHideEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
   <syn-side-nav
-
     v-bind="visibleProps"
     ref="element"
+    @syn-show="$emit('syn-show', $event)"
+    @syn-after-show="$emit('syn-after-show', $event)"
+
+    @syn-hide="$emit('syn-hide', $event)"
+    @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
     <slot name="footer" />

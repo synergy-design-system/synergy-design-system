@@ -11,8 +11,9 @@ import {
   NgZone,
   Output,
 } from '@angular/core';
-import type { SynSideNav } from '@synergy-design-system/components';
-
+import type {
+  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynSideNav,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/side-nav/side-nav.js';
 
 /**
@@ -27,6 +28,13 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
+ *
+ * // TODO: what about the other two events? Do we want them also exposed?
+ *     And do we want the css-properties of the drawer be exposed?
+ * @event syn-show - Emitted when the drawer opens.
+ * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
+ * @event syn-hide - Emitted when the drawer closes.
+ * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
  *
  * @csspart base - The components base wrapper
  * @csspart drawer - The drawer that is used under the hood for creating the side-nav
@@ -50,22 +58,118 @@ export class SynSideNavComponent {
   constructor(e: ElementRef, ngZone: NgZone) {
     this._el = e.nativeElement;
     this._ngZone = ngZone;
+    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
-* Use the rail attribute to only show the prefix of navigation items.
+* Indicates whether or not the side-nav is open.
+You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
+`hide()` methods and this attribute will reflect the side-nav's open state.
+ */
+  @Input()
+  set open(v: SynSideNav['open']) {
+    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+  }
+
+  get open() {
+    return this._el.open;
+  }
+
+  /**
+* Different side-nav modes.
+
+__Fixed mode (default):__
+
+With `open` will show the side-nav with an overlay.
+Without `open`, the side-nav will be hidden.
+
+This should always be the case, if the content of the app is not shrinking.
+This makes especially sense for applications, where you navigate to a place and
+stay there for a longer time.
+
+__Rail mode:__
+
+With `open` will show the whole side-nav with an overlay (on touch devices)
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
+
+Use the rail mode to only show the prefix of navigation items.
 This will open on hover on the rail navigation.
 On touch devices the navigation opens on click and shows an overlay.
 
 Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
 If this is not the case you should use a burger navigation.
+
+__Shrink mode:__
+
+For specific cases it might make sense to have the navigation open
+while still being able to interact with the app.
+* This especially makes sense
+for cases where you switch a lot between areas to interact with an app.
+
+With `open` will show the side-nav without any overlay.
+Without `open`, the side-nav will be hidden.
  */
   @Input()
-  set rail(v: SynSideNav['rail']) {
-    this._ngZone.runOutsideAngular(() => (this._el.rail = v));
+  set mode(v: SynSideNav['mode']) {
+    this._ngZone.runOutsideAngular(() => (this._el.mode = v));
   }
 
-  get rail() {
-    return this._el.rail;
+  get mode() {
+    return this._el.mode;
   }
+
+  @Input()
+  callHandleModeChange(...args: Parameters<SynSideNav['handleModeChange']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleModeChange(...args));
+  }
+
+  @Input()
+  callHandleOpenChange(...args: Parameters<SynSideNav['handleOpenChange']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+  }
+
+  /**
+* Shows the side-nav.
+ */
+  @Input()
+  callShow(...args: Parameters<SynSideNav['show']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+  }
+
+  /**
+* Hides the side-nav
+ */
+  @Input()
+  callHide(...args: Parameters<SynSideNav['hide']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+  }
+
+  /**
+* Emitted when the drawer opens.
+ */
+  @Output() synShowEvent = new EventEmitter<SynShowEvent>();
+
+  /**
+* Emitted after the drawer opens and all animations are complete.
+ */
+  @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
+
+  /**
+* Emitted when the drawer closes.
+ */
+  @Output() synHideEvent = new EventEmitter<SynHideEvent>();
+
+  /**
+* Emitted after the drawer closes and all animations are complete.
+ */
+  @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }
+
+export type { SynShowEvent } from '@synergy-design-system/components';
+export type { SynAfterShowEvent } from '@synergy-design-system/components';
+export type { SynHideEvent } from '@synergy-design-system/components';
+export type { SynAfterHideEvent } from '@synergy-design-system/components';

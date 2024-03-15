@@ -45,7 +45,7 @@ export default css`
     visibility: hidden;
   }
 
-  .priority-menu-list {
+  .priority-menu__list {
     background: var(--syn-color-neutral-0);
     border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
     box-shadow: var(--syn-shadow-medium);

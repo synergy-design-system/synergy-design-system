@@ -228,7 +228,8 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <main>
+  <button id="toggle">click</button>
+  <main class="main">
     <syn-side-nav open class="shrink">
       <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
@@ -310,7 +311,7 @@ export const Shrink: Story = {
   </main>
   <script type="module">
     const sideNav = document.querySelector('.shrink');
-    let size = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
+    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
     const content = document.querySelector('.content');
 
     // Initial shrinking if side-nav is open
@@ -318,17 +319,41 @@ export const Shrink: Story = {
       content.style.marginLeft = size;
     }
 
+    // Start animation
+    sideNav.addEventListener('syn-show', () => {
+      content.animate([{marginLeft: 0}, {marginLeft: size}], { duration: 250,  });
+    });
+
+    // Fix left margin after animation end
     sideNav.addEventListener('syn-after-show', () => {
-      size = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
       content.style.marginLeft = size;
     });
+
+    // Start animation
+    sideNav.addEventListener('syn-hide', () => {
+      content.animate([{marginLeft: size}, {marginLeft: 0}], { duration: 250});
+    });
+
+    // Fix left margin after animation end
     sideNav.addEventListener('syn-after-hide', () => {
       content.style.marginLeft = 0;
     });
+
+    document.getElementById('toggle').addEventListener('click', () => {
+      sideNav.open = !sideNav.open;
+    });
   </script>
   <style>
+    .main {
+      position: relative;
+    }
+
     .shrink::part(overlay) {
       display: none;
+    }
+    
+    .content {
+      padding: 0 var(--syn-spacing-large);
     }
   </style>
   `,
@@ -344,7 +369,7 @@ export const Methods: Story = {
   },
   render: () => html`
   <div style="position: relative; height:300px;">
-  <syn-side-nav class="methods" open rail>
+  <syn-side-nav class="methods" open >
     <syn-nav-item vertical>
       <syn-icon name="home" slot="prefix"></syn-icon>
       Home

@@ -11,7 +11,8 @@ import type SynNavItem from '../nav-item/nav-item.component.js';
 import SynDivider from '../divider/divider.component.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
-import { setAnimation } from '../../utilities/animation-registry.js';
+import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { LocalizeController } from '../../utilities/localize.js';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
@@ -44,6 +45,12 @@ import { setAnimation } from '../../utilities/animation-registry.js';
  *
  * @cssproperty --side-nav-size - The width of the side-nav. Can be used to shrink the main content.
  *
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
+ * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */
 export default class SynSideNav extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -54,6 +61,8 @@ export default class SynSideNav extends SynergyElement {
   };
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'footer');
+
+  private readonly localize = new LocalizeController(this);
 
   private isInitial: boolean = true;
 
@@ -172,26 +181,27 @@ export default class SynSideNav extends SynergyElement {
     });
   }
 
+  private setDrawerAnimations() {
+    const showAnimation = getAnimation(this, `sideNav.show${this.rail ? 'Rail' : 'NonRail'}`, { dir: this.localize.dir() });
+    const hideAnimation = getAnimation(this, `sideNav.hide${this.rail ? 'Rail' : 'NonRail'}`, { dir: this.localize.dir() });
+    const hideOverlay = getAnimation(this, 'sideNav.overlay.hide', { dir: this.localize.dir() });
+    const showOverlay = getAnimation(this, 'sideNav.overlay.show', { dir: this.localize.dir() });
+
+    setAnimation(this.drawer, 'drawer.showStart', showAnimation);
+    setAnimation(this.drawer, 'drawer.hideStart', hideAnimation);
+    setAnimation(this.drawer, 'drawer.overlay.hide', hideOverlay);
+    setAnimation(this.drawer, 'drawer.overlay.show', showOverlay);
+  }
+
   /**
-   * Initial setup for first render like special rail mode handling and animations reset.
+   * Initial setup for first render like special rail mode handling and drawer animations.
    */
   private initialSetup() {
     // Needed to add initial listener to element in drawer shadow dom
     if (this.isInitial && this.drawer) {
       this.isInitial = false;
-      const animation = {
-        keyframes: [],
-        options: {},
-        rtlKeyframes: [],
-      };
-      // Disable all drawer animations.
-      // TODO: do we want any animation? If yes we need to add different animations for the modes
-      // and maybe instead of expose the `drawer` animation names reexpose them like
-      // following: `drawer.showStart`-->`sideNav.show`, `drawer.hideStart` --> `sideNav.hide`
-      setAnimation(this.drawer, 'drawer.showStart', animation);
-      setAnimation(this.drawer, 'drawer.hideStart', animation);
-      setAnimation(this.drawer, 'drawer.overlay.hide', animation);
-      setAnimation(this.drawer, 'drawer.overlay.show', animation);
+
+      this.setDrawerAnimations();
 
       if (this.rail) {
         this.addMouseListener();
@@ -203,6 +213,8 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('rail', { waitUntilFirstUpdate: true })
   handleModeChange() {
+    this.setDrawerAnimations();
+
     if (this.rail) {
       this.addMouseListener();
     } else {
@@ -291,3 +303,48 @@ export default class SynSideNav extends SynergyElement {
     /* eslint-enable @typescript-eslint/unbound-method */
   }
 }
+
+// Show animations
+setDefaultAnimation('sideNav.showRail', {
+  keyframes: [
+    { width: '4.5rem' },
+    { width: '25rem' },
+  ],
+  options: { duration: 250, easing: 'ease' },
+});
+
+setDefaultAnimation('sideNav.showNonRail', {
+  keyframes: [
+    { opacity: 0, translate: '-100%' },
+    { opacity: 1, translate: '0' },
+  ],
+  options: { duration: 250, easing: 'ease' },
+});
+
+// Hide animations
+setDefaultAnimation('sideNav.hideNonRail', {
+  keyframes: [
+    { opacity: 1, translate: '0' },
+    { opacity: 0, translate: '-100%' },
+  ],
+  options: { duration: 250, easing: 'ease' },
+});
+
+setDefaultAnimation('sideNav.hideRail', {
+  keyframes: [
+    { width: '25rem' },
+    { width: '4.5rem' },
+  ],
+  options: { duration: 250, easing: 'ease' },
+});
+
+// Overlay animations
+setDefaultAnimation('sideNav.overlay.show', {
+  keyframes: [{ opacity: 0 }, { opacity: 1 }],
+  options: { duration: 250 },
+});
+
+setDefaultAnimation('sideNav.overlay.hide', {
+  keyframes: [{ opacity: 1 }, { opacity: 0 }],
+  options: { duration: 250 },
+});

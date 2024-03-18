@@ -31,7 +31,7 @@ export default css`
   /**
    * Fixed mode
    */
-  .side-nav--open.side-nav--fix .side-nav__drawer::part(overlay){
+  .side-nav--fix .side-nav__drawer::part(overlay){
     display: block;
   }
 

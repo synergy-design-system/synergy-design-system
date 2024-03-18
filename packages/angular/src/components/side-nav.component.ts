@@ -47,6 +47,12 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  *
  * @cssproperty --side-nav-size - The width of the side-nav. Can be used to shrink the main content.
  *
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
+ * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */
 @Component({
   selector: 'syn-side-nav',

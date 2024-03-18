@@ -24,7 +24,9 @@ import '@synergy-design-system/components/components/horizontal-nav/horizontal-n
  * @status stable
  * @since 1.10
  *
+ * @dependency syn-dropdown
  * @dependency syn-icon
+ * @dependency syn-menu
  * @dependency syn-nav-item
  *
  * @slot - The given navigation items. Must be `<syn-nav-item>` elements.
@@ -35,6 +37,8 @@ import '@synergy-design-system/components/components/horizontal-nav/horizontal-n
  * @csspart priority-menu-label - The label for the priority menu
  *
  * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
+ *
+ * @todo: more_horiz icon should be part of system library (and renamed!)
  */
 @Component({
   selector: 'syn-horizontal-nav',

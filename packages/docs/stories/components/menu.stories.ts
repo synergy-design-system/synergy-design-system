@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
+import isChromatic from 'chromatic/isChromatic';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/divider/divider.js';
@@ -80,7 +81,7 @@ export const InDropdowns: Story = {
   },
   render: () => html`
     <div style="position: relative">
-      <syn-dropdown>
+      <syn-dropdown ?open=${true} placement="bottom-start">
         <syn-button slot="trigger" caret>Edit</syn-button>
         <syn-menu style="width: 200px;">
           <syn-menu-item value="cut">Cut</syn-menu-item>
@@ -127,8 +128,8 @@ export const Submenus: Story = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  Default,
   InDropdowns,
+  Default,
   Submenus,
-}, 300);
+}, 400);
 /* eslint-enable sort-keys */

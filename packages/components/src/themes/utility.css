@@ -14,7 +14,7 @@
 @supports not (scrollbar-gutter: stable) {
   .syn-scroll-lock {
     overflow: hidden !important;
-    padding-right: var(--sl-scroll-lock-size) !important;
+    padding-right: var(--syn-scroll-lock-size) !important;
   }
 }
 

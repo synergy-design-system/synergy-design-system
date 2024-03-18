@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   .menu-item {
     color: var(--syn-typography-color-text);
-    font: var(--syn-font-size-medium);
+    font-size: var(--syn-font-size-medium);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
   }
 

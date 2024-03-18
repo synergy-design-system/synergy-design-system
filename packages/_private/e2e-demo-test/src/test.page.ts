@@ -1,10 +1,5 @@
-/**
- * @copyright
- * Copyright(c) 2020 SICK AG
- */
-
 import { Locator, Page, Response } from '@playwright/test';
-import locators from './test.selector';
+import selectors from './test.selector';
 
 /**
  * Gauge visual regression test class
@@ -14,8 +9,6 @@ export default class TestPage {
    * constructor
    *
    * @param page - _page
-   * @param _browser - _browser
-   * @param _scriptName - _scriptName
    */
   constructor(private page: Page) {
   }
@@ -28,47 +21,47 @@ export default class TestPage {
   }
 
   get form(): Locator {
-    return this.page.locator(locators.formLoc);
+    return this.page.locator(selectors.formLoc);
   }
 
   get additionalInfo(): Locator {
-    return this.page.locator(locators.addInfoLoc);
+    return this.page.locator(selectors.addInfoLoc);
   }
 
   get email(): Locator {
-    return this.page.locator(locators.emailLoc);
+    return this.page.locator(selectors.emailLoc);
   }
 
   get gender(): Locator {
-    return this.page.locator(locators.genderLoc);
+    return this.page.locator(selectors.genderLoc);
   }
 
   get name(): Locator {
-    return this.page.locator(locators.nameLoc);
+    return this.page.locator(selectors.nameLoc);
   }
 
   get newsSyn(): Locator {
-    return this.page.locator(locators.newsLocSyn);
+    return this.page.locator(selectors.newsLocSyn);
   }
 
   get newsNg(): Locator {
-    return this.page.locator(locators.newsLocSynNg);
+    return this.page.locator(selectors.newsLocSynNg);
   }
 
   get newsReact(): Locator {
-    return this.page.locator(locators.newsLocSynReact);
+    return this.page.locator(selectors.newsLocSynReact);
   }
 
   get newsVue(): Locator {
-    return this.page.locator(locators.newsLocSynVue);
+    return this.page.locator(selectors.newsLocSynVue);
   }
 
   get newsVanilla(): Locator {
-    return this.page.locator(locators.newsLocVanilla);
+    return this.page.locator(selectors.newsLocVanilla);
   }
 
   get newsBeta(): Locator {
-    return this.page.locator(locators.newsLocBeta);
+    return this.page.locator(selectors.newsLocBeta);
   }
 
   get allNews(): Array<Locator> {
@@ -83,35 +76,35 @@ export default class TestPage {
   }
 
   get password(): Locator {
-    return this.page.locator(locators.passLoc);
+    return this.page.locator(selectors.passLoc);
   }
 
   get passwordRecovery(): Locator {
-    return this.page.locator(locators.passRcvryLoc);
+    return this.page.locator(selectors.passRcvryLoc);
   }
 
   get phone(): Locator {
-    return this.page.locator(locators.phoneLoc);
+    return this.page.locator(selectors.phoneLoc);
   }
 
   get role(): Locator {
-    return this.page.locator(locators.roleLoc);
+    return this.page.locator(selectors.roleLoc);
   }
 
   get topics(): Locator {
-    return this.page.locator(locators.topicLoc);
+    return this.page.locator(selectors.topicLoc);
   }
 
   get submit(): Locator {
-    return this.page.locator(locators.submit);
+    return this.page.locator(selectors.submit);
   }
 
   get reset(): Locator {
-    return this.page.locator(locators.reset);
+    return this.page.locator(selectors.reset);
   }
 
   get birth(): Locator {
-    return this.page.locator(locators.birth);
+    return this.page.locator(selectors.birth);
   }
 
   get allRequiredInputs(): Array<Locator> {
@@ -126,10 +119,10 @@ export default class TestPage {
   }
 
   get frontend(): Locator {
-    return this.page.locator(locators.frontend);
+    return this.page.locator(selectors.frontend);
   }
 
   get angular(): Locator {
-    return this.page.locator(locators.angular);
+    return this.page.locator(selectors.angular);
   }
 }

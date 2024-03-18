@@ -138,9 +138,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
-      vite:
-        specifier: ^5.0.8
-        version: 5.0.12(@types/node@20.11.16)
 
   packages/_private/eslint-config-syn:
     dependencies:

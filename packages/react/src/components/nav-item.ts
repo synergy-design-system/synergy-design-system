@@ -61,6 +61,7 @@ Component.define('syn-nav-item');
  * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
  * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
  * @cssproperty --border-bottom-hover-color - The border bottom color that gets applied on hover
+ * @cssproperty --display-children - Display property of the children. Defaults to "contents"
  */
 export const SynNavItem = createComponent({
   displayName: 'SynNavItem',

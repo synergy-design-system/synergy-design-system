@@ -42,6 +42,7 @@ Component.define('syn-side-nav');
  * @csspart footer-container - The components footer content container
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
+ * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
  */
 export const SynSideNav = createComponent({

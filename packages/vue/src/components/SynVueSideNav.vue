@@ -32,6 +32,7 @@
  * @csspart footer-container - The components footer content container
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
+ * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
  */
 import { computed, ref } from 'vue';
@@ -69,45 +70,29 @@ const props = defineProps<{
 * Indicates whether or not the side-nav is open.
 You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
 `hide()` methods and this attribute will reflect the side-nav's open state.
+
+Depending if the rail attribute is set or not, the behavior will differ.
+
+__Non rail__:
+With `open` will show the side-nav.
+Without `open`, the side-nav will be hidden.
+
+__Rail__:
+With `open` will show the whole side-nav with an overlay for touch devices
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
  */
   'open'?: SynSideNav['open'];
 
   /**
-* Different side-nav modes.
-
-__Fixed mode (default):__
-
-With `open` will show the side-nav with an overlay.
-Without `open`, the side-nav will be hidden.
-
-This should always be the case, if the content of the app is not shrinking.
-This makes especially sense for applications, where you navigate to a place and
-stay there for a longer time.
-
-__Rail mode:__
-
-With `open` will show the whole side-nav with an overlay (on touch devices)
-or without an overlay for non-touch devices.
-Without `open`, the side-nav will only show the prefix of nav-item's.
-
-Use the rail mode to only show the prefix of navigation items.
+* Use the rail attribute to only show the prefix of navigation items in closed state.
 This will open on hover on the rail navigation.
 On touch devices the navigation opens on click and shows an overlay.
 
 Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
 If this is not the case you should use a burger navigation.
-
-__Shrink mode:__
-
-For specific cases it might make sense to have the navigation open
-while still being able to interact with the app.
-* This especially makes sense
-for cases where you switch a lot between areas to interact with an app.
-
-With `open` will show the side-nav without any overlay.
-Without `open`, the side-nav will be hidden.
  */
-  'mode'?: SynSideNav['mode'];
+  'rail'?: SynSideNav['rail'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

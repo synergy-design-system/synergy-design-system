@@ -473,7 +473,7 @@
           "type": "text"
         },
         "description": {
-          "value": "By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the drawer open in such cases, you can cancel the sl-request-close event. When canceled, the drawer will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.",
+          "value": "By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the drawer open in such cases, you can cancel the syn-request-close event. When canceled, the drawer will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.",
           "type": "text"
         }
       },
@@ -489,13 +489,69 @@
       }
     },
     "dropdown": {
-      "description": {
-        "value": "Dropdowns expose additional content that \"drops down\" in a panel.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Dropdowns expose additional content that “drops down” in a panel.  Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.\n\nDropdowns are designed to work well with menus to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. color picker). The API gives you complete control over showing, hiding, and positioning the panel.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Dropdown",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Dropdown",
-        "type": "text"
+      "selected": {
+        "title": {
+          "value": "Getting the Selected Item",
+          "type": "text"
+        },
+        "description": {
+          "value": "When dropdowns are used with menus, you can listen for the syn-select event to determine which menu item was selected. The menu item element will be exposed in event.detail.item. You can set value props to make it easier to identify commands. DEV: Alternatively, you can listen for the click event on individual menu items. Note that, using this approach, disabled menu items will still emit a click event.",
+          "type": "text"
+        }
+      },
+      "placement": {
+        "title": {
+          "value": "Placement",
+          "type": "text"
+        },
+        "description": {
+          "value": "The preferred placement of the dropdown can be set with the placement attribute. Note that the actual position may vary to ensure the panel remains in the viewport.",
+          "type": "text"
+        }
+      },
+      "distance": {
+        "title": {
+          "value": "Distance",
+          "type": "text"
+        },
+        "description": {
+          "value": "The distance from the panel to the trigger can be customized using the distance attribute. This value is specified in pixels.",
+          "type": "text"
+        }
+      },
+      "skidding": {
+        "title": {
+          "value": "Skidding",
+          "type": "text"
+        },
+        "description": {
+          "value": "The offset of the panel along the trigger can be customized using the skidding attribute. This value is specified in pixels.",
+          "type": "text"
+        }
+      },
+      "submenu": {
+        "title": {
+          "value": "Submenus",
+          "type": "text"
+        },
+        "description": {
+          "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> element in a menu item.",
+          "type": "text"
+        },
+        "warning": {
+          "value": "As a UX best practice, avoid using more than one level of submenus when possible.",
+          "type": "text"
+        }
       }
     },
     "format-bytes": {
@@ -783,33 +839,121 @@
       }
     },
     "menu-item": {
-      "description": {
-        "value": "Menu items provide options for the user to pick from in a menu.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menu items provide options for the user to pick from in a menu.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu Item",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Menu Item",
-        "type": "text"
+      "prefixsuffix": {
+        "title": {
+          "value": "Prefix and Suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add content to the start and end of menu items using the prefix and suffix slots.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable an option and prevent it from being selected.",
+          "type": "text"
+        }
+      },
+      "loading": {
+        "title": {
+          "value": "Loading",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the loading attribute to indicate that a menu item is busy. Like a disabled menu item, clicks will be suppressed until the loading state is removed.",
+          "type": "text"
+        }
+      },
+      "checkbox": {
+        "title": {
+          "value": "Checkbox Menu Items",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the type attribute to checkbox to create a menu item that will toggle on and off when selected. You can use the checked attribute to set the initial state.\n\nCheckbox menu items are visually indistinguishable from regular menu items. Their ability to be toggled is primarily inferred from context, much like you’d find in the menu of a native app.",
+          "type": "text"
+        }
+      },
+      "selection": {
+        "title": {
+          "value": "Value & Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "The value attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the syn-select event will be emitted and a reference to the item will be available at event.detail.item. You can use this reference to access the selected item’s value, its checked state, and more.",
+          "type": "text"
+        }
       }
     },
     "menu-label": {
-      "description": {
-        "value": "Menu labels are used to describe a group of menu items.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Menu Label",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menu labels are used to describe a group of menu items.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu Label",
+          "type": "text"
+        }
       }
     },
     "menu": {
-      "description": {
-        "value": "Menus provide a list of options for the user to choose from.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Menu",
+          "type": "text"
+        },
+        "info": {
+          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-horizontal-nav)",
+          "type": "text"
+        },
+        "warning": {
+          "value": "Deviation between dev and design, For implementation reasons design nests the dropdown inside the menu, development the other way round",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Menu",
-        "type": "text"
+      "dropdown": {
+        "title": {
+          "value": "In Dropdowns",
+          "type": "text"
+        },
+        "description": {
+          "value": "Menus work really well when used inside dropdowns.",
+          "type": "text"
+        }
+      },
+      "submenu": {
+        "title": {
+          "value": "Submenus",
+          "type": "text"
+        },
+        "description": {
+          "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
+          "type": "text"
+        },
+        "warning": {
+          "value": "As a UX best practice, avoid using more than one level of submenus when possible.",
+          "type": "text"
+        }
       }
     },
     "mutation-observer": {
@@ -855,13 +999,23 @@
       }
     },
     "popup": {
-      "description": {
-        "value": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Popup",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.\nThis component’s name is inspired by <popup>. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.\n\nPopup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Popup",
+          "type": "text"
+        },
+        "warning": {
+          "value": "Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a tooltip or similar because it does not facilitate an accessible experience! Almost every correct usage of <syn-popup> will involve building other components. It should rarely, if ever, occur directly in your HTML.\n\nFor all Figma Designers, please refer for this component in Storybook.",
+          "type": "text"
+        },
+        "info": {
+          "value": "A popup’s anchor should not be styled with display: contents since the coordinates will not be eligible for calculation. However, if the anchor is a <slot> element, popup will use the first assigned element as the anchor. This behavior allows other components to pass anchors through more easily via composition.",
+          "type": "text"
+        }
       }
     },
     "progress-bar": {

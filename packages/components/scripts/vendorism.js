@@ -11,6 +11,8 @@ import {
   vendorIcon,
   vendorIconButton,
   vendorInput,
+  vendorMenuItem,
+  vendorMenuLabel,
   vendorSelect,
   vendorTag,
   vendorTextarea,
@@ -36,6 +38,10 @@ export const components = [
   'tag',
   'divider',
   'drawer',
+  'dropdown',
+  'menu',
+  'menu-item',
+  'menu-label',
 ].sort();
 
 /**
@@ -61,6 +67,7 @@ export const events = [
   'sl-reposition',
   'sl-initial-focus',
   'sl-request-close',
+  'sl-select',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
@@ -230,11 +237,11 @@ const config = {
               }
 
               newContent = newContent
-              .replace(
-                'import formControlStyles from \'../../styles/form-control.styles.js\';',
-                'import formControlStyles from \'../../styles/form-control.styles.js\';\nimport formControlCustomStyles from \'../../styles/form-control.custom.styles.js\';',
+                .replace(
+                  'import formControlStyles from \'../../styles/form-control.styles.js\';',
+                  'import formControlStyles from \'../../styles/form-control.styles.js\';\nimport formControlCustomStyles from \'../../styles/form-control.custom.styles.js\';',
                 );
-                
+
               // We need to respect the order of the styles! Our custom styles need to be
               // included last, so we will override the shoelace styling
               const regex = /static styles: CSSResultGroup = \[([^\]]+)\]/;
@@ -264,6 +271,8 @@ const config = {
       vendorIconButton,
       vendorIcon,
       vendorInput,
+      vendorMenuItem,
+      vendorMenuLabel,
       vendorSelect,
       vendorTextarea,
       vendorTag,

@@ -8,12 +8,17 @@ export { default as SynVueButtonGroup } from './components/SynVueButtonGroup.vue
 export { default as SynVueCheckbox } from './components/SynVueCheckbox.vue';
 export { default as SynVueDivider } from './components/SynVueDivider.vue';
 export { default as SynVueDrawer } from './components/SynVueDrawer.vue';
+export { default as SynVueDropdown } from './components/SynVueDropdown.vue';
 export { default as SynVueHeader } from './components/SynVueHeader.vue';
 export { default as SynVueIcon } from './components/SynVueIcon.vue';
 export { default as SynVueIconButton } from './components/SynVueIconButton.vue';
 export { default as SynVueInput } from './components/SynVueInput.vue';
+export { default as SynVueMenu } from './components/SynVueMenu.vue';
+export { default as SynVueMenuItem } from './components/SynVueMenuItem.vue';
+export { default as SynVueMenuLabel } from './components/SynVueMenuLabel.vue';
 export { default as SynVueOptgroup } from './components/SynVueOptgroup.vue';
 export { default as SynVueOption } from './components/SynVueOption.vue';
+export { default as SynVuePopup } from './components/SynVuePopup.vue';
 export { default as SynVueRadio } from './components/SynVueRadio.vue';
 export { default as SynVueRadioButton } from './components/SynVueRadioButton.vue';
 export { default as SynVueRadioGroup } from './components/SynVueRadioGroup.vue';

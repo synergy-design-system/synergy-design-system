@@ -18,4 +18,5 @@ export type * from './syn-load.ts';
 export type * from './syn-remove.ts';
 export type * from './syn-reposition.ts';
 export type * from './syn-request-close.ts';
+export type * from './syn-select.ts';
 export type * from './syn-show.ts';

@@ -8,6 +8,7 @@
     "unifiedjs.vscode-mdx",
     "dbaeumer.vscode-eslint",
     "angular.ng-template",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "vue.volar"
   ]
 }

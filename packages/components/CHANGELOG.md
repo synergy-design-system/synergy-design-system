@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.11.0...components/1.12.0) (2024-03-18)
+
+
+### Features
+
+* ✨ drop-down ([#367](https://github.com/synergy-design-system/synergy-design-system/issues/367)) ([562daf8](https://github.com/synergy-design-system/synergy-design-system/commit/562daf8b06627b7d44a3f06210b3202c7eee9540))
+
 # [@synergy-design-system/components-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.1...components/1.11.0) (2024-03-07)
 
 

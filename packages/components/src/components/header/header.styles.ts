@@ -71,6 +71,7 @@ export default css`
   .header__label {
     font: var(--syn-body-large-bold);
     padding: 0 var(--syn-spacing-2x-large);
+    white-space: nowrap;
   }
 
   /**

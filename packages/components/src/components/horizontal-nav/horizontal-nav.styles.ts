@@ -34,7 +34,6 @@ export default css`
 
   /**
    * Priority Menu adjustments
-   * @todo: Remove when <syn-dropdown /> is available
    */
   .priority-menu {
     position: relative;
@@ -43,14 +42,5 @@ export default css`
 
   .priority-menu--hidden {
     visibility: hidden;
-  }
-
-  .priority-menu__list {
-    background: var(--syn-color-neutral-0);
-    border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
-    box-shadow: var(--syn-shadow-medium);
-    position: absolute;
-    right: 0;
-    width: 300px;
   }
 `;

@@ -5,7 +5,9 @@ import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './horizontal-nav.styles.js';
+import SynDropdown from '../dropdown/dropdown.component.js';
 import SynIcon from '../icon/icon.component.js';
+import SynMenu from '../menu/menu.component.js';
 import SynNavItem from '../nav-item/nav-item.component.js';
 
 /**
@@ -17,7 +19,9 @@ import SynNavItem from '../nav-item/nav-item.component.js';
  * @status stable
  * @since 1.10
  *
+ * @dependency syn-dropdown
  * @dependency syn-icon
+ * @dependency syn-menu
  * @dependency syn-nav-item
  *
  * @slot - The given navigation items. Must be `<syn-nav-item>` elements.
@@ -28,12 +32,16 @@ import SynNavItem from '../nav-item/nav-item.component.js';
  * @csspart priority-menu-label - The label for the priority menu
  *
  * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
+ *
+ * @todo: more_horiz icon should be part of system library (and renamed!)
  */
 export default class SynHorizontalNav extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
+    'syn-dropdown': SynDropdown,
     'syn-icon': SynIcon,
+    'syn-menu': SynMenu,
     'syn-nav-item': SynNavItem,
   };
 
@@ -55,7 +63,7 @@ export default class SynHorizontalNav extends SynergyElement {
   /**
    * The priority menu wrapper
    */
-  @query('.priority-menu') priorityMenu: HTMLDivElement;
+  @query('syn-dropdown') priorityMenu: SynDropdown;
 
   /**
    * Reference to the priority menu label
@@ -88,8 +96,8 @@ export default class SynHorizontalNav extends SynergyElement {
    * Adjust the visual placement of the priority menu
    * @param startPos The start position to calculate from
    */
-  private adjustPriorityMenuPosition(startPos: number) {
-    const relativeX = startPos - this.priorityMenu.offsetLeft;
+  private adjustPriorityMenuPosition(startPosition: number) {
+    const relativeX = startPosition - this.priorityMenu.offsetLeft;
     this.priorityMenu.style.transform = `translate(${relativeX}px, 0)`;
   }
 
@@ -145,28 +153,32 @@ export default class SynHorizontalNav extends SynergyElement {
     const items = this.priorityMenuItems;
 
     return html`
-      <div
+      <syn-dropdown
         class=${classMap({
           'priority-menu': true,
           'priority-menu--hidden': items.length === 0,
         })}
         part="priority-menu"
+        placement="bottom-end"
       >
-        <syn-nav-item>
+        <syn-nav-item slot="trigger">
           <syn-icon name="more_horiz" label="More" slot="prefix"></syn-icon>
-          <span class="priority-menu__label" part="priority-menu-label">${this.priorityMenuLabel}</span>
-          <nav class="priority-menu__list" slot="children">
-            ${items.map((item, index) => html`
-              <syn-nav-item
-                ?divider=${index !== 0}
-                vertical
-              >
-                ${item.textContent}
-              </syn-nav-item>
-            `)}
-          </nav>
+          <span class="priority-menu__label" part="priority-menu-label">
+            ${this.priorityMenuLabel}
+          </span>
         </syn-nav-item>
-      </div>
+
+        <syn-menu>
+          ${items.map((item, index) => html`
+            <syn-nav-item
+              ?divider=${index !== 0}
+              vertical
+            >
+              ${item.textContent}
+            </syn-nav-item>
+          `)}
+        </syn-menu>
+      </syn-dropdown>
     `;
   }
 

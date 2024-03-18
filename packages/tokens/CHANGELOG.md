@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.8.0...tokens/1.9.0) (2024-03-18)
+
+
+### Features
+
+* ✨ drop-down ([#367](https://github.com/synergy-design-system/synergy-design-system/issues/367)) ([562daf8](https://github.com/synergy-design-system/synergy-design-system/commit/562daf8b06627b7d44a3f06210b3202c7eee9540))
+
 # [@synergy-design-system/tokens-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.1...tokens/1.8.0) (2024-02-28)
 
 

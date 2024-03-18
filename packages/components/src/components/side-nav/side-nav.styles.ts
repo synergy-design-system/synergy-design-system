@@ -2,14 +2,22 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --side-nav-size: 25rem;
+
     display: block;
   }
+
+  
+
 
   /**
    * Syn-drawer styling
    */
+  .side-nav__drawer {
+    --size: var(--side-nav-size);
+  }
 
-  syn-drawer::part(body), syn-drawer::part(footer) {
+  .side-nav__drawer::part(body), .side-nav__drawer::part(footer) {
     padding: 0;
   }
 
@@ -31,7 +39,7 @@ export default css`
    * Rail mode
    */
   :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail .side-nav__drawer {
-    --size: 72px;
+    --side-nav-size: 4.5rem;
   }
 
   .side-nav--open.side-nav--rail.side-nav--touch .side-nav__drawer::part(overlay){

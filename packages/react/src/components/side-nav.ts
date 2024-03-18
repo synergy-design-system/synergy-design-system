@@ -44,6 +44,8 @@ Component.define('syn-side-nav');
  * @csspart footer - The components footer content
  * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
+ * @cssproperty --side-nav-size - The width of the side-nav. Can be used to shrink the main content.
+ *
  */
 export const SynSideNav = createComponent({
   displayName: 'SynSideNav',

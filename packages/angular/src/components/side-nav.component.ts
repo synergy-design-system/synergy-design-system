@@ -45,6 +45,8 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @csspart footer - The components footer content
  * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
+ * @cssproperty --side-nav-size - The width of the side-nav. Can be used to shrink the main content.
+ *
  */
 @Component({
   selector: 'syn-side-nav',

@@ -5,7 +5,7 @@ import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription,

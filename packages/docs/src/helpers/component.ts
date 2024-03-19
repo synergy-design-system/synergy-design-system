@@ -100,7 +100,10 @@ export const storybookDefaults = (customElementTag: string): any => {
     // Hide controls for all properties
     for (const key in argTypes) {
       if (argTypes.hasOwnProperty(key) && argTypes[key].table && argTypes[key].table.category === 'properties') {
-        argTypes[key].control = false;
+        // Storybook@8 uses an object to indicate controls are disabled
+        argTypes[key].control = {
+          disabled: true,
+        };
       }
     }
 

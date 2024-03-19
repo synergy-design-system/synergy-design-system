@@ -4,7 +4,7 @@
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,

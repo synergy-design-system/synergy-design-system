@@ -120,6 +120,8 @@ export default css`
    */
   .nav-item__content-container {
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /**

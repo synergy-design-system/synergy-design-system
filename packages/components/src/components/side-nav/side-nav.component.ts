@@ -66,6 +66,8 @@ export default class SynSideNav extends SynergyElement {
 
   private isInitial: boolean = true;
 
+  private timeout: NodeJS.Timeout;
+
   /**
    * Reference to the default slot.
    */
@@ -151,15 +153,26 @@ export default class SynSideNav extends SynergyElement {
     this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefix.length === navItems.length;
   }
 
+  private setDelayedCallback(callback: () => void) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(callback, 100);
+  }
+
   private handleMouseEnter() {
-    if (this.hasPrefixIcons) {
-      this.open = true;
+    if (this.hasPrefixIcons && !this.open) {
+      // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
+      this.setDelayedCallback(() => {
+        this.open = true;
+      });
     }
   }
 
   private handleMouseLeave() {
-    if (this.hasPrefixIcons) {
-      this.open = false;
+    if (this.hasPrefixIcons && this.open) {
+      // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
+      this.setDelayedCallback(() => {
+        this.open = false;
+      });
     }
   }
 

@@ -19,7 +19,7 @@ const { generateTemplate } = storybookTemplate('syn-radio-group');
 const meta: Meta = {
   args,
   argTypes,
-  component: 'radio-group',
+  component: 'syn-radio-group',
   parameters: {
     docs: {
       description: {

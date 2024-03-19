@@ -122,7 +122,7 @@ Most of the magic behind assets is handled internally by Synergy, but if you nee
 const meta: Meta = {
   args: overrideArgs({ name: 'name', type: 'attribute', value: 'wallpaper' }, defaultArgs),
   argTypes,
-  component: 'icon',
+  component: 'syn-icon',
   parameters: {
     docs: {
       description: {

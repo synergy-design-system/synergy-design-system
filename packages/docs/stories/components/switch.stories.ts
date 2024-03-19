@@ -21,7 +21,7 @@ const { generateTemplate } = storybookTemplate('syn-switch');
 const meta: Meta = {
   args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
-  component: 'switch',
+  component: 'syn-switch',
   parameters: {
     docs: {
       description: {

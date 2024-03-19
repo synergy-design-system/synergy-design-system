@@ -17,7 +17,7 @@ const { generateTemplate } = storybookTemplate('syn-radio');
 const meta: Meta = {
   args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
-  component: 'radio',
+  component: 'syn-radio',
   parameters: {
     docs: {
       description: {

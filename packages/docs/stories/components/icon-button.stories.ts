@@ -26,7 +26,7 @@ const meta: Meta = {
     { name: 'size', type: 'attribute', value: 'medium' },
   ], defaultArgs),
   argTypes,
-  component: 'icon-button',
+  component: 'syn-icon-button',
   parameters: {
     docs: {
       description: {

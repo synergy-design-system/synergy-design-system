@@ -111,7 +111,15 @@ export const storybookDefaults = (customElementTag: string): any => {
       ...argTypes,
       // Events should show up but not be editable
       ...manifest?.events?.reduce((acc: any, event: any) => {
-        acc[event.name] = { ...event, control: false, table: { category: 'Events' } };
+        acc[event.name] = {
+          ...event,
+          control: {
+            disabled: true,
+          },
+          table: {
+            category: 'Events'
+          },
+        };
         return acc;
       }, {}),
       ...manifest?.members?.filter(member => member.kind === 'method').reduce((acc: any, method: any) => {

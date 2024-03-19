@@ -38,7 +38,7 @@ export default css`
   /**
    * Rail mode
    */
-  :not(.side-nav--open).side-nav--rail .side-nav__drawer {
+  :host([rail]:not([open])) {
     --side-nav-size: 4.5rem;
   }
 

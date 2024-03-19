@@ -35,7 +35,7 @@ export const createCssVariables = (prefix) => ({
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')
-          .replace('.', '-')
+          .replaceAll('.', '-')
         })`;
       }
       return token;

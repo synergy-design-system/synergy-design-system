@@ -5,13 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './icon-button.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-
   :host {
     display: inline-block;
     color: var(--syn-color-neutral-600);
@@ -58,7 +54,4 @@ export default css`
   .icon-button__icon {
     pointer-events: none;
   }
-
-  ${customStyles}
 `;
-

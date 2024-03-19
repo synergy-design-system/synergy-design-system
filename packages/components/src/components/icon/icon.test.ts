@@ -6,9 +6,9 @@
 /* eslint-disable */
 import { aTimeout, elementUpdated, expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { registerIconLibrary } from '../../../dist/synergy.js';
-import type { SynErrorEvent } from '../../events/syn-error';
-import type { SynLoadEvent } from '../../events/syn-load';
-import type SynIcon from './icon';
+import type { SynErrorEvent } from '../../events/syn-error.js';
+import type { SynLoadEvent } from '../../events/syn-load.js';
+import type SynIcon from './icon.js';
 
 const testLibraryIcons = {
   'test-icon1': `

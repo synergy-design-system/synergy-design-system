@@ -1,0 +1,16 @@
+{
+  "extends": "@synergy-design-system/stylelint-config-syn",
+  "rules": {
+    "hue-degree-notation": "number",
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreProperties": ["/font/", "/body/", "/heading/"]
+      }
+    ],
+    "order/order": ["declarations", "custom-properties"],
+    "color-function-notation": "legacy",
+    "custom-property-empty-line-before": null,
+    "alpha-value-notation": "number"
+  }
+}

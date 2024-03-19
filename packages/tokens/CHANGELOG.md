@@ -1,3 +1,45 @@
+# [@synergy-design-system/tokens-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.8.0...tokens/1.9.0) (2024-03-18)
+
+
+### Features
+
+* ✨ drop-down ([#367](https://github.com/synergy-design-system/synergy-design-system/issues/367)) ([562daf8](https://github.com/synergy-design-system/synergy-design-system/commit/562daf8b06627b7d44a3f06210b3202c7eee9540))
+
+# [@synergy-design-system/tokens-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.1...tokens/1.8.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
+# [@synergy-design-system/tokens-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.7.0...tokens/1.7.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* 🤔 Fix broken theme tokens and add automatic check ([#342](https://github.com/synergy-design-system/synergy-design-system/issues/342)) ([3fea98a](https://github.com/synergy-design-system/synergy-design-system/commit/3fea98a242d0994f8c3aa9be81ef38a9cd43e48e))
+
+# [@synergy-design-system/tokens-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.6.0...tokens/1.7.0) (2024-02-27)
+
+
+### Features
+
+* ✨ syn-drawer ([#320](https://github.com/synergy-design-system/synergy-design-system/issues/320)) ([ce20a42](https://github.com/synergy-design-system/synergy-design-system/commit/ce20a42f9f90eb5b38c0ae84f99d4a8db2e08613))
+
+# [@synergy-design-system/tokens-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.5.0...tokens/1.6.0) (2024-02-26)
+
+
+### Features
+
+* ✨ added tokens for roundings ([#338](https://github.com/synergy-design-system/synergy-design-system/issues/338)) ([48e01cb](https://github.com/synergy-design-system/synergy-design-system/commit/48e01cbe074726a5bd2abf67fce7bd8d784f1c47))
+
+# [@synergy-design-system/tokens-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.4.0...tokens/1.5.0) (2024-02-22)
+
+
+### Features
+
+* ✨ adjust the size tokens for syn-Input and syn-Button ([#324](https://github.com/synergy-design-system/synergy-design-system/issues/324)) ([ac00d58](https://github.com/synergy-design-system/synergy-design-system/commit/ac00d58db394490e852c627f90209e37bfb8a4bb))
+
 # [@synergy-design-system/tokens-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.3.2...tokens/1.4.0) (2024-02-15)
 
 

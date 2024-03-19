@@ -5,15 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './input.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-  ${formControlStyles}
-
   :host {
     display: block;
   }
@@ -291,7 +285,4 @@ export default css`
   input[type='number'] {
     -moz-appearance: textfield;
   }
-
-  ${customStyles}
 `;
-

@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .icon-button {
+    border-radius: 0;
     color: currentColor;
     font-size: inherit;
   }

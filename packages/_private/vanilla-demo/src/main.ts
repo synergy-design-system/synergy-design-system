@@ -2,6 +2,7 @@
 import type { SynChangeEvent, SynSwitch } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/components/themes/utility.css';
 import './app.css';
 import '@synergy-design-system/components';
 

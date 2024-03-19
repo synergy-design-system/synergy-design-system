@@ -24,8 +24,9 @@ const config: StorybookConfig = {
       to: '/assets'
   }],
   stories: [
-    "../stories/Index.mdx",
-    "../stories/Introduction.mdx",
+    "../stories/Welcome.mdx",
+    "../stories/GoalsAndGuidelines.mdx",
+    "../stories/Presentation.mdx",
     "../stories/Contributing.mdx",
     "../stories/packages/**/*.mdx",
     "../stories/tokens/**/*.stories.*",

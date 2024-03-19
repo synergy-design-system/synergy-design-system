@@ -110,17 +110,19 @@
         "type": "color"
       }
     },
-    "required-content": {
-      "value": "*",
-      "type": "text",
-      "color": {
+    "required": {
+      "content": {
+        "value": "*",
+        "type": "text"
+      },
+      "content-color": {
         "value": "{input.label.color}",
         "type": "color"
+      },
+      "content-offset": {
+        "value": "-2px",
+        "type": "spacing"
       }
-    },
-    "required-content-offset": {
-      "value": "-2px",
-      "type": "spacing"
     },
     "label": {
       "color": {
@@ -218,7 +220,7 @@
     },
     "height": {
       "small": {
-        "value": "{spacing.x-large}",
+        "value": "36px",
         "type": "spacing"
       },
       "medium": {

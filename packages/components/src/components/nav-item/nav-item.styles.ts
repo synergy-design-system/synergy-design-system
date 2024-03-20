@@ -113,6 +113,7 @@ export default css`
    */
   .nav-item--has-prefix ::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
+    min-width: var(--syn-font-size-x-large);
   }
 
   /**
@@ -120,6 +121,8 @@ export default css`
    */
   .nav-item__content-container {
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /**
@@ -153,7 +156,23 @@ export default css`
   .nav-item--show-prefix-only .nav-item__content-container,
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
-    display: none;
+    visibility: hidden;
+  }
+
+  /**
+   * Multi line content
+   */
+
+  .nav-item--multi-line .nav-item__suffix,
+  .nav-item--multi-line .nav-item__prefix,
+  .nav-item--multi-line .nav-item__chevron {
+    align-self: flex-start;
+  }
+
+  .nav-item--multi-line .nav-item__suffix::slotted(syn-icon),
+  :not(.nav-item--show-prefix-only).nav-item--multi-line .nav-item__prefix::slotted(syn-icon),
+  .nav-item--multi-line .nav-item__chevron {
+    align-self: flex-start;
   }
 
   /**

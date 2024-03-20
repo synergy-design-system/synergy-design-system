@@ -1,13 +1,12 @@
 import { classMap } from 'lit/directives/class-map.js';
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit/static-html.js';
-import { property, query, state } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './side-nav.styles.js';
 import SynDrawer from '../drawer/drawer.component.js';
-import type SynNavItem from '../nav-item/nav-item.component.js';
 import SynDivider from '../divider/divider.component.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
@@ -69,24 +68,9 @@ export default class SynSideNav extends SynergyElement {
   private timeout: NodeJS.Timeout;
 
   /**
-   * Reference to the default slot.
-   */
-  @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
-
-  /**
-   * Reference to the footer slot.
-   */
-  @query('slot[name="footer"]') private footerSlot: HTMLSlotElement;
-
-  /**
    * Reference to the drawer
    */
   @query('.side-nav__drawer') private drawer: SynDrawer;
-
-  /**
-   * State if all nav-items have a prefix icon.
-   */
-  @state() private hasPrefixIcons = false;
 
   /**
    * Indicates whether or not the side-nav is open.
@@ -117,63 +101,23 @@ export default class SynSideNav extends SynergyElement {
    */
   @property({ reflect: true, type: Boolean }) rail = false;
 
-  /**
-   * Get all nav-items from the default and footer slot.
-   */
-  private getAllNavItems(): SynNavItem[] {
-    const navItemsAll: SynNavItem[] = [];
-
-    const addNavItems = (element: Element) => {
-      if (element.tagName.toLowerCase() === 'syn-nav-item') {
-        navItemsAll.push(element as SynNavItem);
-      } else {
-        // Check for first child nav-items.
-        // It`s possible that they were wrapped in another element (e.g. div or nav)
-        const nestedNavItems = Array.from(element.children).filter(nestedElement => (nestedElement.tagName.toLowerCase() === 'syn-nav-item')) as SynNavItem[];
-        navItemsAll.push(...nestedNavItems);
-      }
-    };
-
-    (this.defaultSlot?.assignedElements({ flatten: true }) || []).forEach(addNavItems);
-    (this.footerSlot?.assignedElements({ flatten: true }) || []).forEach(addNavItems);
-
-    return navItemsAll;
-  }
-
-  /**
-   * This function handles the rail mode.
-   * Rail mode is only valid if every nav-item has a prefix.
-   */
-  // eslint-disable-next-line complexity
-  private handleRailMode() {
-    const navItems = this.getAllNavItems();
-
-    const itemsWithPrefix = navItems.filter((navItem) => !!navItem.querySelector(':scope > [slot="prefix"]'));
-
-    this.hasPrefixIcons = navItems.length !== 0 && itemsWithPrefix.length === navItems.length;
-  }
-
   private setDelayedCallback(callback: () => void) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(callback, 100);
   }
 
   private handleMouseEnter() {
-    if (this.hasPrefixIcons && !this.open) {
-      // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
-      this.setDelayedCallback(() => {
-        this.open = true;
-      });
-    }
+    // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
+    this.setDelayedCallback(() => {
+      this.open = true;
+    });
   }
 
   private handleMouseLeave() {
-    if (this.hasPrefixIcons && this.open) {
-      // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
-      this.setDelayedCallback(() => {
-        this.open = false;
-      });
-    }
+    // Debounce mouse events, to avoid infinite loop of open / closing in rail mode
+    this.setDelayedCallback(() => {
+      this.open = false;
+    });
   }
 
   private addMouseListener() {
@@ -269,7 +213,6 @@ export default class SynSideNav extends SynergyElement {
     const hasFooter = this.hasSlotController.test('footer');
 
     this.initialSetup();
-    this.handleRailMode();
 
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable @typescript-eslint/unbound-method */
@@ -279,7 +222,6 @@ export default class SynSideNav extends SynergyElement {
       'side-nav': true,
       'side-nav--fix': !this.rail,
       'side-nav--has-footer': hasFooter,
-      'side-nav--has-prefix-icons': this.hasPrefixIcons,
       'side-nav--open': this.open,
       'side-nav--rail': this.rail,
       'side-nav--touch': isTouch,

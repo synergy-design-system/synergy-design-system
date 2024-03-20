@@ -38,7 +38,7 @@ export default css`
   /**
    * Rail mode
    */
-  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail .side-nav__drawer {
+  :host([rail]:not([open])) {
     --side-nav-size: 4.5rem;
   }
 
@@ -49,7 +49,7 @@ export default css`
   /**
    * Hide the scrollbars in closed rail mode
    */ 
-  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail .side-nav__drawer::part(body){
+  :not(.side-nav--open).side-nav--rail .side-nav__drawer::part(body){
     overflow: hidden;
   }
 
@@ -61,7 +61,7 @@ export default css`
     --color: var(--syn-color-neutral-300);
   }
 
-  :not(.side-nav--open).side-nav--has-prefix-icons.side-nav--rail ::slotted(syn-nav-item){
+  :not(.side-nav--open).side-nav--rail ::slotted(syn-nav-item){
     --display-children: none;
   }
 `;

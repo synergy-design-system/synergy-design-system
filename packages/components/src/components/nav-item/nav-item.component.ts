@@ -79,6 +79,11 @@ export default class SynNavItem extends SynergyElement {
   @state() private showPrefixOnly = false;
 
   /**
+   * The content area is multiline
+   */
+  @state() private isMultiLine = false;
+
+  /**
    * Reference to the children slot
    */
   @query('slot[name="children"]') childrenSlot: HTMLSlotElement;
@@ -220,16 +225,17 @@ export default class SynNavItem extends SynergyElement {
 
   private handleWidth(entries: ResizeObserverEntry[]) {
     entries.forEach(entry => {
-      // TODO: Which breakpoint do we want?
       if (entry.contentRect.width < 100) {
         const hasPrefix = this.hasSlotController.test('prefix');
-        // TODO: Do we want to shrink the content of the nav-item to prefix,
-        // only if the prefix is a syn-icon or always?
-        // const prefixIconSlot = this.querySelector(':scope > syn-icon[slot="prefix"]');
-        // this.showPrefixOnly = hasPrefix && !!prefixIconSlot;
         this.showPrefixOnly = hasPrefix;
       } else {
         this.showPrefixOnly = false;
+      }
+
+      if (entry.contentRect.height > 48) {
+        this.isMultiLine = true;
+      } else {
+        this.isMultiLine = false;
       }
     });
   }
@@ -313,6 +319,7 @@ export default class SynNavItem extends SynergyElement {
           'nav-item--focused': this.hasFocus,
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
+          'nav-item--multi-line': this.isMultiLine,
           'nav-item--show-prefix-only': this.showPrefixOnly,
           'nav-item-is-accordion': isAccordion,
         })}

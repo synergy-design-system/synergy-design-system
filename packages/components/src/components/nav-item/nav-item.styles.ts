@@ -160,6 +160,22 @@ export default css`
   }
 
   /**
+   * Multi line content
+   */
+
+  .nav-item--multi-line .nav-item__suffix,
+  .nav-item--multi-line .nav-item__prefix,
+  .nav-item--multi-line .nav-item__chevron {
+    align-self: flex-start;
+  }
+
+  .nav-item--multi-line .nav-item__suffix::slotted(syn-icon),
+  :not(.nav-item--show-prefix-only).nav-item--multi-line .nav-item__prefix::slotted(syn-icon),
+  .nav-item--multi-line .nav-item__chevron {
+    align-self: flex-start;
+  }
+
+  /**
    * Vertical navigation items should not break words
    */
   :host(:not([vertical])) .nav-item__content-container {

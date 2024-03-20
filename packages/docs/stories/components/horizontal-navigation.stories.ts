@@ -89,12 +89,12 @@ export const CS = {
   render: () => html`
     <syn-horizontal-nav id="demo-ding">
       <syn-nav-item current>Domains</syn-nav-item>
-      <syn-button>I want to play here, too :(</syn-button>
       <syn-nav-item>Projects</syn-nav-item>
       <syn-nav-item>Trainings</syn-nav-item>
       <syn-nav-item>Item 1</syn-nav-item>
       <syn-nav-item>Item 2</syn-nav-item> 
       <syn-nav-item>Item 3</syn-nav-item>
+      <syn-menu-item disabled href="#" role="menuitem">Hello</syn-menu-item>
       <syn-nav-item>Item 4</syn-nav-item>
     </syn-horizontal-nav>
     <syn-button>Add an Item</syn-button>

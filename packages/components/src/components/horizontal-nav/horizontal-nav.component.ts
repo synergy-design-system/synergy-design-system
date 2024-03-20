@@ -21,11 +21,15 @@ const getAssignedElementsForSlot = (slot: HTMLSlotElement) => Array.from(
 ) as HTMLElement[];
 
 /**
- * Check if an item is a SynNavItem
+ * Check if an item is a SynNavItem or otherwise an item that has a role of menuitem.
+ * Note we always treat all items as SynNavItems here
  * @param item The item to check for
  * @returns True if the item is a SynNavItem, false otherwise
  */
-const isNavItem = (item: HTMLElement): item is SynNavItem => item instanceof SynNavItem;
+const isNavItem = (item: HTMLElement): item is SynNavItem => (
+  item.tagName.toLocaleLowerCase() === 'syn-nav-item'
+  || (item.getAttribute('role') ?? '') === 'menuitem'
+);
 
 /**
  * Get a list of only SynNavItem elements
@@ -48,8 +52,9 @@ const filterOnlyNavItems = (items: HTMLElement[]) => items.filter(isNavItem);
  * @dependency syn-menu
  * @dependency syn-nav-item
  *
- * @slot - The given navigation items. Must be `<syn-nav-item>` elements
- * @slot more - The content to display in the priority menu
+ * @slot - The given navigation items. Must be `<syn-nav-item>`s or have a role of "menuitem"
+ * @slot more - The content to display in the priority menu.
+ * Will be filled with all items that cannot be displayed in the main navigation
  *
  * @csspart base - The component's base wrapper.
  * @csspart nav-item-wrapper - The wrapper around the slotted `<syn-nav-item />` elements
@@ -78,22 +83,22 @@ export default class SynHorizontalNav extends SynergyElement {
   /**
    * Reference to the rendered children slot
    */
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   /**
    * Reference to the slot where priority menu items are placed
    */
-  @query('slot[name=more]') menuSlot: HTMLSlotElement;
+  @query('slot[name=more]') private menuSlot: HTMLSlotElement;
 
   /**
    * The wrapper that holds the horizontal navigation items
    */
-  @query('.horizontal-nav') horizontalNav: HTMLDivElement;
+  @query('.horizontal-nav') private horizontalNav: HTMLDivElement;
 
   /**
    * The priority menu dropdown
    */
-  @query('.priority-menu') priorityMenu: SynDropdown;
+  @query('.priority-menu') private priorityMenu: SynDropdown;
 
   /**
    * The components priority menu label.
@@ -101,7 +106,10 @@ export default class SynHorizontalNav extends SynergyElement {
    */
   @property({ attribute: 'priority-menu-label' }) priorityMenuLabel = 'Menu';
 
-  @state() private ghostItemsCreated = false;
+  /**
+   * Internal state reflecting if the item positions have been cached
+   */
+  @state() private itemPositionsCached = false;
 
   /**
    * The amount of nav items that are currently slotted
@@ -128,10 +136,10 @@ export default class SynHorizontalNav extends SynergyElement {
   }
 
   /**
-   * Create ghost items that will be used for determining the position of the items
+   * Cache the items right offset position to make faster checks placement into priority menu
    * @param items The items to cache the position for
    */
-  private createGhostItems(items: SynNavItem[]) {
+  private cacheItemPositions(items: SynNavItem[]) {
     items.forEach(item => {
       // We have to measure while the items are in the primary slot,
       // else we will just get the placement in the priority menu
@@ -140,7 +148,7 @@ export default class SynHorizontalNav extends SynergyElement {
       item.dataset.right = right.toString();
     });
 
-    this.ghostItemsCreated = true;
+    this.itemPositionsCached = true;
   }
 
   /**
@@ -149,8 +157,8 @@ export default class SynHorizontalNav extends SynergyElement {
   private handlePriorityMenu() {
     const navItems = this.getSlottedNavItems();
 
-    if (!this.ghostItemsCreated) {
-      this.createGhostItems(navItems);
+    if (!this.itemPositionsCached) {
+      this.cacheItemPositions(navItems);
     }
 
     // Get the widths of the horizontal nav and the priority menu
@@ -182,10 +190,11 @@ export default class SynHorizontalNav extends SynergyElement {
       } else {
         item.removeAttribute('vertical');
         item.removeAttribute('slot');
-        item.removeAttribute('role');
+        item.setAttribute('role', item.dataset.originalRole!);
       }
     });
 
+    // Tell the render call that we have items in the priority menu
     this.hasItemsInDropdown = !!firstHiddenItemRightPos;
   }
 
@@ -217,11 +226,19 @@ export default class SynHorizontalNav extends SynergyElement {
   private slotChange() {
     const slottedItems = this.getSlottedNavItems();
 
+    // Make sure to trigger a recalculation of the item positions if we a new list of slotted items
     if (slottedItems.length !== this.itemAmount) {
-      this.createGhostItems(slottedItems);
+      this.cacheItemPositions(slottedItems);
       this.handlePriorityMenu();
       this.itemAmount = slottedItems.length;
     }
+  }
+
+  protected firstUpdated() {
+    // Cache the original role of the items so we can reset it if needed.
+    this.getSlottedNavItems().forEach(item => {
+      item.dataset.originalRole = item.getAttribute('role') ?? '';
+    });
   }
 
   connectedCallback() {

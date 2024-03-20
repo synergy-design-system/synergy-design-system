@@ -77,17 +77,19 @@ describe('<syn-horizontal-nav>', () => {
   describe('when providing a list of <syn-nav-item />s', () => {
     /**
      * Create a fixture for our horizontal nav
+     * Note we are forcing a fixed width of the items
+     * to make sure they are available in all test environments
      * @param width The width to use
      * @returns A horizontal nav fixture
      */
     const createFixture = async (width = 800) => fixture<SynHorizontalNav>(html`
       <syn-horizontal-nav style="width: ${width}px;">
-        <syn-nav-item>Item 1</syn-nav-item>
-        <syn-nav-item>Item 2</syn-nav-item>
-        <syn-nav-item>Item 3</syn-nav-item>
-        <syn-nav-item>Item 4</syn-nav-item>
-        <syn-nav-item id="button-item" role="button">Item 5</syn-nav-item>
-        <syn-nav-item>Item 6</syn-nav-item>
+        <syn-nav-item style="width: 100px">Item 1</syn-nav-item>
+        <syn-nav-item style="width: 100px">Item 2</syn-nav-item>
+        <syn-nav-item style="width: 100px">Item 3</syn-nav-item>
+        <syn-nav-item style="width: 100px">Item 4</syn-nav-item>
+        <syn-nav-item style="width: 100px" id="button-item" role="button">Item 5</syn-nav-item>
+        <syn-nav-item style="width: 100px">Item 6</syn-nav-item>
       </syn-horizontal-nav>
     `);
 
@@ -140,15 +142,15 @@ describe('<syn-horizontal-nav>', () => {
         initialPriorityItems,
       ] = getSlottedChildrenAsTuple(nav);
 
-      await forceSizeUpdateOnFixture(nav, 150);
+      await forceSizeUpdateOnFixture(nav, 200);
 
       const [
         afterSmallDefaultItems,
         afterSmallPriorityItems,
       ] = getSlottedChildrenAsTuple(nav);
 
-      // Second cycle: Resize to 400 pixels and see what we got then
-      await forceSizeUpdateOnFixture(nav, 400);
+      // Second cycle: Resize to 600 pixels and see what we got then
+      await forceSizeUpdateOnFixture(nav, 600);
 
       const [
         afterMediumDefaultItems,
@@ -156,12 +158,12 @@ describe('<syn-horizontal-nav>', () => {
       ] = getSlottedChildrenAsTuple(nav);
 
       expect(initialDefaultItems, 'Default-Slot: Width 800 pixels').to.have.length(6);
-      expect(afterSmallDefaultItems, 'Default-Slot: Width 150 pixels').to.have.length(1);
-      expect(afterMediumDefaultItems, 'Default-Slot: Width 400 pixels').to.have.length(4);
+      expect(afterSmallDefaultItems, 'Default-Slot: Width 200 pixels').to.have.length(1);
+      expect(afterMediumDefaultItems, 'Default-Slot: Width 600 pixels').to.have.length(4);
 
       expect(initialPriorityItems, 'Priority-Menu: width 800 pixels').to.have.length(0);
-      expect(afterSmallPriorityItems, 'Priority-Menu: Width 150 pixels').to.have.length(5);
-      expect(afterMediumPriorityItems, 'Priority-Menu: Width 400 pixels').to.have.length(2);
+      expect(afterSmallPriorityItems, 'Priority-Menu: Width 200 pixels').to.have.length(5);
+      expect(afterMediumPriorityItems, 'Priority-Menu: Width 600 pixels').to.have.length(2);
     });
 
     it('should reapply the original role when moving items back to the default slot', async () => {

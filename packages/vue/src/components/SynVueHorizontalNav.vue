@@ -6,9 +6,16 @@
 // ---------------------------------------------------------------------
 
 /**
- * @summary The `<syn-horizontal-nav />` element provides a generic navigation bar that
- * can be used to group multiple `<syn-nav-item />` elements together.
- * It will group all `<syn-nav-item />`s that cannot be displayed into a custom priority menu
+ * @summary The `<syn-horizontal-nav />` element provides a generic navigation bar
+ * that can be used to group multiple navigation items  (usually `<syn-nav-item />`s) together.
+ * It will automatically group all items not visible in the viewport into a custom priority menu
+ *
+ * @example
+ * <syn-horizontal-nav>
+ *  <syn-nav-item current>Item 1</syn-nav-item>
+ *  <button role="menuitem">Item 2 (custom)</button>
+ *  <syn-nav-item current>Item 3</syn-nav-item>
+ * </syn-horizontal-nav>
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-horizontal-nav--docs
  * @status stable
@@ -19,16 +26,15 @@
  * @dependency syn-menu
  * @dependency syn-nav-item
  *
- * @slot - The given navigation items. Must be `<syn-nav-item>` elements.
+ * @slot - The given navigation items. Must be `<syn-nav-item>`s or have a role of "menuitem"
  *
  * @csspart base - The component's base wrapper.
- * @csspart nav-item-wrapper - The wrapper around the slotted `<syn-nav-item />` elements
  * @csspart priority-menu - The wrapper around the priority menu
  * @csspart priority-menu-label - The label for the priority menu
  *
- * @cssproperty --navigation-spacing - The amount of padding to use for the horizontal navigation.
+ * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
  *
- * @todo: more_horiz icon should be part of system library (and renamed!)
+ * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/horizontal-nav/horizontal-nav.js';

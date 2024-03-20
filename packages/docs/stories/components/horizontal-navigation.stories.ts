@@ -78,7 +78,7 @@ export const PriorityMenu = {
   `,
 };
 
-export const CS = {
+export const CS_TO_DELETE_BEFORE_RELEASE = {
   parameters: {
     docs: {
       description: {
@@ -94,7 +94,7 @@ export const CS = {
       <syn-nav-item>Item 1</syn-nav-item>
       <syn-nav-item>Item 2</syn-nav-item> 
       <syn-nav-item>Item 3</syn-nav-item>
-      <syn-menu-item disabled href="#" role="menuitem">Hello</syn-menu-item>
+      <syn-menu-item href="#" role="menuitem">Hello</syn-menu-item>
       <syn-nav-item>Item 4</syn-nav-item>
     </syn-horizontal-nav>
     <syn-button>Add an Item</syn-button>

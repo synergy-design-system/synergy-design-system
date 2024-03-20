@@ -20,8 +20,9 @@ export default css`
 
   /**
    * Slotted nav items use a custom color to make them work in <syn-header />
+   * Note exclude vertical nav items here, as they are usually placed in the priority menu
    */
-  ::slotted(syn-nav-item) {
+  ::slotted(syn-nav-item:not([vertical])) {
     --border-bottom-hover-color: var(--syn-color-neutral-400);
   }
 
@@ -30,5 +31,13 @@ export default css`
    */
   .priority-menu--hidden {
     visibility: hidden;
+  }
+
+  .priority-menu__label {
+    display: none;
+  }
+
+  .priority-menu__label--visible {
+    display: block;
   }
 `;

@@ -113,6 +113,7 @@ export default css`
    */
   .nav-item--has-prefix ::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
+    min-width: var(--syn-font-size-x-large);
   }
 
   /**
@@ -155,7 +156,7 @@ export default css`
   .nav-item--show-prefix-only .nav-item__content-container,
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
-    display: none;
+    visibility: hidden;
   }
 
   /**

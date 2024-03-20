@@ -24,4 +24,11 @@ export default css`
   ::slotted(syn-nav-item) {
     --border-bottom-hover-color: var(--syn-color-neutral-400);
   }
+
+  /**
+   * Priority Menu adjustments
+   */
+  .priority-menu--hidden {
+    visibility: hidden;
+  }
 `;

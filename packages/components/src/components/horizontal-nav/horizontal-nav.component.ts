@@ -91,12 +91,27 @@ export default class SynHorizontalNav extends SynergyElement {
   @query('.horizontal-nav') horizontalNav: HTMLDivElement;
 
   /**
+   * The priority menu dropdown
+   */
+  @query('.priority-menu') priorityMenu: SynDropdown;
+
+  /**
    * The components priority menu label.
    * This will be shown after the priority menu 3 dots link
    */
   @property({ attribute: 'priority-menu-label' }) priorityMenuLabel = 'Menu';
 
   @state() private ghostItemsCreated = false;
+
+  /**
+   * The amount of nav items that are currently slotted
+   */
+  @state() private itemAmount = 0;
+
+  /**
+   * Internal state reflecting if there are items in the priority menu
+   */
+  @state() private hasItemsInDropdown = false;
 
   /**
    * Get a list of all slotted `<syn-nav-item />` elements
@@ -118,17 +133,11 @@ export default class SynHorizontalNav extends SynergyElement {
    */
   private createGhostItems(items: SynNavItem[]) {
     items.forEach(item => {
+      // We have to measure while the items are in the primary slot,
+      // else we will just get the placement in the priority menu
+      item.removeAttribute('slot');
       const { right } = item.getBoundingClientRect();
-      // const uniqueItemId = uuid();
       item.dataset.right = right.toString();
-      // item.dataset.id = uniqueItemId;
-
-      // const ghost = item.cloneNode(true) as SynNavItem;
-      // ghost.setAttribute('visibility', 'hidden');
-      // ghost.style.display = 'none';
-      // ghost.style.visibility = 'hidden';
-      // ghost.setAttribute('aria-hidden', 'true');
-      // item.after(ghost);
     });
 
     this.ghostItemsCreated = true;
@@ -144,34 +153,49 @@ export default class SynHorizontalNav extends SynergyElement {
       this.createGhostItems(navItems);
     }
 
+    // Get the widths of the horizontal nav and the priority menu
+    // We subtract the width of the priority menu to get the final width
     const { width } = this.horizontalNav.getBoundingClientRect();
+    const { clientWidth } = this.priorityMenu;
+    const finalWidth = width - clientWidth;
+
+    // Cache the first item
+    let firstHiddenItemRightPos: number | undefined;
 
     // Save the position of all the elements in a cache
     navItems.forEach(item => {
-      // Move the item to the priority menu if it's hidden
       // Make sure to use the cache obtained in createGhostItems
-      const savedRightPosition = parseFloat(item.dataset.right!);
-      const isHidden = savedRightPosition >= width;
-
-      console.log(item.innerText, isHidden);
+      const isHidden = firstHiddenItemRightPos || parseFloat(item.dataset.right!) >= finalWidth;
 
       if (isHidden) {
         item.setAttribute('vertical', 'true');
         item.setAttribute('slot', 'more');
 
-        // Makes sure the item is tababble in a syn-dropdown
+        // Makes sure the item is focusable in a syn-dropdown
         item.setAttribute('role', 'menuitem');
+
+        // Get the position of the first item
+        // Will get used to position the priority menu
+        if (!firstHiddenItemRightPos) {
+          firstHiddenItemRightPos = parseFloat(item.dataset.right!);
+        }
       } else {
         item.removeAttribute('vertical');
         item.removeAttribute('slot');
         item.removeAttribute('role');
       }
     });
+
+    this.hasItemsInDropdown = !!firstHiddenItemRightPos;
   }
 
   private renderPriorityMenu() {
     return html`
       <syn-dropdown
+        class=${classMap({
+          'priority-menu': true,
+          'priority-menu--hidden': !this.hasItemsInDropdown,
+        })}
         part="priority-menu"
         placement="bottom-end"
       >
@@ -192,13 +216,12 @@ export default class SynHorizontalNav extends SynergyElement {
 
   private slotChange() {
     const slottedItems = this.getSlottedNavItems();
-    console.log(slottedItems);
-    // if (this.itemAmount !== slottedItems.length) {
-    //   console.log('here');
-    //   this.itemAmount = slottedItems.length;
-    //   this.ghostItemsCreated = false;
-    //   this.handlePriorityMenu();
-    // }
+
+    if (slottedItems.length !== this.itemAmount) {
+      this.createGhostItems(slottedItems);
+      this.handlePriorityMenu();
+      this.itemAmount = slottedItems.length;
+    }
   }
 
   connectedCallback() {

@@ -12,35 +12,16 @@ export default css`
 
   .horizontal-nav {
     display: flex;
+    flex: 1;
+    gap: var(--syn-spacing-large);
+    overflow: hidden;    
     padding: var(--navigation-spacing);
   }
 
   /**
-   * The wrapper that holds the default slot
-   */
-  .horizontal-nav-items {
-    display: flex;
-    flex: 1;
-    gap: var(--syn-spacing-large);
-    overflow: hidden;
-  }
-
-  /**
-   * Slotted nav items use a custom color
+   * Slotted nav items use a custom color to make them work in <syn-header />
    */
   ::slotted(syn-nav-item) {
     --border-bottom-hover-color: var(--syn-color-neutral-400);
-  }
-
-  /**
-   * Priority Menu adjustments
-   */
-  .priority-menu {
-    position: relative;
-    transform: translate(0, 0);
-  }
-
-  .priority-menu--hidden {
-    visibility: hidden;
   }
 `;

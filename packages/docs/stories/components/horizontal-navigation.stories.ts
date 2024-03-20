@@ -78,6 +78,41 @@ export const PriorityMenu = {
   `,
 };
 
+export const CS = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('horizontal-nav', 'priority-menu'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-horizontal-nav id="demo-ding">
+      <syn-nav-item current>Domains</syn-nav-item>
+      <syn-nav-item>Projects</syn-nav-item>
+      <syn-nav-item>Trainings</syn-nav-item>
+      <syn-nav-item>Item 1</syn-nav-item>
+      <syn-nav-item>Item 2</syn-nav-item> 
+      <syn-nav-item>Item 3</syn-nav-item>
+      <syn-nav-item>Item 4</syn-nav-item>
+      <syn-nav-item>Item 5</syn-nav-item>
+      <syn-nav-item>Item 6</syn-nav-item>
+      <syn-nav-item>Item 7</syn-nav-item>
+      <syn-nav-item>Item 8</syn-nav-item>
+      <syn-nav-item>Item 9</syn-nav-item>
+      <syn-nav-item>Item 10</syn-nav-item>
+    </syn-horizontal-nav>
+    <syn-button>Add an Item</syn-button>
+    <script>
+    document.querySelector('syn-button').addEventListener('click', () => {
+      const node = document.createElement('syn-nav-item');
+      node.innerText = \`Item ${new Date().toISOString()}\`;
+      document.querySelector('#demo-ding').appendChild(node);
+    });
+    </script>
+  `,
+};
+
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({
   Default,

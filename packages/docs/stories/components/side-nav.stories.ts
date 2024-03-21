@@ -34,6 +34,27 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  args: overrideArgs([
+    {
+      name: 'open',
+      type: 'attribute',
+      value: true,
+    },
+    {
+      name: 'default',
+      type: 'slot',
+      value: `
+      <syn-nav-item vertical>
+        <syn-icon name="home" slot="prefix"></syn-icon>
+        Home
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="settings" slot="prefix"></syn-icon>
+        Settings
+      </syn-nav-item>
+      `,
+    },
+  ], defaultArgs),
   parameters: {
     controls: {
       disable: false,
@@ -44,7 +65,20 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args: unknown) => html`
+  <syn-button class="side-nav-default-story-opener">Toggle Side-Nav</syn-button>
+  <main style="position: relative; height: 500px;" class="side-nav-default">
+    ${generateTemplate({ args })}
+  </main> 
+  <script type="module">
+    const openButton = document.querySelector('.side-nav-default-story-opener');
+    const sideNav = document.querySelector('.side-nav-default > syn-side-nav');
+    
+    openButton.addEventListener('click', () => {
+      sideNav.open = !sideNav.open;
+    });
+  </script>
+`,
 };
 
 export const Fixed: Story = {
@@ -56,7 +90,8 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <main>
+  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+  <main class="main">
     <syn-side-nav open>
       <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
@@ -72,32 +107,13 @@ export const Fixed: Story = {
         Children
         <!-- second-level -->
         <nav slot="children">
-          <syn-nav-item divider vertical>
+          <syn-nav-item divider vertical current>
             <syn-icon name="area_chart" slot="prefix"></syn-icon>
             Item 1.1
           </syn-nav-item>
           <syn-nav-item divider vertical>
             <syn-icon name="area_chart" slot="prefix"></syn-icon>
             Item 1.2
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Itemsdf
-              <nav slot="children">
-                <syn-nav-item divider vertical>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Item 1.1
-                </syn-nav-item>
-                <syn-nav-item divider vertical>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Item 1.2
-                </syn-nav-item>
-                <syn-nav-item divider vertical current>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Items
-                  
-          </syn-nav-item>
-        </nav>
           </syn-nav-item>
         </nav>
         <!-- /second-level -->
@@ -109,23 +125,20 @@ export const Fixed: Story = {
       <syn-nav-item divider vertical>
         <syn-icon name="area_chart" slot="prefix"></syn-icon>
         <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
         Other Option
       </syn-nav-item>
       <nav slot="footer">
         <syn-nav-item vertical slot="footer">
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-          Other Option
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option
         </syn-nav-item>
         <syn-nav-item divider vertical slot="footer">
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-          Other Option
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option 2
         </syn-nav-item>
       </nav>
     </syn-side-nav>
-    <div>
+    <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -133,9 +146,20 @@ export const Fixed: Story = {
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
       Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
+  <script type="module">
+    const sideNav = document.querySelector('syn-side-nav');
+    const toggleButton = document.querySelector('syn-button');
+    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
+  </script>
+  <style>
+    .main{
+      position: relative;
+      height: 500px;
+    }
+  </style>
   `,
 };
 
@@ -148,89 +172,8 @@ export const Rail: Story = {
     },
   },
   render: () => html`
-  <syn-side-nav rail >
-    <syn-nav-item vertical>
-      <syn-icon name="home" slot="prefix"></syn-icon>
-      Home
-    </syn-nav-item>
-    <syn-nav-item divider vertical>
-      <syn-icon name="settings" slot="prefix"></syn-icon>
-      Settings
-    </syn-nav-item>
-    <syn-nav-item divider vertical open>
-      <syn-icon name="area_chart" slot="suffix"></syn-icon>
-      <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-      Children
-      <!-- second-level -->
-      <nav slot="children">
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.1
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.2
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Itemsdf
-            <nav slot="children">
-              <syn-nav-item divider vertical>
-                <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                Item 1.1
-              </syn-nav-item>
-              <syn-nav-item divider vertical>
-                <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                Item 1.2
-              </syn-nav-item>
-              <syn-nav-item divider vertical current>
-                <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                Items
-                
-        </syn-nav-item>
-      </nav>
-        </syn-nav-item>
-      </nav>
-      <!-- /second-level -->
-    </syn-nav-item>
-    <syn-nav-item disabled divider vertical>
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-      Disabled option
-    </syn-nav-item>
-    <syn-nav-item divider vertical>
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-      <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
-      Other Option
-    </syn-nav-item>
-    <nav slot="footer">
-      <syn-nav-item vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-        Other Option
-      </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-        Other Option
-      </syn-nav-item>
-    </nav>
-  </syn-side-nav>
-  `,
-};
-
-export const Shrink: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('nav-item', 'labels'),
-      },
-    },
-  },
-  render: () => html`
-  <button id="toggle">click</button>
   <main class="main">
-    <syn-side-nav open class="shrink">
+    <syn-side-nav rail>
       <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
         Home
@@ -246,31 +189,12 @@ export const Shrink: Story = {
         <!-- second-level -->
         <nav slot="children">
           <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            <syn-icon name="area_chart" slot="prefix" current></syn-icon>
             Item 1.1
           </syn-nav-item>
           <syn-nav-item divider vertical>
             <syn-icon name="area_chart" slot="prefix"></syn-icon>
             Item 1.2
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Itemsdf
-              <nav slot="children">
-                <syn-nav-item divider vertical>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Item 1.1
-                </syn-nav-item>
-                <syn-nav-item divider vertical>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Item 1.2
-                </syn-nav-item>
-                <syn-nav-item divider vertical current>
-                  <syn-icon name="area_chart" slot="prefix"></syn-icon>
-                  Items
-                  
-          </syn-nav-item>
-        </nav>
           </syn-nav-item>
         </nav>
         <!-- /second-level -->
@@ -282,19 +206,16 @@ export const Shrink: Story = {
       <syn-nav-item divider vertical>
         <syn-icon name="area_chart" slot="prefix"></syn-icon>
         <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
         Other Option
       </syn-nav-item>
       <nav slot="footer">
         <syn-nav-item vertical slot="footer">
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-          Other Option
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option
         </syn-nav-item>
         <syn-nav-item divider vertical slot="footer">
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-          Other Option
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option 2
         </syn-nav-item>
       </nav>
     </syn-side-nav>
@@ -306,13 +227,93 @@ export const Shrink: Story = {
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
       Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
+    </div>
+  </main>
+  <style>
+    .main{
+      position: relative;
+      height: 500px;
+    }
+  </style>
+  `,
+};
+
+export const Shrink: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('nav-item', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+   <main class="main">
+    <syn-side-nav open class="shrink" no-focus-trapping>
+      <syn-nav-item vertical>
+        <syn-icon name="home" slot="prefix"></syn-icon>
+        Home
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="settings" slot="prefix"></syn-icon>
+        Settings
+      </syn-nav-item>
+      <syn-nav-item divider vertical open>
+        <syn-icon name="area_chart" slot="suffix"></syn-icon>
+        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
+        Children
+        <!-- second-level -->
+        <nav slot="children">
+          <syn-nav-item divider vertical current>
+            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            Item 1.1
+          </syn-nav-item>
+          <syn-nav-item divider vertical>
+            <syn-icon name="area_chart" slot="prefix"></syn-icon>
+            Item 1.2
+          </syn-nav-item>
+        </nav>
+        <!-- /second-level -->
+      </syn-nav-item>
+      <syn-nav-item disabled divider vertical>
+        <syn-icon name="area_chart" slot="prefix"></syn-icon>
+        Disabled option
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="area_chart" slot="prefix"></syn-icon>
+        <syn-icon name="area_chart" slot="suffix"></syn-icon>
+        Other Option
+      </syn-nav-item>
+      <nav slot="footer">
+        <syn-nav-item vertical slot="footer">
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option
+        </syn-nav-item>
+        <syn-nav-item divider vertical slot="footer">
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option 2
+        </syn-nav-item>
+      </nav>
+    </syn-side-nav>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,    
     </div>
   </main>
   <script type="module">
     const sideNav = document.querySelector('.shrink');
     const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
     const content = document.querySelector('.content');
+    const toggleButton = document.querySelector('syn-button');
+
+    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
 
     // Initial shrinking if side-nav is open
     if(sideNav.open) {
@@ -338,14 +339,11 @@ export const Shrink: Story = {
     sideNav.addEventListener('syn-after-hide', () => {
       content.style.marginLeft = 0;
     });
-
-    document.getElementById('toggle').addEventListener('click', () => {
-      sideNav.open = !sideNav.open;
-    });
   </script>
   <style>
     .main {
       position: relative;
+      height: 500px;
     }
 
     .shrink::part(overlay) {
@@ -354,116 +352,10 @@ export const Shrink: Story = {
     
     .content {
       padding: 0 var(--syn-spacing-large);
+      overflow: auto;
+      height: 100%;
     }
   </style>
-  `,
-};
-
-export const Methods: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('nav-item', 'labels'),
-      },
-    },
-  },
-  render: () => html`
-  <div style="position: relative; height:300px;">
-  <syn-side-nav class="methods" open >
-    <syn-nav-item vertical>
-      <syn-icon name="home" slot="prefix"></syn-icon>
-      Home
-    </syn-nav-item>
-    <syn-nav-item current divider vertical>
-      <syn-icon name="settings" slot="prefix"></syn-icon>
-      Settings
-    </syn-nav-item>
-    <syn-nav-item divider vertical open>
-      <syn-icon name="area_chart" slot="suffix"></syn-icon>
-      <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-      Children
-      <!-- second-level -->
-      <nav slot="children">
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.1
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.2
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Itemsdf
-          <nav slot="children">
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.1
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.2
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Itemsdf
-          <nav slot="children">
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.1
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Item 1.2
-        </syn-nav-item>
-        <syn-nav-item divider vertical>
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Itemsdf
-          
-        </syn-nav-item>
-      </nav>
-        </syn-nav-item>
-      </nav>
-        </syn-nav-item>
-      </nav>
-      <!-- /second-level -->
-    </syn-nav-item>
-    <syn-nav-item disabled divider vertical>
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-      Disabled option
-    </syn-nav-item>
-    <syn-nav-item divider vertical>
-      <!-- <span slot="prefix">sdf</span> -->
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-      <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
-      Other Option
-    </syn-nav-item>
-    <nav slot="footer">
-      <syn-nav-item vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-        Other Option
-      </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-
-        Other Option
-      </syn-nav-item>
-    </nav>
-  </syn-side-nav>
-</div>
-  <button id="show">show</button>
-  <button id="hide">hide</button>
-  <script type="module">
-    const sideNav = document.querySelector('.methods');
-    sideNav.addEventListener('syn-show', () => console.log('syn-show'));
-    sideNav.addEventListener('syn-hide', () => console.log('syn-hide'));
-    sideNav.addEventListener('syn-after-show', () => console.log('syn-after-show'));
-    sideNav.addEventListener('syn-after-hide', () => console.log('syn-after-hide'));
-    document.getElementById('show').addEventListener('click', () => sideNav.show());
-    document.getElementById('hide').addEventListener('click', () => sideNav.hide());
-  </script>
   `,
 };
 
@@ -476,18 +368,19 @@ export const Footer: Story = {
     },
   },
   render: () => html`
-  <syn-side-nav open>
-  <syn-nav-item vertical>
+  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+  <main class="main">
+    <syn-side-nav open>
+      <syn-nav-item vertical>
         <syn-icon name="home" slot="prefix"></syn-icon>
         Home
       </syn-nav-item>
-      <syn-nav-item current divider vertical>
+      <syn-nav-item divider vertical>
         <syn-icon name="settings" slot="prefix"></syn-icon>
         Settings
       </syn-nav-item>
-      <syn-nav-item divider vertical>
-      <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
+      <syn-nav-item divider vertical open>
+        <syn-icon name="area_chart" slot="suffix"></syn-icon>
         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
         Children
         <!-- second-level -->
@@ -500,39 +393,6 @@ export const Footer: Story = {
             <syn-icon name="area_chart" slot="prefix"></syn-icon>
             Item 1.2
           </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Itemsdf
-            <nav slot="children">
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Itemsdf
-            <nav slot="children">
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Itemsdf
-            
-          </syn-nav-item>
-        </nav>
-          </syn-nav-item>
-        </nav>
-          </syn-nav-item>
         </nav>
         <!-- /second-level -->
       </syn-nav-item>
@@ -541,27 +401,49 @@ export const Footer: Story = {
         Disabled option
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <!-- <span slot="prefix">sdf</span> -->
         <syn-icon name="area_chart" slot="prefix"></syn-icon>
         <syn-icon name="area_chart" slot="suffix"></syn-icon>
-
         Other Option
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Other Option
-      </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
-      <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Other Option
-      </syn-nav-item>
-  </syn-side-nav>
+      <nav slot="footer">
+        <syn-nav-item vertical slot="footer">
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option
+        </syn-nav-item>
+        <syn-nav-item divider vertical slot="footer">
+          <syn-icon name="area_chart" slot="prefix"></syn-icon>
+          Footer Option 2
+        </syn-nav-item>
+      </nav>
+    </syn-side-nav>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
+    </div>
+  </main>
+  <script type="module">
+    const sideNav = document.querySelector('syn-side-nav');
+    const toggleButton = document.querySelector('syn-button');
+    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
+  </script>
+  <style>
+    .main{
+      position: relative;
+      height: 500px;
+    }
+  </style>
   `,
 };
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  Rail,
-  Footer,
+  // Rail,
+  // Footer,
 });
 /* eslint-enable sort-keys */

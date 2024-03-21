@@ -12,6 +12,7 @@ import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { unlockBodyScrolling } from '../../internal/scroll.js';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
@@ -63,8 +64,6 @@ export default class SynSideNav extends SynergyElement {
 
   private readonly localize = new LocalizeController(this);
 
-  private isInitial: boolean = true;
-
   private timeout: NodeJS.Timeout;
 
   /**
@@ -101,6 +100,12 @@ export default class SynSideNav extends SynergyElement {
    */
   @property({ reflect: true, type: Boolean }) rail = false;
 
+  /**
+   * By default, the side-nav traps the focus if in non-rail mode and open.
+   * To disable the focus trapping, set this attribute.
+   */
+  @property({ attribute: 'no-focus-trapping', reflect: true, type: Boolean }) noFocusTrapping = false;
+
   private setDelayedCallback(callback: () => void) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(callback, 100);
@@ -118,6 +123,12 @@ export default class SynSideNav extends SynergyElement {
     this.setDelayedCallback(() => {
       this.open = false;
     });
+  }
+
+  private handleRequestClose() {
+    if (this.open) {
+      this.open = false;
+    }
   }
 
   private addMouseListener() {
@@ -150,30 +161,14 @@ export default class SynSideNav extends SynergyElement {
     setAnimation(this.drawer, 'drawer.overlay.show', showOverlay);
   }
 
-  /**
-   * Initial setup for first render like special rail mode handling and drawer animations.
-   */
-  private initialSetup() {
-    // Needed to add initial listener to element in drawer shadow dom
-    if (this.isInitial && this.drawer) {
-      this.isInitial = false;
-
-      this.setDrawerAnimations();
-
-      if (this.rail) {
-        this.addMouseListener();
-        // set initial visibility of drawer for rail mode
-        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
-      }
-    }
-  }
-
   @watch('rail', { waitUntilFirstUpdate: true })
   handleModeChange() {
     this.setDrawerAnimations();
 
     if (this.rail) {
       this.addMouseListener();
+      // Force drawer visibility for rail mode
+      (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
     } else {
       this.removeMouseListener();
     }
@@ -184,6 +179,17 @@ export default class SynSideNav extends SynergyElement {
     if (!this.open && this.rail) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.forceDrawerVisibilityForRailMode();
+    }
+  }
+
+  @watch('noFocusTrapping', { waitUntilFirstUpdate: true })
+  handleFocusTrapping() {
+    if (!this.rail) {
+      if (this.noFocusTrapping) {
+        this.drawer.modal.activateExternal();
+      } else {
+        this.drawer.modal.deactivateExternal();
+      }
     }
   }
 
@@ -208,11 +214,37 @@ export default class SynSideNav extends SynergyElement {
     return waitForEvent(this, 'syn-after-hide');
   }
 
+  /**
+   * Initial setup for first render like special rail mode handling and drawer animations.
+   * */
+  firstUpdated() {
+    this.setDrawerAnimations();
+    if (this.rail) {
+      // Wait for the drawer`s update to be completed
+
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.drawer.updateComplete.then(() => {
+        this.addMouseListener();
+        // set initial visibility of drawer for rail mode
+        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      });
+    } else if (this.noFocusTrapping) {
+      // Disable the focus trapping of the modal
+      this.drawer.modal.activateExternal();
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    //  Remove modal listeners
+    unlockBodyScrolling(this.drawer);
+    this.drawer.modal.deactivate();
+  }
+
   render() {
     const isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
     const hasFooter = this.hasSlotController.test('footer');
-
-    this.initialSetup();
 
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable @typescript-eslint/unbound-method */
@@ -231,12 +263,13 @@ export default class SynSideNav extends SynergyElement {
         
         <syn-drawer
           class="side-nav__drawer"
-          contained
+          ?contained=${this.rail}
           exportparts="overlay"
           no-header
           ?open=${this.open}
           part="drawer"
           placement="start"
+          @syn-request-close=${this.handleRequestClose}          
         >
           <main part="content-container" class="side-nav__content-container">
             <slot part="content" ></slot>
@@ -303,3 +336,4 @@ setDefaultAnimation('sideNav.overlay.hide', {
   keyframes: [{ opacity: 1 }, { opacity: 0 }],
   options: { duration: 250 },
 });
+

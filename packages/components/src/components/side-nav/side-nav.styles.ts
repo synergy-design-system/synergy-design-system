@@ -16,6 +16,10 @@ export default css`
   .side-nav__drawer {
     --size: var(--side-nav-size);
   }
+  
+  .side-nav__drawer::part(base){
+    position: absolute;
+  }
 
   .side-nav__drawer::part(body), .side-nav__drawer::part(footer) {
     padding: 0;

@@ -309,7 +309,7 @@ export const Shrink: Story = {
   </main>
   <script type="module">
     const sideNav = document.querySelector('.shrink');
-    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
+    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
     const content = document.querySelector('.content');
     const toggleButton = document.querySelector('syn-button');
 

@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --side-nav-size: 25rem;
+    --side-nav-width: 25rem;
 
     display: block;
   }
@@ -14,7 +14,7 @@ export default css`
    * Syn-drawer styling
    */
   .side-nav__drawer {
-    --size: var(--side-nav-size);
+    --size: var(--side-nav-width);
   }
   
   .side-nav__drawer::part(base){
@@ -43,7 +43,7 @@ export default css`
    * Rail mode
    */
   :host([rail]:not([open])) {
-    --side-nav-size: 4.5rem;
+    --side-nav-width: 4.5rem;
   }
 
   .side-nav--open.side-nav--rail.side-nav--touch .side-nav__drawer::part(overlay){

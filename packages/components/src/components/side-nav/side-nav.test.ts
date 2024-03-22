@@ -119,7 +119,7 @@ describe('<syn-side-nav>', () => {
       expect(display).to.equal('block');
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
+      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
 
       expect(size).to.equal(expectedCloseSize);
       expect(sideNavSize).to.equal(expectedCloseSize);
@@ -166,7 +166,7 @@ describe('<syn-side-nav>', () => {
       expect(baseDrawer.hidden).to.be.false;
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
+      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
 
       expect(size).to.equal(expectedCloseSize);
       expect(sideNavSize).to.equal(expectedCloseSize);
@@ -185,7 +185,7 @@ describe('<syn-side-nav>', () => {
       expect(baseDrawer.hidden).to.be.false;
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-size');
+      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
 
       expect(size).to.equal(expectedCloseSize);
       expect(sideNavSize).to.equal(expectedCloseSize);

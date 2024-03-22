@@ -1621,13 +1621,75 @@
       }
     },
     "tooltip": {
-      "description": {
-        "value": "Tooltips display additional information based on a specific action.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tooltips display additional information based on a specific action.\n\nA tooltip’s target is its first child element, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.\n\nTooltips use display: contents so they won’t interfere with how elements are positioned in a flex or grid layout.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tooltip",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Tooltip",
-        "type": "text"
+      "placement": {
+        "title": {
+          "value": "Placement",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the placement attribute to set the preferred placement of the tooltip.",
+          "type": "text"
+        }
+      },
+      "onclick": {
+        "title": {
+          "value": "Click Trigger",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the trigger attribute to click to toggle the tooltip on click instead of hover.",
+          "type": "text"
+        }
+      },
+      "manuel": {
+        "title": {
+          "value": "Manual Trigger",
+          "type": "text"
+        },
+        "description": {
+          "value": "Tooltips can be controlled programmatically by setting the trigger attribute to manual. Use the open attribute to control when the tooltip is shown.",
+          "type": "text"
+        }
+      },
+      "removingarrows": {
+        "title": {
+          "value": "Removing Arrows",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can control the size of tooltip arrows by overriding the --syn-tooltip-arrow-size design token. To remove them, set the value to 0 as shown below.",
+          "type": "text"
+        }
+      },
+      "htmltooltip": {
+        "title": {
+          "value": "HTML in Tooltips",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the content slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.",
+          "type": "text"
+        }
+      },
+      "maxwith": {
+        "title": {
+          "value": "Setting a Maximum Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --max-width custom property to change the width the tooltip can grow to before wrapping occurs.",
+          "type": "text"
+        }
       }
     },
     "tree-item": {

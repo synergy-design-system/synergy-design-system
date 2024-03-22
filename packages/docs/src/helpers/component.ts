@@ -100,7 +100,10 @@ export const storybookDefaults = (customElementTag: string): any => {
     // Hide controls for all properties
     for (const key in argTypes) {
       if (argTypes.hasOwnProperty(key) && argTypes[key].table && argTypes[key].table.category === 'properties') {
-        argTypes[key].control = false;
+        // Storybook@8 uses an object to indicate controls are disabled
+        argTypes[key].control = {
+          disabled: true,
+        };
       }
     }
 
@@ -108,7 +111,15 @@ export const storybookDefaults = (customElementTag: string): any => {
       ...argTypes,
       // Events should show up but not be editable
       ...manifest?.events?.reduce((acc: any, event: any) => {
-        acc[event.name] = { ...event, control: false, table: { category: 'Events' } };
+        acc[event.name] = {
+          ...event,
+          control: {
+            disabled: true,
+          },
+          table: {
+            category: 'Events'
+          },
+        };
         return acc;
       }, {}),
       ...manifest?.members?.filter(member => member.kind === 'method').reduce((acc: any, method: any) => {

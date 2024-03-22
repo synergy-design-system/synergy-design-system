@@ -16,7 +16,9 @@ import {
 
 # Colors
 
-<p>{docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}</p>
+<p>
+  {docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}
+</p>
 
 {['light', 'dark'].map(theme => (
   <div key={theme}>
@@ -75,20 +77,20 @@ import {
 ))}
 
 <style>
-{`
-  .color-swatch {
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    width: 40px;
-  }
+  {`
+    .color-swatch {
+      align-items: center;
+      border-radius: 2px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      width: 40px;
+    }
 
-  .copy-to-clipboard {
-    text-align: center;
-    width: 20px;
-  }
-`}
+    .copy-to-clipboard {
+      text-align: center;
+      width: 20px;
+    }
+  `}
 </style>

@@ -22,7 +22,7 @@ const meta: Meta = {
     { name: 'default', type: 'slot', value: 'Option' },
   ], defaultArgs),
   argTypes,
-  component: 'tag',
+  component: 'syn-tag',
   parameters: {
     docs: {
       description: {

@@ -6,7 +6,7 @@ import { html } from 'lit';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 
 const meta: Meta = {
-  component: 'icon',
+  component: 'syn-icon',
   title: 'Components/syn-icon/Default Icons',
 };
 export default meta;

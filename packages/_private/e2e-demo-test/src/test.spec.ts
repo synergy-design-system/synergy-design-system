@@ -17,19 +17,30 @@ async function getCheckedValue(locator: Locator) {
   return locator.evaluate((el: SynCheckbox | SynSwitch) => el.checked);
 }
 
+/**
+ * Set the locators inner inputs value
+ * @param locator The original form locator
+ * @param value The value to set
+ */
+async function fillField(locator: Locator, value: string) {
+  await locator.focus();
+  await locator.locator('input').fill(value);
+  await locator.blur();
+}
+
 async function fillForm(form: TestPage) {
   await form.gender.getByText('Female').check();
-  await form.name.locator('input').fill('Maxim');
-  await form.email.locator('input').fill('max@musterman.de');
-  await form.phone.locator('input').fill('666');
+  await fillField(form.name, 'Maxim');
+  await fillField(form.email, 'max@musterman.de');
+  await fillField(form.phone, '666');
 
   // await form.role.evaluate(role => (role as SynSelect).value = 'frontend');
   await form.role.click();
   await form.frontend.click();
 
-  await form.birth.locator('input').fill('2000-02-29');
-  await form.password.locator('input').fill('Password123');
-  await form.passwordRecovery.locator('input').fill('1234');
+  await fillField(form.birth, '2000-02-29');
+  await fillField(form.password, 'Password123');
+  await fillField(form.passwordRecovery, '1234');
   await form.topics.click();
   await form.angular.click();
 }
@@ -77,8 +88,13 @@ test('Invalid form submit', async ({ page }) => {
   await form.submit.click();
 
   // check invalid states of required inputs
-  (await Promise.all(form.allRequiredInputs.map((input) => input.getAttribute('data-user-invalid'))))
-    .forEach((val) => expect(val).toBe(''));
+  const states = await Promise.all(
+    form.allRequiredInputs.map(
+      input => input.evaluate(el => (el as SynInput).validity.valid),
+    ),
+  );
+  expect(states.length).toBe(form.allRequiredInputs.length);
+  expect(states.every((state) => !state)).toBe(true);
 
   // check not-invalid states of non-required inputs
   expect(await form.birth.getAttribute('data-user-invalid')).toBeFalsy();

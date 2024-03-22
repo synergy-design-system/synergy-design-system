@@ -5,12 +5,15 @@ import selectors from './test.selector';
  * Gauge visual regression test class
  */
 export default class TestPage {
+  public page: Page;
+
   /**
    * constructor
    *
    * @param page - _page
    */
-  constructor(private page: Page) {
+  constructor(page: Page) {
+    this.page = page;
   }
 
   /**

@@ -1,0 +1,40 @@
+{
+  "name": "@synergy-design-system/e2e-demo-test",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "pnpm test",
+    "test": "run-p -s vanilla.run vue.run react.run ng.run",
+    "vanilla.run": "run-p -r vanilla.serve vanilla.test",
+    "vanilla.serve": "npm start --prefix ../vanilla-demo",
+    "vanilla.test": "sleep 2 && cross-env PORT='5173' playwright test",
+    "vue.run": "run-p -s -r vue.serve vue.test",
+    "vue.serve": "pnpm run -C ../vue-demo start",
+    "vue.test": "sleep 2 && cross-env PORT='5174' playwright test",
+    "react.run": "run-p -s -r react.serve react.test",
+    "react.serve": "pnpm run -C ../react-demo start",
+    "react.test": "sleep 2 && cross-env PORT='5175' playwright test",
+    "ng.run": "run-p -s -r ng.serve ng.test",
+    "ng.serve": "pnpm run -C ../angular-demo start",
+    "ng.test": "sleep 10 && cross-env PORT='4200' playwright test",
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "@types/node": "^20.11.16",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.56.0",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^16.2.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.42.1",
+    "@synergy-design-system/components": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^"
+  }
+}

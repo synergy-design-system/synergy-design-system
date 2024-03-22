@@ -24,7 +24,7 @@ const meta: Meta = {
     docs: {
       container: DisableFocusTrap,
       description: {
-        component: generateStoryDescription('nav-item', 'default'),
+        component: generateStoryDescription('side-nav', 'default'),
       },
     },
   },
@@ -83,7 +83,7 @@ export const Default: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('nav-item', 'default'),
+        story: generateStoryDescription('side-nav', 'default'),
       },
     },
   },
@@ -115,7 +115,7 @@ export const Fixed: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('nav-item', 'labels'),
+        story: generateStoryDescription('side-nav', 'fixed'),
       },
     },
   },
@@ -183,7 +183,7 @@ export const Rail: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('nav-item', 'labels'),
+        story: generateStoryDescription('side-nav', 'rail'),
       },
     },
   },
@@ -253,7 +253,7 @@ export const Shrink: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('nav-item', 'labels'),
+        story: generateStoryDescription('side-nav', 'shrinking'),
       },
     },
   },
@@ -357,7 +357,7 @@ export const Indentation: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('nav-item', 'labels'),
+        story: generateStoryDescription('side-nav', 'indentation'),
       },
     },
   },

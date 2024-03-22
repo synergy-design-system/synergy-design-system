@@ -77,6 +77,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Force a rebuild to ensure that the bundle is fresh
+      - name: Build
+        run: pnpm build
+
       # First Step: Run the component tests
       # When they do not work, everything else is likely to fail
       - name: Run component tests

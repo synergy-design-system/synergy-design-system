@@ -36,6 +36,7 @@ const translation: Translation = {
   scrollToStart: 'Zum Anfang scrollen',
   selectAColorFromTheScreen: 'Farbe vom Bildschirm auswählen',
   showPassword: 'Passwort anzeigen',
+  sideNav: 'Seitennavigation',
   slideNum: slide => `Folie ${slide}`,
   toggleColorFormat: 'Farbformat umschalten'
 };

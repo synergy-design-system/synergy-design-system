@@ -16,6 +16,7 @@ import {
   vendorSelect,
   vendorTag,
   vendorTextarea,
+  vendorTranslations,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 
@@ -276,6 +277,7 @@ const config = {
       vendorSelect,
       vendorTextarea,
       vendorTag,
+      vendorTranslations,
       vendorWebTestRunnerConfig,
     ],
   },

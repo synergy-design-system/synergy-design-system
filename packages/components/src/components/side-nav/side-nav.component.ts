@@ -265,16 +265,16 @@ export default class SynSideNav extends SynergyElement {
           class="side-nav__drawer"
           ?contained=${this.rail}
           exportparts="overlay"
+          label=${this.localize.term('sideNav')}
           no-header
           ?open=${this.open}
           part="drawer"
           placement="start"
           @syn-request-close=${this.handleRequestClose}          
         >
-          <main part="content-container" class="side-nav__content-container">
+          <div part="content-container" class="side-nav__content-container">
             <slot part="content" ></slot>
-          </main>
-
+          </div>
           
           <footer class="side-nav__footer" part="footer-container" slot="footer">  
 

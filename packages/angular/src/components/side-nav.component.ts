@@ -115,6 +115,19 @@ If this is not the case you should use a burger navigation.
     return this._el.rail;
   }
 
+  /**
+* By default, the side-nav traps the focus if in non-rail mode and open.
+To disable the focus trapping, set this attribute.
+ */
+  @Input()
+  set noFocusTrapping(v: SynSideNav['noFocusTrapping']) {
+    this._ngZone.runOutsideAngular(() => (this._el.noFocusTrapping = v));
+  }
+
+  get noFocusTrapping() {
+    return this._el.noFocusTrapping;
+  }
+
   @Input()
   callHandleModeChange(...args: Parameters<SynSideNav['handleModeChange']>) {
     return this._ngZone.runOutsideAngular(() => this._el.handleModeChange(...args));
@@ -123,6 +136,11 @@ If this is not the case you should use a burger navigation.
   @Input()
   callHandleOpenChange(...args: Parameters<SynSideNav['handleOpenChange']>) {
     return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+  }
+
+  @Input()
+  callHandleFocusTrapping(...args: Parameters<SynSideNav['handleFocusTrapping']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleFocusTrapping(...args));
   }
 
   /**

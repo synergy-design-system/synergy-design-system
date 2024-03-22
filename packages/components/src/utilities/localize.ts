@@ -47,6 +47,7 @@ export interface Translation extends DefaultTranslation {
   scrollToStart: string;
   selectAColorFromTheScreen: string;
   showPassword: string;
+  sideNav: string;
   slideNum: (slide: number) => string;
   toggleColorFormat: string;
 }

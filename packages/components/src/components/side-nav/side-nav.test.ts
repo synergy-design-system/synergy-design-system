@@ -13,13 +13,12 @@ describe('<syn-side-nav>', () => {
   afterEach(() => {
     sinon.restore();
   });
-  // describe('accessibility tests', () => {
-  //   it('should be accessible', async () => {
-  //     const sideNav = await fixture<SynSideNav>(html`<syn-side-nav open></syn-side-nav>`);
-  //     await expect(sideNav).to.be.accessible();
-
-  //   });
-  // });
+  describe('accessibility tests', () => {
+    it('should be accessible', async () => {
+      const sideNav = await fixture<SynSideNav>(html`<syn-side-nav open></syn-side-nav>`);
+      await expect(sideNav).to.be.accessible();
+    });
+  });
 
   describe('when using methods', () => {
     it('should emit syn-show and syn-after-show when calling show()', async () => {

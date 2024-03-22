@@ -56,6 +56,7 @@ const element = ref<SynSideNav>();
 // Map methods
 const callHandleModeChange = (...args: Parameters<SynSideNav['handleModeChange']>) => element.value?.handleModeChange(...args);
 const callHandleOpenChange = (...args: Parameters<SynSideNav['handleOpenChange']>) => element.value?.handleOpenChange(...args);
+const callHandleFocusTrapping = (...args: Parameters<SynSideNav['handleFocusTrapping']>) => element.value?.handleFocusTrapping(...args);
 /**
 * Shows the side-nav.
  */
@@ -68,6 +69,7 @@ const callHide = (...args: Parameters<SynSideNav['hide']>) => element.value?.hid
 defineExpose({
   callHandleModeChange,
   callHandleOpenChange,
+  callHandleFocusTrapping,
   callShow,
   callHide,
 });
@@ -101,6 +103,12 @@ Note: The Rail is only an option if all Navigation Items on the first level have
 If this is not the case you should use a burger navigation.
  */
   'rail'?: SynSideNav['rail'];
+
+  /**
+* By default, the side-nav traps the focus if in non-rail mode and open.
+To disable the focus trapping, set this attribute.
+ */
+  'noFocusTrapping'?: SynSideNav['noFocusTrapping'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

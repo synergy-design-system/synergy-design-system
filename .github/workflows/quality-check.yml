@@ -52,6 +52,40 @@ jobs:
       - name: Release (Dry)
         run: pnpm release.dry
 
+  test_components:
+    name: Validate tests (components)
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.41.2-jammy
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.12
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Run component tests
+        run: pnpm test -r --filter 'components'
+        # @see https://github.com/microsoft/playwright/issues/6500
+        env:
+          HOME: /root
+
   test:
     name: Validate tests
     timeout-minutes: 60
@@ -77,17 +111,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Force a rebuild to ensure that the bundle is fresh
-      - name: Build
-        run: pnpm build
-
-      # First Step: Run the component tests
-      # When they do not work, everything else is likely to fail
-      - name: Run component tests
-        run: pnpm test -r --filter components
-        # @see
-
-      # Force a rebuild to ensure that the bundle is fresh
       - name: Build
         run: pnpm build
 

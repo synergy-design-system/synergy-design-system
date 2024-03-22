@@ -10,6 +10,7 @@
     "packages/_private/react-demo",
     "packages/_private/vanilla-demo",
     "packages/_private/stylelint-config-syn",
+    "packages/_private/e2e-demo-test",
     "packages/assets",
     "packages/components",
     "packages/docs",

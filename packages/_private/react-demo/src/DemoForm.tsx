@@ -32,11 +32,11 @@ const initialFormData = {
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
-  newsletterReact: true,
+  newsletterReact: false,
   newsletterStandard: false,
   newsletterVanilla: false,
   newsletterVue: false,
-  password: 'abAB1234',
+  password: 'invalid',
   phone: '',
   role: '',
   topics: [],
@@ -235,7 +235,7 @@ export const DemoForm = () => {
       <DemoFieldset legend="Please inform me about the following technologies">
         <SynCheckbox
           checked={formData.newsletterStandard}
-          id="checkbox-newsletter-standard"
+          id="checkbox-newsletter-default"
           name="newsletterStandard"
         >
           Please subscribe me to the synergy newsletter
@@ -283,6 +283,7 @@ export const DemoForm = () => {
       { /* AdditionalInformation */ }
       <DemoFieldset legend="Additional Information">
         <SynTextarea
+          id="additional-info"
           label="Comment"
           name="comment"
           placeholder="Please provide additional information that might be helpful for your inquiry"

@@ -52,8 +52,8 @@ jobs:
       - name: Release (Dry)
         run: pnpm release.dry
 
-  test:
-    name: Validate tests
+  test_components:
+    name: Validate tests (components)
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -80,8 +80,45 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Run component tests
+        run: pnpm test -r --filter 'components'
+        # @see https://github.com/microsoft/playwright/issues/6500
+        env:
+          HOME: /root
+
+  test:
+    name: Validate tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.42.1-jammy
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.12
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      # We run all tests except the components tests
+      # This is done as the components test toolchain will
+      # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm test -r
+        run: pnpm test -r --filter '!components'
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root
@@ -100,7 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test]
+    needs: [quality-gate, test_components, test]
     steps:
       # 👇 Version 2 of the action
       - name: Checkout repository

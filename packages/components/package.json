@@ -61,7 +61,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.0",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.41.2",
+    "@playwright/test": "^1.42.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",

@@ -20,7 +20,7 @@ const { generateTemplate } = storybookTemplate('syn-button');
 const meta: Meta = {
   args: overrideArgs({ name: 'default', type: 'slot', value: 'Button' }, defaultArgs),
   argTypes,
-  component: 'button',
+  component: 'syn-button',
   parameters: {
     docs: {
       description: {

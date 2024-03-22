@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/drawer/drawer';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import { html } from 'lit';
 import {
   generateStoryDescription,

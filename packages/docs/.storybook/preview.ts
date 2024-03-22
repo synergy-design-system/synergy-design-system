@@ -22,7 +22,8 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 const preview: Preview = {
   decorators: [stopAnimation, themeByClassName],
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    // Incompatible with storybook@8
+    // actions: { argTypesRegex: "^on[A-Z].*" },
     // Make sure we are able to check background colors when in our different themes
     backgrounds: {
       default: 'neutral-1000',

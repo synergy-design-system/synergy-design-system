@@ -1,5 +1,5 @@
 {
-  "name": "@synergy-design-system/vanilla-demo",
+  "name": "@synergy-design-system/e2e-demo-test",
   "private": true,
   "version": "0.1.0",
   "type": "module",

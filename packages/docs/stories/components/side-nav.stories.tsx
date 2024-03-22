@@ -10,18 +10,19 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-side-nav');
 const { overrideArgs } = storybookHelpers('syn-side-nav');
 const { generateTemplate } = storybookTemplate('syn-side-nav');
 
 const meta: Meta = {
-  args: overrideArgs([
-  ], defaultArgs),
+  args: overrideArgs([], defaultArgs),
   argTypes,
   component: 'syn-side-nav',
   parameters: {
     docs: {
+      container: DisableFocusTrap,
       description: {
         component: generateStoryDescription('nav-item', 'default'),
       },
@@ -29,6 +30,7 @@ const meta: Meta = {
   },
   title: 'Components/syn-side-nav',
 };
+
 export default meta;
 
 type Story = StoryObj;
@@ -44,13 +46,33 @@ export const Default: Story = {
       name: 'default',
       type: 'slot',
       value: `
-      <syn-nav-item vertical>
-        <syn-icon name="home" slot="prefix"></syn-icon>
-        Home
+      <syn-nav-item vertical current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        Settings
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       `,
     },
@@ -66,16 +88,24 @@ export const Default: Story = {
     },
   },
   render: (args: unknown) => html`
-  <syn-button class="side-nav-default-story-opener">Toggle Side-Nav</syn-button>
+  <syn-button class="side-nav-default-toggle">Toggle Side-Nav</syn-button>
   <main style="position: relative; height: 500px;" class="side-nav-default">
     ${generateTemplate({ args })}
   </main> 
   <script type="module">
-    const openButton = document.querySelector('.side-nav-default-story-opener');
-    const sideNav = document.querySelector('.side-nav-default > syn-side-nav');
+    const openButtons = document.querySelectorAll('.side-nav-default-toggle');
     
-    openButton.addEventListener('click', () => {
-      sideNav.open = !sideNav.open;
+     // Make sure to add each event only once!
+     Array.from(openButtons).forEach((btn) => {
+      if (!btn.classList.contains('story-loaded')) {
+        const sideNav = btn.nextElementSibling.querySelector('.side-nav-default > syn-side-nav');
+
+        btn.addEventListener('click', () => {
+          sideNav.open = !sideNav.open;
+        });
+
+        btn.classList.add('story-loaded');
+      }
     });
   </script>
 `,
@@ -90,53 +120,37 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+  <syn-button class="side-nav-fixed-toggle">Toggle Side-Nav</syn-button>
   <main class="main">
-    <syn-side-nav open>
-      <syn-nav-item vertical>
-        <syn-icon name="home" slot="prefix"></syn-icon>
-        Home
+    <syn-side-nav class="side-nav-fixed" open>
+      <syn-nav-item vertical current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        Settings
-      </syn-nav-item>
-      <syn-nav-item divider vertical open>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-        Children
-        <!-- second-level -->
-        <nav slot="children">
-          <syn-nav-item divider vertical current>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-        </nav>
-        <!-- /second-level -->
-      </syn-nav-item>
-      <syn-nav-item disabled divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Disabled option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        Other Option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
-      <nav slot="footer">
-        <syn-nav-item vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option
-        </syn-nav-item>
-        <syn-nav-item divider vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option 2
-        </syn-nav-item>
-      </nav>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
     </syn-side-nav>
     <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -150,9 +164,11 @@ export const Fixed: Story = {
     </div>
   </main>
   <script type="module">
-    const sideNav = document.querySelector('syn-side-nav');
-    const toggleButton = document.querySelector('syn-button');
-    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
+    const sideNav = document.querySelector('.side-nav-fixed');
+    const toggleButton = document.querySelector('.side-nav-fixed-toggle');
+    toggleButton.addEventListener('click', () => {
+      sideNav.open = !sideNav.open;
+    });
   </script>
   <style>
     .main{
@@ -173,53 +189,37 @@ export const Rail: Story = {
   },
   render: () => html`
   <main class="main">
-    <syn-side-nav rail>
-      <syn-nav-item vertical>
-        <syn-icon name="home" slot="prefix"></syn-icon>
-        Home
+    <syn-side-nav class="side-nav-rail" rail>
+      <syn-nav-item vertical current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        Settings
-      </syn-nav-item>
-      <syn-nav-item divider vertical open>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-        Children
-        <!-- second-level -->
-        <nav slot="children">
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix" current></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-        </nav>
-        <!-- /second-level -->
-      </syn-nav-item>
-      <syn-nav-item disabled divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Disabled option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        Other Option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
-      <nav slot="footer">
-        <syn-nav-item vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option
-        </syn-nav-item>
-        <syn-nav-item divider vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option 2
-        </syn-nav-item>
-      </nav>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
+    <div class="content-rail">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -230,10 +230,20 @@ export const Rail: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
+  <script type="module">
+    const sideNav = document.querySelector('.side-nav-rail');
+    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
+    const content = document.querySelector('.content-rail');
+    content.style.marginLeft = size;
+  </script>
   <style>
-    .main{
+    .main {
       position: relative;
       height: 500px;
+    }
+
+    .content-rail {
+      padding: 0 var(--syn-spacing-large);
     }
   </style>
   `,
@@ -248,55 +258,39 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+  <syn-button class="side-nav-shrink-toggle">Toggle Side-Nav</syn-button>
    <main class="main">
-    <syn-side-nav open class="shrink" no-focus-trapping>
-      <syn-nav-item vertical>
-        <syn-icon name="home" slot="prefix"></syn-icon>
-        Home
+    <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
+      <syn-nav-item vertical current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        Settings
-      </syn-nav-item>
-      <syn-nav-item divider vertical open>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-        Children
-        <!-- second-level -->
-        <nav slot="children">
-          <syn-nav-item divider vertical current>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-        </nav>
-        <!-- /second-level -->
-      </syn-nav-item>
-      <syn-nav-item disabled divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Disabled option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        Other Option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
-      <nav slot="footer">
-        <syn-nav-item vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option
-        </syn-nav-item>
-        <syn-nav-item divider vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option 2
-        </syn-nav-item>
-      </nav>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
+    <div class="content-shrink">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -308,10 +302,10 @@ export const Shrink: Story = {
     </div>
   </main>
   <script type="module">
-    const sideNav = document.querySelector('.shrink');
+    const sideNav = document.querySelector('.side-nav-shrink');
     const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
-    const content = document.querySelector('.content');
-    const toggleButton = document.querySelector('syn-button');
+    const content = document.querySelector('.content-shrink');
+    const toggleButton = document.querySelector('.side-nav-shrink-toggle');
 
     toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
 
@@ -346,11 +340,11 @@ export const Shrink: Story = {
       height: 500px;
     }
 
-    .shrink::part(overlay) {
+    .side-nav-shrink::part(overlay) {
       display: none;
     }
     
-    .content {
+    .content-shrink {
       padding: 0 var(--syn-spacing-large);
       overflow: auto;
       height: 100%;
@@ -359,7 +353,7 @@ export const Shrink: Story = {
   `,
 };
 
-export const Footer: Story = {
+export const Indentation: Story = {
   parameters: {
     docs: {
       description: {
@@ -368,53 +362,46 @@ export const Footer: Story = {
     },
   },
   render: () => html`
-  <syn-button class="toggle">Toggle Side-Nav</syn-button>
+  <syn-button class="side-nav-indentation-toggle">Toggle Side-Nav</syn-button>
   <main class="main">
-    <syn-side-nav open>
-      <syn-nav-item vertical>
-        <syn-icon name="home" slot="prefix"></syn-icon>
-        Home
+    <syn-side-nav class="side-nav-indentation" open>
+      <syn-nav-item vertical open>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+        <syn-nav-item vertical divider slot="children" open>
+          Navigation Item
+          <syn-nav-item vertical divider slot="children" current>
+            Navigation Item
+          </syn-nav-item>
+          <syn-nav-item vertical divider slot="children">
+            Navigation Item
+          </syn-nav-item>
+        </syn-nav-item>
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="settings" slot="prefix"></syn-icon>
-        Settings
-      </syn-nav-item>
-      <syn-nav-item divider vertical open>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        <syn-icon name="add_alarm" slot="prefix"></syn-icon>
-        Children
-        <!-- second-level -->
-        <nav slot="children">
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.1
-          </syn-nav-item>
-          <syn-nav-item divider vertical>
-            <syn-icon name="area_chart" slot="prefix"></syn-icon>
-            Item 1.2
-          </syn-nav-item>
-        </nav>
-        <!-- /second-level -->
-      </syn-nav-item>
-      <syn-nav-item disabled divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        Disabled option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
       <syn-nav-item divider vertical>
-        <syn-icon name="area_chart" slot="prefix"></syn-icon>
-        <syn-icon name="area_chart" slot="suffix"></syn-icon>
-        Other Option
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
       </syn-nav-item>
-      <nav slot="footer">
-        <syn-nav-item vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option
-        </syn-nav-item>
-        <syn-nav-item divider vertical slot="footer">
-          <syn-icon name="area_chart" slot="prefix"></syn-icon>
-          Footer Option 2
-        </syn-nav-item>
-      </nav>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider vertical slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
     </syn-side-nav>
     <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -428,8 +415,8 @@ export const Footer: Story = {
     </div>
   </main>
   <script type="module">
-    const sideNav = document.querySelector('syn-side-nav');
-    const toggleButton = document.querySelector('syn-button');
+    const sideNav = document.querySelector('.side-nav-indentation');
+    const toggleButton = document.querySelector('.side-nav-indentation-toggle');
     toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
   </script>
   <style>
@@ -443,7 +430,10 @@ export const Footer: Story = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  // Rail,
-  // Footer,
-});
+  Default,
+  Fixed,
+  Rail,
+  Shrink,
+  Indentation,
+}, 700);
 /* eslint-enable sort-keys */

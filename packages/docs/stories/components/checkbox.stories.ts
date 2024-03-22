@@ -3,7 +3,7 @@ import type { SynButton, SynCheckbox } from '@synergy-design-system/components';
 import '../../../components/src/components/checkbox/checkbox';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -21,6 +21,7 @@ const meta: Meta = {
     { name: 'default', type: 'slot', value: 'Checkbox' },
   ]),
   argTypes,
+  component: 'syn-checkbox',
   parameters: {
     docs: {
       description: {

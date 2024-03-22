@@ -3,7 +3,7 @@ import type { SynButton, SynInput } from '@synergy-design-system/components';
 import '../../../components/src/components/input/input';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';

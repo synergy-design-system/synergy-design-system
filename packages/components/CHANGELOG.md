@@ -1,3 +1,55 @@
+# [@synergy-design-system/components-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.11.0...components/1.12.0) (2024-03-18)
+
+
+### Features
+
+* ✨ drop-down ([#367](https://github.com/synergy-design-system/synergy-design-system/issues/367)) ([562daf8](https://github.com/synergy-design-system/synergy-design-system/commit/562daf8b06627b7d44a3f06210b3202c7eee9540))
+
+# [@synergy-design-system/components-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.1...components/1.11.0) (2024-03-07)
+
+
+### Features
+
+* ✨ add border-radius and roundings to syn-tag ([#357](https://github.com/synergy-design-system/synergy-design-system/issues/357)) ([72ca994](https://github.com/synergy-design-system/synergy-design-system/commit/72ca994be047a04c07c49873578d74ed6adbe548))
+
+# [@synergy-design-system/components-v1.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.10.0...components/1.10.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* 🤔 syn-icon-button has a border-radius ([#358](https://github.com/synergy-design-system/synergy-design-system/issues/358)) ([fc59185](https://github.com/synergy-design-system/synergy-design-system/commit/fc591858578f2a7f64a38548e98a14abee4621ac))
+
+# [@synergy-design-system/components-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.9.0...components/1.10.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
+# [@synergy-design-system/components-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.8.0...components/1.9.0) (2024-02-28)
+
+
+### Features
+
+* ✨ upgrade shoelace to 2.14.0 ([#348](https://github.com/synergy-design-system/synergy-design-system/issues/348)) ([a00dcb9](https://github.com/synergy-design-system/synergy-design-system/commit/a00dcb9fd85e7271c8923d8256a6fea3ecdcb5d6))
+  * See detailed changelog at https://shoelace.style/resources/changelog#id_2_14_0.
+  * Added help text to <syn-checkbox>
+  * Added help text to <syn-switch>
+  * Fixed a bug in <syn-option> that caused HTML tags to be included in getTextLabel()
+  * Fixed a bug in <syn-option> that caused slotted content to show up when calling getTextLabel()
+  * Fixed a bug in <syn-input> and <syn-textarea> that made it work differently from <input> and <textarea> when using defaults
+  * Fixed a bug in <syn-select> that prevented it from closing when tabbing to another select inside a shadow root
+  * Fixed a bug that caused form controls to submit even after they were removed from the DOM
+  * Fixed a bug that caused empty <sl-radio-group> elements to log an error in the console
+  * Improved “close” behavior of multiple components in supportive browsers using the CloseWatcher API
+  
+# [@synergy-design-system/components-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.7.0...components/1.8.0) (2024-02-27)
+
+
+### Features
+
+* ✨ syn-drawer ([#320](https://github.com/synergy-design-system/synergy-design-system/issues/320)) ([ce20a42](https://github.com/synergy-design-system/synergy-design-system/commit/ce20a42f9f90eb5b38c0ae84f99d4a8db2e08613))
+
 # [@synergy-design-system/components-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.6.1...components/1.7.0) (2024-02-09)
 
 

@@ -1,9 +1,5 @@
 {
   "font-size": {
-    "2x-small": {
-      "value": "10px",
-      "type": "fontSizes"
-    },
     "x-small": {
       "value": "12px",
       "type": "fontSizes"
@@ -372,6 +368,14 @@
     },
     "circle": {
       "value": "9999px",
+      "type": "borderRadius"
+    },
+    "small": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "medium": {
+      "value": "8px",
       "type": "borderRadius"
     }
   },

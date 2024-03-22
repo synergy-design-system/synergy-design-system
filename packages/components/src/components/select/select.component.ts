@@ -17,11 +17,15 @@ import { scrollIntoView } from '../../internal/scroll.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
+import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
+import customStyles from './select.custom.styles.js';
 import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
@@ -73,7 +77,7 @@ import type SynOption from '../option/option.component.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  */
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-popup': SynPopup,
@@ -87,6 +91,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private readonly localize = new LocalizeController(this);
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
+  private closeWatcher: CloseWatcher | null;
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
@@ -215,15 +220,33 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   private addOpenListeners() {
-    document.addEventListener('focusin', this.handleDocumentFocusIn);
-    document.addEventListener('keydown', this.handleDocumentKeyDown);
-    document.addEventListener('mousedown', this.handleDocumentMouseDown);
+    //
+    // Listen on the root node instead of the document in case the elements are inside a shadow root
+    //
+    // https://github.com/synergy-design-system/synergy/issues/1763
+    //
+    const root = this.getRootNode();
+    if ('CloseWatcher' in window) {
+      this.closeWatcher?.destroy();
+      this.closeWatcher = new CloseWatcher();
+      this.closeWatcher.onclose = () => {
+        if (this.open) {
+          this.hide();
+          this.displayInput.focus({ preventScroll: true });
+        }
+      };
+    }
+    root.addEventListener('focusin', this.handleDocumentFocusIn);
+    root.addEventListener('keydown', this.handleDocumentKeyDown);
+    root.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   private removeOpenListeners() {
-    document.removeEventListener('focusin', this.handleDocumentFocusIn);
-    document.removeEventListener('keydown', this.handleDocumentKeyDown);
-    document.removeEventListener('mousedown', this.handleDocumentMouseDown);
+    const root = this.getRootNode();
+    root.removeEventListener('focusin', this.handleDocumentFocusIn);
+    root.removeEventListener('keydown', this.handleDocumentKeyDown);
+    root.removeEventListener('mousedown', this.handleDocumentMouseDown);
+    this.closeWatcher?.destroy();
   }
 
   private handleFocus() {
@@ -256,7 +279,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
 
     // Close when pressing escape
-    if (event.key === 'Escape' && this.open) {
+    if (event.key === 'Escape' && this.open && !this.closeWatcher) {
       event.preventDefault();
       event.stopPropagation();
       this.hide();
@@ -401,6 +424,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   private handleComboboxKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      return;
+    }
+
     event.stopPropagation();
     this.handleDocumentKeyDown(event);
   }

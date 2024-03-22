@@ -7,7 +7,7 @@
 import '../../../dist/synergy.js';
 import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SynOption from './option';
+import type SynOption from './option.js';
 
 describe('<syn-option>', () => {
   it('passes accessibility test', async () => {
@@ -57,5 +57,10 @@ describe('<syn-option>', () => {
     await el.updateComplete;
 
     expect(el.value).to.equal('10');
+  });
+
+  it('should escape HTML when calling getTextLabel()', async () => {
+    const el = await fixture<SynOption>(html` <syn-option><strong>Option</strong></syn-option> `);
+    expect(el.getTextLabel()).to.equal('Option');
   });
 });

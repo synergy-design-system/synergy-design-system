@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.3.0...assets/1.4.0) (2024-02-28)
+
+
+### Features
+
+* ✨ Create syn-header ([#331](https://github.com/synergy-design-system/synergy-design-system/issues/331)) ([acde61d](https://github.com/synergy-design-system/synergy-design-system/commit/acde61d762dd4123aae553227f3af2015e824208))
+
 # [@synergy-design-system/assets-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.2.1...assets/1.3.0) (2024-01-30)
 
 

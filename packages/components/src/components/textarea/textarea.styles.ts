@@ -5,15 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './textarea.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-  ${formControlStyles}
-
   :host {
     display: block;
   }
@@ -178,7 +172,4 @@ export default css`
     resize: none;
     overflow-y: hidden;
   }
-
-  ${customStyles}
 `;
-

@@ -4,7 +4,7 @@
 import '../../../components/src/components/radio/radio.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -17,7 +17,7 @@ const { generateTemplate } = storybookTemplate('syn-radio');
 const meta: Meta = {
   args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
-  component: 'radio',
+  component: 'syn-radio',
   parameters: {
     docs: {
       description: {

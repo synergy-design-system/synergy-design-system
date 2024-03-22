@@ -12,6 +12,7 @@
  * @since 2.0
  *
  * @slot - The switch's label.
+ * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when the control's checked state changes.
@@ -23,6 +24,7 @@
  * @csspart control - The control that houses the switch's thumb.
  * @csspart thumb - The switch's thumb.
  * @csspart label - The switch's label.
+ * @csspart form-control-help-text - The help text's wrapper.
  *
  * @cssproperty --width - The width of the switch.
  * @cssproperty --height - The height of the switch.
@@ -128,6 +130,12 @@ the same document or shadow root for this to work.
   'required'?: SynSwitch['required'];
 
   /**
+* The switch's help text.
+* If you need to display HTML, use the `help-text` slot instead.
+ */
+  'helpText'?: SynSwitch['helpText'];
+
+  /**
 * Support for two way data binding
  */
   modelValue?: SynSwitch['checked'];
@@ -197,5 +205,6 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
+    <slot name="help-text" />
   </syn-switch>
 </template>

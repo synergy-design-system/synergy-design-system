@@ -24,6 +24,8 @@ export const runEsBuildComponents = job('Running esbuild...', async (distDir, __
       ...(await globby('./src/components/**/!(*.(style|test)).ts')),
       // Translations
       ...(await globby('./src/translations/**/*.ts')),
+      // Theme stylesheets
+      ...(await globby('./src/themes/**/!(*.test).ts')),
       // Public utilities
       ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
     ],

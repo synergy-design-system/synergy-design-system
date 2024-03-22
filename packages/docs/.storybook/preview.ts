@@ -2,9 +2,9 @@ import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/components/themes/utility.css';
 import '../../components/src/synergy';
 
-import '../../tokens/src/shoelace-fallbacks/_utility.css';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';
@@ -22,7 +22,8 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 const preview: Preview = {
   decorators: [stopAnimation, themeByClassName],
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    // Incompatible with storybook@8
+    // actions: { argTypesRegex: "^on[A-Z].*" },
     // Make sure we are able to check background colors when in our different themes
     backgrounds: {
       default: 'neutral-1000',
@@ -63,6 +64,7 @@ const preview: Preview = {
     docs: {
       stories: { inline: false },
       toc: true,
+      source: { format: 'html' }
     },
   },
 };

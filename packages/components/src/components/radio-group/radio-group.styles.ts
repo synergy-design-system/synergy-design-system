@@ -5,15 +5,9 @@
 
 /* eslint-disable */
 import { css } from 'lit';
-import customStyles from './radio-group.custom.styles.js';
-import componentStyles from '../../styles/component.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
 
 export default css`
 	/* stylelint-disable */
-  ${componentStyles}
-  ${formControlStyles}
-
   :host {
     display: block;
   }
@@ -45,7 +39,4 @@ export default css`
     white-space: nowrap;
     border: 0;
   }
-
-  ${customStyles}
 `;
-

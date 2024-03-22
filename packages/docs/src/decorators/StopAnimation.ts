@@ -23,7 +23,8 @@ export const stopAnimation = (Story: StoryFn, ...rest: unknown[]) => {
         --syn-transition-x-slow: -1s !important;
       }
       syn-spinner,
-      syn-button::part(spinner) {
+      syn-button::part(spinner),
+      syn-menu-item::part(spinner) {
         --speed: -1s !important;
       }
       </style>

@@ -6,15 +6,20 @@
 import '../../../components/src/components/radio-group/radio-group.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
-import { generateScreenshotStory, generateStoryDescription, storybookDefaults } from '../../src/helpers/component.js';
+import { userEvent } from '@storybook/test';
+import {
+  generateScreenshotStory,
+  generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
+} from '../../src/helpers/component.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
+const { overrideArgs } = storybookHelpers('syn-radio-group');
+const { generateTemplate } = storybookTemplate('syn-radio-group');
 
 const meta: Meta = {
   args,
   argTypes,
-  component: 'radio-group',
+  component: 'syn-radio-group',
   parameters: {
     docs: {
       description: {
@@ -29,6 +34,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Default = {
+  args: overrideArgs([
+    { name: 'label', type: 'attribute', value: 'This is a label' },
+    {
+      name: 'default', type: 'slot', value: `<syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+    <syn-radio value="3">Option</syn-radio>`,
+    }], args),
   parameters: {
     controls: {
       disable: false,
@@ -39,12 +51,7 @@ export const Default = {
       },
     },
   },
-  render: () => html`
-  <syn-radio-group label="This is a label">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
+  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
 } as Story;
 
 export const Labels: Story = {

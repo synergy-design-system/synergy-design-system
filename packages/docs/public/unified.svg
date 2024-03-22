@@ -1,0 +1,70 @@
+<svg width="438" height="454" viewBox="0 0 438 454" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_817_5853)">
+<mask id="mask0_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="217" width="220" height="238">
+<rect y="217.827" width="219.135" height="236.554" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_817_5853)">
+<mask id="mask1_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-62" y="227" width="501" height="288">
+<rect x="-61.5586" y="227.093" width="499.824" height="287.452" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask1_817_5853)">
+<circle cx="219.094" cy="227.092" r="219.171" fill="url(#paint0_radial_817_5853)"/>
+</g>
+</g>
+<mask id="mask2_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="220" height="237">
+<rect width="219.135" height="236.554" transform="matrix(1 0 0 -1 0 236.554)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask2_817_5853)">
+<mask id="mask3_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-62" y="-61" width="501" height="289">
+<rect width="499.824" height="287.452" transform="matrix(1 0 0 -1 -61.5586 227.288)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask3_817_5853)">
+<circle cx="219.171" cy="219.171" r="219.171" transform="matrix(1 0 0 -1 -0.0761719 446.459)" fill="url(#paint1_radial_817_5853)"/>
+</g>
+</g>
+<mask id="mask4_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="219" y="217" width="220" height="238">
+<rect width="219.135" height="236.554" transform="matrix(-1 0 0 1 438.27 217.827)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask4_817_5853)">
+<mask id="mask5_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="227" width="500" height="288">
+<rect width="499.824" height="287.452" transform="matrix(-1 0 0 1 499.828 227.093)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask5_817_5853)">
+<circle cx="219.171" cy="219.171" r="219.171" transform="matrix(-1 0 0 1 438.346 7.92188)" fill="url(#paint2_radial_817_5853)"/>
+</g>
+</g>
+<mask id="mask6_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="219" y="0" width="220" height="237">
+<rect x="438.27" y="236.554" width="219.135" height="236.554" transform="rotate(180 438.27 236.554)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask6_817_5853)">
+<mask id="mask7_817_5853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-61" width="500" height="289">
+<rect x="499.828" y="227.288" width="499.824" height="287.452" transform="rotate(180 499.828 227.288)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask7_817_5853)">
+<circle cx="219.175" cy="227.288" r="219.171" transform="rotate(180 219.175 227.288)" fill="url(#paint3_radial_817_5853)"/>
+</g>
+</g>
+<ellipse cx="219.174" cy="227.288" rx="23.3538" ry="23.3559" fill="#007CC1"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_817_5853" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(219.094 227.092) rotate(90) scale(219.171)">
+<stop stop-color="#36BBFA"/>
+<stop offset="1" stop-color="#007CC1"/>
+</radialGradient>
+<radialGradient id="paint1_radial_817_5853" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(219.171 219.171) rotate(90) scale(219.171)">
+<stop stop-color="#36BBFA"/>
+<stop offset="1" stop-color="#007CC1"/>
+</radialGradient>
+<radialGradient id="paint2_radial_817_5853" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(219.171 219.171) rotate(90) scale(219.171)">
+<stop stop-color="#36BBFA"/>
+<stop offset="1" stop-color="#007CC1"/>
+</radialGradient>
+<radialGradient id="paint3_radial_817_5853" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(219.175 227.288) rotate(90) scale(219.171)">
+<stop stop-color="#36BBFA"/>
+<stop offset="1" stop-color="#007CC1"/>
+</radialGradient>
+<clipPath id="clip0_817_5853">
+<rect width="438" height="454" fill="white"/>
+</clipPath>
+</defs>
+</svg>

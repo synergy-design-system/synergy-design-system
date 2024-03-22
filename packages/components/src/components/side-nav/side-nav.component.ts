@@ -342,4 +342,3 @@ setDefaultAnimation('sideNav.overlay.hide', {
   keyframes: [{ opacity: 1 }, { opacity: 0 }],
   options: { duration: 250 },
 });
-

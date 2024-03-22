@@ -18,7 +18,15 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
+ * It can be used to group multiple navigation items (<syn-nav-item />s) together.
  *
+ * @example
+ * <syn-side-nav open>
+ *  <syn-nav-item vertical>Item 1</syn-nav-item>
+ *  <syn-nav-item vertical>Item 2</syn-nav-item>
+ * </syn-side-nav>
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
  * @since 1.11.0
  *
@@ -29,12 +37,10 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
  *
- * // TODO: what about the other two events? Do we want them also exposed?
- *     And do we want the css-properties of the drawer be exposed?
- * @event syn-show - Emitted when the drawer opens.
- * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
- * @event syn-hide - Emitted when the drawer closes.
- * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
+ * @event syn-show - Emitted when the side-nav opens.
+ * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
+ * @event syn-hide - Emitted when the side-nav closes.
+ * @event syn-after-hide - Emitted after the side-nav closes and all animations are complete.
  *
  * @csspart base - The components base wrapper
  * @csspart drawer - The drawer that is used under the hood for creating the side-nav
@@ -160,22 +166,22 @@ To disable the focus trapping, set this attribute.
   }
 
   /**
-* Emitted when the drawer opens.
+* Emitted when the side-nav opens.
  */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the drawer opens and all animations are complete.
+* Emitted after the side-nav opens and all animations are complete.
  */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the drawer closes.
+* Emitted when the side-nav closes.
  */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the drawer closes and all animations are complete.
+* Emitted after the side-nav closes and all animations are complete.
  */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }

@@ -57,7 +57,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the pill attribute to give badges rounded edges.",
+          "value": "Set the variant attribute to change the badge’s variant.",
           "type": "text"
         }
       },

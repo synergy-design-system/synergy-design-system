@@ -42,6 +42,9 @@ export const ContactForm = {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
     },
+    viewport: {
+      defaultViewport: 'default',
+    },
   },
   render: () => html`
     <style>

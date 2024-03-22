@@ -29,11 +29,11 @@ const config: StorybookConfig = {
     "../stories/Presentation.mdx",
     "../stories/Contributing.mdx",
     "../stories/packages/**/*.mdx",
-    "../stories/tokens/**/*.stories.*",
-    "../stories/components/**/*.stories.*",
-    "../stories/templates/**/*.stories.*",
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../stories/tokens/**/*.@(mdx|stories.*)",
+    "../stories/components/**/*.@(mdx|stories.*)",
+    "../stories/templates/**/*.@(mdx|stories.*)",
+    // "../src/**/*.mdx",
+    // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   viteFinal: async (config) => {
     return {

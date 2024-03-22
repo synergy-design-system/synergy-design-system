@@ -5,7 +5,7 @@ import '../../../components/src/components/switch/switch.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/testing-library';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -21,7 +21,7 @@ const { generateTemplate } = storybookTemplate('syn-switch');
 const meta: Meta = {
   args: overrideArgs({ name: 'default', type: 'slot', value: 'Option' }, args),
   argTypes,
-  component: 'switch',
+  component: 'syn-switch',
   parameters: {
     docs: {
       description: {

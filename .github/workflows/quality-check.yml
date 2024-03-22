@@ -57,7 +57,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.41.2-jammy
+      image: mcr.microsoft.com/playwright:v1.42.1-jammy
     steps:
       - uses: actions/checkout@v2
 
@@ -77,11 +77,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # First Step: Run the component tests
+      # When they do not work, everything else is likely to fail
+      - name: Run component tests
+        run: pnpm test -r --filter components
+        # @see
+
+      # Force a rebuild to ensure that the bundle is fresh
       - name: Build
         run: pnpm build
 
+      # We run all tests except the components tests
+      # This is done as the components test toolchain will
+      # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm test -r
+        run: pnpm test -r --filter '!components'
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root

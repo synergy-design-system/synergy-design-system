@@ -6,7 +6,12 @@ export default defineConfig({
   forbidOnly: false,// !!process.env.CI,
   retries: 0,
   workers: 1,
-  reporter: [ ['html', { open: 'never' }], ['list'] ],
+  reporter: [
+    ['html', {
+      open: 'never',
+    }],
+    [process.env.CI ? 'github' : 'list'],
+  ],
 
   projects: [
     {

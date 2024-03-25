@@ -8,6 +8,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './nav-item.styles.js';
+import { watch } from '../../internal/watch.js';
 
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
@@ -79,6 +80,11 @@ export default class SynNavItem extends SynergyElement {
   @state() private showPrefixOnly = false;
 
   /**
+   * A nested nav-item is marked as current
+   */
+  @state() private currentMarkedChild = false;
+
+  /**
    * The content area is multiline
    */
   @state() private isMultiLine = false;
@@ -146,9 +152,10 @@ export default class SynNavItem extends SynergyElement {
     return !this.href && this.hasSlotController.test('children');
   }
 
-  private getNavItemChildren(): SynNavItem[] {
+  // eslint-disable-next-line class-methods-use-this
+  private getNavItemChildren(childrenSlot: HTMLSlotElement): SynNavItem[] {
     return Array.from(
-      this.childrenSlot?.assignedElements({
+      childrenSlot?.assignedElements({
         flatten: true,
       }) as HTMLElement[]
       || [],
@@ -157,10 +164,27 @@ export default class SynNavItem extends SynergyElement {
       .flat();
   }
 
-  private hasCurrentMarkedChild(): boolean {
-    const currentMarkedItem = this.getNavItemChildren()
-      .findIndex((item) => !!item.shadowRoot?.querySelector('.nav-item--current'));
-    return currentMarkedItem !== -1;
+  private getAllNestedNavItems(childrenSlot: HTMLSlotElement): SynNavItem[] {
+    const allNavItems = this.getNavItemChildren(childrenSlot);
+
+    const nestedNavItems = allNavItems
+      .map(item => item.getAllNestedNavItems(item.childrenSlot))
+      .flat();
+
+    return allNavItems.concat(nestedNavItems);
+  }
+
+  private handleCurrentMarkedChild() {
+    const sideNav = this.closest('syn-side-nav');
+
+    if (!this.open || !!sideNav?.rail) {
+      const navItemChildren = this.getAllNestedNavItems(this.childrenSlot);
+
+      const currentMarkedItem = navItemChildren
+        .findIndex((item) => !!item.shadowRoot?.querySelector('.nav-item--current'));
+
+      this.currentMarkedChild = currentMarkedItem !== -1;
+    }
   }
 
   private handleClickButton(e: MouseEvent) {
@@ -201,13 +225,15 @@ export default class SynNavItem extends SynergyElement {
    * Automatically add the correct level of indentation for sub items if none is provided
    */
   private handleSlotChange() {
+    this.handleCurrentMarkedChild();
+
     // Use the current level of the component
     const level = getComputedStyle(this).getPropertyValue('--indentation');
 
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);
 
-    this.getNavItemChildren()
+    this.getNavItemChildren(this.childrenSlot)
       .forEach(item => {
         item.style.setProperty('--indentation', nextLevel.toFixed(0));
       });
@@ -238,6 +264,11 @@ export default class SynNavItem extends SynergyElement {
         this.isMultiLine = false;
       }
     });
+  }
+
+  @watch('open')
+  handleOpenChange() {
+    this.handleCurrentMarkedChild();
   }
 
   connectedCallback() {
@@ -277,13 +308,11 @@ export default class SynNavItem extends SynergyElement {
     const isButton = this.isButton();
     const isLink = this.isLink();
     const isAccordion = this.isAccordion();
-    const markedChildren = this.hasCurrentMarkedChild();
 
-    // TODO: currently in rail mode if the nested of a nested nav-item has current state,
-    // it is not reflected right, on closed rail
     const sideNav = this.closest('syn-side-nav');
-    const showCurrentIndicatorForNested = (markedChildren && !this.open)
-      || (markedChildren && this.open && !!sideNav?.rail && !sideNav?.open);
+
+    const showCurrentIndicatorForNested = (this.currentMarkedChild && !this.open)
+      || (this.currentMarkedChild && this.open && !!sideNav?.rail && !sideNav?.open);
 
     // Defines the initial tag to use for the root component
     let tag = literal`button`;

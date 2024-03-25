@@ -2,6 +2,7 @@ import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'badge.component.ts',
+  'badge.styles.ts',
   'badge.test.ts',
 ];
 
@@ -19,6 +20,36 @@ const transformComponent = (path, originalContent) => {
     // Remove the pulsate attribute
     ['/** Makes the badge pulsate', ';'],
     ['\'badge--pulse', 'this.pulse'],
+  ], originalContent);
+
+  return {
+    content,
+    path,
+  };
+};
+
+/**
+ * Transform the components styles
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformStyles = (path, originalContent) => {
+  const content = removeSections([
+    // Remove the pill styling
+    ['/* Pill modifier', '  /* Pulse', {
+      additionalNewlines: 2,
+      preserveEnd: true,
+    }],
+    ['@keyframes pulse', '`;', {
+      additionalNewlines: 1,
+      preserveEnd: true,
+    }],
+    // Remove the pulse styling
+    ['/* Pulse modifier', '`;', {
+      additionalNewlines: 1,
+      preserveEnd: true,
+    }],
   ], originalContent);
 
   return {
@@ -65,6 +96,10 @@ export const vendorBadge = (path, content) => {
 
   if (path.endsWith('badge.component.ts')) {
     return transformComponent(path, content);
+  }
+
+  if (path.endsWith('badge.styles.ts')) {
+    return transformStyles(path, content);
   }
 
   if (path.endsWith('badge.test.ts')) {

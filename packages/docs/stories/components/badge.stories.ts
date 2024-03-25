@@ -66,11 +66,13 @@ export const Variants: Story = {
     },
   },
   render: () => html`
-    <syn-badge variant="primary">Primary</syn-badge>
-    <syn-badge variant="success">Success</syn-badge>
-    <syn-badge variant="neutral">Neutral</syn-badge>
-    <syn-badge variant="warning">Warning</syn-badge>
-    <syn-badge variant="danger">Danger</syn-badge>
+    <div style="display: flex; gap: var(--syn-spacing-large);">
+      <syn-badge variant="primary">primary</syn-badge>
+      <syn-badge variant="success">success</syn-badge>
+      <syn-badge variant="neutral">neutral</syn-badge>
+      <syn-badge variant="warning">warning</syn-badge>
+      <syn-badge variant="danger">danger</syn-badge>
+    </div>
   `,
 };
 
@@ -83,20 +85,22 @@ export const WithButtons: Story = {
     },
   },
   render: () => html`
-    <syn-button>
-      Requests
-      <syn-badge pill>30</syn-badge>
-    </syn-button>
+    <div style="display: flex; gap: var(--syn-spacing-2x-large)">
+      <syn-button>
+        Requests
+        <syn-badge pill>30</syn-badge>
+      </syn-button>
 
-    <syn-button style="margin-inline-start: 1rem;">
-      Warnings
-      <syn-badge variant="warning" pill>8</syn-badge>
-    </syn-button>
+      <syn-button style="margin-inline-start: 1rem;">
+        Warnings
+        <syn-badge variant="warning" pill>8</syn-badge>
+      </syn-button>
 
-    <syn-button style="margin-inline-start: 1rem;">
-      Errors
-      <syn-badge variant="danger" pill>6</syn-badge>
-    </syn-button>
+      <syn-button style="margin-inline-start: 1rem;">
+        Errors
+        <syn-badge variant="danger" pill>6</syn-badge>
+      </syn-button>
+    </div>
   `,
 };
 
@@ -109,7 +113,7 @@ export const WithMenuItems: Story = {
     },
   },
   render: () => html`
-    <syn-menu style="max-width: 240px;">
+    <syn-menu style="max-width: 228px;">
       <syn-menu-label>Messages</syn-menu-label>
       <syn-menu-item>Comments <syn-badge slot="suffix" variant="neutral" pill>4</syn-badge></syn-menu-item>
       <syn-menu-item>Replies <syn-badge slot="suffix" variant="neutral" pill>12</syn-badge></syn-menu-item>

@@ -169,6 +169,11 @@ Only available when vertical
     return this._el.divider;
   }
 
+  @Input()
+  callHandleOpenChange(...args: Parameters<SynNavItem['handleOpenChange']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+  }
+
   /**
 * Removes focus from the button.
  */

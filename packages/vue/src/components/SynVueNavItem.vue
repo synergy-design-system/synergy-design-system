@@ -64,6 +64,7 @@ import type {
 const element = ref<SynNavItem>();
 
 // Map methods
+const callHandleOpenChange = (...args: Parameters<SynNavItem['handleOpenChange']>) => element.value?.handleOpenChange(...args);
 /**
 * Removes focus from the button.
  */
@@ -78,6 +79,7 @@ const callClick = (...args: Parameters<SynNavItem['click']>) => element.value?.c
 const callFocus = (...args: Parameters<SynNavItem['focus']>) => element.value?.focus(...args);
 
 defineExpose({
+  callHandleOpenChange,
   callBlur,
   callClick,
   callFocus,

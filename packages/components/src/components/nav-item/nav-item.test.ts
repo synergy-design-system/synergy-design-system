@@ -170,4 +170,42 @@ describe('<syn-nav-item>', () => {
       expect(clickHandler).to.have.been.calledOnce;
     });
   });
+
+  it('should show prefix only if there is not enough space', async () => {
+    const el = await fixture<SynNavItem>(html`
+      <syn-nav-item>
+        Label
+        <span slot="prefix">
+          prefix
+        </span>
+      </syn-nav-item>`);
+
+    el.style.width = '80px';
+    const base = el.shadowRoot!.querySelector('.nav-item') as HTMLElement;
+
+    // We need to wait because of the resize observer
+    await waitUntil(() => base.classList.contains('nav-item--show-prefix-only'));
+
+    const contentContainer = el.shadowRoot!.querySelector('[part~="content-container"]')!;
+    const suffix = el.shadowRoot!.querySelector('[part~="suffix"]')!;
+
+    expect(base).to.have.class('nav-item--show-prefix-only');
+    expect(getComputedStyle(contentContainer).visibility).to.equal('hidden');
+    expect(getComputedStyle(suffix).visibility).to.equal('hidden');
+  });
+
+  it('should display current indicator on root nav-item if it has a current marked child and is not open', async () => {
+    const el = await fixture<SynNavItem>(html`
+      <syn-nav-item vertical>
+        Label
+        <syn-nav-item slot="children" current vertical>
+          nested
+        </syn-nav-item>
+      </syn-nav-item>`);
+
+    const base = el.shadowRoot!.querySelector('.nav-item') as HTMLElement;
+
+    expect(el).property('current').to.be.false;
+    expect(base).to.have.class('nav-item--current');
+  });
 });

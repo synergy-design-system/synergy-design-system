@@ -39,4 +39,13 @@ export default css`
     background-color: var(--syn-color-error-600);
     color: var(--syn-typography-color-text-inverted);
   }
+
+  /**
+   * Special treatment: If the badge is empty, show it as a dot only
+   */
+  :host(:empty) .badge {
+    height: var(--syn-spacing-x-small);
+    padding: 0;
+    width: var(--syn-spacing-x-small);
+  }
 `;

@@ -113,9 +113,7 @@ export const storybookDefaults = (customElementTag: string): any => {
       ...manifest?.events?.reduce((acc: any, event: any) => {
         acc[event.name] = {
           ...event,
-          control: {
-            disabled: true,
-          },
+          control: false,
           table: {
             category: 'Events'
           },

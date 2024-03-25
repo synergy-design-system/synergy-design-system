@@ -5,9 +5,11 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/badge/badge.js';
 import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-label/menu-label.js';
 import '../../../components/src/components/menu-item/menu-item.js';
+import '../../../components/src/components/popup/popup.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -121,11 +123,53 @@ export const WithMenuItems: Story = {
   `,
 };
 
+export const WithEmptyContent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('badge', 'withEmptyContent'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; position: relative; gap: var(--syn-spacing-3x-large);">
+      <syn-popup
+        active
+        distance="-8"
+        placement="right-start"
+        skidding="-10"
+      >
+        <syn-icon
+          name="wallpaper"
+          style="font-size: var(--syn-font-size-x-large)"
+          slot="anchor"
+        ></syn-icon>
+        <syn-badge></syn-badge>
+      </syn-popup>
+
+      <syn-popup
+        active
+        distance="-8"
+        placement="right-start"
+        skidding="-10"
+      >
+        <syn-icon
+          name="wallpaper"
+          style="font-size: var(--syn-font-size-x-large)"
+          slot="anchor"
+        ></syn-icon>
+        <syn-badge>12</syn-badge>
+      </syn-popup>
+    </div>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Variants,
   WithButtons,
   WithMenuItems,
+  WithEmptyContent,
 });
 /* eslint-enable sort-keys */

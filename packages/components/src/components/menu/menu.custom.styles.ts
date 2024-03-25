@@ -13,4 +13,9 @@ export default css`
   ::slotted(syn-menu-label:first-of-type) {
     --display-divider: none;
   }
+
+  ::slotted(syn-divider) {
+    /* #369: Slotted syn-dividers should use a lighter color so they do not crash with the border visually */
+    --color: var(--syn-color-neutral-200);
+  }
 `;

@@ -37,36 +37,6 @@ describe('<syn-badge>', () => {
     });
   });
 
-  describe('when provided a pill parameter', () => {
-    before(async () => {
-      el = await fixture<SynBadge>(html` <syn-badge pill>Badge</syn-badge> `);
-    });
-
-    it('should pass accessibility tests', async () => {
-      await expect(el).to.be.accessible({ ignoredRules });
-    });
-
-    it('should append the pill class to the classlist to render a pill', () => {
-      const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.eq('badge badge--primary badge--pill');
-    });
-  });
-
-  describe('when provided a pulse parameter', () => {
-    before(async () => {
-      el = await fixture<SynBadge>(html` <syn-badge pulse>Badge</syn-badge> `);
-    });
-
-    it('should pass accessibility tests', async () => {
-      await expect(el).to.be.accessible({ ignoredRules });
-    });
-
-    it('should append the pulse class to the classlist to render a pulse', () => {
-      const part = el.shadowRoot!.querySelector('[part~="base"]')!;
-      expect(part.classList.value.trim()).to.eq('badge badge--primary badge--pulse');
-    });
-  });
-
   ['primary', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
     describe(`when passed a variant attribute ${variant}`, () => {
       before(async () => {

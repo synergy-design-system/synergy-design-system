@@ -4,7 +4,12 @@ syn-header {
   z-index: 50;
 }
 
-main {
+.main {
   background: var(--syn-color-neutral-0);
-  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+  position: relative;
+  height: 100%;
+}
+
+.content {
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-medium) calc(4.5rem + var(--syn-spacing-large));
 }

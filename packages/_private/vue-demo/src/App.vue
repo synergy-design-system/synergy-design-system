@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import DemoForm from './DemoForm.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
-import { SynVueHeader } from '@synergy-design-system/vue';
+import { SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
+
+const routeTo = (route: string) => {
+  router.push(route);
+}
+
 </script>
 
 <template>
@@ -10,9 +17,21 @@ import { SynVueHeader } from '@synergy-design-system/vue';
     <ThemeSwitch slot="meta-navigation" />
   </SynVueHeader>
 
-  <main>
-    <DemoForm />
-  </main>
+  <div class="main">
+    <SynVueSideNav rail ref="sideNavRef">
+      <SynVueNavItem vertical @click="() => routeTo('/')">
+        Home
+        <SynVueIcon name="home" slot="prefix"/>
+      </SynVueNavItem>
+      <SynVueNavItem vertical divider @click="() => routeTo('/contact-form')">
+        Contact Form
+        <SynVueIcon name="description" slot="prefix"/>
+      </SynVueNavItem>
+    </SynVueSideNav>
+    <main class="content">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
 <style scoped>
@@ -22,8 +41,17 @@ syn-header {
   z-index: 50;
 }
 
-main {
+.main {
+  flex-grow: 1;
+  position: relative;
   background: var(--syn-color-neutral-0);
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+  overflow: hidden;
+}
+
+.content {
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-medium) calc(4.5rem + var(--syn-spacing-large));
+  height: 100%;
+  overflow-y: auto;
 }
 </style>

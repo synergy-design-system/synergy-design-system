@@ -45,7 +45,6 @@ syn-header {
   flex-grow: 1;
   position: relative;
   background: var(--syn-color-neutral-0);
-  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
   overflow: hidden;
 }
 

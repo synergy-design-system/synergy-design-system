@@ -1,5 +1,5 @@
 <template>
-  <h1>
+<h1>
   Welcome to the Synergy Vue Demo!
 </h1>
 

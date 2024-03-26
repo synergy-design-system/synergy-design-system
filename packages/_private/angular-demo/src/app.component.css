@@ -13,6 +13,7 @@ syn-header {
 }
 
 .content {
+  box-sizing: border-box;
   flex-grow: 1;
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
   height: 100%;

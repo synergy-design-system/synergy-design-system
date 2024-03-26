@@ -19,7 +19,7 @@ const routeTo = (route: string) => {
 
   <div class="main">
     <SynVueSideNav rail ref="sideNavRef">
-      <SynVueNavItem vertical @click="() => routeTo('/')">
+      <SynVueNavItem vertical  @click="() => routeTo('/')">
         Home
         <SynVueIcon name="home" slot="prefix"/>
       </SynVueNavItem>
@@ -50,6 +50,7 @@ syn-header {
 }
 
 .content {
+  box-sizing: border-box;
   flex-grow: 1;
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
   height: 100%;

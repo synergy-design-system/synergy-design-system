@@ -83,6 +83,18 @@ describe('<syn-nav-item>', () => {
       expect(el.shadowRoot!.querySelector('a')!.ariaDisabled).to.equal('true');
       expect(el.shadowRoot!.querySelector('a')!.tabIndex).to.equal(-1);
     });
+
+    it('should render as accordion if it has children', async () => {
+      const el = await fixture<SynNavItem>(html`
+        <syn-nav-item href="#">
+          Label
+          <syn-nav-item slot="children">Children</syn-nav-item>
+        </syn-nav-item>`);
+      expect(el.shadowRoot!.querySelector('a')).not.to.exist;
+      expect(el.shadowRoot!.querySelector('summary')).to.exist;
+      expect(el.shadowRoot!.querySelector('summary')).not.to.have.attribute('href', '#');
+      expect(el.shadowRoot!.querySelector('button')).not.to.exist;
+    });
   });
 
   describe('when setting the divider prop', () => {

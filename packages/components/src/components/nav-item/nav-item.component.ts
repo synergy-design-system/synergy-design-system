@@ -149,7 +149,7 @@ export default class SynNavItem extends SynergyElement {
   }
 
   private isAccordion(): boolean {
-    return !this.href && this.hasSlotController.test('children');
+    return this.hasSlotController.test('children');
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -316,8 +316,8 @@ export default class SynNavItem extends SynergyElement {
 
     // Defines the initial tag to use for the root component
     let tag = literal`button`;
-    if (isLink) tag = literal`a`;
-    else if (isAccordion) tag = literal`summary`;
+    if (isAccordion) tag = literal`summary`;
+    else if (isLink) tag = literal`a`;
 
     const hasChildren = this.hasSlotController.test('children');
     const hasChevron = (this.chevron || hasChildren) && this.vertical;
@@ -355,9 +355,9 @@ export default class SynNavItem extends SynergyElement {
         @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         @focus=${this.handleFocus}
-        href=${ifDefined(isLink ? this.href : undefined)}
+        href=${ifDefined((isLink && !isAccordion) ? this.href : undefined)}
         part="base"
-        role=${isLink ? 'link' : 'button'}
+        role=${(isLink && !isAccordion) ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}
       >
 

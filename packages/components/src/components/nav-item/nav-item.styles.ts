@@ -54,6 +54,7 @@ export default css`
     padding: var(--syn-spacing-small) var(--syn-spacing-large);
     position: relative;
     text-align: left;
+    text-decoration: none;
     transition: background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     width: 100%;
   }

@@ -64,6 +64,13 @@ export default css`
   }
 
   /**
+   * Avoid multiline flickering on open and close animation
+   */
+  .side-nav--rail.side-nav--animation {
+    white-space: nowrap;
+  }
+
+  /**
    * Hide the scrollbars in closed rail mode
    */ 
   :not(.side-nav--open).side-nav--rail .side-nav__drawer::part(body){

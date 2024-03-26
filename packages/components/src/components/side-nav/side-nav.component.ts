@@ -1,7 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit/static-html.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -72,6 +72,11 @@ export default class SynSideNav extends SynergyElement {
   private readonly localize = new LocalizeController(this);
 
   private timeout: NodeJS.Timeout;
+
+  /**
+   * Current animation active state
+   */
+  @state() private isAnimationActive = false;
 
   /**
    * Reference to the drawer
@@ -150,9 +155,8 @@ export default class SynSideNav extends SynergyElement {
 
   private forceDrawerVisibilityForRailMode() {
     return waitForEvent(this, 'syn-after-hide').then(() => {
-      if (this.rail) {
-        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
-      }
+      (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      this.isAnimationActive = false;
     });
   }
 
@@ -183,9 +187,18 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (!this.open && this.rail) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.forceDrawerVisibilityForRailMode();
+    if (this.rail) {
+      this.isAnimationActive = true;
+
+      if (!this.open) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.forceDrawerVisibilityForRailMode();
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        waitForEvent(this.drawer, 'syn-after-show').then(() => {
+          this.isAnimationActive = false;
+        });
+      }
     }
   }
 
@@ -259,6 +272,7 @@ export default class SynSideNav extends SynergyElement {
       <nav
         class=${classMap({
       'side-nav': true,
+      'side-nav--animation': this.isAnimationActive,
       'side-nav--fix': !this.rail,
       'side-nav--has-footer': hasFooter,
       'side-nav--open': this.open,

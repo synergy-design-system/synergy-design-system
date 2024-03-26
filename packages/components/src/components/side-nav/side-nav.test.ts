@@ -19,6 +19,15 @@ describe('<syn-side-nav>', () => {
       await expect(sideNav).to.be.accessible();
     });
   });
+  describe('when provided no parameters', () => {
+    it('should have default values', async () => {
+      const sideNav = await fixture<SynSideNav>(html`<syn-side-nav></syn-side-nav>`);
+
+      expect(sideNav.open).to.equal(false);
+      expect(sideNav.rail).to.equal(false);
+      expect(sideNav.noFocusTrapping).to.equal(false);
+    });
+  });
 
   describe('when using methods', () => {
     it('should emit syn-show and syn-after-show when calling show()', async () => {
@@ -106,7 +115,9 @@ describe('<syn-side-nav>', () => {
 
   describe('when using non-rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedCloseSize = '25rem';
+      const expectedDrawerOpenSize = '25rem';
+      const expectedSideNavOpenSize = '400px';
+
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
           <syn-nav-item vertical>nav 1</syn-nav-item> 
@@ -114,15 +125,17 @@ describe('<syn-side-nav>', () => {
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
       const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
+
       const { display } = getComputedStyle(baseDrawer);
 
       expect(display).to.equal('block');
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
 
-      expect(size).to.equal(expectedCloseSize);
-      expect(sideNavSize).to.equal(expectedCloseSize);
+      expect(size).to.equal(expectedDrawerOpenSize);
+      expect(sideNavSize).to.equal(expectedSideNavOpenSize);
     });
 
     it('should not be visible without the open attribute', async () => {
@@ -154,7 +167,8 @@ describe('<syn-side-nav>', () => {
 
   describe('when using rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedCloseSize = '25rem';
+      const expectedDrawerOpenSize = '25rem';
+      const expectedSideNavOpenSize = '72px';
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
           <syn-nav-item vertical>nav 1</syn-nav-item> 
@@ -162,18 +176,21 @@ describe('<syn-side-nav>', () => {
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
       const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
 
       expect(baseDrawer.hidden).to.be.false;
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
 
-      expect(size).to.equal(expectedCloseSize);
-      expect(sideNavSize).to.equal(expectedCloseSize);
+      expect(size).to.equal(expectedDrawerOpenSize);
+      expect(sideNavSize).to.equal(expectedSideNavOpenSize);
     });
 
     it('should be visible and shrunk without the open attribute', async () => {
-      const expectedCloseSize = '4.5rem';
+      const expectedDrawerCloseSize = '4.5rem';
+      const expectedSideNavCloseSize = '72px';
+
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail>
           <syn-nav-item vertical>nav 1</syn-nav-item> 
@@ -181,14 +198,15 @@ describe('<syn-side-nav>', () => {
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
       const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
 
       expect(baseDrawer.hidden).to.be.false;
 
       const size = getComputedStyle(drawer).getPropertyValue('--size');
-      const sideNavSize = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
 
-      expect(size).to.equal(expectedCloseSize);
-      expect(sideNavSize).to.equal(expectedCloseSize);
+      expect(size).to.equal(expectedDrawerCloseSize);
+      expect(sideNavSize).to.equal(expectedSideNavCloseSize);
     });
 
     it('should show no overlay on open state', async () => {

@@ -175,6 +175,10 @@ export const Fixed: Story = {
       position: relative;
       height: 500px;
     }
+
+    .content {
+      padding: var(--syn-spacing-large);
+    }
   </style>
   `,
 };
@@ -219,7 +223,7 @@ export const Rail: Story = {
         Navigation Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content-rail">
+    <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -230,20 +234,15 @@ export const Rail: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
-  <script type="module">
-    const sideNav = document.querySelector('.side-nav-rail');
-    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
-    const content = document.querySelector('.content-rail');
-    content.style.marginLeft = size;
-  </script>
   <style>
     .main {
       position: relative;
       height: 500px;
+      display: flex;
     }
 
-    .content-rail {
-      padding: 0 var(--syn-spacing-large);
+    .content {
+      padding: var(--syn-spacing-large);
     }
   </style>
   `,
@@ -290,7 +289,7 @@ export const Shrink: Story = {
         Navigation Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content-shrink">
+    <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -303,51 +302,25 @@ export const Shrink: Story = {
   </main>
   <script type="module">
     const sideNav = document.querySelector('.side-nav-shrink');
-    const size = getComputedStyle(sideNav).getPropertyValue('--side-nav-width');
-    const content = document.querySelector('.content-shrink');
     const toggleButton = document.querySelector('.side-nav-shrink-toggle');
 
-    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
-
-    // Initial shrinking if side-nav is open
-    if(sideNav.open) {
-      content.style.marginLeft = size;
-    }
-
-    // Start animation
-    sideNav.addEventListener('syn-show', () => {
-      content.animate([{marginLeft: 0}, {marginLeft: size}], { duration: 250,  });
-    });
-
-    // Fix left margin after animation end
-    sideNav.addEventListener('syn-after-show', () => {
-      content.style.marginLeft = size;
-    });
-
-    // Start animation
-    sideNav.addEventListener('syn-hide', () => {
-      content.animate([{marginLeft: size}, {marginLeft: 0}], { duration: 250});
-    });
-
-    // Fix left margin after animation end
-    sideNav.addEventListener('syn-after-hide', () => {
-      content.style.marginLeft = 0;
+    toggleButton.addEventListener('click', () => {
+      sideNav.open = !sideNav.open;
     });
   </script>
   <style>
     .main {
       position: relative;
       height: 500px;
+      display: flex;
     }
 
     .side-nav-shrink::part(overlay) {
       display: none;
     }
     
-    .content-shrink {
-      padding: 0 var(--syn-spacing-large);
-      overflow: auto;
-      height: 100%;
+    .content {
+      padding: var(--syn-spacing-large);
     }
   </style>
   `,
@@ -417,12 +390,19 @@ export const Indentation: Story = {
   <script type="module">
     const sideNav = document.querySelector('.side-nav-indentation');
     const toggleButton = document.querySelector('.side-nav-indentation-toggle');
-    toggleButton.addEventListener('click', () => sideNav.open = !sideNav.open);
+
+    toggleButton.addEventListener('click', () => {
+      sideNav.open = !sideNav.open;
+    });
   </script>
   <style>
     .main{
       position: relative;
       height: 500px;
+    }
+
+    .content {
+      padding: var(--syn-spacing-large);
     }
   </style>
   `,

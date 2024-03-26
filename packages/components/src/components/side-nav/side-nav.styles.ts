@@ -2,19 +2,32 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --side-nav-width: 25rem;
+    --side-nav-open-width: 25rem;
+    --side-nav-rail-width: 4.5rem;
 
     display: block;
   }
 
+  /* Side nav should have a width, so it behave correct in an e.g. display flex context */
+  .side-nav:not(.side-nav--rail).side-nav--open {
+    width: var(--side-nav-open-width);
+  }
   
+  /**
+   * Side nav should have a width, so it behave correct in an e.g. display flex context.
+   * In rail mode the width is always the small rail width, because there should be no shrinking possible of the main content area.
+   */
+  .side-nav.side-nav--rail {
+    width: var(--side-nav-rail-width);
+  }
+
 
 
   /**
    * Syn-drawer styling
    */
   .side-nav__drawer {
-    --size: var(--side-nav-width);
+    --size: var(--side-nav-open-width);
   }
   
   .side-nav__drawer::part(base){
@@ -42,8 +55,8 @@ export default css`
   /**
    * Rail mode
    */
-  :host([rail]:not([open])) {
-    --side-nav-width: 4.5rem;
+  :not(.side-nav--open).side-nav--rail .side-nav__drawer {
+    --size: var(--side-nav-rail-width);
   }
 
   .side-nav--open.side-nav--rail.side-nav--touch .side-nav__drawer::part(overlay){

@@ -43,13 +43,15 @@ syn-header {
 
 .main {
   flex-grow: 1;
+  display: flex;
   position: relative;
   background: var(--syn-color-neutral-0);
   overflow: hidden;
 }
 
 .content {
-  padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-medium) calc(4.5rem + var(--syn-spacing-large));
+  flex-grow: 1;
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
   height: 100%;
   overflow-y: auto;
 }

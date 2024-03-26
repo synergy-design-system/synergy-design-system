@@ -6,6 +6,8 @@ export default css`
     border-radius: var(--syn-border-radius-pill);
     font: var(--syn-body-x-small-bold);
     height: 22px;
+    line-height: 22px;
+    min-width: 22px;
 
     /**
      * We are using a fixed value inner paddings to make sure that
@@ -45,6 +47,7 @@ export default css`
    */
   :host(:empty) .badge {
     height: var(--syn-spacing-x-small);
+    min-width: initial;
     padding: 0;
     width: var(--syn-spacing-x-small);
   }

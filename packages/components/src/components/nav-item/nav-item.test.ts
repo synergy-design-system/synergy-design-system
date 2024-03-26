@@ -73,6 +73,7 @@ describe('<syn-nav-item>', () => {
     it('should render as a link', async () => {
       const el = await fixture<SynNavItem>(html`<syn-nav-item href="#">Label</syn-nav-item>`);
       expect(el.shadowRoot!.querySelector('a')).to.exist;
+      expect(el.shadowRoot!.querySelector('a')).to.have.attribute('href', '#');
       expect(el.shadowRoot!.querySelector('button')).not.to.exist;
       expect(el.shadowRoot!.querySelector('summary')).not.to.exist;
     });

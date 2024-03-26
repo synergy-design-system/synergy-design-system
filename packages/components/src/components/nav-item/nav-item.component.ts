@@ -355,6 +355,7 @@ export default class SynNavItem extends SynergyElement {
         @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         @focus=${this.handleFocus}
+        href=${ifDefined(isLink ? this.href : undefined)}
         part="base"
         role=${isLink ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}

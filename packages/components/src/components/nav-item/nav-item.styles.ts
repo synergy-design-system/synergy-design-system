@@ -47,6 +47,7 @@ export default css`
     box-sizing: border-box;
     color: var(--syn-color-neutral-950);
     cursor: pointer;
+    display: inline-block;
     font: var(--syn-font-sans);
     font-size: var(--syn-font-size-small);
     min-height: var(--syn-spacing-2x-large);

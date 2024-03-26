@@ -41,13 +41,45 @@
       }
     },
     "badge": {
-      "description": {
-        "value": "Badges are used to draw attention and display statuses or counts.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Badges are used to draw attention and display statuses or counts.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Badge",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Badge",
-        "type": "text"
+      "variants": {
+        "title": {
+          "value": "Variants",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the variant attribute to change the badge’s variant.",
+          "type": "text"
+        }
+      },
+      "withButton": {
+        "title": {
+          "value": "With Buttons",
+          "type": "text"
+        },
+        "description": {
+          "value": "One of the most common use cases for badges is attaching them to buttons. \n\nDEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button.",
+          "type": "text"
+        }
+      },
+      "menu": {
+        "title": {
+          "value": "With Menu Items",
+          "type": "text"
+        },
+        "description": {
+          "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.",
+          "type": "text"
+        }
       }
     },
     "breadcrumb-item": {

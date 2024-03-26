@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.12.0...components/1.13.0) (2024-03-25)
+
+
+### Features
+
+* ✨ syn-divider in syn-dropdown should have a color syn-color-neutral-200 ([#386](https://github.com/synergy-design-system/synergy-design-system/issues/386)) ([b9fc00b](https://github.com/synergy-design-system/synergy-design-system/commit/b9fc00bba664b5e3a550df3d8bcca544ad6e04ed))
+
 # [@synergy-design-system/components-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.11.0...components/1.12.0) (2024-03-18)
 
 

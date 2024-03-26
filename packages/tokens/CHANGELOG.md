@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.9.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.9.0...tokens/1.9.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* 🤔: Adjust syn-color-neutral-100 ([#391](https://github.com/synergy-design-system/synergy-design-system/issues/391)) ([bec9459](https://github.com/synergy-design-system/synergy-design-system/commit/bec945987fddf571fc8c2da940a9b7b279f0bb82))
+
 # [@synergy-design-system/tokens-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.8.0...tokens/1.9.0) (2024-03-18)
 
 

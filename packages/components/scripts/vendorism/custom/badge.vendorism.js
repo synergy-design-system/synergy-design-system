@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -13,7 +14,7 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  const content = removeSections([
+  let content = removeSections([
     // Remove the pill attribute
     ['/** Draws a pill', ';'],
     ['\'badge--pill', 'this.pill,'],
@@ -21,6 +22,28 @@ const transformComponent = (path, originalContent) => {
     ['/** Makes the badge pulsate', ';'],
     ['\'badge--pulse', 'this.pulse'],
   ], originalContent);
+
+  // Add support for aria-label
+  content = content.replace(
+    `import SynergyElement from '../../internal/synergy-element.js';`,
+    `import SynergyElement from '../../internal/synergy-element.js';
+import { LocalizeController } from '../../utilities/localize.js';`,
+  );
+
+  // Initialize the controller
+  content = content.replace(
+    `static styles`,
+    `
+  private readonly localize = new LocalizeController(this);
+  static styles`,
+  );
+
+  // Add the translation to the render function
+  content = content.replace(
+    'role="status"',
+    `role="status"
+        aria-label="\${this.localize.term(\`badge_\${this.variant}\`)}"`,
+  );
 
   return {
     content,

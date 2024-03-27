@@ -9,6 +9,7 @@ import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
 import styles from './badge.styles.js';
 import customStyles from './badge.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
@@ -24,6 +25,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  */
 export default class SynBadge extends SynergyElement {
+  
+  private readonly localize = new LocalizeController(this);
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   /** The badge's theme variant. */
@@ -42,6 +45,7 @@ export default class SynBadge extends SynergyElement {
           'badge--danger': this.variant === 'danger',
         })}
         role="status"
+        aria-label="${this.localize.term(`badge_${this.variant}`)}"
       >
         <slot></slot>
       </span>

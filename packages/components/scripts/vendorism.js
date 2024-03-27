@@ -17,6 +17,7 @@ import {
   vendorSelect,
   vendorTag,
   vendorTextarea,
+  vendorTranslations,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 
@@ -82,6 +83,7 @@ const otherIncludes = [
   'src/declaration.d.ts',
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
+  'src/utilities/localize.ts',
   'src/utilities/form*',
   'src/utilities/icon-library*',
   'src/components/button-group/button-group.ts',
@@ -278,6 +280,7 @@ const config = {
       vendorMenuLabel,
       vendorSelect,
       vendorTextarea,
+      vendorTranslations,
       vendorTag,
       vendorWebTestRunnerConfig,
     ],

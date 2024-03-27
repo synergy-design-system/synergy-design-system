@@ -5,15 +5,10 @@ export default css`
     border: none;
     border-radius: var(--syn-border-radius-pill);
     font: var(--syn-body-x-small-bold);
-    height: 22px;
-    line-height: 22px;
-    min-width: 22px;
-
-    /**
-     * We are using a fixed value inner paddings to make sure that
-     * we get a perfect circle when only having one char in the pill
-     */
-    padding: 0 7px;
+    height: var(--syn-spacing-large);
+    line-height: var(--syn-spacing-large);
+    min-width: var(--syn-spacing-large);
+    padding: 0 var(--syn-spacing-x-small);
   }
 
   /* Variant modifiers */
@@ -23,8 +18,8 @@ export default css`
   }
 
   .badge--success {
-    background-color: var(--syn-color-success-700);
-    color: var(--syn-typography-color-text-inverted);
+    background-color: var(--syn-color-success-500);
+    color: var(--syn-typography-color-text);
   }
 
   .badge--neutral {
@@ -33,8 +28,8 @@ export default css`
   }
 
   .badge--warning {
-    background-color: var(--syn-color-warning-700);
-    color: var(--syn-typography-color-text-inverted);
+    background-color: var(--syn-color-warning-400);
+    color: var(--syn-typography-color-text);
   }
 
   .badge--danger {

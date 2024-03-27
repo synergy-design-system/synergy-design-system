@@ -4,12 +4,12 @@
 </syn-header>
 
 <div class="main">
-  <syn-side-nav [rail]="true">
-    <syn-nav-item [vertical]="true" routerLink="/home">
+  <syn-side-nav #sideNav [rail]="true">
+    <syn-nav-item [vertical]="true" href="/">
       Home
       <syn-icon name="home" slot="prefix"></syn-icon>
     </syn-nav-item>
-    <syn-nav-item [vertical]="true" [divider]="true" routerLink="/contact-form">
+    <syn-nav-item [vertical]="true" [divider]="true" href="/contact-form">
       Contact Form
       <syn-icon name="description" slot="prefix"></syn-icon>
     </syn-nav-item>

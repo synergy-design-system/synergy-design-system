@@ -4,8 +4,7 @@ import { DemoForm } from './demoform/demoform.component';
 import { Home } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: Home },
+  { path: '', component: Home },
   { path: 'contact-form', component: DemoForm }
 ];
 

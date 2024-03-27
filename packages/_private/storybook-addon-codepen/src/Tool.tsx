@@ -42,18 +42,32 @@ const getData = (story: API_LeafEntry): CodepenData => {
   const rootElement: HTMLIFrameElement = document.querySelector('#storybook-preview-iframe');
   const rootBody = rootElement.contentDocument || rootElement.contentWindow.document;
   const storyRoot = rootBody.querySelector('#storybook-root');
+  const scriptRoot = rootBody.querySelector('#scripts-root');
 
   const html = [
     '<link rel="stylesheet" href="https://unpkg.com/@synergy-design-system/tokens/dist/themes/light.css"></link>',
     '<link rel="stylesheet" href="https://unpkg.com/@synergy-design-system/components/dist/themes/utility.css"></link>',
     '',
-    storyRoot.innerHTML
+    storyRoot.innerHTML,
+    scriptRoot.innerHTML,
   ].join('\n');
 
   const title = `${story.title}/${story.name}`;
-  const js = [
-    'import * as syn from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";',
-  ].join('\n');
+  const js = [`
+  import * as syn from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";
+
+  import * as icons from 'https://esm.sh/@synergy-design-system/assets';
+  
+  syn.registerIconLibrary('default', {
+    resolver: (name) => {
+      if (name in icons.defaultIcons) {
+        return \`data:image/svg+xml,\${encodeURIComponent(icons.defaultIcons[name])}\`;
+      }
+      return '';
+    },
+    mutator: svg => svg.setAttribute('fill', 'currentColor'),
+  }); 
+  `.trim()].join('\n');
 
   return {
     html,
@@ -68,34 +82,14 @@ export const Tool = memo(function MyAddonSelector() {
 
   useChannel({
     [STORY_CHANGED]: () => {
-      console.log('story changed');
       setCodePenData(getData(api.getCurrentStoryData()));
     },
     [STORY_ARGS_UPDATED]: () => {
-      console.log('story updated');
       setCodePenData(getData(api.getCurrentStoryData()));
     },
   });
   const [globals, updateGlobals] = useGlobals();
   const isActive = [true, 'true'].includes(globals[PARAM_KEY]);
-
-  // const toggleMyTool = useCallback(() => {
-  //   updateGlobals({
-  //     [PARAM_KEY]: !isActive,
-  //   });
-  // }, [isActive]);
-
-  // useEffect(() => {
-  //   api.setAddonShortcut(ADDON_ID, {
-  //     label: 'Toggle Measure [O]',
-  //     defaultShortcut: ['O'],
-  //     actionName: 'outline',
-  //     showInMenu: false,
-  //     action: toggleMyTool,
-  //   });
-  // }, [toggleMyTool, api]);
-
-  console.log(codepenData, formatData(codepenData));
 
   return (
     <IconButton

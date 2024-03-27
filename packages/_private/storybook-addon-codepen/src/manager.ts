@@ -10,5 +10,6 @@ addons.register(ADDON_ID, () => {
     title: 'Codepen Addon',
     match: ({ viewMode }) => viewMode === 'story',
     render: Tool,
+    paramKey: 'codepen',
   });
 });

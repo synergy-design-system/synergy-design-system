@@ -4,6 +4,12 @@ export type CodepenData = {
   js: string;
 };
 
+export type DocsParams = {
+  source?: {
+    originalSource?: string;
+  };
+}
+
 export const emptyState: CodepenData = {
   html: '',
   title: '',

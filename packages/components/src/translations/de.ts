@@ -15,6 +15,7 @@ const translation: Translation = {
   carousel: 'Karussell',
   clearEntry: 'Eingabe löschen',
   close: 'Schließen',
+  closeMenu: 'Menü schließen',
   copied: 'Kopiert',
   copy: 'Kopieren',
   currentValue: 'Aktueller Wert',
@@ -28,6 +29,7 @@ const translation: Translation = {
     if (num === 1) return '1 Option ausgewählt';
     return `${num} Optionen ausgewählt`;
   },
+  openMenu: 'Menü öffnen',
   previousSlide: 'Vorherige Folie',
   progress: 'Fortschritt',
   remove: 'Entfernen',

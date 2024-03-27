@@ -159,12 +159,29 @@ export const Navigation = {
   `,
 };
 
+export const BurgerMenu = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: exchange description with the correct from figma asap it is available as token
+        story: generateStoryDescription('header', 'navigation'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header burger-menu-toggle>
+      Burger Menu
+    </syn-header>
+  `,
+};
+
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   Logo,
   MetaNavigation,
   Navigation,
+  BurgerMenu,
 }, {
   heightPx: 150,
 });

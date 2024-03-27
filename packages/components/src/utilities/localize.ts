@@ -30,6 +30,7 @@ export interface Translation extends DefaultTranslation {
   carousel: string;
   clearEntry: string;
   close: string;
+  closeMenu: string;
   copied: string;
   copy: string;
   currentValue: string;
@@ -39,6 +40,7 @@ export interface Translation extends DefaultTranslation {
   loading: string;
   nextSlide: string;
   numOptionsSelected: (num: number) => string;
+  openMenu: string;
   previousSlide: string;
   progress: string;
   remove: string;

@@ -88,24 +88,22 @@ export const Default: Story = {
     },
   },
   render: (args: unknown) => html`
-  <syn-button class="side-nav-default-toggle">Toggle Side-Nav</syn-button>
+  <syn-header>Side Navigation</syn-header>
   <main style="position: relative; height: 500px;" class="side-nav-default">
     ${generateTemplate({ args })}
   </main> 
   <script type="module">
-    const openButtons = document.querySelectorAll('.side-nav-default-toggle');
-    
-     // Make sure to add each event only once!
-     Array.from(openButtons).forEach((btn) => {
-      if (!btn.classList.contains('story-loaded')) {
-        const sideNav = btn.nextElementSibling.querySelector('.side-nav-default > syn-side-nav');
+    const mainContents = document.querySelectorAll('.side-nav-default');
 
-        btn.addEventListener('click', () => {
-          sideNav.open = !sideNav.open;
-        });
-
-        btn.classList.add('story-loaded');
-      }
+    Array.from(mainContents).forEach((mainContent, index) => {
+      const selector = 'story-loaded-'.concat(index);
+      if(!mainContent.classList.contains(selector)) {
+        const header = mainContent.previousElementSibling;
+        const sideNavSelector = '.' + selector + '.side-nav-default > syn-side-nav';
+        mainContent.classList.add(selector);
+        
+        header.sideNavSelector = sideNavSelector;
+       }
     });
   </script>
 `,
@@ -120,7 +118,7 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <syn-button class="side-nav-fixed-toggle">Toggle Side-Nav</syn-button>
+  <syn-header side-nav-selector=".side-nav-fixed">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-fixed" open>
       <syn-nav-item vertical current>
@@ -163,13 +161,6 @@ export const Fixed: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
-  <script type="module">
-    const sideNav = document.querySelector('.side-nav-fixed');
-    const toggleButton = document.querySelector('.side-nav-fixed-toggle');
-    toggleButton.addEventListener('click', () => {
-      sideNav.open = !sideNav.open;
-    });
-  </script>
   <style>
     .main{
       position: relative;
@@ -192,6 +183,7 @@ export const Rail: Story = {
     },
   },
   render: () => html`
+  <syn-header side-nav-selector=".side-nav-rail">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-rail" rail>
       <syn-nav-item vertical current>
@@ -239,10 +231,12 @@ export const Rail: Story = {
       position: relative;
       height: 500px;
       display: flex;
+      overflow: hidden;
     }
 
     .content {
       padding: var(--syn-spacing-large);
+      overflow-y: auto;
     }
   </style>
   `,
@@ -257,7 +251,7 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <syn-button class="side-nav-shrink-toggle">Toggle Side-Nav</syn-button>
+  <syn-header side-nav-selector=".side-nav-shrink">Side Navigation</syn-header>
    <main class="main">
     <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
       <syn-nav-item vertical current>
@@ -300,19 +294,12 @@ export const Shrink: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,    
     </div>
   </main>
-  <script type="module">
-    const sideNav = document.querySelector('.side-nav-shrink');
-    const toggleButton = document.querySelector('.side-nav-shrink-toggle');
-
-    toggleButton.addEventListener('click', () => {
-      sideNav.open = !sideNav.open;
-    });
-  </script>
   <style>
     .main {
       position: relative;
       height: 500px;
       display: flex;
+      overflow: hidden;
     }
 
     .side-nav-shrink::part(overlay) {
@@ -321,6 +308,7 @@ export const Shrink: Story = {
     
     .content {
       padding: var(--syn-spacing-large);
+      overflow-y: auto;
     }
   </style>
   `,
@@ -335,7 +323,7 @@ export const Indentation: Story = {
     },
   },
   render: () => html`
-  <syn-button class="side-nav-indentation-toggle">Toggle Side-Nav</syn-button>
+  <syn-header side-nav-selector=".side-nav-indentation">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-indentation" open>
       <syn-nav-item vertical open>
@@ -387,14 +375,6 @@ export const Indentation: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
-  <script type="module">
-    const sideNav = document.querySelector('.side-nav-indentation');
-    const toggleButton = document.querySelector('.side-nav-indentation-toggle');
-
-    toggleButton.addEventListener('click', () => {
-      sideNav.open = !sideNav.open;
-    });
-  </script>
   <style>
     .main{
       position: relative;

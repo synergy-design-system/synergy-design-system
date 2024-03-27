@@ -103,4 +103,41 @@ export default css`
   .header__navigation ::slotted(syn-horizontal-nav) {
     --navigation-spacing: 0 var(--syn-spacing-medium);
   }
+
+
+  /**
+   * The burger menu icon styles
+   */
+  .header__burger-menu-toggle {
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--syn-color-neutral-950);
+    cursor: pointer;
+    display: flex;
+    font-size: var(--syn-font-size-x-large);
+    margin-right: calc(var(--syn-spacing-medium) + var(--syn-spacing-2x-small));
+    padding: var(--syn-spacing-x-small);
+    transition: var(--syn-transition-x-fast) color;
+  }
+
+  .header__burger-menu-toggle:hover {
+    color: var(--syn-color-primary-600);
+  }
+
+  .header__burger-menu-toggle:active {
+    color: var(--syn-color-primary-700);
+  }
+
+  .header__burger-menu-toggle:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  /**
+   * If the burger menu is provided, use a smaller spacing on the left side
+   */
+   .header--has-burger-menu .header__content {
+    padding-left: var(--syn-spacing-medium);
+   }
 `;

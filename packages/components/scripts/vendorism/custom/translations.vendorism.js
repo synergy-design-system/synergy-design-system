@@ -11,11 +11,28 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformTranslationType = (path, originalContent) => {
-  const content = originalContent.replaceAll(
-    'showPassword: string;',
-    `showPassword: string;
+  const content = originalContent
+    // Add translation for the side navigation
+    .replace(
+      'showPassword: string;',
+      `showPassword: string;
   sideNav: string;`,
-  );
+    )
+
+    // Add translation for the open burger menu icon of header
+    .replace(
+      'numOptionsSelected: (num: number) => string;',
+      `numOptionsSelected: (num: number) => string;
+  openMenu: string;`,
+    )
+
+    // Add translation for the close burger menu icon of header
+    .replace(
+      'close: string;',
+      `close: string;
+  closeMenu: string;`,
+    );
+
   return {
     content,
     path,
@@ -29,11 +46,30 @@ const transformTranslationType = (path, originalContent) => {
  * @returns
  */
 const transformGerman = (path, originalContent) => {
-  const content = originalContent.replaceAll(
-    "showPassword: 'Passwort anzeigen',",
-    `showPassword: 'Passwort anzeigen',
+  const content = originalContent
+    // Add translation for the side navigation
+    .replace(
+      "showPassword: 'Passwort anzeigen',",
+      `showPassword: 'Passwort anzeigen',
   sideNav: 'Seitennavigation',`,
-  );
+    )
+
+    // Add translation for the open burger menu icon of header
+    .replace(
+      `    return \`\${num} Optionen ausgewählt\`;
+  },`,
+  `    return \`\${num} Optionen ausgewählt\`;
+  },
+  openMenu: 'Menü öffnen',`,
+    )
+
+    // Add translation for the close burger menu icon of header
+    .replace(
+      "close: 'Schließen',",
+      `close: 'Schließen',
+  closeMenu: 'Menü schließen',`,
+    );
+
   return {
     content,
     path,
@@ -47,11 +83,30 @@ const transformGerman = (path, originalContent) => {
  * @returns
  */
 const transformEnglish = (path, originalContent) => {
-  const content = originalContent.replaceAll(
-    "showPassword: 'Show password',",
-    `showPassword: 'Show password',
+  const content = originalContent
+    // Add translation for the side navigation
+    .replace(
+      "showPassword: 'Show password',",
+      `showPassword: 'Show password',
   sideNav: 'Side navigation',`,
-  );
+    )
+
+    // Add translation for the open burger menu icon of header
+    .replace(
+      `    return \`\${num} options selected\`;
+  },`,
+  `    return \`\${num} options selected\`;
+  },
+  openMenu: 'Open menu',`,
+    )
+
+    // Add translation for the close burger menu icon of header
+    .replace(
+      "close: 'Close',",
+      `close: 'Close',
+  closeMenu: 'Close menu',`,
+    );
+
   return {
     content,
     path,

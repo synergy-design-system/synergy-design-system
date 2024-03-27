@@ -42,7 +42,11 @@ import { LocalizeController } from '../../utilities/localize.js';`,
     '<slot></slot>',
     `<slot>
           <span class="visually-hidden">
-            \${this.localize.term(\`badge_\${this.variant}\`)}
+            \${this.localize.term(
+              (this.variant === 'primary' || this.variant === 'neutral')
+                ? 'notification'
+                : this.variant
+              )}
           </span>
         </slot>`,
   );

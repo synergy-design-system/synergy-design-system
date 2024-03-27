@@ -48,7 +48,11 @@ export default class SynBadge extends SynergyElement {
       >
         <slot>
           <span class="visually-hidden">
-            ${this.localize.term(`badge_${this.variant}`)}
+            ${this.localize.term(
+              (this.variant === 'primary' || this.variant === 'neutral')
+                ? 'notification'
+                : this.variant
+              )}
           </span>
         </slot>
       </span>

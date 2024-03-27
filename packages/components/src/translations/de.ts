@@ -38,11 +38,10 @@ const translation: Translation = {
   showPassword: 'Passwort anzeigen',
   slideNum: slide => `Folie ${slide}`,
   toggleColorFormat: 'Farbformat umschalten',
-  badge_danger: 'Gefahr',
-badge_neutral: 'Neutral',
-badge_primary: 'Primär',
-badge_success: 'Erfolg',
-badge_warning: 'Warnung',
+  danger: 'Gefahr',
+notification: 'Benachrichtigung',
+success: 'Erfolg',
+warning: 'Warnung',
 };
 
 registerTranslation(translation);

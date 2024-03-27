@@ -45,9 +45,12 @@ export default class SynBadge extends SynergyElement {
           'badge--danger': this.variant === 'danger',
         })}
         role="status"
-        aria-label="${this.localize.term(`badge_${this.variant}`)}"
       >
-        <slot></slot>
+        <slot>
+          <span class="visually-hidden">
+            ${this.localize.term(`badge_${this.variant}`)}
+          </span>
+        </slot>
       </span>
     `;
   }

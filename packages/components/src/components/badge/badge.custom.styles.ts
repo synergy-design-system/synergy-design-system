@@ -46,4 +46,16 @@ export default css`
     padding: 0;
     width: var(--syn-spacing-x-small);
   }
+
+  .visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 `;

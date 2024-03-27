@@ -38,11 +38,13 @@ import { LocalizeController } from '../../utilities/localize.js';`,
   static styles`,
   );
 
-  // Add the translation to the render function
   content = content.replace(
-    'role="status"',
-    `role="status"
-        aria-label="\${this.localize.term(\`badge_\${this.variant}\`)}"`,
+    '<slot></slot>',
+    `<slot>
+          <span class="visually-hidden">
+            \${this.localize.term(\`badge_\${this.variant}\`)}
+          </span>
+        </slot>`,
   );
 
   return {

@@ -14,14 +14,14 @@ import {
   // waitUntil,
 } from '@open-wc/testing';
 
-import type SynHorizontalNav from './horizontal-nav.js';
+import type SynPrioNav from './prio-nav.js';
 import type SynNavItem from '../nav-item/nav-item.js';
 import {
   filterOnlyNavItems,
   getAssignedElementsForSlot,
 } from './utils.js';
 
-const getSlottedChildrenAsTuple = (el: SynHorizontalNav) => {
+const getSlottedChildrenAsTuple = (el: SynPrioNav) => {
   const { defaultSlot, menuSlot } = el;
   const slottedChildren = filterOnlyNavItems(getAssignedElementsForSlot(defaultSlot));
   const slottedPriorityItems = filterOnlyNavItems(getAssignedElementsForSlot(menuSlot));
@@ -32,17 +32,17 @@ const getSlottedChildrenAsTuple = (el: SynHorizontalNav) => {
   ];
 };
 
-describe('<syn-horizontal-nav>', () => {
+describe('<syn-prio-nav>', () => {
   describe('accessibility tests', () => {
     it('should be accessible', async () => {
-      const nav = await fixture<SynHorizontalNav>(html`<syn-horizontal-nav></syn-horizontal-nav>`);
+      const nav = await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
       await expect(nav).to.be.accessible();
     });
   });
 
   describe('when provided no parameters', () => {
     it('default values are set correctly', async () => {
-      const nav = await fixture<SynHorizontalNav>(html`<syn-horizontal-nav></syn-horizontal-nav>`);
+      const nav = await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
       expect(nav.priorityMenuLabel).to.equal('Menu');
     });
   });
@@ -56,7 +56,7 @@ describe('<syn-horizontal-nav>', () => {
         unobserve: sinon.stub(),
       });
 
-      await fixture<SynHorizontalNav>(html`<syn-horizontal-nav></syn-horizontal-nav>`);
+      await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
       expect(observeStub).to.have.been.called;
     });
 
@@ -68,7 +68,7 @@ describe('<syn-horizontal-nav>', () => {
         unobserve: sinon.stub(),
       });
 
-      const nav = await fixture<SynHorizontalNav>(html`<syn-horizontal-nav></syn-horizontal-nav>`);
+      const nav = await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
       nav.remove();
       expect(disconnectStub).to.have.been.called;
     });
@@ -82,15 +82,15 @@ describe('<syn-horizontal-nav>', () => {
      * @param width The width to use
      * @returns A horizontal nav fixture
      */
-    const createFixture = async (width = 800) => fixture<SynHorizontalNav>(html`
-      <syn-horizontal-nav style="width: ${width}px;">
+    const createFixture = async (width = 800) => fixture<SynPrioNav>(html`
+      <syn-prio-nav style="width: ${width}px;">
         <syn-nav-item style="width: 100px">Item 1</syn-nav-item>
         <syn-nav-item style="width: 100px">Item 2</syn-nav-item>
         <syn-nav-item style="width: 100px">Item 3</syn-nav-item>
         <syn-nav-item style="width: 100px">Item 4</syn-nav-item>
         <syn-nav-item style="width: 100px" id="button-item" role="button">Item 5</syn-nav-item>
         <syn-nav-item style="width: 100px">Item 6</syn-nav-item>
-      </syn-horizontal-nav>
+      </syn-prio-nav>
     `);
 
     /**
@@ -99,14 +99,14 @@ describe('<syn-horizontal-nav>', () => {
      * @param nav The navigation to update
      * @param size The new size to use
      */
-    const forceSizeUpdateOnFixture = async (nav: SynHorizontalNav, size: number) => {
+    const forceSizeUpdateOnFixture = async (nav: SynPrioNav, size: number) => {
       nav.style.width = `${size}px`;
       await nav.updateComplete;
       nav.handlePriorityMenu();
       await nav.updateComplete;
     };
 
-    const getButtonItem = (nav: SynHorizontalNav) => nav.querySelector('#button-item') as SynNavItem;
+    const getButtonItem = (nav: SynPrioNav) => nav.querySelector('#button-item') as SynNavItem;
 
     it('should render all nav items into the default slot per default', async () => {
       const nav = await createFixture();

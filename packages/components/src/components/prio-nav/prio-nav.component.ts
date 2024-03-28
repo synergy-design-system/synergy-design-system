@@ -5,7 +5,7 @@ import { html } from 'lit/static-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
-import styles from './horizontal-nav.styles.js';
+import styles from './prio-nav.styles.js';
 import SynDropdown from '../dropdown/dropdown.component.js';
 import SynIcon from '../icon/icon.component.js';
 import SynMenu from '../menu/menu.component.js';
@@ -16,18 +16,18 @@ import {
 } from './utils.js';
 
 /**
- * @summary The `<syn-horizontal-nav />` element provides a generic navigation bar
+ * @summary The `<syn-prio-nav />` element provides a generic navigation bar
  * that can be used to group multiple navigation items  (usually `<syn-nav-item />`s) together.
  * It will automatically group all items not visible in the viewport into a custom priority menu
  *
  * @example
- * <syn-horizontal-nav>
+ * <syn-prio-nav>
  *  <syn-nav-item current>Item 1</syn-nav-item>
  *  <button role="menuitem">Item 2 (custom)</button>
  *  <syn-nav-item current>Item 3</syn-nav-item>
- * </syn-horizontal-nav>
+ * </syn-prio-nav>
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-horizontal-nav--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
  * @since 1.10
  *
@@ -46,7 +46,7 @@ import {
  *
  * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
-export default class SynHorizontalNav extends SynergyElement {
+export default class SynPrioNav extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {

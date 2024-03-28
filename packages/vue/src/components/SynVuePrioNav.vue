@@ -6,18 +6,18 @@
 // ---------------------------------------------------------------------
 
 /**
- * @summary The `<syn-horizontal-nav />` element provides a generic navigation bar
+ * @summary The `<syn-prio-nav />` element provides a generic navigation bar
  * that can be used to group multiple navigation items  (usually `<syn-nav-item />`s) together.
  * It will automatically group all items not visible in the viewport into a custom priority menu
  *
  * @example
- * <syn-horizontal-nav>
+ * <syn-prio-nav>
  *  <syn-nav-item current>Item 1</syn-nav-item>
  *  <button role="menuitem">Item 2 (custom)</button>
  *  <syn-nav-item current>Item 3</syn-nav-item>
- * </syn-horizontal-nav>
+ * </syn-prio-nav>
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-horizontal-nav--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
  * @since 1.10
  *
@@ -37,12 +37,12 @@
  * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
 import { computed, ref } from 'vue';
-import '@synergy-design-system/components/components/horizontal-nav/horizontal-nav.js';
+import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 
-import type { SynHorizontalNav } from '@synergy-design-system/components';
+import type { SynPrioNav } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynHorizontalNav>();
+const element = ref<SynPrioNav>();
 
 // Map methods
 
@@ -56,7 +56,7 @@ const props = defineProps<{
 * The components priority menu label.
 This will be shown after the priority menu 3 dots link
  */
-  'priorityMenuLabel'?: SynHorizontalNav['priorityMenuLabel'];
+  'priorityMenuLabel'?: SynPrioNav['priorityMenuLabel'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -76,11 +76,11 @@ defineEmits<{
 </script>
 
 <template>
-  <syn-horizontal-nav
+  <syn-prio-nav
 
     v-bind="visibleProps"
     ref="element"
   >
     <slot />
-  </syn-horizontal-nav>
+  </syn-prio-nav>
 </template>

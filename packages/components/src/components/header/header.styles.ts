@@ -97,10 +97,10 @@ export default css`
   }
 
   /**
-   * Make sure to remove the default paddings from the slotted <syn-horizontal-nav />
+   * Make sure to remove the default paddings from the slotted <syn-prio-nav />
    * This makes sure the first navigation item is aligned with the logo
    */
-  .header__navigation ::slotted(syn-horizontal-nav) {
+  .header__navigation ::slotted(syn-prio-nav) {
     --navigation-spacing: 0 var(--syn-spacing-medium);
   }
 

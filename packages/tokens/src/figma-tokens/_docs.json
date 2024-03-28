@@ -616,14 +616,14 @@
         "type": "text"
       }
     },
-    "horizontal-nav": {
+    "prio-nav": {
       "default": {
         "description": {
-          "value": "Horizontal navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the horizontal navigation does not have a child menu navigation, if you want to have a child navigation, combine the horizontal navigation and the side navigation",
+          "value": "Priority navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the priority navigation does not have a child menu navigation, if you want to have a child navigation, combine the priority navigation and the side navigation",
           "type": "text"
         },
         "title": {
-          "value": "Horizontal Navigation",
+          "value": "Priority Navigation",
           "type": "text"
         }
       },
@@ -977,7 +977,7 @@
           "type": "text"
         },
         "info": {
-          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-horizontal-nav)",
+          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-prio-nav)",
           "type": "text"
         },
         "warning": {

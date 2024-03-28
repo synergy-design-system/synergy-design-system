@@ -8,6 +8,11 @@ export default css`
     --navigation-spacing: 0 var(--syn-spacing-large);
 
     display: block;
+
+    /**
+     * Needed because the positioning of the priority menu is absolute
+     */
+    position: relative !important;
   }
 
   .horizontal-nav {

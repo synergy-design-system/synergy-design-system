@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/horizontal-nav/horizontal-nav.js';
+import '../../../components/src/components/prio-nav/prio-nav.js';
 import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
@@ -147,13 +147,13 @@ export const Navigation = {
   },
   render: () => html`
     <syn-header>
-      <syn-horizontal-nav slot="navigation">
+      <syn-prio-nav slot="navigation">
         <syn-nav-item current>Domains</syn-nav-item>
         <syn-nav-item>Projects</syn-nav-item>
         <syn-nav-item>Trainings</syn-nav-item>
         <syn-nav-item>Evaluations</syn-nav-item>
         <syn-nav-item>Deployments</syn-nav-item>
-      </syn-horizontal-nav>
+      </syn-prio-nav>
       App with Navigation
     </syn-header>
   `,

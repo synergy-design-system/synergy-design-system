@@ -1,4 +1,4 @@
-import SynNavItem from '../nav-item/nav-item.component.js';
+import type SynNavItem from '../nav-item/nav-item.component.js';
 
 /**
  * Get a list of all assigned elements for a given slot

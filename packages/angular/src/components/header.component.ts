@@ -28,6 +28,8 @@ import '@synergy-design-system/components/components/header/header.js';
  * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
  * @slot navigation - This slot can be used to add an optional horizontal navigation
+ * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
+ * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
  *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
@@ -35,6 +37,7 @@ import '@synergy-design-system/components/components/header/header.js';
  * @csspart label - The element wrapping the application name
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
+ * @csspart burger-menu-toggle-button - The button that toggles the burger menu
  */
 @Component({
   selector: 'syn-header',
@@ -53,7 +56,7 @@ export class SynHeaderComponent {
 
   /**
 * The headers label.
-* If you need to display HTML, use the `label` slot instead.
+* If you need to display HTML, use the `default` slot instead.
  */
   @Input()
   set label(v: SynHeader['label']) {
@@ -62,5 +65,42 @@ export class SynHeaderComponent {
 
   get label() {
     return this._el.label;
+  }
+
+  /**
+* Adds a button to toggle the burger menu's visibility.
+The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
+ */
+  @Input()
+  set burgerMenuToggle(v: SynHeader['burgerMenuToggle']) {
+    this._ngZone.runOutsideAngular(() => (this._el.burgerMenuToggle = v));
+  }
+
+  get burgerMenuToggle() {
+    return this._el.burgerMenuToggle;
+  }
+
+  /**
+* Determines whether or not the burger menu is currently visible.
+ */
+  @Input()
+  set burgerMenuVisible(v: SynHeader['burgerMenuVisible']) {
+    this._ngZone.runOutsideAngular(() => (this._el.burgerMenuVisible = v));
+  }
+
+  get burgerMenuVisible() {
+    return this._el.burgerMenuVisible;
+  }
+
+  /**
+* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
+like showing the burger menu icon and open / close handling.
+
+If no side navigation is connected or undefined is passed as argument,
+the header will use the first `syn-side-nav` element it finds.
+ */
+  @Input()
+  callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
   }
 }

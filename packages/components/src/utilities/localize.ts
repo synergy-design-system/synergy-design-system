@@ -23,11 +23,15 @@ export class LocalizeController extends DefaultLocalizationController<Translatio
 export { registerTranslation } from '@shoelace-style/localize';
 
 export interface Translation extends DefaultTranslation {
-    danger: string;
+  closeMenu: string;
+  danger: string;
   notification: string;
+  openMenu: string;
+  sideNav: string;
   success: string;
   warning: string;
-$code: string; // e.g. en, en-GB
+
+  $code: string; // e.g. en, en-GB
   $name: string; // e.g. English, Español
   $dir: 'ltr' | 'rtl';
 

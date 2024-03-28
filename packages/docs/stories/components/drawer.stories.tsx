@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/drawer/drawer';
+import '../../../components/src/components/drawer/drawer.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { userEvent } from '@storybook/test';
 import { html } from 'lit';
@@ -11,6 +11,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
 const { overrideArgs } = storybookHelpers('syn-drawer');
@@ -22,6 +23,7 @@ const meta: Meta = {
   component: 'syn-drawer',
   parameters: {
     docs: {
+      container: DisableFocusTrap,
       description: {
         component: generateStoryDescription('drawer', 'default'),
       },
@@ -35,9 +37,6 @@ const meta: Meta = {
 export default meta;
 
 type Story = StoryObj;
-
-// Helper function that closes all drawers on the overview page
-const closeAllDrawers = 'document.querySelectorAll(\'syn-drawer\').forEach(d => {d.hide(); })';
 
 export const Default = {
   args: overrideArgs([
@@ -100,7 +99,7 @@ export const Default = {
         const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
         btn.addEventListener('click', () => drawer.show());
-        closeButton.addEventListener('click', () => ${closeAllDrawers});
+        closeButton.addEventListener('click', () => drawer.hide());
 
         btn.classList.add('story-loaded');
       }
@@ -134,7 +133,7 @@ export const SlideInFromStart: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -164,7 +163,7 @@ export const SlideInFromTop: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -194,7 +193,7 @@ export const SlideInFromBottom: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -230,7 +229,7 @@ export const ContainedToAnElement: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => (drawer.open = !drawer.open));
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -260,7 +259,7 @@ export const CustomSize: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -315,7 +314,7 @@ export const Scrolling: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };
@@ -352,7 +351,7 @@ export const HeaderActions: Story = {
       const newWindowButton = drawer.querySelector('.new-window');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
       newWindowButton.addEventListener('click', () => window.open(location.href));
     </script>
   `,
@@ -390,7 +389,7 @@ export const PreventingTheDrawerFromClosing: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
 
       // Prevent the drawer from closing when the user clicks on the overlay
       drawer.addEventListener('syn-request-close', event => {
@@ -433,7 +432,7 @@ export const CustomizingInitialFocus: Story = {
       const closeButton = drawer.querySelector('syn-button[variant="filled"]');
 
       openButton.addEventListener('click', () => drawer.show());
-      closeButton.addEventListener('click', () => ${closeAllDrawers});
+      closeButton.addEventListener('click', () => drawer.hide());
     </script>
   `,
 };

@@ -1,4 +1,5 @@
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -10,15 +11,44 @@ body {
   font-size: var(--syn-font-size-medium);
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 syn-header {
   position: sticky;
   top: 0;
   z-index: 50;
 }
 
-main {
+.main {
   background: var(--syn-color-neutral-0);
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+}
+
+/* Custom Routing */
+.router-page {
+  display: none;
+  visibility: hidden;
+}
+
+/* Show active page */
+.router-page[data-active="true"] {
+  display: contents;
+  visibility: visible;
 }
 
 /* Form Wrappers */

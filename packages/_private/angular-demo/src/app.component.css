@@ -4,7 +4,18 @@ syn-header {
   z-index: 50;
 }
 
-main {
+.main {
+  flex-grow: 1;
+  display: flex;
   background: var(--syn-color-neutral-0);
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  box-sizing: border-box;
+  flex-grow: 1;
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+  height: 100%;
+  overflow-y: auto;
 }

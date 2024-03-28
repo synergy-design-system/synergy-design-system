@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
@@ -10,16 +11,18 @@ body {
   font-size: var(--syn-font-size-medium);
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 syn-header {
   position: sticky;
   top: 0;
   z-index: 50;
 }
 
-main {
-  background: var(--syn-color-neutral-0);
-  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
-}
 
 /* Form Wrappers */
 .syn-fieldset {
@@ -57,4 +60,20 @@ form .syn-fieldset:last-of-type {
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  background: var(--syn-color-neutral-0);
+  overflow: hidden;
+}
+
+.content {
+  flex-grow: 1;
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
 }

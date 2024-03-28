@@ -23,7 +23,7 @@ export default css`
    * removes the default shoelace shadow completely
    */
   .drawer__panel {
-    border: 0 solid var(--syn-color-neutral-300);
+    border: 0 solid var(--syn-panel-border-color);
     box-shadow: none;
     color: var(--syn-color-neutral-950);
   }

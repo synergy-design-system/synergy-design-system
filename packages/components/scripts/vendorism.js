@@ -12,6 +12,7 @@ import {
   vendorIcon,
   vendorIconButton,
   vendorInput,
+  vendorLocalize,
   vendorMenuItem,
   vendorMenuLabel,
   vendorSelect,
@@ -276,12 +277,14 @@ const config = {
       vendorIconButton,
       vendorIcon,
       vendorInput,
+      vendorLocalize,
       vendorMenuItem,
       vendorMenuLabel,
       vendorSelect,
       vendorTextarea,
       vendorTranslations,
       vendorTag,
+      vendorTranslations,
       vendorWebTestRunnerConfig,
     ],
   },
@@ -325,9 +328,14 @@ if (!options.getOnly) {
    * after shoelace is available so that they can be vendored
    */
   await Promise.all(components.map(async (component) => {
-    const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
-    const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
-    await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
+    // Skip drawer story, as we already have a custom story as .tsx file
+    // and otherwise a new drawer.story.ts would be added
+    if (component !== 'drawer') {
+      const inputFilePath = `./vendor/docs/pages/components/${component}.md`;
+      const outputFilePath = `./vendor/src/components/${component}/${component}.stories.ts`;
+
+      await generateStorybookFile(inputFilePath, outputFilePath, component, libraryPrefix);
+    }
   }));
 
   // Move all files from '../docs/src/components' to './src/temp'

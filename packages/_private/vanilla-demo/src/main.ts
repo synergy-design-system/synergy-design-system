@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-import type { SynChangeEvent, SynSwitch } from '@synergy-design-system/components';
+import history from 'history/browser';
+import type { SynChangeEvent, SynNavItem, SynSwitch } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/themes/utility.css';
@@ -7,6 +9,18 @@ import './app.css';
 import '@synergy-design-system/components';
 
 const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
+
+const setActiveView = (pathname: string) => {
+  document.querySelectorAll<HTMLDivElement>('.router-page').forEach((item) => {
+    const active = item.dataset.route === pathname;
+    item.dataset.active = active ? 'true' : 'false';
+  });
+
+  document.querySelectorAll<SynNavItem>('syn-nav-item').forEach((item) => {
+    const current = item.href === pathname;
+    item.current = current;
+  });
+};
 
 // We have to adjust the original form data
 // so it is possible to send multiple values
@@ -29,6 +43,29 @@ const normalizeData = (data: FormData) => Array
       [currKey]: finalValue,
     };
   }, {} as Record<string, string>);
+
+const initRouting = async () => {
+  history.listen(({ location }) => {
+    const { pathname } = location;
+    setActiveView(pathname);
+  });
+
+  await customElements.whenDefined('syn-nav-item');
+  setActiveView(history.location.pathname);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('syn-side-nav');
+    root?.addEventListener('click', (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if ((e.target as HTMLElement).tagName.toLowerCase() === 'syn-nav-item') {
+        const target = e.target as SynNavItem;
+        history.push(history.createHref(target.href));
+      }
+    });
+  });
+};
 
 const initThemeSwitch = async () => {
   await customElements.whenDefined('syn-switch');
@@ -69,5 +106,6 @@ const initApp = async () => {
   });
 };
 
+await initRouting();
 await initApp();
 await initThemeSwitch();

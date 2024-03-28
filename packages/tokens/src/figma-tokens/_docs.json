@@ -2042,6 +2042,16 @@
           "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
           "type": "text"
         }
+      },
+      "burger-menu": {
+        "title": {
+          "value": "Burger Menu",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the Burger Menu as trigger to open and close the Navigation. In the open state, the icon changes to a cancel icon. This will be hidden, if you use a rail navigation.",
+          "type": "text"
+        }
       }
     },
     "side-nav": {
@@ -2061,7 +2071,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation.\nOn touch devices the navigation opens on click and shows an overlay.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation. ",
+          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
           "type": "text"
         }
       },

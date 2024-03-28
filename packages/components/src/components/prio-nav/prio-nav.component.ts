@@ -44,7 +44,6 @@ import {
  *
  * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
  *
- * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
 export default class SynPrioNav extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -203,7 +202,7 @@ export default class SynPrioNav extends SynergyElement {
         placement="bottom-end"
       >
         <syn-nav-item slot="trigger">
-          <syn-icon name="more_horiz" label="More" slot="prefix"></syn-icon>
+          <syn-icon name="more" library="system" label="More" slot="prefix"></syn-icon>
           <span
             class=${classMap({
               'priority-menu__label': true,

@@ -39,7 +39,6 @@ Component.define('syn-prio-nav');
  *
  * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
  *
- * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
 export const SynPrioNav = createComponent({
   displayName: 'SynPrioNav',

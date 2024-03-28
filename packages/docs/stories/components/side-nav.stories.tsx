@@ -99,10 +99,9 @@ export const Default: Story = {
       const selector = 'story-loaded-'.concat(index);
       if(!mainContent.classList.contains(selector)) {
         const header = mainContent.previousElementSibling;
-        const sideNavSelector = '.' + selector + '.side-nav-default > syn-side-nav';
+        const sideNav = mainContent.querySelector('syn-side-nav');
+        header.connectSideNavigation(sideNav);
         mainContent.classList.add(selector);
-        
-        header.sideNavSelector = sideNavSelector;
        }
     });
   </script>
@@ -118,7 +117,7 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <syn-header side-nav-selector=".side-nav-fixed">Side Navigation</syn-header>
+  <syn-header class="header-fixed">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-fixed" open>
       <syn-nav-item vertical current>
@@ -161,6 +160,11 @@ export const Fixed: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
+  <script type="module">
+    const header = document.querySelector('.header-fixed');
+    const sideNav = document.querySelector('.side-nav-fixed');
+    header.connectSideNavigation(sideNav);
+  </script>
   <style>
     .main{
       position: relative;
@@ -183,7 +187,7 @@ export const Rail: Story = {
     },
   },
   render: () => html`
-  <syn-header side-nav-selector=".side-nav-rail">Side Navigation</syn-header>
+  <syn-header>Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-rail" rail>
       <syn-nav-item vertical current>
@@ -251,7 +255,7 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <syn-header side-nav-selector=".side-nav-shrink">Side Navigation</syn-header>
+  <syn-header class="header-shrink">Side Navigation</syn-header>
    <main class="main">
     <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
       <syn-nav-item vertical current>
@@ -294,6 +298,11 @@ export const Shrink: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,    
     </div>
   </main>
+  <script type="module">
+    const header = document.querySelector('.header-shrink');
+    const sideNav = document.querySelector('.side-nav-shrink');
+    header.connectSideNavigation(sideNav);
+  </script>
   <style>
     .main {
       position: relative;
@@ -323,7 +332,7 @@ export const Indentation: Story = {
     },
   },
   render: () => html`
-  <syn-header side-nav-selector=".side-nav-indentation">Side Navigation</syn-header>
+  <syn-header class="header-indentation">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-indentation" open>
       <syn-nav-item vertical open>
@@ -375,6 +384,11 @@ export const Indentation: Story = {
       et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
     </div>
   </main>
+  <script type="module">
+    const header = document.querySelector('.header-indentation');
+    const sideNav = document.querySelector('.side-nav-indentation');
+    header.connectSideNavigation(sideNav);
+  </script>
   <style>
     .main{
       position: relative;

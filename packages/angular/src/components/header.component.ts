@@ -93,22 +93,14 @@ The button is added automatically, if the component finds a syn-side-nav in non-
   }
 
   /**
-* The selector for the side nav, so the header can find the side nav via querySelector
-and add automatic burger menu icon and toggle handling.
+* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
+like showing the burger menu icon and open / close handling.
 
-If no selector is provided, the header will use the first `syn-side-nav` element it finds.
+If no side navigation is connected or undefined is passed as argument,
+the header will use the first `syn-side-nav` element it finds.
  */
   @Input()
-  set sideNavSelector(v: SynHeader['sideNavSelector']) {
-    this._ngZone.runOutsideAngular(() => (this._el.sideNavSelector = v));
-  }
-
-  get sideNavSelector() {
-    return this._el.sideNavSelector;
-  }
-
-  @Input()
-  callHandleSideNavSelectorChange(...args: Parameters<SynHeader['handleSideNavSelectorChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleSideNavSelectorChange(...args));
+  callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
   }
 }

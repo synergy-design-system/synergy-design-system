@@ -132,7 +132,7 @@ export const MetaNavigation: Story = {
         <syn-icon-button color="neutral" name="account_circle" label="Account"></syn-icon-button>
         <syn-icon-button color="neutral" name="more_vert" label="More"></syn-icon-button>
       </nav>
-      Meta Navigation
+      App Name
     </syn-header>
   `,
 } as Story;
@@ -154,7 +154,7 @@ export const Navigation = {
         <syn-nav-item>Evaluations</syn-nav-item>
         <syn-nav-item>Deployments</syn-nav-item>
       </syn-prio-nav>
-      App with Navigation
+      App Name
     </syn-header>
   `,
 };
@@ -163,14 +163,13 @@ export const BurgerMenu = {
   parameters: {
     docs: {
       description: {
-        // TODO: exchange description with the correct from figma asap it is available as token
-        story: generateStoryDescription('header', 'navigation'),
+        story: generateStoryDescription('header', 'burger-menu'),
       },
     },
   },
   render: () => html`
     <syn-header burger-menu-toggle>
-      Burger Menu
+      App Name
     </syn-header>
   `,
 };

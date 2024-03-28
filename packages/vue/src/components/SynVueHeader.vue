@@ -38,10 +38,17 @@ import type { SynHeader } from '@synergy-design-system/components';
 const element = ref<SynHeader>();
 
 // Map methods
-const callHandleSideNavSelectorChange = (...args: Parameters<SynHeader['handleSideNavSelectorChange']>) => element.value?.handleSideNavSelectorChange(...args);
+/**
+* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
+like showing the burger menu icon and open / close handling.
+
+If no side navigation is connected or undefined is passed as argument,
+the header will use the first `syn-side-nav` element it finds.
+ */
+const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => element.value?.connectSideNavigation(...args);
 
 defineExpose({
-  callHandleSideNavSelectorChange,
+  callConnectSideNavigation,
 });
 
 // Map attributes
@@ -62,14 +69,6 @@ The button is added automatically, if the component finds a syn-side-nav in non-
 * Determines whether or not the burger menu is currently visible.
  */
   'burgerMenuVisible'?: SynHeader['burgerMenuVisible'];
-
-  /**
-* The selector for the side nav, so the header can find the side nav via querySelector
-and add automatic burger menu icon and toggle handling.
-
-If no selector is provided, the header will use the first `syn-side-nav` element it finds.
- */
-  'sideNavSelector'?: SynHeader['sideNavSelector'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

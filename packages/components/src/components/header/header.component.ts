@@ -9,7 +9,6 @@ import componentStyles from '../../styles/component.styles.js';
 import styles from './header.styles.js';
 import SynIcon from '../icon/icon.js';
 import type SynSideNav from '../side-nav/side-nav.component.js';
-import { watch } from '../../internal/watch.js';
 import { LocalizeController } from '../../utilities/localize.js';
 
 /**
@@ -67,14 +66,6 @@ export default class SynHeader extends SynergyElement {
   @property({ attribute: 'burger-menu-visible', type: Boolean }) burgerMenuVisible = false;
 
   /**
-   * The selector for the side nav, so the header can find the side nav via querySelector
-   * and add automatic burger menu icon and toggle handling.
-   *
-   * If no selector is provided, the header will use the first `syn-side-nav` element it finds.
-   */
-  @property({ attribute: 'side-nav-selector' }) sideNavSelector = '';
-
-  /**
    * The side nav
    */
   @state() private sideNav: SynSideNav | null;
@@ -95,20 +86,23 @@ export default class SynHeader extends SynergyElement {
   }
 
   private addSideNavListener() {
-    this.sideNav?.addEventListener('syn-show', () => this.handleSideNavStateChange());
-    this.sideNav?.addEventListener('syn-hide', () => this.handleSideNavStateChange());
+    this.sideNav?.addEventListener('syn-show', this.handleSideNavStateChange);
+    this.sideNav?.addEventListener('syn-hide', this.handleSideNavStateChange);
   }
 
   private removeSideNavListener() {
-    this.sideNav?.removeEventListener('syn-show', () => this.handleSideNavStateChange());
-    this.sideNav?.removeEventListener('syn-hide', () => this.handleSideNavStateChange());
+    this.sideNav?.removeEventListener('syn-show', this.handleSideNavStateChange);
+    this.sideNav?.removeEventListener('syn-hide', this.handleSideNavStateChange);
   }
 
-  @watch('sideNavSelector')
-  handleSideNavSelectorChange() {
-    this.removeSideNavListener();
-    this.sideNav = document.querySelector(this.sideNavSelector || 'syn-side-nav');
-    this.addSideNavListener();
+  constructor() {
+    super();
+    this.handleSideNavStateChange.bind(this);
+  }
+
+  firstUpdated() {
+    const sideNav = document.querySelector('syn-side-nav')!;
+    this.connectSideNavigation(sideNav);
   }
 
   disconnectedCallback() {
@@ -116,6 +110,21 @@ export default class SynHeader extends SynergyElement {
 
     //  Remove listeners
     this.removeSideNavListener();
+  }
+
+  /**
+   * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
+   * like showing the burger menu icon and open / close handling.
+   *
+   * If no side navigation is connected or undefined is passed as argument,
+   * the header will use the first `syn-side-nav` element it finds.
+   *
+   * @param sideNav The side navigation to connect to the header
+   */
+  connectSideNavigation(sideNav: SynSideNav) {
+    this.removeSideNavListener();
+    this.sideNav = sideNav || document.querySelector('syn-side-nav');
+    this.addSideNavListener();
   }
 
   // eslint-disable-next-line complexity
@@ -131,10 +140,10 @@ export default class SynHeader extends SynergyElement {
     return html`
       <header
         class=${classMap({
-          header: true,
-          'header--has-burger-menu': this.burgerMenuToggle,
-          'header--has-navigation': hasNavigation,
-        })}
+      header: true,
+      'header--has-burger-menu': this.burgerMenuToggle,
+      'header--has-navigation': hasNavigation,
+    })}
         part="base"
       >
         <!-- .header__content -->
@@ -149,16 +158,15 @@ export default class SynHeader extends SynergyElement {
                     @click=${this.handleBurgerMenuToggle}
                     aria-label=${this.localize.term(this.burgerMenuVisible ? 'closeMenu' : 'openMenu')}
                   >
-                  <!-- TODO: Exchange burger menu icons with the correct ones as soon as they are available as system icons -->
                     ${burgerMenuVisibility
                       ? html`
                           <slot name="show-burger-menu">
-                            <syn-icon name="add" library="system"></syn-icon>
+                            <syn-icon name="x-lg" library="system"></syn-icon>
                           </slot>
                         `
                       : html`
                           <slot name="hide-burger-menu">
-                            <syn-icon name="indeterminate" library="system"></syn-icon>
+                            <syn-icon name="menu" library="system"></syn-icon>
                           </slot>
                         `}
                   </button>

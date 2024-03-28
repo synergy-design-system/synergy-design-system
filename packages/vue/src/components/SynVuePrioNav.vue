@@ -34,7 +34,6 @@
  *
  * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
  *
- * @todo more_horiz - Icon should be part of system library (and renamed to "more")
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/prio-nav/prio-nav.js';

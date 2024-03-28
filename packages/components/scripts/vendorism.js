@@ -6,6 +6,7 @@ import { eject, get, set } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
+  vendorBadge,
   vendorButton,
   vendorDrawer,
   vendorIcon,
@@ -16,6 +17,7 @@ import {
   vendorSelect,
   vendorTag,
   vendorTextarea,
+  vendorTranslations,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
 
@@ -42,6 +44,7 @@ export const components = [
   'menu',
   'menu-item',
   'menu-label',
+  'badge',
 ].sort();
 
 /**
@@ -80,6 +83,7 @@ const otherIncludes = [
   'src/declaration.d.ts',
   'src/shoelace-autoloader*',
   'src/translations/de.ts',
+  'src/utilities/localize.ts',
   'src/utilities/form*',
   'src/utilities/icon-library*',
   'src/components/button-group/button-group.ts',
@@ -266,6 +270,7 @@ const config = {
         };
       },
       // specialized customizations
+      vendorBadge,
       vendorButton,
       vendorDrawer,
       vendorIconButton,
@@ -275,6 +280,7 @@ const config = {
       vendorMenuLabel,
       vendorSelect,
       vendorTextarea,
+      vendorTranslations,
       vendorTag,
       vendorWebTestRunnerConfig,
     ],

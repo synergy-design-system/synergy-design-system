@@ -4,7 +4,7 @@ import '@synergy-design-system/components/themes/utility.css';
 import './app.css';
 
 import { createApp } from 'vue';
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router'
 import App from './App.vue';
 import DemoForm from './DemoForm.vue';
 import HomeView from './HomeView.vue';
@@ -15,7 +15,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 

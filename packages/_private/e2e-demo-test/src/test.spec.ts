@@ -9,6 +9,18 @@ import TestPage from './test.page';
 const defaultPort = 5173;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;
 
+const availablePages = {
+  form: '/contact-form',
+  index: '/',
+};
+
+/**
+ * Get a navigation path
+ * @param path The path to navigate to
+ * @returns Path to navigate to
+ */
+const getURL = (path: string = '') => `${host}${path}`;
+
 async function getInputValue(locator: Locator) {
   return locator.evaluate((el: SynInput | SynTextarea | SynSelect) => el.value);
 }
@@ -68,7 +80,7 @@ async function checkInitialState(form: TestPage) {
 
 test('Form reset', async ({ page }) => {
   const form = new TestPage(page);
-  await form.goto(host);
+  await form.goto(getURL(availablePages.form));
 
   // fill-out the form correctly
   await fillForm(form);
@@ -82,7 +94,7 @@ test('Form reset', async ({ page }) => {
 
 test('Invalid form submit', async ({ page }) => {
   const form = new TestPage(page);
-  await form.goto(host);
+  await form.goto(getURL(availablePages.form));
 
   // submit invalid form
   await form.submit.click();
@@ -103,7 +115,7 @@ test('Invalid form submit', async ({ page }) => {
 
 test('Form submit', async ({ page }) => {
   const form = new TestPage(page);
-  await form.goto(host);
+  await form.goto(getURL(availablePages.form));
 
   // react on submit / confirm dialog
   let submitted = false;

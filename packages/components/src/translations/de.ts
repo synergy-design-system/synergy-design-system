@@ -15,7 +15,6 @@ const translation: Translation = {
   carousel: 'Karussell',
   clearEntry: 'Eingabe löschen',
   close: 'Schließen',
-  closeMenu: 'Menü schließen',
   copied: 'Kopiert',
   copy: 'Kopieren',
   currentValue: 'Aktueller Wert',
@@ -29,7 +28,6 @@ const translation: Translation = {
     if (num === 1) return '1 Option ausgewählt';
     return `${num} Optionen ausgewählt`;
   },
-  openMenu: 'Menü öffnen',
   previousSlide: 'Vorherige Folie',
   progress: 'Fortschritt',
   remove: 'Entfernen',
@@ -38,9 +36,15 @@ const translation: Translation = {
   scrollToStart: 'Zum Anfang scrollen',
   selectAColorFromTheScreen: 'Farbe vom Bildschirm auswählen',
   showPassword: 'Passwort anzeigen',
-  sideNav: 'Seitennavigation',
   slideNum: slide => `Folie ${slide}`,
-  toggleColorFormat: 'Farbformat umschalten'
+  toggleColorFormat: 'Farbformat umschalten',
+  closeMenu: 'Menu schließen',
+danger: 'Gefahr',
+notification: 'Benachrichtigung',
+openMenu: 'Menu öffnen',
+sideNav: 'Seitennavigation',
+success: 'Erfolg',
+warning: 'Warnung',
 };
 
 registerTranslation(translation);

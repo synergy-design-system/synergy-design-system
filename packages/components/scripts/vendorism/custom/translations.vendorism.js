@@ -1,139 +1,116 @@
-const FILES_TO_TRANSFORM = [
-  'translations/en.ts',
-  'translations/de.ts',
-  'utilities/localize.ts',
-];
-
 /**
- * Transform the translation type
- * @param {String} path
- * @param {String} originalContent
- * @returns
+ * Static translations table
  */
-const transformTranslationType = (path, originalContent) => {
-  const content = originalContent
-    // Add translation for the side navigation
-    .replace(
-      'showPassword: string;',
-      `showPassword: string;
-  sideNav: string;`,
-    )
-
-    // Add translation for the open burger menu icon of header
-    .replace(
-      'numOptionsSelected: (num: number) => string;',
-      `numOptionsSelected: (num: number) => string;
-  openMenu: string;`,
-    )
-
-    // Add translation for the close burger menu icon of header
-    .replace(
-      'close: string;',
-      `close: string;
-  closeMenu: string;`,
-    );
-
-  return {
-    content,
-    path,
-  };
-};
-
-/**
- * Transform the german translation file
- * @param {String} path
- * @param {String} originalContent
- * @returns
- */
-const transformGerman = (path, originalContent) => {
-  const content = originalContent
-    // Add translation for the side navigation
-    .replace(
-      "showPassword: 'Passwort anzeigen',",
-      `showPassword: 'Passwort anzeigen',
-  sideNav: 'Seitennavigation',`,
-    )
-
-    // Add translation for the open burger menu icon of header
-    .replace(
-      `    return \`\${num} Optionen ausgewählt\`;
-  },`,
-  `    return \`\${num} Optionen ausgewählt\`;
+const translations = {
+  closeMenu: {
+    de: 'Menu schließen',
+    en: 'Close menu',
   },
-  openMenu: 'Menü öffnen',`,
-    )
-
-    // Add translation for the close burger menu icon of header
-    .replace(
-      "close: 'Schließen',",
-      `close: 'Schließen',
-  closeMenu: 'Menü schließen',`,
-    );
-
-  return {
-    content,
-    path,
-  };
+  danger: {
+    de: 'Gefahr',
+    en: 'Danger',
+  },
+  notification: {
+    de: 'Benachrichtigung',
+    en: 'Notification',
+  },
+  openMenu: {
+    de: 'Menu öffnen',
+    en: 'Open menu',
+  },
+  sideNav: {
+    de: 'Seitennavigation',
+    en: 'Side navigation',
+  },
+  success: {
+    de: 'Erfolg',
+    en: 'Success',
+  },
+  warning: {
+    de: 'Warnung',
+    en: 'Warning',
+  },
 };
 
 /**
- * Transform the english translation file
- * @param {String} path
- * @param {String} originalContent
- * @returns
+ * Get a translation table for a given key and language
+ * Will automatically fall back to english if no language string can be found
+ * @param {string} language
+ * @returns Object of key value pairs for the given language
  */
-const transformEnglish = (path, originalContent) => {
-  const content = originalContent
-    // Add translation for the side navigation
-    .replace(
-      "showPassword: 'Show password',",
-      `showPassword: 'Show password',
-  sideNav: 'Side navigation',`,
-    )
+const getTranslationsForLanguage = (language) => Object
+  .entries(translations)
+  .reduce((acc, [key, value]) => ({
+    ...acc,
+    [key]: value[language] ?? value.en,
+  }), {});
 
-    // Add translation for the open burger menu icon of header
-    .replace(
-      `    return \`\${num} options selected\`;
-  },`,
-  `    return \`\${num} options selected\`;
-  },
-  openMenu: 'Open menu',`,
-    )
+/**
+ * Get a translation table as a string
+ * @param {Object} table The translation table to convert
+ * @returns {string}
+ */
+const getTranslationTableAsString = (table) => Object
+  .entries(table)
+  .reduce(
+    (acc, [key, value]) => `${acc}${key}: '${value}',\n`,
+    '',
+  );
 
-    // Add translation for the close burger menu icon of header
-    .replace(
-      "close: 'Close',",
-      `close: 'Close',
-  closeMenu: 'Close menu',`,
-    );
-
-  return {
-    content,
-    path,
-  };
+/**
+ * Add additional translations to the localize types file
+ * @param {string} content The content of the localize file
+ * @param {string[]} additionalItems Additional items to add
+ * @returns {string}
+ */
+const vendorLocalize = (content, additionalItems) => {
+  const additionalTypes = additionalItems.map(item => `  ${item}: string;`).join('\n');
+  return content.replace(
+    '$code',
+    `${additionalTypes}\n$code`,
+  );
 };
 
+/**
+ * Handle vendoring of custom translations and localize types
+ * @param {string} path
+ * @param {string} content
+ * @returns {Object}
+ */
 export const vendorTranslations = (path, content) => {
-  const output = { content, path };
-
-  // Skip for non select
-  const isValidFile = !!FILES_TO_TRANSFORM.find(p => path.includes(p));
-
-  if (!isValidFile) {
-    return output;
+  if (
+    !path.includes('translations')
+    && !path.endsWith('localize.ts')
+  ) {
+    return {
+      content,
+      path,
+    };
   }
 
+  // Get the language code from the path
+  const usedLanguage = path.split('/').at(-1).split('.').at(0);
+  const additionalTranslations = getTranslationsForLanguage(usedLanguage);
+  const additonalTranslationsAsString = getTranslationTableAsString(additionalTranslations);
+
+  // Handle the localize files types
   if (path.endsWith('localize.ts')) {
-    return transformTranslationType(path, content);
+    return {
+      content: vendorLocalize(content, Object.keys(additionalTranslations)),
+      path,
+    };
   }
 
-  if (path.endsWith('de.ts')) {
-    return transformGerman(path, content);
-  }
+  // Adjust the translation table automatically
+  const finalContent = content.replace(
+    `'
+};`,
+    `',
+  ${additonalTranslationsAsString}};`,
+  );
 
-  if (path.endsWith('en.ts')) {
-    return transformEnglish(path, content);
-  }
-
-  return output;
+  return {
+    content: finalContent,
+    path,
+  };
 };

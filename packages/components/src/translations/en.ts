@@ -15,7 +15,6 @@ const translation: Translation = {
   carousel: 'Carousel',
   clearEntry: 'Clear entry',
   close: 'Close',
-  closeMenu: 'Close menu',
   copied: 'Copied',
   copy: 'Copy',
   currentValue: 'Current value',
@@ -29,7 +28,6 @@ const translation: Translation = {
     if (num === 1) return '1 option selected';
     return `${num} options selected`;
   },
-  openMenu: 'Open menu',
   previousSlide: 'Previous slide',
   progress: 'Progress',
   remove: 'Remove',
@@ -38,9 +36,15 @@ const translation: Translation = {
   scrollToStart: 'Scroll to start',
   selectAColorFromTheScreen: 'Select a color from the screen',
   showPassword: 'Show password',
-  sideNav: 'Side navigation',
   slideNum: slide => `Slide ${slide}`,
-  toggleColorFormat: 'Toggle color format'
+  toggleColorFormat: 'Toggle color format',
+  closeMenu: 'Close menu',
+danger: 'Danger',
+notification: 'Notification',
+openMenu: 'Open menu',
+sideNav: 'Side navigation',
+success: 'Success',
+warning: 'Warning',
 };
 
 registerTranslation(translation);

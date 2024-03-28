@@ -23,14 +23,27 @@ export class LocalizeController extends DefaultLocalizationController<Translatio
 export { registerTranslation } from '@shoelace-style/localize';
 
 export interface Translation extends DefaultTranslation {
-  $code: string; // e.g. en, en-GB
+    closeMenu: string;
+  danger: string;
+  notification: string;
+  openMenu: string;
+  sideNav: string;
+  success: string;
+  warning: string;
+  closeMenu: string;
+  danger: string;
+  notification: string;
+  openMenu: string;
+  sideNav: string;
+  success: string;
+  warning: string;
+$code: string; // e.g. en, en-GB
   $name: string; // e.g. English, Español
   $dir: 'ltr' | 'rtl';
 
   carousel: string;
   clearEntry: string;
   close: string;
-  closeMenu: string;
   copied: string;
   copy: string;
   currentValue: string;
@@ -40,7 +53,6 @@ export interface Translation extends DefaultTranslation {
   loading: string;
   nextSlide: string;
   numOptionsSelected: (num: number) => string;
-  openMenu: string;
   previousSlide: string;
   progress: string;
   remove: string;
@@ -49,7 +61,6 @@ export interface Translation extends DefaultTranslation {
   scrollToStart: string;
   selectAColorFromTheScreen: string;
   showPassword: string;
-  sideNav: string;
   slideNum: (slide: number) => string;
   toggleColorFormat: string;
 }

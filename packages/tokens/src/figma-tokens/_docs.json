@@ -80,6 +80,16 @@
           "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.",
           "type": "text"
         }
+      },
+      "withEmptyContent": {
+        "title": {
+          "value": "With empty content",
+          "type": "text"
+        },
+        "description": {
+          "value": "Badges can be used without content to just show an status indicator.",
+          "type": "text"
+        }
       }
     },
     "breadcrumb-item": {

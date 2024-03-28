@@ -58,12 +58,12 @@ export default class SynHeader extends SynergyElement {
    * Adds a button to toggle the burger menu's visibility.
    * The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
    */
-  @property({ attribute: 'burger-menu-toggle', type: Boolean }) burgerMenuToggle = false;
+  @property({ attribute: 'show-burger-menu', reflect: true, type: Boolean }) showBurgerMenu = false;
 
   /**
    * Determines whether or not the burger menu is currently visible.
    */
-  @property({ attribute: 'burger-menu-visible', type: Boolean }) burgerMenuVisible = false;
+  @property({ attribute: 'burger-menu-visible', reflect: true, type: Boolean }) burgerMenuVisible = false;
 
   /**
    * The side nav
@@ -78,29 +78,32 @@ export default class SynHeader extends SynergyElement {
     this.burgerMenuVisible = !this.burgerMenuVisible;
   }
 
-  /**
-   * Request render update in case of the side-nav was closed / opened
-   */
-  private handleSideNavStateChange() {
-    this.requestUpdate();
+  private handleBurgerMenuVisibility() {
+    // The side-nav has a higher priority than when the burger menu toggle and visibility
+    // is set via property
+    this.showBurgerMenu = (this.sideNav && !this.sideNav.rail) || this.showBurgerMenu;
+    this.burgerMenuVisible = (this.sideNav && !this.sideNav.rail)
+      ? this.sideNav.open : this.burgerMenuVisible;
   }
 
   private addSideNavListener() {
-    this.sideNav?.addEventListener('syn-show', this.handleSideNavStateChange);
-    this.sideNav?.addEventListener('syn-hide', this.handleSideNavStateChange);
+    this.sideNav?.addEventListener('syn-show', this.handleBurgerMenuVisibility);
+    this.sideNav?.addEventListener('syn-hide', this.handleBurgerMenuVisibility);
   }
 
   private removeSideNavListener() {
-    this.sideNav?.removeEventListener('syn-show', this.handleSideNavStateChange);
-    this.sideNav?.removeEventListener('syn-hide', this.handleSideNavStateChange);
+    this.sideNav?.removeEventListener('syn-show', this.handleBurgerMenuVisibility);
+    this.sideNav?.removeEventListener('syn-hide', this.handleBurgerMenuVisibility);
   }
 
   constructor() {
     super();
-    this.handleSideNavStateChange.bind(this);
+    this.handleBurgerMenuVisibility = this.handleBurgerMenuVisibility.bind(this);
   }
 
   firstUpdated() {
+    // Search for a side-nav and use the first found in case of the connectSideNavigation method
+    // is not used by the user.
     const sideNav = document.querySelector('syn-side-nav')!;
     this.connectSideNavigation(sideNav);
   }
@@ -124,24 +127,20 @@ export default class SynHeader extends SynergyElement {
   connectSideNavigation(sideNav: SynSideNav) {
     this.removeSideNavListener();
     this.sideNav = sideNav || document.querySelector('syn-side-nav');
+
+    this.handleBurgerMenuVisibility();
+
     this.addSideNavListener();
   }
 
-  // eslint-disable-next-line complexity
   render() {
-    // The side-nav has a higher priority than when the burger menu toggle and visibility
-    // is set via property
-    const showBurgerMenu = (this.sideNav && !this.sideNav.rail) || this.burgerMenuToggle;
-    const burgerMenuVisibility = (this.sideNav && !this.sideNav.rail)
-      ? this.sideNav.open : this.burgerMenuVisible;
-
     const hasNavigation = this.hasSlotController.test('navigation');
 
     return html`
       <header
         class=${classMap({
       header: true,
-      'header--has-burger-menu': this.burgerMenuToggle,
+      'header--has-burger-menu': this.showBurgerMenu,
       'header--has-navigation': hasNavigation,
     })}
         part="base"
@@ -149,7 +148,7 @@ export default class SynHeader extends SynergyElement {
         <!-- .header__content -->
         <div part="content" class="header__content">
 
-          ${showBurgerMenu
+          ${this.showBurgerMenu
               ? html`
                   <button
                     part="burger-menu-toggle-button"
@@ -158,7 +157,7 @@ export default class SynHeader extends SynergyElement {
                     @click=${this.handleBurgerMenuToggle}
                     aria-label=${this.localize.term(this.burgerMenuVisible ? 'closeMenu' : 'openMenu')}
                   >
-                    ${burgerMenuVisibility
+                    ${this.burgerMenuVisible
                       ? html`
                           <slot name="show-burger-menu">
                             <syn-icon name="x-lg" library="system"></syn-icon>

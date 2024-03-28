@@ -53,22 +53,36 @@ const getTranslationsForLanguage = (language) => Object
 const getTranslationTableAsString = (table) => Object
   .entries(table)
   .reduce(
-    (acc, [key, value]) => `${acc}${key}: '${value}',\n`,
+    (acc, [key, value]) => `${acc}${key}: '${value}',\n  `,
     '',
   );
 
 /**
  * Add additional translations to the localize types file
- * @param {string} content The content of the localize file
- * @param {string[]} additionalItems Additional items to add
+ * @param {string} path The path of the file
+ * @param {string} originalContent The content of the localize file
  * @returns {string}
  */
-const vendorLocalize = (content, additionalItems) => {
-  const additionalTypes = additionalItems.map(item => `  ${item}: string;`).join('\n');
-  return content.replace(
+export const vendorLocalize = (path, originalContent) => {
+  if (!path.endsWith('localize.ts')) {
+    return {
+      content: originalContent,
+      path,
+    };
+  }
+
+  const additionalItems = Object.keys(getTranslationsForLanguage('en')).sort();
+  const additionalTypes = additionalItems.map((item, index) => `${index > 0 ? '  ' : ''}${item}: string;`).join('\n');
+
+  const content = originalContent.replace(
     '$code',
-    `${additionalTypes}\n$code`,
+    `${additionalTypes}\n\n  $code`,
   );
+
+  return {
+    content,
+    path,
+  };
 };
 
 /**
@@ -78,10 +92,7 @@ const vendorLocalize = (content, additionalItems) => {
  * @returns {Object}
  */
 export const vendorTranslations = (path, content) => {
-  if (
-    !path.includes('translations')
-    && !path.endsWith('localize.ts')
-  ) {
+  if (!path.includes('translations')) {
     return {
       content,
       path,
@@ -91,22 +102,18 @@ export const vendorTranslations = (path, content) => {
   // Get the language code from the path
   const usedLanguage = path.split('/').at(-1).split('.').at(0);
   const additionalTranslations = getTranslationsForLanguage(usedLanguage);
-  const additonalTranslationsAsString = getTranslationTableAsString(additionalTranslations);
-
-  // Handle the localize files types
-  if (path.endsWith('localize.ts')) {
-    return {
-      content: vendorLocalize(content, Object.keys(additionalTranslations)),
-      path,
-    };
-  }
+  const additionalTranslationsAsString = getTranslationTableAsString(additionalTranslations);
 
   // Adjust the translation table automatically
   const finalContent = content.replace(
     `'
 };`,
     `',
-  ${additonalTranslationsAsString}};`,
+
+  // Automatically generated custom translations.
+  // @see scripts/vendorism/translations.vendorism.js
+  ${additionalTranslationsAsString.trimRight()}
+};`,
   );
 
   return {

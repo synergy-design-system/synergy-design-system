@@ -2,23 +2,19 @@
  * Static translations table
  */
 const translations = {
-  badge_danger: {
+  danger: {
     de: 'Gefahr',
     en: 'Danger',
   },
-  badge_neutral: {
-    de: 'Neutral',
-    en: 'Neutral',
+  notification: {
+    de: 'Benachrichtigung',
+    en: 'Notification',
   },
-  badge_primary: {
-    de: 'Primär',
-    en: 'Primary',
-  },
-  badge_success: {
+  success: {
     de: 'Erfolg',
     en: 'Success',
   },
-  badge_warning: {
+  warning: {
     de: 'Warnung',
     en: 'Warning',
   },

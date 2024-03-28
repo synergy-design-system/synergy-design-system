@@ -38,11 +38,10 @@ const translation: Translation = {
   showPassword: 'Show password',
   slideNum: slide => `Slide ${slide}`,
   toggleColorFormat: 'Toggle color format',
-  badge_danger: 'Danger',
-badge_neutral: 'Neutral',
-badge_primary: 'Primary',
-badge_success: 'Success',
-badge_warning: 'Warning',
+  danger: 'Danger',
+notification: 'Notification',
+success: 'Success',
+warning: 'Warning',
 };
 
 registerTranslation(translation);

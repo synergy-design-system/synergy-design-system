@@ -2,23 +2,28 @@
 import {
   SynHeader,
   SynIcon,
-  SynNavItem,
   SynSideNav,
 } from '@synergy-design-system/react';
-import { type FC, useEffect, useRef } from 'react';
+import {
+  type FC,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import type { SynNavItem as SynNavItemTypes, SynSideNav as SynSideNavType } from '@synergy-design-system/components';
+import type { SynSideNav as SynSideNavType } from '@synergy-design-system/components';
+import { RouterLink } from './RouterLink';
 import { ThemeSwitch } from './ThemeSwitch';
 
 export const Layout: FC = () => {
   const location = useLocation();
   const sideNavRef = useRef<SynSideNavType>(null);
+  const [currentNavigationPath, setCurrentNavigationPath] = useState('/');
 
   useEffect(() => {
-    sideNavRef.current?.querySelectorAll('syn-nav-item').forEach((navItem: SynNavItemTypes) => {
-      navItem.current = location.pathname === navItem.href;
-    });
+    setCurrentNavigationPath(location.pathname);
   }, [location]);
+
   return (
     <>
       <SynHeader>
@@ -30,14 +35,14 @@ export const Layout: FC = () => {
       </SynHeader>
       <div className="main">
         <SynSideNav rail ref={sideNavRef}>
-          <SynNavItem vertical href="/">
+          <RouterLink vertical href="/" current={currentNavigationPath === '/'}>
             Home
             <SynIcon name="home" slot="prefix" />
-          </SynNavItem>
-          <SynNavItem vertical divider href="/contact-form">
+          </RouterLink>
+          <RouterLink vertical divider href="/contact-form" current={currentNavigationPath === '/contact-form'}>
             Contact Form
             <SynIcon name="description" slot="prefix" />
-          </SynNavItem>
+          </RouterLink>
         </SynSideNav>
         <main className="content">
           <Outlet />

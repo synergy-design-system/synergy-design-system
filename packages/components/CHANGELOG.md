@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.13.0...components/1.14.0) (2024-03-28)
+
+
+### Features
+
+* ✨ syn-badge ([#390](https://github.com/synergy-design-system/synergy-design-system/issues/390)) ([a44d683](https://github.com/synergy-design-system/synergy-design-system/commit/a44d683b35e984bfbdac093dba5abd04c74f33c0))
+
 # [@synergy-design-system/components-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.12.0...components/1.13.0) (2024-03-25)
 
 

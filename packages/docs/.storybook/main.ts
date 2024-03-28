@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "@storybook/addon-mdx-gfm",
+    "@synergy-design-system/storybook-addon-codepen",
   ],
   core: {
     disableTelemetry: true,

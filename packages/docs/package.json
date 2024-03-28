@@ -24,6 +24,7 @@
     "@storybook/web-components": "^8.0.4",
     "@storybook/web-components-vite": "^8.0.4",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/storybook-addon-codepen": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/react": "^18.2.67",
     "chromatic": "^11.2.0",

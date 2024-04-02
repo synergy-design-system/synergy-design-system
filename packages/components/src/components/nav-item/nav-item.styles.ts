@@ -159,7 +159,6 @@ export default css`
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
     height: var(--syn-spacing-large);
-    visibility: hidden;
   }
 
   /**

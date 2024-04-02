@@ -533,7 +533,7 @@
     "dropdown": {
       "default": {
         "description": {
-          "value": "Dropdowns expose additional content that “drops down” in a panel.  Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.\n\nDropdowns are designed to work well with menus to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. color picker). The API gives you complete control over showing, hiding, and positioning the panel.",
+          "value": "Dropdowns expose additional content that “drops down” in a panel.Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.\n\nDropdowns are designed to work well with menus to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. color picker). The API gives you complete control over showing, hiding, and positioning the panel.",
           "type": "text"
         },
         "title": {
@@ -1071,13 +1071,65 @@
       }
     },
     "progress-ring": {
-      "description": {
-        "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Progress Ring",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Progress Ring",
-        "type": "text"
+      "size": {
+        "title": {
+          "value": "Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --size custom property to set the diameter of the progress ring.",
+          "type": "text"
+        }
+      },
+      "track-indicator-width": {
+        "title": {
+          "value": "Track and Indicator Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator.",
+          "type": "text"
+        }
+      },
+      "color": {
+        "titel": {
+          "value": "Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "To change the color, use the --track-color and --indicator-color custom properties.",
+          "type": "text"
+        }
+      },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it.",
+          "type": "text"
+        }
+      },
+      "show-values": {
+        "title": {
+          "value": "Showing Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the default slot to show a label inside the progress ring.",
+          "type": "text"
+        }
       }
     },
     "qr-code": {

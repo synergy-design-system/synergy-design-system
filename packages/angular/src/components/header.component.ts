@@ -11,8 +11,7 @@ import {
   NgZone,
   Output,
 } from '@angular/core';
-import type { SynHeader } from '@synergy-design-system/components';
-
+import type { SynBurgerMenuHideEvent, SynBurgerMenuShowEvent, SynHeader } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/header/header.js';
 
 /**
@@ -30,6 +29,9 @@ import '@synergy-design-system/components/components/header/header.js';
  * @slot navigation - This slot can be used to add an optional horizontal navigation
  * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
  * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
+ *
+ * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
+ * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
  *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
@@ -52,6 +54,8 @@ export class SynHeaderComponent {
   constructor(e: ElementRef, ngZone: NgZone) {
     this._el = e.nativeElement;
     this._ngZone = ngZone;
+    this._el.addEventListener('syn-burger-menu-show', (e: SynBurgerMenuShowEvent) => { this.synBurgerMenuShowEvent.emit(e); });
+    this._el.addEventListener('syn-burger-menu-hide', (e: SynBurgerMenuHideEvent) => { this.synBurgerMenuHideEvent.emit(e); });
   }
 
   /**
@@ -72,12 +76,12 @@ export class SynHeaderComponent {
 The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
  */
   @Input()
-  set burgerMenuToggle(v: SynHeader['burgerMenuToggle']) {
-    this._ngZone.runOutsideAngular(() => (this._el.burgerMenuToggle = v));
+  set showBurgerMenu(v: SynHeader['showBurgerMenu']) {
+    this._ngZone.runOutsideAngular(() => (this._el.showBurgerMenu = v));
   }
 
-  get burgerMenuToggle() {
-    return this._el.burgerMenuToggle;
+  get showBurgerMenu() {
+    return this._el.showBurgerMenu;
   }
 
   /**
@@ -92,6 +96,11 @@ The button is added automatically, if the component finds a syn-side-nav in non-
     return this._el.burgerMenuVisible;
   }
 
+  @Input()
+  callHandleBurgerMenuVisible(...args: Parameters<SynHeader['handleBurgerMenuVisible']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleBurgerMenuVisible(...args));
+  }
+
   /**
 * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
 like showing the burger menu icon and open / close handling.
@@ -103,4 +112,17 @@ the header will use the first `syn-side-nav` element it finds.
   callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
     return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
   }
+
+  /**
+* Emitted when the burger menu button is toggled to visible
+ */
+  @Output() synBurgerMenuShowEvent = new EventEmitter<SynBurgerMenuShowEvent>();
+
+  /**
+* Emitted when the burger menu button is toggled to not visible
+ */
+  @Output() synBurgerMenuHideEvent = new EventEmitter<SynBurgerMenuHideEvent>();
 }
+
+export type { SynBurgerMenuShowEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';

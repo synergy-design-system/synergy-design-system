@@ -21,6 +21,9 @@
  * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
  * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
  *
+ * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
+ * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
+ *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
  * @csspart logo - The wrapper the application logo resides in
@@ -32,12 +35,13 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
 
-import type { SynHeader } from '@synergy-design-system/components';
+import type { SynBurgerMenuHideEvent, SynBurgerMenuShowEvent, SynHeader } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynHeader>();
 
 // Map methods
+const callHandleBurgerMenuVisible = (...args: Parameters<SynHeader['handleBurgerMenuVisible']>) => element.value?.handleBurgerMenuVisible(...args);
 /**
 * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
 like showing the burger menu icon and open / close handling.
@@ -48,6 +52,7 @@ the header will use the first `syn-side-nav` element it finds.
 const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => element.value?.connectSideNavigation(...args);
 
 defineExpose({
+  callHandleBurgerMenuVisible,
   callConnectSideNavigation,
 });
 
@@ -63,7 +68,7 @@ const props = defineProps<{
 * Adds a button to toggle the burger menu's visibility.
 The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
  */
-  'burgerMenuToggle'?: SynHeader['burgerMenuToggle'];
+  'showBurgerMenu'?: SynHeader['showBurgerMenu'];
 
   /**
 * Determines whether or not the burger menu is currently visible.
@@ -83,15 +88,30 @@ const visibleProps = computed(() => Object.fromEntries(
 
 // Map events
 defineEmits<{
+  /**
+* Emitted when the burger menu button is toggled to visible
+ */
+  'syn-burger-menu-show': [e: SynBurgerMenuShowEvent];
 
+  /**
+* Emitted when the burger menu button is toggled to not visible
+ */
+  'syn-burger-menu-hide': [e: SynBurgerMenuHideEvent];
 }>();
+</script>
+
+<script lang="ts">
+export type { SynBurgerMenuShowEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
   <syn-header
-
     v-bind="visibleProps"
     ref="element"
+
+    @syn-burger-menu-show="$emit('syn-burger-menu-show', $event)"
+    @syn-burger-menu-hide="$emit('syn-burger-menu-hide', $event)"
   >
     <slot />
     <slot name="logo" />

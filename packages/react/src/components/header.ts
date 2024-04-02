@@ -7,6 +7,9 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/header/header.component.js';
 
+import { type EventName } from '@lit/react';
+import type { SynBurgerMenuHideEvent, SynBurgerMenuShowEvent } from '@synergy-design-system/components';
+
 const tagName = 'syn-header';
 Component.define('syn-header');
 
@@ -26,6 +29,9 @@ Component.define('syn-header');
  * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
  * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
  *
+ * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
+ * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
+ *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
  * @csspart logo - The wrapper the application logo resides in
@@ -38,8 +44,12 @@ export const SynHeader = createComponent({
   displayName: 'SynHeader',
   elementClass: Component,
   events: {
-
+    onSynBurgerMenuShow: 'syn-burger-menu-show' as EventName<SynBurgerMenuShowEvent>,
+    onSynBurgerMenuHide: 'syn-burger-menu-hide' as EventName<SynBurgerMenuHideEvent>,
   },
   react: React,
   tagName,
 });
+
+export type { SynBurgerMenuShowEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';

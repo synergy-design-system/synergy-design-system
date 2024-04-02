@@ -168,7 +168,7 @@ export const BurgerMenu = {
     },
   },
   render: () => html`
-    <syn-header burger-menu-toggle>
+    <syn-header show-burger-menu>
       App Name
     </syn-header>
   `,

@@ -10,6 +10,7 @@ import styles from './header.styles.js';
 import SynIcon from '../icon/icon.js';
 import type SynSideNav from '../side-nav/side-nav.component.js';
 import { LocalizeController } from '../../utilities/localize.js';
+import { watch } from '../../internal/watch.js';
 
 /**
  * @summary The <syn-header /> element provides a generic application header
@@ -26,6 +27,9 @@ import { LocalizeController } from '../../utilities/localize.js';
  * @slot navigation - This slot can be used to add an optional horizontal navigation
  * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
  * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
+ *
+ * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
+ * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
  *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
@@ -99,6 +103,16 @@ export default class SynHeader extends SynergyElement {
   constructor() {
     super();
     this.handleBurgerMenuVisibility = this.handleBurgerMenuVisibility.bind(this);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-dupe-class-members, class-methods-use-this
+  @watch('burgerMenuVisible', { waitUntilFirstUpdate: true })
+  handleBurgerMenuVisible() {
+    if (this.burgerMenuVisible) {
+      this.emit('syn-burger-menu-show');
+    } else {
+      this.emit('syn-burger-menu-hide');
+    }
   }
 
   firstUpdated() {

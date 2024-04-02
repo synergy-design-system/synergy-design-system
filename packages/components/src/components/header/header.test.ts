@@ -140,6 +140,71 @@ describe('<syn-header>', () => {
       expect(burgerMenuPart?.querySelector('syn-icon[name="x-lg"]')).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="menu"]')).to.be.null;
     });
+
+    it('should emit syn-burger-menu-show and and syn-burger-menu-hide when clicked', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
+      const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
+
+      const burgerMenuShowHandler = sinon.spy();
+      const burgerMenuHideHandler = sinon.spy();
+
+      el.addEventListener('syn-burger-menu-show', burgerMenuShowHandler);
+      el.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
+
+      burgerMenuPart?.click();
+      await el.updateComplete;
+
+      expect(burgerMenuShowHandler).to.have.been.calledOnce;
+
+      burgerMenuPart?.click();
+      await el.updateComplete;
+
+      expect(burgerMenuHideHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit syn-burger-menu-show when setting burgerMenuVisible = true', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
+      const burgerMenuShowHandler = sinon.spy();
+      el.addEventListener('syn-burger-menu-show', burgerMenuShowHandler);
+
+      el.burgerMenuVisible = true;
+
+      await waitUntil(() => burgerMenuShowHandler.calledOnce);
+
+      expect(burgerMenuShowHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit syn-burger-menu-hide when setting burgerMenuVisible = false', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu burger-menu-visible></syn-header>`);
+      const burgerMenuHideHandler = sinon.spy();
+      el.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
+
+      el.burgerMenuVisible = false;
+
+      await waitUntil(() => burgerMenuHideHandler.calledOnce);
+
+      expect(burgerMenuHideHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit syn-burger-menu-hide when side-nav is closed via open property', async () => {
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-header></syn-header>
+          <syn-side-nav open></syn-side-nav>
+        </div>
+        `);
+      const sideNav = el.querySelector('syn-side-nav')!;
+      const header = el.querySelector('syn-header')!;
+      const burgerMenuHideHandler = sinon.spy();
+
+      header.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
+
+      sideNav.open = false;
+
+      await waitUntil(() => burgerMenuHideHandler.calledOnce);
+
+      expect(burgerMenuHideHandler).to.have.been.calledOnce;
+    });
   });
 
   describe('automatic interaction with syn-side-nav ', () => {

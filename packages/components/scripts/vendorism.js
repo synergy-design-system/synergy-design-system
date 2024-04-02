@@ -72,6 +72,8 @@ export const events = [
   'sl-initial-focus',
   'sl-request-close',
   'sl-select',
+  'sl-burger-menu-show',
+  'sl-burger-menu-hide',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);

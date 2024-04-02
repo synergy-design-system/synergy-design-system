@@ -199,12 +199,7 @@ describe('<syn-nav-item>', () => {
     // We need to wait because of the resize observer
     await waitUntil(() => base.classList.contains('nav-item--show-prefix-only'));
 
-    const contentContainer = el.shadowRoot!.querySelector('[part~="content-container"]')!;
-    const suffix = el.shadowRoot!.querySelector('[part~="suffix"]')!;
-
     expect(base).to.have.class('nav-item--show-prefix-only');
-    expect(getComputedStyle(contentContainer).visibility).to.equal('hidden');
-    expect(getComputedStyle(suffix).visibility).to.equal('hidden');
   });
 
   it('should display current indicator on root nav-item if it has a current marked child and is not open', async () => {

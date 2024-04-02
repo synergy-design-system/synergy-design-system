@@ -105,14 +105,9 @@ export default class SynHeader extends SynergyElement {
     this.handleBurgerMenuVisibility = this.handleBurgerMenuVisibility.bind(this);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-dupe-class-members, class-methods-use-this
   @watch('burgerMenuVisible', { waitUntilFirstUpdate: true })
   handleBurgerMenuVisible() {
-    if (this.burgerMenuVisible) {
-      this.emit('syn-burger-menu-show');
-    } else {
-      this.emit('syn-burger-menu-hide');
-    }
+    this.emit(this.burgerMenuVisible ? 'syn-burger-menu-show' : 'syn-burger-menu-hide');
   }
 
   firstUpdated() {
@@ -133,8 +128,8 @@ export default class SynHeader extends SynergyElement {
    * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
    * like showing the burger menu icon and open / close handling.
    *
-   * If no side navigation is connected or undefined is passed as argument,
-   * the header will use the first `syn-side-nav` element it finds.
+   * If no side navigation is connected, the header will use the first `syn-side-nav` element it
+   * finds.
    *
    * @param sideNav The side navigation to connect to the header
    */
@@ -153,10 +148,10 @@ export default class SynHeader extends SynergyElement {
     return html`
       <header
         class=${classMap({
-      header: true,
-      'header--has-burger-menu': this.showBurgerMenu,
-      'header--has-navigation': hasNavigation,
-    })}
+          header: true,
+          'header--has-burger-menu': this.showBurgerMenu,
+          'header--has-navigation': hasNavigation,
+        })}
         part="base"
       >
         <!-- .header__content -->

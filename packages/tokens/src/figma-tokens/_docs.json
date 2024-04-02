@@ -1427,13 +1427,45 @@
       }
     },
     "spinner": {
-      "description": {
-        "value": "Spinners are used to show the progress of an indeterminate operation.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Spinners are used to show the progress of an indeterminate operation.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Spinner",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Spinner",
-        "type": "text"
+      "size": {
+        "title": {
+          "value": "Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "Spinners are sized based on the current font size. To change their size, set the font-size property on the spinner itself or on a parent element as shown below.",
+          "type": "text"
+        }
+      },
+      "track-width": {
+        "title": {
+          "value": "Track Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "The width of the spinner’s track can be changed by setting the --track-width custom property.",
+          "type": "text"
+        }
+      },
+      "color": {
+        "title": {
+          "value": "Color",
+          "type": "text"
+        },
+        "description": {
+          "value": "The spinner’s colors can be changed by setting the --indicator-color and --track-color custom properties.",
+          "type": "text"
+        }
       }
     },
     "split-panel": {

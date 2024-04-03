@@ -18,12 +18,7 @@ export default css`
     --indentation-stepping: var(--syn-spacing-x-large);
 
     /**
-     * The border bottom that is applied on hover
-     */
-    --border-bottom-hover-color: transparent;
-
-    /**
-     * The border bottom that is applied on hover
+     * Display property of the children. Defaults to "contents"
      */
     --display-children: contents;
 
@@ -57,6 +52,7 @@ export default css`
     text-decoration: none;
     transition: background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     width: 100%;
+    z-index: 0;
   }
 
   .nav-item:focus-visible {
@@ -86,9 +82,21 @@ export default css`
     font-weight: var(--syn-font-weight-bold);
   }
 
-  .nav-item:not(.nav-item--disabled):hover {
-    background: var(--syn-color-neutral-100);
-    box-shadow: inset 0 -1px 0 0 var(--border-bottom-hover-color);
+  /**
+   * Hover effect for the nav item.
+   * We use opacity to make sure the border-bottom is visible if used in the prio-nav in header
+   */
+  .nav-item:not(.nav-item--disabled):hover::after {
+    background: var(--syn-color-neutral-600);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.11;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
   }
 
   /**
@@ -164,7 +172,6 @@ export default css`
   /**
    * Multi line content
    */
-
   .nav-item--multi-line .nav-item__suffix,
   .nav-item--multi-line .nav-item__prefix,
   .nav-item--multi-line .nav-item__chevron {

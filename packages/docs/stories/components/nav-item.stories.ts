@@ -75,7 +75,7 @@ export const Current: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item current vertical>Current Navigation item</syn-nav-item>
+    <syn-nav-item current>Current Navigation item</syn-nav-item>
   `,
 };
 
@@ -88,7 +88,7 @@ export const HorizontalNavigation: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item current>Horizontal navigation item</syn-nav-item>
+    <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
   `,
 };
 
@@ -160,19 +160,19 @@ export const ChildrenClosedOrOpenVerticalOnly: Story = {
   },
   render: () => html`
     <nav style="width: 320px">
-      <syn-nav-item vertical>
+      <syn-nav-item>
         Children closed
         <nav slot="children">
-          <syn-nav-item vertical>Item 1</syn-nav-item>
-          <syn-nav-item vertical divider>Item 2</syn-nav-item>
+          <syn-nav-item >Item 1</syn-nav-item>
+          <syn-nav-item  divider>Item 2</syn-nav-item>
         </nav>
       </syn-nav-item>
       <br />
-      <syn-nav-item open vertical>
+      <syn-nav-item open >
         Children open
         <nav slot="children">
-          <syn-nav-item vertical>Item 1</syn-nav-item>
-          <syn-nav-item vertical divider>Item 2</syn-nav-item>
+          <syn-nav-item >Item 1</syn-nav-item>
+          <syn-nav-item divider>Item 2</syn-nav-item>
         </nav>
       </syn-nav-item>
     </nav>
@@ -189,8 +189,8 @@ export const Divider: Story = {
   },
   render: () => html`
     <nav style="width: 320px;">
-      <syn-nav-item vertical>Dividing element</syn-nav-item>
-      <syn-nav-item divider vertical>Dividing element</syn-nav-item>
+      <syn-nav-item>Dividing element</syn-nav-item>
+      <syn-nav-item divider>Dividing element</syn-nav-item>
     </nav>
   `,
 };
@@ -205,9 +205,9 @@ export const Indentation: Story = {
   },
   render: () => html`
     <nav style="width: 320px; gap: 24px; display: flex; flex-direction: column;">
-      <syn-nav-item current vertical>Indentation: none</syn-nav-item>
-      <syn-nav-item current vertical style="--indentation: 1">Indentation: 1</syn-nav-item>
-      <syn-nav-item current vertical style="--indentation: 2">Indentation: 2</syn-nav-item>
+      <syn-nav-item current>Indentation: none</syn-nav-item>
+      <syn-nav-item current style="--indentation: 1">Indentation: 1</syn-nav-item>
+      <syn-nav-item current style="--indentation: 2">Indentation: 2</syn-nav-item>
     </nav>
   `,
 };
@@ -236,31 +236,31 @@ export const Disabled: Story = {
 //     }
 //     </style>
 //     <nav class="doc-nav">
-//       <syn-nav-item vertical>
+//       <syn-nav-item>
 //         <syn-icon name="home" slot="prefix"></syn-icon>
 //         Home
 //       </syn-nav-item>
-//       <syn-nav-item current divider vertical>
+//       <syn-nav-item current divider>
 //         <syn-icon name="settings" slot="prefix"></syn-icon>
 //         Settings
 //       </syn-nav-item>
-//       <syn-nav-item divider vertical>
+//       <syn-nav-item divider>
 //         <syn-icon name="add_alarm" slot="prefix"></syn-icon>
 //         Item 1.0
 //         <syn-icon name="home" slot="suffix"></syn-icon>
 //         <!-- second-level -->
 //         <nav slot="children">
-//           <syn-nav-item divider vertical>
+//           <syn-nav-item divider>
 //             <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //             Item 1.1
 //           </syn-nav-item>
-//           <syn-nav-item divider vertical>
+//           <syn-nav-item divider>
 //             <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //             Item 1.2
 //             <!-- third-level -->
 //             <nav slot="children">
               
-//               <syn-nav-item divider vertical>
+//               <syn-nav-item divider>
 //                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //                 Item 1.2.1
 //               </syn-nav-item>
@@ -270,7 +270,7 @@ export const Disabled: Story = {
 //                 Item 1.2.2
 //               </syn-nav-item>
 
-//               <syn-nav-item divider vertical>
+//               <syn-nav-item divider>
 //                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //                 Item 1.2.3
 //               </syn-nav-item>
@@ -278,18 +278,18 @@ export const Disabled: Story = {
 //             </nav>
 //             <!-- /third-level -->
 //           </syn-nav-item>
-//           <syn-nav-item divider vertical>
+//           <syn-nav-item divider>
 //             <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //             Item 1.3
 //           </syn-nav-item>
 //         </nav>
 //         <!-- /second-level -->
 //       </syn-nav-item>
-//       <syn-nav-item disabled divider vertical>
+//       <syn-nav-item disabled divider>
 //         <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //         Disabled option
 //       </syn-nav-item>
-//       <syn-nav-item divider vertical>
+//       <syn-nav-item divider>
 //         <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //         Other Option
 //       </syn-nav-item>

@@ -121,17 +121,17 @@ The 'children' slot and accordion behavior will be ignored if an 'href' is provi
 * The navigation item's orientation.
  */
   @Input()
-  set vertical(v: SynNavItem['vertical']) {
-    this._ngZone.runOutsideAngular(() => (this._el.vertical = v));
+  set horizontal(v: SynNavItem['horizontal']) {
+    this._ngZone.runOutsideAngular(() => (this._el.horizontal = v));
   }
 
-  get vertical() {
-    return this._el.vertical;
+  get horizontal() {
+    return this._el.horizontal;
   }
 
   /**
 * Appends a chevron to the right side of a navigation item.
-Only used if `vertical` is true.
+Only used if `horizontal` is false.
  */
   @Input()
   set chevron(v: SynNavItem['chevron']) {
@@ -144,7 +144,7 @@ Only used if `vertical` is true.
 
   /**
 * Reflects HTML details element state and allows control from parent.
-Only used if `vertical` is true, `href` is undefined, and `children` is defined.
+Only used if `horizontal` is false, `href` is undefined, and `children` is defined.
  */
   @Input()
   set open(v: SynNavItem['open']) {
@@ -157,7 +157,7 @@ Only used if `vertical` is true, `href` is undefined, and `children` is defined.
 
   /**
 * Toggle to true to show a divider above the element.
-Only available when vertical
+Only available when horizontal is false.
  */
   @Input()
   set divider(v: SynNavItem['divider']) {

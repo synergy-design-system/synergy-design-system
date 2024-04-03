@@ -148,11 +148,11 @@ export const Navigation = {
   render: () => html`
     <syn-header>
       <syn-prio-nav slot="navigation">
-        <syn-nav-item current>Domains</syn-nav-item>
-        <syn-nav-item>Projects</syn-nav-item>
-        <syn-nav-item>Trainings</syn-nav-item>
-        <syn-nav-item>Evaluations</syn-nav-item>
-        <syn-nav-item>Deployments</syn-nav-item>
+        <syn-nav-item current horizontal>Domains</syn-nav-item>
+        <syn-nav-item horizontal>Projects</syn-nav-item>
+        <syn-nav-item horizontal>Trainings</syn-nav-item>
+        <syn-nav-item horizontal>Evaluations</syn-nav-item>
+        <syn-nav-item horizontal>Deployments</syn-nav-item>
       </syn-prio-nav>
       App Name
     </syn-header>

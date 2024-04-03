@@ -84,12 +84,12 @@ describe('<syn-prio-nav>', () => {
      */
     const createFixture = async (width = 800) => fixture<SynPrioNav>(html`
       <syn-prio-nav style="width: ${width}px;">
-        <syn-nav-item style="width: 100px">Item 1</syn-nav-item>
-        <syn-nav-item style="width: 100px">Item 2</syn-nav-item>
-        <syn-nav-item style="width: 100px">Item 3</syn-nav-item>
-        <syn-nav-item style="width: 100px">Item 4</syn-nav-item>
-        <syn-nav-item style="width: 100px" id="button-item" role="button">Item 5</syn-nav-item>
-        <syn-nav-item style="width: 100px">Item 6</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px">Item 1</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px">Item 2</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px">Item 3</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px">Item 4</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px" id="button-item" role="button">Item 5</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px">Item 6</syn-nav-item>
       </syn-prio-nav>
     `);
 

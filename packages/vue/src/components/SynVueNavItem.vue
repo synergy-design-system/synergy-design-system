@@ -103,23 +103,23 @@ The 'children' slot and accordion behavior will be ignored if an 'href' is provi
   /**
 * The navigation item's orientation.
  */
-  'vertical'?: SynNavItem['vertical'];
+  'horizontal'?: SynNavItem['horizontal'];
 
   /**
 * Appends a chevron to the right side of a navigation item.
-Only used if `vertical` is true.
+Only used if `horizontal` is false.
  */
   'chevron'?: SynNavItem['chevron'];
 
   /**
 * Reflects HTML details element state and allows control from parent.
-Only used if `vertical` is true, `href` is undefined, and `children` is defined.
+Only used if `horizontal` is false, `href` is undefined, and `children` is defined.
  */
   'open'?: SynNavItem['open'];
 
   /**
 * Toggle to true to show a divider above the element.
-Only available when vertical
+Only available when horizontal is false.
  */
   'divider'?: SynNavItem['divider'];
 }>();

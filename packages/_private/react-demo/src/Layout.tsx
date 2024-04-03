@@ -34,11 +34,11 @@ export const Layout: FC = () => {
       </SynHeader>
       <div className="main">
         <SynSideNav rail ref={sideNavRef}>
-          <RouterLink vertical href="/" current={currentNavigationPath === '/'}>
+          <RouterLink href="/" current={currentNavigationPath === '/'}>
             Home
             <SynIcon name="home" slot="prefix" />
           </RouterLink>
-          <RouterLink vertical divider href="/contact-form" current={currentNavigationPath === '/contact-form'}>
+          <RouterLink divider href="/contact-form" current={currentNavigationPath === '/contact-form'}>
             Contact Form
             <SynIcon name="description" slot="prefix" />
           </RouterLink>

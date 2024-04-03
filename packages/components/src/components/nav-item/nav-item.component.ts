@@ -119,23 +119,23 @@ export default class SynNavItem extends SynergyElement {
   /**
    * The navigation item's orientation.
    */
-  @property({ reflect: true, type: Boolean }) vertical = false;
+  @property({ reflect: true, type: Boolean }) horizontal = false;
 
   /**
    * Appends a chevron to the right side of a navigation item.
-   * Only used if `vertical` is true.
+   * Only used if `horizontal` is false.
    */
   @property({ reflect: true, type: Boolean }) chevron = false;
 
   /**
    * Reflects HTML details element state and allows control from parent.
-   * Only used if `vertical` is true, `href` is undefined, and `children` is defined.
+   * Only used if `horizontal` is false, `href` is undefined, and `children` is defined.
    */
   @property({ reflect: true, type: Boolean }) open = false;
 
   /**
    * Toggle to true to show a divider above the element.
-   * Only available when vertical
+   * Only available when horizontal is false.
    */
   @property({ reflect: true, type: Boolean }) divider = false;
 
@@ -319,7 +319,7 @@ export default class SynNavItem extends SynergyElement {
     else if (isLink) tag = literal`a`;
 
     const hasChildren = this.hasSlotController.test('children');
-    const hasChevron = (this.chevron || hasChildren) && this.vertical;
+    const hasChevron = (this.chevron || hasChildren) && !this.horizontal;
 
     // Define the click method to use
     let clickAction;
@@ -360,7 +360,7 @@ export default class SynNavItem extends SynergyElement {
         tabindex=${this.disabled ? '-1' : '0'}
       >
 
-        ${this.divider && this.vertical
+        ${this.divider && !this.horizontal
           ? html`<syn-divider class="divider" part="divider"></syn-divider>`
           : ''
         }
@@ -391,8 +391,8 @@ export default class SynNavItem extends SynergyElement {
             class=${classMap({
               'current-indicator': true,
               'current-indicator--disabled': this.disabled,
-              'current-indicator--horizontal': !this.vertical,
-              'current-indicator--vertical': this.vertical,
+              'current-indicator--horizontal': this.horizontal,
+              'current-indicator--vertical': !this.horizontal,
               'current-indicator--visible': this.current || showCurrentIndicatorForNested,
             })}
             part="current-indicator"

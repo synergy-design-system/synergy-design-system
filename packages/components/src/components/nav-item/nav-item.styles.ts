@@ -22,14 +22,14 @@ export default css`
      */
     --display-children: contents;
 
-    display: inline-block;
+    display: block;
   }
 
   /**
-   * Switch alignment to block when we are in vertical mode
+   * Switch alignment to inline-block when we are in horizontal mode
    */
-  :host([vertical]) {
-    display: block;
+  :host([horizontal]) {
+    display: inline-block;
   }
 
   /**
@@ -63,7 +63,7 @@ export default css`
   /**
    * Horizontal nav items use narrower paddings
    */
-  :host(:not([vertical])) .nav-item {
+  :host([horizontal]) .nav-item {
     padding: var(--syn-spacing-small) var(--syn-spacing-x-small);
   }
 
@@ -185,9 +185,9 @@ export default css`
   }
 
   /**
-   * Vertical navigation items should not break words
+   * Horizontal navigation items should not break words
    */
-  :host(:not([vertical])) .nav-item__content-container {
+  :host([horizontal]) .nav-item__content-container {
     font-weight: var(--syn-font-weight-bold);
     white-space: nowrap;
   }

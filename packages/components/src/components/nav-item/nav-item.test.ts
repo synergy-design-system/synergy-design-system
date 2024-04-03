@@ -42,7 +42,7 @@ describe('<syn-nav-item>', () => {
       expect(el.divider).to.equal(false);
       expect(el.href).to.equal('');
       expect(el.open).to.equal(false);
-      expect(el.vertical).to.equal(false);
+      expect(el.horizontal).to.equal(false);
     });
 
     it('should render as a button', async () => {
@@ -98,31 +98,31 @@ describe('<syn-nav-item>', () => {
   });
 
   describe('when setting the divider prop', () => {
-    it('should not show the <syn-divider /> if the vertical prop is not set to true', async () => {
-      const el = await fixture<SynNavItem>(html`<syn-nav-item divider>Label</syn-nav-item>`);
+    it('should not show the <syn-divider /> if the horizontal prop is set to true', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item divider horizontal>Label</syn-nav-item>`);
       expect(el.shadowRoot!.querySelector('syn-divider')).not.to.exist;
     });
 
-    it('should show the <syn-divider /> if the vertical prop is not set to true', async () => {
-      const el = await fixture<SynNavItem>(html`<syn-nav-item divider vertical>Label</syn-nav-item>`);
+    it('should show the <syn-divider /> if the horizontal prop is not set to true', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item divider>Label</syn-nav-item>`);
       expect(el.shadowRoot!.querySelector('syn-divider')).to.exist;
     });
   });
 
   describe('when setting the chevron prop', () => {
-    it('should not show the chevron if chevron is true and vertical is false', async () => {
-      const el = await fixture<SynNavItem>(html`<syn-nav-item chevron>Label</syn-nav-item>`);
+    it('should not show the chevron if chevron and horizontal are set to true', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item chevron horizontal>Label</syn-nav-item>`);
       expect(el.shadowRoot!.querySelector('[part~="chevron"]')).not.to.exist;
     });
 
-    it('should show the chevron if chevron and vertical are set to true', async () => {
-      const el = await fixture<SynNavItem>(html`<syn-nav-item chevron vertical>Label</syn-nav-item>`);
+    it('should show the chevron if chevron is set to true and horizontal to false', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item chevron>Label</syn-nav-item>`);
       expect(el.shadowRoot!.querySelector('[part~="chevron"]')).to.exist;
     });
 
-    it('should not show the chevron if there are slotted children and vertical is false', async () => {
+    it('should not show the chevron if there are slotted children and horizontal is true', async () => {
       const el = await fixture<SynNavItem>(html`
-        <syn-nav-item>
+        <syn-nav-item horizontal>
           Label
           <nav slot="children">Children</nav>
         </syn-nav-item>
@@ -130,9 +130,9 @@ describe('<syn-nav-item>', () => {
       expect(el.shadowRoot!.querySelector('[part~="chevron"]')).not.to.exist;
     });
 
-    it('should show the chevron if there are slotted children and vertical is true', async () => {
+    it('should show the chevron if there are slotted children and horizontal is false', async () => {
       const el = await fixture<SynNavItem>(html`
-        <syn-nav-item vertical>
+        <syn-nav-item>
           Label
           <nav slot="children">Children</nav>
         </syn-nav-item>
@@ -204,9 +204,9 @@ describe('<syn-nav-item>', () => {
 
   it('should display current indicator on root nav-item if it has a current marked child and is not open', async () => {
     const el = await fixture<SynNavItem>(html`
-      <syn-nav-item vertical>
+      <syn-nav-item>
         Label
-        <syn-nav-item slot="children" current vertical>
+        <syn-nav-item slot="children" current>
           nested
         </syn-nav-item>
       </syn-nav-item>`);

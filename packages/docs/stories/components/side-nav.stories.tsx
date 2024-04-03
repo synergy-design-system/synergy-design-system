@@ -46,31 +46,31 @@ export const Default: Story = {
       name: 'default',
       type: 'slot',
       value: `
-      <syn-nav-item vertical current>
+      <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
+      <syn-nav-item slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
+      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -120,31 +120,31 @@ export const Fixed: Story = {
   <syn-header class="header-fixed">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-fixed" open>
-      <syn-nav-item vertical current>
+      <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
+      <syn-nav-item slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
+      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -190,31 +190,31 @@ export const Rail: Story = {
   <syn-header>Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-rail" rail>
-      <syn-nav-item vertical current>
+      <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
+      <syn-nav-item slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
+      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -258,31 +258,31 @@ export const Shrink: Story = {
   <syn-header class="header-shrink">Side Navigation</syn-header>
    <main class="main">
     <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
-      <syn-nav-item vertical current>
+      <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
+      <syn-nav-item slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
+      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -335,40 +335,40 @@ export const Indentation: Story = {
   <syn-header class="header-indentation">Side Navigation</syn-header>
   <main class="main">
     <syn-side-nav class="side-nav-indentation" open>
-      <syn-nav-item vertical open>
+      <syn-nav-item open>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
-        <syn-nav-item vertical divider slot="children" open>
+        <syn-nav-item slot="children" open>
           Navigation Item
-          <syn-nav-item vertical divider slot="children" current>
+          <syn-nav-item slot="children" current>
             Navigation Item
           </syn-nav-item>
-          <syn-nav-item vertical divider slot="children">
+          <syn-nav-item slot="children">
             Navigation Item
           </syn-nav-item>
         </syn-nav-item>
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical>
+      <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item vertical slot="footer">
+      <syn-nav-item slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider vertical slot="footer">
+      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>

@@ -19,11 +19,11 @@ const routeTo = (route: string) => {
 
   <div class="main">
     <SynVueSideNav rail ref="sideNavRef">
-      <SynVueNavItem vertical  @click="() => routeTo('/')">
+      <SynVueNavItem @click="() => routeTo('/')">
         Home
         <SynVueIcon name="home" slot="prefix"/>
       </SynVueNavItem>
-      <SynVueNavItem vertical divider @click="() => routeTo('/contact-form')">
+      <SynVueNavItem divider @click="() => routeTo('/contact-form')">
         Contact Form
         <SynVueIcon name="description" slot="prefix"/>
       </SynVueNavItem>

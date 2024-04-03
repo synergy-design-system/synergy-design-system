@@ -105,8 +105,8 @@ The button is added automatically, if the component finds a syn-side-nav in non-
 * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
 like showing the burger menu icon and open / close handling.
 
-If no side navigation is connected or undefined is passed as argument,
-the header will use the first `syn-side-nav` element it finds.
+If no side navigation is connected, the header will use the first `syn-side-nav` element it
+finds.
  */
   @Input()
   callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {

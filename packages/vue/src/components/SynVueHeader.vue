@@ -46,8 +46,8 @@ const callHandleBurgerMenuVisible = (...args: Parameters<SynHeader['handleBurger
 * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
 like showing the burger menu icon and open / close handling.
 
-If no side navigation is connected or undefined is passed as argument,
-the header will use the first `syn-side-nav` element it finds.
+If no side navigation is connected, the header will use the first `syn-side-nav` element it
+finds.
  */
 const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => element.value?.connectSideNavigation(...args);
 

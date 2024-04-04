@@ -1897,7 +1897,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to change the content of a navigtion item.",
+          "value": "Use the label attribute to change the content of a navigation item.",
           "type": "text"
         }
       },
@@ -1907,7 +1907,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
           "type": "text"
         }
       },
@@ -1917,7 +1917,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
           "type": "text"
         }
       },

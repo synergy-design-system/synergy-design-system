@@ -596,9 +596,11 @@ type AttributeDescription = {
  * @param {Attribute<T>} attribute - The attribute name
  * @returns {string} The story description
  */
-export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => (
-   (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description'
-);
+export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => {
+ // Exchange all \n with <br/>, because single line breaks with \n are not working in storybook
+ const description = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description';
+ return description.replace(/\n/g, '<br/>');
+}
 
 /**
  * Parameters for the generateScreenshotStory function

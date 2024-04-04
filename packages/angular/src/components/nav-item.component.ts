@@ -19,9 +19,9 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
  * Takes one of 3 forms:
- * - link (overrides all other if 'href' is provided),
  * - button (default),
- * - or accordion (if 'children' slot defined).
+ * - link (overrides button if a 'href' is provided),
+ * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
  * @since 1.14.0
@@ -30,12 +30,10 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are hidden.
  *
  * @event syn-hide - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are shown.
  *
  * @event syn-blur - Emitted when the button loses focus.
@@ -85,7 +83,9 @@ export class SynNavItemComponent {
   /**
 * The navigation item's href target.
 If provided, the navigation item will use an anchor tag otherwise it will use a button tag.
-The 'children' slot and accordion behavior will be ignored if an 'href' is provided.
+
+If the 'children' slot is provided, the navigation item will ignore the 'href' and use
+accordion behavior.
  */
   @Input()
   set href(v: SynNavItem['href']) {
@@ -144,7 +144,7 @@ Only used if `horizontal` is false.
 
   /**
 * Reflects HTML details element state and allows control from parent.
-Only used if `horizontal` is false, `href` is undefined, and `children` is defined.
+Only used if `horizontal` is false and `children` is defined.
  */
   @Input()
   set open(v: SynNavItem['open']) {
@@ -198,12 +198,12 @@ Only available when horizontal is false.
   }
 
   /**
-* Emitted when the navigation item: - has children, - has no href - and is clicked while HTML details are hidden.
+* Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
  */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted when the navigation item: - has children, - has no href - and is clicked while HTML details are shown.
+* Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.
  */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 

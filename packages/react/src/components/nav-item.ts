@@ -18,9 +18,9 @@ Component.define('syn-nav-item');
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
  * Takes one of 3 forms:
- * - link (overrides all other if 'href' is provided),
  * - button (default),
- * - or accordion (if 'children' slot defined).
+ * - link (overrides button if a 'href' is provided),
+ * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
  * @since 1.14.0
@@ -29,12 +29,10 @@ Component.define('syn-nav-item');
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are hidden.
  *
  * @event syn-hide - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are shown.
  *
  * @event syn-blur - Emitted when the button loses focus.

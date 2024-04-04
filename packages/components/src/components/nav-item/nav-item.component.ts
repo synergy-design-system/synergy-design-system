@@ -13,9 +13,9 @@ import { watch } from '../../internal/watch.js';
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
  * Takes one of 3 forms:
- * - link (overrides all other if 'href' is provided),
  * - button (default),
- * - or accordion (if 'children' slot defined).
+ * - link (overrides button if a 'href' is provided),
+ * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
  * @since 1.14.0
@@ -24,12 +24,10 @@ import { watch } from '../../internal/watch.js';
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are hidden.
  *
  * @event syn-hide - Emitted when the navigation item:
  * - has children,
- * - has no href
  * - and is clicked while HTML details are shown.
  *
  * @event syn-blur - Emitted when the button loses focus.
@@ -101,9 +99,11 @@ export default class SynNavItem extends SynergyElement {
   /**
    * The navigation item's href target.
    * If provided, the navigation item will use an anchor tag otherwise it will use a button tag.
-   * The 'children' slot and accordion behavior will be ignored if an 'href' is provided.
+   *
+   * If the 'children' slot is provided, the navigation item will ignore the 'href' and use
+   * accordion behavior.
    */
-  @property({ reflect: true }) href = '';
+  @property({ reflect: true, type: String }) href: string;
 
   /*
    * Indicates that the navigation item is currently selected.
@@ -129,7 +129,7 @@ export default class SynNavItem extends SynergyElement {
 
   /**
    * Reflects HTML details element state and allows control from parent.
-   * Only used if `horizontal` is false, `href` is undefined, and `children` is defined.
+   * Only used if `horizontal` is false and `children` is defined.
    */
   @property({ reflect: true, type: Boolean }) open = false;
 
@@ -144,7 +144,7 @@ export default class SynNavItem extends SynergyElement {
   }
 
   private isLink(): boolean {
-    return !!this.href;
+    return !!this.href && !this.hasSlotController.test('children');
   }
 
   private isAccordion(): boolean {
@@ -318,8 +318,7 @@ export default class SynNavItem extends SynergyElement {
     if (isAccordion) tag = literal`summary`;
     else if (isLink) tag = literal`a`;
 
-    const hasChildren = this.hasSlotController.test('children');
-    const hasChevron = (this.chevron || hasChildren) && !this.horizontal;
+    const hasChevron = (this.chevron || isAccordion) && !this.horizontal;
 
     // Define the click method to use
     let clickAction;
@@ -354,9 +353,9 @@ export default class SynNavItem extends SynergyElement {
         @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         @focus=${this.handleFocus}
-        href=${ifDefined((isLink && !isAccordion) ? this.href : undefined)}
+        href=${ifDefined(isLink ? this.href : undefined)}
         part="base"
-        role=${(isLink && !isAccordion) ? 'link' : 'button'}
+        role=${isLink ? 'link' : 'button'}
         tabindex=${this.disabled ? '-1' : '0'}
       >
 

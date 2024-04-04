@@ -40,7 +40,7 @@ describe('<syn-nav-item>', () => {
       expect(el.chevron).to.equal(false);
       expect(el.disabled).to.equal(false);
       expect(el.divider).to.equal(false);
-      expect(el.href).to.equal('');
+      expect(el.href).to.be.undefined;
       expect(el.open).to.equal(false);
       expect(el.horizontal).to.equal(false);
     });

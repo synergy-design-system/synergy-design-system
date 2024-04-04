@@ -145,7 +145,7 @@ export const PrefixAndSuffixSlot: Story = {
     <br />
     <syn-nav-item>
       <span class="doc-number-helper" slot="prefix">1</span>
-      Step like item with a number
+      Step-like item with a number
     </syn-nav-item>
   `,
 };

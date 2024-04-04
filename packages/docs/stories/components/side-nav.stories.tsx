@@ -66,14 +66,6 @@ export const Default: Story = {
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
       `,
     },
   ], defaultArgs),
@@ -108,76 +100,6 @@ export const Default: Story = {
 `,
 };
 
-export const Fixed: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('side-nav', 'fixed'),
-      },
-    },
-  },
-  render: () => html`
-  <syn-header class="header-fixed">Side Navigation</syn-header>
-  <main class="main">
-    <syn-side-nav class="side-nav-fixed" open>
-      <syn-nav-item current>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-    </syn-side-nav>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
-    </div>
-  </main>
-  <script type="module">
-    const header = document.querySelector('.header-fixed');
-    const sideNav = document.querySelector('.side-nav-fixed');
-    header.connectSideNavigation(sideNav);
-  </script>
-  <style>
-    .main{
-      position: relative;
-      height: 500px;
-    }
-
-    .content {
-      padding: var(--syn-spacing-large);
-    }
-  </style>
-  `,
-};
-
 export const Rail: Story = {
   parameters: {
     docs: {
@@ -210,14 +132,6 @@ export const Rail: Story = {
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
     </syn-side-nav>
     <div class="content">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -241,6 +155,138 @@ export const Rail: Story = {
     .content {
       padding: var(--syn-spacing-large);
       overflow-y: auto;
+    }
+  </style>
+  `,
+};
+
+export const Footer: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('side-nav', 'footer'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-header class="header-footer">Side Navigation</syn-header>
+  <main class="main">
+    <syn-side-nav class="side-nav-footer" open>
+      <syn-nav-item current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Footer Item
+      </syn-nav-item>
+      <syn-nav-item divider slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Footer Item
+      </syn-nav-item>
+    </syn-side-nav>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
+    </div>
+  </main>
+  <script type="module">
+    const header = document.querySelector('.header-footer');
+    const sideNav = document.querySelector('.side-nav-footer');
+    header.connectSideNavigation(sideNav);
+  </script>
+  <style>
+    .main{
+      position: relative;
+      height: 500px;
+    }
+
+    .content {
+      padding: var(--syn-spacing-large);
+    }
+  </style>
+  `,
+};
+
+export const Fixed: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('side-nav', 'fixed'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-header class="header-fixed">Side Navigation</syn-header>
+  <main class="main">
+    <syn-side-nav class="side-nav-fixed" open>
+      <syn-nav-item current>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+      <syn-nav-item divider>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Navigation Item
+      </syn-nav-item>
+    </syn-side-nav>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
+    </div>
+  </main>
+  <script type="module">
+    const header = document.querySelector('.header-fixed');
+    const sideNav = document.querySelector('.side-nav-fixed');
+    header.connectSideNavigation(sideNav);
+  </script>
+  <style>
+    .main{
+      position: relative;
+      height: 500px;
+    }
+
+    .content {
+      padding: var(--syn-spacing-large);
     }
   </style>
   `,
@@ -275,14 +321,6 @@ export const Shrink: Story = {
         Navigation Item
       </syn-nav-item>
       <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -338,37 +376,24 @@ export const Indentation: Story = {
       <syn-nav-item open>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
+        <!-- second-level -->
         <syn-nav-item slot="children" open>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
           Navigation Item
+          <!-- third-level -->
           <syn-nav-item slot="children" current>
+            <syn-icon name="wallpaper" slot="prefix"></syn-icon>
             Navigation Item
           </syn-nav-item>
-          <syn-nav-item slot="children">
-            Navigation Item
-          </syn-nav-item>
+          <!-- /third-level -->
         </syn-nav-item>
+        <!-- /second-level -->
       </syn-nav-item>
       <syn-nav-item divider>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
       <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item slot="footer">
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider slot="footer">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -405,8 +430,9 @@ export const Indentation: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  Fixed,
   Rail,
+  Footer,
+  Fixed,
   Shrink,
   Indentation,
 }, 700);

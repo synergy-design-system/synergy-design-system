@@ -217,8 +217,8 @@ export default css`
   .current-indicator--horizontal {
     bottom: 0;
     height: var(--syn-spacing-2x-small);
-    left: var(--syn-spacing-2x-small);
-    right: var(--syn-spacing-2x-small);
+    left: var(--syn-spacing-x-small);
+    right: var(--syn-spacing-x-small);
   }
 
   .nav-item:hover .current-indicator--visible.current-indicator--horizontal,

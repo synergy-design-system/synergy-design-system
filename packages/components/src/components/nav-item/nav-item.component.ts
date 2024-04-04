@@ -386,7 +386,7 @@ export default class SynNavItem extends SynergyElement {
             /></syn-icon>`
           : ''}
 
-          <hr
+          <div
             class=${classMap({
               'current-indicator': true,
               'current-indicator--disabled': this.disabled,
@@ -395,7 +395,8 @@ export default class SynNavItem extends SynergyElement {
               'current-indicator--visible': this.current || showCurrentIndicatorForNested,
             })}
             part="current-indicator"
-          />
+          >
+          </div>
         </div>
 
       </${tag}>

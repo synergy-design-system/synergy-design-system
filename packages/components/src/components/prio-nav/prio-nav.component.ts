@@ -198,13 +198,14 @@ export default class SynPrioNav extends SynergyElement {
       <syn-dropdown
         class=${classMap({
           'priority-menu': true,
+          'priority-menu--has-visible-items': this.amountOfVisibleItems !== 0,
           'priority-menu--hidden': !this.hasItemsInDropdown,
         })}
         part="priority-menu"
         placement="bottom-end"
       >
-        <syn-nav-item slot="trigger" horizontal>
-          <syn-icon name="more" library="system" label="More" slot="prefix"></syn-icon>
+        <syn-nav-item class="priority-menu__nav-item" slot="trigger" horizontal>
+          <syn-icon class="priority-menu__icon" name="more" library="system" label="More" slot="prefix"></syn-icon>
           <span
             class=${classMap({
               'priority-menu__label': true,

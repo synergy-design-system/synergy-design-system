@@ -37,4 +37,19 @@ export default css`
   .priority-menu__label--visible {
     display: block;
   }
+
+  /**
+   * Make the available small click area accessible by adding paddings
+   */
+  .priority-menu--has-visible-items .priority-menu__icon {
+    padding-left: var(--syn-spacing-small);
+    padding-right: var(--syn-spacing-small);
+  }
+
+  /**
+   * Remove the margin from the content container if it is not visible
+   */
+  .priority-menu--has-visible-items .priority-menu__nav-item::part(content-container) {
+    margin-inline-start: 0;
+  }
 `;

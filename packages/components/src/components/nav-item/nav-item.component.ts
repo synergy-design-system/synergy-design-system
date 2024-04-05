@@ -344,10 +344,13 @@ export default class SynNavItem extends SynergyElement {
           'nav-item--current': this.current || showCurrentIndicatorForNested,
           'nav-item--disabled': this.disabled,
           'nav-item--focused': this.hasFocus,
+          'nav-item--has-content': this.hasSlotController.test('[default]'),
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
+          'nav-item--horizontal': this.horizontal,
           'nav-item--multi-line': this.isMultiLine,
           'nav-item--show-prefix-only': this.showPrefixOnly,
+          'nav-item--vertical': !this.horizontal,
           'nav-item-is-accordion': isAccordion,
         })}
         @click=${clickAction}
@@ -390,8 +393,6 @@ export default class SynNavItem extends SynergyElement {
             class=${classMap({
               'current-indicator': true,
               'current-indicator--disabled': this.disabled,
-              'current-indicator--horizontal': this.horizontal,
-              'current-indicator--vertical': !this.horizontal,
               'current-indicator--visible': this.current || showCurrentIndicatorForNested,
             })}
             part="current-indicator"

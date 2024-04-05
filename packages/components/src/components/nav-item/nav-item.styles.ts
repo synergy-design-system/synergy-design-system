@@ -63,8 +63,8 @@ export default css`
   /**
    * Horizontal nav items use narrower paddings
    */
-  :host([horizontal]) .nav-item {
-    padding: var(--syn-spacing-small) var(--syn-spacing-x-small);
+  .nav-item--horizontal {
+    padding: var(--syn-spacing-small) 0;
   }
 
   /**
@@ -99,6 +99,12 @@ export default css`
     z-index: -1;
   }
 
+  .nav-item--horizontal:not(.nav-item--disabled):hover::after {
+    left: calc(var(--syn-spacing-x-small) * -1);
+    width: calc(100% + 2 * var(--syn-spacing-x-small));
+  }
+
+
   /**
    * The content wrapper is needed to get the disabled state right
    * and also sets the left padding, according to the given indentation level.
@@ -121,29 +127,10 @@ export default css`
   /**
    * Slotted icons should use a default font size of large
    */
-  .nav-item--has-prefix ::slotted(syn-icon) {
+  .nav-item--has-prefix ::slotted(syn-icon),
+  .nav-item--has-suffix ::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
     min-width: var(--syn-font-size-x-large);
-  }
-
-  /**
-   * Make the primary content container fill all available space
-   */
-  .nav-item__content-container {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  /**
-   * Adjust the paddings for the label, depending if there is a pre- and/or suffix available
-   */
-  .nav-item--has-prefix .nav-item__content-container {
-    margin-inline-start: var(--syn-spacing-x-small);
-  }
-
-  .nav-item--has-suffix .nav-item__content-container {
-    margin-inline-end: var(--syn-spacing-x-small);
   }
 
   /**
@@ -161,12 +148,43 @@ export default css`
   }
 
   /**
+   * Make the primary content container fill all available space
+   */
+  .nav-item__content-container {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /**
+   * Horizontal navigation items should not break words
+   */
+    .nav-item--horizontal .nav-item__content-container {
+    font-weight: var(--syn-font-weight-bold);
+    white-space: nowrap;
+  }
+
+  /**
    * Show prefix only
    */
   .nav-item--show-prefix-only .nav-item__content-container,
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
     height: var(--syn-spacing-large);
+  }
+
+  /**
+   * Adjust the paddings for the label, depending if there is a pre- and/or suffix available.
+   * But only if the there is a main content or additionally a prefix / suffix
+   */
+  .nav-item--has-prefix.nav-item--has-content .nav-item__content-container,
+  .nav-item--has-prefix.nav-item--has-suffix .nav-item__content-container {
+    margin-inline-start: var(--syn-spacing-x-small);
+  }
+
+  .nav-item--has-suffix.nav-item--has-content .nav-item__content-container,
+  .nav-item--has-suffix.nav-item--has-prefix .nav-item__content-container {
+    margin-inline-end: var(--syn-spacing-x-small);
   }
 
   /**
@@ -182,14 +200,6 @@ export default css`
   :not(.nav-item--show-prefix-only).nav-item--multi-line .nav-item__prefix::slotted(syn-icon),
   .nav-item--multi-line .nav-item__chevron {
     align-self: flex-start;
-  }
-
-  /**
-   * Horizontal navigation items should not break words
-   */
-  :host([horizontal]) .nav-item__content-container {
-    font-weight: var(--syn-font-weight-bold);
-    white-space: nowrap;
   }
 
   /**
@@ -214,28 +224,28 @@ export default css`
     background: var(--syn-color-primary-600);
   }
 
-  .current-indicator--horizontal {
+  .nav-item--horizontal .current-indicator {
     bottom: 0;
     height: var(--syn-spacing-2x-small);
-    left: var(--syn-spacing-x-small);
-    right: var(--syn-spacing-x-small);
-  }
-
-  .nav-item:hover .current-indicator--visible.current-indicator--horizontal,
-  .nav-item:focus .current-indicator--visible.current-indicator--horizontal {
     left: 0;
     right: 0;
   }
 
-  .current-indicator--vertical {
+  .nav-item--horizontal:hover .current-indicator--visible,
+  .nav-item--horizontal:focus .current-indicator--visible {
+    left: calc(var(--syn-spacing-x-small) * -1);
+    right: calc(var(--syn-spacing-x-small) * -1);
+  }
+
+  .nav-item--vertical .current-indicator {
     bottom: var(--syn-spacing-x-small);
     left: 0;
     top: var(--syn-spacing-x-small);
     width: var(--syn-spacing-2x-small);
   }
 
-  .nav-item:hover .current-indicator--visible.current-indicator--vertical,
-  .nav-item:focus .current-indicator--visible.current-indicator--vertical {
+  .nav-item--vertical:hover .current-indicator--visible,
+  .nav-item--vertical:focus .current-indicator--visible {
     bottom: 0;
     top: 0;
   }

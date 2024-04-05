@@ -86,7 +86,7 @@ export const PriorityMenu = {
 };
 
 /**
- * Uncomment this to test automatic adding of items
+ * Uncomment this to test automatic adding of nav-items
  */
 // export const EXCESSIVE_TESTS = {
 //   parameters: {

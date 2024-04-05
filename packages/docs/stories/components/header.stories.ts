@@ -182,5 +182,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Navigation,
   BurgerMenu,
 }, {
-  heightPx: 150,
+  heightPx: 200,
 });

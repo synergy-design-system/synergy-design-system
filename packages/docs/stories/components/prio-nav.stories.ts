@@ -125,4 +125,6 @@ export const PriorityMenu = {
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   PriorityMenu,
+}, {
+  heightPx: 200,
 });

@@ -81,7 +81,7 @@ export const Default: Story = {
   },
   render: (args: unknown) => html`
   <syn-header>Side Navigation</syn-header>
-  <main style="position: relative; height: 500px;" class="side-nav-default">
+  <main style="position: relative; height: 500px; background-color: var(--syn-color-neutral-200);" class="side-nav-default">
     ${generateTemplate({ args })}
   </main> 
   <script type="module">
@@ -109,8 +109,8 @@ export const Rail: Story = {
     },
   },
   render: () => html`
-  <syn-header>Side Navigation</syn-header>
-  <main class="main">
+  <syn-header class="header-rail">Side Navigation</syn-header>
+  <main class="main-rail">
     <syn-side-nav class="side-nav-rail" rail>
       <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
@@ -133,27 +133,30 @@ export const Rail: Story = {
         Navigation Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
+    <div class="content-rail">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
+      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.    
     </div>
   </main>
+  <script type="module">
+    const header = document.querySelector('.header-rail');
+    const sideNav = document.querySelector('.side-nav-rail');
+    header.connectSideNavigation(sideNav);
+  </script>
   <style>
-    .main {
+    .main-rail {
       position: relative;
       height: 500px;
       display: flex;
       overflow: hidden;
+      background-color: var(--syn-color-neutral-200);
     }
 
-    .content {
+    .content-rail {
       padding: var(--syn-spacing-large);
+      margin: var(--syn-spacing-large);
+      border-radius: var(--syn-border-radius-medium);
+      background-color: var(--syn-color-neutral-0);
       overflow-y: auto;
     }
   </style>
@@ -170,7 +173,7 @@ export const Footer: Story = {
   },
   render: () => html`
   <syn-header class="header-footer">Side Navigation</syn-header>
-  <main class="main">
+  <main class="main-footer">
     <syn-side-nav class="side-nav-footer" open>
       <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
@@ -201,16 +204,6 @@ export const Footer: Story = {
         Footer Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
-    </div>
   </main>
   <script type="module">
     const header = document.querySelector('.header-footer');
@@ -218,13 +211,10 @@ export const Footer: Story = {
     header.connectSideNavigation(sideNav);
   </script>
   <style>
-    .main{
+    .main-footer {
       position: relative;
       height: 500px;
-    }
-
-    .content {
-      padding: var(--syn-spacing-large);
+      background-color: var(--syn-color-neutral-200);
     }
   </style>
   `,
@@ -239,54 +229,59 @@ export const Fixed: Story = {
     },
   },
   render: () => html`
-  <syn-header class="header-fixed">Side Navigation</syn-header>
-  <main class="main">
-    <syn-side-nav class="side-nav-fixed" open>
-      <syn-nav-item current>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-      <syn-nav-item divider>
-        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
-        Navigation Item
-      </syn-nav-item>
-    </syn-side-nav>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
-    </div>
-  </main>
+  <div class="container-fixed">
+    <syn-header class="header-fixed">Side Navigation</syn-header>
+    <main class="main-fixed">
+      <syn-side-nav class="side-nav-fixed" open>
+        <syn-nav-item current>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Navigation Item
+        </syn-nav-item>
+        <syn-nav-item divider>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Navigation Item
+        </syn-nav-item>
+        <syn-nav-item divider>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Navigation Item
+        </syn-nav-item>
+        <syn-nav-item divider>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Navigation Item
+        </syn-nav-item>
+        <syn-nav-item divider>
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Navigation Item
+        </syn-nav-item>
+      </syn-side-nav>
+      <div class="content-fixed">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.     
+      </div>
+    </main>
+  </div>
   <script type="module">
     const header = document.querySelector('.header-fixed');
     const sideNav = document.querySelector('.side-nav-fixed');
     header.connectSideNavigation(sideNav);
   </script>
   <style>
-    .main{
-      position: relative;
-      height: 500px;
+    .container-fixed {
+      display: flex;
+      flex-direction: column;
     }
 
-    .content {
+    .main-fixed {
+      position: relative;
+      height: 500px;
+      background-color: var(--syn-color-neutral-200);
+    }
+
+    .content-fixed {
       padding: var(--syn-spacing-large);
+      margin: var(--syn-spacing-large);
+      border-radius: var(--syn-border-radius-medium);
+      background-color: var(--syn-color-neutral-0);
     }
   </style>
   `,
@@ -302,7 +297,7 @@ export const Shrink: Story = {
   },
   render: () => html`
   <syn-header class="header-shrink">Side Navigation</syn-header>
-   <main class="main">
+   <main class="main-shrink">
     <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
       <syn-nav-item current>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
@@ -325,15 +320,9 @@ export const Shrink: Story = {
         Navigation Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    <div class="content-shrink">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,    
     </div>
   </main>
   <script type="module">
@@ -342,19 +331,23 @@ export const Shrink: Story = {
     header.connectSideNavigation(sideNav);
   </script>
   <style>
-    .main {
+    .main-shrink {
       position: relative;
       height: 500px;
       display: flex;
       overflow: hidden;
+      background-color: var(--syn-color-neutral-200);
     }
 
     .side-nav-shrink::part(overlay) {
       display: none;
     }
     
-    .content {
+    .content-shrink {
       padding: var(--syn-spacing-large);
+      margin: var(--syn-spacing-large);
+      border-radius: var(--syn-border-radius-medium);
+      background-color: var(--syn-color-neutral-0);
       overflow-y: auto;
     }
   </style>
@@ -371,7 +364,7 @@ export const Indentation: Story = {
   },
   render: () => html`
   <syn-header class="header-indentation">Side Navigation</syn-header>
-  <main class="main">
+  <main class="main-indentation">
     <syn-side-nav class="side-nav-indentation" open>
       <syn-nav-item open>
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
@@ -398,16 +391,6 @@ export const Indentation: Story = {
         Navigation Item
       </syn-nav-item>
     </syn-side-nav>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-      At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-      et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,      
-    </div>
   </main>
   <script type="module">
     const header = document.querySelector('.header-indentation');
@@ -415,13 +398,10 @@ export const Indentation: Story = {
     header.connectSideNavigation(sideNav);
   </script>
   <style>
-    .main{
+    .main-indentation {
       position: relative;
       height: 500px;
-    }
-
-    .content {
-      padding: var(--syn-spacing-large);
+      background-color: var(--syn-color-neutral-200);
     }
   </style>
   `,

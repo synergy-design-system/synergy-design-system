@@ -20,13 +20,13 @@ import { unlockBodyScrolling } from '../../internal/scroll.js';
  *
  * @example
  * <syn-side-nav open>
- *  <syn-nav-item vertical>Item 1</syn-nav-item>
- *  <syn-nav-item vertical>Item 2</syn-nav-item>
+ *  <syn-nav-item >Item 1</syn-nav-item>
+ *  <syn-nav-item divider>Item 2</syn-nav-item>
  * </syn-side-nav>
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.11.0
+ * @since 1.14.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer
@@ -271,14 +271,14 @@ export default class SynSideNav extends SynergyElement {
     return html`
       <nav
         class=${classMap({
-      'side-nav': true,
-      'side-nav--animation': this.isAnimationActive,
-      'side-nav--fix': !this.rail,
-      'side-nav--has-footer': hasFooter,
-      'side-nav--open': this.open,
-      'side-nav--rail': this.rail,
-      'side-nav--touch': isTouch,
-    })}
+          'side-nav': true,
+          'side-nav--animation': this.isAnimationActive,
+          'side-nav--fix': !this.rail,
+          'side-nav--has-footer': hasFooter,
+          'side-nav--open': this.open,
+          'side-nav--rail': this.rail,
+          'side-nav--touch': isTouch,
+        })}
         part="base"
       >
         

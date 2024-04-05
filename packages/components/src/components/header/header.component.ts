@@ -137,6 +137,10 @@ export default class SynHeader extends SynergyElement {
     this.removeSideNavListener();
     this.sideNav = sideNav || document.querySelector('syn-side-nav');
 
+    // Reset the showBurgerMenu property if the new connected side-nav is in rail mode
+    const isAvailable = (this.sideNav !== undefined && this.sideNav !== null);
+    this.showBurgerMenu = (isAvailable ? !this.sideNav.rail : this.showBurgerMenu);
+
     this.handleBurgerMenuVisibility();
 
     this.addSideNavListener();

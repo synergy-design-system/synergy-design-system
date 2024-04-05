@@ -88,38 +88,38 @@ export const PriorityMenu = {
 /**
  * Uncomment this to test automatic adding of items
  */
-export const EXCESSIVE_TESTS = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('prio-nav', 'priority-menu'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-prio-nav id="demo-ding">
-      <syn-nav-item current horizontal>Domains</syn-nav-item>
-      <syn-nav-item horizontal>Projects</syn-nav-item>
-      <syn-nav-item horizontal>Trainings</syn-nav-item>
-      <syn-nav-item horizontal>Item 1</syn-nav-item>
-      <syn-nav-item horizontal>Item 2</syn-nav-item> 
-      <syn-nav-item horizontal>Item 3</syn-nav-item>
-      <syn-menu-item href="#" role="menuitem">Hello</syn-menu-item>
-      <syn-nav-item horizontal>Item 4</syn-nav-item>
-    </syn-prio-nav>
-    <syn-button>Add an Item</syn-button>
-    <script type="module">
-    let x = 5;
-    document.querySelector('syn-button').addEventListener('click', () => {
-      const node = document.createElement('syn-nav-item');
-      node.horizontal = true;
-      node.innerText = 'Item ' + x;
-      x++;
-      document.querySelector('#demo-ding').appendChild(node);
-    });
-    </script>
-  `,
-};
+// export const EXCESSIVE_TESTS = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('prio-nav', 'priority-menu'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//     <syn-prio-nav id="demo-ding">
+//       <syn-nav-item current horizontal>Domains</syn-nav-item>
+//       <syn-nav-item horizontal>Projects</syn-nav-item>
+//       <syn-nav-item horizontal>Trainings</syn-nav-item>
+//       <syn-nav-item horizontal>Item 1</syn-nav-item>
+//       <syn-nav-item horizontal>Item 2</syn-nav-item> 
+//       <syn-nav-item horizontal>Item 3</syn-nav-item>
+//       <syn-menu-item href="#" role="menuitem">Hello</syn-menu-item>
+//       <syn-nav-item horizontal>Item 4</syn-nav-item>
+//     </syn-prio-nav>
+//     <syn-button>Add an Item</syn-button>
+//     <script type="module">
+//     let x = 5;
+//     document.querySelector('syn-button').addEventListener('click', () => {
+//       const node = document.createElement('syn-nav-item');
+//       node.horizontal = true;
+//       node.innerText = 'Item ' + x;
+//       x++;
+//       document.querySelector('#demo-ding').appendChild(node);
+//     });
+//     </script>
+//   `,
+// };
 
 // Bundled screenshot story
 export const Screenshot: Story = generateScreenshotStory({

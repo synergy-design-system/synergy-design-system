@@ -102,7 +102,7 @@ export const PriorityMenu = {
 //       <syn-nav-item horizontal>Projects</syn-nav-item>
 //       <syn-nav-item horizontal>Trainings</syn-nav-item>
 //       <syn-nav-item horizontal>Item 1</syn-nav-item>
-//       <syn-nav-item horizontal>Item 2</syn-nav-item> 
+//       <syn-nav-item horizontal>Item 2</syn-nav-item>
 //       <syn-nav-item horizontal>Item 3</syn-nav-item>
 //       <syn-menu-item href="#" role="menuitem">Hello</syn-menu-item>
 //       <syn-nav-item horizontal>Item 4</syn-nav-item>

@@ -93,17 +93,8 @@ export default css`
    * The horizontal top navigation section
    */
   .header__navigation {
-    padding: 0;
+    padding: 0 var(--syn-spacing-large);
   }
-
-  /**
-   * Make sure to remove the default paddings from the slotted <syn-prio-nav />
-   * This makes sure the first navigation item is aligned with the logo
-   */
-  .header__navigation ::slotted(syn-prio-nav) {
-    --navigation-spacing: 0 var(--syn-spacing-medium);
-  }
-
 
   /**
    * The burger menu icon styles

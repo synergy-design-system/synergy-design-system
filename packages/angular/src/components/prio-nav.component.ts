@@ -44,8 +44,6 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
  * @csspart priority-menu - The wrapper around the priority menu
  * @csspart priority-menu-label - The label for the priority menu
  *
- * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
- *
  */
 @Component({
   selector: 'syn-prio-nav',

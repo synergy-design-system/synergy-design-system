@@ -39,8 +39,6 @@ Component.define('syn-prio-nav');
  * @csspart priority-menu - The wrapper around the priority menu
  * @csspart priority-menu-label - The label for the priority menu
  *
- * @cssproperty --navigation-spacing - The amount of outer padding to use for the navigation.
- *
  */
 export const SynPrioNav = createComponent({
   displayName: 'SynPrioNav',

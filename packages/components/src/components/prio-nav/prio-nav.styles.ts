@@ -2,11 +2,6 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    /**
-     * The inner padding to use for the wrapper
-     */
-    --navigation-spacing: 0 var(--syn-spacing-large);
-
     display: block;
 
     /**
@@ -20,7 +15,6 @@ export default css`
     flex: 1;
     gap: var(--syn-spacing-large);
     overflow: hidden;    
-    padding: var(--navigation-spacing);
   }
 
   /**

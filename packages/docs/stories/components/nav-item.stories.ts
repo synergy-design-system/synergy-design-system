@@ -163,16 +163,16 @@ export const ChildrenClosedOrOpenVerticalOnly: Story = {
       <syn-nav-item>
         Children closed
         <nav slot="children">
-          <syn-nav-item >Item 1</syn-nav-item>
-          <syn-nav-item  divider>Item 2</syn-nav-item>
+          <syn-nav-item>Item 1</syn-nav-item>
+          <syn-nav-item>Item 2</syn-nav-item>
         </nav>
       </syn-nav-item>
       <br />
       <syn-nav-item open >
         Children open
         <nav slot="children">
-          <syn-nav-item >Item 1</syn-nav-item>
-          <syn-nav-item divider>Item 2</syn-nav-item>
+          <syn-nav-item>Item 1</syn-nav-item>
+          <syn-nav-item>Item 2</syn-nav-item>
         </nav>
       </syn-nav-item>
     </nav>
@@ -259,7 +259,7 @@ export const Disabled: Story = {
 //             Item 1.2
 //             <!-- third-level -->
 //             <nav slot="children">
-              
+
 //               <syn-nav-item divider>
 //                 <syn-icon name="area_chart" slot="prefix"></syn-icon>
 //                 Item 1.2.1

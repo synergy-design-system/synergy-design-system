@@ -14,7 +14,6 @@ export default css`
     display: flex;
     flex: 1;
     gap: var(--syn-spacing-large);
-    overflow: hidden;    
   }
 
   /**

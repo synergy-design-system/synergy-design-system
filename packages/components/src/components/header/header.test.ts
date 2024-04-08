@@ -81,7 +81,7 @@ describe('<syn-header>', () => {
       const el = await fixture<SynHeader>(html`
         <syn-header></syn-header>
         <syn-side-nav></syn-side-nav>
-        `);
+      `);
 
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
@@ -96,7 +96,7 @@ describe('<syn-header>', () => {
           <syn-header></syn-header>
           <syn-side-nav></syn-side-nav>
         </div>
-        `);
+      `);
 
       const sideNav = el.querySelector('syn-side-nav')!;
 
@@ -121,7 +121,7 @@ describe('<syn-header>', () => {
           <syn-header></syn-header>
           <syn-side-nav></syn-side-nav>
         </div>
-        `);
+      `);
       const showHandler = sinon.spy();
       const sideNav = el.querySelector('syn-side-nav')!;
       sideNav.addEventListener('syn-show', showHandler);
@@ -139,6 +139,25 @@ describe('<syn-header>', () => {
 
       expect(burgerMenuPart?.querySelector('syn-icon[name="x-lg"]')).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="menu"]')).to.be.null;
+    });
+
+    it('should toggle the showBurgerMenu state in case of side-vna mode was changed to rail = true', async () => {
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-header></syn-header>
+          <syn-side-nav></syn-side-nav>
+        </div>
+      `);
+
+      const header = el.querySelector('syn-header')!;
+      const sideNav = el.querySelector('syn-side-nav')!;
+
+      expect(header.showBurgerMenu).to.be.true;
+
+      sideNav.rail = true;
+      await sideNav.updateComplete;
+
+      expect(header.showBurgerMenu).to.be.false;
     });
 
     it('should emit syn-burger-menu-show and and syn-burger-menu-hide when clicked', async () => {
@@ -192,7 +211,7 @@ describe('<syn-header>', () => {
           <syn-header></syn-header>
           <syn-side-nav open></syn-side-nav>
         </div>
-        `);
+      `);
       const sideNav = el.querySelector('syn-side-nav')!;
       const header = el.querySelector('syn-header')!;
       const burgerMenuHideHandler = sinon.spy();
@@ -214,7 +233,7 @@ describe('<syn-header>', () => {
           <syn-header></syn-header>
           <syn-side-nav></syn-side-nav>
         </div>
-        `);
+      `);
       const header = el.querySelector('syn-header')!;
 
       // @ts-expect-error the sideNav is a private property
@@ -228,7 +247,7 @@ describe('<syn-header>', () => {
           <syn-side-nav id="first"> </syn-side-nav>
           <syn-side-nav id="second"></syn-side-nav>
         </div>
-        `);
+      `);
 
       const header = el.querySelector('syn-header')!;
       // @ts-expect-error the sideNav is a private property
@@ -238,6 +257,82 @@ describe('<syn-header>', () => {
 
       // @ts-expect-error the sideNav is a private property
       expect(header.sideNav.id).to.equal('second');
+    });
+  });
+
+  describe('when mutation observer for side navigation', () => {
+    it('should not set up a mutation observer if no side navigation is available', async () => {
+      const observeStub = sinon.stub();
+      (globalThis.MutationObserver as unknown) = sinon.stub().returns({
+        disconnect: sinon.stub(),
+        observe: observeStub,
+        takeRecords: sinon.stub(),
+      });
+
+      await fixture<SynHeader>(html`<syn-header></syn-header>`);
+      expect(observeStub).to.not.have.been.called;
+    });
+
+    it('should set up a mutation observer if a side navigation is available', async () => {
+      const observeStub = sinon.stub();
+      (globalThis.MutationObserver as unknown) = sinon.stub().returns({
+        disconnect: sinon.stub(),
+        observe: observeStub,
+        takeRecords: sinon.stub(),
+      });
+
+      await fixture<HTMLDivElement>(html`
+        <syn-header></syn-header>
+        <syn-side-nav></syn-side-nav>
+      `);
+      expect(observeStub).to.have.been.calledOnce;
+    });
+
+    it('should disconnect the mutation observer on disconnectedCallback', async () => {
+      const disconnectStub = sinon.stub();
+      (globalThis.MutationObserver as unknown) = sinon.stub().returns({
+        disconnect: disconnectStub,
+        observe: sinon.stub(),
+        takeRecords: sinon.stub(),
+      });
+
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-header></syn-header>
+          <syn-side-nav></syn-side-nav>
+        </div>
+      `);
+      const header = el.querySelector('syn-header')!;
+      header.remove();
+
+      expect(disconnectStub).to.have.been.called;
+    });
+
+    it('should disconnect the mutation observer and reconnect a new one if connectSideNavigation method is used', async () => {
+      const disconnectStub = sinon.stub();
+      const observeStub = sinon.stub();
+
+      (globalThis.MutationObserver as unknown) = sinon.stub().returns({
+        disconnect: disconnectStub,
+        observe: observeStub,
+        takeRecords: sinon.stub(),
+      });
+
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-header></syn-header>
+          <syn-side-nav id="first"> </syn-side-nav>
+          <syn-side-nav id="second"></syn-side-nav>
+        </div>
+      `);
+
+      expect(observeStub).to.have.been.calledOnce;
+
+      const header = el.querySelector('syn-header')!;
+      header.connectSideNavigation(el.querySelector('#second')!);
+
+      expect(observeStub).to.have.been.calledTwice;
+      expect(disconnectStub).to.have.been.calledTwice;
     });
   });
 });

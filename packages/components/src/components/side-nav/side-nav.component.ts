@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit/static-html.js';
@@ -144,13 +145,13 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private addMouseListener() {
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', () => this.handleMouseEnter());
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', () => this.handleMouseLeave());
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseenter', this.handleMouseEnter);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.addEventListener('mouseleave', this.handleMouseLeave);
   }
 
   private removeMouseListener() {
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', () => this.handleMouseEnter());
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', () => this.handleMouseLeave());
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseenter', this.handleMouseEnter);
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
   }
 
   private forceDrawerVisibilityForRailMode() {
@@ -182,6 +183,10 @@ export default class SynSideNav extends SynergyElement {
       (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
     } else {
       this.removeMouseListener();
+      // Remove forcing of drawer visibility for rail mode if not open
+      if (!this.open) {
+        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = true;
+      }
     }
   }
 
@@ -232,6 +237,12 @@ export default class SynSideNav extends SynergyElement {
     this.open = false;
 
     return waitForEvent(this, 'syn-after-hide');
+  }
+
+  constructor() {
+    super();
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
   /**

@@ -252,5 +252,23 @@ describe('<syn-side-nav>', () => {
       const { display } = getComputedStyle(nestedNavItems);
       expect(display).to.equal('none');
     });
+
+    it('should remove the forcing of drawer visibility if rail mode changed to rail = false and open = false', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav rail>
+          <syn-nav-item vertical>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      sideNav.rail = false;
+
+      await sideNav.updateComplete;
+
+      expect(baseDrawer.hidden).to.be.true;
+    });
   });
 });

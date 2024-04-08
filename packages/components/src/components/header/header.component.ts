@@ -54,6 +54,11 @@ export default class SynHeader extends SynergyElement {
   private readonly localize = new LocalizeController(this);
 
   /**
+   * Internal mutation observer
+   */
+  private mutationObserver: MutationObserver;
+
+  /**
    * The headers label. If you need to display HTML, use the `default` slot instead.
    */
   @property() label = '';
@@ -82,32 +87,24 @@ export default class SynHeader extends SynergyElement {
     this.burgerMenuVisible = !this.burgerMenuVisible;
   }
 
-  private handleBurgerMenuVisibility() {
+  private updateBurgerMenuBasedOnSideNav() {
     // The side-nav has a higher priority than when the burger menu toggle and visibility
     // is set via property
-    this.showBurgerMenu = (this.sideNav && !this.sideNav.rail) || this.showBurgerMenu;
-    this.burgerMenuVisible = (this.sideNav && !this.sideNav.rail)
-      ? this.sideNav.open : this.burgerMenuVisible;
-  }
-
-  private addSideNavListener() {
-    this.sideNav?.addEventListener('syn-show', this.handleBurgerMenuVisibility);
-    this.sideNav?.addEventListener('syn-hide', this.handleBurgerMenuVisibility);
-  }
-
-  private removeSideNavListener() {
-    this.sideNav?.removeEventListener('syn-show', this.handleBurgerMenuVisibility);
-    this.sideNav?.removeEventListener('syn-hide', this.handleBurgerMenuVisibility);
-  }
-
-  constructor() {
-    super();
-    this.handleBurgerMenuVisibility = this.handleBurgerMenuVisibility.bind(this);
+    if (this.sideNav) {
+      this.showBurgerMenu = !this.sideNav.rail;
+      this.burgerMenuVisible = !this.sideNav.rail ? this.sideNav.open : false;
+    }
   }
 
   @watch('burgerMenuVisible', { waitUntilFirstUpdate: true })
   handleBurgerMenuVisible() {
     this.emit(this.burgerMenuVisible ? 'syn-burger-menu-show' : 'syn-burger-menu-hide');
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.mutationObserver = new MutationObserver(() => this.updateBurgerMenuBasedOnSideNav());
   }
 
   firstUpdated() {
@@ -120,8 +117,8 @@ export default class SynHeader extends SynergyElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    //  Remove listeners
-    this.removeSideNavListener();
+    //  Remove observer
+    this.mutationObserver.disconnect();
   }
 
   /**
@@ -134,16 +131,15 @@ export default class SynHeader extends SynergyElement {
    * @param sideNav The side navigation to connect to the header
    */
   connectSideNavigation(sideNav: SynSideNav) {
-    this.removeSideNavListener();
+    this.mutationObserver.disconnect();
+
     this.sideNav = sideNav || document.querySelector('syn-side-nav');
-
-    // Reset the showBurgerMenu property if the new connected side-nav is in rail mode
-    const isAvailable = (this.sideNav !== undefined && this.sideNav !== null);
-    this.showBurgerMenu = (isAvailable ? !this.sideNav.rail : this.showBurgerMenu);
-
-    this.handleBurgerMenuVisibility();
-
-    this.addSideNavListener();
+    if (this.sideNav) {
+      // Need to call the method initially, if the side-nav is not open on connect time.
+      // Otherwise the mutation observer won`t trigger the method.
+      this.updateBurgerMenuBasedOnSideNav();
+      this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'rail'], attributes: true });
+    }
   }
 
   render() {

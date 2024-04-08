@@ -42,7 +42,11 @@ import {
  *
  * @csspart base - The component's base wrapper.
  * @csspart priority-menu - The wrapper around the priority menu
+ * @csspart priority-menu-nav-item - The navigation item for the priority menu
  * @csspart priority-menu-label - The label for the priority menu
+ * @csspart priority-menu-icon - The icon for the priority menu
+ * @csspart priority-menu-container - The container for the shifted navigation items,
+ *    if there is not enough space.
  *
  */
 export default class SynPrioNav extends SynergyElement {
@@ -202,8 +206,16 @@ export default class SynPrioNav extends SynergyElement {
         part="priority-menu"
         placement="bottom-end"
       >
-        <syn-nav-item class="priority-menu__nav-item" slot="trigger" horizontal>
-          <syn-icon class="priority-menu__icon" name="more" library="system" label="More" slot="prefix"></syn-icon>
+        <syn-nav-item class="priority-menu__nav-item" slot="trigger" horizontal part="priority-menu-nav-item">
+          <syn-icon 
+            class="priority-menu__icon"
+            label="More"
+            library="system"
+            name="more"
+            part="priority-menu-icon"
+            slot="prefix"
+          >
+          </syn-icon>
           <span
             class=${classMap({
               'priority-menu__label': true,
@@ -215,7 +227,7 @@ export default class SynPrioNav extends SynergyElement {
           </span>
         </syn-nav-item>
 
-        <syn-menu>
+        <syn-menu part="priority-menu-container">
           <slot name="menu"></slot>
         </syn-menu>
 

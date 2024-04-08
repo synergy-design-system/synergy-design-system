@@ -56,8 +56,19 @@ export default css`
   }
 
   .nav-item:focus-visible {
+    outline: none;
+  }
+
+  .nav-item:focus-visible::after {
+    content: '';
+    display: block;
+    height: 100%;
+    left: calc(var(--syn-spacing-x-small) * -1);
     outline: var(--syn-focus-ring);
     outline-offset: -2px;
+    position: absolute;
+    top: 0;
+    width: calc(100% + 2 * var(--syn-spacing-x-small));
   }
 
   /**
@@ -86,7 +97,7 @@ export default css`
    * Hover effect for the nav item.
    * We use opacity to make sure the border-bottom is visible if used in the prio-nav in header
    */
-  .nav-item:not(.nav-item--disabled):hover::after {
+  .nav-item:not(.nav-item--disabled):hover::before {
     background: var(--syn-color-neutral-600);
     content: '';
     display: block;
@@ -99,7 +110,7 @@ export default css`
     z-index: -1;
   }
 
-  .nav-item--horizontal:not(.nav-item--disabled):hover::after {
+  .nav-item--horizontal:not(.nav-item--disabled):hover::before {
     left: calc(var(--syn-spacing-x-small) * -1);
     width: calc(100% + 2 * var(--syn-spacing-x-small));
   }

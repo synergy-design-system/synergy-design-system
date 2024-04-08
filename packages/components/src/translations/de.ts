@@ -38,10 +38,16 @@ const translation: Translation = {
   showPassword: 'Passwort anzeigen',
   slideNum: slide => `Folie ${slide}`,
   toggleColorFormat: 'Farbformat umschalten',
+
+  // Automatically generated custom translations.
+  // @see scripts/vendorism/translations.vendorism.js
+  closeMenu: 'Menu schließen',
   danger: 'Gefahr',
-notification: 'Benachrichtigung',
-success: 'Erfolg',
-warning: 'Warnung',
+  notification: 'Benachrichtigung',
+  openMenu: 'Menu öffnen',
+  sideNav: 'Seitennavigation',
+  success: 'Erfolg',
+  warning: 'Warnung',
 };
 
 registerTranslation(translation);

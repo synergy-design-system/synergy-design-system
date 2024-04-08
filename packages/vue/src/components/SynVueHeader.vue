@@ -18,6 +18,11 @@
  * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
  * @slot navigation - This slot can be used to add an optional horizontal navigation
+ * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
+ * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
+ *
+ * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
+ * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
  *
  * @csspart base - The component's base wrapper.
  * @csspart content - The wrapper most content items reside
@@ -25,28 +30,50 @@
  * @csspart label - The element wrapping the application name
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
+ * @csspart burger-menu-toggle-button - The button that toggles the burger menu
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
 
-import type { SynHeader } from '@synergy-design-system/components';
+import type { SynBurgerMenuHideEvent, SynBurgerMenuShowEvent, SynHeader } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const element = ref<SynHeader>();
 
 // Map methods
+const callHandleBurgerMenuVisible = (...args: Parameters<SynHeader['handleBurgerMenuVisible']>) => element.value?.handleBurgerMenuVisible(...args);
+/**
+* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
+like showing the burger menu icon and open / close handling.
+
+If no side navigation is connected, the header will use the first `syn-side-nav` element it
+finds.
+ */
+const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => element.value?.connectSideNavigation(...args);
 
 defineExpose({
-
+  callHandleBurgerMenuVisible,
+  callConnectSideNavigation,
 });
 
 // Map attributes
 const props = defineProps<{
   /**
 * The headers label.
-* If you need to display HTML, use the `label` slot instead.
+* If you need to display HTML, use the `default` slot instead.
  */
   'label'?: SynHeader['label'];
+
+  /**
+* Adds a button to toggle the burger menu's visibility.
+The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
+ */
+  'showBurgerMenu'?: SynHeader['showBurgerMenu'];
+
+  /**
+* Determines whether or not the burger menu is currently visible.
+ */
+  'burgerMenuVisible'?: SynHeader['burgerMenuVisible'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -61,19 +88,36 @@ const visibleProps = computed(() => Object.fromEntries(
 
 // Map events
 defineEmits<{
+  /**
+* Emitted when the burger menu button is toggled to visible
+ */
+  'syn-burger-menu-show': [e: SynBurgerMenuShowEvent];
 
+  /**
+* Emitted when the burger menu button is toggled to not visible
+ */
+  'syn-burger-menu-hide': [e: SynBurgerMenuHideEvent];
 }>();
+</script>
+
+<script lang="ts">
+export type { SynBurgerMenuShowEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
   <syn-header
-
     v-bind="visibleProps"
     ref="element"
+
+    @syn-burger-menu-show="$emit('syn-burger-menu-show', $event)"
+    @syn-burger-menu-hide="$emit('syn-burger-menu-hide', $event)"
   >
     <slot />
     <slot name="logo" />
     <slot name="meta-navigation" />
     <slot name="navigation" />
+    <slot name="show-burger-menu" />
+    <slot name="hide-burger-menu" />
   </syn-header>
 </template>

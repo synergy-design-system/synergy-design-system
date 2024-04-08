@@ -3,6 +3,18 @@
   <theme-switch slot="meta-navigation" />
 </syn-header>
 
-<main>
-  <demo-form />
-</main>
+<div class="main">
+  <syn-side-nav #sideNav [rail]="true">
+    <syn-nav-item href="/">
+      Home
+      <syn-icon name="home" slot="prefix"></syn-icon>
+    </syn-nav-item>
+    <syn-nav-item [divider]="true" href="/contact-form">
+      Contact Form
+      <syn-icon name="description" slot="prefix"></syn-icon>
+    </syn-nav-item>
+  </syn-side-nav>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

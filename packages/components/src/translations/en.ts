@@ -38,10 +38,16 @@ const translation: Translation = {
   showPassword: 'Show password',
   slideNum: slide => `Slide ${slide}`,
   toggleColorFormat: 'Toggle color format',
+
+  // Automatically generated custom translations.
+  // @see scripts/vendorism/translations.vendorism.js
+  closeMenu: 'Close menu',
   danger: 'Danger',
-notification: 'Notification',
-success: 'Success',
-warning: 'Warning',
+  notification: 'Notification',
+  openMenu: 'Open menu',
+  sideNav: 'Side navigation',
+  success: 'Success',
+  warning: 'Warning',
 };
 
 registerTranslation(translation);

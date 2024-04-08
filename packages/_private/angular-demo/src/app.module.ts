@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DemoFieldset } from './demofieldset/demofieldset.component';
 import { DemoForm } from './demoform/demoform.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     SynergyComponentsModule,
     SynergyFormsModule,

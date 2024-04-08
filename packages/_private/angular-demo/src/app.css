@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
@@ -8,4 +9,10 @@ body {
   color: var(--syn-color-neutral-900);
   font-family: var(--syn-font-sans);
   font-size: var(--syn-font-size-medium);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

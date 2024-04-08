@@ -626,6 +626,28 @@
         "type": "text"
       }
     },
+    "prio-nav": {
+      "default": {
+        "description": {
+          "value": "Priority navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the priority navigation does not have a child menu navigation, if you want to have a child navigation, combine the priority navigation and the side navigation",
+          "type": "text"
+        },
+        "title": {
+          "value": "Priority Navigation",
+          "type": "text"
+        }
+      },
+      "priority-menu": {
+        "description": {
+          "value": "If there is not enough space, elements will move into a dropdown.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Priority Menu",
+          "type": "text"
+        }
+      }
+    },
     "icon-button": {
       "default": {
         "description": {
@@ -965,7 +987,7 @@
           "type": "text"
         },
         "info": {
-          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-horizontal-nav)",
+          "value": "Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you’re building navigation, use <nav> and <a> elements instead.\n(Figma: syn-side-nav or syn-prio-nav)",
           "type": "text"
         },
         "warning": {
@@ -1959,7 +1981,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to change the content of a navigtion item.",
+          "value": "Use the label attribute to change the content of a navigation item.",
           "type": "text"
         }
       },
@@ -1969,7 +1991,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
           "type": "text"
         }
       },
@@ -1979,7 +2001,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix and suffix slots to add. If available the prefix slot will be shown in the rail navigation.",
+          "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
           "type": "text"
         }
       },
@@ -2009,7 +2031,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the *children attribute to indicate that show a chevron. In development this will be handled automatically as soon as an element has children.:",
+          "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
           "type": "text"
         }
       },
@@ -2104,6 +2126,16 @@
           "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
           "type": "text"
         }
+      },
+      "burger-menu": {
+        "title": {
+          "value": "Burger Menu",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the Burger Menu as trigger to open and close the Navigation. In the open state, the icon changes to a cancel icon. This will be hidden, if you use a rail navigation.",
+          "type": "text"
+        }
       }
     },
     "side-nav": {
@@ -2123,7 +2155,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation.\nOn touch devices the navigation opens on click and shows an overlay.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation. ",
+          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
           "type": "text"
         }
       },

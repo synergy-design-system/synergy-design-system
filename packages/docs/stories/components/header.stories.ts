@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/optgroup/optgroup';
+import '../../../components/src/components/prio-nav/prio-nav.js';
+import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
@@ -131,16 +132,55 @@ export const MetaNavigation: Story = {
         <syn-icon-button color="neutral" name="account_circle" label="Account"></syn-icon-button>
         <syn-icon-button color="neutral" name="more_vert" label="More"></syn-icon-button>
       </nav>
-      Meta Navigation
+      App Name
     </syn-header>
   `,
 } as Story;
+
+export const Navigation = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'navigation'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header>
+      <syn-prio-nav slot="navigation">
+        <syn-nav-item current horizontal>Domains</syn-nav-item>
+        <syn-nav-item horizontal>Projects</syn-nav-item>
+        <syn-nav-item horizontal>Trainings</syn-nav-item>
+        <syn-nav-item horizontal>Evaluations</syn-nav-item>
+        <syn-nav-item horizontal>Deployments</syn-nav-item>
+      </syn-prio-nav>
+      App Name
+    </syn-header>
+  `,
+};
+
+export const BurgerMenu = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'burger-menu'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header show-burger-menu>
+      App Name
+    </syn-header>
+  `,
+};
 
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   Logo,
   MetaNavigation,
+  Navigation,
+  BurgerMenu,
 }, {
-  heightPx: 150,
+  heightPx: 200,
 });

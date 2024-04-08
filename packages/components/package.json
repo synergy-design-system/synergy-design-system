@@ -69,6 +69,7 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@web/dev-server-esbuild": "^1.0.2",

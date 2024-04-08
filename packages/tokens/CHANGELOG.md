@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.10.0...tokens/1.11.0) (2024-04-08)
+
+
+### Features
+
+* ✨ add syn-side-nav, syn-nav-item, syn-prio-nav ([#364](https://github.com/synergy-design-system/synergy-design-system/issues/364)) ([fd9b821](https://github.com/synergy-design-system/synergy-design-system/commit/fd9b82138385f2708003ce18d9c118b7a8fb7925))
+
 # [@synergy-design-system/tokens-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.9.1...tokens/1.10.0) (2024-03-28)
 
 

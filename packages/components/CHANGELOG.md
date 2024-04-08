@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.14.0...components/1.15.0) (2024-04-08)
+
+
+### Features
+
+* ✨ add syn-side-nav, syn-nav-item, syn-prio-nav ([#364](https://github.com/synergy-design-system/synergy-design-system/issues/364)) ([fd9b821](https://github.com/synergy-design-system/synergy-design-system/commit/fd9b82138385f2708003ce18d9c118b7a8fb7925))
+
 # [@synergy-design-system/components-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.13.0...components/1.14.0) (2024-03-28)
 
 

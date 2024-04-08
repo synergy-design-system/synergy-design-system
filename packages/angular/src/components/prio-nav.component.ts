@@ -42,7 +42,11 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart priority-menu - The wrapper around the priority menu
+ * @csspart priority-menu-nav-item - The navigation item for the priority menu
  * @csspart priority-menu-label - The label for the priority menu
+ * @csspart priority-menu-icon - The icon for the priority menu
+ * @csspart priority-menu-container - The container for the shifted navigation items,
+ *    if there is not enough space.
  *
  */
 @Component({

@@ -154,9 +154,14 @@ export default class SynSideNav extends SynergyElement {
     this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
   }
 
+  private setDrawerVisibility(isVisible: boolean) {
+    (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = !isVisible;
+    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+  }
+
   private forceDrawerVisibilityForRailMode() {
     return waitForEvent(this, 'syn-after-hide').then(() => {
-      (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      this.setDrawerVisibility(true);
       this.isAnimationActive = false;
     });
   }
@@ -180,12 +185,12 @@ export default class SynSideNav extends SynergyElement {
     if (this.rail) {
       this.addMouseListener();
       // Force drawer visibility for rail mode
-      (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+      this.setDrawerVisibility(true);
     } else {
       this.removeMouseListener();
       // Remove forcing of drawer visibility for rail mode if not open
       if (!this.open) {
-        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = true;
+        this.setDrawerVisibility(false);
       }
     }
   }
@@ -257,7 +262,7 @@ export default class SynSideNav extends SynergyElement {
       this.drawer.updateComplete.then(() => {
         this.addMouseListener();
         // set initial visibility of drawer for rail mode
-        (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = false;
+        this.setDrawerVisibility(true);
       });
     } else if (this.noFocusTrapping) {
       // Disable the focus trapping of the modal

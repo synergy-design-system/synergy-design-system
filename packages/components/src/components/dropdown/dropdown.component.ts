@@ -9,6 +9,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { getTabbableBoundary } from '../../internal/tabbable.js';
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
@@ -108,6 +109,11 @@ export default class SynDropdown extends SynergyElement {
    * `overflow: auto|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
    */
   @property({ type: Boolean }) hoist = false;
+
+  /**
+   * Syncs the popup width or height to that of the trigger element.
+   */
+  @property({ reflect: true }) sync: 'width' | 'height' | 'both' | undefined = undefined;
 
   connectedCallback() {
     super.connectedCallback();
@@ -416,6 +422,7 @@ export default class SynDropdown extends SynergyElement {
         shift
         auto-size="vertical"
         auto-size-padding="10"
+        sync=${ifDefined(this.sync ? this.sync : undefined)}
         class=${classMap({
           dropdown: true,
           'dropdown--open': this.open

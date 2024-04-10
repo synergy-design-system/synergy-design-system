@@ -316,30 +316,30 @@ export default css`
    * buttons and we style them here instead.
    */
 
-  :host(.syn-button-group__button--first:not(.syn-button-group__button--last)) .button {
+  :host([data-syn-button-group__button--first]:not([data-syn-button-group__button--last])) .button {
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
 
-  :host(.syn-button-group__button--inner) .button {
+  :host([data-syn-button-group__button--inner]) .button {
     border-radius: 0;
   }
 
-  :host(.syn-button-group__button--last:not(.syn-button-group__button--first)) .button {
+  :host([data-syn-button-group__button--last]:not([data-syn-button-group__button--first])) .button {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
   }
 
   /* All except the first */
-  :host(.syn-button-group__button:not(.syn-button-group__button--first)) {
+  :host([data-syn-button-group__button]:not([data-syn-button-group__button--first])) {
     margin-inline-start: calc(-1 * var(--syn-input-border-width));
   }
 
   /* Add a visual separator between solid buttons */
   :host(
-      .syn-button-group__button:not(
-          .syn-button-group__button--first,
-          .syn-button-group__button--radio,
+      [data-syn-button-group__button]:not(
+          [data-syn-button-group__button--first],
+          [data-syn-button-group__button--radio],
           [variant='filled']
         ):not(:hover)
     )
@@ -354,13 +354,13 @@ export default css`
   }
 
   /* Bump hovered, focused, and checked buttons up so their focus ring isn't clipped */
-  :host(.syn-button-group__button--hover) {
+  :host([data-syn-button-group__button--hover]) {
     z-index: 1;
   }
 
   /* Focus and checked are always on top */
-  :host(.syn-button-group__button--focus),
-  :host(.syn-button-group__button[checked]) {
+  :host([data-syn-button-group__button--focus]),
+  :host([data-syn-button-group__button[checked]]) {
     z-index: 2;
   }
 `;

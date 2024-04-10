@@ -162,6 +162,7 @@ export default css`
 
   :host([required]) .switch__label::after {
     content: var(--syn-input-required-content);
+    color: var(--syn-input-required-content-color);
     margin-inline-start: var(--syn-input-required-content-offset);
   }
 

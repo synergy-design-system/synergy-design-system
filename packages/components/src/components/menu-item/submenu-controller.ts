@@ -235,6 +235,7 @@ export class SubmenuController implements ReactiveController {
   // newly opened menu.
   private enableSubmenu(delay = true) {
     if (delay) {
+      window.clearTimeout(this.enableSubmenuTimer);
       this.enableSubmenuTimer = window.setTimeout(() => {
         this.setSubmenuState(true);
       }, this.submenuOpenDelay);
@@ -244,7 +245,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   private disableSubmenu() {
-    clearTimeout(this.enableSubmenuTimer);
+    window.clearTimeout(this.enableSubmenuTimer);
     this.setSubmenuState(false);
   }
 

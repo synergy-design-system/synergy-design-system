@@ -14,11 +14,11 @@ import { live } from 'lit/directives/live.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
+import formControlStyles from '../../styles/form-control.styles.js';
+import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './checkbox.styles.js';
-import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import customStyles from './checkbox.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
@@ -50,7 +50,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart form-control-help-text - The help text's wrapper.
  */
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, styles, formControlStyles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private readonly formControlController = new FormControlController(this, {

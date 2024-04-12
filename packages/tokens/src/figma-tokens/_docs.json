@@ -367,13 +367,65 @@
       }
     },
     "dialog": {
-      "description": {
-        "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Dialog",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Dialog",
-        "type": "text"
+      "custom-width": {
+        "title": {
+          "value": "Custom Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --width custom property to set the dialog’s width.",
+          "type": "text"
+        }
+      },
+      "scrolling": {
+        "title": {
+          "value": "Scrolling",
+          "type": "text"
+        },
+        "description": {
+          "value": "By design, a dialog’s height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.",
+          "type": "text"
+        }
+      },
+      "header-actions": {
+        "title": {
+          "value": "Header Actions",
+          "type": "text"
+        },
+        "description": {
+          "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed.",
+          "type": "text"
+        }
+      },
+      "prevent-closing": {
+        "title": {
+          "value": "Preventing the Dialog from Closing",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the dialog open in such cases, you can cancel the sl-request-close event. When canceled, the dialog will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Customizing Initial Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, the dialog’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the autofocus attribute to it as shown below.",
+          "type": "text"
+        }
       }
     },
     "divider": {

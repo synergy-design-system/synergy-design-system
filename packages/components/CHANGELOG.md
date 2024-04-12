@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.15.0...components/1.16.0) (2024-04-12)
+
+
+### Features
+
+* ✨ upgrade shoelace to 2.15.0 ([#411](https://github.com/synergy-design-system/synergy-design-system/issues/411)) ([6d4eba7](https://github.com/synergy-design-system/synergy-design-system/commit/6d4eba7ca73a8959cb25e6d9d3a8d33468be61d3))
+
 # [@synergy-design-system/components-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.14.0...components/1.15.0) (2024-04-08)
 
 

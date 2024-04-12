@@ -81,6 +81,10 @@ const transformStyles = (path, originalContent) => {
   // Fix button group
   content = content.replace("[variant='default']", "[variant='filled']");
 
+  // Fix invalid css
+  // TODO: can be removed as soon as following shoelace fix is released and integrated https://github.com/shoelace-style/shoelace/issues/1974 and https://github.com/shoelace-style/shoelace/pull/1975
+  content = content.replace(':host([data-syn-button-group__button[checked]]) {', ':host([data-syn-button-group__button][checked]) {');
+
   return {
     content,
     path,

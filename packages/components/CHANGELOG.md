@@ -4,6 +4,16 @@
 ### Features
 
 * ✨ upgrade shoelace to 2.15.0 ([#411](https://github.com/synergy-design-system/synergy-design-system/issues/411)) ([6d4eba7](https://github.com/synergy-design-system/synergy-design-system/commit/6d4eba7ca73a8959cb25e6d9d3a8d33468be61d3))
+  * See detailed changelog at https://shoelace.style/resources/changelog#id_2_15_0.
+  * Added the sync property to `<syn-dropdown>` so the menu can easily sync sizes with the trigger element
+  * Fixed a bug in `<syn-icon>` that did not properly apply mutators to spritesheets
+  * Fixed a bug in .syn-scroll-lock causing layout shifts
+  * Fixed a bug in `<syn-select>` that caused the menu to not close when rendered in a shadow root
+  * Fixed a bug in the submenu controller that allowed two submenus to be open at the same time
+  * Fixed a bug in `<syn-select>` where the tag size wouldn’t update with the control’s size
+  * Fixed a bug in `<syn-checkbox>` and `<syn-switch>` where the color of the required content wasn’t applying correctly
+  * Fixed a bug in `<syn-checkbox>` where help text was incorrectly styled
+  * Fixed a bug in `<syn-input>` that prevented the control from receiving focus when clicking over the clear button
 
 # [@synergy-design-system/components-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.14.0...components/1.15.0) (2024-04-08)
 

@@ -2,8 +2,18 @@
 /**
  * Make sure scroll lock is disabled for modals and the drawer
  */
-body.syn-scroll-lock:has(#storybook-docs) {
-  padding-right: unset !important;
-  overflow: unset !important;
+@supports (scrollbar-gutter: stable) {
+  html.syn-scroll-lock:has(#storybook-docs) {
+    overflow: unset !important;
+    scrollbar-gutter: unset !important;
+  }
+}
+
+/** This can go away once Safari has scrollbar-gutter support. */
+@supports not (scrollbar-gutter: stable) {
+  .syn-scroll-lock body:has(#storybook-docs) {
+    padding-right: unset !important;
+    overflow: unset !important;
+  }
 }
 </style>

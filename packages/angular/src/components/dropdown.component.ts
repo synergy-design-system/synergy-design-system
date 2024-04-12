@@ -151,6 +151,18 @@ dropdowns that allow for multiple interactions.
     return this._el.hoist;
   }
 
+  /**
+* Syncs the popup width or height to that of the trigger element.
+ */
+  @Input()
+  set sync(v: SynDropdown['sync']) {
+    this._ngZone.runOutsideAngular(() => (this._el.sync = v));
+  }
+
+  get sync() {
+    return this._el.sync;
+  }
+
   @Input()
   callFocusOnTrigger(...args: Parameters<SynDropdown['focusOnTrigger']>) {
     return this._ngZone.runOutsideAngular(() => this._el.focusOnTrigger(...args));

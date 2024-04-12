@@ -125,6 +125,11 @@ dropdowns that allow for multiple interactions.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
   'hoist'?: SynDropdown['hoist'];
+
+  /**
+* Syncs the popup width or height to that of the trigger element.
+ */
+  'sync'?: SynDropdown['sync'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

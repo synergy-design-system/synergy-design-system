@@ -95,7 +95,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.14.0';
+const shoelaceVersion = '2.15.0';
 
 // Command line options
 const optionDefinitions = [
@@ -234,15 +234,6 @@ const config = {
                   `import styles from './${component}.styles.js';\nimport customStyles from './${component}.custom.styles.js';`,
                 );
 
-              // TODO: Can be removed as soon as following bug is fixed in shoelace (https://github.com/shoelace-style/shoelace/issues/1896) (our issue https://github.com/synergy-design-system/synergy-design-system/issues/347)
-              if (component === 'checkbox') {
-                newContent = newContent
-                  .replace(
-                    `import styles from './${component}.styles.js';`,
-                    `import styles from './${component}.styles.js';\nimport formControlStyles from \'../../styles/form-control.styles.js\';`,
-                  );
-              }
-
               newContent = newContent
                 .replace(
                   'import formControlStyles from \'../../styles/form-control.styles.js\';',
@@ -254,10 +245,6 @@ const config = {
               const regex = /static styles: CSSResultGroup = \[([^\]]+)\]/;
               newContent = newContent.replace(regex, (_, value) => {
                 let styleValues = value;
-                // TODO: remove this if clause as soon as following bug is fixed in shoelace (https://github.com/shoelace-style/shoelace/issues/1896) (our issue https://github.com/synergy-design-system/synergy-design-system/issues/347)
-                if (component === 'checkbox') {
-                  styleValues += ', formControlStyles';
-                }
 
                 if (styleValues.includes('formControlStyles')) {
                   styleValues += ', formControlCustomStyles';

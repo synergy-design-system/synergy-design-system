@@ -306,13 +306,16 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleClearClick(event: MouseEvent) {
-    this.value = '';
-    this.emit('syn-clear');
-    this.emit('syn-input');
-    this.emit('syn-change');
-    this.input.focus();
+    event.preventDefault();
 
-    event.stopPropagation();
+    if (this.value !== '') {
+      this.value = '';
+      this.emit('syn-clear');
+      this.emit('syn-input');
+      this.emit('syn-change');
+    }
+
+    this.input.focus();
   }
 
   private handleFocus() {
@@ -551,14 +554,11 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               @blur=${this.handleBlur}
             />
 
-            ${hasClearIcon
+            ${isClearIconVisible
               ? html`
                   <button
                     part="clear-button"
-                    class=${classMap({
-                      input__clear: true,
-                      'input__clear--visible': isClearIconVisible
-                    })}
+                    class="input__clear"
                     type="button"
                     aria-label=${this.localize.term('clearEntry')}
                     @click=${this.handleClearClick}

@@ -468,7 +468,7 @@ describe('<syn-select>', () => {
       await select.updateComplete;
       expect(select.value).to.equal('option-3');
 
-      setTimeout(() => clickOnElement(resetButton));
+      setTimeout(() => resetButton.click());
       await oneEvent(form, 'reset');
       await select.updateComplete;
       expect(select.value).to.equal('option-1');

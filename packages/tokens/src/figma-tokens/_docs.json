@@ -1083,13 +1083,55 @@
       }
     },
     "progress-bar": {
-      "description": {
-        "value": "Progress bars are used to show the status of an ongoing operation.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Progress bars are used to show the status of an ongoing operation.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Progress Bar",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Progress Bar",
-        "type": "text"
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "decription": {
+          "value": "Use the label attribute to label the progress bar and tell assistive devices how to announce it.",
+          "type": "text"
+        }
+      },
+      "custom-height": {
+        "title": {
+          "value": "Custom Height",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the --height custom property to set the progress bar’s height.",
+          "type": "text"
+        }
+      },
+      "showing-values": {
+        "title": {
+          "value": "Showing Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the default slot to show a value.",
+          "type": "text"
+        }
+      },
+      "indeterminate": {
+        "title": {
+          "value": "Indeterminate",
+          "type": "text"
+        },
+        "description": {
+          "value": "The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown.",
+          "type": "text"
+        }
       }
     },
     "progress-ring": {

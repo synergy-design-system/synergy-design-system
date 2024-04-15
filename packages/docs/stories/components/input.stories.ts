@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
+  generatePageDescription,
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
 
@@ -17,7 +18,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('input', 'default'),
+        component: generatePageDescription('input', '14695-110120'),
       },
     },
   },

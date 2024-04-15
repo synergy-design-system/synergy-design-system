@@ -6,6 +6,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -21,7 +22,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('radio', 'default'),
+        component: generatePageDescription('radio', '1175-2494'),
       },
     },
   },

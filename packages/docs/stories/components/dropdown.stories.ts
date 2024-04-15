@@ -16,6 +16,7 @@ import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
+  generatePageDescription,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -63,7 +64,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('dropdown', 'default'),
+        component: generatePageDescription('dropdown', '10461-8361'),
       },
       story: {
         height: '250px',

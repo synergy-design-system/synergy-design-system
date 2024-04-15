@@ -4,6 +4,7 @@ import '../../../components/src/components/divider/divider';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
+  generatePageDescription,
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
 
@@ -17,7 +18,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('divider', 'default'),
+        component: generatePageDescription('divider', '5521-515898'),
       },
     },
   },

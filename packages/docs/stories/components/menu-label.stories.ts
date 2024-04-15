@@ -7,6 +7,7 @@ import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-label/menu-label.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -31,7 +32,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('menu-label', 'default'),
+        component: generatePageDescription('menu-label', '10461-8649'),
       },
     },
   },

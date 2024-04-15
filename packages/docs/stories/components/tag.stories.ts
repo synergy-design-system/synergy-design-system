@@ -6,6 +6,7 @@ import '../../../components/src/components/tag/tag';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -26,7 +27,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('tag', 'default'),
+        component: generatePageDescription('tag', '2898-58777'),
       },
     },
   },

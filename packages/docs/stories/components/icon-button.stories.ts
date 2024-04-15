@@ -7,6 +7,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynIconButton } from '@synergy-design-system/components';
 import { html } from 'lit';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -30,7 +31,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('icon-button', 'default'),
+        component: generatePageDescription('icon-button', '2986-3736'),
       },
     },
   },

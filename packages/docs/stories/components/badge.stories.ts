@@ -11,6 +11,7 @@ import '../../../components/src/components/menu-label/menu-label.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import '../../../components/src/components/popup/popup.js';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -35,7 +36,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('badge', 'default'),
+        component: generatePageDescription('badge', '14127-697884'),
       },
     },
   },

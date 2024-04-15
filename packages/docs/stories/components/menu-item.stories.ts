@@ -7,6 +7,7 @@ import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -31,7 +32,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('menu-item', 'default'),
+        component: generatePageDescription('menu-item', '10461-8626'),
       },
     },
   },

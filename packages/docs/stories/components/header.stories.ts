@@ -6,6 +6,7 @@ import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -26,7 +27,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('header', 'default'),
+        component: generatePageDescription('header', '10540-8605'),
       },
     },
   },

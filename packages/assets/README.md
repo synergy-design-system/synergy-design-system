@@ -6,6 +6,7 @@ This package provides assets like:
 - **icons:** the standard icons based on [Material Icons](https://fonts.google.com/icons)
 - **system-icons:** a small subset of icons, that are internally used by the Synergy components
 
+The source of the assets can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-233&mode=design&t=GPu4VVd9yffLLAaS-0)
 
 
 

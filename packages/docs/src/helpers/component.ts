@@ -603,6 +603,26 @@ export const generateStoryDescription = <T extends Component>(component: T, attr
 }
 
 /**
+ * Returns a docs page description for the corresponding component, enhanced with a link to the figma documentation of the component.
+ * 
+ * @param {T} component  - The component name
+ * @param figmaNodeId - The node-id of the components description in figma
+ * @returns {string} The story description
+ */
+export const generatePageDescription = <T extends Component>(component: T, figmaNodeId: string) => {
+  const description = generateStoryDescription(component, 'default' as Attribute<T>);
+  const enhancedFigmaDescription = `<p style="display: flex;">
+  <img src="/figma.png" height='20'/>
+  <a href="https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${figmaNodeId}">
+    Figma page
+  </a>
+</p>
+<p>${description}</p>`;
+
+  return enhancedFigmaDescription;
+ }
+
+/**
  * Parameters for the generateScreenshotStory function
  * It accepts either
  */

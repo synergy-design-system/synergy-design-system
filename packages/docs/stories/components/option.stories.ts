@@ -9,6 +9,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -30,7 +31,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('option', 'default'),
+        component: generatePageDescription('option', '5548-17028'),
       },
       story: {
         height: '250px',

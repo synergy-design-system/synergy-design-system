@@ -6,6 +6,7 @@ import '../../../components/src/components/prio-nav/prio-nav.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
+  generatePageDescription,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -34,7 +35,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: generateStoryDescription('prio-nav', 'default'),
+        component: generatePageDescription('prio-nav', '12362-10968'),
       },
       story: {
         height: '200px',

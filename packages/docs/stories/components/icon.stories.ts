@@ -18,6 +18,16 @@ const iconDocumentation = `
 Icons are small standard symbols that are primarily used in screen design.
 Due to their intended use, the icons must be recognizable min size of 16 x 16 pixels.
 
+## Package installation
+In order for the \`syn-icon\` component to work, the \`@synergy-design-system/assets\` package has to be installed.
+
+Run the following command to install the required package.
+
+\`\`\`bash
+# Install the assets library
+npm install --save @synergy-design-system/assets
+\`\`\`
+
 ## Libraries
 You can register additional icons to use with the <syn-icon> component through icon libraries.
 Icon files can exist locally or on a CORS-enabled endpoint (e.g. a CDN).
@@ -321,10 +331,10 @@ export const CDNIconLibrary: Story = {
 * </script>
 *
 * <div style="font-size: var(--syn-font-size-x-large);">
-*   <syn-icon name="warning"></syn-icon>
-*   <syn-icon name="inventory"></syn-icon>
-*   <syn-icon name="battery_charging_full"></syn-icon>
-*   <syn-icon name="notifications"></syn-icon>
+*   <syn-icon library="bundled-default" name="warning"></syn-icon>
+*   <syn-icon library="bundled-default" name="inventory"></syn-icon>
+*   <syn-icon library="bundled-default" name="battery_charging_full"></syn-icon>
+*   <syn-icon library="bundled-default" name="notifications"></syn-icon>
 * </div>
 * ```
 */

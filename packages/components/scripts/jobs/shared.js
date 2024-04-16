@@ -298,3 +298,71 @@ export const createFrameworkIndex = (
     '',
   ].join('\n');
 };
+
+/**
+ * List of components names that two way data binding is enabled for
+ * @var {string[]}
+ */
+export const TWOWAY_BINDING_ENABLED_ELEMENTS = [
+  'checkbox',
+  'input',
+  'radio-group',
+  'select',
+  'switch',
+  'textarea',
+];
+
+/**
+ * Check if a given component is enabled for two way data binding
+ * @param {string} componentName
+ * @returns {boolean}
+ */
+export const getIsTwoWayBindingEnabledFor = (componentName) => TWOWAY_BINDING_ENABLED_ELEMENTS
+  .includes(componentName);
+
+/**
+ * Get the attribute that should be bound via two way data binding
+ * @param {string} componentName Name of the component
+ * @returns {string} Name of the attribute to use
+ */
+export const getControlAttributeForTwoWayBinding = (componentName) => {
+  switch (componentName) {
+  case 'checkbox':
+  case 'switch':
+    return 'checked';
+  default:
+    return 'value';
+  }
+};
+
+/**
+ * Get the event attributes name used for two way data binding
+ * @param {string} componentName Name of the component
+ * @returns The name of the event that should be used to add the binding
+ */
+export const getEventAttributeForTwoWayBinding = (componentName) => {
+  switch (componentName) {
+  default: return 'syn-input';
+  }
+};
+
+/**
+ * Turns a string into a multiline js comment
+ * @param {string} str The input string that should be commented
+ * @param {string} [optional] splitToken The token that should be used to split
+ * @returns {string} The javascript comment
+ */
+export const createComment = (str, splitToken = '. ') => {
+  if (!str) return '';
+
+  const lines = str
+    .split(splitToken)
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => `* ${line}`)
+    .join('.\n');
+  return `
+/**
+${lines}
+ */`;
+};

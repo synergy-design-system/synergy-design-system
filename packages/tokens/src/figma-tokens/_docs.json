@@ -1222,8 +1222,8 @@
           "value": "Labels",
           "type": "text"
         },
-        "decription": {
-          "value": "Use the label attribute to label the progress bar and tell assistive devices how to announce it.",
+        "description": {
+          "value": "Use the `label` attribute to label the progress bar and tell assistive devices how to announce it.",
           "type": "text"
         }
       },

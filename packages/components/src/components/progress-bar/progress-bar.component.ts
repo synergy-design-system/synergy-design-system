@@ -32,6 +32,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --label-color - The color of the label.
+ * @cssproperty --speed - The speed of the progress bar when in indeterminate state.
  */
 export default class SynProgressBar extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];

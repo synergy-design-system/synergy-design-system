@@ -21,6 +21,7 @@
  * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the indicator.
  * @cssproperty --label-color - The color of the label.
+ * @cssproperty --speed - The speed of the progress bar when in indeterminate state.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/progress-bar/progress-bar.js';

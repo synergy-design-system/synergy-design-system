@@ -27,6 +27,7 @@ export { SynRadioComponent } from './radio.component';
 export { SynRadioGroupComponent } from './radio-group.component';
 export { SynSelectComponent } from './select.component';
 export { SynSideNavComponent } from './side-nav.component';
+export { SynSpinnerComponent } from './spinner.component';
 export { SynSwitchComponent } from './switch.component';
 export { SynTagComponent } from './tag.component';
 export { SynTextareaComponent } from './textarea.component';

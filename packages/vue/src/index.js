@@ -27,6 +27,7 @@ export { default as SynVueRadioButton } from './components/SynVueRadioButton.vue
 export { default as SynVueRadioGroup } from './components/SynVueRadioGroup.vue';
 export { default as SynVueSelect } from './components/SynVueSelect.vue';
 export { default as SynVueSideNav } from './components/SynVueSideNav.vue';
+export { default as SynVueSpinner } from './components/SynVueSpinner.vue';
 export { default as SynVueSwitch } from './components/SynVueSwitch.vue';
 export { default as SynVueTag } from './components/SynVueTag.vue';
 export { default as SynVueTextarea } from './components/SynVueTextarea.vue';

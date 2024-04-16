@@ -102,6 +102,8 @@
     "packages/components/src/components/select/select.ts": true,
     "packages/components/src/components/spinner/spinner.component.ts": true,
     "packages/components/src/components/spinner/spinner.styles.ts": true,
+    "packages/components/src/components/spinner/spinner.test.ts": true,
+    "packages/components/src/components/spinner/spinner.ts": true,
     "packages/components/src/components/switch/switch.component.ts": true,
     "packages/components/src/components/switch/switch.styles.ts": true,
     "packages/components/src/components/switch/switch.test.ts": true,

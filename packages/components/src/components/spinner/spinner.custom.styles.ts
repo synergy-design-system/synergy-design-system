@@ -1,5 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
+.spinner__indicator {
+  stroke-linecap: initial;
+}
 `;

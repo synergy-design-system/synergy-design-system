@@ -54,7 +54,7 @@ export class SynRadioGroupComponent {
     this._el = e.nativeElement;
     this._ngZone = ngZone;
     this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); });
+    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
     this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
@@ -209,6 +209,11 @@ the same document or shadow root for this to work.
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() valueChange = new EventEmitter<SynRadioGroup['value']>();
 }
 
 export type { SynChangeEvent } from '@synergy-design-system/components';

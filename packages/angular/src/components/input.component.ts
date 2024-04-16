@@ -74,7 +74,7 @@ export class SynInputComponent {
     this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
     this._el.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
     this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); });
+    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
     this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
@@ -583,6 +583,11 @@ keyboard on supportive devices.
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() valueChange = new EventEmitter<SynInput['value']>();
 }
 
 export type { SynBlurEvent } from '@synergy-design-system/components';

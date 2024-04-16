@@ -54,21 +54,18 @@ You may now use the components by importing them from the `@synergy-design-syste
 ```tsx
 import { SynButton } from "@synergy-design-system/react";
 
-export const MyButton = () => (
-  <SynButton type="submit">
-    Submit me
-  </SynButton>
-);
+export const MyButton = () => <SynButton type="submit">Submit me</SynButton>;
 ```
 
 ### 4. Usage of the components
+
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
 
 An example demo repository with the usage of the React wrapper components can be found [here](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo).
 
 The naming of the components for React changes from kebab-case to PascalCase.
-`syn-button` becomes `SynButton`: 
+`syn-button` becomes `SynButton`:
 
 ```html
 <!-- Webcomponents example -->
@@ -81,6 +78,7 @@ The naming of the components for React changes from kebab-case to PascalCase.
 ```
 
 ### 5. Usage of attributes
+
 The attribute naming of the components are the same as in the documentation.
 
 ```html
@@ -102,14 +100,14 @@ The attribute naming of the components are the same as in the documentation.
 ```
 
 ### 6. Usage of events
+
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 
 This library makes use of [@lit/react](https://lit.dev/docs/frameworks/react/) to wrap the existing Synergy Web Components.
 All events will be automatically set up to work without the need to attach event listeners manually.
 Just use them with the default React `onEVENT` prefix, where `EVENT` is the camelCased name of the event:
 
-`syn-change`-> `onSynChange`, `syn-clear`-> `onSynClear`, ... 
-
+`syn-change`-> `onSynChange`, `syn-clear`-> `onSynClear`, ...
 
 ```tsx
 import { SynButton } from "@synergy-design-system/react";
@@ -125,15 +123,18 @@ export const MyButton = () => (
 );
 ```
 
-If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package. 
+If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package.
 
 The components from the React wrapper and the types of the components package are called the same. Therefore there must be a renaming of e.g. the types.
 
-An example for how these types can be used in case of event, is shown below: 
+An example for how these types can be used in case of event, is shown below:
 
 ```tsx
 import { SynInput } from "@synergy-design-system/react";
-import type { SynInput as SynInputType, SynChangeEvent } from '@synergy-design-system/components';
+import type {
+  SynInput as SynInputType,
+  SynChangeEvent,
+} from "@synergy-design-system/components";
 
 export const MyComponent = () => (
   <SynInput
@@ -149,14 +150,15 @@ export const MyComponent = () => (
 ```
 
 ### 7. Usage of methods
+
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 
 An example for calling such a method in a React component is shown here:
 
 ```tsx
-import { SynButton, SynInput } from '@synergy-design-system/react';
-import type { SynInput as SynInputType } from '@synergy-design-system/components';
-import { type FC, useRef } from 'react';
+import { SynButton, SynInput } from "@synergy-design-system/react";
+import type { SynInput as SynInputType } from "@synergy-design-system/components";
+import { type FC, useRef } from "react";
 
 export const Home: FC = () => {
   const count = useRef<SynInputType>(null);
@@ -164,17 +166,17 @@ export const Home: FC = () => {
   return (
     <>
       <SynInput ref={count} label="My count" type="number" value="5" />
-      <SynButton onClick={() => {
-        // Increment the count via calling the method
-        count.current?.stepUp();
-      }}
+      <SynButton
+        onClick={() => {
+          // Increment the count via calling the method
+          count.current?.stepUp();
+        }}
       >
         Increment
       </SynButton>
     </>
   );
 };
-
 ```
 
 ---

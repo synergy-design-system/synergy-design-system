@@ -58,13 +58,14 @@ You may now use the components by importing them from the `@synergy-design-syste
 ```
 
 ### 4. Usage of the components
+
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
 
 An example demo repository with the usage of the Vue wrapper components can be found [here](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/vue-demo).
 
 The naming of the components for Vue changes from kebab-case to PascalCase with an appended `Vue` after the `syn`.
-`syn-button` becomes `SynVueButton`: 
+`syn-button` becomes `SynVueButton`:
 
 ```html
 <!-- Webcomponents example -->
@@ -77,6 +78,7 @@ The naming of the components for Vue changes from kebab-case to PascalCase with 
 ```
 
 ### 5. Usage of attributes
+
 The attribute naming of the components are the same as in the documentation.
 
 ```html
@@ -98,6 +100,7 @@ The attribute naming of the components are the same as in the documentation.
 ```
 
 ### 6. Usage of events
+
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 They stay the same for the Vue components:
 
@@ -111,33 +114,33 @@ They stay the same for the Vue components:
 </SynVueButton>
 ```
 
+If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package.
 
-If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package. 
-
-An example for how these types can be used in case of event handling, is shown below: 
+An example for how these types can be used in case of event handling, is shown below:
 
 ```html
 <script setup lang="ts">
-import { SynVueInput } from '@synergy-design-system/vue';
-import type { SynChangeEvent, SynInput } from '@synergy-design-system/components';
+  import { SynVueInput } from "@synergy-design-system/vue";
+  import type {
+    SynChangeEvent,
+    SynInput,
+  } from "@synergy-design-system/components";
 
-const synChange = (e: SynChangeEvent) => {
-  const input = e.target as SynInput;
-  // Now we get access to all properties, methods etc. of the syn-input
-  const surname = input.value;
-  doSomething(surname);
-};
+  const synChange = (e: SynChangeEvent) => {
+    const input = e.target as SynInput;
+    // Now we get access to all properties, methods etc. of the syn-input
+    const surname = input.value;
+    doSomething(surname);
+  };
 </script>
 
 <template>
-  <SynVueInput
-    label="Surname"
-    @syn-change="synChange"
-  />
+  <SynVueInput label="Surname" @syn-change="synChange" />
 </template>
 ```
 
 ### 7. Usage of methods
+
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 
 In Vue they can be used by prefixing each method name with `call`.
@@ -148,25 +151,22 @@ An example for calling such a method in a Vue component is shown here:
 
 ```html
 <script setup lang="ts">
-import { SynVueInput, SynVueButton } from '@synergy-design-system/vue';
-import { ref } from 'vue';
+  import { SynVueInput, SynVueButton } from "@synergy-design-system/vue";
+  import { ref } from "vue";
 
-const count = ref<InstanceType<typeof SynVueInput> | null>(null);
+  const count = ref<InstanceType<typeof SynVueInput> | null>(null);
 
-const handleClick = () => {
-  // Increment the count via calling the method
-  count.value?.callStepUp();
-};
+  const handleClick = () => {
+    // Increment the count via calling the method
+    count.value?.callStepUp();
+  };
 </script>
 
 <template>
   <SynVueInput ref="count" label="My count" type="number" value="5" />
-  <SynVueButton @click="handleClick">
-    Increment
-  </SynVueButton>
+  <SynVueButton @click="handleClick"> Increment </SynVueButton>
 </template>
 ```
-
 
 ### 8. Using two way databinding
 

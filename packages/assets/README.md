@@ -8,8 +8,6 @@ This package provides assets like:
 
 The source of the assets can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-233&mode=design&t=GPu4VVd9yffLLAaS-0)
 
-
-
 ### Installation
 
 Please make sure to install the assets package as a dependency:
@@ -18,8 +16,6 @@ Please make sure to install the assets package as a dependency:
 npm install --save @synergy-design-system/assets
 ```
 
-
-
 ### Usage
 
 All assets are provided as svg's.
@@ -27,15 +23,15 @@ All assets are provided as svg's.
 The recommended way of using the icons is using the [<syn-icon> Synergy component](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs). Here you will also get more information about how setting up the assets package on bundlers like vite.
 
 ```html
-  <syn-icon name="warning"></syn-icon>
+<syn-icon name="warning"></syn-icon>
 ```
 
 But the assets could also be used like following:
 
 ```html
-  <img src="assets/icons/warning.svg" />
+<img src="assets/icons/warning.svg" />
 ```
-    
+
 ---
 
 ## Development

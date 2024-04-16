@@ -11,7 +11,6 @@ This package aims for an improved UX when used in Angular applications:
 
 > We are currently supporting Angular version ^16.2.12 and ^17.0.0 as well as Typescript version > 5.0.0.
 
-
 ## Getting started
 
 ### 1. Package installation
@@ -80,9 +79,7 @@ You will then be able to use the provided wrappers in the following way:
 
 ```html
 <!-- src/app/app.component.html -->
-<syn-button type="submit">
-  Submit me
-</syn-button>
+<syn-button type="submit"> Submit me </syn-button>
 ```
 
 This example will render the provided `<syn-button />` Angular component.
@@ -90,12 +87,13 @@ This example will render the provided `<syn-button />` Angular component.
 ---
 
 ### 4. Usage of the components
+
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
 
 An example demo repository with the usage of the Angular wrapper components can be found [here](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/angular-demo).
 
-The naming of the components for Angular is the same as in the documentation. 
+The naming of the components for Angular is the same as in the documentation.
 
 ```html
 <!-- Webcomponents example -->
@@ -108,6 +106,7 @@ The naming of the components for Angular is the same as in the documentation.
 ```
 
 ### 5. Usage of attributes
+
 In most cases the attributes are called the same, with the exception that in the documentation there are attributes, which are written kebab-case. Angular does not support this and therefore the Angular counterpart of these attributes are camelCase.
 
 The following two code examples show, how different attributes look like for web components and their Angular wrapper counterpart:
@@ -131,39 +130,33 @@ The following two code examples show, how different attributes look like for web
 ```
 
 ### 6. Usage of events
+
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 
 In the Angular wrapper these events can be used in two ways: either with the same naming as in the documentation or via camelCase with `Event` suffix.
 
-`syn-change`-> `synChangeEvent`, `syn-clear`-> `synClearEvent`, ... 
+`syn-change`-> `synChangeEvent`, `syn-clear`-> `synClearEvent`, ...
 
-> Note: 
+> Note:
 > Only for the camelCase variant (e.g. synChangeEvent) Angular will give auto completion in the html.
 
 An example for both event usages are following:
 
 ```html
 <!-- Angular wrapper with original event name -->
-<syn-input (syn-change)="synChange($event)"
- ></syn-input>
+<syn-input (syn-change)="synChange($event)"></syn-input>
 ```
 
 ```html
 <!-- Angular wrapper with specific event name -->
-<syn-input (synChangeEvent)="synChange($event)"
- ></syn-input>
+<syn-input (synChangeEvent)="synChange($event)"></syn-input>
 ```
 
-
-If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package. 
-An example for how these types can be used in case of event handling, is shown below: 
-
+If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package.
+An example for how these types can be used in case of event handling, is shown below:
 
 ```html
-<syn-input 
-  label="Surname"
-  (synChangeEvent)="synChange($event)"
-></syn-input>
+<syn-input label="Surname" (synChangeEvent)="synChange($event)"> </syn-input>
 ```
 
 ```js
@@ -178,6 +171,7 @@ An example for how these types can be used in case of event handling, is shown b
 ```
 
 ### 7. Usage of methods
+
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 
 In Angular they can be used by prefixing each method name with `call`.
@@ -262,7 +256,6 @@ Note that all elements that have one of the following attributes will be used as
 - Elements defining a `[formControlName]` attribute
 - Elements defining a `[formControl]` attribute
 - Elements defining a `[ngModel]` attribute
-
 
 ---
 

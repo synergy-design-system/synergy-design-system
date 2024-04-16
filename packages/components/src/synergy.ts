@@ -23,6 +23,7 @@ export { default as SynOptgroup } from './components/optgroup/optgroup.js';
 export { default as SynOption } from './components/option/option.js';
 export { default as SynPopup } from './components/popup/popup.js';
 export { default as SynPrioNav } from './components/prio-nav/prio-nav.js';
+export { default as SynProgressBar } from './components/progress-bar/progress-bar.js';
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';
 export { default as SynRadio } from './components/radio/radio.js';

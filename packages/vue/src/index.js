@@ -22,6 +22,7 @@ export { default as SynVueOptgroup } from './components/SynVueOptgroup.vue';
 export { default as SynVueOption } from './components/SynVueOption.vue';
 export { default as SynVuePopup } from './components/SynVuePopup.vue';
 export { default as SynVuePrioNav } from './components/SynVuePrioNav.vue';
+export { default as SynVueProgressBar } from './components/SynVueProgressBar.vue';
 export { default as SynVueRadio } from './components/SynVueRadio.vue';
 export { default as SynVueRadioButton } from './components/SynVueRadioButton.vue';
 export { default as SynVueRadioGroup } from './components/SynVueRadioGroup.vue';

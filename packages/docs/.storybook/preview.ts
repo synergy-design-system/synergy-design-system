@@ -65,7 +65,9 @@ const preview: Preview = {
     design: generateFigmaPluginObject('104-238'),
     docs: {
       stories: { inline: false },
-      toc: true,
+      toc: {
+        headingSelector: 'h2, h3',
+      },
       source: { format: 'html' }
     },
   },

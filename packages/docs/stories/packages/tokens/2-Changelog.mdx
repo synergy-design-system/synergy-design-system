@@ -1,10 +1,9 @@
-import { Markdown, Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
 import Changelog from "../../../../tokens/CHANGELOG.md?raw";
+import { ChangelogFormatter } from '../../../src/Changelog.tsx'
 
 <Meta title="Packages/Tokens/Changelog" />
 
-<h1>Changelog</h1>
-
----
-
-<Markdown>{Changelog}</Markdown>
+<ChangelogFormatter>
+    {Changelog}
+</ChangelogFormatter>

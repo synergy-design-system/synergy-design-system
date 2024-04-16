@@ -9,6 +9,7 @@ import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';
 import { LIGHT_THEME, DARK_THEME } from './modes.ts';
+import { generateFigmaPluginObject } from "../src/helpers/component.js";
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
@@ -61,6 +62,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    design: generateFigmaPluginObject('104-238'),
     docs: {
       stories: { inline: false },
       toc: true,

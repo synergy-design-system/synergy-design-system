@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
 
@@ -16,9 +16,10 @@ const meta: Meta = {
   args,
   argTypes,
   parameters: {
+    design: generateFigmaPluginObject('1101-1576'),
     docs: {
       description: {
-        component: generatePageDescription('textarea', '1101-1576'),
+        component: generateStoryDescription('textarea', 'default'),
       },
     },
   },

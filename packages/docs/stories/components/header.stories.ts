@@ -6,7 +6,7 @@ import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -25,9 +25,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-header',
   parameters: {
+    design: generateFigmaPluginObject('10540-8605'),
     docs: {
       description: {
-        component: generatePageDescription('header', '10540-8605'),
+        component: generateStoryDescription('header', 'default'),
       },
     },
   },

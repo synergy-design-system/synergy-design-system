@@ -6,7 +6,7 @@ import '../../../components/src/components/tag/tag';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -25,9 +25,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tag',
   parameters: {
+    design: generateFigmaPluginObject('2898-58777'),
     docs: {
       description: {
-        component: generatePageDescription('tag', '2898-58777'),
+        component: generateStoryDescription('tag', 'default'),
       },
     },
   },

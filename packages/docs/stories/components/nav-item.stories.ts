@@ -5,7 +5,7 @@ import '../../../components/src/components/nav-item/nav-item.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -28,9 +28,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-nav-item',
   parameters: {
+    design: generateFigmaPluginObject('12362-10775'),
     docs: {
       description: {
-        component: generatePageDescription('nav-item', '12362-10775'),
+        component: generateStoryDescription('nav-item', 'default'),
       },
     },
   },

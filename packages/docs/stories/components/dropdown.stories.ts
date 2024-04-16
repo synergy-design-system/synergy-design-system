@@ -16,7 +16,7 @@ import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -62,9 +62,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-dropdown',
   parameters: {
+    design: generateFigmaPluginObject('10461-8361'),
     docs: {
       description: {
-        component: generatePageDescription('dropdown', '10461-8361'),
+        component: generateStoryDescription('dropdown', 'default'),
       },
       story: {
         height: '250px',

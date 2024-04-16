@@ -7,7 +7,7 @@ import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -30,9 +30,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-menu-item',
   parameters: {
+    design: generateFigmaPluginObject('10461-8626'),
     docs: {
       description: {
-        component: generatePageDescription('menu-item', '10461-8626'),
+        component: generateStoryDescription('menu-item', 'default'),
       },
     },
   },

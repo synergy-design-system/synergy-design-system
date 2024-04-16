@@ -7,7 +7,7 @@ import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -24,9 +24,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-select',
   parameters: {
+    design: generateFigmaPluginObject('5069-7562'),
     docs: {
       description: {
-        component: generatePageDescription('select', '5069-7562'),
+        component: generateStoryDescription('select', 'default'),
       },
       story: {
         height: '250px',

@@ -602,25 +602,28 @@ export const generateStoryDescription = <T extends Component>(component: T, attr
  return description.replace(/\n/g, '<br/>');
 }
 
-/**
- * Returns a docs page description for the corresponding component, enhanced with a link to the figma documentation of the component.
+ /**
+ * Returns the figma link for a specific node-id.
  * 
- * @param {T} component  - The component name
  * @param figmaNodeId - The node-id of the components description in figma
- * @returns {string} The story description
+ * @returns {string} The specific figma link for a node
  */
-export const generatePageDescription = <T extends Component>(component: T, figmaNodeId: string) => {
-  const description = generateStoryDescription(component, 'default' as Attribute<T>);
-  const enhancedFigmaDescription = `<p style="display: flex;">
-  <img src="/figma.png" height='20'/>
-  <a href="https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${figmaNodeId}">
-    Figma page
-  </a>
-</p>
-<p>${description}</p>`;
+export const generateFigmaLink = (figmaNodeId: string) => (`https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${figmaNodeId}`);
 
-  return enhancedFigmaDescription;
- }
+ /**
+ * Returns the object to parameterize the figma plugin for a specific node-id.
+ * 
+ * @param figmaNodeId - The node-id of the components description in figma
+ * @param label - The label for the figma link
+ * @returns {string} The specific figma link for a node
+ */
+export const generateFigmaPluginObject = (figmaNodeId: string, label: string = 'Go to Figma page') => {
+  return {
+    label,
+    type: 'link',
+    url: generateFigmaLink(figmaNodeId),
+  }
+}
 
 /**
  * Parameters for the generateScreenshotStory function

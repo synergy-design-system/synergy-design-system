@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import isChromatic from 'chromatic/isChromatic';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -39,9 +38,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-menu',
   parameters: {
+    design: generateFigmaPluginObject('11581-378368'),
     docs: {
       description: {
-        component: generatePageDescription('menu', '11581-378368'),
+        component: generateStoryDescription('menu', 'default'),
       },
     },
   },

@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { userEvent } from '@storybook/test';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -23,10 +23,11 @@ const meta: Meta = {
   argTypes,
   component: 'syn-drawer',
   parameters: {
+    design: generateFigmaPluginObject('9983-7882'),
     docs: {
       container: DisableFocusTrap,
       description: {
-        component: generatePageDescription('drawer', '9983-7882'),
+        component: generateStoryDescription('drawer', 'default'),
       },
       story: {
         height: '400px',

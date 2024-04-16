@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -38,9 +38,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-optgroup',
   parameters: {
+    design: generateFigmaPluginObject('5619-21837'),
     docs: {
       description: {
-        component: generatePageDescription('optiongroup', '5619-21837'),
+        component: generateStoryDescription('optiongroup', 'default'),
       },
       story: {
         height: '400px',

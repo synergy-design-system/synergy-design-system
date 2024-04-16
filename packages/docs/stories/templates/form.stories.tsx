@@ -8,11 +8,12 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
-import { generateStoryDescription } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject, generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 
 const meta: Meta = {
   parameters: {
+    design: generateFigmaPluginObject('8462-8334'),
     docs: {
       description: {
         component: generateStoryDescription('templates', 'default'),

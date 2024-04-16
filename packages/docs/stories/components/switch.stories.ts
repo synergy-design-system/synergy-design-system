@@ -7,7 +7,7 @@ import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -24,9 +24,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-switch',
   parameters: {
+    design: generateFigmaPluginObject('2239-58411'),
     docs: {
       description: {
-        component: generatePageDescription('switch', '2239-58411'),
+        component: generateStoryDescription('switch', 'default'),
       },
     },
   },

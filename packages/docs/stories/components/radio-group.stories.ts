@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -22,9 +22,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-radio-group',
   parameters: {
+    design: generateFigmaPluginObject('1345-16160'),
     docs: {
       description: {
-        component: generatePageDescription('radio-group', '1345-16160'),
+        component: generateStoryDescription('radio-group', 'default'),
       },
     },
   },

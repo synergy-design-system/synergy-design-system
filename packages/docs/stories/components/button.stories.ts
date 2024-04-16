@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import type { SynButton } from '@synergy-design-system/components';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -23,9 +23,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-button',
   parameters: {
+    design: generateFigmaPluginObject('1055-22957'),
     docs: {
       description: {
-        component: generatePageDescription('button', '1055-22957'),
+        component: generateStoryDescription('button', 'default'),
       },
     },
   },

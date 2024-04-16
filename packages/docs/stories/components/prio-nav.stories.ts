@@ -6,7 +6,7 @@ import '../../../components/src/components/prio-nav/prio-nav.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -33,9 +33,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-prio-nav',
   parameters: {
+    design: generateFigmaPluginObject('12362-10968'),
     docs: {
       description: {
-        component: generatePageDescription('prio-nav', '12362-10968'),
+        component: generateStoryDescription('prio-nav', 'default'),
       },
       story: {
         height: '200px',

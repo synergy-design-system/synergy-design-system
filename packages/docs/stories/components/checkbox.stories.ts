@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -24,9 +24,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-checkbox',
   parameters: {
+    design: generateFigmaPluginObject('1847-5654'),
     docs: {
       description: {
-        component: generatePageDescription('checkbox', '1847-5654'),
+        component: generateStoryDescription('checkbox', 'default'),
       },
     },
   },

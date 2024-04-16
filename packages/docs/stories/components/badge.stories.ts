@@ -11,7 +11,7 @@ import '../../../components/src/components/menu-label/menu-label.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import '../../../components/src/components/popup/popup.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -34,9 +34,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-badge',
   parameters: {
+    design: generateFigmaPluginObject('14127-697884'),
     docs: {
       description: {
-        component: generatePageDescription('badge', '14127-697884'),
+        component: generateStoryDescription('badge', 'default'),
       },
     },
   },

@@ -7,7 +7,7 @@ import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-label/menu-label.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -30,9 +30,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-menu-label',
   parameters: {
+    design: generateFigmaPluginObject('10461-8649'),
     docs: {
       description: {
-        component: generatePageDescription('menu-label', '10461-8649'),
+        component: generateStoryDescription('menu-label', 'default'),
       },
     },
   },

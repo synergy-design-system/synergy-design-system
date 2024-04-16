@@ -4,7 +4,7 @@ import '../../../components/src/components/divider/divider';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
 
@@ -16,9 +16,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-divider',
   parameters: {
+    design: generateFigmaPluginObject('5521-515898'),
     docs: {
       description: {
-        component: generatePageDescription('divider', '5521-515898'),
+        component: generateStoryDescription('divider', 'default'),
       },
     },
   },

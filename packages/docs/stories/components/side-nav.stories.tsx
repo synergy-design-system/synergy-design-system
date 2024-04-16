@@ -4,7 +4,7 @@ import '../../../components/src/components/side-nav/side-nav.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {
-  generatePageDescription,
+  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
@@ -22,10 +22,11 @@ const meta: Meta = {
   argTypes,
   component: 'syn-side-nav',
   parameters: {
+    design: generateFigmaPluginObject('12362-10883'),
     docs: {
       container: DisableFocusTrap,
       description: {
-        component: generatePageDescription('side-nav', '12362-10883'),
+        component: generateStoryDescription('side-nav', 'default'),
       },
     },
   },

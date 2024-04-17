@@ -266,7 +266,7 @@ export const CreatingToastsImperatively: Story = {
     }
 
     // Custom function to emit toast notifications
-    function notify(message, variant = 'primary', icon = 'info-circle', duration = 3000) {
+    function notify(message, variant = 'primary', icon = 'info', duration = 3000) {
       const alert = Object.assign(document.createElement('syn-alert'), {
         variant,
         closable: true,

@@ -165,7 +165,6 @@
     "packages/components/tsconfig.json": true,
     "packages/components/tsconfig.prod.json": true,
     "packages/components/web-test-runner.config.js": true,
-    "packages/docs/stories/components/alert.stories.ts": true,
     "packages/react/src/**": true
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]

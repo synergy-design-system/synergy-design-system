@@ -82,17 +82,15 @@ export const ShowingValues: Story = {
     },
   },
   render: () => html`
-    <div style="width: 180px;">
-      <syn-progress-bar value="60" class="progress-bar-values">60%</syn-progress-bar>
+    <syn-progress-bar value="60" class="progress-bar-values">60%</syn-progress-bar>
 
-      <div style="display: flex; gap: 20px; margin-top: 20px;">
-        <syn-button variant="outline">
-          <syn-icon name="indeterminate" library="system" label="Decrease"></syn-icon>
-        </syn-button>
-        <syn-button variant="outline">
-          <syn-icon name="add" library="system" label="Increase"></syn-icon>
-        </syn-button>
-      </div>
+    <div style="display: flex; gap: 20px; margin-top: 20px;">
+      <syn-button variant="outline" size="small">
+        <syn-icon name="indeterminate" library="system" label="Decrease"></syn-icon>
+      </syn-button>
+      <syn-button variant="outline" size="small">
+        <syn-icon name="add" library="system" label="Increase"></syn-icon>
+      </syn-button>
     </div>
 
     <script type="module">

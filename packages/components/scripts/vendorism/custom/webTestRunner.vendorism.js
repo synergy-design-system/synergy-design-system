@@ -31,12 +31,16 @@ import synTestPlugins from './scripts/tests/index.js';`,
 
   // Enable testing with firefox.
   // TODO: As soon as shoelace enabled it on their side, this can be removed
-
+  // TODO: We add concurrency: 1 to prevent the issue at https://github.com/modernweb-dev/web/issues/2374
   nextContent = nextContent.replace(
       `// Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
     // sure what's happening.
     // playwrightLauncher({ product: 'firefox' }),`,
-      'playwrightLauncher({ product: \'firefox\' }),',
+      `
+    // Enable firefox, but use concurrency of 1
+    // @see https://github.com/modernweb-dev/web/issues/2374
+    playwrightLauncher({ product: 'firefox', concurrency: 1 }),
+`,
   );
   return {
     content: nextContent,

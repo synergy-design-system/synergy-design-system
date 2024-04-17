@@ -141,9 +141,12 @@ export const Rail: Story = {
     </div>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-rail');
-    const sideNav = document.querySelector('.side-nav-rail');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-rail');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-rail');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-rail {
@@ -208,9 +211,12 @@ export const Footer: Story = {
     </syn-side-nav>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-footer');
-    const sideNav = document.querySelector('.side-nav-footer');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-footer');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-footer');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-footer {
@@ -263,9 +269,12 @@ export const Fixed: Story = {
     </main>
   </div>
   <script type="module">
-    const header = document.querySelector('.header-fixed');
-    const sideNav = document.querySelector('.side-nav-fixed');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-fixed');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-fixed');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .container-fixed {
@@ -328,9 +337,12 @@ export const Shrink: Story = {
     </div>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-shrink');
-    const sideNav = document.querySelector('.side-nav-shrink');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-shrink');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-shrink');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-shrink {
@@ -395,9 +407,12 @@ export const Indentation: Story = {
     </syn-side-nav>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-indentation');
-    const sideNav = document.querySelector('.side-nav-indentation');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-indentation');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-indentation');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-indentation {

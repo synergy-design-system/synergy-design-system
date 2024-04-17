@@ -21,6 +21,10 @@
   ],
   "files.readonlyInclude": {
     "packages/angular/src/**": true,
+    "packages/components/src/components/alert/alert.component.ts": true,
+    "packages/components/src/components/alert/alert.styles.ts": true,
+    "packages/components/src/components/alert/alert.test.ts": true,
+    "packages/components/src/components/alert/alert.ts": true,
     "packages/components/src/components/badge/badge.component.ts": true,
     "packages/components/src/components/badge/badge.styles.ts": true,
     "packages/components/src/components/badge/badge.test.ts": true,
@@ -145,6 +149,7 @@
     "packages/components/src/internal/synergy-element.ts": true,
     "packages/components/src/internal/tabbable.ts": true,
     "packages/components/src/internal/test.ts": true,
+    "packages/components/src/internal/test/data-testid-helpers.ts": true,
     "packages/components/src/internal/test/form-control-base-tests.ts": true,
     "packages/components/src/internal/watch.ts": true,
     "packages/components/src/styles/component.styles.ts": true,

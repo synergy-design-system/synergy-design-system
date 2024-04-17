@@ -46,6 +46,7 @@ export const components = [
   'menu-item',
   'menu-label',
   'badge',
+  'alert',
 ].sort();
 
 /**

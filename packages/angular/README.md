@@ -29,7 +29,7 @@ npm install --save @angular/core@17 @angular/forms@17
 npm install --save @synergy-design-system/assets
 ```
 
-### 2. Add the wanted theme to your application
+### 2. Add the desired theme to your application
 
 The components will not display correctly without the needed theme.
 Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:

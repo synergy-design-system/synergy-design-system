@@ -2,7 +2,7 @@
 
 This package provides assets like:
 
-- **logos:** the variants of the SICK brand logo
+- **logos:** a collection of various logos (such as the variants of the SICK brand logo)
 - **icons:** the standard icons based on [Material Icons](https://fonts.google.com/icons)
 - **system-icons:** a small subset of icons, that are internally used by the Synergy components
 

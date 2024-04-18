@@ -25,7 +25,7 @@ npm install --save @synergy-design-system/assets
 > ⚠️ Note we do **not** ship Vue in this package.
 > You will have to install it by yourself first!
 
-### 2. Add the wanted theme to your application
+### 2. Add the desired theme to your application
 
 The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed Vue application:
 

@@ -79,7 +79,7 @@ The naming of the components for React changes from kebab-case to PascalCase.
 
 ### 5. Usage of attributes
 
-The attribute naming of the components are the same as in the documentation.
+The attribute namings of the components are the same as in the documentation.
 
 ```html
 <!-- Webcomponents example -->

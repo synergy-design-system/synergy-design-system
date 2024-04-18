@@ -7,6 +7,7 @@ import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -15,6 +16,7 @@ const meta: Meta = {
   args,
   argTypes,
   parameters: {
+    design: generateFigmaPluginObject('14695-110120'),
     docs: {
       description: {
         component: generateStoryDescription('input', 'default'),

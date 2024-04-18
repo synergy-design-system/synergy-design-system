@@ -12,6 +12,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tag');
 const { generateTemplate } = storybookTemplate('syn-tag');
@@ -24,9 +25,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tag',
   parameters: {
+    design: generateFigmaPluginObject('2898-58777'),
     docs: {
       description: {
-        story: generateStoryDescription('tag', 'default'),
+        component: generateStoryDescription('tag', 'default'),
       },
     },
   },

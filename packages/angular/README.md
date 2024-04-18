@@ -9,7 +9,7 @@ This package aims for an improved UX when used in Angular applications:
 - Auto-completion
 - Event handling
 
-> We are currently supporting Angular version 17.
+> We are currently supporting Angular version ^16.2.12 and ^17.0.0 as well as Typescript version > 5.0.0.
 
 ## Getting started
 
@@ -21,15 +21,18 @@ Run the following steps to install the required packages.
 # Install the required dependencies
 npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
 
-# If not already installed, install angulars peer dependencies
+# If not already installed, install Angular's peer dependencies
 # Install step for angular@17
 npm install --save @angular/core@17 @angular/forms@17
+
+# Optional: if icons shall be used, install the assets package
+npm install --save @synergy-design-system/assets
 ```
 
 ### 2. Add the desired theme to your application
 
 The components will not display correctly without the needed theme.
-Include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
+Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
 
 ```json
 {
@@ -51,10 +54,10 @@ Include either light or dark theme in your application, for example in a newly i
 
 > ⚠️ This is a convenience feature only and WILL create bigger bundles!
 > It is intended for bootstrapping applications in a quick way.
-> It is recommended that you ship your own NgModule with only needed components
+> It is recommended that you ship your own NgModule with only needed components.
 > See below for more information!
 
-This library is providing an `NgModule` named `SynergyModule`, which takes care of exporting all available Synergy Components. You may use it in the following way:
+This library is providing an `NgModule` named `SynergyComponentsModule`, which takes care of exporting all available Synergy Components. You may use it in the following way:
 
 ```typescript
 // src/app/app.module.ts
@@ -76,32 +79,134 @@ You will then be able to use the provided wrappers in the following way:
 
 ```html
 <!-- src/app/app.component.html -->
-<syn-input
-  ngDefaultControl
-  formControlName="test"
-  type="text"
-  name="test"
-  [title]="myLabel"
-  type="text"
-  (synBlurEvent)="logMessage('onBlur', $event)"
-  (synInputEvent)="logMessage('onInput', $event)"
-  [required]="true"
->
-  <span slot="label"> {{myLabel}} </span>
-</syn-input>
+<syn-button type="submit"> Submit me </syn-button>
 ```
 
-This example will render the provided `<syn-input />` angular component and hook it into angular forms via `ngDefaultControl`.
-
-> Note that you will have to provide `ngDefaultControl`. For automatic usage in Angular Forms, please add the `SynergyFormsModule`!
+This example will render the provided `<syn-button />` Angular component.
 
 ---
 
-### 4. Using synergy components in @angular/forms via SynergyFormsModule
+### 4. Usage of the components
 
-There are two ways to use the angular wrappers in forms: Either manual (like described above) by adding a `ngDefaultControl` to the component or via our custom `SynergyFormsModule`.
+All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
+The documentation is written for no specific web framework but only vanilla html and javascript.
 
-`SynergyFormsModule` provides automatic support for all currently available Synergy form input elements by wrapping them with custom angular `ValueAccessors`.
+An example demo repository with the usage of the Angular wrapper components can be found [here](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/angular-demo).
+
+The naming of the components for Angular is the same as in the documentation.
+
+```html
+<!-- Webcomponents example -->
+<syn-button> My Button </syn-button>
+```
+
+```html
+<!-- Angular wrapper example -->
+<syn-button> My Button </syn-button>
+```
+
+### 5. Usage of attributes
+
+In Angular attributes must be converted from kebab-case to camelCase (e.g. myAttribute instead of my-attribute)
+
+The following two code examples show, how different attributes look like for web components and their Angular wrapper counterpart:
+
+```html
+<!-- Webcomponents example -->
+<syn-input
+  label="Nickname"
+  help-text="What would you like people to call you?"
+  required
+></syn-input>
+```
+
+```html
+<!-- Angular wrapper example -->
+<syn-input
+  label="Nickname"
+  helpText="What would you like people to call you?"
+  [required]="true"
+></syn-input>
+```
+
+### 6. Usage of events
+
+Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
+
+In the Angular wrapper these events can be used in two ways: either with the same naming as in the documentation or via camelCase with `Event` suffix.
+
+`syn-change`-> `synChangeEvent`, `syn-clear`-> `synClearEvent`, ...
+
+> Note:
+> Only for the camelCase variant (e.g. synChangeEvent) Angular will give auto completion in the html.
+
+An example for both event usages are following:
+
+```html
+<!-- Angular wrapper with original event name -->
+<syn-input (syn-change)="synChange($event)"></syn-input>
+```
+
+```html
+<!-- Angular wrapper with specific event name -->
+<syn-input (synChangeEvent)="synChange($event)"></syn-input>
+```
+
+If typescript is used, you can get the correct types for components and events from the `@synergy-design-system/components` package.
+An example for how these types can be used in case of event handling, is shown below:
+
+```html
+<syn-input label="Surname" (synChangeEvent)="synChange($event)"> </syn-input>
+```
+
+```js
+  import type { SynChangeEvent, SynInput } from '@synergy-design-system/components';
+
+  synChange(e: SynChangeEvent) {
+    const input = e.target as SynInput;
+    // Now we get access to all properties, methods etc. of the syn-input
+    const surname = input.value;
+    doSomething(surname);
+  }
+```
+
+### 7. Usage of methods
+
+Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
+
+In Angular they can be used by prefixing each method name with `call`.
+
+`focus` -> `callFocus`, `click`-> `callClick`, ...
+
+An example for calling such a method in an Angular component is shown here:
+
+```js
+import { Component, ViewChild } from '@angular/core';
+import { SynInputComponent } from '@synergy-design-system/angular';
+
+@Component({
+  selector: 'home',
+  styleUrls: ['./home.styles.css'],
+  template: `
+    <syn-input #count label="My count" type="number" value="5"></syn-input>
+    <syn-button (click)="handleClick()">Increment</syn-button>
+  `
+})
+export class Home {
+ @ViewChild('count') count!: SynInputComponent;
+
+  handleClick() {
+    // Increment the count via calling the method
+    this.count.callStepUp();
+  }
+}
+```
+
+### 8. Using synergy components in @angular/forms via SynergyFormsModule
+
+There are two ways to use the Angular wrappers in forms: Either manual by adding a `ngDefaultControl` to the component or via our custom `SynergyFormsModule`.
+
+`SynergyFormsModule` provides automatic support for all currently available Synergy form input elements by wrapping them with custom Angular `ValueAccessors`.
 
 To use the module, please proceed the following way:
 
@@ -151,3 +256,17 @@ Note that all elements that have one of the following attributes will be used as
 - Elements defining a `[formControlName]` attribute
 - Elements defining a `[formControl]` attribute
 - Elements defining a `[ngModel]` attribute
+
+---
+
+## Development
+
+To create a new version of this package, proceed in the following way:
+
+1. Check out the [Synergy Design System Repository](https://github.com/synergy-design-system/synergy-design-system).
+2. Run `pnpm i -r` to install all dependencies.
+3. Build the `@synergy-design-system/components` package (or run `pnpm build` in the project root to build everything).
+4. Move to to `packages/_private/angular-demo` and use `pnpm start` to spin up a local vite project using react and typescript to validate the build.
+
+> ⚠️ The build process will always try to sync this packages `package.json.version` field with the latest version from `@synergy-design-system/components`!
+> Therefore, it is best to not alter the version string

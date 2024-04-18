@@ -12,6 +12,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
 const { overrideArgs } = storybookHelpers('syn-drawer');
@@ -22,6 +23,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-drawer',
   parameters: {
+    design: generateFigmaPluginObject('9983-7882'),
     docs: {
       container: DisableFocusTrap,
       description: {

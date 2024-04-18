@@ -11,6 +11,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-nav-item');
 const { overrideArgs } = storybookHelpers('syn-nav-item');
@@ -27,6 +28,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-nav-item',
   parameters: {
+    design: generateFigmaPluginObject('12362-10775'),
     docs: {
       description: {
         component: generateStoryDescription('nav-item', 'default'),

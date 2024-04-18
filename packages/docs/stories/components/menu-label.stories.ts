@@ -13,6 +13,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-menu-label');
 const { overrideArgs } = storybookHelpers('syn-menu-label');
@@ -29,6 +30,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-menu-label',
   parameters: {
+    design: generateFigmaPluginObject('10461-8649'),
     docs: {
       description: {
         component: generateStoryDescription('menu-label', 'default'),

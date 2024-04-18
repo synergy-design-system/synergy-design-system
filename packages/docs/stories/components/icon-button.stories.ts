@@ -7,13 +7,13 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynIconButton } from '@synergy-design-system/components';
 import { html } from 'lit';
 import {
-  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon-button');
 const { overrideArgs } = storybookHelpers('syn-icon-button');

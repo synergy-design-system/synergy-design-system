@@ -9,7 +9,7 @@ import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation';
 import { LIGHT_THEME, DARK_THEME } from './modes.ts';
-import { generateFigmaPluginObject } from "../src/helpers/component.js";
+import { generateFigmaPluginObject } from "../src/helpers/figma.js";
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,

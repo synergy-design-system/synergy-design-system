@@ -6,13 +6,13 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { userEvent } from '@storybook/test';
 import { html } from 'lit';
 import {
-  generateFigmaPluginObject,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
 const { overrideArgs } = storybookHelpers('syn-drawer');

@@ -6,13 +6,13 @@ import '../../../components/src/components/nav-item/nav-item.js';
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
-  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-header');
 const { overrideArgs } = storybookHelpers('syn-header');

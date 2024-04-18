@@ -9,6 +9,7 @@ import {
 } from '../../src/helpers/component.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon');
 const { overrideArgs } = storybookHelpers('syn-icon');
@@ -134,6 +135,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-icon',
   parameters: {
+    design: generateFigmaPluginObject('1616-1512'),
     docs: {
       description: {
         // The documentation has to be added like this as template string

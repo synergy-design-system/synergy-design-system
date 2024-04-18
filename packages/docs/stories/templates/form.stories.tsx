@@ -8,8 +8,9 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
-import { generateFigmaPluginObject, generateStoryDescription } from '../../src/helpers/component.js';
+import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const meta: Meta = {
   parameters: {

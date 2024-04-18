@@ -7,13 +7,13 @@ import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';
 import {
-  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-select');
 const { overrideArgs } = storybookHelpers('syn-select');

@@ -7,13 +7,13 @@ import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generateFigmaPluginObject,
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-switch');
 const { overrideArgs } = storybookHelpers('syn-switch');

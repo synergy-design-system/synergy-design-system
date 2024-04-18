@@ -5,9 +5,9 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import {
-  generateFigmaPluginObject,
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');

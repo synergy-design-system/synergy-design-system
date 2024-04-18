@@ -107,7 +107,7 @@ The naming of the components for Angular is the same as in the documentation.
 
 ### 5. Usage of attributes
 
-In most cases the attributes are called the same, with the exception that in the documentation there are attributes, which are written kebab-case. Angular does not support this and therefore the Angular counterpart of these attributes are camelCase.
+In Angular attributes must be converted from kebab-case to camelCase (e.g. myAttribute instead of my-attribute)
 
 The following two code examples show, how different attributes look like for web components and their Angular wrapper counterpart:
 

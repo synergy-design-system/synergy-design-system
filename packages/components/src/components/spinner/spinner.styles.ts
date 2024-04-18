@@ -52,21 +52,4 @@ export default css`
     stroke-dasharray: 150% 75%;
     animation: spin var(--speed) linear infinite;
   }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-      stroke-dasharray: 0.05em, 3em;
-    }
-
-    50% {
-      transform: rotate(450deg);
-      stroke-dasharray: 1.375em, 1.375em;
-    }
-
-    100% {
-      transform: rotate(1080deg);
-      stroke-dasharray: 0.05em, 3em;
-    }
-  }
 `;

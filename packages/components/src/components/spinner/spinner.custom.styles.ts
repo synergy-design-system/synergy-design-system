@@ -6,6 +6,17 @@ export default css`
   }
 
   .spinner__indicator {
+    stroke-dasharray: 75% 360%;
     stroke-linecap: initial;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

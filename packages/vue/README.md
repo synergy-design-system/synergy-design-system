@@ -141,7 +141,7 @@ An example for how these types can be used in case of event handling, is shown b
 
 ### 7. Usage of methods
 
-Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
+Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which trigger an action, if they are called.
 
 In Vue they can be used by prefixing each method name with `call`.
 

@@ -6,6 +6,7 @@ import { html } from 'lit';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-divider');
 const { generateTemplate } = storybookTemplate('syn-divider');
@@ -15,6 +16,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-divider',
   parameters: {
+    design: generateFigmaPluginObject('5521-515898'),
     docs: {
       description: {
         component: generateStoryDescription('divider', 'default'),

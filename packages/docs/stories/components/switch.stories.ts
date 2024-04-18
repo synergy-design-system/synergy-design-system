@@ -13,6 +13,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-switch');
 const { overrideArgs } = storybookHelpers('syn-switch');
@@ -23,6 +24,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-switch',
   parameters: {
+    design: generateFigmaPluginObject('2239-58411'),
     docs: {
       description: {
         component: generateStoryDescription('switch', 'default'),

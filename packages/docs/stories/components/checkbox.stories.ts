@@ -11,6 +11,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
@@ -23,6 +24,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-checkbox',
   parameters: {
+    design: generateFigmaPluginObject('1847-5654'),
     docs: {
       description: {
         component: generateStoryDescription('checkbox', 'default'),

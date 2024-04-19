@@ -16,6 +16,18 @@ const FILES_TO_TRANSFORM = [
 const transformComponent = (path, originalContent) => {
   let content = removeSection(originalContent, '/** Draws a filled', 'filled = false;');
   content = replaceSection(['filled', 'readonly'], content);
+
+  content = replaceSections([
+    ['filled', 'readonly'],
+    // Make sure we don't unobserve an undefined element
+    // @todo: Remove when shoelace ships this fix
+    ['this.resizeObserver.unobserve(this.input);', `
+    if (this.input) {
+      this.resizeObserver.unobserve(this.input);
+    }
+    `.trim()],
+  ], content);
+
   return {
     content,
     path,

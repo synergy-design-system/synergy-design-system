@@ -13,6 +13,7 @@
   "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {
     "@storybook/addon-a11y": "^8.0.8",
+    "@storybook/addon-designs": "^8.0.0",
     "@storybook/addon-essentials": "^8.0.8",
     "@storybook/addon-interactions": "^8.0.8",
     "@storybook/addon-links": "^8.0.8",

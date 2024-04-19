@@ -9,6 +9,7 @@ import {
   storybookDefaults,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-spinner');
 const { generateTemplate } = storybookTemplate('syn-spinner');
@@ -18,6 +19,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-spinner',
   parameters: {
+    design: generateFigmaPluginObject('14127-697884'),
     docs: {
       description: {
         component: generateStoryDescription('spinner', 'default'),

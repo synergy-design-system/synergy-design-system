@@ -1,40 +1,80 @@
 import { removeSection } from '../remove-section.js';
+import { replaceSection, replaceSections } from '../replace-section.js';
+
+const FILES_TO_TRANSFORM = [
+  'textarea.component.ts',
+  'textarea.styles.ts',
+  'textarea.test.ts',
+];
+
+/**
+ * Transform the component code
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformComponent = (path, originalContent) => {
+  let content = removeSection(originalContent, '/** Draws a filled', 'filled = false;');
+  content = replaceSection(['filled', 'readonly'], content);
+  return {
+    content,
+    path,
+  };
+};
+
+/**
+ * Transform the components styles
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformStyles = (path, originalContent) => {
+  const content = replaceSections([
+    ['Filled', 'Readonly'],
+    ['filled', 'readonly'],
+  ], originalContent);
+
+  return {
+    content,
+    path,
+  };
+};
+
+/**
+ * Transform the components tests
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformTests = (path, originalContent) => {
+  const content = replaceSection(['filled', 'readonly'], originalContent);
+  return {
+    content,
+    path,
+  };
+};
 
 export const vendorTextarea = (path, content) => {
   const output = { content, path };
 
-  if (!path.includes('textarea.component.ts')
-    && !path.includes('textarea.styles.ts')
-    && !path.includes('textarea.stories.ts')
-    && !path.includes('textarea.test.ts')
-  ) {
+  // Skip for non select
+  const isValidFile = !!FILES_TO_TRANSFORM.find(p => path.includes(p));
+
+  if (!isValidFile) {
     return output;
   }
-  // We don't provide a filled property in Synergy, but instead use the filled styles for readonly
-  // update stories
-  output.content = output.content.replace('<syn-textarea placeholder="Type something" filled>', '<syn-textarea value="Readonly content" readonly>');
-  output.content = output.content.replaceAll('Filled', 'Readonly');
 
-  // update component and styles
-  output.content = removeSection(output.content, '/** Draws a filled', 'filled = false;');
-  output.content = output.content.replaceAll('filled', 'readonly'); // makes changes in styles and components
+  if (path.endsWith('textarea.component.ts')) {
+    return transformComponent(path, content);
+  }
 
-  // We need to add classes depenending on prefix and suffix slots to use them in CSS
-  output.content = output.content.replace(
-    "HasSlotController(this, 'help-text', 'label')",
-    "HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix')",
-  );
-  output.content = output.content.replace(
-    "const hasHelpTextSlot = this.hasSlotController.test('help-text');",
-    "const hasHelpTextSlot = this.hasSlotController.test('help-text');\n    const hasPrefixSlot = this.hasSlotController.test('prefix');\n    const hasSuffixSlot = this.hasSlotController.test('suffix');",
-  );
-  output.content = output.content.replace(
-    "'form-control--has-help-text': hasHelpText",
-    "'form-control--has-help-text': hasHelpText,\n          'form-control--has-prefix': hasPrefixSlot,\n          'form-control--has-suffix': hasSuffixSlot",
-  );
+  if (path.endsWith('textarea.styles.ts')) {
+    return transformStyles(path, content);
+  }
 
-  // // remove tests for pill and filled
-  output.content = removeSection(output.content, 'expect(el.filled)', ';');
+  if (path.endsWith('textarea.test.ts')) {
+    return transformTests(path, content);
+  }
 
   return output;
 };

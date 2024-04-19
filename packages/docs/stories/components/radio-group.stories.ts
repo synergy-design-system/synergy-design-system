@@ -11,6 +11,7 @@ import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 const { overrideArgs } = storybookHelpers('syn-radio-group');
@@ -21,6 +22,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-radio-group',
   parameters: {
+    design: generateFigmaPluginObject('1345-16160'),
     docs: {
       description: {
         component: generateStoryDescription('radio-group', 'default'),

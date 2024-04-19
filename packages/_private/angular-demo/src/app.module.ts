@@ -7,12 +7,14 @@ import {
 } from '@synergy-design-system/angular';
 import { AppComponent } from './app.component';
 import { DemoFieldset } from './demofieldset/demofieldset.component';
+import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
+    Home,
     AppComponent,
     DemoFieldset,
     DemoForm,

@@ -2,74 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import { pascalCase } from 'change-case';
 import {
+  createComment,
   createFrameworkIndex,
   createHeader,
   getAllComponents,
+  getControlAttributeForTwoWayBinding,
+  getEventAttributeForTwoWayBinding,
+  getIsTwoWayBindingEnabledFor,
   job,
   ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('vue');
-
-/**
- * List of components names that vue two way data binding should be enabled for
- * @var {string[]} vueModelEnabledComponents
- */
-const vueModelEnabledComponents = [
-  'checkbox',
-  'input',
-  'radio-group',
-  'select',
-  'switch',
-  'textarea',
-];
-
-/**
- * Get the attribute that should be bound for two way data binding
- * @param {string} componentName Name of the component
- * @returns {string} Name of the attribute to use
- */
-const getControlAttributeForVueModel = (componentName) => {
-  switch (componentName) {
-  case 'checkbox':
-  case 'switch':
-    return 'checked';
-  default:
-    return 'value';
-  }
-};
-
-/**
- * Get the event attributes name used for two way data binding
- * @param {string} componentName Name of the component
- * @returns The name of the event that should be used to add the binding
- */
-const getEventAttributeForVueModel = (componentName) => {
-  switch (componentName) {
-  default: return 'syn-input';
-  }
-};
-
-/**
- * Turns a string into a multiline js comment
- * @param {string} str The input string that should be commented
- * @param {string} [optional] splitToken The token that should be used to split
- * @returns {string} The javascript comment
- */
-const createComment = (str, splitToken = '. ') => {
-  if (!str) return '';
-
-  const lines = str
-    .split(splitToken)
-    .map(line => line.trim())
-    .filter(Boolean)
-    .map(line => `* ${line}`)
-    .join('.\n');
-  return `
-/**
-${lines}
- */`;
-};
 
 const getEventImports = (events = []) => events
   .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
@@ -97,13 +41,6 @@ const getMethodExpose = (members = []) => filterMethods(members)
   .join('\n');
 
 /**
- * Check if a given component is enabled for vModel interactions
- * @param {string} componentName
- * @returns {boolean}
- */
-const getIsVModelEnabled = (componentName) => vueModelEnabledComponents.includes(componentName);
-
-/**
  * Get all emits for the vue component
  * @param {string} componentName The component that we create the events for
  * @param {string} componentClass The class name of the component
@@ -117,10 +54,10 @@ const getEmits = (componentName, componentClass, events = []) => {
       '${event.name}': [e: ${event.eventName}];`.trim());
 
   // Add support for custom vue vModel binding
-  if (getIsVModelEnabled(componentName)) {
+  if (getIsTwoWayBindingEnabledFor(componentName)) {
     vueEventMap.push(`
       ${createComment('Support for two way data binding')}
-      'update:modelValue': [newValue: ${componentClass}['${getControlAttributeForVueModel(componentName)}']];
+      'update:modelValue': [newValue: ${componentClass}['${getControlAttributeForTwoWayBinding(componentName)}']];
     `.trim());
   }
 
@@ -140,20 +77,20 @@ const getEmitAttributes = (componentName, componentClass, events = []) => {
   );
 
   // Return the plain events if we do not have a vmodel component
-  if (!getIsVModelEnabled(componentName)) {
+  if (!getIsTwoWayBindingEnabledFor(componentName)) {
     return templateEvents.join('\n');
   }
 
   // Add support for custom vue vModel binding
-  const eventName = getEventAttributeForVueModel(componentName);
+  const eventName = getEventAttributeForTwoWayBinding(componentName);
 
   // @todo: This would make types more explicit,
   // however esbuild is not able to compile it unfortunately
-  // ($event.target as ${componentClass}).${getControlAttributeForVueModel(componentName)
-  const emitterValue = `$emit('update:modelValue', $event.target.${getControlAttributeForVueModel(componentName)})`;
+  // ($event.target as ${componentClass}).${getControlAttributeForTwoWayBinding(componentName)
+  const emitterValue = `$emit('update:modelValue', $event.target.${getControlAttributeForTwoWayBinding(componentName)})`;
 
   // It may very well be that the event we need to hook into is already
-  // declared (e.g. when using sy-input for two way databinding and as a prop, too)
+  // declared (e.g. when using syn-input for two way databinding and as a prop, too)
   // For this reason, we have to look if there is already a bound event and adjust it
   // accordingly so it includes the calls to update:modelValue, too.
   const vmodelEvents = templateEvents.map((event) => {
@@ -190,10 +127,10 @@ const getDefinedProps = (componentName, componentClass, attributes = []) => {
     `.trim());
 
   // Add support for vModel directive
-  if (getIsVModelEnabled(componentName)) {
+  if (getIsTwoWayBindingEnabledFor(componentName)) {
     vueAttributeMap.push(`
       ${createComment('Support for two way data binding')}
-      modelValue?: ${componentClass}['${getControlAttributeForVueModel(componentName)}'];
+      modelValue?: ${componentClass}['${getControlAttributeForTwoWayBinding(componentName)}'];
     `.trim());
   }
 
@@ -250,8 +187,8 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     // For this to work, we will have to add the attribute directly to the component binding
     let defaultValueBinding = '';
 
-    if (getIsVModelEnabled(component.tagNameWithoutPrefix)) {
-      const controlAttribute = getControlAttributeForVueModel(component.tagNameWithoutPrefix);
+    if (getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix)) {
+      const controlAttribute = getControlAttributeForTwoWayBinding(component.tagNameWithoutPrefix);
       defaultValueBinding = `:${controlAttribute}="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.${controlAttribute} !== 'undefined' ? props.${controlAttribute} : undefined"`;
     }
 

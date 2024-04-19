@@ -17,6 +17,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-badge');
 const { overrideArgs } = storybookHelpers('syn-badge');
@@ -33,6 +34,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-badge',
   parameters: {
+    design: generateFigmaPluginObject('14127-697884'),
     docs: {
       description: {
         component: generateStoryDescription('badge', 'default'),

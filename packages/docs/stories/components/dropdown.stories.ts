@@ -21,6 +21,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-dropdown');
 const { overrideArgs } = storybookHelpers('syn-dropdown');
@@ -61,6 +62,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-dropdown',
   parameters: {
+    design: generateFigmaPluginObject('10461-8361'),
     docs: {
       description: {
         component: generateStoryDescription('dropdown', 'default'),

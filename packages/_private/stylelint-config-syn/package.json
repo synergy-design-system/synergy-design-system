@@ -10,12 +10,12 @@
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
-    "@microsoft/fast-element": "^1.12.0",
+    "@microsoft/fast-element": "^1.13.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
-    "lit": "^3.1.2",
-    "stylelint": "^16.2.1"
+    "lit": "^3.1.3",
+    "stylelint": "^16.3.1"
   },
   "exports": {
     ".": "./index.js"

@@ -12,6 +12,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-optgroup');
 const { overrideArgs } = storybookHelpers('syn-optgroup');
@@ -37,6 +38,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-optgroup',
   parameters: {
+    design: generateFigmaPluginObject('5619-21837'),
     docs: {
       description: {
         component: generateStoryDescription('optiongroup', 'default'),

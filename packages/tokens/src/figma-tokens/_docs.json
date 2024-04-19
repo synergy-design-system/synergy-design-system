@@ -775,7 +775,7 @@
     "icon-button": {
       "default": {
         "description": {
-          "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.",
+          "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.\n\n**Note:** To make the icon-button work in development, have a look at the icon documentation for how to set up the assets package.",
           "type": "text"
         },
         "title": {

@@ -415,5 +415,12 @@
   "font-sans-fallback": {
     "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
     "type": "other"
+  },
+  "opacity": {
+    "medium": {
+      "value": "0.5",
+      "type": "opacity",
+      "description": "50%"
+    }
   }
 }

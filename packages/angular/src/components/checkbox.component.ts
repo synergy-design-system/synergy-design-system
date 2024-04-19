@@ -58,7 +58,7 @@ export class SynCheckboxComponent {
     this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
     this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
     this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); });
+    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
     this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
@@ -280,6 +280,11 @@ the custom validation message, call this method with an empty string.
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() checkedChange = new EventEmitter<SynCheckbox['checked']>();
 }
 
 export type { SynBlurEvent } from '@synergy-design-system/components';

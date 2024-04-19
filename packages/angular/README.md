@@ -257,6 +257,31 @@ Note that all elements that have one of the following attributes will be used as
 - Elements defining a `[formControl]` attribute
 - Elements defining a `[ngModel]` attribute
 
+### 9. Using two way data binding
+
+Input Controls like `<syn-input />`, `<syn-checkbox />` or `<syn-select />` also support [Angulars two way data binding](https://angular.io/guide/two-way-binding) on their corresponding `value` or `checked` properties.
+
+You can use this in the following way:
+
+```typescript
+// Example empty component with
+// one property using two way data binding
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "home",
+  styleUrls: ["./home.styles.css"],
+  template: `
+    <syn-input [(value)]="inputValue" placeholder="Type something"></syn-input>
+
+    Current Value is: {{ inputValue }}
+  `,
+})
+export class Home {
+  inputValue: string = "Type something";
+}
+```
+
 ---
 
 ## Development

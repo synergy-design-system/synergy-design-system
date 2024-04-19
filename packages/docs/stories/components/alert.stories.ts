@@ -11,6 +11,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-alert');
 const { overrideArgs } = storybookHelpers('syn-alert');
@@ -37,6 +38,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-alert',
   parameters: {
+    design: generateFigmaPluginObject('15172-32035'),
     docs: {
       description: {
         component: generateStoryDescription('alert', 'default'),

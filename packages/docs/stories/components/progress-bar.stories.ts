@@ -10,6 +10,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-progress-bar');
 const { overrideArgs } = storybookHelpers('syn-progress-bar');
@@ -24,6 +25,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-progress-bar',
   parameters: {
+    design: generateFigmaPluginObject('15533-15734'),
     docs: {
       description: {
         component: generateStoryDescription('progress-bar', 'default'),

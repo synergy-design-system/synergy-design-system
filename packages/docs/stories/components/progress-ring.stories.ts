@@ -10,6 +10,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-progress-ring');
 const { overrideArgs } = storybookHelpers('syn-progress-ring');
@@ -31,6 +32,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-progress-ring',
   parameters: {
+    design: generateFigmaPluginObject('14207-8709'),
     docs: {
       description: {
         component: generateStoryDescription('progress-ring', 'default'),

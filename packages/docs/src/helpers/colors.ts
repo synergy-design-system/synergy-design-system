@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { paramCase } from 'change-case';
+import { kebabCase } from 'change-case';
 import * as tokens from '@synergy-design-system/tokens';
 
 /**
@@ -83,18 +83,14 @@ export const getNeutralLightPalette = () => getPaletteMembersByWeight('neutral',
  * @param token The token to get the css name for
  * @returns The css token name
  */
-export const getCSSToken = (token: string) => `--${paramCase(token, {
-  splitRegexp: /([a-z])([A-Z0-9])/g,
-})}`;
+export const getCSSToken = (token: string) => `--${kebabCase(token)}`.replace(/([a-z])([A-Z0-9])/g, '$1-$2');
 
 /**
  * Get the sass variable name from a design token
  * @param token The token to get the css name for
  * @returns The sass token name
  */
-export const getSASSToken = (token: string) => `$${paramCase(token, {
-  splitRegexp: /([a-z])([A-Z0-9])/g,
-})}`;
+export const getSASSToken = (token: string) => `$${kebabCase(token)}`.replace(/([a-z])([A-Z0-9])/g, '$1-$2');
 
 /**
  * Get the raw token value from a design token

@@ -12,6 +12,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-prio-nav');
 const { overrideArgs } = storybookHelpers('syn-prio-nav');
@@ -32,6 +33,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-prio-nav',
   parameters: {
+    design: generateFigmaPluginObject('12362-10968'),
     docs: {
       description: {
         component: generateStoryDescription('prio-nav', 'default'),

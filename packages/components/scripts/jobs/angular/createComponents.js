@@ -1,36 +1,19 @@
 import fs from 'fs';
 import path from 'path';
 import {
+  createComment,
   createFrameworkIndex,
   createHeader,
   getAllComponents,
+  getControlAttributeForTwoWayBinding,
+  getEventAttributeForTwoWayBinding,
+  getIsTwoWayBindingEnabledFor,
   job,
   lcFirstLetter,
   ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('angular');
-
-/**
- * Turns a string into a multiline js comment
- * @param {string} str The input string that should be commented
- * @param {string} [optional] splitToken The token that should be used to split
- * @returns {string} The javascript comment
- */
-const createComment = (str, splitToken = '. ') => {
-  if (!str) return '';
-
-  const lines = str
-    .split(splitToken)
-    .map(line => line.trim())
-    .filter(Boolean)
-    .map(line => `* ${line}`)
-    .join('.\n');
-  return `
-/**
-${lines}
- */`;
-};
 
 const getEventImports = (events = []) => events
   .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
@@ -40,15 +23,43 @@ const getEventExports = (events = []) => events
   .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
   .join('\n');
 
-const getEventListeners = (events = []) => events
-  .map(event => `this._el.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); });`)
+const getEventListeners = ({
+  events = [],
+  tagNameWithoutPrefix,
+}) => events
+  .map(event => {
+    let additionalCodeToRun = '';
+    if (
+      getIsTwoWayBindingEnabledFor(tagNameWithoutPrefix)
+      && event.name === getEventAttributeForTwoWayBinding(tagNameWithoutPrefix)
+    ) {
+      const control = getControlAttributeForTwoWayBinding(tagNameWithoutPrefix);
+      additionalCodeToRun = `this.${control}Change.emit(this.${control})`;
+    }
+    return `this._el.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); ${additionalCodeToRun} });`;
+  })
   .join('\n');
 
-const getEventOutputs = (events = []) => events
-  .map(event => `
+const getEventOutputs = ({
+  events = [],
+  name,
+  tagNameWithoutPrefix,
+}) => {
+  const exportedEvents = events.map(event => `
     ${createComment(event.description || '')}
-    @Output() ${lcFirstLetter(event.eventName)} = new EventEmitter<${event.eventName}>();`)
-  .join('\n');
+    @Output() ${lcFirstLetter(event.eventName)} = new EventEmitter<${event.eventName}>();
+  `);
+
+  // Add support for two way databinding
+  if (getIsTwoWayBindingEnabledFor(tagNameWithoutPrefix)) {
+    const control = getControlAttributeForTwoWayBinding(tagNameWithoutPrefix);
+    exportedEvents.push(`
+      ${createComment('Support for two way data binding')}
+      @Output() ${control}Change = new EventEmitter<${name}['${control}']>();
+    `);
+  }
+  return exportedEvents.join('\n');
+};
 
 const getAttributeInputs = (componentName, attributes = []) => attributes
   .map(attr => `
@@ -91,8 +102,8 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
-    const eventListeners = getEventListeners(component.events);
-    const eventOutputs = getEventOutputs(component.events);
+    const eventListeners = getEventListeners(component);
+    const eventOutputs = getEventOutputs(component);
 
     const attributeInputs = getAttributeInputs(component.name, component.attributes);
     const methodInputs = getMethodInputs(component.name, component.members);

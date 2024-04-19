@@ -13,6 +13,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon-button');
 const { overrideArgs } = storybookHelpers('syn-icon-button');
@@ -28,6 +29,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-icon-button',
   parameters: {
+    design: generateFigmaPluginObject('2986-3736'),
     docs: {
       description: {
         component: generateStoryDescription('icon-button', 'default'),

@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "@storybook/addon-mdx-gfm",
+    { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
   ],
   core: {
     disableTelemetry: true,

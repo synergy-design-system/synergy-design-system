@@ -11,6 +11,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-side-nav');
 const { overrideArgs } = storybookHelpers('syn-side-nav');
@@ -21,6 +22,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-side-nav',
   parameters: {
+    design: generateFigmaPluginObject('12362-10883'),
     docs: {
       container: DisableFocusTrap,
       description: {
@@ -139,9 +141,12 @@ export const Rail: Story = {
     </div>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-rail');
-    const sideNav = document.querySelector('.side-nav-rail');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-rail') || document.querySelector('.header-rail');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-rail') || document.querySelector('.side-nav-rail');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-rail {
@@ -206,9 +211,12 @@ export const Footer: Story = {
     </syn-side-nav>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-footer');
-    const sideNav = document.querySelector('.side-nav-footer');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-footer') || document.querySelector('.header-footer');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-footer') || document.querySelector('.side-nav-footer');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-footer {
@@ -261,9 +269,12 @@ export const Fixed: Story = {
     </main>
   </div>
   <script type="module">
-    const header = document.querySelector('.header-fixed');
-    const sideNav = document.querySelector('.side-nav-fixed');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-fixed') || document.querySelector('.header-fixed');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-fixed') || document.querySelector('.side-nav-fixed');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .container-fixed {
@@ -326,9 +337,12 @@ export const Shrink: Story = {
     </div>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-shrink');
-    const sideNav = document.querySelector('.side-nav-shrink');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-shrink') || document.querySelector('.header-shrink');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-shrink') || document.querySelector('.side-nav-shrink');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-shrink {
@@ -393,9 +407,12 @@ export const Indentation: Story = {
     </syn-side-nav>
   </main>
   <script type="module">
-    const header = document.querySelector('.header-indentation');
-    const sideNav = document.querySelector('.side-nav-indentation');
-    header.connectSideNavigation(sideNav);
+    // Only needed to have correct behavior in our documentation "Docs" page
+    const header = document.querySelector('#storybook-docs .header-indentation') || document.querySelector('.header-indentation');
+    const sideNav = document.querySelector('#storybook-docs .side-nav-indentation') || document.querySelector('.side-nav-indentation');
+    if(sideNav && header){
+      header.connectSideNavigation(sideNav);
+    }
   </script>
   <style>
     .main-indentation {

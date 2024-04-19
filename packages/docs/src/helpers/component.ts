@@ -602,6 +602,7 @@ export const generateStoryDescription = <T extends Component>(component: T, attr
  return description.replace(/\n/g, '<br/>');
 }
 
+
 /**
  * Parameters for the generateScreenshotStory function
  * It accepts either

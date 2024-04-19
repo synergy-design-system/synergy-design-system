@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.16.0...components/1.17.0) (2024-04-19)
+
+
+### Features
+
+* ✨ Angular: Allow two way data binding component wrappers ([#420](https://github.com/synergy-design-system/synergy-design-system/issues/420)) ([7c9c6a6](https://github.com/synergy-design-system/synergy-design-system/commit/7c9c6a6aab568c868c337c1c117c66cca141b694))
+
 # [@synergy-design-system/components-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.15.0...components/1.16.0) (2024-04-12)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.11.0...tokens/1.12.0) (2024-04-18)
+
+
+### Features
+
+* ✨ opacity-token 50% ([#428](https://github.com/synergy-design-system/synergy-design-system/issues/428)) ([ec1493d](https://github.com/synergy-design-system/synergy-design-system/commit/ec1493d8c0cedaf6568be970e8d9a5c0c1ab82fa))
+
 # [@synergy-design-system/tokens-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.10.0...tokens/1.11.0) (2024-04-08)
 
 

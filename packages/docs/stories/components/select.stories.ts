@@ -13,6 +13,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-select');
 const { overrideArgs } = storybookHelpers('syn-select');
@@ -23,6 +24,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-select',
   parameters: {
+    design: generateFigmaPluginObject('5069-7562'),
     docs: {
       description: {
         component: generateStoryDescription('select', 'default'),

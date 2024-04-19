@@ -275,8 +275,8 @@ export const CreatingToastsImperatively: Story = {
         duration: duration,
         innerHTML: \`
           <syn-icon name="\${icon}" slot="icon"></syn-icon>
-          \${escapeHtml(message)}
-        \`
+          This alert will automatically hide itself after three seconds, unless you interact with it.
+        \`,
       });
 
       document.body.append(alert);

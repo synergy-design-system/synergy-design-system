@@ -59,7 +59,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@custom-elements-manifest/analyzer": "^0.9.4",
     "@open-wc/testing": "^4.0.0",
     "@playwright/test": "^1.43.1",
     "@semantic-release/changelog": "^6.0.3",
@@ -73,16 +73,16 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@web/dev-server-esbuild": "^1.0.2",
-    "@web/test-runner": "^0.18.0",
+    "@web/test-runner": "^0.18.1",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-playwright": "^0.11.0",
     "chalk": "^5.3.0",
-    "change-case": "^5.4.2",
+    "change-case": "^5.4.4",
     "command-line-args": "^5.2.1",
     "comment-parser": "^1.4.1",
-    "custom-element-vs-code-integration": "^1.2.2",
+    "custom-element-vs-code-integration": "^1.2.3",
     "del": "^7.1.0",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.20.2",
     "esbuild-plugin-replace": "^1.4.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -94,7 +94,7 @@
     "eslint-plugin-playwright": "^0.22.2",
     "eslint-plugin-vue": "^9.25.0",
     "eslint-plugin-wc": "^2.1.0",
-    "globby": "^14.0.0",
+    "globby": "^14.0.1",
     "jsdom": "^24.0.0",
     "ng-packagr": "^17.3.0",
     "ora": "^8.0.1",
@@ -104,12 +104,12 @@
     "semantic-release-monorepo": "7.0.5",
     "sinon": "^17.0.1",
     "stylelint": "^16.3.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.5",
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
     "vendorism": "^3.0.0",
-    "vue-tsc": "^2.0.13"
+    "vue-tsc": "^2.0.14"
   },
   "release": {
     "branches": [
@@ -170,10 +170,10 @@
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.1",
+    "@floating-ui/dom": "^1.6.3",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.2",
     "composed-offset-position": "^0.0.4",
-    "lit": "^3.1.2"
+    "lit": "^3.1.3"
   }
 }

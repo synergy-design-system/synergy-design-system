@@ -299,11 +299,11 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
       vite:
-        specifier: ^5.2.9
-        version: 5.2.9
+        specifier: ^5.2.10
+        version: 5.2.10(@types/node@20.12.7)
       vite-plugin-static-copy:
-        specifier: ^1.0.2
-        version: 1.0.2(vite@5.2.9)
+        specifier: ^1.0.3
+        version: 1.0.3(vite@5.2.10)
 
   packages/_private/vue-demo:
     dependencies:
@@ -10246,8 +10246,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /css-functions-list@3.2.1:
-    resolution: {integrity: sha512-Nj5YcaGgBtuUmn1D7oHqPW0c9iui7xsTsj5lIX8ZgevdfhmjFfKB3r8moHJtNJnctnYXJyYX5I1pp90HM4TPgQ==}
+  /css-functions-list@3.2.2:
+    resolution: {integrity: sha512-c+N0v6wbKVxTu5gOBBFkr9BEdBWaqqjQeiJ8QvSRIJOf+UxlJh930m8e6/WNeODIK0mYLFkoONrnj16i2EcvfQ==}
     engines: {node: '>=12 || >=16'}
 
   /css-loader@6.10.0(webpack@5.90.3):
@@ -18474,7 +18474,7 @@ packages:
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.3.3)
-      css-functions-list: 3.2.1
+      css-functions-list: 3.2.2
       css-tree: 2.3.1
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -18522,7 +18522,7 @@ packages:
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.4.5)
-      css-functions-list: 3.2.1
+      css-functions-list: 3.2.2
       css-tree: 2.3.1
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -19467,19 +19467,6 @@ packages:
     peerDependencies:
       vite: ^2
     dependencies:
-      vite: 5.2.9
-    dev: true
-
-  /vite-plugin-static-copy@1.0.2(vite@5.2.9):
-    resolution: {integrity: sha512-AfmEF+a/mfjsUsrgjbCkhzUCeIUF4EKQXXt3Ie1cour9MBpy6f6GphbdW2td28oYfOrwCyRzFCksgLkpk58q6Q==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    peerDependencies:
-      vite: ^5.0.0
-    dependencies:
-      chokidar: 3.6.0
-      fast-glob: 3.3.2
-      fs-extra: 11.2.0
-      picocolors: 1.0.0
       vite: 5.2.9
     dev: true
 

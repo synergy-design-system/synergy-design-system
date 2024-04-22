@@ -19,8 +19,8 @@
     "eslint": "^8.57.0",
     "stylelint": "^16.3.1",
     "typescript": "^5.4.5",
-    "vite": "^5.2.9",
-    "vite-plugin-static-copy": "^1.0.2"
+    "vite": "^5.2.10",
+    "vite-plugin-static-copy": "^1.0.3"
   },
   "dependencies": {
     "@synergy-design-system/components": "workspace:^",

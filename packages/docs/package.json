@@ -37,7 +37,7 @@
     "storybook": "^8.0.8",
     "stylelint": "^16.3.1",
     "typescript": "^5.4.5",
-    "vite": "^5.2.9",
+    "vite": "^5.2.10",
     "vite-plugin-cem": "^0.8.0",
     "vite-plugin-replace": "^0.1.1",
     "wc-storybook-helpers": "^1.5.3"

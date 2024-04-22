@@ -7,7 +7,7 @@
 export const replaceSection = ([search, replace], content) => content.replaceAll(search, replace);
 
 /**
- * Takes an array of section options and applies them via removeSection one by one
+ * Takes an array of section options and applies them via replaceSection one by one
  * @param {string[][]} sections The sections you want to replace
  * @param {string} initialContent The initial content
  * @returns {string} Output after all transforms ran

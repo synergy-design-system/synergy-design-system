@@ -15,7 +15,6 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   let content = removeSection(originalContent, '/** Draws a filled', 'filled = false;');
-  content = replaceSection(['filled', 'readonly'], content);
 
   content = replaceSections([
     ['filled', 'readonly'],

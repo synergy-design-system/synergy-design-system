@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.18.0...components/1.19.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress-bar ([#423](https://github.com/synergy-design-system/synergy-design-system/issues/423)) ([587d2ad](https://github.com/synergy-design-system/synergy-design-system/commit/587d2adad36266d5e2bd3aadad2c7350c5b8aa34))
+
 # [@synergy-design-system/components-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.2...components/1.18.0) (2024-04-23)
 
 

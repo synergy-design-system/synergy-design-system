@@ -16,6 +16,7 @@ import {
   vendorLocalize,
   vendorMenuItem,
   vendorMenuLabel,
+  vendorProgressBar,
   vendorSelect,
   vendorTag,
   vendorTextarea,
@@ -47,6 +48,8 @@ export const components = [
   'menu-item',
   'menu-label',
   'badge',
+  'progress-bar',
+  'progress-ring',
   'alert',
 ].sort();
 
@@ -272,6 +275,7 @@ const config = {
       vendorLocalize,
       vendorMenuItem,
       vendorMenuLabel,
+      vendorProgressBar,
       vendorSelect,
       vendorTextarea,
       vendorTranslations,

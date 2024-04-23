@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@lit/react": "^1.0.3",
+    "@lit/react": "^1.0.4",
     "@synergy-design-system/components": "workspace:^"
   },
   "description": "React wrappers for the Synergy Design System",
@@ -40,9 +40,9 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "1.17.1",
+  "version": "1.19.0",
   "devDependencies": {
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.2.79",
     "react": "^18.2.0"
   }
 }

@@ -1222,8 +1222,8 @@
           "value": "Labels",
           "type": "text"
         },
-        "decription": {
-          "value": "Use the label attribute to label the progress bar and tell assistive devices how to announce it.",
+        "description": {
+          "value": "Use the `label` attribute to label the progress bar and tell assistive devices how to announce it.",
           "type": "text"
         }
       },
@@ -1315,7 +1315,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the default slot to show a label inside the progress ring.",
+          "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
           "type": "text"
         }
       }

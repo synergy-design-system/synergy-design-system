@@ -86,7 +86,7 @@ export const ShowingValues: Story = {
   render: () => html`
     <syn-progress-bar value="60" class="progress-bar-values">60%</syn-progress-bar>
 
-    <div style="display: flex; gap: 20px; margin-top: 20px;">
+    <div style="display: flex; gap: var(--syn-spacing-x-small); margin-top: var(--syn-spacing-medium);">
       <syn-button variant="outline" size="small">
         <syn-icon name="indeterminate" library="system" label="Decrease"></syn-icon>
       </syn-button>

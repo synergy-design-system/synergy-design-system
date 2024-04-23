@@ -51,7 +51,6 @@ import { unlockBodyScrolling } from '../../internal/scroll.js';
  * @csspart overlay - The overlay that covers the screen behind the side-nav.
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
- * @cssproperty  --side-nav-rail-width - The width of the side-nav if in rail mode without open
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
  * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.

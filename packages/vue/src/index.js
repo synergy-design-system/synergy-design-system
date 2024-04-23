@@ -30,3 +30,4 @@ export { default as SynVueSideNav } from './components/SynVueSideNav.vue';
 export { default as SynVueSwitch } from './components/SynVueSwitch.vue';
 export { default as SynVueTag } from './components/SynVueTag.vue';
 export { default as SynVueTextarea } from './components/SynVueTextarea.vue';
+export { default as SynVueTooltip } from './components/SynVueTooltip.vue';

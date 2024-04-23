@@ -10,8 +10,8 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "chalk": "^5.3.0",
-    "dotenv": "^16.4.1",
-    "eslint": "^8.56.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "figma-export-assets": "^1.0.4",
     "rimraf": "^5.0.5",
@@ -109,5 +109,5 @@
     "release.dry": "semantic-release --dry-run --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.5.0"
+  "version": "1.5.1"
 }

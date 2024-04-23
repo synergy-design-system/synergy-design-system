@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable max-len */
 import { kebabCase } from 'change-case';
 import * as tokens from '@synergy-design-system/tokens';
 
@@ -90,7 +92,7 @@ export const getCSSToken = (token: string) => `--${kebabCase(token)}`.replace(/(
  * @param token The token to get the css name for
  * @returns The sass token name
  */
-export const getSASSToken = (token: string) => `$${kebabCase(token)}`.replace(/([a-z])([A-Z0-9])/g, '$1-$2');
+export const getSASSToken = (token: string) => `$${token}`;
 
 /**
  * Get the raw token value from a design token

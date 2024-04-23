@@ -17,7 +17,7 @@
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "@synergy-design-system/vue": "workspace:*",
-    "vue": "^3.4.23",
+    "vue": "^3.4.24",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {

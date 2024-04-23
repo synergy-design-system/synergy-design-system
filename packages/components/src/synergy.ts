@@ -4,6 +4,7 @@
 // !!! and run `pnpm build` to recreate this file
 
 // Components
+export { default as SynAlert } from './components/alert/alert.js';
 export { default as SynBadge } from './components/badge/badge.js';
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
@@ -23,6 +24,8 @@ export { default as SynOptgroup } from './components/optgroup/optgroup.js';
 export { default as SynOption } from './components/option/option.js';
 export { default as SynPopup } from './components/popup/popup.js';
 export { default as SynPrioNav } from './components/prio-nav/prio-nav.js';
+export { default as SynProgressBar } from './components/progress-bar/progress-bar.js';
+export { default as SynProgressRing } from './components/progress-ring/progress-ring.js';
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';
 export { default as SynRadio } from './components/radio/radio.js';

@@ -6,6 +6,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import {
+  SynAlertComponent,
   SynBadgeComponent,
   SynButtonComponent,
   SynButtonGroupComponent,
@@ -25,6 +26,8 @@ import {
   SynOptionComponent,
   SynPopupComponent,
   SynPrioNavComponent,
+  SynProgressBarComponent,
+  SynProgressRingComponent,
   SynRadioButtonComponent,
   SynRadioComponent,
   SynRadioGroupComponent,
@@ -37,6 +40,7 @@ import {
 } from '../components';
 
 const components = [
+  SynAlertComponent,
   SynBadgeComponent,
   SynButtonComponent,
   SynButtonGroupComponent,
@@ -56,6 +60,8 @@ const components = [
   SynOptionComponent,
   SynPopupComponent,
   SynPrioNavComponent,
+  SynProgressBarComponent,
+  SynProgressRingComponent,
   SynRadioComponent,
   SynRadioButtonComponent,
   SynRadioGroupComponent,

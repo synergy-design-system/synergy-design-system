@@ -31,7 +31,7 @@
 }
 
 .syn-toast-stack syn-alert {
-  margin: var(--syn-spacing-medium);
+  margin: var(--syn-spacing-small);
 }
 
 .syn-toast-stack syn-alert::part(base) {

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fs from 'fs';
-import { pascalCase, pascalCaseTransformMerge } from 'change-case';
+import { pascalCase } from 'change-case';
 import chalk from 'chalk';
 import { createFolder, createHeaderComment } from '../helpers.js';
 
@@ -20,7 +20,7 @@ export const createSCSS = (header, inputFile, outputFile) => {
       const varName = cssVar.replace('--', '').replace(':', '');
       return [
         pascalCase(varName, {
-          transform: pascalCaseTransformMerge,
+          mergeAmbiguousCharacters: true,
         }),
         cssVar.replace(':', ''),
       ];

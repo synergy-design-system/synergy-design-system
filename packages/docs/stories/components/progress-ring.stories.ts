@@ -120,7 +120,7 @@ export const ShowingValues: Story = {
   },
   render: () => html`
     <syn-progress-ring value="50" class="progress-ring-values">50%</syn-progress-ring>
-    <div style="display: flex; gap: 20px; margin-top: 20px;">
+    <div style="display: flex; gap: var(--syn-spacing-x-small); margin-top: var(--syn-spacing-medium);">
       <syn-button variant="outline">
         <syn-icon name="indeterminate" library="system" label="Decrease"></syn-icon>
       </syn-button>

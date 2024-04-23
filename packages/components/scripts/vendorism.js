@@ -48,6 +48,7 @@ export const components = [
   'menu-label',
   'badge',
   'progress-bar',
+  'progress-ring',
 ].sort();
 
 /**

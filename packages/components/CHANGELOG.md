@@ -1,3 +1,24 @@
+# [@synergy-design-system/components-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.2...components/1.18.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress ring ([#422](https://github.com/synergy-design-system/synergy-design-system/issues/422)) ([d7606fe](https://github.com/synergy-design-system/synergy-design-system/commit/d7606fe56e24f4a7cf82c6670f00b18977d3784b))
+
+# [@synergy-design-system/components-v1.17.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.1...components/1.17.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* 🤔 update dependencies ([#438](https://github.com/synergy-design-system/synergy-design-system/issues/438)) ([f3d648b](https://github.com/synergy-design-system/synergy-design-system/commit/f3d648b2071214cd6d58ff18d66e434dd32bfc76))
+
+# [@synergy-design-system/components-v1.17.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.0...components/1.17.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* 🤔 syn-text-area may throw an error when unmounted too quick ([#437](https://github.com/synergy-design-system/synergy-design-system/issues/437)) ([096f99f](https://github.com/synergy-design-system/synergy-design-system/commit/096f99fb92c13508ea3a32bc648ff555dd36fad1))
+
 # [@synergy-design-system/components-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.16.0...components/1.17.0) (2024-04-19)
 
 

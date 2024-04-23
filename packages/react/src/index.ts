@@ -23,6 +23,7 @@ export { SynOption } from './components/option.js';
 export { SynPopup } from './components/popup.js';
 export { SynPrioNav } from './components/prio-nav.js';
 export { SynProgressBar } from './components/progress-bar.js';
+export { SynProgressRing } from './components/progress-ring.js';
 export { SynRadio } from './components/radio.js';
 export { SynRadioButton } from './components/radio-button.js';
 export { SynRadioGroup } from './components/radio-group.js';

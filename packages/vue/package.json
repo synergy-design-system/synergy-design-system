@@ -40,9 +40,9 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.24"
   }
 }

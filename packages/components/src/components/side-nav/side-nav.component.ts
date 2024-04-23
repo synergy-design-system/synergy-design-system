@@ -332,8 +332,8 @@ export default class SynSideNav extends SynergyElement {
 // Show animations
 setDefaultAnimation('sideNav.showRail', {
   keyframes: [
-    { width: '4.5rem' },
-    { width: '25rem' },
+    { width: 'var(--side-nav-rail-width)' },
+    { width: 'var(--side-nav-open-width)' },
   ],
   options: { duration: 250, easing: 'ease' },
 });
@@ -357,8 +357,8 @@ setDefaultAnimation('sideNav.hideNonRail', {
 
 setDefaultAnimation('sideNav.hideRail', {
   keyframes: [
-    { width: '25rem' },
-    { width: '4.5rem' },
+    { width: 'var(--side-nav-open-width)' },
+    { width: 'var(--side-nav-rail-width)' },
   ],
   options: { duration: 250, easing: 'ease' },
 });

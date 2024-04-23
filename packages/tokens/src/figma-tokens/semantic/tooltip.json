@@ -29,6 +29,14 @@
     "line-height": {
       "value": "{line-height.dense}",
       "type": "lineHeights"
+    },
+    "padding": {
+      "value": "{spacing.small}",
+      "type": "sizing"
+    },
+    "arrow-size": {
+      "value": "9px",
+      "type": "sizing"
     }
   }
 }

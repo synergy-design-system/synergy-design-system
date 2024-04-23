@@ -4,8 +4,7 @@
     "name": "Color",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "color/primitives": "enabled",
-      "semantic/tooltip": "disabled"
+      "color/primitives": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
@@ -85,8 +84,7 @@
     "id": "eda1d35f1a28a0d1fce620eca524dde48d6b5817",
     "name": "Light",
     "selectedTokenSets": {
-      "color/light": "enabled",
-      "semantic/tooltip": "disabled"
+      "color/light": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -167,8 +165,7 @@
     "id": "f39c786993e4942a7c329538c246ec8fa5e56c30",
     "name": "Dark",
     "selectedTokenSets": {
-      "color/dark": "enabled",
-      "semantic/tooltip": "disabled"
+      "color/dark": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -249,8 +246,7 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled",
-      "semantic/tooltip": "disabled"
+      "globals": "enabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -308,8 +304,7 @@
       "semantic/input": "enabled",
       "semantic/button": "enabled",
       "semantic/toggle": "enabled",
-      "semantic/typography": "enabled",
-      "semantic/tooltip": "disabled"
+      "semantic/typography": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

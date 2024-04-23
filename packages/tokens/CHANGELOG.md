@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.13.0...tokens/1.14.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress-bar ([#423](https://github.com/synergy-design-system/synergy-design-system/issues/423)) ([587d2ad](https://github.com/synergy-design-system/synergy-design-system/commit/587d2adad36266d5e2bd3aadad2c7350c5b8aa34))
+
 # [@synergy-design-system/tokens-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.12.1...tokens/1.13.0) (2024-04-23)
 
 

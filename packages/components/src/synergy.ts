@@ -4,6 +4,7 @@
 // !!! and run `pnpm build` to recreate this file
 
 // Components
+export { default as SynAlert } from './components/alert/alert.js';
 export { default as SynBadge } from './components/badge/badge.js';
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';

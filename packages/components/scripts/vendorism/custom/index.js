@@ -1,3 +1,4 @@
+export * from './alert.vendorism.js';
 export * from './badge.vendorism.js';
 export * from './button.vendorism.js';
 export * from './drawer.vendorism.js';

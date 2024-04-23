@@ -6,6 +6,7 @@ import { eject, get, set } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
+  vendorAlert,
   vendorBadge,
   vendorButton,
   vendorDrawer,
@@ -49,6 +50,7 @@ export const components = [
   'badge',
   'progress-bar',
   'progress-ring',
+  'alert',
 ].sort();
 
 /**
@@ -263,6 +265,7 @@ const config = {
         };
       },
       // specialized customizations
+      vendorAlert,
       vendorBadge,
       vendorButton,
       vendorDrawer,

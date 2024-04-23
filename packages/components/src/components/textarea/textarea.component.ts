@@ -50,7 +50,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']
   });
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private resizeObserver: ResizeObserver;
 
   @query('.textarea__control') input: HTMLTextAreaElement;
@@ -168,7 +168,9 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.unobserve(this.input);
+    if (this.input) {
+      this.resizeObserver.unobserve(this.input);
+    }
   }
 
   private handleBlur() {
@@ -304,8 +306,6 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
-    const hasPrefixSlot = this.hasSlotController.test('prefix');
-    const hasSuffixSlot = this.hasSlotController.test('suffix');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
@@ -318,9 +318,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText,
-          'form-control--has-prefix': hasPrefixSlot,
-          'form-control--has-suffix': hasSuffixSlot
+          'form-control--has-help-text': hasHelpText
         })}
       >
         <label

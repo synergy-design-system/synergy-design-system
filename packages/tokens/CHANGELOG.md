@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.12.1...tokens/1.13.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress ring ([#422](https://github.com/synergy-design-system/synergy-design-system/issues/422)) ([d7606fe](https://github.com/synergy-design-system/synergy-design-system/commit/d7606fe56e24f4a7cf82c6670f00b18977d3784b))
+
 # [@synergy-design-system/tokens-v1.12.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.12.0...tokens/1.12.1) (2024-04-23)
 
 

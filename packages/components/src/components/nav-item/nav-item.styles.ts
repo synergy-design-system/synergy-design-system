@@ -145,7 +145,7 @@ export default css`
   }
 
   /**
-   * The chevron indicates the use as a <details /> element
+   * The chevron indicates the use as a <details /> element OR a link
    */
   .nav-item__chevron {
     font-size: var(--syn-font-size-x-large);
@@ -156,6 +156,13 @@ export default css`
 
   .nav-item__chevron-open {
     rotate: -180deg;
+  }
+
+  /**
+   * Links should always show a chevron pointing to the right
+   */
+  .nav-item--is-link .nav-item__chevron {
+    rotate: -90deg;
   }
 
   /**

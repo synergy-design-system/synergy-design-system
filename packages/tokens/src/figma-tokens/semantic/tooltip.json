@@ -1,0 +1,34 @@
+{
+  "tooltip": {
+    "border": {
+      "radius-medium": {
+        "value": "{border-radius.medium}",
+        "type": "borderRadius"
+      }
+    },
+    "background-color": {
+      "value": "{neutral.950}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{typography.color.text-inverted}",
+      "type": "color"
+    },
+    "font-family": {
+      "value": "{font.sans}",
+      "type": "fontFamilies"
+    },
+    "font-weight": {
+      "value": "{font-weight.normal}",
+      "type": "fontWeights"
+    },
+    "font-size": {
+      "value": "{button.font-size.small}",
+      "type": "fontSizes"
+    },
+    "line-height": {
+      "value": "{line-height.dense}",
+      "type": "lineHeights"
+    }
+  }
+}

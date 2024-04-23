@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.2...components/1.18.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress ring ([#422](https://github.com/synergy-design-system/synergy-design-system/issues/422)) ([d7606fe](https://github.com/synergy-design-system/synergy-design-system/commit/d7606fe56e24f4a7cf82c6670f00b18977d3784b))
+
 # [@synergy-design-system/components-v1.17.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.1...components/1.17.2) (2024-04-23)
 
 

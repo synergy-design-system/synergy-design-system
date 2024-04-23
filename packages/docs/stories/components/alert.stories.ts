@@ -290,11 +290,50 @@ export const CreatingToastsImperatively: Story = {
   `,
 };
 
+// This story is only there to make screenshots comparable
+// and therefore has no description or controls
+const Toast = {
+  render: () => html`
+    <style>
+    .syn-toast-stack {
+      position: relative;
+    }
+    </style>
+    <div class="syn-toast-stack">
+      <syn-alert variant="primary" open closable>
+        <syn-icon slot="icon" name="info"></syn-icon>
+        This is super informative
+      </syn-alert>
+
+      <syn-alert variant="success" open closable>
+        <syn-icon slot="icon" name="check_circle"></syn-icon>
+        Your changes have been saved
+      </syn-alert>
+
+      <syn-alert variant="neutral" open closable>
+        <syn-icon slot="icon" name="settings"></syn-icon>
+        Your settings have been updated
+      </syn-alert>
+
+      <syn-alert variant="warning" open closable>
+        <syn-icon slot="icon" name="warning"></syn-icon>
+        Your session has ended
+      </syn-alert>
+
+      <syn-alert variant="danger" open closable>
+        <syn-icon slot="icon" name="error"></syn-icon>
+        Your account has been deleted
+      </syn-alert>
+    </div>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Variants,
   Closable,
   WithoutIcons,
-}, 700);
+  Toast,
+}, 550);
 /* eslint-enable sort-keys */

@@ -1,8 +1,8 @@
 {
   "tooltip": {
     "border": {
-      "radius-medium": {
-        "value": "{border-radius.medium}",
+      "radius": {
+        "value": "{border-radius.small}",
         "type": "borderRadius"
       }
     },
@@ -27,16 +27,16 @@
       "type": "fontSizes"
     },
     "line-height": {
-      "value": "{line-height.dense}",
+      "value": "{line-height.normal}",
       "type": "lineHeights"
     },
     "padding": {
       "value": "{spacing.small}",
-      "type": "sizing"
+      "type": "spacing"
     },
     "arrow-size": {
       "value": "9px",
-      "type": "sizing"
+      "type": "spacing"
     }
   }
 }

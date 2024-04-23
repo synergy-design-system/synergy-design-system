@@ -22,6 +22,7 @@ export { SynOptgroupComponent } from './optgroup.component';
 export { SynOptionComponent } from './option.component';
 export { SynPopupComponent } from './popup.component';
 export { SynPrioNavComponent } from './prio-nav.component';
+export { SynProgressBarComponent } from './progress-bar.component';
 export { SynProgressRingComponent } from './progress-ring.component';
 export { SynRadioButtonComponent } from './radio-button.component';
 export { SynRadioComponent } from './radio.component';

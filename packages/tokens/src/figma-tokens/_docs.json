@@ -1315,7 +1315,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the default slot to show a label inside the progress ring.",
+          "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
           "type": "text"
         }
       }

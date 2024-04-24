@@ -6,6 +6,7 @@ import { eject, get, set } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
+  vendorAlert,
   vendorBadge,
   vendorButton,
   vendorDrawer,
@@ -15,6 +16,7 @@ import {
   vendorLocalize,
   vendorMenuItem,
   vendorMenuLabel,
+  vendorProgressBar,
   vendorSelect,
   vendorTag,
   vendorTextarea,
@@ -48,6 +50,9 @@ export const components = [
   'menu-label',
   'badge',
   'tooltip',
+  'progress-bar',
+  'progress-ring',
+  'alert',
 ].sort();
 
 /**
@@ -262,6 +267,7 @@ const config = {
         };
       },
       // specialized customizations
+      vendorAlert,
       vendorBadge,
       vendorButton,
       vendorDrawer,
@@ -271,6 +277,7 @@ const config = {
       vendorLocalize,
       vendorMenuItem,
       vendorMenuLabel,
+      vendorProgressBar,
       vendorSelect,
       vendorTextarea,
       vendorTranslations,

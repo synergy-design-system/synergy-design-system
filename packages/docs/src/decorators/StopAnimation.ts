@@ -24,7 +24,8 @@ export const stopAnimation = (Story: StoryFn, ...rest: unknown[]) => {
       }
       syn-spinner,
       syn-button::part(spinner),
-      syn-menu-item::part(spinner) {
+      syn-menu-item::part(spinner),
+      syn-progress-bar {
         --speed: -1s !important;
       }
       </style>

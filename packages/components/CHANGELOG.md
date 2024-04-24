@@ -1,3 +1,31 @@
+# [@synergy-design-system/components-v1.20.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.0...components/1.20.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* 🤔  Flickering of side-nav if changing its width via css variable ([#445](https://github.com/synergy-design-system/synergy-design-system/issues/445)) ([4c98710](https://github.com/synergy-design-system/synergy-design-system/commit/4c98710d4dec9005340ed329086972f9da0ab1e9))
+
+# [@synergy-design-system/components-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.19.0...components/1.20.0) (2024-04-23)
+
+
+### Features
+
+* ✨ syn-alert ([#427](https://github.com/synergy-design-system/synergy-design-system/issues/427)) ([961f16c](https://github.com/synergy-design-system/synergy-design-system/commit/961f16c08da28958e5854270b98c096f0127bdad))
+
+# [@synergy-design-system/components-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.18.0...components/1.19.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress-bar ([#423](https://github.com/synergy-design-system/synergy-design-system/issues/423)) ([587d2ad](https://github.com/synergy-design-system/synergy-design-system/commit/587d2adad36266d5e2bd3aadad2c7350c5b8aa34))
+
+# [@synergy-design-system/components-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.2...components/1.18.0) (2024-04-23)
+
+
+### Features
+
+* ✨ progress ring ([#422](https://github.com/synergy-design-system/synergy-design-system/issues/422)) ([d7606fe](https://github.com/synergy-design-system/synergy-design-system/commit/d7606fe56e24f4a7cf82c6670f00b18977d3784b))
+
 # [@synergy-design-system/components-v1.17.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.17.1...components/1.17.2) (2024-04-23)
 
 

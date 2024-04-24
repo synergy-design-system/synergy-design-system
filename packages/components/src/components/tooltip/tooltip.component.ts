@@ -84,7 +84,7 @@ export default class SynTooltip extends SynergyElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** The distance in pixels from which to offset the tooltip away from its target. */
-  @property({ type: Number }) distance = 8;
+  @property({ type: Number }) distance = 13;
 
   /** Indicates whether or not the tooltip is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;

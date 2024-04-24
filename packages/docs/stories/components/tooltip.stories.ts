@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/tooltip/tooltip.js';
@@ -25,6 +24,11 @@ const meta: Meta = {
       value: 'This is a tooltip',
     },
     {
+      name: 'open',
+      type: 'attribute',
+      value: true,
+    },
+    {
       name: 'default',
       type: 'slot',
       value: '<syn-button>Hover me</syn-button>',
@@ -38,7 +42,13 @@ const meta: Meta = {
       description: {
         component: generateStoryDescription('tooltip', 'default'),
       },
+      story: {
+        height: '200px',
+        // Unfortunately we need the iframes here, otherwise the tooltips placing is broken
+        inline: false,
+      },
     },
+    layout: 'centered',
   },
   title: 'Components/syn-tooltip',
 };
@@ -60,73 +70,74 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-/**
- * Use the placement attribute to set the preferred placement of the tooltip.
- */
 export const Placement: Story = {
   parameters: {
     docs: {
       description: {
         story: generateStoryDescription('tooltip', 'placement'),
       },
+      story: {
+        height: '450px',
+      },
     },
+    layout: 'padded',
   },
   render: () => html`
     <div class="tooltip-placement-example">
       <div class="tooltip-placement-example-row">
-        <syn-tooltip content="top-start" placement="top-start">
+        <syn-tooltip content="top-start" placement="top-start" open>
           <syn-button></syn-button>
         </syn-tooltip>
 
-        <syn-tooltip content="top" placement="top">
+        <syn-tooltip content="top" placement="top" open>
           <syn-button></syn-button>
         </syn-tooltip>
 
-        <syn-tooltip content="top-end" placement="top-end">
-          <syn-button></syn-button>
-        </syn-tooltip>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <syn-tooltip content="left-start" placement="left-start">
-          <syn-button></syn-button>
-        </syn-tooltip>
-
-        <syn-tooltip content="right-start" placement="right-start">
+        <syn-tooltip content="top-end" placement="top-end" open>
           <syn-button></syn-button>
         </syn-tooltip>
       </div>
 
       <div class="tooltip-placement-example-row">
-        <syn-tooltip content="left" placement="left">
+        <syn-tooltip content="left-start" placement="left-start" open>
           <syn-button></syn-button>
         </syn-tooltip>
 
-        <syn-tooltip content="right" placement="right">
-          <syn-button></syn-button>
-        </syn-tooltip>
-      </div>
-
-      <div class="tooltip-placement-example-row">
-        <syn-tooltip content="left-end" placement="left-end">
-          <syn-button></syn-button>
-        </syn-tooltip>
-
-        <syn-tooltip content="right-end" placement="right-end">
+        <syn-tooltip content="right-start" placement="right-start" open>
           <syn-button></syn-button>
         </syn-tooltip>
       </div>
 
       <div class="tooltip-placement-example-row">
-        <syn-tooltip content="bottom-start" placement="bottom-start">
+        <syn-tooltip content="left" placement="left" open>
           <syn-button></syn-button>
         </syn-tooltip>
 
-        <syn-tooltip content="bottom" placement="bottom">
+        <syn-tooltip content="right" placement="right" open>
+          <syn-button></syn-button>
+        </syn-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <syn-tooltip content="left-end" placement="left-end" open>
+          <syn-button></syn-button>
+        </syn-tooltip>
+
+        <syn-tooltip content="right-end" placement="right-end" open>
+          <syn-button></syn-button>
+        </syn-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <syn-tooltip content="bottom-start" placement="bottom-start" open>
+          <syn-button></syn-button>
+        </syn-tooltip>
+
+        <syn-tooltip content="bottom" placement="bottom" open>
         <syn-button></syn-button>
         </syn-tooltip>
 
-        <syn-tooltip content="bottom-end" placement="bottom-end">
+        <syn-tooltip content="bottom-end" placement="bottom-end" open>
           <syn-button></syn-button>
         </syn-tooltip>
       </div>
@@ -134,8 +145,8 @@ export const Placement: Story = {
 
     <style>
       .tooltip-placement-example {
-        width: 250px;
-        margin: 1rem;
+        width: 500px;
+        margin: 5rem 6rem;
       }
 
       .tooltip-placement-example-row:after {
@@ -146,101 +157,156 @@ export const Placement: Story = {
 
       .tooltip-placement-example syn-button {
         float: left;
-        width: 2.5rem;
-        margin-right: 0.25rem;
-        margin-bottom: 0.25rem;
+        width: var(--syn-spacing-2x-large);
+        margin-bottom: var(--syn-spacing-medium);
       }
 
       .tooltip-placement-example-row:nth-child(1) syn-tooltip:first-child syn-button,
       .tooltip-placement-example-row:nth-child(5) syn-tooltip:first-child syn-button {
-        margin-left: calc(40px + 0.25rem);
+        margin-left: var(--syn-spacing-3x-large);
+        margin-right: var(--syn-spacing-4x-large);
+      }
+
+      .tooltip-placement-example-row:nth-child(1) syn-tooltip:nth-child(2) syn-button,
+      .tooltip-placement-example-row:nth-child(5) syn-tooltip:nth-child(2) syn-button {
+        margin-right: var(--syn-spacing-4x-large);
       }
 
       .tooltip-placement-example-row:nth-child(2) syn-tooltip:nth-child(2) syn-button,
       .tooltip-placement-example-row:nth-child(3) syn-tooltip:nth-child(2) syn-button,
       .tooltip-placement-example-row:nth-child(4) syn-tooltip:nth-child(2) syn-button {
-        margin-left: calc((40px * 3) + (0.25rem * 3));
+        margin-left: calc((var(--syn-spacing-2x-large) * 3) + (var(--syn-spacing-4x-large) * 2) + (var(--syn-spacing-medium) * 2));
       }
     </style>
 `,
 };
 
-// /**
-//  * Set the trigger attribute to click to toggle the tooltip on click instead of hover.
-//  */
-// export const ClickTrigger: Story = {
-//   render: () => html`<syn-tooltip content="Click again to dismiss" trigger="click">
-//   <syn-button>Click to Toggle</syn-button>
-// </syn-tooltip>`,
-// };
+export const ClickTrigger: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'onclick'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tooltip content="Click again to dismiss" trigger="click" open>
+    <syn-button>Click to Toggle</syn-button>
+  </syn-tooltip>
+  `,
+};
 
-// /**
-//  * Tooltips can be controlled programmatically by setting the trigger attribute to manual. Use the open attribute to control when the tooltip is shown.
-//  */
-// export const ManualTrigger: Story = {
-//   render: () => html`<syn-button style="margin-right: 4rem;">Toggle Manually</syn-button>
+export const ManualTrigger: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'manuel'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-button style="margin-right: 4rem;">Toggle Manually</syn-button>
+  <syn-tooltip content="This is an avatar" trigger="manual" class="manual-tooltip" open>
+    <syn-icon-button name="person" label="Person" size="medium" color="neutral"></syn-icon-button>
+  </syn-tooltip>
 
-// <syn-tooltip content="This is an avatar" trigger="manual" class="manual-tooltip">
-//   <syn-avatar label="User"></syn-avatar>
-// </syn-tooltip>
+  <script type="module">
+    const tooltip = document.querySelector('.manual-tooltip');
+    const toggle = tooltip.previousElementSibling;
 
-// <script type="module">
-//   const tooltip = document.querySelector('.manual-tooltip');
-//   const toggle = tooltip.previousElementSibling;
+    toggle.addEventListener('click', () => (tooltip.open = !tooltip.open));
+  </script>
+  `,
+};
 
-//   toggle.addEventListener('click', () => (tooltip.open = !tooltip.open));
-// </script>`,
-// };
+export const RemovingArrows: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'removingarrows'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tooltip content="This is a tooltip" style="--syn-tooltip-arrow-size: 0;" open>
+    <syn-button>No Arrow</syn-button>
+  </syn-tooltip>
+  `,
+};
 
-// /**
-//  * You can control the size of tooltip arrows by overriding the --syn-tooltip-arrow-size design token. To remove them, set the value to 0 as shown below.
-//  */
-// export const RemovingArrows: Story = {
-//   render: () => html`<syn-tooltip content="This is a tooltip" style="--syn-tooltip-arrow-size: 0;">
-//   <syn-button>No Arrow</syn-button>
-// </syn-tooltip>`,
-// };
+export const HTMLInTooltips: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'htmltooltip'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tooltip open>
+    <div slot="content">I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
 
-// /**
-//  * Use the content slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.
-//  */
-// export const HTMLInTooltips: Story = {
-//   render: () => html`<syn-tooltip>
-//   <div slot="content">I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
+    <syn-button>Hover me</syn-button>
+  </syn-tooltip>
+`,
+};
 
-//   <syn-button>Hover me</syn-button>
-// </syn-tooltip>`,
-// };
+export const SettingAMaximumWidth: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'maxwith'),
+      },
+      story: {
+        height: '400px',
+      },
+    },
+  },
+  render: () => html`
+  <syn-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels." open>
+    <syn-button>Hover me</syn-button>
+  </syn-tooltip>
+  `,
+};
 
-// /**
-//  * Use the --max-width custom property to change the width the tooltip can grow to before wrapping occurs.
-//  */
-// export const SettingAMaximumWidth: Story = {
-//   render: () => html`<syn-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels.">
-//   <syn-button>Hover me</syn-button>
-// </syn-tooltip>`,
-// };
+export const Hoisting: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tooltip', 'hoisting'),
+      },
+    },
+  },
+  render: () => html`
+  <div class="tooltip-hoist">
+    <syn-tooltip content="This is a tooltip" open placement="bottom">
+      <syn-button>No Hoist</syn-button>
+    </syn-tooltip>
 
-// /**
-//  * Tooltips will be clipped if they're inside a container that has overflow: auto|hidden|scroll. The hoist attribute forces the tooltip to use a fixed positioning strategy, allowing it to break out of the container. In this case, the tooltip will be positioned relative to its , which is usually the viewport unless an ancestor uses a transform, perspective, or filter.  for more details.
-//  */
-// export const Hoisting: Story = {
-//   render: () => html`<div class="tooltip-hoist">
-//   <syn-tooltip content="This is a tooltip">
-//     <syn-button>No Hoist</syn-button>
-//   </syn-tooltip>
+    <syn-tooltip content="This is a tooltip" hoist open>
+      <syn-button>Hoist</syn-button>
+    </syn-tooltip>
+  </div>
 
-//   <syn-tooltip content="This is a tooltip" hoist>
-//     <syn-button>Hoist</syn-button>
-//   </syn-tooltip>
-// </div>
+  <style>
+    .tooltip-hoist {
+      position: relative;
+      border: solid 2px var(--syn-panel-border-color);
+      overflow: hidden;
+      padding: var(--syn-spacing-medium);
+    }
+  </style>
+  `,
+};
 
-// <style>
-//   .tooltip-hoist {
-//     position: relative;
-//     border: solid 2px var(--syn-panel-border-color);
-//     overflow: hidden;
-//     padding: var(--syn-spacing-medium);
-//   }
-// </style>`,
-// };
+// Bundled screenshot story
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Placement,
+  ClickTrigger,
+  ManualTrigger,
+  RemovingArrows,
+  HTMLInTooltips,
+  SettingAMaximumWidth,
+  Hoisting,
+}, 550);

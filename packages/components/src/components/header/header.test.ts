@@ -29,8 +29,7 @@ describe('<syn-header>', () => {
       const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
 
       expect(el.label).to.equal('');
-      expect(el.showBurgerMenu).to.equal(false);
-      expect(el.burgerMenuVisible).to.equal(false);
+      expect(el.burgerMenu).to.equal('hidden');
     });
   });
 
@@ -73,22 +72,22 @@ describe('<syn-header>', () => {
   });
 
   describe('burger menu toggle button', () => {
-    it('should not show the burger menu toggle if showBurgerMenu is not set', async () => {
+    it('should not show the burger menu toggle if burgerMenu is not set', async () => {
       const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
       expect(burgerMenuPart).to.be.null;
     });
 
-    it('should show the burger menu show icon if showBurgerMenu and burgerMenuVisible are set', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu burger-menu-visible></syn-header>`);
+    it('should show the burger menu show icon if burgerMenu is set to "open"', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="opened"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
       expect(burgerMenuPart).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="x-lg"]')).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="menu"]')).to.be.null;
     });
 
-    it('should show the burger menu hide icon if showBurgerMenu is set and burgerMenuVisible is not', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
+    it('should show the burger menu hide icon if burgerMenu is set to "closed"', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="closed"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
       expect(burgerMenuPart).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="x-lg"]')).to.be.null;
@@ -96,14 +95,14 @@ describe('<syn-header>', () => {
     });
 
     it('should toggle the visibility on click', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="opened"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
-      expect(el.burgerMenuVisible).to.equal(false);
+      expect(el.burgerMenu).to.equal('opened');
 
       burgerMenuPart?.click();
 
-      expect(el.burgerMenuVisible).to.equal(true);
+      expect(el.burgerMenu).to.equal('closed');
     });
 
     it('should show burger menu toggle if a syn-side-nav in non-rail mode is available', async () => {
@@ -115,8 +114,7 @@ describe('<syn-header>', () => {
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
       expect(burgerMenuPart).not.to.be.null;
-      expect(el.showBurgerMenu).to.equal(true);
-      expect(el.burgerMenuVisible).to.equal(false);
+      expect(el.burgerMenu).to.equal('closed');
     });
 
     it('should toggle the open state of a syn-side-nav in non-rail mode', async () => {
@@ -134,14 +132,12 @@ describe('<syn-header>', () => {
       const burgerMenuPart = getComponentPart<HTMLDivElement>(header, 'burger-menu-toggle-button');
 
       expect(sideNav.open).to.equal(false);
-      expect(header.showBurgerMenu).to.equal(true);
-      expect(header.burgerMenuVisible).to.equal(false);
+      expect(header.burgerMenu).to.equal('closed');
 
       burgerMenuPart?.click();
 
       expect(sideNav.open).to.equal(true);
-      expect(header.showBurgerMenu).to.equal(true);
-      expect(header.burgerMenuVisible).to.equal(true);
+      expect(header.burgerMenu).to.equal('opened');
     });
 
     it('should toggle the visible state in case of side-nav was closed via open property', async () => {
@@ -181,23 +177,23 @@ describe('<syn-header>', () => {
       const header = el.querySelector('syn-header')!;
       const sideNav = el.querySelector('syn-side-nav')!;
 
-      expect(header.showBurgerMenu).to.be.true;
+      expect(header.burgerMenu).to.equal('closed');
 
       sideNav.rail = true;
       await sideNav.updateComplete;
 
-      expect(header.showBurgerMenu).to.be.false;
+      expect(header.burgerMenu).to.equal('hidden');
     });
 
-    it('should emit syn-burger-menu-show and and syn-burger-menu-hide when clicked', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
+    it('should emit syn-burger-menu-opened and and syn-burger-menu-closed events when clicked', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="closed"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
       const burgerMenuShowHandler = sinon.spy();
       const burgerMenuHideHandler = sinon.spy();
 
-      el.addEventListener('syn-burger-menu-show', burgerMenuShowHandler);
-      el.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
+      el.addEventListener('syn-burger-menu-opened', burgerMenuShowHandler);
+      el.addEventListener('syn-burger-menu-closed', burgerMenuHideHandler);
 
       burgerMenuPart?.click();
       await el.updateComplete;
@@ -210,31 +206,23 @@ describe('<syn-header>', () => {
       expect(burgerMenuHideHandler).to.have.been.calledOnce;
     });
 
-    it('should emit syn-burger-menu-show when setting burgerMenuVisible = true', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu></syn-header>`);
-      const burgerMenuShowHandler = sinon.spy();
-      el.addEventListener('syn-burger-menu-show', burgerMenuShowHandler);
+    ['opened', 'closed', 'hidden'].forEach(variant => {
+      it(`should emit "syn-burger-menu-${variant}" when setting burgerMenu to "${variant}"`, async () => {
+        // Note we have to force burger-menu into an invalid state.
+        // Otherwise, the default of "hidden" would not work!
+        const el = await fixture<SynHeader>(html`<syn-header burger-menu="invalid"></syn-header>`);
+        const handler = sinon.spy();
+        el.addEventListener(`syn-burger-menu-${variant}`, handler);
 
-      el.burgerMenuVisible = true;
+        el.burgerMenu = variant as 'hidden' | 'opened' | 'closed';
 
-      await waitUntil(() => burgerMenuShowHandler.calledOnce);
+        await waitUntil(() => handler.calledOnce);
 
-      expect(burgerMenuShowHandler).to.have.been.calledOnce;
+        expect(handler).to.have.been.calledOnce;
+      });
     });
 
-    it('should emit syn-burger-menu-hide when setting burgerMenuVisible = false', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header show-burger-menu burger-menu-visible></syn-header>`);
-      const burgerMenuHideHandler = sinon.spy();
-      el.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
-
-      el.burgerMenuVisible = false;
-
-      await waitUntil(() => burgerMenuHideHandler.calledOnce);
-
-      expect(burgerMenuHideHandler).to.have.been.calledOnce;
-    });
-
-    it('should emit syn-burger-menu-hide when side-nav is closed via open property', async () => {
+    it('should emit "syn-burger-menu-closed" when side-nav is closed via open property', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>
           <syn-header></syn-header>
@@ -245,7 +233,7 @@ describe('<syn-header>', () => {
       const header = el.querySelector('syn-header')!;
       const burgerMenuHideHandler = sinon.spy();
 
-      header.addEventListener('syn-burger-menu-hide', burgerMenuHideHandler);
+      header.addEventListener('syn-burger-menu-closed', burgerMenuHideHandler);
 
       sideNav.open = false;
 
@@ -282,7 +270,7 @@ describe('<syn-header>', () => {
       // @ts-expect-error the sideNav is a private property
       expect(header.sideNav.id).to.equal('first');
 
-      header.connectSideNavigation(el.querySelector('#second')!);
+      header.connectSideNavigation(el.querySelector('#second'));
 
       // @ts-expect-error the sideNav is a private property
       expect(header.sideNav.id).to.equal('second');
@@ -358,7 +346,7 @@ describe('<syn-header>', () => {
       expect(observeStub).to.have.been.calledOnce;
 
       const header = el.querySelector('syn-header')!;
-      header.connectSideNavigation(el.querySelector('#second')!);
+      header.connectSideNavigation(el.querySelector('#second'));
 
       expect(observeStub).to.have.been.calledTwice;
       expect(disconnectStub).to.have.been.calledTwice;

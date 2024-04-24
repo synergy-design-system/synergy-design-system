@@ -6,8 +6,9 @@
 export type * from './syn-after-hide.ts';
 export type * from './syn-after-show.ts';
 export type * from './syn-blur.ts';
-export type * from './syn-burger-menu-hide.ts';
-export type * from './syn-burger-menu-show.ts';
+export type * from './syn-burger-menu-closed.ts';
+export type * from './syn-burger-menu-hidden.ts';
+export type * from './syn-burger-menu-opened.ts';
 export type * from './syn-change.ts';
 export type * from './syn-clear.ts';
 export type * from './syn-error.ts';

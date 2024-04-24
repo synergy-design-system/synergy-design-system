@@ -166,7 +166,7 @@ export const BurgerMenu = {
     },
   },
   render: () => html`
-    <syn-header show-burger-menu label="App Name">
+    <syn-header burger-menu="closed" label="App Name">
     </syn-header>
   `,
 };

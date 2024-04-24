@@ -82,7 +82,7 @@ export const Default: Story = {
     },
   },
   render: (args: unknown) => html`
-  <syn-header>Side Navigation</syn-header>
+  <syn-header label="Side Navigation"></syn-header>
   <main style="position: relative; height: 500px; background-color: var(--syn-color-neutral-200);" class="side-nav-default">
     ${generateTemplate({ args })}
   </main> 
@@ -111,7 +111,7 @@ export const Rail: Story = {
     },
   },
   render: () => html`
-  <syn-header class="header-rail">Side Navigation</syn-header>
+  <syn-header class="header-rail" label="Side Navigation"></syn-header>
   <main class="main-rail">
     <syn-side-nav class="side-nav-rail" rail>
       <syn-nav-item current>
@@ -177,7 +177,7 @@ export const Footer: Story = {
     },
   },
   render: () => html`
-  <syn-header class="header-footer">Side Navigation</syn-header>
+  <syn-header class="header-footer" label="Side Navigation"></syn-header>
   <main class="main-footer">
     <syn-side-nav class="side-nav-footer" open>
       <syn-nav-item current>
@@ -238,7 +238,7 @@ export const Fixed: Story = {
   },
   render: () => html`
   <div class="container-fixed">
-    <syn-header class="header-fixed">Side Navigation</syn-header>
+    <syn-header class="header-fixed" label="Side Navigation"></syn-header>
     <main class="main-fixed">
       <syn-side-nav class="side-nav-fixed" open>
         <syn-nav-item current>
@@ -307,7 +307,7 @@ export const Shrink: Story = {
     },
   },
   render: () => html`
-  <syn-header class="header-shrink">Side Navigation</syn-header>
+  <syn-header class="header-shrink" label="Side Navigation"></syn-header>
    <main class="main-shrink">
     <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
       <syn-nav-item current>
@@ -377,7 +377,7 @@ export const Indentation: Story = {
     },
   },
   render: () => html`
-  <syn-header class="header-indentation">Side Navigation</syn-header>
+  <syn-header class="header-indentation" label="Side Navigation"></syn-header>
   <main class="main-indentation">
     <syn-side-nav class="side-nav-indentation" open>
       <syn-nav-item open>

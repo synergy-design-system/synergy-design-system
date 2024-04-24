@@ -34,6 +34,35 @@ describe('<syn-header>', () => {
     });
   });
 
+  describe('label', () => {
+    it('should allow setting the label via label slot', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header>
+          <span slot="label">Label via Slot</span>
+        </syn-header>
+      `);
+
+      expect(el).to.include.text('Label via Slot');
+    });
+
+    it('should allow setting the label via label prop', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header label="Label via Prop"></syn-header>`);
+
+      const labelSlot = getComponentPart<HTMLDivElement>(el, 'label');
+      expect(labelSlot).to.include.text('Label via Prop');
+    });
+
+    it('should use the label slot content as label if both slot and prop are set', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header label="Label via Prop">
+          <span slot="label">Label via Slot</span>
+        </syn-header>
+      `);
+
+      expect(el).to.include.text('Label via Slot');
+    });
+  });
+
   describe('logo', () => {
     it('should use the SICK logo as fallback', async () => {
       const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);

@@ -13,7 +13,7 @@
  * @status stable
  * @since 1.10.0
  *
- * @slot - The label for the header.
+ * @slot label - The label for the header.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided.
  * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
@@ -60,7 +60,7 @@ defineExpose({
 const props = defineProps<{
   /**
 * The headers label.
-* If you need to display HTML, use the `default` slot instead.
+* If you need to display HTML, use the `label` slot instead.
  */
   'label'?: SynHeader['label'];
 
@@ -113,7 +113,7 @@ export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';
     @syn-burger-menu-show="$emit('syn-burger-menu-show', $event)"
     @syn-burger-menu-hide="$emit('syn-burger-menu-hide', $event)"
   >
-    <slot />
+    <slot name="label" />
     <slot name="logo" />
     <slot name="meta-navigation" />
     <slot name="navigation" />

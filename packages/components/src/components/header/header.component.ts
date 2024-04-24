@@ -20,7 +20,7 @@ import { watch } from '../../internal/watch.js';
  * @status stable
  * @since 1.10.0
  *
- * @slot - The label for the header.
+ * @slot label - The label for the header.
  * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided.
  * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
@@ -59,7 +59,7 @@ export default class SynHeader extends SynergyElement {
   private mutationObserver: MutationObserver;
 
   /**
-   * The headers label. If you need to display HTML, use the `default` slot instead.
+   * The headers label. If you need to display HTML, use the `label` slot instead.
    */
   @property() label = '';
 
@@ -188,7 +188,7 @@ export default class SynHeader extends SynergyElement {
           </div>
 
           <div part="label" class="header__label">
-            <slot>
+            <slot name="label">
               ${this.label}
             </slot>
           </div>

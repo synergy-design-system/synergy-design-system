@@ -12,8 +12,7 @@ const routeTo = (route: string) => {
 </script>
 
 <template>
-  <SynVueHeader>
-    @synergy-design-system/vue Form Demo
+  <SynVueHeader label="@synergy-design-system/vue Form Demo">
     <ThemeSwitch slot="meta-navigation" />
   </SynVueHeader>
 

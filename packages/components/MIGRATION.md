@@ -31,9 +31,7 @@ When using the slot to show the applications name, wrap it with an element that 
 **Example (before)**:
 
 ```html
-<syn-header>
-  ApplicationName
-</syn-header>
+<syn-header> ApplicationName </syn-header>
 ```
 
 **Example (after)**:
@@ -58,19 +56,16 @@ The properties `show-burger-menu` and `burger-menu-visible` where hard to reason
 
 The deprecated properties have to be mapped to the new `burger-menu` property in the following way:
 
-| `show-burger-menu` | `burger-menu-visible` | `burger-menu`
-|:-------------------|:----------------------|:-------------
-| `false`            | `true`, `false`       | `"hidden"`
-| `true`             | `true`                | `opened`
-| `true`             | `false`               | `closed`
+| `show-burger-menu` | `burger-menu-visible` | `burger-menu` |
+| :----------------- | :-------------------- | :------------ |
+| `false`            | `true`, `false`       | `"hidden"`    |
+| `true`             | `true`                | `opened`      |
+| `true`             | `false`               | `closed`      |
 
 **Example (before)**:
 
 ```html
-<syn-header
-  show-burger-menu
-  burger-menu-visible
-></syn-header>
+<syn-header show-burger-menu burger-menu-visible></syn-header>
 ```
 
 **Example (after)**:
@@ -93,25 +88,25 @@ After the deprecation of `show-burger-menu` and `burger-menu-visible`, it was cl
 
 All occurrences of event listeners listening to `syn-burger-menu-hide` and `syn-burger-menu-show` must be changed to the corresponding new event names.
 
-| Event Name (v1)        | Event Name (v2)          | Description
-|------------------------|--------------------------|-------------
-| `syn-burger-menu-hide` | `syn-burger-menu-closed` | Emitted when the burger menu is closed
-| `syn-burger-menu-show` | `syn-burger-menu-opened` | Emitted when the burger menu is opened
-| -                      | `syn-burger-menu-hidden` | Emitted when the burger menu is hidden
+| Event Name (v1)        | Event Name (v2)          | Description                            |
+| ---------------------- | ------------------------ | -------------------------------------- |
+| `syn-burger-menu-hide` | `syn-burger-menu-closed` | Emitted when the burger menu is closed |
+| `syn-burger-menu-show` | `syn-burger-menu-opened` | Emitted when the burger menu is opened |
+| -                      | `syn-burger-menu-hidden` | Emitted when the burger menu is hidden |
 
 **Example (before)**:
 
 ```html
 <syn-header>Header</syn-header>
 <script>
-const header = document.querySelector('syn-header');
-header.addEventListener('syn-burger-menu-hide', () => {
-  console.log('Header is closed');
-});
+  const header = document.querySelector("syn-header");
+  header.addEventListener("syn-burger-menu-hide", () => {
+    console.log("Header is closed");
+  });
 
-header.addEventListener('syn-burger-menu-show', () => {
-  console.log('Header is shown');
-});
+  header.addEventListener("syn-burger-menu-show", () => {
+    console.log("Header is shown");
+  });
 </script>
 ```
 
@@ -120,24 +115,23 @@ header.addEventListener('syn-burger-menu-show', () => {
 ```html
 <syn-header>Header</syn-header>
 <script>
-const header = document.querySelector('syn-header');
-header.addEventListener('syn-burger-menu-closed', () => {
-  console.log('Header is closed');
-});
+  const header = document.querySelector("syn-header");
+  header.addEventListener("syn-burger-menu-closed", () => {
+    console.log("Header is closed");
+  });
 
-header.addEventListener('syn-burger-menu-opened', () => {
-  console.log('Header is shown');
-});
+  header.addEventListener("syn-burger-menu-opened", () => {
+    console.log("Header is shown");
+  });
 
-// New!
-header.addEventListener('syn-burger-menu-hidden', () => {
-  console.log('Header is hidden');
-});
+  // New!
+  header.addEventListener("syn-burger-menu-hidden", () => {
+    console.log("Header is hidden");
+  });
 </script>
 ```
 
 ---
-
 
 <!-- USE THIS AS A TEMPLATE FOR ADDITIONAL MIGRATION STEPS
 

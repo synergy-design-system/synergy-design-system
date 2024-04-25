@@ -299,7 +299,7 @@ export const Hoisting: Story = {
   `,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Placement,

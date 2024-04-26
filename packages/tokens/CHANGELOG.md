@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.14.0...tokens/1.15.0) (2024-04-26)
+
+
+### Features
+
+* ✨ tooltip ([#451](https://github.com/synergy-design-system/synergy-design-system/issues/451)) ([b6f3958](https://github.com/synergy-design-system/synergy-design-system/commit/b6f395846b00598273d0287daa98a64f82b75699))
+
 # [@synergy-design-system/tokens-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.13.0...tokens/1.14.0) (2024-04-23)
 
 

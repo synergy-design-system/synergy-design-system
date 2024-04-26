@@ -34,3 +34,4 @@ export { SynSpinnerComponent } from './spinner.component';
 export { SynSwitchComponent } from './switch.component';
 export { SynTagComponent } from './tag.component';
 export { SynTextareaComponent } from './textarea.component';
+export { SynTooltipComponent } from './tooltip.component';

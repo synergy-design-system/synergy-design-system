@@ -293,7 +293,7 @@ export const Hoisting: Story = {
       position: relative;
       border: solid 2px var(--syn-panel-border-color);
       overflow: hidden;
-      padding: var(--syn-spacing-medium);
+      padding: var(--syn-spacing-large);
     }
   </style>
   `,

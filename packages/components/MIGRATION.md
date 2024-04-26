@@ -86,7 +86,6 @@ The deprecated properties have to be mapped to the new `burger-menu` property in
 
 <!-- Example 3: burger menu hidden -->
 <syn-header></syn-header>
-
 ```
 
 #### ⚠️ Removed events `syn-burger-menu-hide` and `syn-burger-menu-show`
@@ -185,9 +184,9 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
 <!-- Example 2: There should be no label shown at all -->
 <syn-prio-nav></syn-prio-nav>
 <style>
-syn-prio-nav::part(priority-menu-label) {
-  display: none;
-}
+  syn-prio-nav::part(priority-menu-label) {
+    display: none;
+  }
 </style>
 ```
 

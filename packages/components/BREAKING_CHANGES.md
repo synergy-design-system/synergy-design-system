@@ -1,11 +1,11 @@
-# Migration guide for major version changes
+# Handling breaking changes between major versions
 
 This guide holds the required information for migrating from one major version of `@synergy-design-system/components` to the next.
 As all our wrappers are based on this package, the changes also hold true for all wrapper packages.
 
 > ⚠️ Migrations **must** always be done from one major version to the next to prevent issues (e.g. with types and property changes)
-> This means when moving from `@synergy-design-system@components` 1.x to 3.x,
-> you will have to apply the changes form 1.x to 2.x first!
+> This means when moving from `@synergy-design-system@components` v1.x to v3.x,
+> you will **have to apply** the changes form v1.x to v2.x first!
 
 ---
 
@@ -189,8 +189,6 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
   }
 </style>
 ```
-
----
 
 ---
 

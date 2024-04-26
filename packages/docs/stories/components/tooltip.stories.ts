@@ -309,4 +309,9 @@ export const Screenshot: Story = generateScreenshotStory({
   HTMLInTooltips,
   SettingAMaximumWidth,
   Hoisting,
-}, 550);
+}, {
+  styleHeading: {
+    'margin-bottom': '180px',
+  },
+  heightPx: 550,
+});

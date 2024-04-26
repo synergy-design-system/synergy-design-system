@@ -348,6 +348,7 @@ export default class SynNavItem extends SynergyElement {
           'nav-item--has-prefix': this.hasSlotController.test('prefix'),
           'nav-item--has-suffix': this.hasSlotController.test('suffix'),
           'nav-item--horizontal': this.horizontal,
+          'nav-item--is-link': isLink,
           'nav-item--multi-line': this.isMultiLine,
           'nav-item--show-prefix-only': this.showPrefixOnly,
           'nav-item--vertical': !this.horizontal,

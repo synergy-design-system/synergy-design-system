@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.20.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.1...components/1.20.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* 🤔 chevron of syn-nav-item using wrong symbol ([#447](https://github.com/synergy-design-system/synergy-design-system/issues/447)) ([f1c2023](https://github.com/synergy-design-system/synergy-design-system/commit/f1c202329eebb7d4c480bceab2f7d63adf267c64))
+
+# [@synergy-design-system/components-v1.20.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.0...components/1.20.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* 🤔  Flickering of side-nav if changing its width via css variable ([#445](https://github.com/synergy-design-system/synergy-design-system/issues/445)) ([4c98710](https://github.com/synergy-design-system/synergy-design-system/commit/4c98710d4dec9005340ed329086972f9da0ab1e9))
+
 # [@synergy-design-system/components-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.19.0...components/1.20.0) (2024-04-23)
 
 

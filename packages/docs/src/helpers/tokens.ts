@@ -8,7 +8,7 @@ import * as tokens from '@synergy-design-system/tokens';
  * @param token The token to get the css name for
  * @returns The css token name
  */
-export const getCSSToken = (token: string) => `--${kebabCase(token)}`.replace(/([a-z])([A-Z0-9])/g, '$1-$2')
+export const getCSSToken = (token: string) => `--${kebabCase(token)}`.replace(/([a-z])([A-Z0-9])/g, '$1-$2');
 
 /**
  * Get the sass variable name from a design token
@@ -70,7 +70,7 @@ type SortingParameter = {
   orderArray?: string[],
   replaceString?: string,
   sortType?: 'number' | 'order'
-}
+};
 
 /**
  * Sort tokens depending on sort mechanism

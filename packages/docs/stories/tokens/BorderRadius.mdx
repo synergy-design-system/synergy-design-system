@@ -1,0 +1,55 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+
+import {
+  getCSSToken,
+  getBorderRadius,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Border Radius" />
+
+# {docsTokens?.tokens?.['border-radius']?.title.value}
+
+<p>
+  {docsTokens?.tokens?.['border-radius']?.description?.value}
+</p>
+
+  <div key={'syn-border-radius'}>
+    <table>
+      <tbody>
+          <>
+            <tr>
+              <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
+              <th>Raw Value</th>
+              <th>CSS Token</th>
+            </tr>
+            {Object.entries(getBorderRadius(true)).map(([token, value]) => (
+              <tr key={`${token}-row`}>
+                <td>
+                  <ColorSwatch className={token.toLowerCase() } borderRadius={value} />
+                </td>
+                <td>
+                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getCSSToken(token)}>
+                    {getCSSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+              </tr>
+            ))}
+          </>
+      </tbody>
+    </table>
+  </div>
+
+<style>
+  {`
+    .synborderradiuspill {
+      width: 80px !important;
+    }
+  `}
+</style>

@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+
+import {
+  getCSSToken,
+  getShadows,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Shadows" />
+
+# {docsTokens?.tokens?.shadow?.title.value}
+
+<p>
+  {docsTokens?.tokens?.shadow?.description?.value}
+</p>
+
+  <div key={'syn-shadow'}>
+    <table>
+      <tbody>
+          <>
+            <tr>
+              <th>{docsTokens?.tokens?.shadow?.title.value}</th>
+              <th>Raw Value</th>
+              <th>CSS Token</th>
+            </tr>
+            {Object.entries(getShadows(true)).map(([token, value]) => (
+              <tr key={`${token}-row`}>
+                <td>
+                  <ColorSwatch className={token.toLowerCase() } boxShadow={value} backgroundColor="var(--syn-color-neutral-0)" borderColor="var(--syn-color-neutral-0)"/>
+                </td>
+                <td>
+                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="shadow" />
+                </td>
+                <td>
+                  <CopyToClipBoard value={getCSSToken(token)}>
+                    {getCSSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+              </tr>
+            ))}
+          </>
+      </tbody>
+    </table>
+  </div>

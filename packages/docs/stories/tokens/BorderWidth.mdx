@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+
+import {
+  getCSSToken,
+  getBorderWidth,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Border Width" />
+
+# {docsTokens?.tokens?.['border-width']?.title.value}
+
+<p>
+  {docsTokens?.tokens?.['border-width']?.description?.value}
+</p>
+
+  <div key={'syn-border-width'}>
+    <table>
+      <tbody>
+          <>
+            <tr>
+              <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
+              <th>Raw Value</th>
+              <th>CSS Token</th>
+            </tr>
+            {Object.entries(getBorderWidth(true)).map(([token, value]) => (
+              <tr key={`${token}-row`}>
+                <td>
+                  <ColorSwatch className={token.toLowerCase() } borderWidth={value} backgroundColor="var(--syn-color-neutral-0)"/>
+                </td>
+                <td>
+                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getCSSToken(token)}>
+                    {getCSSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+              </tr>
+            ))}
+          </>
+      </tbody>
+    </table>
+  </div>

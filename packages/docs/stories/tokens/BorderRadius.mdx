@@ -13,43 +13,39 @@ import {
 
 # {docsTokens?.tokens?.['border-radius']?.title.value}
 
-<p>
-  {docsTokens?.tokens?.['border-radius']?.description?.value}
-</p>
+{docsTokens?.tokens?.['border-radius']?.description?.value
+  .split("\n")
+  .map((line, i) => <p key={i}>{line}</p>)}
 
-  <div key={'syn-border-radius'}>
-    <table>
-      <tbody>
-          <>
-            <tr>
-              <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
-              <th>Raw Value</th>
-              <th>CSS Token</th>
-            </tr>
-            {Object.entries(getBorderRadius(true)).map(([token, value]) => (
-              <tr key={`${token}-row`}>
-                <td>
-                  <ColorSwatch className={token.toLowerCase() } borderRadius={value} />
-                </td>
-                <td>
-                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
-                </td>
-                <td>
-                  <CopyToClipBoard value={getCSSToken(token)}>
-                    {getCSSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-              </tr>
-            ))}
-          </>
-      </tbody>
-    </table>
-  </div>
+<table>
+  <tbody>
+      <>
+        <tr>
+          <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
+          <th>Raw Value</th>
+          <th>CSS Token</th>
+        </tr>
+        {Object.entries(getBorderRadius(true)).map(([token, value]) => (
+          <tr key={`${token}-row`}>
+            <td>
+              <ColorSwatch className={token.toLowerCase() } borderRadius={value} />
+            </td>
+            <td>
+              <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
+            </td>
+            <td>
+              <CopyToClipBoard value={getCSSToken(token)}>
+                {getCSSToken(token)}
+              </CopyToClipBoard>
+            </td>
+          </tr>
+        ))}
+      </>
+  </tbody>
+</table>
 
-<style>
-  {`
-    .synborderradiuspill {
-      width: 80px !important;
-    }
-  `}
-</style>
+<style>{`
+.synborderradiuspill {
+  width: 80px !important;
+}
+`}</style>

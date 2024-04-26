@@ -17,31 +17,29 @@ import {
   {docsTokens?.tokens?.['border-width']?.description?.value}
 </p>
 
-  <div key={'syn-border-width'}>
-    <table>
-      <tbody>
-          <>
-            <tr>
-              <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
-              <th>Raw Value</th>
-              <th>CSS Token</th>
-            </tr>
-            {Object.entries(getBorderWidth(true)).map(([token, value]) => (
-              <tr key={`${token}-row`}>
-                <td>
-                  <ColorSwatch className={token.toLowerCase() } borderWidth={value} backgroundColor="var(--syn-color-neutral-0)"/>
-                </td>
-                <td>
-                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
-                </td>
-                <td>
-                  <CopyToClipBoard value={getCSSToken(token)}>
-                    {getCSSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-              </tr>
-            ))}
-          </>
-      </tbody>
-    </table>
-  </div>
+<table>
+  <tbody>
+      <>
+        <tr>
+          <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
+          <th>Raw Value</th>
+          <th>CSS Token</th>
+        </tr>
+        {Object.entries(getBorderWidth(true)).map(([token, value]) => (
+          <tr key={`${token}-row`}>
+            <td>
+              <ColorSwatch className={token.toLowerCase() } borderWidth={value} backgroundColor="var(--syn-color-neutral-0)"/>
+            </td>
+            <td>
+              <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
+            </td>
+            <td>
+              <CopyToClipBoard value={getCSSToken(token)}>
+                {getCSSToken(token)}
+              </CopyToClipBoard>
+            </td>
+          </tr>
+        ))}
+      </>
+  </tbody>
+</table>

@@ -468,6 +468,16 @@
           "value": "Details are designed to function independently, but you can simulate a group or “accordion” where only one is shown at a time by listening for the syn-show event.",
           "type": "text"
         }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a detail’s size.",
+          "type": "text"
+        }
       }
     },
     "dialog": {

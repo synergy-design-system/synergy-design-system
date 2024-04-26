@@ -33,3 +33,4 @@ export { SynSideNav } from './components/side-nav.js';
 export { SynSwitch } from './components/switch.js';
 export { SynTag } from './components/tag.js';
 export { SynTextarea } from './components/textarea.js';
+export { SynTooltip } from './components/tooltip.js';

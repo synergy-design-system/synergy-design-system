@@ -20,6 +20,7 @@ import {
   vendorSelect,
   vendorTag,
   vendorTextarea,
+  vendorTooltip,
   vendorTranslations,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
@@ -48,6 +49,7 @@ export const components = [
   'menu-item',
   'menu-label',
   'badge',
+  'tooltip',
   'progress-bar',
   'progress-ring',
   'alert',
@@ -280,6 +282,7 @@ const config = {
       vendorTextarea,
       vendorTranslations,
       vendorTag,
+      vendorTooltip,
       vendorTranslations,
       vendorWebTestRunnerConfig,
     ],

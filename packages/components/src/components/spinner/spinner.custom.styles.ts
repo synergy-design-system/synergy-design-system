@@ -11,7 +11,7 @@ export default css`
    */
   .spinner__track {
     filter: saturate(0);
-    opacity: 0.15;
+    opacity: 0.16;
     stroke: var(--indicator-color);
   }
 

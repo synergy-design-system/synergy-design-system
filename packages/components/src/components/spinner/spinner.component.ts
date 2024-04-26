@@ -21,7 +21,6 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  *
  * @cssproperty --track-width - The width of the track.
- * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the spinner's indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */

@@ -15,7 +15,6 @@ export default css`
 	/* stylelint-disable */
   :host {
     --track-width: 2px;
-    --track-color: rgb(128 128 128 / 25%);
     --indicator-color: var(--syn-color-primary-600);
     --speed: 2s;
 
@@ -42,7 +41,6 @@ export default css`
   }
 
   .spinner__track {
-    stroke: var(--track-color);
     transform-origin: 0% 0%;
   }
 

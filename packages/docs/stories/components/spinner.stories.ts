@@ -82,7 +82,7 @@ export const Color: Story = {
     },
   },
   render: () => html`
-    <syn-spinner style="font-size: 48px; --indicator-color: var(--syn-color-neutral-200); --track-color: var(--syn-color-error-600);"></syn-spinner>
+    <syn-spinner style="font-size: 48px; --indicator-color: var(--syn-color-error-600);"></syn-spinner>
   `,
 };
 

@@ -310,8 +310,11 @@ export const Screenshot: Story = generateScreenshotStory({
   SettingAMaximumWidth,
   Hoisting,
 }, {
+  additionalChromaticOptions: {
+    delay: 500,
+  },
+  heightPx: 550,
   styleHeading: {
     'margin-bottom': '180px',
   },
-  heightPx: 550,
 });

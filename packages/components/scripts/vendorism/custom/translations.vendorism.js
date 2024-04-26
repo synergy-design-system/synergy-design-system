@@ -18,6 +18,10 @@ const translations = {
     de: 'Menu öffnen',
     en: 'Open menu',
   },
+  priorityMenuLabel: {
+    de: 'Menu',
+    en: 'Menu',
+  },
   sideNav: {
     de: 'Seitennavigation',
     en: 'Side navigation',

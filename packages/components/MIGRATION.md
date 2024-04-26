@@ -1,9 +1,9 @@
 # Migration guide for major version changes
 
-This guide holds the required information for migrating from one version of `@synergy-design-system/components`.
+This guide holds the required information for migrating from one major version of `@synergy-design-system/components` to the next.
 As all our wrappers are based on this package, the changes also hold true for all wrapper packages.
 
-> ⚠️ Migrations should always be done from one major version to the next.
+> ⚠️ Migrations **must** always be done from one major version to the next to prevent issues (e.g. with types and property changes)
 > This means when moving from `@synergy-design-system@components` 1.x to 3.x,
 > you will have to apply the changes form 1.x to 2.x first!
 
@@ -22,7 +22,7 @@ As all our wrappers are based on this package, the changes also hold true for al
 **Reason**:
 
 The label was originally taken from the default `slot`.
-However, this lead to problems as white space characters are also seen as slot contents, preventing the `label` property from working.
+However, this lead to problems as white space characters are also seen as slot contents, preventing the `label` property from working properly.
 
 **Migration Steps**:
 
@@ -65,13 +65,28 @@ The deprecated properties have to be mapped to the new `burger-menu` property in
 **Example (before)**:
 
 ```html
+<!-- Example 1: burger menu visible and opened -->
 <syn-header show-burger-menu burger-menu-visible></syn-header>
+
+<!-- Example 2: burger menu visible and closed -->
+<syn-header show-burger-menu></syn-header>
+
+<!-- Example 3: burger menu hidden -->
+<syn-header show-burger-menu></syn-header>
 ```
 
 **Example (after)**:
 
 ```html
+<!-- Example 1: burger menu visible and opened -->
 <syn-header burger-menu="opened"></syn-header>
+
+<!-- Example 2: burger menu visible and closed -->
+<syn-header burger-menu="closed"></syn-header>
+
+<!-- Example 3: burger menu hidden -->
+<syn-header></syn-header>
+
 ```
 
 #### ⚠️ Removed events `syn-burger-menu-hide` and `syn-burger-menu-show`
@@ -130,6 +145,53 @@ All occurrences of event listeners listening to `syn-burger-menu-hide` and `syn-
   });
 </script>
 ```
+
+### `<syn-prio-nav>`
+
+#### ⚠️ Removed attribute `priority-menu-label` in favor of static translation
+
+**Associated Ticket(s)**:
+
+- [#407](https://github.com/synergy-design-system/synergy-design-system/issues/407)
+- [#452](https://github.com/synergy-design-system/synergy-design-system/issues/452)
+
+**Reason**:
+
+For reasons of harmonization between different applications using Synergy, we decided that the label should always be "Menu" (or a translation thereof).
+As the `<syn-prio-nav>` is the only component that would be using a property with fallback to a static translation, we do not want to create a precedence that is better handled as a feature usable for all component. The ability to handle translations on a per component base will therefore be provided with a holistic solution working for all components in the future.
+
+Until this solution is provided, we will add documentation of how to provide custom translations in [#452](https://github.com/synergy-design-system/synergy-design-system/issues/452).
+
+**Migration Steps**:
+
+Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. This is now always automatically set to "Menu" (or its translatable equivalent).
+
+**Example (before)**:
+
+```html
+<!-- Example 1: Custom Label with content -->
+<syn-prio-nav priority-menu-label="Something"></syn-prio-nav>
+
+<!-- Example 2: There should be no label shown at all -->
+<syn-prio-nav priority-menu-label=""></syn-prio-nav>
+```
+
+**Example (after)**:
+
+```html
+<!-- Example 1: Custom labels are not supported anymore -->
+<syn-prio-nav></syn-prio-nav>
+
+<!-- Example 2: There should be no label shown at all -->
+<syn-prio-nav></syn-prio-nav>
+<style>
+syn-prio-nav::part(priority-menu-label) {
+  display: none;
+}
+</style>
+```
+
+---
 
 ---
 

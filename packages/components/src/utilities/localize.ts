@@ -27,6 +27,7 @@ export interface Translation extends DefaultTranslation {
   danger: string;
   notification: string;
   openMenu: string;
+  priorityMenuLabel: string;
   sideNav: string;
   success: string;
   warning: string;

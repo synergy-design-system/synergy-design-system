@@ -2,7 +2,7 @@
 import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property, query, state } from 'lit/decorators.js';
+import { query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './prio-nav.styles.js';
@@ -10,6 +10,7 @@ import SynDropdown from '../dropdown/dropdown.component.js';
 import SynIcon from '../icon/icon.component.js';
 import SynMenu from '../menu/menu.component.js';
 import SynNavItem from '../nav-item/nav-item.component.js';
+import { LocalizeController } from '../../utilities/localize.js';
 import {
   filterOnlyNavItems,
   getAssignedElementsForSlot,
@@ -64,6 +65,8 @@ export default class SynPrioNav extends SynergyElement {
    */
   private resizeObserver: ResizeObserver;
 
+  private readonly localize = new LocalizeController(this);
+
   /**
    * Reference to the rendered children slot
    */
@@ -83,12 +86,6 @@ export default class SynPrioNav extends SynergyElement {
    * The priority menu dropdown
    */
   @query('.priority-menu') private priorityMenu: SynDropdown;
-
-  /**
-   * The components priority menu label.
-   * This will be shown after the priority menu 3 dots link
-   */
-  @property({ attribute: 'priority-menu-label' }) priorityMenuLabel = 'Menu';
 
   /**
    * Internal state reflecting if the item positions have been cached
@@ -223,7 +220,7 @@ export default class SynPrioNav extends SynergyElement {
             })}
             part="priority-menu-label"
           >
-            ${this.priorityMenuLabel}
+            ${this.localize.term('priorityMenuLabel')}
           </span>
         </syn-nav-item>
 

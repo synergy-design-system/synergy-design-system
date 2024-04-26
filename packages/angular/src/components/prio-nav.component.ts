@@ -63,17 +63,4 @@ export class SynPrioNavComponent {
     this._el = e.nativeElement;
     this._ngZone = ngZone;
   }
-
-  /**
-* The components priority menu label.
-This will be shown after the priority menu 3 dots link
- */
-  @Input()
-  set priorityMenuLabel(v: SynPrioNav['priorityMenuLabel']) {
-    this._ngZone.runOutsideAngular(() => (this._el.priorityMenuLabel = v));
-  }
-
-  get priorityMenuLabel() {
-    return this._el.priorityMenuLabel;
-  }
 }

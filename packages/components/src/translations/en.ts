@@ -45,6 +45,7 @@ const translation: Translation = {
   danger: 'Danger',
   notification: 'Notification',
   openMenu: 'Open menu',
+  priorityMenuLabel: 'Menu',
   sideNav: 'Side navigation',
   success: 'Success',
   warning: 'Warning',

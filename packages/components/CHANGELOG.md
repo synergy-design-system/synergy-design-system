@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.20.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.1...components/1.20.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* 🤔 chevron of syn-nav-item using wrong symbol ([#447](https://github.com/synergy-design-system/synergy-design-system/issues/447)) ([f1c2023](https://github.com/synergy-design-system/synergy-design-system/commit/f1c202329eebb7d4c480bceab2f7d63adf267c64))
+
 # [@synergy-design-system/components-v1.20.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.0...components/1.20.1) (2024-04-23)
 
 

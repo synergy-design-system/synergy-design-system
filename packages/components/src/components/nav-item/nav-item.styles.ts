@@ -145,7 +145,7 @@ export default css`
   }
 
   /**
-   * The chevron indicates the use as a <details /> element
+   * The chevron indicates the use as a <details /> element OR a link
    */
   .nav-item__chevron {
     font-size: var(--syn-font-size-x-large);
@@ -156,6 +156,13 @@ export default css`
 
   .nav-item__chevron-open {
     rotate: -180deg;
+  }
+
+  /**
+   * Items that have the chevron attribute set and are NOT accordions should always show a chevron pointing to the right
+   */
+  .nav-item:not(.nav-item-is-accordion) .nav-item__chevron {
+    rotate: -90deg;
   }
 
   /**
@@ -178,6 +185,7 @@ export default css`
   /**
    * Show prefix only
    */
+  /* stylelint-disable-next-line no-descending-specificity */
   .nav-item--show-prefix-only .nav-item__content-container,
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
@@ -201,12 +209,14 @@ export default css`
   /**
    * Multi line content
    */
+  /* stylelint-disable-next-line no-descending-specificity */
   .nav-item--multi-line .nav-item__suffix,
   .nav-item--multi-line .nav-item__prefix,
   .nav-item--multi-line .nav-item__chevron {
     align-self: flex-start;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .nav-item--multi-line .nav-item__suffix::slotted(syn-icon),
   :not(.nav-item--show-prefix-only).nav-item--multi-line .nav-item__prefix::slotted(syn-icon),
   .nav-item--multi-line .nav-item__chevron {

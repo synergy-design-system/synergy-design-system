@@ -34,6 +34,7 @@ export { default as SynSideNav } from './components/side-nav/side-nav.js';
 export { default as SynSwitch } from './components/switch/switch.js';
 export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
+export { default as SynTooltip } from './components/tooltip/tooltip.js';
 
 // Utilities
 // export * from './utilities/animation.js';

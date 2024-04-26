@@ -11,6 +11,7 @@
     "semantic/typography",
     "semantic/overlays",
     "semantic/panels",
+    "semantic/tooltip",
     "_docs"
   ]
 }

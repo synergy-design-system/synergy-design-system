@@ -1982,6 +1982,16 @@
           "value": "Use the --max-width custom property to change the width the tooltip can grow to before wrapping occurs.",
           "type": "text"
         }
+      },
+      "hoisting": {
+        "title": {
+          "value": "Hoisting",
+          "type": "text"
+        },
+        "description": {
+          "value": "Tooltips will be clipped if they’re inside a container that has overflow: auto|hidden|scroll. The hoist attribute forces the tooltip to use a fixed positioning strategy, allowing it to break out of the container. In this case, the tooltip will be positioned relative to its containing block, which is usually the viewport unless an ancestor uses a transform, perspective, or filter.",
+          "type": "text"
+        }
       }
     },
     "tree-item": {

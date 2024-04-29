@@ -2,10 +2,11 @@ import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+import { Spacing, MultiLineDescription } from '../../src/TokenHelpers.tsx';
 
 import {
   getCSSToken,
+  getSASSToken,
   getSpacings,
 } from '../../src/helpers';
 
@@ -13,35 +14,43 @@ import {
 
 # {docsTokens?.tokens?.spacing?.title.value}
 
-<p>
-  {docsTokens?.tokens?.spacing?.description?.value}
-</p>
+<MultiLineDescription value={docsTokens?.tokens?.spacing?.description?.value} />
 
-  <div key={'syn-spacing'}>
-    <table>
-      <tbody>
-          <>
-            <tr>
-              <th>{docsTokens?.tokens?.spacing?.title.value}</th>
-              <th>Raw Value</th>
-              <th>CSS Token</th>
-            </tr>
-            {Object.entries(getSpacings(true)).map(([token, value]) => (
-              <tr key={`${token}-row`}>
-                <td>
-                  <ColorSwatch className={ token.toLowerCase() } width={value} height={value} borderRadius="var(--syn-border-radius-none)"/>
-                </td>
-                <td>
-                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="width" />
-                </td>
-                <td>
-                  <CopyToClipBoard value={getCSSToken(token)}>
-                    {getCSSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-              </tr>
-            ))}
-          </>
-      </tbody>
-    </table>
-  </div>
+<table>
+  <tbody>
+    <>
+      <tr>
+        <th>{docsTokens?.tokens?.spacing?.title.value}</th>
+        <th>Raw Value</th>
+        <th>CSS Token</th>
+        <th>SCSS Token</th>
+        <th>JS Token</th>
+      </tr>
+      {Object.entries(getSpacings(true)).map(([token, value]) => (
+        <tr key={`${token}-row`}>
+          <td>
+            <Spacing className={token.toLowerCase()} borderRadius="var(--syn-border-radius-none)" value={value} />
+          </td>
+          <td>
+            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="width" />
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))}
+    </>
+  </tbody>
+</table>

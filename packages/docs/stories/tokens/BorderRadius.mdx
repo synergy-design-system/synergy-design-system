@@ -2,45 +2,56 @@ import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+import { BorderRadius, MultiLineDescription } from '../../src/TokenHelpers.tsx';
 
 import {
-  getCSSToken,
   getBorderRadius,
+  getCSSToken,
+  getSASSToken,
 } from '../../src/helpers';
 
 <Meta title="Tokens/Border Radius" />
 
 # {docsTokens?.tokens?.['border-radius']?.title.value}
 
-{docsTokens?.tokens?.['border-radius']?.description?.value
-  .split("\n")
-  .map((line, i) => <p key={i}>{line}</p>)}
+<MultiLineDescription value={docsTokens?.tokens?.['border-radius']?.description?.value} />
 
 <table>
   <tbody>
-      <>
-        <tr>
-          <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
-          <th>Raw Value</th>
-          <th>CSS Token</th>
+    <>
+      <tr>
+        <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
+        <th>Raw Value</th>
+        <th>CSS Token</th>
+        <th>SCSS Token</th>
+        <th>JS Token</th>
+      </tr>
+      {Object.entries(getBorderRadius(true)).map(([token, value]) => (
+        <tr key={`${token}-row`}>
+          <td>
+            <BorderRadius className={token.toLowerCase()} value={value} />
+          </td>
+          <td>
+            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
         </tr>
-        {Object.entries(getBorderRadius(true)).map(([token, value]) => (
-          <tr key={`${token}-row`}>
-            <td>
-              <ColorSwatch className={token.toLowerCase() } borderRadius={value} />
-            </td>
-            <td>
-              <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
-            </td>
-            <td>
-              <CopyToClipBoard value={getCSSToken(token)}>
-                {getCSSToken(token)}
-              </CopyToClipBoard>
-            </td>
-          </tr>
-        ))}
-      </>
+      ))}
+    </>
   </tbody>
 </table>
 

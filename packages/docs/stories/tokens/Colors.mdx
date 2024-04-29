@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/Clipboard.tsx';
 import { CopyRawHexValue } from '../../src/RawColorValue.tsx';
-import { ColorSwatch } from '../../src/ColorSwatch.tsx';
+import { ColorSwatch, MultiLineDescription } from '../../src/TokenHelpers.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 
 import {
@@ -17,9 +17,7 @@ import {
 
 # Colors
 
-<p>
-  {docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}
-</p>
+<MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
 {['light', 'dark'].map(theme => (
   <div key={theme}>
@@ -48,7 +46,7 @@ import {
             {Object.entries(palette).map(([token, value]) => (
               <tr key={`${title}-row-${token}`}>
                 <td>
-                  <ColorSwatch backgroundColor={value}  borderColor={value}/>
+                  <ColorSwatch value={value} />
                 </td>
                 <td>
                   <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>

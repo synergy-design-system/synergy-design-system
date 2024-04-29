@@ -13,7 +13,7 @@ As all our wrappers are based on this package, the changes also hold true for al
 
 ### `<syn-header>`
 
-#### ⚠️ Removed default slot in favour of named slot "label".
+#### ⚠️ Removed default slot in favor of named slot "label".
 
 **Associated Ticket(s)**:
 
@@ -42,7 +42,7 @@ When using the slot to show the applications name, wrap it with an element that 
 </syn-header>
 ```
 
-#### ⚠️ Removed props `show-burger-menu` and `burger-menu-visible` in favour of `burger-menu`.
+#### ⚠️ Removed props `show-burger-menu` and `burger-menu-visible` in favor of `burger-menu`.
 
 **Associated Ticket(s)**:
 
@@ -59,8 +59,8 @@ The deprecated properties have to be mapped to the new `burger-menu` property in
 | `show-burger-menu` | `burger-menu-visible` | `burger-menu` |
 | :----------------- | :-------------------- | :------------ |
 | `false`            | `true`, `false`       | `"hidden"`    |
-| `true`             | `true`                | `opened`      |
-| `true`             | `false`               | `closed`      |
+| `true`             | `true`                | `"opened"`    |
+| `true`             | `false`               | `"closed"`    |
 
 **Example (before)**:
 

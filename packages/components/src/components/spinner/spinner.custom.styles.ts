@@ -1,6 +1,10 @@
 import { css } from 'lit';
 
 export default css`
+  :host {
+    --speed: var(--syn-transition-x-slow);
+  }
+
   .spinner__indicator {
     stroke-dasharray: 75% 360%;
     stroke-linecap: initial;

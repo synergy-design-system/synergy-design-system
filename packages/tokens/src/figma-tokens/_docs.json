@@ -429,13 +429,55 @@
       }
     },
     "details": {
-      "description": {
-        "value": "Details show a brief summary and expand to show additional content.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Details show a brief summary and expand to show additional content.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Details",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Details",
-        "type": "text"
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disable attribute to prevent the details from expanding.",
+          "type": "text"
+        }
+      },
+      "summary-icon": {
+        "title": {
+          "value": "Customizing the Summary Icon",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the expand-icon and collapse-icon slots to change the expand and collapse icons, respectively. To disable the animation, override the rotate property on the summary-icon part as shown below.",
+          "type": "text"
+        }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping Details",
+          "type": "text"
+        },
+        "description": {
+          "value": "Details are designed to function independently, but you can simulate a group or “accordion” where only one is shown at a time by listening for the syn-show event.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a detail’s size.",
+          "type": "text"
+        }
       }
     },
     "dialog": {

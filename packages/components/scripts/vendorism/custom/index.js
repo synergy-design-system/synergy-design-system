@@ -9,6 +9,7 @@ export * from './menu-item.vendorism.js';
 export * from './menu-label.vendorism.js';
 export * from './progress-bar.vendorism.js';
 export * from './select.vendorism.js';
+export * from './spinner.vendorism.js';
 export * from './tag.vendorism.js';
 export * from './textarea.vendorism.js';
 export * from './tooltip.vendorism.js';

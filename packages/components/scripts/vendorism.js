@@ -18,6 +18,7 @@ import {
   vendorMenuLabel,
   vendorProgressBar,
   vendorSelect,
+  vendorSpinner,
   vendorTag,
   vendorTextarea,
   vendorTooltip,
@@ -53,6 +54,7 @@ export const components = [
   'progress-bar',
   'progress-ring',
   'alert',
+  'spinner',
 ].sort();
 
 /**
@@ -279,6 +281,7 @@ const config = {
       vendorMenuLabel,
       vendorProgressBar,
       vendorSelect,
+      vendorSpinner,
       vendorTextarea,
       vendorTranslations,
       vendorTag,

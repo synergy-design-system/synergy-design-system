@@ -31,6 +31,7 @@ export { default as SynRadioGroup } from './components/radio-group/radio-group.j
 export { default as SynRadio } from './components/radio/radio.js';
 export { default as SynSelect } from './components/select/select.js';
 export { default as SynSideNav } from './components/side-nav/side-nav.js';
+export { default as SynSpinner } from './components/spinner/spinner.js';
 export { default as SynSwitch } from './components/switch/switch.js';
 export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';

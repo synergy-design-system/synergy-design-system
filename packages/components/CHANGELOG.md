@@ -1,3 +1,24 @@
+# [@synergy-design-system/components-v1.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.21.0...components/1.22.0) (2024-04-29)
+
+
+### Features
+
+* ✨ syn-spinner ([#421](https://github.com/synergy-design-system/synergy-design-system/issues/421)) ([455400f](https://github.com/synergy-design-system/synergy-design-system/commit/455400f17a4862e85a7464c5507ee09623dff3fd))
+
+# [@synergy-design-system/components-v1.21.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.2...components/1.21.0) (2024-04-26)
+
+
+### Features
+
+* ✨ tooltip ([#451](https://github.com/synergy-design-system/synergy-design-system/issues/451)) ([b6f3958](https://github.com/synergy-design-system/synergy-design-system/commit/b6f395846b00598273d0287daa98a64f82b75699))
+
+# [@synergy-design-system/components-v1.20.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.1...components/1.20.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* 🤔 chevron of syn-nav-item using wrong symbol ([#447](https://github.com/synergy-design-system/synergy-design-system/issues/447)) ([f1c2023](https://github.com/synergy-design-system/synergy-design-system/commit/f1c202329eebb7d4c480bceab2f7d63adf267c64))
+
 # [@synergy-design-system/components-v1.20.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.0...components/1.20.1) (2024-04-23)
 
 

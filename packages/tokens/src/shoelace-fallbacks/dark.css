@@ -245,45 +245,6 @@
    * Theme Tokens
    */
 
-  /* Primary */
-  --syn-color-primary-50: var(--syn-color-sky-50);
-  --syn-color-primary-100: var(--syn-color-sky-100);
-  --syn-color-primary-200: var(--syn-color-sky-200);
-  --syn-color-primary-300: var(--syn-color-sky-300);
-  --syn-color-primary-400: var(--syn-color-sky-400);
-  --syn-color-primary-500: var(--syn-color-sky-500);
-  --syn-color-primary-600: var(--syn-color-sky-600);
-  --syn-color-primary-700: var(--syn-color-sky-700);
-  --syn-color-primary-800: var(--syn-color-sky-800);
-  --syn-color-primary-900: var(--syn-color-sky-900);
-  --syn-color-primary-950: var(--syn-color-sky-950);
-
-  /* Success */
-  --syn-color-success-50: var(--syn-color-green-50);
-  --syn-color-success-100: var(--syn-color-green-100);
-  --syn-color-success-200: var(--syn-color-green-200);
-  --syn-color-success-300: var(--syn-color-green-300);
-  --syn-color-success-400: var(--syn-color-green-400);
-  --syn-color-success-500: var(--syn-color-green-500);
-  --syn-color-success-600: var(--syn-color-green-600);
-  --syn-color-success-700: var(--syn-color-green-700);
-  --syn-color-success-800: var(--syn-color-green-800);
-  --syn-color-success-900: var(--syn-color-green-900);
-  --syn-color-success-950: var(--syn-color-green-950);
-
-  /* Warning */
-  --syn-color-warning-50: var(--syn-color-amber-50);
-  --syn-color-warning-100: var(--syn-color-amber-100);
-  --syn-color-warning-200: var(--syn-color-amber-200);
-  --syn-color-warning-300: var(--syn-color-amber-300);
-  --syn-color-warning-400: var(--syn-color-amber-400);
-  --syn-color-warning-500: var(--syn-color-amber-500);
-  --syn-color-warning-600: var(--syn-color-amber-600);
-  --syn-color-warning-700: var(--syn-color-amber-700);
-  --syn-color-warning-800: var(--syn-color-amber-800);
-  --syn-color-warning-900: var(--syn-color-amber-900);
-  --syn-color-warning-950: var(--syn-color-amber-950);
-
   /* Danger */
   --syn-color-danger-50: var(--syn-color-red-50);
   --syn-color-danger-100: var(--syn-color-red-100);
@@ -297,34 +258,13 @@
   --syn-color-danger-900: var(--syn-color-red-900);
   --syn-color-danger-950: var(--syn-color-red-950);
 
-  /* Neutral */
-  --syn-color-neutral-50: var(--syn-color-gray-50);
-  --syn-color-neutral-100: var(--syn-color-gray-100);
-  --syn-color-neutral-200: var(--syn-color-gray-200);
-  --syn-color-neutral-300: var(--syn-color-gray-300);
-  --syn-color-neutral-400: var(--syn-color-gray-400);
-  --syn-color-neutral-500: var(--syn-color-gray-500);
-  --syn-color-neutral-600: var(--syn-color-gray-600);
-  --syn-color-neutral-700: var(--syn-color-gray-700);
-  --syn-color-neutral-800: var(--syn-color-gray-800);
-  --syn-color-neutral-900: var(--syn-color-gray-900);
-  --syn-color-neutral-950: var(--syn-color-gray-950);
-
-  /* Neutral one-offs */
-  --syn-color-neutral-0: hsl(240, 5.9%, 11%);
-  --syn-color-neutral-1000: hsl(0, 0%, 100%);
-
   /*
    * Border radii
    */
 
-  --syn-border-radius-small: 0.1875rem; /* 3px */
-  --syn-border-radius-medium: 0.25rem; /* 4px */
   --syn-border-radius-large: 0.5rem; /* 8px */
   --syn-border-radius-x-large: 1rem; /* 16px */
 
-  --syn-border-radius-circle: 50%;
-  --syn-border-radius-pill: 9999px;
 
   /*
    * Elevations
@@ -332,24 +272,6 @@
 
   --syn-shadow-x-small: 0 1px 2px rgba(0, 0, 0, 0.18);
   --syn-shadow-small: 0 1px 2px rgba(0, 0, 0, 0.24);
-  --syn-shadow-medium: 0 2px 4px rgba(0, 0, 0, 0.24);
-  --syn-shadow-large: 0 2px 8px rgba(0, 0, 0, 0.24);
-  --syn-shadow-x-large: 0 4px 16px rgba(0, 0, 0, 0.24);
-
-  /*
-   * Spacings
-   */
-
-  --syn-spacing-3x-small: 0.125rem; /* 2px */
-  --syn-spacing-2x-small: 0.25rem; /* 4px */
-  --syn-spacing-x-small: 0.5rem; /* 8px */
-  --syn-spacing-small: 0.75rem; /* 12px */
-  --syn-spacing-medium: 1rem; /* 16px */
-  --syn-spacing-large: 1.25rem; /* 20px */
-  --syn-spacing-x-large: 1.75rem; /* 28px */
-  --syn-spacing-2x-large: 2.25rem; /* 36px */
-  --syn-spacing-3x-large: 3rem; /* 48px */
-  --syn-spacing-4x-large: 4.5rem; /* 72px */
 
   /*
    * Transitions
@@ -366,28 +288,14 @@
    */
 
   /* Fonts */
-  --syn-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  --syn-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
   --syn-font-serif: Georgia, "Times New Roman", serif;
 
   /* Font sizes */
   --syn-font-size-2x-small: 0.625rem; /* 10px */
-  --syn-font-size-x-small: 0.75rem; /* 12px */
-  --syn-font-size-small: 0.875rem; /* 14px */
-  --syn-font-size-medium: 1rem; /* 16px */
-  --syn-font-size-large: 1.25rem; /* 20px */
-  --syn-font-size-x-large: 1.5rem; /* 24px */
-  --syn-font-size-2x-large: 2.25rem; /* 36px */
-  --syn-font-size-3x-large: 3rem; /* 48px */
   --syn-font-size-4x-large: 4.5rem; /* 72px */
 
   /* Font weights */
   --syn-font-weight-light: 300;
-  --syn-font-weight-normal: 400;
-  --syn-font-weight-semibold: 500;
-  --syn-font-weight-bold: 700;
 
   /* Letter spacings */
   --syn-letter-spacing-denser: -0.03em;
@@ -396,104 +304,18 @@
   --syn-letter-spacing-loose: 0.075em;
   --syn-letter-spacing-looser: 0.15em;
 
-  /* Line heights */
-  --syn-line-height-denser: 1;
-  --syn-line-height-dense: 1.4;
-  --syn-line-height-normal: 1.8;
-  --syn-line-height-loose: 2.2;
-  --syn-line-height-looser: 2.6;
-
   /* Focus rings */
-  --syn-focus-ring-color: var(--syn-color-primary-700);
   --syn-focus-ring-style: solid;
-  --syn-focus-ring-width: 3px;
   --syn-focus-ring: var(--syn-focus-ring-style) var(--syn-focus-ring-width) var(--syn-focus-ring-color);
-  --syn-focus-ring-offset: 1px;
-
-  /*
-   * Forms
-   */
-
-  /* Buttons */
-  --syn-button-font-size-small: var(--syn-font-size-x-small);
-  --syn-button-font-size-medium: var(--syn-font-size-small);
-  --syn-button-font-size-large: var(--syn-font-size-medium);
 
   /* Inputs */
-  --syn-input-height-small: 1.875rem; /* 30px */
-  --syn-input-height-medium: 2.5rem; /* 40px */
-  --syn-input-height-large: 3.125rem; /* 50px */
-
-  --syn-input-background-color: var(--syn-color-neutral-0);
-  --syn-input-background-color-hover: var(--syn-input-background-color);
-  --syn-input-background-color-focus: var(--syn-input-background-color);
-  --syn-input-background-color-disabled: var(--syn-color-neutral-100);
-  --syn-input-border-color: var(--syn-color-neutral-300);
-  --syn-input-border-color-hover: var(--syn-color-neutral-400);
-  --syn-input-border-color-focus: var(--syn-color-primary-500);
   --syn-input-border-color-disabled: var(--syn-color-neutral-300);
   --syn-input-border-width: 1px;
-  --syn-input-required-content: "*";
-  --syn-input-required-content-offset: -2px;
-  --syn-input-required-content-color: var(--syn-input-label-color);
-
-  --syn-input-border-radius-small: var(--syn-border-radius-medium);
-  --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-large: var(--syn-border-radius-medium);
 
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-weight: var(--syn-font-weight-normal);
-  --syn-input-font-size-small: var(--syn-font-size-small);
-  --syn-input-font-size-medium: var(--syn-font-size-medium);
-  --syn-input-font-size-large: var(--syn-font-size-large);
   --syn-input-letter-spacing: var(--syn-letter-spacing-normal);
 
-  --syn-input-color: var(--syn-color-neutral-700);
-  --syn-input-color-hover: var(--syn-color-neutral-700);
-  --syn-input-color-focus: var(--syn-color-neutral-700);
-  --syn-input-color-disabled: var(--syn-color-neutral-900);
-  --syn-input-icon-color: var(--syn-color-neutral-500);
-  --syn-input-icon-color-hover: var(--syn-color-neutral-600);
-  --syn-input-icon-color-focus: var(--syn-color-neutral-600);
-  --syn-input-placeholder-color: var(--syn-color-neutral-500);
-  --syn-input-placeholder-color-disabled: var(--syn-color-neutral-600);
-  --syn-input-spacing-small: var(--syn-spacing-small);
-  --syn-input-spacing-medium: var(--syn-spacing-medium);
-  --syn-input-spacing-large: var(--syn-spacing-large);
-
-  --syn-input-focus-ring-color: hsla(198.6, 88.7%, 48.4%, 0.4);
-  --syn-input-focus-ring-offset: 0;
-
-  /* Labels */
-  --syn-input-label-font-size-small: var(--syn-font-size-small);
-  --syn-input-label-font-size-medium: var(--syn-font-size-medium);
-  --syn-input-label-font-size-large: var(--syn-font-size-large);
-  --syn-input-label-color: inherit;
-
-  /* Help text */
-  --syn-input-help-text-font-size-small: var(--syn-font-size-x-small);
-  --syn-input-help-text-font-size-medium: var(--syn-font-size-small);
-  --syn-input-help-text-font-size-large: var(--syn-font-size-medium);
-  --syn-input-help-text-color: var(--syn-color-neutral-500);
-
-  /* Toggles (checkboxes, radios, switches) */
-  --syn-toggle-size-small: 0.875rem; /* 14px */
-  --syn-toggle-size-medium: 1.125rem; /* 18px */
-  --syn-toggle-size-large: 1.375rem; /* 22px */
-
-  /*
-   * Tooltips
-   */
-
-  --syn-tooltip-border-radius: var(--syn-border-radius-medium);
-  --syn-tooltip-background-color: var(--syn-color-neutral-800);
-  --syn-tooltip-color: var(--syn-color-neutral-0);
-  --syn-tooltip-font-family: var(--syn-font-sans);
-  --syn-tooltip-font-weight: var(--syn-font-weight-normal);
-  --syn-tooltip-font-size: var(--syn-font-size-small);
-  --syn-tooltip-line-height: var(--syn-line-height-dense);
-  --syn-tooltip-padding: var(--syn-spacing-2x-small) var(--syn-spacing-x-small);
-  --syn-tooltip-arrow-size: 6px;
 
   /*
    * Z-indexes

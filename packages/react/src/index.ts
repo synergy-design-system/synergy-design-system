@@ -30,6 +30,8 @@ export { SynRadioButton } from './components/radio-button.js';
 export { SynRadioGroup } from './components/radio-group.js';
 export { SynSelect } from './components/select.js';
 export { SynSideNav } from './components/side-nav.js';
+export { SynSpinner } from './components/spinner.js';
 export { SynSwitch } from './components/switch.js';
 export { SynTag } from './components/tag.js';
 export { SynTextarea } from './components/textarea.js';
+export { SynTooltip } from './components/tooltip.js';

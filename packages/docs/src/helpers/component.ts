@@ -622,6 +622,11 @@ type screenshotStoryOptions = {
    * The height of the drawn container
    */
   heightPx?: number,
+  
+  /**
+   * The style of the drawn container
+   */
+  styleHeading?: Record<string, string>,
 };
 
 /**
@@ -682,8 +687,10 @@ export const generateScreenshotStory = (
     afterRender = '',
     additionalChromaticOptions = {},
     heightPx = 150,
+    styleHeading = {}
   } = usedOptions;
-
+  const additionalStylesHeading = Object.entries(styleHeading).map(([key, value]) => `${key}: ${value};`).join(' ');
+  
   return {
     parameters: {
       chromatic: {
@@ -699,8 +706,8 @@ export const generateScreenshotStory = (
       ${Object.entries(stories).map(([storyName, story]) => {
         const name = story.name ?? sentenceCase(storyName);
         return html`
-          <div style='height: ${heightPx}px; margin: var(--syn-spacing-small)'>
-            <h3 data-chromatic="ignore">${name}</h3>
+          <div style='height: ${heightPx}px; margin: var(--syn-spacing-small);'>
+            <h3 data-chromatic="ignore" style='${additionalStylesHeading}'>${name}</h3>
             ${story.render?.(args, context)}
           </div>
       `})}

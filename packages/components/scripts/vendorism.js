@@ -18,8 +18,10 @@ import {
   vendorMenuLabel,
   vendorProgressBar,
   vendorSelect,
+  vendorSpinner,
   vendorTag,
   vendorTextarea,
+  vendorTooltip,
   vendorTranslations,
   vendorWebTestRunnerConfig,
 } from './vendorism/custom/index.js';
@@ -48,9 +50,11 @@ export const components = [
   'menu-item',
   'menu-label',
   'badge',
+  'tooltip',
   'progress-bar',
   'progress-ring',
   'alert',
+  'spinner',
 ].sort();
 
 /**
@@ -277,9 +281,11 @@ const config = {
       vendorMenuLabel,
       vendorProgressBar,
       vendorSelect,
+      vendorSpinner,
       vendorTextarea,
       vendorTranslations,
       vendorTag,
+      vendorTooltip,
       vendorTranslations,
       vendorWebTestRunnerConfig,
     ],

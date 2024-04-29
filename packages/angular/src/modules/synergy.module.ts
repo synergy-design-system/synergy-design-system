@@ -33,9 +33,11 @@ import {
   SynRadioGroupComponent,
   SynSelectComponent,
   SynSideNavComponent,
+  SynSpinnerComponent,
   SynSwitchComponent,
   SynTagComponent,
   SynTextareaComponent,
+  SynTooltipComponent,
 } from '../components';
 
 const components = [
@@ -66,9 +68,11 @@ const components = [
   SynRadioGroupComponent,
   SynSelectComponent,
   SynSideNavComponent,
+  SynSpinnerComponent,
   SynSwitchComponent,
   SynTagComponent,
   SynTextareaComponent,
+  SynTooltipComponent,
 ];
 
 @NgModule({

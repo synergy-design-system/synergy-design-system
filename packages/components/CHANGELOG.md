@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.21.0...components/1.22.0) (2024-04-29)
+
+
+### Features
+
+* ✨ syn-spinner ([#421](https://github.com/synergy-design-system/synergy-design-system/issues/421)) ([455400f](https://github.com/synergy-design-system/synergy-design-system/commit/455400f17a4862e85a7464c5507ee09623dff3fd))
+
 # [@synergy-design-system/components-v1.21.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.20.2...components/1.21.0) (2024-04-26)
 
 

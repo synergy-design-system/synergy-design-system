@@ -15,7 +15,6 @@ export default css`
 	/* stylelint-disable */
   :host {
     --track-width: 2px;
-    --track-color: rgb(128 128 128 / 25%);
     --indicator-color: var(--syn-color-primary-600);
     --speed: 2s;
 
@@ -42,7 +41,6 @@ export default css`
   }
 
   .spinner__track {
-    stroke: var(--track-color);
     transform-origin: 0% 0%;
   }
 
@@ -51,22 +49,5 @@ export default css`
     stroke-linecap: round;
     stroke-dasharray: 150% 75%;
     animation: spin var(--speed) linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-      stroke-dasharray: 0.05em, 3em;
-    }
-
-    50% {
-      transform: rotate(450deg);
-      stroke-dasharray: 1.375em, 1.375em;
-    }
-
-    100% {
-      transform: rotate(1080deg);
-      stroke-dasharray: 0.05em, 3em;
-    }
   }
 `;

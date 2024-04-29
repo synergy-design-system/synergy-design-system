@@ -9,6 +9,7 @@ import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './spinner.styles.js';
+import customStyles from './spinner.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -20,12 +21,11 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's base wrapper.
  *
  * @cssproperty --track-width - The width of the track.
- * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the spinner's indicator.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
 export default class SynSpinner extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   private readonly localize = new LocalizeController(this);
 

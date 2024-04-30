@@ -21,9 +21,7 @@ const { generateTemplate } = storybookTemplate('syn-dialog');
  * Shared helper to draw the footer
  */
 const createFooter = (className: string) => `
-  <div slot="footer" style="display: flex; justify-content: end">
-    <syn-button class="${className}" variant="filled">Close</syn-button>
-  </div>
+  <syn-button class="${className}" variant="filled" slot="footer">Close</syn-button>
   <script>
     document.querySelector('.${className}').addEventListener('click', (e) => {
       const dialog = e.target.closest('syn-dialog');

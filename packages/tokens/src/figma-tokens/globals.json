@@ -417,7 +417,7 @@
     "type": "other"
   },
   "opacity": {
-    "medium": {
+    "50": {
       "value": "0.5",
       "type": "opacity",
       "description": "50%"

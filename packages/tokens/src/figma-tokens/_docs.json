@@ -175,13 +175,55 @@
       }
     },
     "breadcrumb": {
-      "description": {
-        "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy. Breadcrumbs are usually placed before a page’s main content with the current page shown last to indicate the user’s position in the navigation.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Breadcrumb",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Breadcrumb",
-        "type": "text"
+      "links": {
+        "title": {
+          "value": "Breadcrumb Links",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, breadcrumb items are rendered as buttons so you can use them to navigate single-page applications. In this case, you’ll need to add event listeners to handle clicks.\n\nFor websites, you’ll probably want to use links instead. You can make any breadcrumb item a link by applying an href attribute to it. Now, when the user activates it, they’ll be taken to the corresponding page — no event listeners required.",
+          "type": "text"
+        }
+      },
+      "prefix": {
+        "title": {
+          "value": "Prefixes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix slot to add content before any breadcrumb item.",
+          "type": "text"
+        }
+      },
+      "suffix": {
+        "title": {
+          "value": "Suffixes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the suffix slot to add content after any breadcrumb item.",
+          "type": "text"
+        }
+      },
+      "menu": {
+        "title": {
+          "value": "With Dropdowns",
+          "type": "text"
+        },
+        "description": {
+          "value": "Dropdown menus can be placed in a prefix or suffix slot to provide additional options.",
+          "type": "text"
+        }
       }
     },
     "button": {

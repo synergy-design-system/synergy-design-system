@@ -449,16 +449,6 @@
           "type": "text"
         }
       },
-      "summary-icon": {
-        "title": {
-          "value": "Customizing the Summary Icon",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the expand-icon and collapse-icon slots to change the expand and collapse icons, respectively. To disable the animation, override the rotate property on the summary-icon part as shown below.",
-          "type": "text"
-        }
-      },
       "grouping": {
         "title": {
           "value": "Grouping Details",
@@ -2414,6 +2404,38 @@
         },
         "description": {
           "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing.",
+          "type": "text"
+        }
+      }
+    },
+    "accordion": {
+      "default": {
+        "title": {
+          "value": "Accordion",
+          "type": "text"
+        },
+        "description": {
+          "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disable attribute to prevent the details from expanding.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
           "type": "text"
         }
       }

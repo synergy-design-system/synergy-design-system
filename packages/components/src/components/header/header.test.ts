@@ -79,7 +79,7 @@ describe('<syn-header>', () => {
     });
 
     it('should show the burger menu show icon if burgerMenu is set to "open"', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header burger-menu="opened"></syn-header>`);
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="open"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
       expect(burgerMenuPart).to.not.be.null;
       expect(burgerMenuPart?.querySelector('syn-icon[name="x-lg"]')).to.not.be.null;
@@ -95,10 +95,10 @@ describe('<syn-header>', () => {
     });
 
     it('should toggle the visibility on click', async () => {
-      const el = await fixture<SynHeader>(html`<syn-header burger-menu="opened"></syn-header>`);
+      const el = await fixture<SynHeader>(html`<syn-header burger-menu="open"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
-      expect(el.burgerMenu).to.equal('opened');
+      expect(el.burgerMenu).to.equal('open');
 
       burgerMenuPart?.click();
 
@@ -137,7 +137,7 @@ describe('<syn-header>', () => {
       burgerMenuPart?.click();
 
       expect(sideNav.open).to.equal(true);
-      expect(header.burgerMenu).to.equal('opened');
+      expect(header.burgerMenu).to.equal('open');
     });
 
     it('should toggle the visible state in case of side-nav was closed via open property', async () => {
@@ -185,14 +185,14 @@ describe('<syn-header>', () => {
       expect(header.burgerMenu).to.equal('hidden');
     });
 
-    it('should emit syn-burger-menu-opened and and syn-burger-menu-closed events when clicked', async () => {
+    it('should emit syn-burger-menu-open and and syn-burger-menu-closed events when clicked', async () => {
       const el = await fixture<SynHeader>(html`<syn-header burger-menu="closed"></syn-header>`);
       const burgerMenuPart = getComponentPart<HTMLDivElement>(el, 'burger-menu-toggle-button');
 
       const burgerMenuShowHandler = sinon.spy();
       const burgerMenuHideHandler = sinon.spy();
 
-      el.addEventListener('syn-burger-menu-opened', burgerMenuShowHandler);
+      el.addEventListener('syn-burger-menu-open', burgerMenuShowHandler);
       el.addEventListener('syn-burger-menu-closed', burgerMenuHideHandler);
 
       burgerMenuPart?.click();
@@ -206,7 +206,7 @@ describe('<syn-header>', () => {
       expect(burgerMenuHideHandler).to.have.been.calledOnce;
     });
 
-    ['opened', 'closed', 'hidden'].forEach(variant => {
+    ['open', 'closed', 'hidden'].forEach(variant => {
       it(`should emit "syn-burger-menu-${variant}" when setting burgerMenu to "${variant}"`, async () => {
         // Note we have to force burger-menu into an invalid state.
         // Otherwise, the default of "hidden" would not work!
@@ -214,7 +214,7 @@ describe('<syn-header>', () => {
         const handler = sinon.spy();
         el.addEventListener(`syn-burger-menu-${variant}`, handler);
 
-        el.burgerMenu = variant as 'hidden' | 'opened' | 'closed';
+        el.burgerMenu = variant as 'hidden' | 'open' | 'closed';
 
         await waitUntil(() => handler.calledOnce);
 

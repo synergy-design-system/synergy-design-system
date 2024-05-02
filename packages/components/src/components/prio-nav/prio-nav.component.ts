@@ -220,7 +220,7 @@ export default class SynPrioNav extends SynergyElement {
             })}
             part="priority-menu-label"
           >
-            ${this.localize.term('priorityMenuLabel')}
+            ${this.localize.term('menu')}
           </span>
         </syn-nav-item>
 

@@ -14,13 +14,13 @@ const translations = {
     de: 'Benachrichtigung',
     en: 'Notification',
   },
+  menu: {
+    de: 'Menu',
+    en: 'Menu',
+  },
   openMenu: {
     de: 'Menu öffnen',
     en: 'Open menu',
-  },
-  priorityMenuLabel: {
-    de: 'Menu',
-    en: 'Menu',
   },
   sideNav: {
     de: 'Seitennavigation',

@@ -29,8 +29,8 @@ import { watch } from '../../internal/watch.js';
  * @slot hide-burger-menu-icon - An icon to use in lieu of the default hide burger menu icon
  *
  * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to hidden
- * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to the closed
- * @event syn-burger-menu-opened - Emitted when the burger menu is toggled to the opened
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
  * @csspart base - The component's base wrapper
  * @csspart content - The wrapper most content items reside
@@ -69,10 +69,10 @@ export default class SynHeader extends SynergyElement {
    * The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
    * The following values can be used:
    * - hidden: The burger menu is not visible
-   * - opened: The burger menu is visible and shows the close icon
+   * - open: The burger menu is visible and shows the close icon
    * - closed: The burger menu is visible and shows the open icon
    */
-  @property({ attribute: 'burger-menu', reflect: true }) burgerMenu: 'hidden' | 'opened' | 'closed' = 'hidden';
+  @property({ attribute: 'burger-menu', reflect: true }) burgerMenu: 'hidden' | 'open' | 'closed' = 'hidden';
 
   /**
    * The side nav
@@ -81,8 +81,8 @@ export default class SynHeader extends SynergyElement {
 
   private toggleBurgerMenu() {
     switch (this.burgerMenu) {
-    case 'closed': this.burgerMenu = 'opened'; break;
-    case 'opened': this.burgerMenu = 'closed'; break;
+    case 'closed': this.burgerMenu = 'open'; break;
+    case 'open': this.burgerMenu = 'closed'; break;
     default: break;
     }
   }
@@ -105,7 +105,7 @@ export default class SynHeader extends SynergyElement {
       if (this.sideNav.rail) {
         this.burgerMenu = 'hidden';
       } else {
-        this.burgerMenu = this.sideNav.open ? 'opened' : 'closed';
+        this.burgerMenu = this.sideNav.open ? 'open' : 'closed';
       }
     }
   }
@@ -181,7 +181,7 @@ export default class SynHeader extends SynergyElement {
                     part="burger-menu-toggle-button"
                     type="button"
                   >
-                    ${this.burgerMenu === 'opened'
+                    ${this.burgerMenu === 'open'
                       ? html`
                           <slot name="show-burger-menu-icon">
                             <syn-icon name="x-lg" library="system"></syn-icon>

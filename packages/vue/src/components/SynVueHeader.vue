@@ -22,8 +22,8 @@
  * @slot hide-burger-menu-icon - An icon to use in lieu of the default hide burger menu icon
  *
  * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to hidden
- * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to the closed
- * @event syn-burger-menu-opened - Emitted when the burger menu is toggled to the opened
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
  * @csspart base - The component's base wrapper
  * @csspart content - The wrapper most content items reside
@@ -37,7 +37,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
 
 import type {
-  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenedEvent, SynHeader,
+  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent, SynHeader,
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -72,7 +72,7 @@ const props = defineProps<{
 The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
 The following values can be used:
 - hidden: The burger menu is not visible
-- opened: The burger menu is visible and shows the close icon
+- open: The burger menu is visible and shows the close icon
 - closed: The burger menu is visible and shows the open icon
  */
   'burgerMenu'?: SynHeader['burgerMenu'];
@@ -96,21 +96,21 @@ defineEmits<{
   'syn-burger-menu-closed': [e: SynBurgerMenuClosedEvent];
 
   /**
-* Emitted when the burger menu is toggled to the closed
+* Emitted when the burger menu is toggled to closed
  */
   'syn-burger-menu-hidden': [e: SynBurgerMenuHiddenEvent];
 
   /**
-* Emitted when the burger menu is toggled to the opened
+* Emitted when the burger menu is toggled to open
  */
-  'syn-burger-menu-opened': [e: SynBurgerMenuOpenedEvent];
+  'syn-burger-menu-open': [e: SynBurgerMenuOpenEvent];
 }>();
 </script>
 
 <script lang="ts">
 export type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
 export type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
-export type { SynBurgerMenuOpenedEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -120,7 +120,7 @@ export type { SynBurgerMenuOpenedEvent } from '@synergy-design-system/components
     @syn-burger-menu-closed="$emit('syn-burger-menu-closed', $event)"
 
     @syn-burger-menu-hidden="$emit('syn-burger-menu-hidden', $event)"
-    @syn-burger-menu-opened="$emit('syn-burger-menu-opened', $event)"
+    @syn-burger-menu-open="$emit('syn-burger-menu-open', $event)"
   >
     <slot name="label" />
     <slot name="logo" />

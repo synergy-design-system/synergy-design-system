@@ -8,7 +8,7 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/header/header.component.js';
 
 import { type EventName } from '@lit/react';
-import type { SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenedEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-header';
 Component.define('syn-header');
@@ -30,8 +30,8 @@ Component.define('syn-header');
  * @slot hide-burger-menu-icon - An icon to use in lieu of the default hide burger menu icon
  *
  * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to hidden
- * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to the closed
- * @event syn-burger-menu-opened - Emitted when the burger menu is toggled to the opened
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
  * @csspart base - The component's base wrapper
  * @csspart content - The wrapper most content items reside
@@ -47,7 +47,7 @@ export const SynHeader = createComponent({
   events: {
     onSynBurgerMenuClosed: 'syn-burger-menu-closed' as EventName<SynBurgerMenuClosedEvent>,
     onSynBurgerMenuHidden: 'syn-burger-menu-hidden' as EventName<SynBurgerMenuHiddenEvent>,
-    onSynBurgerMenuOpened: 'syn-burger-menu-opened' as EventName<SynBurgerMenuOpenedEvent>,
+    onSynBurgerMenuOpen: 'syn-burger-menu-open' as EventName<SynBurgerMenuOpenEvent>,
   },
   react: React,
   tagName,
@@ -55,4 +55,4 @@ export const SynHeader = createComponent({
 
 export type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
 export type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
-export type { SynBurgerMenuOpenedEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';

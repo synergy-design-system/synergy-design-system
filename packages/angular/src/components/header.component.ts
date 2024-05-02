@@ -12,7 +12,7 @@ import {
   Output,
 } from '@angular/core';
 import type {
-  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenedEvent, SynHeader,
+  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent, SynHeader,
 } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/header/header.js';
 
@@ -33,8 +33,8 @@ import '@synergy-design-system/components/components/header/header.js';
  * @slot hide-burger-menu-icon - An icon to use in lieu of the default hide burger menu icon
  *
  * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to hidden
- * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to the closed
- * @event syn-burger-menu-opened - Emitted when the burger menu is toggled to the opened
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
  * @csspart base - The component's base wrapper
  * @csspart content - The wrapper most content items reside
@@ -59,7 +59,7 @@ export class SynHeaderComponent {
     this._ngZone = ngZone;
     this._el.addEventListener('syn-burger-menu-closed', (e: SynBurgerMenuClosedEvent) => { this.synBurgerMenuClosedEvent.emit(e); });
     this._el.addEventListener('syn-burger-menu-hidden', (e: SynBurgerMenuHiddenEvent) => { this.synBurgerMenuHiddenEvent.emit(e); });
-    this._el.addEventListener('syn-burger-menu-opened', (e: SynBurgerMenuOpenedEvent) => { this.synBurgerMenuOpenedEvent.emit(e); });
+    this._el.addEventListener('syn-burger-menu-open', (e: SynBurgerMenuOpenEvent) => { this.synBurgerMenuOpenEvent.emit(e); });
   }
 
   /**
@@ -80,7 +80,7 @@ export class SynHeaderComponent {
 The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
 The following values can be used:
 - hidden: The burger menu is not visible
-- opened: The burger menu is visible and shows the close icon
+- open: The burger menu is visible and shows the close icon
 - closed: The burger menu is visible and shows the open icon
  */
   @Input()
@@ -115,16 +115,16 @@ finds.
   @Output() synBurgerMenuClosedEvent = new EventEmitter<SynBurgerMenuClosedEvent>();
 
   /**
-* Emitted when the burger menu is toggled to the closed
+* Emitted when the burger menu is toggled to closed
  */
   @Output() synBurgerMenuHiddenEvent = new EventEmitter<SynBurgerMenuHiddenEvent>();
 
   /**
-* Emitted when the burger menu is toggled to the opened
+* Emitted when the burger menu is toggled to open
  */
-  @Output() synBurgerMenuOpenedEvent = new EventEmitter<SynBurgerMenuOpenedEvent>();
+  @Output() synBurgerMenuOpenEvent = new EventEmitter<SynBurgerMenuOpenEvent>();
 }
 
 export type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
 export type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
-export type { SynBurgerMenuOpenedEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';

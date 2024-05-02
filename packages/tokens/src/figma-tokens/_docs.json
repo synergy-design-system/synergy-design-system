@@ -2611,6 +2611,16 @@
         "value": "Z-Index Tokens",
         "type": "text"
       }
+    },
+    "opacity": {
+      "description": {
+        "value": "Opacity tokens apply transparency to an element.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Opacity",
+        "type": "text"
+      }
     }
   },
   "frameworks": {

@@ -13,27 +13,22 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
-const { args: defaultArgs, argTypes } = storybookDefaults('syn-alert');
-const { overrideArgs } = storybookHelpers('syn-alert');
-const { generateTemplate } = storybookTemplate('syn-alert');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-details');
+const { overrideArgs } = storybookHelpers('syn-details');
+const { generateTemplate } = storybookTemplate('syn-details');
 
 const meta: Meta = {
   args: overrideArgs([
-    // {
-    //   name: 'default',
-    //   type: 'slot',
-    //   value: 'This is a standard alert. You can customize its content and even the icon.',
-    // },
-    // {
-    //   name: 'open',
-    //   type: 'attribute',
-    //   value: true,
-    // },
-    // {
-    //   name: 'icon',
-    //   type: 'slot',
-    //   value: '<syn-icon slot="icon" name="info"></syn-icon>',
-    // },
+    {
+      name: 'summary',
+      type: 'attribute',
+      value: 'Toggle me',
+    },
+    {
+      name: 'default',
+      type: 'slot',
+      value: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+    },
   ], defaultArgs),
   argTypes,
   component: 'syn-details',
@@ -74,9 +69,14 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-details summary="Toggle Me" disabled>
+    <syn-details class="details-disabled" summary="Toggle Me" disabled>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
+    <style>
+      .details-disabled {
+        max-width: 400px;
+      }
+    </style>
   `,
 };
 
@@ -89,12 +89,17 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <syn-details summary="Toggle Me" size="small">
+    <syn-details class="details-sizes" summary="Toggle Me" size="small">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <syn-details summary="Toggle Me" size="medium">
+    <syn-details class="details-sizes" summary="Toggle Me" size="medium">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
+    <style>
+      .details-sizes {
+        max-width: 400px;
+      }
+    </style>
   `,
 };
 
@@ -108,17 +113,17 @@ export const GroupingDetails: Story = {
   },
   render: () => html`
     <div class="details-group-example">
-      <syn-details summary="First" open>
+      <syn-details class="details-grouping" summary="First" open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </syn-details>
 
-      <syn-details summary="Second">
+      <syn-details class="details-grouping" summary="Second">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </syn-details>
 
-      <syn-details summary="Third">
+      <syn-details class="details-grouping" summary="Third">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </syn-details>
@@ -137,6 +142,9 @@ export const GroupingDetails: Story = {
       .details-group-example syn-details:not(:last-of-type) {
         margin-bottom: var(--syn-spacing-2x-small);
       }
+      .details-grouping {
+        max-width: 400px;
+      }
     </style>
   `,
 };
@@ -150,7 +158,7 @@ export const CustomizingTheSummaryIcon: Story = {
     },
   },
   render: () => html`
-    <syn-details summary="Toggle Me" class="custom-icons">
+    <syn-details class="details-custom-icon" summary="Toggle Me" class="custom-icons">
       <syn-icon name="open_in_full" slot="expand-icon"></syn-icon>
       <syn-icon name="close" slot="collapse-icon"></syn-icon>
 
@@ -158,7 +166,11 @@ export const CustomizingTheSummaryIcon: Story = {
       aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </syn-details>
     <style>
-      syn-details.custom-icons::part(summary-icon) {
+      .details-custom-icon {
+        max-width: 400px;
+      }
+
+      .details-custom-icon::part(summary-icon) {
         /* Disable the expand/collapse animation */
         rotate: none;
       }

@@ -194,8 +194,6 @@ export default class SynDetails extends SynergyElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
-
     return html`
       <details
         part="base"
@@ -203,7 +201,6 @@ export default class SynDetails extends SynergyElement {
           details: true,
           'details--open': this.open,
           'details--disabled': this.disabled,
-          'details--rtl': isRtl
         })}
       >
         <summary
@@ -222,10 +219,10 @@ export default class SynDetails extends SynergyElement {
 
           <span part="summary-icon" class="details__summary-icon">
             <slot name="expand-icon">
-              <syn-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></syn-icon>
+              <syn-icon library="system" name="chevron-down"></syn-icon>
             </slot>
             <slot name="collapse-icon">
-              <syn-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></syn-icon>
+              <syn-icon library="system" name="chevron-down"></syn-icon>
             </slot>
           </span>
         </summary>

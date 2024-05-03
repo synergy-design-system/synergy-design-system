@@ -72,10 +72,6 @@ export default css`
     rotate: 90deg;
   }
 
-  .details--open.details--rtl .details__summary-icon {
-    rotate: -90deg;
-  }
-
   .details--open slot[name='expand-icon'],
   .details:not(.details--open) slot[name='collapse-icon'] {
     display: none;

@@ -89,10 +89,18 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <syn-details class="details-sizes" summary="Toggle Me" size="small">
+    <syn-details class="details-sizes" size="small">
+      <span slot="summary">
+        <syn-icon name="wallpaper"></syn-icon>
+        Toggle Me
+      </span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <syn-details class="details-sizes" summary="Toggle Me" size="medium">
+    <syn-details class="details-sizes" size="medium">
+      <span slot="summary">
+        <syn-icon name="wallpaper"></syn-icon>
+        Toggle Me
+      </span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
     <style>

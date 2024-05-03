@@ -2203,7 +2203,17 @@
       }
     },
     "templates": {
-      "default": {
+      "application-shell": {
+        "title": {
+          "value": "Application Shell",
+          "type": "text"
+        },
+        "description": {
+          "value": "Description for application shell",
+          "type": "text"
+        }
+      },
+      "contact-form": {
         "title": {
           "value": "Forms",
           "type": "text"

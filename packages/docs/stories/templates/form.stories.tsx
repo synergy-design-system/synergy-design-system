@@ -17,7 +17,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'default'),
+        component: generateStoryDescription('templates', 'contact-form'),
       },
       page: () => (
         <>

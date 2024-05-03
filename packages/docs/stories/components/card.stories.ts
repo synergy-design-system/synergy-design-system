@@ -25,7 +25,7 @@ const createFooter = ({
   <footer slot="footer">
     <small>${footerText}</small>
     <nav>
-      <syn-button variant="filled">${buttonText}</syn-button>
+      <syn-button variant="filled" size="small">${buttonText}</syn-button>
     </nav>
   </footer>
   <style>
@@ -35,8 +35,13 @@ const createFooter = ({
 
     syn-card footer {
       align-items: center;
+      color: var(--syn-color-neutral-800);
       display: flex;
       gap: var(--syn-spacing-x-small);
+    }
+
+    syn-card small {
+      font: var(--syn-body-x-small-regular);
     }
 
     syn-card footer nav {
@@ -57,14 +62,12 @@ const meta: Meta = {
       value: '<img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />',
     },
     {
-      name: 'header',
-      type: 'slot',
-      value: '<span slot="header">Headline</span>',
-    },
-    {
       name: 'default',
       type: 'slot',
-      value: 'Secure 3D environment detection opens up new dimensions',
+      value: `
+        <h3>Headline</h3>
+        Secure 3D environment detection opens up new dimensions
+      `,
     },
     {
       name: 'footer',
@@ -134,7 +137,7 @@ export const CardWithHeader: Story = {
     <syn-card class="card-header">
       <div slot="header">
         Header Title
-        <syn-icon-button name="share" label="Share"></syn-icon-button>
+        <syn-icon-button color="neutral" name="share" label="Share"></syn-icon-button>
       </div>
 
       This card has a header. You can put all sorts of things in it!
@@ -221,7 +224,7 @@ export const NestedCard: Story = {
     <syn-card class="nested-cards">
       <div slot="header">
         Header Title
-        <syn-icon-button name="share" label="Share"></syn-icon-button>
+        <syn-icon-button color="neutral" name="share" label="Share"></syn-icon-button>
       </div>
 
       <div class="nested-cards-items">
@@ -232,7 +235,7 @@ export const NestedCard: Story = {
               src="/card-example.jpg"
               alt="Multiple persons having lunch in SICK Academy"
             />
-            <span slot="header">Headline</span>
+            <h3>Headline</h3>
             Secure 3D environment detection opens up new dimensions
             
             <footer slot="footer">

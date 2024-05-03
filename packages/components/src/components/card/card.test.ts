@@ -11,6 +11,20 @@ import type SynCard from './card.js';
 describe('<syn-card>', () => {
   let el: SynCard;
 
+  describe('when nested is provided', () => {
+    it('should not add the className "card--nested" when nested is set to "false"', async () => {
+      el = await fixture<SynCard>(html`<syn-card>Content</syn-card>`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.not.have.class('card--nested');
+    });
+
+    it('should add the className "card--nested" when nested is set to "true"', async () => {
+      el = await fixture<SynCard>(html`<syn-card nested>Content</syn-card>`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.have.class('card--nested');
+    });
+  });
+
   describe('when provided no parameters', () => {
     before(async () => {
       el = await fixture<SynCard>(html`

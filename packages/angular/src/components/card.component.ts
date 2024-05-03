@@ -51,4 +51,17 @@ export class SynCardComponent {
     this._el = e.nativeElement;
     this._ngZone = ngZone;
   }
+
+  /**
+* Draws the card as a nested item.
+* Can be used when nesting multiple syn-cards to create hierarchy
+ */
+  @Input()
+  set nested(v: SynCard['nested']) {
+    this._ngZone.runOutsideAngular(() => (this._el.nested = v));
+  }
+
+  get nested() {
+    return this._el.nested;
+  }
 }

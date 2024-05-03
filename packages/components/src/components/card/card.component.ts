@@ -5,6 +5,7 @@
 
 /* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
+import { property } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import componentStyles from '../../styles/component.styles.js';
@@ -40,12 +41,16 @@ export default class SynCard extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
+  /** Draws the card as a nested item. Can be used when nesting multiple syn-cards to create hierarchy */
+  @property({ type: Boolean, reflect: true }) nested = false;
+
   render() {
     return html`
       <div
         part="base"
         class=${classMap({
           card: true,
+          'card--nested': this.nested,
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),
           'card--has-header': this.hasSlotController.test('header')

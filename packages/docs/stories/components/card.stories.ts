@@ -226,7 +226,7 @@ export const NestedCard: Story = {
 
       <div class="nested-cards-items">
         ${[0, 1].map(() => html`
-          <syn-card>
+          <syn-card nested>
             <img
               slot="image"
               src="/card-example.jpg"

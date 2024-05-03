@@ -9,6 +9,7 @@ export { default as SynBadge } from './components/badge/badge.js';
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
+export { default as SynDetails } from './components/details/details.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynDropdown } from './components/dropdown/dropdown.js';

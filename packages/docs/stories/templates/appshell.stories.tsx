@@ -57,8 +57,8 @@ const createSharedStyles = () => html`
       align-items: center;
       border: 1px dashed #9747FF;
       border-radius: var(--syn-border-radius-medium);
-      display: flex;
       color: #9747FF;
+      display: flex;
       flex: 1 0 auto;
       font: var(--syn-body-small-bold);
       justify-content: center;
@@ -68,9 +68,9 @@ const createSharedStyles = () => html`
     .synergy-demo-footer > nav {
       align-items: center;
       display: flex;
-      height: var(--syn-spacing-3x-large);
       font: var(--syn-body-x-small-regular);
       gap: var(--syn-spacing-large);
+      height: var(--syn-spacing-3x-large);
       justify-content: center;
     }
 
@@ -137,7 +137,7 @@ const createSideNav = ({
 } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav no-focus-trapping .rail=${rail}>
-    <syn-nav-item>
+    <syn-nav-item current>
       <syn-icon name="home" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.start')}
     </syn-nav-item>

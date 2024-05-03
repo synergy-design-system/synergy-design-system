@@ -44,7 +44,35 @@ export const contactForm = {
   requiredFieldEnd: 'law',
 };
 
+export const appShell = {
+  appName: 'Synergy',
+  footer: {
+    conditions: 'Nutzungsbedingungen',
+    copyright: '© 2024 SICK AG',
+    imprint: 'Impressum',
+    privacy: 'Datenschutzerklärung',
+    terms: 'AGB',
+  },
+  metaNavigation: {
+    menuItem: 'Menu Item',
+  },
+  navigation: {
+    applications: 'Applications',
+    cloud: 'Cloud',
+    documents: 'Documents',
+    feedback: 'Feedback',
+    home: 'Home',
+    settings: 'Settings',
+    logout: 'Logout',
+    start: 'Start',
+    teams: 'Teams',
+    workspaces: 'Workspaces',
+  },
+  mainSlot: 'Replace this slot',
+};
+
 export const translations = {
+  appShell,
   contactForm,
 };
 

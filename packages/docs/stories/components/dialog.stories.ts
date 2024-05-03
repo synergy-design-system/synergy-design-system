@@ -23,10 +23,13 @@ const { generateTemplate } = storybookTemplate('syn-dialog');
 const createFooter = (className: string) => `
   <syn-button class="${className}" variant="filled" slot="footer">Close</syn-button>
   <script>
-    document.querySelector('.${className}').addEventListener('click', (e) => {
-      const dialog = e.target.closest('syn-dialog');
-      dialog.hide();
-      dialog.modal.deactivateExternal();
+    [...document.querySelectorAll('.${className}')].forEach(elm => {
+      elm.addEventListener('click', (e) => {
+        const dialog = e.target.closest('syn-dialog');
+        dialog.label += ' - Clicked';
+        dialog.hide();
+        dialog.modal.deactivateExternal();
+      });  
     });
   </script>
 `;
@@ -38,12 +41,16 @@ const createOpener = (className: string) => html`
   <syn-button class="${className}">Open Dialog</syn-button>
   <script type="module">
     const createOpener = (opener) => {
-      const dialog = opener.parentElement.querySelector('syn-dialog');
-      dialog.modal.activateExternal();
+      // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+      // Remove the initial trap and make sure to do the same when recreating the story.
+      const loadedDialog = opener.parentElement.querySelector('syn-dialog');
+      loadedDialog.modal.activateExternal();
 
       opener.addEventListener('click', (e) => {
-        dialog.show();
-        dialog.modal.activateExternal();
+        const currentDialog = e.target.parentElement.querySelector('syn-dialog');
+        console.log(currentDialog)
+        currentDialog.show();
+        currentDialog.modal.activateExternal();
       });
     };
 

@@ -11,9 +11,9 @@ const tagName = 'syn-accordion';
 Component.define('syn-accordion');
 
 /**
- * @summary The <syn-accordion /> element provides the ability to group a list of `<syn-details>`.
+ * @summary Accordions provide the ability to group a list of `<syn-details>`.
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
  * @since 1.23.0
  *

@@ -16,9 +16,9 @@ import type { SynAccordion } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/accordion/accordion.js';
 
 /**
- * @summary The <syn-accordion /> element provides the ability to group a list of `<syn-details>`.
+ * @summary Accordions provide the ability to group a list of `<syn-details>`.
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
  * @since 1.23.0
  *
@@ -63,6 +63,11 @@ export class SynAccordionComponent {
 
   get size() {
     return this._el.size;
+  }
+
+  @Input()
+  callHandleSizeChange(...args: Parameters<SynAccordion['handleSizeChange']>) {
+    return this._ngZone.runOutsideAngular(() => this._el.handleSizeChange(...args));
   }
 
   @Input()

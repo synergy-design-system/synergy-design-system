@@ -79,7 +79,7 @@ export default class SynAccordion extends SynergyElement {
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div part="">
-      <slot @slotchange=${this.handleSlotChange}></slot>
+        <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
     /* eslint-enable @typescript-eslint/unbound-method */

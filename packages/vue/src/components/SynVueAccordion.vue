@@ -6,9 +6,9 @@
 // ---------------------------------------------------------------------
 
 /**
- * @summary The <syn-accordion /> element provides the ability to group a list of `<syn-details>`.
+ * @summary Accordions provide the ability to group a list of `<syn-details>`.
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
  * @since 1.23.0
  *
@@ -25,9 +25,11 @@ import type { SynAccordion } from '@synergy-design-system/components';
 const element = ref<SynAccordion>();
 
 // Map methods
+const callHandleSizeChange = (...args: Parameters<SynAccordion['handleSizeChange']>) => element.value?.handleSizeChange(...args);
 const callHandleSlotChange = (...args: Parameters<SynAccordion['handleSlotChange']>) => element.value?.handleSlotChange(...args);
 
 defineExpose({
+  callHandleSizeChange,
   callHandleSlotChange,
 });
 

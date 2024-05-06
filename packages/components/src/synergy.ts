@@ -6,6 +6,8 @@
 // Components
 export { default as SynAlert } from './components/alert/alert.js';
 export { default as SynBadge } from './components/badge/badge.js';
+export { default as SynBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item.js';
+export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js';
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';

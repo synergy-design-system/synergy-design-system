@@ -5,6 +5,8 @@
 // ---------------------------------------------------------------------
 export { SynAlert } from './components/alert.js';
 export { SynBadge } from './components/badge.js';
+export { SynBreadcrumb } from './components/breadcrumb.js';
+export { SynBreadcrumbItem } from './components/breadcrumb-item.js';
 export { SynButton } from './components/button.js';
 export { SynButtonGroup } from './components/button-group.js';
 export { SynCheckbox } from './components/checkbox.js';

@@ -55,6 +55,8 @@ export const components = [
   'progress-ring',
   'alert',
   'spinner',
+  'breadcrumb',
+  'breadcrumb-item',
 ].sort();
 
 /**

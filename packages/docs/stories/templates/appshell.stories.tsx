@@ -394,6 +394,11 @@ export const RailNavigationMobile: Story = {
   name: '↳ Tablet',
   parameters: {
     ...RailNavigationDesktop.parameters,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    docs: {
+      ...RailNavigationDesktop.parameters?.docs,
+      disable: true,
+    },
     viewport: {
       defaultViewport: 'mobile2',
     },

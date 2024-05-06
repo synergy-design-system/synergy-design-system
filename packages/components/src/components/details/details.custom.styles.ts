@@ -4,7 +4,6 @@ export default css`
   .details {
     border-radius: var(--syn-border-radius-none);
     border-width: 0 0 var(--syn-border-width-small);
-    padding: var(--syn-spacing-large) 0;
   }
 
   .details--disabled {
@@ -12,11 +11,11 @@ export default css`
   }
 
   .details__header {
-    padding: 0;
+    padding: var(--syn-spacing-large) 0;
   }
 
   .details__content {
-    padding: var(--syn-spacing-medium) 0 0;
+    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
   }
 
   .details__summary-icon {

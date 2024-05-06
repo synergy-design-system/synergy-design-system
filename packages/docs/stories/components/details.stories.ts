@@ -147,9 +147,6 @@ export const GroupingDetails: Story = {
       });
     </script>
     <style>
-      .details-group-example syn-details:not(:last-of-type) {
-        margin-bottom: var(--syn-spacing-2x-small);
-      }
       .details-grouping {
         max-width: 400px;
       }

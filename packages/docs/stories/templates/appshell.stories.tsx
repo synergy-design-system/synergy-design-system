@@ -60,9 +60,16 @@ const createSharedStyles = () => html`
       color: #9747FF;
       display: flex;
       flex: 1 0 auto;
+      flex-direction: column;
       font: var(--syn-body-small-bold);
       justify-content: center;
       margin: var(--syn-spacing-2x-large) var(--syn-spacing-2x-large) 0;
+    }
+
+    .synergy-demo-main h1 {
+      color: var(--syn-typography-color-text);
+      font: var(--syn-heading-large);
+      margin: 0;
     }
 
     .synergy-demo-footer > nav {
@@ -133,10 +140,15 @@ const createHeader = ({
  * Create a side navigation with an optional rail mode
  */
 const createSideNav = ({
+  open = false,
   rail = false,
 } = {}) => html`
   <!-- side-navigation -->
-  <syn-side-nav no-focus-trapping .rail=${rail}>
+  <syn-side-nav
+    no-focus-trapping
+    .open=${open}
+    .rail=${rail}
+  >
     <syn-nav-item current>
       <syn-icon name="home" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.start')}
@@ -175,6 +187,7 @@ const createSideNav = ({
  */
 const createMainContent = () => html`
   <main class="synergy-demo-main">
+    <h1>Start Page Content</h1>
     ${getTranslation('appShell.mainSlot')}
   </main>
 `;
@@ -186,10 +199,10 @@ const createFooter = () => html`
   <!-- footer -->
   <footer class="synergy-demo-footer">
     <nav>
-      <a href="#">${getTranslation('appShell.footer.imprint')}</a>
-      <a href="#">${getTranslation('appShell.footer.conditions')}</a>
-      <a href="#">${getTranslation('appShell.footer.terms')}</a>
-      <a href="#">${getTranslation('appShell.footer.privacy')}</a>
+      <a href="https://www.sick.com/de/en/impressum/w/imprint/" target="_blank">${getTranslation('appShell.footer.imprint')}</a>
+      <a href="https://www.sick.com/de/en/nutzungsbedingungen/w/terms-of-use/" target="_blank">${getTranslation('appShell.footer.conditions')}</a>
+      <a href="https://www.sick.com/de/en/w/terms-of-use" target="_blank">${getTranslation('appShell.footer.terms')}</a>
+      <a href="https://www.sick.com/de/en/w/dataprotection" target="_blank">${getTranslation('appShell.footer.privacy')}</a>
       <strong>${getTranslation('appShell.footer.copyright')}</strong>
     </nav>
   </footer>
@@ -202,12 +215,60 @@ const createFooter = () => html`
  */
 const createSidebarConnector = (id: string) => html`
   <script type="module">
+    // This is only done because in storybooks
+    // doc overview, exist multiple side-navs and headers.
+    // Per default, the header will connect to the first side-nav automatically.
     const elm = document.getElementById('${id}');
     const header = elm.querySelector('syn-header');
     const sideNav = elm.querySelector('syn-side-nav');
     if (sideNav && header) {
       header.connectSideNavigation(sideNav);
     }
+  </script>
+`;
+
+/**
+ * Creates a demo event listener that "activates" the given link
+ * and also updates the stories main content
+ * @param {string} id ID of the stories main element
+ */
+const createDemoNavigation = (
+  id: string,
+  navElementType: 'syn-side-nav' | 'syn-prio-nav' = 'syn-side-nav',
+) => html`
+  <script type="module">
+    // This emulates a click on the side-nav and updates the main content
+    // This will usually be provided by the application itself, e.g. via
+    // built in routing functions like angular-router, react-router or vue-router
+    const elm = document.getElementById('${id}');
+    const nav = elm.querySelector('${navElementType}');
+    const mainContent = elm.querySelector('main');
+    const headline = mainContent.querySelector('h1');
+
+    /**
+     * This function will handle the click events on all syn-nav-items
+     */
+    const navItemClickEvent = (e) => {
+      const target = e.target.closest('syn-nav-item');
+      if (!target) {
+        return;
+      }
+      
+      // Update the main page headline to reflect the change
+      const navItemText = target.innerText.trim();
+      headline.innerText = navItemText + ' Page Content';
+
+      // Update the current indicator
+      nav.querySelectorAll('syn-nav-item').forEach(item => {
+        item.removeAttribute('current');
+        if (item === target) {
+          item.setAttribute('current', '');
+        }
+      });      
+    };
+
+    // Add the listener to the given navigation
+    nav.addEventListener('click', navItemClickEvent);
   </script>
 `;
 
@@ -258,6 +319,7 @@ export const SideNavigation: Story = {
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
     ${createSidebarConnector('appshell-side-navigation')}
+    ${createDemoNavigation('appshell-side-navigation')}
   `,
 };
 
@@ -269,7 +331,7 @@ export const SideNavigationShrinkingContent: Story = {
       
       <!-- .synergy-demo-content -->
       <div class="synergy-demo-content">
-        ${createSideNav()}
+        ${createSideNav({ open: true })}
         <div class="synergy-demo-content-inner">
           ${createMainContent()}
           ${createFooter()}
@@ -290,42 +352,80 @@ export const SideNavigationShrinkingContent: Story = {
       }
     </style>
     ${createSidebarConnector('appshell-shrink')}
+    ${createDemoNavigation('appshell-shrink')}
   `,
 };
 
-export const RailNavigationOnMouseHover: Story = {
-  name: 'Rail Navigation (On Mouse Hover)',
-  render: () => html`
-    <!-- .synergy-demo-application -->
-    <div class="synergy-demo-application" id="appshell-rail-on-mouse-hover">
-      ${createHeader()}
-      
-      <!-- .synergy-demo-content -->
-      <div class="synergy-demo-content">
-        ${createSideNav({ rail: true })}
-        <div class="synergy-demo-content-inner">
-          ${createMainContent()}
-          ${createFooter()}
-        </div>
+const railRenderer = (id: string) => html`
+  <!-- .synergy-demo-application -->
+  <div class="synergy-demo-application" id="${id}">
+    ${createHeader()}
+    
+    <!-- .synergy-demo-content -->
+    <div class="synergy-demo-content">
+      ${createSideNav({ rail: true })}
+      <div class="synergy-demo-content-inner">
+        ${createMainContent()}
+        ${createFooter()}
       </div>
-      <!-- /.synergy-demo-content -->
-
     </div>
-    <!-- /.synergy-demo-application -->
-    ${createSharedStyles()}
+    <!-- /.synergy-demo-content -->
+
+  </div>
+  <!-- /.synergy-demo-application -->
+  ${createSharedStyles()}
+  ${createSidebarConnector(id)}
+  ${createDemoNavigation(id)}
+`;
+
+export const RailNavigationDesktop: Story = {
+  name: 'Rail Navigation (Desktop)',
+  render: () => html`
+    ${railRenderer('appshell-rail-desktop')}
     <style>
-      #appshell-rail-on-mouse-hover .synergy-demo-content {
+      #appshell-rail-desktop .synergy-demo-content {
         flex-direction: row;
       }
     </style>
-    ${createSidebarConnector('appshell-rail-on-mouse-hover')}
+  `,
+};
+
+export const RailNavigationMobile: Story = {
+  name: '↳ Tablet',
+  parameters: {
+    ...RailNavigationDesktop.parameters,
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+  render: () => html`
+    ${railRenderer('appshell-rail-mobile')}
+    <style>
+      #appshell-rail-mobile .synergy-demo-content {
+        flex-direction: row;
+      }
+
+      #appshell-rail-mobile .synergy-demo-footer {
+        container-type: inline-size;
+      }
+
+      @container (max-width: 400px) {
+        #appshell-rail-mobile .synergy-demo-footer a {
+          display: none;
+        }
+      }
+
+      #appshell-rail-mobile syn-side-nav {
+        --side-nav-open-width: 306px;
+      }
+    </style>
   `,
 };
 
 export const TopNavigation: Story = {
   render: () => html`
     <!-- .synergy-demo-application -->
-    <div class="synergy-demo-application">
+    <div class="synergy-demo-application" id="appshell-top-navigation">
       ${createHeader({ withMetaNavigation: true })}
       
       <!-- .synergy-demo-content -->
@@ -338,6 +438,7 @@ export const TopNavigation: Story = {
     </div>
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
+    ${createDemoNavigation('appshell-top-navigation', 'syn-prio-nav')}
   `,
 };
 
@@ -357,6 +458,7 @@ export const WhiteBackground: Story = {
     </div>
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
+    ${createDemoNavigation('appshell-white-background', 'syn-prio-nav')}
     <style>
       #appshell-white-background .synergy-demo-content {
         background: var(--syn-color-neutral-0);

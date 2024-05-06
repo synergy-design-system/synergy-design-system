@@ -1,9 +1,10 @@
 import { removeSections } from '../remove-section.js';
+import { addSectionAfter, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'details.component.ts',
   'details.styles.ts',
-  // 'details.test.ts',
+  'details.test.ts',
 ];
 
 /**
@@ -27,6 +28,24 @@ const transformComponent = (path, originalContent) => {
     ['const isRtl', ';\n'],
     ['\'details--rtl', 'isRtl'],
   ], content);
+
+  // Add support for size attribute
+  content = addSectionAfter(
+    content,
+    '@property({ type: Boolean, reflect: true }) disabled = false;',
+    `
+  /** The details's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+    `,
+  );
+
+  content = addSectionAfter(
+    content,
+    'details: true,',
+    `          'details--size-small': this.size === 'small',
+          'details--size-medium': this.size === 'medium',
+    `,
+  );
 
   return {
     content,
@@ -59,8 +78,20 @@ const transformStyles = (path, originalContent) => {
  * @returns
  */
 const transformTests = (path, originalContent) => {
-  const content = originalContent;
-  console.log(content);
+  const content = replaceSections(
+    [
+      // Adjust the test for the new size attribute
+      [
+        'expect(firstBody.clientHeight).to.equal(232); // 200 + 16px + 16px (vertical padding)',
+        'expect(firstBody.clientHeight).to.equal(240); // 200 + 16px + 24px (vertical padding) for size medium',
+      ],
+      [
+        'expect(secondBody.clientHeight).to.equal(432); // 400 + 16px + 16px (vertical padding)',
+        'expect(secondBody.clientHeight).to.equal(440); // 400 + 16px + 24px (vertical padding) for size medium',
+      ],
+    ],
+    originalContent,
+  );
 
   return {
     content,

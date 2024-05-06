@@ -74,6 +74,9 @@ export default class SynDetails extends SynergyElement {
   /** Disables the details so it can't be toggled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** The details's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+
   firstUpdated() {
     this.body.style.height = this.open ? 'auto' : '0';
     if (this.open) {
@@ -199,6 +202,8 @@ export default class SynDetails extends SynergyElement {
         part="base"
         class=${classMap({
           details: true,
+          'details--size-small': this.size === 'small',
+          'details--size-medium': this.size === 'medium',
           'details--open': this.open,
           'details--disabled': this.disabled,
         })}

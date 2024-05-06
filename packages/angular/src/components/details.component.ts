@@ -101,6 +101,18 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
     return this._el.disabled;
   }
 
+  /**
+* The details's size.
+ */
+  @Input()
+  set size(v: SynDetails['size']) {
+    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+  }
+
+  get size() {
+    return this._el.size;
+  }
+
   @Input()
   callHandleOpenChange(...args: Parameters<SynDetails['handleOpenChange']>) {
     return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));

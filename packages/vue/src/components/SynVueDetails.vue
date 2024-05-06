@@ -78,6 +78,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
 * Disables the details so it can't be toggled.
  */
   'disabled'?: SynDetails['disabled'];
+
+  /**
+* The details's size.
+ */
+  'size'?: SynDetails['size'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

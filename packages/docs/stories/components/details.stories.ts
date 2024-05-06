@@ -90,17 +90,13 @@ export const Sizes: Story = {
   },
   render: () => html`
     <syn-details class="details-sizes" size="small">
-      <span slot="summary">
-        <syn-icon name="wallpaper"></syn-icon>
-        Toggle Me
-      </span>
+      <syn-icon name="wallpaper" slot="summary"></syn-icon>
+      <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
     <syn-details class="details-sizes" size="medium">
-      <span slot="summary">
-        <syn-icon name="wallpaper"></syn-icon>
-        Toggle Me
-      </span>
+      <syn-icon name="wallpaper" slot="summary"></syn-icon>
+      <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
     <style>
@@ -154,41 +150,11 @@ export const GroupingDetails: Story = {
   `,
 };
 
-export const CustomizingTheSummaryIcon: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('details', 'summary-icon'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-details class="details-custom-icon" summary="Toggle Me" class="custom-icons">
-      <syn-icon name="open_in_full" slot="expand-icon"></syn-icon>
-      <syn-icon name="close" slot="collapse-icon"></syn-icon>
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </syn-details>
-    <style>
-      .details-custom-icon {
-        max-width: 400px;
-      }
-
-      .details-custom-icon::part(summary-icon) {
-        /* Disable the expand/collapse animation */
-        rotate: none;
-      }
-    </style>
-  `,
-};
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Disabled,
   Sizes,
   GroupingDetails,
-  CustomizingTheSummaryIcon,
 }, 550);
 /* eslint-enable sort-keys */

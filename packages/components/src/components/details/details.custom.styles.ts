@@ -11,19 +11,23 @@ export default css`
   }
 
   .details__summary-icon {
+    align-self: flex-start;
     color: var(--syn-color-neutral-950);
-    font-size: var(--syn-font-size-x-large);
+    
+    /**
+     * As we are using an alignment of "start" to make sure the arrow
+     * is starting at the right position, we have to adjust the top
+     * starting position of the summary icon.
+     */
+    padding-top: 2px;
   }
 
   .details .details__summary {
     color: var(--syn-typography-color-text);
   }
 
-  /**
-   * Mark the details as open by adjusting its label
-   */
-  .details--open .details__summary {
-    font-weight: var(--syn-font-weight-bold);
+  .details__header {
+    gap: var(--syn-spacing-medium);
   }
 
   /**
@@ -35,7 +39,7 @@ export default css`
   }
 
   /**
-   * Adjust paddings according to the provided size attribute
+   * Adjustments for small variant
    */
   .details--size-small .details__header {
     padding: var(--syn-spacing-medium-large) 0;
@@ -54,6 +58,13 @@ export default css`
     margin-right: var(--syn-spacing-small);
   }
 
+  .details--size-small .details__summary-icon {
+    font-size: var(--syn-font-size-large);
+  }
+
+  /**
+   * Adjustment for medium variant
+   */
   .details--size-medium .details__header {
     padding: var(--syn-spacing-large) 0;
   }
@@ -69,5 +80,16 @@ export default css`
   .details--size-medium .details__summary::slotted(syn-icon) {
     font-size: var(--syn-spacing-x-large);
     margin-right: var(--syn-spacing-x-small);
+  }
+
+  .details--size-medium .details__summary-icon {
+    font-size: var(--syn-spacing-x-large);
+  }
+
+  /**
+   * Mark the details as open by adjusting its label
+   */
+  .details--open .details__summary {
+    font-weight: var(--syn-font-weight-bold);
   }
 `;

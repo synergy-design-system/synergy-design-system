@@ -3,6 +3,42 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable sort-keys */
+export const accordion = {
+  details1: {
+    content: `
+      Ja, wir bieten zahlreiche Praktikumsplätze für Schülerinnen und Schüler zur Berufsorientierung im technischen und kaufmännischen Bereich an.
+      Alle Infos zum Thema Praktikum und Berufsorientierung findest du hier.
+    `,
+    headline: 'Kann ich bei SICK ein Schülerpraktikum absolvieren?',
+  },
+  details2: {
+    content: `
+      Grundsätzlich setzen wir für eine Ausbildung die Mittlere Reife oder einen gleichwertigen Schulabschluss voraus.
+      Für das Duale Studium benötigst du Abitur oder Fachhochschulreife.
+      Alle Voraussetzungen, die du für den jeweiligen Ausbildungsberuf mitbringen solltest, findest du auf unseren Seite der Ausbildungsberufe und Dualen Studiengängen.
+    `,
+    headline: 'Welchen Schulabschluss brauche ich für eine Ausbildung / ein Duales Studium bei SICK?',
+  },
+  details3: {
+    content: `
+      Nein, die schulischen Leistungen sind für uns nur wichtig, um einen Gesamteindruck von dir zu bekommen. Wir verlangen generell keinen bestimmten Notendurchschnitt.
+      Für das Duale Studium sind die Noten jedoch nicht unwichtig.
+      Es braucht gewisse Grundlagen, um das Duale Studium schaffen zu können.
+      Daher schauen wir dort etwas genauer auf deine Leistungen in der Schule.    
+    `,
+    headline: 'Verlangt SICK einen bestimmten Notendurchschnitt?',
+  },
+  details4: {
+    content: `
+      SICK bietet das Modell der dualen Ausbildung und des dualen Studiums an, das nur in Deutschland verfügbar ist. Informationen zu diesen Modellen finden Sie hier: IHK-Ausbildung und duales Studium an der DHBW.
+      Für beide Modelle benötigen Sie entsprechende Deutschkenntnisse für den Schul- oder Hochschulbesuch. Für die Ausbildung wird mindestens das B2-Niveau empfohlen, für das Studium benötigen Sie C1 (mehr Informationen hier).
+      Wir bitten Sie, Ihre Bewerbung in deutscher Sprache einzureichen.
+    `,
+    headline: 'Welche Deutschkenntnisse brauche ich für eine Ausbildung oder ein Studium bei SICK?',
+  },
+  headline: 'Allgemeine Fragen',
+};
+
 export const contactForm = {
   headline: 'Contact Form',
   subHeadline: 'Please fill in your personal information and let us know how we can help you.',
@@ -45,6 +81,7 @@ export const contactForm = {
 };
 
 export const translations = {
+  accordion,
   contactForm,
 };
 

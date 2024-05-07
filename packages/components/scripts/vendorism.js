@@ -8,6 +8,7 @@ import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/in
 import {
   vendorAlert,
   vendorBadge,
+  vendorBreadcrumb,
   vendorButton,
   vendorDrawer,
   vendorIcon,
@@ -273,6 +274,7 @@ const config = {
       // specialized customizations
       vendorAlert,
       vendorBadge,
+      vendorBreadcrumb,
       vendorButton,
       vendorDrawer,
       vendorIconButton,

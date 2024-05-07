@@ -1,5 +1,6 @@
 export * from './alert.vendorism.js';
 export * from './badge.vendorism.js';
+export * from './breadcrumb.vendorism.js';
 export * from './button.vendorism.js';
 export * from './drawer.vendorism.js';
 export * from './icon-button.vendorism.js';

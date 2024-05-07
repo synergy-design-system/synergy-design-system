@@ -100,7 +100,7 @@ export default class SynBreadcrumb extends SynergyElement {
 
       <span hidden aria-hidden="true">
         <slot name="separator">
-          <syn-icon name=${this.localize.dir() === 'rtl' ? 'chevron-left' : 'chevron-right'} library="system"></syn-icon>
+          <syn-icon name="chevron-down" library="system" class=${this.localize.dir()}></syn-icon>
         </slot>
       </span>
     `;

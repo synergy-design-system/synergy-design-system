@@ -159,10 +159,10 @@ After the deprecation of `show-burger-menu` and `burger-menu-visible`, it was cl
 
 All occurrences of the used slots `show-burger-menu-icon` and `hide-burger-menu-icon` must be changed to the corresponding new slot names.
 
-| Slot Name (v1)        | Slot Name (v2)          | Description                            |
-| ---------------------- | ------------------------ | -------------------------------------- |
-| `show-burger-menu-icon` | `open-burger-menu-icon` | The icon which is shown if burger-menu=open |
-| `hide-burger-menu-icon` | `closed-burger-menu-icon`   | The icon which is shown if burger-menu=closed |
+| Slot Name (v1)          | Slot Name (v2)            | Description                                   |
+| ----------------------- | ------------------------- | --------------------------------------------- |
+| `show-burger-menu-icon` | `open-burger-menu-icon`   | The icon which is shown if burger-menu=open   |
+| `hide-burger-menu-icon` | `closed-burger-menu-icon` | The icon which is shown if burger-menu=closed |
 
 **Example (before)**:
 

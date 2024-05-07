@@ -30,6 +30,16 @@
           "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
           "type": "text"
         }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping Details",
+          "type": "text"
+        },
+        "description": {
+          "value": "Details are designed to function independently, but you can simulate the accordion to only shown one at a time by listening for the syn-show event.",
+          "type": "text"
+        }
       }
     },
     "alert": {
@@ -505,7 +515,7 @@
     "details": {
       "default": {
         "description": {
-          "value": "Details show a brief summary and expand to show additional content.",
+          "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
           "type": "text"
         },
         "title": {
@@ -520,16 +530,6 @@
         },
         "description": {
           "value": "Use the disable attribute to prevent the details from expanding.",
-          "type": "text"
-        }
-      },
-      "grouping": {
-        "title": {
-          "value": "Grouping Details",
-          "type": "text"
-        },
-        "description": {
-          "value": "Details are designed to function independently, but you can simulate a group or “accordion” where only one is shown at a time by listening for the syn-show event.",
           "type": "text"
         }
       },

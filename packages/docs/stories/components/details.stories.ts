@@ -107,54 +107,10 @@ export const Sizes: Story = {
   `,
 };
 
-export const GroupingDetails: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('details', 'grouping'),
-      },
-    },
-  },
-  render: () => html`
-    <div class="details-group-example">
-      <syn-details class="details-grouping" summary="First" open>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </syn-details>
-
-      <syn-details class="details-grouping" summary="Second">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </syn-details>
-
-      <syn-details class="details-grouping" summary="Third">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </syn-details>
-    </div>
-    <script type="module">
-      const container = document.querySelector('.details-group-example');
-
-      // Close all other details when one is shown
-      container.addEventListener('syn-show', event => {
-        if (event.target.localName === 'syn-details') {
-          [...container.querySelectorAll('syn-details')].map(details => (details.open = event.target === details));
-        }
-      });
-    </script>
-    <style>
-      .details-grouping {
-        max-width: 400px;
-      }
-    </style>
-  `,
-};
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Disabled,
   Sizes,
-  GroupingDetails,
-}, 550);
+}, 200);
 /* eslint-enable sort-keys */

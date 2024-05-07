@@ -65,6 +65,29 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
+export const GroupingDetails: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('accordion', 'grouping'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-accordion close-others>
+      <syn-details summary="First" open>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+      <syn-details summary="Second">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+      <syn-details summary="Third">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+    </syn-accordion>
+  `,
+};
+
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -74,7 +97,7 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-accordion close-others>
+    <syn-accordion>
       <syn-details summary="First" open>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
       </syn-details>
@@ -98,7 +121,7 @@ export const Sizes: Story = {
   },
   render: () => html`
     ${['small', 'medium'].map(size => html`
-      <syn-accordion class="accordion-size" close-others size="${size as 'small' | 'medium'}">
+      <syn-accordion class="accordion-size" size="${size as 'small' | 'medium'}">
         <syn-details summary="First">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </syn-details>
@@ -161,6 +184,7 @@ export const Sizes: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  GroupingDetails,
   Disabled,
   Sizes,
 }, 1150);

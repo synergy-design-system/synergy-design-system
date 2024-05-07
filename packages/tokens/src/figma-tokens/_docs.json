@@ -37,7 +37,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Details are designed to function independently, but you can simulate the accordion to only shown one at a time by listening for the syn-show event.",
+          "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
           "type": "text"
         }
       }

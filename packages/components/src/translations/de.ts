@@ -41,11 +41,11 @@ const translation: Translation = {
 
   // Automatically generated custom translations.
   // @see scripts/vendorism/translations.vendorism.js
-  closeMenu: 'Menu schließen',
+  closeMenu: 'Menü schließen',
   danger: 'Gefahr',
   notification: 'Benachrichtigung',
-  menu: 'Menu',
-  openMenu: 'Menu öffnen',
+  menu: 'Menü',
+  openMenu: 'Menü öffnen',
   sideNav: 'Seitennavigation',
   success: 'Erfolg',
   warning: 'Warnung',

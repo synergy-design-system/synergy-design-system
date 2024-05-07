@@ -78,7 +78,7 @@ async function checkInitialState(form: TestPage) {
     .forEach((val) => expect(val).toBeFalsy());
 }
 
-test(`Contact form test on port ${process.env.PORT}`, () => {
+test.describe(`Contact form test on port ${process.env.PORT}`, () => {
   test('Form reset', async ({ page }) => {
     const form = new TestPage(page);
     await form.goto(getURL(availablePages.form));

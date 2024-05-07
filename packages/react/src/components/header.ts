@@ -26,11 +26,13 @@ Component.define('syn-header');
  * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
  * @slot navigation - This slot can be used to add an optional horizontal navigation
- * @slot show-burger-menu-icon - An icon to use in lieu of the default show burger menu icon
- * @slot hide-burger-menu-icon - An icon to use in lieu of the default hide burger menu icon
+ * @slot open-burger-menu-icon - An icon to use in lieu of the default burger-menu=open state.
+ *                      The default close icon is a 'x'.
+ * @slot closed-burger-menu-icon - An icon to use in lieu of the default burger-menu=closed state.
+ *                      The default open icon is a burger menu.
  *
- * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to hidden
- * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to hidden
  * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
  * @csspart base - The component's base wrapper

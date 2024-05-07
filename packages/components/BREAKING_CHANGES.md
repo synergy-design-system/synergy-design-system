@@ -72,7 +72,7 @@ The deprecated properties have to be mapped to the new `burger-menu` property in
 <syn-header show-burger-menu></syn-header>
 
 <!-- Example 3: burger menu hidden -->
-<syn-header show-burger-menu></syn-header>
+<syn-header></syn-header>
 ```
 
 **Example (after)**:
@@ -143,6 +143,43 @@ All occurrences of event listeners listening to `syn-burger-menu-hide` and `syn-
     console.log("Header is hidden");
   });
 </script>
+```
+
+#### ⚠️ Removed slots `show-burger-menu-icon` and `hide-burger-menu-icon`
+
+**Associated Ticket(s)**:
+
+- [#430](https://github.com/synergy-design-system/synergy-design-system/issues/430)
+
+**Reason**:
+
+After the deprecation of `show-burger-menu` and `burger-menu-visible`, it was clear that we have to align our slot names to the provided new `burger-menu` property. Therefore, we chose to harmonize the slot names and the available properties.
+
+**Migration Steps**:
+
+All occurrences of the used slots `show-burger-menu-icon` and `hide-burger-menu-icon` must be changed to the corresponding new slot names.
+
+| Slot Name (v1)        | Slot Name (v2)          | Description                            |
+| ---------------------- | ------------------------ | -------------------------------------- |
+| `show-burger-menu-icon` | `open-burger-menu-icon` | The icon which is shown if burger-menu=open |
+| `hide-burger-menu-icon` | `closed-burger-menu-icon`   | The icon which is shown if burger-menu=closed |
+
+**Example (before)**:
+
+```html
+<syn-header label="Header" burger-menu="open">
+  <syn-icon slot="show-burger-menu-icon" name="cancel"></syn-icon>
+  <syn-icon slot="hide-burger-menu-icon" name="menu_open"></syn-icon>
+</syn-header>
+```
+
+**Example (after)**:
+
+```html
+<syn-header label="Header" burger-menu="open">
+  <syn-icon slot="open-burger-menu-icon" name="cancel"></syn-icon>
+  <syn-icon slot="closed-burger-menu-icon" name="menu_open"></syn-icon>
+</syn-header>
 ```
 
 ### `<syn-prio-nav>`

@@ -178,7 +178,7 @@
     "packages/components/src/utilities/localize.ts": true,
     "packages/components/tsconfig.json": true,
     "packages/components/tsconfig.prod.json": true,
-    "packages/components/web-test-runner.config.js": true,
+    "packages/components/web-test-runner.config.js": false,
     "packages/react/src/**": true
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]

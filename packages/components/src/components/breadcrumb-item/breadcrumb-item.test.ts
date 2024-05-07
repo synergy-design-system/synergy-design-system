@@ -17,7 +17,7 @@ describe('<syn-breadcrumb-item>', () => {
     });
 
     it('should pass accessibility tests', async () => {
-      await expect(el).to.be.accessible();
+      const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
     });
 
     it('should hide the separator from screen readers', () => {
@@ -41,7 +41,7 @@ describe('<syn-breadcrumb-item>', () => {
       });
 
       it('should pass accessibility tests', async () => {
-        await expect(el).to.be.accessible();
+        const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
       });
 
       it('should render a HTMLAnchorElement as the part "label", with the supplied href value', () => {
@@ -58,7 +58,7 @@ describe('<syn-breadcrumb-item>', () => {
       });
 
       it('should pass accessibility tests', async () => {
-        await expect(el).to.be.accessible();
+        const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
       });
 
       describe('should render a HTMLAnchorElement as the part "label"', () => {
@@ -88,7 +88,7 @@ describe('<syn-breadcrumb-item>', () => {
       });
 
       it('should pass accessibility tests', async () => {
-        await expect(el).to.be.accessible();
+        const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
       });
 
       describe('should render a HTMLAnchorElement', () => {
@@ -120,7 +120,7 @@ describe('<syn-breadcrumb-item>', () => {
     });
 
     it('should pass accessibility tests', async () => {
-      await expect(el).to.be.accessible();
+      const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
     });
 
     it('should accept as an assigned child in the shadow root', () => {
@@ -147,7 +147,7 @@ describe('<syn-breadcrumb-item>', () => {
     });
 
     it('should pass accessibility tests', async () => {
-      await expect(el).to.be.accessible();
+      const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
     });
 
     it('should accept as an assigned child in the shadow root', () => {

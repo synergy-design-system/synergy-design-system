@@ -66,7 +66,7 @@ export default css`
    * When omitting this statement, we will get rounding problems via line-height
    */
   .drawer__title,
-  .header-actions {
+  .drawer__header-actions {
     min-height: 88px;
   }
 

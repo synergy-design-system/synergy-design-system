@@ -48,7 +48,6 @@ const createOpener = (className: string) => html`
 
       opener.addEventListener('click', (e) => {
         const currentDialog = e.target.parentElement.querySelector('syn-dialog');
-        console.log(currentDialog)
         currentDialog.show();
         currentDialog.modal.activateExternal();
       });

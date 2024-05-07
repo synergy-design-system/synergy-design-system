@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     /**
-     * Used as the default padding for the drawer title
+     * Used as the default padding for the dialog title
      */
     --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-large);
 
@@ -35,7 +35,7 @@ export default css`
    * When omitting this statement, we will get rounding problems via line-height
    */
   .dialog__title,
-  .header-actions {
+  .dialog__header-actions {
     min-height: 88px;
   }
 

@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .details {
+    border-color: var(--syn-color-neutral-400);
     border-radius: var(--syn-border-radius-none);
     border-width: 0 0 var(--syn-border-width-small);
   }

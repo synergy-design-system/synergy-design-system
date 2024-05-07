@@ -5,7 +5,6 @@ import type SynCheckbox from '../../../components/src/components/checkbox/checkb
 import type SynSwitch from '../../../components/src/components/switch/switch.component';
 import type SynSelect from '../../../components/src/components/select/select.component';
 import TestPage from './test.page';
-import { env } from 'process';
 
 const defaultPort = 5173;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;

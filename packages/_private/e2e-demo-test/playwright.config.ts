@@ -9,11 +9,15 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
+      
     }],
     [process.env.CI ? 'github' : 'list'],
   ],
   use: {
-    trace: 'retain-on-failure'
+    // headless: true,
+    launchOptions: {
+      // slowMo: 500,
+    },
   },
 
   projects: [

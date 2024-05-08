@@ -99,7 +99,7 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     await form.goto(getURL(availablePages.form));
 
     // submit invalid form
-    await form.submit.click({ delay: 300 });
+    await form.submit.click();
 
     // check invalid states of required inputs
     const states = await Promise.all(
@@ -136,7 +136,10 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // fill-out the form correctly
     await fillForm(form);
 
-    await form.submit.evaluate((el) => (el as SynButton).click());
+    const bb = await form.submit.boundingBox();
+    if (bb != null) {
+      await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2);
+    }
     // submit valid form
     // await form.submit.click({ delay: 300 }); // sidebar closing needs some time
 

@@ -12,10 +12,14 @@ export default defineConfig({
     }],
     [process.env.CI ? 'github' : 'list'],
   ],
+  use: {
+    trace: 'retain-on-failure'
+  },
 
   projects: [
 
     {
+      tra
       name: 'webkit',
       use: { 
         ...devices['Desktop Safari'],

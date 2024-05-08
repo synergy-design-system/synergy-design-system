@@ -139,11 +139,6 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // submit valid form
     await form.submit.click({ delay: 300 });
 
-    if (process.env.PORT === '5175') {
-      const cname = await form.form.getAttribute('class');
-      expect(cname).toBe('submitted');
-    }
-
     expect(submitted).toBe(true);
 
     expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);

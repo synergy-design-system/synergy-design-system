@@ -126,7 +126,7 @@ export const Default: Story = {
         }
       });
     </script>
-    ${createDummyActiveNavItemListener()};
+    ${createDummyActiveNavItemListener()}
   `,
 };
 

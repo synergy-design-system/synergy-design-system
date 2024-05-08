@@ -6,7 +6,7 @@ import type SynSwitch from '../../../components/src/components/switch/switch.com
 import type SynSelect from '../../../components/src/components/select/select.component';
 import TestPage from './test.page';
 
-const defaultPort = 5173;
+const defaultPort = 5175;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;
 
 const availablePages = {
@@ -135,10 +135,13 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // fill-out the form correctly
     await fillForm(form);
 
+    expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
+
     // submit valid form
     await form.submit.click();
 
-    await page.waitForTimeout(1000);
+    const cname = await form.form.getAttribute('class');
+    expect(cname).toBe('submitted');
 
     expect(submitted).toBe(true);
 

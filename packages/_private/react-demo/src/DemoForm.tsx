@@ -93,6 +93,8 @@ export const DemoForm = () => {
           ? 'Your data was successfully submitted'
           : 'Your data could not be submitted! Please provide all required information!';
 
+        (e.target as HTMLElement).className = 'submitted';
+
         // eslint-disable-next-line no-alert
         alert(content);
       }}

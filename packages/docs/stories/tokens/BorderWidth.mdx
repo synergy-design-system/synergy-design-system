@@ -1,0 +1,58 @@
+import { Meta } from "@storybook/blocks";
+import { CopyToClipBoard } from '../../src/Clipboard.tsx';
+import { CopyRawCssPropValue } from '../../src/RawColorValue.tsx';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+import { BorderWidth } from '../../src/TokenHelpers.tsx';
+
+import {
+  getBorderWidth,
+  getCSSToken,
+  getSASSToken,
+} from '../../src/helpers';
+
+<Meta title="Tokens/Border Width" />
+
+# {docsTokens?.tokens?.['border-width']?.title.value}
+
+<p>
+  {docsTokens?.tokens?.['border-width']?.description?.value}
+</p>
+
+<table>
+  <tbody>
+    <>
+      <tr>
+        <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
+        <th>Raw Value</th>
+        <th>CSS Token</th>
+        <th>SCSS Token</th>
+        <th>JS Token</th>
+      </tr>
+      {Object.entries(getBorderWidth(true)).map(([token, value]) => (
+        <tr key={`${token}-row`}>
+          <td>
+            <BorderWidth className={token.toLowerCase()} value={value}  />
+          </td>
+          <td>
+            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
+          </td>
+          <td>
+            <CopyToClipBoard value={getCSSToken(token)}>
+              {getCSSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={getSASSToken(token)}>
+              {getSASSToken(token)}
+            </CopyToClipBoard>
+          </td>
+          <td>
+            <CopyToClipBoard value={token}>
+              {token}
+            </CopyToClipBoard>
+          </td>
+        </tr>
+      ))}
+    </>
+  </tbody>
+</table>

@@ -102,6 +102,10 @@ export default class TestPage {
     return this.page.locator(selectors.submit);
   }
 
+  get sidebar(): Locator {
+    return this.page.locator(selectors.sidebar);
+  }
+
   get reset(): Locator {
     return this.page.locator(selectors.reset);
   }

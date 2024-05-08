@@ -18,6 +18,7 @@ export default {
   phoneLoc: '#input-phone',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
+  sidebar: 'syn-sidebar',
   submit: '.syn-submit-buttons > syn-button:nth-child(2)',
   topicLoc: '#topics',
 };

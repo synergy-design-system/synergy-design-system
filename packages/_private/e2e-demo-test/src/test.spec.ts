@@ -5,6 +5,7 @@ import type SynCheckbox from '../../../components/src/components/checkbox/checkb
 import type SynSwitch from '../../../components/src/components/switch/switch.component';
 import type SynSelect from '../../../components/src/components/select/select.component';
 import TestPage from './test.page';
+import { SynButton } from '@synergy-design-system/components';
 
 const defaultPort = 5175;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;
@@ -97,9 +98,6 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     const form = new TestPage(page);
     await form.goto(getURL(availablePages.form));
 
-    // make sure sidebar is closed
-    await form.sidebar.evaluate((el) => el.removeAttribute('open'));
-
     // submit invalid form
     await form.submit.click({ delay: 300 });
 
@@ -131,8 +129,6 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
           submitted = false;
         });
     });
-    // make sure sidebar is closed
-    await form.sidebar.evaluate((el) => el.removeAttribute('open'));
 
     // check initial state
     await checkInitialState(form);
@@ -140,8 +136,9 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // fill-out the form correctly
     await fillForm(form);
 
+    await form.submit.evaluate((el) => (el as SynButton).click());
     // submit valid form
-    await form.submit.click({ delay: 300 }); // sidebar closing needs some time
+    // await form.submit.click({ delay: 300 }); // sidebar closing needs some time
 
     expect(submitted).toBe(true);
 

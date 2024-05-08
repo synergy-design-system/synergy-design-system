@@ -138,7 +138,7 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // submit valid form
     await form.submit.click();
 
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(1000);
 
     expect(submitted).toBe(true); // failed 1
 

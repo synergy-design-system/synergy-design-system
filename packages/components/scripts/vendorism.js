@@ -59,6 +59,7 @@ export const components = [
   'spinner',
   'breadcrumb',
   'breadcrumb-item',
+  'dialog',
 ].sort();
 
 /**

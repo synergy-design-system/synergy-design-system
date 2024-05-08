@@ -19,7 +19,6 @@ export default defineConfig({
   projects: [
 
     {
-      tra
       name: 'webkit',
       use: { 
         ...devices['Desktop Safari'],

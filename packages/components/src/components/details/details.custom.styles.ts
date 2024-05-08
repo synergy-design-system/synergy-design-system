@@ -14,13 +14,14 @@ export default css`
   .details__summary-icon {
     align-self: flex-start;
     color: var(--syn-color-neutral-950);
-    
+    font-size: var(--syn-spacing-large);
+
     /**
-     * As we are using an alignment of "start" to make sure the arrow
-     * is starting at the right position, we have to adjust the top
-     * starting position of the summary icon.
+     * As we are using an alignment of "start"  instead of "center" make sure
+     * the arrow starts on the same visual line as the first line of headline text
      */
-    padding-top: 2px;
+    position: relative;
+    top: 2px;
   }
 
   .details .details__summary {
@@ -61,10 +62,6 @@ export default css`
     margin-right: var(--syn-spacing-small);
   }
 
-  .details--size-small .details__summary-icon {
-    font-size: var(--syn-font-size-large);
-  }
-
   /**
    * Adjustment for medium variant
    */
@@ -85,10 +82,6 @@ export default css`
   .details--size-medium .details__summary::slotted(syn-icon) {
     font-size: var(--syn-spacing-x-large);
     margin-right: var(--syn-spacing-x-small);
-  }
-
-  .details--size-medium .details__summary-icon {
-    font-size: var(--syn-spacing-x-large);
   }
 
   /**

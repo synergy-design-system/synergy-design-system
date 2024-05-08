@@ -47,11 +47,11 @@ export const contactForm = {
 export const appShell = {
   appName: 'Synergy',
   footer: {
-    conditions: 'Nutzungsbedingungen',
+    conditions: 'Terms and conditions',
     copyright: '© 2024 SICK AG',
-    imprint: 'Impressum',
-    privacy: 'Datenschutzerklärung',
-    terms: 'AGB',
+    imprint: 'Imprint',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of use',
   },
   metaNavigation: {
     menuItem: 'Menu Item',

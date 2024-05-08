@@ -153,19 +153,19 @@ const createSideNav = ({
       <syn-icon name="home" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.start')}
     </syn-nav-item>
-    <syn-nav-item>
+    <syn-nav-item divider>
       <syn-icon name="spoke" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.workspaces')}
     </syn-nav-item>
-    <syn-nav-item>
+    <syn-nav-item divider>
       <syn-icon name="insert_drive_file" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.documents')}
     </syn-nav-item>
-    <syn-nav-item>
+    <syn-nav-item divider>
       <syn-icon name="wb_cloudy" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.cloud')}
     </syn-nav-item>
-    <syn-nav-item>
+    <syn-nav-item divider>
       <syn-icon name="volunteer_activism" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.feedback')}
     </syn-nav-item>
@@ -174,7 +174,7 @@ const createSideNav = ({
       <syn-icon name="settings" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.settings')}
     </syn-nav-item>
-    <syn-nav-item slot="footer">
+    <syn-nav-item slot="footer" divider>
       <syn-icon name="logout" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.logout')}
     </syn-nav-item>

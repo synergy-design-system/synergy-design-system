@@ -72,10 +72,10 @@ export const BreadcrumbLinks: Story = {
   },
   render: () => html`
     <syn-breadcrumb>
-      <syn-breadcrumb-item href="#nav1">Breadcrumb Item</syn-breadcrumb-item>
-      <syn-breadcrumb-item href="#nav2">Breadcrumb Item</syn-breadcrumb-item>
-      <syn-breadcrumb-item href="#nav3">Breadcrumb Item</syn-breadcrumb-item>
-      <syn-breadcrumb-item href="#nav4">Breadcrumb Item</syn-breadcrumb-item>
+      <syn-breadcrumb-item href="#" target="_blank">Breadcrumb Item</syn-breadcrumb-item>
+      <syn-breadcrumb-item href="#" target="_blank">Breadcrumb Item</syn-breadcrumb-item>
+      <syn-breadcrumb-item href="#" target="_blank">Breadcrumb Item</syn-breadcrumb-item>
+      <syn-breadcrumb-item href="#" target="_blank">Breadcrumb Item</syn-breadcrumb-item>
     </syn-breadcrumb>
   `,
 };
@@ -91,7 +91,7 @@ export const Prefixes: Story = {
   render: () => html`
     <syn-breadcrumb>
       <syn-breadcrumb-item>
-        <syn-icon slot="prefix" name="house"></syn-icon>
+        <syn-icon slot="prefix" name="home"></syn-icon>
         Breadcrumb Item
       </syn-breadcrumb-item>
       <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
@@ -134,12 +134,13 @@ export const WithDropdowns: Story = {
       <syn-breadcrumb>
         <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
         <syn-breadcrumb-item>
+          WORK IN PROGRESS
           <syn-dropdown slot="suffix">
-            <syn-icon label="More options" name="more_horiz" slot="trigger"></syn-icon>
+            <syn-icon-button label="More options" name="more_horiz" size="small" slot="trigger"></syn-icon-button>
             <syn-menu>
-              <syn-menu-item>Web Design</syn-menu-item>
-              <syn-menu-item>Web Development</syn-menu-item>
-              <syn-menu-item>Marketing</syn-menu-item>
+              <syn-menu-item>Breadcrumb Item</syn-menu-item>
+              <syn-menu-item>Breadcrumb Item</syn-menu-item>
+              <syn-menu-item>Breadcrumb Item</syn-menu-item>
             </syn-menu>
           </syn-dropdown>
         </syn-breadcrumb-item>

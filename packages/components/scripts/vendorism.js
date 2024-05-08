@@ -57,6 +57,7 @@ export const components = [
   'alert',
   'spinner',
   'details',
+  'dialog',
 ].sort();
 
 /**

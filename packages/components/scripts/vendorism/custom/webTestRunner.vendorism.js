@@ -39,12 +39,9 @@ import synTestPlugins from './scripts/tests/index.js';`,
       `
     // Enable firefox, but use concurrency of 1
     // @see https://github.com/modernweb-dev/web/issues/2374
-    //playwrightLauncher({ product: 'firefox', concurrency: 1 }),
+    playwrightLauncher({ product: 'firefox', concurrency: 1 }),
 `,
   );
-
-  nextContent = nextContent.replace("playwrightLauncher({ product: 'chromium' })", "//playwrightLauncher({ product: 'chromium' })");
-
   return {
     content: nextContent,
     path,

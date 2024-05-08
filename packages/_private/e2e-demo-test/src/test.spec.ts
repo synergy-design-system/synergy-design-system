@@ -6,7 +6,7 @@ import type SynSwitch from '../../../components/src/components/switch/switch.com
 import type SynSelect from '../../../components/src/components/select/select.component';
 import TestPage from './test.page';
 
-const defaultPort = 5175;
+const defaultPort = 5173;
 const host = `http://localhost:${process.env.PORT || defaultPort}`;
 
 const availablePages = {

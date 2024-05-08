@@ -30,11 +30,11 @@ export default {
     })
   ],
   browsers: [
-    //playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'chromium' }),
     
     // Enable firefox, but use concurrency of 1
     // @see https://github.com/modernweb-dev/web/issues/2374
-    //playwrightLauncher({ product: 'firefox', concurrency: 1 }),
+    playwrightLauncher({ product: 'firefox', concurrency: 1 }),
 
     playwrightLauncher({ product: 'webkit' })
   ],

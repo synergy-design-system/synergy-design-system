@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/Clipboard.tsx';
 import { CopyRawHexValue } from '../../src/RawColorValue.tsx';
+import { ColorSwatch, MultiLineDescription } from '../../src/TokenHelpers.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 
 import {
@@ -16,9 +17,7 @@ import {
 
 # Colors
 
-<p>
-  {docsTokens?.tokens?.color?.description?.value ?? 'No Description provided'}
-</p>
+<MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
 {['light', 'dark'].map(theme => (
   <div key={theme}>
@@ -47,7 +46,7 @@ import {
             {Object.entries(palette).map(([token, value]) => (
               <tr key={`${title}-row-${token}`}>
                 <td>
-                  <div className="color-swatch" style={{ backgroundColor: value }} />
+                  <ColorSwatch value={value} />
                 </td>
                 <td>
                   <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
@@ -75,22 +74,3 @@ import {
     </table>
   </div>
 ))}
-
-<style>
-  {`
-    .color-swatch {
-      align-items: center;
-      border-radius: 2px;
-      box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-      display: flex;
-      height: 40px;
-      justify-content: center;
-      width: 40px;
-    }
-
-    .copy-to-clipboard {
-      text-align: center;
-      width: 20px;
-    }
-  `}
-</style>

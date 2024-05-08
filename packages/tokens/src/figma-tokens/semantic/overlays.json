@@ -2,7 +2,7 @@
   "overlay": {
     "background": {
       "color": {
-        "value": "rgba(0, 0, 0, 0.4)",
+        "value": "rgba(0, 0, 0, 0.5)",
         "type": "color"
       }
     }

@@ -14,7 +14,7 @@ export default defineConfig({
     [process.env.CI ? 'github' : 'list'],
   ],
   use: {
-    trace: 'retain-on-failure',
+    // trace: 'retain-on-failure',
     // headless: true,
     launchOptions: {
       // slowMo: 500,

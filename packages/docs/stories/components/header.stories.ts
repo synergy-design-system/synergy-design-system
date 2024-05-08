@@ -158,6 +158,27 @@ export const Navigation = {
       </syn-prio-nav>
       App Name
     </syn-header>
+    <script type="module">
+      // This emulates a click on the side-nav and updates the main content
+      // This will usually be provided by the application itself, e.g. via
+      // built in routing functions like angular-router, react-router or vue-router
+      Array.from(document.querySelectorAll('syn-prio-nav')).forEach(nav => {
+        nav.addEventListener('click', e => {
+          const target = e.target.closest('syn-nav-item');
+          if (!target) {
+            return;
+          }
+          
+          // Update the current indicator
+          nav.querySelectorAll('syn-nav-item').forEach(item => {
+            item.removeAttribute('current');
+            if (item === target) {
+              item.setAttribute('current', '');
+            }
+          });
+        });
+      });
+    </script>
   `,
 };
 

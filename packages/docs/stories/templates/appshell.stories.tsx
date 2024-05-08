@@ -348,16 +348,43 @@ export const SideNavigationShrinkingContent: Story = {
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
     <style>
-      #appshell-shrink syn-side-nav::part(overlay) {
-        display: none;
-      }
+      #appshell-shrink {
+        /**
+         * Set this variable to the wanted size of the side-nav
+         * Make sure the value stays in sync, otherwise the parts my overlap
+         */
+        --appshell-shrink-nav-open-width: 320px;
 
-      #appshell-shrink .synergy-demo-content {
-        flex-direction: row;
+        syn-side-nav::part(overlay) {
+          display: none;
+        }
+
+        .synergy-demo-content-inner {
+          /**
+           * Set the initial margin left. Needed because we
+           * create the page with the side-bar open
+           */
+          margin-left: var(--appshell-shrink-nav-open-width);
+          transition: margin-left 250ms;
+        }
       }
     </style>
     ${createSidebarConnector('appshell-shrink')}
     ${createDemoNavigation('appshell-shrink')}
+
+    <script type="module">
+      // This script will make sure the margin of the content area
+      // is adjusted when the side-bar is opened or closed.
+      // Make sure to use the same value as in the css variable above
+      const sideNav = document.getElementById('appshell-shrink').querySelector('syn-side-nav');
+      const demoContent = document.getElementById('appshell-shrink').querySelector('.synergy-demo-content-inner');
+      sideNav.addEventListener('syn-show', () => {
+        demoContent.style.marginLeft = 'var(--appshell-shrink-nav-open-width)';
+      });
+      sideNav.addEventListener('syn-hide', () => {
+        demoContent.style.marginLeft = '0px';
+      });
+    </script>
   `,
 };
 

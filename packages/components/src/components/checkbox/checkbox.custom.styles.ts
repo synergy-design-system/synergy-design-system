@@ -29,7 +29,21 @@ export default css`
   }
 
   .checkbox__label {
+    line-height: var(--syn-line-height-normal);
     margin-inline-start: var(--syn-spacing-x-small);
+    position: relative;
+  }
+
+  .checkbox--small .checkbox__label {
+    top: -3px;
+  }
+
+  .checkbox--medium .checkbox__label {
+    top: -3px;
+  }
+
+  .checkbox--large .checkbox__label {
+    top: -2px;
   }
 
   /* Disabled */

@@ -70,6 +70,9 @@ const preview: Preview = {
       },
       source: { format: 'html' }
     },
+    viewport: {
+      defaultViewport: 'default',
+    },
   },
 };
 

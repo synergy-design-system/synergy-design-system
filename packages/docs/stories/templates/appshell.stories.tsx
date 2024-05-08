@@ -245,6 +245,12 @@ const createDemoNavigation = (
     const mainContent = elm.querySelector('main');
     const headline = mainContent.querySelector('h1');
 
+    // Hide the header in case we are using the top navigation
+    if ('${navElementType}' === 'syn-prio-nav') {
+      const header = elm.querySelector('syn-header');
+      header.showBurgerMenu = false;
+    }
+
     /**
      * This function will handle the click events on all syn-nav-items
      */
@@ -294,7 +300,6 @@ const meta: Meta = {
       ),
       story: {
         iframeHeight: 550,
-        inline: false,
       },
     },
   },
@@ -356,75 +361,72 @@ export const SideNavigationShrinkingContent: Story = {
   `,
 };
 
-const railRenderer = (id: string) => html`
-  <!-- .synergy-demo-application -->
-  <div class="synergy-demo-application" id="${id}">
-    ${createHeader()}
-    
-    <!-- .synergy-demo-content -->
-    <div class="synergy-demo-content">
-      ${createSideNav({ rail: true })}
-      <div class="synergy-demo-content-inner">
-        ${createMainContent()}
-        ${createFooter()}
-      </div>
-    </div>
-    <!-- /.synergy-demo-content -->
-
-  </div>
-  <!-- /.synergy-demo-application -->
-  ${createSharedStyles()}
-  ${createSidebarConnector(id)}
-  ${createDemoNavigation(id)}
-`;
-
 export const RailNavigationDesktop: Story = {
   name: 'Rail Navigation (Desktop)',
+  parameters: {
+    viewport: {
+      defaultViewport: 'default',
+    },
+  },
   render: () => html`
-    ${railRenderer('appshell-rail-desktop')}
+    <!-- .synergy-demo-application -->
+    <div class="synergy-demo-application" id="appshell-rail-desktop">
+      ${createHeader()}
+      
+      <!-- .synergy-demo-content -->
+      <div class="synergy-demo-content">
+        ${createSideNav({ rail: true })}
+        <div class="synergy-demo-content-inner">
+          ${createMainContent()}
+          ${createFooter()}
+        </div>
+      </div>
+      <!-- /.synergy-demo-content -->
+
+    </div>
+    <!-- /.synergy-demo-application -->
+    ${createSharedStyles()}
+    ${createSidebarConnector('appshell-rail-desktop')}
+    ${createDemoNavigation('appshell-rail-desktop')}
+
     <style>
       #appshell-rail-desktop .synergy-demo-content {
         flex-direction: row;
+      }
+
+      #appshell-rail-desktop .synergy-demo-footer {
+        container-type: inline-size;
+      }
+
+      @media(max-width: 420px) {
+        #appshell-rail-desktop syn-side-nav {
+          --side-nav-open-width: 306px;
+        }
+      }
+
+      @container (max-width: 400px) {
+        #appshell-rail-desktop .synergy-demo-footer a {
+          display: none;
+        }
       }
     </style>
   `,
 };
 
 export const RailNavigationMobile: Story = {
+  ...RailNavigationDesktop,
   name: '↳ Tablet',
   parameters: {
-    ...RailNavigationDesktop.parameters,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    controls: {
+      exclude: ['default'],
+    },
     docs: {
-      ...RailNavigationDesktop.parameters?.docs,
       disable: true,
     },
     viewport: {
       defaultViewport: 'mobile2',
     },
   },
-  render: () => html`
-    ${railRenderer('appshell-rail-mobile')}
-    <style>
-      #appshell-rail-mobile .synergy-demo-content {
-        flex-direction: row;
-      }
-
-      #appshell-rail-mobile .synergy-demo-footer {
-        container-type: inline-size;
-      }
-
-      @container (max-width: 400px) {
-        #appshell-rail-mobile .synergy-demo-footer a {
-          display: none;
-        }
-      }
-
-      #appshell-rail-mobile syn-side-nav {
-        --side-nav-open-width: 306px;
-      }
-    </style>
-  `,
 };
 
 export const TopNavigation: Story = {

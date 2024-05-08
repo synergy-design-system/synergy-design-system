@@ -12,7 +12,7 @@
  * @status stable
  * @since 1.23.0
  *
- * @slot - The accordion's main content.
+ * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *
  * @csspart base - The component's base wrapper.
  */
@@ -36,12 +36,12 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Indicates whether or not multiple `<syn-details>` elements can be open at the same time.
+* Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
  */
   'closeOthers'?: SynAccordion['closeOthers'];
 
   /**
-* The size that should be applied to all `<syn-detail>`'s
+* The size that should be applied to all slotted `<syn-details>` elements
  */
   'size'?: SynAccordion['size'];
 }>();

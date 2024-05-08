@@ -14,7 +14,7 @@ import type SynDetails from '../details/details.component.js';
  * @status stable
  * @since 1.23.0
  *
- * @slot - The accordion's main content.
+ * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *
  * @csspart base - The component's base wrapper.
  */
@@ -27,11 +27,11 @@ export default class SynAccordion extends SynergyElement {
   @queryAssignedElements({ selector: 'syn-details' }) detailsInDefaultSlot!: SynDetails[];
 
   /**
-   * Indicates whether or not multiple `<syn-details>` elements can be open at the same time.
+   * Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
    */
   @property({ attribute: 'close-others', type: Boolean }) closeOthers = false;
 
-  /** The size that should be applied to all `<syn-detail>`'s */
+  /** The size that should be applied to all slotted `<syn-details>` elements */
   @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
 
   private adjustDetailsSize() {
@@ -78,7 +78,7 @@ export default class SynAccordion extends SynergyElement {
   render() {
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
-      <div part="">
+      <div part="base">
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;

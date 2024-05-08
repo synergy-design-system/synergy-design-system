@@ -17,7 +17,7 @@ Component.define('syn-accordion');
  * @status stable
  * @since 1.23.0
  *
- * @slot - The accordion's main content.
+ * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *
  * @csspart base - The component's base wrapper.
  */

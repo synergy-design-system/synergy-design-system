@@ -66,7 +66,7 @@ const meta: Meta = {
       type: 'slot',
       value: `
         <h3>Headline</h3>
-        Secure 3D environment detection opens up new dimensions
+        This are some happy employees, but not just any employees. These are SICK employees.
       `,
     },
     {
@@ -159,7 +159,7 @@ export const CardWithHeader: Story = {
       }
 
       .card-header syn-icon-button {
-        font-size: var(--syn-font-size-medium);
+        font-size: var(--syn-font-size-x-large);
       }
     </style>
   `,
@@ -236,12 +236,12 @@ export const NestedCard: Story = {
               alt="Multiple persons having lunch in SICK Academy"
             />
             <h3>Headline</h3>
-            Secure 3D environment detection opens up new dimensions
+            Together, we shape digital transformation and develop innovative solutions for a sustainable future.
             
             <footer slot="footer">
               <small>Optional Information</small>
               <nav>
-                <syn-button variant="filled">Button</syn-button>
+                <syn-button variant="filled" size="small">Button</syn-button>
               </nav>
             </footer>
           </syn-card>
@@ -261,7 +261,7 @@ export const NestedCard: Story = {
       }
 
       .nested-cards syn-icon-button {
-        font-size: var(--syn-font-size-medium);
+        font-size: var(--syn-font-size-x-large);
       }
 
       .nested-cards-items {

@@ -54,4 +54,13 @@ export default css`
   .card--nested {
     border-radius: var(--syn-border-radius-none);
   }
+
+  /**
+   * Do not apply border radius to nested card images
+   */
+  .card--nested .card__image {
+    border-top-left-radius: var(--syn-border-radius-none);
+    border-top-right-radius: var(--syn-border-radius-none);
+  }
+
 `;

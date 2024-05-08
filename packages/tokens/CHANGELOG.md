@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.16.0...tokens/1.17.0) (2024-05-08)
+
+
+### Features
+
+* ✨ syn-dialog ([#458](https://github.com/synergy-design-system/synergy-design-system/issues/458)) ([7247f0c](https://github.com/synergy-design-system/synergy-design-system/commit/7247f0cca654ea10ec5968d92175e546c43515cd))
+
 # [@synergy-design-system/tokens-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.15.0...tokens/1.16.0) (2024-05-02)
 
 

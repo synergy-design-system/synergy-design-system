@@ -1812,14 +1812,16 @@
         }
       }
     },
-    "tab-group": {
-      "description": {
-        "value": "Tab groups organize content into a container that shows one section at a time.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Tab Group",
-        "type": "text"
+    "default": {
+      "tab-group": {
+        "description": {
+          "value": "Tab groups organize content into a container that shows one section at a time. Tab groups make use of tabs and tab panels. Each tab must be slotted into the nav slot and its panel must refer to a tab panel of the same name.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tab Group",
+          "type": "text"
+        }
       }
     },
     "tab-panel": {

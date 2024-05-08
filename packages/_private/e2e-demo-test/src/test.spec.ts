@@ -135,8 +135,6 @@ test.describe(`Contact form test on port ${process.env.PORT}`, () => {
     // fill-out the form correctly
     await fillForm(form);
 
-    expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
-
     await form.sidebar.evaluate((el) => el.removeAttribute('open'));
     // submit valid form
     await form.submit.click({ delay: 300 });

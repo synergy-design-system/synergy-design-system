@@ -235,7 +235,7 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
 
 **Associated Ticket(s)**:
 
-- [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476)
+- [#473](https://github.com/synergy-design-system/synergy-design-system/issues/473)
 
 **Reason**:
 
@@ -314,7 +314,7 @@ export class Home {
 
 **Associated Ticket(s)**:
 
-- [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476)
+- [#473](https://github.com/synergy-design-system/synergy-design-system/issues/473)
 
 **Reason**:
 

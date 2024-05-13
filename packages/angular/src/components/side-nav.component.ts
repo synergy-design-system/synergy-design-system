@@ -134,37 +134,6 @@ To disable the focus trapping, set this attribute.
     return this.nativeElement.noFocusTrapping;
   }
 
-  @Input()
-  callHandleModeChange(...args: Parameters<SynSideNav['handleModeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleModeChange(...args));
-  }
-
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynSideNav['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleFocusTrapping(...args: Parameters<SynSideNav['handleFocusTrapping']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleFocusTrapping(...args));
-  }
-
-  /**
-* Shows the side-nav.
- */
-  @Input()
-  callShow(...args: Parameters<SynSideNav['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the side-nav
- */
-  @Input()
-  callHide(...args: Parameters<SynSideNav['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
   /**
 * Emitted when the side-nav opens.
  */

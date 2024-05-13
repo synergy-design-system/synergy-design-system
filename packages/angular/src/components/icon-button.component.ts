@@ -173,30 +173,6 @@ The default "currentColor" makes it possible to easily style the icon button fro
   }
 
   /**
-* Simulates a click on the icon button.
- */
-  @Input()
-  callClick(...args: Parameters<SynIconButton['click']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
-  }
-
-  /**
-* Sets focus on the icon button.
- */
-  @Input()
-  callFocus(...args: Parameters<SynIconButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
-  }
-
-  /**
-* Removes focus from the icon button.
- */
-  @Input()
-  callBlur(...args: Parameters<SynIconButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
-  }
-
-  /**
 * Emitted when the icon button loses focus.
  */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

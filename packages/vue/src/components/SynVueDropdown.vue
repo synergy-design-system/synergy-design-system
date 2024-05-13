@@ -38,46 +38,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynDropdown>();
 
-// Map methods
-const callFocusOnTrigger = (...args: Parameters<SynDropdown['focusOnTrigger']>) => nativeElement.value?.focusOnTrigger(...args);
-const callGetMenu = (...args: Parameters<SynDropdown['getMenu']>) => nativeElement.value?.getMenu(...args);
-const callHandleTriggerClick = (...args: Parameters<SynDropdown['handleTriggerClick']>) => nativeElement.value?.handleTriggerClick(...args);
-const callHandleTriggerKeyDown = (...args: Parameters<SynDropdown['handleTriggerKeyDown']>) => nativeElement.value?.handleTriggerKeyDown(...args);
-const callHandleTriggerKeyUp = (...args: Parameters<SynDropdown['handleTriggerKeyUp']>) => nativeElement.value?.handleTriggerKeyUp(...args);
-const callHandleTriggerSlotChange = (...args: Parameters<SynDropdown['handleTriggerSlotChange']>) => nativeElement.value?.handleTriggerSlotChange(...args);
-const callUpdateAccessibleTrigger = (...args: Parameters<SynDropdown['updateAccessibleTrigger']>) => nativeElement.value?.updateAccessibleTrigger(...args);
-/**
-* Shows the dropdown panel.
- */
-const callShow = (...args: Parameters<SynDropdown['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the dropdown panel
- */
-const callHide = (...args: Parameters<SynDropdown['hide']>) => nativeElement.value?.hide(...args);
-/**
-* Instructs the dropdown menu to reposition.
-* Useful when the position or size of the trigger changes when the menu
-is activated.
- */
-const callReposition = (...args: Parameters<SynDropdown['reposition']>) => nativeElement.value?.reposition(...args);
-const callAddOpenListeners = (...args: Parameters<SynDropdown['addOpenListeners']>) => nativeElement.value?.addOpenListeners(...args);
-const callRemoveOpenListeners = (...args: Parameters<SynDropdown['removeOpenListeners']>) => nativeElement.value?.removeOpenListeners(...args);
-const callHandleOpenChange = (...args: Parameters<SynDropdown['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-
 defineExpose({
-  callFocusOnTrigger,
-  callGetMenu,
-  callHandleTriggerClick,
-  callHandleTriggerKeyDown,
-  callHandleTriggerKeyUp,
-  callHandleTriggerSlotChange,
-  callUpdateAccessibleTrigger,
-  callShow,
-  callHide,
-  callReposition,
-  callAddOpenListeners,
-  callRemoveOpenListeners,
-  callHandleOpenChange,
   nativeElement,
 });
 

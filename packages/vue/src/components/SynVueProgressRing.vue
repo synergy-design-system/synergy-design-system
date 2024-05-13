@@ -31,10 +31,7 @@ import type { SynProgressRing } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynProgressRing>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

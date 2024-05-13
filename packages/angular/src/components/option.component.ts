@@ -76,27 +76,4 @@ multiple values.
   get disabled() {
     return this.nativeElement.disabled;
   }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynOption['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  @Input()
-  callHandleSelectedChange(...args: Parameters<SynOption['handleSelectedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSelectedChange(...args));
-  }
-
-  @Input()
-  callHandleValueChange(...args: Parameters<SynOption['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleValueChange(...args));
-  }
-
-  /**
-* Returns a plain text label based on the option's content.
- */
-  @Input()
-  callGetTextLabel(...args: Parameters<SynOption['getTextLabel']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.getTextLabel(...args));
-  }
 }

@@ -39,48 +39,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynButton>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynButton['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-/**
-* Simulates a click on the button.
- */
-const callClick = (...args: Parameters<SynButton['click']>) => nativeElement.value?.click(...args);
-/**
-* Sets focus on the button.
- */
-const callFocus = (...args: Parameters<SynButton['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the button.
- */
-const callBlur = (...args: Parameters<SynButton['blur']>) => nativeElement.value?.blur(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynButton['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynButton['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynButton['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynButton['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callClick,
-  callFocus,
-  callBlur,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
   nativeElement,
 });
 

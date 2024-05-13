@@ -370,14 +370,6 @@ active.
   }
 
   /**
-* Forces the popup to recalculate and reposition itself.
- */
-  @Input()
-  callReposition(...args: Parameters<SynPopup['reposition']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.reposition(...args));
-  }
-
-  /**
 * Emitted when the popup is repositioned.
 * This event can fire a lot, so avoid putting expensive operations in your listener or consider debouncing it.
  */

@@ -168,35 +168,6 @@ Only available when horizontal is false.
     return this.nativeElement.divider;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynNavItem['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  /**
-* Removes focus from the button.
- */
-  @Input()
-  callBlur(...args: Parameters<SynNavItem['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
-  }
-
-  /**
-* Simulates a click on the nav-items button, link or summary.
- */
-  @Input()
-  callClick(...args: Parameters<SynNavItem['click']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
-  }
-
-  /**
-* Sets focus on the nav-item
- */
-  @Input()
-  callFocus(...args: Parameters<SynNavItem['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
-  }
-
   /**
 * Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
  */

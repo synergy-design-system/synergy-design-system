@@ -23,10 +23,7 @@ import type { SynMenu, SynSelectEvent } from '@synergy-design-system/components'
 // DOM Reference to the element
 const nativeElement = ref<SynMenu>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

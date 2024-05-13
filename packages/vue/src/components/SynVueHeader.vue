@@ -45,20 +45,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynHeader>();
 
-// Map methods
-const callHandleBurgerMenu = (...args: Parameters<SynHeader['handleBurgerMenu']>) => nativeElement.value?.handleBurgerMenu(...args);
-/**
-* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
-like showing the burger menu icon and open / close handling.
-
-If no side navigation is connected, the header will use the first `syn-side-nav` element it
-finds.
- */
-const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => nativeElement.value?.connectSideNavigation(...args);
-
 defineExpose({
-  callHandleBurgerMenu,
-  callConnectSideNavigation,
   nativeElement,
 });
 

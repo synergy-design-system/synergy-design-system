@@ -151,50 +151,6 @@ the same document or shadow root for this to work.
     return this.nativeElement.required;
   }
 
-  @Input()
-  callHandleSizeChange(...args: Parameters<SynRadioGroup['handleSizeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSizeChange(...args));
-  }
-
-  @Input()
-  callHandleValueChange(...args: Parameters<SynRadioGroup['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleValueChange(...args));
-  }
-
-  /**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-  @Input()
-  callCheckValidity(...args: Parameters<SynRadioGroup['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
-  }
-
-  /**
-* Gets the associated form, if one exists.
- */
-  @Input()
-  callGetForm(...args: Parameters<SynRadioGroup['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
-  }
-
-  /**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-  @Input()
-  callReportValidity(...args: Parameters<SynRadioGroup['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
-  }
-
-  /**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-  @Input()
-  callSetCustomValidity(...args: Parameters<SynRadioGroup['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
-  }
-
   /**
 * Emitted when the radio group's selected value changes.
  */

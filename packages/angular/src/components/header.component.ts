@@ -94,23 +94,6 @@ The following values can be used:
     return this.nativeElement.burgerMenu;
   }
 
-  @Input()
-  callHandleBurgerMenu(...args: Parameters<SynHeader['handleBurgerMenu']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleBurgerMenu(...args));
-  }
-
-  /**
-* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
-like showing the burger menu icon and open / close handling.
-
-If no side navigation is connected, the header will use the first `syn-side-nav` element it
-finds.
- */
-  @Input()
-  callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.connectSideNavigation(...args));
-  }
-
   /**
 * Emitted when the burger menu is toggled to closed
  */

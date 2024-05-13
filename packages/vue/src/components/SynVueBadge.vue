@@ -23,10 +23,7 @@ import type { SynBadge } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynBadge>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

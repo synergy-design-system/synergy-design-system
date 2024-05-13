@@ -90,27 +90,6 @@ this attribute can typically be omitted.
     return this.nativeElement.size;
   }
 
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynRadioButton['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  /**
-* Sets focus on the radio button.
- */
-  @Input()
-  callFocus(...args: Parameters<SynRadioButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
-  }
-
-  /**
-* Removes focus from the radio button.
- */
-  @Input()
-  callBlur(...args: Parameters<SynRadioButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
-  }
-
   /**
 * Emitted when the button loses focus.
  */

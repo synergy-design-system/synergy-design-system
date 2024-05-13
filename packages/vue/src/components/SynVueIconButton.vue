@@ -26,24 +26,7 @@ import type { SynBlurEvent, SynFocusEvent, SynIconButton } from '@synergy-design
 // DOM Reference to the element
 const nativeElement = ref<SynIconButton>();
 
-// Map methods
-/**
-* Simulates a click on the icon button.
- */
-const callClick = (...args: Parameters<SynIconButton['click']>) => nativeElement.value?.click(...args);
-/**
-* Sets focus on the icon button.
- */
-const callFocus = (...args: Parameters<SynIconButton['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the icon button.
- */
-const callBlur = (...args: Parameters<SynIconButton['blur']>) => nativeElement.value?.blur(...args);
-
 defineExpose({
-  callClick,
-  callFocus,
-  callBlur,
   nativeElement,
 });
 

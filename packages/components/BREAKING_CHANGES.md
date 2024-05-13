@@ -229,6 +229,146 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
 
 ---
 
+### `@synergy-design-system/angular`
+
+#### ⚠️ Removed custom methods for element member methods.
+
+**Associated Ticket(s)**:
+
+- [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476)
+
+**Reason**:
+
+During generation of the angular wrapper components, custom functions exposed from the web-components where automatically generated. We initially integrated those methods as a helper for better `DX` when using our angular wrappers. However, the inclusion lead to a couple of issues:
+
+1. Developers thought they could call those methods savely during render, which may lead to problems as this was never intended to work.
+2. We had do patch the components types to make it work correctly.
+3. We had to rename all method callers to avoid overlaps when defining the components (e.g. if there was a property `size` and a member called `size` it would lead to name clashes, so the `size` method became `callSize`).
+4. Most developers do not even need to call those methods, making them unneeded bloat in the first place.
+
+It also makes it easier for developers that use `@synergy-design-system/components` in various frameworks, as the way of accessing the native elements methods are now the same across all three supported frameworks.
+
+**Migration Steps**:
+
+The native element still exposes its types and all of its native functionality. For example, instead of calling the method `callFocus()` on the wrapper, get the reference to the native Element and call its `focus()` method directly.
+
+**Example (before)**:
+
+```typescript
+import { Component, ViewChild } from '@angular/core';
+import { SynButtonComponent, SynInputComponent } from '@synergy-design-system/angular';
+
+@Component({
+  selector: 'home',
+  styleUrls: ['./home.styles.css'],
+  template: `
+    <syn-input #password label="Password" type="password"></syn-input>
+    <syn-button (click)="focusElement">Focus the password field</syn-button>
+  `
+})
+export class Home {
+ @ViewChild('password') password!: SynInputComponent;
+
+  focusElement() {
+    // Focus the element by calling the wrappers callFocus method
+    this.password.callFocus();
+  }
+}
+```
+
+**Example (after)**:
+
+```typescript
+import { Component, ViewChild } from '@angular/core';
+import { SynButtonComponent, SynInputComponent } from '@synergy-design-system/angular';
+
+@Component({
+  selector: 'home',
+  styleUrls: ['./home.styles.css'],
+  template: `
+    <syn-input #password label="Password" type="password"></syn-input>
+    <syn-button (click)="focusElement">Focus the password field</syn-button>
+  `
+})
+export class Home {
+ @ViewChild('password') password!: SynInputComponent;
+
+  focusElement() {
+    // Focus the element by calling the native elements focus method
+    this.password.nativeElement.focus();
+  }
+}
+```
+
+---
+
+### `@synergy-design-system/vue`
+
+#### ⚠️ Removed custom methods for element member methods.
+
+**Associated Ticket(s)**:
+
+- [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476)
+
+**Reason**:
+
+During generation of the vue wrapper components, custom functions exposed from the web-components where automatically generated. We initially integrated those methods as a helper for better `DX` when using our vue wrappers. However, the inclusion lead to a couple of issues:
+
+1. Developers thought they could call those methods savely during render, which may lead to problems as this was never intended to work.
+2. We had do patch the components types to make it work correctly.
+3. We had to rename all method callers to avoid overlaps when defining the components (e.g. if there was a property `size` and a member called `size` it would lead to name clashes, so the `size` method became `callSize`).
+4. Most developers do not even need to call those methods, making them unneeded bloat in the first place.
+
+It also makes it easier for developers that use `@synergy-design-system/components` in various frameworks, as the way of accessing the native elements methods are now the same across all three supported frameworks.
+
+**Migration Steps**:
+
+The native element still exposes its types and all of its native functionality. For example, instead of calling the method `callFocus()` on the wrapper, get the reference to the native Element and call its `focus()` method directly.
+
+**Example (before)**:
+
+```html
+<script setup lang="ts">
+  import { SynVueButton, SynVueInput } from "@synergy-design-system/vue";
+  import { ref } from "vue";
+
+  const password = ref<InstanceType<typeof SynVueInput> | null>(null);
+
+  focusElement() {
+    // Focus the element by calling the wrappers callFocus method
+    password.value?.callFocus();
+  }
+</script>
+
+<template>
+  <SynVueInput ref="count" label="My count" type="number" value="5" />
+  <SynVueButton @click="focusElement">Focus the password field</SynVueButton>
+</template>
+```
+
+**Example (after)**:
+
+```html
+<script setup lang="ts">
+  import { SynVueButton, SynVueInput } from "@synergy-design-system/vue";
+  import { ref } from "vue";
+
+  const password = ref<InstanceType<typeof SynVueInput> | null>(null);
+
+  focusElement() {
+    // Focus the element by calling the native elements focus method
+    password.value?.nativeElement?.focus();
+  }
+</script>
+
+<template>
+  <SynVueInput ref="count" label="My count" type="number" value="5" />
+  <SynVueButton @click="focusElement">Focus the password field</SynVueButton>
+</template>
+```
+
+---
+
 <!-- USE THIS AS A TEMPLATE FOR ADDITIONAL MIGRATION STEPS
 
 ### `<syn-COMPONENT>`

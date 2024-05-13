@@ -37,17 +37,17 @@ import '@synergy-design-system/components/components/menu-item/menu-item.js';
 import type { SynMenuItem } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynMenuItem>();
+const nativeElement = ref<SynMenuItem>();
 
 // Map methods
-const callHandleCheckedChange = (...args: Parameters<SynMenuItem['handleCheckedChange']>) => element.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynMenuItem['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleTypeChange = (...args: Parameters<SynMenuItem['handleTypeChange']>) => element.value?.handleTypeChange(...args);
+const callHandleCheckedChange = (...args: Parameters<SynMenuItem['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynMenuItem['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
+const callHandleTypeChange = (...args: Parameters<SynMenuItem['handleTypeChange']>) => nativeElement.value?.handleTypeChange(...args);
 /**
 * Returns a text label based on the contents of the menu item's default slot.
  */
-const callGetTextLabel = (...args: Parameters<SynMenuItem['getTextLabel']>) => element.value?.getTextLabel(...args);
-const callIsSubmenu = (...args: Parameters<SynMenuItem['isSubmenu']>) => element.value?.isSubmenu(...args);
+const callGetTextLabel = (...args: Parameters<SynMenuItem['getTextLabel']>) => nativeElement.value?.getTextLabel(...args);
+const callIsSubmenu = (...args: Parameters<SynMenuItem['isSubmenu']>) => nativeElement.value?.isSubmenu(...args);
 
 defineExpose({
   callHandleCheckedChange,
@@ -55,6 +55,7 @@ defineExpose({
   callHandleTypeChange,
   callGetTextLabel,
   callIsSubmenu,
+  nativeElement,
 });
 
 // Map attributes
@@ -107,11 +108,8 @@ defineEmits<{
   <syn-menu-item
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
-    <slot name="submenu" />
   </syn-menu-item>
 </template>

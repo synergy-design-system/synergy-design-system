@@ -47,27 +47,27 @@ import '@synergy-design-system/components/components/switch/switch.js';
   template: '<ng-content></ng-content>',
 })
 export class SynSwitchComponent {
-  private _el: SynSwitch;
+  public nativeElement: SynSwitch;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   @Input()
   set title(v: SynSwitch['title']) {
-    this._ngZone.runOutsideAngular(() => (this._el.title = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
 
   get title() {
-    return this._el.title;
+    return this.nativeElement.title;
   }
 
   /**
@@ -75,11 +75,11 @@ export class SynSwitchComponent {
  */
   @Input()
   set name(v: SynSwitch['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -87,11 +87,11 @@ export class SynSwitchComponent {
  */
   @Input()
   set value(v: SynSwitch['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -99,11 +99,11 @@ export class SynSwitchComponent {
  */
   @Input()
   set size(v: SynSwitch['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -111,11 +111,11 @@ export class SynSwitchComponent {
  */
   @Input()
   set disabled(v: SynSwitch['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -123,11 +123,11 @@ export class SynSwitchComponent {
  */
   @Input()
   set checked(v: SynSwitch['checked']) {
-    this._ngZone.runOutsideAngular(() => (this._el.checked = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
   }
 
   get checked() {
-    return this._el.checked;
+    return this.nativeElement.checked;
   }
 
   /**
@@ -139,11 +139,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynSwitch['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -151,11 +151,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynSwitch['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   /**
@@ -164,21 +164,21 @@ the same document or shadow root for this to work.
  */
   @Input()
   set helpText(v: SynSwitch['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
+    return this.nativeElement.helpText;
   }
 
   @Input()
   callHandleCheckedChange(...args: Parameters<SynSwitch['handleCheckedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleCheckedChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleCheckedChange(...args));
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynSwitch['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   /**
@@ -186,7 +186,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callClick(...args: Parameters<SynSwitch['click']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
   }
 
   /**
@@ -194,7 +194,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callFocus(...args: Parameters<SynSwitch['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**
@@ -202,7 +202,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callBlur(...args: Parameters<SynSwitch['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**
@@ -211,7 +211,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callCheckValidity(...args: Parameters<SynSwitch['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
   }
 
   /**
@@ -219,7 +219,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callGetForm(...args: Parameters<SynSwitch['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
   }
 
   /**
@@ -227,7 +227,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callReportValidity(...args: Parameters<SynSwitch['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
   }
 
   /**
@@ -236,7 +236,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callSetCustomValidity(...args: Parameters<SynSwitch['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
   }
 
   /**

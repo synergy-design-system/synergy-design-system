@@ -31,12 +31,12 @@ import '@synergy-design-system/components/components/badge/badge.js';
   template: '<ng-content></ng-content>',
 })
 export class SynBadgeComponent {
-  private _el: SynBadge;
+  public nativeElement: SynBadge;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -45,10 +45,10 @@ export class SynBadgeComponent {
  */
   @Input()
   set variant(v: SynBadge['variant']) {
-    this._ngZone.runOutsideAngular(() => (this._el.variant = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
 
   get variant() {
-    return this._el.variant;
+    return this.nativeElement.variant;
   }
 }

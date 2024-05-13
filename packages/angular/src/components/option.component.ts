@@ -39,12 +39,12 @@ import '@synergy-design-system/components/components/option/option.js';
   template: '<ng-content></ng-content>',
 })
 export class SynOptionComponent {
-  private _el: SynOption;
+  public nativeElement: SynOption;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -58,11 +58,11 @@ multiple values.
  */
   @Input()
   set value(v: SynOption['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -70,26 +70,26 @@ multiple values.
  */
   @Input()
   set disabled(v: SynOption['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynOption['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   @Input()
   callHandleSelectedChange(...args: Parameters<SynOption['handleSelectedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleSelectedChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSelectedChange(...args));
   }
 
   @Input()
   callHandleValueChange(...args: Parameters<SynOption['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleValueChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleValueChange(...args));
   }
 
   /**
@@ -97,6 +97,6 @@ multiple values.
  */
   @Input()
   callGetTextLabel(...args: Parameters<SynOption['getTextLabel']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getTextLabel(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getTextLabel(...args));
   }
 }

@@ -39,12 +39,12 @@ import '@synergy-design-system/components/components/progress-bar/progress-bar.j
   template: '<ng-content></ng-content>',
 })
 export class SynProgressBarComponent {
-  private _el: SynProgressBar;
+  public nativeElement: SynProgressBar;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -53,11 +53,11 @@ export class SynProgressBarComponent {
  */
   @Input()
   set value(v: SynProgressBar['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -65,11 +65,11 @@ export class SynProgressBarComponent {
  */
   @Input()
   set indeterminate(v: SynProgressBar['indeterminate']) {
-    this._ngZone.runOutsideAngular(() => (this._el.indeterminate = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.indeterminate = v));
   }
 
   get indeterminate() {
-    return this._el.indeterminate;
+    return this.nativeElement.indeterminate;
   }
 
   /**
@@ -77,10 +77,10 @@ export class SynProgressBarComponent {
  */
   @Input()
   set label(v: SynProgressBar['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 }

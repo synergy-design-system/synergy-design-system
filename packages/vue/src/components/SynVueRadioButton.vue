@@ -31,23 +31,24 @@ import '@synergy-design-system/components/components/radio-button/radio-button.j
 import type { SynBlurEvent, SynFocusEvent, SynRadioButton } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynRadioButton>();
+const nativeElement = ref<SynRadioButton>();
 
 // Map methods
-const callHandleDisabledChange = (...args: Parameters<SynRadioButton['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynRadioButton['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
 /**
 * Sets focus on the radio button.
  */
-const callFocus = (...args: Parameters<SynRadioButton['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynRadioButton['focus']>) => nativeElement.value?.focus(...args);
 /**
 * Removes focus from the radio button.
  */
-const callBlur = (...args: Parameters<SynRadioButton['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynRadioButton['blur']>) => nativeElement.value?.blur(...args);
 
 defineExpose({
   callHandleDisabledChange,
   callFocus,
   callBlur,
+  nativeElement,
 });
 
 // Map attributes
@@ -103,13 +104,11 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 <template>
   <syn-radio-button
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
 
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
   </syn-radio-button>
 </template>

@@ -41,20 +41,20 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynTooltip>();
+const nativeElement = ref<SynTooltip>();
 
 // Map methods
-const callHandleOpenChange = (...args: Parameters<SynTooltip['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-const callHandleOptionsChange = (...args: Parameters<SynTooltip['handleOptionsChange']>) => element.value?.handleOptionsChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynTooltip['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
+const callHandleOpenChange = (...args: Parameters<SynTooltip['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
+const callHandleOptionsChange = (...args: Parameters<SynTooltip['handleOptionsChange']>) => nativeElement.value?.handleOptionsChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynTooltip['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
 /**
 * Shows the tooltip.
  */
-const callShow = (...args: Parameters<SynTooltip['show']>) => element.value?.show(...args);
+const callShow = (...args: Parameters<SynTooltip['show']>) => nativeElement.value?.show(...args);
 /**
 * Hides the tooltip
  */
-const callHide = (...args: Parameters<SynTooltip['hide']>) => element.value?.hide(...args);
+const callHide = (...args: Parameters<SynTooltip['hide']>) => nativeElement.value?.hide(...args);
 
 defineExpose({
   callHandleOpenChange,
@@ -62,6 +62,7 @@ defineExpose({
   callHandleDisabledChange,
   callShow,
   callHide,
+  nativeElement,
 });
 
 // Map attributes
@@ -163,7 +164,7 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 <template>
   <syn-tooltip
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
 
@@ -171,6 +172,5 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
-    <slot name="content" />
   </syn-tooltip>
 </template>

@@ -35,54 +35,54 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynTextarea>();
+const nativeElement = ref<SynTextarea>();
 
 // Map methods
-const callHandleDisabledChange = (...args: Parameters<SynTextarea['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleRowsChange = (...args: Parameters<SynTextarea['handleRowsChange']>) => element.value?.handleRowsChange(...args);
-const callHandleValueChange = (...args: Parameters<SynTextarea['handleValueChange']>) => element.value?.handleValueChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynTextarea['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
+const callHandleRowsChange = (...args: Parameters<SynTextarea['handleRowsChange']>) => nativeElement.value?.handleRowsChange(...args);
+const callHandleValueChange = (...args: Parameters<SynTextarea['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
 /**
 * Sets focus on the textarea.
  */
-const callFocus = (...args: Parameters<SynTextarea['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynTextarea['focus']>) => nativeElement.value?.focus(...args);
 /**
 * Removes focus from the textarea.
  */
-const callBlur = (...args: Parameters<SynTextarea['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynTextarea['blur']>) => nativeElement.value?.blur(...args);
 /**
 * Selects all the text in the textarea.
  */
-const callSelect = (...args: Parameters<SynTextarea['select']>) => element.value?.select(...args);
+const callSelect = (...args: Parameters<SynTextarea['select']>) => nativeElement.value?.select(...args);
 /**
 * Gets or sets the textarea's scroll position.
  */
-const callScrollPosition = (...args: Parameters<SynTextarea['scrollPosition']>) => element.value?.scrollPosition(...args);
+const callScrollPosition = (...args: Parameters<SynTextarea['scrollPosition']>) => nativeElement.value?.scrollPosition(...args);
 /**
 * Sets the start and end positions of the text selection (0-based).
  */
-const callSetSelectionRange = (...args: Parameters<SynTextarea['setSelectionRange']>) => element.value?.setSelectionRange(...args);
+const callSetSelectionRange = (...args: Parameters<SynTextarea['setSelectionRange']>) => nativeElement.value?.setSelectionRange(...args);
 /**
 * Replaces a range of text with a new string.
  */
-const callSetRangeText = (...args: Parameters<SynTextarea['setRangeText']>) => element.value?.setRangeText(...args);
+const callSetRangeText = (...args: Parameters<SynTextarea['setRangeText']>) => nativeElement.value?.setRangeText(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-const callCheckValidity = (...args: Parameters<SynTextarea['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynTextarea['checkValidity']>) => nativeElement.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-const callGetForm = (...args: Parameters<SynTextarea['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynTextarea['getForm']>) => nativeElement.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-const callReportValidity = (...args: Parameters<SynTextarea['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynTextarea['reportValidity']>) => nativeElement.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-const callSetCustomValidity = (...args: Parameters<SynTextarea['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynTextarea['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
@@ -98,6 +98,7 @@ defineExpose({
   callGetForm,
   callReportValidity,
   callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -279,7 +280,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-textarea
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
@@ -287,7 +288,6 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >
-    <slot name="label" />
-    <slot name="help-text" />
+    <slot />
   </syn-textarea>
 </template>

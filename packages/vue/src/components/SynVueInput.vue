@@ -54,62 +54,62 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynInput>();
+const nativeElement = ref<SynInput>();
 
 // Map methods
-const callHandleDisabledChange = (...args: Parameters<SynInput['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleStepChange = (...args: Parameters<SynInput['handleStepChange']>) => element.value?.handleStepChange(...args);
-const callHandleValueChange = (...args: Parameters<SynInput['handleValueChange']>) => element.value?.handleValueChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynInput['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
+const callHandleStepChange = (...args: Parameters<SynInput['handleStepChange']>) => nativeElement.value?.handleStepChange(...args);
+const callHandleValueChange = (...args: Parameters<SynInput['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
 /**
 * Sets focus on the input.
  */
-const callFocus = (...args: Parameters<SynInput['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynInput['focus']>) => nativeElement.value?.focus(...args);
 /**
 * Removes focus from the input.
  */
-const callBlur = (...args: Parameters<SynInput['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynInput['blur']>) => nativeElement.value?.blur(...args);
 /**
 * Selects all the text in the input.
  */
-const callSelect = (...args: Parameters<SynInput['select']>) => element.value?.select(...args);
+const callSelect = (...args: Parameters<SynInput['select']>) => nativeElement.value?.select(...args);
 /**
 * Sets the start and end positions of the text selection (0-based).
  */
-const callSetSelectionRange = (...args: Parameters<SynInput['setSelectionRange']>) => element.value?.setSelectionRange(...args);
+const callSetSelectionRange = (...args: Parameters<SynInput['setSelectionRange']>) => nativeElement.value?.setSelectionRange(...args);
 /**
 * Replaces a range of text with a new string.
  */
-const callSetRangeText = (...args: Parameters<SynInput['setRangeText']>) => element.value?.setRangeText(...args);
+const callSetRangeText = (...args: Parameters<SynInput['setRangeText']>) => nativeElement.value?.setRangeText(...args);
 /**
 * Displays the browser picker for an input element (only works if the browser supports it for the input type).
  */
-const callShowPicker = (...args: Parameters<SynInput['showPicker']>) => element.value?.showPicker(...args);
+const callShowPicker = (...args: Parameters<SynInput['showPicker']>) => nativeElement.value?.showPicker(...args);
 /**
 * Increments the value of a numeric input type by the value of the step attribute.
  */
-const callStepUp = (...args: Parameters<SynInput['stepUp']>) => element.value?.stepUp(...args);
+const callStepUp = (...args: Parameters<SynInput['stepUp']>) => nativeElement.value?.stepUp(...args);
 /**
 * Decrements the value of a numeric input type by the value of the step attribute.
  */
-const callStepDown = (...args: Parameters<SynInput['stepDown']>) => element.value?.stepDown(...args);
+const callStepDown = (...args: Parameters<SynInput['stepDown']>) => nativeElement.value?.stepDown(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-const callCheckValidity = (...args: Parameters<SynInput['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynInput['checkValidity']>) => nativeElement.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-const callGetForm = (...args: Parameters<SynInput['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynInput['getForm']>) => nativeElement.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-const callReportValidity = (...args: Parameters<SynInput['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynInput['reportValidity']>) => nativeElement.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-const callSetCustomValidity = (...args: Parameters<SynInput['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynInput['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleDisabledChange,
@@ -127,6 +127,7 @@ defineExpose({
   callGetForm,
   callReportValidity,
   callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -358,7 +359,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-input
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
@@ -367,14 +368,6 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >
-    <slot name="label" />
-    <slot name="prefix" />
-    <slot name="suffix" />
-    <slot name="clear-icon" />
-    <slot name="show-password-icon" />
-    <slot name="hide-password-icon" />
-    <slot name="help-text" />
-    <slot name="increment-number-stepper" />
-    <slot name="decrement-number-stepper" />
+    <slot />
   </syn-input>
 </template>

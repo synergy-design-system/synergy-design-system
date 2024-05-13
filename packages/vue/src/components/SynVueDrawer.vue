@@ -70,25 +70,26 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynDrawer>();
+const nativeElement = ref<SynDrawer>();
 
 // Map methods
-const callHandleOpenChange = (...args: Parameters<SynDrawer['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-const callHandleNoModalChange = (...args: Parameters<SynDrawer['handleNoModalChange']>) => element.value?.handleNoModalChange(...args);
+const callHandleOpenChange = (...args: Parameters<SynDrawer['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
+const callHandleNoModalChange = (...args: Parameters<SynDrawer['handleNoModalChange']>) => nativeElement.value?.handleNoModalChange(...args);
 /**
 * Shows the drawer.
  */
-const callShow = (...args: Parameters<SynDrawer['show']>) => element.value?.show(...args);
+const callShow = (...args: Parameters<SynDrawer['show']>) => nativeElement.value?.show(...args);
 /**
 * Hides the drawer
  */
-const callHide = (...args: Parameters<SynDrawer['hide']>) => element.value?.hide(...args);
+const callHide = (...args: Parameters<SynDrawer['hide']>) => nativeElement.value?.hide(...args);
 
 defineExpose({
   callHandleOpenChange,
   callHandleNoModalChange,
   callShow,
   callHide,
+  nativeElement,
 });
 
 // Map attributes
@@ -187,7 +188,7 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
 <template>
   <syn-drawer
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
@@ -197,8 +198,5 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
     @syn-request-close="$emit('syn-request-close', $event)"
   >
     <slot />
-    <slot name="label" />
-    <slot name="header-actions" />
-    <slot name="footer" />
   </syn-drawer>
 </template>

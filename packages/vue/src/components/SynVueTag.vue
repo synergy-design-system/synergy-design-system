@@ -28,12 +28,13 @@ import '@synergy-design-system/components/components/tag/tag.js';
 import type { SynRemoveEvent, SynTag } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynTag>();
+const nativeElement = ref<SynTag>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -76,7 +77,7 @@ export type { SynRemoveEvent } from '@synergy-design-system/components';
   <syn-tag
     v-bind="visibleProps"
 
-    ref="element"
+    ref="nativeElement"
     @syn-remove="$emit('syn-remove', $event)"
   >
     <slot />

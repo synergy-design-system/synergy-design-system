@@ -55,12 +55,12 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
   template: '<ng-content></ng-content>',
 })
 export class SynPrioNavComponent {
-  private _el: SynPrioNav;
+  public nativeElement: SynPrioNav;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 }

@@ -52,16 +52,16 @@ import '@synergy-design-system/components/components/header/header.js';
   template: '<ng-content></ng-content>',
 })
 export class SynHeaderComponent {
-  private _el: SynHeader;
+  public nativeElement: SynHeader;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-burger-menu-closed', (e: SynBurgerMenuClosedEvent) => { this.synBurgerMenuClosedEvent.emit(e); });
-    this._el.addEventListener('syn-burger-menu-hidden', (e: SynBurgerMenuHiddenEvent) => { this.synBurgerMenuHiddenEvent.emit(e); });
-    this._el.addEventListener('syn-burger-menu-open', (e: SynBurgerMenuOpenEvent) => { this.synBurgerMenuOpenEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-closed', (e: SynBurgerMenuClosedEvent) => { this.synBurgerMenuClosedEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-hidden', (e: SynBurgerMenuHiddenEvent) => { this.synBurgerMenuHiddenEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-open', (e: SynBurgerMenuOpenEvent) => { this.synBurgerMenuOpenEvent.emit(e); });
   }
 
   /**
@@ -70,11 +70,11 @@ export class SynHeaderComponent {
  */
   @Input()
   set label(v: SynHeader['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -87,16 +87,16 @@ The following values can be used:
  */
   @Input()
   set burgerMenu(v: SynHeader['burgerMenu']) {
-    this._ngZone.runOutsideAngular(() => (this._el.burgerMenu = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.burgerMenu = v));
   }
 
   get burgerMenu() {
-    return this._el.burgerMenu;
+    return this.nativeElement.burgerMenu;
   }
 
   @Input()
   callHandleBurgerMenu(...args: Parameters<SynHeader['handleBurgerMenu']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleBurgerMenu(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleBurgerMenu(...args));
   }
 
   /**
@@ -108,7 +108,7 @@ finds.
  */
   @Input()
   callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.connectSideNavigation(...args));
   }
 
   /**

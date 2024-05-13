@@ -37,29 +37,29 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynRadioGroup>();
+const nativeElement = ref<SynRadioGroup>();
 
 // Map methods
-const callHandleSizeChange = (...args: Parameters<SynRadioGroup['handleSizeChange']>) => element.value?.handleSizeChange(...args);
-const callHandleValueChange = (...args: Parameters<SynRadioGroup['handleValueChange']>) => element.value?.handleValueChange(...args);
+const callHandleSizeChange = (...args: Parameters<SynRadioGroup['handleSizeChange']>) => nativeElement.value?.handleSizeChange(...args);
+const callHandleValueChange = (...args: Parameters<SynRadioGroup['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-const callCheckValidity = (...args: Parameters<SynRadioGroup['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynRadioGroup['checkValidity']>) => nativeElement.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-const callGetForm = (...args: Parameters<SynRadioGroup['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynRadioGroup['getForm']>) => nativeElement.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-const callReportValidity = (...args: Parameters<SynRadioGroup['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynRadioGroup['reportValidity']>) => nativeElement.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-const callSetCustomValidity = (...args: Parameters<SynRadioGroup['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynRadioGroup['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleSizeChange,
@@ -68,6 +68,7 @@ defineExpose({
   callGetForm,
   callReportValidity,
   callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -165,14 +166,12 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-radio-group
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-change="$emit('syn-change', $event)"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
-    <slot name="label" />
-    <slot name="help-text" />
   </syn-radio-group>
 </template>

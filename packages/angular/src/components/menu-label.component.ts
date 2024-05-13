@@ -37,12 +37,12 @@ import '@synergy-design-system/components/components/menu-label/menu-label.js';
   template: '<ng-content></ng-content>',
 })
 export class SynMenuLabelComponent {
-  private _el: SynMenuLabel;
+  public nativeElement: SynMenuLabel;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 }

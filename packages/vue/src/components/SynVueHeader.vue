@@ -43,10 +43,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynHeader>();
+const nativeElement = ref<SynHeader>();
 
 // Map methods
-const callHandleBurgerMenu = (...args: Parameters<SynHeader['handleBurgerMenu']>) => element.value?.handleBurgerMenu(...args);
+const callHandleBurgerMenu = (...args: Parameters<SynHeader['handleBurgerMenu']>) => nativeElement.value?.handleBurgerMenu(...args);
 /**
 * Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
 like showing the burger menu icon and open / close handling.
@@ -54,11 +54,12 @@ like showing the burger menu icon and open / close handling.
 If no side navigation is connected, the header will use the first `syn-side-nav` element it
 finds.
  */
-const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => element.value?.connectSideNavigation(...args);
+const callConnectSideNavigation = (...args: Parameters<SynHeader['connectSideNavigation']>) => nativeElement.value?.connectSideNavigation(...args);
 
 defineExpose({
   callHandleBurgerMenu,
   callConnectSideNavigation,
+  nativeElement,
 });
 
 // Map attributes
@@ -118,17 +119,12 @@ export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 <template>
   <syn-header
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-burger-menu-closed="$emit('syn-burger-menu-closed', $event)"
 
     @syn-burger-menu-hidden="$emit('syn-burger-menu-hidden', $event)"
     @syn-burger-menu-open="$emit('syn-burger-menu-open', $event)"
   >
-    <slot name="label" />
-    <slot name="logo" />
-    <slot name="meta-navigation" />
-    <slot name="navigation" />
-    <slot name="open-burger-menu-icon" />
-    <slot name="closed-burger-menu-icon" />
+    <slot />
   </syn-header>
 </template>

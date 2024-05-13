@@ -36,33 +36,33 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynDropdown>();
+const nativeElement = ref<SynDropdown>();
 
 // Map methods
-const callFocusOnTrigger = (...args: Parameters<SynDropdown['focusOnTrigger']>) => element.value?.focusOnTrigger(...args);
-const callGetMenu = (...args: Parameters<SynDropdown['getMenu']>) => element.value?.getMenu(...args);
-const callHandleTriggerClick = (...args: Parameters<SynDropdown['handleTriggerClick']>) => element.value?.handleTriggerClick(...args);
-const callHandleTriggerKeyDown = (...args: Parameters<SynDropdown['handleTriggerKeyDown']>) => element.value?.handleTriggerKeyDown(...args);
-const callHandleTriggerKeyUp = (...args: Parameters<SynDropdown['handleTriggerKeyUp']>) => element.value?.handleTriggerKeyUp(...args);
-const callHandleTriggerSlotChange = (...args: Parameters<SynDropdown['handleTriggerSlotChange']>) => element.value?.handleTriggerSlotChange(...args);
-const callUpdateAccessibleTrigger = (...args: Parameters<SynDropdown['updateAccessibleTrigger']>) => element.value?.updateAccessibleTrigger(...args);
+const callFocusOnTrigger = (...args: Parameters<SynDropdown['focusOnTrigger']>) => nativeElement.value?.focusOnTrigger(...args);
+const callGetMenu = (...args: Parameters<SynDropdown['getMenu']>) => nativeElement.value?.getMenu(...args);
+const callHandleTriggerClick = (...args: Parameters<SynDropdown['handleTriggerClick']>) => nativeElement.value?.handleTriggerClick(...args);
+const callHandleTriggerKeyDown = (...args: Parameters<SynDropdown['handleTriggerKeyDown']>) => nativeElement.value?.handleTriggerKeyDown(...args);
+const callHandleTriggerKeyUp = (...args: Parameters<SynDropdown['handleTriggerKeyUp']>) => nativeElement.value?.handleTriggerKeyUp(...args);
+const callHandleTriggerSlotChange = (...args: Parameters<SynDropdown['handleTriggerSlotChange']>) => nativeElement.value?.handleTriggerSlotChange(...args);
+const callUpdateAccessibleTrigger = (...args: Parameters<SynDropdown['updateAccessibleTrigger']>) => nativeElement.value?.updateAccessibleTrigger(...args);
 /**
 * Shows the dropdown panel.
  */
-const callShow = (...args: Parameters<SynDropdown['show']>) => element.value?.show(...args);
+const callShow = (...args: Parameters<SynDropdown['show']>) => nativeElement.value?.show(...args);
 /**
 * Hides the dropdown panel
  */
-const callHide = (...args: Parameters<SynDropdown['hide']>) => element.value?.hide(...args);
+const callHide = (...args: Parameters<SynDropdown['hide']>) => nativeElement.value?.hide(...args);
 /**
 * Instructs the dropdown menu to reposition.
 * Useful when the position or size of the trigger changes when the menu
 is activated.
  */
-const callReposition = (...args: Parameters<SynDropdown['reposition']>) => element.value?.reposition(...args);
-const callAddOpenListeners = (...args: Parameters<SynDropdown['addOpenListeners']>) => element.value?.addOpenListeners(...args);
-const callRemoveOpenListeners = (...args: Parameters<SynDropdown['removeOpenListeners']>) => element.value?.removeOpenListeners(...args);
-const callHandleOpenChange = (...args: Parameters<SynDropdown['handleOpenChange']>) => element.value?.handleOpenChange(...args);
+const callReposition = (...args: Parameters<SynDropdown['reposition']>) => nativeElement.value?.reposition(...args);
+const callAddOpenListeners = (...args: Parameters<SynDropdown['addOpenListeners']>) => nativeElement.value?.addOpenListeners(...args);
+const callRemoveOpenListeners = (...args: Parameters<SynDropdown['removeOpenListeners']>) => nativeElement.value?.removeOpenListeners(...args);
+const callHandleOpenChange = (...args: Parameters<SynDropdown['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
 
 defineExpose({
   callFocusOnTrigger,
@@ -78,6 +78,7 @@ defineExpose({
   callAddOpenListeners,
   callRemoveOpenListeners,
   callHandleOpenChange,
+  nativeElement,
 });
 
 // Map attributes
@@ -176,7 +177,7 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 <template>
   <syn-dropdown
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
 
@@ -184,6 +185,5 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
-    <slot name="trigger" />
   </syn-dropdown>
 </template>

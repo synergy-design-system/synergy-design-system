@@ -47,12 +47,12 @@ import '@synergy-design-system/components/components/menu-item/menu-item.js';
   template: '<ng-content></ng-content>',
 })
 export class SynMenuItemComponent {
-  private _el: SynMenuItem;
+  public nativeElement: SynMenuItem;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -62,11 +62,11 @@ export class SynMenuItemComponent {
  */
   @Input()
   set type(v: SynMenuItem['type']) {
-    this._ngZone.runOutsideAngular(() => (this._el.type = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
 
   get type() {
-    return this._el.type;
+    return this.nativeElement.type;
   }
 
   /**
@@ -74,11 +74,11 @@ export class SynMenuItemComponent {
  */
   @Input()
   set checked(v: SynMenuItem['checked']) {
-    this._ngZone.runOutsideAngular(() => (this._el.checked = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
   }
 
   get checked() {
-    return this._el.checked;
+    return this.nativeElement.checked;
   }
 
   /**
@@ -87,11 +87,11 @@ export class SynMenuItemComponent {
  */
   @Input()
   set value(v: SynMenuItem['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -99,11 +99,11 @@ export class SynMenuItemComponent {
  */
   @Input()
   set loading(v: SynMenuItem['loading']) {
-    this._ngZone.runOutsideAngular(() => (this._el.loading = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.loading = v));
   }
 
   get loading() {
-    return this._el.loading;
+    return this.nativeElement.loading;
   }
 
   /**
@@ -111,26 +111,26 @@ export class SynMenuItemComponent {
  */
   @Input()
   set disabled(v: SynMenuItem['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   @Input()
   callHandleCheckedChange(...args: Parameters<SynMenuItem['handleCheckedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleCheckedChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleCheckedChange(...args));
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynMenuItem['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   @Input()
   callHandleTypeChange(...args: Parameters<SynMenuItem['handleTypeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleTypeChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTypeChange(...args));
   }
 
   /**
@@ -138,11 +138,11 @@ export class SynMenuItemComponent {
  */
   @Input()
   callGetTextLabel(...args: Parameters<SynMenuItem['getTextLabel']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getTextLabel(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getTextLabel(...args));
   }
 
   @Input()
   callIsSubmenu(...args: Parameters<SynMenuItem['isSubmenu']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.isSubmenu(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.isSubmenu(...args));
   }
 }

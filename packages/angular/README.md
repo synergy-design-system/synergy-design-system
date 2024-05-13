@@ -170,7 +170,10 @@ An example for how these types can be used in case of event handling, is shown b
   }
 ```
 
-### 7. Usage of methods
+### 7.1. Usage of methods (DEPRECATED)
+
+> ⛔️ This feature is deprecated, the methods defined below will not be available in the next major version of `@synergy-design-system/angular`!
+> If you need to call methods on elements, please obtain a reference to the native element as shown below and call the method on the native element itself!
 
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 
@@ -198,6 +201,32 @@ export class Home {
   handleClick() {
     // Increment the count via calling the method
     this.count.callStepUp();
+  }
+}
+```
+
+### 7.2. Obtaining a reference to the underlying native element
+
+Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all angular components.
+
+```js
+import { Component, ViewChild } from '@angular/core';
+import { SynInputComponent } from '@synergy-design-system/angular';
+
+@Component({
+  selector: 'home',
+  styleUrls: ['./home.styles.css'],
+  template: `
+    <syn-input #count label="My count" type="number" value="5"></syn-input>
+    <syn-button (click)="handleClick()">Increment</syn-button>
+  `
+})
+export class Home {
+ @ViewChild('count') count!: SynInputComponent;
+
+  handleClick() {
+    // Increment the count via calling the method
+    this.count.nativeElement.stepUp();
   }
 }
 ```

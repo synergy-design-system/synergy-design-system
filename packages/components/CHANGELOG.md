@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.23.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.0...components/1.23.1) (2024-05-08)
+
+
+### Bug Fixes
+
+* 🤔 Syn-Checkbox uses wrong line-height when in multi-line mode ([#456](https://github.com/synergy-design-system/synergy-design-system/issues/456)) ([b072591](https://github.com/synergy-design-system/synergy-design-system/commit/b072591bb1c8e6052cbff96936905c173ec64ce5))
+
+# [@synergy-design-system/components-v1.23.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.22.0...components/1.23.0) (2024-05-08)
+
+
+### Features
+
+* ✨ syn-dialog ([#458](https://github.com/synergy-design-system/synergy-design-system/issues/458)) ([7247f0c](https://github.com/synergy-design-system/synergy-design-system/commit/7247f0cca654ea10ec5968d92175e546c43515cd))
+
 # [@synergy-design-system/components-v1.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.21.0...components/1.22.0) (2024-04-29)
 
 

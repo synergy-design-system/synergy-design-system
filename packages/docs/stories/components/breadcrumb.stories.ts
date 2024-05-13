@@ -134,9 +134,10 @@ export const WithDropdowns: Story = {
       <syn-breadcrumb>
         <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
         <syn-breadcrumb-item>
-          WORK IN PROGRESS
-          <syn-dropdown slot="suffix">
-            <syn-icon-button label="More options" name="more_horiz" size="small" slot="trigger"></syn-icon-button>
+          <syn-dropdown>
+            <button slot="trigger" class="manual-strigger">
+              <syn-icon label="More options" name="more_horiz"></syn-icon>
+            </button>
             <syn-menu>
               <syn-menu-item>Breadcrumb Item</syn-menu-item>
               <syn-menu-item>Breadcrumb Item</syn-menu-item>
@@ -148,6 +149,18 @@ export const WithDropdowns: Story = {
         <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
       </syn-breadcrumb>
     </div>
+    <style>
+      .manual-strigger {
+        appearance: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        font-size: var(--syn-font-size-x-small);
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   `,
 };
 

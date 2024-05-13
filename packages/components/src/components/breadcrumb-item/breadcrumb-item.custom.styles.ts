@@ -67,4 +67,8 @@ export default css`
   .breadcrumb-item__separator ::slotted(syn-icon.rtl) {
     rotate: 90deg;
   }
+
+  .breadcrumb-item__label--drop-down {
+    display: flex;
+  }
 `;

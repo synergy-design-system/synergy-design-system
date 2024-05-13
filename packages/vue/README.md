@@ -194,7 +194,6 @@ Sometimes, there is a need to interact directly with the underlying native web-c
 </template>
 ```
 
-
 ### 8. Using two way databinding
 
 We support [Vue two way data binding](https://vuejs.org/guide/components/v-model.html) for form components out of the box.

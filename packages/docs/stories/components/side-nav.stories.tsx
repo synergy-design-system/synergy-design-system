@@ -60,12 +60,12 @@ const createNavItems = () => html`
     </syn-nav-item>
 `;
 
-const createDummyActiveNavItemListener = () => html`
+const createDummyActiveNavItemListener = (selector: string) => html`
   <script type="module">
     // This emulates a click on the side-nav and updates the main content
     // This will usually be provided by the application itself, e.g. via
     // built in routing functions like angular-router, react-router or vue-router
-    Array.from(document.querySelectorAll('syn-side-nav')).forEach((nav) => {
+    Array.from(document.querySelectorAll('${selector}')).forEach((nav) => {
       nav.addEventListener('click', (e) => {
         const target = e.target.closest('syn-nav-item');
 
@@ -126,7 +126,7 @@ export const Default: Story = {
         }
       });
     </script>
-    ${createDummyActiveNavItemListener()}
+    ${createDummyActiveNavItemListener('.side-nav-default')}
   `,
 };
 
@@ -157,6 +157,7 @@ export const Rail: Story = {
         header.connectSideNavigation(sideNav);
       }
     </script>
+    ${createDummyActiveNavItemListener('.side-nav-rail')}
     <style>
       .main-rail {
         position: relative;
@@ -208,6 +209,7 @@ export const Footer: Story = {
         header.connectSideNavigation(sideNav);
       }
     </script>
+    ${createDummyActiveNavItemListener('.side-nav-footer')}
     <style>
       .main-footer {
         position: relative;
@@ -247,6 +249,7 @@ export const Fixed: Story = {
         header.connectSideNavigation(sideNav);
       }
     </script>
+    ${createDummyActiveNavItemListener('.side-nav-fixed')}
     <style>
       .container-fixed {
         display: flex;
@@ -296,6 +299,7 @@ export const Shrink: Story = {
         header.connectSideNavigation(sideNav);
       }
     </script>
+    ${createDummyActiveNavItemListener('.side-nav-shrink')}
     <style>
       .main-shrink {
         position: relative;
@@ -366,6 +370,7 @@ export const Indentation: Story = {
         header.connectSideNavigation(sideNav);
       }
     </script>
+    ${createDummyActiveNavItemListener('.side-nav-indentation')}
     <style>
       .main-indentation {
         position: relative;

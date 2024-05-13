@@ -159,7 +159,7 @@ export const Navigation = {
       App Name
     </syn-header>
     <script type="module">
-      // This emulates a click on the side-nav and updates the main content
+      // This emulates a click on the prio-nav and updates the main content
       // This will usually be provided by the application itself, e.g. via
       // built in routing functions like angular-router, react-router or vue-router
       Array.from(document.querySelectorAll('syn-prio-nav')).forEach(nav => {

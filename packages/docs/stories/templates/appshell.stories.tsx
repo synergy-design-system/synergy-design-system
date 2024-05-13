@@ -22,10 +22,6 @@ const createSharedStyles = () => html`
       padding: 0 !important;
     }
 
-    syn-side-nav {
-      --side-nav-open-width: 320px;
-    }
-
     #storybook-root,
     #root-inner {
       height: 100%;
@@ -93,10 +89,10 @@ const createSharedStyles = () => html`
 const createPrioNav = () => html`
   <!-- prio-nav -->
   <syn-prio-nav slot="navigation">
-    <syn-nav-item current>${getTranslation('appShell.navigation.home')}</syn-nav-item>
-    <syn-nav-item>${getTranslation('appShell.navigation.documents')}</syn-nav-item>
-    <syn-nav-item>${getTranslation('appShell.navigation.applications')}</syn-nav-item>
-    <syn-nav-item>${getTranslation('appShell.navigation.teams')}</syn-nav-item>
+    <syn-nav-item current horizontal>${getTranslation('appShell.navigation.home')}</syn-nav-item>
+    <syn-nav-item horizontal>${getTranslation('appShell.navigation.documents')}</syn-nav-item>
+    <syn-nav-item horizontal>${getTranslation('appShell.navigation.applications')}</syn-nav-item>
+    <syn-nav-item horizontal>${getTranslation('appShell.navigation.teams')}</syn-nav-item>
   </syn-prio-nav>
   <!-- /prio-nav -->
 `;
@@ -109,7 +105,7 @@ const createHeader = ({
 } = {}) => html`
   <!-- header -->
   <syn-header>
-  ${getTranslation('appShell.appName')}
+    ${getTranslation('appShell.appName')}
     
     ${withMetaNavigation ? createPrioNav() : ''}
 
@@ -353,7 +349,7 @@ export const SideNavigationShrinkingContent: Story = {
          * Set this variable to the wanted size of the side-nav
          * Make sure the value stays in sync, otherwise the parts my overlap
          */
-        --appshell-shrink-nav-open-width: 320px;
+        --appshell-shrink-nav-open-width: 25rem;
 
         syn-side-nav::part(overlay) {
           display: none;
@@ -391,9 +387,6 @@ export const SideNavigationShrinkingContent: Story = {
 export const RailNavigationDesktop: Story = {
   name: 'Rail Navigation (Desktop)',
   parameters: {
-    viewport: {
-      defaultViewport: 'default',
-    },
   },
   render: () => html`
     <!-- .synergy-demo-application -->

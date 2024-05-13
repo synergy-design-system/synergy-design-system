@@ -1,5 +1,6 @@
 import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/themes/utility.css';
@@ -7,8 +8,8 @@ import '../../components/src/synergy';
 
 import '../src/docs.css';
 
-import { stopAnimation } from '../src/decorators/StopAnimation';
-import { LIGHT_THEME, DARK_THEME } from './modes.ts';
+import { stopAnimation } from '../src/decorators/StopAnimation.js';
+import { LIGHT_THEME, DARK_THEME } from './modes.js';
 import { generateFigmaPluginObject } from "../src/helpers/figma.js";
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
@@ -70,8 +71,22 @@ const preview: Preview = {
       },
       source: { format: 'html' }
     },
+    // Configures the viewports addon to make sure
+    // that we have a valid default viewport.
+    // When not setting this, the last active viewport will be used, which we do not want
     viewport: {
-      defaultViewport: 'default',
+      defaultViewport: 'defaultViewPort',
+      viewports: {
+        ...MINIMAL_VIEWPORTS,
+        defaultViewPort: {
+          name: 'Default',
+          styles: {
+            width: '100%',
+            height: '100%',
+          },
+          type: 'desktop',
+        },
+      },
     },
   },
 };

@@ -9,11 +9,12 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
+      
     }],
     [process.env.CI ? 'github' : 'list'],
   ],
-
   projects: [
+
     {
       name: 'chromium',
       use: { 

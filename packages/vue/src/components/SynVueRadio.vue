@@ -30,15 +30,16 @@ import '@synergy-design-system/components/components/radio/radio.js';
 import type { SynBlurEvent, SynFocusEvent, SynRadio } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynRadio>();
+const nativeElement = ref<SynRadio>();
 
 // Map methods
-const callHandleCheckedChange = (...args: Parameters<SynRadio['handleCheckedChange']>) => element.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynRadio['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
+const callHandleCheckedChange = (...args: Parameters<SynRadio['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynRadio['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
 
 defineExpose({
   callHandleCheckedChange,
   callHandleDisabledChange,
+  nativeElement,
 });
 
 // Map attributes
@@ -94,7 +95,7 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 <template>
   <syn-radio
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
 
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"

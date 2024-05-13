@@ -29,22 +29,23 @@ import '@synergy-design-system/components/components/option/option.js';
 import type { SynOption } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynOption>();
+const nativeElement = ref<SynOption>();
 
 // Map methods
-const callHandleDisabledChange = (...args: Parameters<SynOption['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleSelectedChange = (...args: Parameters<SynOption['handleSelectedChange']>) => element.value?.handleSelectedChange(...args);
-const callHandleValueChange = (...args: Parameters<SynOption['handleValueChange']>) => element.value?.handleValueChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynOption['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
+const callHandleSelectedChange = (...args: Parameters<SynOption['handleSelectedChange']>) => nativeElement.value?.handleSelectedChange(...args);
+const callHandleValueChange = (...args: Parameters<SynOption['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
 /**
 * Returns a plain text label based on the option's content.
  */
-const callGetTextLabel = (...args: Parameters<SynOption['getTextLabel']>) => element.value?.getTextLabel(...args);
+const callGetTextLabel = (...args: Parameters<SynOption['getTextLabel']>) => nativeElement.value?.getTextLabel(...args);
 
 defineExpose({
   callHandleDisabledChange,
   callHandleSelectedChange,
   callHandleValueChange,
   callGetTextLabel,
+  nativeElement,
 });
 
 // Map attributes
@@ -85,10 +86,8 @@ defineEmits<{
   <syn-option
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
   </syn-option>
 </template>

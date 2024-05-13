@@ -46,25 +46,25 @@ import '@synergy-design-system/components/components/button/button.js';
   template: '<ng-content></ng-content>',
 })
 export class SynButtonComponent {
-  private _el: SynButton;
+  public nativeElement: SynButton;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   @Input()
   set title(v: SynButton['title']) {
-    this._ngZone.runOutsideAngular(() => (this._el.title = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
 
   get title() {
-    return this._el.title;
+    return this.nativeElement.title;
   }
 
   /**
@@ -72,11 +72,11 @@ export class SynButtonComponent {
  */
   @Input()
   set variant(v: SynButton['variant']) {
-    this._ngZone.runOutsideAngular(() => (this._el.variant = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
 
   get variant() {
-    return this._el.variant;
+    return this.nativeElement.variant;
   }
 
   /**
@@ -84,11 +84,11 @@ export class SynButtonComponent {
  */
   @Input()
   set size(v: SynButton['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -97,11 +97,11 @@ export class SynButtonComponent {
  */
   @Input()
   set caret(v: SynButton['caret']) {
-    this._ngZone.runOutsideAngular(() => (this._el.caret = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.caret = v));
   }
 
   get caret() {
-    return this._el.caret;
+    return this.nativeElement.caret;
   }
 
   /**
@@ -109,11 +109,11 @@ export class SynButtonComponent {
  */
   @Input()
   set disabled(v: SynButton['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -121,11 +121,11 @@ export class SynButtonComponent {
  */
   @Input()
   set loading(v: SynButton['loading']) {
-    this._ngZone.runOutsideAngular(() => (this._el.loading = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.loading = v));
   }
 
   get loading() {
-    return this._el.loading;
+    return this.nativeElement.loading;
   }
 
   /**
@@ -136,11 +136,11 @@ export class SynButtonComponent {
  */
   @Input()
   set type(v: SynButton['type']) {
-    this._ngZone.runOutsideAngular(() => (this._el.type = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
 
   get type() {
-    return this._el.type;
+    return this.nativeElement.type;
   }
 
   /**
@@ -149,11 +149,11 @@ This attribute is ignored when `href` is present.
  */
   @Input()
   set name(v: SynButton['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -163,11 +163,11 @@ button is the submitter.
  */
   @Input()
   set value(v: SynButton['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -175,11 +175,11 @@ button is the submitter.
  */
   @Input()
   set href(v: SynButton['href']) {
-    this._ngZone.runOutsideAngular(() => (this._el.href = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
 
   get href() {
-    return this._el.href;
+    return this.nativeElement.href;
   }
 
   /**
@@ -188,11 +188,11 @@ button is the submitter.
  */
   @Input()
   set target(v: SynButton['target']) {
-    this._ngZone.runOutsideAngular(() => (this._el.target = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
 
   get target() {
-    return this._el.target;
+    return this.nativeElement.target;
   }
 
   /**
@@ -206,11 +206,11 @@ setting the attribute to an empty string or a value of your choice, respectively
  */
   @Input()
   set rel(v: SynButton['rel']) {
-    this._ngZone.runOutsideAngular(() => (this._el.rel = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
   }
 
   get rel() {
-    return this._el.rel;
+    return this.nativeElement.rel;
   }
 
   /**
@@ -219,11 +219,11 @@ setting the attribute to an empty string or a value of your choice, respectively
  */
   @Input()
   set download(v: SynButton['download']) {
-    this._ngZone.runOutsideAngular(() => (this._el.download = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.download = v));
   }
 
   get download() {
-    return this._el.download;
+    return this.nativeElement.download;
   }
 
   /**
@@ -234,11 +234,11 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set form(v: SynButton['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -246,11 +246,11 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set formAction(v: SynButton['formAction']) {
-    this._ngZone.runOutsideAngular(() => (this._el.formAction = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.formAction = v));
   }
 
   get formAction() {
-    return this._el.formAction;
+    return this.nativeElement.formAction;
   }
 
   /**
@@ -258,11 +258,11 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set formEnctype(v: SynButton['formEnctype']) {
-    this._ngZone.runOutsideAngular(() => (this._el.formEnctype = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.formEnctype = v));
   }
 
   get formEnctype() {
-    return this._el.formEnctype;
+    return this.nativeElement.formEnctype;
   }
 
   /**
@@ -270,11 +270,11 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set formMethod(v: SynButton['formMethod']) {
-    this._ngZone.runOutsideAngular(() => (this._el.formMethod = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.formMethod = v));
   }
 
   get formMethod() {
-    return this._el.formMethod;
+    return this.nativeElement.formMethod;
   }
 
   /**
@@ -282,11 +282,11 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set formNoValidate(v: SynButton['formNoValidate']) {
-    this._ngZone.runOutsideAngular(() => (this._el.formNoValidate = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.formNoValidate = v));
   }
 
   get formNoValidate() {
-    return this._el.formNoValidate;
+    return this.nativeElement.formNoValidate;
   }
 
   /**
@@ -294,16 +294,16 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   set formTarget(v: SynButton['formTarget']) {
-    this._ngZone.runOutsideAngular(() => (this._el.formTarget = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.formTarget = v));
   }
 
   get formTarget() {
-    return this._el.formTarget;
+    return this.nativeElement.formTarget;
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynButton['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   /**
@@ -311,7 +311,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callClick(...args: Parameters<SynButton['click']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
   }
 
   /**
@@ -319,7 +319,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callFocus(...args: Parameters<SynButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**
@@ -327,7 +327,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callBlur(...args: Parameters<SynButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**
@@ -336,7 +336,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callCheckValidity(...args: Parameters<SynButton['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
   }
 
   /**
@@ -344,7 +344,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callGetForm(...args: Parameters<SynButton['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
   }
 
   /**
@@ -352,7 +352,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callReportValidity(...args: Parameters<SynButton['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
   }
 
   /**
@@ -361,7 +361,7 @@ value of this attribute must be an id of a form in the same document or shadow r
  */
   @Input()
   callSetCustomValidity(...args: Parameters<SynButton['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
   }
 
   /**

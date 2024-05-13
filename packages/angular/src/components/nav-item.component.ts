@@ -67,17 +67,17 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
   template: '<ng-content></ng-content>',
 })
 export class SynNavItemComponent {
-  private _el: SynNavItem;
+  public nativeElement: SynNavItem;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
   }
 
   /**
@@ -89,20 +89,20 @@ accordion behavior.
  */
   @Input()
   set href(v: SynNavItem['href']) {
-    this._ngZone.runOutsideAngular(() => (this._el.href = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
 
   get href() {
-    return this._el.href;
+    return this.nativeElement.href;
   }
 
   @Input()
   set current(v: SynNavItem['current']) {
-    this._ngZone.runOutsideAngular(() => (this._el.current = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.current = v));
   }
 
   get current() {
-    return this._el.current;
+    return this.nativeElement.current;
   }
 
   /**
@@ -110,11 +110,11 @@ accordion behavior.
  */
   @Input()
   set disabled(v: SynNavItem['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -122,11 +122,11 @@ accordion behavior.
  */
   @Input()
   set horizontal(v: SynNavItem['horizontal']) {
-    this._ngZone.runOutsideAngular(() => (this._el.horizontal = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.horizontal = v));
   }
 
   get horizontal() {
-    return this._el.horizontal;
+    return this.nativeElement.horizontal;
   }
 
   /**
@@ -135,11 +135,11 @@ Only used if `horizontal` is false.
  */
   @Input()
   set chevron(v: SynNavItem['chevron']) {
-    this._ngZone.runOutsideAngular(() => (this._el.chevron = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.chevron = v));
   }
 
   get chevron() {
-    return this._el.chevron;
+    return this.nativeElement.chevron;
   }
 
   /**
@@ -148,11 +148,11 @@ Only used if `horizontal` is false and `children` is defined.
  */
   @Input()
   set open(v: SynNavItem['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -161,16 +161,16 @@ Only available when horizontal is false.
  */
   @Input()
   set divider(v: SynNavItem['divider']) {
-    this._ngZone.runOutsideAngular(() => (this._el.divider = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.divider = v));
   }
 
   get divider() {
-    return this._el.divider;
+    return this.nativeElement.divider;
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynNavItem['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   /**
@@ -178,7 +178,7 @@ Only available when horizontal is false.
  */
   @Input()
   callBlur(...args: Parameters<SynNavItem['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**
@@ -186,7 +186,7 @@ Only available when horizontal is false.
  */
   @Input()
   callClick(...args: Parameters<SynNavItem['click']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
   }
 
   /**
@@ -194,7 +194,7 @@ Only available when horizontal is false.
  */
   @Input()
   callFocus(...args: Parameters<SynNavItem['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**

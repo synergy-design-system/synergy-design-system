@@ -30,14 +30,14 @@ import '@synergy-design-system/components/components/menu/menu.js';
   template: '<ng-content></ng-content>',
 })
 export class SynMenuComponent {
-  private _el: SynMenu;
+  public nativeElement: SynMenu;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-select', (e: SynSelectEvent) => { this.synSelectEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-select', (e: SynSelectEvent) => { this.synSelectEvent.emit(e); });
   }
 
   /**

@@ -39,12 +39,12 @@ import '@synergy-design-system/components/components/progress-ring/progress-ring
   template: '<ng-content></ng-content>',
 })
 export class SynProgressRingComponent {
-  private _el: SynProgressRing;
+  public nativeElement: SynProgressRing;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -53,11 +53,11 @@ export class SynProgressRingComponent {
  */
   @Input()
   set value(v: SynProgressRing['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -65,10 +65,10 @@ export class SynProgressRingComponent {
  */
   @Input()
   set label(v: SynProgressRing['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 }

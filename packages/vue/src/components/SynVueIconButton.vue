@@ -24,26 +24,27 @@ import '@synergy-design-system/components/components/icon-button/icon-button.js'
 import type { SynBlurEvent, SynFocusEvent, SynIconButton } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynIconButton>();
+const nativeElement = ref<SynIconButton>();
 
 // Map methods
 /**
 * Simulates a click on the icon button.
  */
-const callClick = (...args: Parameters<SynIconButton['click']>) => element.value?.click(...args);
+const callClick = (...args: Parameters<SynIconButton['click']>) => nativeElement.value?.click(...args);
 /**
 * Sets focus on the icon button.
  */
-const callFocus = (...args: Parameters<SynIconButton['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynIconButton['focus']>) => nativeElement.value?.focus(...args);
 /**
 * Removes focus from the icon button.
  */
-const callBlur = (...args: Parameters<SynIconButton['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynIconButton['blur']>) => nativeElement.value?.blur(...args);
 
 defineExpose({
   callClick,
   callFocus,
   callBlur,
+  nativeElement,
 });
 
 // Map attributes
@@ -139,7 +140,7 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 <template>
   <syn-icon-button
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
 
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"

@@ -8,7 +8,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { property } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './breadcrumb-item.styles.js';
@@ -38,6 +38,10 @@ export default class SynBreadcrumbItem extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'prefix', 'suffix');
 
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+
+  @state() private renderType: 'button' | 'link' | 'drop-down' = 'button';
+
   /**
    * Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered
    * internally. When unset, a button will be rendered instead.
@@ -50,9 +54,15 @@ export default class SynBreadcrumbItem extends SynergyElement {
   /** The `rel` attribute to use on the link. Only used when `href` is set. */
   @property() rel = 'noreferrer noopener';
 
-  render() {
-    const isLink = this.href ? true : false;
+  private handleSlotChange() {
+    const hasDropdown =
+      this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'syn-dropdown')
+        .length > 0;
 
+    this.renderType = this.href ? 'link' : hasDropdown ? 'drop-down' : 'button';
+  }
+
+  render() {
     return html`
       <div
         part="base"
@@ -66,7 +76,7 @@ export default class SynBreadcrumbItem extends SynergyElement {
           <slot name="prefix"></slot>
         </span>
 
-        ${isLink
+        ${this.renderType === 'link'
           ? html`
               <a
                 part="label"
@@ -75,14 +85,23 @@ export default class SynBreadcrumbItem extends SynergyElement {
                 target="${ifDefined(this.target ? this.target : undefined)}"
                 rel=${ifDefined(this.target ? this.rel : undefined)}
               >
-                <slot></slot>
+                <slot @slotchange=${this.handleSlotChange}></slot>
               </a>
             `
-          : html`
+          : ''}
+          ${this.renderType === 'button' ? html`
               <button part="label" type="button" class="breadcrumb-item__label breadcrumb-item__label--button">
-                <slot></slot>
+                <slot @slotchange=${this.handleSlotChange}></slot>
               </button>
-            `}
+            ` : ''}
+
+          ${this.renderType === 'drop-down'
+            ? html`
+                <div part="label" class="breadcrumb-item__label breadcrumb-item__label--drop-down">
+                  <slot @slotchange=${this.handleSlotChange}></slot>
+                </div>
+              `
+            : ''}
 
         <span part="suffix" class="breadcrumb-item__suffix">
           <slot name="suffix"></slot>

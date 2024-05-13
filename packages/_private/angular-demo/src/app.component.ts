@@ -18,13 +18,10 @@ export class AppComponent {
     router.events.subscribe((event) => {
       if(event instanceof NavigationStart) {
         const path = event.url;
-        //@ts-ignore
-        this.sideNav._el.querySelectorAll('syn-nav-item').forEach((navItem: SynNavItem) => {
+        this.sideNav.nativeElement.querySelectorAll('syn-nav-item').forEach((navItem: SynNavItem) => {
           navItem.current = navItem.href === path;
         });
       }
     });
-
   }
-
 }

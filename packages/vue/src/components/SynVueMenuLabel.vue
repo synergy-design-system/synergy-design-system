@@ -27,12 +27,13 @@ import '@synergy-design-system/components/components/menu-label/menu-label.js';
 import type { SynMenuLabel } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynMenuLabel>();
+const nativeElement = ref<SynMenuLabel>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -60,7 +61,7 @@ defineEmits<{
   <syn-menu-label
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-menu-label>

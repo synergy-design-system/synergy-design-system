@@ -66,17 +66,17 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
   template: '<ng-content></ng-content>',
 })
 export class SynSideNavComponent {
-  private _el: SynSideNav;
+  public nativeElement: SynSideNav;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
@@ -97,11 +97,11 @@ Without `open`, the side-nav will only show the prefix of nav-item's.
  */
   @Input()
   set open(v: SynSideNav['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -114,11 +114,11 @@ If this is not the case you should use a burger navigation.
  */
   @Input()
   set rail(v: SynSideNav['rail']) {
-    this._ngZone.runOutsideAngular(() => (this._el.rail = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.rail = v));
   }
 
   get rail() {
-    return this._el.rail;
+    return this.nativeElement.rail;
   }
 
   /**
@@ -127,26 +127,26 @@ To disable the focus trapping, set this attribute.
  */
   @Input()
   set noFocusTrapping(v: SynSideNav['noFocusTrapping']) {
-    this._ngZone.runOutsideAngular(() => (this._el.noFocusTrapping = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.noFocusTrapping = v));
   }
 
   get noFocusTrapping() {
-    return this._el.noFocusTrapping;
+    return this.nativeElement.noFocusTrapping;
   }
 
   @Input()
   callHandleModeChange(...args: Parameters<SynSideNav['handleModeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleModeChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleModeChange(...args));
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynSideNav['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   @Input()
   callHandleFocusTrapping(...args: Parameters<SynSideNav['handleFocusTrapping']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleFocusTrapping(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleFocusTrapping(...args));
   }
 
   /**
@@ -154,7 +154,7 @@ To disable the focus trapping, set this attribute.
  */
   @Input()
   callShow(...args: Parameters<SynSideNav['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -162,7 +162,7 @@ To disable the focus trapping, set this attribute.
  */
   @Input()
   callHide(...args: Parameters<SynSideNav['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**

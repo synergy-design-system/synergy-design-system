@@ -67,23 +67,23 @@ import '@synergy-design-system/components/components/select/select.js';
   template: '<ng-content></ng-content>',
 })
 export class SynSelectComponent {
-  private _el: SynSelect;
+  public nativeElement: SynSelect;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   /**
@@ -91,11 +91,11 @@ export class SynSelectComponent {
  */
   @Input()
   set name(v: SynSelect['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -107,11 +107,11 @@ be an array.
  */
   @Input()
   set value(v: SynSelect['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -119,11 +119,11 @@ be an array.
  */
   @Input()
   set size(v: SynSelect['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -131,11 +131,11 @@ be an array.
  */
   @Input()
   set placeholder(v: SynSelect['placeholder']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placeholder = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
 
   get placeholder() {
-    return this._el.placeholder;
+    return this.nativeElement.placeholder;
   }
 
   /**
@@ -143,11 +143,11 @@ be an array.
  */
   @Input()
   set multiple(v: SynSelect['multiple']) {
-    this._ngZone.runOutsideAngular(() => (this._el.multiple = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.multiple = v));
   }
 
   get multiple() {
-    return this._el.multiple;
+    return this.nativeElement.multiple;
   }
 
   /**
@@ -158,11 +158,11 @@ indicate the number of additional items that are selected.
  */
   @Input()
   set maxOptionsVisible(v: SynSelect['maxOptionsVisible']) {
-    this._ngZone.runOutsideAngular(() => (this._el.maxOptionsVisible = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxOptionsVisible = v));
   }
 
   get maxOptionsVisible() {
-    return this._el.maxOptionsVisible;
+    return this.nativeElement.maxOptionsVisible;
   }
 
   /**
@@ -170,11 +170,11 @@ indicate the number of additional items that are selected.
  */
   @Input()
   set disabled(v: SynSelect['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -182,11 +182,11 @@ indicate the number of additional items that are selected.
  */
   @Input()
   set clearable(v: SynSelect['clearable']) {
-    this._ngZone.runOutsideAngular(() => (this._el.clearable = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
   }
 
   get clearable() {
-    return this._el.clearable;
+    return this.nativeElement.clearable;
   }
 
   /**
@@ -196,11 +196,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
  */
   @Input()
   set open(v: SynSelect['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -210,11 +210,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
  */
   @Input()
   set hoist(v: SynSelect['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this._el.hoist = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
 
   get hoist() {
-    return this._el.hoist;
+    return this.nativeElement.hoist;
   }
 
   /**
@@ -223,11 +223,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
  */
   @Input()
   set label(v: SynSelect['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -237,11 +237,11 @@ inside of the viewport.
  */
   @Input()
   set placement(v: SynSelect['placement']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placement = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
 
   get placement() {
-    return this._el.placement;
+    return this.nativeElement.placement;
   }
 
   /**
@@ -250,11 +250,11 @@ inside of the viewport.
  */
   @Input()
   set helpText(v: SynSelect['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
+    return this.nativeElement.helpText;
   }
 
   /**
@@ -266,11 +266,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynSelect['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -278,11 +278,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynSelect['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   /**
@@ -294,26 +294,26 @@ the specified value.
  */
   @Input()
   set getTag(v: SynSelect['getTag']) {
-    this._ngZone.runOutsideAngular(() => (this._el.getTag = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.getTag = v));
   }
 
   get getTag() {
-    return this._el.getTag;
+    return this.nativeElement.getTag;
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynSelect['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   @Input()
   callHandleValueChange(...args: Parameters<SynSelect['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleValueChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleValueChange(...args));
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynSelect['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   /**
@@ -321,7 +321,7 @@ the specified value.
  */
   @Input()
   callShow(...args: Parameters<SynSelect['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -329,7 +329,7 @@ the specified value.
  */
   @Input()
   callHide(...args: Parameters<SynSelect['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**
@@ -338,7 +338,7 @@ the specified value.
  */
   @Input()
   callCheckValidity(...args: Parameters<SynSelect['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
   }
 
   /**
@@ -346,7 +346,7 @@ the specified value.
  */
   @Input()
   callGetForm(...args: Parameters<SynSelect['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
   }
 
   /**
@@ -354,7 +354,7 @@ the specified value.
  */
   @Input()
   callReportValidity(...args: Parameters<SynSelect['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
   }
 
   /**
@@ -363,7 +363,7 @@ the specified value.
  */
   @Input()
   callSetCustomValidity(...args: Parameters<SynSelect['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
   }
 
   /**
@@ -371,7 +371,7 @@ the specified value.
  */
   @Input()
   callFocus(...args: Parameters<SynSelect['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**
@@ -379,7 +379,7 @@ the specified value.
  */
   @Input()
   callBlur(...args: Parameters<SynSelect['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**

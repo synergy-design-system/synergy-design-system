@@ -139,7 +139,10 @@ An example for how these types can be used in case of event handling, is shown b
 </template>
 ```
 
-### 7. Usage of methods
+### 7.1. Usage of methods (DEPRECATED)
+
+> ⛔️ This feature is deprecated, the methods defined below will not be available in the next major version of `@synergy-design-system/vue`!
+> If you need to call methods on elements, please obtain a reference to the native element as shown below and call the method on the native element itself!
 
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which trigger an action, if they are called.
 
@@ -167,6 +170,30 @@ An example for calling such a method in a Vue component is shown here:
   <SynVueButton @click="handleClick"> Increment </SynVueButton>
 </template>
 ```
+
+### 7.2. Obtaining a reference to the underlying native element
+
+Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all vue components.
+
+```html
+<script setup lang="ts">
+  import { SynVueInput, SynVueButton } from "@synergy-design-system/vue";
+  import { ref } from "vue";
+
+  const count = ref<InstanceType<typeof SynVueInput> | null>(null);
+
+  const handleClick = () => {
+    // Increment the count via calling the method
+    count.value?.nativeElement?.stepUp();
+  };
+</script>
+
+<template>
+  <SynVueInput ref="count" label="My count" type="number" value="5" />
+  <SynVueButton @click="handleClick"> Increment </SynVueButton>
+</template>
+```
+
 
 ### 8. Using two way databinding
 

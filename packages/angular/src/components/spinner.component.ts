@@ -33,12 +33,12 @@ import '@synergy-design-system/components/components/spinner/spinner.js';
   template: '<ng-content></ng-content>',
 })
 export class SynSpinnerComponent {
-  private _el: SynSpinner;
+  public nativeElement: SynSpinner;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 }

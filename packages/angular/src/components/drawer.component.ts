@@ -79,19 +79,19 @@ import '@synergy-design-system/components/components/drawer/drawer.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDrawerComponent {
-  private _el: SynDrawer;
+  public nativeElement: SynDrawer;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this._el.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
-    this._el.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
   }
 
   /**
@@ -101,11 +101,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
  */
   @Input()
   set open(v: SynDrawer['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -116,11 +116,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
  */
   @Input()
   set label(v: SynDrawer['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -128,11 +128,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
  */
   @Input()
   set placement(v: SynDrawer['placement']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placement = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
 
   get placement() {
-    return this._el.placement;
+    return this.nativeElement.placement;
   }
 
   /**
@@ -142,11 +142,11 @@ its parent element, set this attribute and add `position: relative` to the paren
  */
   @Input()
   set contained(v: SynDrawer['contained']) {
-    this._ngZone.runOutsideAngular(() => (this._el.contained = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
   }
 
   get contained() {
-    return this._el.contained;
+    return this.nativeElement.contained;
   }
 
   /**
@@ -156,21 +156,21 @@ accessible way for users to dismiss the drawer.
  */
   @Input()
   set noHeader(v: SynDrawer['noHeader']) {
-    this._ngZone.runOutsideAngular(() => (this._el.noHeader = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
   }
 
   get noHeader() {
-    return this._el.noHeader;
+    return this.nativeElement.noHeader;
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynDrawer['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   @Input()
   callHandleNoModalChange(...args: Parameters<SynDrawer['handleNoModalChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleNoModalChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleNoModalChange(...args));
   }
 
   /**
@@ -178,7 +178,7 @@ accessible way for users to dismiss the drawer.
  */
   @Input()
   callShow(...args: Parameters<SynDrawer['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -186,7 +186,7 @@ accessible way for users to dismiss the drawer.
  */
   @Input()
   callHide(...args: Parameters<SynDrawer['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**

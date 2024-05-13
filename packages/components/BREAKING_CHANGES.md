@@ -255,19 +255,22 @@ The native element still exposes its types and all of its native functionality. 
 **Example (before)**:
 
 ```typescript
-import { Component, ViewChild } from '@angular/core';
-import { SynButtonComponent, SynInputComponent } from '@synergy-design-system/angular';
+import { Component, ViewChild } from "@angular/core";
+import {
+  SynButtonComponent,
+  SynInputComponent,
+} from "@synergy-design-system/angular";
 
 @Component({
-  selector: 'home',
-  styleUrls: ['./home.styles.css'],
+  selector: "home",
+  styleUrls: ["./home.styles.css"],
   template: `
     <syn-input #password label="Password" type="password"></syn-input>
-    <syn-button (click)="focusElement">Focus the password field</syn-button>
-  `
+    <syn-button (click)="(focusElement)">Focus the password field</syn-button>
+  `,
 })
 export class Home {
- @ViewChild('password') password!: SynInputComponent;
+  @ViewChild("password") password!: SynInputComponent;
 
   focusElement() {
     // Focus the element by calling the wrappers callFocus method
@@ -279,19 +282,22 @@ export class Home {
 **Example (after)**:
 
 ```typescript
-import { Component, ViewChild } from '@angular/core';
-import { SynButtonComponent, SynInputComponent } from '@synergy-design-system/angular';
+import { Component, ViewChild } from "@angular/core";
+import {
+  SynButtonComponent,
+  SynInputComponent,
+} from "@synergy-design-system/angular";
 
 @Component({
-  selector: 'home',
-  styleUrls: ['./home.styles.css'],
+  selector: "home",
+  styleUrls: ["./home.styles.css"],
   template: `
     <syn-input #password label="Password" type="password"></syn-input>
-    <syn-button (click)="focusElement">Focus the password field</syn-button>
-  `
+    <syn-button (click)="(focusElement)">Focus the password field</syn-button>
+  `,
 })
 export class Home {
- @ViewChild('password') password!: SynInputComponent;
+  @ViewChild("password") password!: SynInputComponent;
 
   focusElement() {
     // Focus the element by calling the native elements focus method

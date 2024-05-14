@@ -40,23 +40,24 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynDetails>();
+const nativeElement = ref<SynDetails>();
 
 // Map methods
-const callHandleOpenChange = (...args: Parameters<SynDetails['handleOpenChange']>) => element.value?.handleOpenChange(...args);
+const callHandleOpenChange = (...args: Parameters<SynDetails['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
 /**
 * Shows the details.
  */
-const callShow = (...args: Parameters<SynDetails['show']>) => element.value?.show(...args);
+const callShow = (...args: Parameters<SynDetails['show']>) => nativeElement.value?.show(...args);
 /**
 * Hides the details
  */
-const callHide = (...args: Parameters<SynDetails['hide']>) => element.value?.hide(...args);
+const callHide = (...args: Parameters<SynDetails['hide']>) => nativeElement.value?.hide(...args);
 
 defineExpose({
   callHandleOpenChange,
   callShow,
   callHide,
+  nativeElement,
 });
 
 // Map attributes
@@ -129,7 +130,7 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 <template>
   <syn-details
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
 
@@ -137,8 +138,5 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
-    <slot name="summary" />
-    <slot name="expand-icon" />
-    <slot name="collapse-icon" />
   </syn-details>
 </template>

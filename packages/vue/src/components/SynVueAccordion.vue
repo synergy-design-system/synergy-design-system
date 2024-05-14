@@ -22,15 +22,16 @@ import '@synergy-design-system/components/components/accordion/accordion.js';
 import type { SynAccordion } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynAccordion>();
+const nativeElement = ref<SynAccordion>();
 
 // Map methods
-const callHandleSizeChange = (...args: Parameters<SynAccordion['handleSizeChange']>) => element.value?.handleSizeChange(...args);
-const callHandleSlotChange = (...args: Parameters<SynAccordion['handleSlotChange']>) => element.value?.handleSlotChange(...args);
+const callHandleSizeChange = (...args: Parameters<SynAccordion['handleSizeChange']>) => nativeElement.value?.handleSizeChange(...args);
+const callHandleSlotChange = (...args: Parameters<SynAccordion['handleSlotChange']>) => nativeElement.value?.handleSlotChange(...args);
 
 defineExpose({
   callHandleSizeChange,
   callHandleSlotChange,
+  nativeElement,
 });
 
 // Map attributes
@@ -66,7 +67,7 @@ defineEmits<{
   <syn-accordion
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-accordion>

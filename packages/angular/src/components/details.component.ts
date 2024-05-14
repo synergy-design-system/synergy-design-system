@@ -49,17 +49,17 @@ import '@synergy-design-system/components/components/details/details.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDetailsComponent {
-  private _el: SynDetails;
+  public nativeElement: SynDetails;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
@@ -69,11 +69,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   set open(v: SynDetails['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -82,11 +82,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   set summary(v: SynDetails['summary']) {
-    this._ngZone.runOutsideAngular(() => (this._el.summary = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.summary = v));
   }
 
   get summary() {
-    return this._el.summary;
+    return this.nativeElement.summary;
   }
 
   /**
@@ -94,11 +94,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   set disabled(v: SynDetails['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -106,16 +106,16 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   set size(v: SynDetails['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynDetails['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   /**
@@ -123,7 +123,7 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   callShow(...args: Parameters<SynDetails['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -131,7 +131,7 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
  */
   @Input()
   callHide(...args: Parameters<SynDetails['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**

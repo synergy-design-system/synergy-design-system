@@ -32,12 +32,12 @@ import '@synergy-design-system/components/components/accordion/accordion.js';
   template: '<ng-content></ng-content>',
 })
 export class SynAccordionComponent {
-  private _el: SynAccordion;
+  public nativeElement: SynAccordion;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -46,11 +46,11 @@ export class SynAccordionComponent {
  */
   @Input()
   set closeOthers(v: SynAccordion['closeOthers']) {
-    this._ngZone.runOutsideAngular(() => (this._el.closeOthers = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.closeOthers = v));
   }
 
   get closeOthers() {
-    return this._el.closeOthers;
+    return this.nativeElement.closeOthers;
   }
 
   /**
@@ -58,20 +58,20 @@ export class SynAccordionComponent {
  */
   @Input()
   set size(v: SynAccordion['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   @Input()
   callHandleSizeChange(...args: Parameters<SynAccordion['handleSizeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleSizeChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSizeChange(...args));
   }
 
   @Input()
   callHandleSlotChange(...args: Parameters<SynAccordion['handleSlotChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleSlotChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSlotChange(...args));
   }
 }

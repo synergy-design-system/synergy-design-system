@@ -72,19 +72,19 @@ import '@synergy-design-system/components/components/dialog/dialog.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDialogComponent {
-  private _el: SynDialog;
+  public nativeElement: SynDialog;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this._el.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
-    this._el.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
   }
 
   /**
@@ -94,11 +94,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
  */
   @Input()
   set open(v: SynDialog['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -109,11 +109,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
  */
   @Input()
   set label(v: SynDialog['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -123,16 +123,16 @@ accessible way for users to dismiss the dialog.
  */
   @Input()
   set noHeader(v: SynDialog['noHeader']) {
-    this._ngZone.runOutsideAngular(() => (this._el.noHeader = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
   }
 
   get noHeader() {
-    return this._el.noHeader;
+    return this.nativeElement.noHeader;
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynDialog['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   /**
@@ -140,7 +140,7 @@ accessible way for users to dismiss the dialog.
  */
   @Input()
   callShow(...args: Parameters<SynDialog['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -148,7 +148,7 @@ accessible way for users to dismiss the dialog.
  */
   @Input()
   callHide(...args: Parameters<SynDialog['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**

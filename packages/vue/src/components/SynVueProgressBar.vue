@@ -29,12 +29,13 @@ import '@synergy-design-system/components/components/progress-bar/progress-bar.j
 import type { SynProgressBar } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynProgressBar>();
+const nativeElement = ref<SynProgressBar>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -75,7 +76,7 @@ defineEmits<{
   <syn-progress-bar
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-progress-bar>

@@ -33,15 +33,15 @@ import '@synergy-design-system/components/components/icon-button/icon-button.js'
   template: '<ng-content></ng-content>',
 })
 export class SynIconButtonComponent {
-  private _el: SynIconButton;
+  public nativeElement: SynIconButton;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
   }
 
   /**
@@ -50,11 +50,11 @@ export class SynIconButtonComponent {
  */
   @Input()
   set name(v: SynIconButton['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -62,11 +62,11 @@ export class SynIconButtonComponent {
  */
   @Input()
   set library(v: SynIconButton['library']) {
-    this._ngZone.runOutsideAngular(() => (this._el.library = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
 
   get library() {
-    return this._el.library;
+    return this.nativeElement.library;
   }
 
   /**
@@ -76,11 +76,11 @@ can result in XSS attacks.
  */
   @Input()
   set src(v: SynIconButton['src']) {
-    this._ngZone.runOutsideAngular(() => (this._el.src = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
 
   get src() {
-    return this._el.src;
+    return this.nativeElement.src;
   }
 
   /**
@@ -88,11 +88,11 @@ can result in XSS attacks.
  */
   @Input()
   set href(v: SynIconButton['href']) {
-    this._ngZone.runOutsideAngular(() => (this._el.href = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
 
   get href() {
-    return this._el.href;
+    return this.nativeElement.href;
   }
 
   /**
@@ -101,11 +101,11 @@ can result in XSS attacks.
  */
   @Input()
   set target(v: SynIconButton['target']) {
-    this._ngZone.runOutsideAngular(() => (this._el.target = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
 
   get target() {
-    return this._el.target;
+    return this.nativeElement.target;
   }
 
   /**
@@ -114,11 +114,11 @@ can result in XSS attacks.
  */
   @Input()
   set download(v: SynIconButton['download']) {
-    this._ngZone.runOutsideAngular(() => (this._el.download = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.download = v));
   }
 
   get download() {
-    return this._el.download;
+    return this.nativeElement.download;
   }
 
   /**
@@ -128,11 +128,11 @@ that describes what the icon button does.
  */
   @Input()
   set label(v: SynIconButton['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -140,11 +140,11 @@ that describes what the icon button does.
  */
   @Input()
   set size(v: SynIconButton['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -153,11 +153,11 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Input()
   set color(v: SynIconButton['color']) {
-    this._ngZone.runOutsideAngular(() => (this._el.color = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.color = v));
   }
 
   get color() {
-    return this._el.color;
+    return this.nativeElement.color;
   }
 
   /**
@@ -165,11 +165,11 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Input()
   set disabled(v: SynIconButton['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -177,7 +177,7 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Input()
   callClick(...args: Parameters<SynIconButton['click']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
   }
 
   /**
@@ -185,7 +185,7 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Input()
   callFocus(...args: Parameters<SynIconButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**
@@ -193,7 +193,7 @@ The default "currentColor" makes it possible to easily style the icon button fro
  */
   @Input()
   callBlur(...args: Parameters<SynIconButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**

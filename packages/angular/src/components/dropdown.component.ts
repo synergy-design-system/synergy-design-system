@@ -45,17 +45,17 @@ import '@synergy-design-system/components/components/dropdown/dropdown.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDropdownComponent {
-  private _el: SynDropdown;
+  public nativeElement: SynDropdown;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
@@ -65,11 +65,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the dr
  */
   @Input()
   set open(v: SynDropdown['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -79,11 +79,11 @@ inside of the viewport.
  */
   @Input()
   set placement(v: SynDropdown['placement']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placement = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
 
   get placement() {
-    return this._el.placement;
+    return this.nativeElement.placement;
   }
 
   /**
@@ -91,11 +91,11 @@ inside of the viewport.
  */
   @Input()
   set disabled(v: SynDropdown['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -106,11 +106,11 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   set stayOpenOnSelect(v: SynDropdown['stayOpenOnSelect']) {
-    this._ngZone.runOutsideAngular(() => (this._el.stayOpenOnSelect = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.stayOpenOnSelect = v));
   }
 
   get stayOpenOnSelect() {
-    return this._el.stayOpenOnSelect;
+    return this.nativeElement.stayOpenOnSelect;
   }
 
   /**
@@ -118,11 +118,11 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   set distance(v: SynDropdown['distance']) {
-    this._ngZone.runOutsideAngular(() => (this._el.distance = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
 
   get distance() {
-    return this._el.distance;
+    return this.nativeElement.distance;
   }
 
   /**
@@ -130,11 +130,11 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   set skidding(v: SynDropdown['skidding']) {
-    this._ngZone.runOutsideAngular(() => (this._el.skidding = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
 
   get skidding() {
-    return this._el.skidding;
+    return this.nativeElement.skidding;
   }
 
   /**
@@ -144,11 +144,11 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   set hoist(v: SynDropdown['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this._el.hoist = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
 
   get hoist() {
-    return this._el.hoist;
+    return this.nativeElement.hoist;
   }
 
   /**
@@ -156,46 +156,46 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   set sync(v: SynDropdown['sync']) {
-    this._ngZone.runOutsideAngular(() => (this._el.sync = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.sync = v));
   }
 
   get sync() {
-    return this._el.sync;
+    return this.nativeElement.sync;
   }
 
   @Input()
   callFocusOnTrigger(...args: Parameters<SynDropdown['focusOnTrigger']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focusOnTrigger(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focusOnTrigger(...args));
   }
 
   @Input()
   callGetMenu(...args: Parameters<SynDropdown['getMenu']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getMenu(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getMenu(...args));
   }
 
   @Input()
   callHandleTriggerClick(...args: Parameters<SynDropdown['handleTriggerClick']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleTriggerClick(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTriggerClick(...args));
   }
 
   @Input()
   callHandleTriggerKeyDown(...args: Parameters<SynDropdown['handleTriggerKeyDown']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleTriggerKeyDown(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTriggerKeyDown(...args));
   }
 
   @Input()
   callHandleTriggerKeyUp(...args: Parameters<SynDropdown['handleTriggerKeyUp']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleTriggerKeyUp(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTriggerKeyUp(...args));
   }
 
   @Input()
   callHandleTriggerSlotChange(...args: Parameters<SynDropdown['handleTriggerSlotChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleTriggerSlotChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTriggerSlotChange(...args));
   }
 
   @Input()
   callUpdateAccessibleTrigger(...args: Parameters<SynDropdown['updateAccessibleTrigger']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.updateAccessibleTrigger(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.updateAccessibleTrigger(...args));
   }
 
   /**
@@ -203,7 +203,7 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   callShow(...args: Parameters<SynDropdown['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
   }
 
   /**
@@ -211,7 +211,7 @@ dropdowns that allow for multiple interactions.
  */
   @Input()
   callHide(...args: Parameters<SynDropdown['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
   }
 
   /**
@@ -221,22 +221,22 @@ is activated.
  */
   @Input()
   callReposition(...args: Parameters<SynDropdown['reposition']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reposition(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.reposition(...args));
   }
 
   @Input()
   callAddOpenListeners(...args: Parameters<SynDropdown['addOpenListeners']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.addOpenListeners(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.addOpenListeners(...args));
   }
 
   @Input()
   callRemoveOpenListeners(...args: Parameters<SynDropdown['removeOpenListeners']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.removeOpenListeners(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.removeOpenListeners(...args));
   }
 
   @Input()
   callHandleOpenChange(...args: Parameters<SynDropdown['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
   }
 
   /**

@@ -21,13 +21,14 @@ import '@synergy-design-system/components/components/divider/divider.js';
 import type { SynDivider } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynDivider>();
+const nativeElement = ref<SynDivider>();
 
 // Map methods
-const callHandleVerticalChange = (...args: Parameters<SynDivider['handleVerticalChange']>) => element.value?.handleVerticalChange(...args);
+const callHandleVerticalChange = (...args: Parameters<SynDivider['handleVerticalChange']>) => nativeElement.value?.handleVerticalChange(...args);
 
 defineExpose({
   callHandleVerticalChange,
+  nativeElement,
 });
 
 // Map attributes
@@ -58,6 +59,6 @@ defineEmits<{
   <syn-divider
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   />
 </template>

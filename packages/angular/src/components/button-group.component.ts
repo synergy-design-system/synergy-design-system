@@ -31,12 +31,12 @@ import '@synergy-design-system/components/components/button-group/button-group.j
   template: '<ng-content></ng-content>',
 })
 export class SynButtonGroupComponent {
-  private _el: SynButtonGroup;
+  public nativeElement: SynButtonGroup;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -47,10 +47,10 @@ devices when interacting with the control and is strongly recommended.
  */
   @Input()
   set label(v: SynButtonGroup['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 }

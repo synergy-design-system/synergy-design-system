@@ -46,16 +46,16 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
   template: '<ng-content></ng-content>',
 })
 export class SynRadioGroupComponent {
-  private _el: SynRadioGroup;
+  public nativeElement: SynRadioGroup;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   /**
@@ -66,11 +66,11 @@ instead.
  */
   @Input()
   set label(v: SynRadioGroup['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -79,11 +79,11 @@ instead.
  */
   @Input()
   set helpText(v: SynRadioGroup['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
+    return this.nativeElement.helpText;
   }
 
   /**
@@ -91,11 +91,11 @@ instead.
  */
   @Input()
   set name(v: SynRadioGroup['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -103,11 +103,11 @@ instead.
  */
   @Input()
   set value(v: SynRadioGroup['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -116,11 +116,11 @@ instead.
  */
   @Input()
   set size(v: SynRadioGroup['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -132,11 +132,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynRadioGroup['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -144,21 +144,21 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynRadioGroup['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   @Input()
   callHandleSizeChange(...args: Parameters<SynRadioGroup['handleSizeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleSizeChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSizeChange(...args));
   }
 
   @Input()
   callHandleValueChange(...args: Parameters<SynRadioGroup['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleValueChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleValueChange(...args));
   }
 
   /**
@@ -167,7 +167,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callCheckValidity(...args: Parameters<SynRadioGroup['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
   }
 
   /**
@@ -175,7 +175,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callGetForm(...args: Parameters<SynRadioGroup['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
   }
 
   /**
@@ -183,7 +183,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callReportValidity(...args: Parameters<SynRadioGroup['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
   }
 
   /**
@@ -192,7 +192,7 @@ the same document or shadow root for this to work.
  */
   @Input()
   callSetCustomValidity(...args: Parameters<SynRadioGroup['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
   }
 
   /**

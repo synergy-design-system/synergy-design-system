@@ -293,7 +293,7 @@ import {
   styleUrls: ["./home.styles.css"],
   template: `
     <syn-input #password label="Password" type="password"></syn-input>
-    <syn-button (click)="(focusElement)">Focus the password field</syn-button>
+    <syn-button (click)="(focusElement())">Focus the password field</syn-button>
   `,
 })
 export class Home {
@@ -340,14 +340,14 @@ The native element still exposes its types and all of its native functionality. 
 
   const password = ref<InstanceType<typeof SynVueInput> | null>(null);
 
-  focusElement() {
+  const focusElement = () => {
     // Focus the element by calling the wrappers callFocus method
     password.value?.callFocus();
   }
 </script>
 
 <template>
-  <SynVueInput ref="count" label="My count" type="number" value="5" />
+  <SynVueInput ref="password" label="Password" type="password" />
   <SynVueButton @click="focusElement">Focus the password field</SynVueButton>
 </template>
 ```
@@ -361,14 +361,14 @@ The native element still exposes its types and all of its native functionality. 
 
   const password = ref<InstanceType<typeof SynVueInput> | null>(null);
 
-  focusElement() {
+  const focusElement = () => {
     // Focus the element by calling the native elements focus method
     password.value?.nativeElement?.focus();
   }
 </script>
 
 <template>
-  <SynVueInput ref="count" label="My count" type="number" value="5" />
+  <SynVueInput ref="password" label="Password" type="password" />
   <SynVueButton @click="focusElement">Focus the password field</SynVueButton>
 </template>
 ```

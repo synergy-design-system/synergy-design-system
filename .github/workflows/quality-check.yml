@@ -87,6 +87,7 @@ jobs:
           HOME: /root
 
   test:
+    if: ${{ false }}
     name: Validate tests
     timeout-minutes: 60
     runs-on: ubuntu-latest

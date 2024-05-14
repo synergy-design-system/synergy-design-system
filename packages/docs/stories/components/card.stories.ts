@@ -206,7 +206,7 @@ export const Images: Story = {
   render: () => html`
     <syn-card class="card-image">
       <img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
-      This is a car, but not just any car. This car has SICK sensors.
+      This are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>

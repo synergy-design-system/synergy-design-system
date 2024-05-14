@@ -29,12 +29,13 @@ import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-
 import type { SynBreadcrumbItem } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynBreadcrumbItem>();
+const nativeElement = ref<SynBreadcrumbItem>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -80,11 +81,8 @@ defineEmits<{
   <syn-breadcrumb-item
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
-    <slot name="separator" />
   </syn-breadcrumb-item>
 </template>

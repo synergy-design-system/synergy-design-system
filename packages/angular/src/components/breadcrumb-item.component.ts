@@ -39,12 +39,12 @@ import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-
   template: '<ng-content></ng-content>',
 })
 export class SynBreadcrumbItemComponent {
-  private _el: SynBreadcrumbItem;
+  public nativeElement: SynBreadcrumbItem;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -56,11 +56,11 @@ internally.
  */
   @Input()
   set href(v: SynBreadcrumbItem['href']) {
-    this._ngZone.runOutsideAngular(() => (this._el.href = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
 
   get href() {
-    return this._el.href;
+    return this.nativeElement.href;
   }
 
   /**
@@ -69,11 +69,11 @@ internally.
  */
   @Input()
   set target(v: SynBreadcrumbItem['target']) {
-    this._ngZone.runOutsideAngular(() => (this._el.target = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
 
   get target() {
-    return this._el.target;
+    return this.nativeElement.target;
   }
 
   /**
@@ -82,10 +82,10 @@ internally.
  */
   @Input()
   set rel(v: SynBreadcrumbItem['rel']) {
-    this._ngZone.runOutsideAngular(() => (this._el.rel = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
   }
 
   get rel() {
-    return this._el.rel;
+    return this.nativeElement.rel;
   }
 }

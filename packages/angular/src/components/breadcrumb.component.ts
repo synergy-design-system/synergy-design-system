@@ -34,12 +34,12 @@ import '@synergy-design-system/components/components/breadcrumb/breadcrumb.js';
   template: '<ng-content></ng-content>',
 })
 export class SynBreadcrumbComponent {
-  private _el: SynBreadcrumb;
+  public nativeElement: SynBreadcrumb;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -50,10 +50,10 @@ screen readers and other assistive devices to provide more context for users.
  */
   @Input()
   set label(v: SynBreadcrumb['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 }

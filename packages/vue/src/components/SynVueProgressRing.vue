@@ -29,12 +29,13 @@ import '@synergy-design-system/components/components/progress-ring/progress-ring
 import type { SynProgressRing } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynProgressRing>();
+const nativeElement = ref<SynProgressRing>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -70,7 +71,7 @@ defineEmits<{
   <syn-progress-ring
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-progress-ring>

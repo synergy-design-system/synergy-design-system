@@ -63,23 +63,24 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynDialog>();
+const nativeElement = ref<SynDialog>();
 
 // Map methods
-const callHandleOpenChange = (...args: Parameters<SynDialog['handleOpenChange']>) => element.value?.handleOpenChange(...args);
+const callHandleOpenChange = (...args: Parameters<SynDialog['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
 /**
 * Shows the dialog.
  */
-const callShow = (...args: Parameters<SynDialog['show']>) => element.value?.show(...args);
+const callShow = (...args: Parameters<SynDialog['show']>) => nativeElement.value?.show(...args);
 /**
 * Hides the dialog
  */
-const callHide = (...args: Parameters<SynDialog['hide']>) => element.value?.hide(...args);
+const callHide = (...args: Parameters<SynDialog['hide']>) => nativeElement.value?.hide(...args);
 
 defineExpose({
   callHandleOpenChange,
   callShow,
   callHide,
+  nativeElement,
 });
 
 // Map attributes
@@ -166,7 +167,7 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
 <template>
   <syn-dialog
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
@@ -176,8 +177,5 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
     @syn-request-close="$emit('syn-request-close', $event)"
   >
     <slot />
-    <slot name="label" />
-    <slot name="header-actions" />
-    <slot name="footer" />
   </syn-dialog>
 </template>

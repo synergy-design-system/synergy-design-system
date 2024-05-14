@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.1...components/1.24.0) (2024-05-13)
+
+
+### Features
+
+* ✨ expose native element in vue and angular wrapper ([#478](https://github.com/synergy-design-system/synergy-design-system/issues/478)) ([c70a7d6](https://github.com/synergy-design-system/synergy-design-system/commit/c70a7d6c88709fa9262279092eebc653d1e2402d))
+
 # [@synergy-design-system/components-v1.23.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.0...components/1.23.1) (2024-05-08)
 
 

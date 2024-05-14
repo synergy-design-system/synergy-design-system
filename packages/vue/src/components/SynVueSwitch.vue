@@ -38,41 +38,41 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynSwitch>();
+const nativeElement = ref<SynSwitch>();
 
 // Map methods
-const callHandleCheckedChange = (...args: Parameters<SynSwitch['handleCheckedChange']>) => element.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynSwitch['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
+const callHandleCheckedChange = (...args: Parameters<SynSwitch['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynSwitch['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
 /**
 * Simulates a click on the switch.
  */
-const callClick = (...args: Parameters<SynSwitch['click']>) => element.value?.click(...args);
+const callClick = (...args: Parameters<SynSwitch['click']>) => nativeElement.value?.click(...args);
 /**
 * Sets focus on the switch.
  */
-const callFocus = (...args: Parameters<SynSwitch['focus']>) => element.value?.focus(...args);
+const callFocus = (...args: Parameters<SynSwitch['focus']>) => nativeElement.value?.focus(...args);
 /**
 * Removes focus from the switch.
  */
-const callBlur = (...args: Parameters<SynSwitch['blur']>) => element.value?.blur(...args);
+const callBlur = (...args: Parameters<SynSwitch['blur']>) => nativeElement.value?.blur(...args);
 /**
 * Checks for validity but does not show a validation message.
 * Returns `true` when valid and `false` when invalid.
  */
-const callCheckValidity = (...args: Parameters<SynSwitch['checkValidity']>) => element.value?.checkValidity(...args);
+const callCheckValidity = (...args: Parameters<SynSwitch['checkValidity']>) => nativeElement.value?.checkValidity(...args);
 /**
 * Gets the associated form, if one exists.
  */
-const callGetForm = (...args: Parameters<SynSwitch['getForm']>) => element.value?.getForm(...args);
+const callGetForm = (...args: Parameters<SynSwitch['getForm']>) => nativeElement.value?.getForm(...args);
 /**
 * Checks for validity and shows the browser's validation message if the control is invalid.
  */
-const callReportValidity = (...args: Parameters<SynSwitch['reportValidity']>) => element.value?.reportValidity(...args);
+const callReportValidity = (...args: Parameters<SynSwitch['reportValidity']>) => nativeElement.value?.reportValidity(...args);
 /**
 * Sets a custom validation message.
 * Pass an empty string to restore validity.
  */
-const callSetCustomValidity = (...args: Parameters<SynSwitch['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const callSetCustomValidity = (...args: Parameters<SynSwitch['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
 
 defineExpose({
   callHandleCheckedChange,
@@ -84,6 +84,7 @@ defineExpose({
   callGetForm,
   callReportValidity,
   callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -196,7 +197,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-switch
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
@@ -205,6 +206,5 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
-    <slot name="help-text" />
   </syn-switch>
 </template>

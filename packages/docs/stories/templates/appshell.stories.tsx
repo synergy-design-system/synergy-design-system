@@ -80,6 +80,14 @@ const createSharedStyles = () => html`
     .synergy-demo-footer :is(a, strong) {
       color: var(--syn-input-help-text-color);
     }
+
+    .synergy-demo-footer a:hover {
+      color: var(--syn-color-primary-600);
+    }
+
+    .synergy-demo-footer a:active {
+      color: var(--syn-color-primary-700);
+    }
   </style>
 `;
 

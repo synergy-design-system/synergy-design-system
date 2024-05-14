@@ -30,16 +30,6 @@ export default css`
     font: var(--syn-body-medium-regular);
   }
 
-  .card__body::slotted(h1),
-  .card__body::slotted(h2),
-  .card__body::slotted(h3),
-  .card__body::slotted(h4),
-  .card__body::slotted(h5),
-  .card__body::slotted(h6) {
-    font: var(--syn-body-medium-bold) !important;
-    margin: 0 0 var(--syn-spacing-x-small) !important;
-  }
-
   /**
    * Card Footer
    */

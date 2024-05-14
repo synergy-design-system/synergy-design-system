@@ -40,6 +40,11 @@ const createFooter = ({
       gap: var(--syn-spacing-x-small);
     }
 
+    syn-card h3 {
+      font: var(--syn-body-medium-bold) !important;
+      margin: 0 0 var(--syn-spacing-x-small) !important;  
+    }
+
     syn-card small {
       font: var(--syn-body-x-small-regular);
     }

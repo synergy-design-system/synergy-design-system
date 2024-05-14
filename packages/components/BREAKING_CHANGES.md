@@ -229,6 +229,48 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
 
 ---
 
+### `<syn-side-nav>`
+
+#### ⚠️ Adjusted the open width of the side-nav
+
+**Associated Ticket(s)**:
+
+- [#479](https://github.com/synergy-design-system/synergy-design-system/issues/479)
+
+**Reason**:
+
+To better fit in case of mobile versions / smaller screen sizes, we decided to adjust the width of the opened `<syn-side-nav/>`, to be a bit narrower from 400px to 320px.
+
+**Migration Steps**:
+If for some reason the old width of 400px are desired, the css property `--side-nav-open-width` of the side navigation can be overwritten like shown in the following example.
+
+**Example (before)**:
+
+```html
+<syn-side-nav open>
+  <syn-nav-item current> Navigation Item </syn-nav-item>
+  <syn-nav-item divider> Navigation Item </syn-nav-item>
+  <syn-nav-item divider> Navigation Item </syn-nav-item>
+</syn-side-nav>
+```
+
+**Example (after)**:
+
+```html
+<syn-side-nav open>
+  <syn-nav-item current> Navigation Item </syn-nav-item>
+  <syn-nav-item divider> Navigation Item </syn-nav-item>
+  <syn-nav-item divider> Navigation Item </syn-nav-item>
+</syn-side-nav>
+<style>
+  syn-side-nav {
+    --side-nav-open-width: 400px;
+  }
+</style>
+```
+
+---
+
 ### `@synergy-design-system/angular`
 
 #### ⚠️ Removed custom methods for element member methods.
@@ -293,7 +335,7 @@ import {
   styleUrls: ["./home.styles.css"],
   template: `
     <syn-input #password label="Password" type="password"></syn-input>
-    <syn-button (click)="(focusElement())">Focus the password field</syn-button>
+    <syn-button (click)="focusElement()">Focus the password field</syn-button>
   `,
 })
 export class Home {
@@ -343,7 +385,7 @@ The native element still exposes its types and all of its native functionality. 
   const focusElement = () => {
     // Focus the element by calling the wrappers callFocus method
     password.value?.callFocus();
-  }
+  };
 </script>
 
 <template>
@@ -364,7 +406,7 @@ The native element still exposes its types and all of its native functionality. 
   const focusElement = () => {
     // Focus the element by calling the native elements focus method
     password.value?.nativeElement?.focus();
-  }
+  };
 </script>
 
 <template>

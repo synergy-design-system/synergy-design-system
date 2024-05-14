@@ -33,12 +33,13 @@ import '@synergy-design-system/components/components/card/card.js';
 import type { SynCard } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynCard>();
+const nativeElement = ref<SynCard>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -70,11 +71,8 @@ defineEmits<{
   <syn-card
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
-    <slot name="header" />
-    <slot name="footer" />
-    <slot name="image" />
   </syn-card>
 </template>

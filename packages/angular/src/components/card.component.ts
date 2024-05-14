@@ -43,12 +43,12 @@ import '@synergy-design-system/components/components/card/card.js';
   template: '<ng-content></ng-content>',
 })
 export class SynCardComponent {
-  private _el: SynCard;
+  public nativeElement: SynCard;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -58,10 +58,10 @@ export class SynCardComponent {
  */
   @Input()
   set nested(v: SynCard['nested']) {
-    this._ngZone.runOutsideAngular(() => (this._el.nested = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.nested = v));
   }
 
   get nested() {
-    return this._el.nested;
+    return this.nativeElement.nested;
   }
 }

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 import '../../../components/src/components/breadcrumb-item/breadcrumb-item.js';
 import {
   generateScreenshotStory,
@@ -61,7 +62,13 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args: unknown) => html`
+    <syn-breadcrumb>
+      <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+      ${generateTemplate({ args })}
+      <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+    </syn-breadcrumb>
+  `,
 } as Story;
 
 /* eslint-disable sort-keys */

@@ -542,6 +542,26 @@
           "value": "Use the size attribute to change a detail’s size.",
           "type": "text"
         }
+      },
+      "open": {
+        "title": {
+          "value": "Open",
+          "type": "text"
+        },
+        "description": {
+          "value": "Details show a brief summary and expand to show additional content.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+          "type": "text"
+        }
       }
     },
     "dialog": {

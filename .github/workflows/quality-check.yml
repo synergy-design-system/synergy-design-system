@@ -86,8 +86,8 @@ jobs:
         env:
           HOME: /root
 
-  test:
-    name: Validate tests
+  test_e2e:
+    name: Validate tests (e2e)
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test_components, test]
+    needs: [quality-gate, test_components, test_e2e]
     steps:
       # 👇 Version 2 of the action
       - name: Checkout repository

@@ -40,15 +40,15 @@ import '@synergy-design-system/components/components/radio-button/radio-button.j
   template: '<ng-content></ng-content>',
 })
 export class SynRadioButtonComponent {
-  private _el: SynRadioButton;
+  public nativeElement: SynRadioButton;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
   }
 
   /**
@@ -57,11 +57,11 @@ export class SynRadioButtonComponent {
  */
   @Input()
   set value(v: SynRadioButton['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -69,11 +69,11 @@ export class SynRadioButtonComponent {
  */
   @Input()
   set disabled(v: SynRadioButton['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -83,16 +83,16 @@ this attribute can typically be omitted.
  */
   @Input()
   set size(v: SynRadioButton['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   @Input()
   callHandleDisabledChange(...args: Parameters<SynRadioButton['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
   }
 
   /**
@@ -100,7 +100,7 @@ this attribute can typically be omitted.
  */
   @Input()
   callFocus(...args: Parameters<SynRadioButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
   }
 
   /**
@@ -108,7 +108,7 @@ this attribute can typically be omitted.
  */
   @Input()
   callBlur(...args: Parameters<SynRadioButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
   }
 
   /**

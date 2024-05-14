@@ -37,14 +37,14 @@ import '@synergy-design-system/components/components/tag/tag.js';
   template: '<ng-content></ng-content>',
 })
 export class SynTagComponent {
-  private _el: SynTag;
+  public nativeElement: SynTag;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-remove', (e: SynRemoveEvent) => { this.synRemoveEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-remove', (e: SynRemoveEvent) => { this.synRemoveEvent.emit(e); });
   }
 
   /**
@@ -52,11 +52,11 @@ export class SynTagComponent {
  */
   @Input()
   set size(v: SynTag['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -64,11 +64,11 @@ export class SynTagComponent {
  */
   @Input()
   set removable(v: SynTag['removable']) {
-    this._ngZone.runOutsideAngular(() => (this._el.removable = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.removable = v));
   }
 
   get removable() {
-    return this._el.removable;
+    return this.nativeElement.removable;
   }
 
   /**

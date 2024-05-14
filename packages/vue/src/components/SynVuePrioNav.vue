@@ -45,12 +45,13 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 import type { SynPrioNav } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynPrioNav>();
+const nativeElement = ref<SynPrioNav>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -82,7 +83,7 @@ defineEmits<{
   <syn-prio-nav
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-prio-nav>

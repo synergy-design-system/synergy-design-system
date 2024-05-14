@@ -47,15 +47,15 @@ import '@synergy-design-system/components/components/header/header.js';
   template: '<ng-content></ng-content>',
 })
 export class SynHeaderComponent {
-  private _el: SynHeader;
+  public nativeElement: SynHeader;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-burger-menu-show', (e: SynBurgerMenuShowEvent) => { this.synBurgerMenuShowEvent.emit(e); });
-    this._el.addEventListener('syn-burger-menu-hide', (e: SynBurgerMenuHideEvent) => { this.synBurgerMenuHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-show', (e: SynBurgerMenuShowEvent) => { this.synBurgerMenuShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-hide', (e: SynBurgerMenuHideEvent) => { this.synBurgerMenuHideEvent.emit(e); });
   }
 
   /**
@@ -64,11 +64,11 @@ export class SynHeaderComponent {
  */
   @Input()
   set label(v: SynHeader['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -77,11 +77,11 @@ The button is added automatically, if the component finds a syn-side-nav in non-
  */
   @Input()
   set showBurgerMenu(v: SynHeader['showBurgerMenu']) {
-    this._ngZone.runOutsideAngular(() => (this._el.showBurgerMenu = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.showBurgerMenu = v));
   }
 
   get showBurgerMenu() {
-    return this._el.showBurgerMenu;
+    return this.nativeElement.showBurgerMenu;
   }
 
   /**
@@ -89,16 +89,16 @@ The button is added automatically, if the component finds a syn-side-nav in non-
  */
   @Input()
   set burgerMenuVisible(v: SynHeader['burgerMenuVisible']) {
-    this._ngZone.runOutsideAngular(() => (this._el.burgerMenuVisible = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.burgerMenuVisible = v));
   }
 
   get burgerMenuVisible() {
-    return this._el.burgerMenuVisible;
+    return this.nativeElement.burgerMenuVisible;
   }
 
   @Input()
   callHandleBurgerMenuVisible(...args: Parameters<SynHeader['handleBurgerMenuVisible']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleBurgerMenuVisible(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleBurgerMenuVisible(...args));
   }
 
   /**
@@ -110,7 +110,7 @@ finds.
  */
   @Input()
   callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.connectSideNavigation(...args));
   }
 
   /**

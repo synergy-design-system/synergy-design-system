@@ -21,12 +21,13 @@ import '@synergy-design-system/components/components/badge/badge.js';
 import type { SynBadge } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynBadge>();
+const nativeElement = ref<SynBadge>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -57,7 +58,7 @@ defineEmits<{
   <syn-badge
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-badge>

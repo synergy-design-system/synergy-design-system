@@ -23,12 +23,13 @@ import '@synergy-design-system/components/components/spinner/spinner.js';
 import type { SynSpinner } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynSpinner>();
+const nativeElement = ref<SynSpinner>();
 
 // Map methods
 
 defineExpose({
 
+  nativeElement,
 });
 
 // Map attributes
@@ -56,6 +57,6 @@ defineEmits<{
   <syn-spinner
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   />
 </template>

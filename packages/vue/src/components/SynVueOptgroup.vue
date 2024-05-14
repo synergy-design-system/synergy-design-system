@@ -33,13 +33,14 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
 import type { SynOptgroup } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynOptgroup>();
+const nativeElement = ref<SynOptgroup>();
 
 // Map methods
-const callHandleDisabledChange = (...args: Parameters<SynOptgroup['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
+const callHandleDisabledChange = (...args: Parameters<SynOptgroup['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
 
 defineExpose({
   callHandleDisabledChange,
+  nativeElement,
 });
 
 // Map attributes
@@ -76,11 +77,8 @@ defineEmits<{
   <syn-optgroup
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="label" />
-    <slot name="suffix" />
   </syn-optgroup>
 </template>

@@ -40,16 +40,17 @@ import '@synergy-design-system/components/components/popup/popup.js';
 import type { SynPopup, SynRepositionEvent } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynPopup>();
+const nativeElement = ref<SynPopup>();
 
 // Map methods
 /**
 * Forces the popup to recalculate and reposition itself.
  */
-const callReposition = (...args: Parameters<SynPopup['reposition']>) => element.value?.reposition(...args);
+const callReposition = (...args: Parameters<SynPopup['reposition']>) => nativeElement.value?.reposition(...args);
 
 defineExpose({
   callReposition,
+  nativeElement,
 });
 
 // Map attributes
@@ -239,10 +240,9 @@ export type { SynRepositionEvent } from '@synergy-design-system/components';
   <syn-popup
     v-bind="visibleProps"
 
-    ref="element"
+    ref="nativeElement"
     @syn-reposition="$emit('syn-reposition', $event)"
   >
     <slot />
-    <slot name="anchor" />
   </syn-popup>
 </template>

@@ -23,20 +23,20 @@ jobs:
           wait-interval: 10
 
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: "main"
           path: "synergy-design-system"
 
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8.6.12
+          version: 8.15.7
 
       - name: Install dependencies
         working-directory: ./synergy-design-system
@@ -44,7 +44,7 @@ jobs:
 
       # Clone the other repository
       - name: Checkout Other Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}

@@ -30,8 +30,8 @@
     "@synergy-design-system/tokens": "workspace:^"
   },
   "devDependencies": {
-    "@angular/core": "^17.3.5",
-    "@angular/forms": "^17.3.5",
+    "@angular/core": "^17.3.8",
+    "@angular/forms": "^17.3.8",
     "@synergy-design-system/components": "workspace:*",
     "tslib": "^2.6.2"
   },

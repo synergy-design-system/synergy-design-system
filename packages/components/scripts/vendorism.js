@@ -9,6 +9,7 @@ import {
   vendorAlert,
   vendorBadge,
   vendorButton,
+  vendorCard,
   vendorDetails,
   vendorDrawer,
   vendorIcon,
@@ -56,6 +57,7 @@ export const components = [
   'progress-ring',
   'alert',
   'spinner',
+  'card',
   'details',
   'dialog',
 ].sort();
@@ -275,6 +277,7 @@ const config = {
       vendorAlert,
       vendorBadge,
       vendorButton,
+      vendorCard,
       vendorDetails,
       vendorDrawer,
       vendorIconButton,

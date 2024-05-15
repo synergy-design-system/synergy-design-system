@@ -381,13 +381,65 @@
       }
     },
     "card": {
-      "description": {
-        "value": "Cards can be used to group related subjects in a container.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Cards can be used to group related subjects in a container.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card",
+          "type": "text"
+        }  
       },
-      "title": {
-        "value": "Card",
-        "type": "text"
+      "basic-card": {
+        "description": {
+          "value": "Basic cards aren’t very exciting, but they can display any content you want them to.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Basic Card",
+          "type": "text"
+        }
+      },
+      "with-header": {
+        "description": {
+          "value": "Headers can be used to display titles and more.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card with Header",
+          "type": "text"
+        }
+      },
+      "with-footer": {
+        "description": {
+          "value": "Footers can be used to display actions, summaries, or other relevant content.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card with Footer",
+          "type": "text"
+        }
+      },
+      "images": {
+        "description": {
+          "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Images",
+          "type": "text"
+        }
+      },
+      "nested": {
+        "description": {
+          "value": "Its possible to expand the Card to a Background Card and nest multiple cards into.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Nested Card",
+          "type": "text"
+        }
       }
     },
     "carousel-item": {

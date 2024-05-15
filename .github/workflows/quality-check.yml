@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 8.6.12
+          version: 8.15.7
           run_install: false
 
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: "pnpm"
 
       - name: Install dependencies
@@ -54,24 +54,24 @@ jobs:
 
   test_components:
     name: Validate tests (components)
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.41.2-jammy
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 8.6.12
+          version: 8.15.7
           run_install: false
 
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: "pnpm"
 
       - name: Install dependencies
@@ -88,24 +88,24 @@ jobs:
 
   test_e2e:
     name: Validate tests (e2e)
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.43.1-jammy
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 8.6.12
+          version: 8.15.7
           run_install: false
 
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: "pnpm"
 
       - name: Install dependencies
@@ -137,16 +137,16 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test_components, test_e2e]
+    needs: [quality-gate, test_components]
     steps:
       # 👇 Version 2 of the action
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8.6.12
+          version: 8.15.7
       # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
       - name: Install dependencies
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i

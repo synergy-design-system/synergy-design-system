@@ -1,3 +1,24 @@
+# [@synergy-design-system/components-v1.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.25.0...components/1.26.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-breadcrumb ([#470](https://github.com/synergy-design-system/synergy-design-system/issues/470)) ([3f15e28](https://github.com/synergy-design-system/synergy-design-system/commit/3f15e28c60829f344d07c3751d19e1cf8787e64e))
+
+# [@synergy-design-system/components-v1.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.1...components/1.25.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-card ([#467](https://github.com/synergy-design-system/synergy-design-system/issues/467)) ([6fa03de](https://github.com/synergy-design-system/synergy-design-system/commit/6fa03def4564236b737df851880902da03b4f47d))
+
+# [@synergy-design-system/components-v1.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.0...components/1.24.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* 🤔 syn-header label uses wrong text color ([#487](https://github.com/synergy-design-system/synergy-design-system/issues/487)) ([a09ea5e](https://github.com/synergy-design-system/synergy-design-system/commit/a09ea5ea26610b3e1107ed9b742050a4f53c0947))
+
 # [@synergy-design-system/components-v1.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.1...components/1.24.0) (2024-05-13)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.17.0...tokens/1.18.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-card ([#467](https://github.com/synergy-design-system/synergy-design-system/issues/467)) ([6fa03de](https://github.com/synergy-design-system/synergy-design-system/commit/6fa03def4564236b737df851880902da03b4f47d))
+
 # [@synergy-design-system/tokens-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.16.0...tokens/1.17.0) (2024-05-08)
 
 

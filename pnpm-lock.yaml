@@ -725,6 +725,25 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
+  packages/styles:
+    dependencies:
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
+    devDependencies:
+      '@synergy-design-system/stylelint-config-syn':
+        specifier: workspace:^
+        version: link:../_private/stylelint-config-syn
+      semantic-release:
+        specifier: ^19.0.5
+        version: 19.0.5
+      semantic-release-monorepo:
+        specifier: ^7.0.5
+        version: 7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5)
+      stylelint:
+        specifier: ^16.5.0
+        version: 16.5.0(typescript@5.4.5)
+
   packages/tokens:
     devDependencies:
       '@semantic-release/changelog':
@@ -6102,7 +6121,7 @@ packages:
       read-pkg: 5.2.0
       registry-auth-token: 5.0.2
       semantic-release: 19.0.5
-      semver: 7.6.0
+      semver: 7.6.2
       tempy: 1.0.1
     dev: true
 
@@ -9877,15 +9896,6 @@ packages:
   /cli-spinners@2.9.2:
     resolution: {integrity: sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==}
     engines: {node: '>=6'}
-    dev: true
-
-  /cli-table3@0.6.4:
-    resolution: {integrity: sha512-Lm3L0p+/npIQWNIiyF/nAn7T5dnOwR3xNTHXYEBFBFVPXzCVNZ5lqEC/1eo/EVfpDsQ1I+TX4ORPQgp+UI0CRw==}
-    engines: {node: 10.* || >= 12.*}
-    dependencies:
-      string-width: 4.2.3
-    optionalDependencies:
-      '@colors/colors': 1.5.0
     dev: true
 
   /cli-table3@0.6.5:
@@ -14705,7 +14715,7 @@ packages:
       ansi-escapes: 6.2.1
       cardinal: 2.1.1
       chalk: 5.3.0
-      cli-table3: 0.6.4
+      cli-table3: 0.6.5
       marked: 4.3.0
       node-emoji: 1.11.0
       supports-hyperlinks: 2.3.0
@@ -15659,7 +15669,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -17910,7 +17920,7 @@ packages:
       p-reduce: 2.1.0
       read-pkg-up: 7.0.1
       resolve-from: 5.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       semver-diff: 3.1.1
       signale: 1.4.0
       yargs: 16.2.0

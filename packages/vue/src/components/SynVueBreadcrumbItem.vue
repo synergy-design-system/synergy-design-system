@@ -32,9 +32,12 @@ import type { SynBreadcrumbItem } from '@synergy-design-system/components';
 const nativeElement = ref<SynBreadcrumbItem>();
 
 // Map methods
+const callHrefChanged = (...args: Parameters<SynBreadcrumbItem['hrefChanged']>) => nativeElement.value?.hrefChanged(...args);
+const callHandleSlotChange = (...args: Parameters<SynBreadcrumbItem['handleSlotChange']>) => nativeElement.value?.handleSlotChange(...args);
 
 defineExpose({
-
+  callHrefChanged,
+  callHandleSlotChange,
   nativeElement,
 });
 

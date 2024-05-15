@@ -19,7 +19,8 @@ const transformComponent = (path, originalContent) => {
     // Add support for query and state
     [
       `import { property } from 'lit/decorators.js';`,
-      `import { property, query, state } from 'lit/decorators.js';`,
+      `import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';`,
     ],
     // Add query and state decorators for rendering
     [
@@ -35,12 +36,21 @@ const transformComponent = (path, originalContent) => {
       `'noreferrer noopener';`,
       `'noreferrer noopener';
 
-  private handleSlotChange() {
+  private setRenderType() {
     const hasDropdown =
       this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'syn-dropdown')
         .length > 0;
 
     this.renderType = this.href ? 'link' : hasDropdown ? 'drop-down' : 'button';
+  }
+
+  @watch('href', { waitUntilFirstUpdate: true })
+  hrefChanged() {
+    this.setRenderType();
+  }
+
+  handleSlotChange() {
+    this.setRenderType();
   }`,
     ],
     // Add slotchange to the default link and button slots

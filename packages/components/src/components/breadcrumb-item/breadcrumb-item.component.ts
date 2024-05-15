@@ -9,6 +9,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, state } from 'lit/decorators.js';
+import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './breadcrumb-item.styles.js';
@@ -54,12 +55,21 @@ export default class SynBreadcrumbItem extends SynergyElement {
   /** The `rel` attribute to use on the link. Only used when `href` is set. */
   @property() rel = 'noreferrer noopener';
 
-  private handleSlotChange() {
+  private setRenderType() {
     const hasDropdown =
       this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'syn-dropdown')
         .length > 0;
 
     this.renderType = this.href ? 'link' : hasDropdown ? 'drop-down' : 'button';
+  }
+
+  @watch('href', { waitUntilFirstUpdate: true })
+  hrefChanged() {
+    this.setRenderType();
+  }
+
+  handleSlotChange() {
+    this.setRenderType();
   }
 
   render() {

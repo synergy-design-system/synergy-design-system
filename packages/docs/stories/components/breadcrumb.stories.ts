@@ -156,7 +156,7 @@ export const WithDropdowns: Story = {
         border: none;
         cursor: pointer;
         display: flex;
-        font-size: var(--syn-font-size-x-small);
+        font-size: var(--syn-font-size-small);
         margin: 0;
         padding: 0;
       }

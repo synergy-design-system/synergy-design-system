@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.0...components/1.24.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* 🤔 syn-header label uses wrong text color ([#487](https://github.com/synergy-design-system/synergy-design-system/issues/487)) ([a09ea5e](https://github.com/synergy-design-system/synergy-design-system/commit/a09ea5ea26610b3e1107ed9b742050a4f53c0947))
+
 # [@synergy-design-system/components-v1.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.1...components/1.24.0) (2024-05-13)
 
 

@@ -69,6 +69,7 @@ export default css`
    * The label section hosts the application name
    */
   .header__label {
+    color: var(--syn-typography-color-text);
     font: var(--syn-body-large-bold);
     padding: 0 var(--syn-spacing-2x-large);
     white-space: nowrap;

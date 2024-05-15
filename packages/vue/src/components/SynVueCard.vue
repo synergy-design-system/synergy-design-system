@@ -35,10 +35,7 @@ import type { SynCard } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynCard>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

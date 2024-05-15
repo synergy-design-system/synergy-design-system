@@ -37,9 +37,6 @@ const meta: Meta = {
       description: {
         component: generateStoryDescription('breadcrumb', 'default'),
       },
-      story: {
-        height: '250px',
-      },
     },
   },
   title: 'Components/syn-breadcrumb',

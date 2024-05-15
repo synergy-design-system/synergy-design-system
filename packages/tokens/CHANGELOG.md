@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.18.0...tokens/1.19.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-breadcrumb ([#470](https://github.com/synergy-design-system/synergy-design-system/issues/470)) ([3f15e28](https://github.com/synergy-design-system/synergy-design-system/commit/3f15e28c60829f344d07c3751d19e1cf8787e64e))
+
 # [@synergy-design-system/tokens-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.17.0...tokens/1.18.0) (2024-05-15)
 
 

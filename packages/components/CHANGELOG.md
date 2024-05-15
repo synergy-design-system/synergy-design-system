@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.1...components/1.25.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-card ([#467](https://github.com/synergy-design-system/synergy-design-system/issues/467)) ([6fa03de](https://github.com/synergy-design-system/synergy-design-system/commit/6fa03def4564236b737df851880902da03b4f47d))
+
 # [@synergy-design-system/components-v1.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.0...components/1.24.1) (2024-05-15)
 
 

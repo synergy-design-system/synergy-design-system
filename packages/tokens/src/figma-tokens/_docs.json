@@ -207,13 +207,15 @@
       }
     },
     "breadcrumb-item": {
-      "description": {
-        "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Breadcrumb Item",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Breadcrumb Item",
+          "type": "text"
+        }  
       }
     },
     "breadcrumb": {

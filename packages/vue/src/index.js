@@ -6,6 +6,8 @@
 export { default as SynVueAccordion } from './components/SynVueAccordion.vue';
 export { default as SynVueAlert } from './components/SynVueAlert.vue';
 export { default as SynVueBadge } from './components/SynVueBadge.vue';
+export { default as SynVueBreadcrumb } from './components/SynVueBreadcrumb.vue';
+export { default as SynVueBreadcrumbItem } from './components/SynVueBreadcrumbItem.vue';
 export { default as SynVueButton } from './components/SynVueButton.vue';
 export { default as SynVueButtonGroup } from './components/SynVueButtonGroup.vue';
 export { default as SynVueCard } from './components/SynVueCard.vue';

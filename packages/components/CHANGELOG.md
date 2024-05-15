@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.25.0...components/1.26.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-breadcrumb ([#470](https://github.com/synergy-design-system/synergy-design-system/issues/470)) ([3f15e28](https://github.com/synergy-design-system/synergy-design-system/commit/3f15e28c60829f344d07c3751d19e1cf8787e64e))
+
 # [@synergy-design-system/components-v1.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.1...components/1.25.0) (2024-05-15)
 
 

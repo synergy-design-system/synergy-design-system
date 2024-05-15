@@ -6,6 +6,8 @@
 export { SynAccordionComponent } from './accordion.component';
 export { SynAlertComponent } from './alert.component';
 export { SynBadgeComponent } from './badge.component';
+export { SynBreadcrumbComponent } from './breadcrumb.component';
+export { SynBreadcrumbItemComponent } from './breadcrumb-item.component';
 export { SynButtonComponent } from './button.component';
 export { SynButtonGroupComponent } from './button-group.component';
 export { SynCardComponent } from './card.component';

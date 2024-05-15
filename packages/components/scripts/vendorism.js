@@ -8,6 +8,8 @@ import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/in
 import {
   vendorAlert,
   vendorBadge,
+  vendorBreadcrumb,
+  vendorBreadcrumbItem,
   vendorButton,
   vendorCard,
   vendorDetails,
@@ -57,6 +59,8 @@ export const components = [
   'progress-ring',
   'alert',
   'spinner',
+  'breadcrumb',
+  'breadcrumb-item',
   'card',
   'details',
   'dialog',
@@ -276,6 +280,8 @@ const config = {
       // specialized customizations
       vendorAlert,
       vendorBadge,
+      vendorBreadcrumb,
+      vendorBreadcrumbItem,
       vendorButton,
       vendorCard,
       vendorDetails,

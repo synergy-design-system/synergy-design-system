@@ -6,7 +6,7 @@
  * Utility class for setting a very small body copy font style
  * May be combined with weight classes defined below
  */
- .syn-body-x-small {
+.syn-body-x-small {
   font: var(--syn-body-x-small-regular);
 }
 

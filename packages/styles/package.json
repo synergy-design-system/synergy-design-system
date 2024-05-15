@@ -8,12 +8,12 @@
   },
   "description": "Utility classes and helpers for applications using the Synergy Design System",
   "exports": {
-    ".": {
-      "import": "./dist/index.css"
-    }
+    ".": "./dist/index.css",
+    "./css/*": "./src/*"
   },
   "files": [
     "dist",
+    "src",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -83,7 +83,13 @@
     "directory": "packages/styles"
   },
   "scripts": {
+    "start": "pnpm build:postcss",
+    "build:watch": "pnpm build:postcss --watch",
+    "build:clean": "rimraf dist",
+    "build:postcss": "postcss src/index.css --base src/ --dir dist",
+    "build": "pnpm build:clean && pnpm build:postcss",
     "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/",
     "release": "semantic-release  --tagFormat 'styles/${version}' -e semantic-release-monorepo",
     "release.dry": "semantic-release --dry-run --tagFormat 'styles/${version}' -e semantic-release-monorepo"
@@ -91,7 +97,14 @@
   "type": "module",
   "version": "0.1.0",
   "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "eslint": "8",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^16.1.0",
+    "rimraf": "^5.0.5",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "stylelint": "^16.5.0"

@@ -11,6 +11,7 @@ import {
   vendorBreadcrumb,
   vendorBreadcrumbItem,
   vendorButton,
+  vendorCard,
   vendorDrawer,
   vendorIcon,
   vendorIconButton,
@@ -59,6 +60,7 @@ export const components = [
   'spinner',
   'breadcrumb',
   'breadcrumb-item',
+  'card',
   'dialog',
 ].sort();
 
@@ -279,6 +281,7 @@ const config = {
       vendorBreadcrumb,
       vendorBreadcrumbItem,
       vendorButton,
+      vendorCard,
       vendorDrawer,
       vendorIconButton,
       vendorIcon,

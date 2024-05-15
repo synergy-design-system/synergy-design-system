@@ -9,6 +9,7 @@ export { SynBreadcrumbComponent } from './breadcrumb.component';
 export { SynBreadcrumbItemComponent } from './breadcrumb-item.component';
 export { SynButtonComponent } from './button.component';
 export { SynButtonGroupComponent } from './button-group.component';
+export { SynCardComponent } from './card.component';
 export { SynCheckboxComponent } from './checkbox.component';
 export { SynDialogComponent } from './dialog.component';
 export { SynDividerComponent } from './divider.component';

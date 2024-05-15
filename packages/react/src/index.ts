@@ -9,6 +9,7 @@ export { SynBreadcrumb } from './components/breadcrumb.js';
 export { SynBreadcrumbItem } from './components/breadcrumb-item.js';
 export { SynButton } from './components/button.js';
 export { SynButtonGroup } from './components/button-group.js';
+export { SynCard } from './components/card.js';
 export { SynCheckbox } from './components/checkbox.js';
 export { SynDialog } from './components/dialog.js';
 export { SynDivider } from './components/divider.js';

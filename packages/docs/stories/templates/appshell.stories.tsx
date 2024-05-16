@@ -369,7 +369,15 @@ export const SideNavigationShrinkingContent: Story = {
            * create the page with the side-bar open
            */
           margin-left: var(--appshell-shrink-nav-open-width);
-          transition: margin-left 250ms;
+        }
+
+        /**
+         * Show a transition effect for users that do not have reduced motion enabled
+         */
+        @media (prefers-reduced-motion: no-preference) {
+          .synergy-demo-content-inner {
+            transition: margin-left 250ms;
+          }
         }
       }
     </style>

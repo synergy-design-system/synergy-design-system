@@ -30,19 +30,23 @@ await jobs.runCopyFiles(
 await jobs.runCem();
 
 await Promise.all([
-  jobs.runCreateReactWrappers({
+  jobs.runCreateStyles({
     componentDistDir: outDir,
-    componentPackageDir: componentDir,
-    reactPackageDir,
+    stylesDir: getPath('../src/styles'),
   }),
-  jobs.runCreateAngularWrappers({
-    angularPackageDir,
-    componentDistDir: outDir,
-    componentPackageDir: componentDir,
-  }),
-  jobs.runCreateVueWrappers({
-    componentDistDir: outDir,
-    componentPackageDir: componentDir,
-    vuePackageDir,
-  }),
+  // jobs.runCreateReactWrappers({
+  //   componentDistDir: outDir,
+  //   componentPackageDir: componentDir,
+  //   reactPackageDir,
+  // }),
+  // jobs.runCreateAngularWrappers({
+  //   angularPackageDir,
+  //   componentDistDir: outDir,
+  //   componentPackageDir: componentDir,
+  // }),
+  // jobs.runCreateVueWrappers({
+  //   componentDistDir: outDir,
+  //   componentPackageDir: componentDir,
+  //   vuePackageDir,
+  // }),
 ]);

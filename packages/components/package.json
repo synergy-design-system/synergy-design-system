@@ -67,7 +67,6 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
-    "@synergy-design-system/tokens": "workspace:*",
     "@types/mocha": "^10.0.6",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
@@ -173,6 +172,7 @@
     "@floating-ui/dom": "^1.6.3",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.1.2",
+    "@synergy-design-system/tokens": "workspace:*",
     "composed-offset-position": "^0.0.4",
     "lit": "^3.1.3"
   }

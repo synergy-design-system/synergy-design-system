@@ -1,4 +1,9 @@
-import { execPromise, formatFile, getPath, job } from './shared.js';
+import {
+  execPromise,
+  formatFile,
+  getPath,
+  job,
+} from './shared.js';
 
 /**
  * Run cem for the components package

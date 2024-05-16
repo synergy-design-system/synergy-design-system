@@ -88,6 +88,11 @@ const createSharedStyles = () => html`
     .synergy-demo-footer a:active {
       color: var(--syn-color-primary-700);
     }
+
+    .synergy-demo-footer a:focus {
+      outline: var(--syn-focus-ring);
+      outline-offset: var(--syn-focus-ring-offset);
+    }
   </style>
 `;
 
@@ -144,14 +149,15 @@ const createHeader = ({
  * Create a side navigation with an optional rail mode
  */
 const createSideNav = ({
+  noFocusTrapping = false,
   open = false,
   rail = false,
 } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
-    no-focus-trapping
-    .open=${open}
-    .rail=${rail}
+    ?no-focus-trapping=${noFocusTrapping}
+    ?open=${open}
+    ?rail=${rail}
   >
     <syn-nav-item current>
       <syn-icon name="home" slot="prefix"></syn-icon>
@@ -220,7 +226,7 @@ const createFooter = () => html`
 const createSidebarConnector = (id: string) => html`
   <script type="module">
     // This is only done because in storybooks
-    // doc overview, exist multiple side-navs and headers.
+    // doc overview multiple side-navs and headers exist.
     // Per default, the header will connect to the first side-nav automatically.
     const elm = document.getElementById('${id}');
     const header = elm.querySelector('syn-header');
@@ -340,7 +346,7 @@ export const SideNavigationShrinkingContent: Story = {
       
       <!-- .synergy-demo-content -->
       <div class="synergy-demo-content">
-        ${createSideNav({ open: true })}
+        ${createSideNav({ noFocusTrapping: true, open: true })}
         <div class="synergy-demo-content-inner">
           ${createMainContent()}
           ${createFooter()}

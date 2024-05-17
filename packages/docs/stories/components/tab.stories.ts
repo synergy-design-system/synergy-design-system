@@ -18,7 +18,7 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: 'Label',
+      value: 'Tab',
     },
   ], defaultArgs),
   argTypes,

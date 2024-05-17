@@ -377,7 +377,6 @@ export default class SynTabGroup extends SynergyElement {
   }
 
   render() {
-    const isRtl = this.localize.dir() === 'rtl';
 
     return html`
       <div
@@ -401,7 +400,7 @@ export default class SynTabGroup extends SynergyElement {
                   part="scroll-button scroll-button--start"
                   exportparts="base:scroll-button__base"
                   class="tab-group__scroll-button tab-group__scroll-button--start"
-                  name=${isRtl ? 'chevron-right' : 'chevron-left'}
+                  name="chevron-down"
                   library="system"
                   label=${this.localize.term('scrollToStart')}
                   @click=${this.handleScrollToStart}
@@ -422,7 +421,7 @@ export default class SynTabGroup extends SynergyElement {
                   part="scroll-button scroll-button--end"
                   exportparts="base:scroll-button__base"
                   class="tab-group__scroll-button tab-group__scroll-button--end"
-                  name=${isRtl ? 'chevron-left' : 'chevron-right'}
+                  name="chevron-down"
                   library="system"
                   label=${this.localize.term('scrollToEnd')}
                   @click=${this.handleScrollToEnd}

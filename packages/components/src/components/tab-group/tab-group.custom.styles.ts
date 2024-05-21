@@ -74,8 +74,6 @@ export default css`
   }
 
   .tab-group__scroll-button {
-    background-color: var(--syn-color-neutral-0);
-
     /* uncomment this as soon as the new system icon is used */
 
     /* border-bottom: solid var(--track-width) var(--track-color); */

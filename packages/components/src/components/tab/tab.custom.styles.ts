@@ -24,16 +24,11 @@ export default css`
   }
 
   .tab.tab--active:not(.tab--disabled) {
-    /* in dev we have no active line */
     color: var(--syn-typography-color-text);
   }
 
   .tab.tab--closable {
     padding: var(--syn-spacing-2x-small) var(--syn-spacing-large);
-  }
-
-  .tab.tab--disabled {
-    background-color: var(--syn-color-neutral-0);
   }
 
   .tab__close-button {

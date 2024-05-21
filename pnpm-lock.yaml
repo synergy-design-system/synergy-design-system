@@ -486,7 +486,7 @@ importers:
         specifier: workspace:*
         version: link:../_private/stylelint-config-syn
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
       '@types/mocha':
         specifier: ^10.0.6
@@ -741,6 +741,9 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:^
         version: link:../components
+      '@synergy-design-system/tokens':
+        specifier: workspace:*
+        version: link:../tokens
     devDependencies:
       '@types/react':
         specifier: ^18.2.79
@@ -843,6 +846,9 @@ importers:
         specifier: workspace:^
         version: link:../components
     devDependencies:
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
       '@vue/tsconfig':
         specifier: ^0.5.1
         version: 0.5.1

@@ -75,7 +75,7 @@ export default class SynDetails extends SynergyElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** The details's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' = 'small';
 
   firstUpdated() {
     this.body.style.height = this.open ? 'auto' : '0';

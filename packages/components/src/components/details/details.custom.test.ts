@@ -6,9 +6,9 @@ import type SynDetails from './details.js';
 
 describe('<syn-details>', () => {
   describe('size', () => {
-    it('should default to "medium"', async () => {
+    it('should default to "small"', async () => {
       const el = await fixture<SynDetails>(html`<syn-details></syn-details>`);
-      expect(el.size).to.equal('medium');
+      expect(el.size).to.equal('small');
     });
   });
 

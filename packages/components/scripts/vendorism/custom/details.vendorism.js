@@ -35,7 +35,7 @@ const transformComponent = (path, originalContent) => {
     '@property({ type: Boolean, reflect: true }) disabled = false;',
     `
   /** The details's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' = 'small';
     `,
   );
 

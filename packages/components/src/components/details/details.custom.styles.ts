@@ -59,7 +59,7 @@ export default css`
   .details--size-small .details__content {
     font-size: var(--syn-font-size-small);
     line-height: var(--syn-line-height-normal);
-    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-medium-large);
+    padding: 0 0 var(--syn-spacing-medium-large);
   }
 
   .details--size-small .details__summary {
@@ -81,7 +81,7 @@ export default css`
   .details--size-medium .details__content {
     font-size: var(--syn-font-size-medium);
     line-height: var(--syn-line-height-normal);
-    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
+    padding: 0 0 var(--syn-spacing-large);
   }
 
   .details--size-medium .details__summary {

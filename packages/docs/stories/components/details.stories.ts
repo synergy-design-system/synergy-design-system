@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
+import type { SynDetails } from '@synergy-design-system/components';
 import { html } from 'lit';
 import '../../../components/src/components/details/details.js';
 import {
@@ -60,6 +61,45 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
+export const Open: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('details', 'open'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-details summary="Toggle Me" open>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum.
+    </syn-details>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('details', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const details = canvasElement.querySelector('syn-details') as SynDetails;
+    if (details) {
+      details.shadowRoot!.querySelector('summary')!.focus()
+    }
+  },
+  render: () => html`
+    <syn-details summary="Toggle Me"></syn-details>
+  `,
+};
+
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -100,6 +140,7 @@ export const Sizes: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  Open,
   Disabled,
   Sizes,
 }, 300);

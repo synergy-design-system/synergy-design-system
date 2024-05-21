@@ -29,19 +29,19 @@ await Promise.all([
     componentDistDir: outDir,
     stylesDir: getPath('../src/styles'),
   }),
-  // jobs.runCreateReactWrappers({
-  //   componentDistDir: outDir,
-  //   componentPackageDir: componentDir,
-  //   reactPackageDir,
-  // }),
-  // jobs.runCreateAngularWrappers({
-  //   angularPackageDir,
-  //   componentDistDir: outDir,
-  //   componentPackageDir: componentDir,
-  // }),
-  // jobs.runCreateVueWrappers({
-  //   componentDistDir: outDir,
-  //   componentPackageDir: componentDir,
-  //   vuePackageDir,
-  // }),
+  jobs.runCreateReactWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    reactPackageDir,
+  }),
+  jobs.runCreateAngularWrappers({
+    angularPackageDir,
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+  }),
+  jobs.runCreateVueWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    vuePackageDir,
+  }),
 ]);

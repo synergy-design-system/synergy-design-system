@@ -184,6 +184,8 @@
     "packages/components/src/internal/watch.ts": true,
     "packages/components/src/styles/component.styles.ts": true,
     "packages/components/src/styles/form-control.styles.ts": true,
+    "packages/components/src/styles/fouc.css": true,
+    "packages/components/src/styles/index.css": true,
     "packages/components/src/synergy-autoloader.ts": true,
     "packages/components/src/translations/de.ts": true,
     "packages/components/src/translations/en.ts": true,

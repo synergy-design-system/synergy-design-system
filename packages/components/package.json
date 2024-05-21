@@ -22,7 +22,9 @@
     "./components/*": "./dist/components/*",
     "./utilities/*": "./dist/utilities/*",
     "./themes/*": "./dist/themes/*",
-    "./translations/*": "./dist/translations/*"
+    "./translations/*": "./dist/translations/*",
+    "./styles/*": "./dist/styles/*",
+    "./index.css": "./dist/styles/index.css"
   },
   "files": [
     "dist"
@@ -97,6 +99,9 @@
     "jsdom": "^24.0.0",
     "ng-packagr": "^17.3.0",
     "ora": "^8.0.1",
+    "postcss": "^8.4.38",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^16.1.0",
     "prettier": "^3.2.5",
     "remark-parse": "^11.0.0",
     "semantic-release": "^19.0.5",

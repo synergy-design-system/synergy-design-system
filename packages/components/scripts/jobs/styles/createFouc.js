@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { job } from '../shared.js';
 
-export const createFouc = job('Styles: Creating FOUC utilities', async (components, outDir) => {
+export const runCreateFouc = job('Styles: Creating FOUC utilities', async (components, outDir) => {
   const selector = components
     .map(component => `${component}:not(:defined)`.toLowerCase())
     .join(',\n');

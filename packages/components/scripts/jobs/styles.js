@@ -19,5 +19,7 @@ export const runCreateStyles = async ({
   const components = await getAllComponents(metadata);
   const availableComponents = components.map(c => c.tagName);
 
-  await jobs.createFouc(availableComponents, stylesDir);
+  await jobs.runCreateFouc(availableComponents, stylesDir);
+  await jobs.runCreateIndex(stylesDir);
+  await jobs.runMoveToDist(stylesDir, componentDistDir);
 };

@@ -566,6 +566,15 @@ importers:
       ora:
         specifier: ^8.0.1
         version: 8.0.1
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
+      postcss-header:
+        specifier: ^3.0.3
+        version: 3.0.3(postcss@8.4.38)
+      postcss-import:
+        specifier: ^16.1.0
+        version: 16.1.0(postcss@8.4.38)
       prettier:
         specifier: ^3.2.5
         version: 3.2.5

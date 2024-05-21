@@ -32,10 +32,10 @@ You may either load all of them in one bundle (recommended) or just include the 
 
 ##### List of available css utilities
 
-| Utility | Required? | Path                      | Description
-|:--------|:---------:|:----------------|:------------
-| fouc    |           | `dist/styles/fouc.css`    | Defaults for handling [Flash of Undefined Components (FOUC)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/). Scoped to only target Synergy Components to make sure it does not overlap with other custom elements already defined.
-| utility |     ✔     | `dist/styles/utility.css` | Utilities that have to be in the light DOM to make Synergy work. For example, these include scroll locking for fullscreen components. **This is required, your application layout may break if not available**!
+| Utility | Required? | Path                      | Description                                                                                                                                                                                                                                                   |
+| :------ | :-------: | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| fouc    |           | `dist/styles/fouc.css`    | Defaults for handling [Flash of Undefined Components (FOUC)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/). Scoped to only target Synergy Components to make sure it does not overlap with other custom elements already defined. |
+| utility |    ✔     | `dist/styles/utility.css` | Utilities that have to be in the light DOM to make Synergy work. For example, these include scroll locking for fullscreen components. **This is required, your application layout may break if not available**!                                               |
 
 ##### 2.1. Loading all css utilities (recommended)
 
@@ -45,10 +45,12 @@ You may either load all of them in one bundle (recommended) or just include the 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" src="../node_modules/@synergy-design-system/components/dist/styles/index.css">
+    <link
+      rel="stylesheet"
+      src="../node_modules/@synergy-design-system/components/dist/styles/index.css"
+    />
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
 
@@ -60,13 +62,14 @@ You may either load all of them in one bundle (recommended) or just include the 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" src="../node_modules/@synergy-design-system/components/dist/styles/utility.css">
+    <link
+      rel="stylesheet"
+      src="../node_modules/@synergy-design-system/components/dist/styles/utility.css"
+    />
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
-
 
 ---
 

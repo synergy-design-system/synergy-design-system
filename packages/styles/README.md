@@ -40,7 +40,7 @@ This will be picked up and served when using a bundler (e.g. webpack or vite).
 For this to work, import the module directly in your project like this.
 
 ```javascript
-import '@synergy-design-system/styles';
+import "@synergy-design-system/styles";
 ```
 
 ---
@@ -63,7 +63,7 @@ This can be archived in the following way:
 ```
 
 ```javascript
-import '@synergy-design-system/styles/css/typography.css';
+import "@synergy-design-system/styles/css/typography.css";
 ```
 
 ---
@@ -77,7 +77,7 @@ The typography module holds classes that apply typographic behavior (e.g. `font-
 #### Installation
 
 ```javascript
-import '@synergy-design-system/styles/css/typography.css';
+import "@synergy-design-system/styles/css/typography.css";
 ```
 
 #### Usage
@@ -93,10 +93,18 @@ import '@synergy-design-system/styles/css/typography.css';
 <h5 class="syn-heading-large">Small Headline</h5>
 
 <!-- Body Copy -->
-<p class="syn-body-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="syn-body-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="syn-body-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p class="syn-body-x-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p class="syn-body-large">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
+<p class="syn-body-medium">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
+<p class="syn-body-small">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
+<p class="syn-body-x-small">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
 ```
 
 ---

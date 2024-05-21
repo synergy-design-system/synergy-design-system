@@ -5,7 +5,7 @@ import * as jobs from './styles/index.js';
 
 /**
  * Run all steps to create dynamic styles
- * @param {String} settings.componentDistDir The absolute path to the component dist
+ * @param {string} settings.componentDistDir The absolute path to the component dist
  * @param {string} settings.stylesDir The absolute path to the components styles directory
  */
 export const runCreateStyles = async ({

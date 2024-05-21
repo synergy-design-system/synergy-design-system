@@ -88,6 +88,10 @@ export default css`
     font: var(--syn-body-large-regular);
   }
 
+  .details--size-medium .details__summary-icon {
+    font-size: var(--syn-spacing-x-large);
+  }
+
   .details--size-medium .details__summary::slotted(syn-icon) {
     font-size: var(--syn-spacing-x-large);
     margin-right: var(--syn-spacing-x-small);

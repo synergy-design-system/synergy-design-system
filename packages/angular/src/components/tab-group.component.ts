@@ -97,6 +97,31 @@ manual, the tab will receive focus but will not show until the user presses spac
     return this.nativeElement.noScrollControls;
   }
 
+  /**
+* Draws the tab group as a contained item.
+ */
+  @Input()
+  set contained(v: SynTabGroup['contained']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  }
+
+  get contained() {
+    return this.nativeElement.contained;
+  }
+
+  /**
+* Draws the tab group as a nested item.
+* Can be used when nesting multiple syn-tab-group`s to create hierarchy
+ */
+  @Input()
+  set nested(v: SynTabGroup['nested']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.nested = v));
+  }
+
+  get nested() {
+    return this.nativeElement.nested;
+  }
+
   @Input()
   callUpdateScrollControls(...args: Parameters<SynTabGroup['updateScrollControls']>) {
     return this._ngZone.runOutsideAngular(() => this.nativeElement.updateScrollControls(...args));

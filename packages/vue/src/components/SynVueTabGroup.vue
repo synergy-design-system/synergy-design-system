@@ -74,6 +74,17 @@ manual, the tab will receive focus but will not show until the user presses spac
 * Disables the scroll arrows that appear when tabs overflow.
  */
   'noScrollControls'?: SynTabGroup['noScrollControls'];
+
+  /**
+* Draws the tab group as a contained item.
+ */
+  'contained'?: SynTabGroup['contained'];
+
+  /**
+* Draws the tab group as a nested item.
+* Can be used when nesting multiple syn-tab-group`s to create hierarchy
+ */
+  'nested'?: SynTabGroup['nested'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

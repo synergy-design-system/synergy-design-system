@@ -14,12 +14,14 @@
  * @dependency syn-icon-button
  *
  * @slot - The tab's label.
+ * @slot prefix - Used to prepend an icon or similar element to the tab.
  *
  * @event syn-close - Emitted when the tab is closable and the close button is activated.
  *
  * @csspart base - The component's base wrapper.
  * @csspart close-button - The close button, an `<syn-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
+ * @csspart prefix - The prefix container.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tab/tab.js';

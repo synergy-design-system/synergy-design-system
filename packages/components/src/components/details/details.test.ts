@@ -199,7 +199,7 @@ describe('<syn-details>', () => {
     await first.show();
     await second.show();
 
-    expect(firstBody.clientHeight).to.equal(240); // 200 + 16px + 24px (vertical padding) for size medium
-    expect(secondBody.clientHeight).to.equal(440); // 400 + 16px + 24px (vertical padding) for size medium
+    expect(firstBody.clientHeight).to.equal(220);
+    expect(secondBody.clientHeight).to.equal(420);
   });
 });

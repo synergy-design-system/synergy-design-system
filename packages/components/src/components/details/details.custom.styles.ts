@@ -99,4 +99,12 @@ export default css`
   .details--open .details__summary {
     font-weight: var(--syn-font-weight-bold);
   }
+
+  /**
+   * Add a visually visible hover effect to the summary element
+   */
+  .details:not(.details--disabled) .details__header:hover .details__summary,
+  .details:not(.details--disabled) .details__header:hover .details__summary-icon {
+    color: var(--syn-color-primary-700);
+  }
 `;

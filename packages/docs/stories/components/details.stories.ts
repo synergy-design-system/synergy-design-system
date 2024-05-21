@@ -69,14 +69,9 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-details class="details-disabled" summary="Toggle Me" disabled>
+    <syn-details summary="Toggle Me" disabled>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <style>
-      .details-disabled {
-        max-width: 400px;
-      }
-    </style>
   `,
 };
 
@@ -89,21 +84,16 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <syn-details class="details-sizes" size="small">
+    <syn-details size="small">
       <syn-icon name="wallpaper" slot="summary"></syn-icon>
       <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <syn-details class="details-sizes" size="medium">
+    <syn-details size="medium">
       <syn-icon name="wallpaper" slot="summary"></syn-icon>
       <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <style>
-      .details-sizes {
-        max-width: 400px;
-      }
-    </style>
   `,
 };
 

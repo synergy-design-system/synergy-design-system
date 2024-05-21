@@ -127,20 +127,6 @@ export const Sizes: Story = {
         </syn-details>
         <syn-details summary="Second" open>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-          <form method="get">
-            <syn-input label="Vorname" placeholder="Bitte Vornamen eingeben"></syn-input>
-            <syn-input label="Nachname" placeholder="Bitte Nachnamen eingeben"></syn-input>
-            <div class="submit">
-              <syn-button
-                variant="filled"
-                type="submit"
-                size="${size as 'small' | 'medium'}"
-              >
-                <syn-icon slot="prefix" name="wallpaper"></syn-icon>
-                Submit
-              </syn-button>
-            </div>
-          </form>
         </syn-details>
         <syn-details summary="Third">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -155,18 +141,6 @@ export const Sizes: Story = {
 
       .accordion-size:not(:first-of-type) {
         margin-top: var(--syn-spacing-2x-large);
-      }
-
-      .accordion-size form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--syn-spacing-large);
-        margin: var(--syn-spacing-large) 0;
-      }
-
-      .accordion-size .submit {
-        grid-column: 2;
-        text-align: right;
       }
     </style>
 

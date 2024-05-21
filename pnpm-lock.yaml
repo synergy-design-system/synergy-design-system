@@ -845,10 +845,10 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:^
         version: link:../components
-    devDependencies:
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
+    devDependencies:
       '@vue/tsconfig':
         specifier: ^0.5.1
         version: 0.5.1

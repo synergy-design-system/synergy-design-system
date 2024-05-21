@@ -17,6 +17,9 @@ Run the following steps to install the required packages.
 # Install the base library and required css files
 npm install --save @synergy-design-system/react @synergy-design-system/tokens
 
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
 # Only if not already installed
 npm install --save react react-dom
 
@@ -39,6 +42,10 @@ import { App } from "./App";
 
 // Add this line to enable the light theme for your application
 import "@synergy-design-system/tokens/themes/light.css";
+import "@synergy-design-system/components/index.css";
+
+// Optional: Import the styles package
+import "@synergy-design-system/styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

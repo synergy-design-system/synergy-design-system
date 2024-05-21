@@ -454,9 +454,6 @@ importers:
       '@shoelace-style/localize':
         specifier: ^3.1.2
         version: 3.1.2
-      '@synergy-design-system/tokens':
-        specifier: workspace:*
-        version: link:../tokens
       composed-offset-position:
         specifier: ^0.0.4
         version: 0.0.4
@@ -488,6 +485,9 @@ importers:
       '@synergy-design-system/stylelint-config-syn':
         specifier: workspace:*
         version: link:../_private/stylelint-config-syn
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
@@ -752,7 +752,7 @@ importers:
   packages/styles:
     dependencies:
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
     devDependencies:
       '@synergy-design-system/eslint-config-syn':

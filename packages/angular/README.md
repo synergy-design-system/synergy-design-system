@@ -21,6 +21,9 @@ Run the following steps to install the required packages.
 # Install the required dependencies
 npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
 
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
 # If not already installed, install Angular's peer dependencies
 # Install step for angular@17
 npm install --save @angular/core@17 @angular/forms@17
@@ -31,8 +34,11 @@ npm install --save @synergy-design-system/assets
 
 ### 2. Add the desired theme to your application
 
-The components will not display correctly without the needed theme.
+The components will not display correctly without the needed theme and utility classes.
 Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
+
+> This example includes the optional @synergy-design-system/styles package.
+> If you do not want to use the styles package, just remove the last import.
 
 ```json
 {
@@ -41,7 +47,11 @@ Please include either light or dark theme in your application, for example in a 
       "architect": {
         "build": {
           "options": {
-            "styles": ["@synergy-design-system/tokens/themes/light.css"]
+            "styles": [
+              "@synergy-design-system/tokens/themes/light.css",
+              "@synergy-design-system/components/index.css",
+              "@synergy-design-system/styles/index.css"
+            ]
           }
         }
       }

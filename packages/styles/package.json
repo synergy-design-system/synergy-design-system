@@ -3,9 +3,6 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
-  "dependencies": {
-    "@synergy-design-system/tokens": "workspace:^"
-  },
   "description": "Utility classes and helpers for applications using the Synergy Design System",
   "exports": {
     ".": "./dist/index.css",
@@ -109,5 +106,8 @@
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "stylelint": "^16.5.0"
+  },
+  "peerDependencies": {
+    "@synergy-design-system/tokens": "workspace:*"
   }
 }

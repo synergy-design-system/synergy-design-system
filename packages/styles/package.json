@@ -9,6 +9,7 @@
   "description": "Utility classes and helpers for applications using the Synergy Design System",
   "exports": {
     ".": "./dist/index.css",
+    "./index.css": "./dist/index.css",
     "./css/*": "./src/*"
   },
   "files": [

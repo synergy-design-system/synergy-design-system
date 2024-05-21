@@ -32,19 +32,6 @@ export default css`
   }
 
   /**
-   * Bottom
-   */
-
-  .tab-group--bottom .tab-group__indicator {
-    border-top: solid var(--indicator-width) var(--indicator-color);
-    top: 0;
-  }
-
-  .tab-group--bottom ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
-  }
-
-  /**
    * Start
    */
 

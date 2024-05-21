@@ -67,7 +67,7 @@ export default class SynTabGroup extends SynergyElement {
   @state() private hasScrollControls = false;
 
   /** The placement of the tabs. */
-  @property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';
+  @property() placement: 'top' | 'start' | 'end' = 'top';
 
   /**
    * When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel. When set to
@@ -194,12 +194,12 @@ export default class SynTabGroup extends SynergyElement {
         } else if (event.key === 'End') {
           index = this.tabs.length - 1;
         } else if (
-          (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
+          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
         ) {
           index--;
         } else if (
-          (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
+          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
         ) {
           index++;
@@ -219,7 +219,7 @@ export default class SynTabGroup extends SynergyElement {
           this.setActiveTab(this.tabs[index], { scrollBehavior: 'smooth' });
         }
 
-        if (['top', 'bottom'].includes(this.placement)) {
+        if (['top'].includes(this.placement)) {
           scrollIntoView(this.tabs[index], this.nav, 'horizontal');
         }
 
@@ -264,7 +264,7 @@ export default class SynTabGroup extends SynergyElement {
       this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
       this.syncIndicator();
 
-      if (['top', 'bottom'].includes(this.placement)) {
+      if (['top'].includes(this.placement)) {
         scrollIntoView(this.activeTab, this.nav, 'horizontal', options.scrollBehavior);
       }
 
@@ -315,7 +315,6 @@ export default class SynTabGroup extends SynergyElement {
 
     switch (this.placement) {
       case 'top':
-      case 'bottom':
         this.indicator.style.width = `${width}px`;
         this.indicator.style.height = 'auto';
         this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;
@@ -351,7 +350,7 @@ export default class SynTabGroup extends SynergyElement {
       //
       // See https://github.com/synergy-design-system/synergy/issues/1839
       this.hasScrollControls =
-        ['top', 'bottom'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
+        ['top'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
     }
   }
 
@@ -384,7 +383,6 @@ export default class SynTabGroup extends SynergyElement {
         class=${classMap({
           'tab-group': true,
           'tab-group--top': this.placement === 'top',
-          'tab-group--bottom': this.placement === 'bottom',
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
           'tab-group--rtl': this.localize.dir() === 'rtl',

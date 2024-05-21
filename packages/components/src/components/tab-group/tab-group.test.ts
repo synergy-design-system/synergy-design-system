@@ -143,21 +143,6 @@ describe('<syn-tab-group>', () => {
       expect(clientRectangles.body?.top).to.be.greaterThanOrEqual(clientRectangles.navigation?.bottom || -Infinity);
     });
 
-    it('shows the header below the tabs by setting placement to bottom', async () => {
-      const tabGroup = await fixture<SynTabGroup>(html`
-        <syn-tab-group>
-          <syn-tab slot="nav" panel="general">General</syn-tab>
-          <syn-tab-panel name="general">This is the general tab panel.</syn-tab-panel>
-        </syn-tab-group>
-      `);
-      tabGroup.placement = 'bottom';
-
-      await aTimeout(0);
-
-      const clientRectangles = getClientRectangles(tabGroup);
-      expect(clientRectangles.body?.bottom).to.be.lessThanOrEqual(clientRectangles.navigation?.top || +Infinity);
-    });
-
     it('shows the header left of the tabs by setting placement to start', async () => {
       const tabGroup = await fixture<SynTabGroup>(html`
         <syn-tab-group>

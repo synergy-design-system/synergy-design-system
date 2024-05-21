@@ -118,52 +118,6 @@ export default css`
   }
 
   /*
-   * Bottom
-   */
-
-  .tab-group--bottom {
-    flex-direction: column;
-  }
-
-  .tab-group--bottom .tab-group__nav-container {
-    order: 2;
-  }
-
-  .tab-group--bottom .tab-group__nav {
-    display: flex;
-    overflow-x: auto;
-
-    /* Hide scrollbar in Firefox */
-    scrollbar-width: none;
-  }
-
-  /* Hide scrollbar in Chrome/Safari */
-  .tab-group--bottom .tab-group__nav::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  .tab-group--bottom .tab-group__tabs {
-    flex: 1 1 auto;
-    position: relative;
-    flex-direction: row;
-    border-top: solid var(--track-width) var(--track-color);
-  }
-
-  .tab-group--bottom .tab-group__indicator {
-    top: calc(-1 * var(--track-width));
-    border-top: solid var(--track-width) var(--indicator-color);
-  }
-
-  .tab-group--bottom .tab-group__body {
-    order: 1;
-  }
-
-  .tab-group--bottom ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-medium) 0;
-  }
-
-  /*
    * Start
    */
 

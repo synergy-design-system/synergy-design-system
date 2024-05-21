@@ -119,5 +119,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Disabled,
   Sizes,
-}, 200);
+}, 300);
 /* eslint-enable sort-keys */

@@ -55,4 +55,18 @@ export default css`
       outline-offset: var(--syn-focus-ring-offset);
     }
   }
+
+  /**
+   * Handling for slotted prefix and suffix
+   */
+  .tab__prefix::slotted(*) {
+    margin-inline-end: var(--syn-spacing-x-small);
+  }
+  
+  /**
+   * Set the default font size to make icons appear correct
+   */
+  .tab__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+  }
 `;

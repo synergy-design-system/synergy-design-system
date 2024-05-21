@@ -7,7 +7,16 @@ export default css`
     border-width: 0 0 var(--syn-border-width-small);
   }
 
+  /**
+   * We do not want to have a opaque border-color,
+   * so we apply the opacity to the inner elements instead
+   */
   .details--disabled {
+    opacity: 1;
+  }
+
+  .details--disabled summary,
+  .details--disabled .details__body {
     opacity: var(--syn-opacity-50);
   }
 

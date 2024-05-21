@@ -22,7 +22,7 @@
     "./components/*": "./dist/components/*",
     "./utilities/*": "./dist/utilities/*",
     "./styles/*": "./dist/styles/*",
-    "./themes/utility.css": "./styles/utility.css",
+    "./themes/utility.css": "./dist/styles/utility.css",
     "./themes/*": "./dist/themes/*",
     "./translations/*": "./dist/translations/*",
     "./index.css": "./dist/styles/index.css"

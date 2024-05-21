@@ -12,7 +12,7 @@ export default css`
   }
 
   .tab:focus-visible {
-    outline-offset: var(--syn-focus-ring-offset);
+    outline-offset: 0;
   }
 
   .tab:focus-visible:not(.tab--disabled) {

@@ -50,6 +50,19 @@ const createTabPanels = () => [
   'disabled',
 ].map((name) => createTabPanel(name, `This is the ${name} tab panel.`)).join('\n');
 
+const createReplaceTabPanels = (name: string) => html`
+<syn-tab-panel name="${name}">
+  <main class="synergy-replace">
+    Replace this slot
+  </main>
+</syn-tab-panel>
+`;
+
+const createReplaceContent = () => html`
+  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map(name => createTabHtml(name, 'Tab item'))}
+  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map(name => createReplaceTabPanels(name))}
+`;
+
 const createTabPanelsHtml = () => unsafeHTML(createTabPanels());
 
 const meta: Meta = {
@@ -196,6 +209,44 @@ export const ScrollingTabs: Story = {
   </syn-tab-group>`,
 };
 
+export const VisualHierarchy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'hierachy'),
+      },
+    },
+  },
+  render: () => html`
+    <h3>Default</h3>
+    <syn-tab-group>
+      ${createReplaceContent()}
+    </syn-tab-group>
+
+    <h3>Contained</h3>
+    <syn-tab-group contained>
+      ${createReplaceContent()}
+    </syn-tab-group>
+
+    <h3>Nested</h3>
+    <syn-tab-group nested>
+     ${createReplaceContent()}
+    </syn-tab-group>
+    <style>
+      .synergy-replace{
+        border: 1px dashed #9747FF;
+        border-radius: var(--syn-border-radius-small);
+        color: #9747FF;
+        font: var(--syn-body-small-bold);
+        height: var(--syn-spacing-2x-large);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  `,
+};
+
 export const ManualActivation: Story = {
   parameters: {
     docs: {
@@ -219,6 +270,7 @@ export const Screenshot: Story = generateScreenshotStory({
   TabsOnEnd,
   ClosableTabs,
   ScrollingTabs,
+  VisualHierarchy,
   ManualActivation,
 }, 300);
 /* eslint-enable sort-keys */

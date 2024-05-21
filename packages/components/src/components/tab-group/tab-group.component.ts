@@ -78,6 +78,12 @@ export default class SynTabGroup extends SynergyElement {
   /** Disables the scroll arrows that appear when tabs overflow. */
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
+  /** Draws the tab group as a contained item. */
+  @property({ type: Boolean }) contained = false;
+  
+  /** Draws the tab group as a nested item. Can be used when nesting multiple syn-tab-group`s to create hierarchy */
+  @property({ type: Boolean }) nested = false;
+
   connectedCallback() {
     const whenAllDefined = Promise.all([
       customElements.whenDefined('syn-tab'),
@@ -315,16 +321,16 @@ export default class SynTabGroup extends SynergyElement {
 
     switch (this.placement) {
       case 'top':
-        this.indicator.style.width = `${width}px`;
+        this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-large)' : '0px' })`;
         this.indicator.style.height = 'auto';
-        this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;
+        this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-large)' : '0px' }))`;
         break;
 
       case 'start':
       case 'end':
         this.indicator.style.width = 'auto';
-        this.indicator.style.height = `${height}px`;
-        this.indicator.style.translate = `0 ${offset.top}px`;
+        this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-small)' : '0px' })`;
+        this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-small)' : '0px' })`;
         break;
     }
   }
@@ -386,7 +392,9 @@ export default class SynTabGroup extends SynergyElement {
           'tab-group--start': this.placement === 'start',
           'tab-group--end': this.placement === 'end',
           'tab-group--rtl': this.localize.dir() === 'rtl',
-          'tab-group--has-scroll-controls': this.hasScrollControls
+          'tab-group--has-scroll-controls': this.hasScrollControls,
+          'tab-group--contained': this.contained,
+          'tab-group--nested': this.nested,
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

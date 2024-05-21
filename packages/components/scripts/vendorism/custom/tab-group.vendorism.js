@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
-import { replaceSections } from '../replace-section.js';
+import { addSectionAfter, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tab-group.component.ts',
@@ -35,12 +35,33 @@ const transformComponent = (path, originalContent) => {
       "@property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';",
       "@property() placement: 'top' | 'start' | 'end' = 'top';",
     ],
+    [
+      "@property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';",
+      "@property() placement: 'top' | 'start' | 'end' = 'top';",
+    ],
+    // adapt indicator styling for 'nested' and 'contained' tabs
+    [
+      'this.indicator.style.width = `${width}px`;',
+      "this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-large)' : '0px' })`;",
+    ],
+    [
+      'this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;',
+      "this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-large)' : '0px' }))`;",
+    ],
+    [
+      'this.indicator.style.height = `${height}px`;',
+      "this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-small)' : '0px' })`;",
+    ],
+    [
+      'this.indicator.style.translate = `0 ${offset.top}px`;',
+      "this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-small)' : '0px' })`;",
+    ],
   ], originalContent);
 
   content = removeSections([
     [
       'render() {',
-      "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false }
+      "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false },
     ],
 
     // remove 'bottom' placement
@@ -53,6 +74,28 @@ const transformComponent = (path, originalContent) => {
       ',',
     ],
   ], content);
+
+  // Add 'contained' and 'nested' property
+  content = addSectionAfter(
+    content,
+    "@property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;",
+    `
+  /** Draws the tab group as a contained item. */
+  @property({ type: Boolean }) contained = false;
+  
+  /** Draws the tab group as a nested item. Can be used when nesting multiple syn-tab-group\`s to create hierarchy */
+  @property({ type: Boolean }) nested = false;`,
+  );
+
+  // Add 'contained' and 'nested' classes
+  content = addSectionAfter(
+    content,
+    "'tab-group--has-scroll-controls': this.hasScrollControls",
+      `,
+          'tab-group--contained': this.contained,
+          'tab-group--nested': this.nested,`,
+      { newlinesBeforeInsertion: 0 },
+  );
 
   return {
     content,

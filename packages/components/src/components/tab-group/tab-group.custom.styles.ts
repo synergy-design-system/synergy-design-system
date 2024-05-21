@@ -8,19 +8,51 @@ export default css`
     --indicator-width: var(--syn-border-width-x-large);
   }
 
+  /* Contained styling */
+  .tab-group--contained .tab-group__tabs {
+    border: none;
+  }
+
+  .tab-group--contained .tab-group__body {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+  }
+
+  .tab-group--contained ::slotted(syn-tab[active]) {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+  }
+
+
+  /* Nested styling */
+  .tab-group--nested .tab-group__tabs {
+    border: none;
+  }
+
+  .tab-group--nested .tab-group__body {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-radius: 0;
+  }
+
+  .tab-group--nested ::slotted(syn-tab[active]) {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+  }
+
   /**
    * Top
    */
 
   /* we need to augment the size of the height of the tab-group__nav to make the focus outline visible of the tab because of overflow-x value  */
-  .tab-group--top .tab-group__body {
+  /* .tab-group--top .tab-group__body {
     position: relative;
     top: calc(-1 * var(--syn-spacing-2x-small));
-  }
+  } */
 
-  .tab-group--top .tab-group__nav {
+  /* .tab-group--top .tab-group__nav {
     padding: var(--syn-spacing-2x-small) 0;
-  }
+  } */
 
   .tab-group--top .tab-group__indicator {
     border-bottom: solid var(--indicator-width) var(--indicator-color);
@@ -30,6 +62,24 @@ export default css`
   .tab-group--top ::slotted(syn-tab-panel) {
     --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
   }
+
+  .tab-group--top.tab-group--contained .tab-group__body {
+    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--top.tab-group--rtl.tab-group--contained .tab-group__body {
+    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--top.tab-group--contained ::slotted(syn-tab[active]) {
+    border-bottom: none;
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
+  }
+
+  .tab-group--top.tab-group--nested ::slotted(syn-tab[active]) {
+    border-bottom: none;
+  }
+
 
   /**
    * Start
@@ -46,6 +96,27 @@ export default css`
 
   .tab-group--start ::slotted(syn-tab-panel) {
     --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .tab-group--start.tab-group--contained .tab-group__body,
+  .tab-group--end.tab-group--rtl.tab-group--contained .tab-group__body {
+    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
+  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
+    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
+    border-right: none;
+  }
+
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .tab-group--start.tab-group--nested ::slotted(syn-tab[active]),
+  .tab-group--end.tab-group--rtl.tab-group--nested ::slotted(syn-tab[active]) {
+    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-right: none;
   }
 
   /**
@@ -66,6 +137,27 @@ export default css`
     --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
   }
   
+  /* stylelint-disable-next-line no-descending-specificity */
+  .tab-group--end.tab-group--contained .tab-group__body,
+  .tab-group--start.tab-group--rtl.tab-group--contained .tab-group__body {
+    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
+  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
+    border-left: none;
+    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
+    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .tab-group--end.tab-group--nested ::slotted(syn-tab[active]),
+  .tab-group--start.tab-group--rtl.tab-group--nested ::slotted(syn-tab[active]){
+    border-left: none;
+    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+  }
+
   /**
    * Make sure the direction of the chevrons match the scrolling directions.
    */
@@ -115,5 +207,5 @@ export default css`
     border-right: solid var(--track-width) var(--track-color);
     left: -6px;
     rotate: 90deg;
-  }
+  } 
 `;

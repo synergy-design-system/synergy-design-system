@@ -22,7 +22,7 @@ const meta: Meta = {
     {
       name: 'summary',
       type: 'attribute',
-      value: 'Toggle me',
+      value: 'Toggle Me',
     },
     {
       name: 'default',

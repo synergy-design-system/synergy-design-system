@@ -316,6 +316,9 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
+      '@synergy-design-system/styles':
+        specifier: workspace:^
+        version: link:../../styles
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens

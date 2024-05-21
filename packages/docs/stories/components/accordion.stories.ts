@@ -135,10 +135,6 @@ export const Sizes: Story = {
     `)}
 
     <style>
-      .accordion-size {
-        max-width: 670px;
-      }
-
       .accordion-size:not(:first-of-type) {
         margin-top: var(--syn-spacing-2x-large);
       }

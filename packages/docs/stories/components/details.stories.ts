@@ -57,14 +57,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
-    ${generateTemplate({ args })}
-    <style>
-    syn-details {
-      max-width: 400px;
-    }
-    </style>
-  `,
+  render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
 export const Disabled: Story = {

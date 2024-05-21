@@ -21,9 +21,10 @@
     "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
     "./components/*": "./dist/components/*",
     "./utilities/*": "./dist/utilities/*",
+    "./styles/*": "./dist/styles/*",
+    "./themes/utility.css": "./styles/utility.css",
     "./themes/*": "./dist/themes/*",
     "./translations/*": "./dist/translations/*",
-    "./styles/*": "./dist/styles/*",
     "./index.css": "./dist/styles/index.css"
   },
   "files": [

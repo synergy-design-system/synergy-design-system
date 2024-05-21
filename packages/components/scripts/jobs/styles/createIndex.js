@@ -18,7 +18,7 @@ export const runCreateIndex = job('Styles: Creating CSS index bundle file', asyn
  * All changes applied will get lost!
  * To recreate it, please use "pnpm build"!
  */
-  `.trim();
+`.trim();
 
   // Get a list of available custom styles for synergy
   const allCustomFiles = await readdir(outDir);
@@ -28,7 +28,7 @@ export const runCreateIndex = job('Styles: Creating CSS index bundle file', asyn
 
   // List of files that have to be imported from shoelace
   const shoelaceFileList = [
-    getPath('../src/themes/utility.css'),
+    getPath('../src/styles/utility.css'),
   ];
 
   const output = [...shoelaceFileList, ...availableStyles]

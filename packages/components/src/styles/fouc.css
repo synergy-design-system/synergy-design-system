@@ -1,47 +1,52 @@
 /**
  * This file prevents the flash of unstyled components
  * @see https://web.dev/custom-elements-v1/#styling-a-custom-element
- * @todo: Each component should be defined using its default height and display type.
+ * @todo: Each component should be defined using its default dimensions.
  *
  * This file is created automatically in the build process!
  * All changes applied will get lost!
  * To recreate it, please use "pnpm build"!
- */  
+ */
+syn-breadcrumb:not(:defined),
+syn-divider:not(:defined),
+syn-header:not(:defined),
+syn-menu:not(:defined),
+syn-menu-item:not(:defined),
+syn-menu-label:not(:defined),
+syn-nav-item:not(:defined),
+syn-option:not(:defined),
+syn-prio-nav:not(:defined),
+syn-progress-bar:not(:defined),
+syn-radio-group:not(:defined),
+syn-select:not(:defined),
+syn-side-nav:not(:defined),
+syn-textarea:not(:defined) {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
 syn-alert:not(:defined),
 syn-badge:not(:defined),
-syn-breadcrumb:not(:defined),
 syn-breadcrumb-item:not(:defined),
 syn-button:not(:defined),
 syn-button-group:not(:defined),
 syn-card:not(:defined),
 syn-checkbox:not(:defined),
 syn-dialog:not(:defined),
-syn-divider:not(:defined),
 syn-drawer:not(:defined),
 syn-dropdown:not(:defined),
-syn-header:not(:defined),
 syn-icon:not(:defined),
 syn-icon-button:not(:defined),
 syn-input:not(:defined),
-syn-menu:not(:defined),
-syn-menu-item:not(:defined),
-syn-menu-label:not(:defined),
-syn-nav-item:not(:defined),
 syn-optgroup:not(:defined),
-syn-option:not(:defined),
 syn-popup:not(:defined),
-syn-prio-nav:not(:defined),
-syn-progress-bar:not(:defined),
 syn-progress-ring:not(:defined),
 syn-radio:not(:defined),
 syn-radio-button:not(:defined),
-syn-radio-group:not(:defined),
-syn-select:not(:defined),
-syn-side-nav:not(:defined),
 syn-spinner:not(:defined),
 syn-switch:not(:defined),
 syn-tag:not(:defined),
-syn-textarea:not(:defined),
 syn-tooltip:not(:defined) {
   display: inline-block;
   opacity: 0;

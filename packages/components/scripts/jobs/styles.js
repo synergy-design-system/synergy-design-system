@@ -21,5 +21,5 @@ export const runCreateStyles = async ({
 
   await jobs.runCreateFouc(availableComponents, stylesDir);
   await jobs.runCreateIndex(stylesDir);
-  await jobs.runMoveToDist(stylesDir, componentDistDir);
+  await jobs.runCopyToDist(stylesDir, componentDistDir);
 };

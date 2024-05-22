@@ -758,6 +758,15 @@ importers:
         specifier: workspace:*
         version: link:../tokens
     devDependencies:
+      '@semantic-release/changelog':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@19.0.5)
+      '@semantic-release/exec':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@19.0.5)
+      '@semantic-release/git':
+        specifier: ^10.0.1
+        version: 10.0.1(semantic-release@19.0.5)
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../_private/eslint-config-syn
@@ -765,7 +774,7 @@ importers:
         specifier: workspace:^
         version: link:../_private/stylelint-config-syn
       eslint:
-        specifier: '8'
+        specifier: ^8.57.0
         version: 8.57.0
       postcss:
         specifier: ^8.4.38
@@ -1229,20 +1238,13 @@ packages:
       default-browser-id: 3.0.0
     dev: true
 
-  /@babel/code-frame@7.22.13:
-    resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.22.20
-      chalk: 2.4.2
-    dev: true
-
   /@babel/code-frame@7.23.5:
     resolution: {integrity: sha512-CgH3s1a96LipHCmSUmYFPwY7MNx8C3avkq7i4Wl3cfa662ldtUe4VM1TPXX70pfmrlWTb6jLqTYrZyT2ZTJBgA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.23.4
       chalk: 2.4.2
+    dev: true
 
   /@babel/code-frame@7.24.2:
     resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
@@ -1852,15 +1854,6 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/highlight@7.22.20:
-    resolution: {integrity: sha512-dkdMCN3py0+ksCgYmGG8jKeGA/8Tk+gJwSYYlFGxG5lmhfKNoAy004YpLxpS1W2J8m/EK2Ew+yOs9pVRwO89mg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-validator-identifier': 7.22.20
-      chalk: 2.4.2
-      js-tokens: 4.0.0
-    dev: true
-
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
@@ -1868,6 +1861,7 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
       js-tokens: 4.0.0
+    dev: true
 
   /@babel/highlight@7.24.2:
     resolution: {integrity: sha512-Yac1ao4flkTxTteCDZLEvdxg2fZfz1v8M4QpaGypq/WPDqg3ijHYbDfs+LG5hvzSoqaSZ9/Z9lKSP3CjZjv+pA==}
@@ -3778,7 +3772,7 @@ packages:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/code-frame': 7.23.5
+      '@babel/code-frame': 7.24.2
       '@babel/parser': 7.24.4
       '@babel/types': 7.23.6
 
@@ -8541,7 +8535,7 @@ packages:
     resolution: {integrity: sha512-hbLg15seMnpDD32NmEzy/T18EKiH4tnuqaspqq7dEKY9svvVhPiFj/Q0JN79SvE6oE4M0vAxzCTRlBl4/huiTw==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.24.2
       '@types/babel__code-frame': 7.0.4
       '@types/co-body': 6.1.1
       '@types/convert-source-map': 2.0.1

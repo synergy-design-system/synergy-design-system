@@ -1,8 +1,23 @@
 /**
+ * Heading styles come in a range of sizes, and can be used in a range of contexts, such as:
+ * <br />
+ * <ul>
+ * <li>building page hierarchy,
+ * <li>helping users scan large chunks of text,</li>
+ * <li>providing a title to a page or piece of content,</li>
+ * <li>as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).</li>
+ * </ul>
+ * <br />
+ * Our heading styles are consistently bold, to better address the visual hierarchy.
+ *
+ * @variant {3x-large | 2x-large | x-large | large} syn-heading The heading
+ */
+
+/**
  * Utility class for setting a large headline
  * This is usually seen on smaller weight headline elements as <h5> or <h6>
  */
- .syn-heading-large {
+.syn-heading-large {
   font: var(--syn-heading-large);
 }
 

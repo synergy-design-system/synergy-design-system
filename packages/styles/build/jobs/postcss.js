@@ -1,10 +1,9 @@
-import path from 'path';
 import { readFile, writeFile } from 'fs/promises';
 import { globby } from 'globby';
 import postcss from 'postcss';
 import atImportPlugin from 'postcss-import';
 import headerPlugin from 'postcss-header';
-import { getPath, job } from '../shared.js';
+import { getDirName, getPath, job } from '../shared.js';
 
 /**
  * Get the output path used in postcss for the given input path
@@ -14,7 +13,7 @@ import { getPath, job } from '../shared.js';
  * @returns {string} outputPath
  */
 const getDistName = (inputPath) => {
-  const dirName = path.dirname(inputPath).split(path.sep).at(-1);
+  const dirName = getDirName(inputPath);
 
   // Special case for the root node:
   // We do not want to have a file named src.css, but index.css

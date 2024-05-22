@@ -18,6 +18,13 @@ export const getPath = (wantedPath) => path.join(
 );
 
 /**
+ * Get the directory name of a given file path
+ * @param {string} inputPath The path to the input file
+ * @returns {string} The directory name
+ */
+export const getDirName = inputPath => path.dirname(inputPath).split(path.sep).at(-1);
+
+/**
  * Create a job that when run executes the given actions
  * @param {String} label The label to show
  * @param {Function} action The action to run

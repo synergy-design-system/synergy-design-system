@@ -80,10 +80,10 @@ const transformComponent = (path, originalContent) => {
     content,
     "@property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;",
     `
-  /** Draws the tab group as a contained item. */
+  /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
-  /** Draws the tab group as a nested item. Can be used when nesting multiple syn-tab-group\`s to create hierarchy */
+  /** Draws the tab group as a nested element. Can be used when nesting multiple syn-tab-group\`s to create hierarchy. Takes only effect if used with the 'contained' property */
   @property({ type: Boolean }) nested = false;`,
   );
 
@@ -95,6 +95,13 @@ const transformComponent = (path, originalContent) => {
           'tab-group--contained': this.contained,
           'tab-group--nested': this.nested,`,
       { newlinesBeforeInsertion: 0 },
+  );
+
+  // Add a new css variable '--indicator-width' to the component
+  content = addSectionAfter(
+    content,
+    '* @cssproperty --indicator-color - The color of the active tab indicator.',
+    ' * @cssproperty --indicator-width - The width of the active tab indicator.',
   );
 
   return {

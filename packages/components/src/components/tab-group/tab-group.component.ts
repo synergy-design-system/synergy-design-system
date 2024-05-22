@@ -44,6 +44,7 @@ import type SynTabPanel from '../tab-panel/tab-panel.js';
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
+ * @cssproperty --indicator-width - The width of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
@@ -78,10 +79,10 @@ export default class SynTabGroup extends SynergyElement {
   /** Disables the scroll arrows that appear when tabs overflow. */
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
-  /** Draws the tab group as a contained item. */
+  /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
-  /** Draws the tab group as a nested item. Can be used when nesting multiple syn-tab-group`s to create hierarchy */
+  /** Draws the tab group as a nested element. Can be used when nesting multiple syn-tab-group`s to create hierarchy. Takes only effect if used with the 'contained' property */
   @property({ type: Boolean }) nested = false;
 
   connectedCallback() {

@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
-import { mkdir } from 'fs/promises';
 import path from 'path';
 import url from 'url';
-import { deleteAsync } from 'del';
 import ora from 'ora';
 
 const spinner = ora({ hideCursor: false });
@@ -37,11 +35,3 @@ export const job = (label, action) => async (...args) => {
     process.exit(1);
   }
 };
-
-export const runCleanup = job('Cleaning up artifacts...', async () => {
-  const dir = getPath('./dist');
-  await deleteAsync(dir);
-  return mkdir(dir, {
-    recursive: true,
-  });
-});

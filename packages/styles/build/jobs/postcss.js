@@ -4,7 +4,7 @@ import { globby } from 'globby';
 import postcss from 'postcss';
 import atImportPlugin from 'postcss-import';
 import headerPlugin from 'postcss-header';
-import { getPath, job } from './shared.js';
+import { getPath, job } from '../shared.js';
 
 /**
  * Get the output path used in postcss for the given input path

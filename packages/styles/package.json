@@ -96,6 +96,7 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "comment-parser": "^1.4.1",
     "del": "^7.1.0",
     "eslint": "^8.57.0",
     "globby": "^14.0.1",

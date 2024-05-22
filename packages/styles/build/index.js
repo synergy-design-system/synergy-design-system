@@ -1,5 +1,5 @@
-import { runCleanup } from './shared.js';
-import { runPostCSS } from './postcss.js';
+import * as jobs from './jobs/index.js';
 
-await runCleanup();
-await runPostCSS();
+await jobs.runCleanup();
+await jobs.createComments();
+await jobs.runPostCSS();

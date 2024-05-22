@@ -49,15 +49,19 @@ export default css`
    * Panel
    */
   .tab-group--top ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
+    --padding: var(--syn-spacing-large) 0 ;
+  }
+
+  .tab-group--top.tab-group--contained ::slotted(syn-tab-panel) {
+    --padding: var(--syn-spacing-large);
   }
 
   .tab-group--start ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
+    --padding: var(--syn-spacing-large);
   }
 
   .tab-group--end ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-medium) var(--syn-spacing-large) ;
+    --padding: var(--syn-spacing-large);
   }
 
   /**
@@ -190,6 +194,7 @@ export default css`
     /* uncomment this as soon as the new system icon is used */
 
     /* border-bottom: solid var(--track-width) var(--track-color); */
+    color: var(--syn-color-neutral-950);
     font-size: var(--syn-font-size-medium);
     height: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));
     top: 8px;

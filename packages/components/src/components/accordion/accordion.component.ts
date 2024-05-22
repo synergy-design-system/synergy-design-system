@@ -32,7 +32,7 @@ export default class SynAccordion extends SynergyElement {
   @property({ attribute: 'close-others', type: Boolean }) closeOthers = false;
 
   /** The size that should be applied to all slotted `<syn-details>` elements */
-  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+  @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
 
   private adjustDetailsSize() {
     this.detailsInDefaultSlot.forEach(detail => {

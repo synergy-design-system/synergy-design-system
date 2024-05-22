@@ -124,12 +124,12 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <syn-details size="small">
+    <syn-details size="medium">
       <syn-icon name="wallpaper" slot="summary"></syn-icon>
       <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </syn-details>
-    <syn-details size="medium">
+    <syn-details size="large">
       <syn-icon name="wallpaper" slot="summary"></syn-icon>
       <span slot="summary">Toggle Me</span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

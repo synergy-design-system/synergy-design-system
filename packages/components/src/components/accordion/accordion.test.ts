@@ -74,7 +74,7 @@ describe('<syn-accordion>', () => {
       expect(accordion.size).to.equal('medium');
     });
 
-    ['small', 'medium'].forEach((size: 'small' | 'medium') => {
+    ['medium', 'large'].forEach((size: 'medium' | 'large') => {
       it(`should set size to ${size} for all syn-details`, async () => {
         const accordion = await fixture<SynAccordion>(html`
           <syn-accordion size=${size}>
@@ -101,11 +101,11 @@ describe('<syn-accordion>', () => {
           expect(detail.size).to.equal('medium');
         });
 
-        accordion.size = 'small';
+        accordion.size = 'large';
         await accordion.updateComplete;
 
         accordion.detailsInDefaultSlot.forEach((detail) => {
-          expect(detail.size).to.equal('small');
+          expect(detail.size).to.equal('large');
         });
       });
 
@@ -122,7 +122,7 @@ describe('<syn-accordion>', () => {
         });
 
         const newDetails = document.createElement('syn-details');
-        newDetails.size = 'small';
+        newDetails.size = 'large';
 
         accordion.appendChild(newDetails);
         await accordion.updateComplete;

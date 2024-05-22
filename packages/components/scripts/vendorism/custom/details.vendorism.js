@@ -35,15 +35,15 @@ const transformComponent = (path, originalContent) => {
     '@property({ type: Boolean, reflect: true }) disabled = false;',
     `
   /** The details's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' = 'small';
+  @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
     `,
   );
 
   content = addSectionAfter(
     content,
     'details: true,',
-    `          'details--size-small': this.size === 'small',
-          'details--size-medium': this.size === 'medium',
+    `          'details--size-medium': this.size === 'medium',
+          'details--size-large': this.size === 'large',
     `,
   );
 

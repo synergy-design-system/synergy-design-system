@@ -120,8 +120,8 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    ${['small', 'medium'].map(size => html`
-      <syn-accordion class="accordion-size" size="${size as 'small' | 'medium'}">
+    ${['medium', 'large'].map(size => html`
+      <syn-accordion class="accordion-size" size="${size as 'medium' | 'large'}">
         <syn-details summary="First">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </syn-details>

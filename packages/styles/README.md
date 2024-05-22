@@ -70,42 +70,82 @@ import "@synergy-design-system/styles/typography.css";
 
 ## 3. Available modules
 
-### 3.1. Typography
+<!-- BEGIN INLINE COMMENT -->
 
-The typography module holds classes that apply typographic behavior (e.g. `font-size` or `line-height`) to elements.
+### 3.1 - typography
+
+#### syn-body
+
+Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values. UI text is text used in UI components and uses the same text stylings. The default font size is medium (16 px). Synergy supports three additional font sizes for body copy. It is also possible to format the text bold or semibold for certain text passages and UI elements such as label.
 
 #### Installation
 
+```html
+<!-- Loading typography only (without bundler) -->
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
+```
+
 ```javascript
+// Loading typography only (with vite / webpack)
 import "@synergy-design-system/styles/typography.css";
 ```
 
-#### Usage
+#### Available classes
+
+- `.syn-body-x-small`
+- `.syn-body-small`
+- `.syn-body-medium`
+- `.syn-body-large`
+
+---
+
+#### syn-heading
+
+Heading styles come in a range of sizes, and can be used in a range of contexts, such as: <br /> <ul> <li>building page hierarchy, <li>helping users scan large chunks of text,</li> <li>providing a title to a page or piece of content,</li> <li>as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).</li> </ul> <br /> Our heading styles are consistently bold, to better address the visual hierarchy.
+
+#### Installation
 
 ```html
-<!--
-  -- Available headlines
-  -- Note that semantics and spacings are up to the developer, classes apply font styling only!
--->
-<h1 class="syn-heading-3x-large">Very Large Headline</h1>
-<h2 class="syn-heading-2x-large">Large Headline</h2>
-<h4 class="syn-heading-x-large">Medium Headline</h4>
-<h5 class="syn-heading-large">Small Headline</h5>
-
-<!-- Body Copy -->
-<p class="syn-body-large">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
-<p class="syn-body-medium">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
-<p class="syn-body-small">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
-<p class="syn-body-x-small">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
+<!-- Loading typography only (without bundler) -->
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
 ```
+
+```javascript
+// Loading typography only (with vite / webpack)
+import "@synergy-design-system/styles/typography.css";
+```
+
+#### Available classes
+
+- `.syn-heading-3x-large`
+- `.syn-heading-2x-large`
+- `.syn-heading-x-large`
+- `.syn-heading-large`
+
+---
+
+#### syn-weight
+
+Definition of font weights used in synergy
+
+#### Installation
+
+```html
+<!-- Loading typography only (without bundler) -->
+<link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
+```
+
+```javascript
+// Loading typography only (with vite / webpack)
+import "@synergy-design-system/styles/typography.css";
+```
+
+#### Available classes
+
+- `.syn-weight-normal`
+- `.syn-weight-semibold`
+- `.syn-weight-bold`
+<!-- END INLINE COMMENT -->
 
 ---
 
@@ -120,4 +160,18 @@ This package makes use of `postcss` for creating a unified bundle for easier con
 1. Create a new folder `src/[MODULE_NAME]`.
 2. Create a new file `src/[MODULE_NAME]/index.css`.
 3. Add CSS statements to your linking. **Hint**: You may also split your code into multiple css files residing in the `src/[MODULE_NAME]` folder. Make sure to **import them into your `src/[MODULE_NAME]/index.css` file** to make them part of the build.
-4. Run `pnpm build`. You should now see the a new file `dist/[MODULE_NAME].css` that holds all your previous code.
+4. Add documentations to your code to automatically add documentation to the `README.md`. This can be done by creating comments, as seen below.
+5. Run `pnpm build`. You should now see the a new file `dist/[MODULE_NAME].css` that holds all your previous code.
+
+#### Bonus: Documenting your module with css comments
+
+When adding comments to your modules, please add a list of all variants of your module to your css file. Comments like this will take care that the documentation is automatically updated:
+
+```css
+/**
+ * The "variant" syn-fieldset takes care that two classes will exist in documentation:
+ * - syn-fieldset-small and
+ * - syn-fieldset-large
+ * @variant {small | large } syn-fieldset
+ */
+```

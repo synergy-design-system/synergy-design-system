@@ -2,7 +2,6 @@
 import { mkdir } from 'fs/promises';
 import path from 'path';
 import url from 'url';
-import chalk from 'chalk';
 import { deleteAsync } from 'del';
 import ora from 'ora';
 
@@ -32,13 +31,9 @@ export const job = (label, action) => async (...args) => {
 
   try {
     await action(...args);
-    spinner.stop();
-    console.log(`${chalk.green('✔')} ${label}`);
+    spinner.succeed();
   } catch (err) {
-    spinner.stop();
-    console.error(`${chalk.red('✘')} ${err}`);
-    if (err.stdout) console.error(chalk.red(err.stdout));
-    if (err.stderr) console.error(chalk.red(err.stderr));
+    spinner.fail(err);
     process.exit(1);
   }
 };

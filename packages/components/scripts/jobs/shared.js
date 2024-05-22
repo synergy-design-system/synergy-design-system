@@ -56,13 +56,9 @@ export const job = (label, action) => async (...args) => {
 
   try {
     await action(...args);
-    spinner.stop();
-    console.log(`${chalk.green('✔')} ${label}`);
+    spinner.succeed();
   } catch (err) {
-    spinner.stop();
-    console.error(`${chalk.red('✘')} ${err}`);
-    if (err.stdout) console.error(chalk.red(err.stdout));
-    if (err.stderr) console.error(chalk.red(err.stderr));
+    spinner.fail(err);
     process.exit(1);
   }
 };

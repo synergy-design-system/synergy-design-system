@@ -48,14 +48,13 @@ import "@synergy-design-system/styles";
 ### 2.2 Loading single modules
 
 It is also possible to load only parts of the provided functionality.
-For example it is possible to load the `typography` helpers needed.
-
 This can be archived in the following way:
 
 ```html
+<!-- Loading typography only -->
 <!DOCTYPE html>
   <head>
-    <link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/src/typography.css" />
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
   </head>
   <body>
   </body>
@@ -63,7 +62,8 @@ This can be archived in the following way:
 ```
 
 ```javascript
-import "@synergy-design-system/styles/css/typography.css";
+// Loading typography only
+import "@synergy-design-system/styles/typography.css";
 ```
 
 ---
@@ -77,7 +77,7 @@ The typography module holds classes that apply typographic behavior (e.g. `font-
 #### Installation
 
 ```javascript
-import "@synergy-design-system/styles/css/typography.css";
+import "@synergy-design-system/styles/typography.css";
 ```
 
 #### Usage
@@ -114,3 +114,10 @@ import "@synergy-design-system/styles/css/typography.css";
 ### Building the styles
 
 This package makes use of `postcss` for creating a unified bundle for easier consumption in applications. Please run `pnpm build` in the root of this package to recreate the bundle file `dist/index.css`.
+
+### Creating new modules
+
+1. Create a new folder `src/[MODULE_NAME]`.
+2. Create a new file `src/[MODULE_NAME]/index.css`.
+3. Add CSS statements to your linking. **Hint**: You may also split your code into multiple css files residing in the `src/[MODULE_NAME]` folder. Make sure to **import them into your `src/[MODULE_NAME]/index.css` file** to make them part of the build.
+4. Run `pnpm build`. You should now see the a new file `dist/[MODULE_NAME].css` that holds all your previous code.

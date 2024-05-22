@@ -1,0 +1,31 @@
+/**
+ * Utility class for setting a large headline
+ * This is usually seen on smaller weight headline elements as <h5> or <h6>
+ */
+ .syn-heading-large {
+  font: var(--syn-heading-large);
+}
+
+/**
+ * Utility class for setting a extra large headline
+ * This is usually seen on medium weight headline elements as <h4> or <h3>
+ */
+.syn-heading-x-large {
+  font: var(--syn-heading-x-large);
+}
+
+/**
+ * Utility class for setting a even larger headline
+ * This is usually seen on larger weight headline elements as <h2> or <h3>
+ */
+.syn-heading-2x-large {
+  font: var(--syn-heading-2x-large);
+}
+
+/**
+ * Utility class for setting the largest headline
+ * This is usually seen on primary headline elements, usually <h1>
+ */
+.syn-heading-3x-large {
+  font: var(--syn-heading-3x-large);
+}

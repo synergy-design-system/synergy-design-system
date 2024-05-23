@@ -1,7 +1,8 @@
-import { addSectionAfter, addSectionBefore } from '../replace-section.js';
+import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tab.component.ts',
+  'tab.test.ts',
 ];
 
 /**
@@ -33,6 +34,60 @@ const transformComponent = (path, originalContent) => {
     ' * @csspart prefix - The prefix container.',
   );
 
+  // Add 'placement', 'nested' and 'contained' properties
+  content = addSectionBefore(
+    content,
+    'connectedCallback() {',
+    `/** Draws the tab as a contained element. */
+  @property({ type: Boolean }) contained = false;
+
+  /** Draws the tab as a nested element. Takes only effect if used with the 'contained' property */
+  @property({ type: Boolean }) nested = false;
+
+  /** The placement of the tabs. */
+  @property() placement: 'top' | 'start' | 'end' = 'top';`,
+    { tabsAfterInsertion: 1 },
+  );
+
+  // Add 'placement', 'nested' and 'contained' classes
+  content = addSectionAfter(
+    content,
+    "'tab--disabled': this.disabled",
+    `,
+          'tab--contained': this.contained,
+          'tab--nested': this.nested,
+          'tab--end': this.placement === 'end',
+          'tab--start': this.placement === 'start',
+          'tab--top': this.placement === 'top',
+          'tab--rtl': this.localize.dir() === 'rtl',`,
+    { newlinesBeforeInsertion: 0 },
+  );
+
+  return {
+    content,
+    path,
+  };
+};
+
+const transformTests = (path, originalContent) => {
+  const content = replaceSections([
+    [
+      ".to.equal(' tab ');",
+      ".to.equal(' tab tab--top ');",
+    ],
+    [
+      ".to.equal(' tab tab--disabled ');",
+      ".to.equal(' tab tab--disabled tab--top ');",
+    ],
+    [
+      ".to.equal(' tab tab--active ');",
+      ".to.equal(' tab tab--active tab--top ');",
+    ],
+    [
+      ".to.equal(' tab tab--closable ');",
+      ".to.equal(' tab tab--closable tab--top ');",
+    ],
+  ], originalContent);
   return {
     content,
     path,
@@ -51,6 +106,10 @@ export const vendorTab = (path, content) => {
 
   if (path.endsWith('tab.component.ts')) {
     return transformComponent(path, content);
+  }
+
+  if (path.endsWith('tab.test.ts')) {
+    return transformTests(path, content);
   }
 
   return output;

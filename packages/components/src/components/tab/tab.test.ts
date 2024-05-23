@@ -30,7 +30,7 @@ describe('<syn-tab>', () => {
     expect(el.getAttribute('aria-disabled')).to.equal('false');
     expect(el.getAttribute('aria-selected')).to.equal('false');
     expect(base.getAttribute('tabindex')).to.equal('0');
-    expect(base.getAttribute('class')).to.equal(' tab ');
+    expect(base.getAttribute('class')).to.equal(' tab tab--top ');
     expect(el.active).to.equal(false);
     expect(el.closable).to.equal(false);
     expect(el.disabled).to.equal(false);
@@ -43,7 +43,7 @@ describe('<syn-tab>', () => {
 
     expect(el.disabled).to.equal(true);
     expect(el.getAttribute('aria-disabled')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' tab tab--disabled ');
+    expect(base.getAttribute('class')).to.equal(' tab tab--disabled tab--top ');
     expect(base.getAttribute('tabindex')).to.equal('-1');
   });
 
@@ -54,7 +54,7 @@ describe('<syn-tab>', () => {
 
     expect(el.active).to.equal(true);
     expect(el.getAttribute('aria-selected')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' tab tab--active ');
+    expect(base.getAttribute('class')).to.equal(' tab tab--active tab--top ');
     expect(base.getAttribute('tabindex')).to.equal('0');
   });
 
@@ -65,7 +65,7 @@ describe('<syn-tab>', () => {
     const closeButton = el.shadowRoot!.querySelector('[part~="close-button"]');
 
     expect(el.closable).to.equal(true);
-    expect(base.getAttribute('class')).to.equal(' tab tab--closable ');
+    expect(base.getAttribute('class')).to.equal(' tab tab--closable tab--top ');
     expect(closeButton).not.to.be.null;
   });
 

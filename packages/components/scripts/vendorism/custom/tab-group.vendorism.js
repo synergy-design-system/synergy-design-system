@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
-import { addSectionAfter, replaceSections } from '../replace-section.js';
+import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tab-group.component.ts',
@@ -102,6 +102,43 @@ const transformComponent = (path, originalContent) => {
     content,
     '* @cssproperty --indicator-color - The color of the active tab indicator.',
     ' * @cssproperty --indicator-width - The width of the active tab indicator.',
+  );
+
+  // Forward the 'placement', 'contained' and 'nested' properties to the tabs
+  content = addSectionAfter(
+    content,
+    'import { property, query,',
+    ' queryAssignedElements,',
+    { newlinesBeforeInsertion: 0 },
+  );
+
+  content = addSectionAfter(
+    content,
+    "@query('.tab-group__indicator') indicator: HTMLElement;",
+    "@queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabsInNavSlot!: SynTab[];",
+    { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
+  );
+
+  content = addSectionAfter(
+    content,
+    `private syncTabsAndPanels() {
+    this.tabs = this.getAllTabs({ includeDisabled: false });`,
+    'this.syncTabs();',
+    { tabsBeforeInsertion: 2 },
+  );
+
+  content = addSectionBefore(
+    content,
+    '/** Shows the specified tab panel. */',
+    `@watch(['contained', 'nested', 'placement'], { waitUntilFirstUpdate: true })
+  syncTabs() {
+    this.tabs.forEach(tab => {
+      tab.contained = this.contained;
+      tab.nested = this.nested;
+      tab.placement = this.placement;
+    });
+  }`,
+    { tabsAfterInsertion: 1 },
   );
 
   return {

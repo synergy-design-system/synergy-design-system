@@ -12,7 +12,7 @@ export default css`
   }
 
   .tab:focus-visible {
-    outline-offset: calc(var(--syn-spacing-4x-small) * -1);
+    outline-offset: calc(var(--syn-focus-ring-offset) * -1);
   }
 
   .tab:focus-visible:not(.tab--disabled) {
@@ -47,7 +47,7 @@ export default css`
 
   @media (forced-colors: active) {
     .tab.tab--active:not(.tab--disabled) {
-      outline-offset: var(--syn-focus-ring-offset);
+      outline-offset: calc(var(--syn-focus-ring-offset) * -1);
     }
   }
 
@@ -63,5 +63,94 @@ export default css`
    */
   .tab__prefix::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
+  }
+
+
+
+  /**
+   * Contained style
+   */
+  .tab--contained.tab--active {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+
+    /* Is needed for the ::after to work correctly. Otherwise the line has not the width of the tab, but of the page itself */
+    position: relative;
+  }
+
+  /* Stretch the tabs so they are aligned to each other vertically */
+  .tab--start.tab--contained,
+  .tab--end.tab--contained {
+    width: 100%;
+  }
+
+  /* Top */
+  .tab--top.tab--contained.tab--active {
+    border-bottom: none;
+  }
+
+  .tab--top.tab--contained.tab--active:not(.tab--nested),
+  .tab--top.tab--contained:not(.tab--nested):focus-visible {
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
+  }
+
+  /* Start & End with rtl */
+  .tab--start.tab--contained.tab--active,
+  .tab--end.tab--rtl.tab--contained.tab--active {
+    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-right: none;
+  }
+
+  .tab--start.tab--contained.tab--active:not(.tab--nested),
+  .tab--start.tab--contained:not(.tab--nested):focus-visible,
+  .tab--end.tab--rtl.tab--contained.tab--active:not(.tab--nested),
+  .tab--end.tab--rtl.tab--contained:not(.tab--nested):focus-visible {
+    border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
+  }
+
+  /* End & Start with rtl */
+  .tab--end.tab--contained.tab--active,
+  .tab--start.tab--rtl.tab--contained.tab--active {
+    border-left: none;
+  }
+
+  .tab--end.tab--contained.tab--active:not(.tab--nested),
+  .tab--end.tab--contained:not(.tab--nested):focus-visible,
+  .tab--start.tab--rtl.tab--contained.tab--active:not(.tab--nested),
+  .tab--start.tab--rtl.tab--contained:not(.tab--nested):focus-visible {
+    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
+  }
+
+
+  /* This is needed to hide the part of the tab panel border of an activated contained tab */
+  .tab--contained.tab--active::after {
+    background-color: var(--syn-color-neutral-0);
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tab--top.tab--contained.tab--active::after {
+    bottom: calc(var(--syn-spacing-4x-small) * -1);
+    height: var(--syn-spacing-4x-small);
+    left: 0;
+    width: 100%;
+  }
+
+  .tab--start.tab--contained.tab--active::after,
+  .tab--end.tab--rtl.tab--contained.tab--active::after {
+    height: 100%;
+    left: unset;
+    right: calc(var(--syn-spacing-4x-small) * -1);
+    width: var(--syn-spacing-4x-small);
+  }
+
+  .tab--end.tab--contained.tab--active::after,
+  .tab--start.tab--rtl.tab--contained.tab--active::after {
+    height: 100%;
+    left: calc(var(--syn-spacing-4x-small) * -1);
+    right: unset;
+    width: var(--syn-spacing-4x-small);
   }
 `;

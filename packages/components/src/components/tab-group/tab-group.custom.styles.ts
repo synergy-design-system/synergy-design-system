@@ -71,11 +71,6 @@ export default css`
     border: none;
   }
 
-  .tab-group--contained ::slotted(syn-tab[active]) {
-    background-color: var(--syn-color-neutral-0);
-    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
-  }
-
   .tab-group--contained ::slotted(syn-tab-panel) {
     background-color: var(--syn-color-neutral-0);
     border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
@@ -88,25 +83,16 @@ export default css`
   }
 
   /* Draw the correct border radii of the panel depending on the placement and direction */
-  .tab-group--top.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type) {
-    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
-  }
-
-  .tab-group--top.tab-group--rtl.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type) {
-    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
-  }
-
-  .tab-group--top.tab-group--contained ::slotted(syn-tab[active]) {
-    border-bottom: none;
-  }
-
-  .tab-group--top.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab[active]) {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
-  }
-
+  .tab-group--top.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type),
   .tab-group--start.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type),
   .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type) {
     border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--top.tab-group--rtl.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type),
+  .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type),
+  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type) {
+    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
   }
 
   .tab-group--start.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type),
@@ -114,83 +100,16 @@ export default css`
     border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
   }
 
-  .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
-  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
-    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
-    border-right: none;
-  }
-
-  .tab-group--start.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab[active]),
-  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab[active]) {
-    border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
-  }
-
-  .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type),
-  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type) {
-    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
-  }
-
   .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type),
   .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type) {
     border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium);
   }
 
-  .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
-  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
-    border-left: none;
-    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
-  }
 
-  .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab[active]),
-  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab[active]) {
-    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
-  }
-
-  /* Hide the border of the activated tab */
-  .tab-group--top.tab-group--contained .tab-group__indicator {
+  /* Needed, otherwise the indicator is hidden under the background of the tab */
+  .tab-group--contained .tab-group__indicator {
     z-index: 1;
   }
-
-  .tab-group--contained .tab-group__indicator::before {
-    content: '';
-    display: block;
-    position: absolute;
-  }
-
-  .tab-group--top.tab-group--contained .tab-group__indicator::before {
-    border-bottom: var(--syn-border-width-medium) solid var(--syn-color-neutral-0);
-    left: calc((var(--syn-spacing-large) - var(--syn-spacing-4x-small)) * -1);
-    top: var(--syn-spacing-2x-small);
-    width: calc(100% + 2 * var(--syn-spacing-large));
-  }
-
-  .tab-group--top.tab-group--rtl.tab-group--contained .tab-group__indicator::before {
-    left: calc((var(--syn-spacing-large) + var(--syn-spacing-4x-small)) * -1);
-  }
-
-  .tab-group--start.tab-group--contained .tab-group__indicator::before {
-    border-right: var(--syn-border-width-medium) solid var(--syn-color-neutral-0);
-    height: calc(100% + 2 * var(--syn-spacing-small));
-    left: var(--syn-spacing-2x-small);
-    top: calc((var(--syn-spacing-small) - var(--syn-spacing-4x-small)) * -1);
-  }
-
-  .tab-group--start.tab-group--rtl.tab-group--contained .tab-group__indicator::before {
-    left: unset;
-  }
-
-  .tab-group--end.tab-group--contained .tab-group__indicator::before {
-    border-right: var(--syn-border-width-medium) solid var(--syn-color-neutral-0);
-    height: calc(100% + 2 * var(--syn-spacing-small));
-    right: var(--syn-spacing-2x-small);
-    top: calc((var(--syn-spacing-small) - var(--syn-spacing-4x-small)) * -1);
-  }
-
-  .tab-group--end.tab-group--rtl.tab-group--contained .tab-group__indicator::before {
-    left: var(--syn-spacing-2x-small);
-    right: unset;
-  }
-
 
   /**
    * Nested styling
@@ -264,5 +183,4 @@ export default css`
     border-left: none;
     border-right: solid var(--track-width) var(--track-color);
   }
-
 `;

@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* DEPRACTED!!! */
 import { basename } from 'path';
 import { readFile, writeFile } from 'fs/promises';
 import { globby } from 'globby';

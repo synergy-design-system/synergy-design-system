@@ -71,21 +71,28 @@ export default css`
     border: none;
   }
 
-  .tab-group--contained .tab-group__body {
-    background-color: var(--syn-color-neutral-0);
-    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
-  }
-
   .tab-group--contained ::slotted(syn-tab[active]) {
     background-color: var(--syn-color-neutral-0);
     border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
   }
 
-  .tab-group--top.tab-group--contained:not(.tab-group--nested) .tab-group__body {
+  .tab-group--contained ::slotted(syn-tab-panel) {
+    background-color: var(--syn-color-neutral-0);
+    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-radius: var(--syn-border-radius-medium);
+  }
+
+  /* Stretch the tab panel container for non-top placements, otherwise the borders are not drawn correctly */
+  .tab-group--contained:not(.tab-group--top) ::slotted(syn-tab-panel) {
+    height: 100%;
+  }
+
+  /* Draw the correct border radii of the panel depending on the placement and direction */
+  .tab-group--top.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type) {
     border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
   }
 
-  .tab-group--top.tab-group--rtl.tab-group--contained:not(.tab-group--nested) .tab-group__body {
+  .tab-group--top.tab-group--rtl.tab-group--contained:not(.tab-group--nested):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type) {
     border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
   }
 
@@ -97,9 +104,14 @@ export default css`
     border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
   }
 
-  .tab-group--start.tab-group--contained:not(.tab-group--nested) .tab-group__body,
-  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--nested) .tab-group__body {
+  .tab-group--start.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type),
+  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type) {
     border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--start.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type),
+  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type) {
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
   }
 
   .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
@@ -113,9 +125,14 @@ export default css`
     border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
   }
 
-  .tab-group--end.tab-group--contained:not(.tab-group--nested) .tab-group__body,
-  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) .tab-group__body {
+  .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type),
+  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:first-of-type) {
     border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--end.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type),
+  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--nested) ::slotted(syn-tab-panel:last-of-type) {
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium);
   }
 
   .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
@@ -178,7 +195,7 @@ export default css`
   /**
    * Nested styling
    */
-  .tab-group--nested .tab-group__body {
+  .tab-group--nested ::slotted(syn-tab-panel) {
     border-radius: 0;
   }
 

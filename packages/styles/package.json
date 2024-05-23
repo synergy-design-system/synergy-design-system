@@ -80,7 +80,7 @@
     "directory": "packages/styles"
   },
   "scripts": {
-    "start": "pnpm build:postcss",
+    "start": "pnpm build",
     "build": "node build/index.js",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:js": "eslint .",

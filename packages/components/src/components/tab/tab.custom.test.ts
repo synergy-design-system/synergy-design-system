@@ -8,17 +8,17 @@ describe('<syn-tab>', () => {
     const el = await fixture<SynTab>(html` <syn-tab>Test</syn-tab> `);
 
     await expect(el.contained).to.equal(false);
-    await expect(el.nested).to.equal(false);
+    await expect(el.sharp).to.equal(false);
     await expect(el.placement).to.equal('top');
   });
 
-  it('should set nested by attribute', async () => {
-    const el = await fixture<SynTab>(html` <syn-tab nested>Test</syn-tab> `);
+  it('should set sharp by attribute', async () => {
+    const el = await fixture<SynTab>(html` <syn-tab sharp>Test</syn-tab> `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
-    await expect(el.nested).to.equal(true);
-    await expect(base.getAttribute('class')).to.equal(' tab tab--nested tab--top ');
+    await expect(el.sharp).to.equal(true);
+    await expect(base.getAttribute('class')).to.equal(' tab tab--sharp tab--top ');
   });
 
   it('should set contained by attribute', async () => {

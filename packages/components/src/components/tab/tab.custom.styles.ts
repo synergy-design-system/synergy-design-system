@@ -89,8 +89,8 @@ export default css`
     border-bottom: none;
   }
 
-  .tab--top.tab--contained.tab--active:not(.tab--nested),
-  .tab--top.tab--contained:not(.tab--nested):focus-visible {
+  .tab--top.tab--contained.tab--active:not(.tab--sharp),
+  .tab--top.tab--contained:not(.tab--sharp):focus-visible {
     border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
   }
 
@@ -101,10 +101,10 @@ export default css`
     border-right: none;
   }
 
-  .tab--start.tab--contained.tab--active:not(.tab--nested),
-  .tab--start.tab--contained:not(.tab--nested):focus-visible,
-  .tab--end.tab--rtl.tab--contained.tab--active:not(.tab--nested),
-  .tab--end.tab--rtl.tab--contained:not(.tab--nested):focus-visible {
+  .tab--start.tab--contained.tab--active:not(.tab--sharp),
+  .tab--start.tab--contained:not(.tab--sharp):focus-visible,
+  .tab--end.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
+  .tab--end.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
     border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
   }
 
@@ -114,10 +114,10 @@ export default css`
     border-left: none;
   }
 
-  .tab--end.tab--contained.tab--active:not(.tab--nested),
-  .tab--end.tab--contained:not(.tab--nested):focus-visible,
-  .tab--start.tab--rtl.tab--contained.tab--active:not(.tab--nested),
-  .tab--start.tab--rtl.tab--contained:not(.tab--nested):focus-visible {
+  .tab--end.tab--contained.tab--active:not(.tab--sharp),
+  .tab--end.tab--contained:not(.tab--sharp):focus-visible,
+  .tab--start.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
+  .tab--start.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
     border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
   }
 

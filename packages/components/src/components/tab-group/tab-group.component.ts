@@ -84,8 +84,8 @@ export default class SynTabGroup extends SynergyElement {
   /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
-  /** Draws the tab group as a nested element. Can be used when nesting multiple syn-tab-group`s to create hierarchy. Takes only effect if used with the 'contained' property */
-  @property({ type: Boolean }) nested = false;
+  /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */
+  @property({ type: Boolean }) sharp = false;
 
   connectedCallback() {
     const whenAllDefined = Promise.all([
@@ -324,16 +324,16 @@ export default class SynTabGroup extends SynergyElement {
 
     switch (this.placement) {
       case 'top':
-        this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-large)' : '0px' })`;
+        this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-large)' : '0px' })`;
         this.indicator.style.height = 'auto';
-        this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-large)' : '0px' }))`;
+        this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-large)' : '0px' }))`;
         break;
 
       case 'start':
       case 'end':
         this.indicator.style.width = 'auto';
-        this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-small)' : '0px' })`;
-        this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-small)' : '0px' })`;
+        this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-small)' : '0px' })`;
+        this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-small)' : '0px' })`;
         break;
     }
   }
@@ -376,11 +376,11 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
-  @watch(['contained', 'nested', 'placement'], { waitUntilFirstUpdate: true })
+  @watch(['contained', 'sharp', 'placement'], { waitUntilFirstUpdate: true })
   syncTabs() {
     this.tabs.forEach(tab => {
       tab.contained = this.contained;
-      tab.nested = this.nested;
+      tab.sharp = this.sharp;
       tab.placement = this.placement;
     });
   }
@@ -406,7 +406,7 @@ export default class SynTabGroup extends SynergyElement {
           'tab-group--rtl': this.localize.dir() === 'rtl',
           'tab-group--has-scroll-controls': this.hasScrollControls,
           'tab-group--contained': this.contained,
-          'tab-group--nested': this.nested,
+          'tab-group--sharp': this.sharp,
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

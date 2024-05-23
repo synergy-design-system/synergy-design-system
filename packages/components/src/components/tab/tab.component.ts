@@ -62,8 +62,8 @@ export default class SynTab extends SynergyElement {
   /** Draws the tab as a contained element. */
   @property({ type: Boolean }) contained = false;
 
-  /** Draws the tab as a nested element. Takes only effect if used with the 'contained' property */
-  @property({ type: Boolean }) nested = false;
+  /** Draws the tab with edges instead of roundings. Takes only effect if used with the 'contained' property */
+  @property({ type: Boolean }) sharp = false;
 
   /** The placement of the tabs. */
   @property() placement: 'top' | 'start' | 'end' = 'top';
@@ -110,7 +110,7 @@ export default class SynTab extends SynergyElement {
           'tab--closable': this.closable,
           'tab--disabled': this.disabled,
           'tab--contained': this.contained,
-          'tab--nested': this.nested,
+          'tab--sharp': this.sharp,
           'tab--end': this.placement === 'end',
           'tab--start': this.placement === 'start',
           'tab--top': this.placement === 'top',

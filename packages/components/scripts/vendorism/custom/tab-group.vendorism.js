@@ -39,22 +39,22 @@ const transformComponent = (path, originalContent) => {
       "@property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';",
       "@property() placement: 'top' | 'start' | 'end' = 'top';",
     ],
-    // adapt indicator styling for 'nested' and 'contained' tabs
+    // adapt indicator styling for 'sharp' and 'contained' tabs
     [
       'this.indicator.style.width = `${width}px`;',
-      "this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-large)' : '0px' })`;",
+      "this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-large)' : '0px' })`;",
     ],
     [
       'this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;',
-      "this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-large)' : '0px' }))`;",
+      "this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-large)' : '0px' }))`;",
     ],
     [
       'this.indicator.style.height = `${height}px`;',
-      "this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.nested) ? '2 * var(--syn-spacing-small)' : '0px' })`;",
+      "this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-small)' : '0px' })`;",
     ],
     [
       'this.indicator.style.translate = `0 ${offset.top}px`;',
-      "this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.nested) ? 'var(--syn-spacing-small)' : '0px' })`;",
+      "this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-small)' : '0px' })`;",
     ],
   ], originalContent);
 
@@ -75,7 +75,7 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // Add 'contained' and 'nested' property
+  // Add 'contained' and 'sharp' property
   content = addSectionAfter(
     content,
     "@property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;",
@@ -83,17 +83,17 @@ const transformComponent = (path, originalContent) => {
   /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
-  /** Draws the tab group as a nested element. Can be used when nesting multiple syn-tab-group\`s to create hierarchy. Takes only effect if used with the 'contained' property */
-  @property({ type: Boolean }) nested = false;`,
+  /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */
+  @property({ type: Boolean }) sharp = false;`,
   );
 
-  // Add 'contained' and 'nested' classes
+  // Add 'contained' and 'sharp' classes
   content = addSectionAfter(
     content,
     "'tab-group--has-scroll-controls': this.hasScrollControls",
       `,
           'tab-group--contained': this.contained,
-          'tab-group--nested': this.nested,`,
+          'tab-group--sharp': this.sharp,`,
       { newlinesBeforeInsertion: 0 },
   );
 
@@ -104,7 +104,7 @@ const transformComponent = (path, originalContent) => {
     ' * @cssproperty --indicator-width - The width of the active tab indicator.',
   );
 
-  // Forward the 'placement', 'contained' and 'nested' properties to the tabs
+  // Forward the 'placement', 'contained' and 'sharp' properties to the tabs
   content = addSectionAfter(
     content,
     'import { property, query,',
@@ -130,11 +130,11 @@ const transformComponent = (path, originalContent) => {
   content = addSectionBefore(
     content,
     '/** Shows the specified tab panel. */',
-    `@watch(['contained', 'nested', 'placement'], { waitUntilFirstUpdate: true })
+    `@watch(['contained', 'sharp', 'placement'], { waitUntilFirstUpdate: true })
   syncTabs() {
     this.tabs.forEach(tab => {
       tab.contained = this.contained;
-      tab.nested = this.nested;
+      tab.sharp = this.sharp;
       tab.placement = this.placement;
     });
   }`,

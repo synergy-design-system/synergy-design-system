@@ -39,6 +39,7 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
+ * @cssproperty --indicator-width - The width of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
@@ -98,7 +99,7 @@ manual, the tab will receive focus but will not show until the user presses spac
   }
 
   /**
-* Draws the tab group as a contained item.
+* Draws the tab group as a contained element.
  */
   @Input()
   set contained(v: SynTabGroup['contained']) {
@@ -110,16 +111,16 @@ manual, the tab will receive focus but will not show until the user presses spac
   }
 
   /**
-* Draws the tab group as a nested item.
-* Can be used when nesting multiple syn-tab-group`s to create hierarchy
+* Draws the tab group with edges instead of roundings.
+* Takes only effect if used with the 'contained' property
  */
   @Input()
-  set nested(v: SynTabGroup['nested']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.nested = v));
+  set sharp(v: SynTabGroup['sharp']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
   }
 
-  get nested() {
-    return this.nativeElement.nested;
+  get sharp() {
+    return this.nativeElement.sharp;
   }
 
   @Input()
@@ -130,6 +131,11 @@ manual, the tab will receive focus but will not show until the user presses spac
   @Input()
   callSyncIndicator(...args: Parameters<SynTabGroup['syncIndicator']>) {
     return this._ngZone.runOutsideAngular(() => this.nativeElement.syncIndicator(...args));
+  }
+
+  @Input()
+  callSyncTabs(...args: Parameters<SynTabGroup['syncTabs']>) {
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.syncTabs(...args));
   }
 
   /**

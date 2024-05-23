@@ -18,23 +18,23 @@ const { generateTemplate } = storybookTemplate('syn-tab-group');
 const createTab = (
   panel: string,
   content: string,
-  { disabled = false, closable = false } = {},
-) => `<syn-tab slot="nav" panel="${panel}" ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''}>${content}</syn-tab>`;
+  { disabled = false, closable = false, dir = 'ltr' } = {},
+) => `<syn-tab slot="nav" panel="${panel}" ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''} dir="${dir}">${content}</syn-tab>`;
 
 const createTabHtml = (
   panel: string,
   content: string,
-  { disabled = false, closable = false } = {},
-) => unsafeHTML(createTab(panel, content, { closable, disabled }));
+  { disabled = false, closable = false, dir = 'ltr' } = {},
+) => unsafeHTML(createTab(panel, content, { closable, dir, disabled }));
 
-const createTabs = () => [
+const createTabs = (dir = 'ltr') => [
   { panel: 'general' },
   { panel: 'custom' },
   { panel: 'advanced' },
   { panel: 'disabled', props: { disabled: true } },
-].map(({ panel, props }) => createTab(panel, pascalCase(panel), props)).join('\n');
+].map(({ panel, props }) => createTab(panel, pascalCase(panel), { ...props, dir })).join('\n');
 
-const createTabsHtml = () => unsafeHTML(createTabs());
+const createTabsHtml = (dir: 'ltr' | 'rtl' = 'ltr') => unsafeHTML(createTabs(dir));
 
 const createTabPanel = (name: string, content: string) => `<syn-tab-panel name="${name}">${content}</syn-tab-panel>`;
 
@@ -118,6 +118,29 @@ export const TabsOnStart: Story = {
     ${createTabsHtml()}
     ${createTabPanelsHtml()}
   </syn-tab-group>
+  <br>
+
+<syn-tab-group placement="start" contained>
+  ${createTabsHtml()}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+<br>
+
+<syn-tab-group placement="start" contained sharp>
+  ${createTabsHtml()}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+<br>
+<syn-tab-group placement="start" contained dir="rtl">
+  ${createTabsHtml('rtl')}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+
+<br>
+<syn-tab-group placement="start" contained sharp dir="rtl">
+  ${createTabsHtml('rtl')}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
   `,
 };
 
@@ -134,6 +157,27 @@ export const TabsOnEnd: Story = {
     ${createTabsHtml()}
     ${createTabPanelsHtml()}
   </syn-tab-group>
+  <br>
+
+<syn-tab-group placement="end" contained>
+  ${createTabsHtml()}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+<br>
+<syn-tab-group placement="end" contained dir="rtl">
+  ${createTabsHtml('rtl')}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+<br>
+<syn-tab-group placement="end" contained sharp>
+  ${createTabsHtml()}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
+<br>
+<syn-tab-group placement="end" contained sharp dir="rtl">
+  ${createTabsHtml('rtl')}
+  ${createTabPanelsHtml()}
+</syn-tab-group>
   `,
 };
 
@@ -196,7 +240,7 @@ export const ScrollingTabs: Story = {
     },
   },
   render: () => html`
-    <syn-tab-group>
+      <syn-tab-group>
       <!-- Tabs -->
       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
       .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
@@ -206,7 +250,44 @@ export const ScrollingTabs: Story = {
       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
       .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
     }
-  </syn-tab-group>`,
+  </syn-tab-group>
+  <br>
+    <syn-tab-group dir="rtl">
+      <!-- Tabs -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
+    }
+
+      <!-- Tab Panels -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
+    }
+  </syn-tab-group>
+  <br>
+  <syn-tab-group contained>
+      <!-- Tabs -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
+    }
+
+      <!-- Tab Panels -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
+    }
+  </syn-tab-group>
+  <br>
+  <syn-tab-group contained dir="rtl">
+      <!-- Tabs -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
+    }
+
+      <!-- Tab Panels -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
+    }
+  </syn-tab-group>
+  `,
 };
 
 export const VisualHierarchy: Story = {
@@ -222,16 +303,29 @@ export const VisualHierarchy: Story = {
     <syn-tab-group>
       ${createReplaceContent()}
     </syn-tab-group>
-
+<br>
+    <syn-tab-group dir="rtl">
+      ${createReplaceContent()}
+    </syn-tab-group>
+    <br>
     <h3>Contained</h3>
     <syn-tab-group contained>
       ${createReplaceContent()}
     </syn-tab-group>
-
-    <h3>Nested</h3>
-    <syn-tab-group nested>
+    <br>
+    <syn-tab-group dir="rtl" contained>
+      ${createReplaceContent()}
+    </syn-tab-group>
+    <br>
+    <h3>sharp</h3>
+    <syn-tab-group contained sharp>
      ${createReplaceContent()}
     </syn-tab-group>
+    <br>
+    <syn-tab-group dir="rtl" contained sharp>
+      ${createReplaceContent()}
+    </syn-tab-group>
+    <br>
     <style>
       .synergy-replace{
         border: 1px dashed #9747FF;

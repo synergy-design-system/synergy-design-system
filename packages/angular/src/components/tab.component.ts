@@ -97,6 +97,43 @@ export class SynTabComponent {
     return this.nativeElement.disabled;
   }
 
+  /**
+* Draws the tab as a contained element.
+ */
+  @Input()
+  set contained(v: SynTab['contained']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  }
+
+  get contained() {
+    return this.nativeElement.contained;
+  }
+
+  /**
+* Draws the tab with edges instead of roundings.
+* Takes only effect if used with the 'contained' property
+ */
+  @Input()
+  set sharp(v: SynTab['sharp']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
+  }
+
+  get sharp() {
+    return this.nativeElement.sharp;
+  }
+
+  /**
+* The placement of the tabs.
+ */
+  @Input()
+  set placement(v: SynTab['placement']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
+  }
+
+  get placement() {
+    return this.nativeElement.placement;
+  }
+
   @Input()
   callHandleActiveChange(...args: Parameters<SynTab['handleActiveChange']>) {
     return this._ngZone.runOutsideAngular(() => this.nativeElement.handleActiveChange(...args));

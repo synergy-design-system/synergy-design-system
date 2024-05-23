@@ -34,28 +34,28 @@ const transformComponent = (path, originalContent) => {
     ' * @csspart prefix - The prefix container.',
   );
 
-  // Add 'placement', 'nested' and 'contained' properties
+  // Add 'placement', 'sharp' and 'contained' properties
   content = addSectionBefore(
     content,
     'connectedCallback() {',
     `/** Draws the tab as a contained element. */
   @property({ type: Boolean }) contained = false;
 
-  /** Draws the tab as a nested element. Takes only effect if used with the 'contained' property */
-  @property({ type: Boolean }) nested = false;
+  /** Draws the tab with edges instead of roundings. Takes only effect if used with the 'contained' property */
+  @property({ type: Boolean }) sharp = false;
 
   /** The placement of the tabs. */
   @property() placement: 'top' | 'start' | 'end' = 'top';`,
     { tabsAfterInsertion: 1 },
   );
 
-  // Add 'placement', 'nested' and 'contained' classes
+  // Add 'placement', 'sharp' and 'contained' classes
   content = addSectionAfter(
     content,
     "'tab--disabled': this.disabled",
     `,
           'tab--contained': this.contained,
-          'tab--nested': this.nested,
+          'tab--sharp': this.sharp,
           'tab--end': this.placement === 'end',
           'tab--start': this.placement === 'start',
           'tab--top': this.placement === 'top',

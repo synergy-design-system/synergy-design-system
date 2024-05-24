@@ -43,8 +43,6 @@ const manifest = {
   ],
 };
 
-console.log(manifest);
-
 setCustomElementsManifest(manifest);
 console.log('Custom elements manifest loaded for components and styles');
 

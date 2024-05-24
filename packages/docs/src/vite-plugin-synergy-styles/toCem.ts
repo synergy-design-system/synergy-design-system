@@ -1,5 +1,35 @@
-import type { Attribute, Module, Package } from 'custom-elements-manifest/schema.d.ts';
-import type { Structure, Tag } from './types.js';
+import type { Attribute, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
+import type { Structure, StyleModule, Tag } from './types.js';
+
+const getTypesAsArray = (tag: Tag): string[] => tag.type
+  .split('|')
+  .map(t => t.trim())
+  .map(t => `'${tag.name}-${t}'`);
+
+/**
+ * The tag to get the type for
+ * @param tag The tag to get the type for
+ * @returns Type structure for the tag
+ */
+const getTypeForTag = (tag: Tag) => {
+  const text = getTypesAsArray(tag).join(' | ');
+  return {
+    text,
+  };
+};
+
+/**
+ * Check if a tag is allowed to be included
+ * @param tag The tag to check
+ * @returns True if the tag is allowed to be included
+ */
+const tagIsAllowedToBeIncluded = (tag: Tag): boolean => {
+  const hasVariants = tag.tag === 'variant';
+  const isDynamicTag = tag.type.includes('|');
+
+  // @todo: Allow boolean values to be used as well
+  return hasVariants && isDynamicTag;
+};
 
 /**
  * Convert a tag to an attribute
@@ -7,29 +37,30 @@ import type { Structure, Tag } from './types.js';
  * @returns attribute The created attribute
  */
 const getAttributesForTag = (tag: Tag): Attribute | null => {
-  const hasVariants = tag.tag === 'variant';
-  const isDynamicTag = tag.type.includes('|');
-
   // Skip if we don't have variants or if the tag is not dynamic
-  // @todo: Allow boolean values to be used as well
-  if (!hasVariants || !isDynamicTag) {
+  if (!tagIsAllowedToBeIncluded(tag)) {
     return null;
   }
 
-  // We have to reformat our type to match the CEM format
-  const type = tag.type
-    .split('|')
-    .map(t => t.trim())
-    .map(t => `'${tag.name}-${t}'`)
-    .join(' | ');
-
   return {
-    default: '',
+    default: getTypesAsArray(tag).at(0),
     description: tag.description,
     name: 'className',
-    type: {
-      text: type,
-    },
+    type: getTypeForTag(tag),
+  };
+};
+
+const getMembersForTag = (tag: Tag): ClassMember | null => {
+  // Skip if we don't have variants or if the tag is not dynamic
+  if (!tagIsAllowedToBeIncluded(tag)) {
+    return null;
+  }
+
+  return {
+    default: getTypesAsArray(tag).at(0),
+    kind: 'field',
+    name: 'className',
+    type: getTypeForTag(tag),
   };
 };
 
@@ -38,18 +69,28 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
  * @param tag The tag to convert
  * @returns module The schema module
  */
-const tagToSchemaModule = (tag: Tag): Module => {
+const tagToSchemaModule = (tag: Tag): StyleModule => {
   const attribute = getAttributesForTag(tag);
   const attributes = attribute ? [attribute] : [];
+
+  const member = getMembersForTag(tag);
+  const members = member ? [member] : [];
+
+  const tagNameWithoutPrefix = tag.name.includes('-') ? tag.name.split('-').slice(1).join('-') : tag.name;
+
   return {
     declarations: [{
       attributes,
+      customElement: true,
       kind: 'class',
+      members,
       name: tag.name,
       slots: [{
         description: `Main content of ${tag.name}`,
         name: '',
       }],
+      tagName: tag.name,
+      tagNameWithoutPrefix,
     }],
     description: tag.description,
     kind: 'javascript-module',

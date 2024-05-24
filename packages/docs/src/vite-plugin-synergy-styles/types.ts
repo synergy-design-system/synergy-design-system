@@ -1,3 +1,5 @@
+import type { Declaration, Module } from 'custom-elements-manifest/schema.d.ts';
+
 /**
  * Plugin configuration options
  */
@@ -16,6 +18,14 @@ export type Config = {
    * The source directory to obtain data from
    */
   srcDir: string;
+};
+
+export type StyleDeclaration = Declaration & {
+  tagNameWithoutPrefix?: string;
+};
+
+export type StyleModule = Module & {
+  declarations: StyleDeclaration[];
 };
 
 /**

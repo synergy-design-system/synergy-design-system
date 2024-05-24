@@ -3,6 +3,16 @@
  */
 export type Config = {
   /**
+   * The endpoint to use for the middleware
+   */
+  endPoint: string;
+
+  /**
+   * The filename used when building storybook
+   */
+  outputFileName: string;
+
+  /**
    * The source directory to obtain data from
    */
   srcDir: string;

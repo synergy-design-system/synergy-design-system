@@ -418,7 +418,7 @@ export default class SynTabGroup extends SynergyElement {
                   part="scroll-button scroll-button--start"
                   exportparts="base:scroll-button__base"
                   class="tab-group__scroll-button tab-group__scroll-button--start"
-                  name="chevron-down"
+                  name="chevron_right"
                   library="system"
                   label=${this.localize.term('scrollToStart')}
                   @click=${this.handleScrollToStart}
@@ -439,7 +439,7 @@ export default class SynTabGroup extends SynergyElement {
                   part="scroll-button scroll-button--end"
                   exportparts="base:scroll-button__base"
                   class="tab-group__scroll-button tab-group__scroll-button--end"
-                  name="chevron-down"
+                  name="chevron_right"
                   library="system"
                   label=${this.localize.term('scrollToEnd')}
                   @click=${this.handleScrollToEnd}

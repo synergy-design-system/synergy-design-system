@@ -127,60 +127,38 @@ export default css`
   }
 
   .tab-group__scroll-button {
-    /* uncomment this as soon as the new system icon is used */
-
-    /* border-bottom: solid var(--track-width) var(--track-color); */
+    /* we need to move the scroll buttons to the top, to align the borders with the border of the tab-group--nav  */
+    bottom: var(--syn-spacing-4x-small);
     color: var(--syn-color-neutral-950);
     font-size: var(--syn-font-size-medium);
-    height: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));
-    top: 8px;
-    width: var(--syn-spacing-2x-large);
+    width: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));
   }
 
   .tab-group__scroll-button::part(base) {
     padding: calc(var(--syn-spacing-small) - var(--syn-spacing-3x-small));
   }
 
-  .tab-group--top .tab-group__nav::-webkit-scrollbar {
-    display: none;
-  }
-
   /* Make sure the direction of the chevrons match the scrolling directions. */
-  .tab-group__scroll-button--start {
-    left: -6px;
-    rotate: 90deg;
+  .tab-group--has-scroll-controls:not(.tab-group--rtl) .tab-group__scroll-button--start,
+  .tab-group--rtl .tab-group__scroll-button--end {
+    rotate: 180deg;
   }
 
   .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--start {
-    border-right: solid var(--track-width) var(--track-color);
-  }
-
-  .tab-group__scroll-button--end {
-    right: -6px;
-    rotate: -90deg;
+    border-top: solid var(--track-width) var(--track-color);
   }
 
   .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--end {
-    border-left: solid var(--track-width) var(--track-color);
+    border-bottom: solid var(--track-width) var(--track-color);
   }
 
-  .tab-group--rtl .tab-group__scroll-button--start {
-    right: -6px;
-    rotate: -90deg;
+  .tab-group--rtl:not(.tab-group--contained) .tab-group__scroll-button--start {
+    border-bottom: solid var(--track-width) var(--track-color);
+    border-top: none;
   }
 
-  .tab-group--rtl.tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--start {
-    border-left: solid var(--track-width) var(--track-color);
-    border-right: none;
-  }
-
-  .tab-group--rtl .tab-group__scroll-button--end {
-    left: -6px;
-    rotate: 90deg;
-  } 
-
-  .tab-group--rtl.tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--end {
-    border-left: none;
-    border-right: solid var(--track-width) var(--track-color);
+  .tab-group--rtl:not(.tab-group--contained) .tab-group__scroll-button--end {
+    border-bottom: none;
+    border-top: solid var(--track-width) var(--track-color);
   }
 `;

@@ -16,14 +16,14 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   let content = replaceSections([
-    // We use a default icon of "chevron-down" and rotate it depending on localization direction
+    // We use a default icon of "chevron_right" and rotate it depending on localization direction
     [
       "name=${isRtl ? 'chevron-right' : 'chevron-left'}",
-      'name="chevron-down"',
+      'name="chevron_right"',
     ],
     [
       "name=${isRtl ? 'chevron-left' : 'chevron-right'}",
-      'name="chevron-down"',
+      'name="chevron_right"',
     ],
 
     // we don`t want the 'bottom' placement, therefore we remove it

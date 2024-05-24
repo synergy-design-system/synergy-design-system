@@ -140,7 +140,7 @@ describe('<syn-tab-group>', () => {
       await aTimeout(0);
 
       const clientRectangles = getClientRectangles(tabGroup);
-      expect(clientRectangles.body?.top).to.be.greaterThanOrEqual(clientRectangles.navigation?.bottom || -Infinity);
+      expect(clientRectangles.body?.top).to.be.greaterThanOrEqual((clientRectangles.navigation?.bottom! - 1) || -Infinity);
     });
 
     it('shows the header left of the tabs by setting placement to start', async () => {

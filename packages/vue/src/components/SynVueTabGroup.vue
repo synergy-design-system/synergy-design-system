@@ -30,6 +30,7 @@
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
+ * @cssproperty --indicator-width - The width of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
@@ -44,6 +45,7 @@ const nativeElement = ref<SynTabGroup>();
 // Map methods
 const callUpdateScrollControls = (...args: Parameters<SynTabGroup['updateScrollControls']>) => nativeElement.value?.updateScrollControls(...args);
 const callSyncIndicator = (...args: Parameters<SynTabGroup['syncIndicator']>) => nativeElement.value?.syncIndicator(...args);
+const callSyncTabs = (...args: Parameters<SynTabGroup['syncTabs']>) => nativeElement.value?.syncTabs(...args);
 /**
 * Shows the specified tab panel.
  */
@@ -52,6 +54,7 @@ const callShow = (...args: Parameters<SynTabGroup['show']>) => nativeElement.val
 defineExpose({
   callUpdateScrollControls,
   callSyncIndicator,
+  callSyncTabs,
   callShow,
   nativeElement,
 });
@@ -76,15 +79,15 @@ manual, the tab will receive focus but will not show until the user presses spac
   'noScrollControls'?: SynTabGroup['noScrollControls'];
 
   /**
-* Draws the tab group as a contained item.
+* Draws the tab group as a contained element.
  */
   'contained'?: SynTabGroup['contained'];
 
   /**
-* Draws the tab group as a nested item.
-* Can be used when nesting multiple syn-tab-group`s to create hierarchy
+* Draws the tab group with edges instead of roundings.
+* Takes only effect if used with the 'contained' property
  */
-  'nested'?: SynTabGroup['nested'];
+  'sharp'?: SynTabGroup['sharp'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

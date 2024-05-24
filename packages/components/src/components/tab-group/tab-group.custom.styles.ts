@@ -9,7 +9,7 @@ export default css`
     --indicator-width: var(--syn-border-width-x-large);
   }
 
-  /* we need to augment the size of the height of the tab-group__nav to make the focus outline visible of the tab because of overflow-x value  */
+  /* we need to augment the size of the height of the tab-group__nav to make the focus outline and the hiding white border visible of the tab because of overflow-x value  */
   .tab-group--top .tab-group__body {
     position: relative;
     top: calc(-1 * var(--syn-spacing-4x-small));
@@ -84,27 +84,21 @@ export default css`
 
   /* Draw the correct border radii of the panel depending on the placement and direction */
   .tab-group--top.tab-group--contained:not(.tab-group--sharp):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type),
-  .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type),
-  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type) {
-    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type) {
+    border-start-start-radius: var(--syn-border-radius-none);
   }
 
-  .tab-group--top.tab-group--rtl.tab-group--contained:not(.tab-group--sharp):not(.tab-group--has-scroll-controls) ::slotted(syn-tab-panel:first-of-type),
-  .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type),
-  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type) {
-    border-radius: var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium);
+  .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type) {
+    border-end-start-radius: var(--syn-border-radius-none);
   }
 
-  .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type),
-  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type) {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
+  .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type) {
+    border-end-end-radius: var(--syn-border-radius-none);
   }
 
-  .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type),
-  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:last-of-type) {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 var(--syn-border-radius-medium);
+  .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab-panel:first-of-type) {
+    border-start-end-radius: var(--syn-border-radius-none);
   }
-
 
   /* Needed, otherwise the indicator is hidden under the background of the tab */
   .tab-group--contained .tab-group__indicator {
@@ -115,7 +109,7 @@ export default css`
    * Sharp styling
    */
   .tab-group--sharp ::slotted(syn-tab-panel) {
-    border-radius: 0;
+    border-radius: var(--syn-border-radius-none);
   }
 
 

@@ -11,6 +11,10 @@ export default css`
     padding: var(--syn-spacing-small) var(--syn-spacing-large);
   }
 
+
+  /**
+   * Focus
+   */
   .tab:focus-visible {
     outline-offset: calc(var(--syn-focus-ring-offset) * -1);
   }
@@ -18,6 +22,13 @@ export default css`
   .tab:focus-visible:not(.tab--disabled) {
     color: var(--syn-typography-color-text);
   }
+
+  @media (forced-colors: active) {
+    .tab.tab--active:not(.tab--disabled) {
+      outline-offset: calc(var(--syn-focus-ring-offset) * -1);
+    }
+  }
+
 
   .tab:hover:not(.tab--disabled) {
     color: var(--syn-color-primary-700);
@@ -27,6 +38,10 @@ export default css`
     color: var(--syn-typography-color-text);
   }
 
+
+  /**
+   * Closable
+   */
   .tab.tab--closable {
     padding: var(--syn-spacing-2x-small) var(--syn-spacing-large);
   }
@@ -45,26 +60,18 @@ export default css`
     color: var(--syn-color-primary-700);
   }
 
-  @media (forced-colors: active) {
-    .tab.tab--active:not(.tab--disabled) {
-      outline-offset: calc(var(--syn-focus-ring-offset) * -1);
-    }
-  }
 
   /**
-   * Handling for slotted prefix and suffix
+   * Slotted prefix
    */
   .tab__prefix::slotted(*) {
     margin-inline-end: var(--syn-spacing-x-small);
   }
   
-  /**
-   * Set the default font size to make icons appear correct
-   */
+  /* Set the default font size to make icons appear correct */
   .tab__prefix::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
   }
-
 
 
   /**
@@ -91,7 +98,7 @@ export default css`
 
   .tab--top.tab--contained.tab--active:not(.tab--sharp),
   .tab--top.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0 0;
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
   }
 
   /* Start & End with rtl */
@@ -105,20 +112,21 @@ export default css`
   .tab--start.tab--contained:not(.tab--sharp):focus-visible,
   .tab--end.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
   .tab--end.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: var(--syn-border-radius-medium) 0 0 var(--syn-border-radius-medium);
+    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
   }
 
   /* End & Start with rtl */
   .tab--end.tab--contained.tab--active,
   .tab--start.tab--rtl.tab--contained.tab--active {
     border-left: none;
+    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
   }
 
   .tab--end.tab--contained.tab--active:not(.tab--sharp),
   .tab--end.tab--contained:not(.tab--sharp):focus-visible,
   .tab--start.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
   .tab--start.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: 0 var(--syn-border-radius-medium) var(--syn-border-radius-medium) 0;
+    border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
   }
 
 

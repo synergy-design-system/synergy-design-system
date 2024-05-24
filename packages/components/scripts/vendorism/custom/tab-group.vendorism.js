@@ -1,6 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
-import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionBefore, addSectionsAfter, replaceSection, replaceSections,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tab-group.component.ts',
@@ -39,6 +41,7 @@ const transformComponent = (path, originalContent) => {
       "@property() placement: 'top' | 'bottom' | 'start' | 'end' = 'top';",
       "@property() placement: 'top' | 'start' | 'end' = 'top';",
     ],
+
     // adapt indicator styling for 'sharp' and 'contained' tabs
     [
       'this.indicator.style.width = `${width}px`;',
@@ -59,6 +62,7 @@ const transformComponent = (path, originalContent) => {
   ], originalContent);
 
   content = removeSections([
+    // isRtl check is no longer needed, as it is used nowhere
     [
       'render() {',
       "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false },
@@ -75,58 +79,54 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // Add 'contained' and 'sharp' property
-  content = addSectionAfter(
-    content,
-    "@property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;",
-    `
-  /** Draws the tab group as a contained element. */
+  content = addSectionsAfter([
+    // Add 'contained' and 'sharp' property
+    [
+      "@property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;",
+    `/** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
   /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */
   @property({ type: Boolean }) sharp = false;`,
-  );
+    { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
+    ],
 
-  // Add 'contained' and 'sharp' classes
-  content = addSectionAfter(
-    content,
-    "'tab-group--has-scroll-controls': this.hasScrollControls",
+    // Add 'contained' and 'sharp' classes
+    [
+      "'tab-group--has-scroll-controls': this.hasScrollControls",
       `,
           'tab-group--contained': this.contained,
           'tab-group--sharp': this.sharp,`,
       { newlinesBeforeInsertion: 0 },
-  );
+    ],
 
-  // Add a new css variable '--indicator-width' to the component
-  content = addSectionAfter(
-    content,
-    '* @cssproperty --indicator-color - The color of the active tab indicator.',
-    ' * @cssproperty --indicator-width - The width of the active tab indicator.',
-  );
+    // Add a new css variable '--indicator-width' to the component
+    [
+      '* @cssproperty --indicator-color - The color of the active tab indicator.',
+      ' * @cssproperty --indicator-width - The width of the active tab indicator.',
+    ],
+
+    // Forward the 'placement', 'contained' and 'sharp' properties to the tabs
+    [
+      'import { property, query,',
+      ' queryAssignedElements,',
+      { newlinesBeforeInsertion: 0 },
+    ],
+    [
+      "@query('.tab-group__indicator') indicator: HTMLElement;",
+      "@queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabsInNavSlot!: SynTab[];",
+      { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
+    ],
+    [
+      `private syncTabsAndPanels() {
+    this.tabs = this.getAllTabs({ includeDisabled: false });`,
+      'this.syncTabs();',
+      { tabsBeforeInsertion: 2 },
+    ],
+
+  ], content);
 
   // Forward the 'placement', 'contained' and 'sharp' properties to the tabs
-  content = addSectionAfter(
-    content,
-    'import { property, query,',
-    ' queryAssignedElements,',
-    { newlinesBeforeInsertion: 0 },
-  );
-
-  content = addSectionAfter(
-    content,
-    "@query('.tab-group__indicator') indicator: HTMLElement;",
-    "@queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabsInNavSlot!: SynTab[];",
-    { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
-  );
-
-  content = addSectionAfter(
-    content,
-    `private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs({ includeDisabled: false });`,
-    'this.syncTabs();',
-    { tabsBeforeInsertion: 2 },
-  );
-
   content = addSectionBefore(
     content,
     '/** Shows the specified tab panel. */',
@@ -140,7 +140,6 @@ const transformComponent = (path, originalContent) => {
   }`,
     { tabsAfterInsertion: 1 },
   );
-
   return {
     content,
     path,
@@ -164,13 +163,21 @@ const transformStyles = (path, originalContent) => {
 };
 
 const transformTests = (path, originalContent) => {
-  const content = removeSections([
+  let content = removeSections([
     // Remove 'bottom' placement test
     [
       "it('shows the header below the tabs by setting placement to bottom'",
       '});',
     ],
+
   ], originalContent);
+
+  // Add +1 to navigation position, as we augmented the navigation into the body for 1px
+  // to avoid the hiding of the focus styling and of the white hiding border
+  content = replaceSection([
+    'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual(clientRectangles.navigation?.bottom || -Infinity);',
+    'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual((clientRectangles.navigation?.bottom! - 1) || -Infinity);',
+  ], content);
 
   return {
     content,

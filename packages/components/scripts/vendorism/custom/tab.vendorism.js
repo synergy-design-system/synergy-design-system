@@ -1,4 +1,6 @@
-import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionsAfter, addSectionsBefore, replaceSections,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tab.component.ts',
@@ -12,33 +14,45 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  // Add prefix slot
-  let content = addSectionBefore(
-    originalContent,
-    '<slot></slot>',
-    '<slot name="prefix" part="prefix" class="tab__prefix"></slot>',
-    { newlinesAfterInsertion: 2, tabsAfterInsertion: 4 },
-  );
+  let content = addSectionsAfter([
+    // Add prefix slot documentation
+    [
+      '* @slot - The tab\'s label.',
+      ' * @slot prefix - Used to prepend an icon or similar element to the tab.',
+    ],
 
-  // Add slots documentation
-  content = addSectionAfter(
-    content,
-    '* @slot - The tab\'s label.',
-    ' * @slot prefix - Used to prepend an icon or similar element to the tab.',
-  );
+    // Add prefix css part documentation
+    [
+      '* @csspart close-button__base - The close button\'s exported `base` part.',
+      ' * @csspart prefix - The prefix container.',
+    ],
 
-  // Add css parts documentation
-  content = addSectionAfter(
-    content,
-    '* @csspart close-button__base - The close button\'s exported `base` part.',
-    ' * @csspart prefix - The prefix container.',
-  );
+    // Add 'placement', 'sharp' and 'contained' classes
+    [
+      "'tab--disabled': this.disabled",
+      `,
+          'tab--contained': this.contained,
+          'tab--sharp': this.sharp,
+          'tab--end': this.placement === 'end',
+          'tab--start': this.placement === 'start',
+          'tab--top': this.placement === 'top',
+          'tab--rtl': this.localize.dir() === 'rtl',`,
+      { newlinesBeforeInsertion: 0 },
+    ],
+  ], originalContent);
 
-  // Add 'placement', 'sharp' and 'contained' properties
-  content = addSectionBefore(
-    content,
-    'connectedCallback() {',
-    `/** Draws the tab as a contained element. */
+  content = addSectionsBefore([
+    // Add prefix slot
+    [
+      '<slot></slot>',
+      '<slot name="prefix" part="prefix" class="tab__prefix"></slot>',
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 4 },
+    ],
+
+    // Add 'placement', 'sharp' and 'contained' properties
+    [
+      'connectedCallback() {',
+      `/** Draws the tab as a contained element. */
   @property({ type: Boolean }) contained = false;
 
   /** Draws the tab with edges instead of roundings. Takes only effect if used with the 'contained' property */
@@ -46,22 +60,10 @@ const transformComponent = (path, originalContent) => {
 
   /** The placement of the tabs. */
   @property() placement: 'top' | 'start' | 'end' = 'top';`,
-    { tabsAfterInsertion: 1 },
-  );
+      { tabsAfterInsertion: 1 },
+    ],
 
-  // Add 'placement', 'sharp' and 'contained' classes
-  content = addSectionAfter(
-    content,
-    "'tab--disabled': this.disabled",
-    `,
-          'tab--contained': this.contained,
-          'tab--sharp': this.sharp,
-          'tab--end': this.placement === 'end',
-          'tab--start': this.placement === 'start',
-          'tab--top': this.placement === 'top',
-          'tab--rtl': this.localize.dir() === 'rtl',`,
-    { newlinesBeforeInsertion: 0 },
-  );
+  ], content);
 
   return {
     content,

@@ -56,6 +56,17 @@ export const addSectionAfter = (content, search, insert, options = {}) => {
 };
 
 /**
+ * Takes an array of section options and applies them via addSectionAfter one by one
+ * @param {array} sections The sections you want to replace
+ * @param {string} initialContent The initial content
+ * @returns {string} Output after all transforms ran
+ */
+export const addSectionsAfter = (sections, initialContent) => sections.reduce(
+  (prev, options) => addSectionAfter(prev, ...options),
+  initialContent,
+);
+
+/**
  * Adds a section of content after a search string
  * @param {string} content The string to search in
  * @param {string} search The content to add the content before
@@ -83,3 +94,14 @@ export const addSectionBefore = (content, search, insert, options = {}) => {
 
   return content.slice(0, index) + output + content.slice(index);
 };
+
+/**
+ * Takes an array of section options and applies them via addSectionBefore one by one
+ * @param {array} sections The sections you want to replace
+ * @param {string} initialContent The initial content
+ * @returns {string} Output after all transforms ran
+ */
+export const addSectionsBefore = (sections, initialContent) => sections.reduce(
+  (prev, options) => addSectionBefore(prev, ...options),
+  initialContent,
+);

@@ -432,29 +432,23 @@ export const RailNavigationDesktop: Story = {
     ${createDemoNavigation('appshell-rail-desktop')}
 
     <style>
-      #appshell-rail-desktop {
-        .synergy-demo-content {
-          flex-direction: row;
+      #appshell-rail-desktop .synergy-demo-content {
+        flex-direction: row;
+      }
+
+      #appshell-rail-desktop .synergy-demo-footer {
+        container-type: inline-size;
+      }
+
+      @media(max-width: 420px) {
+        #appshell-rail-desktop syn-side-nav {
+          --side-nav-open-width: 306px;
         }
+      }
 
-        .synergy-demo-footer {
-          container-type: inline-size;
-        }
-
-        @media(max-width: 420px) {
-          syn-side-nav {
-            --side-nav-open-width: 306px;
-          }
-
-          syn-side-nav[open]::part(overlay) {
-            display: block;
-          }
-        }
-
-        @container (max-width: 400px) {
-          .synergy-demo-footer a {
-            display: none;
-          }
+      @container (max-width: 400px) {
+        #appshell-rail-desktop .synergy-demo-footer a {
+          display: none;
         }
       }
     </style>

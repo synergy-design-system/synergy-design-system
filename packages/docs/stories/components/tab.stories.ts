@@ -56,23 +56,6 @@ export const Default = {
   `,
 } as Story;
 
-// TODO: remove this story. It`s only for testing purpose
-// export const Prefix: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab', 'default'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//       <syn-tab>
-//         <syn-icon slot="prefix" name="wallpaper"></syn-icon>
-//         Tab item
-//       </syn-tab>
-//   `,
-// };
-
 export const Screenshot: Story = generateScreenshotStory({
   Default,
 });

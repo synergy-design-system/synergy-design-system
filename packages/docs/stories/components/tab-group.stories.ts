@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { pascalCase } from 'change-case';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import type { SynTab } from '@synergy-design-system/components';
 import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -18,23 +19,23 @@ const { generateTemplate } = storybookTemplate('syn-tab-group');
 const createTab = (
   panel: string,
   content: string,
-  { disabled = false, closable = false, dir = 'ltr' } = {},
-) => `<syn-tab slot="nav" panel="${panel}" ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''} dir="${dir}">${content}</syn-tab>`;
+  { disabled = false, closable = false } = {},
+) => `<syn-tab slot="nav" panel="${panel}" ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''}>${content}</syn-tab>`;
 
 const createTabHtml = (
   panel: string,
   content: string,
-  { disabled = false, closable = false, dir = 'ltr' } = {},
-) => unsafeHTML(createTab(panel, content, { closable, dir, disabled }));
+  { disabled = false, closable = false } = {},
+) => unsafeHTML(createTab(panel, content, { closable, disabled }));
 
-const createTabs = (dir = 'ltr') => [
+const createTabs = () => [
   { panel: 'general' },
   { panel: 'custom' },
   { panel: 'advanced' },
   { panel: 'disabled', props: { disabled: true } },
-].map(({ panel, props }) => createTab(panel, pascalCase(panel), { ...props, dir })).join('\n');
+].map(({ panel, props }) => createTab(panel, pascalCase(panel), props)).join('\n');
 
-const createTabsHtml = (dir: 'ltr' | 'rtl' = 'ltr') => unsafeHTML(createTabs(dir));
+const createTabsHtml = () => unsafeHTML(createTabs());
 
 const createTabPanel = (name: string, content: string) => `<syn-tab-panel name="${name}">${content}</syn-tab-panel>`;
 
@@ -118,29 +119,6 @@ export const TabsOnStart: Story = {
     ${createTabsHtml()}
     ${createTabPanelsHtml()}
   </syn-tab-group>
-  <br>
-
-<syn-tab-group placement="start" contained>
-  ${createTabsHtml()}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-<br>
-
-<syn-tab-group placement="start" contained sharp>
-  ${createTabsHtml()}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-<br>
-<syn-tab-group placement="start" contained dir="rtl">
-  ${createTabsHtml('rtl')}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-
-<br>
-<syn-tab-group placement="start" contained sharp dir="rtl">
-  ${createTabsHtml('rtl')}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
   `,
 };
 
@@ -157,35 +135,14 @@ export const TabsOnEnd: Story = {
     ${createTabsHtml()}
     ${createTabPanelsHtml()}
   </syn-tab-group>
-  <br>
-
-<syn-tab-group placement="end" contained>
-  ${createTabsHtml()}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-<br>
-<syn-tab-group placement="end" contained dir="rtl">
-  ${createTabsHtml('rtl')}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-<br>
-<syn-tab-group placement="end" contained sharp>
-  ${createTabsHtml()}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-<br>
-<syn-tab-group placement="end" contained sharp dir="rtl">
-  ${createTabsHtml('rtl')}
-  ${createTabPanelsHtml()}
-</syn-tab-group>
-  `,
+`,
 };
 
 export const ClosableTabs: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('tab-group', 'end'),
+        story: generateStoryDescription('tab-group', 'closable'),
       },
     },
   },
@@ -240,7 +197,7 @@ export const ScrollingTabs: Story = {
     },
   },
   render: () => html`
-      <syn-tab-group>
+    <syn-tab-group>
       <!-- Tabs -->
       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
       .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
@@ -250,43 +207,7 @@ export const ScrollingTabs: Story = {
       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
       .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
     }
-  </syn-tab-group>
-  <br>
-    <syn-tab-group dir="rtl">
-      <!-- Tabs -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
-    }
-
-      <!-- Tab Panels -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
-    }
-  </syn-tab-group>
-  <br>
-  <syn-tab-group contained>
-      <!-- Tabs -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
-    }
-
-      <!-- Tab Panels -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
-    }
-  </syn-tab-group>
-  <br>
-  <syn-tab-group contained dir="rtl">
-      <!-- Tabs -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
-    }
-
-      <!-- Tab Panels -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
-    }
-  </syn-tab-group>
+    </syn-tab-group>
   `,
 };
 
@@ -299,43 +220,42 @@ export const VisualHierarchy: Story = {
     },
   },
   render: () => html`
-    <h3>Default</h3>
+    <h3 class="body-medium">Default</h3>
     <syn-tab-group>
       ${createReplaceContent()}
     </syn-tab-group>
-<br>
-    <syn-tab-group dir="rtl">
-      ${createReplaceContent()}
-    </syn-tab-group>
-    <br>
-    <h3>Contained</h3>
+
+    <h3 class="body-medium">Contained</h3>
     <syn-tab-group contained>
       ${createReplaceContent()}
     </syn-tab-group>
-    <br>
-    <syn-tab-group dir="rtl" contained>
-      ${createReplaceContent()}
-    </syn-tab-group>
-    <br>
-    <h3>sharp</h3>
+
+    <h3 class="body-medium">Sharp</h3>
     <syn-tab-group contained sharp>
      ${createReplaceContent()}
     </syn-tab-group>
-    <br>
-    <syn-tab-group dir="rtl" contained sharp>
-      ${createReplaceContent()}
-    </syn-tab-group>
-    <br>
+
     <style>
-      .synergy-replace{
+      .synergy-replace {
         border: 1px dashed #9747FF;
         border-radius: var(--syn-border-radius-small);
         color: #9747FF;
         font: var(--syn-body-small-bold);
-        height: var(--syn-spacing-2x-large);
+        height: var(--syn-spacing-x-large);
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      .body-medium:first-of-type {
+        margin-top: 0;
+      }
+
+      .body-medium {
+        font: var(--syn-body-medium-bold);
+        color: var(--syn-color-neutral-1000);
+        margin-top: var(--syn-spacing-2x-large);
+        margin-bottom: var(--syn-spacing-large);
       }
     </style>
   `,
@@ -343,13 +263,20 @@ export const VisualHierarchy: Story = {
 
 export const ManualActivation: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('tab-group', 'manuel'),
       },
     },
   },
-  render: () => html`
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const elm = canvasElement.querySelector<SynTab>('syn-tab[panel="general"]');
+    elm?.focus();
+  },
+  render: () => html` 
     <syn-tab-group activation="manual">
       ${createTabsHtml()}
       ${createTabPanelsHtml()}
@@ -365,6 +292,5 @@ export const Screenshot: Story = generateScreenshotStory({
   ClosableTabs,
   ScrollingTabs,
   VisualHierarchy,
-  ManualActivation,
-}, 300);
+}, 350);
 /* eslint-enable sort-keys */

@@ -116,9 +116,8 @@ export const TabsOnStart: Story = {
   },
   render: () => html`
   <syn-tab-group placement="start">
-    ${createReplaceContent()}
-
-
+    ${createTabsHtml()}
+    ${createTabPanelsHtml()}
   </syn-tab-group>
   `,
 };
@@ -139,76 +138,42 @@ export const TabsOnEnd: Story = {
 `,
 };
 
-export const ClosableTabs: Story = {
+export const VisualHierarchy2: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('tab-group', 'closable'),
+        story: generateStoryDescription('tab-group', 'hierachy'),
       },
     },
   },
   render: () => html`
-    <syn-tab-group class="tabs-closable">
-      <!-- Tabs -->
-      ${[
-      { content: 'General', panel: 'general' },
-      { content: 'Closable 1', panel: 'closable-1', props: { closable: true } },
-      { content: 'Closable 2', panel: 'closable-2', props: { closable: true } },
-      { content: 'Closable 3', panel: 'closable-3', props: { closable: true } },
-    ]
-      .map(({ content, panel, props }) => createTabHtml(panel, content, props))
-    }
-
-      <!-- Tab Panels  -->
-      ${[
-      { content: 'general', name: 'general' },
-      { content: 'first closable', name: 'closable-1' },
-      { content: 'second closable', name: 'closable-2' },
-      { content: 'third closable', name: 'closable-3' },
-    ]
-      .map(({ content, name }) => createTabPanelHtml(name, `This is the ${content} tab panel.`))
-    }
-    </syn-tab-group>
-
-    <script type="module">
-      const tabGroup = document.querySelector('.tabs-closable');
-      tabGroup.addEventListener('syn-close', async event => {
-        const tab = event.target;
-        const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
-        
-        // Show the previous tab if the tab is currently active
-        if (tab.active) {
-          tabGroup.show(tab.previousElementSibling.panel);
-        }
-
-        // Remove the tab + panel
-        tab.remove();
-        panel.remove();
-      });
-    </script>
-  `,
-};
-
-export const ScrollingTabs: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('tab-group', 'scrolling'),
-      },
-    },
-  },
-  render: () => html`
+    <h3 class="body-medium">Default</h3>
     <syn-tab-group>
-      <!-- Tabs -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
-    }
-
-      <!-- Tab Panels -->
-      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-      .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
-    }
+      ${createReplaceContent()}
     </syn-tab-group>
+    <style>
+      .synergy-replace {
+        border: 1px dashed #9747FF;
+        border-radius: var(--syn-border-radius-small);
+        color: #9747FF;
+        font: var(--syn-body-small-bold);
+        height: var(--syn-spacing-x-large);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .body-medium:first-of-type {
+        margin-top: 0;
+      }
+
+      .body-medium {
+        font: var(--syn-body-medium-bold);
+        color: var(--syn-color-neutral-1000);
+        margin-top: var(--syn-spacing-2x-large);
+        margin-bottom: var(--syn-spacing-large);
+      }
+    </style>
   `,
 };
 
@@ -262,6 +227,81 @@ export const VisualHierarchy: Story = {
   `,
 };
 
+// export const ClosableTabs: Story = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('tab-group', 'closable'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//     <syn-tab-group class="tabs-closable">
+//       <!-- Tabs -->
+//       ${[
+//       { content: 'General', panel: 'general' },
+//       { content: 'Closable 1', panel: 'closable-1', props: { closable: true } },
+//       { content: 'Closable 2', panel: 'closable-2', props: { closable: true } },
+//       { content: 'Closable 3', panel: 'closable-3', props: { closable: true } },
+//     ]
+//       .map(({ content, panel, props }) => createTabHtml(panel, content, props))
+//     }
+
+//       <!-- Tab Panels  -->
+//       ${[
+//       { content: 'general', name: 'general' },
+//       { content: 'first closable', name: 'closable-1' },
+//       { content: 'second closable', name: 'closable-2' },
+//       { content: 'third closable', name: 'closable-3' },
+//     ]
+//       .map(({ content, name }) => createTabPanelHtml(name, `This is the ${content} tab panel.`))
+//     }
+//     </syn-tab-group>
+
+//     <script type="module">
+//       const tabGroup = document.querySelector('.tabs-closable');
+//       tabGroup.addEventListener('syn-close', async event => {
+//         const tab = event.target;
+//         const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
+        
+//         // Show the previous tab if the tab is currently active
+//         if (tab.active) {
+//           tabGroup.show(tab.previousElementSibling.panel);
+//         }
+
+//         // Remove the tab + panel
+//         tab.remove();
+//         panel.remove();
+//       });
+//     </script>
+//   `,
+// };
+
+// export const ScrollingTabs: Story = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('tab-group', 'scrolling'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//     <syn-tab-group>
+//       <!-- Tabs -->
+//       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+//       .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
+//     }
+
+//       <!-- Tab Panels -->
+//       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+//       .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
+//     }
+//     </syn-tab-group>
+//   `,
+// };
+
+
+
 export const ManualActivation: Story = {
   parameters: {
     chromatic: {
@@ -292,6 +332,7 @@ export const Screenshot: Story = generateScreenshotStory({
   TabsOnEnd,
   // ClosableTabs,
   // ScrollingTabs,
+  VisualHierarchy2,
   VisualHierarchy,
 }, {
   heightPx: 350,

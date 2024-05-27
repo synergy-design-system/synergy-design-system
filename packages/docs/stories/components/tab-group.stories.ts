@@ -295,7 +295,7 @@ export const Screenshot: Story = generateScreenshotStory({
 }, {
   heightPx: 350,
   additionalChromaticOptions: {
-    delay: 500,
+    delay: 10000,
   },
 });
 /* eslint-enable sort-keys */

@@ -40,6 +40,16 @@
           "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
           "type": "text"
         }
+      },
+      "contained": {
+        "title": {
+          "value": "Contained",
+          "type": "text"
+        },
+        "description": {
+          "value": "To give content more structure, you can use the property contained.",
+          "type": "text"
+        }
       }
     },
     "alert": {
@@ -215,7 +225,7 @@
         "title": {
           "value": "Breadcrumb Item",
           "type": "text"
-        }  
+        }
       }
     },
     "breadcrumb": {
@@ -391,7 +401,7 @@
         "title": {
           "value": "Card",
           "type": "text"
-        }  
+        }
       },
       "basic-card": {
         "description": {
@@ -614,6 +624,16 @@
         },
         "description": {
           "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "contained": {
+        "title": {
+          "value": "Contained",
+          "type": "text"
+        },
+        "description": {
+          "value": "To give content more structure, you can use the property contained.",
           "type": "text"
         }
       }

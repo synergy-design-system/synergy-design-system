@@ -42,10 +42,11 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Draws the card as a nested item.
-* Can be used when nesting multiple syn-cards to create hierarchy
+* Draws the card with sharp edges.
+* Can be used e.g.
+* when nesting multiple syn-cards to create hierarchy.
  */
-  'nested'?: SynCard['nested'];
+  'sharp'?: SynCard['sharp'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

@@ -53,15 +53,16 @@ export class SynCardComponent {
   }
 
   /**
-* Draws the card as a nested item.
-* Can be used when nesting multiple syn-cards to create hierarchy
+* Draws the card with sharp edges.
+* Can be used e.g.
+* when nesting multiple syn-cards to create hierarchy.
  */
   @Input()
-  set nested(v: SynCard['nested']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.nested = v));
+  set sharp(v: SynCard['sharp']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
   }
 
-  get nested() {
-    return this.nativeElement.nested;
+  get sharp() {
+    return this.nativeElement.sharp;
   }
 }

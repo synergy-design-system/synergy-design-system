@@ -271,6 +271,43 @@ If for some reason the old width of 400px are desired, the css property `--side-
 
 ---
 
+### `<syn-card>`
+
+#### ⚠️ Remove property `nested` in favor of `sharp`
+
+**Associated Ticket(s)**:
+
+- [#494](https://github.com/synergy-design-system/synergy-design-system/issues/494)
+
+**Reason**:
+
+The property `nested` leads to an incorrect context, because it implies that it can only be used, when nesting cards into each other. But rectangle cards can also be used without nesting.
+Therefore the property is replaced with the property `sharp`.
+
+**Migration Steps**:
+
+The deprecated property has to be mapped to the new `sharp` property in the following way:
+
+**Example (before)**:
+
+```html
+<syn-card>
+  <div slot="header">Header</div>
+  <syn-card nested>Nested content</syn-card>
+</syn-card>
+```
+
+**Example (after)**:
+
+```html
+<syn-card>
+  <div slot="header">Header</div>
+  <syn-card sharp>Nested content</syn-card>
+</syn-card>
+```
+
+---
+
 ### `@synergy-design-system/angular`
 
 #### ⚠️ Removed custom methods for element member methods.

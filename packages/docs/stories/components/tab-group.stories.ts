@@ -147,33 +147,10 @@ export const VisualHierarchy2: Story = {
     },
   },
   render: () => html`
-    <h3 class="body-medium">Default</h3>
     <syn-tab-group>
-      ${createReplaceContent()}
-    </syn-tab-group>
-    <style>
-      .synergy-replace {
-        border: 1px dashed #9747FF;
-        border-radius: var(--syn-border-radius-small);
-        color: #9747FF;
-        font: var(--syn-body-small-bold);
-        height: var(--syn-spacing-x-large);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .body-medium:first-of-type {
-        margin-top: 0;
-      }
-
-      .body-medium {
-        font: var(--syn-body-medium-bold);
-        color: var(--syn-color-neutral-1000);
-        margin-top: var(--syn-spacing-2x-large);
-        margin-bottom: var(--syn-spacing-large);
-      }
-    </style>
+    ${createTabsHtml()}
+    ${createTabPanelsHtml()}
+  </syn-tab-group>
   `,
 };
 

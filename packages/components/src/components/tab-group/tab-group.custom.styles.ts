@@ -49,18 +49,18 @@ export default css`
    * Panel
    */
   .tab-group--top ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-large) 0 ;
-  }
-
-  .tab-group--top.tab-group--contained ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-large);
+    --padding: var(--syn-spacing-large) 0;
   }
 
   .tab-group--start ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-large);
+    --padding: 0 var(--syn-spacing-large);
   }
 
   .tab-group--end ::slotted(syn-tab-panel) {
+    --padding: 0 var(--syn-spacing-large);
+  }
+
+  .tab-group--contained ::slotted(syn-tab-panel) {
     --padding: var(--syn-spacing-large);
   }
 

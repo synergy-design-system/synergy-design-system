@@ -91,8 +91,14 @@ export default css`
     width: 100%;
   }
 
+  /* Avoid moving of the text content by adding a transparent border to non-active tabs */
+  .tab--contained:not(.tab--active) {
+    border: var(--syn-border-width-small) solid transparent;
+  }
+
+
   /* Top */
-  .tab--top.tab--contained.tab--active {
+  .tab--top.tab--contained {
     border-bottom: none;
   }
 
@@ -102,10 +108,15 @@ export default css`
   }
 
   /* Start & End with rtl */
+  .tab--start.tab--contained,
+  .tab--end.tab--rtl.tab--contained {
+    border-left: var(--syn-border-width-small) solid transparent;
+    border-right: none;
+  }
+
   .tab--start.tab--contained.tab--active,
   .tab--end.tab--rtl.tab--contained.tab--active {
-    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
-    border-right: none;
+    border-left-color: var(--syn-color-neutral-300);
   }
 
   .tab--start.tab--contained.tab--active:not(.tab--sharp),
@@ -116,10 +127,15 @@ export default css`
   }
 
   /* End & Start with rtl */
+  .tab--end.tab--contained,
+  .tab--start.tab--rtl.tab--contained {
+    border-left: none;
+    border-right: var(--syn-border-width-small) solid transparent;
+  }
+
   .tab--end.tab--contained.tab--active,
   .tab--start.tab--rtl.tab--contained.tab--active {
-    border-left: none;
-    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    border-right-color: var(--syn-color-neutral-300);
   }
 
   .tab--end.tab--contained.tab--active:not(.tab--sharp),

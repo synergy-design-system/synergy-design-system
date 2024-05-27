@@ -292,5 +292,10 @@ export const Screenshot: Story = generateScreenshotStory({
   ClosableTabs,
   ScrollingTabs,
   VisualHierarchy,
-}, 350);
+}, {
+  heightPx: 350,
+  additionalChromaticOptions: {
+    delay: 500,
+  },
+});
 /* eslint-enable sort-keys */

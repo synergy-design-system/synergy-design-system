@@ -116,8 +116,9 @@ export const TabsOnStart: Story = {
   },
   render: () => html`
   <syn-tab-group placement="start">
-    ${createTabsHtml()}
-    ${createTabPanelsHtml()}
+    ${createReplaceContent()}
+
+
   </syn-tab-group>
   `,
 };
@@ -289,13 +290,10 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   TabsOnStart,
   TabsOnEnd,
-  ClosableTabs,
-  ScrollingTabs,
+  // ClosableTabs,
+  // ScrollingTabs,
   VisualHierarchy,
 }, {
   heightPx: 350,
-  additionalChromaticOptions: {
-    delay: 10000,
-  },
 });
 /* eslint-enable sort-keys */

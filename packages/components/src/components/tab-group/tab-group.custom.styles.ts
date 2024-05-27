@@ -60,10 +60,6 @@ export default css`
     --padding: 0 var(--syn-spacing-large);
   }
 
-  .tab-group--contained ::slotted(syn-tab-panel) {
-    --padding: var(--syn-spacing-large);
-  }
-
   /**
    * Contained styling
    */ 
@@ -72,6 +68,8 @@ export default css`
   }
 
   .tab-group--contained ::slotted(syn-tab-panel) {
+    --padding: var(--syn-spacing-large);
+
     background-color: var(--syn-color-neutral-0);
     border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
     border-radius: var(--syn-border-radius-medium);

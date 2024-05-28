@@ -307,11 +307,9 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   TabsOnStart,
   TabsOnEnd,
-  // ClosableTabs,
-  // ScrollingTabs,
-  VisualHierarchy2,
+  TabsOnEnd2,
   VisualHierarchy,
 }, {
-  heightPx: 350,
+  heightPx: 400,
 });
 /* eslint-enable sort-keys */

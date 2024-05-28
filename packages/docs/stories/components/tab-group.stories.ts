@@ -138,20 +138,20 @@ export const TabsOnEnd: Story = {
 `,
 };
 
-export const VisualHierarchy2: Story = {
+export const TabsOnEnd2: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('tab-group', 'hierachy'),
+        story: generateStoryDescription('tab-group', 'end'),
       },
     },
   },
   render: () => html`
-    <syn-tab-group>
+  <syn-tab-group placement="end">
     ${createTabsHtml()}
     ${createTabPanelsHtml()}
   </syn-tab-group>
-  `,
+`,
 };
 
 export const VisualHierarchy: Story = {

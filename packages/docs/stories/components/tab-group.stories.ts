@@ -138,69 +138,42 @@ export const TabsOnEnd: Story = {
 `,
 };
 
-export const TabsOnEnd2: Story = {
+export const ClosableTabs: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('tab-group', 'end'),
+        story: generateStoryDescription('tab-group', 'closable'),
       },
     },
   },
   render: () => html`
-  <syn-tab-group placement="end">
-    ${createTabsHtml()}
-    ${createTabPanelsHtml()}
-  </syn-tab-group>
-`,
-};
+    <syn-tab-group class="tabs-closable">
+      <syn-tab slot="nav" panel="closable-1" >General</syn-tab>
+      <syn-tab slot="nav" panel="closable-2" closable>Closable 1</syn-tab>
+      <syn-tab slot="nav" panel="closable-3" closable>Closable 2</syn-tab>
+      <syn-tab slot="nav" panel="closable-4" closable>Closable 3</syn-tab>
 
-export const VisualHierarchy: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('tab-group', 'hierachy'),
-      },
-    },
-  },
-  render: () => html`
-    <h3 class="body-medium">Default</h3>
-    <syn-tab-group>
-      ${createReplaceContent()}
+      <syn-tab-panel name="closable-1">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="closable-2">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="closable-3">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="closable-4">This is the tab panel.</syn-tab-panel>
     </syn-tab-group>
+    <script type="module">
+      const tabGroup = document.querySelector('.tabs-closable');
+      tabGroup.addEventListener('syn-close', async event => {
+        const tab = event.target;
+        const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
+        
+        // Show the previous tab if the tab is currently active
+        if (tab.active) {
+          tabGroup.show(tab.previousElementSibling.panel);
+        }
 
-    <h3 class="body-medium">Contained</h3>
-    <syn-tab-group contained>
-      ${createReplaceContent()}
-    </syn-tab-group>
-
-    <h3 class="body-medium">Sharp</h3>
-    <syn-tab-group contained sharp>
-     ${createReplaceContent()}
-    </syn-tab-group>
-
-    <style>
-      .synergy-replace {
-        border: 1px dashed #9747FF;
-        border-radius: var(--syn-border-radius-small);
-        color: #9747FF;
-        font: var(--syn-body-small-bold);
-        height: var(--syn-spacing-x-large);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .body-medium:first-of-type {
-        margin-top: 0;
-      }
-
-      .body-medium {
-        font: var(--syn-body-medium-bold);
-        color: var(--syn-color-neutral-1000);
-        margin-top: var(--syn-spacing-2x-large);
-        margin-bottom: var(--syn-spacing-large);
-      }
-    </style>
+        // Remove the tab + panel
+        tab.remove();
+        panel.remove();
+      });
+    </script>
   `,
 };
 
@@ -254,6 +227,57 @@ export const VisualHierarchy: Story = {
 //   `,
 // };
 
+export const ScrollingTabs: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'scrolling'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-tab-group>
+      <syn-tab slot="nav" panel="scroll-1">Tab 1</syn-tab>
+      <syn-tab slot="nav" panel="scroll-2">Tab 2</syn-tab>
+      <syn-tab slot="nav" panel="scroll-3">Tab 3</syn-tab>
+      <syn-tab slot="nav" panel="scroll-4">Tab 4</syn-tab>
+      <syn-tab slot="nav" panel="scroll-5">Tab 5</syn-tab>
+      <syn-tab slot="nav" panel="scroll-6">Tab 6</syn-tab>
+      <syn-tab slot="nav" panel="scroll-7">Tab 7</syn-tab>
+      <syn-tab slot="nav" panel="scroll-8">Tab 8</syn-tab>
+      <syn-tab slot="nav" panel="scroll-9">Tab 9</syn-tab>
+      <syn-tab slot="nav" panel="scroll-10">Tab 10</syn-tab>
+      <syn-tab slot="nav" panel="scroll-11">Tab 11</syn-tab>
+      <syn-tab slot="nav" panel="scroll-12">Tab 12</syn-tab>
+      <syn-tab slot="nav" panel="scroll-13">Tab 13</syn-tab>
+      <syn-tab slot="nav" panel="scroll-14">Tab 14</syn-tab>
+      <syn-tab slot="nav" panel="scroll-15">Tab 15</syn-tab>
+      <syn-tab slot="nav" panel="scroll-16">Tab 16</syn-tab>
+      <syn-tab slot="nav" panel="scroll-17">Tab 17</syn-tab>
+      <syn-tab slot="nav" panel="scroll-18">Tab 18</syn-tab>
+
+      <syn-tab-panel name="scroll-1">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-2">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-3">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-4">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-5">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-6">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-7">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-8">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-9">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-10">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-11">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-12">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-13">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-14">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-15">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-16">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-17">This is the tab panel.</syn-tab-panel>
+      <syn-tab-panel name="scroll-18">This is the tab panel.</syn-tab-panel>
+    </syn-tab-group>
+  `,
+};
+
 // export const ScrollingTabs: Story = {
 //   parameters: {
 //     docs: {
@@ -277,7 +301,174 @@ export const VisualHierarchy: Story = {
 //   `,
 // };
 
+export const VisualHierarchy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'hierachy'),
+      },
+    },
+  },
+  render: () => html`
+    <h3 class="body-medium">Default</h3>
+    <syn-tab-group>
+      <syn-tab slot="nav" panel="visual-1" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="visual-2" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="visual-3" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="visual-4" >Tab item</syn-tab>
+      <syn-tab-panel name="visual-1">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="visual-2">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="visual-3">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="visual-4">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+    </syn-tab-group>
 
+    <h3 class="body-medium">Contained</h3>
+    <syn-tab-group contained>
+      <syn-tab slot="nav" panel="contained-1" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="contained-2" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="contained-3" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="contained-4" >Tab item</syn-tab>
+      <syn-tab-panel name="contained-1">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="contained-2">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="contained-3">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="contained-4">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+    </syn-tab-group>
+
+    <h3 class="body-medium">Sharp</h3>
+    <syn-tab-group contained sharp>
+      <syn-tab slot="nav" panel="sharp-1" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="sharp-2" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="sharp-3" >Tab item</syn-tab>
+      <syn-tab slot="nav" panel="sharp-4" >Tab item</syn-tab>
+      <syn-tab-panel name="sharp-1">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="sharp-2">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="sharp-3">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+      <syn-tab-panel name="sharp-4">
+        <main class="synergy-replace">
+          Replace this slot
+        </main>
+      </syn-tab-panel>
+    </syn-tab-group>
+
+    <style>
+      .synergy-replace {
+        border: 1px dashed #9747FF;
+        border-radius: var(--syn-border-radius-small);
+        color: #9747FF;
+        font: var(--syn-body-small-bold);
+        height: var(--syn-spacing-x-large);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .body-medium:first-of-type {
+        margin-top: 0;
+      }
+
+      .body-medium {
+        font: var(--syn-body-medium-bold);
+        color: var(--syn-color-neutral-1000);
+        margin-top: var(--syn-spacing-2x-large);
+        margin-bottom: var(--syn-spacing-large);
+      }
+    </style>
+  `,
+};
+
+// export const VisualHierarchy: Story = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('tab-group', 'hierachy'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//     <h3 class="body-medium">Default</h3>
+//     <syn-tab-group>
+//       ${createReplaceContent()}
+//     </syn-tab-group>
+
+//     <h3 class="body-medium">Contained</h3>
+//     <syn-tab-group contained>
+//       ${createReplaceContent()}
+//     </syn-tab-group>
+
+//     <h3 class="body-medium">Sharp</h3>
+//     <syn-tab-group contained sharp>
+//      ${createReplaceContent()}
+//     </syn-tab-group>
+
+//     <style>
+//       .synergy-replace {
+//         border: 1px dashed #9747FF;
+//         border-radius: var(--syn-border-radius-small);
+//         color: #9747FF;
+//         font: var(--syn-body-small-bold);
+//         height: var(--syn-spacing-x-large);
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//       }
+
+//       .body-medium:first-of-type {
+//         margin-top: 0;
+//       }
+
+//       .body-medium {
+//         font: var(--syn-body-medium-bold);
+//         color: var(--syn-color-neutral-1000);
+//         margin-top: var(--syn-spacing-2x-large);
+//         margin-bottom: var(--syn-spacing-large);
+//       }
+//     </style>
+//   `,
+// };
 
 export const ManualActivation: Story = {
   parameters: {
@@ -307,9 +498,10 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   TabsOnStart,
   TabsOnEnd,
-  TabsOnEnd2,
+  ClosableTabs,
+  ScrollingTabs,
   VisualHierarchy,
 }, {
-  heightPx: 400,
+  heightPx: 350,
 });
 /* eslint-enable sort-keys */

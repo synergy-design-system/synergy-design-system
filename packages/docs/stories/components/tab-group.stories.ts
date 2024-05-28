@@ -106,6 +106,22 @@ export const Default = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
+// export const TabsOnStart: Story = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('tab-group', 'start'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//   <syn-tab-group placement="start">
+//     ${createTabsHtml()}
+//     ${createTabPanelsHtml()}
+//   </syn-tab-group>
+//   `,
+// };
+
 export const TabsOnStart: Story = {
   parameters: {
     docs: {
@@ -116,11 +132,34 @@ export const TabsOnStart: Story = {
   },
   render: () => html`
   <syn-tab-group placement="start">
-    ${createTabsHtml()}
-    ${createTabPanelsHtml()}
+    <syn-tab slot="nav" panel="start-1" >General</syn-tab>
+    <syn-tab slot="nav" panel="start-2" >Custom</syn-tab>
+    <syn-tab slot="nav" panel="start-3" >Advanced</syn-tab>
+    <syn-tab slot="nav" panel="start-4" disabled>Disabled</syn-tab>
+
+    <syn-tab-panel name="start-1">This is the general panel.</syn-tab-panel>
+    <syn-tab-panel name="start-2">This is the custom panel.</syn-tab-panel>
+    <syn-tab-panel name="start-3">This is the advanced panel.</syn-tab-panel>
+    <syn-tab-panel name="start-4">This is the disabled panel.</syn-tab-panel>
   </syn-tab-group>
   `,
 };
+
+// export const TabsOnEnd: Story = {
+//   parameters: {
+//     docs: {
+//       description: {
+//         story: generateStoryDescription('tab-group', 'end'),
+//       },
+//     },
+//   },
+//   render: () => html`
+//   <syn-tab-group placement="end">
+//     ${createTabsHtml()}
+//     ${createTabPanelsHtml()}
+//   </syn-tab-group>
+// `,
+// };
 
 export const TabsOnEnd: Story = {
   parameters: {
@@ -132,8 +171,15 @@ export const TabsOnEnd: Story = {
   },
   render: () => html`
   <syn-tab-group placement="end">
-    ${createTabsHtml()}
-    ${createTabPanelsHtml()}
+    <syn-tab slot="nav" panel="end-1" >General</syn-tab>
+    <syn-tab slot="nav" panel="end-2" >Custom</syn-tab>
+    <syn-tab slot="nav" panel="end-3" >Advanced</syn-tab>
+    <syn-tab slot="nav" panel="end-4" disabled>Disabled</syn-tab>
+
+    <syn-tab-panel name="end-1">This is the general panel.</syn-tab-panel>
+    <syn-tab-panel name="end-2">This is the custom panel.</syn-tab-panel>
+    <syn-tab-panel name="end-3">This is the advanced panel.</syn-tab-panel>
+    <syn-tab-panel name="end-4">This is the disabled panel.</syn-tab-panel>
   </syn-tab-group>
 `,
 };
@@ -158,22 +204,6 @@ export const ClosableTabs: Story = {
       <syn-tab-panel name="closable-3">This is the tab panel.</syn-tab-panel>
       <syn-tab-panel name="closable-4">This is the tab panel.</syn-tab-panel>
     </syn-tab-group>
-    <script type="module">
-      const tabGroup = document.querySelector('.tabs-closable');
-      tabGroup.addEventListener('syn-close', async event => {
-        const tab = event.target;
-        const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
-        
-        // Show the previous tab if the tab is currently active
-        if (tab.active) {
-          tabGroup.show(tab.previousElementSibling.panel);
-        }
-
-        // Remove the tab + panel
-        tab.remove();
-        panel.remove();
-      });
-    </script>
   `,
 };
 
@@ -502,6 +532,6 @@ export const Screenshot: Story = generateScreenshotStory({
   ScrollingTabs,
   VisualHierarchy,
 }, {
-  heightPx: 350,
+  heightPx: 720,
 });
 /* eslint-enable sort-keys */

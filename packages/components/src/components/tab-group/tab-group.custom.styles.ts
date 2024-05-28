@@ -98,8 +98,11 @@ export default css`
     border-start-end-radius: var(--syn-border-radius-none);
   }
 
-  /* Needed, otherwise the indicator is hidden under the background of the tab */
   .tab-group--contained .tab-group__indicator {
+    /* Remove the animation of the indicator */
+    transition: none;
+    
+    /* Needed, otherwise the indicator is hidden under the background of the tab */
     z-index: 1;
   }
 

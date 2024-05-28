@@ -29,6 +29,12 @@ export default css`
     }
   }
 
+  /* Stretch the tabs so they are aligned to each other vertically and the focus width stays the same  */
+  .tab--start,
+  .tab--end {
+    width: 100%;
+  }
+
 
   .tab:hover:not(.tab--disabled) {
     color: var(--syn-color-primary-700);
@@ -83,12 +89,6 @@ export default css`
 
     /* Is needed for the ::after to work correctly. Otherwise the line has not the width of the tab, but of the page itself */
     position: relative;
-  }
-
-  /* Stretch the tabs so they are aligned to each other vertically */
-  .tab--start.tab--contained,
-  .tab--end.tab--contained {
-    width: 100%;
   }
 
   /* Avoid moving of the text content by adding a transparent border to non-active tabs */

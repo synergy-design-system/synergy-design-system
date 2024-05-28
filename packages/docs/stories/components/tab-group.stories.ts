@@ -19,17 +19,17 @@ const { generateTemplate } = storybookTemplate('syn-tab-group');
 const createTab = (
   panel: string,
   content: string,
-  { disabled = false, closable = false } = {},
-) => `<syn-tab slot="nav" panel="${panel}" ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''}>${content}</syn-tab>`;
+  { active = false, closable = false, disabled = false } = {},
+) => `<syn-tab slot="nav" panel="${panel}" ${active ? 'active' : ''} ${disabled ? 'disabled' : ''} ${closable ? 'closable' : ''}>${content}</syn-tab>`;
 
 const createTabHtml = (
   panel: string,
   content: string,
-  { disabled = false, closable = false } = {},
-) => unsafeHTML(createTab(panel, content, { closable, disabled }));
+  { active = false, closable = false, disabled = false } = {},
+) => unsafeHTML(createTab(panel, content, { active, closable, disabled }));
 
 const createTabs = () => [
-  { panel: 'general' },
+  { panel: 'general', props: { active: true } },
   { panel: 'custom' },
   { panel: 'advanced' },
   { panel: 'disabled', props: { disabled: true } },
@@ -37,22 +37,23 @@ const createTabs = () => [
 
 const createTabsHtml = () => unsafeHTML(createTabs());
 
-const createTabPanel = (name: string, content: string) => `<syn-tab-panel name="${name}">${content}</syn-tab-panel>`;
+const createTabPanel = (name: string, content: string, active: boolean = false) => `<syn-tab-panel name="${name}" ${active ? 'active' : ''}>${content}</syn-tab-panel>`;
 
 const createTabPanelHtml = (
   name: string,
   content: string,
-) => unsafeHTML(createTabPanel(name, content));
+  active: boolean = false,
+) => unsafeHTML(createTabPanel(name, content, active));
 
 const createTabPanels = () => [
   'general',
   'custom',
   'advanced',
   'disabled',
-].map((name) => createTabPanel(name, `This is the ${name} tab panel.`)).join('\n');
+].map((name, index) => createTabPanel(name, `This is the ${name} tab panel.`, index === 0)).join('\n');
 
-const createReplaceTabPanels = (name: string) => html`
-<syn-tab-panel name="${name}">
+const createReplaceTabPanels = (name: string, active: boolean = false) => html`
+<syn-tab-panel name="${name}" ?active=${active}>
   <main class="synergy-replace">
     Replace this slot
   </main>
@@ -60,8 +61,8 @@ const createReplaceTabPanels = (name: string) => html`
 `;
 
 const createReplaceContent = () => html`
-  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map(name => createTabHtml(name, 'Tab item'))}
-  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map(name => createReplaceTabPanels(name))}
+  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map((name, index) => createTabHtml(name, 'Tab item', { active: index === 0 }))}
+  ${['tab-1', 'tab-2', 'tab-3', 'tab-4'].map((name, index) => createReplaceTabPanels(name, index === 0))}
 `;
 
 const createTabPanelsHtml = () => unsafeHTML(createTabPanels());
@@ -106,22 +107,6 @@ export const Default = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-// export const TabsOnStart: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab-group', 'start'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//   <syn-tab-group placement="start">
-//     ${createTabsHtml()}
-//     ${createTabPanelsHtml()}
-//   </syn-tab-group>
-//   `,
-// };
-
 export const TabsOnStart: Story = {
   parameters: {
     docs: {
@@ -132,34 +117,11 @@ export const TabsOnStart: Story = {
   },
   render: () => html`
   <syn-tab-group placement="start">
-    <syn-tab slot="nav" panel="start-1" >General</syn-tab>
-    <syn-tab slot="nav" panel="start-2" >Custom</syn-tab>
-    <syn-tab slot="nav" panel="start-3" >Advanced</syn-tab>
-    <syn-tab slot="nav" panel="start-4" disabled>Disabled</syn-tab>
-
-    <syn-tab-panel name="start-1">This is the general panel.</syn-tab-panel>
-    <syn-tab-panel name="start-2">This is the custom panel.</syn-tab-panel>
-    <syn-tab-panel name="start-3">This is the advanced panel.</syn-tab-panel>
-    <syn-tab-panel name="start-4">This is the disabled panel.</syn-tab-panel>
+    ${createTabsHtml()}
+    ${createTabPanelsHtml()}
   </syn-tab-group>
   `,
 };
-
-// export const TabsOnEnd: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab-group', 'end'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//   <syn-tab-group placement="end">
-//     ${createTabsHtml()}
-//     ${createTabPanelsHtml()}
-//   </syn-tab-group>
-// `,
-// };
 
 export const TabsOnEnd: Story = {
   parameters: {
@@ -171,15 +133,8 @@ export const TabsOnEnd: Story = {
   },
   render: () => html`
   <syn-tab-group placement="end">
-    <syn-tab slot="nav" panel="end-1" >General</syn-tab>
-    <syn-tab slot="nav" panel="end-2" >Custom</syn-tab>
-    <syn-tab slot="nav" panel="end-3" >Advanced</syn-tab>
-    <syn-tab slot="nav" panel="end-4" disabled>Disabled</syn-tab>
-
-    <syn-tab-panel name="end-1">This is the general panel.</syn-tab-panel>
-    <syn-tab-panel name="end-2">This is the custom panel.</syn-tab-panel>
-    <syn-tab-panel name="end-3">This is the advanced panel.</syn-tab-panel>
-    <syn-tab-panel name="end-4">This is the disabled panel.</syn-tab-panel>
+    ${createTabsHtml()}
+    ${createTabPanelsHtml()}
   </syn-tab-group>
 `,
 };
@@ -194,68 +149,45 @@ export const ClosableTabs: Story = {
   },
   render: () => html`
     <syn-tab-group class="tabs-closable">
-      <syn-tab slot="nav" panel="closable-1" >General</syn-tab>
-      <syn-tab slot="nav" panel="closable-2" closable>Closable 1</syn-tab>
-      <syn-tab slot="nav" panel="closable-3" closable>Closable 2</syn-tab>
-      <syn-tab slot="nav" panel="closable-4" closable>Closable 3</syn-tab>
+      <!-- Tabs -->
+      ${[
+      { content: 'General', panel: 'general', props: { active: true } },
+      { content: 'Closable 1', panel: 'closable-1', props: { closable: true } },
+      { content: 'Closable 2', panel: 'closable-2', props: { closable: true } },
+      { content: 'Closable 3', panel: 'closable-3', props: { closable: true } },
+    ]
+      .map(({ content, panel, props }) => createTabHtml(panel, content, props))
+    }
 
-      <syn-tab-panel name="closable-1">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="closable-2">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="closable-3">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="closable-4">This is the tab panel.</syn-tab-panel>
+      <!-- Tab Panels  -->
+      ${[
+      { content: 'general', name: 'general' },
+      { content: 'first closable', name: 'closable-1' },
+      { content: 'second closable', name: 'closable-2' },
+      { content: 'third closable', name: 'closable-3' },
+    ]
+      .map(({ content, name }, index) => createTabPanelHtml(name, `This is the ${content} tab panel.`, index === 0))
+    }
     </syn-tab-group>
+
+    <script type="module">
+      const tabGroup = document.querySelector('.tabs-closable');
+      tabGroup.addEventListener('syn-close', async event => {
+        const tab = event.target;
+        const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
+        
+        // Show the previous tab if the tab is currently active
+        if (tab.active) {
+          tabGroup.show(tab.previousElementSibling.panel);
+        }
+
+        // Remove the tab + panel
+        tab.remove();
+        panel.remove();
+      });
+    </script>
   `,
 };
-
-// export const ClosableTabs: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab-group', 'closable'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//     <syn-tab-group class="tabs-closable">
-//       <!-- Tabs -->
-//       ${[
-//       { content: 'General', panel: 'general' },
-//       { content: 'Closable 1', panel: 'closable-1', props: { closable: true } },
-//       { content: 'Closable 2', panel: 'closable-2', props: { closable: true } },
-//       { content: 'Closable 3', panel: 'closable-3', props: { closable: true } },
-//     ]
-//       .map(({ content, panel, props }) => createTabHtml(panel, content, props))
-//     }
-
-//       <!-- Tab Panels  -->
-//       ${[
-//       { content: 'general', name: 'general' },
-//       { content: 'first closable', name: 'closable-1' },
-//       { content: 'second closable', name: 'closable-2' },
-//       { content: 'third closable', name: 'closable-3' },
-//     ]
-//       .map(({ content, name }) => createTabPanelHtml(name, `This is the ${content} tab panel.`))
-//     }
-//     </syn-tab-group>
-
-//     <script type="module">
-//       const tabGroup = document.querySelector('.tabs-closable');
-//       tabGroup.addEventListener('syn-close', async event => {
-//         const tab = event.target;
-//         const panel = tabGroup.querySelector(\`syn-tab-panel[name="\${tab.panel}"]\`);
-        
-//         // Show the previous tab if the tab is currently active
-//         if (tab.active) {
-//           tabGroup.show(tab.previousElementSibling.panel);
-//         }
-
-//         // Remove the tab + panel
-//         tab.remove();
-//         panel.remove();
-//       });
-//     </script>
-//   `,
-// };
 
 export const ScrollingTabs: Story = {
   parameters: {
@@ -267,69 +199,18 @@ export const ScrollingTabs: Story = {
   },
   render: () => html`
     <syn-tab-group>
-      <syn-tab slot="nav" panel="scroll-1">Tab 1</syn-tab>
-      <syn-tab slot="nav" panel="scroll-2">Tab 2</syn-tab>
-      <syn-tab slot="nav" panel="scroll-3">Tab 3</syn-tab>
-      <syn-tab slot="nav" panel="scroll-4">Tab 4</syn-tab>
-      <syn-tab slot="nav" panel="scroll-5">Tab 5</syn-tab>
-      <syn-tab slot="nav" panel="scroll-6">Tab 6</syn-tab>
-      <syn-tab slot="nav" panel="scroll-7">Tab 7</syn-tab>
-      <syn-tab slot="nav" panel="scroll-8">Tab 8</syn-tab>
-      <syn-tab slot="nav" panel="scroll-9">Tab 9</syn-tab>
-      <syn-tab slot="nav" panel="scroll-10">Tab 10</syn-tab>
-      <syn-tab slot="nav" panel="scroll-11">Tab 11</syn-tab>
-      <syn-tab slot="nav" panel="scroll-12">Tab 12</syn-tab>
-      <syn-tab slot="nav" panel="scroll-13">Tab 13</syn-tab>
-      <syn-tab slot="nav" panel="scroll-14">Tab 14</syn-tab>
-      <syn-tab slot="nav" panel="scroll-15">Tab 15</syn-tab>
-      <syn-tab slot="nav" panel="scroll-16">Tab 16</syn-tab>
-      <syn-tab slot="nav" panel="scroll-17">Tab 17</syn-tab>
-      <syn-tab slot="nav" panel="scroll-18">Tab 18</syn-tab>
+      <!-- Tabs -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map((count, index) => createTabHtml(`tab-${count}`, `Tab ${count}`, { active: index === 0 }))
+    }
 
-      <syn-tab-panel name="scroll-1">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-2">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-3">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-4">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-5">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-6">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-7">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-8">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-9">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-10">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-11">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-12">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-13">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-14">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-15">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-16">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-17">This is the tab panel.</syn-tab-panel>
-      <syn-tab-panel name="scroll-18">This is the tab panel.</syn-tab-panel>
+      <!-- Tab Panels -->
+      ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      .map((count, index) => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`, index === 0))
+    }
     </syn-tab-group>
   `,
 };
-
-// export const ScrollingTabs: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab-group', 'scrolling'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//     <syn-tab-group>
-//       <!-- Tabs -->
-//       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-//       .map(count => createTabHtml(`tab-${count}`, `Tab ${count}`))
-//     }
-
-//       <!-- Tab Panels -->
-//       ${['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-//       .map(count => createTabPanelHtml(`tab-${count}`, `Tab panel ${count}`))
-//     }
-//     </syn-tab-group>
-//   `,
-// };
 
 export const VisualHierarchy: Story = {
   parameters: {
@@ -342,86 +223,17 @@ export const VisualHierarchy: Story = {
   render: () => html`
     <h3 class="body-medium">Default</h3>
     <syn-tab-group>
-      <syn-tab slot="nav" panel="visual-1" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="visual-2" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="visual-3" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="visual-4" >Tab item</syn-tab>
-      <syn-tab-panel name="visual-1">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="visual-2">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="visual-3">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="visual-4">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
+      ${createReplaceContent()}
     </syn-tab-group>
 
     <h3 class="body-medium">Contained</h3>
     <syn-tab-group contained>
-      <syn-tab slot="nav" panel="contained-1" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="contained-2" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="contained-3" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="contained-4" >Tab item</syn-tab>
-      <syn-tab-panel name="contained-1">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="contained-2">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="contained-3">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="contained-4">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
+      ${createReplaceContent()}
     </syn-tab-group>
 
     <h3 class="body-medium">Sharp</h3>
     <syn-tab-group contained sharp>
-      <syn-tab slot="nav" panel="sharp-1" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="sharp-2" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="sharp-3" >Tab item</syn-tab>
-      <syn-tab slot="nav" panel="sharp-4" >Tab item</syn-tab>
-      <syn-tab-panel name="sharp-1">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="sharp-2">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="sharp-3">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
-      <syn-tab-panel name="sharp-4">
-        <main class="synergy-replace">
-          Replace this slot
-        </main>
-      </syn-tab-panel>
+     ${createReplaceContent()}
     </syn-tab-group>
 
     <style>
@@ -450,56 +262,6 @@ export const VisualHierarchy: Story = {
   `,
 };
 
-// export const VisualHierarchy: Story = {
-//   parameters: {
-//     docs: {
-//       description: {
-//         story: generateStoryDescription('tab-group', 'hierachy'),
-//       },
-//     },
-//   },
-//   render: () => html`
-//     <h3 class="body-medium">Default</h3>
-//     <syn-tab-group>
-//       ${createReplaceContent()}
-//     </syn-tab-group>
-
-//     <h3 class="body-medium">Contained</h3>
-//     <syn-tab-group contained>
-//       ${createReplaceContent()}
-//     </syn-tab-group>
-
-//     <h3 class="body-medium">Sharp</h3>
-//     <syn-tab-group contained sharp>
-//      ${createReplaceContent()}
-//     </syn-tab-group>
-
-//     <style>
-//       .synergy-replace {
-//         border: 1px dashed #9747FF;
-//         border-radius: var(--syn-border-radius-small);
-//         color: #9747FF;
-//         font: var(--syn-body-small-bold);
-//         height: var(--syn-spacing-x-large);
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//       }
-
-//       .body-medium:first-of-type {
-//         margin-top: 0;
-//       }
-
-//       .body-medium {
-//         font: var(--syn-body-medium-bold);
-//         color: var(--syn-color-neutral-1000);
-//         margin-top: var(--syn-spacing-2x-large);
-//         margin-bottom: var(--syn-spacing-large);
-//       }
-//     </style>
-//   `,
-// };
-
 export const ManualActivation: Story = {
   parameters: {
     chromatic: {
@@ -523,6 +285,11 @@ export const ManualActivation: Story = {
   `,
 };
 
+// For this screenshot story to work correctly, we needed to explicitly set the active prop on each
+// first tab and first tab-panel, although the tab-group sets the first tab and tab-panel active
+// by itself, if none is set active.
+// But this behavior is ONLY triggered, if the tab-group is visible (IntersectionObserver is used).
+// Since the screenshot story is too large, some tab-groups are not part of the visible viewport.
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -532,6 +299,6 @@ export const Screenshot: Story = generateScreenshotStory({
   ScrollingTabs,
   VisualHierarchy,
 }, {
-  heightPx: 720,
+  heightPx: 320,
 });
 /* eslint-enable sort-keys */

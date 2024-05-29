@@ -318,6 +318,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Sizes,
   LinkButtons,
   SettingACustomWidth,
+  IconOnly,
   PrefixAndSuffixIcons,
   Caret,
   Loading,

@@ -211,10 +211,6 @@ const createFooter = () => html`
   <!-- footer -->
   <footer class="synergy-demo-footer">
     <nav>
-      <a href="https://www.sick.com/de/en/impressum/w/imprint/" target="_blank">${getTranslation('appShell.footer.imprint')}</a>
-      <a href="https://www.sick.com/de/en/nutzungsbedingungen/w/terms-of-use/" target="_blank">${getTranslation('appShell.footer.conditions')}</a>
-      <a href="https://www.sick.com/de/en/w/terms-of-use" target="_blank">${getTranslation('appShell.footer.terms')}</a>
-      <a href="https://www.sick.com/de/en/w/dataprotection" target="_blank">${getTranslation('appShell.footer.privacy')}</a>
       <strong>${getTranslation('appShell.footer.copyright')}</strong>
     </nav>
   </footer>

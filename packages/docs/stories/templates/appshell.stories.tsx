@@ -45,7 +45,7 @@ const createSharedStyles = () => html`
 
     .synergy-demo-content-inner {
       display: flex;
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       flex-direction: column;
     }
 
@@ -60,12 +60,14 @@ const createSharedStyles = () => html`
       font: var(--syn-body-small-bold);
       justify-content: center;
       margin: var(--syn-spacing-2x-large) var(--syn-spacing-2x-large) 0;
+      padding: 0 var(--syn-spacing-small);
     }
 
     .synergy-demo-main h1 {
       color: var(--syn-typography-color-text);
       font: var(--syn-heading-large);
       margin: 0;
+      text-align: center;
     }
 
     .synergy-demo-footer > nav {

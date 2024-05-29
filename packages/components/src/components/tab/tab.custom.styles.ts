@@ -84,8 +84,8 @@ export default css`
    * Contained style
    */
   .tab--contained.tab--active {
-    background-color: var(--syn-color-neutral-0);
-    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    background-color: var(--syn-panel-background-color);
+    border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
 
     /* Is needed for the ::after to work correctly. Otherwise the line has not the width of the tab, but of the page itself */
     position: relative;
@@ -93,7 +93,7 @@ export default css`
 
   /* Avoid moving of the text content by adding a transparent border to non-active tabs */
   .tab--contained:not(.tab--active) {
-    border: var(--syn-border-width-small) solid transparent;
+    border: var(--syn-panel-border-width) solid transparent;
   }
 
 
@@ -110,13 +110,13 @@ export default css`
   /* Start & End with rtl */
   .tab--start.tab--contained,
   .tab--end.tab--rtl.tab--contained {
-    border-left: var(--syn-border-width-small) solid transparent;
+    border-left: var(--syn-panel-border-width) solid transparent;
     border-right: none;
   }
 
   .tab--start.tab--contained.tab--active,
   .tab--end.tab--rtl.tab--contained.tab--active {
-    border-left-color: var(--syn-color-neutral-300);
+    border-left-color: var(--syn-panel-border-color);
   }
 
   .tab--start.tab--contained.tab--active:not(.tab--sharp),
@@ -130,12 +130,12 @@ export default css`
   .tab--end.tab--contained,
   .tab--start.tab--rtl.tab--contained {
     border-left: none;
-    border-right: var(--syn-border-width-small) solid transparent;
+    border-right: var(--syn-panel-border-width) solid transparent;
   }
 
   .tab--end.tab--contained.tab--active,
   .tab--start.tab--rtl.tab--contained.tab--active {
-    border-right-color: var(--syn-color-neutral-300);
+    border-right-color: var(--syn-panel-border-color);
   }
 
   .tab--end.tab--contained.tab--active:not(.tab--sharp),
@@ -148,7 +148,7 @@ export default css`
 
   /* This is needed to hide the part of the tab panel border of an activated contained tab */
   .tab--contained.tab--active::after {
-    background-color: var(--syn-color-neutral-0);
+    background-color: var(--syn-panel-background-color);
     content: '';
     display: block;
     position: absolute;
@@ -156,8 +156,8 @@ export default css`
   }
 
   .tab--top.tab--contained.tab--active::after {
-    bottom: calc(var(--syn-spacing-4x-small) * -1);
-    height: var(--syn-spacing-4x-small);
+    bottom: calc(var(--syn-panel-border-width) * -1);
+    height: var(--syn-panel-border-width);
     left: 0;
     width: 100%;
   }
@@ -166,15 +166,15 @@ export default css`
   .tab--end.tab--rtl.tab--contained.tab--active::after {
     height: 100%;
     left: unset;
-    right: calc(var(--syn-spacing-4x-small) * -1);
-    width: var(--syn-spacing-4x-small);
+    right: calc(var(--syn-panel-border-width) * -1);
+    width: var(--syn-panel-border-width);
   }
 
   .tab--end.tab--contained.tab--active::after,
   .tab--start.tab--rtl.tab--contained.tab--active::after {
     height: 100%;
-    left: calc(var(--syn-spacing-4x-small) * -1);
+    left: calc(var(--syn-panel-border-width) * -1);
     right: unset;
-    width: var(--syn-spacing-4x-small);
+    width: var(--syn-panel-border-width);
   }
 `;

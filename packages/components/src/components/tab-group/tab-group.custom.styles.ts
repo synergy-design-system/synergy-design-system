@@ -12,11 +12,11 @@ export default css`
   /* we need to augment the size of the height of the tab-group__nav to make the focus outline and the hiding white border visible of the tab because of overflow-x value  */
   .tab-group--top .tab-group__body {
     position: relative;
-    top: calc(-1 * var(--syn-spacing-4x-small));
+    top: calc(-1 * var(--syn-panel-border-width));
   }
 
   .tab-group--top .tab-group__nav {
-    padding: var(--syn-spacing-4x-small) 0;
+    padding: 0 0 var(--syn-panel-border-width) 0;
   }
 
   /**
@@ -70,8 +70,8 @@ export default css`
   .tab-group--contained ::slotted(syn-tab-panel) {
     --padding: var(--syn-spacing-large);
 
-    background-color: var(--syn-color-neutral-0);
-    border: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+    background-color: var(--syn-panel-background-color);
+    border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
     border-radius: var(--syn-border-radius-medium);
   }
 
@@ -123,7 +123,7 @@ export default css`
 
   .tab-group__scroll-button {
     /* we need to move the scroll buttons to the top, to align the borders with the border of the tab-group--nav  */
-    bottom: var(--syn-spacing-4x-small);
+    bottom: var(--syn-panel-border-width);
     color: var(--syn-color-neutral-950);
     font-size: var(--syn-font-size-medium);
     width: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));

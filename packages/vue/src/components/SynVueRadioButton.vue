@@ -70,6 +70,11 @@ const props = defineProps<{
 this attribute can typically be omitted.
  */
   'size'?: SynRadioButton['size'];
+
+  /**
+* Draws a pill-style radio button with rounded edges.
+ */
+  'pill'?: SynRadioButton['pill'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

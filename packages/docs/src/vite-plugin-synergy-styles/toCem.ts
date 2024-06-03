@@ -4,7 +4,7 @@ import type { Structure, StyleModule, Tag } from './types.js';
 const getTypesAsArray = (tag: Tag): string[] => tag.type
   .split('|')
   .map(t => t.trim())
-  .map(t => `'${tag.name}-${t}'`);
+  .map(t => `'${tag.name}--${t}'`);
 
 /**
  * The tag to get the type for

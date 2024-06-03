@@ -77,13 +77,15 @@ import "@synergy-design-system/styles/typography.css";
 #### Usage
 
 ```html
-<link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
+<link
+  rel="stylesheet"
+  href="/node_modules/@synergy-design-system/styles/dist/typography.css"
+/>
 ```
 
 ```javascript
 import "@synergy-design-system/styles/typography.css";
 ```
-
 
 #### Submodules
 

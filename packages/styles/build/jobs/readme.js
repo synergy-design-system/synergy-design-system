@@ -27,7 +27,12 @@ const createMarkDownFromStructure = (structure) => Object
   .map(([category, modules], index) => ({
     heading: `### 3.${index + 1} - ${category}`,
     imports: [
-      `<link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/${category}.css" />`,
+      `
+<link
+  rel="stylesheet"
+  href="/node_modules/@synergy-design-system/styles/dist/${category}.css"
+/>    
+      `.trim(),
       `import "@synergy-design-system/styles/${category}.css";`,
     ],
     modules: modules.map((module) => `- ${module}`),
@@ -49,7 +54,7 @@ ${modules.length > 0 ? `
 #### Submodules
 
 ${modules.join('\n')}
-` : ''}
+`.trimStart() : ''}
 `).join('\n---\n');
 
 const createStructure = (fileNameList) => fileNameList

@@ -54,6 +54,18 @@ export class SynAccordionComponent {
   }
 
   /**
+* Draws the accordion and the slotted `<syn-details>` as contained elements.
+ */
+  @Input()
+  set contained(v: SynAccordion['contained']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  }
+
+  get contained() {
+    return this.nativeElement.contained;
+  }
+
+  /**
 * The size that should be applied to all slotted `<syn-details>` elements
  */
   @Input()
@@ -68,6 +80,11 @@ export class SynAccordionComponent {
   @Input()
   callHandleSizeChange(...args: Parameters<SynAccordion['handleSizeChange']>) {
     return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSizeChange(...args));
+  }
+
+  @Input()
+  callHandleContainedChange(...args: Parameters<SynAccordion['handleContainedChange']>) {
+    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleContainedChange(...args));
   }
 
   @Input()

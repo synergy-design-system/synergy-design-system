@@ -26,10 +26,12 @@ const nativeElement = ref<SynAccordion>();
 
 // Map methods
 const callHandleSizeChange = (...args: Parameters<SynAccordion['handleSizeChange']>) => nativeElement.value?.handleSizeChange(...args);
+const callHandleContainedChange = (...args: Parameters<SynAccordion['handleContainedChange']>) => nativeElement.value?.handleContainedChange(...args);
 const callHandleSlotChange = (...args: Parameters<SynAccordion['handleSlotChange']>) => nativeElement.value?.handleSlotChange(...args);
 
 defineExpose({
   callHandleSizeChange,
+  callHandleContainedChange,
   callHandleSlotChange,
   nativeElement,
 });
@@ -40,6 +42,11 @@ const props = defineProps<{
 * Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
  */
   'closeOthers'?: SynAccordion['closeOthers'];
+
+  /**
+* Draws the accordion and the slotted `<syn-details>` as contained elements.
+ */
+  'contained'?: SynAccordion['contained'];
 
   /**
 * The size that should be applied to all slotted `<syn-details>` elements

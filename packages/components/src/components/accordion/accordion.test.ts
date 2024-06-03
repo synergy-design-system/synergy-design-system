@@ -133,4 +133,74 @@ describe('<syn-accordion>', () => {
       });
     });
   });
+
+  describe('when setting the contained property', () => {
+    it('should not add the className "accordion--contained" when contained is set to "false"', async () => {
+      const el = await fixture<SynAccordion>(html`
+        <syn-accordion>
+          <syn-details summary="Item 1">Item 1 Content</syn-details>
+          <syn-details summary="Item 2">Item 2 Content</syn-details>
+        </syn-accordion>
+      `);
+      const accordion = el.shadowRoot?.querySelector('.accordion');
+      expect(accordion).to.not.have.class('accordion--contained');
+    });
+
+    it('should not add the className "details--contained" when contained is set to "false"', async () => {
+      const el = await fixture<SynAccordion>(html`
+        <syn-accordion contained>
+          <syn-details summary="Item 1">Item 1 Content</syn-details>
+          <syn-details summary="Item 2">Item 2 Content</syn-details>
+        </syn-accordion>
+      `);
+      const accordion = el.shadowRoot?.querySelector('.accordion');
+      expect(accordion).to.have.class('accordion--contained');
+    });
+
+    it('should update the slotted syn-detail items contained prop when the contained prop of the syn-accordion is changed', async () => {
+      const accordion = await fixture<SynAccordion>(html`
+        <syn-accordion>
+          <syn-details summary="Item 1">Item 1 Content</syn-details>
+          <syn-details summary="Item 2">Item 2 Content</syn-details>
+        </syn-accordion>
+      `);
+
+      expect(accordion.contained).to.be.false;
+      accordion.detailsInDefaultSlot.forEach((detail) => {
+        expect(detail.contained).to.be.false;
+      });
+
+      accordion.contained = true;
+
+      await accordion.updateComplete;
+
+      expect(accordion.contained).to.be.true;
+      accordion.detailsInDefaultSlot.forEach((detail) => {
+        expect(detail.contained).to.be.true;
+      });
+    });
+
+    it('should override the contained prop for all syn-details that are slotted after initial render', async () => {
+      const accordion = await fixture<SynAccordion>(html`
+        <syn-accordion>
+          <syn-details summary="Item 1">Item 1 Content</syn-details>
+          <syn-details summary="Item 2">Item 2 Content</syn-details>
+        </syn-accordion>
+      `);
+
+      accordion.detailsInDefaultSlot.forEach((detail) => {
+        expect(detail.contained).to.be.false;
+      });
+
+      const newDetails = document.createElement('syn-details');
+      newDetails.contained = true;
+
+      accordion.appendChild(newDetails);
+      await accordion.updateComplete;
+
+      accordion.detailsInDefaultSlot.forEach((detail) => {
+        expect(detail.contained).to.be.false;
+      });
+    });
+  });
 });

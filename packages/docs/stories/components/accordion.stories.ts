@@ -65,6 +65,29 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
+export const Contained: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('accordion', 'contained'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-accordion contained>
+      <syn-details summary="First" open>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+      <syn-details summary="Second">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+      <syn-details summary="Third">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </syn-details>
+    </syn-accordion>
+  `,
+};
+
 export const GroupingDetails: Story = {
   parameters: {
     docs: {
@@ -154,6 +177,7 @@ export const Sizes: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  Contained,
   GroupingDetails,
   Disabled,
   Sizes,

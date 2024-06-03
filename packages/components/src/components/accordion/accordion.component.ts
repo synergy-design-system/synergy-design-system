@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { property, queryAssignedElements } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -31,6 +32,9 @@ export default class SynAccordion extends SynergyElement {
    */
   @property({ attribute: 'close-others', type: Boolean }) closeOthers = false;
 
+  /** Draws the accordion and the slotted `<syn-details>` as contained elements. */
+  @property({ reflect: true, type: Boolean }) contained = false;
+
   /** The size that should be applied to all slotted `<syn-details>` elements */
   @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
 
@@ -40,9 +44,21 @@ export default class SynAccordion extends SynergyElement {
     });
   }
 
+  private adjustDetailsContained() {
+    this.detailsInDefaultSlot.forEach(detail => {
+      // eslint-disable-next-line no-param-reassign
+      detail.contained = this.contained;
+    });
+  }
+
   @watch('size', { waitUntilFirstUpdate: true })
   handleSizeChange() {
     this.adjustDetailsSize();
+  }
+
+  @watch('contained', { waitUntilFirstUpdate: true })
+  handleContainedChange() {
+    this.adjustDetailsContained();
   }
 
   connectedCallback() {
@@ -57,6 +73,7 @@ export default class SynAccordion extends SynergyElement {
 
   handleSlotChange() {
     this.adjustDetailsSize();
+    this.adjustDetailsContained();
   }
 
   private handleAccordionShow = (event: Event) => {
@@ -78,7 +95,12 @@ export default class SynAccordion extends SynergyElement {
   render() {
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
-      <div part="base">
+      <div 
+        part="base"
+        class=${classMap({
+          accordion: true,
+          'accordion--contained': this.contained,
+        })}>
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;

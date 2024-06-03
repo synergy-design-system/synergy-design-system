@@ -4,4 +4,12 @@ export default css`
   :host {
     display: block;
   }
+
+  .accordion--contained ::slotted(syn-details) {
+    margin-bottom: var(--syn-spacing-2x-small);
+  }
+
+  .accordion--contained ::slotted(syn-details:last-of-type){
+    margin-bottom: 0;
+  }
 `;

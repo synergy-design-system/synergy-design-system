@@ -253,7 +253,7 @@ export default css`
   }
 
   .nav-item--horizontal:hover .current-indicator--visible,
-  .nav-item--horizontal:focus .current-indicator--visible {
+  .nav-item--horizontal:focus-visible .current-indicator--visible {
     left: calc(var(--syn-spacing-x-small) * -1);
     right: calc(var(--syn-spacing-x-small) * -1);
   }

@@ -2,6 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .details {
+    background-color: unset;
     border-color: var(--syn-color-neutral-400);
     border-radius: var(--syn-border-radius-none);
     border-width: 0 0 var(--syn-border-width-small);
@@ -110,5 +111,23 @@ export default css`
   .details:not(.details--disabled) .details__header:hover .details__summary,
   .details:not(.details--disabled) .details__header:hover .details__summary-icon {
     color: var(--syn-color-primary-700);
+  }
+
+  /**
+   *  Contained style
+   */
+  .details--contained {
+    background-color: var(--syn-panel-background-color);
+    border-color: var(--syn-panel-border-color);
+    border-radius: var(--syn-border-radius-medium);
+    border-width: var(--syn-panel-border-width);
+  }
+
+  .details--contained .details__header {
+    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large);
+  }
+
+  .details--contained .details__content {
+    padding: 0 var(--syn-spacing-large) var(--syn-spacing-medium-large);
   }
 `;

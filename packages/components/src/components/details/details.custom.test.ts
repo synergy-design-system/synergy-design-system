@@ -18,4 +18,18 @@ describe('<syn-details>', () => {
       expect(el.shadowRoot!.querySelector('.details')!.classList.contains(`details--size-${size}`)).to.be.true;
     });
   });
+
+  describe('contained', () => {
+    it('should not add the className "details--contained" when contained is set to "false"', async () => {
+      const el = await fixture<SynDetails>(html`<syn-details></syn-details>`);
+      const details = el.shadowRoot?.querySelector('.details');
+      expect(details).to.not.have.class('details--contained');
+    });
+
+    it('should not add the className "details--contained" when contained is set to "false"', async () => {
+      const el = await fixture<SynDetails>(html`<syn-details contained></syn-details>`);
+      const details = el.shadowRoot?.querySelector('.details');
+      expect(details).to.have.class('details--contained');
+    });
+  });
 });

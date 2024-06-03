@@ -102,6 +102,18 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
   }
 
   /**
+* Draws the details as contained element.
+ */
+  @Input()
+  set contained(v: SynDetails['contained']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  }
+
+  get contained() {
+    return this.nativeElement.contained;
+  }
+
+  /**
 * The details's size.
  */
   @Input()

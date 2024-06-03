@@ -81,6 +81,11 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
   'disabled'?: SynDetails['disabled'];
 
   /**
+* Draws the details as contained element.
+ */
+  'contained'?: SynDetails['contained'];
+
+  /**
 * The details's size.
  */
   'size'?: SynDetails['size'];

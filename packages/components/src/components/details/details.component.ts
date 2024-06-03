@@ -74,6 +74,9 @@ export default class SynDetails extends SynergyElement {
   /** Disables the details so it can't be toggled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Draws the details as contained element. */
+  @property({ type: Boolean, reflect: true }) contained = false;
+
   /** The details's size. */
   @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
 
@@ -206,6 +209,7 @@ export default class SynDetails extends SynergyElement {
           'details--size-large': this.size === 'large',
           'details--open': this.open,
           'details--disabled': this.disabled,
+          'details--contained': this.contained,
         })}
       >
         <summary

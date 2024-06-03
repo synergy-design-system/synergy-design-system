@@ -47,6 +47,22 @@ const transformComponent = (path, originalContent) => {
     `,
   );
 
+  // Add support for contained attribute
+  content = addSectionAfter(
+    content,
+    '@property({ type: Boolean, reflect: true }) disabled = false;',
+    `
+  /** Draws the details as contained element. */
+  @property({ type: Boolean, reflect: true }) contained = false;
+    `,
+  );
+
+  content = addSectionAfter(
+    content,
+    '\'details--disabled\': this.disabled,',
+    '          \'details--contained\': this.contained,',
+  );
+
   return {
     content,
     path,

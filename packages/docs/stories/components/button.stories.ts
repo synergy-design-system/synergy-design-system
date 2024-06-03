@@ -152,37 +152,37 @@ export const IconOnly: Story = {
   },
   render: () => html`
     <syn-button size="small" variant="filled">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="small">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="small" variant="text">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
 
     <br> 
 
     <syn-button size="medium" variant="filled">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="medium">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="medium" variant="text">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
 
     <br> 
 
     <syn-button size="large" variant="filled">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="large">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
     <syn-button size="large" variant="text">
-      <syn-icon name="settings"></syn-icon>
+      <syn-icon name="settings" label="Settings"></syn-icon>
     </syn-button>
   <style>
     syn-button {

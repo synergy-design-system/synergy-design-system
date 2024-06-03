@@ -266,7 +266,7 @@ export default css`
   }
 
   .nav-item--vertical:hover .current-indicator--visible,
-  .nav-item--vertical:focus .current-indicator--visible {
+  .nav-item--vertical:focus-visible .current-indicator--visible {
     bottom: 0;
     top: 0;
   }

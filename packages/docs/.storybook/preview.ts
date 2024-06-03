@@ -1,5 +1,6 @@
 import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -70,6 +71,23 @@ const preview: Preview = {
         headingSelector: 'h2, h3',
       },
       source: { format: 'html' }
+    },
+    // Configures the viewports addon to make sure
+    // that we have a valid default viewport.
+    // When not setting this, the last active viewport will be used, which we do not want
+    viewport: {
+      defaultViewport: 'defaultViewPort',
+      viewports: {
+        ...MINIMAL_VIEWPORTS,
+        defaultViewPort: {
+          name: 'Default',
+          styles: {
+            width: '100%',
+            height: '100%',
+          },
+          type: 'desktop',
+        },
+      },
     },
   },
 };

@@ -123,11 +123,19 @@ export default css`
     border-width: var(--syn-panel-border-width);
   }
 
-  .details--contained .details__header {
+  .details--size-medium.details--contained .details__header {
     padding: var(--syn-spacing-medium-large) var(--syn-spacing-large);
   }
 
-  .details--contained .details__content {
+  .details--size-medium.details--contained .details__content {
     padding: 0 var(--syn-spacing-large) var(--syn-spacing-medium-large);
+  }
+
+  .details--size-large.details--contained .details__header {
+    padding: var(--syn-spacing-large);
+  }
+
+  .details--size-large.details--contained .details__content {
+    padding: 0 var(--syn-spacing-large) var(--syn-spacing-large);
   }
 `;

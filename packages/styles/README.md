@@ -92,6 +92,7 @@ import "@synergy-design-system/styles/typography.css";
 - body
 - heading
 - weight
+
 <!-- END INLINE COMMENT -->
 
 ---

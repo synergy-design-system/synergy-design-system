@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { globby } from 'globby';
+import * as prettier from 'prettier';
 import { job } from '../shared.js';
 
 /**
@@ -14,7 +15,7 @@ const adjustReadme = async (markdown) => {
 
   const replacedContent = readme.replace(
     /<!-- BEGIN INLINE COMMENT -->[\s\S]*<!-- END INLINE COMMENT -->/,
-    `<!-- BEGIN INLINE COMMENT -->\n\n${markdown.trim()}\n<!-- END INLINE COMMENT -->`,
+    `<!-- BEGIN INLINE COMMENT -->\n\n${markdown}\n<!-- END INLINE COMMENT -->`,
   );
 
   return writeFile('./README.md', replacedContent, {
@@ -54,7 +55,7 @@ ${modules.length > 0 ? `
 #### Submodules
 
 ${modules.join('\n')}
-`.trimStart() : ''}
+` : ''}
 `).join('\n---\n');
 
 const createStructure = (fileNameList) => fileNameList
@@ -72,11 +73,20 @@ const createStructure = (fileNameList) => fileNameList
   }, {});
 
 /**
+ * Formats the given markdown using prettier
+ * @param {string} markdown The markdown to format
+ * @returns {Promise<string>}
+ */
+const prettify = async (markdown) => prettier.format(markdown, {
+  parser: 'markdown',
+});
+
+/**
  * Adjust the readme file with the new markdown from filesystem
  */
 export const runAdjustReadme = job('Recreating README.md', async () => {
   const moduleFileNames = await globby(['./dist/**/*.css', '!./dist/index.css']);
   const structure = createStructure(moduleFileNames);
-  const markdown = createMarkDownFromStructure(structure);
+  const markdown = await prettify(createMarkDownFromStructure(structure));
   return adjustReadme(markdown);
 });

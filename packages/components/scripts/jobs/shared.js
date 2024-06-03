@@ -58,7 +58,7 @@ export const job = (label, action) => async (...args) => {
     await action(...args);
     spinner.succeed();
   } catch (err) {
-    spinner.fail(err);
+    spinner.fail(`${label}: ${err.toString()}`);
     process.exit(1);
   }
 };

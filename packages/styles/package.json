@@ -104,6 +104,7 @@
     "postcss-cli": "^11.0.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.0",
+    "prettier": "^3.2.5",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.5",
     "stylelint": "^16.5.0"

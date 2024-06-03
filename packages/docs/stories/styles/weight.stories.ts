@@ -10,8 +10,8 @@ import {
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
-const { args: defaultArgs, argTypes } = storybookDefaults('syn-body');
-const { overrideArgs } = storybookHelpers('syn-body');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-weight');
+const { overrideArgs } = storybookHelpers('syn-weight');
 
 const meta: Meta = {
   args: overrideArgs([
@@ -22,18 +22,18 @@ const meta: Meta = {
     },
   ], defaultArgs),
   argTypes,
-  component: 'syn-body',
+  component: 'syn-heading',
   parameters: {
     // @todo: Link to figma
     // design: generateFigmaPluginObject('15172-32035'),
     // @todo: Add description tokens
     // docs: {
     //   description: {
-    //     component: generateStoryDescription('body', 'default'),
+    //     component: generateStoryDescription('weight', 'default'),
     //   },
     // },
   },
-  title: 'Styles/syn-body',
+  title: 'Styles/syn-weight',
 };
 export default meta;
 

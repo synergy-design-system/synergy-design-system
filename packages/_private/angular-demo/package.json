@@ -24,12 +24,7 @@
     "@synergy-design-system/tokens": "workspace:*",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
-    "zone.js": "~0.14.5"
-  },
-  "dependenciesMeta": {
-    "@synergy-design-system/angular": {
-      "injected": true
-    }
+    "zone.js": "~0.14.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.2",

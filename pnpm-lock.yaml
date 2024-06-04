@@ -33,7 +33,7 @@ importers:
         version: 18.0.1(@angular/core@18.0.1)
       '@angular/core':
         specifier: ^18.0.1
-        version: 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+        version: 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       '@angular/forms':
         specifier: ^18.0.1
         version: 18.0.1(@angular/common@18.0.1)(@angular/core@18.0.1)(@angular/platform-browser@18.0.1)(rxjs@7.8.1)
@@ -48,7 +48,7 @@ importers:
         version: 18.0.1(@angular/common@18.0.1)(@angular/core@18.0.1)(@angular/platform-browser@18.0.1)(rxjs@7.8.1)
       '@synergy-design-system/angular':
         specifier: workspace:*
-        version: file:packages/angular/dist(@angular/core@18.0.1)(@angular/forms@18.0.1)(@synergy-design-system/components@packages+components)(@synergy-design-system/tokens@packages+tokens)
+        version: link:../../angular/dist
       '@synergy-design-system/assets':
         specifier: workspace:*
         version: link:../../assets
@@ -65,8 +65,8 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
       zone.js:
-        specifier: ~0.14.5
-        version: 0.14.5
+        specifier: ~0.14.6
+        version: 0.14.6
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^18.0.2
@@ -101,9 +101,6 @@ importers:
       typescript:
         specifier: ~5.4.5
         version: 5.4.5
-    dependenciesMeta:
-      '@synergy-design-system/angular':
-        injected: true
 
   packages/_private/e2e-demo-test:
     dependencies:
@@ -1007,7 +1004,7 @@ packages:
     peerDependencies:
       '@angular/core': 18.0.1
     dependencies:
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       tslib: 2.6.2
 
   /@angular/build@18.0.2(@angular/compiler-cli@18.0.1)(less@4.2.0)(postcss@8.4.38)(terser@5.31.0)(typescript@5.4.5):
@@ -1110,7 +1107,7 @@ packages:
       '@angular/core': 18.0.1
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       rxjs: 7.8.1
       tslib: 2.6.2
 
@@ -1145,19 +1142,8 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       tslib: 2.6.2
-
-  /@angular/core@18.0.1(rxjs@7.8.1)(zone.js@0.14.5):
-    resolution: {integrity: sha512-Db1livvugoLdLsWww5IqUS5v+yUN7/5Rj0trZv9BgxIuoNtoipfLqKHwZWpumH3yI5Ucu+UH9zZ1mlGyF0Kexw==}
-    engines: {node: ^18.13.0 || >=20.9.0}
-    peerDependencies:
-      rxjs: ^6.5.3 || ^7.4.0
-      zone.js: ~0.14.0
-    dependencies:
-      rxjs: 7.8.1
-      tslib: 2.6.2
-      zone.js: 0.14.5
 
   /@angular/core@18.0.1(rxjs@7.8.1)(zone.js@0.14.6):
     resolution: {integrity: sha512-Db1livvugoLdLsWww5IqUS5v+yUN7/5Rj0trZv9BgxIuoNtoipfLqKHwZWpumH3yI5Ucu+UH9zZ1mlGyF0Kexw==}
@@ -1169,7 +1155,6 @@ packages:
       rxjs: 7.8.1
       tslib: 2.6.2
       zone.js: 0.14.6
-    dev: true
 
   /@angular/forms@18.0.1(@angular/common@18.0.1)(@angular/core@18.0.1)(@angular/platform-browser@18.0.1)(rxjs@7.8.1):
     resolution: {integrity: sha512-j1nUzwnZHO/BRXK0joQbAV10JWxeRVKmPzIaDulY2o28Er1jVKyw2T8EwI+xSvBbAqyJyaAd+ysWUhm3FfH+GA==}
@@ -1181,7 +1166,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 18.0.1(@angular/core@18.0.1)(rxjs@7.8.1)
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       '@angular/platform-browser': 18.0.1(@angular/animations@18.0.1)(@angular/common@18.0.1)(@angular/core@18.0.1)
       rxjs: 7.8.1
       tslib: 2.6.2
@@ -1197,7 +1182,7 @@ packages:
     dependencies:
       '@angular/common': 18.0.1(@angular/core@18.0.1)(rxjs@7.8.1)
       '@angular/compiler': 18.0.1(@angular/core@18.0.1)
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       '@angular/platform-browser': 18.0.1(@angular/animations@18.0.1)(@angular/common@18.0.1)(@angular/core@18.0.1)
       tslib: 2.6.2
     dev: false
@@ -1215,7 +1200,7 @@ packages:
     dependencies:
       '@angular/animations': 18.0.1(@angular/core@18.0.1)
       '@angular/common': 18.0.1(@angular/core@18.0.1)(rxjs@7.8.1)
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       tslib: 2.6.2
 
   /@angular/router@18.0.1(@angular/common@18.0.1)(@angular/core@18.0.1)(@angular/platform-browser@18.0.1)(rxjs@7.8.1):
@@ -1228,7 +1213,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 18.0.1(@angular/core@18.0.1)(rxjs@7.8.1)
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
+      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.6)
       '@angular/platform-browser': 18.0.1(@angular/animations@18.0.1)(@angular/common@18.0.1)(@angular/core@18.0.1)
       rxjs: 7.8.1
       tslib: 2.6.2
@@ -18004,7 +17989,7 @@ packages:
       queue-tick: 1.0.1
       text-decoder: 1.1.0
     optionalDependencies:
-      bare-events: 2.3.1
+      bare-events: 2.2.2
     dev: true
     optional: true
 
@@ -19952,31 +19937,9 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
 
-  /zone.js@0.14.5:
-    resolution: {integrity: sha512-9XYWZzY6PhHOSdkYryNcMm7L8EK7a4q+GbTvxbIA2a9lMdRUpGuyaYvLDcg8D6bdn+JomSsbPcilVKg6SmUx6w==}
-    dependencies:
-      tslib: 2.6.2
-
   /zone.js@0.14.6:
     resolution: {integrity: sha512-vyRNFqofdaHVdWAy7v3Bzmn84a1JHWSjpuTZROT/uYn8I3p2cmo7Ro9twFmYRQDPhiYOV7QLk0hhY4JJQVqS6Q==}
-    dev: true
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-
-  file:packages/angular/dist(@angular/core@18.0.1)(@angular/forms@18.0.1)(@synergy-design-system/components@packages+components)(@synergy-design-system/tokens@packages+tokens):
-    resolution: {directory: packages/angular/dist, type: directory}
-    id: file:packages/angular/dist
-    name: '@synergy-design-system/angular'
-    peerDependencies:
-      '@angular/core': ^16.2.12 || ^17.0.0 || ^18.0.0
-      '@angular/forms': ^16.2.12 || ^17.0.0 || ^18.0.0
-      '@synergy-design-system/components': workspace:^
-      '@synergy-design-system/tokens': workspace:^
-    dependencies:
-      '@angular/core': 18.0.1(rxjs@7.8.1)(zone.js@0.14.5)
-      '@angular/forms': 18.0.1(@angular/common@18.0.1)(@angular/core@18.0.1)(@angular/platform-browser@18.0.1)(rxjs@7.8.1)
-      '@synergy-design-system/components': link:packages/components
-      '@synergy-design-system/tokens': link:packages/tokens
-    dev: false

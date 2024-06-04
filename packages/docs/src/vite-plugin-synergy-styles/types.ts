@@ -20,10 +20,17 @@ export type Config = {
   srcDir: string;
 };
 
+/**
+ * Enhanced declaration for internal usage
+ */
 export type StyleDeclaration = Declaration & {
   tagNameWithoutPrefix?: string;
 };
 
+/**
+ * Enhanced module for internal usage
+ * Represents a style (in the vain of a css style)
+ */
 export type StyleModule = Module & {
   declarations: StyleDeclaration[];
 };

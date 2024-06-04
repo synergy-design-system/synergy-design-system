@@ -12,6 +12,11 @@ import type { Structure, Tag } from './types.js';
  */
 const getDirName = (inputPath: string) => dirname(inputPath).split(sep).at(-1);
 
+/**
+ * Check if the result is valid
+ * @param result The result to check for
+ * @returns True if the result is valid, false otherwise
+ */
 const allowResult = (result: Partial<Block>) => {
   const { description, tags } = result;
   if (!description || !tags) {
@@ -20,6 +25,12 @@ const allowResult = (result: Partial<Block>) => {
   return tags.some(tag => tag.tag === 'variant');
 };
 
+/**
+ * Get a representation of data from the tags
+ * @param fileName The filename of the file
+ * @param tag The tag to get data from
+ * @returns Tag data
+ */
 const getDataFromTags = (fileName: string, tag: Spec): Tag => ({
   description: tag.description,
   fileName,

@@ -1,6 +1,11 @@
 import type { Attribute, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
 import type { Structure, StyleModule, Tag } from './types.js';
 
+/**
+ * Get the supported types as an array
+ * @param tag The tag to get the types for
+ * @returns Array of types for the tag
+ */
 const getTypesAsArray = (tag: Tag): string[] => tag.type
   .split('|')
   .map(t => t.trim())
@@ -50,6 +55,11 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
   };
 };
 
+/**
+ * Get the members section of a tag
+ * @param tag The tag to get the members for
+ * @returns ClassMember or null if the tag is not allowed
+ */
 const getMembersForTag = (tag: Tag): ClassMember | null => {
   // Skip if we don't have variants or if the tag is not dynamic
   if (!tagIsAllowedToBeIncluded(tag)) {

@@ -23,6 +23,9 @@ export default function vitePluginSynergyStyles(
 
   return {
     configureServer(server) {
+      // Make sure to hot reload when something in the srcdir changes
+      server.watcher.add(srcDir);
+
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.middlewares.use(endPoint, async (_, res) => {
         try {

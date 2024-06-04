@@ -26,6 +26,11 @@
     "tslib": "^2.6.2",
     "zone.js": "~0.14.5"
   },
+  "dependenciesMeta": {
+    "@synergy-design-system/angular": {
+      "injected": true
+    }
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.7",
     "@angular/cli": "^17.3.7",

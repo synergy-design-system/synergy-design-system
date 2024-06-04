@@ -24,14 +24,14 @@
   },
   "version": "1.26.1",
   "peerDependencies": {
-    "@angular/core": "^16.2.12 || ^17.0.0",
-    "@angular/forms": "^16.2.12 || ^17.0.0",
+    "@angular/core": "^16.2.12 || ^17.0.0 || ^18.0.0",
+    "@angular/forms": "^16.2.12 || ^17.0.0 || ^18.0.0",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^"
   },
   "devDependencies": {
-    "@angular/core": "^17.3.8",
-    "@angular/forms": "^17.3.8",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
     "@synergy-design-system/components": "workspace:*",
     "tslib": "^2.6.2"
   },

@@ -71,6 +71,11 @@ export default css`
     width: calc(100% + 2 * var(--syn-spacing-x-small));
   }
 
+  .nav-item--vertical:focus-visible::after {
+    left: 0;
+    width: 100%;
+  }
+
   /**
    * Horizontal nav items use narrower paddings
    */

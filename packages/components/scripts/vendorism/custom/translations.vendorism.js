@@ -3,7 +3,7 @@
  */
 const translations = {
   closeMenu: {
-    de: 'Menu schließen',
+    de: 'Menü schließen',
     en: 'Close menu',
   },
   danger: {
@@ -14,8 +14,12 @@ const translations = {
     de: 'Benachrichtigung',
     en: 'Notification',
   },
+  menu: {
+    de: 'Menü',
+    en: 'Menu',
+  },
   openMenu: {
-    de: 'Menu öffnen',
+    de: 'Menü öffnen',
     en: 'Open menu',
   },
   sideNav: {

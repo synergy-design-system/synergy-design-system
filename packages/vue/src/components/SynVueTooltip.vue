@@ -43,25 +43,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynTooltip>();
 
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynTooltip['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-const callHandleOptionsChange = (...args: Parameters<SynTooltip['handleOptionsChange']>) => nativeElement.value?.handleOptionsChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynTooltip['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-/**
-* Shows the tooltip.
- */
-const callShow = (...args: Parameters<SynTooltip['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the tooltip
- */
-const callHide = (...args: Parameters<SynTooltip['hide']>) => nativeElement.value?.hide(...args);
-
 defineExpose({
-  callHandleOpenChange,
-  callHandleOptionsChange,
-  callHandleDisabledChange,
-  callShow,
-  callHide,
   nativeElement,
 });
 

@@ -59,25 +59,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynSideNav>();
 
-// Map methods
-const callHandleModeChange = (...args: Parameters<SynSideNav['handleModeChange']>) => nativeElement.value?.handleModeChange(...args);
-const callHandleOpenChange = (...args: Parameters<SynSideNav['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-const callHandleFocusTrapping = (...args: Parameters<SynSideNav['handleFocusTrapping']>) => nativeElement.value?.handleFocusTrapping(...args);
-/**
-* Shows the side-nav.
- */
-const callShow = (...args: Parameters<SynSideNav['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the side-nav
- */
-const callHide = (...args: Parameters<SynSideNav['hide']>) => nativeElement.value?.hide(...args);
-
 defineExpose({
-  callHandleModeChange,
-  callHandleOpenChange,
-  callHandleFocusTrapping,
-  callShow,
-  callHide,
   nativeElement,
 });
 

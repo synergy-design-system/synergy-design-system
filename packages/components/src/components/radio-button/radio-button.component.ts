@@ -65,6 +65,9 @@ export default class SynRadioButton extends SynergyElement {
    */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
+  /** Draws a pill-style radio button with rounded edges. */
+  @property({ type: Boolean, reflect: true }) pill = false;
+
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'presentation');
@@ -114,6 +117,7 @@ export default class SynRadioButton extends SynergyElement {
           aria-checked="${this.checked}"
           class=${classMap({
             button: true,
+            'button--default': true,
             'button--small': this.size === 'small',
             'button--medium': this.size === 'medium',
             'button--large': this.size === 'large',
@@ -121,6 +125,7 @@ export default class SynRadioButton extends SynergyElement {
             'button--disabled': this.disabled,
             'button--focused': this.hasFocus,
             'button--outline': true,
+            'button--pill': this.pill,
             'button--has-label': this.hasSlotController.test('[default]'),
             'button--has-prefix': this.hasSlotController.test('prefix'),
             'button--has-suffix': this.hasSlotController.test('suffix')

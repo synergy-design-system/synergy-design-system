@@ -25,13 +25,7 @@ import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-syste
 // DOM Reference to the element
 const nativeElement = ref<SynIcon>();
 
-// Map methods
-const callHandleLabelChange = (...args: Parameters<SynIcon['handleLabelChange']>) => nativeElement.value?.handleLabelChange(...args);
-const callSetIcon = (...args: Parameters<SynIcon['setIcon']>) => nativeElement.value?.setIcon(...args);
-
 defineExpose({
-  callHandleLabelChange,
-  callSetIcon,
   nativeElement,
 });
 

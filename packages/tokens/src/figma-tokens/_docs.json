@@ -173,7 +173,7 @@
         "title": {
           "value": "Breadcrumb Item",
           "type": "text"
-        }  
+        }
       }
     },
     "breadcrumb": {
@@ -328,6 +328,16 @@
           "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use.",
           "type": "text"
         }
+      },
+      "icon-only": {
+        "title": {
+          "value": "Icon-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Insert just a single icon to use the same button style.",
+          "type": "text"
+        }
       }
     },
     "button-group": {
@@ -349,7 +359,7 @@
         "title": {
           "value": "Card",
           "type": "text"
-        }  
+        }
       },
       "basic-card": {
         "description": {
@@ -393,7 +403,7 @@
       },
       "nested": {
         "description": {
-          "value": "Its possible to expand the Card to a Background Card and nest multiple cards into.",
+          "value": "Use the sharp attribute to draw the card with sharp edges. This can be used to e.g expand a Card to a Background Card and nest multiple sharp cards into.",
           "type": "text"
         },
         "title": {

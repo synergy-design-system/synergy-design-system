@@ -119,8 +119,7 @@ const createHeader = ({
   withMetaNavigation = false,
 } = {}) => html`
   <!-- header -->
-  <syn-header>
-    ${getTranslation('appShell.appName')}
+  <syn-header label="${getTranslation('appShell.appName')}">
     
     ${withMetaNavigation ? createPrioNav() : ''}
 

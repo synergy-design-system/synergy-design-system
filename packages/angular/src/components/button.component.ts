@@ -301,69 +301,6 @@ value of this attribute must be an id of a form in the same document or shadow r
     return this.nativeElement.formTarget;
   }
 
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynButton['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  /**
-* Simulates a click on the button.
- */
-  @Input()
-  callClick(...args: Parameters<SynButton['click']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.click(...args));
-  }
-
-  /**
-* Sets focus on the button.
- */
-  @Input()
-  callFocus(...args: Parameters<SynButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
-  }
-
-  /**
-* Removes focus from the button.
- */
-  @Input()
-  callBlur(...args: Parameters<SynButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
-  }
-
-  /**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-  @Input()
-  callCheckValidity(...args: Parameters<SynButton['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.checkValidity(...args));
-  }
-
-  /**
-* Gets the associated form, if one exists.
- */
-  @Input()
-  callGetForm(...args: Parameters<SynButton['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.getForm(...args));
-  }
-
-  /**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-  @Input()
-  callReportValidity(...args: Parameters<SynButton['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.reportValidity(...args));
-  }
-
-  /**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-  @Input()
-  callSetCustomValidity(...args: Parameters<SynButton['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.setCustomValidity(...args));
-  }
-
   /**
 * Emitted when the button loses focus.
  */

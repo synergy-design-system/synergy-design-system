@@ -41,52 +41,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynCheckbox>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynCheckbox['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-const callHandleStateChange = (...args: Parameters<SynCheckbox['handleStateChange']>) => nativeElement.value?.handleStateChange(...args);
-/**
-* Simulates a click on the checkbox.
- */
-const callClick = (...args: Parameters<SynCheckbox['click']>) => nativeElement.value?.click(...args);
-/**
-* Sets focus on the checkbox.
- */
-const callFocus = (...args: Parameters<SynCheckbox['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the checkbox.
- */
-const callBlur = (...args: Parameters<SynCheckbox['blur']>) => nativeElement.value?.blur(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynCheckbox['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynCheckbox['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynCheckbox['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* The value provided will be shown to the user when the form is submitted.
-* To clear
-the custom validation message, call this method with an empty string.
- */
-const callSetCustomValidity = (...args: Parameters<SynCheckbox['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callHandleStateChange,
-  callClick,
-  callFocus,
-  callBlur,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
   nativeElement,
 });
 

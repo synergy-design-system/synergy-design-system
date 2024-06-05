@@ -43,8 +43,8 @@ export default class SynCard extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
-  /** Draws the card as a nested item. Can be used when nesting multiple syn-cards to create hierarchy */
-  @property({ type: Boolean, reflect: true }) nested = false;
+  /** Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy. */
+  @property({ type: Boolean, reflect: true }) sharp = false;
 
   render() {
     return html`
@@ -52,7 +52,7 @@ export default class SynCard extends SynergyElement {
         part="base"
         class=${classMap({
           card: true,
-          'card--nested': this.nested,
+          'card--sharp': this.sharp,
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),
           'card--has-header': this.hasSlotController.test('header')

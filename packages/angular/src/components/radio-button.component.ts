@@ -90,25 +90,16 @@ this attribute can typically be omitted.
     return this.nativeElement.size;
   }
 
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynRadioButton['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
   /**
-* Sets focus on the radio button.
+* Draws a pill-style radio button with rounded edges.
  */
   @Input()
-  callFocus(...args: Parameters<SynRadioButton['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
+  set pill(v: SynRadioButton['pill']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.pill = v));
   }
 
-  /**
-* Removes focus from the radio button.
- */
-  @Input()
-  callBlur(...args: Parameters<SynRadioButton['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
+  get pill() {
+    return this.nativeElement.pill;
   }
 
   /**

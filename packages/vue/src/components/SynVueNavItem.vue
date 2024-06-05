@@ -60,26 +60,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynNavItem>();
 
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynNavItem['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-/**
-* Removes focus from the button.
- */
-const callBlur = (...args: Parameters<SynNavItem['blur']>) => nativeElement.value?.blur(...args);
-/**
-* Simulates a click on the nav-items button, link or summary.
- */
-const callClick = (...args: Parameters<SynNavItem['click']>) => nativeElement.value?.click(...args);
-/**
-* Sets focus on the nav-item
- */
-const callFocus = (...args: Parameters<SynNavItem['focus']>) => nativeElement.value?.focus(...args);
-
 defineExpose({
-  callHandleOpenChange,
-  callBlur,
-  callClick,
-  callFocus,
   nativeElement,
 });
 

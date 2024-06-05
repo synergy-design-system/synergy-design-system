@@ -40,13 +40,6 @@ describe('<syn-prio-nav>', () => {
     });
   });
 
-  describe('when provided no parameters', () => {
-    it('default values are set correctly', async () => {
-      const nav = await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
-      expect(nav.priorityMenuLabel).to.equal('Menu');
-    });
-  });
-
   describe('when livecycle methods', () => {
     it('should set up a resize observer during connectedCallback', async () => {
       const observeStub = sinon.stub();

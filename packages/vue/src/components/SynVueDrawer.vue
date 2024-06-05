@@ -72,23 +72,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynDrawer>();
 
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynDrawer['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-const callHandleNoModalChange = (...args: Parameters<SynDrawer['handleNoModalChange']>) => nativeElement.value?.handleNoModalChange(...args);
-/**
-* Shows the drawer.
- */
-const callShow = (...args: Parameters<SynDrawer['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the drawer
- */
-const callHide = (...args: Parameters<SynDrawer['hide']>) => nativeElement.value?.hide(...args);
-
 defineExpose({
-  callHandleOpenChange,
-  callHandleNoModalChange,
-  callShow,
-  callHide,
   nativeElement,
 });
 

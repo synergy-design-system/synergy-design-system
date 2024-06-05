@@ -37,67 +37,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynTextarea>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynTextarea['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-const callHandleRowsChange = (...args: Parameters<SynTextarea['handleRowsChange']>) => nativeElement.value?.handleRowsChange(...args);
-const callHandleValueChange = (...args: Parameters<SynTextarea['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
-/**
-* Sets focus on the textarea.
- */
-const callFocus = (...args: Parameters<SynTextarea['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the textarea.
- */
-const callBlur = (...args: Parameters<SynTextarea['blur']>) => nativeElement.value?.blur(...args);
-/**
-* Selects all the text in the textarea.
- */
-const callSelect = (...args: Parameters<SynTextarea['select']>) => nativeElement.value?.select(...args);
-/**
-* Gets or sets the textarea's scroll position.
- */
-const callScrollPosition = (...args: Parameters<SynTextarea['scrollPosition']>) => nativeElement.value?.scrollPosition(...args);
-/**
-* Sets the start and end positions of the text selection (0-based).
- */
-const callSetSelectionRange = (...args: Parameters<SynTextarea['setSelectionRange']>) => nativeElement.value?.setSelectionRange(...args);
-/**
-* Replaces a range of text with a new string.
- */
-const callSetRangeText = (...args: Parameters<SynTextarea['setRangeText']>) => nativeElement.value?.setRangeText(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynTextarea['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynTextarea['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynTextarea['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynTextarea['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callHandleRowsChange,
-  callHandleValueChange,
-  callFocus,
-  callBlur,
-  callSelect,
-  callScrollPosition,
-  callSetSelectionRange,
-  callSetRangeText,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
   nativeElement,
 });
 

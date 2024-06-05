@@ -46,6 +46,7 @@ const translation: Translation = {
   closeMenu: 'Close menu',
   danger: 'Danger',
   notification: 'Notification',
+  menu: 'Menu',
   openMenu: 'Open menu',
   sideNav: 'Side navigation',
   success: 'Success',

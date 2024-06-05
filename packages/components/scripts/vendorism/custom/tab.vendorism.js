@@ -15,18 +15,6 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   let content = addSectionsAfter([
-    // Add prefix slot documentation
-    [
-      '* @slot - The tab\'s label.',
-      ' * @slot prefix - Used to prepend an icon or similar element to the tab.',
-    ],
-
-    // Add prefix css part documentation
-    [
-      '* @csspart close-button__base - The close button\'s exported `base` part.',
-      ' * @csspart prefix - The prefix container.',
-    ],
-
     // Add 'placement', 'sharp' and 'contained' classes
     [
       "'tab--disabled': this.disabled",
@@ -42,12 +30,6 @@ const transformComponent = (path, originalContent) => {
   ], originalContent);
 
   content = addSectionsBefore([
-    // Add prefix slot
-    [
-      '<slot></slot>',
-      '<slot name="prefix" part="prefix" class="tab__prefix"></slot>',
-      { newlinesAfterInsertion: 2, tabsAfterInsertion: 4 },
-    ],
 
     // Add 'placement', 'sharp' and 'contained' properties
     [

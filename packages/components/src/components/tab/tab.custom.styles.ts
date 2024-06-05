@@ -68,19 +68,6 @@ export default css`
 
 
   /**
-   * Slotted prefix
-   */
-  .tab__prefix::slotted(*) {
-    margin-inline-end: var(--syn-spacing-x-small);
-  }
-  
-  /* Set the default font size to make icons appear correct */
-  .tab__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-x-large);
-  }
-
-
-  /**
    * Contained style
    */
   .tab--contained.tab--active {
@@ -176,5 +163,11 @@ export default css`
     left: calc(var(--syn-panel-border-width) * -1);
     right: unset;
     width: var(--syn-panel-border-width);
+  }
+
+  /* Slotted icon style */
+  .tab ::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+    margin-inline-end: var(--syn-spacing-x-small);
   }
 `;

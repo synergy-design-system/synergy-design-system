@@ -285,6 +285,37 @@ export const ManualActivation: Story = {
   `,
 };
 
+export const Icons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'icon'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tab-group>
+    <syn-tab slot="nav" panel="general" active>
+      <syn-icon name="style"></syn-icon>
+      General
+    </syn-tab>
+    <syn-tab slot="nav" panel="custom">
+      <syn-icon name="tune"></syn-icon>
+      Custom
+    </syn-tab>
+    <syn-tab slot="nav" panel="advanced">
+      <syn-icon name="verified_user"></syn-icon>
+      Advanced
+    </syn-tab>
+    <syn-tab slot="nav" panel="disabled" disabled>
+      <syn-icon name="update_disabled"></syn-icon>
+      Disabled
+    </syn-tab>
+    ${createTabPanelsHtml()}
+  </syn-tab-group>
+`,
+};
+
 // For this screenshot story to work correctly, we needed to explicitly set the active prop on each
 // first tab and first tab-panel, although the tab-group sets the first tab and tab-panel active
 // by itself, if none is set active.
@@ -298,7 +329,8 @@ export const Screenshot: Story = generateScreenshotStory({
   ClosableTabs,
   ScrollingTabs,
   VisualHierarchy,
+  Icons,
 }, {
-  heightPx: 320,
+  heightPx: 740,
 });
 /* eslint-enable sort-keys */

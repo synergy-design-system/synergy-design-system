@@ -17,7 +17,7 @@
     "react.test": "sleep 2 && cross-env PORT='5175' playwright test",
     "ng.run": "run-p -s -r ng.serve ng.test",
     "ng.serve": "pnpm run -C ../angular-demo start",
-    "ng.test": "sleep 10 && cross-env PORT='4200' playwright test",
+    "ng.test": "sleep 2 && cross-env PORT='4200' playwright test",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"

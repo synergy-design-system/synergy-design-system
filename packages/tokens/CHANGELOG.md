@@ -1,3 +1,20 @@
+# [@synergy-design-system/tokens-v2.0.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.20.0...tokens/2.0.0) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 v2 breaking changes ([#448](https://github.com/synergy-design-system/synergy-design-system/issues/448)) ([b251fa7](https://github.com/synergy-design-system/synergy-design-system/commit/b251fa72ec6668d005eed23c561e901dc050ab83))
+
+
+### BREAKING CHANGES
+
+* syn-header - Deprecate default slot in favor of label slot
+* syn-header - fix attribute naming
+* syn-prio-nav - Deprecated prop "priority-menu-label"
+* syn-side-nav - Adjust default width of open sidenav
+* syn-card - Rename nested prop to sharp
+* Wrappers - Remove deprecated methods in wrappers
+
 # [@synergy-design-system/tokens-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.19.0...tokens/1.20.0) (2024-06-05)
 
 

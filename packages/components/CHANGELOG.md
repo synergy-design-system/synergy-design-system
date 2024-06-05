@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v1.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.1...components/1.26.2) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 Support Angular@18 ([#502](https://github.com/synergy-design-system/synergy-design-system/issues/502)) ([10cb7fc](https://github.com/synergy-design-system/synergy-design-system/commit/10cb7fc47c951a9dfb0ea1f6070780262c0632c4))
+
+# [@synergy-design-system/components-v1.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.0...components/1.26.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* 🤔 Nav-item has incorrect hover state when :focus ([#497](https://github.com/synergy-design-system/synergy-design-system/issues/497)) ([ace15b3](https://github.com/synergy-design-system/synergy-design-system/commit/ace15b3c67a88c8136ce97aa4df522f1d18eded5))
+
 # [@synergy-design-system/components-v1.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.25.0...components/1.26.0) (2024-05-15)
 
 

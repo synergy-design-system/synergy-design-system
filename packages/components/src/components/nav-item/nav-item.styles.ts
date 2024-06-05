@@ -253,7 +253,7 @@ export default css`
   }
 
   .nav-item--horizontal:hover .current-indicator--visible,
-  .nav-item--horizontal:focus .current-indicator--visible {
+  .nav-item--horizontal:focus-visible .current-indicator--visible {
     left: calc(var(--syn-spacing-x-small) * -1);
     right: calc(var(--syn-spacing-x-small) * -1);
   }
@@ -266,7 +266,7 @@ export default css`
   }
 
   .nav-item--vertical:hover .current-indicator--visible,
-  .nav-item--vertical:focus .current-indicator--visible {
+  .nav-item--vertical:focus-visible .current-indicator--visible {
     bottom: 0;
     top: 0;
   }

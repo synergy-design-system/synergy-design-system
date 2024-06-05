@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.1...components/1.26.2) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 Support Angular@18 ([#502](https://github.com/synergy-design-system/synergy-design-system/issues/502)) ([10cb7fc](https://github.com/synergy-design-system/synergy-design-system/commit/10cb7fc47c951a9dfb0ea1f6070780262c0632c4))
+
 # [@synergy-design-system/components-v1.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.0...components/1.26.1) (2024-06-03)
 
 

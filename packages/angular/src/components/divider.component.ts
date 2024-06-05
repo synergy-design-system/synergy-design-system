@@ -51,9 +51,4 @@ export class SynDividerComponent {
   get vertical() {
     return this.nativeElement.vertical;
   }
-
-  @Input()
-  callHandleVerticalChange(...args: Parameters<SynDivider['handleVerticalChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleVerticalChange(...args));
-  }
 }

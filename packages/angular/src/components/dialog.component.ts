@@ -130,27 +130,6 @@ accessible way for users to dismiss the dialog.
     return this.nativeElement.noHeader;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynDialog['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  /**
-* Shows the dialog.
- */
-  @Input()
-  callShow(...args: Parameters<SynDialog['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the dialog
- */
-  @Input()
-  callHide(...args: Parameters<SynDialog['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
   /**
 * Emitted when the dialog opens.
  */

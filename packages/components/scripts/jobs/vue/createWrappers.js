@@ -10,7 +10,6 @@ import {
   getEventAttributeForTwoWayBinding,
   getIsTwoWayBindingEnabledFor,
   job,
-  ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('vue');
@@ -21,23 +20,6 @@ const getEventImports = (events = []) => events
 
 const getEventExports = (events = []) => events
   .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
-
-const filterMethods = (members = []) => members
-  // Only include methods
-  .filter(method => method.kind === 'method')
-  // Filter out all private methods
-  .filter(method => !method.privacy || method.privacy !== 'private');
-
-const getMethodInputs = (component, members = []) => filterMethods(members)
-  .map(member => `
-    ${createComment(member.description || '')}
-    const call${ucFirstLetter(member.name)} = (...args: Parameters<${component}['${member.name}']>) => nativeElement.value?.${member.name}(...args);
-  `.trim())
-  .join('\n');
-
-const getMethodExpose = (members = []) => filterMethods(members)
-  .map(member => `call${ucFirstLetter(member.name)},`)
   .join('\n');
 
 /**
@@ -173,10 +155,6 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     const eventExports = getEventExports(component.events);
     const exports = eventExports.length > 0 ? `<script lang="ts">\n${eventExports}\n</script>\n` : '';
 
-    // Prepare methods
-    const methods = getMethodInputs(component.name, component.members);
-    const methodDefinitions = getMethodExpose(component.members);
-
     // Prepare attributes
     const props = getDefinedProps(
       component.tagNameWithoutPrefix,
@@ -221,11 +199,7 @@ import type { ${component.name} } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<${component.name}>();
 
-// Map methods
-${methods}
-
 defineExpose({
-  ${methodDefinitions}
   nativeElement,
 });
 

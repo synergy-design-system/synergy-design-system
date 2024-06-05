@@ -115,45 +115,6 @@ the alert will not close on its own.
     return this.nativeElement.duration;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynAlert['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleDurationChange(...args: Parameters<SynAlert['handleDurationChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDurationChange(...args));
-  }
-
-  /**
-* Shows the alert.
- */
-  @Input()
-  callShow(...args: Parameters<SynAlert['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the alert
- */
-  @Input()
-  callHide(...args: Parameters<SynAlert['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
-  /**
-* Displays the alert as a toast notification.
-* This will move the alert out of its position in the DOM and, when
-dismissed, it will be removed from the DOM completely.
-* By storing a reference to the alert, you can reuse it by
-calling this method again.
-* The returned promise will resolve after the alert is hidden.
- */
-  @Input()
-  callToast(...args: Parameters<SynAlert['toast']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.toast(...args));
-  }
-
   /**
 * Emitted when the alert opens.
  */

@@ -47,20 +47,13 @@ import type { SynPrioNav } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynPrioNav>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 
 // Map attributes
 const props = defineProps<{
-  /**
-* The components priority menu label.
-This will be shown after the priority menu 3 dots link
- */
-  'priorityMenuLabel'?: SynPrioNav['priorityMenuLabel'];
+
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

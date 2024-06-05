@@ -25,10 +25,7 @@ import type { SynSpinner } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynSpinner>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

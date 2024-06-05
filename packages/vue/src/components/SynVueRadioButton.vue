@@ -33,21 +33,7 @@ import type { SynBlurEvent, SynFocusEvent, SynRadioButton } from '@synergy-desig
 // DOM Reference to the element
 const nativeElement = ref<SynRadioButton>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynRadioButton['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-/**
-* Sets focus on the radio button.
- */
-const callFocus = (...args: Parameters<SynRadioButton['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the radio button.
- */
-const callBlur = (...args: Parameters<SynRadioButton['blur']>) => nativeElement.value?.blur(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callFocus,
-  callBlur,
   nativeElement,
 });
 

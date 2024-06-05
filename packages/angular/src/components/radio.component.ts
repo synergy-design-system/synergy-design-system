@@ -89,16 +89,6 @@ attribute can typically be omitted.
     return this.nativeElement.disabled;
   }
 
-  @Input()
-  callHandleCheckedChange(...args: Parameters<SynRadio['handleCheckedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleCheckedChange(...args));
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynRadio['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
   /**
 * Emitted when the control loses focus.
  */

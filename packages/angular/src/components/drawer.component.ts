@@ -163,32 +163,6 @@ accessible way for users to dismiss the drawer.
     return this.nativeElement.noHeader;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynDrawer['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleNoModalChange(...args: Parameters<SynDrawer['handleNoModalChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleNoModalChange(...args));
-  }
-
-  /**
-* Shows the drawer.
- */
-  @Input()
-  callShow(...args: Parameters<SynDrawer['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the drawer
- */
-  @Input()
-  callHide(...args: Parameters<SynDrawer['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
   /**
 * Emitted when the drawer opens.
  */

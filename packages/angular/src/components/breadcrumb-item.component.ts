@@ -88,14 +88,4 @@ internally.
   get rel() {
     return this.nativeElement.rel;
   }
-
-  @Input()
-  callHrefChanged(...args: Parameters<SynBreadcrumbItem['hrefChanged']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hrefChanged(...args));
-  }
-
-  @Input()
-  callHandleSlotChange(...args: Parameters<SynBreadcrumbItem['handleSlotChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSlotChange(...args));
-  }
 }

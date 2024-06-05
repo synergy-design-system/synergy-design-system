@@ -35,11 +35,7 @@ import type { SynOptgroup } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynOptgroup>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynOptgroup['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-
 defineExpose({
-  callHandleDisabledChange,
   nativeElement,
 });
 

@@ -403,7 +403,7 @@
       },
       "nested": {
         "description": {
-          "value": "Its possible to expand the Card to a Background Card and nest multiple cards into.",
+          "value": "Use the sharp attribute to draw the card with sharp edges. This can be used to e.g expand a Card to a Background Card and nest multiple sharp cards into.",
           "type": "text"
         },
         "title": {

@@ -40,33 +40,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynAlert>();
 
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynAlert['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-const callHandleDurationChange = (...args: Parameters<SynAlert['handleDurationChange']>) => nativeElement.value?.handleDurationChange(...args);
-/**
-* Shows the alert.
- */
-const callShow = (...args: Parameters<SynAlert['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the alert
- */
-const callHide = (...args: Parameters<SynAlert['hide']>) => nativeElement.value?.hide(...args);
-/**
-* Displays the alert as a toast notification.
-* This will move the alert out of its position in the DOM and, when
-dismissed, it will be removed from the DOM completely.
-* By storing a reference to the alert, you can reuse it by
-calling this method again.
-* The returned promise will resolve after the alert is hidden.
- */
-const callToast = (...args: Parameters<SynAlert['toast']>) => nativeElement.value?.toast(...args);
-
 defineExpose({
-  callHandleOpenChange,
-  callHandleDurationChange,
-  callShow,
-  callHide,
-  callToast,
   nativeElement,
 });
 

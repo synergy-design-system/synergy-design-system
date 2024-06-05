@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v1.26.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.2...components/1.26.3) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔  syn-nav-item getting too wide when in syn-side-nav with keyboard navigation ([#503](https://github.com/synergy-design-system/synergy-design-system/issues/503)) ([e297474](https://github.com/synergy-design-system/synergy-design-system/commit/e2974749b8a3d19b3a7c1ecd3fda0f1855ceca7c))
+
 # [@synergy-design-system/components-v1.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.1...components/1.26.2) (2024-06-05)
 
 

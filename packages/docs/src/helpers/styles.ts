@@ -1,7 +1,6 @@
 import { html, unsafeStatic } from 'lit/static-html.js';
 
 export type RenderArgs = {
-  className: string;
   'default-slot': string;
 };
 

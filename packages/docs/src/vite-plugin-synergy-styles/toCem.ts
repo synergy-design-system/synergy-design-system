@@ -1,5 +1,10 @@
 import type { Attribute, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
-import type { Structure, StyleClassMember, StyleModule, Tag } from './types.js';
+import type {
+  Structure,
+  StyleClassMember,
+  StyleModule,
+  Tag,
+} from './types.js';
 
 /**
  * Get the supported types as an array
@@ -57,7 +62,7 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
   return {
     default: getTypesAsArray(tag).at(0),
     description: tag.description,
-    name: 'className',
+    name: tag.name,
     type: getTypeForTag(tag),
   };
 };
@@ -102,7 +107,7 @@ const getMembersForTag = (tag: Tag): StyleClassMember | null => {
     default: getTypesAsArray(tag).at(0),
     description: tag.description,
     kind: 'field',
-    name: 'className',
+    name: tag.name,
     type: getTypeForTag(tag),
   };
 };

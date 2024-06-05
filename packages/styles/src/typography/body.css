@@ -4,7 +4,8 @@
  * The default font size is medium (16 px). Synergy supports three additional font sizes for body copy.
  * It is also possible to format the text bold or semibold for certain text passages and UI elements such as label.
  *
- * @variant {x-small | small | medium | large} syn-body
+ * @variant {x-small | small | medium | large} syn-body The font size of the body text
+ * @variant syn-display-inverted Show the display text in inverted color
  */
 
 /**

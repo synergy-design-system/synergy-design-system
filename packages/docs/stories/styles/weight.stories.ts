@@ -22,7 +22,7 @@ const meta: Meta = {
     },
   ], defaultArgs),
   argTypes,
-  component: 'syn-heading',
+  component: 'syn-weight',
   parameters: {
     // @todo: Link to figma
     // design: generateFigmaPluginObject('15172-32035'),

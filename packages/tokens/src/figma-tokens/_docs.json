@@ -50,6 +50,16 @@
           "value": "To give content more structure, you can use the property contained.",
           "type": "text"
         }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+          "type": "text"
+        }
       }
     },
     "alert": {

@@ -240,6 +240,7 @@ export default css`
       var(--syn-transition-medium) right ease,
       var(--syn-transition-medium) bottom ease,
       var(--syn-transition-medium) left ease;
+    z-index: 1;
   }
 
   .current-indicator--visible.current-indicator--disabled {

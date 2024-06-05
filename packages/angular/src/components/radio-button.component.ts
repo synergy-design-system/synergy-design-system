@@ -90,6 +90,18 @@ this attribute can typically be omitted.
     return this.nativeElement.size;
   }
 
+  /**
+* Draws a pill-style radio button with rounded edges.
+ */
+  @Input()
+  set pill(v: SynRadioButton['pill']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.pill = v));
+  }
+
+  get pill() {
+    return this.nativeElement.pill;
+  }
+
   @Input()
   callHandleDisabledChange(...args: Parameters<SynRadioButton['handleDisabledChange']>) {
     return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));

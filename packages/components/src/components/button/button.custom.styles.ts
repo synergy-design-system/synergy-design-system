@@ -29,6 +29,37 @@ export default css`
   }
 
   /**
+   * Icon-only buttons
+   */
+  .button--small .button__label.button__icon-only {
+    padding: 0 calc(var(--syn-spacing-x-small) + var(--syn-spacing-4x-small));
+  }
+
+  .button--small .button__label::slotted(syn-icon) {
+    font-size: var(--syn-font-size-medium);
+    vertical-align: -3px;
+  }
+
+  .button--medium .button__label.button__icon-only {
+    padding: 0 calc(var(--syn-spacing-small) - var(--syn-spacing-4x-small));
+  }
+
+  .button--medium .button__label::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+    vertical-align: -6px;
+  }
+
+  .button--large .button__label.button__icon-only {
+    padding: 0 calc(var(--syn-spacing-medium) - var(--syn-spacing-4x-small));
+  }
+
+  .button--large .button__label::slotted(syn-icon) {
+    font-size: var(--syn-font-size-2x-large);
+    vertical-align: -8px;
+  }
+
+
+  /**
    * Size modifiers
    */
   .button.button--medium.button--has-label .button__label {

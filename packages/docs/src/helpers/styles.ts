@@ -16,14 +16,26 @@ export const renderStyles = (
   tag: string = 'span',
 ) => {
   const {
-    className, 'default-slot':
-    defaultSlot,
+    'default-slot': defaultSlot,
+    ...rest
   } = args;
 
+  // Add support for optional utility classes
+  const additionalClasses = Object
+    .entries(rest)
+    .map(([key, value]) => {
+      if (typeof value === 'boolean') {
+        return value ? key : null;
+      }
+      return value;
+    })
+    .filter(Boolean);
+
+  const classes = additionalClasses.join(' ');
   const usedTag = unsafeStatic(tag);
 
   return html`
-    <${usedTag} class=${className}>
+    <${usedTag} class=${classes}>
       ${defaultSlot}
     </${usedTag}>
   `;

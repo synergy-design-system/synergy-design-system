@@ -1,5 +1,5 @@
 import type { Attribute, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
-import type { Structure, StyleModule, Tag } from './types.js';
+import type { Structure, StyleClassMember, StyleModule, Tag } from './types.js';
 
 /**
  * Get the supported types as an array
@@ -28,13 +28,7 @@ const getTypeForTag = (tag: Tag) => {
  * @param tag The tag to check
  * @returns True if the tag is allowed to be included
  */
-const tagIsAllowedToBeIncluded = (tag: Tag): boolean => {
-  const hasVariants = tag.tag === 'variant';
-  const isDynamicTag = tag.type.includes('|');
-
-  // @todo: Allow boolean values to be used as well
-  return hasVariants && isDynamicTag;
-};
+const tagIsAllowedToBeIncluded = (tag: Tag): boolean => tag.tag === 'variant';
 
 /**
  * Convert a tag to an attribute
@@ -47,6 +41,19 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
     return null;
   }
 
+  // 1. If we do not have a variant, treat the tag as a boolean value
+  if (!tag.type || tag.type.trim().length === 0) {
+    return {
+      default: 'false',
+      description: tag.description,
+      name: tag.name,
+      type: {
+        text: 'boolean',
+      },
+    };
+  }
+
+  // 2. Treat the value as a select
   return {
     default: getTypesAsArray(tag).at(0),
     description: tag.description,
@@ -56,18 +63,44 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
 };
 
 /**
+ * Get the attributes for a list of tags
+ * @param tags The tags to get attributes for
+ * @returns List of attributes for the tags
+ */
+const getAttributesForTags = (tags: Tag[]): Attribute[] => tags
+  .map(getAttributesForTag)
+  .filter(Boolean) as Attribute[];
+
+/**
  * Get the members section of a tag
  * @param tag The tag to get the members for
  * @returns ClassMember or null if the tag is not allowed
  */
-const getMembersForTag = (tag: Tag): ClassMember | null => {
+const getMembersForTag = (tag: Tag): StyleClassMember | null => {
   // Skip if we don't have variants or if the tag is not dynamic
   if (!tagIsAllowedToBeIncluded(tag)) {
     return null;
   }
 
+  // 1. If we do not have a variant, treat the tag as a boolean value
+  if (!tag.type || tag.type.trim().length === 0) {
+    return {
+      attribute: tag.name,
+      default: 'false',
+      description: tag.description,
+      kind: 'field',
+      name: tag.name,
+      type: {
+        text: 'boolean',
+      },
+    };
+  }
+
+  // 2. Treat the value as a select
   return {
+    attribute: tag.name,
     default: getTypesAsArray(tag).at(0),
+    description: tag.description,
     kind: 'field',
     name: 'className',
     type: getTypeForTag(tag),
@@ -75,16 +108,23 @@ const getMembersForTag = (tag: Tag): ClassMember | null => {
 };
 
 /**
- * Converts a tag to a schema module
- * @param tag The tag to convert
+ * Get the members for a list of tags
+ * @param tags The tags to get members for
+ * @returns List of members for the tags
+ */
+const getMembersForTags = (tags: Tag[]): ClassMember[] => tags
+  .map(getMembersForTag)
+  .filter(Boolean) as ClassMember[];
+
+/**
+ * Converts a list of tags to a schema module
+ * @param tags The tags to convert
  * @returns module The schema module
  */
-const tagToSchemaModule = (tag: Tag): StyleModule => {
-  const attribute = getAttributesForTag(tag);
-  const attributes = attribute ? [attribute] : [];
-
-  const member = getMembersForTag(tag);
-  const members = member ? [member] : [];
+const tagsToSchemaModule = (tags: Tag[]): StyleModule => {
+  const [tag] = tags;
+  const attributes = getAttributesForTags(tags);
+  const members = getMembersForTags(tags);
 
   const tagNameWithoutPrefix = tag.name.includes('-') ? tag.name.split('-').slice(1).join('-') : tag.name;
 
@@ -117,8 +157,8 @@ export const toCem = (structure: Structure[]): Package => {
   const modules = structure
     .filter(({ comments }) => comments.length > 0)
     .flatMap(({ comments }) => comments)
-    .flatMap(({ tags }) => tags)
-    .map(tagToSchemaModule);
+    .map(({ tags }) => tags)
+    .map(tagsToSchemaModule);
 
   return {
     modules,

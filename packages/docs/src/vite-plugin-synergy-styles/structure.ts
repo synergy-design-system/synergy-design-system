@@ -65,12 +65,13 @@ export const getStructure = async (root: string): Promise<Structure[]> => {
 
       // Determine the filename to use as the module name
       if (dirName === rootDirBaseName) {
-        // If the file is in the root directory, we use the filename
+        // 1. If the file is in the root directory, we use the filename
         module = basename(fileName).split('.').at(0)!;
       } else if (dirName !== rootDirBaseName) {
         // 2. If the file is in a subdirectory, we use the subdirectory name
         module = dirName;
       } else {
+        // 3. This should probably never happen
         module = 'unknown';
       }
 

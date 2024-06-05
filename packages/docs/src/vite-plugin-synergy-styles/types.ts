@@ -1,4 +1,4 @@
-import type { Declaration, Module } from 'custom-elements-manifest/schema.d.ts';
+import type { ClassMember, Declaration, Module } from 'custom-elements-manifest/schema.d.ts';
 
 /**
  * Plugin configuration options
@@ -18,6 +18,13 @@ export type Config = {
    * The source directory to obtain data from
    */
   srcDir: string;
+};
+
+/**
+ * An enhanced version of the default cem class member
+ */
+export type StyleClassMember = ClassMember & {
+  attribute?: string;
 };
 
 /**

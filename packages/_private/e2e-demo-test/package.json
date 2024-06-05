@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@playwright/test": "^1.43.1",
-    "@synergy-design-system/components": "workspace:^",
-    "@synergy-design-system/tokens": "workspace:^"
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*"
   }
 }

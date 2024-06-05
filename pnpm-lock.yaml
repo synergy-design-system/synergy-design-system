@@ -56,7 +56,7 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/styles':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../styles
       '@synergy-design-system/tokens':
         specifier: workspace:*
@@ -111,10 +111,10 @@ importers:
         specifier: ^1.43.1
         version: 1.43.1
       '@synergy-design-system/components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../tokens
     devDependencies:
       '@synergy-design-system/eslint-config-syn':
@@ -176,7 +176,7 @@ importers:
         specifier: workspace:*
         version: link:../../react
       '@synergy-design-system/styles':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../styles
       '@synergy-design-system/tokens':
         specifier: workspace:*
@@ -277,13 +277,13 @@ importers:
   packages/_private/vanilla-demo:
     dependencies:
       '@synergy-design-system/components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/styles':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../styles
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../tokens
       history:
         specifier: ^5.3.0
@@ -323,7 +323,7 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/styles':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../styles
       '@synergy-design-system/tokens':
         specifier: workspace:*
@@ -636,7 +636,7 @@ importers:
         specifier: workspace:*
         version: link:../components
       '@synergy-design-system/styles':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../styles
       '@synergy-design-system/tokens':
         specifier: workspace:*

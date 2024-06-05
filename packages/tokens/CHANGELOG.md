@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.19.0...tokens/1.20.0) (2024-06-05)
+
+
+### Features
+
+* ✨ icon-only button ([#498](https://github.com/synergy-design-system/synergy-design-system/issues/498)) ([d223e2c](https://github.com/synergy-design-system/synergy-design-system/commit/d223e2cd649fce2bb9109798613d4b7c60ce2117))
+
 # [@synergy-design-system/tokens-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.18.0...tokens/1.19.0) (2024-05-15)
 
 

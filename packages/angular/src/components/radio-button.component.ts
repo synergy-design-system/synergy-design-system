@@ -91,6 +91,18 @@ this attribute can typically be omitted.
   }
 
   /**
+* Draws a pill-style radio button with rounded edges.
+ */
+  @Input()
+  set pill(v: SynRadioButton['pill']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.pill = v));
+  }
+
+  get pill() {
+    return this.nativeElement.pill;
+  }
+
+  /**
 * Emitted when the button loses focus.
  */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

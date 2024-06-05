@@ -71,6 +71,11 @@ export default css`
     width: calc(100% + 2 * var(--syn-spacing-x-small));
   }
 
+  .nav-item--vertical:focus-visible::after {
+    left: 0;
+    width: 100%;
+  }
+
   /**
    * Horizontal nav items use narrower paddings
    */
@@ -235,6 +240,7 @@ export default css`
       var(--syn-transition-medium) right ease,
       var(--syn-transition-medium) bottom ease,
       var(--syn-transition-medium) left ease;
+    z-index: 1;
   }
 
   .current-indicator--visible.current-indicator--disabled {

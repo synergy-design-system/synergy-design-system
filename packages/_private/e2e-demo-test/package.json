@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "pnpm test",
-    "test": "run-p -s vanilla.run vue.run react.run ng.run",
+    "test": "run-s -s vanilla.run vue.run react.run ng.run",
     "vanilla.run": "run-p -r vanilla.serve vanilla.test",
     "vanilla.serve": "npm start --prefix ../vanilla-demo",
     "vanilla.test": "sleep 2 && cross-env PORT='5173' playwright test",

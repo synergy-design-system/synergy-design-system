@@ -1,13 +1,20 @@
+import { replaceSections } from '../replace-section.js';
+
 const FILES_TO_TRANSFORM = [
   '_utility.css',
 ];
 
-const transformUtilities = (originalPath, originalContent) => {
+const transformUtilities = (_, originalContent) => {
+  const replacedContent = replaceSections([
+    // Adjust the margin utility classes to use the new spacing tokens
+    ['margin: var(--syn-spacing-medium);', 'margin: var(--syn-spacing-small);'],
+  ], originalContent);
+
   // Make sure to disable stylelint for this file.
   // We also reenable it as it is part of a bundle and we do not want to loose the stylelint checks.
   const content = `
 /* stylelint-disable */
-${originalContent}
+${replacedContent}
 /* stylelint-enable */
   `.trim();
 

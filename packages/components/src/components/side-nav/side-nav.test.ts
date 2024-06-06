@@ -115,8 +115,8 @@ describe('<syn-side-nav>', () => {
 
   describe('when using non-rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedDrawerOpenSize = '25rem';
-      const expectedSideNavOpenSize = '400px';
+      const expectedDrawerOpenSize = '320px';
+      const expectedSideNavOpenSize = '320px';
 
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
@@ -167,7 +167,7 @@ describe('<syn-side-nav>', () => {
 
   describe('when using rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedDrawerOpenSize = '25rem';
+      const expectedDrawerOpenSize = '320px';
       const expectedSideNavOpenSize = '72px';
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
@@ -188,7 +188,7 @@ describe('<syn-side-nav>', () => {
     });
 
     it('should be visible and shrunk without the open attribute', async () => {
-      const expectedDrawerCloseSize = '4.5rem';
+      const expectedDrawerCloseSize = '72px';
       const expectedSideNavCloseSize = '72px';
 
       const sideNav = await fixture<SynSideNav>(html`

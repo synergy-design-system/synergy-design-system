@@ -96,16 +96,6 @@ ignored by assistive devices.
     return this.nativeElement.library;
   }
 
-  @Input()
-  callHandleLabelChange(...args: Parameters<SynIcon['handleLabelChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleLabelChange(...args));
-  }
-
-  @Input()
-  callSetIcon(...args: Parameters<SynIcon['setIcon']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.setIcon(...args));
-  }
-
   /**
 * Emitted when the icon has loaded.
 * When using `spriteSheet: true` this will not emit.

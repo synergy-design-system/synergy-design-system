@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --side-nav-open-width: 25rem;
-    --side-nav-rail-width: 4.5rem;
+    --side-nav-open-width: 320px;
+    --side-nav-rail-width: 72px;
 
     display: block;
   }

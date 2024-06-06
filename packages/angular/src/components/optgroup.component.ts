@@ -76,9 +76,4 @@ export class SynOptgroupComponent {
   get label() {
     return this.nativeElement.label;
   }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynOptgroup['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
 }

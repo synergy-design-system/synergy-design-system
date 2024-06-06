@@ -171,37 +171,6 @@ scenarios.
     return this.nativeElement.hoist;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynTooltip['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleOptionsChange(...args: Parameters<SynTooltip['handleOptionsChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOptionsChange(...args));
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynTooltip['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  /**
-* Shows the tooltip.
- */
-  @Input()
-  callShow(...args: Parameters<SynTooltip['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the tooltip
- */
-  @Input()
-  callHide(...args: Parameters<SynTooltip['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
   /**
 * Emitted when the tooltip begins to show.
  */

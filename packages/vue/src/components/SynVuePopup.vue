@@ -42,14 +42,7 @@ import type { SynPopup, SynRepositionEvent } from '@synergy-design-system/compon
 // DOM Reference to the element
 const nativeElement = ref<SynPopup>();
 
-// Map methods
-/**
-* Forces the popup to recalculate and reposition itself.
- */
-const callReposition = (...args: Parameters<SynPopup['reposition']>) => nativeElement.value?.reposition(...args);
-
 defineExpose({
-  callReposition,
   nativeElement,
 });
 

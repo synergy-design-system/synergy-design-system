@@ -26,10 +26,7 @@ import type { SynBreadcrumb } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynBreadcrumb>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

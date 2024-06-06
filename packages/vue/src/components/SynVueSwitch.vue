@@ -40,50 +40,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynSwitch>();
 
-// Map methods
-const callHandleCheckedChange = (...args: Parameters<SynSwitch['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynSwitch['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-/**
-* Simulates a click on the switch.
- */
-const callClick = (...args: Parameters<SynSwitch['click']>) => nativeElement.value?.click(...args);
-/**
-* Sets focus on the switch.
- */
-const callFocus = (...args: Parameters<SynSwitch['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the switch.
- */
-const callBlur = (...args: Parameters<SynSwitch['blur']>) => nativeElement.value?.blur(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynSwitch['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynSwitch['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynSwitch['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynSwitch['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-
 defineExpose({
-  callHandleCheckedChange,
-  callHandleDisabledChange,
-  callClick,
-  callFocus,
-  callBlur,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
   nativeElement,
 });
 

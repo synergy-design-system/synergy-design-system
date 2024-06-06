@@ -328,6 +328,16 @@
           "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use.",
           "type": "text"
         }
+      },
+      "icon-only": {
+        "title": {
+          "value": "Icon-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Insert just a single icon to use the same button style.",
+          "type": "text"
+        }
       }
     },
     "button-group": {
@@ -393,7 +403,7 @@
       },
       "nested": {
         "description": {
-          "value": "Its possible to expand the Card to a Background Card and nest multiple cards into.",
+          "value": "Use the sharp attribute to draw the card with sharp edges. This can be used to e.g expand a Card to a Background Card and nest multiple sharp cards into.",
           "type": "text"
         },
         "title": {
@@ -2331,7 +2341,17 @@
       }
     },
     "templates": {
-      "default": {
+      "application-shell": {
+        "title": {
+          "value": "Application Shell",
+          "type": "text"
+        },
+        "description": {
+          "value": "Description for application shell",
+          "type": "text"
+        }
+      },
+      "contact-form": {
         "title": {
           "value": "Forms",
           "type": "text"

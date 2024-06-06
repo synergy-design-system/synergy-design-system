@@ -32,13 +32,7 @@ import type { SynBlurEvent, SynFocusEvent, SynRadio } from '@synergy-design-syst
 // DOM Reference to the element
 const nativeElement = ref<SynRadio>();
 
-// Map methods
-const callHandleCheckedChange = (...args: Parameters<SynRadio['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynRadio['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-
 defineExpose({
-  callHandleCheckedChange,
-  callHandleDisabledChange,
   nativeElement,
 });
 

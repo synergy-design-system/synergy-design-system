@@ -39,16 +39,16 @@ export default css`
   }
 
   /**
-   * Cards that are nested do not receive a border radius
+   * Cards that are sharp do not receive a border radius
    */
-  .card--nested {
+  .card--sharp {
     border-radius: var(--syn-border-radius-none);
   }
 
   /**
-   * Do not apply border radius to nested card images
+   * Do not apply border radius to sharp card images
    */
-  .card--nested .card__image {
+  .card--sharp .card__image {
     border-top-left-radius: var(--syn-border-radius-none);
     border-top-right-radius: var(--syn-border-radius-none);
   }

@@ -161,6 +161,12 @@ This package ships with a [custom-elements-manifest](https://github.com/webcompo
 
 ---
 
+### 6. Breaking changes between major versions
+
+Please have a look at the official [breaking changes list](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs) for information how to update to new major versions of Synergy.
+
+---
+
 ## Local setup
 
 ### Using the vendor cli

@@ -31,20 +31,7 @@ import type { SynOption } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynOption>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynOption['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-const callHandleSelectedChange = (...args: Parameters<SynOption['handleSelectedChange']>) => nativeElement.value?.handleSelectedChange(...args);
-const callHandleValueChange = (...args: Parameters<SynOption['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
-/**
-* Returns a plain text label based on the option's content.
- */
-const callGetTextLabel = (...args: Parameters<SynOption['getTextLabel']>) => nativeElement.value?.getTextLabel(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callHandleSelectedChange,
-  callHandleValueChange,
-  callGetTextLabel,
   nativeElement,
 });
 

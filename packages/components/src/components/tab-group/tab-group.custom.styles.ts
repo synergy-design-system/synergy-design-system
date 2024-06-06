@@ -103,8 +103,79 @@ export default css`
     transition: none;
     
     /* Needed, otherwise the indicator is hidden under the background of the tab */
+    z-index: 2;
+  }
+
+  /* Contained styling for tabs */
+  .tab-group--contained ::slotted(syn-tab) {
+    --tab-background-color: var(--syn-panel-background-color);
+    --tab-border-width: var(--syn-panel-border-width);
+
+    position: relative;
     z-index: 1;
   }
+
+  /* Top */
+  .tab-group--top.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
+    --tab-border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
+  }
+
+  .tab-group--top.tab-group--contained ::slotted(syn-tab:not([active])) {
+    border-left: var(--syn-panel-border-width) solid transparent;
+    border-right: var(--syn-panel-border-width) solid transparent;
+    top: var(--syn-panel-border-width);
+  }
+
+  .tab-group--top.tab-group--contained ::slotted(syn-tab[active]) {
+    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
+
+    top: var(--syn-panel-border-width);
+  }
+
+  /* Start & End with rtl */
+  .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab),
+  .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
+    --tab-border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
+  }
+
+  .tab-group--start.tab-group--contained ::slotted(syn-tab:not([active])),
+  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
+    border-left: var(--syn-panel-border-width) solid transparent;
+    border-right: var(--syn-panel-border-width) solid transparent;
+    left: var(--syn-panel-border-width);
+    right: unset;
+  }
+
+  .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
+  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
+    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-background-color) var(--syn-panel-border-color)  var(--syn-panel-border-color) ;
+
+    left: var(--syn-panel-border-width);
+    right: unset;
+  }
+
+  /* End & Start with rtl */
+  .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab),
+  .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
+    --tab-border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
+  }
+
+  .tab-group--end.tab-group--contained ::slotted(syn-tab:not([active])),
+  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
+    border-left: var(--syn-panel-border-width) solid transparent;
+    border-right: var(--syn-panel-border-width) solid transparent;
+    left: unset;
+    right: var(--syn-panel-border-width);
+  }
+
+  .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
+  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
+    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
+
+    left: unset;
+    right: var(--syn-panel-border-width);
+  }
+
 
   /**
    * Sharp styling

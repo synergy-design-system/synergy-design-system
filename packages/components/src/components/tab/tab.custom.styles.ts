@@ -3,12 +3,22 @@ import { css } from 'lit';
 export default css`
   /* Write custom CSS here */
 
+  :host {
+    --tab-background-color: none;
+    --tab-border-width: var(--syn-border-width-none);
+    --tab-border-color: none;
+    --tab-border-radius: var(--syn-border-radius-none);
+  }
+
   .tab {
-    border-radius: var(--syn-border-radius-none);
+    border-radius: var(--tab-border-radius);
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-bold);
     min-height: var(--syn-spacing-2x-large);
     padding: var(--syn-spacing-small) var(--syn-spacing-large);
+
+    /* Stretch the tabs so they are aligned to each other vertically and the focus width stays the same  */
+    width: 100%;
   }
 
 
@@ -28,13 +38,6 @@ export default css`
       outline-offset: calc(var(--syn-focus-ring-offset) * -1);
     }
   }
-
-  /* Stretch the tabs so they are aligned to each other vertically and the focus width stays the same  */
-  .tab--start,
-  .tab--end {
-    width: 100%;
-  }
-
 
   .tab:hover:not(.tab--disabled) {
     color: var(--syn-color-primary-700);
@@ -66,103 +69,11 @@ export default css`
     color: var(--syn-color-primary-700);
   }
 
-
-  /**
-   * Contained style
-   */
-  .tab--contained.tab--active {
-    background-color: var(--syn-panel-background-color);
-    border: var(--syn-panel-border-width) solid var(--syn-panel-border-color);
-
-    /* Is needed for the ::after to work correctly. Otherwise the line has not the width of the tab, but of the page itself */
-    position: relative;
-  }
-
-  /* Avoid moving of the text content by adding a transparent border to non-active tabs */
-  .tab--contained:not(.tab--active) {
-    border: var(--syn-panel-border-width) solid transparent;
-  }
-
-
-  /* Top */
-  .tab--top.tab--contained {
-    border-bottom: none;
-  }
-
-  .tab--top.tab--contained.tab--active:not(.tab--sharp),
-  .tab--top.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
-  }
-
-  /* Start & End with rtl */
-  .tab--start.tab--contained,
-  .tab--end.tab--rtl.tab--contained {
-    border-left: var(--syn-panel-border-width) solid transparent;
-    border-right: none;
-  }
-
-  .tab--start.tab--contained.tab--active,
-  .tab--end.tab--rtl.tab--contained.tab--active {
-    border-left-color: var(--syn-panel-border-color);
-  }
-
-  .tab--start.tab--contained.tab--active:not(.tab--sharp),
-  .tab--start.tab--contained:not(.tab--sharp):focus-visible,
-  .tab--end.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
-  .tab--end.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
-  }
-
-  /* End & Start with rtl */
-  .tab--end.tab--contained,
-  .tab--start.tab--rtl.tab--contained {
-    border-left: none;
-    border-right: var(--syn-panel-border-width) solid transparent;
-  }
-
-  .tab--end.tab--contained.tab--active,
-  .tab--start.tab--rtl.tab--contained.tab--active {
-    border-right-color: var(--syn-panel-border-color);
-  }
-
-  .tab--end.tab--contained.tab--active:not(.tab--sharp),
-  .tab--end.tab--contained:not(.tab--sharp):focus-visible,
-  .tab--start.tab--rtl.tab--contained.tab--active:not(.tab--sharp),
-  .tab--start.tab--rtl.tab--contained:not(.tab--sharp):focus-visible {
-    border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
-  }
-
-
-  /* This is needed to hide the part of the tab panel border of an activated contained tab */
-  .tab--contained.tab--active::after {
-    background-color: var(--syn-panel-background-color);
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .tab--top.tab--contained.tab--active::after {
-    bottom: calc(var(--syn-panel-border-width) * -1);
-    height: var(--syn-panel-border-width);
-    left: 0;
-    width: 100%;
-  }
-
-  .tab--start.tab--contained.tab--active::after,
-  .tab--end.tab--rtl.tab--contained.tab--active::after {
-    height: 100%;
-    left: unset;
-    right: calc(var(--syn-panel-border-width) * -1);
-    width: var(--syn-panel-border-width);
-  }
-
-  .tab--end.tab--contained.tab--active::after,
-  .tab--start.tab--rtl.tab--contained.tab--active::after {
-    height: 100%;
-    left: calc(var(--syn-panel-border-width) * -1);
-    right: unset;
-    width: var(--syn-panel-border-width);
+  .tab--active {
+    background-color: var(--tab-background-color);
+    border-color: var(--tab-border-color);
+    border-style: solid;
+    border-width: var(--tab-border-width);
   }
 
   /* Slotted icon style */

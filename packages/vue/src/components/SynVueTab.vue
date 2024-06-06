@@ -55,22 +55,6 @@ const props = defineProps<{
 * Disables the tab and prevents selection.
  */
   'disabled'?: SynTab['disabled'];
-
-  /**
-* Draws the tab as a contained element.
- */
-  'contained'?: SynTab['contained'];
-
-  /**
-* Draws the tab with edges instead of roundings.
-* Takes only effect if used with the 'contained' property
- */
-  'sharp'?: SynTab['sharp'];
-
-  /**
-* The placement of the tabs.
- */
-  'placement'?: SynTab['placement'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

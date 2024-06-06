@@ -7,7 +7,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, queryAssignedElements, state } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -64,8 +64,6 @@ export default class SynTabGroup extends SynergyElement {
   @query('.tab-group__body') body: HTMLSlotElement;
   @query('.tab-group__nav') nav: HTMLElement;
   @query('.tab-group__indicator') indicator: HTMLElement;
-
-	@queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabsInNavSlot!: SynTab[];
 
   @state() private hasScrollControls = false;
 
@@ -341,7 +339,6 @@ export default class SynTabGroup extends SynergyElement {
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
     this.tabs = this.getAllTabs({ includeDisabled: false });
-		this.syncTabs();
     this.panels = this.getAllPanels();
     this.syncIndicator();
 
@@ -376,15 +373,7 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
-  @watch(['contained', 'sharp', 'placement'], { waitUntilFirstUpdate: true })
-  syncTabs() {
-    this.tabs.forEach(tab => {
-      tab.contained = this.contained;
-      tab.sharp = this.sharp;
-      tab.placement = this.placement;
-    });
-  }
-	/** Shows the specified tab panel. */
+  /** Shows the specified tab panel. */
   show(panel: string) {
     const tab = this.tabs.find(el => el.panel === panel);
 

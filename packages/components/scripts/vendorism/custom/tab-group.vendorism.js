@@ -106,40 +106,8 @@ const transformComponent = (path, originalContent) => {
       ' * @cssproperty --indicator-width - The width of the active tab indicator.',
     ],
 
-    // Forward the 'placement', 'contained' and 'sharp' properties to the tabs
-    [
-      'import { property, query,',
-      ' queryAssignedElements,',
-      { newlinesBeforeInsertion: 0 },
-    ],
-    [
-      "@query('.tab-group__indicator') indicator: HTMLElement;",
-      "@queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabsInNavSlot!: SynTab[];",
-      { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
-    ],
-    [
-      `private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs({ includeDisabled: false });`,
-      'this.syncTabs();',
-      { tabsBeforeInsertion: 2 },
-    ],
-
   ], content);
 
-  // Forward the 'placement', 'contained' and 'sharp' properties to the tabs
-  content = addSectionBefore(
-    content,
-    '/** Shows the specified tab panel. */',
-    `@watch(['contained', 'sharp', 'placement'], { waitUntilFirstUpdate: true })
-  syncTabs() {
-    this.tabs.forEach(tab => {
-      tab.contained = this.contained;
-      tab.sharp = this.sharp;
-      tab.placement = this.placement;
-    });
-  }`,
-    { tabsAfterInsertion: 1 },
-  );
   return {
     content,
     path,

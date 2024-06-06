@@ -57,15 +57,7 @@ export default class SynTab extends SynergyElement {
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws the tab as a contained element. */
-  @property({ type: Boolean }) contained = false;
-
-  /** Draws the tab with edges instead of roundings. Takes only effect if used with the 'contained' property */
-  @property({ type: Boolean }) sharp = false;
-
-  /** The placement of the tabs. */
-  @property() placement: 'top' | 'start' | 'end' = 'top';
-	connectedCallback() {
+  connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'tab');
   }
@@ -106,13 +98,7 @@ export default class SynTab extends SynergyElement {
           tab: true,
           'tab--active': this.active,
           'tab--closable': this.closable,
-          'tab--disabled': this.disabled,
-          'tab--contained': this.contained,
-          'tab--sharp': this.sharp,
-          'tab--end': this.placement === 'end',
-          'tab--start': this.placement === 'start',
-          'tab--top': this.placement === 'top',
-          'tab--rtl': this.localize.dir() === 'rtl',
+          'tab--disabled': this.disabled
         })}
         tabindex=${this.disabled ? '-1' : '0'}
       >

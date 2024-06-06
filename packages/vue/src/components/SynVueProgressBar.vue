@@ -31,10 +31,7 @@ import type { SynProgressBar } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynProgressBar>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

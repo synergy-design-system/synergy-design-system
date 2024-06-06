@@ -39,22 +39,7 @@ import type { SynMenuItem } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynMenuItem>();
 
-// Map methods
-const callHandleCheckedChange = (...args: Parameters<SynMenuItem['handleCheckedChange']>) => nativeElement.value?.handleCheckedChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynMenuItem['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-const callHandleTypeChange = (...args: Parameters<SynMenuItem['handleTypeChange']>) => nativeElement.value?.handleTypeChange(...args);
-/**
-* Returns a text label based on the contents of the menu item's default slot.
- */
-const callGetTextLabel = (...args: Parameters<SynMenuItem['getTextLabel']>) => nativeElement.value?.getTextLabel(...args);
-const callIsSubmenu = (...args: Parameters<SynMenuItem['isSubmenu']>) => nativeElement.value?.isSubmenu(...args);
-
 defineExpose({
-  callHandleCheckedChange,
-  callHandleDisabledChange,
-  callHandleTypeChange,
-  callGetTextLabel,
-  callIsSubmenu,
   nativeElement,
 });
 

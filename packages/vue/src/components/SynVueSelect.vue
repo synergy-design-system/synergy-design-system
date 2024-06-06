@@ -60,57 +60,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynSelect>();
 
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynSelect['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-const callHandleValueChange = (...args: Parameters<SynSelect['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
-const callHandleOpenChange = (...args: Parameters<SynSelect['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-/**
-* Shows the listbox.
- */
-const callShow = (...args: Parameters<SynSelect['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the listbox.
- */
-const callHide = (...args: Parameters<SynSelect['hide']>) => nativeElement.value?.hide(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynSelect['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynSelect['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynSelect['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynSelect['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-/**
-* Sets focus on the control.
- */
-const callFocus = (...args: Parameters<SynSelect['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the control.
- */
-const callBlur = (...args: Parameters<SynSelect['blur']>) => nativeElement.value?.blur(...args);
-
 defineExpose({
-  callHandleDisabledChange,
-  callHandleValueChange,
-  callHandleOpenChange,
-  callShow,
-  callHide,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
-  callFocus,
-  callBlur,
   nativeElement,
 });
 

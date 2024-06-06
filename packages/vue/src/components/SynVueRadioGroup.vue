@@ -39,35 +39,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynRadioGroup>();
 
-// Map methods
-const callHandleSizeChange = (...args: Parameters<SynRadioGroup['handleSizeChange']>) => nativeElement.value?.handleSizeChange(...args);
-const callHandleValueChange = (...args: Parameters<SynRadioGroup['handleValueChange']>) => nativeElement.value?.handleValueChange(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynRadioGroup['checkValidity']>) => nativeElement.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynRadioGroup['getForm']>) => nativeElement.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynRadioGroup['reportValidity']>) => nativeElement.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynRadioGroup['setCustomValidity']>) => nativeElement.value?.setCustomValidity(...args);
-
 defineExpose({
-  callHandleSizeChange,
-  callHandleValueChange,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
   nativeElement,
 });
 

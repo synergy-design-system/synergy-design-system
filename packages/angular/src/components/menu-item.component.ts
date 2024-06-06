@@ -117,32 +117,4 @@ export class SynMenuItemComponent {
   get disabled() {
     return this.nativeElement.disabled;
   }
-
-  @Input()
-  callHandleCheckedChange(...args: Parameters<SynMenuItem['handleCheckedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleCheckedChange(...args));
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynMenuItem['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  @Input()
-  callHandleTypeChange(...args: Parameters<SynMenuItem['handleTypeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleTypeChange(...args));
-  }
-
-  /**
-* Returns a text label based on the contents of the menu item's default slot.
- */
-  @Input()
-  callGetTextLabel(...args: Parameters<SynMenuItem['getTextLabel']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.getTextLabel(...args));
-  }
-
-  @Input()
-  callIsSubmenu(...args: Parameters<SynMenuItem['isSubmenu']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.isSubmenu(...args));
-  }
 }

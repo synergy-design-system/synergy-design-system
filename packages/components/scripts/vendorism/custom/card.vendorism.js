@@ -27,16 +27,16 @@ const transformComponent = (path, originalContent) => {
     content,
     `private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');`,
     `
-  /** Draws the card as a nested item. Can be used when nesting multiple syn-cards to create hierarchy */
-  @property({ type: Boolean, reflect: true }) nested = false; 
+  /** Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy. */
+  @property({ type: Boolean, reflect: true }) sharp = false; 
     `,
   );
 
-  // Add the new className for nested cards
+  // Add the new className for sharp cards
   content = addSectionAfter(
     content,
     'card: true,',
-    "          'card--nested': this.nested,",
+    "          'card--sharp': this.sharp,",
   );
 
   return {
@@ -54,22 +54,22 @@ const transformComponent = (path, originalContent) => {
 const transformTests = (path, originalContent) => {
   let content = originalContent;
 
-  // Add the new test for nested cards
+  // Add the new test for sharp cards
   content = addSectionAfter(
     content,
     'let el: SynCard;',
     `
   describe('when nested is provided', () => {
-    it('should not add the className "card--nested" when nested is set to "false"', async () => {
+    it('should not add the className "card--sharp" when nested is set to "false"', async () => {
       el = await fixture<SynCard>(html\`<syn-card>Content</syn-card>\`);
       const card = el.shadowRoot?.querySelector('.card');
-      expect(card).to.not.have.class('card--nested');
+      expect(card).to.not.have.class('card--sharp');
     });
 
-    it('should add the className "card--nested" when nested is set to "true"', async () => {
-      el = await fixture<SynCard>(html\`<syn-card nested>Content</syn-card>\`);
+    it('should add the className "card--sharp" when nested is set to "true"', async () => {
+      el = await fixture<SynCard>(html\`<syn-card sharp>Content</syn-card>\`);
       const card = el.shadowRoot?.querySelector('.card');
-      expect(card).to.have.class('card--nested');
+      expect(card).to.have.class('card--sharp');
     });
   });
     `,

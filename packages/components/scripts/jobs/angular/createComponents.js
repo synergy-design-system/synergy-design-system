@@ -10,7 +10,6 @@ import {
   getIsTwoWayBindingEnabledFor,
   job,
   lcFirstLetter,
-  ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('angular');
@@ -74,20 +73,6 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
   `.trim())
   .join('\n\n');
 
-const getMethodInputs = (component, members = []) => members
-  // Only include methods
-  .filter(method => method.kind === 'method')
-  // Filter out all private methods
-  .filter(method => !method.privacy || method.privacy !== 'private')
-  .map(member => `
-    ${createComment(member.description || '')}
-    @Input()
-    call${ucFirstLetter(member.name)}(...args: Parameters<${component}['${member.name}']>) {
-      return this._ngZone.runOutsideAngular(() => this.nativeElement.${member.name}(...args));
-    }
-  `.trim())
-  .join('\n');
-
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
   const components = await getAllComponents(metadata);
@@ -106,7 +91,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const eventOutputs = getEventOutputs(component);
 
     const attributeInputs = getAttributeInputs(component.name, component.attributes);
-    const methodInputs = getMethodInputs(component.name, component.members);
 
     const source = `
       ${headerComment}
@@ -139,8 +123,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         }
 
         ${attributeInputs}
-
-        ${methodInputs}
 
         ${eventOutputs}
       }

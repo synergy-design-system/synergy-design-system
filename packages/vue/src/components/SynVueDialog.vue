@@ -65,21 +65,7 @@ import type {
 // DOM Reference to the element
 const nativeElement = ref<SynDialog>();
 
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynDialog['handleOpenChange']>) => nativeElement.value?.handleOpenChange(...args);
-/**
-* Shows the dialog.
- */
-const callShow = (...args: Parameters<SynDialog['show']>) => nativeElement.value?.show(...args);
-/**
-* Hides the dialog
- */
-const callHide = (...args: Parameters<SynDialog['hide']>) => nativeElement.value?.hide(...args);
-
 defineExpose({
-  callHandleOpenChange,
-  callShow,
-  callHide,
   nativeElement,
 });
 

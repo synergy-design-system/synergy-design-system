@@ -30,10 +30,7 @@ import type { SynRemoveEvent, SynTag } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynTag>();
 
-// Map methods
-
 defineExpose({
-
   nativeElement,
 });
 

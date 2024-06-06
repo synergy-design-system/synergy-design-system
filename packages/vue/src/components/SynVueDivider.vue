@@ -23,11 +23,7 @@ import type { SynDivider } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynDivider>();
 
-// Map methods
-const callHandleVerticalChange = (...args: Parameters<SynDivider['handleVerticalChange']>) => nativeElement.value?.handleVerticalChange(...args);
-
 defineExpose({
-  callHandleVerticalChange,
   nativeElement,
 });
 

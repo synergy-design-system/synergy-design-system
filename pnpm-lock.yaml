@@ -754,7 +754,7 @@ importers:
         specifier: workspace:^
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tokens
     devDependencies:
       '@types/react':
@@ -876,7 +876,7 @@ importers:
         specifier: workspace:^
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tokens
     devDependencies:
       '@vue/tsconfig':

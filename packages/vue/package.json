@@ -46,6 +46,6 @@
     "vue": "^3.4.24"
   },
   "peerDependencies": {
-    "@synergy-design-system/tokens": "workspace:*"
+    "@synergy-design-system/tokens": "workspace:^"
   }
 }

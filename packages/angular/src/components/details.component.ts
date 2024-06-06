@@ -125,27 +125,6 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
     return this.nativeElement.size;
   }
 
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynDetails['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleOpenChange(...args));
-  }
-
-  /**
-* Shows the details.
- */
-  @Input()
-  callShow(...args: Parameters<SynDetails['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
-  /**
-* Hides the details
- */
-  @Input()
-  callHide(...args: Parameters<SynDetails['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.hide(...args));
-  }
-
   /**
 * Emitted when the details opens.
  */

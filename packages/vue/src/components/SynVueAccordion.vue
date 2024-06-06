@@ -24,15 +24,7 @@ import type { SynAccordion } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynAccordion>();
 
-// Map methods
-const callHandleSizeChange = (...args: Parameters<SynAccordion['handleSizeChange']>) => nativeElement.value?.handleSizeChange(...args);
-const callHandleContainedChange = (...args: Parameters<SynAccordion['handleContainedChange']>) => nativeElement.value?.handleContainedChange(...args);
-const callHandleSlotChange = (...args: Parameters<SynAccordion['handleSlotChange']>) => nativeElement.value?.handleSlotChange(...args);
-
 defineExpose({
-  callHandleSizeChange,
-  callHandleContainedChange,
-  callHandleSlotChange,
   nativeElement,
 });
 

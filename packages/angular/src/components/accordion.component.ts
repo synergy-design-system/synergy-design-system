@@ -76,19 +76,4 @@ export class SynAccordionComponent {
   get size() {
     return this.nativeElement.size;
   }
-
-  @Input()
-  callHandleSizeChange(...args: Parameters<SynAccordion['handleSizeChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSizeChange(...args));
-  }
-
-  @Input()
-  callHandleContainedChange(...args: Parameters<SynAccordion['handleContainedChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleContainedChange(...args));
-  }
-
-  @Input()
-  callHandleSlotChange(...args: Parameters<SynAccordion['handleSlotChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleSlotChange(...args));
-  }
 }

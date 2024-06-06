@@ -29,23 +29,7 @@ import type { SynCloseEvent, SynTab } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynTab>();
 
-// Map methods
-const callHandleActiveChange = (...args: Parameters<SynTab['handleActiveChange']>) => nativeElement.value?.handleActiveChange(...args);
-const callHandleDisabledChange = (...args: Parameters<SynTab['handleDisabledChange']>) => nativeElement.value?.handleDisabledChange(...args);
-/**
-* Sets focus to the tab.
- */
-const callFocus = (...args: Parameters<SynTab['focus']>) => nativeElement.value?.focus(...args);
-/**
-* Removes focus from the tab.
- */
-const callBlur = (...args: Parameters<SynTab['blur']>) => nativeElement.value?.blur(...args);
-
 defineExpose({
-  callHandleActiveChange,
-  callHandleDisabledChange,
-  callFocus,
-  callBlur,
   nativeElement,
 });
 

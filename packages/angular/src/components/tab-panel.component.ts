@@ -65,9 +65,4 @@ export class SynTabPanelComponent {
   get active() {
     return this.nativeElement.active;
   }
-
-  @Input()
-  callHandleActiveChange(...args: Parameters<SynTabPanel['handleActiveChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleActiveChange(...args));
-  }
 }

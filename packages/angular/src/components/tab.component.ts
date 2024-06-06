@@ -132,32 +132,6 @@ export class SynTabComponent {
     return this.nativeElement.placement;
   }
 
-  @Input()
-  callHandleActiveChange(...args: Parameters<SynTab['handleActiveChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleActiveChange(...args));
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynTab['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.handleDisabledChange(...args));
-  }
-
-  /**
-* Sets focus to the tab.
- */
-  @Input()
-  callFocus(...args: Parameters<SynTab['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.focus(...args));
-  }
-
-  /**
-* Removes focus from the tab.
- */
-  @Input()
-  callBlur(...args: Parameters<SynTab['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.blur(...args));
-  }
-
   /**
 * Emitted when the tab is closable and the close button is activated.
  */

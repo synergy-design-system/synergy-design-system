@@ -25,11 +25,7 @@ import type { SynTabPanel } from '@synergy-design-system/components';
 // DOM Reference to the element
 const nativeElement = ref<SynTabPanel>();
 
-// Map methods
-const callHandleActiveChange = (...args: Parameters<SynTabPanel['handleActiveChange']>) => nativeElement.value?.handleActiveChange(...args);
-
 defineExpose({
-  callHandleActiveChange,
   nativeElement,
 });
 

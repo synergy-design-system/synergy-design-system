@@ -123,29 +123,6 @@ manual, the tab will receive focus but will not show until the user presses spac
     return this.nativeElement.sharp;
   }
 
-  @Input()
-  callUpdateScrollControls(...args: Parameters<SynTabGroup['updateScrollControls']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.updateScrollControls(...args));
-  }
-
-  @Input()
-  callSyncIndicator(...args: Parameters<SynTabGroup['syncIndicator']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.syncIndicator(...args));
-  }
-
-  @Input()
-  callSyncTabs(...args: Parameters<SynTabGroup['syncTabs']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.syncTabs(...args));
-  }
-
-  /**
-* Shows the specified tab panel.
- */
-  @Input()
-  callShow(...args: Parameters<SynTabGroup['show']>) {
-    return this._ngZone.runOutsideAngular(() => this.nativeElement.show(...args));
-  }
-
   /**
 * Emitted when a tab is shown.
  */

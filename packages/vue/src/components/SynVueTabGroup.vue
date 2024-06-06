@@ -42,20 +42,7 @@ import type { SynTabGroup, SynTabHideEvent, SynTabShowEvent } from '@synergy-des
 // DOM Reference to the element
 const nativeElement = ref<SynTabGroup>();
 
-// Map methods
-const callUpdateScrollControls = (...args: Parameters<SynTabGroup['updateScrollControls']>) => nativeElement.value?.updateScrollControls(...args);
-const callSyncIndicator = (...args: Parameters<SynTabGroup['syncIndicator']>) => nativeElement.value?.syncIndicator(...args);
-const callSyncTabs = (...args: Parameters<SynTabGroup['syncTabs']>) => nativeElement.value?.syncTabs(...args);
-/**
-* Shows the specified tab panel.
- */
-const callShow = (...args: Parameters<SynTabGroup['show']>) => nativeElement.value?.show(...args);
-
 defineExpose({
-  callUpdateScrollControls,
-  callSyncIndicator,
-  callSyncTabs,
-  callShow,
   nativeElement,
 });
 

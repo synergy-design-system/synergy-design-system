@@ -133,8 +133,7 @@ export const Focus: Story = {
     },
     docs: {
       description: {
-        // TODO: add focus description as soon as it is available
-        story: generateStoryDescription('accordion', 'disabled'),
+        story: generateStoryDescription('accordion', 'focus'),
       },
     },
   },
@@ -172,7 +171,7 @@ export const Disabled: Story = {
   },
   render: () => html`
     <syn-accordion>
-      <syn-details summary="First" open>
+      <syn-details summary="First">
         <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
       </syn-details>
@@ -205,7 +204,7 @@ export const Sizes: Story = {
           <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </syn-details>
-        <syn-details open>
+        <syn-details>
           <syn-icon name="wallpaper" slot="summary"></syn-icon>
           <span slot="summary">Accordion Element</span>
           <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>

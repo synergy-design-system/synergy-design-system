@@ -68,6 +68,8 @@ export default css`
   }
 
   .details--size-medium .details__summary::slotted(syn-icon) {
+    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
+    flex-shrink: 0;
     font-size: var(--syn-spacing-large);
     margin-right: var(--syn-spacing-small);
   }
@@ -94,8 +96,10 @@ export default css`
   }
 
   .details--size-large .details__summary::slotted(syn-icon) {
+    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
+    flex-shrink: 0;
     font-size: var(--syn-spacing-x-large);
-    margin-right: var(--syn-spacing-x-small);
+    margin-right: var(--syn-spacing-small);
   }
 
   /**

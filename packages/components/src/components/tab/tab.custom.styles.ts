@@ -11,7 +11,10 @@ export default css`
   }
 
   .tab {
+    border-color: transparent;
     border-radius: var(--border-radius);
+    border-style: solid;
+    border-width: var(--border-width);
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-bold);
     min-height: var(--syn-spacing-2x-large);

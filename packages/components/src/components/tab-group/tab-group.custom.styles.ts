@@ -120,15 +120,15 @@ export default css`
     --border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
   }
 
-  .tab-group--top.tab-group--contained ::slotted(syn-tab:not([active])) {
-    border-left: var(--syn-panel-border-width) solid transparent;
-    border-right: var(--syn-panel-border-width) solid transparent;
-    top: var(--syn-panel-border-width);
-  }
-
   .tab-group--top.tab-group--contained ::slotted(syn-tab[active]) {
     --border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
 
+    /* We need to move the tab down, so the bottom border, hides parts of the border of the tab-group */
+    top: var(--syn-panel-border-width);
+  }
+
+  .tab-group--top.tab-group--contained ::slotted(syn-tab:not([active])) {
+    /*  We need to move down the non-active tabs also, so we don't get jumping of the tab text content */
     top: var(--syn-panel-border-width);
   }
 
@@ -138,18 +138,18 @@ export default css`
     --border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
   }
 
-  .tab-group--start.tab-group--contained ::slotted(syn-tab:not([active])),
-  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
-    border-left: var(--syn-panel-border-width) solid transparent;
-    border-right: var(--syn-panel-border-width) solid transparent;
-    left: var(--syn-panel-border-width);
-    right: unset;
-  }
-
   .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
   .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
     --border-color: var(--syn-panel-border-color) var(--syn-panel-background-color) var(--syn-panel-border-color)  var(--syn-panel-border-color) ;
 
+    /* We need to move the tab right, so the right border, hides parts of the border of the tab-group */
+    left: var(--syn-panel-border-width);
+    right: unset;
+  }
+
+  .tab-group--start.tab-group--contained ::slotted(syn-tab:not([active])),
+  .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
+    /*  We need to move right the non-active tabs also, so we don't get jumping of the tab text content */
     left: var(--syn-panel-border-width);
     right: unset;
   }
@@ -160,18 +160,18 @@ export default css`
     --border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
   }
 
-  .tab-group--end.tab-group--contained ::slotted(syn-tab:not([active])),
-  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
-    border-left: var(--syn-panel-border-width) solid transparent;
-    border-right: var(--syn-panel-border-width) solid transparent;
-    left: unset;
-    right: var(--syn-panel-border-width);
-  }
-
   .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
   .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
     --border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
 
+    /* We need to move the tab left, so the left border, hides parts of the border of the tab-group */
+    left: unset;
+    right: var(--syn-panel-border-width);
+  }
+
+  .tab-group--end.tab-group--contained ::slotted(syn-tab:not([active])),
+  .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab:not([active])) {
+    /*  We need to move left the non-active tabs also, so we don't get jumping of the tab text content */
     left: unset;
     right: var(--syn-panel-border-width);
   }

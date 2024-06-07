@@ -108,8 +108,8 @@ export default css`
 
   /* Contained styling for tabs */
   .tab-group--contained ::slotted(syn-tab) {
-    --tab-background-color: var(--syn-panel-background-color);
-    --tab-border-width: var(--syn-panel-border-width);
+    --background-color: var(--syn-panel-background-color);
+    --border-width: var(--syn-panel-border-width);
 
     position: relative;
     z-index: 1;
@@ -117,7 +117,7 @@ export default css`
 
   /* Top */
   .tab-group--top.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
-    --tab-border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
+    --border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none);
   }
 
   .tab-group--top.tab-group--contained ::slotted(syn-tab:not([active])) {
@@ -127,7 +127,7 @@ export default css`
   }
 
   .tab-group--top.tab-group--contained ::slotted(syn-tab[active]) {
-    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
+    --border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
 
     top: var(--syn-panel-border-width);
   }
@@ -135,7 +135,7 @@ export default css`
   /* Start & End with rtl */
   .tab-group--start.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab),
   .tab-group--end.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
-    --tab-border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
+    --border-radius: var(--syn-border-radius-medium) var(--syn-border-radius-none) var(--syn-border-radius-none) var(--syn-border-radius-medium);
   }
 
   .tab-group--start.tab-group--contained ::slotted(syn-tab:not([active])),
@@ -148,7 +148,7 @@ export default css`
 
   .tab-group--start.tab-group--contained ::slotted(syn-tab[active]),
   .tab-group--end.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
-    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-background-color) var(--syn-panel-border-color)  var(--syn-panel-border-color) ;
+    --border-color: var(--syn-panel-border-color) var(--syn-panel-background-color) var(--syn-panel-border-color)  var(--syn-panel-border-color) ;
 
     left: var(--syn-panel-border-width);
     right: unset;
@@ -157,7 +157,7 @@ export default css`
   /* End & Start with rtl */
   .tab-group--end.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab),
   .tab-group--start.tab-group--rtl.tab-group--contained:not(.tab-group--sharp) ::slotted(syn-tab) {
-    --tab-border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
+    --border-radius: var(--syn-border-radius-none) var(--syn-border-radius-medium) var(--syn-border-radius-medium) var(--syn-border-radius-none);
   }
 
   .tab-group--end.tab-group--contained ::slotted(syn-tab:not([active])),
@@ -170,7 +170,7 @@ export default css`
 
   .tab-group--end.tab-group--contained ::slotted(syn-tab[active]),
   .tab-group--start.tab-group--rtl.tab-group--contained ::slotted(syn-tab[active]) {
-    --tab-border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
+    --border-color: var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-border-color) var(--syn-panel-background-color);
 
     left: unset;
     right: var(--syn-panel-border-width);

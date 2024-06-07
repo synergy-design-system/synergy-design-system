@@ -4,14 +4,14 @@ export default css`
   /* Write custom CSS here */
 
   :host {
-    --tab-background-color: none;
-    --tab-border-width: var(--syn-border-width-none);
-    --tab-border-color: none;
-    --tab-border-radius: var(--syn-border-radius-none);
+    --background-color: none;
+    --border-width: var(--syn-border-width-none);
+    --border-color: none;
+    --border-radius: var(--syn-border-radius-none);
   }
 
   .tab {
-    border-radius: var(--tab-border-radius);
+    border-radius: var(--border-radius);
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-bold);
     min-height: var(--syn-spacing-2x-large);
@@ -70,10 +70,10 @@ export default css`
   }
 
   .tab--active {
-    background-color: var(--tab-background-color);
-    border-color: var(--tab-border-color);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
     border-style: solid;
-    border-width: var(--tab-border-width);
+    border-width: var(--border-width);
   }
 
   /* Slotted icon style */

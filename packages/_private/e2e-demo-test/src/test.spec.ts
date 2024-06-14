@@ -4,22 +4,13 @@ import type SynTextarea from '../../../components/src/components/textarea/textar
 import type SynCheckbox from '../../../components/src/components/checkbox/checkbox.component';
 import type SynSwitch from '../../../components/src/components/switch/switch.component';
 import type SynSelect from '../../../components/src/components/select/select.component';
+import { type Framework, frameworks } from '../frameworks.config';
 import TestPage from './test.page';
-
-const defaultPort = 5173;
-const host = `http://localhost:${process.env.PORT || defaultPort}`;
 
 const availablePages = {
   form: '/contact-form',
   index: '/',
 };
-
-/**
- * Get a navigation path
- * @param path The path to navigate to
- * @returns Path to navigate to
- */
-const getURL = (path: string = '') => `${host}${path}`;
 
 async function getInputValue(locator: Locator) {
   return locator.evaluate((el: SynInput | SynTextarea | SynSelect) => el.value);
@@ -78,72 +69,91 @@ async function checkInitialState(form: TestPage) {
     .forEach((val) => expect(val).toBeFalsy());
 }
 
-test.describe(`Contact form test on port ${process.env.PORT}`, () => {
-  test('Form reset', async ({ page }) => {
-    const form = new TestPage(page);
-    await form.goto(getURL(availablePages.form));
+/**
+ * Create test cases for a given framework
+ * @param framework The framework to create the test cases for
+ */
+const createTestCaseFor = (framework: Framework) => {
+  const { name, port } = framework;
 
-    // fill-out the form correctly
-    await fillForm(form);
+  const host = `http://localhost:${port}`;
 
-    // submit valid form
-    await form.reset.click();
+  /**
+   * Get a navigation path
+   * @param path The path to navigate to
+   * @returns Path to navigate to
+   */
+  const getURL = (path: string = '') => `${host}${path}`;
 
-    // check reset state
-    await checkInitialState(form);
-  });
+  test.describe(`${name}: Contact form test on port ${port}`, () => {
+    test('Form reset', async ({ page }) => {
+      const form = new TestPage(page);
+      await form.goto(getURL(availablePages.form));
 
-  test('Invalid form submit', async ({ page }) => {
-    const form = new TestPage(page);
-    await form.goto(getURL(availablePages.form));
+      // fill-out the form correctly
+      await fillForm(form);
 
-    // submit invalid form
-    await form.submit.click();
+      // submit valid form
+      await form.reset.click();
 
-    // check invalid states of required inputs
-    const states = await Promise.all(
-      form.allRequiredInputs.map(
-        input => input.evaluate(el => (el as SynInput).validity.valid),
-      ),
-    );
-    expect(states.length).toBe(form.allRequiredInputs.length);
-    expect(states.every((state) => !state)).toBe(true);
-
-    // check not-invalid states of non-required inputs
-    expect(await form.birth.getAttribute('data-user-invalid')).toBeFalsy();
-    expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
-  });
-
-  test('Form submit', async ({ page, browserName }) => {
-    if (browserName === 'webkit' && process.env.PORT === '5175') {
-      return; // somehow this test is very flaky in the combination of webkit and port react
-    }
-
-    const form = new TestPage(page);
-    await form.goto(getURL(availablePages.form));
-
-    // react on submit / confirm dialog
-    let submitted = false;
-    page.on('dialog', dialog => {
-      submitted = true;
-      dialog
-        .accept()
-        .catch(() => {
-          submitted = false;
-        });
+      // check reset state
+      await checkInitialState(form);
     });
 
-    // check initial state
-    await checkInitialState(form);
+    test('Invalid form submit', async ({ page }) => {
+      const form = new TestPage(page);
+      await form.goto(getURL(availablePages.form));
 
-    // fill-out the form correctly
-    await fillForm(form);
+      // submit invalid form
+      await form.submit.click();
 
-    // submit valid form
-    await form.submit.click();
+      // check invalid states of required inputs
+      const states = await Promise.all(
+        form.allRequiredInputs.map(
+          input => input.evaluate(el => (el as SynInput).validity.valid),
+        ),
+      );
+      expect(states.length).toBe(form.allRequiredInputs.length);
+      expect(states.every((state) => !state)).toBe(true);
 
-    expect(submitted).toBe(true);
+      // check not-invalid states of non-required inputs
+      expect(await form.birth.getAttribute('data-user-invalid')).toBeFalsy();
+      expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
+    });
 
-    expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
+    test('Form submit', async ({ page, browserName }) => {
+      if (browserName === 'webkit' && process.env.PORT === '5175') {
+        return; // somehow this test is very flaky in the combination of webkit and port react
+      }
+
+      const form = new TestPage(page);
+      await form.goto(getURL(availablePages.form));
+
+      // react on submit / confirm dialog
+      let submitted = false;
+      page.on('dialog', dialog => {
+        submitted = true;
+        dialog
+          .accept()
+          .catch(() => {
+            submitted = false;
+          });
+      });
+
+      // check initial state
+      await checkInitialState(form);
+
+      // fill-out the form correctly
+      await fillForm(form);
+
+      // submit valid form
+      await form.submit.click();
+
+      expect(submitted).toBe(true);
+
+      expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
+    });
   });
-});
+};
+
+frameworks.forEach(createTestCaseFor);

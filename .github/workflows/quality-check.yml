@@ -57,7 +57,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.44.1-jammy
+      image: mcr.microsoft.com/playwright:v1.41.2-jammy
     steps:
       - uses: actions/checkout@v4
 
@@ -91,7 +91,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.44.1-jammy
+      image: mcr.microsoft.com/playwright:v1.41.2-jammy
     steps:
       - uses: actions/checkout@v4
 
@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test_components]
+    needs: [quality-gate, test_components, test_e2e]
     steps:
       # 👇 Version 2 of the action
       - name: Checkout repository

@@ -6,7 +6,7 @@ export default css`
   }
 
   .accordion--contained ::slotted(syn-details) {
-    margin-bottom: var(--syn-spacing-2x-small);
+    margin-bottom: var(--syn-spacing-x-small);
   }
 
   .accordion--contained ::slotted(syn-details:last-of-type){

@@ -60,7 +60,7 @@ export default css`
   .details--size-medium .details__content {
     font-size: var(--syn-font-size-small);
     line-height: var(--syn-line-height-normal);
-    padding: 0 0 var(--syn-spacing-medium-large);
+    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
   }
 
   .details--size-medium .details__summary {
@@ -84,7 +84,7 @@ export default css`
   .details--size-large .details__content {
     font-size: var(--syn-font-size-medium);
     line-height: var(--syn-line-height-normal);
-    padding: 0 0 var(--syn-spacing-large);
+    padding: var(--syn-spacing-medium-large) 0 var(--syn-spacing-large);
   }
 
   .details--size-large .details__summary {
@@ -127,12 +127,16 @@ export default css`
     border-width: var(--syn-panel-border-width);
   }
 
+  .details--contained .details__header:focus-visible {
+    border-radius: var(--syn-border-radius-medium);
+  }
+
   .details--size-medium.details--contained .details__header {
     padding: var(--syn-spacing-medium-large) var(--syn-spacing-large);
   }
 
   .details--size-medium.details--contained .details__content {
-    padding: 0 var(--syn-spacing-large) var(--syn-spacing-medium-large);
+    padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 
   .details--size-large.details--contained .details__header {
@@ -140,6 +144,6 @@ export default css`
   }
 
   .details--size-large.details--contained .details__content {
-    padding: 0 var(--syn-spacing-large) var(--syn-spacing-large);
+    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 `;

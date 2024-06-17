@@ -55,7 +55,8 @@
   "scripts": {
     "format.eslint": "pnpm lint --fix",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "start": "vite"
+    "start": "vite",
+    "_build": "vite build"
   },
   "type": "module",
   "version": "0.1.0"

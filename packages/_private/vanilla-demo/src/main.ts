@@ -107,6 +107,11 @@ const initApp = async () => {
   });
 };
 
-await initRouting();
-await initApp();
-await initThemeSwitch();
+const bootstrap = async () => {
+  await initRouting();
+  await initApp();
+  await initThemeSwitch();
+};
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+bootstrap();

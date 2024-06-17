@@ -28,7 +28,7 @@ To achieve this, we are using some common conventions when contributing features
 
 ## Getting started
 
-- Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/introduction--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
+- Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/goals-and-guidelines--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
 
 - Have a look at the [Storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of the design system and its components.
 
@@ -37,7 +37,7 @@ To achieve this, we are using some common conventions when contributing features
 ## Breaking changes
 
 We build robust and extendable APIs, to avoid future breaking changes as much as possible.
-We also ensure stable and reliable updates that align with semantic versioning. Breaking changes are documented prominently.
+We also ensure stable and reliable updates that align with semantic versioning. Breaking changes are documented prominently [including an update guide](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs).
 
 ## Quality assurance
 
@@ -129,7 +129,7 @@ Orientated at [GitHub's commit commands to skip workflows](https://docs.github.c
 
 #### Assignees and reviewers
 
-When opening a PR, assign yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
+When opening a PR, assign it to yourself and everyone who should be involved to the PR, at least one maintaining developer and if there are design related tasks a maintaining designer too. Design feedback is usually given via Chromatic.
 
 ## Issue tracking
 

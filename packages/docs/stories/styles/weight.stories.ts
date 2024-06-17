@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
-  // generateStoryDescription,
+  generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
 } from '../../src/helpers/component.js';
@@ -24,14 +24,12 @@ const meta: Meta = {
   argTypes,
   component: 'syn-weight',
   parameters: {
-    // @todo: Link to figma
-    // design: generateFigmaPluginObject('15172-32035'),
-    // @todo: Add description tokens
-    // docs: {
-    //   description: {
-    //     component: generateStoryDescription('weight', 'default'),
-    //   },
-    // },
+    design: generateFigmaPluginObject('4415-2387'),
+    docs: {
+      description: {
+        component: generateStoryDescription('styles', 'weight'),
+      },
+    },
   },
   title: 'Styles/syn-weight',
 };

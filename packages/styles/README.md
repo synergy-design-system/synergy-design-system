@@ -47,13 +47,14 @@ import "@synergy-design-system/styles";
 
 ### 2.2 Loading single modules
 
-It is also possible to load only parts of the provided functionality.
-This can be archived in the following way:
+It is also possible to load only parts of the provided css files.
+
+> For a list of available modules, please have a look at the available modules section below.
 
 ```html
-<!-- Loading typography only -->
 <!DOCTYPE html>
   <head>
+    <!-- Loading typography only -->
     <link rel="stylesheet" href="/node_modules/@synergy-design-system/styles/dist/typography.css" />
   </head>
   <body>
@@ -72,32 +73,16 @@ import "@synergy-design-system/styles/typography.css";
 
 <!-- BEGIN INLINE COMMENT -->
 
-### 3.1 - typography
-
-#### Usage
-
-```html
-<link
-  rel="stylesheet"
-  href="/node_modules/@synergy-design-system/styles/dist/typography.css"
-/>
-```
-
-```javascript
-import "@synergy-design-system/styles/typography.css";
-```
-
-#### Submodules
-
-- body
-- heading
-- weight
+- typography.css
+  - body.css
+  - heading.css
+  - weight.css
 
 <!-- END INLINE COMMENT -->
 
 ---
 
-## Documentation
+## Development
 
 ### Building the styles
 

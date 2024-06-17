@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {
-  // generateStoryDescription,
+  generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
 } from '../../src/helpers/component.js';
@@ -24,14 +24,12 @@ const meta: Meta = {
   argTypes,
   component: 'syn-heading',
   parameters: {
-    // @todo: Link to figma
-    // design: generateFigmaPluginObject('15172-32035'),
-    // @todo: Add description tokens
-    // docs: {
-    //   description: {
-    //     component: generateStoryDescription('heading', 'default'),
-    //   },
-    // },
+    design: generateFigmaPluginObject('4420-3048'),
+    docs: {
+      description: {
+        component: generateStoryDescription('styles', 'headings'),
+      },
+    },
   },
   title: 'Styles/syn-heading',
 };
@@ -42,12 +40,6 @@ export const Default: StoryObj = {
     controls: {
       disable: false,
     },
-    // @todo: Add description tokens
-    // docs: {
-    //   description: {
-    //     story: generateStoryDescription('body', 'default'),
-    //   },
-    // },
   },
   render: (args: unknown) => renderStyles(args as RenderArgs),
 };

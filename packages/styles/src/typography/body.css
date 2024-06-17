@@ -1,42 +1,20 @@
 /**
- * Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values. 
- * UI text is text used in UI components and uses the same text stylings.
- * The default font size is medium (16 px). Synergy supports three additional font sizes for body copy.
- * It is also possible to format the text bold or semibold for certain text passages and UI elements such as label.
- *
+ * Typographic text classes
  * @variant {x-small | small | medium | large} syn-body The font size of the body text
  * @variant syn-display-inverted Show the display text in inverted color
- */
-
-/**
- * Utility class for setting a very small body copy font style
- * May be combined with weight classes defined below
  */
 .syn-body--x-small {
   font: var(--syn-body-x-small-regular);
 }
 
-/**
- * Utility class for setting a small body copy font style
- * May be combined with weight classes defined below
- */
 .syn-body--small {
   font: var(--syn-body-small-regular);
 }
 
-/**
- * Utility class for setting a medium body copy font style
- * This is the default style for elements for synergy applications
- * May be combined with weight classes defined below
- */
 .syn-body--medium {
   font: var(--syn-body-medium-regular);
 }
 
-/**
- * Utility class for setting a large body copy font style
- * May be combined with weight classes defined below
- */
 .syn-body--large {
   font: var(--syn-body-large-regular);
 }

@@ -25,38 +25,16 @@ const adjustReadme = async (markdown) => {
 
 const createMarkDownFromStructure = (structure) => Object
   .entries(structure)
-  .map(([category, modules], index) => ({
-    heading: `### 3.${index + 1} - ${category}`,
-    imports: [
-      `
-<link
-  rel="stylesheet"
-  href="/node_modules/@synergy-design-system/styles/dist/${category}.css"
-/>    
-      `.trim(),
-      `import "@synergy-design-system/styles/${category}.css";`,
-    ],
-    modules: modules.map((module) => `- ${module}`),
+  .map(([category, modules]) => ({
+    heading: `- ${category}.css`,
+    modules: modules.map((module) => `- ${module}.css`),
   }))
-  .map(({ heading, imports, modules }) => `
-${heading}
-
-#### Usage
-
-\`\`\`html
-${imports[0]}
-\`\`\`
-
-\`\`\`javascript
-${imports[1]}
-\`\`\`
-
-${modules.length > 0 ? `
-#### Submodules
-
-${modules.join('\n')}
-` : ''}
-`).join('\n---\n');
+  .map(({ heading, modules }) => {
+    const moduleList = modules ? modules.join('\n  ') : '';
+    return `${heading}${moduleList ? `\n  ${moduleList}` : ''}`;
+  })
+  .join('\n')
+  .concat('\n');
 
 const createStructure = (fileNameList) => fileNameList
   .map(f => f.replace('./dist/', '').replace('.css', ''))

@@ -1,11 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { readdir, unlink, writeFile } from 'fs/promises';
+import { readdir, writeFile } from 'fs/promises';
 import postcss from 'postcss';
 import atImportPlugin from 'postcss-import';
 import headerPlugin from 'postcss-header';
-import { getPackageJSONAsObject, getPath, job } from '../shared.js';
+import { getPackageJSONAsObject, job } from '../shared.js';
 
-export const runCreateIndex = job('Styles: Creating CSS index bundle file', async (outDir) => {
+export const runCreateIndex = job('Styles: Creating CSS index bundle file (dist/styles/index.css)', async (
+  stylesDir,
+  componentDistDir,
+) => {
   const { author, name, version } = await getPackageJSONAsObject();
 
   // Default banner to prepend to all generated files.
@@ -21,17 +24,12 @@ export const runCreateIndex = job('Styles: Creating CSS index bundle file', asyn
 `.trim();
 
   // Get a list of available custom styles for synergy
-  const allCustomFiles = await readdir(outDir);
+  const allCustomFiles = await readdir(stylesDir);
   const availableStyles = allCustomFiles
     .filter(file => file.endsWith('.css') && file !== 'index.css')
     .map(file => `./${file}`);
 
-  // List of files that have to be imported from shoelace
-  const shoelaceFileList = [
-    getPath('../src/styles/utility.css'),
-  ];
-
-  const output = [...shoelaceFileList, ...availableStyles]
+  const output = availableStyles
     .map(file => `@import url("${file}");`)
     .join('\n');
 
@@ -43,9 +41,8 @@ export const runCreateIndex = job('Styles: Creating CSS index bundle file', asyn
       header,
     }),
   ]).process(output, {
-    from: `${outDir}/index.css`,
+    from: `${stylesDir}/index.css`,
   });
 
-  await unlink(`${outDir}/index.css`).catch(() => {});
-  await writeFile(`${outDir}/index.css`, css);
+  await writeFile(`${componentDistDir}/styles/index.css`, css);
 });

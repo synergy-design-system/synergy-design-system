@@ -20,6 +20,6 @@ export const runCreateStyles = async ({
   const availableComponents = components.map(c => c.tagName);
 
   await jobs.runCreateFouc(availableComponents, stylesDir);
-  await jobs.runCreateIndex(stylesDir);
+  await jobs.runCreateIndex(stylesDir, componentDistDir);
   await jobs.runCopyToDist(stylesDir, componentDistDir);
 };

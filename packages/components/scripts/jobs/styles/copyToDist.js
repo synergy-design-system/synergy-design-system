@@ -1,7 +1,7 @@
 import { copyFile, readdir } from 'fs/promises';
 import { job } from '../shared.js';
 
-export const runCopyToDist = job('Styles: Copying styles to dist directory', async (stylesDir, componentDistDir) => {
+export const runCopyToDist = job('Styles: Copying stylesheets to dist directory', async (stylesDir, componentDistDir) => {
   const allCustomFiles = await readdir(stylesDir);
   const availableStyles = allCustomFiles
     .filter(file => file.endsWith('.css'))

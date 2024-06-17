@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
 import {
-  addSectionBefore, addSectionsAfter, replaceSection, replaceSections,
+  addSectionsAfter, replaceSection, replaceSections,
 } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -104,6 +104,20 @@ const transformComponent = (path, originalContent) => {
     [
       '* @cssproperty --indicator-color - The color of the active tab indicator.',
       ' * @cssproperty --indicator-width - The width of the active tab indicator.',
+    ],
+
+    // Improve documentation of syn-tab-show event
+    [
+      '@event {{ name: String }} syn-tab-show - Emitted when a tab is shown.',
+      ' The payload of the event returns the "panel" attribute of the shown tab.',
+      { newlinesBeforeInsertion: 0 },
+    ],
+
+    // Improve documentation of syn-tab-hide event
+    [
+      '@event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden.',
+      ' The payload of the event returns the "panel" attribute of the hidden tab.',
+      { newlinesBeforeInsertion: 0 },
     ],
 
   ], content);

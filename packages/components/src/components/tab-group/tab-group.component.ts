@@ -30,8 +30,8 @@ import type SynTabPanel from '../tab-panel/tab-panel.js';
  * @slot - Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.
  * @slot nav - Used for grouping tabs in the tab group. Must be `<syn-tab>` elements.
  *
- * @event {{ name: String }} syn-tab-show - Emitted when a tab is shown.
- * @event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden.
+ * @event {{ name: String }} syn-tab-show - Emitted when a tab is shown. The payload of the event returns the "panel" attribute of the shown tab.
+ * @event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden. The payload of the event returns the "panel" attribute of the hidden tab.
  *
  * @csspart base - The component's base wrapper.
  * @csspart nav - The tab group's navigation container where tabs are slotted in.

@@ -2,7 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -40,12 +42,18 @@ export const Default: StoryObj = {
     controls: {
       disable: false,
     },
-    // @todo: Add description tokens
-    // docs: {
-    //   description: {
-    //     story: generateStoryDescription('body', 'default'),
-    //   },
-    // },
   },
   render: (args: unknown) => renderStyles(args as RenderArgs),
 };
+
+const Weight: StoryObj = {
+  render: () => html`
+    <p class="syn-weight--normal">syn-weight--normal</p>
+    <p class="syn-weight--semibold">syn-weight--semibold</p>
+    <p class="syn-weight--bold">syn-weight--bold</p>
+  `,
+};
+
+export const Screenshot: StoryObj = generateScreenshotStory({
+  Weight,
+});

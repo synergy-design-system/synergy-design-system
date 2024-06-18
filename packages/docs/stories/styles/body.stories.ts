@@ -2,7 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -43,3 +45,16 @@ export const Default: StoryObj = {
   },
   render: (args: unknown) => renderStyles(args as RenderArgs),
 };
+
+const Body: StoryObj = {
+  render: () => html`
+    <p class="syn-body--x-small">syn-body--x-small</p>
+    <p class="syn-body--small">syn-body--small</p>
+    <p class="syn-body--medium">syn-body--medium</p>
+    <p class="syn-body--large">syn-body--large</p>
+  `,
+};
+
+export const Screenshot: StoryObj = generateScreenshotStory({
+  Body,
+});

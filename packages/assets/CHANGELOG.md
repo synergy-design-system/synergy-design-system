@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.5.1...assets/1.6.0) (2024-06-18)
+
+
+### Features
+
+* ✨ syn-tab ([#496](https://github.com/synergy-design-system/synergy-design-system/issues/496)) ([921299e](https://github.com/synergy-design-system/synergy-design-system/commit/921299e8f37db2b0a5f3e53a891f8f03ce39e12d))
+
 # [@synergy-design-system/assets-v1.5.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.5.0...assets/1.5.1) (2024-04-23)
 
 

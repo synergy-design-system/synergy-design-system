@@ -68,7 +68,7 @@ const transformComponent = (path, originalContent) => {
 
     this.iconOnly = iconOnlyElement && textContent === '';
   }`,
-    { newslinesBeforeInsertion: 2 },
+    { newlinesBeforeInsertion: 2 },
   );
 
   return {

@@ -1946,6 +1946,16 @@
           "value": "To structure the Page, you can use different tab styles.",
           "type": "text"
         }
+      },
+      "icon": {
+        "title": {
+          "value": "Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "It is also possible to a Add icon to the Tabs.",
+          "type": "text"
+        }
       }
     },
     "tab-panel": {

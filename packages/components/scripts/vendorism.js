@@ -22,6 +22,7 @@ import {
   vendorProgressBar,
   vendorSelect,
   vendorSpinner,
+  vendorTabGroup,
   vendorTag,
   vendorTextarea,
   vendorThemes,
@@ -63,6 +64,9 @@ export const components = [
   'breadcrumb-item',
   'card',
   'dialog',
+  'tab',
+  'tab-group',
+  'tab-panel',
 ].sort();
 
 /**
@@ -91,6 +95,9 @@ export const events = [
   'sl-select',
   'sl-burger-menu-show',
   'sl-burger-menu-hide',
+  'sl-close',
+  'sl-tab-show',
+  'sl-tab-hide',
 ];
 
 const eventList = events.map(evt => `src/events/${evt}.ts`);
@@ -302,6 +309,7 @@ const config = {
       vendorProgressBar,
       vendorSelect,
       vendorSpinner,
+      vendorTabGroup,
       vendorTextarea,
       vendorThemes,
       vendorTranslations,

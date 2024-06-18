@@ -22,6 +22,8 @@ const componentsUsingBlockLayout = [
   'select',
   'side-nav',
   'textarea',
+  'tab-group',
+  'tab-panel',
 ]
   .map(c => `syn-${c}`)
   .sort();

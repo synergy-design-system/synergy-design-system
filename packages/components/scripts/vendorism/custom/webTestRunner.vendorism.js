@@ -12,8 +12,9 @@ export const vendorWebTestRunnerConfig = (path, content) => {
   // Adjust the path to the theme to make sure we always fetch
   // the latest version from the package
   let nextContent = content.replaceAll(
-    'dist/themes/light.css',
-    'node_modules/@synergy-design-system/tokens/dist/themes/light.css',
+    '<link rel="stylesheet" href="dist/themes/light.css">',
+    `<link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/themes/light.css">
+        <link rel="stylesheet" href="dist/styles/index.css">`,
   );
 
   // Add the synergy test plugins to the mix

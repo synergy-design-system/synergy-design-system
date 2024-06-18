@@ -21,11 +21,8 @@ const synRefreshComponentBundle = () => {
     await jobs.runCreateExports(componentDir);
     await jobs.runTypeScript(temporaryOutDir, './tsconfig.prod.json');
     await jobs.runEsBuildComponents(temporaryOutDir, __PACKAGE_VERSION__);
-    await jobs.runCopyFiles(
-      getPath('../src/themes'),
-      getPath('../dist/themes'),
-      () => true,
-    );
+    await jobs.runCem('dist.testrunner');
+    await jobs.runCreateStyles({ componentDistDir: temporaryOutDir, stylesDir: getPath('../src/styles') });
 
     // Finally, remove the dist folder completely
     // and move the contents of the temporary folder into it

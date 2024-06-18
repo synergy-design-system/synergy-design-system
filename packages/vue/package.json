@@ -44,5 +44,8 @@
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
     "vue": "^3.4.24"
+  },
+  "peerDependencies": {
+    "@synergy-design-system/tokens": "workspace:^"
   }
 }

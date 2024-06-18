@@ -111,5 +111,8 @@ When adding comments to your modules, please add a list of all variants of your 
  * - syn-fieldset-small and
  * - syn-fieldset-large
  * @variant {small | large } syn-fieldset
+ *
+ * @variant syn-boolean-value This value will also be available as a class.
+ * However, it will display as a boolean value in storybook
  */
 ```

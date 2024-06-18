@@ -18,6 +18,9 @@ Run the following steps to install the required packages.
 # Install the base library and required css files
 npm install --save @synergy-design-system/vue @synergy-design-system/tokens
 
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
 # Optional: if icons shall be used, install the assets package
 npm install --save @synergy-design-system/assets
 ```
@@ -33,6 +36,10 @@ The components will not display correctly without the needed theme. Please inclu
 // src/main.ts
 // Add this line to enable the light theme for your application
 import "@synergy-design-system/tokens/themes/light.css";
+import "@synergy-design-system/components/index.css";
+
+// Optional: Import the styles package
+import "@synergy-design-system/styles/index.css";
 
 import { createApp } from "vue";
 import App from "./App.vue";

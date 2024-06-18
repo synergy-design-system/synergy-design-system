@@ -3,7 +3,8 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
-import '@synergy-design-system/components/themes/utility.css';
+import '@synergy-design-system/components/index.css';
+import '@synergy-design-system/styles';
 import '../../components/src/synergy';
 
 import '../src/docs.css';

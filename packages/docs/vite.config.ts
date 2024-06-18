@@ -7,6 +7,7 @@ import { replaceCodePlugin } from 'vite-plugin-replace';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
 import packageJson from '../components/package.json';
 import customElementConfig from '../components/custom-elements-manifest.config.js';
+import vitePluginSynergyStyles from './src/vite-plugin-synergy-styles/index.js';
 
 const getAbsolutePath = (...pathParts: string[]) => path.join(
   path.dirname(__filename),
@@ -84,6 +85,9 @@ export default defineConfig(() => ({
     target: 'esnext',
   },
   plugins: [
+    vitePluginSynergyStyles({
+      srcDir: '../styles/src',
+    }),
     VitePluginCustomElementsManifest({
       files: ['../components/src/components/**/*.component.ts'],
       lit: true,

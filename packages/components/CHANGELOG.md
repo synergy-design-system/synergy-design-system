@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.1.0...components/2.2.0) (2024-06-18)
+
+
+### Features
+
+* ✨ Styles Package ([#495](https://github.com/synergy-design-system/synergy-design-system/issues/495)) ([5e7b3dc](https://github.com/synergy-design-system/synergy-design-system/commit/5e7b3dc54bc9d94060fafc8119648e9e01bd07b7))
+
+# [@synergy-design-system/components-v2.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.0.0...components/2.1.0) (2024-06-18)
+
+
+### Features
+
+* ✨ syn-tab ([#496](https://github.com/synergy-design-system/synergy-design-system/issues/496)) ([921299e](https://github.com/synergy-design-system/synergy-design-system/commit/921299e8f37db2b0a5f3e53a891f8f03ce39e12d))
+
 # [@synergy-design-system/components-v2.0.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.27.0...components/2.0.0) (2024-06-05)
 
 

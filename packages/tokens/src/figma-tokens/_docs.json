@@ -2018,6 +2018,16 @@
           "value": "To structure the Page, you can use different tab styles.",
           "type": "text"
         }
+      },
+      "icon": {
+        "title": {
+          "value": "Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "It is also possible to a Add icon to the Tabs.",
+          "type": "text"
+        }
       }
     },
     "tab-panel": {
@@ -2402,6 +2412,38 @@
         }
       }
     },
+    "styles": {
+      "body": {
+        "description": {
+          "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values.\nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\n\nIt is also possible to format the text bold or semibold for certain text passages and UI elements such as label.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Body and UI text",
+          "type": "text"
+        }
+      },
+      "headings": {
+        "description": {
+          "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\n- building page hierarchy,\n- helping users scan large chunks of text,\n- providing a title to a page or piece of content,\n-as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Headings",
+          "type": "text"
+        }
+      },
+      "weight": {
+        "description": {
+          "value": "Supported font weights",
+          "type": "text"
+        },
+        "title": {
+          "value": "Font-Weights",
+          "type": "text"
+        }
+      }
+    },  
     "templates": {
       "application-shell": {
         "title": {

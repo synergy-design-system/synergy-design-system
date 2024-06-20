@@ -247,6 +247,36 @@ export default class SynSideNav extends SynergyElement {
     super();
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.addEventListener('syn-initial-focus', (event) => {
+      if (this.rail) {
+        // We need to do this, to stop the drawer from giving focus to the panel
+        event.preventDefault();
+
+        // The originalTrigger needs to be removed, otherwise when closing the drawer,
+        // the first focused nav-item is focused again...
+        // eslint-disable-next-line @typescript-eslint/dot-notation
+        this.drawer['originalTrigger'] = null;
+      }
+    });
+
+    this.addEventListener('focusin', (event) => {
+      const targetTag = (event.target as HTMLElement).tagName.toLowerCase();
+      // Open the side-nav if it`s in rail mode, closed and the focused element is a nav-item
+      if (targetTag === 'syn-nav-item' && this.rail && !this.open) {
+        this.open = true;
+      }
+    });
+
+    this.addEventListener('focusout', (event) => {
+      const targetTag = (event.target as HTMLElement).tagName.toLowerCase();
+      const relatedTargetTag = (event.relatedTarget as HTMLElement)?.tagName.toLowerCase();
+
+      // Close the side-nav, if it`s in rail mode, open and the next focused element
+      // is no longer a nav-item
+      if (targetTag === 'syn-nav-item' && relatedTargetTag !== 'syn-nav-item' && this.rail && this.open) {
+        this.open = false;
+      }
+    });
   }
 
   /**
@@ -254,6 +284,13 @@ export default class SynSideNav extends SynergyElement {
    * */
   firstUpdated() {
     this.setDrawerAnimations();
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.drawer.updateComplete.then(() => {
+      // change tabindex of drawer to make only nav-items focusable and not the panel of the drawer
+      (this.drawer.shadowRoot!.querySelector('.drawer__panel') as HTMLElement).tabIndex = -1;
+    });
+
     if (this.rail) {
       // Wait for the drawer`s update to be completed
 
@@ -306,7 +343,7 @@ export default class SynSideNav extends SynergyElement {
           ?open=${this.open}
           part="drawer"
           placement="start"
-          @syn-request-close=${this.handleRequestClose}          
+          @syn-request-close=${this.handleRequestClose} 
         >
           <div part="content-container" class="side-nav__content-container">
             <slot part="content" ></slot>

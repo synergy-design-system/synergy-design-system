@@ -270,5 +270,24 @@ describe('<syn-side-nav>', () => {
 
       expect(baseDrawer.hidden).to.be.true;
     });
+
+    it('should open the side-nav if nav-item is focused and close it if it looses focus', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav rail>
+          <syn-nav-item vertical>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const navItem = sideNav.querySelector('syn-nav-item')!;
+
+      expect(sideNav.open).to.be.false;
+
+      navItem.focus();
+
+      expect(sideNav.open).to.be.true;
+
+      navItem.blur();
+
+      expect(sideNav.open).to.be.false;
+    });
   });
 });

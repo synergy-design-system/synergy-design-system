@@ -656,6 +656,16 @@
           "value": "To give content more structure, you can use the property contained.",
           "type": "text"
         }
+      },
+      "icon": {
+        "title": {
+          "value": "Prefix Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix Icon to prepend an icon to the details.",
+          "type": "text"
+        }
       }
     },
     "dialog": {
@@ -2443,7 +2453,7 @@
           "type": "text"
         }
       }
-    },  
+    },
     "templates": {
       "application-shell": {
         "title": {

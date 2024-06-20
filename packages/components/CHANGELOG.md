@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.2.0...components/2.2.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* 🤔 syn-tab-group may throw an error when unmounted too quick ([#512](https://github.com/synergy-design-system/synergy-design-system/issues/512)) ([49ca556](https://github.com/synergy-design-system/synergy-design-system/commit/49ca55659358577973122fff9059a6c36b5343d9))
+
 # [@synergy-design-system/components-v2.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.1.0...components/2.2.0) (2024-06-18)
 
 

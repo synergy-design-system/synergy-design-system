@@ -176,6 +176,25 @@ export const Sizes: Story = {
   `,
 };
 
+export const PrefixIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('details', 'icon'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-details open>
+      <syn-icon name="home" slot="summary"></syn-icon>
+      <span slot="summary">Accordion Element</span>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+      At vero eos et accusam et justo duo dolores et ea rebum.
+    </syn-details>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -183,5 +202,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Contained,
   Disabled,
   Sizes,
+  PrefixIcons,
 }, 300);
 /* eslint-enable sort-keys */

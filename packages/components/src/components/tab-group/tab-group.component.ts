@@ -136,7 +136,9 @@ export default class SynTabGroup extends SynergyElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.mutationObserver.disconnect();
-    this.resizeObserver.unobserve(this.nav);
+    if (this.nav) {
+      this.resizeObserver.unobserve(this.nav);
+    }
   }
 
   private getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {

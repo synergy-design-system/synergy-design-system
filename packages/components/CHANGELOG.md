@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.3.0...components/2.4.0) (2024-06-21)
+
+
+### Features
+
+*  ✨ Add open / close handling for side-nav in rail mode for keyboard focus ([#513](https://github.com/synergy-design-system/synergy-design-system/issues/513)) ([ab1ccc2](https://github.com/synergy-design-system/synergy-design-system/commit/ab1ccc24837dcbf5b56195f4f31c03555b47d2f6))
+
 # [@synergy-design-system/components-v2.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.2.1...components/2.3.0) (2024-06-21)
 
 

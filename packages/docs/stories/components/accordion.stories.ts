@@ -158,7 +158,7 @@ export const Focus: Story = {
   `,
 };
 
-export const Disabled: Story = {
+const createDisabledStory = (contained: boolean): Story => ({
   parameters: {
     docs: {
       description: {
@@ -167,7 +167,7 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-accordion>
+    <syn-accordion .contained=${contained}>
       <syn-details summary="Accordion Element">
         <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -182,7 +182,12 @@ export const Disabled: Story = {
       </syn-details>
     </syn-accordion>
   `,
-};
+
+});
+
+export const Disabled = createDisabledStory(false);
+
+const DisabledAndContained = createDisabledStory(true);
 
 export const Sizes: Story = {
   parameters: {
@@ -236,6 +241,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Contained,
   GroupingDetails,
   Disabled,
+  DisabledAndContained,
   Sizes,
 }, 1150);
 /* eslint-enable sort-keys */

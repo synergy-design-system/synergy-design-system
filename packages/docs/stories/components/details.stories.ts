@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
@@ -134,7 +136,7 @@ export const Focus: Story = {
   `,
 };
 
-export const Disabled: Story = {
+const createDisabledStory = (contained: boolean): Story => ({
   parameters: {
     docs: {
       description: {
@@ -143,13 +145,17 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-details summary="Toggle Me" disabled contained>
+    <syn-details summary="Toggle Me" disabled .contained=${contained}>
       <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
   `,
-};
+});
+
+export const Disabled = createDisabledStory(true);
+
+const DisabledNotContained = createDisabledStory(false);
 
 export const Sizes: Story = {
   parameters: {
@@ -200,6 +206,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Open,
   Contained,
+  DisabledNotContained,
   Disabled,
   Sizes,
   PrefixIcons,

@@ -4,6 +4,7 @@ export * from './breadcrumb.vendorism.js';
 export * from './breadcrumb-item.vendorism.js';
 export * from './button.vendorism.js';
 export * from './card.vendorism.js';
+export * from './details.vendorism.js';
 export * from './drawer.vendorism.js';
 export * from './icon-button.vendorism.js';
 export * from './icon.vendorism.js';

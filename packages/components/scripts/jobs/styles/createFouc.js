@@ -7,7 +7,9 @@ import { job } from '../shared.js';
  * Used to create a specific selector for these components.
  */
 const componentsUsingBlockLayout = [
+  'accordion',
   'breadcrumb',
+  'details',
   'divider',
   'header',
   'menu',

@@ -200,7 +200,7 @@ export const ContactForm = {
       </form>
     </div>
 
-    <script>
+    <script type="module">
     const firstTopic = document.querySelector('syn-checkbox:first-child');
     const firstTopicError = '${getTranslation('contactForm.topicsErrorMessage')}';
 

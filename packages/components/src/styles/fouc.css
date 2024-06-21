@@ -7,7 +7,9 @@
  * All changes applied will get lost!
  * To recreate it, please use "pnpm build"!
  */
+syn-accordion:not(:defined),
 syn-breadcrumb:not(:defined),
+syn-details:not(:defined),
 syn-divider:not(:defined),
 syn-header:not(:defined),
 syn-menu:not(:defined),

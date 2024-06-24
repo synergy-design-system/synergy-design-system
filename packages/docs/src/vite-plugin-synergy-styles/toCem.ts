@@ -6,6 +6,8 @@ import type {
   Tag,
 } from './types.js';
 
+const NO_DEFAULT = 'NO_DEFAULT';
+
 /**
  * Get the supported types as an array
  * @param tag The tag to get the types for
@@ -14,7 +16,13 @@ import type {
 const getTypesAsArray = (tag: Tag): string[] => tag.type
   .split('|')
   .map(t => t.trim())
-  .map(t => `'${tag.name}--${t}'`);
+  .map(t => {
+    // If we don`t want a default value in a drop down, return an empty string
+    if (t === NO_DEFAULT) return '';
+
+    const separator = tag.name.includes('--') ? '-' : '--';
+    return `'${tag.name}${separator}${t}'`;
+  });
 
 /**
  * The tag to get the type for
@@ -33,7 +41,14 @@ const getTypeForTag = (tag: Tag) => {
  * @param tag The tag to check
  * @returns True if the tag is allowed to be included
  */
-const tagIsAllowedToBeIncluded = (tag: Tag): boolean => tag.tag === 'variant';
+const tagIsAllowedToBeIncluded = (tag: Tag): boolean => ['variant', 'boolean'].includes(tag.tag);
+
+/**
+ * Check if a tag is a boolean type
+ * @param tag The tag to check
+ * @returns True if the tag is a boolean type
+ */
+const tagIsBooleanType = (tag: Tag): boolean => tag.tag === 'boolean' || !tag.type || tag.type.trim().length === 0 || tag.type === 'true';
 
 /**
  * Convert a tag to an attribute
@@ -46,10 +61,11 @@ const getAttributesForTag = (tag: Tag): Attribute | null => {
     return null;
   }
 
-  // 1. If we do not have a variant, treat the tag as a boolean value
-  if (!tag.type || tag.type.trim().length === 0) {
+  // 1. If we do not have a variant or its a single value with 'true',
+  // treat the tag as a boolean value
+  if (tagIsBooleanType(tag)) {
     return {
-      default: 'false',
+      default: tag.type === 'true' ? 'true' : 'false',
       description: tag.description,
       name: tag.name,
       type: {
@@ -87,11 +103,12 @@ const getMembersForTag = (tag: Tag): StyleClassMember | null => {
     return null;
   }
 
-  // 1. If we do not have a variant, treat the tag as a boolean value
-  if (!tag.type || tag.type.trim().length === 0) {
+  // 1. If we do not have a variant or its a single value with 'true',
+  // treat the tag as a boolean value
+  if (tagIsBooleanType(tag)) {
     return {
       attribute: tag.name,
-      default: 'false',
+      default: tag.type === 'true' ? 'true' : 'false',
       description: tag.description,
       kind: 'field',
       name: tag.name,

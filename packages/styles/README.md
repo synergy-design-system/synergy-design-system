@@ -73,6 +73,9 @@ import "@synergy-design-system/styles/typography.css";
 
 <!-- BEGIN INLINE COMMENT -->
 
+- table.css
+  - table-cell.css
+  - table.css
 - typography.css
   - body.css
   - heading.css

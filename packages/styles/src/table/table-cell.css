@@ -1,0 +1,100 @@
+/**
+ * Table cell classes
+ *
+ * @boolean { true } syn-table-cell Applies the table cell styling
+ * @boolean syn-table-cell--bg-neutral-50 Applies the table cell styling with a neutral background color
+ * @boolean syn-table-cell--border-start Applies a border to the left of the table cell
+ * @boolean syn-table-cell--border-end Applies a border to the right of the table cell
+ * @boolean syn-table-cell--border-top Applies a border to the top of the table cell
+ * @boolean syn-table-cell--border-bottom Applies a border to the bottom of the table cell
+ * @boolean syn-table-cell--header Applies the table cell header styling]
+ * @variant { NO_DEFAULT | bottom | top | start | end } syn-table-cell--shadow syn-table-cell--shadow--top Applies a shadow to the table cell
+ */
+
+.syn-table-cell {
+    color: var(--syn-typography-color-text);
+    font: var(--syn-body-small-regular);
+    padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+}
+
+.syn-table-cell--bg-neutral-50 {
+    background-color: var(--syn-color-neutral-50);
+}
+
+/* Border */
+
+/* TODO: Discuss with design because of "start" and "end". In css we always have "left" and "right" */
+.syn-table-cell--border-start {
+    border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-end {
+    border-right: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-top {
+    border-top: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-bottom {
+    border-bottom: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+
+/* Header */
+.syn-table-cell--header {
+    background-color: var(--syn-color-neutral-200);
+    color: var(--syn-typography-color-text);
+    font: var(--syn-body-small-semibold);
+    padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+}
+
+/* Shadow */
+
+/* TODO: Discuss with design because of "start" and "end". In css we always have "left" and "right" */
+.syn-table-cell--shadow-bottom::after, 
+.syn-table-cell--shadow-top::after,
+.syn-table-cell--shadow-start::after,
+.syn-table-cell--shadow-end::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+}
+
+.syn-table-cell--shadow-bottom::after, 
+.syn-table-cell--shadow-top::after {
+    height: var(--syn-spacing-medium);
+    left: 0;
+    right: 0;
+}
+
+.syn-table-cell--shadow-start::after, 
+.syn-table-cell--shadow-end::after {
+    bottom: 0;
+    top: 0;
+    width: var(--syn-spacing-medium);
+}
+
+.syn-table-cell--shadow-bottom::after {
+    /* --shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
+    --shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 10%, transparent);
+    background: linear-gradient(0deg, var(--shadow-start), var(--shadow-end) 100%); */
+
+    background: linear-gradient(0deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    bottom: calc(var(--syn-spacing-medium) * -1);
+}
+
+.syn-table-cell--shadow-top::after {
+    background: linear-gradient(180deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    top: calc(var(--syn-spacing-medium) * -1);
+}
+
+.syn-table-cell--shadow-start::after {
+    background: linear-gradient(90deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    left: calc(var(--syn-spacing-medium) * -1);
+}
+
+.syn-table-cell--shadow-end::after {
+    background: linear-gradient(270deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    right: calc(var(--syn-spacing-medium) * -1);
+}

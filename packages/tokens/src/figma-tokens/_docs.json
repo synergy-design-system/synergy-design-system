@@ -463,16 +463,6 @@
           "type": "text"
         }
       },
-      "nested": {
-        "description": {
-          "value": "Use the sharp attribute to draw the card with sharp edges. This can be used to e.g expand a Card to a Background Card and nest multiple sharp cards into.",
-          "type": "text"
-        },
-        "title": {
-          "value": "Nested Card",
-          "type": "text"
-        }
-      },
       "sharp": {
         "title": {
           "value": "Sharp Card",

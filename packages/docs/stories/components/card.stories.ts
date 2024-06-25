@@ -217,75 +217,23 @@ export const Images: Story = {
   `,
 };
 
-export const NestedCard: Story = {
+export const SharpCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('card', 'nested'),
+        story: generateStoryDescription('card', 'sharp'),
       },
     },
   },
   render: () => html`
-    <syn-card class="nested-cards">
-      <div slot="header">
-        Header Title
-        <syn-icon-button color="neutral" name="share" label="Share"></syn-icon-button>
-      </div>
-
-      <div class="nested-cards-items">
-        ${[0, 1].map(() => html`
-          <syn-card sharp>
-            <img
-              slot="image"
-              src="/card-example.jpg"
-              alt="Multiple persons having lunch in SICK Academy"
-            />
-            <h3>Headline</h3>
-            Together, we shape digital transformation and develop innovative solutions for a sustainable future.
-            
-            <footer slot="footer">
-              <small>Optional Information</small>
-              <nav>
-                <syn-button variant="filled" size="small">Button</syn-button>
-              </nav>
-            </footer>
-          </syn-card>
-        `)}
-      </div>
+    <syn-card class="sharp-card" sharp>
+      <img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
+      This are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>
-      .nested-cards {
-        max-width: 800px;
-      }
-
-      .nested-cards [slot='header'] {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .nested-cards syn-icon-button {
-        font-size: var(--syn-font-size-x-large);
-      }
-
-      .nested-cards-items {
-        display: flex;
-        gap: var(--syn-spacing-large);
-      }
-
-      .nested-cards-items footer {
-        align-items: center;
-        display: flex;
-        gap: var(--syn-spacing-x-small);
-      }
-
-      .nested-cards-items footer nav {
-        display: flex;
-        flex: 1;
-        flex-wrap: wrap;
-        gap: var(--syn-spacing-x-small);
-        justify-content: flex-end;
+      .sharp-card {
+        max-width: 400px;
       }
     </style>
   `,
@@ -298,6 +246,6 @@ export const Screenshot: Story = generateScreenshotStory({
   CardWithHeader,
   CardWithFooter,
   Images,
-  NestedCard,
+  SharpCard,
 }, 600);
 /* eslint-enable sort-keys */

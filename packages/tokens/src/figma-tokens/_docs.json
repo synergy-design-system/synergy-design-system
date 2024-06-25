@@ -2721,6 +2721,58 @@
           "type": "text"
         }
       }
+    },
+    "table": {
+      "default": {
+        "title": {
+          "value": "Table-cell",
+          "type": "text"
+        },
+        "description": {
+          "value": "The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows.",
+          "type": "text"
+        }
+      },
+      "header": {
+        "title": {
+          "value": "Header",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.",
+          "type": "text"
+        }
+      },
+      "alternating": {
+        "title": {
+          "value": "Alternating",
+          "type": "text"
+        },
+        "description": {
+          "value": "The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.",
+          "type": "text"
+        }
+      },
+      "border": {
+        "title": {
+          "value": "Border",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the border attribute to define different borders in a cell. Placements can also be combined.",
+          "type": "text"
+        }
+      },
+      "scroll": {
+        "title": {
+          "value": "Scrolling Behaviour",
+          "type": "text"
+        },
+        "description": {
+          "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
+          "type": "text"
+        }
+      }
     }
   },
   "assets": {

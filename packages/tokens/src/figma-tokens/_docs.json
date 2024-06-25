@@ -1832,6 +1832,16 @@
           "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
           "type": "text"
         }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
+          "type": "text"
+        }
       }
     },
     "skeleton": {

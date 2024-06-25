@@ -32,6 +32,7 @@ export default css`
   }
 
   /* Change select border on hover */
+  /* stylelint-disable-next-line no-descending-specificity */
   .select:not(.select--disabled):hover .select__combobox {
     border-color: var(--syn-input-color-hover);
   }

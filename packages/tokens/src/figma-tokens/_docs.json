@@ -472,6 +472,16 @@
           "value": "Nested Card",
           "type": "text"
         }
+      },
+      "sharp": {
+        "title": {
+          "value": "Sharp Card",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the sharp variant attribute for the Card to Use a different style.",
+          "type": "text"
+        }
       }
     },
     "carousel-item": {

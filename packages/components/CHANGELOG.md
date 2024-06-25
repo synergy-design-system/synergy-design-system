@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.4.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.0...components/2.4.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* 🤔 added invalid state to syn-select ([#517](https://github.com/synergy-design-system/synergy-design-system/issues/517)) ([ac290d1](https://github.com/synergy-design-system/synergy-design-system/commit/ac290d16dd208342d2c2565259895bf8eca62a96))
+
 # [@synergy-design-system/components-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.3.0...components/2.4.0) (2024-06-21)
 
 

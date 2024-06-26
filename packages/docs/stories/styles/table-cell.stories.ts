@@ -29,7 +29,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('19479-134433'),
     docs: {
       description: {
-        component: generateStoryDescription('styles', 'body'),
+        component: generateStoryDescription('table', 'default'),
       },
     },
   },
@@ -41,6 +41,11 @@ export const Default: StoryObj = {
   parameters: {
     controls: {
       disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('table', 'default'),
+      },
     },
   },
   render: (args: unknown) => html`
@@ -60,6 +65,13 @@ export const Default: StoryObj = {
 };
 
 export const Header: StoryObj = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('table', 'header'),
+      },
+    },
+  },
   render: () => html`
     <table class="syn-table">
       <thead>
@@ -77,6 +89,13 @@ export const Header: StoryObj = {
 };
 
 export const Alternating: StoryObj = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('table', 'alternating'),
+      },
+    },
+  },
   render: () => html`
     <table class="syn-table">
       <tbody>
@@ -98,6 +117,13 @@ export const Alternating: StoryObj = {
 };
 
 export const Border: StoryObj = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('table', 'border'),
+      },
+    },
+  },
   render: () => html`
     <table class="syn-table">
       <tbody>
@@ -119,6 +145,13 @@ export const Border: StoryObj = {
 };
 
 export const ScrollingBehavior: StoryObj = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('table', 'scroll'),
+      },
+    },
+  },
   render: () => html`
     <table class="syn-table">
       <thead>
@@ -148,5 +181,6 @@ export const Screenshot: StoryObj = generateScreenshotStory({
   Header,
   Alternating,
   Border,
+  ScrollingBehavior,
 });
 /* eslint-enable sort-keys */

@@ -22,8 +22,7 @@
 }
 
 /* Border */
-
-/* TODO: Discuss with design because of "start" and "end". In css we always have "left" and "right" */
+/* TODO: test to make it work with ltz --> border-block-start ... */
 .syn-table-cell--border-start {
     border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
 }
@@ -50,8 +49,6 @@
 }
 
 /* Shadow */
-
-/* TODO: Discuss with design because of "start" and "end". In css we always have "left" and "right" */
 .syn-table-cell--shadow-bottom::after, 
 .syn-table-cell--shadow-top::after,
 .syn-table-cell--shadow-start::after,

@@ -71,9 +71,25 @@ export const appShell = {
   mainSlot: 'Replace this slot',
 };
 
+export const table = {
+  header: {
+    name: 'Name',
+    customer: 'Customer',
+    location: 'Location',
+    contractStart: 'Contract Start',
+  },
+  body: {
+    name: 'Max Mustermann',
+    customer: 'Muster AG',
+    location: 'Hamburg, Düsseldorf, Freiburg',
+    contractStart: '20.01.2023',
+  },
+};
+
 export const translations = {
   appShell,
   contactForm,
+  table,
 };
 
 /**

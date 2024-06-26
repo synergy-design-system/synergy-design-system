@@ -15,6 +15,9 @@
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-regular);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+
+    /* TODO: test to make it work with ltr --> text-align: start ... */
+    text-align: left;
 }
 
 .syn-table-cell--bg-neutral-50 {
@@ -22,6 +25,7 @@
 }
 
 /* Border */
+
 /* TODO: test to make it work with ltz --> border-block-start ... */
 .syn-table-cell--border-start {
     border-left: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
@@ -46,6 +50,9 @@
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-semibold);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+
+    /* TODO: test to make it work with ltr --> text-align: start ... */
+    text-align: left;
 }
 
 /* Shadow */

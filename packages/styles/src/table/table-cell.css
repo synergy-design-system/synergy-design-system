@@ -50,23 +50,38 @@
 }
 
 /* Shadow */
-.syn-table-cell--shadow-bottom::after, 
+.syn-table-cell--shadow-bottom::after,
 .syn-table-cell--shadow-top::after,
 .syn-table-cell--shadow-start::after,
 .syn-table-cell--shadow-end::after {
+    /* Fallback for no color-mix support */
+    --shadow-start: rgb(49 55 58 / 0%) ;
+    --shadow-end: rgb(49 55 58 / 10%);
+
     content: '';
     pointer-events: none;
     position: absolute;
 }
 
-.syn-table-cell--shadow-bottom::after, 
+/* I can not use var(--syn-color-neutral-950) here for some reason and therefore `grey`is used. If doing this, the fallback will not be used */
+@supports (background: color-mix(in srgb, grey 0%, transparent)) {
+    .syn-table-cell--shadow-bottom::after,
+    .syn-table-cell--shadow-top::after,
+    .syn-table-cell--shadow-start::after,
+    .syn-table-cell--shadow-end::after {
+        --shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
+        --shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 10%, transparent);  
+    }
+}
+
+.syn-table-cell--shadow-bottom::after,
 .syn-table-cell--shadow-top::after {
     height: var(--syn-spacing-medium);
     left: 0;
     right: 0;
 }
 
-.syn-table-cell--shadow-start::after, 
+.syn-table-cell--shadow-start::after,
 .syn-table-cell--shadow-end::after {
     bottom: 0;
     top: 0;
@@ -74,22 +89,18 @@
 }
 
 .syn-table-cell--shadow-bottom::after {
-    /* --shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
-    --shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 10%, transparent);
-    background: linear-gradient(0deg, var(--shadow-start), var(--shadow-end) 100%); */
-
-    background: linear-gradient(0deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    background: linear-gradient(0deg, var(--shadow-start) 0%, var(--shadow-end) 100%);
     bottom: calc(var(--syn-spacing-medium) * -1);
 }
 
 .syn-table-cell--shadow-top::after {
-    background: linear-gradient(180deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    background: linear-gradient(180deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
     top: calc(var(--syn-spacing-medium) * -1);
 }
 
 .syn-table-cell--shadow-start::after,
 :dir(rtl) .syn-table-cell--shadow-end::after {
-    background: linear-gradient(90deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
     left: calc(var(--syn-spacing-medium) * -1);
     right: unset;
 }
@@ -97,7 +108,7 @@
 /* stylelint-disable-next-line no-descending-specificity */
 .syn-table-cell--shadow-end::after,
 :dir(rtl) .syn-table-cell--shadow-start::after {
-    background: linear-gradient(270deg, rgb(49 55 58 / 0%) 0%, rgb(49 55 58 / 10%) 100%);
+    background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
     left: unset;
     right: calc(var(--syn-spacing-medium) * -1);
 }

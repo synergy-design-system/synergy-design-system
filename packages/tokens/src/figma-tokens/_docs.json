@@ -2484,6 +2484,16 @@
           "value": "Contact Form",
           "type": "text"
         }
+      },
+      "table": {
+        "title": {
+          "value": "Table",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-table-cell in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

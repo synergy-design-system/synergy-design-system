@@ -8,7 +8,7 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
-// import { generateStoryDescription } from '../../src/helpers/component.js';
+import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
@@ -31,11 +31,9 @@ const repeatFor = (iterator: (value: any, index: number, array: any[]) => unknow
  * @param shadow - Shadow position
  */
 const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = undefined) => {
-  const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
-
   // eslint-disable-next-line complexity
   const getClassesForColumn = (column: number) => `syn-table-cell--header ${
-    ((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4) || shadow === 'bottom') ? shadowClass : ''
+    ((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4) || shadow === 'bottom') ? 'shadow-cell' : ''
   }`;
 
   return html`
@@ -54,13 +52,12 @@ const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = u
 /**
  * Create table body row
  *
- * @param alternate - Alternate row
+ * @param background - Cell background color
  * @param shadow - Shadow position
  */
-const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | undefined = undefined) => {
-  const classes = `syn-table-cell ${alternate ? 'syn-table-cell--bg-neutral-50' : ''}`;
-  const shadowClass = `syn-table-cell--shadow-${shadow} shadow-cell`;
-  const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
+const createBodyRow = (background: 'syn-table-cell--bg-neutral-50' | 'syn-table-cell--bg-neutral-0' | '' = '', shadow: 'start' | 'end' | undefined = undefined) => {
+  const classes = `syn-table-cell ${background}`;
+  const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? 'shadow-cell' : ''}`;
 
   return html`
   <tr>
@@ -90,8 +87,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('19923-55456'),
     docs: {
       description: {
-        // TODO: use doc-tokens as soon as available
-        // component: generateStoryDescription('templates', 'application-shell'),
+        component: generateStoryDescription('templates', 'table'),
       },
       page: () => (
         <>
@@ -128,8 +124,8 @@ export const TableWithHeader: Story = {
 export const TableWithAlternatingRows: Story = {
   render: () => {
     const alternateBody = repeatFor((_val, index) => {
-      const alternate = index % 2 !== 0;
-      return createBodyRow(alternate);
+      const backgroundColor = index % 2 !== 0 ? 'syn-table-cell--bg-neutral-50' : '';
+      return createBodyRow(backgroundColor);
     });
 
     return html`
@@ -178,10 +174,10 @@ export const TableWithBorders: Story = {
 
 export const TableShadowLeftColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow(false, 'end'));
+    const bodyData = repeatFor(() => createBodyRow('syn-table-cell--bg-neutral-0', 'end'));
 
     return html`
-    <table class="syn-table">
+    <table id="horizontal-scrollable-table" class="syn-table">
       ${createHeader('end')}
       <tbody>
         ${bodyData}
@@ -189,20 +185,41 @@ export const TableShadowLeftColumn: Story = {
     </table>
     <style>
       .shadow-cell {
-        position: relative;
+        position: sticky;
         z-index: 1;
+        left: 0;
+      }
+      .syn-table {
+        display: block;
+        overflow-x: auto;
+        width: 400px;
       }
     </style>
+    <script type="module">
+      const scrollableTable = document.getElementById('horizontal-scrollable-table');
+      const tableRows = scrollableTable.querySelectorAll('tr');
+
+      scrollableTable.addEventListener('scroll', () => {
+        tableRows.forEach(row => {
+          const firstCell = row.firstElementChild;
+          if (scrollableTable.scrollLeft === 0) {
+            firstCell.classList.remove('syn-table-cell--shadow-end');
+          } else {
+            firstCell.classList.add('syn-table-cell--shadow-end');
+          }
+        });
+      });
+    </script>
   `;
   },
 };
 
 export const TableShadowRightColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow(false, 'start'));
+    const bodyData = repeatFor(() => createBodyRow('syn-table-cell--bg-neutral-0', 'start'));
 
     return html`
-    <table class="syn-table">
+    <table id="horizontal-scrollable-table2" class="syn-table">
       ${createHeader('start')}
       <tbody>
         ${bodyData}
@@ -210,10 +227,38 @@ export const TableShadowRightColumn: Story = {
     </table>
     <style>
       .shadow-cell {
-        position: relative;
+        position: sticky;
+        right: 0;
         z-index: 1;
       }
+
+      .syn-table {
+        display: block;
+        overflow-x: auto;
+        width: 400px;
+      }
     </style>
+    <script type="module">
+      const scrollableTable = document.getElementById('horizontal-scrollable-table2');
+      const tableRows = scrollableTable.querySelectorAll('tr');
+      const maxScrollX = scrollableTable.scrollWidth - scrollableTable.clientWidth;
+
+      const handleShadow = () => {
+        tableRows.forEach(row => {
+          const lastCell = row.lastElementChild
+          if (scrollableTable.scrollLeft === maxScrollX) {
+            lastCell.classList.remove('syn-table-cell--shadow-start');
+          } else {
+            lastCell.classList.add('syn-table-cell--shadow-start');
+          }
+        });
+      }
+
+      // Initially set shadow on load
+      handleShadow();
+
+      scrollableTable.addEventListener('scroll', handleShadow);
+    </script>
   `;
   },
 };
@@ -223,7 +268,7 @@ export const TableShadowTopRow: Story = {
     const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-    <table class="syn-table">
+    <table id="vertical-scrollable-table" class="syn-table">
       ${createHeader('bottom')}
       <tbody>
         ${bodyData}
@@ -231,10 +276,33 @@ export const TableShadowTopRow: Story = {
     </table>
     <style>
       .shadow-cell {
-        position: relative;
+        position: sticky;
         z-index: 1;
+        top: 0;
       }
+      .syn-table {
+        display: block;
+        overflow-y: auto;
+        height: 200px;
+        width: fit-content;
+      }
+
     </style>
+    <script type="module">
+      const scrollableTable = document.getElementById('vertical-scrollable-table');
+        const tableHeaders = scrollableTable.querySelectorAll('th');
+
+        scrollableTable.addEventListener('scroll', () => {
+          tableHeaders.forEach(header => {
+
+            if (scrollableTable.scrollTop === 0) {
+              header.classList.remove('syn-table-cell--shadow-bottom')
+            } else {
+              header.classList.add('syn-table-cell--shadow-bottom'); 
+            }
+          });
+      });
+    </script>
   `;
   },
 };

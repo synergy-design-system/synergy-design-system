@@ -63,21 +63,88 @@ const createBodyRow = (background: 'syn-table-cell--bg-neutral-50' | 'syn-table-
 
   return html`
   <tr>
-    <th class="${getClassesForColumn(0)}">${getTranslation('table.body.name')}</th>
-    <th class="${getClassesForColumn(1)}">${getTranslation('table.body.customer')}</th>
-    <th class="${getClassesForColumn(2)}">${getTranslation('table.body.location')}</th>
-    <th class="${getClassesForColumn(3)}">${getTranslation('table.body.contractStart')}</th>
-    <th class="${getClassesForColumn(4)}"> 
+    <td class="${getClassesForColumn(0)}">${getTranslation('table.body.name')}</td>
+    <td class="${getClassesForColumn(1)}">${getTranslation('table.body.customer')}</td>
+    <td class="${getClassesForColumn(2)}">${getTranslation('table.body.location')}</td>
+    <td class="${getClassesForColumn(3)}">${getTranslation('table.body.contractStart')}</td>
+    <td class="${getClassesForColumn(4)}"> 
       <syn-button variant="text" size="small">
         <syn-icon name="edit"></syn-icon>
       </syn-button>
       <syn-button variant="text" size="small">
         <syn-icon name="delete_outline"></syn-icon>
       </syn-button>
-    </th>
+    </td>
   </tr>
 `;
 };
+
+/**
+* Create table product body row
+*/
+const createBodyRowProduct = () => html`
+  <tr>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0 syn-table-cell--shadow-end shadow-cell">
+      <div class="product-cell">
+        <img
+          class="product-image"
+          src="/card-example.jpg"
+          alt="Multiple persons having lunch in SICK Academy"
+        />
+        <div>
+          <div>${getTranslation('table.productTable.body.productDetails')}</div>
+          <div class="product-name">${getTranslation('table.productTable.body.productName')}</div>
+          <div>${getTranslation('table.productTable.body.partNo')}</div> 
+        </div>
+      </div>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+      <div class="availability">
+        <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
+        ${getTranslation('table.productTable.body.availability')}
+      </div>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+      ${getTranslation('table.productTable.body.earliestDelivery')}
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+      <div class="price">
+        <div>${getTranslation('table.productTable.body.listPrice.text')}</div>
+        <div>${getTranslation('table.productTable.body.netPrice.text')}</div>  
+      </div>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+      <div class="price">
+        <div>${getTranslation('table.productTable.body.listPrice.unitPrice')}</div>
+        <div>${getTranslation('table.productTable.body.netPrice.unitPrice')}</div>
+      </div>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+      <div class="price">
+        <div>${getTranslation('table.productTable.body.listPrice.totalPrice')}</div>
+        <div>${getTranslation('table.productTable.body.netPrice.totalPrice')}</div>
+      </div>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0"> 
+      <syn-button variant="text" size="small">
+        <syn-icon name="edit"></syn-icon>
+      </syn-button>
+      <syn-button variant="text" size="small">
+        <syn-icon name="delete_outline"></syn-icon>
+      </syn-button>
+    </td>
+    <td class="syn-table-cell syn-table-cell--bg-neutral-0"> 
+      <syn-button variant="filled" size="small">
+        <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
+        ${getTranslation('table.productTable.body.button.cart')}
+      </syn-button>
+      <syn-button variant="text" size="small">
+        <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
+        ${getTranslation('table.productTable.body.button.request')}
+      </syn-button>
+    </td>
+  </tr>
+`;
 
 const meta: Meta = {
   parameters: {
@@ -147,18 +214,18 @@ export const TableWithBorders: Story = {
       const classes = `syn-table-cell syn-table-cell--border-end ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}`;
       return html`
     <tr>
-      <th class="${classes}">${getTranslation('table.body.name')}</th>
-      <th class="${classes}">${getTranslation('table.body.customer')}</th>
-      <th class="${classes}">${getTranslation('table.body.location')}</th>
-      <th class="${classes}">${getTranslation('table.body.contractStart')}</th>
-      <th class="syn-table-cell ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}"> 
+      <td class="${classes}">${getTranslation('table.body.name')}</td>
+      <td class="${classes}">${getTranslation('table.body.customer')}</td>
+      <td class="${classes}">${getTranslation('table.body.location')}</td>
+      <td class="${classes}">${getTranslation('table.body.contractStart')}</td>
+      <td class="syn-table-cell ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}"> 
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
         </syn-button>
         <syn-button variant="text" size="small">
           <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
-      </th>
+      </td>
     </tr>
   `;
     });
@@ -186,15 +253,24 @@ export const TableShadowLeftColumn: Story = {
       </tbody>
     </table>
     <style>
-      .shadow-cell {
+      #horizontal-scrollable-table {
+        display: block;
+        overflow-x: auto;
+        width: 550px;
+      }
+
+      #horizontal-scrollable-table .shadow-cell {
         position: sticky;
         z-index: 1;
         left: 0;
       }
-      .syn-table {
-        display: block;
-        overflow-x: auto;
-        width: 400px;
+
+      #horizontal-scrollable-table td {
+        min-width: 112px;
+      }
+
+      #horizontal-scrollable-table td:last-child {
+        min-width: 76px;
       }
     </style>
     <script type="module">
@@ -227,16 +303,24 @@ export const TableShadowRightColumn: Story = {
       </tbody>
     </table>
     <style>
-      .shadow-cell {
+      #horizontal-scrollable-table2 {
+        display: block;
+        overflow-x: auto;
+        width: 550px;
+      }
+
+      #horizontal-scrollable-table2 .shadow-cell {
         position: sticky;
         right: 0;
         z-index: 1;
       }
 
-      .syn-table {
-        display: block;
-        overflow-x: auto;
-        width: 400px;
+      #horizontal-scrollable-table2 td {
+        min-width: 112px;
+      }
+
+      #horizontal-scrollable-table2 td:last-child {
+        min-width: 76px;
       }
     </style>
     <script type="module">
@@ -275,18 +359,18 @@ export const TableShadowTopRow: Story = {
       </tbody>
     </table>
     <style>
-      .shadow-cell {
-        position: sticky;
-        z-index: 1;
-        top: 0;
-      }
-      .syn-table {
+      #vertical-scrollable-table {
         display: block;
         overflow-y: auto;
         height: 200px;
         width: fit-content;
       }
 
+      #vertical-scrollable-table .shadow-cell {
+        position: sticky;
+        z-index: 1;
+        top: 0;
+      }
     </style>
     <script type="module">
       const scrollableTable = document.getElementById('vertical-scrollable-table');
@@ -303,6 +387,114 @@ export const TableShadowTopRow: Story = {
         });
       });
     </script>
+  `;
+  },
+};
+
+export const TableProduct: Story = {
+  render: () => {
+    const bodyData = repeatFor(() => createBodyRowProduct());
+
+    return html`
+    <table id="product-table" class="syn-table">
+      <thead>
+        <tr>
+          <th class="syn-table-cell--header syn-table-cell--shadow-end shadow-cell">
+            ${getTranslation('table.productTable.header.product')}
+          </th>
+          <th class="syn-table-cell--header">
+            ${getTranslation('table.productTable.header.availability')}
+          </th>
+          <th class="syn-table-cell--header">
+            ${getTranslation('table.productTable.header.earliestDelivery')}
+          </th>
+          <th class="syn-table-cell--header"></th>
+          <th class="syn-table-cell--header">
+            ${getTranslation('table.productTable.header.unitPrice')}
+          </th>
+          <th class="syn-table-cell--header">
+            ${getTranslation('table.productTable.header.totalPrice')}
+          </th>
+          <th class="syn-table-cell--header"></th>
+          <th class="syn-table-cell--header"></th>
+        </tr>
+      </thead>
+      <tbody>
+        ${bodyData}
+      </tbody>
+    </table>
+    <script type="module">
+    const scrollableTable = document.getElementById('product-table');
+      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
+
+      scrollableTable.addEventListener('scroll', () => {
+        shadowCells.forEach(shadowCell => {
+          if (scrollableTable.scrollLeft === 0) {
+            shadowCell.classList.remove('syn-table-cell--shadow-active');
+          } else {
+            shadowCell.classList.add('syn-table-cell--shadow-active');
+          }
+        });
+      });
+    </script>
+    <style>
+      #product-table {
+        display: block;
+        overflow-y: auto;
+        width: 900px;
+      }
+
+      #product-table .shadow-cell {
+        position: sticky;
+        z-index: 1;
+        left: 0;
+      }
+
+      #product-table td {
+        min-width: 100px;
+      }
+
+      .product-image {
+        height: var(--syn-spacing-3x-large);
+        width: var(--syn-spacing-3x-large);
+        object-fit: cover;
+      }
+
+      .product-cell {
+        color: var(--syn-typography-color-text);
+        display: flex;
+        flex-direction: row;
+        font: var(--syn-body-x-small-regular);
+        gap: var(--syn-spacing-medium);
+        width: 230px;
+      }
+
+      .product-name {
+        color: var(--syn-color-primary-600);
+        font: var(--syn-body-medium-semibold);
+      }
+
+      .availability {
+        display: flex;
+        align-items: center;
+        gap: var(--syn-spacing-2x-small);
+      }
+
+      .check_icon {
+        font-size: var(--syn-font-size-medium);
+        color: var(--syn-color-success-600);
+      }
+
+      .price {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-2x-small);
+      }
+
+      .price :nth-child(2) {
+        font: var(--syn-body-small-semibold);
+      }
+    </style>
   `;
   },
 };

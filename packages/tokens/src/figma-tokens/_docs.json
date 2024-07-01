@@ -463,13 +463,13 @@
           "type": "text"
         }
       },
-      "nested": {
-        "description": {
-          "value": "Use the sharp attribute to draw the card with sharp edges. This can be used to e.g expand a Card to a Background Card and nest multiple sharp cards into.",
+      "sharp": {
+        "title": {
+          "value": "Sharp Card",
           "type": "text"
         },
-        "title": {
-          "value": "Nested Card",
+        "description": {
+          "value": "Use the sharp variant attribute for the Card to Use a different style.",
           "type": "text"
         }
       }
@@ -572,6 +572,16 @@
         },
         "description": {
           "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
           "type": "text"
         }
       }
@@ -1832,6 +1842,16 @@
           "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
           "type": "text"
         }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
+          "type": "text"
+        }
       }
     },
     "skeleton": {
@@ -1954,6 +1974,16 @@
         },
         "description": {
           "value": "The invalid status is used to warn the user that the Switch is invalid.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
           "type": "text"
         }
       }

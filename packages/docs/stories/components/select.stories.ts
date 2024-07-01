@@ -3,8 +3,9 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/select/select';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynSelect } from '@synergy-design-system/components';
+import type { SynButton, SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
+import { userEvent } from '@storybook/test';
 import { openSelect } from '../../src/helpers/select.js';
 import {
   generateScreenshotStory,
@@ -290,6 +291,58 @@ export const Sizes: Story = {
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-select>
+  `,
+};
+
+export const Invalid: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('select', 'invalid'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    try {
+      const form = canvasElement.querySelector('form')!;
+      const select = form.querySelector('syn-select');
+      const button = form.querySelector('syn-button') as SynButton;
+
+      if (button && select) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
+        await userEvent.click(button);
+        button.click();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
+  render: () => html`
+
+    <form class="custom-validity">
+      <syn-select label="Select one" required>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-select>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
   `,
 };
 

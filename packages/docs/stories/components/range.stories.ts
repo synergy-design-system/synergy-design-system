@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
 import {
-  // generateScreenshotStory,
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -230,3 +230,21 @@ export const TooltipFormatter: Story = {
     </script>
   `,
 };
+
+// Bundled screenshot story
+/* eslint-disable sort-keys */
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Labels,
+  HelpText,
+  Disabled,
+  PrefixSuffixText,
+  CustomTrackColors,
+  CustomTrackOffset,
+  MultiKnob,
+  Ticks,
+  TooltipPlacement,
+  TooltipDisabled,
+  TooltipFormatter,
+}, 500);
+/* eslint-enable sort-keys */

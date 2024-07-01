@@ -13,19 +13,8 @@ import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import { arraysDiffer, numericSort } from './utility.js';
 import styles from './range.styles.js';
-
-const numericSort = (a: number, b: number): number => a - b;
-
-const arraysDiffer = (a: readonly number[], b: readonly number[]): boolean => {
-  a ||= [];
-  b ||= [];
-  if (a.length !== b.length) return true;
-  for (let i = 0; i < a.length; i += 1) {
-    if (a[i] !== b[i]) return true;
-  }
-  return false;
-};
 
 /**
  * @summary Multi-Ranges allow the user to select
@@ -231,6 +220,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     if (this.tooltip !== 'none' && !this.#resizeObserver) {
       this.#resizeObserver = new ResizeObserver(this.#onResize.bind(this));
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.#resizeObserver?.observe(this.baseDiv);
       });
@@ -255,9 +245,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       .map(value => {
         if (value <= this.min) return this.min;
         if (value >= this.max) return this.max;
-        value = this.min + this.step * Math.round((value - this.min) / this.step);
-        if (value > this.max) return this.max;
-        return value;
+        const nextValue = this.min + this.step * Math.round((value - this.min) / this.step);
+        if (nextValue > this.max) return this.max;
+        return nextValue;
       })
       .sort(numericSort);
 
@@ -271,8 +261,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   protected override updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
+    // eslint-disable-next-line no-restricted-syntax
     for (const handle of this.handles) {
       const sliderId = +handle.dataset.sliderId!;
+      // eslint-disable-next-line no-continue
       if (!this.#sliderValues.has(sliderId)) continue;
       this.#moveHandle(handle, this.#sliderValues.get(sliderId)!);
     }
@@ -381,11 +373,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const bounds = this.baseDiv.getBoundingClientRect();
     const size = bounds.width - handle.clientWidth;
     if (size <= 0) return 0;
-    x -= bounds.left + handle.clientWidth / 2;
-    if (x <= 0) return this.#rtl ? 1 : 0;
-    if (x >= size) return this.#rtl ? 0 : 1;
-    x /= size;
-    return this.#rtl ? 1.0 - x : x;
+
+    let nextX = x;
+
+    nextX -= bounds.left + handle.clientWidth / 2;
+    if (nextX <= 0) return this.#rtl ? 1 : 0;
+    if (nextX >= size) return this.#rtl ? 0 : 1;
+    nextX /= size;
+    return this.#rtl ? 1.0 - nextX : nextX;
   }
 
   #updateActiveTrack(): void {
@@ -400,7 +395,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
 
     const start = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
-    const span = (100 * (this.#value[this.#value.length - 1] - this.#value[0])) / (this.max - this.min);
+    const span = (
+      100 * (this.#value[this.#value.length - 1] - this.#value[0])
+    ) / (this.max - this.min);
 
     activeTrack.style.display = 'inline-block';
     activeTrack.style.insetInlineStart = `${start}%`;
@@ -425,11 +422,15 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       break;
     case 'ArrowLeft':
     case 'Left':
-      value = this.#rtl ? Math.min(value + this.step, this.max) : Math.max(value - this.step, this.min);
+      value = this.#rtl
+        ? Math.min(value + this.step, this.max)
+        : Math.max(value - this.step, this.min);
       break;
     case 'ArrowRight':
     case 'Right':
-      value = this.#rtl ? Math.max(value - this.step, this.min) : Math.min(value + this.step, this.max);
+      value = this.#rtl
+        ? Math.max(value - this.step, this.min)
+        : Math.min(value + this.step, this.max);
       break;
     case 'PageUp':
       value = Math.min(value + 10 * this.step, this.max);
@@ -480,6 +481,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     handle.setAttribute('aria-valuenow', value.toString());
     handle.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
+    // eslint-disable-next-line no-param-reassign
     handle.style.insetInlineStart = `calc( ${100 * pos}% - var(--thumb-size) * ${pos} )`;
     this.#updateTooltip(handle);
   }

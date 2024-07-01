@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import type { CSSResultGroup, PropertyValues } from 'lit';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, queryAll } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -13,6 +13,7 @@ import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import SynTooltip from '../tooltip/tooltip.component.js';
 import { arraysDiffer, numericSort } from './utility.js';
 import styles from './range.styles.js';
 
@@ -22,6 +23,8 @@ import styles from './range.styles.js';
  * @documentation https://shoelace.style/components/multi-range
  * @status experimental
  * @since next
+ *
+ * @dependency syn-tooltip
  *
  * @slot label - The range's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
@@ -39,7 +42,6 @@ import styles from './range.styles.js';
  * @csspart tooltip - The range's tooltip.
  *
  * @cssproperty --thumb-size - The size of the thumb.
- * @cssproperty --tooltip-offset - The vertical distance the tooltip is offset from the track.
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
@@ -51,6 +53,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     formControlCustomStyles,
     styles,
   ];
+
+  static dependencies = {
+    'syn-tooltip': SynTooltip,
+  };
 
   /** The name of the range, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -74,7 +80,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   @property({ type: Number }) step = 1;
 
   /** The preferred placement of the range's tooltip. */
-  @property() tooltip: 'top' | 'bottom' | 'none' = 'top';
+  @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: Extract<SynTooltip['placement'], 'top' | 'bottom'> = 'top';
+
+  /** Set the visibility of the tooltip  */
+  @property({ attribute: 'tooltip-disabled', type: Boolean }) tooltipDisabled = false;
 
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
@@ -100,7 +109,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = '0 100';
+  @defaultValue() defaultValue = (this.max / 2).toFixed(0);
 
   /**
    * A function used to format the tooltip's value.
@@ -113,8 +122,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
-  @query('.tooltip') tooltipElem: HTMLDivElement | undefined;
-
   @queryAll('.handle') handles: NodeListOf<HTMLDivElement>;
 
   #hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -123,9 +130,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #localize = new LocalizeController(this);
 
-  #resizeObserver: ResizeObserver | null = null;
-
-  #value: readonly number[] = [0, 100];
+  #value: readonly number[] = [this.max / 2];
 
   #sliderValues = new Map<number, number>();
 
@@ -149,31 +154,31 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasLabel = !!(this.label || this.#hasSlotController.test('label'));
     const hasHelpText = !!(this.helpText || this.#hasSlotController.test('help-text'));
 
-    const tooltip = this.tooltip !== 'none' ? html`<div class="tooltip" part="tooltip" aria-hidden="true"></div>` : nothing;
-
     this.#sliderValues.clear();
     const handles = this.#value.map(value => {
       this.#nextId += 1;
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
       return html`
-        <div
-          class="handle"
-          tabindex="${this.disabled ? -1 : 0}"
-          role="slider"
-          aria-labelledby=${ifDefined(hasLabel ? 'label' : undefined)}
-          aria-valuemin="${this.min}"
-          aria-valuemax="${this.max}"
-          aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
-          aria-valuenow="${value}"
-          data-slider-id="${sliderId}"
-          @pointerdown=${this.#onClickHandle}
-          @pointermove=${this.#onDragHandle}
-          @pointerup=${this.#onReleaseHandle}
-          @pointercancel=${this.#onReleaseHandle}
-          @keydown=${this.#onKeyPress}
-          @focus=${this.#onFocusHandle}
-        ></div>
+        <syn-tooltip .placement=${this.tooltipPlacement} .disabled=${this.tooltipDisabled}>
+          <div
+            class="handle"
+            tabindex="${this.disabled ? -1 : 0}"
+            role="slider"
+            aria-labelledby=${ifDefined(hasLabel ? 'label' : undefined)}
+            aria-valuemin="${this.min}"
+            aria-valuemax="${this.max}"
+            aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
+            aria-valuenow="${value}"
+            data-slider-id="${sliderId}"
+            @pointerdown=${this.#onClickHandle}
+            @pointermove=${this.#onDragHandle}
+            @pointerup=${this.#onReleaseHandle}
+            @pointercancel=${this.#onReleaseHandle}
+            @keydown=${this.#onKeyPress}
+            @focus=${this.#onFocusHandle}
+          ></div>
+        </syn-tooltip>
       `;
     });
 
@@ -185,8 +190,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
           'form-control--medium': true, // range only has one size
-          'tooltip-bottom': this.tooltip === 'bottom',
-          'tooltip-top': this.tooltip === 'top',
         })}
         @focusout=${this.#onBlur}
       >
@@ -195,13 +198,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           part="form-control-label"
           class="form-control__label"
           aria-hidden=${hasLabel ? 'false' : 'true'}
+          @click=${this.focus}
         >
           <slot name="label">${this.label}</slot>
         </label>
         <div class="base" part="base">
           <div class="track"></div>
           <div class="active-track"></div>
-          ${handles} ${tooltip}
+          ${handles}
         </div>
         <div
           part="form-control-help-text"
@@ -217,17 +221,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   protected override willUpdate(changedProperties: PropertyValues): void {
     super.willUpdate(changedProperties);
-
-    if (this.tooltip !== 'none' && !this.#resizeObserver) {
-      this.#resizeObserver = new ResizeObserver(this.#onResize.bind(this));
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.updateComplete.then(() => {
-        this.#resizeObserver?.observe(this.baseDiv);
-      });
-    } else if (this.tooltip === 'none' && this.#resizeObserver) {
-      this.#resizeObserver.disconnect();
-      this.#resizeObserver = null;
-    }
 
     if (this.min > this.max) {
       [this.min, this.max] = [this.max, this.min];
@@ -329,7 +322,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #onClickHandle(event: PointerEvent): void {
     if (this.disabled) return;
-    this.baseDiv?.classList?.add('tooltip-visible');
     const handle = event.target as HTMLDivElement;
     this.#updateTooltip(handle);
 
@@ -466,8 +458,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onReleaseHandle(event: PointerEvent) {
-    this.baseDiv?.classList?.remove('tooltip-visible');
-
     const handle = event.target as HTMLDivElement;
     if (!handle.dataset.pointerId || event.pointerId !== +handle.dataset.pointerId) return;
 
@@ -487,7 +477,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onBlur(event: FocusEvent): void {
-    this.baseDiv?.classList?.remove('tooltip-visible');
     this.baseDiv?.classList?.remove('keyboard-focus');
     if (event.relatedTarget && this.shadowRoot?.contains(event.relatedTarget as Node)) return;
     this.emit('syn-blur');
@@ -496,14 +485,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #updateTooltip(handle: HTMLDivElement): void {
     const sliderId = +handle.dataset.sliderId!;
-    if (!this.tooltipElem) return;
-    if (!this.baseDiv?.classList?.contains('tooltip-visible')) return;
     if (!this.#sliderValues.has(sliderId)) return;
     const value = this.#sliderValues.get(sliderId)!;
-    let pos = (value - this.min) / (this.max - this.min);
-    if (this.#rtl) pos = 1.0 - pos;
-    this.tooltipElem.style.translate = `calc( ${pos} * ( ${this.baseDiv.offsetWidth}px - var(--thumb-size) ) - 50% + (var(--thumb-size) / 2) )`;
-    this.tooltipElem.innerText = this.tooltipFormatter(value);
+    const tooltip = handle.parentElement as SynTooltip;
+    tooltip.content = this.tooltipFormatter(value);
   }
 
   #onFocusHandle(event: FocusEvent): void {
@@ -514,12 +499,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
     const handle = event.target as HTMLDivElement;
     if (!handle?.dataset?.sliderId) return;
-    this.baseDiv?.classList?.add('tooltip-visible');
     this.#updateTooltip(handle);
-  }
-
-  #onResize(): void {
-    const handle = this.shadowRoot?.querySelector('.tooltip-visible .handle:focus');
-    if (handle) this.#updateTooltip(handle as HTMLDivElement);
   }
 }

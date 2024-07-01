@@ -2,11 +2,10 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --thumb-size: 20px;
-    --tooltip-offset: 10px;
-    --track-color-active: var(--syn-color-primary-300);
+    --thumb-size: var(--syn-spacing-medium-large);
+    --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
-    --track-height: 6px;
+    --track-height: 4px;
   }
 
   .form-control {
@@ -24,12 +23,12 @@ export default css`
   }
 
   :host([disabled]) .base {
-    opacity: 0.5;
+    opacity: var(--syn-input-disabled-opacity);
   }
 
   .track {
     background-color: var(--track-color-inactive);
-    border-radius: 3px;
+    border-radius: var(--syn-border-radius-small);
     display: inline-block;
     height: var(--track-height);
     margin: calc((var(--thumb-size) - var(--track-height)) / 2) calc(var(--thumb-size) / 2 - 3px);
@@ -46,7 +45,8 @@ export default css`
 
   .handle {
     background-color: var(--syn-color-primary-600);
-    border-radius: 50%;
+    border: var(--syn-focus-ring-width) solid var(--syn-color-neutral-0);
+    border-radius: var(--syn-border-radius-circle);
     cursor: pointer;
     display: block;
     height: var(--thumb-size);
@@ -58,7 +58,7 @@ export default css`
 
   .handle:hover,
   .handle.grabbed {
-    background-color: var(--syn-color-primary-500);
+    cursor: grab;  
   }
 
   .handle.grabbed {
@@ -76,57 +76,8 @@ export default css`
     cursor: not-allowed;
   }
 
-  .tooltip {
-    background-color: var(--syn-tooltip-background-color);
-    border-radius: var(--syn-tooltip-border-radius);
-    color: var(--syn-tooltip-color);
-    font-family: var(--syn-tooltip-font-family);
-    font-size: var(--syn-tooltip-font-size);
-    font-weight: var(--syn-tooltip-font-weight);
-    left: 0;
-    line-height: var(--syn-tooltip-line-height);
-    opacity: 0;
-    padding: var(--syn-tooltip-padding);
-    pointer-events: none;
-    position: absolute;
-    transition: var(--syn-transition-fast) opacity;
-    z-index: var(--syn-z-index-tooltip);
-  }
-
-  .tooltip::after {
-    content: '';
-    height: 0;
-    left: 50%;
-    position: absolute;
-    translate: calc(-1 * var(--syn-tooltip-arrow-size));
-    width: 0;
-  }
-
-  .tooltip-visible .tooltip {
-    opacity: 1;
-  }
-
-  /* Tooltip on top */
-  .tooltip-top .tooltip {
-    top: calc(-1 * var(--thumb-size) - var(--tooltip-offset));
-  }
-
-  .tooltip-top .tooltip::after {
-    border-left: var(--syn-tooltip-arrow-size) solid transparent;
-    border-right: var(--syn-tooltip-arrow-size) solid transparent;
-    border-top: var(--syn-tooltip-arrow-size) solid var(--syn-tooltip-background-color);
-    top: 100%;
-  }
-
-  /* Tooltip on bottom */
-  .tooltip-bottom .tooltip {
-    bottom: calc(-1 * var(--thumb-size) - var(--tooltip-offset));
-  }
-
-  .tooltip-bottom .tooltip::after {
-    border-bottom: var(--syn-tooltip-arrow-size) solid var(--syn-tooltip-background-color);
-    border-left: var(--syn-tooltip-arrow-size) solid transparent;
-    border-right: var(--syn-tooltip-arrow-size) solid transparent;
-    bottom: 100%;
+  :host(:not([disabled])) .handle:hover,
+  :host(:not([disabled])) .handle.grabbed {
+    background: var(--syn-color-primary-900);
   }
 `;

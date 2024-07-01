@@ -156,8 +156,8 @@ export const ScrollingBehavior: StoryObj = {
     <table class="syn-table">
       <thead>
         <tr>
-          <th class="syn-table-cell--header syn-table-cell--shadow-bottom sticky">Cell header</th>
-          <th class="syn-table-cell--header syn-table-cell--shadow-bottom sticky">Cell header</th>
+          <th class="syn-table-cell--header syn-table-cell--shadow-bottom syn-table-cell--shadow-active sticky">Cell header</th>
+          <th class="syn-table-cell--header syn-table-cell--shadow-bottom syn-table-cell--shadow-active sticky">Cell header</th>
         </tr>
       </thead>
       <tbody>

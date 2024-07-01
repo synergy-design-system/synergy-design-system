@@ -8,8 +8,9 @@
  * @boolean syn-table-cell--border-end Applies a border to the right of the table cell
  * @boolean syn-table-cell--border-top Applies a border to the top of the table cell
  * @boolean syn-table-cell--border-bottom Applies a border to the bottom of the table cell
- * @boolean syn-table-cell--header Applies the table cell header styling]
- * @variant { NO_DEFAULT | bottom | top | start | end } syn-table-cell--shadow syn-table-cell--shadow--top Applies a shadow to the table cell
+ * @boolean syn-table-cell--header Applies the table cell header styling
+ * @variant { NO_DEFAULT | bottom | top | start | end } syn-table-cell--shadow Applies the selected shadow to the table cell
+ * @boolean syn-table-cell--shadow-active Displays the table shadow
  */
 
 .syn-table-cell {
@@ -64,8 +65,12 @@
     --shadow-end: rgb(49 55 58 / 10%);
 
     content: '';
+    opacity: 0;
     pointer-events: none;
     position: absolute;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* I can not use var(--syn-color-neutral-950) here for some reason and therefore `grey`is used. If doing this, the fallback will not be used */
@@ -116,4 +121,8 @@
     background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
     left: unset;
     right: calc(var(--syn-spacing-medium) * -1);
+}
+
+.syn-table-cell--shadow-active::after {
+    opacity: 1;
 }

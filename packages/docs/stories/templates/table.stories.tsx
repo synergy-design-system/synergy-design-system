@@ -31,9 +31,10 @@ const repeatFor = (iterator: (value: any, index: number, array: any[]) => unknow
  * @param shadow - Shadow position
  */
 const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = undefined) => {
+  const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
   // eslint-disable-next-line complexity
   const getClassesForColumn = (column: number) => `syn-table-cell--header ${
-    ((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4) || shadow === 'bottom') ? 'shadow-cell' : ''
+    ((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4) || shadow === 'bottom') ? shadowClass : ''
   }`;
 
   return html`
@@ -57,7 +58,8 @@ const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = u
  */
 const createBodyRow = (background: 'syn-table-cell--bg-neutral-50' | 'syn-table-cell--bg-neutral-0' | '' = '', shadow: 'start' | 'end' | undefined = undefined) => {
   const classes = `syn-table-cell ${background}`;
-  const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? 'shadow-cell' : ''}`;
+  const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
+  const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
 
   return html`
   <tr>
@@ -197,15 +199,14 @@ export const TableShadowLeftColumn: Story = {
     </style>
     <script type="module">
       const scrollableTable = document.getElementById('horizontal-scrollable-table');
-      const tableRows = scrollableTable.querySelectorAll('tr');
+      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
 
       scrollableTable.addEventListener('scroll', () => {
-        tableRows.forEach(row => {
-          const firstCell = row.firstElementChild;
+        shadowCells.forEach(shadowCell => {
           if (scrollableTable.scrollLeft === 0) {
-            firstCell.classList.remove('syn-table-cell--shadow-end');
+            shadowCell.classList.remove('syn-table-cell--shadow-active');
           } else {
-            firstCell.classList.add('syn-table-cell--shadow-end');
+            shadowCell.classList.add('syn-table-cell--shadow-active');
           }
         });
       });
@@ -240,16 +241,15 @@ export const TableShadowRightColumn: Story = {
     </style>
     <script type="module">
       const scrollableTable = document.getElementById('horizontal-scrollable-table2');
-      const tableRows = scrollableTable.querySelectorAll('tr');
+      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-start');
       const maxScrollX = scrollableTable.scrollWidth - scrollableTable.clientWidth;
 
       const handleShadow = () => {
-        tableRows.forEach(row => {
-          const lastCell = row.lastElementChild
+        shadowCells.forEach(shadowCell => {
           if (scrollableTable.scrollLeft === maxScrollX) {
-            lastCell.classList.remove('syn-table-cell--shadow-start');
+            shadowCell.classList.remove('syn-table-cell--shadow-active');
           } else {
-            lastCell.classList.add('syn-table-cell--shadow-start');
+            shadowCell.classList.add('syn-table-cell--shadow-active');
           }
         });
       }
@@ -290,17 +290,17 @@ export const TableShadowTopRow: Story = {
     </style>
     <script type="module">
       const scrollableTable = document.getElementById('vertical-scrollable-table');
-        const tableHeaders = scrollableTable.querySelectorAll('th');
+      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-bottom');
 
-        scrollableTable.addEventListener('scroll', () => {
-          tableHeaders.forEach(header => {
+      scrollableTable.addEventListener('scroll', () => {
+        shadowCells.forEach(shadowCell => {
 
-            if (scrollableTable.scrollTop === 0) {
-              header.classList.remove('syn-table-cell--shadow-bottom')
-            } else {
-              header.classList.add('syn-table-cell--shadow-bottom'); 
-            }
-          });
+          if (scrollableTable.scrollTop === 0) {
+            shadowCell.classList.remove('syn-table-cell--shadow-active')
+          } else {
+            shadowCell.classList.add('syn-table-cell--shadow-active'); 
+          }
+        });
       });
     </script>
   `;

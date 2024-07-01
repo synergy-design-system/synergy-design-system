@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.3.1...tokens/2.4.0) (2024-07-01)
+
+
+### Features
+
+* ✨ Added help-text for checkbox and switch ([#520](https://github.com/synergy-design-system/synergy-design-system/issues/520)) ([7914402](https://github.com/synergy-design-system/synergy-design-system/commit/79144026cae9d283ea37c861ede2836aab1173b3))
+
 # [@synergy-design-system/tokens-v2.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.3.0...tokens/2.3.1) (2024-06-25)
 
 

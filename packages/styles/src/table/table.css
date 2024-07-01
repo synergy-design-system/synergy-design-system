@@ -3,11 +3,8 @@
  * @variant syn-table Applies the table styling
  */
 .syn-table {
-    /* TODO: do we want to reset all table styles via: all:unset? */
-
-    /* TODO: do we want to set the border-spacing via css variable like solid? */
-    
-    /* all: unset; */
+    all: unset;
     border-collapse: collapse;
+    border-spacing: var(--syn-border-width-none);
     display: table;
 }

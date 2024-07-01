@@ -38,16 +38,16 @@ const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = u
   }`;
 
   return html`
-  <thead>
-    <tr>
-      <th class="${getClassesForColumn(0)}">${getTranslation('table.header.name')}</th>
-      <th class="${getClassesForColumn(1)}">${getTranslation('table.header.customer')}</th>
-      <th class="${getClassesForColumn(2)}">${getTranslation('table.header.location')}</th>
-      <th class="${getClassesForColumn(3)}">${getTranslation('table.header.contractStart')}</th>
-      <th class="${getClassesForColumn(4)}"></th>
-    </tr>
-  </thead>
-`;
+    <thead>
+      <tr>
+        <th class="${getClassesForColumn(0)}">${getTranslation('table.header.name')}</th>
+        <th class="${getClassesForColumn(1)}">${getTranslation('table.header.customer')}</th>
+        <th class="${getClassesForColumn(2)}">${getTranslation('table.header.location')}</th>
+        <th class="${getClassesForColumn(3)}">${getTranslation('table.header.contractStart')}</th>
+        <th class="${getClassesForColumn(4)}"></th>
+      </tr>
+    </thead>
+  `;
 };
 
 /**
@@ -62,21 +62,21 @@ const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | und
   const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
 
   return html`
-  <tr>
-    <td class="${getClassesForColumn(0)}">${getTranslation('table.body.name')}</td>
-    <td class="${getClassesForColumn(1)}">${getTranslation('table.body.customer')}</td>
-    <td class="${getClassesForColumn(2)}">${getTranslation('table.body.location')}</td>
-    <td class="${getClassesForColumn(3)}">${getTranslation('table.body.contractStart')}</td>
-    <td class="${getClassesForColumn(4)}"> 
-      <syn-button variant="text" size="small">
-        <syn-icon name="edit"></syn-icon>
-      </syn-button>
-      <syn-button variant="text" size="small">
-        <syn-icon name="delete_outline"></syn-icon>
-      </syn-button>
-    </td>
-  </tr>
-`;
+    <tr>
+      <td class="${getClassesForColumn(0)}">${getTranslation('table.body.name')}</td>
+      <td class="${getClassesForColumn(1)}">${getTranslation('table.body.customer')}</td>
+      <td class="${getClassesForColumn(2)}">${getTranslation('table.body.location')}</td>
+      <td class="${getClassesForColumn(3)}">${getTranslation('table.body.contractStart')}</td>
+      <td class="${getClassesForColumn(4)}"> 
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
+        </syn-button>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
+        </syn-button>
+      </td>
+    </tr>
+  `;
 };
 
 /**
@@ -193,8 +193,8 @@ export const TableWithHeader: Story = {
 export const TableWithAlternatingRows: Story = {
   render: () => {
     const alternateBody = repeatFor((_val, index) => {
-      const backgroundColor = index % 2 !== 0 ? 'syn-table-cell--bg-neutral-50' : '';
-      return createBodyRow(backgroundColor);
+      const isAlternating = index % 2 !== 0;
+      return createBodyRow(isAlternating);
     });
 
     return html`

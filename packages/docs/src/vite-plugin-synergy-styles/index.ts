@@ -34,6 +34,7 @@ export default function vitePluginSynergyStyles(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.middlewares.use(endPoint, async (_, res) => {
         try {
+          runStylesBuild();
           const structure = await getStructure(srcDir);
           const manifest = toCem(structure);
           res.end(JSON.stringify(manifest, null, 2));
@@ -50,6 +51,7 @@ export default function vitePluginSynergyStyles(
         return;
       }
 
+      runStylesBuild();
       const outputPath = join(dir, outputFileName);
       const structure = await getStructure(srcDir);
       const manifest = toCem(structure);

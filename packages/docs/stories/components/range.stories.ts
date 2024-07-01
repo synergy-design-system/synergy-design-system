@@ -105,13 +105,47 @@ export const PrefixSuffixText: Story = {
 
     <p>This can be used to add input fields or icons.</p>
 
-    <syn-range label="Estimated Time">
+    <syn-range label="Estimated Time" class="suffix-input-field">
       <span slot="prefix">0</span>
       <span slot="suffix">
-        60
-        <syn-input value="30">sec</syn-input>
+        <div class="suffix-input">
+          60
+          <syn-input value="30" type="number" no-spin-buttons min="0" max="100">
+            <span slot="suffix">sec</span>
+          </syn-input>
+        </div>
       </span>
     </syn-range>
+    
+    <style>
+      .suffix-input {
+        align-items: center;
+        display: flex;
+        gap: var(--syn-spacing-medium);
+        syn-input {
+          &::part(form-control-input) {
+            max-width: 120px;
+          }
+        }
+      }
+    </style>
+    <script>
+      [...document.querySelectorAll('.suffix-input-field')]
+        .forEach(range => {
+          const input = range.querySelector('syn-input');
+
+          range.addEventListener('syn-input', e => {
+            const { target } = e;
+            if (target.tagName !== 'SYN-RANGE') return;
+            target.querySelector('syn-input').value = target.value;
+          });
+
+          input.addEventListener('syn-change', e => {
+            const { target } = e;
+            target.closest('syn-range').value = target.value;
+          });
+        });
+    </script>
   `,
 };
 

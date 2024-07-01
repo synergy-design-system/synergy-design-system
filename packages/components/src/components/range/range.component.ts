@@ -27,7 +27,9 @@ import styles from './range.styles.js';
  * @dependency syn-tooltip
  *
  * @slot label - The range's label. Alternatively, you can use the `label` attribute.
- * @slot help-text - Text that describes how to use the input.
+ * @slot prefix - Used to prepend a presentational icon or similar element to the range.
+ * @slot suffix - Used to append a presentational icon or similar element to the range.
+ * @slot help-text - Text that describes how to use the range.
  * Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-blur - Emitted when the control loses focus.
@@ -39,7 +41,8 @@ import styles from './range.styles.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart base - The component's base wrapper.
- * @csspart tooltip - The range's tooltip.
+ * @csspart prefix - The container that wraps the prefix.
+ * @csspart suffix - The container that wraps the suffix.
  *
  * @cssproperty --thumb-size - The size of the thumb.
  * @cssproperty --track-color-active - Color of the track representing the current value.
@@ -118,13 +121,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
 
-  @query('.base') baseDiv: HTMLDivElement;
+  @query('.input-wrapper') baseDiv: HTMLDivElement;
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
   @queryAll('.handle') handles: NodeListOf<HTMLDivElement>;
 
-  #hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
 
   #formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
@@ -150,9 +153,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  override render(): unknown {
-    const hasLabel = !!(this.label || this.#hasSlotController.test('label'));
-    const hasHelpText = !!(this.helpText || this.#hasSlotController.test('help-text'));
+  override render() {
+    const hasLabelSlot = this.hasSlotController.test('label');
+    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
+    const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
     this.#sliderValues.clear();
     const handles = this.#value.map(value => {
@@ -189,6 +196,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control': true,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
+          'form-control--has-prefix': hasPrefixSlot,
+          'form-control--has-suffix': hasSuffixSlot,
           'form-control--medium': true, // range only has one size
         })}
         @focusout=${this.#onBlur}
@@ -202,11 +211,23 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         >
           <slot name="label">${this.label}</slot>
         </label>
-        <div class="base" part="base">
-          <div class="track"></div>
-          <div class="active-track"></div>
-          ${handles}
+        
+        <div class="base input__control" part="base">
+          <span part="prefix" class="input__prefix">
+            <slot name="prefix"></slot>
+          </span>
+
+          <div class="input-wrapper" part="input-wrapper">
+            <div class="track"></div>
+            <div class="active-track"></div>
+            ${handles}
+          </div>
+
+          <span part="suffix" class="input__suffix">
+              <slot name="suffix"></slot>
+            </span>
         </div>
+
         <div
           part="form-control-help-text"
           class="form-control__help-text"

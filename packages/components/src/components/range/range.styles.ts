@@ -17,7 +17,26 @@ export default css`
   }
 
   .base {
-    display: block;
+    align-items: center;
+    cursor: text;
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: var(--syn-input-font-family);
+    font-weight: var(--syn-input-font-weight);
+    justify-content: start;
+    letter-spacing: var(--syn-input-letter-spacing);
+    position: relative;
+    transition:
+      var(--syn-transition-fast) color,
+      var(--syn-transition-fast) border,
+      var(--syn-transition-fast) box-shadow,
+      var(--syn-transition-fast) background-color;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  .input-wrapper {
+    flex: 1 0 auto;
     height: var(--thumb-size);
     position: relative;
   }
@@ -25,6 +44,28 @@ export default css`
   :host([disabled]) .base {
     opacity: var(--syn-input-disabled-opacity);
   }
+
+  .input__prefix,
+  .input__suffix {
+    align-items: center;
+    cursor: default;
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .form-control--medium .input__prefix ::slotted(*) {
+    margin-inline: var(--syn-input-spacing-medium) var(--syn-input-spacing-small);
+  }
+
+  .form-control--medium .input__suffix ::slotted(*) {
+    margin-inline: var(--syn-input-spacing-small) var(--syn-input-spacing-medium);
+  }
+
+  .form-control--medium .input__prefix ::slotted(syn-icon),
+  .form-control--medium .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+  }
+
 
   .track {
     background-color: var(--track-color-inactive);

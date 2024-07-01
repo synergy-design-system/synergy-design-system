@@ -81,7 +81,7 @@ export const Header: StoryObj = {
       </thead>
       <tbody>
         <tr>
-          <th class="syn-table-cell">Cell content</th>
+          <td class="syn-table-cell">Cell content</td>
         </tr>
       </tbody>
     </table>
@@ -100,16 +100,16 @@ export const Alternating: StoryObj = {
     <table class="syn-table">
       <tbody>
         <tr>
-          <th class="syn-table-cell">Cell content</th>
+          <td class="syn-table-cell">Cell content</td>
         </tr>
         <tr>
-          <th class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</th>
+          <td class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</td>
         </tr>
         <tr>
-          <th class="syn-table-cell">Cell content</th>
+          <td class="syn-table-cell">Cell content</td>
         </tr>
         <tr>
-          <th class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</th>
+          <td class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</td>
         </tr>
       </tbody>
     </table>
@@ -128,16 +128,16 @@ export const Border: StoryObj = {
     <table class="syn-table">
       <tbody>
         <tr>
-          <th class="syn-table-cell syn-table-cell--border-top">Border Top</th>
+          <td class="syn-table-cell syn-table-cell--border-top">Border Top</td>
         </tr>
         <tr>
-          <th class="syn-table-cell syn-table-cell--border-start">Border Start</th>
+          <td class="syn-table-cell syn-table-cell--border-start">Border Start</td>
         </tr>
         <tr>
-          <th class="syn-table-cell syn-table-cell--border-end">Border End</th>
+          <td class="syn-table-cell syn-table-cell--border-end">Border End</td>
         </tr>
         <tr>
-          <th class="syn-table-cell syn-table-cell--border-bottom">Border Left</th>
+          <td class="syn-table-cell syn-table-cell--border-bottom">Border Left</td>
         </tr>
       </tbody>
     </table>
@@ -162,8 +162,8 @@ export const ScrollingBehavior: StoryObj = {
       </thead>
       <tbody>
         <tr>
-          <th class="syn-table-cell">Cell content</th>
-          <th class="syn-table-cell">Cell content</th>
+          <td class="syn-table-cell">Cell content</td>
+          <td class="syn-table-cell">Cell content</td>
         </tr>
       </tbody>
     </table>
@@ -182,5 +182,5 @@ export const Screenshot: StoryObj = generateScreenshotStory({
   Alternating,
   Border,
   ScrollingBehavior,
-});
+}, 250);
 /* eslint-enable sort-keys */

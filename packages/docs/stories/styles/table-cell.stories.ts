@@ -103,13 +103,13 @@ export const Alternating: StoryObj = {
           <td class="syn-table-cell">Cell content</td>
         </tr>
         <tr>
-          <td class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</td>
+          <td class="syn-table-cell syn-table-cell--alternating">Cell content</td>
         </tr>
         <tr>
           <td class="syn-table-cell">Cell content</td>
         </tr>
         <tr>
-          <td class="syn-table-cell syn-table-cell--bg-neutral-50 ">Cell content</td>
+          <td class="syn-table-cell syn-table-cell--alternating">Cell content</td>
         </tr>
       </tbody>
     </table>

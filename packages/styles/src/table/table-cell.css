@@ -2,8 +2,7 @@
  * Table cell classes
  *
  * @boolean { true } syn-table-cell Applies the table cell styling
- * @boolean syn-table-cell--bg-neutral-50 Applies the table cell styling with a neutral background color
- * @boolean syn-table-cell--bg-neutral-0 Applies the table cell styling with a white background color
+ * @boolean syn-table-cell--alternating Applies an alternating style to help separate rows visually
  * @boolean syn-table-cell--border-start Applies a border to the left of the table cell
  * @boolean syn-table-cell--border-end Applies a border to the right of the table cell
  * @boolean syn-table-cell--border-top Applies a border to the top of the table cell
@@ -14,18 +13,16 @@
  */
 
 .syn-table-cell {
+    background-color: var(--syn-color-neutral-0);
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-regular);
+    height: var(--syn-spacing-large);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
     text-align: start;
 }
 
-.syn-table-cell--bg-neutral-50 {
+.syn-table-cell--alternating {
     background-color: var(--syn-color-neutral-50);
-}
-
-.syn-table-cell--bg-neutral-0 {
-    background-color: var(--syn-color-neutral-0);
 }
 
 /* Border */
@@ -51,6 +48,7 @@
     background-color: var(--syn-color-neutral-200);
     color: var(--syn-typography-color-text);
     font: var(--syn-body-small-semibold);
+    height: var(--syn-spacing-large);
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
     text-align: start;
 }
@@ -62,7 +60,7 @@
 .syn-table-cell--shadow-end::after {
     /* Fallback for no color-mix support */
     --shadow-start: rgb(49 55 58 / 0%) ;
-    --shadow-end: rgb(49 55 58 / 10%);
+    --shadow-end: rgb(49 55 58 / 20%);
 
     content: '';
     opacity: 0;
@@ -80,7 +78,7 @@
     .syn-table-cell--shadow-start::after,
     .syn-table-cell--shadow-end::after {
         --shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
-        --shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 10%, transparent);  
+        --shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 20%, transparent);  
     }
 }
 

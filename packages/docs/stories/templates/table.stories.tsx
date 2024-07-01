@@ -56,8 +56,8 @@ const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = u
  * @param background - Cell background color
  * @param shadow - Shadow position
  */
-const createBodyRow = (background: 'syn-table-cell--bg-neutral-50' | 'syn-table-cell--bg-neutral-0' | '' = '', shadow: 'start' | 'end' | undefined = undefined) => {
-  const classes = `syn-table-cell ${background}`;
+const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | undefined = undefined) => {
+  const classes = `syn-table-cell ${alternate ? 'syn-table-cell--alternating' : ''}`;
   const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
   const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
 
@@ -84,7 +84,7 @@ const createBodyRow = (background: 'syn-table-cell--bg-neutral-50' | 'syn-table-
 */
 const createBodyRowProduct = () => html`
   <tr>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0 syn-table-cell--shadow-end shadow-cell">
+    <td class="syn-table-cell syn-table-cell--shadow-end shadow-cell">
       <div class="product-cell">
         <img
           class="product-image"
@@ -98,34 +98,34 @@ const createBodyRowProduct = () => html`
         </div>
       </div>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+    <td class="syn-table-cell">
       <div class="availability">
         <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
         ${getTranslation('table.productTable.body.availability')}
       </div>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+    <td class="syn-table-cell">
       ${getTranslation('table.productTable.body.earliestDelivery')}
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+    <td class="syn-table-cell">
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.text')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.text')}</div>  
       </div>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+    <td class="syn-table-cell">
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.unitPrice')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.unitPrice')}</div>
       </div>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0">
+    <td class="syn-table-cell">
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.totalPrice')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.totalPrice')}</div>
       </div>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0"> 
+    <td class="syn-table-cell"> 
       <syn-button variant="text" size="small">
         <syn-icon name="edit"></syn-icon>
       </syn-button>
@@ -133,7 +133,7 @@ const createBodyRowProduct = () => html`
         <syn-icon name="delete_outline"></syn-icon>
       </syn-button>
     </td>
-    <td class="syn-table-cell syn-table-cell--bg-neutral-0"> 
+    <td class="syn-table-cell"> 
       <syn-button variant="filled" size="small">
         <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
         ${getTranslation('table.productTable.body.button.cart')}
@@ -243,7 +243,7 @@ export const TableWithBorders: Story = {
 
 export const TableShadowLeftColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow('syn-table-cell--bg-neutral-0', 'end'));
+    const bodyData = repeatFor(() => createBodyRow(false, 'end'));
 
     return html`
     <table id="horizontal-scrollable-table" class="syn-table">
@@ -293,7 +293,7 @@ export const TableShadowLeftColumn: Story = {
 
 export const TableShadowRightColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow('syn-table-cell--bg-neutral-0', 'start'));
+    const bodyData = repeatFor(() => createBodyRow(false, 'start'));
 
     return html`
     <table id="horizontal-scrollable-table2" class="syn-table">

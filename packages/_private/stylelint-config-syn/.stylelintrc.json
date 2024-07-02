@@ -15,7 +15,8 @@
     "value-keyword-case": [
       "lower",
       {
-        "camelCaseSvgKeywords": true
+        "camelCaseSvgKeywords": true,
+        "ignoreFunctions": ["color-mix"]
       }
     ]
   }

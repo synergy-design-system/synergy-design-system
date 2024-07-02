@@ -1,0 +1,10 @@
+/**
+ * Table classes
+ * @boolean { true } syn-table Applies the table stylings
+ */
+.syn-table {
+  all: unset;
+  border-collapse: collapse;
+  border-spacing: var(--syn-border-width-none);
+  display: table;
+}

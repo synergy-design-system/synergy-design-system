@@ -1,9 +1,14 @@
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { execSync } from 'child_process';
 import type { Plugin } from 'vite';
 import type { Config } from './types.js';
 import { getStructure } from './structure.js';
 import { toCem } from './toCem.js';
+
+const runStylesBuild = () => execSync(
+  'pnpm --filter=@synergy-design-system/styles run build',
+);
 
 const defaultOptions: Config = {
   endPoint: '/custom-elements-styles.json',
@@ -29,6 +34,7 @@ export default function vitePluginSynergyStyles(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.middlewares.use(endPoint, async (_, res) => {
         try {
+          runStylesBuild();
           const structure = await getStructure(srcDir);
           const manifest = toCem(structure);
           res.end(JSON.stringify(manifest, null, 2));
@@ -45,6 +51,7 @@ export default function vitePluginSynergyStyles(
         return;
       }
 
+      runStylesBuild();
       const outputPath = join(dir, outputFileName);
       const structure = await getStructure(srcDir);
       const manifest = toCem(structure);
@@ -66,6 +73,7 @@ export default function vitePluginSynergyStyles(
         return undefined;
       }
 
+      runStylesBuild();
       const structure = await getStructure(srcDir);
       const manifest = toCem(structure);
       return `export default ${JSON.stringify(manifest)}`;

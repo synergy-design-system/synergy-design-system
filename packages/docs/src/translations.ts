@@ -71,9 +71,55 @@ export const appShell = {
   mainSlot: 'Replace this slot',
 };
 
+export const table = {
+  header: {
+    name: 'Name',
+    customer: 'Customer',
+    location: 'Location',
+    contractStart: 'Contract Start',
+  },
+  body: {
+    name: 'Max Mustermann',
+    customer: 'Muster AG',
+    location: 'Hamburg, Düsseldorf, Freiburg',
+    contractStart: '20.01.2023',
+  },
+  productTable: {
+    header: {
+      product: 'Product',
+      availability: 'Availability',
+      earliestDelivery: 'Earliest delivery',
+      unitPrice: 'Unit Price',
+      totalPrice: 'Total Price',
+    },
+    body: {
+      productDetails: 'Product details',
+      productName: 'Product Name',
+      partNo: 'Part no. XXXXXXX',
+      availability: 'available',
+      earliestDelivery: '2024-12-12',
+      listPrice: {
+        text: 'List price:',
+        unitPrice: '106,00 €',
+        totalPrice: '318,00 €',
+      },
+      netPrice: {
+        text: 'Your net price:',
+        unitPrice: '96,00 €',
+        totalPrice: '288,00 €',
+      },
+      button: {
+        cart: 'Add to cart',
+        request: 'Request quote',
+      },
+    },
+  },
+};
+
 export const translations = {
   appShell,
   contactForm,
+  table,
 };
 
 /**

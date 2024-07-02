@@ -2514,6 +2514,16 @@
           "value": "Contact Form",
           "type": "text"
         }
+      },
+      "table": {
+        "title": {
+          "value": "Table",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {
@@ -2748,6 +2758,58 @@
         },
         "description": {
           "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing.",
+          "type": "text"
+        }
+      }
+    },
+    "table": {
+      "default": {
+        "title": {
+          "value": "Table-cell",
+          "type": "text"
+        },
+        "description": {
+          "value": "The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows.\n\n DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.",
+          "type": "text"
+        }
+      },
+      "header": {
+        "title": {
+          "value": "Header",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.",
+          "type": "text"
+        }
+      },
+      "alternating": {
+        "title": {
+          "value": "Alternating",
+          "type": "text"
+        },
+        "description": {
+          "value": "The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.",
+          "type": "text"
+        }
+      },
+      "border": {
+        "title": {
+          "value": "Border",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the border attribute to define different borders in a cell. Borders can also be combined.",
+          "type": "text"
+        }
+      },
+      "scroll": {
+        "title": {
+          "value": "Scrolling Behaviour",
+          "type": "text"
+        },
+        "description": {
+          "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
           "type": "text"
         }
       }

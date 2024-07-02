@@ -6,6 +6,7 @@ import type {
   Tag,
 } from './types.js';
 
+export const ALLOWED_TAGS = ['variant', 'boolean'];
 const NO_DEFAULT = 'NO_DEFAULT';
 
 /**
@@ -46,7 +47,7 @@ const getTypeForTag = (tag: Tag) => {
  * @param tag The tag to check
  * @returns True if the tag is allowed to be included
  */
-const tagIsAllowedToBeIncluded = (tag: Tag): boolean => ['variant', 'boolean'].includes(tag.tag);
+const tagIsAllowedToBeIncluded = (tag: Tag): boolean => ALLOWED_TAGS.includes(tag.tag);
 
 /**
  * Check if a tag is a boolean type

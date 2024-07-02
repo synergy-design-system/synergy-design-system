@@ -19,6 +19,7 @@
 	height: var(--syn-spacing-large);
 	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
 	text-align: start;
+	vertical-align: top;
 }
 
 .syn-table-cell--alternating {
@@ -51,6 +52,7 @@
 	height: var(--syn-spacing-large);
 	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
 	text-align: start;
+	vertical-align: top;
 }
 
 /* Shadow */
@@ -66,9 +68,9 @@
 	opacity: 0;
 	pointer-events: none;
 	position: absolute;
-	transition-duration: 0.3s;
+	transition-duration: 0.25s;
 	transition-property: opacity;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-timing-function: cubic-bezier(0.2, 0, 0.38, 0.9);
 }
 
 /* I can not use var(--syn-color-neutral-950) here for some reason and therefore `grey`is used. If doing this, the fallback will not be used */

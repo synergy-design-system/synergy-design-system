@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --thumb-size: var(--syn-spacing-medium-large);
+    --thumb-clickable-area: calc(var(--syn-spacing-medium-large) * 0.5);
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
@@ -98,6 +99,18 @@ export default css`
     top: 0;
     width: var(--thumb-size);
     z-index: 3;
+  }
+
+  /**
+   * Adds some space to the knob that makes it easier to click and drag
+   */
+  .handle::after {
+    content: "";
+    background: transparent;
+    border-radius: var(--syn-border-radius-circle);
+    display: block;
+    position: absolute;
+    inset: calc(var(--thumb-clickable-area) * -1);
   }
 
   .handle:hover,

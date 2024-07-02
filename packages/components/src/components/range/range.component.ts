@@ -45,6 +45,7 @@ import styles from './range.styles.js';
  * @csspart suffix - The container that wraps the suffix.
  *
  * @cssproperty --thumb-size - The size of the thumb.
+ * @cssproperty --thumb-clickable-area - The clickable area around the thumb. 50% of the thumb size.
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
@@ -167,7 +168,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
       return html`
-        <syn-tooltip .placement=${this.tooltipPlacement} .disabled=${this.tooltipDisabled}>
+        <syn-tooltip hoist .placement=${this.tooltipPlacement} .disabled=${this.tooltipDisabled}>
           <div
             class="handle"
             tabindex="${this.disabled ? -1 : 0}"

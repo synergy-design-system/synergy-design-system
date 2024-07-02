@@ -180,13 +180,13 @@ export const TableWithHeader: Story = {
     const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-    <table class="syn-table">
-      ${createHeader()}
-      <tbody>
-        ${bodyData}
-      </tbody>
-    </table>
-  `;
+      <table class="syn-table">
+        ${createHeader()}
+        <tbody>
+          ${bodyData}
+        </tbody>
+      </table>
+    `;
   },
 };
 
@@ -198,13 +198,13 @@ export const TableWithAlternatingRows: Story = {
     });
 
     return html`
-    <table class="syn-table">
-      ${createHeader()}
-      <tbody>
-        ${alternateBody}
-      </tbody>
-    </table>
-  `;
+      <table class="syn-table">
+        ${createHeader()}
+        <tbody>
+          ${alternateBody}
+        </tbody>
+      </table>
+    `;
   },
 };
 
@@ -231,13 +231,13 @@ export const TableWithBorders: Story = {
     });
 
     return html`
-    <table class="syn-table">
-      ${createHeader()}
-      <tbody>
-        ${borderBody}
-      </tbody>
-    </table>
-  `;
+      <table class="syn-table">
+        ${createHeader()}
+        <tbody>
+          ${borderBody}
+        </tbody>
+      </table>
+    `;
   },
 };
 
@@ -246,48 +246,51 @@ export const TableShadowLeftColumn: Story = {
     const bodyData = repeatFor(() => createBodyRow(false, 'end'));
 
     return html`
-    <table id="horizontal-scrollable-table" class="syn-table">
-      ${createHeader('end')}
-      <tbody>
-        ${bodyData}
-      </tbody>
-    </table>
-    <style>
-      #horizontal-scrollable-table {
-        display: block;
-        overflow-x: auto;
-        width: 550px;
-      }
+      <div id="horizontal-scrollable-table">
+        <table class="syn-table">
+          ${createHeader('end')}
+          <tbody>
+            ${bodyData}
+          </tbody>
+        </table>
+      </div>
+      <style>
+        #horizontal-scrollable-table {
+          overflow-x: auto;
+          width: 550px;
+        }
 
-      #horizontal-scrollable-table .shadow-cell {
-        position: sticky;
-        z-index: 1;
-        left: 0;
-      }
+        #horizontal-scrollable-table .shadow-cell {
+          position: sticky;
+          left: 0;
+          z-index: 1;
+        }
 
-      #horizontal-scrollable-table td {
-        min-width: 112px;
-      }
+        #horizontal-scrollable-table td {
+          min-width: 112px;
+        }
 
-      #horizontal-scrollable-table td:last-child {
-        min-width: 76px;
-      }
-    </style>
-    <script type="module">
-      const scrollableTable = document.getElementById('horizontal-scrollable-table');
-      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
+        #horizontal-scrollable-table td:last-child {
+          min-width: 76px;
+        }
+      </style>
+      <script type="module">
+        const scrollableTable = document.getElementById('horizontal-scrollable-table');
+        const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
 
-      scrollableTable.addEventListener('scroll', () => {
-        shadowCells.forEach(shadowCell => {
-          if (scrollableTable.scrollLeft === 0) {
-            shadowCell.classList.remove('syn-table-cell--shadow-active');
-          } else {
-            shadowCell.classList.add('syn-table-cell--shadow-active');
-          }
+        scrollableTable.addEventListener('scroll', () => {
+          shadowCells.forEach(shadowCell => {
+            if (scrollableTable.scrollLeft === 0) {
+              shadowCell.classList.remove('syn-table-cell--shadow-active');
+            } else {
+              shadowCell.classList.add('syn-table-cell--shadow-active');
+            }
+          });
         });
-      });
-    </script>
-  `;
+
+        scrollableTable.scrollLeft = 20;
+      </script>
+    `;
   },
 };
 
@@ -296,54 +299,55 @@ export const TableShadowRightColumn: Story = {
     const bodyData = repeatFor(() => createBodyRow(false, 'start'));
 
     return html`
-    <table id="horizontal-scrollable-table2" class="syn-table">
-      ${createHeader('start')}
-      <tbody>
-        ${bodyData}
-      </tbody>
-    </table>
-    <style>
-      #horizontal-scrollable-table2 {
-        display: block;
-        overflow-x: auto;
-        width: 550px;
-      }
+      <div id="horizontal-scrollable-table2">
+        <table class="syn-table">
+          ${createHeader('start')}
+          <tbody>
+            ${bodyData}
+          </tbody>
+        </table>
+      </div>
+      <style>
+        #horizontal-scrollable-table2 {
+          overflow-x: auto;
+          width: 550px;
+        }
 
-      #horizontal-scrollable-table2 .shadow-cell {
-        position: sticky;
-        right: 0;
-        z-index: 1;
-      }
+        #horizontal-scrollable-table2 .shadow-cell {
+          position: sticky;
+          right: 0;
+          z-index: 1;
+        }
 
-      #horizontal-scrollable-table2 td {
-        min-width: 112px;
-      }
+        #horizontal-scrollable-table2 td {
+          min-width: 112px;
+        }
 
-      #horizontal-scrollable-table2 td:last-child {
-        min-width: 76px;
-      }
-    </style>
-    <script type="module">
-      const scrollableTable = document.getElementById('horizontal-scrollable-table2');
-      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-start');
-      const maxScrollX = scrollableTable.scrollWidth - scrollableTable.clientWidth;
+        #horizontal-scrollable-table2 td:last-child {
+          min-width: 76px;
+        }
+      </style>
+      <script type="module">
+        const scrollableTable = document.getElementById('horizontal-scrollable-table2');
+        const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-start');
+        const maxScrollX = scrollableTable.scrollWidth - scrollableTable.clientWidth;
 
-      const handleShadow = () => {
-        shadowCells.forEach(shadowCell => {
-          if (scrollableTable.scrollLeft === maxScrollX) {
-            shadowCell.classList.remove('syn-table-cell--shadow-active');
-          } else {
-            shadowCell.classList.add('syn-table-cell--shadow-active');
-          }
-        });
-      }
+        const handleShadow = () => {
+          shadowCells.forEach(shadowCell => {
+            if (scrollableTable.scrollLeft === maxScrollX) {
+              shadowCell.classList.remove('syn-table-cell--shadow-active');
+            } else {
+              shadowCell.classList.add('syn-table-cell--shadow-active');
+            }
+          });
+        }
 
-      // Initially set shadow on load
-      handleShadow();
+        // Initially set shadow on load
+        handleShadow();
 
-      scrollableTable.addEventListener('scroll', handleShadow);
-    </script>
-  `;
+        scrollableTable.addEventListener('scroll', handleShadow);
+      </script>
+    `;
   },
 };
 
@@ -352,42 +356,45 @@ export const TableShadowTopRow: Story = {
     const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-    <table id="vertical-scrollable-table" class="syn-table">
-      ${createHeader('bottom')}
-      <tbody>
-        ${bodyData}
-      </tbody>
-    </table>
-    <style>
-      #vertical-scrollable-table {
-        display: block;
-        overflow-y: auto;
-        height: 200px;
-        width: fit-content;
-      }
+      <div id="vertical-scrollable-table">
+        <table class="syn-table">
+          ${createHeader('bottom')}
+          <tbody>
+            ${bodyData}
+          </tbody>
+        </table>
+      </div>
+      <style>
+        #vertical-scrollable-table {
+          overflow-y: auto;
+          height: 200px;
+          width: fit-content;
+        }
 
-      #vertical-scrollable-table .shadow-cell {
-        position: sticky;
-        z-index: 1;
-        top: 0;
-      }
-    </style>
-    <script type="module">
-      const scrollableTable = document.getElementById('vertical-scrollable-table');
-      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-bottom');
+        #vertical-scrollable-table .shadow-cell {
+          position: sticky;
+          z-index: 1;
+          top: 0;
+        }
+      </style>
+      <script type="module">
+        const scrollableTable = document.getElementById('vertical-scrollable-table');
+        const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-bottom');
 
-      scrollableTable.addEventListener('scroll', () => {
-        shadowCells.forEach(shadowCell => {
+        scrollableTable.addEventListener('scroll', () => {
+          shadowCells.forEach(shadowCell => {
 
-          if (scrollableTable.scrollTop === 0) {
-            shadowCell.classList.remove('syn-table-cell--shadow-active')
-          } else {
-            shadowCell.classList.add('syn-table-cell--shadow-active'); 
-          }
+            if (scrollableTable.scrollTop === 0) {
+              shadowCell.classList.remove('syn-table-cell--shadow-active')
+            } else {
+              shadowCell.classList.add('syn-table-cell--shadow-active'); 
+            }
+          });
         });
-      });
-    </script>
-  `;
+
+        scrollableTable.scrollTop = 20;
+      </script>
+    `;
   },
 };
 
@@ -396,105 +403,108 @@ export const TableProduct: Story = {
     const bodyData = repeatFor(() => createBodyRowProduct());
 
     return html`
-    <table id="product-table" class="syn-table">
-      <thead>
-        <tr>
-          <th class="syn-table-cell--header syn-table-cell--shadow-end shadow-cell">
-            ${getTranslation('table.productTable.header.product')}
-          </th>
-          <th class="syn-table-cell--header">
-            ${getTranslation('table.productTable.header.availability')}
-          </th>
-          <th class="syn-table-cell--header">
-            ${getTranslation('table.productTable.header.earliestDelivery')}
-          </th>
-          <th class="syn-table-cell--header"></th>
-          <th class="syn-table-cell--header">
-            ${getTranslation('table.productTable.header.unitPrice')}
-          </th>
-          <th class="syn-table-cell--header">
-            ${getTranslation('table.productTable.header.totalPrice')}
-          </th>
-          <th class="syn-table-cell--header"></th>
-          <th class="syn-table-cell--header"></th>
-        </tr>
-      </thead>
-      <tbody>
-        ${bodyData}
-      </tbody>
-    </table>
-    <script type="module">
-    const scrollableTable = document.getElementById('product-table');
-      const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
+      <div id="product-table">
+        <table class="syn-table">
+          <thead>
+            <tr>
+              <th class="syn-table-cell--header syn-table-cell--shadow-end shadow-cell">
+                ${getTranslation('table.productTable.header.product')}
+              </th>
+              <th class="syn-table-cell--header">
+                ${getTranslation('table.productTable.header.availability')}
+              </th>
+              <th class="syn-table-cell--header">
+                ${getTranslation('table.productTable.header.earliestDelivery')}
+              </th>
+              <th class="syn-table-cell--header"></th>
+              <th class="syn-table-cell--header">
+                ${getTranslation('table.productTable.header.unitPrice')}
+              </th>
+              <th class="syn-table-cell--header">
+                ${getTranslation('table.productTable.header.totalPrice')}
+              </th>
+              <th class="syn-table-cell--header"></th>
+              <th class="syn-table-cell--header"></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${bodyData}
+          </tbody>
+        </table>
+      </div>
+      <script type="module">
+      const scrollableTable = document.getElementById('product-table');
+        const shadowCells = scrollableTable.querySelectorAll('.syn-table-cell--shadow-end');
 
-      scrollableTable.addEventListener('scroll', () => {
-        shadowCells.forEach(shadowCell => {
-          if (scrollableTable.scrollLeft === 0) {
-            shadowCell.classList.remove('syn-table-cell--shadow-active');
-          } else {
-            shadowCell.classList.add('syn-table-cell--shadow-active');
-          }
+        scrollableTable.addEventListener('scroll', () => {
+          shadowCells.forEach(shadowCell => {
+            if (scrollableTable.scrollLeft === 0) {
+              shadowCell.classList.remove('syn-table-cell--shadow-active');
+            } else {
+              shadowCell.classList.add('syn-table-cell--shadow-active');
+            }
+          });
         });
-      });
-    </script>
-    <style>
-      #product-table {
-        display: block;
-        overflow-y: auto;
-        width: 900px;
-      }
 
-      #product-table .shadow-cell {
-        position: sticky;
-        z-index: 1;
-        left: 0;
-      }
+        scrollableTable.scrollLeft = 20;
+      </script>
+      <style>
+        #product-table {
+          overflow-y: auto;
+          width: 900px;
+        }
 
-      #product-table td {
-        min-width: 100px;
-      }
+        #product-table .shadow-cell {
+          position: sticky;
+          z-index: 1;
+          left: 0;
+        }
 
-      .product-image {
-        height: var(--syn-spacing-3x-large);
-        width: var(--syn-spacing-3x-large);
-        object-fit: cover;
-      }
+        #product-table td {
+          min-width: 100px;
+        }
 
-      .product-cell {
-        color: var(--syn-typography-color-text);
-        display: flex;
-        flex-direction: row;
-        font: var(--syn-body-x-small-regular);
-        gap: var(--syn-spacing-medium);
-        width: 230px;
-      }
+        .product-image {
+          height: var(--syn-spacing-3x-large);
+          width: var(--syn-spacing-3x-large);
+          object-fit: cover;
+        }
 
-      .product-name {
-        color: var(--syn-color-primary-600);
-        font: var(--syn-body-medium-semibold);
-      }
+        .product-cell {
+          color: var(--syn-typography-color-text);
+          display: flex;
+          flex-direction: row;
+          font: var(--syn-body-x-small-regular);
+          gap: var(--syn-spacing-medium);
+          width: 230px;
+        }
 
-      .availability {
-        display: flex;
-        align-items: center;
-        gap: var(--syn-spacing-2x-small);
-      }
+        .product-name {
+          color: var(--syn-color-primary-600);
+          font: var(--syn-body-medium-semibold);
+        }
 
-      .check_icon {
-        font-size: var(--syn-font-size-medium);
-        color: var(--syn-color-success-600);
-      }
+        .availability {
+          display: flex;
+          align-items: center;
+          gap: var(--syn-spacing-2x-small);
+        }
 
-      .price {
-        display: flex;
-        flex-direction: column;
-        gap: var(--syn-spacing-2x-small);
-      }
+        .check_icon {
+          font-size: var(--syn-font-size-medium);
+          color: var(--syn-color-success-600);
+        }
 
-      .price :nth-child(2) {
-        font: var(--syn-body-small-semibold);
-      }
-    </style>
-  `;
+        .price {
+          display: flex;
+          flex-direction: column;
+          gap: var(--syn-spacing-2x-small);
+        }
+
+        .price :nth-child(2) {
+          font: var(--syn-body-small-semibold);
+        }
+      </style>
+    `;
   },
 };

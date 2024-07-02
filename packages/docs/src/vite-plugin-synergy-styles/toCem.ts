@@ -54,7 +54,7 @@ const tagIsAllowedToBeIncluded = (tag: Tag): boolean => ALLOWED_TAGS.includes(ta
  * @param tag The tag to check
  * @returns True if the tag is a boolean type
  */
-const tagIsBooleanType = (tag: Tag): boolean => tag.tag === 'boolean' || !tag.type || tag.type.trim().length === 0 || tag.type === 'true';
+const tagIsBooleanType = (tag: Tag): boolean => tag.tag === 'boolean' || !tag.type || tag.type.trim().length === 0 || ['true', 'false'].includes(tag.type);
 
 /**
  * Convert a tag to an attribute

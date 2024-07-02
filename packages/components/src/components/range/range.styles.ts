@@ -66,6 +66,9 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
+  .track-wrapper {
+    cursor: pointer;
+  }
 
   .track {
     background-color: var(--track-color-inactive);
@@ -112,6 +115,7 @@ export default css`
     outline-offset: var(--syn-focus-ring-offset);
   }
 
+  :host([disabled]) .track-wrapper,
   :host([disabled]) .handle,
   :host([disabled]) .handle.grabbed {
     cursor: not-allowed;

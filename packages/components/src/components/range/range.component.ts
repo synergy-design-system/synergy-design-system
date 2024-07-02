@@ -83,7 +83,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   @property({ type: Number }) step = 1;
 
   /** The preferred placement of the range's tooltip. */
-  @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: Extract<SynTooltip['placement'], 'top' | 'bottom'> = 'top';
+  @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: 'top' | 'bottom' = 'top';
 
   /** Set the visibility of the tooltip  */
   @property({ attribute: 'tooltip-disabled', type: Boolean }) tooltipDisabled = false;
@@ -116,8 +116,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   /**
    * A function used to format the tooltip's value.
-   * The range's value is passed as the first and only argument. The
-   * function should return a string to display in the tooltip.
+   * The range's value is passed as the only argument.
+   * The function should return a string to display in the tooltip.
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
 
@@ -218,8 +218,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           </span>
 
           <div class="input-wrapper" part="input-wrapper">
-            <div class="track"></div>
-            <div class="active-track"></div>
+            <div class="track-wrapper" @pointerdown=${this.#onClickTrack}>
+              <div class="track"></div>
+              <div class="active-track"></div>
+            </div>
             ${handles}
           </div>
 
@@ -341,6 +343,38 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#validationError;
   }
 
+  #onClickTrack(event: PointerEvent): void {
+    if (this.disabled) return;
+    const { clientX } = event;
+
+    const handles = Array.from(this.handles);
+    const pos = this.#getNormalizedValueFromClientX(handles.at(0)!, clientX);
+    const unit = this.step / (this.max - this.min);
+    const nextValue = this.min + this.step * Math.round(pos / unit);
+
+    const handle = handles.reduce((prev, curr) => {
+      const currValue = this.#sliderValues.get(+curr.dataset.sliderId!)!;
+      const prevValue = this.#sliderValues.get(+prev.dataset.sliderId!)!;
+
+      return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
+    });
+
+    const sliderId = +handle.dataset.sliderId!;
+
+    if (!sliderId) return;
+
+    this.#sliderValues.set(sliderId, nextValue);
+    this.#moveHandle(handle, nextValue);
+
+    const prevValue = this.#value;
+    this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+    this.#updateActiveTrack();
+
+    if (arraysDiffer(prevValue, this.#value)) {
+      this.emit('syn-input');
+    }
+  }
+
   #onClickHandle(event: PointerEvent): void {
     if (this.disabled) return;
     const handle = event.target as HTMLDivElement;
@@ -384,12 +418,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #getNormalizedValueFromClientX(handle: HTMLDivElement, x: number): number {
     const bounds = this.baseDiv.getBoundingClientRect();
-    const size = bounds.width - handle.clientWidth;
+    const { clientWidth } = handle;
+    const size = bounds.width - clientWidth;
     if (size <= 0) return 0;
 
     let nextX = x;
 
-    nextX -= bounds.left + handle.clientWidth / 2;
+    nextX -= bounds.left + clientWidth / 2;
     if (nextX <= 0) return this.#rtl ? 1 : 0;
     if (nextX >= size) return this.#rtl ? 0 : 1;
     nextX /= size;
@@ -468,7 +503,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       this.#sliderValues.set(sliderId, value);
       this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+
       this.#updateActiveTrack();
+      this.#updateTooltip(handle);
 
       this.emit('syn-input');
       this.emit('syn-change');
@@ -505,6 +542,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #updateTooltip(handle: HTMLDivElement): void {
+    if (this.tooltipDisabled) return;
     const sliderId = +handle.dataset.sliderId!;
     if (!this.#sliderValues.has(sliderId)) return;
     const value = this.#sliderValues.get(sliderId)!;

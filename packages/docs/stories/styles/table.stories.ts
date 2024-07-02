@@ -20,13 +20,26 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: `<tbody>
-    <tr>
-      <td>
-        Cell content
-      </td>
-    </tr>
-  </tbody>`,
+      value: `
+<thead>
+  <tr>
+    <th class="syn-table-cell--header"> Header content </th>
+    <th class="syn-table-cell--header"> Header content </th>
+    <th class="syn-table-cell--header"> Header content </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="syn-table-cell"> Cell content </td>
+    <td class="syn-table-cell"> Cell content </td>
+    <td class="syn-table-cell"> Cell content </td>
+  </tr>
+  <tr>
+    <td class="syn-table-cell"> Cell content </td>
+    <td class="syn-table-cell"> Cell content </td>
+    <td class="syn-table-cell"> Cell content </td>
+  </tr>
+</tbody>`,
     },
   ], defaultArgs),
   argTypes,

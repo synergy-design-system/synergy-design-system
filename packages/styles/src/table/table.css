@@ -1,6 +1,6 @@
 /**
  * Table classes
- * @boolean syn-table Applies the table stylings
+ * @boolean { true } syn-table Applies the table stylings
  */
 .syn-table {
   all: unset;

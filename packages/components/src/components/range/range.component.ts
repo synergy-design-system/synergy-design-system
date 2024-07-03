@@ -168,17 +168,21 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
       return html`
-        <syn-tooltip hoist .placement=${this.tooltipPlacement} .disabled=${this.tooltipDisabled}>
+        <syn-tooltip
+          hoist
+          .placement=${this.tooltipPlacement}
+          .disabled=${this.tooltipDisabled}
+        >
           <div
-            class="handle"
-            tabindex="${this.disabled ? -1 : 0}"
-            role="slider"
-            aria-labelledby=${ifDefined(hasLabel ? 'label' : undefined)}
-            aria-valuemin="${this.min}"
-            aria-valuemax="${this.max}"
             aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
+            aria-labelledby=${ifDefined(hasLabel ? 'label' : undefined)}
+            aria-valuemax="${this.max}"
+            aria-valuemin="${this.min}"
             aria-valuenow="${value}"
+            class="handle"
             data-slider-id="${sliderId}"
+            role="slider"
+            tabindex="${this.disabled ? -1 : 0}"
             @pointerdown=${this.#onClickHandle}
             @pointermove=${this.#onDragHandle}
             @pointerup=${this.#onReleaseHandle}

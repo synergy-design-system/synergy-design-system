@@ -97,6 +97,7 @@ export default css`
     height: var(--thumb-size);
     position: absolute;
     top: 0;
+    transition: background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     width: var(--thumb-size);
     z-index: 3;
   }
@@ -105,12 +106,12 @@ export default css`
    * Adds some space to the knob that makes it easier to click and drag
    */
   .handle::after {
-    content: "";
     background: transparent;
     border-radius: var(--syn-border-radius-circle);
+    content: "";
     display: block;
-    position: absolute;
     inset: calc(var(--thumb-clickable-area) * -1);
+    position: absolute;
   }
 
   .handle:hover,
@@ -137,5 +138,7 @@ export default css`
   :host(:not([disabled])) .handle:hover,
   :host(:not([disabled])) .handle.grabbed {
     background: var(--syn-color-primary-900);
+    border-width: 0;
+    box-shadow: var(--syn-shadow-large);
   }
 `;

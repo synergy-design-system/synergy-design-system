@@ -163,6 +163,11 @@ export const AutoBorderTable: StoryObj = {
   `,
 };
 
+/* eslint-disable sort-keys */
 export const Screenshot: StoryObj = generateScreenshotStory({
-  Default,
+  AtomicTable,
+  AutoDefaultTable,
+  AutoAlternatingTable,
+  AutoBorderTable,
 });
+/* eslint-enable sort-keys */

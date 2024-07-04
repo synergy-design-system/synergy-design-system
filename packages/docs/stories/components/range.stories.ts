@@ -179,7 +179,7 @@ export const CustomTrackOffset: Story = {
     <syn-range class="custom-track-offset"></syn-range>
     <style>
       .custom-track-offset {
-        --track-offset: 50px;
+        --track-active-offset: 50%;
       }
     </style>
   `,
@@ -194,7 +194,7 @@ export const MultiKnob: Story = {
     },
   },
   render: () => html`
-    <syn-range value="20 80"></syn-range>
+    <syn-range value="30 70"></syn-range>
   `,
 };
 

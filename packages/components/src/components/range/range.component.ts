@@ -134,9 +134,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
 
-  #formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
+  private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
-  #localize = new LocalizeController(this);
+  private localize = new LocalizeController(this);
 
   #value: readonly number[] = [this.max / 2];
 
@@ -149,12 +149,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   #nextId = 1;
 
   get #rtl() {
-    return this.#localize.dir() === 'rtl';
+    return this.localize.dir() === 'rtl';
   }
 
   constructor() {
     super();
-    this.tooltipFormatter = this.#localize.number.bind(this.#localize);
+    this.tooltipFormatter = this.localize.number.bind(this.localize);
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
@@ -174,8 +174,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return html`
         <syn-tooltip
           hoist
-          .placement=${this.tooltipPlacement}
           .disabled=${this.tooltipDisabled}
+          .placement=${this.tooltipPlacement}
         >
           <div
             aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
@@ -220,7 +220,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         >
           <slot name="label">${this.label}</slot>
         </label>
-        
+
         <div class="base input__control" part="base">
           <span part="prefix" class="input__prefix">
             <slot name="prefix"></slot>
@@ -322,12 +322,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** Sets a custom validation message. Pass an empty string to restore validity. */
   public setCustomValidity(message: string): void {
     this.#validationError = message;
-    this.#formControlController.updateValidity();
+    this.formControlController.updateValidity();
   }
 
   /** Gets the associated form, if one exists. */
   public getForm(): HTMLFormElement | null {
-    return this.#formControlController.getForm();
+    return this.formControlController.getForm();
   }
 
   /** Gets the validity state object */
@@ -429,19 +429,30 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const { activeTrack } = this;
     if (!activeTrack) return;
 
-    if (this.min === this.max || this.#value.length < 2) {
-      activeTrack.style.display = 'none';
-      activeTrack.style.insetInlineStart = '0';
+    // Special case: User set min and max to the same values.
+    // To not show the active track in this case.
+    if (this.min === this.max) {
+      activeTrack.style.insetInlineStart = '0%';
       activeTrack.style.width = '0';
       return;
     }
 
+    // If there is only one knob, the active track should start at the beginning and end at the knob
+    if (this.#value.length < 2) {
+      const start = 0;
+      const end = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
+
+      activeTrack.style.insetInlineStart = `${start}%`;
+      activeTrack.style.width = `${end - start}%`;
+      return;
+    }
+
+    // Multi knob: Place the active track between the first and last knob
     const start = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
     const span = (
       100 * (this.#value[this.#value.length - 1] - this.#value[0])
     ) / (this.max - this.min);
 
-    activeTrack.style.display = 'inline-block';
     activeTrack.style.insetInlineStart = `${start}%`;
     activeTrack.style.width = `${span}%`;
   }

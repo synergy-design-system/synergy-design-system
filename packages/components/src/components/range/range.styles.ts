@@ -4,6 +4,7 @@ export default css`
   :host {
     --thumb-size: var(--syn-spacing-medium-large);
     --thumb-clickable-area: 1.5;
+    --track-active-offset: 0;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
@@ -82,6 +83,8 @@ export default css`
 
   .active-track {
     background-color: var(--track-color-active);
+    border-radius: var(--syn-border-radius-small);
+    display: inline-block;
     height: var(--track-height);
     position: absolute;
     top: calc((var(--thumb-size) - var(--track-height)) / 2);
@@ -124,7 +127,7 @@ export default css`
   }
 
   .handle:focus-visible,
-  .keyboard-focus .handle:focus {
+  .keyboard-focus .handle:focus-visible {
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }

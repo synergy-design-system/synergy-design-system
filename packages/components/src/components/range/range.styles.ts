@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --thumb-size: var(--syn-spacing-medium-large);
-    --thumb-clickable-area: calc(var(--syn-spacing-medium-large) * 0.5);
+    --thumb-clickable-area: 1.5;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
@@ -97,7 +97,7 @@ export default css`
     height: var(--thumb-size);
     position: absolute;
     top: 0;
-    transition: background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
+    transition: transform var(--syn-transition-fast) ease-in-out, background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     width: var(--thumb-size);
     z-index: 3;
   }
@@ -110,7 +110,7 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     content: "";
     display: block;
-    inset: calc(var(--thumb-clickable-area) * -1);
+    inset: calc(var(--thumb-size) * (var(--thumb-clickable-area) / 2) * -1);
     position: absolute;
   }
 
@@ -138,7 +138,7 @@ export default css`
   :host(:not([disabled])) .handle:hover,
   :host(:not([disabled])) .handle.grabbed {
     background: var(--syn-color-primary-900);
-    border-width: 0;
     box-shadow: var(--syn-shadow-large);
+    transform: scale(var(--thumb-clickable-area));
   }
 `;

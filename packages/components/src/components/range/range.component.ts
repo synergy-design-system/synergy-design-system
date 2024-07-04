@@ -14,7 +14,11 @@ import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynTooltip from '../tooltip/tooltip.component.js';
-import { arraysDiffer, numericSort } from './utility.js';
+import {
+  arraysDiffer,
+  getNormalizedValueFromClientX,
+  numericSort,
+} from './utility.js';
 import styles from './range.styles.js';
 
 /**
@@ -353,7 +357,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const { clientX } = event;
 
     const handles = Array.from(this.handles);
-    const pos = this.#getNormalizedValueFromClientX(handles.at(0)!, clientX);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, handles.at(0)!, clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const nextValue = this.min + this.step * Math.round(pos / unit);
 
@@ -406,7 +410,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const pointerId = handle.dataset.pointerId ? +handle.dataset.pointerId : null;
     if (pointerId !== event.pointerId) return;
 
-    const pos = this.#getNormalizedValueFromClientX(handle, event.clientX);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, handle, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const value = this.min + this.step * Math.round(pos / unit);
     this.#sliderValues.set(sliderId, value);
@@ -419,21 +423,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (arraysDiffer(prevValue, this.#value)) {
       this.emit('syn-input');
     }
-  }
-
-  #getNormalizedValueFromClientX(handle: HTMLDivElement, x: number): number {
-    const bounds = this.baseDiv.getBoundingClientRect();
-    const { clientWidth } = handle;
-    const size = bounds.width - clientWidth;
-    if (size <= 0) return 0;
-
-    let nextX = x;
-
-    nextX -= bounds.left + clientWidth / 2;
-    if (nextX <= 0) return this.#rtl ? 1 : 0;
-    if (nextX >= size) return this.#rtl ? 0 : 1;
-    nextX /= size;
-    return this.#rtl ? 1.0 - nextX : nextX;
   }
 
   #updateActiveTrack(): void {
@@ -508,6 +497,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       this.#sliderValues.set(sliderId, value);
       this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+
+      // Determine the position of the handle in the array as the focus might have changed
+      const index = this.#value.findIndex(v => v === value);
+      this.handles[index].focus();
 
       this.#updateActiveTrack();
       this.#updateTooltip(handle);

@@ -86,9 +86,7 @@ export const Default: StoryObj = {
       disable: false,
     },
   },
-  render: (args: unknown) => html`
-  ${renderStyles(args as RenderArgs, 'table')}
-  `,
+  render: (args: unknown) => renderStyles(args as RenderArgs, 'table'),
 };
 
 /**

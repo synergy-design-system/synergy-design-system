@@ -241,6 +241,10 @@ export const TableWithBorders: Story = {
   },
 };
 
+/**
+ * If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'
+ * property should be set to 'separate'. Otherwise the table will have some strange behaviors.
+ */
 export const TableShadowLeftColumn: Story = {
   render: () => {
     const bodyData = repeatFor(() => createBodyRow(false, 'end'));
@@ -258,6 +262,11 @@ export const TableShadowLeftColumn: Story = {
         #horizontal-scrollable-table {
           overflow-x: auto;
           width: 550px;
+        }
+
+        #horizontal-scrollable-table > table {
+          /* Set border-collapse to separate, if using scrolling mechanism together with a table with borders */
+          /* border-collapse: separate; */
         }
 
         #horizontal-scrollable-table .shadow-cell {
@@ -294,6 +303,10 @@ export const TableShadowLeftColumn: Story = {
   },
 };
 
+/**
+ * If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'
+ * property should be set to 'separate'. Otherwise the table will have some strange behaviors.
+ */
 export const TableShadowRightColumn: Story = {
   render: () => {
     const bodyData = repeatFor(() => createBodyRow(false, 'start'));
@@ -311,6 +324,11 @@ export const TableShadowRightColumn: Story = {
         #horizontal-scrollable-table2 {
           overflow-x: auto;
           width: 550px;
+        }
+
+        #horizontal-scrollable-table2 > table {
+          /* Set border-collapse to separate, if using scrolling mechanism together with a table with borders */
+          /* border-collapse: separate; */
         }
 
         #horizontal-scrollable-table2 .shadow-cell {
@@ -351,6 +369,10 @@ export const TableShadowRightColumn: Story = {
   },
 };
 
+/**
+ * If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'
+ * property should be set to 'separate'. Otherwise the table will have some strange behaviors.
+ */
 export const TableShadowTopRow: Story = {
   render: () => {
     const bodyData = repeatFor(() => createBodyRow());
@@ -369,6 +391,11 @@ export const TableShadowTopRow: Story = {
           overflow-y: auto;
           height: 200px;
           width: fit-content;
+        }
+
+        #vertical-scrollable-table > table {
+          /* Set border-collapse to separate, if using scrolling mechanism together with a table with borders */
+          /* border-collapse: separate; */
         }
 
         #vertical-scrollable-table .shadow-cell {

@@ -1,8 +1,14 @@
 /**
  * Table classes
- * @boolean { true } syn-table Applies the table stylings
+ * @boolean { false } syn-table Applies the styling to a table element
+ * @boolean { true } syn-table--default Applies all default table stylings to a table and its children
+ * @boolean { false } syn-table--alternating Applies all alternate table stylings to a table and its children
+ * @boolean { false } syn-table--border Applies all border table stylings to a table and its children
  */
-.syn-table {
+.syn-table,
+.syn-table--default,
+.syn-table--alternating,
+.syn-table--border {
   all: unset;
   border-collapse: collapse;
   border-spacing: var(--syn-border-width-none);

@@ -12,7 +12,10 @@
  * @boolean syn-table-cell--shadow-active Displays the table shadow
  */
 
-.syn-table-cell {
+.syn-table-cell,
+.syn-table--default td,
+.syn-table--alternating td,
+.syn-table--border td {
 	background-color: var(--syn-color-neutral-0);
 	color: var(--syn-typography-color-text);
 	font: var(--syn-body-small-regular);
@@ -22,7 +25,8 @@
 	vertical-align: top;
 }
 
-.syn-table-cell--alternating {
+.syn-table-cell--alternating,
+.syn-table--alternating tr:nth-child(even) > td {
 	background-color: var(--syn-color-neutral-50);
 }
 
@@ -31,7 +35,8 @@
 	border-inline-start: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
 }
 
-.syn-table-cell--border-end {
+.syn-table-cell--border-end,
+.syn-table--border tr > td:not(:last-child) {
 	border-inline-end: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
 }
 
@@ -39,13 +44,17 @@
 	border-top: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
 }
 
-.syn-table-cell--border-bottom {
+.syn-table-cell--border-bottom,
+.syn-table--border tr:not(:last-child) > td {
 	border-bottom: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
 }
 
 
 /* Header */
-.syn-table-cell--header {
+.syn-table-cell--header,
+.syn-table--default th,
+.syn-table--alternating th,
+.syn-table--border th {
 	background-color: var(--syn-color-neutral-200);
 	color: var(--syn-typography-color-text);
 	font: var(--syn-body-small-semibold);

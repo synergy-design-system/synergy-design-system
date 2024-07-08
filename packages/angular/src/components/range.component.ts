@@ -66,7 +66,7 @@ export class SynRangeComponent {
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
   }
 
   /**
@@ -210,6 +210,11 @@ export class SynRangeComponent {
 * Emitted when the control receives input.
  */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() valueChange = new EventEmitter<SynRange['value']>();
 }
 
 export type { SynBlurEvent } from '@synergy-design-system/components';

@@ -118,7 +118,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = (this.max / 2).toFixed(0);
+  @defaultValue() defaultValue = 0;
 
   /**
    * A function used to format the tooltip's value.
@@ -139,7 +139,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   private localize = new LocalizeController(this);
 
-  #value: readonly number[] = [this.max / 2];
+  #value: readonly number[] = [0];
 
   #sliderValues = new Map<number, number>();
 
@@ -416,7 +416,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
-      this.emit('syn-input');
+      this.emit('syn-change');
     }
   }
 

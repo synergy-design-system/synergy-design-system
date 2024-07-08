@@ -106,6 +106,11 @@ const props = defineProps<{
 * The current values of the input (in ascending order) as a string of space separated values
  */
   'value'?: SynRange['value'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynRange['value'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -139,6 +144,11 @@ defineEmits<{
 * Emitted when the control receives input.
  */
   'syn-input': [e: SynInputEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynRange['value']];
 }>();
 </script>
 
@@ -153,11 +163,11 @@ export type { SynInputEvent } from '@synergy-design-system/components';
   <syn-range
     v-bind="visibleProps"
     ref="nativeElement"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
-
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
   >
     <slot />
   </syn-range>

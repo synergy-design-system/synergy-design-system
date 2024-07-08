@@ -20,6 +20,11 @@ const { generateTemplate } = storybookTemplate('syn-range');
 
 const meta: Meta = {
   args: overrideArgs([
+    {
+      name: 'value',
+      type: 'attribute',
+      value: '50',
+    },
   ], defaultArgs),
   argTypes,
   component: 'syn-range',
@@ -60,7 +65,7 @@ export const Labels: Story = {
     },
   },
   render: () => html`
-    <syn-range label="Label"></syn-range>
+    <syn-range label="Label" max="100" min="0" value="50"></syn-range>
   `,
 };
 
@@ -73,7 +78,13 @@ export const HelpText: Story = {
     },
   },
   render: () => html`
-    <syn-range label="Volume" help-text="Controls the volume of the current song"></syn-range>
+    <syn-range
+      help-text="Controls the volume of the current song"
+      label="Volume"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
   `,
 };
 
@@ -96,7 +107,7 @@ export const Focus: Story = {
   },
   render: () => html`
     <form>
-      <syn-range></syn-range>
+      <syn-range max="100" min="0" value="50"></syn-range>
     </form>
   `,
 };
@@ -110,7 +121,7 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-range disabled></syn-range>
+    <syn-range disabled max="100" min="0" value="50"></syn-range>
   `,
 };
 
@@ -123,7 +134,13 @@ export const PrefixSuffixText: Story = {
     },
   },
   render: () => html`
-    <syn-range label="Volume" help-text="Controls the volume of the current song">
+    <syn-range
+      help-text="Controls the volume of the current song"
+      label="Volume"
+      max="100"
+      min="0"
+      value="50"
+    >
       <span slot="prefix">0</span>
       <span slot="suffix">100</span>
     </syn-range>
@@ -183,7 +200,12 @@ export const CustomTrackColors: Story = {
     },
   },
   render: () => html`
-    <syn-range class="custom-track-color"></syn-range>
+    <syn-range
+      class="custom-track-color"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
     <style>
       .custom-track-color {
         --track-color-active: var(--syn-color-success-600);
@@ -201,7 +223,12 @@ export const CustomTrackOffset: Story = {
     },
   },
   render: () => html`
-    <syn-range class="custom-track-offset"></syn-range>
+    <syn-range
+      class="custom-track-offset"
+      max="100"
+      min="0"
+      value="25"
+    ></syn-range>
     <style>
       .custom-track-offset {
         --track-active-offset: 50%;
@@ -219,7 +246,7 @@ export const MultiKnob: Story = {
     },
   },
   render: () => html`
-    <syn-range value="30 70"></syn-range>
+    <syn-range max="100" min="0" value="30 70"></syn-range>
   `,
 };
 
@@ -232,7 +259,11 @@ export const Ticks: Story = {
     },
   },
   render: () => html`
-    <syn-range>
+    <syn-range
+      max="100"
+      min="0"
+      value="50"
+    >
       <ol slot="ticks">
         <li>0</li>
         <li>25</li>
@@ -253,7 +284,12 @@ export const TooltipPlacement: Story = {
     },
   },
   render: () => html`
-    <syn-range tooltip="bottom"></syn-range>
+    <syn-range
+      tooltip="bottom"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
   `,
 };
 
@@ -266,7 +302,12 @@ export const TooltipDisabled: Story = {
     },
   },
   render: () => html`
-    <syn-range tooltip="none"></syn-range>
+    <syn-range
+      tooltip="none"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
   `,
 };
 
@@ -279,7 +320,12 @@ export const TooltipFormatter: Story = {
     },
   },
   render: () => html`
-    <syn-range class="tooltip-formatter"></syn-range>
+    <syn-range
+      class="tooltip-formatter"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
     <script>
       document
         .querySelectorAll('.tooltip-formatter')

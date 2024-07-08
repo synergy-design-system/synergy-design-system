@@ -53,6 +53,7 @@ import styles from './range.styles.js';
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
+ * @cssproperty --track-active-offset - The point of origin of the active track.
  */
 export default class SynRange extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
@@ -433,28 +434,27 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     // To not show the active track in this case.
     if (this.min === this.max) {
       activeTrack.style.insetInlineStart = '0%';
-      activeTrack.style.width = '0';
+      activeTrack.style.insetInlineEnd = '0%';
       return;
     }
 
     // If there is only one knob, the active track should start at the beginning and end at the knob
-    if (this.#value.length < 2) {
-      const start = 0;
+    if (this.#value.length === 1) {
+      const start = getComputedStyle(this).getPropertyValue('--track-active-offset') || '0%';
       const end = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
 
-      activeTrack.style.insetInlineStart = `${start}%`;
-      activeTrack.style.width = `${end - start}%`;
+      activeTrack.style.insetInlineStart = `min(${start}, ${end}%)`;
+      activeTrack.style.insetInlineEnd = `min(calc(100% - ${start}), calc(100% - ${end}%))`;
+
       return;
     }
 
     // Multi knob: Place the active track between the first and last knob
     const start = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
-    const span = (
-      100 * (this.#value[this.#value.length - 1] - this.#value[0])
-    ) / (this.max - this.min);
+    const end = (100 * (this.#value[this.#value.length - 1] - this.min)) / (this.max - this.min);
 
     activeTrack.style.insetInlineStart = `${start}%`;
-    activeTrack.style.width = `${span}%`;
+    activeTrack.style.insetInlineEnd = `calc(100% - ${end}%)`;
   }
 
   #onKeyPress(event: KeyboardEvent): void {

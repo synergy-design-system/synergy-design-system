@@ -4,7 +4,7 @@ export default css`
   :host {
     --thumb-size: var(--syn-spacing-medium-large);
     --thumb-clickable-area: 1.5;
-    --track-active-offset: 0;
+    --track-active-offset: 0px;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;

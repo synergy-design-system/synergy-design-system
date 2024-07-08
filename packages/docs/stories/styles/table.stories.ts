@@ -15,6 +15,12 @@ import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-table');
 const { overrideArgs } = storybookHelpers('syn-table');
 
+const tableDocs = `It is possible to achieve different table stylings (default, with border, alternating, ...) 
+ either via multiple classes on the \`table\`, \`td\` and \`th\` elements or as a convenient alternative
+ as auto styling class, which is applied on a \`table\` element. These auto styling classes will
+ style the \`td\` and \`th\` elements correctly, without the need to apply further classes.
+`;
+
 const createTableData = () => `
   <thead>
     <tr>
@@ -47,12 +53,6 @@ const createTableData = () => `
   </tbody>
 `;
 
-/**
- * It is possible to achieve different table stylings (default, with border, alternating, ...)
- * either via multiple classes on the `table`, `td` and `th` elements or as a convenient alternative
- * as auto styling class, which is applied on a `table` element. These auto styling classes will
- * style the `td` and `th` elements correctly, without the need to apply further classes.
- */
 const meta: Meta = {
   args: overrideArgs([
     {
@@ -67,6 +67,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('19479-134433'),
     docs: {
       description: {
+        component: tableDocs,
       },
     },
   },
@@ -74,16 +75,15 @@ const meta: Meta = {
 };
 export default meta;
 
-/**
- * It is possible to achieve different table stylings (default, with border, alternating, ...)
- * either via multiple classes on the `table`, `td` and `th` elements or as a convenient alternative
- * as auto styling class, which is applied on a `table` element. These auto styling classes will
- * style the `td` and `th` elements correctly, without the need to apply further classes.
- */
 export const Default: StoryObj = {
   parameters: {
     controls: {
       disable: false,
+    },
+    docs: {
+      description: {
+        story: tableDocs,
+      },
     },
   },
   render: (args: unknown) => renderStyles(args as RenderArgs, 'table'),

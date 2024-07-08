@@ -73,7 +73,7 @@ import "@synergy-design-system/styles/typography.css";
 
 <!-- BEGIN INLINE COMMENT -->
 
-- table.css
+- tables.css
   - table-cell.css
   - table.css
 - typography.css

@@ -1,4 +1,4 @@
-import '../components/popup/popup';
+import '../components/popup/popup.js';
 
 /**
  * This function is a helper to quickly setup autocomplete.js for Synergy components.

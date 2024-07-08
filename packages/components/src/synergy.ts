@@ -51,6 +51,7 @@ export { default as SynTooltip } from './components/tooltip/tooltip.js';
 export * from './utilities/base-path.js';
 export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
+export * from './utilities/autocomplete-config.js';
 
 // Events
 export * from './events/events.js';

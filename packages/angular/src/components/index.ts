@@ -34,6 +34,7 @@ export { SynProgressRingComponent } from './progress-ring.component';
 export { SynRadioButtonComponent } from './radio-button.component';
 export { SynRadioComponent } from './radio.component';
 export { SynRadioGroupComponent } from './radio-group.component';
+export { SynRangeComponent } from './range.component';
 export { SynSelectComponent } from './select.component';
 export { SynSideNavComponent } from './side-nav.component';
 export { SynSpinnerComponent } from './spinner.component';

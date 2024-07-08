@@ -521,10 +521,16 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         : Math.min(value + this.step, this.max);
       break;
     case 'PageUp':
-      value = Math.min(value + 10 * this.step, this.max);
+      value = Math.min(
+        value + ((this.max - this.min) / 5),
+        this.max,
+      );
       break;
     case 'PageDown':
-      value = Math.max(value - 10 * this.step, this.min);
+      value = Math.max(
+        (value - (this.max - this.min) / 5),
+        this.min,
+      );
       break;
     case 'Home':
       value = this.min;

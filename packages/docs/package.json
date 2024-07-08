@@ -9,6 +9,7 @@
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
+    "@tarekraafat/autocomplete.js": "^10.2.7",
     "change-case": "^5.4.4"
   },
   "description": "Storybook demo for static assets and components of the Synergy Design System",

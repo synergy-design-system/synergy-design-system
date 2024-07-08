@@ -72,7 +72,7 @@ export const storybookDefaults = (customElementTag: string): any => {
   const {
     args, events, argTypes,
   } = getWcStorybookHelpers(customElementTag,);
-  const manifest = getComponentByTagName(customElementTag,( window as any).__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__);
+  const manifest = getComponentByTagName(customElementTag, (window as any).__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__);
 
   const getBadgesConfig = () => ({
     status: {
@@ -99,7 +99,7 @@ export const storybookDefaults = (customElementTag: string): any => {
       privacy?: string;
       name: string;
     }
-    
+
     // Hide controls for all properties
     for (const key in argTypes) {
       if (argTypes.hasOwnProperty(key) && argTypes[key].table && argTypes[key].table.category === 'properties') {
@@ -574,9 +574,9 @@ export const storybookUtilities = {
     }
     templateInnerHTML = templateInnerHTML
       .replace(/<style><\/style>/g, '')
+      .replace(/<!-- preview-ignore:start -->[\s\S]*?<!-- preview-ignore:end -->/g, '')
+      .replace(/\/\/ preview-ignore:start[\s\S]*?\/\/ preview-ignore:end/g, '')
       .replace(/<style>\n<\/style>/g, '')
-      .replace(/<script>\s*component = document\.querySelector\('(.+?)'\);\s*<\/script>/g, '');
-    // return templateInnerHTML;
     return templateInnerHTML;
   },
 };
@@ -600,9 +600,9 @@ type AttributeDescription = {
  * @returns {string} The story description
  */
 export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => {
- // Exchange all \n with <br/>, because single line breaks with \n are not working in storybook
- const description = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description';
- return description.replace(/\n/g, '<br/>');
+  // Exchange all \n with <br/>, because single line breaks with \n are not working in storybook
+  const description = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description';
+  return description.replace(/\n/g, '<br/>');
 }
 
 
@@ -625,7 +625,7 @@ type screenshotStoryOptions = {
    * The height of the drawn container
    */
   heightPx?: number,
-  
+
   /**
    * The style of the drawn container
    */
@@ -693,7 +693,7 @@ export const generateScreenshotStory = (
     styleHeading = {}
   } = usedOptions;
   const additionalStylesHeading = Object.entries(styleHeading).map(([key, value]) => `${key}: ${value};`).join(' ');
-  
+
   return {
     parameters: {
       chromatic: {

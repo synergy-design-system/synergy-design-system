@@ -485,6 +485,9 @@ importers:
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@tarekraafat/autocomplete.js':
+        specifier: ^10.2.7
+        version: 10.2.7
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
@@ -638,6 +641,9 @@ importers:
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@tarekraafat/autocomplete.js':
+        specifier: ^10.2.7
+        version: 10.2.7
       change-case:
         specifier: ^5.4.4
         version: 5.4.4
@@ -6590,6 +6596,9 @@ packages:
       - react-dom
       - supports-color
     dev: true
+
+  /@tarekraafat/autocomplete.js@10.2.7:
+    resolution: {integrity: sha512-iE+dnXI8/LrTaSORrnNdSyXg/bFCbCpz/R5GUdB3ioW+9PVEhglxNcSDQNeCXtrbRG0kOBFUd4unEiwcmqyn8A==}
 
   /@testing-library/dom@9.3.4:
     resolution: {integrity: sha512-FlS4ZWlp97iiNWig0Muq8p+3rVDjRiYE+YKGbAqXOu9nwJFFOdL00kFpz42M+4huzYi86vAK1sOOfyOG45muIQ==}

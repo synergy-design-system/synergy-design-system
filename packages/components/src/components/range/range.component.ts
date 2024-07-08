@@ -167,11 +167,35 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
+    // Aria special handling:
+    // 1. When there is only one label: Use the provided label as the aria-label for the handle
+    // 2. When we have multiple label: Set the label for the first and last item to itself
+    const isMultiple = this.#value.length > 1;
+
     this.#sliderValues.clear();
-    const handles = this.#value.map(value => {
+    const handles = this.#value.map((value, index) => {
       this.#nextId += 1;
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
+
+      const id = `handle-${sliderId}`;
+
+      let ariaLabel = '';
+      let ariaLabeledBy = '';
+
+      if (!isMultiple) {
+        ariaLabel = this.tooltipFormatter(value);
+        ariaLabeledBy = ifDefined(hasLabel) ? 'label aria-label-hidden' : 'label-hidden';
+      } else {
+        ariaLabeledBy = ifDefined(hasLabel) ? `label aria-label-hidden ${id}` : 'id label-hidden';
+
+        if (index === 0) {
+          ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
+        } else if (index === this.#value.length - 1) {
+          ariaLabel = `${this.localize.term('sliderMax')} (${this.tooltipFormatter(value)})`;
+        }
+      }
+
       return html`
         <syn-tooltip
           hoist
@@ -180,12 +204,15 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         >
           <div
             aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
-            aria-labelledby=${ifDefined(hasLabel ? 'label' : undefined)}
+            aria-labelledby=${ariaLabeledBy}
+            aria-label=${ariaLabel}
             aria-valuemax="${this.max}"
             aria-valuemin="${this.min}"
             aria-valuenow="${value}"
+            aria-valuetext="${ariaLabel} ${this.tooltipFormatter(value)}"
             class="handle"
             data-slider-id="${sliderId}"
+            id=${id}
             role="slider"
             tabindex="${this.disabled ? -1 : 0}"
             @pointerdown=${this.#onClickHandle}
@@ -222,13 +249,21 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           <slot name="label">${this.label}</slot>
         </label>
 
+        <label id="aria-label-hidden">
+          (${this.#value.map(this.tooltipFormatter).join(' - ')})
+        </label>
+
         <div class="base input__control" part="base">
           <span part="prefix" class="input__prefix">
             <slot name="prefix"></slot>
           </span>
 
           <div class="input-wrapper" part="input-wrapper">
-            <div class="track-wrapper" @pointerdown=${this.#onClickTrack}>
+            <div
+              class="track-wrapper"
+              @pointerdown=${this.#onClickTrack}
+              role="presentation"
+            >
               <div class="track"></div>
               <div class="active-track"></div>
             </div>

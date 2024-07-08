@@ -45,10 +45,12 @@ const translation: Translation = {
   // @see scripts/vendorism/translations.vendorism.js
   closeMenu: 'Menü schließen',
   danger: 'Gefahr',
-  notification: 'Benachrichtigung',
   menu: 'Menü',
+  notification: 'Benachrichtigung',
   openMenu: 'Menü öffnen',
   sideNav: 'Seitennavigation',
+  sliderMax: 'Maximum',
+  sliderMin: 'Minimum',
   success: 'Erfolg',
   warning: 'Warnung',
 };

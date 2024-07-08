@@ -1703,6 +1703,16 @@
           "type": "text"
         }
       },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user..",
+          "type": "text"
+        }
+      },
       "disabled": {
         "description": {
           "value": "Use the disabled attribute to disable a slider.",

@@ -10,13 +10,13 @@ const translations = {
     de: 'Gefahr',
     en: 'Danger',
   },
-  notification: {
-    de: 'Benachrichtigung',
-    en: 'Notification',
-  },
   menu: {
     de: 'Menü',
     en: 'Menu',
+  },
+  notification: {
+    de: 'Benachrichtigung',
+    en: 'Notification',
   },
   openMenu: {
     de: 'Menü öffnen',
@@ -25,6 +25,14 @@ const translations = {
   sideNav: {
     de: 'Seitennavigation',
     en: 'Side navigation',
+  },
+  sliderMax: {
+    de: 'Maximum',
+    en: 'Maximum',
+  },
+  sliderMin: {
+    de: 'Minimum',
+    en: 'Minimum',
   },
   success: {
     de: 'Erfolg',

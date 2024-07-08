@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
+import type { SynRange } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
@@ -73,6 +74,30 @@ export const HelpText: Story = {
   },
   render: () => html`
     <syn-range label="Volume" help-text="Controls the volume of the current song"></syn-range>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('range', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-range') as SynRange;
+    if (input) {
+      input.focus();
+    }
+  },
+  render: () => html`
+    <form>
+      <syn-range></syn-range>
+    </form>
   `,
 };
 

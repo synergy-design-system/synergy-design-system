@@ -31,6 +31,8 @@ export interface Translation extends DefaultTranslation {
   notification: string;
   openMenu: string;
   sideNav: string;
+  sliderMax: string;
+  sliderMin: string;
   success: string;
   warning: string;
 

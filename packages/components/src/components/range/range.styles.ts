@@ -106,6 +106,13 @@ export default css`
   }
 
   /**
+   * Hide the aria label. Only used for aria controls
+   */
+  #aria-label-hidden {
+    display: none;
+  }
+
+  /**
    * Adds some space to the knob that makes it easier to click and drag
    */
   .handle::after {

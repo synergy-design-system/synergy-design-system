@@ -152,6 +152,30 @@ export const Disabled: Story = {
   `,
 };
 
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('range', 'size'),
+      },
+    },
+  },
+  render: () => html`
+    <div class="size-wrapper">
+      <syn-range label="Small" max="100" min="0" size="small" value="33"></syn-range>
+      <syn-range label="Medium" max="100" min="0" size="medium" value="66"></syn-range>
+      <syn-range label="Large" max="100" min="0" size="large" value="99"></syn-range>
+    </div>
+    <style>
+      .size-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-medium);
+      }
+    </style>
+  `,
+};
+
 export const PrefixSuffixText: Story = {
   parameters: {
     docs: {
@@ -192,9 +216,7 @@ export const PrefixSuffixText: Story = {
         display: flex;
         gap: var(--syn-spacing-medium);
         syn-input {
-          &::part(form-control-input) {
-            max-width: 120px;
-          }
+          min-width: 0;
         }
       }
     </style>
@@ -371,6 +393,7 @@ export const Screenshot: Story = generateScreenshotStory({
   HelpText,
   Invalid,
   Disabled,
+  Sizes,
   PrefixSuffixText,
   CustomTrackColors,
   CustomTrackOffset,

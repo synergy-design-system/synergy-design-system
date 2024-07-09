@@ -1713,6 +1713,16 @@
           "type": "text"
         }
       },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a range’s size.",
+          "type": "text"
+        }
+      },
       "invalid": {
         "title": {
           "value": "Invalid",

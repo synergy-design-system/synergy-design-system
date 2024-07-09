@@ -156,6 +156,18 @@ export class SynRangeComponent {
   }
 
   /**
+* The range's size.
+ */
+  @Input()
+  set size(v: SynRange['size']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
+  }
+
+  get size() {
+    return this.nativeElement.size;
+  }
+
+  /**
 * The preferred placement of the range's tooltip.
  */
   @Input()

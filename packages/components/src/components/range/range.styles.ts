@@ -2,12 +2,25 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --thumb-size: var(--syn-spacing-medium-large);
-    --thumb-clickable-area: 1.5;
+    /*
+     * Values here apply for the default size of "medium"
+     * For other sizes, see below
+     */
+    --thumb-size: var(--syn-spacing-medium);
+    --thumb-clickable-area: 1.4;
     --track-active-offset: 0px;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
+  }
+
+  /* Sizes */
+  :host([size='small']) {
+    --thumb-size: var(--syn-spacing-small);
+  }
+
+  :host([size='large']) {
+    --thumb-size: var(--syn-spacing-medium-large);
   }
 
   .form-control {
@@ -70,12 +83,12 @@ export default css`
 
   .track-wrapper {
     cursor: pointer;
+    position: relative;
   }
 
   .track {
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
-    display: inline-block;
     height: var(--track-height);
     margin: calc((var(--thumb-size) - var(--track-height)) / 2) calc(var(--thumb-size) / 2 - 3px);
     width: calc(100% + 6px - var(--thumb-size));
@@ -84,10 +97,9 @@ export default css`
   .active-track {
     background-color: var(--track-color-active);
     border-radius: var(--syn-border-radius-small);
-    display: inline-block;
     height: var(--track-height);
     position: absolute;
-    top: calc((var(--thumb-size) - var(--track-height)) / 2);
+    top: 0;
     z-index: 2;
   }
 

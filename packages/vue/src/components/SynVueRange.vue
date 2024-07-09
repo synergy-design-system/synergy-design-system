@@ -93,6 +93,11 @@ const props = defineProps<{
   'step'?: SynRange['step'];
 
   /**
+* The range's size.
+ */
+  'size'?: SynRange['size'];
+
+  /**
 * The preferred placement of the range's tooltip.
  */
   'tooltipPlacement'?: SynRange['tooltipPlacement'];

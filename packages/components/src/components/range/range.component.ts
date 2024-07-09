@@ -88,6 +88,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** The interval at which the range will increase and decrease. */
   @property({ type: Number }) step = 1;
 
+  /** The range's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
   /** The preferred placement of the range's tooltip. */
   @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: 'top' | 'bottom' = 'top';
 
@@ -535,7 +538,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return html`
         <syn-tooltip
           hoist
-          .disabled=${this.tooltipDisabled}
+          .disabled=${this.tooltipDisabled || this.disabled}
           .placement=${this.tooltipPlacement}
         >
           <div
@@ -571,7 +574,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control--has-label': hasLabel,
           'form-control--has-prefix': hasPrefixSlot,
           'form-control--has-suffix': hasSuffixSlot,
-          'form-control--medium': true, // range only has one size currently
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--small': this.size === 'small',
         })}
         @focusout=${this.#onBlur}
       >

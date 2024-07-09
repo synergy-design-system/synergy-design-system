@@ -12,6 +12,9 @@ export default css`
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
+
+    /* This is needed to get the full with of the element, including the border */
+    --full-thumb-size: calc(var(--thumb-size) + (var(--syn-focus-ring-width) * 2));
   }
 
   /* Sizes */
@@ -41,6 +44,7 @@ export default css`
     justify-content: start;
     letter-spacing: var(--syn-input-letter-spacing);
     position: relative;
+    touch-action: none; /* Prevent misbehaviour in mobile by disabling native touch */
     transition:
       var(--syn-transition-fast) color,
       var(--syn-transition-fast) border,
@@ -52,7 +56,7 @@ export default css`
 
   .input-wrapper {
     flex: 1 0 auto;
-    height: var(--thumb-size);
+    height: var(--full-thumb-size);
     position: relative;
   }
 
@@ -90,8 +94,8 @@ export default css`
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
-    margin: calc((var(--thumb-size) - var(--track-height)) / 2) calc(var(--thumb-size) / 2 - 3px);
-    width: calc(100% + 6px - var(--thumb-size));
+    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--full-thumb-size) / 2 - 3px);
+    width: calc(100% + 6px - var(--full-thumb-size));
   }
 
   .active-track {
@@ -109,11 +113,12 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     cursor: pointer;
     display: block;
-    height: var(--thumb-size);
+    height: var(--full-thumb-size);
     position: absolute;
     top: 0;
     transition: transform var(--syn-transition-fast) ease-in-out, background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
-    width: var(--thumb-size);
+    user-select: none;
+    width: var(--full-thumb-size);
     z-index: 3;
   }
 
@@ -132,7 +137,7 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     content: "";
     display: block;
-    inset: calc(var(--thumb-size) * (var(--thumb-clickable-area) / 2) * -1);
+    inset: calc(var(--full-thumb-size) * (var(--thumb-clickable-area) / 2) * -1);
     position: absolute;
   }
 

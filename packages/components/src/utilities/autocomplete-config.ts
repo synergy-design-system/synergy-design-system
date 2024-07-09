@@ -75,9 +75,6 @@ export function setupAutocomplete(
 
       syn-popup li:not(:has(syn-option)):hover {
         background-color: var(--syn-color-neutral-100);
-
-        /* TODO: is this correct? In figma it looks like staying the font color. syn-option bug in hover? */
-        color: var(--syn-color-neutral-1000);
       }
 
       syn-popup li mark {

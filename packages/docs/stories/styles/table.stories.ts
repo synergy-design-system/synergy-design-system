@@ -53,6 +53,49 @@ const createTableData = () => `
   </tbody>
 `;
 
+const createComplexTable = (tableType: 'default' | 'border' | 'alternating' = 'default') => html`
+  <table class="syn-table--${tableType}">
+    <col>
+    <col>
+    <colgroup span="3"></colgroup>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Header Col</th>
+        <th colspan="3" scope="colgroup">Header Col</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th rowspan="2" scope="rowgroup">Header Row Group</th>
+        <th scope="row">Header Row</th>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+      </tr>
+      <tr>
+        <th scope="row">Header Row</th>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+      </tr>
+      <tr>
+        <th rowspan="2" scope="rowgroup">Header Row Group</th>
+        <th scope="row">Header Row</th>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+      </tr>
+      <tr>
+      <th scope="row">Header Row</th>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+        <td>Cell Content</td>
+      </tr>
+    </tbody>
+  </table>
+`;
+
 const meta: Meta = {
   args: overrideArgs([
     {
@@ -161,11 +204,26 @@ export const AutoBorderTable: StoryObj = {
   `,
 };
 
+const ComplexTableDefault : StoryObj = {
+  render: () => createComplexTable(),
+};
+
+const ComplexTableBorder: StoryObj = {
+  render: () => createComplexTable('border'),
+};
+
+const ComplexTableAlternating: StoryObj = {
+  render: () => createComplexTable('alternating'),
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: StoryObj = generateScreenshotStory({
   AtomicTable,
   AutoDefaultTable,
   AutoAlternatingTable,
   AutoBorderTable,
-});
+  ComplexTableDefault,
+  ComplexTableBorder,
+  ComplexTableAlternating,
+}, 400);
 /* eslint-enable sort-keys */

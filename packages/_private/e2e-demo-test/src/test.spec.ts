@@ -46,6 +46,16 @@ async function fillForm(form: TestPage) {
   await fillField(form.passwordRecovery, '1234');
   await form.topics.click();
   await form.angular.click();
+  await form.topics.evaluate((role: SynSelect) => {
+    // eslint-disable-next-line no-param-reassign
+    role.open = false;
+    role.blur();
+  });
+
+  // Drag the happiness handle to a 9 of 10 rating
+  await form.happiness.dragTo(form.happiness, {
+    targetPosition: { x: 1000, y: 50 },
+  });
 }
 
 async function checkInitialState(form: TestPage) {
@@ -59,6 +69,7 @@ async function checkInitialState(form: TestPage) {
   expect(await getInputValue(form.passwordRecovery)).toBe('');
   expect(await getInputValue(form.topics)).toEqual([]);
   expect(await getInputValue(form.additionalInfo)).toBe('');
+  expect(await getInputValue(form.happiness)).toBe('5');
   (await Promise.all(form.allNews.map((news) => getCheckedValue(news))))
     .forEach((val) => expect(val).toBeFalsy());
 
@@ -121,11 +132,7 @@ const createTestCaseFor = (framework: Framework) => {
       expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
     });
 
-    test('Form submit', async ({ page, browserName }) => {
-      if (browserName === 'webkit' && process.env.PORT === '5175') {
-        return; // somehow this test is very flaky in the combination of webkit and port react
-      }
-
+    test('Form submit', async ({ page }) => {
       const form = new TestPage(page);
       await form.goto(getURL(availablePages.form));
 
@@ -150,6 +157,9 @@ const createTestCaseFor = (framework: Framework) => {
       await form.submit.click();
 
       expect(submitted).toBe(true);
+
+      // Not part of validation, but happiness should always be tested :)
+      expect(await getInputValue(form.happiness)).toBe('9');
 
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });

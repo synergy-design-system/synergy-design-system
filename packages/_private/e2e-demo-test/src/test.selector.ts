@@ -6,6 +6,7 @@ export default {
   formLoc: 'form',
   frontend: 'syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
+  happinessLoc: '#happiness',
   nameLoc: '#input-text',
   newsLocBeta: '#checkbox-newsletter-beta',
   newsLocSyn: '#checkbox-newsletter-default',

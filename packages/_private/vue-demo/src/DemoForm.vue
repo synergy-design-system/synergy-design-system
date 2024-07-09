@@ -8,6 +8,7 @@ import {
   SynVueOptgroup,
   SynVueOption,
   SynVueRadio,
+  SynVueRange,
   SynVueRadioGroup,
   SynVueSelect,
   SynVueSwitch,
@@ -22,6 +23,7 @@ const initialFormData = {
   date: '',
   email: '',
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -205,6 +207,21 @@ const synChange = () => {
       </SynVueSelect>
     </DemoFieldset>
     <!-- /Topics -->
+
+    <SynVueDivider />
+
+    <!-- Happiness -->
+    <DemoFieldset legend="Happiness">
+      <SynVueRange
+        id="happiness"
+        label="How happy are you with the Synergy Design System?"
+        :max="10"
+        :min="0"
+        name="happiness"
+        v-model="formData.happiness"
+      />
+    </DemoFieldset>
+    <!-- /.Happiness -->
 
     <SynVueDivider />
 

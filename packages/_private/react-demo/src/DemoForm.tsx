@@ -10,6 +10,7 @@ import {
   SynOption,
   SynRadio,
   SynRadioGroup,
+  SynRange,
   SynSelect,
   SynSwitch,
   SynTextarea,
@@ -29,6 +30,7 @@ const initialFormData = {
   date: '',
   email: '',
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -228,6 +230,21 @@ export const DemoForm = () => {
         </SynSelect>
       </DemoFieldset>
       {/* /Topics */}
+
+      <SynDivider />
+
+      {/* Happiness */}
+      <DemoFieldset legend="Happiness">
+        <SynRange
+          id="happiness"
+          label="How happy are you with the Synergy Design System?"
+          max={10}
+          min={0}
+          name="happiness"
+          value={formData.happiness}
+        />
+      </DemoFieldset>
+      {/* /Happiness */}
 
       <SynDivider />
 

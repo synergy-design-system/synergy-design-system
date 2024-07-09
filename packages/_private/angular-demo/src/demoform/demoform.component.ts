@@ -9,6 +9,7 @@ const initialData = {
   date: '',
   email: '',
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,

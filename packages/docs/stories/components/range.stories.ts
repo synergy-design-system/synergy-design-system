@@ -112,6 +112,33 @@ export const Focus: Story = {
   `,
 };
 
+export const Invalid: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('range', 'invalid'),
+      },
+    },
+  },
+  render: () => html`
+    <form>
+      <syn-range
+        help-text="This input is required."
+        id="range-invalid"
+        label="Label"
+        max="100"
+        min="0"
+        value="50"
+      >
+
+      </syn-range>
+    </form>
+    <script>
+      document.querySelector('#range-invalid').setCustomValidity('Please enter a valid value');
+    </script>
+  `,
+};
+
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -342,6 +369,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
   HelpText,
+  Invalid,
   Disabled,
   PrefixSuffixText,
   CustomTrackColors,

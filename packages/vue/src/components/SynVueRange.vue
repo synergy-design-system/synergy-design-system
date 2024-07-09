@@ -108,6 +108,14 @@ const props = defineProps<{
   'value'?: SynRange['value'];
 
   /**
+* By default, form controls are associated with the nearest containing `<form>` element.
+This attribute allows you to place the form control outside of a form
+and associate it with the form that has this `id`.
+The form must be in the same document or shadow root for this to work.
+ */
+  'form'?: SynRange['form'];
+
+  /**
 * Support for two way data binding
  */
   modelValue?: SynRange['value'];

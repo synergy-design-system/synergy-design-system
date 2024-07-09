@@ -36,18 +36,16 @@ export default css`
    padding: var(--syn-input-spacing-small) 0;
   }
 
-    /* ERROR */
-  
+  /* ERROR */
+  :host([data-invalid]) .form-control__help-text,
   :host([data-user-invalid]) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);
    }
 
-    /* DISABLED */
-
+  /* DISABLED */
   :host([disabled]) .form-control--has-label .form-control__label,
   :host([disabled]) .form-control--has-help-text .form-control__help-text {
     cursor: not-allowed;
     opacity: 0.5;
   }
-
 `;

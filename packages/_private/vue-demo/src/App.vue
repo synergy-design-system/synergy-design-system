@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import ThemeSwitch from './ThemeSwitch.vue';
 import { SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
 const routeTo = (route: string) => {
   router.push(route);
 }
-
 </script>
 
 <template>

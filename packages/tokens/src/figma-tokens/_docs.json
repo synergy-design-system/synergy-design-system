@@ -1709,7 +1709,17 @@
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user..",
+          "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
           "type": "text"
         }
       },

@@ -121,6 +121,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   @defaultValue() defaultValue = 0;
 
   /**
+   * By default, form controls are associated with the nearest containing `<form>` element.
+   * This attribute allows you to place the form control outside of a form
+   * and associate it with the form that has this `id`.
+   * The form must be in the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
+
+  /**
    * A function used to format the tooltip's value.
    * The range's value is passed as the only argument.
    * The function should return a string to display in the tooltip.
@@ -158,134 +166,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.tooltipFormatter = this.localize.number.bind(this.localize);
   }
 
-  /* eslint-disable @typescript-eslint/unbound-method */
-  override render() {
-    const hasLabelSlot = this.hasSlotController.test('label');
-    const hasHelpTextSlot = this.hasSlotController.test('help-text');
-    const hasPrefixSlot = this.hasSlotController.test('prefix');
-    const hasSuffixSlot = this.hasSlotController.test('suffix');
-    const hasLabel = this.label ? true : !!hasLabelSlot;
-    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-
-    // Aria special handling:
-    // 1. When there is only one label: Use the provided label as the aria-label for the handle
-    // 2. When we have multiple label: Set the label for the first and last item to itself
-    const isMultiple = this.#value.length > 1;
-
-    this.#sliderValues.clear();
-    const handles = this.#value.map((value, index) => {
-      this.#nextId += 1;
-      const sliderId = this.#nextId;
-      this.#sliderValues.set(sliderId, value);
-
-      const id = `handle-${sliderId}`;
-
-      let ariaLabel = '';
-      let ariaLabeledBy = '';
-
-      if (!isMultiple) {
-        ariaLabel = this.tooltipFormatter(value);
-        ariaLabeledBy = ifDefined(hasLabel) ? 'label aria-label-hidden' : 'label-hidden';
-      } else {
-        ariaLabeledBy = ifDefined(hasLabel) ? `label aria-label-hidden ${id}` : 'id label-hidden';
-
-        if (index === 0) {
-          ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
-        } else if (index === this.#value.length - 1) {
-          ariaLabel = `${this.localize.term('sliderMax')} (${this.tooltipFormatter(value)})`;
-        }
-      }
-
-      return html`
-        <syn-tooltip
-          hoist
-          .disabled=${this.tooltipDisabled}
-          .placement=${this.tooltipPlacement}
-        >
-          <div
-            aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
-            aria-labelledby=${ariaLabeledBy}
-            aria-label=${ariaLabel}
-            aria-valuemax="${this.max}"
-            aria-valuemin="${this.min}"
-            aria-valuenow="${value}"
-            aria-valuetext="${ariaLabel} ${this.tooltipFormatter(value)}"
-            class="handle"
-            data-slider-id="${sliderId}"
-            id=${id}
-            role="slider"
-            tabindex="${this.disabled ? -1 : 0}"
-            @pointerdown=${this.#onClickHandle}
-            @pointermove=${this.#onDragHandle}
-            @pointerup=${this.#onReleaseHandle}
-            @pointercancel=${this.#onReleaseHandle}
-            @keydown=${this.#onKeyPress}
-            @focus=${this.#onFocusHandle}
-          ></div>
-        </syn-tooltip>
-      `;
-    });
-
-    return html`
-      <div
-        part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--has-help-text': hasHelpText,
-          'form-control--has-label': hasLabel,
-          'form-control--has-prefix': hasPrefixSlot,
-          'form-control--has-suffix': hasSuffixSlot,
-          'form-control--medium': true, // range only has one size
-        })}
-        @focusout=${this.#onBlur}
-      >
-        <label
-          id="label"
-          part="form-control-label"
-          class="form-control__label"
-          aria-hidden=${hasLabel ? 'false' : 'true'}
-          @click=${this.focus}
-        >
-          <slot name="label">${this.label}</slot>
-        </label>
-
-        <label id="aria-label-hidden">
-          (${this.#value.map(this.tooltipFormatter).join(' - ')})
-        </label>
-
-        <div class="base input__control" part="base">
-          <span part="prefix" class="input__prefix">
-            <slot name="prefix"></slot>
-          </span>
-
-          <div class="input-wrapper" part="input-wrapper">
-            <div
-              class="track-wrapper"
-              @pointerdown=${this.#onClickTrack}
-              role="presentation"
-            >
-              <div class="track"></div>
-              <div class="active-track"></div>
-            </div>
-            ${handles}
-          </div>
-
-          <span part="suffix" class="input__suffix">
-              <slot name="suffix"></slot>
-            </span>
-        </div>
-
-        <div
-          part="form-control-help-text"
-          class="form-control__help-text"
-          aria-hidden=${hasHelpText ? 'false' : 'true'}
-        >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
-      </div>
-    `;
+  firstUpdated() {
+    this.formControlController.updateValidity();
   }
-  /* eslint-enable @typescript-eslint/unbound-method */
 
   protected override willUpdate(changedProperties: PropertyValues): void {
     super.willUpdate(changedProperties);
@@ -610,4 +493,133 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (!handle?.dataset?.sliderId) return;
     this.#updateTooltip(handle);
   }
+
+  /* eslint-disable @typescript-eslint/unbound-method */
+  override render() {
+    const hasLabelSlot = this.hasSlotController.test('label');
+    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
+    const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+
+    // Aria special handling:
+    // 1. When there is only one label: Use the provided label as the aria-label for the handle
+    // 2. When we have multiple label: Set the label for the first and last item to itself
+    const isMultiple = this.#value.length > 1;
+
+    this.#sliderValues.clear();
+    const handles = this.#value.map((value, index) => {
+      this.#nextId += 1;
+      const sliderId = this.#nextId;
+      this.#sliderValues.set(sliderId, value);
+
+      const id = `handle-${sliderId}`;
+
+      let ariaLabel = '';
+      let ariaLabeledBy = '';
+
+      if (!isMultiple) {
+        ariaLabel = this.tooltipFormatter(value);
+        ariaLabeledBy = ifDefined(hasLabel) ? 'label aria-label-hidden' : 'label-hidden';
+      } else {
+        ariaLabeledBy = ifDefined(hasLabel) ? `label aria-label-hidden ${id}` : 'id label-hidden';
+
+        if (index === 0) {
+          ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
+        } else if (index === this.#value.length - 1) {
+          ariaLabel = `${this.localize.term('sliderMax')} (${this.tooltipFormatter(value)})`;
+        }
+      }
+
+      return html`
+        <syn-tooltip
+          hoist
+          .disabled=${this.tooltipDisabled}
+          .placement=${this.tooltipPlacement}
+        >
+          <div
+            aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
+            aria-labelledby=${ariaLabeledBy}
+            aria-label=${ariaLabel}
+            aria-valuemax="${this.max}"
+            aria-valuemin="${this.min}"
+            aria-valuenow="${value}"
+            aria-valuetext="${ariaLabel} ${this.tooltipFormatter(value)}"
+            class="handle"
+            data-slider-id="${sliderId}"
+            id=${id}
+            role="slider"
+            tabindex="${this.disabled ? -1 : 0}"
+            @pointerdown=${this.#onClickHandle}
+            @pointermove=${this.#onDragHandle}
+            @pointerup=${this.#onReleaseHandle}
+            @pointercancel=${this.#onReleaseHandle}
+            @keydown=${this.#onKeyPress}
+            @focus=${this.#onFocusHandle}
+          ></div>
+        </syn-tooltip>
+      `;
+    });
+
+    return html`
+      <div
+        part="form-control"
+        class=${classMap({
+          'form-control': true,
+          'form-control--has-help-text': hasHelpText,
+          'form-control--has-label': hasLabel,
+          'form-control--has-prefix': hasPrefixSlot,
+          'form-control--has-suffix': hasSuffixSlot,
+          'form-control--medium': true, // range only has one size currently
+        })}
+        @focusout=${this.#onBlur}
+      >
+        <label
+          id="label"
+          part="form-control-label"
+          class="form-control__label"
+          aria-hidden=${hasLabel ? 'false' : 'true'}
+          @click=${this.focus}
+        >
+          <slot name="label">${this.label}</slot>
+        </label>
+
+        <label id="aria-label-hidden">
+          (${this.#value.map(this.tooltipFormatter).join(' - ')})
+        </label>
+
+        <div class="base input__control" part="base">
+          <span part="prefix" class="input__prefix">
+            <slot name="prefix"></slot>
+          </span>
+
+          <div class="input-wrapper" part="input-wrapper">
+            <div
+              class="track-wrapper"
+              @pointerdown=${this.#onClickTrack}
+              role="presentation"
+            >
+              <div class="track"></div>
+              <div class="active-track"></div>
+            </div>
+            ${handles}
+          </div>
+
+          <span part="suffix" class="input__suffix">
+            <slot name="suffix"></slot>
+          </span>
+        </div>
+
+        <div
+          part="form-control-help-text"
+          class="form-control__help-text"
+          aria-hidden=${hasHelpText ? 'false' : 'true'}
+        >
+          <slot name="help-text">${this.helpText}</slot>
+        </div>
+      </div>
+    `;
+  }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }

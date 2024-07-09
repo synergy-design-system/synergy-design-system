@@ -192,6 +192,21 @@ export class SynRangeComponent {
   }
 
   /**
+* By default, form controls are associated with the nearest containing `<form>` element.
+This attribute allows you to place the form control outside of a form
+and associate it with the form that has this `id`.
+The form must be in the same document or shadow root for this to work.
+ */
+  @Input()
+  set form(v: SynRange['form']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
+  }
+
+  get form() {
+    return this.nativeElement.form;
+  }
+
+  /**
 * Emitted when the control loses focus.
  */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

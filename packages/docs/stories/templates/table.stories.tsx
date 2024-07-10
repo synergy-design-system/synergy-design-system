@@ -67,7 +67,7 @@ const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | und
       <td class="${getClassesForColumn(1)}">${getTranslation('table.body.customer')}</td>
       <td class="${getClassesForColumn(2)}">${getTranslation('table.body.location')}</td>
       <td class="${getClassesForColumn(3)}">${getTranslation('table.body.contractStart')}</td>
-      <td class="${getClassesForColumn(4)}"> 
+      <td class="${getClassesForColumn(4)} buttons-cell"> 
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
         </syn-button>
@@ -186,6 +186,13 @@ export const TableWithHeader: Story = {
           ${bodyData}
         </tbody>
       </table>
+      <style>
+        .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
+          min-width: 76px;
+        }
+      </style>
     `;
   },
 };
@@ -204,6 +211,13 @@ export const TableWithAlternatingRows: Story = {
           ${alternateBody}
         </tbody>
       </table>
+      <style>
+        .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
+          min-width: 76px;
+        }
+      </style>
     `;
   },
 };
@@ -218,7 +232,7 @@ export const TableWithBorders: Story = {
       <td class="${classes}">${getTranslation('table.body.customer')}</td>
       <td class="${classes}">${getTranslation('table.body.location')}</td>
       <td class="${classes}">${getTranslation('table.body.contractStart')}</td>
-      <td class="syn-table-cell ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}"> 
+      <td class="syn-table-cell buttons-cell ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}"> 
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
         </syn-button>
@@ -237,6 +251,13 @@ export const TableWithBorders: Story = {
           ${borderBody}
         </tbody>
       </table>
+      <style>
+        .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
+          min-width: 76px;
+        }
+      </style>
     `;
   },
 };
@@ -279,7 +300,9 @@ export const TableShadowLeftColumn: Story = {
           min-width: 112px;
         }
 
-        #horizontal-scrollable-table td:last-child {
+        #horizontal-scrollable-table .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;
         }
       </style>
@@ -341,7 +364,9 @@ export const TableShadowRightColumn: Story = {
           min-width: 112px;
         }
 
-        #horizontal-scrollable-table2 td:last-child {
+        #horizontal-scrollable-table2 .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;
         }
       </style>
@@ -402,6 +427,12 @@ export const TableShadowTopRow: Story = {
           position: sticky;
           z-index: 1;
           top: 0;
+        }
+
+        .buttons-cell {
+          padding-top: var(--syn-spacing-2x-small);
+          padding-bottom: var(--syn-spacing-2x-small);
+          min-width: 76px;
         }
       </style>
       <script type="module">

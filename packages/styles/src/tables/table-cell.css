@@ -71,7 +71,7 @@
 .syn-table-cell--shadow-end::after {
 	/* Fallback for no color-mix support */
 	--shadow-start: rgb(49 55 58 / 0%) ;
-	--shadow-end: rgb(49 55 58 / 20%);
+	--shadow-end: rgb(49 55 58 / 15%);
 
 	content: '';
 	opacity: 0;
@@ -89,13 +89,13 @@
 	.syn-table-cell--shadow-start::after,
 	.syn-table-cell--shadow-end::after {
 		--shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
-		--shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 20%, transparent);  
+		--shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 15%, transparent);  
 	}
 }
 
 .syn-table-cell--shadow-bottom::after,
 .syn-table-cell--shadow-top::after {
-	height: var(--syn-spacing-medium);
+	height: var(--syn-spacing-x-small);
 	left: 0;
 	right: 0;
 }
@@ -104,23 +104,23 @@
 .syn-table-cell--shadow-end::after {
 	bottom: 0;
 	top: 0;
-	width: var(--syn-spacing-medium);
+	width: var(--syn-spacing-x-small);
 }
 
 .syn-table-cell--shadow-bottom::after {
 	background: linear-gradient(0deg, var(--shadow-start) 0%, var(--shadow-end) 100%);
-	bottom: calc(var(--syn-spacing-medium) * -1);
+	bottom: calc(var(--syn-spacing-x-small) * -1);
 }
 
 .syn-table-cell--shadow-top::after {
 	background: linear-gradient(180deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
-	top: calc(var(--syn-spacing-medium) * -1);
+	top: calc(var(--syn-spacing-x-small) * -1);
 }
 
 .syn-table-cell--shadow-start::after,
 :dir(rtl) .syn-table-cell--shadow-end::after {
 	background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
-	left: calc(var(--syn-spacing-medium) * -1);
+	left: calc(var(--syn-spacing-x-small) * -1);
 	right: unset;
 }
 
@@ -129,7 +129,7 @@
 :dir(rtl) .syn-table-cell--shadow-start::after {
 	background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
 	left: unset;
-	right: calc(var(--syn-spacing-medium) * -1);
+	right: calc(var(--syn-spacing-x-small) * -1);
 }
 
 .syn-table-cell--shadow-active::after {

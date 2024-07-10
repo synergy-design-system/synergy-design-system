@@ -56,7 +56,6 @@ export default css`
 
   .input-wrapper {
     flex: 1 0 auto;
-    height: var(--full-thumb-size);
     position: relative;
   }
 
@@ -94,8 +93,8 @@ export default css`
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
-    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--full-thumb-size) / 2 - 3px);
-    width: calc(100% + 6px - var(--full-thumb-size));
+    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--full-thumb-size) / 2 - 5px);
+    width: calc(100% + 10px - var(--full-thumb-size));
   }
 
   .active-track {
@@ -167,5 +166,13 @@ export default css`
     background: var(--syn-color-primary-900);
     box-shadow: var(--syn-shadow-large);
     transform: scale(var(--thumb-clickable-area));
+  }
+
+  /* Ticks */
+  .ticks {
+    cursor: pointer;
+    margin: 1px calc(var(--full-thumb-size) / 2) 0;
+    position: relative;
+    user-select: none;
   }
 `;

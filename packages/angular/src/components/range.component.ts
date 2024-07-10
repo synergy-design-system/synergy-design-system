@@ -17,11 +17,9 @@ import type {
 import '@synergy-design-system/components/components/range/range.js';
 
 /**
- * @summary Multi-Ranges allow the user to select
- * multiple values within a given range using a slider with multiple handles.
- * @documentation https://shoelace.style/components/multi-range
- * @status experimental
- * @since next
+ * @summary Ranges allow the user to select values within a given range using one or two knob.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
+ * @status stable
  *
  * @dependency syn-tooltip
  *
@@ -30,6 +28,7 @@ import '@synergy-design-system/components/components/range/range.js';
  * @slot suffix - Used to append a presentational icon or similar element to the range.
  * @slot help-text - Text that describes how to use the range.
  * Alternatively, you can use the `help-text` attribute.
+ * @slot ticks - Used to display tick marks at specific intervals along the range.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -42,6 +41,7 @@ import '@synergy-design-system/components/components/range/range.js';
  * @csspart base - The component's base wrapper.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
+ * @csspart ticks - The container that wraps the tick marks.
  *
  * @cssproperty --thumb-size - The size of the thumb.
  * @cssproperty --thumb-clickable-area - The clickable area around the thumb. 50% of the thumb size.

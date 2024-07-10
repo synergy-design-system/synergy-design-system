@@ -309,18 +309,28 @@ export const Ticks: Story = {
   },
   render: () => html`
     <syn-range
+      class="syn-range-with-tick"
       max="100"
       min="0"
       value="50"
+      label="Mit Ticks"
+      help-text="Jens ist da"
     >
-      <ol slot="ticks">
-        <li>0</li>
-        <li>25</li>
-        <li>50</li>
-        <li>75</li>
-        <li>100</li>
-      </ol>
+      <span slot="prefix">Prefix</span>
+      <span slot="suffix">Suffix</span>
+      <nav slot="ticks">
+        <syn-range-tick label="0"></syn-range-tick>
+        <syn-range-tick label="50"></syn-range-tick>
+        <syn-range-tick label="100"></syn-range-tick>
+      </nav>
     </syn-range>
+    <style>
+      .syn-range-with-tick nav {
+        justify-content: space-between;
+        flex-direction: row;
+        display: flex;
+      }
+    </style>
   `,
 };
 

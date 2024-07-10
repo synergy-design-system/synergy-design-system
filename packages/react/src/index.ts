@@ -35,6 +35,7 @@ export { SynRadio } from './components/radio.js';
 export { SynRadioButton } from './components/radio-button.js';
 export { SynRadioGroup } from './components/radio-group.js';
 export { SynRange } from './components/range.js';
+export { SynRangeTick } from './components/range-tick.js';
 export { SynSelect } from './components/select.js';
 export { SynSideNav } from './components/side-nav.js';
 export { SynSpinner } from './components/spinner.js';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { setupAutocomplete as synergyAutoComplete } from '@synergy-design-system/components/utilities/autocomplete-config.js';
 import React from 'react';
 import type { Meta } from '@storybook/web-components';
@@ -92,6 +93,7 @@ export default meta;
 const mock = {
   src: [
     'Yellow',
+    'Light Green',
     'Grey',
     'Green',
     'Blue',
@@ -128,7 +130,7 @@ export const Simple = {
         <syn-icon slot="suffix" name="search"></syn-icon>
       </syn-input>
       <script type="module">
-        import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js';
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
         const data = ${JSON.stringify(data)};
@@ -166,7 +168,7 @@ export const CustomResultItem = {
         <syn-icon slot="suffix" name="search"></syn-icon>
       </syn-input>
       <script type="module">
-      import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js'
 
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
@@ -177,24 +179,47 @@ export const CustomResultItem = {
         new autoComplete({
           ...optionsConfig,
           placeHolder: 'Find color...',
-          resultsList: {
-            maxResults: 3,
-          },
           resultItem: {
             tag: 'div',
             element: (item, data) => {
-              item.innerHTML = data.match + ': Lorem ipsum';
-              icon.style.marginLeft = '12px';
-              item.style.color = data.match.toLowerCase();
-              item.style.margin = '12px';
+              if (data.divider) {
+                // Add a divider before the element
+                const divider = document.createElement('syn-divider');
+                divider.style.setProperty('--spacing', 'var(--syn-spacing-x-small)');
+                item.parentNode.insertBefore(divider, item);
+              }
 
-              const icon = document.createElement('syn-icon');
-              icon.name = 'colorize';
+              item.innerHTML = '';
+              const headline = document.createElement('h3');
+              headline.innerHTML = data.match;
+              headline.style.font = 'var(--syn-heading-large)';
+              headline.style.margin = '0';
 
-              item.appendChild(icon);
+              const span = document.createElement('span');
+              span.innerHTML = 'Lorem ipsum';
+
+              item.style.padding = 'var(--syn-spacing-small) var(--syn-spacing-medium)';
+              item.style.color = 'var(--syn-color-neutral-950)';
+              item.style.font = 'var(--syn-body-medium-regular)';
+
+              item.appendChild(headline);
+              item.appendChild(span);
             }
           },
-          data
+          resultsList: {
+            // unlimited elements
+            maxResults: undefined,
+          },
+          data: {
+            src: data.src,
+            filter: (list) => {
+              list.forEach((item, index) => {
+                // Show divider for all but the first headline
+                item.divider = index !== 0;
+              });
+              return list;
+            }
+          }
         });
       </script>
     `;
@@ -221,7 +246,7 @@ export const HighlightQuery = {
         <syn-icon slot="suffix" name="search"></syn-icon>
       </syn-input>
       <script type="module">
-        import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js'
 
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
@@ -235,7 +260,10 @@ export const HighlightQuery = {
           data,
           resultItem: {
             highlight: true
-          }
+          },
+          resultsList: {
+            maxResults: 3,
+          },
         });
       </script>
     `;
@@ -262,7 +290,7 @@ export const OpenOnClick = {
         <syn-icon slot="suffix" name="search"></syn-icon>
       </syn-input>
       <script type="module">
-      import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js'
 
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
@@ -317,7 +345,7 @@ export const GroupElements = {
         <syn-icon slot="suffix" name="search"></syn-icon>
       </syn-input>
       <script type="module">
-      import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js'
 
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
@@ -357,18 +385,19 @@ export const GroupElements = {
           resultItem: {
             highlight: true,
             element: (item, data) => {
-              // Step 2: Render the elements with the headline information
               if (data.divider) {
                 // Add a divider before the element
                 const divider = document.createElement('syn-divider');
+                divider.style.setProperty('--spacing', 'var(--syn-spacing-x-small');
                 item.parentNode.insertBefore(divider, item);
               }
               if (data.headline) {
                 // Add a headline before the element
                 const headline = document.createElement('h3');
                 headline.innerHTML = data.headline;
-                headline.style.font = 'var(--syn-heading-large)';
-                headline.style.padding = 'var(--syn-spacing-small) var(--syn-spacing-medium) var(--syn-spacing-small) calc(var(--syn-spacing-2x-large) + var(--syn-spacing-2x-small))';
+                headline.style.color = 'var(--syn-color-neutral-950)';
+                headline.style.font = 'var(--syn-body-medium-semibold)';
+                headline.style.padding = 'var(--syn-spacing-small) var(--syn-spacing-medium)';
                 headline.style.margin = '0';
                 item.parentNode.insertBefore(headline, item);
               }
@@ -407,7 +436,7 @@ export const SuggestionContainerHeight = {
         }
       </style>
       <script type="module">
-      import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
+        import './autocomplete/autoComplete.min.js'
 
         // preview-ignore:start
         const setupAutocomplete = ${setupAutocomplete};
@@ -436,48 +465,5 @@ export const SuggestionContainerHeight = {
         });
       </script>
     `;
-  },
-};
-
-/**
- * This example demonstrates how to fetch results asynchronously from a remote server or API.
- */
-export const Async = {
-  parameters: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    chromatic: {
-      ...storyBookPreviewConfig?.parameters?.chromatic,
-      disableSnapshot: false,
-    },
-  },
-  render: () => {
-    const setupAutocomplete = synergyAutoComplete;
-    const data = mock;
-    return html`
-        <syn-input id="async-example" type="search" label="Async result fetch">
-          <syn-icon slot="suffix" name="search"></syn-icon>
-        </syn-input>
-        <script type="module">
-          import '../../node_modules/@tarekraafat/autocomplete.js/dist/autoComplete.min.js';
- 
-          // preview-ignore:start
-          const setupAutocomplete = ${setupAutocomplete};
-          const data = ${JSON.stringify(data)};
-          // preview-ignore:end
- 
-          const { config: simpleConfig } = setupAutocomplete('#async-example');
-
-          new autoComplete({
-            ...simpleConfig,
-            data: {
-              src: async query => {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                return data.src.map(item => ({ item }));
-              },
-              keys: ['item']
-            }
-          });
-        </script>
-      `;
   },
 };

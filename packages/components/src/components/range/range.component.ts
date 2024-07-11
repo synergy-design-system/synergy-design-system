@@ -428,8 +428,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    this.baseDiv.classList.add('keyboard-focus');
-
     if (value !== this.#sliderValues.get(sliderId)) {
       this.#moveHandle(handle, value);
 
@@ -471,7 +469,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onBlur(event: FocusEvent): void {
-    this.baseDiv?.classList?.remove('keyboard-focus');
     if (event.relatedTarget && this.shadowRoot?.contains(event.relatedTarget as Node)) return;
     this.emit('syn-blur');
     this.#hasFocus = false;

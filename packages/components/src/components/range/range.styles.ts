@@ -141,8 +141,7 @@ export default css`
     position: absolute;
   }
 
-  .handle:hover,
-  .handle.grabbed {
+  .handle:hover {
     cursor: grab;  
   }
 
@@ -150,10 +149,14 @@ export default css`
     cursor: grabbing;
   }
 
-  .handle:focus-visible,
-  .keyboard-focus .handle:focus-visible {
+  .handle:focus-visible {
+    outline: none;
+  }
+
+  .handle:not(.grabbed):focus-visible {
+    background: var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
-    outline-offset: var(--syn-focus-ring-offset);
+    outline-offset: 0;
   }
 
   :host([disabled]) .track-wrapper,
@@ -162,10 +165,8 @@ export default css`
     cursor: not-allowed;
   }
 
-  :host(:not([disabled])) .handle:hover,
-  :host(:not([disabled])) .handle.grabbed {
+  :host(:not([disabled])) .handle:hover:not(.grabbed)  {
     background: var(--syn-color-primary-900);
-    box-shadow: var(--syn-shadow-large);
     transform: scale(var(--thumb-clickable-area));
   }
 

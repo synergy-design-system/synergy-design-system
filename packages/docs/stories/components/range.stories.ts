@@ -313,11 +313,8 @@ export const Ticks: Story = {
       max="100"
       min="0"
       value="50"
-      label="Mit Ticks"
-      help-text="Jens ist da"
+      label="Volume"
     >
-      <span slot="prefix">Prefix</span>
-      <span slot="suffix">Suffix</span>
       <nav slot="ticks">
         <syn-range-tick label="0"></syn-range-tick>
         <syn-range-tick label="50"></syn-range-tick>

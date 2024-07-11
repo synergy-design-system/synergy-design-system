@@ -407,7 +407,7 @@ export const TableShadowTopRow: Story = {
           top: 0;
         }
 
-        .buttons-cell {
+        #vertical-scrollable-table .buttons-cell {
           padding-top: var(--syn-spacing-2x-small);
           padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;

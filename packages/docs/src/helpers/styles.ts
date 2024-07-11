@@ -35,7 +35,7 @@ export const renderStyles = (
 
   return html`
     <${usedTag} class=${classes}>
-      ${defaultSlot}
+      ${unsafeStatic(defaultSlot)}
     </${usedTag}>
   `;
 };

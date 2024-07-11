@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.4.0...tokens/2.5.0) (2024-07-11)
+
+
+### Features
+
+* ✨ add table stylings ([#522](https://github.com/synergy-design-system/synergy-design-system/issues/522)) ([18a030b](https://github.com/synergy-design-system/synergy-design-system/commit/18a030be92344a9f0d038e5518c8347f0fbebb4e))
+
 # [@synergy-design-system/tokens-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.3.1...tokens/2.4.0) (2024-07-01)
 
 

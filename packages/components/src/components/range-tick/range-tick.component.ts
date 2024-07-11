@@ -30,7 +30,7 @@ export default class SynRangeTick extends SynergyElement {
   @property() label = '';
 
   render() {
-    const hasLabel = this.hasSlotController.test('[default]') || this.label.length > 0;
+    const hasLabel = this.hasSlotController.test('[default]') || this.label?.length > 0;
     return html`
       <div
         class=${classMap({

@@ -4,6 +4,7 @@ import { globby } from 'globby';
 import { parse } from 'comment-parser';
 import type { Block, Spec } from 'comment-parser';
 import type { Structure, Tag } from './types.js';
+import { ALLOWED_TAGS } from './toCem.js';
 
 /**
  * Get the directory name of a given file path
@@ -22,7 +23,7 @@ const allowResult = (result: Partial<Block>) => {
   if (!description || !tags) {
     return false;
   }
-  return tags.some(tag => tag.tag === 'variant');
+  return tags.some(tag => ALLOWED_TAGS.includes(tag.tag));
 };
 
 /**

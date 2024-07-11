@@ -33,7 +33,7 @@ const repeatFor = (iterator: (value: any, index: number, array: any[]) => unknow
 const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = undefined) => {
   const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
   // eslint-disable-next-line complexity
-  const getClassesForColumn = (column: number) => `syn-table-cell--header ${
+  const getClassesForColumn = (column: number) => `${
     ((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4) || shadow === 'bottom') ? shadowClass : ''
   }`;
 
@@ -56,10 +56,9 @@ const createHeader = (shadow: 'top' | 'bottom' | 'start' | 'end' | undefined = u
  * @param background - Cell background color
  * @param shadow - Shadow position
  */
-const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | undefined = undefined) => {
-  const classes = `syn-table-cell ${alternate ? 'syn-table-cell--alternating' : ''}`;
+const createBodyRow = (shadow: 'start' | 'end' | undefined = undefined) => {
   const shadowClass = shadow ? `syn-table-cell--shadow-${shadow} shadow-cell` : '';
-  const getClassesForColumn = (column: number) => `${classes} ${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
+  const getClassesForColumn = (column: number) => `${((shadow === 'end' && column === 0) || (shadow === 'start' && column === 4)) ? shadowClass : ''}`;
 
   return html`
     <tr>
@@ -84,7 +83,7 @@ const createBodyRow = (alternate: boolean = false, shadow: 'start' | 'end' | und
 */
 const createBodyRowProduct = () => html`
   <tr>
-    <td class="syn-table-cell syn-table-cell--shadow-end shadow-cell">
+    <td class="syn-table-cell--shadow-end shadow-cell">
       <div class="product-cell">
         <img
           class="product-image"
@@ -98,34 +97,34 @@ const createBodyRowProduct = () => html`
         </div>
       </div>
     </td>
-    <td class="syn-table-cell">
+    <td>
       <div class="availability">
         <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
         ${getTranslation('table.productTable.body.availability')}
       </div>
     </td>
-    <td class="syn-table-cell">
+    <td>
       ${getTranslation('table.productTable.body.earliestDelivery')}
     </td>
-    <td class="syn-table-cell">
+    <td>
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.text')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.text')}</div>  
       </div>
     </td>
-    <td class="syn-table-cell">
+    <td>
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.unitPrice')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.unitPrice')}</div>
       </div>
     </td>
-    <td class="syn-table-cell">
+    <td>
       <div class="price">
         <div>${getTranslation('table.productTable.body.listPrice.totalPrice')}</div>
         <div>${getTranslation('table.productTable.body.netPrice.totalPrice')}</div>
       </div>
     </td>
-    <td class="syn-table-cell"> 
+    <td> 
       <syn-button variant="text" size="small">
         <syn-icon name="edit"></syn-icon>
       </syn-button>
@@ -133,7 +132,7 @@ const createBodyRowProduct = () => html`
         <syn-icon name="delete_outline"></syn-icon>
       </syn-button>
     </td>
-    <td class="syn-table-cell"> 
+    <td> 
       <syn-button variant="filled" size="small">
         <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
         ${getTranslation('table.productTable.body.button.cart')}
@@ -180,14 +179,14 @@ export const TableWithHeader: Story = {
     const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-      <table class="syn-table">
+      <table class="syn-table--default">
         ${createHeader()}
         <tbody>
           ${bodyData}
         </tbody>
       </table>
       <style>
-        .buttons-cell {
+        .syn-table--default .buttons-cell {
           padding-top: var(--syn-spacing-2x-small);
           padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;
@@ -199,20 +198,17 @@ export const TableWithHeader: Story = {
 
 export const TableWithAlternatingRows: Story = {
   render: () => {
-    const alternateBody = repeatFor((_val, index) => {
-      const isAlternating = index % 2 !== 0;
-      return createBodyRow(isAlternating);
-    });
+    const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-      <table class="syn-table">
+      <table class="syn-table--alternating">
         ${createHeader()}
         <tbody>
-          ${alternateBody}
+          ${bodyData}
         </tbody>
       </table>
       <style>
-        .buttons-cell {
+        .syn-table--alternating .buttons-cell {
           padding-top: var(--syn-spacing-2x-small);
           padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;
@@ -224,35 +220,17 @@ export const TableWithAlternatingRows: Story = {
 
 export const TableWithBorders: Story = {
   render: () => {
-    const borderBody = repeatFor((_val, index) => {
-      const classes = `syn-table-cell syn-table-cell--border-end ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}`;
-      return html`
-    <tr>
-      <td class="${classes}">${getTranslation('table.body.name')}</td>
-      <td class="${classes}">${getTranslation('table.body.customer')}</td>
-      <td class="${classes}">${getTranslation('table.body.location')}</td>
-      <td class="${classes}">${getTranslation('table.body.contractStart')}</td>
-      <td class="syn-table-cell buttons-cell ${index !== 4 ? 'syn-table-cell--border-bottom' : ''}"> 
-        <syn-button variant="text" size="small">
-          <syn-icon name="edit"></syn-icon>
-        </syn-button>
-        <syn-button variant="text" size="small">
-          <syn-icon name="delete_outline"></syn-icon>
-        </syn-button>
-      </td>
-    </tr>
-  `;
-    });
+    const bodyData = repeatFor(() => createBodyRow());
 
     return html`
-      <table class="syn-table">
+      <table class="syn-table--border">
         ${createHeader()}
         <tbody>
-          ${borderBody}
+          ${bodyData}
         </tbody>
       </table>
       <style>
-        .buttons-cell {
+        .syn-table--border .buttons-cell {
           padding-top: var(--syn-spacing-2x-small);
           padding-bottom: var(--syn-spacing-2x-small);
           min-width: 76px;
@@ -268,11 +246,11 @@ export const TableWithBorders: Story = {
  */
 export const TableShadowLeftColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow(false, 'end'));
+    const bodyData = repeatFor(() => createBodyRow('end'));
 
     return html`
       <div id="horizontal-scrollable-table">
-        <table class="syn-table">
+        <table class="syn-table--default">
           ${createHeader('end')}
           <tbody>
             ${bodyData}
@@ -332,11 +310,11 @@ export const TableShadowLeftColumn: Story = {
  */
 export const TableShadowRightColumn: Story = {
   render: () => {
-    const bodyData = repeatFor(() => createBodyRow(false, 'start'));
+    const bodyData = repeatFor(() => createBodyRow('start'));
 
     return html`
       <div id="horizontal-scrollable-table2">
-        <table class="syn-table">
+        <table class="syn-table--default">
           ${createHeader('start')}
           <tbody>
             ${bodyData}
@@ -404,7 +382,7 @@ export const TableShadowTopRow: Story = {
 
     return html`
       <div id="vertical-scrollable-table">
-        <table class="syn-table">
+        <table class="syn-table--default">
           ${createHeader('bottom')}
           <tbody>
             ${bodyData}
@@ -462,27 +440,27 @@ export const TableProduct: Story = {
 
     return html`
       <div id="product-table">
-        <table class="syn-table">
+        <table class="syn-table--default">
           <thead>
             <tr>
-              <th class="syn-table-cell--header syn-table-cell--shadow-end shadow-cell">
+              <th class="syn-table-cell--shadow-end shadow-cell">
                 ${getTranslation('table.productTable.header.product')}
               </th>
-              <th class="syn-table-cell--header">
+              <th>
                 ${getTranslation('table.productTable.header.availability')}
               </th>
-              <th class="syn-table-cell--header">
+              <th>
                 ${getTranslation('table.productTable.header.earliestDelivery')}
               </th>
-              <th class="syn-table-cell--header"></th>
-              <th class="syn-table-cell--header">
+              <th></th>
+              <th>
                 ${getTranslation('table.productTable.header.unitPrice')}
               </th>
-              <th class="syn-table-cell--header">
+              <th>
                 ${getTranslation('table.productTable.header.totalPrice')}
               </th>
-              <th class="syn-table-cell--header"></th>
-              <th class="syn-table-cell--header"></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.0.1...styles/1.1.0) (2024-07-11)
+
+
+### Features
+
+* ✨ add table stylings ([#522](https://github.com/synergy-design-system/synergy-design-system/issues/522)) ([18a030b](https://github.com/synergy-design-system/synergy-design-system/commit/18a030be92344a9f0d038e5518c8347f0fbebb4e))
+
 # [@synergy-design-system/styles-v1.0.1](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.0.0...styles/1.0.1) (2024-07-08)
 
 

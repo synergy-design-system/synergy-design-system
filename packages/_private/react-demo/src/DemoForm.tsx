@@ -11,6 +11,7 @@ import {
   SynRadio,
   SynRadioGroup,
   SynRange,
+  SynRangeTick,
   SynSelect,
   SynSwitch,
   SynTextarea,
@@ -242,7 +243,13 @@ export const DemoForm = () => {
           min={0}
           name="happiness"
           value={formData.happiness}
-        />
+        >
+          <nav slot="ticks">
+            <SynRangeTick label="🤮" />
+            <SynRangeTick label="🥱" />
+            <SynRangeTick label="😍" />
+          </nav>
+        </SynRange>
       </DemoFieldset>
       {/* /Happiness */}
 

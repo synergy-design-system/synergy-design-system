@@ -9,6 +9,7 @@ import {
   SynVueOption,
   SynVueRadio,
   SynVueRange,
+  SynVueRangeTick,
   SynVueRadioGroup,
   SynVueSelect,
   SynVueSwitch,
@@ -219,7 +220,13 @@ const synChange = () => {
         :min="0"
         name="happiness"
         v-model="formData.happiness"
-      />
+      >
+        <nav slot="ticks">
+          <SynVueRangeTick label="🤮"></SynVueRangeTick>
+          <SynVueRangeTick label="🥱"></SynVueRangeTick>
+          <SynVueRangeTick label="😍"></SynVueRangeTick>
+        </nav>
+      </SynVueRange>
     </DemoFieldset>
     <!-- /.Happiness -->
 
@@ -325,6 +332,12 @@ form .syn-fieldset:last-of-type {
 }
 
 /* Special overrides */
+#happiness nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);

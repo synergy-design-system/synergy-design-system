@@ -52,6 +52,7 @@ export default css`
       var(--syn-transition-fast) background-color;
     vertical-align: middle;
     width: 100%;
+    z-index: 0; /* Needed to not bleed absolute positioned elements out */
   }
 
   .input-wrapper {

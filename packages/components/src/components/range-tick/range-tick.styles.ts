@@ -22,5 +22,6 @@ export default css`
   .tick-label {
     position: absolute;
     transform: translate(-50%, var(--tick-label-top));
+    white-space: nowrap;
   }
 `;

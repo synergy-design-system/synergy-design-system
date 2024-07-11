@@ -99,7 +99,7 @@
     "eslint-plugin-wc": "^2.1.0",
     "globby": "^14.0.1",
     "jsdom": "^24.0.0",
-    "ng-packagr": "^18.0.0",
+    "ng-packagr": "^18.1.0",
     "ora": "^8.0.1",
     "postcss": "^8.4.38",
     "postcss-header": "^3.0.3",

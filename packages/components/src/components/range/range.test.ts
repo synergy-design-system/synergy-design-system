@@ -277,6 +277,83 @@ describe('<syn-range>', () => {
       expect(changeHandler).to.have.been.called;
     });
 
+    it('should allow to set more than one value', async () => {
+      const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+
+      const knobs = Array.from(el.shadowRoot!.querySelectorAll('.knob'));
+
+      expect(knobs).to.have.length(2);
+
+      const knobStart = knobs.at(0)!;
+      const knobEnd = knobs.at(-1)!;
+
+      const rectStart = knobStart.getBoundingClientRect();
+      const rectEnd = knobEnd.getBoundingClientRect();
+
+      const startLeft = Math.floor(rectStart.left);
+      const endLeft = Math.floor(rectEnd.left);
+
+      expect(knobStart).to.not.have.class('grabbed');
+      expect(knobEnd).to.not.have.class('grabbed');
+
+      await sendMouse({
+        position: [startLeft, rectStart.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      expect(knobStart).to.have.class('grabbed');
+      expect(knobEnd).to.not.have.class('grabbed');
+
+      await sendMouse({
+        position: [startLeft + 50, rectStart.top],
+        type: 'move',
+      });
+
+      await resetMouse();
+      expect(knobStart).to.not.have.class('grabbed');
+      expect(knobEnd).to.not.have.class('grabbed');
+      await el.updateComplete;
+
+      expect(el.value).to.equal('25 80');
+      expect(changeHandler).to.have.been.called;
+
+      // Second knob
+      expect(knobStart).to.not.have.class('grabbed');
+      expect(knobEnd).to.not.have.class('grabbed');
+
+      await sendMouse({
+        position: [endLeft, rectStart.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      expect(knobStart).to.not.have.class('grabbed');
+      expect(knobEnd).to.have.class('grabbed');
+
+      await sendMouse({
+        position: [endLeft + 50, rectStart.top],
+        type: 'move',
+      });
+
+      await resetMouse();
+      expect(knobStart).to.not.have.class('grabbed');
+      expect(knobEnd).to.not.have.class('grabbed');
+      await el.updateComplete;
+
+      expect(el.value).to.equal('25 85');
+      expect(changeHandler).to.have.been.called;
+    });
+
     it('should emit a syn-input event while the user is dragging the knob', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
@@ -512,6 +589,27 @@ describe('<syn-range>', () => {
 
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
+    });
+
+    it('should move the focus to the next knob when pressing the Tab key', async () => {
+      const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
+      const knobs = Array.from(el.shadowRoot!.querySelectorAll('.knob'));
+
+      expect(knobs).to.have.length(2);
+
+      const knobStart = knobs.at(0)! as HTMLDivElement;
+      const knobEnd = knobs.at(-1)! as HTMLDivElement;
+
+      el.focus();
+
+      expect(document.activeElement).to.equal(el);
+      expect(el.shadowRoot!.activeElement).to.equal(knobStart);
+
+      await sendKeys({
+        press: 'Tab',
+      });
+
+      expect(el.shadowRoot!.activeElement).to.equal(knobEnd);
     });
   });
 

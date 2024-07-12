@@ -100,7 +100,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
   set value(value: string | null) {
-    this.#value = value ? value.split(' ').map(n => +n) : [];
+    this.#value = value ? value.split(' ').map(n => +n).sort(numericSort) : [];
   }
 
   get value() {
@@ -110,7 +110,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** Gets or sets the current values of the range as an array of numbers */
   set valueAsArray(value: readonly number[] | null) {
     const oldValue = this.#value;
-    this.#value = value || [];
+    this.#value = Array.isArray(value) ? [...value].sort(numericSort) : value || [];
     if (arraysDiffer(oldValue, this.#value)) {
       this.requestUpdate('value', oldValue.join(','));
     }
@@ -195,8 +195,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         const nextValue = this.min + this.step * Math.round((value - this.min) / this.step);
         if (nextValue > this.max) return this.max;
         return nextValue;
-      })
-      .sort(numericSort);
+      });
 
     if (arraysDiffer(this.#value, adjustedValue)) {
       this.#value = adjustedValue;
@@ -298,7 +297,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#moveHandle(handle, nextValue);
 
     const prevValue = this.#value;
-    this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+    this.#value = Array.from(this.#sliderValues.values());
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
@@ -339,12 +338,31 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#moveHandle(handle, value);
 
     const prevValue = this.#value;
-    this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+    this.#value = Array.from(this.#sliderValues.values());
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
       this.emit('syn-input');
     }
+  }
+
+  #onReleaseHandle(event: PointerEvent) {
+    const handle = event.target as HTMLDivElement;
+    if (!handle.dataset.pointerId || event.pointerId !== +handle.dataset.pointerId) return;
+
+    handle.classList.remove('grabbed');
+    handle.releasePointerCapture(event.pointerId);
+    delete handle.dataset.pointerId;
+    this.emit('syn-change');
+  }
+
+  #moveHandle(handle: HTMLDivElement, value: number): void {
+    handle.setAttribute('aria-valuenow', value.toString());
+    handle.setAttribute('aria-valuetext', this.tooltipFormatter(value));
+    const pos = (value - this.min) / (this.max - this.min);
+    // eslint-disable-next-line no-param-reassign
+    handle.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
+    this.#updateTooltip(handle);
   }
 
   #updateActiveTrack(): void {
@@ -370,9 +388,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
+    // The render order of the knobs is not guaranteed to be the same as the value order.
+    const sortedValues = this.#value.slice().sort(numericSort);
+
     // Multi knob: Place the active track between the first and last knob
-    const start = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
-    const end = (100 * (this.#value[this.#value.length - 1] - this.min)) / (this.max - this.min);
+    const start = (100 * (sortedValues[0] - this.min)) / (this.max - this.min);
+    const end = (100 * (sortedValues[sortedValues.length - 1] - this.min)) / (this.max - this.min);
 
     activeTrack.style.insetInlineStart = `${start}%`;
     activeTrack.style.insetInlineEnd = `calc(100% - ${end}%)`;
@@ -432,7 +453,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.#moveHandle(handle, value);
 
       this.#sliderValues.set(sliderId, value);
-      this.#value = Array.from(this.#sliderValues.values()).sort(numericSort);
+      this.#value = Array.from(this.#sliderValues.values());
 
       // Determine the position of the handle in the array as the focus might have changed
       const index = this.#value.findIndex(v => v === value);
@@ -447,25 +468,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     event.stopPropagation();
     event.preventDefault();
-  }
-
-  #onReleaseHandle(event: PointerEvent) {
-    const handle = event.target as HTMLDivElement;
-    if (!handle.dataset.pointerId || event.pointerId !== +handle.dataset.pointerId) return;
-
-    handle.classList.remove('grabbed');
-    handle.releasePointerCapture(event.pointerId);
-    delete handle.dataset.pointerId;
-    this.emit('syn-change');
-  }
-
-  #moveHandle(handle: HTMLDivElement, value: number): void {
-    handle.setAttribute('aria-valuenow', value.toString());
-    handle.setAttribute('aria-valuetext', this.tooltipFormatter(value));
-    const pos = (value - this.min) / (this.max - this.min);
-    // eslint-disable-next-line no-param-reassign
-    handle.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
-    this.#updateTooltip(handle);
   }
 
   #onBlur(event: FocusEvent): void {
@@ -495,21 +497,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  override render() {
-    const hasLabelSlot = this.hasSlotController.test('label');
-    const hasHelpTextSlot = this.hasSlotController.test('help-text');
-    const hasPrefixSlot = this.hasSlotController.test('prefix');
-    const hasSuffixSlot = this.hasSlotController.test('suffix');
-    const hasLabel = this.label ? true : !!hasLabelSlot;
-    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-
+  private renderHandles(hasLabel: boolean) {
     // Aria special handling:
     // 1. When there is only one label: Use the provided label as the aria-label for the handle
     // 2. When we have multiple label: Set the label for the first and last item to itself
     const isMultiple = this.#value.length > 1;
 
     this.#sliderValues.clear();
-    const handles = this.#value.map((value, index) => {
+    return this.#value.map((value, index) => {
       this.#nextId += 1;
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
@@ -529,6 +524,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
         } else if (index === this.#value.length - 1) {
           ariaLabel = `${this.localize.term('sliderMax')} (${this.tooltipFormatter(value)})`;
+        } else {
+          ariaLabel = this.tooltipFormatter(value);
         }
       }
 
@@ -561,6 +558,17 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         </syn-tooltip>
       `;
     });
+  }
+  /* eslint-enable @typescript-eslint/unbound-method */
+
+  /* eslint-disable @typescript-eslint/unbound-method */
+  override render() {
+    const hasLabelSlot = this.hasSlotController.test('label');
+    const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
+    const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
     return html`
       <div
@@ -571,6 +579,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control--has-label': hasLabel,
           'form-control--has-prefix': hasPrefixSlot,
           'form-control--has-suffix': hasSuffixSlot,
+          'form-control--is-disabled': this.disabled,
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--small': this.size === 'small',
@@ -605,7 +614,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
               <div class="track"></div>
               <div class="active-track"></div>
             </div>
-            ${handles}
+
+            ${this.renderHandles(hasLabel)}
 
             <div
               class="ticks"

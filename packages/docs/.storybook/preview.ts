@@ -1,4 +1,4 @@
-import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
+import type { WebComponentsRenderer, Preview, StoryContext } from "@storybook/web-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
@@ -68,7 +68,58 @@ const preview: Preview = {
       toc: {
         headingSelector: 'h2, h3',
       },
-      source: { format: 'html' }
+      source: {
+        format: 'html', transform: (code: string, storyContext: StoryContext) => {
+          const id = 'story--' + storyContext.id;
+          const storiesOnDocsPage = document.querySelectorAll(`#${id}, #${id}--primary`);
+          storiesOnDocsPage.forEach((element) => {
+            const button = element.closest('.docs-story').querySelector('.docblock-code-toggle');
+            if (button) {
+              element.closest('.docs-story').querySelectorAll('.docblock-codepen-button').forEach((el) => {
+                el.remove();
+              });
+
+              const newButton = button.cloneNode(true);
+              newButton.textContent = 'Edit on CodePen';
+              newButton.classList.add('docblock-codepen-button');
+              button.parentElement.appendChild(newButton);
+              newButton.addEventListener('click', () => {
+                const form = document.createElement('form');
+                form.action = 'https://codepen.io/pen/define';
+                form.method = 'POST';
+                form.target = '_blank';
+
+                // Docs: https://blog.codepen.io/documentation/prefill/
+                const data = {
+                  title: '',
+                  description: '',
+                  tags: ['synergy-design-system', 'web components'],
+                  editors: 1110,
+                  head: `<meta name="viewport" content="width=device-width">`,
+                  css_external: ``,
+                  js_external: ``,
+                  js_module: true,
+                  js_pre_processor: 'none',
+                  html: code,
+                  css: '@import url("https://esm.sh/@synergy-design-system/tokens/dist/themes/light.css");',
+                  js: 'import * as syn from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";'
+                };
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'data';
+                input.value = JSON.stringify(data);
+                form.append(input);
+
+                document.documentElement.append(form);
+                form.submit();
+                form.remove();
+              });
+            }
+          });
+          return code;
+        }
+      },
     },
   },
 };

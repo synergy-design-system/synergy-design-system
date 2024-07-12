@@ -107,7 +107,7 @@ export default css`
     z-index: 2;
   }
 
-  .handle {
+  .knob {
     background-color: var(--syn-color-primary-600);
     border: var(--syn-focus-ring-width) solid var(--syn-color-neutral-0);
     border-radius: var(--syn-border-radius-circle);
@@ -132,7 +132,7 @@ export default css`
   /**
    * Adds some space to the knob that makes it easier to click and drag
    */
-  .handle::after {
+  .knob::after {
     background: transparent;
     border-radius: var(--syn-border-radius-circle);
     content: "";
@@ -141,31 +141,31 @@ export default css`
     position: absolute;
   }
 
-  .handle:hover {
+  .knob:hover {
     cursor: grab;  
   }
 
-  .handle.grabbed {
+  .knob.grabbed {
     cursor: grabbing;
   }
 
-  .handle:focus-visible {
+  .knob:focus-visible {
     outline: none;
   }
 
-  .handle:not(.grabbed):focus-visible {
+  .knob:not(.grabbed):focus-visible {
     background: var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
     outline-offset: 0;
   }
 
   :host([disabled]) .track-wrapper,
-  :host([disabled]) .handle,
-  :host([disabled]) .handle.grabbed {
+  :host([disabled]) .knob,
+  :host([disabled]) .knob.grabbed {
     cursor: not-allowed;
   }
 
-  :host(:not([disabled])) .handle:hover:not(.grabbed)  {
+  :host(:not([disabled])) .knob:hover:not(.grabbed)  {
     background: var(--syn-color-primary-900);
     transform: scale(var(--thumb-clickable-area));
   }

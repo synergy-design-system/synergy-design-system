@@ -242,16 +242,16 @@ describe('<syn-range>', () => {
   });
 
   describe('when the value changes', () => {
-    it('should emit a syn-change event when the user has dragged a handle', async () => {
+    it('should emit a syn-change event when the user has dragged a knob', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
 
       el.addEventListener('syn-change', changeHandler);
 
-      const handle = el.shadowRoot!.querySelector('.handle')!;
-      const rect = handle.getBoundingClientRect();
+      const knob = el.shadowRoot!.querySelector('.knob')!;
+      const rect = knob.getBoundingClientRect();
 
-      expect(handle).to.not.have.class('grabbed');
+      expect(knob).to.not.have.class('grabbed');
 
       await sendMouse({
         position: [rect.left, rect.top],
@@ -262,7 +262,7 @@ describe('<syn-range>', () => {
         type: 'down',
       });
 
-      expect(handle).to.have.class('grabbed');
+      expect(knob).to.have.class('grabbed');
 
       await sendMouse({
         position: [rect.left + 50, rect.top],
@@ -270,21 +270,21 @@ describe('<syn-range>', () => {
       });
 
       await resetMouse();
-      expect(handle).to.not.have.class('grabbed');
+      expect(knob).to.not.have.class('grabbed');
       await el.updateComplete;
 
       expect(el.value).to.equal('5');
       expect(changeHandler).to.have.been.called;
     });
 
-    it('should emit a syn-input event while the user is dragging the handle', async () => {
+    it('should emit a syn-input event while the user is dragging the knob', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
 
       el.addEventListener('syn-input', inputHandler);
 
-      const handle = el.shadowRoot!.querySelector('.handle')!;
-      const rect = handle.getBoundingClientRect();
+      const knob = el.shadowRoot!.querySelector('.knob')!;
+      const rect = knob.getBoundingClientRect();
 
       await sendMouse({
         position: [rect.left, rect.top],

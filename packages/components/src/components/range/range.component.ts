@@ -144,7 +144,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
-  @queryAll('.handle') handles: NodeListOf<HTMLDivElement>;
+  @queryAll('.knob') knobs: NodeListOf<HTMLDivElement>;
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
 
@@ -210,19 +210,19 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   protected override updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
     // eslint-disable-next-line no-restricted-syntax
-    for (const handle of this.handles) {
-      const sliderId = +handle.dataset.sliderId!;
+    for (const knob of this.knobs) {
+      const sliderId = +knob.dataset.sliderId!;
       // eslint-disable-next-line no-continue
       if (!this.#sliderValues.has(sliderId)) continue;
-      this.#moveHandle(handle, this.#sliderValues.get(sliderId)!);
+      this.#moveKnob(knob, this.#sliderValues.get(sliderId)!);
     }
     this.#updateActiveTrack();
   }
 
   override focus(options?: FocusOptions) {
-    const firstHandle = this.handles.item(0);
-    if (firstHandle) {
-      firstHandle.focus(options);
+    const firstKnob = this.knobs.item(0);
+    if (firstKnob) {
+      firstKnob.focus(options);
     } else {
       super.focus(options);
     }
@@ -285,24 +285,24 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (this.disabled) return;
     const { clientX } = event;
 
-    const handles = Array.from(this.handles);
-    const pos = getNormalizedValueFromClientX(this.baseDiv, handles.at(0)!, clientX, this.#rtl);
+    const knobs = Array.from(this.knobs);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, knobs.at(0)!, clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const nextValue = this.min + this.step * Math.round(pos / unit);
 
-    const handle = handles.reduce((prev, curr) => {
+    const knob = knobs.reduce((prev, curr) => {
       const currValue = this.#sliderValues.get(+curr.dataset.sliderId!)!;
       const prevValue = this.#sliderValues.get(+prev.dataset.sliderId!)!;
 
       return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
     });
 
-    const sliderId = +handle.dataset.sliderId!;
+    const sliderId = +knob.dataset.sliderId!;
 
     if (!sliderId) return;
 
     this.#sliderValues.set(sliderId, nextValue);
-    this.#moveHandle(handle, nextValue);
+    this.#moveKnob(knob, nextValue);
 
     const prevValue = this.#value;
     this.#value = Array.from(this.#sliderValues.values());
@@ -313,37 +313,37 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  #onClickHandle(event: PointerEvent) {
+  #onClickKnob(event: PointerEvent) {
     if (this.disabled) return;
-    const handle = event.target as HTMLDivElement;
-    this.#updateTooltip(handle);
+    const knob = event.target as HTMLDivElement;
+    this.#updateTooltip(knob);
 
-    if (handle.dataset.pointerId) {
-      handle.releasePointerCapture(+handle.dataset.pointerId);
+    if (knob.dataset.pointerId) {
+      knob.releasePointerCapture(+knob.dataset.pointerId);
     }
 
     if (this.disabled) return;
 
-    handle.dataset.pointerId = event.pointerId.toString();
-    handle.setPointerCapture(event.pointerId);
-    handle.classList.add('grabbed');
+    knob.dataset.pointerId = event.pointerId.toString();
+    knob.setPointerCapture(event.pointerId);
+    knob.classList.add('grabbed');
   }
 
-  #onDragHandle(event: PointerEvent) {
+  #onDragKnob(event: PointerEvent) {
     if (this.disabled) return;
 
-    const handle = event.target as HTMLDivElement;
-    const sliderId = +handle.dataset.sliderId!;
+    const knob = event.target as HTMLDivElement;
+    const sliderId = +knob.dataset.sliderId!;
     if (!this.#sliderValues.has(sliderId)) return;
 
-    const pointerId = handle.dataset.pointerId ? +handle.dataset.pointerId : null;
+    const pointerId = knob.dataset.pointerId ? +knob.dataset.pointerId : null;
     if (pointerId !== event.pointerId) return;
 
-    const pos = getNormalizedValueFromClientX(this.baseDiv, handle, event.clientX, this.#rtl);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, knob, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const value = this.min + this.step * Math.round(pos / unit);
     this.#sliderValues.set(sliderId, value);
-    this.#moveHandle(handle, value);
+    this.#moveKnob(knob, value);
 
     const prevValue = this.#value;
     this.#value = Array.from(this.#sliderValues.values());
@@ -354,23 +354,23 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  #onReleaseHandle(event: PointerEvent) {
-    const handle = event.target as HTMLDivElement;
-    if (!handle.dataset.pointerId || event.pointerId !== +handle.dataset.pointerId) return;
+  #onReleaseKnob(event: PointerEvent) {
+    const knob = event.target as HTMLDivElement;
+    if (!knob.dataset.pointerId || event.pointerId !== +knob.dataset.pointerId) return;
 
-    handle.classList.remove('grabbed');
-    handle.releasePointerCapture(event.pointerId);
-    delete handle.dataset.pointerId;
+    knob.classList.remove('grabbed');
+    knob.releasePointerCapture(event.pointerId);
+    delete knob.dataset.pointerId;
     this.emit('syn-change');
   }
 
-  #moveHandle(handle: HTMLDivElement, value: number) {
-    handle.setAttribute('aria-valuenow', value.toString());
-    handle.setAttribute('aria-valuetext', this.tooltipFormatter(value));
+  #moveKnob(knob: HTMLDivElement, value: number) {
+    knob.setAttribute('aria-valuenow', value.toString());
+    knob.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
     // eslint-disable-next-line no-param-reassign
-    handle.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
-    this.#updateTooltip(handle);
+    knob.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
+    this.#updateTooltip(knob);
   }
 
   #updateActiveTrack() {
@@ -408,8 +408,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onKeyPress(event: KeyboardEvent) {
-    const handle = event.target as HTMLDivElement;
-    const sliderId = +handle.dataset.sliderId!;
+    const knob = event.target as HTMLDivElement;
+    const sliderId = +knob.dataset.sliderId!;
 
     let value = this.#sliderValues.get(sliderId);
     if (value === undefined) return;
@@ -458,17 +458,17 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
 
     if (value !== this.#sliderValues.get(sliderId)) {
-      this.#moveHandle(handle, value);
+      this.#moveKnob(knob, value);
 
       this.#sliderValues.set(sliderId, value);
       this.#value = Array.from(this.#sliderValues.values());
 
-      // Determine the position of the handle in the array as the focus might have changed
+      // Determine the position of the knob in the array as the focus might have changed
       const index = this.#value.findIndex(v => v === value);
-      this.handles[index].focus();
+      this.knobs[index].focus();
 
       this.#updateActiveTrack();
-      this.#updateTooltip(handle);
+      this.#updateTooltip(knob);
 
       this.emit('syn-input');
       this.emit('syn-change');
@@ -484,30 +484,30 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#hasFocus = false;
   }
 
-  #updateTooltip(handle: HTMLDivElement) {
+  #updateTooltip(knob: HTMLDivElement) {
     if (this.tooltipDisabled) return;
-    const sliderId = +handle.dataset.sliderId!;
+    const sliderId = +knob.dataset.sliderId!;
     if (!this.#sliderValues.has(sliderId)) return;
     const value = this.#sliderValues.get(sliderId)!;
-    const tooltip = handle.parentElement as SynTooltip;
+    const tooltip = knob.parentElement as SynTooltip;
     tooltip.content = this.tooltipFormatter(value);
   }
 
-  #onFocusHandle(event: FocusEvent) {
+  #onFocusKnob(event: FocusEvent) {
     if (this.disabled) return;
     if (!this.#hasFocus) {
       this.#hasFocus = true;
       this.emit('syn-focus');
     }
-    const handle = event.target as HTMLDivElement;
-    if (!handle?.dataset?.sliderId) return;
-    this.#updateTooltip(handle);
+    const knob = event.target as HTMLDivElement;
+    if (!knob?.dataset?.sliderId) return;
+    this.#updateTooltip(knob);
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  private renderHandles(hasLabel: boolean) {
+  private renderKnobs(hasLabel: boolean) {
     // Aria special handling:
-    // 1. When there is only one label: Use the provided label as the aria-label for the handle
+    // 1. When there is only one label: Use the provided label as the aria-label for the knob
     // 2. When we have multiple label: Set the label for the first and last item to itself
     const isMultiple = this.#value.length > 1;
 
@@ -517,7 +517,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const sliderId = this.#nextId;
       this.#sliderValues.set(sliderId, value);
 
-      const id = `handle-${sliderId}`;
+      const id = `knob-${sliderId}`;
 
       let ariaLabel = '';
       let ariaLabeledBy = '';
@@ -551,17 +551,17 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             aria-valuemin="${this.min}"
             aria-valuenow="${value}"
             aria-valuetext="${ariaLabel} ${this.tooltipFormatter(value)}"
-            class="handle"
+            class="knob"
             data-slider-id="${sliderId}"
             id=${id}
             role="slider"
             tabindex="${this.disabled ? -1 : 0}"
-            @pointerdown=${this.#onClickHandle}
-            @pointermove=${this.#onDragHandle}
-            @pointerup=${this.#onReleaseHandle}
-            @pointercancel=${this.#onReleaseHandle}
+            @pointerdown=${this.#onClickKnob}
+            @pointermove=${this.#onDragKnob}
+            @pointerup=${this.#onReleaseKnob}
+            @pointercancel=${this.#onReleaseKnob}
             @keydown=${this.#onKeyPress}
-            @focus=${this.#onFocusHandle}
+            @focus=${this.#onFocusKnob}
           ></div>
         </syn-tooltip>
       `;
@@ -623,7 +623,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
               <div class="active-track"></div>
             </div>
 
-            ${this.renderHandles(hasLabel)}
+            ${this.renderKnobs(hasLabel)}
 
             <div
               class="ticks"

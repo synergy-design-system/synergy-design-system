@@ -359,9 +359,9 @@ export const TooltipDisabled: Story = {
   },
   render: () => html`
     <syn-range
-      tooltip="none"
       max="100"
       min="0"
+      tooltip-disabled
       value="50"
     ></syn-range>
   `,

@@ -34,6 +34,34 @@ describe('<syn-range>', () => {
     expect(el.valueAsArray).to.deep.equal([0]);
   });
 
+  describe('Tooltips', () => {
+    it('should allow to format the tooltips output with the tooltipFormatter attribute', async () => {
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+      const tooltip = el.shadowRoot!.querySelector('syn-tooltip')!;
+
+      el.tooltipFormatter = (value: number) => `Value: ${value}`;
+
+      el.value = '5';
+      await el.updateComplete;
+
+      expect(tooltip.content).to.equal('Value: 5');
+    });
+
+    it('should disable the tooltip if the tooltipDisabled attribute is set', async () => {
+      const el = await fixture<SynRange>(html`<syn-range tooltip-disabled></syn-range>`);
+      const tooltip = el.shadowRoot!.querySelector('syn-tooltip')!;
+
+      expect(tooltip).to.have.attribute('disabled');
+    });
+
+    it('should disable the tooltip if the range is disabled', async () => {
+      const el = await fixture<SynRange>(html`<syn-range disabled></syn-range>`);
+      const tooltip = el.shadowRoot!.querySelector('syn-tooltip')!;
+
+      expect(tooltip).to.have.attribute('disabled');
+    });
+  });
+
   it('should be disabled with the disabled attribute', async () => {
     const el = await fixture<SynRange>(html`<syn-range disabled></syn-range>`);
     const wrapper = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="form-control"]')!;

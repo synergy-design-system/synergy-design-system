@@ -33,9 +33,15 @@ export function setupAutocomplete(
     // It adds 'both' which is not correct for our autocomplete use cases
     input.setAttribute('aria-autocomplete', 'list');
 
+    // Check if initialization was already done and skip if it's the case
+    if (synInput.shadowRoot?.querySelector('syn-popup.syn-autocomplete-popup')) {
+      return;
+    }
+
     const ul = synInput.shadowRoot?.querySelector('ul');
     ul?.setAttribute('part', 'listbox');
     const popup = document.createElement('syn-popup');
+    popup.classList.add('syn-autocomplete-popup');
     popup.appendChild(ul!);
     synInput.shadowRoot?.appendChild(popup);
     popup?.setAttribute('exportparts', 'popup');
@@ -77,7 +83,7 @@ export function setupAutocomplete(
         padding: var(--syn-spacing-small) var(--syn-spacing-medium) var(--syn-spacing-small) calc(var(--syn-spacing-2x-large) + var(--syn-spacing-2x-small));
       }
 
-      syn-popup li:not(:has(syn-option)):hover {
+      syn-popup li:not(:has(syn-option)):not([aria-selected='true']):hover {
         background-color: var(--syn-color-neutral-100);
       }
 
@@ -85,6 +91,10 @@ export function setupAutocomplete(
         background-color: transparent;
         color: var(--syn-color-neutral-950);
         font: var(--syn-body-medium-bold);
+      }
+      
+      syn-popup li[aria-selected='true'] mark {
+        color: var(--syn-color-neutral-0);
       }
 
       syn-popup li[aria-selected='true'] {

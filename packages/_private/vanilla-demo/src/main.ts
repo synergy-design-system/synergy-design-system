@@ -7,7 +7,14 @@ import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
+// eslint-disable-next-line import/no-duplicates
 import '@synergy-design-system/components';
+// eslint-disable-next-line import/no-duplicates
+import { setupAutocomplete } from '@synergy-design-system/components';
+// @ts-expect-error autoComplete.js does not have types
+import autoComplete from '@tarekraafat/autocomplete.js';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
 
@@ -107,10 +114,40 @@ const initApp = async () => {
   });
 };
 
+const initAutoComplete = () => {
+  /* eslint-disable */
+  Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
+    const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
+    const nationalityAutoComplete = new autoComplete({
+      ...autoCompleteConfig,
+      threshold: 0,
+      placeHolder: 'Please choose your nationality',
+      data: {
+        src: nationalities,
+      },
+      events: {
+        input: {
+          focus() {
+            nationalityAutoComplete.start();
+          }
+        }
+      },
+      resultItem: {
+        highlight: true,
+      },
+      resultsList: {
+        maxResults: undefined,
+      }
+    });
+  });
+  /* eslint-enable */
+};
+
 const bootstrap = async () => {
   await initRouting();
   await initApp();
   await initThemeSwitch();
+  initAutoComplete();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

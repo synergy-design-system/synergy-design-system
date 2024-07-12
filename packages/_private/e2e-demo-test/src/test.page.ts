@@ -118,6 +118,7 @@ export default class TestPage {
       this.email,
       this.phone,
       this.gender,
+      this.nationality,
     ];
   }
 
@@ -127,5 +128,9 @@ export default class TestPage {
 
   get angular(): Locator {
     return this.page.locator(selectors.angular);
+  }
+
+  get nationality(): Locator {
+    return this.page.locator(selectors.nationalityLoc);
   }
 }

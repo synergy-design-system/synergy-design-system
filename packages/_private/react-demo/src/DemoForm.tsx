@@ -5,6 +5,7 @@ import {
   SynButton,
   SynCheckbox,
   SynDivider,
+  SynIcon,
   SynInput,
   SynOptgroup,
   SynOption,
@@ -14,6 +15,9 @@ import {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/react';
+import { setupAutocomplete } from '@synergy-design-system/components';
+// @ts-expect-error autoComplete.js does not have types
+import autoComplete from '@tarekraafat/autocomplete.js';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
 
@@ -30,6 +34,7 @@ const initialFormData = {
   email: '',
   gender: '',
   name: '',
+  nationality: '',
   newsletterAngular: false,
   newsletterBeta: false,
   newsletterReact: false,
@@ -41,6 +46,8 @@ const initialFormData = {
   role: '',
   topics: [],
 };
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -75,6 +82,35 @@ export const DemoForm = () => {
     return () => {
       formRef.current?.removeEventListener('syn-change', listener);
     };
+  }, []);
+
+  useEffect(() => {
+    /* eslint-disable */
+    Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
+      const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
+      const nationalityAutoComplete = new autoComplete({
+        ...autoCompleteConfig,
+        threshold: 0,
+        placeHolder: 'Please choose your nationality',
+        data: {
+          src: nationalities,
+        },
+        events: {
+          input: {
+            focus() {
+              nationalityAutoComplete.start();
+            },
+          },
+        },
+        resultItem: {
+          highlight: true,
+        },
+        resultsList: {
+          maxResults: undefined,
+        },
+      });
+    });
+    /* eslint-enable */
   }, []);
 
   return (
@@ -170,6 +206,17 @@ export const DemoForm = () => {
           value={formData.date}
           type="date"
         />
+
+        <SynInput
+          id="input-nationality"
+          label="Nationality"
+          name="nationality"
+          required
+          value={formData.nationality}
+          type="search"
+        >
+          <SynIcon slot="suffix" name="search" />
+        </SynInput>
 
       </DemoFieldset>
       {/* /PersonalInformation */}

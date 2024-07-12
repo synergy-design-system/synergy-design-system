@@ -7,6 +7,7 @@ export default {
   frontend: 'syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
   nameLoc: '#input-text',
+  nationalityLoc: '#input-nationality',
   newsLocBeta: '#checkbox-newsletter-beta',
   newsLocSyn: '#checkbox-newsletter-default',
   newsLocSynNg: '#checkbox-newsletter-angular',

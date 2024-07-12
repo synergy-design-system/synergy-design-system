@@ -297,8 +297,6 @@ export const OpenOnClick = {
         const data = ${JSON.stringify(data)};
         // preview-ignore:end
 
-        const bla = document.querySelector('#show-all-on-click-example').shadowRoot.querySelector('input');
-
         const { config: showAllOnClickConfig } = setupAutocomplete('#show-all-on-click-example');
         const showAllOnClickExample = new autoComplete({
           ...showAllOnClickConfig,

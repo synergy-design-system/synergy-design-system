@@ -29,6 +29,10 @@ export function setupAutocomplete(
 
   /** Setup elements and styles for autocomplete.js */
   input.addEventListener('init', () => {
+    // autoComplete.js adds not the right aria-autocomplete on the input.
+    // It adds 'both' which is not correct for our autocomplete use cases
+    input.setAttribute('aria-autocomplete', 'list');
+
     const ul = synInput.shadowRoot?.querySelector('ul');
     ul?.setAttribute('part', 'listbox');
     const popup = document.createElement('syn-popup');

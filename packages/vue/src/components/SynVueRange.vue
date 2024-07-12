@@ -23,6 +23,8 @@
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
+ * @event syn-invalid - Emitted when the form control has been checked for validity
+ * and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -43,7 +45,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/range/range.js';
 
 import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynRange,
+  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynRange,
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -159,6 +161,11 @@ defineEmits<{
   'syn-input': [e: SynInputEvent];
 
   /**
+* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ */
+  'syn-invalid': [e: SynInvalidEvent];
+
+  /**
 * Support for two way data binding
  */
   'update:modelValue': [newValue: SynRange['value']];
@@ -170,6 +177,7 @@ export type { SynBlurEvent } from '@synergy-design-system/components';
 export type { SynChangeEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
+export type { SynInvalidEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -181,6 +189,7 @@ export type { SynInputEvent } from '@synergy-design-system/components';
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
+    @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
   </syn-range>

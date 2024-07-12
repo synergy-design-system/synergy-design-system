@@ -39,6 +39,8 @@ import styles from './range.styles.js';
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
+ * @event syn-invalid - Emitted when the form control has been checked for validity
+ * and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -110,7 +112,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** Gets or sets the current values of the range as an array of numbers */
   set valueAsArray(value: readonly number[] | null) {
     const oldValue = this.#value;
-    this.#value = Array.isArray(value) ? [...value].sort(numericSort) : value || [];
+    this.#value = Array.isArray(value) ? value.slice().sort(numericSort) : value || [];
     if (arraysDiffer(oldValue, this.#value)) {
       this.requestUpdate('value', oldValue.join(','));
     }
@@ -121,7 +123,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = 0;
+  @defaultValue() defaultValue = '0';
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element.
@@ -231,13 +233,19 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    * Returns `true` when valid and `false` when invalid.
    */
   public checkValidity(): boolean {
-    return !this.#validationError;
+    if (this.disabled) return true;
+    const isValid = !this.#validationError;
+
+    if (!isValid) {
+      this.emit('syn-invalid');
+    }
+
+    return isValid;
   }
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   public reportValidity(): boolean {
-    this.#validationError = '';
-    return true;
+    return this.checkValidity();
   }
 
   /** Sets a custom validation message. Pass an empty string to restore validity. */

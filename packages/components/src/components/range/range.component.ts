@@ -175,7 +175,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.updateValidity();
   }
 
-  protected override willUpdate(changedProperties: PropertyValues): void {
+  protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
     if (this.min > this.max) {
@@ -207,7 +207,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  protected override updated(changedProperties: PropertyValues): void {
+  protected override updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
     // eslint-disable-next-line no-restricted-syntax
     for (const handle of this.handles) {
@@ -219,7 +219,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#updateActiveTrack();
   }
 
-  override focus(options?: FocusOptions): void {
+  override focus(options?: FocusOptions) {
     const firstHandle = this.handles.item(0);
     if (firstHandle) {
       firstHandle.focus(options);
@@ -232,7 +232,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    * Checks for validity but does not show a validation message.
    * Returns `true` when valid and `false` when invalid.
    */
-  public checkValidity(): boolean {
+  public checkValidity() {
     if (this.disabled) return true;
     const isValid = !this.#validationError;
 
@@ -244,12 +244,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  public reportValidity(): boolean {
+  public reportValidity() {
     return this.checkValidity();
   }
 
   /** Sets a custom validation message. Pass an empty string to restore validity. */
-  public setCustomValidity(message: string): void {
+  public setCustomValidity(message: string) {
     this.#validationError = message;
     this.formControlController.updateValidity();
   }
@@ -277,11 +277,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /** Gets the validation message */
-  public get validationMessage(): string {
+  public get validationMessage() {
     return this.#validationError;
   }
 
-  #onClickTrack(event: PointerEvent): void {
+  #onClickTrack(event: PointerEvent) {
     if (this.disabled) return;
     const { clientX } = event;
 
@@ -313,7 +313,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  #onClickHandle(event: PointerEvent): void {
+  #onClickHandle(event: PointerEvent) {
     if (this.disabled) return;
     const handle = event.target as HTMLDivElement;
     this.#updateTooltip(handle);
@@ -329,7 +329,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     handle.classList.add('grabbed');
   }
 
-  #onDragHandle(event: PointerEvent): void {
+  #onDragHandle(event: PointerEvent) {
     if (this.disabled) return;
 
     const handle = event.target as HTMLDivElement;
@@ -364,7 +364,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.emit('syn-change');
   }
 
-  #moveHandle(handle: HTMLDivElement, value: number): void {
+  #moveHandle(handle: HTMLDivElement, value: number) {
     handle.setAttribute('aria-valuenow', value.toString());
     handle.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
@@ -373,7 +373,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#updateTooltip(handle);
   }
 
-  #updateActiveTrack(): void {
+  #updateActiveTrack() {
     const { activeTrack } = this;
     if (!activeTrack) return;
 
@@ -407,7 +407,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     activeTrack.style.insetInlineEnd = `calc(100% - ${end}%)`;
   }
 
-  #onKeyPress(event: KeyboardEvent): void {
+  #onKeyPress(event: KeyboardEvent) {
     const handle = event.target as HTMLDivElement;
     const sliderId = +handle.dataset.sliderId!;
 
@@ -478,13 +478,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     event.preventDefault();
   }
 
-  #onBlur(event: FocusEvent): void {
+  #onBlur(event: FocusEvent) {
     if (event.relatedTarget && this.shadowRoot?.contains(event.relatedTarget as Node)) return;
     this.emit('syn-blur');
     this.#hasFocus = false;
   }
 
-  #updateTooltip(handle: HTMLDivElement): void {
+  #updateTooltip(handle: HTMLDivElement) {
     if (this.tooltipDisabled) return;
     const sliderId = +handle.dataset.sliderId!;
     if (!this.#sliderValues.has(sliderId)) return;
@@ -493,7 +493,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     tooltip.content = this.tooltipFormatter(value);
   }
 
-  #onFocusHandle(event: FocusEvent): void {
+  #onFocusHandle(event: FocusEvent) {
     if (this.disabled) return;
     if (!this.#hasFocus) {
       this.#hasFocus = true;

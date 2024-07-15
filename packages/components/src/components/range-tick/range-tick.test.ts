@@ -5,9 +5,11 @@ import { expect, fixture, html } from '@open-wc/testing';
 import type SynRangeTick from './range-tick.js';
 
 describe('<syn-range-tick>', () => {
-  describe('accessibility tests', async () => {
-    const el = await fixture<SynRangeTick>(html`<syn-range-tick>Tick Label</syn-range-tick>`);
-    await expect(el).to.be.accessible();
+  describe('accessibility tests', () => {
+    it('should be accessible', async () => {
+      const el = await fixture<SynRangeTick>(html`<syn-range-tick>Tick Label</syn-range-tick>`);
+      await expect(el).to.be.accessible();
+    });
   });
 
   describe('if no label is provided', () => {

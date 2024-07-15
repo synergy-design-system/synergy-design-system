@@ -6,8 +6,8 @@ import '../components/popup/popup.js';
  * @param selector - The selector to get the input element from the ShadowDOM.
  * @returns The configuration object for autocomplete.js.
  */
-export function setupAutocomplete(
-  selector: HTMLUnknownElement | string,
+export function setupAutocomplete<T = HTMLUnknownElement>(
+  selector: T | string,
   { setValueOnSelection, scrollSelectionIntoView } = {
     scrollSelectionIntoView: true,
     setValueOnSelection: true,

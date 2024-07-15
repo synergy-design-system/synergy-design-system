@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
@@ -15,11 +15,9 @@ import {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/react';
-import { setupAutocomplete } from '@synergy-design-system/components';
-// @ts-expect-error autoComplete.js does not have types
-import autoComplete from '@tarekraafat/autocomplete.js';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
+import { useAutoComplete } from './customHooks';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -84,34 +82,29 @@ export const DemoForm = () => {
     };
   }, []);
 
+  const nationalitiesInput = useRef<SynInputType>(null);
+
+  const autoCompleteConfig = {
+    data: {
+      src: nationalities,
+    },
+    resultItem: {
+      highlight: true,
+    },
+    resultsList: {
+      maxResults: undefined,
+    },
+    threshold: 0,
+  };
+  /* eslint-disable */
+  const nationalitiesAutoComplete = useAutoComplete(nationalitiesInput, autoCompleteConfig);
   useEffect(() => {
-    /* eslint-disable */
-    Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
-      const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
-      const nationalityAutoComplete = new autoComplete({
-        ...autoCompleteConfig,
-        threshold: 0,
-        placeHolder: 'Please choose your nationality',
-        data: {
-          src: nationalities,
-        },
-        events: {
-          input: {
-            focus() {
-              nationalityAutoComplete.start();
-            },
-          },
-        },
-        resultItem: {
-          highlight: true,
-        },
-        resultsList: {
-          maxResults: undefined,
-        },
-      });
+    if (!nationalitiesAutoComplete) return;
+    (nationalitiesAutoComplete.input as HTMLInputElement).addEventListener('focus', () => {
+      nationalitiesAutoComplete.start();
     });
-    /* eslint-enable */
-  }, []);
+  }, [nationalitiesAutoComplete]);
+  /* eslint-enable */
 
   return (
     <form
@@ -214,6 +207,8 @@ export const DemoForm = () => {
           required
           value={formData.nationality}
           type="search"
+          ref={nationalitiesInput}
+          placeholder='Please choose your nationality'
         >
           <SynIcon slot="suffix" name="search" />
         </SynInput>

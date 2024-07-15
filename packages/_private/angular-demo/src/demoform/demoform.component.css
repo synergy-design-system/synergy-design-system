@@ -23,13 +23,13 @@ form .syn-fieldset:last-of-type {
 }
 
 /* Special overrides */
-#radiogroup-gender::part(form-control-input) {
-  display: flex;
-  gap: var(--syn-spacing-medium);
-}
-
-#happiness nav {
+#happiness-fields syn-range nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#radiogroup-gender::part(form-control-input) {
+  display: flex;
+  gap: var(--syn-spacing-medium);
 }

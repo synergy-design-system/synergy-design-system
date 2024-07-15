@@ -1,9 +1,5 @@
-import { Locator, expect, test } from '@playwright/test';
-import type SynInput from '../../../components/src/components/input/input.component';
-import type SynTextarea from '../../../components/src/components/textarea/textarea.component';
-import type SynCheckbox from '../../../components/src/components/checkbox/checkbox.component';
-import type SynSwitch from '../../../components/src/components/switch/switch.component';
-import type SynSelect from '../../../components/src/components/select/select.component';
+import { Locator, Page, expect, test } from '@playwright/test';
+import type { SynInput, SynCheckbox, SynSwitch, SynSelect } from '@synergy-design-system/components';
 import { type Framework, frameworks } from '../frameworks.config';
 import TestPage from './test.page';
 
@@ -31,7 +27,7 @@ async function fillField(locator: Locator, value: string) {
   await locator.blur();
 }
 
-async function fillForm(form: TestPage) {
+async function fillForm(form: TestPage, page?: Page) {
   await form.gender.getByText('Female').check();
   await fillField(form.name, 'Maxim');
   await fillField(form.email, 'max@musterman.de');
@@ -56,6 +52,19 @@ async function fillForm(form: TestPage) {
   await form.happiness.dragTo(form.happiness, {
     targetPosition: { x: 1000, y: 50 },
   });
+
+  // Drag the donations handle to a - - 100% rating
+  if (page) {
+    const firstKnob = await form.donations.locator('.knob').first().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
+    const firstTick = '#donations syn-range-tick:first-of-type';
+
+    await page.dragAndDrop(firstKnob, firstTick);
+
+    const lastKnob = await form.donations.locator('.knob').last().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
+    const lastTick = '#donations syn-range-tick:last-of-type';
+
+    await page.dragAndDrop(lastKnob, lastTick);
+  }
 }
 
 async function checkInitialState(form: TestPage) {
@@ -70,6 +79,7 @@ async function checkInitialState(form: TestPage) {
   expect(await getInputValue(form.topics)).toEqual([]);
   expect(await getInputValue(form.additionalInfo)).toBe('');
   expect(await getInputValue(form.happiness)).toBe('5');
+  expect(await getInputValue(form.donations)).toBe('2000 4000');
   (await Promise.all(form.allNews.map((news) => getCheckedValue(news))))
     .forEach((val) => expect(val).toBeFalsy());
 
@@ -102,7 +112,7 @@ const createTestCaseFor = (framework: Framework) => {
       await form.goto(getURL(availablePages.form));
 
       // fill-out the form correctly
-      await fillForm(form);
+      await fillForm(form, page);
 
       // submit valid form
       await form.reset.click();
@@ -151,7 +161,7 @@ const createTestCaseFor = (framework: Framework) => {
       await checkInitialState(form);
 
       // fill-out the form correctly
-      await fillForm(form);
+      await fillForm(form, page);
 
       // submit valid form
       await form.submit.click();

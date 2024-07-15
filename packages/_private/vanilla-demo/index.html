@@ -186,7 +186,7 @@
               <syn-divider></syn-divider>
 
               <!-- Happiness -->
-              <fieldset class="syn-fieldset">
+              <fieldset id="happiness-fields" class="syn-fieldset">
                 <legend class="syn-legend">Happiness</legend>
                 <syn-range
                   id="happiness"
@@ -202,6 +202,21 @@
                     <syn-range-tick label="😍"></syn-range-tick>
                   </nav>
                 </syn-range>
+
+                <syn-range
+                  id="donations"
+                  label="I would donate between"
+                  max="6000"
+                  min="0"
+                  value="2000 4000"
+                  name="donations"
+                >
+                  <nav slot="ticks">
+                    <syn-range-tick>0 €</syn-range-tick>
+                    <syn-range-tick>6.000 €</syn-range-tick>
+                  </nav>
+                </syn-range>
+
               </fieldset>
               <!-- /.Happiness -->
 

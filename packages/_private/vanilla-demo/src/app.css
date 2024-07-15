@@ -87,7 +87,7 @@ form .syn-fieldset:last-of-type {
   gap: var(--syn-spacing-medium);
 }
 
-#happiness nav {
+#happiness-fields syn-range nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

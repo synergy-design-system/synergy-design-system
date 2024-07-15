@@ -2,6 +2,7 @@ export default {
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',
+  donations: '#donations',
   emailLoc: '#input-email',
   formLoc: 'form',
   frontend: 'syn-option[value=frontend]',

@@ -138,7 +138,7 @@
   <syn-divider />
 
   <!-- Happiness -->
-  <demo-fieldset legend="Happiness">
+  <demo-fieldset id="happiness-fields" legend="Happiness">
     <syn-range
       formControlName="happiness"
       id="happiness"
@@ -151,6 +151,21 @@
         <syn-range-tick label="🤮"></syn-range-tick>
         <syn-range-tick label="🥱"></syn-range-tick>
         <syn-range-tick label="😍"></syn-range-tick>
+      </nav>
+    </syn-range>
+
+    <syn-range
+      formControlName="donations"
+      id="donations"
+      label="I would donate between"
+      [max]="6000"
+      [min]="0"
+      name="donations"
+      #donationRef
+    >
+      <nav slot="ticks">
+        <syn-range-tick>0 €</syn-range-tick>
+        <syn-range-tick>6.000 €</syn-range-tick>
       </nav>
     </syn-range>
   </demo-fieldset>

@@ -1,5 +1,16 @@
-import { Locator, Page, expect, test } from '@playwright/test';
-import type { SynInput, SynCheckbox, SynSwitch, SynSelect } from '@synergy-design-system/components';
+import {
+  Locator,
+  Page,
+  expect,
+  test,
+} from '@playwright/test';
+import type {
+  SynCheckbox,
+  SynInput,
+  SynSelect,
+  SynSwitch,
+  SynTextarea,
+} from '@synergy-design-system/components';
 import { type Framework, frameworks } from '../frameworks.config';
 import TestPage from './test.page';
 

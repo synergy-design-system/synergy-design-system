@@ -619,6 +619,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
               @click=${this.#onClickTrack}
               role="presentation"
             >
+              <div class="track-click-helper"></div>
               <div class="track"></div>
               <div class="active-track"></div>
             </div>

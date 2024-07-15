@@ -90,6 +90,12 @@ export default css`
     position: relative;
   }
 
+  /* Internal helper for a better click surface on tracks */
+  .track-click-helper {
+    inset: -16px calc(var(--full-thumb-size) / 2 * -1);
+    position: absolute;
+  }
+
   .track {
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);

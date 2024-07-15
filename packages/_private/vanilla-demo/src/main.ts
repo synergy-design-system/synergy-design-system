@@ -1,7 +1,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import history from 'history/browser';
-import { type SynChangeEvent, type SynNavItem, type SynRange, type SynSwitch } from '@synergy-design-system/components';
+import {
+  type SynChangeEvent,
+  type SynNavItem,
+  type SynRange,
+  type SynSwitch,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -88,7 +93,7 @@ const initThemeSwitch = async () => {
 const initApp = async () => {
   await Promise.allSettled([
     customElements.whenDefined('syn-button'),
-    customElements.whenDefined('syn-range')
+    customElements.whenDefined('syn-range'),
   ]);
 
   const formatter = new Intl.NumberFormat('de-DE', {

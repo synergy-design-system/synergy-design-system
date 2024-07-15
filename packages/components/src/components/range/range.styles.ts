@@ -58,6 +58,7 @@ export default css`
   .input-wrapper {
     flex: 1 0 auto;
     position: relative;
+    will-change: transform;
   }
 
   :host([disabled]) .base {
@@ -88,6 +89,13 @@ export default css`
   .track-wrapper {
     cursor: pointer;
     position: relative;
+  }
+
+  /**
+   * Hide the aria label. Only used for aria controls
+   */
+  #aria-label-hidden {
+    display: none;
   }
 
   /* Internal helper for a better click surface on tracks */
@@ -126,13 +134,6 @@ export default css`
     user-select: none;
     width: var(--full-thumb-size);
     z-index: 3;
-  }
-
-  /**
-   * Hide the aria label. Only used for aria controls
-   */
-  #aria-label-hidden {
-    display: none;
   }
 
   /**

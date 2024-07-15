@@ -30,12 +30,19 @@
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart base - The component's base wrapper.
+ * @csspart input-wrapper - The container that wraps the input track and ticks.
+ * @csspart track-wrapper - The wrapper for the track.
+ * @csspart track - The inactive track.
+ * @csspart active-track - The active track.
+ * @csspart ticks - The container that wraps the tick marks.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart ticks - The container that wraps the tick marks.
+ * @csspart knob - The knob(s) that the user can drag to change the range.
  *
  * @cssproperty --thumb-size - The size of the thumb.
- * @cssproperty --thumb-clickable-area - The clickable area around the thumb. 50% of the thumb size.
+ * @cssproperty --thumb-clickable-area - The clickable area around the thumb.
+ * Per default this uses 40% of the thumb size. Must be a scale css value (e.g. 1.8).
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.

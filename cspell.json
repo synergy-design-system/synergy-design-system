@@ -14,7 +14,10 @@
     "themeable",
     "vendorism",
     "slotchange",
-    "optiongroup"
+    "optiongroup",
+    "labelledby",
+    "valuenow",
+    "valuetext"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

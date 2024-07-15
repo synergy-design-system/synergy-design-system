@@ -295,7 +295,19 @@ export const MultiKnob: Story = {
     },
   },
   render: () => html`
-    <syn-range max="100" min="0" value="30 70"></syn-range>
+    <syn-range max="100" min="0" value="30 70" id="multi-knob"></syn-range>
+    <script type="module">
+      const elm = document.getElementById('multi-knob');
+      let prevVal = elm.valueAsArray;
+      elm.addEventListener('syn-input', e => {
+        const curVal = e.target.valueAsArray;
+        console.log(prevVal, curVal);
+        prevVal = curVal;
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      console.log(elm);
+    </script>
   `,
 };
 

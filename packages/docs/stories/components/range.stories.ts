@@ -196,7 +196,7 @@ export const PrefixSuffixText: Story = {
       <span slot="suffix">100</span>
     </syn-range>
 
-    <p>This can be used to add input fields or icons.</p>
+    <p style="margin: var(--syn-spacing-x-large) 0;">This can be used to add input fields or icons.</p>
 
     <syn-range label="Estimated Time" class="suffix-input-field" min="0" max="60" value="30">
       <span slot="prefix">0</span>

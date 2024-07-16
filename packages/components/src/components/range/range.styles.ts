@@ -54,7 +54,7 @@ export default css`
     z-index: 0; /* Needed to not bleed absolute positioned elements out */
   }
 
-  .input-wrapper {
+  .input__wrapper {
     flex: 1 0 auto;
     position: relative;
     will-change: transform;
@@ -85,11 +85,6 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
-  .track-wrapper {
-    cursor: pointer;
-    position: relative;
-  }
-
   /**
    * Hide the aria label. Only used for aria controls
    */
@@ -97,8 +92,13 @@ export default css`
     display: none;
   }
 
+  .track__wrapper {
+    cursor: pointer;
+    position: relative;
+  }
+
   /* Internal helper for a better click surface on tracks */
-  .track-click-helper {
+  .track__click-helper {
     inset: -16px calc(var(--full-thumb-size) / 2 * -1);
     position: absolute;
   }
@@ -165,14 +165,17 @@ export default css`
     outline-offset: 0;
   }
 
-  :host([disabled]) .track-wrapper,
+  :host([disabled]) .track__wrapper,
   :host([disabled]) .knob,
   :host([disabled]) .knob.grabbed {
     cursor: not-allowed;
   }
 
-  /** Guard against mobile devices not removing the transform */
-  @media (hover) {
+  /*
+   * Guard against mobile devices not removing the transform
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+   */
+  @media (any-hover: hover) {
     :host(:not([disabled])) .knob:hover:not(.grabbed)  {
       background: var(--syn-color-primary-900);
       transform: scale(var(--thumb-clickable-area));

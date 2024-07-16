@@ -147,7 +147,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
 
-  @query('.input-wrapper') baseDiv: HTMLDivElement;
+  @query('.input__wrapper') baseDiv: HTMLDivElement;
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
@@ -645,14 +645,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             <slot name="prefix"></slot>
           </span>
 
-          <div class="input-wrapper" part="input-wrapper">
+          <div class="input__wrapper" part="input-wrapper">
             <div
-              class="track-wrapper"
+              class="track__wrapper"
               @click=${this.#onClickTrack}
               part="track-wrapper"
               role="presentation"
             >
-              <div class="track-click-helper"></div>
+              <div class="track__click-helper"></div>
               <div class="track" part="track"></div>
               <div class="active-track" part="active-track"></div>
             </div>

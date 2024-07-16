@@ -171,9 +171,12 @@ export default css`
     cursor: not-allowed;
   }
 
-  :host(:not([disabled])) .knob:hover:not(.grabbed)  {
-    background: var(--syn-color-primary-900);
-    transform: scale(var(--thumb-clickable-area));
+  /** Guard against mobile devices not removing the transform */
+  @media (hover) {
+    :host(:not([disabled])) .knob:hover:not(.grabbed)  {
+      background: var(--syn-color-primary-900);
+      transform: scale(var(--thumb-clickable-area));
+    }
   }
 
   /* Ticks */

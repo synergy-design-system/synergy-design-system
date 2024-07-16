@@ -45,11 +45,10 @@ export default css`
     letter-spacing: var(--syn-input-letter-spacing);
     position: relative;
     touch-action: none; /* Prevent misbehaviour in mobile by disabling native touch */
-    transition:
-      var(--syn-transition-fast) color,
-      var(--syn-transition-fast) border,
-      var(--syn-transition-fast) box-shadow,
-      var(--syn-transition-fast) background-color;
+    -webkit-touch-callout: none;
+    transition: var(--syn-transition-fast) color, var(--syn-transition-fast) border, var(--syn-transition-fast) box-shadow, var(--syn-transition-fast) background-color;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-user-select: none;
     vertical-align: middle;
     width: 100%;
     z-index: 0; /* Needed to not bleed absolute positioned elements out */

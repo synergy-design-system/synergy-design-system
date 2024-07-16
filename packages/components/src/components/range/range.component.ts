@@ -336,6 +336,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.dataset.pointerId = event.pointerId.toString();
     knob.setPointerCapture(event.pointerId);
     knob.classList.add('grabbed');
+    (knob.parentElement as SynTooltip).show();
   }
 
   #onDragKnob(event: PointerEvent) {
@@ -376,7 +377,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  #onReleaseKnob(event: PointerEvent) {
+  async #onReleaseKnob(event: PointerEvent) {
     const knob = event.target as HTMLDivElement;
     if (!knob.dataset.pointerId || event.pointerId !== +knob.dataset.pointerId) return;
 
@@ -384,6 +385,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.releasePointerCapture(event.pointerId);
     delete knob.dataset.pointerId;
     this.emit('syn-change');
+    await (knob.parentElement as SynTooltip).hide();
   }
 
   #moveKnob(knob: HTMLDivElement, value: number) {

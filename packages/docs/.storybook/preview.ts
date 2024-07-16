@@ -7,6 +7,8 @@ import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../../components/src/synergy';
 
+declare const __VITE_PACKAGE_VERSIONS__: Record<string, string>;
+
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
@@ -103,15 +105,15 @@ const preview: Preview = {
                   js_module: true,
                   js_pre_processor: 'none',
                   html: code,
-                  css: '@import url("https://esm.sh/@synergy-design-system/tokens/dist/themes/light.css");',
-                  js: `import * as components from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";
+                  css: `@import url("https://esm.sh/@synergy-design-system/tokens@${__VITE_PACKAGE_VERSIONS__['tokens']}/dist/themes/light.css");`,
+                  js: `import * as components from "https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['components']}/dist/synergy.js";
 
 // Override defaultLibrary to make it work with the CDN
 const { registerIconLibrary } = components;
 
 registerIconLibrary("default", {
   resolver: (name) =>
-    \`https://esm.sh/@synergy-design-system/assets@1.6.0/src/icons/\${name}.svg\`
+    \`https://esm.sh/@synergy-design-system/assets@${__VITE_PACKAGE_VERSIONS__['assets']}/src/icons/\${name}.svg\`
 });`
                 };
 

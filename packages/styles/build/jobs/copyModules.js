@@ -13,7 +13,7 @@ export const runCopyModules = job('Copying submodules to dist...', async () => {
   // Create the directories for the destination files
   const dirsToCreate = new Set(destinationFileNames.map((destination) => dirname(destination)));
 
-  await Promise.resolve([...dirsToCreate].map((dir) => mkdir(dir, { recursive: true })));
+  await Promise.all([...dirsToCreate].map((dir) => mkdir(dir, { recursive: true })));
 
   // Copy the files to their new location
   return Promise.all(

@@ -16,6 +16,7 @@ function VitePluginPackageVersions(options: PackageVersionsPluginOptions): Plugi
             readFileSync(join(config.root, packagePath, 'package.json'), 'utf-8'),
           );
           acc[packageJson.name] = packageJson.version;
+          console.log(acc);
         } catch (error) {
           console.error(`Failed to read package.json from ${packagePath}:`, error);
         }

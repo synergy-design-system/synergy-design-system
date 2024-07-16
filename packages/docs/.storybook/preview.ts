@@ -105,15 +105,22 @@ const preview: Preview = {
                   js_module: true,
                   js_pre_processor: 'none',
                   html: code,
-                  css: `@import url("https://esm.sh/@synergy-design-system/tokens@${__VITE_PACKAGE_VERSIONS__['tokens']}/dist/themes/light.css");`,
-                  js: `import * as components from "https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['components']}/dist/synergy.js";
+                  css: `/* Import theme */
+@import url("https://esm.sh/@synergy-design-system/tokens@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/tokens']}/dist/themes/light.css");
 
-// Override defaultLibrary to make it work with the CDN
+/* Import utilities */
+@import url("https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/components']}/dist/styles/index.css");
+
+/* Import styles */
+@import url("https://esm.sh/@synergy-design-system/styles@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/styles']}/dist/index.css");`,
+                  js: `import * as components from "https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/components']}/dist/synergy.js";
+
+// Override to make icons work with CDN
 const { registerIconLibrary } = components;
 
 registerIconLibrary("default", {
   resolver: (name) =>
-    \`https://esm.sh/@synergy-design-system/assets@${__VITE_PACKAGE_VERSIONS__['assets']}/src/icons/\${name}.svg\`
+    \`https://esm.sh/@synergy-design-system/assets@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/assets']}/src/icons/\${name}.svg\`
 });`
                 };
 

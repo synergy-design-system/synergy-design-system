@@ -58,59 +58,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynSelect>();
-
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynSelect['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleValueChange = (...args: Parameters<SynSelect['handleValueChange']>) => element.value?.handleValueChange(...args);
-const callHandleOpenChange = (...args: Parameters<SynSelect['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-/**
-* Shows the listbox.
- */
-const callShow = (...args: Parameters<SynSelect['show']>) => element.value?.show(...args);
-/**
-* Hides the listbox.
- */
-const callHide = (...args: Parameters<SynSelect['hide']>) => element.value?.hide(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynSelect['checkValidity']>) => element.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynSelect['getForm']>) => element.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynSelect['reportValidity']>) => element.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynSelect['setCustomValidity']>) => element.value?.setCustomValidity(...args);
-/**
-* Sets focus on the control.
- */
-const callFocus = (...args: Parameters<SynSelect['focus']>) => element.value?.focus(...args);
-/**
-* Removes focus from the control.
- */
-const callBlur = (...args: Parameters<SynSelect['blur']>) => element.value?.blur(...args);
+const nativeElement = ref<SynSelect>();
 
 defineExpose({
-  callHandleDisabledChange,
-  callHandleValueChange,
-  callHandleOpenChange,
-  callShow,
-  callHide,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
-  callFocus,
-  callBlur,
+  nativeElement,
 });
 
 // Map attributes
@@ -312,7 +263,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-clear="$emit('syn-clear', $event)"
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
@@ -323,10 +274,5 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
-    <slot name="label" />
-    <slot name="prefix" />
-    <slot name="clear-icon" />
-    <slot name="expand-icon" />
-    <slot name="help-text" />
   </syn-select>
 </template>

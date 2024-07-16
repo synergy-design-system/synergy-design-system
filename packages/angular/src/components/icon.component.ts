@@ -32,15 +32,15 @@ import '@synergy-design-system/components/components/icon/icon.js';
   template: '<ng-content></ng-content>',
 })
 export class SynIconComponent {
-  private _el: SynIcon;
+  public nativeElement: SynIcon;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-load', (e: SynLoadEvent) => { this.synLoadEvent.emit(e); });
-    this._el.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-load', (e: SynLoadEvent) => { this.synLoadEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
   }
 
   /**
@@ -49,11 +49,11 @@ export class SynIconComponent {
  */
   @Input()
   set name(v: SynIcon['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -63,11 +63,11 @@ can result in XSS attacks.
  */
   @Input()
   set src(v: SynIcon['src']) {
-    this._ngZone.runOutsideAngular(() => (this._el.src = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
 
   get src() {
-    return this._el.src;
+    return this.nativeElement.src;
   }
 
   /**
@@ -77,11 +77,11 @@ ignored by assistive devices.
  */
   @Input()
   set label(v: SynIcon['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -89,21 +89,11 @@ ignored by assistive devices.
  */
   @Input()
   set library(v: SynIcon['library']) {
-    this._ngZone.runOutsideAngular(() => (this._el.library = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
 
   get library() {
-    return this._el.library;
-  }
-
-  @Input()
-  callHandleLabelChange(...args: Parameters<SynIcon['handleLabelChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleLabelChange(...args));
-  }
-
-  @Input()
-  callSetIcon(...args: Parameters<SynIcon['setIcon']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setIcon(...args));
+    return this.nativeElement.library;
   }
 
   /**

@@ -4,17 +4,6 @@
   color: var(--syn-color-neutral-900);
 }
 
-/* Show custom elements only after they're registered */
-:not(:defined),
-:not(:defined) * {
-  opacity: 0;
-}
-
-:defined {
-  opacity: 1;
-  transition: 0.1s opacity;
-}
-
 /* Default Body */
 html, body {
   height: 100%;

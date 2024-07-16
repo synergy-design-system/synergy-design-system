@@ -21,12 +21,10 @@ import '@synergy-design-system/components/components/button-group/button-group.j
 import type { SynButtonGroup } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynButtonGroup>();
-
-// Map methods
+const nativeElement = ref<SynButtonGroup>();
 
 defineExpose({
-
+  nativeElement,
 });
 
 // Map attributes
@@ -59,7 +57,7 @@ defineEmits<{
   <syn-button-group
 
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     <slot />
   </syn-button-group>

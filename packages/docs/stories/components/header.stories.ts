@@ -20,7 +20,7 @@ const { generateTemplate } = storybookTemplate('syn-header');
 
 const meta: Meta = {
   args: overrideArgs([
-    { name: 'default', type: 'slot', value: 'App Name' },
+    { name: 'label', type: 'slot', value: '<span slot="label">App Name</span>' },
   ], defaultArgs),
   argTypes,
   component: 'syn-header',
@@ -74,12 +74,11 @@ export const Logo: Story = {
     },
   },
   render: () => html`
-    <syn-header>
+    <syn-header label="App Name">
       <span
         style="width: 32px; height: 32px; border-radius: 32px; background: var(--syn-color-primary-500); display: block;"
         slot="logo"
       ></span>
-      App Name
     </syn-header>
   `,
 } as Story;
@@ -110,11 +109,10 @@ export const Focus: Story = {
       height: 32px;
     }
     </style>
-    <syn-header>
+    <syn-header label="App Name">
       <a href="#" slot="logo" class="custom-header-link-with-logo">
         <syn-icon name="logo-color" library="system" label="Custom Logo with link"></syn-icon>
       </a>
-      App Name
     </syn-header>
   `,
 } as Story;
@@ -128,13 +126,12 @@ export const MetaNavigation: Story = {
     },
   },
   render: () => html`
-    <syn-header>
+    <syn-header label="App Name">
       <nav slot="meta-navigation">
         <syn-icon-button color="neutral" name="apps" label="Apps"></syn-icon-button>
         <syn-icon-button color="neutral" name="account_circle" label="Account"></syn-icon-button>
         <syn-icon-button color="neutral" name="more_vert" label="More"></syn-icon-button>
       </nav>
-      App Name
     </syn-header>
   `,
 } as Story;
@@ -148,7 +145,7 @@ export const Navigation = {
     },
   },
   render: () => html`
-    <syn-header>
+    <syn-header label="App Name">
       <syn-prio-nav slot="navigation">
         <syn-nav-item current horizontal>Domains</syn-nav-item>
         <syn-nav-item horizontal>Projects</syn-nav-item>
@@ -156,8 +153,28 @@ export const Navigation = {
         <syn-nav-item horizontal>Evaluations</syn-nav-item>
         <syn-nav-item horizontal>Deployments</syn-nav-item>
       </syn-prio-nav>
-      App Name
     </syn-header>
+    <script type="module">
+      // This emulates a click on the prio-nav and updates the main content
+      // This will usually be provided by the application itself, e.g. via
+      // built in routing functions like angular-router, react-router or vue-router
+      Array.from(document.querySelectorAll('syn-prio-nav')).forEach(nav => {
+        nav.addEventListener('click', e => {
+          const target = e.target.closest('syn-nav-item');
+          if (!target) {
+            return;
+          }
+          
+          // Update the current indicator
+          nav.querySelectorAll('syn-nav-item').forEach(item => {
+            item.removeAttribute('current');
+            if (item === target) {
+              item.setAttribute('current', '');
+            }
+          });
+        });
+      });
+    </script>
   `,
 };
 
@@ -170,12 +187,12 @@ export const BurgerMenu = {
     },
   },
   render: () => html`
-    <syn-header show-burger-menu>
-      App Name
+    <syn-header burger-menu="closed" label="App Name">
     </syn-header>
   `,
 };
 
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
@@ -186,3 +203,4 @@ export const Screenshot: Story = generateScreenshotStory({
 }, {
   heightPx: 200,
 });
+/* eslint-enable sort-keys */

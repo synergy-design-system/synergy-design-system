@@ -10,7 +10,6 @@ import {
   getEventAttributeForTwoWayBinding,
   getIsTwoWayBindingEnabledFor,
   job,
-  ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('vue');
@@ -21,23 +20,6 @@ const getEventImports = (events = []) => events
 
 const getEventExports = (events = []) => events
   .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
-
-const filterMethods = (members = []) => members
-  // Only include methods
-  .filter(method => method.kind === 'method')
-  // Filter out all private methods
-  .filter(method => !method.privacy || method.privacy !== 'private');
-
-const getMethodInputs = (component, members = []) => filterMethods(members)
-  .map(member => `
-    ${createComment(member.description || '')}
-    const call${ucFirstLetter(member.name)} = (...args: Parameters<${component}['${member.name}']>) => element.value?.${member.name}(...args);
-  `.trim())
-  .join('\n');
-
-const getMethodExpose = (members = []) => filterMethods(members)
-  .map(member => `call${ucFirstLetter(member.name)},`)
   .join('\n');
 
 /**
@@ -137,9 +119,19 @@ const getDefinedProps = (componentName, componentClass, attributes = []) => {
   return vueAttributeMap.join('\n\n');
 };
 
-const getSlots = (slots = []) => slots
-  .map(slot => `<slot ${slot.name ? `name="${slot.name}"` : ''}></slot>`)
-  .join('\n');
+/**
+ * Get the slot bindings for the vue component.
+ * When there are slots, we only return a generic slot as vue cannot map
+ * its own slots to the web component slots.
+ *
+ * @see https://github.com/synergy-design-system/synergy-design-system/issues/472
+ * @param {object[]} slots The slots as received via manifest
+ * @returns {string} Slot support or empty string if no slots are available
+ */
+const getSlot = (slots = []) => {
+  const hasSlots = slots.length > 0;
+  return hasSlots ? '<slot></slot>' : '';
+};
 
 export const runCreateWrappers = job('Vue: Creating Component Wrappers...', async (metadata, outDir) => {
   // List of components
@@ -162,10 +154,6 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
     const exports = eventExports.length > 0 ? `<script lang="ts">\n${eventExports}\n</script>\n` : '';
-
-    // Prepare methods
-    const methods = getMethodInputs(component.name, component.members);
-    const methodDefinitions = getMethodExpose(component.members);
 
     // Prepare attributes
     const props = getDefinedProps(
@@ -193,7 +181,7 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     }
 
     // Prepare slots
-    const slots = getSlots(component.slots);
+    const slots = getSlot(component.slots);
 
     const jsDoc = component.jsDoc || '';
 
@@ -209,13 +197,10 @@ ${eventImports}
 import type { ${component.name} } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<${component.name}>();
-
-// Map methods
-${methods}
+const nativeElement = ref<${component.name}>();
 
 defineExpose({
-  ${methodDefinitions}
+  nativeElement,
 });
 
 // Map attributes
@@ -245,7 +230,7 @@ ${exports}
     ${emitAttributes}
     ${defaultValueBinding}
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
   >
     ${slots}
   </${component.tagName}>

@@ -71,6 +71,11 @@ export default css`
     width: calc(100% + 2 * var(--syn-spacing-x-small));
   }
 
+  .nav-item--vertical:focus-visible::after {
+    left: 0;
+    width: 100%;
+  }
+
   /**
    * Horizontal nav items use narrower paddings
    */
@@ -235,6 +240,7 @@ export default css`
       var(--syn-transition-medium) right ease,
       var(--syn-transition-medium) bottom ease,
       var(--syn-transition-medium) left ease;
+    z-index: 1;
   }
 
   .current-indicator--visible.current-indicator--disabled {
@@ -253,7 +259,7 @@ export default css`
   }
 
   .nav-item--horizontal:hover .current-indicator--visible,
-  .nav-item--horizontal:focus .current-indicator--visible {
+  .nav-item--horizontal:focus-visible .current-indicator--visible {
     left: calc(var(--syn-spacing-x-small) * -1);
     right: calc(var(--syn-spacing-x-small) * -1);
   }
@@ -266,7 +272,7 @@ export default css`
   }
 
   .nav-item--vertical:hover .current-indicator--visible,
-  .nav-item--vertical:focus .current-indicator--visible {
+  .nav-item--vertical:focus-visible .current-indicator--visible {
     bottom: 0;
     top: 0;
   }

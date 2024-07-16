@@ -50,17 +50,17 @@ import '@synergy-design-system/components/components/tooltip/tooltip.js';
   template: '<ng-content></ng-content>',
 })
 export class SynTooltipComponent {
-  private _el: SynTooltip;
+  public nativeElement: SynTooltip;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
@@ -69,11 +69,11 @@ export class SynTooltipComponent {
  */
   @Input()
   set content(v: SynTooltip['content']) {
-    this._ngZone.runOutsideAngular(() => (this._el.content = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.content = v));
   }
 
   get content() {
-    return this._el.content;
+    return this.nativeElement.content;
   }
 
   /**
@@ -83,11 +83,11 @@ inside of the viewport.
  */
   @Input()
   set placement(v: SynTooltip['placement']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placement = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
 
   get placement() {
-    return this._el.placement;
+    return this.nativeElement.placement;
   }
 
   /**
@@ -95,11 +95,11 @@ inside of the viewport.
  */
   @Input()
   set disabled(v: SynTooltip['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -107,11 +107,11 @@ inside of the viewport.
  */
   @Input()
   set distance(v: SynTooltip['distance']) {
-    this._ngZone.runOutsideAngular(() => (this._el.distance = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
 
   get distance() {
-    return this._el.distance;
+    return this.nativeElement.distance;
   }
 
   /**
@@ -120,11 +120,11 @@ inside of the viewport.
  */
   @Input()
   set open(v: SynTooltip['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -132,11 +132,11 @@ inside of the viewport.
  */
   @Input()
   set skidding(v: SynTooltip['skidding']) {
-    this._ngZone.runOutsideAngular(() => (this._el.skidding = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
 
   get skidding() {
-    return this._el.skidding;
+    return this.nativeElement.skidding;
   }
 
   /**
@@ -149,11 +149,11 @@ programmatically.
  */
   @Input()
   set trigger(v: SynTooltip['trigger']) {
-    this._ngZone.runOutsideAngular(() => (this._el.trigger = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.trigger = v));
   }
 
   get trigger() {
-    return this._el.trigger;
+    return this.nativeElement.trigger;
   }
 
   /**
@@ -164,42 +164,11 @@ scenarios.
  */
   @Input()
   set hoist(v: SynTooltip['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this._el.hoist = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
 
   get hoist() {
-    return this._el.hoist;
-  }
-
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynTooltip['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleOptionsChange(...args: Parameters<SynTooltip['handleOptionsChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOptionsChange(...args));
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynTooltip['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
-  }
-
-  /**
-* Shows the tooltip.
- */
-  @Input()
-  callShow(...args: Parameters<SynTooltip['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
-  }
-
-  /**
-* Hides the tooltip
- */
-  @Input()
-  callHide(...args: Parameters<SynTooltip['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
+    return this.nativeElement.hoist;
   }
 
   /**

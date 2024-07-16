@@ -18,6 +18,9 @@ Run the following steps to install the required packages.
 # Install the base library and required css files
 npm install --save @synergy-design-system/vue @synergy-design-system/tokens
 
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
 # Optional: if icons shall be used, install the assets package
 npm install --save @synergy-design-system/assets
 ```
@@ -33,6 +36,10 @@ The components will not display correctly without the needed theme. Please inclu
 // src/main.ts
 // Add this line to enable the light theme for your application
 import "@synergy-design-system/tokens/themes/light.css";
+import "@synergy-design-system/components/index.css";
+
+// Optional: Import the styles package
+import "@synergy-design-system/styles/index.css";
 
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -139,15 +146,9 @@ An example for how these types can be used in case of event handling, is shown b
 </template>
 ```
 
-### 7. Usage of methods
+### 7. Obtaining a reference to the underlying native element (e.g. for usage of methods)
 
-Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which trigger an action, if they are called.
-
-In Vue they can be used by prefixing each method name with `call`.
-
-`focus` -> `callFocus`, `click`-> `callClick`, ...
-
-An example for calling such a method in a Vue component is shown here:
+Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all vue components.
 
 ```html
 <script setup lang="ts">
@@ -158,7 +159,7 @@ An example for calling such a method in a Vue component is shown here:
 
   const handleClick = () => {
     // Increment the count via calling the method
-    count.value?.callStepUp();
+    count.value?.nativeElement?.stepUp();
   };
 </script>
 

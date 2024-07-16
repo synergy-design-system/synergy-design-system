@@ -1,5 +1,67 @@
 {
   "components": {
+    "accordion": {
+      "default": {
+        "title": {
+          "value": "Accordion",
+          "type": "text"
+        },
+        "description": {
+          "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disable attribute to prevent the details from expanding.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
+          "type": "text"
+        }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping Details",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
+          "type": "text"
+        }
+      },
+      "contained": {
+        "title": {
+          "value": "Contained",
+          "type": "text"
+        },
+        "description": {
+          "value": "To give content more structure, you can use the property contained.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      }
+    },
     "alert": {
       "default": {
         "description": {
@@ -165,23 +227,67 @@
       }
     },
     "breadcrumb-item": {
-      "description": {
-        "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Breadcrumb Item",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Breadcrumb Item",
+          "type": "text"
+        }
       }
     },
     "breadcrumb": {
-      "description": {
-        "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy. Breadcrumbs are usually placed before a page’s main content with the current page shown last to indicate the user’s position in the navigation.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Breadcrumb",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Breadcrumb",
-        "type": "text"
+      "links": {
+        "title": {
+          "value": "Breadcrumb Links",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, breadcrumb items are rendered as buttons so you can use them to navigate single-page applications. In this case, you’ll need to add event listeners to handle clicks.\n\nFor websites, you’ll probably want to use links instead. You can make any breadcrumb item a link by applying an href attribute to it. Now, when the user activates it, they’ll be taken to the corresponding page — no event listeners required.",
+          "type": "text"
+        }
+      },
+      "prefix": {
+        "title": {
+          "value": "Prefixes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix slot to add content before any breadcrumb item.",
+          "type": "text"
+        }
+      },
+      "suffix": {
+        "title": {
+          "value": "Suffixes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the suffix slot to add content after any breadcrumb item.",
+          "type": "text"
+        }
+      },
+      "menu": {
+        "title": {
+          "value": "With Dropdowns",
+          "type": "text"
+        },
+        "description": {
+          "value": "Dropdown menus can be placed in a prefix or suffix slot to provide additional options.",
+          "type": "text"
+        }
       }
     },
     "button": {
@@ -284,6 +390,16 @@
           "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use.",
           "type": "text"
         }
+      },
+      "icon-only": {
+        "title": {
+          "value": "Icon-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Insert just a single icon to use the same button style.",
+          "type": "text"
+        }
       }
     },
     "button-group": {
@@ -297,13 +413,65 @@
       }
     },
     "card": {
-      "description": {
-        "value": "Cards can be used to group related subjects in a container.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Cards can be used to group related subjects in a container.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Card",
-        "type": "text"
+      "basic-card": {
+        "description": {
+          "value": "Basic cards aren’t very exciting, but they can display any content you want them to.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Basic Card",
+          "type": "text"
+        }
+      },
+      "with-header": {
+        "description": {
+          "value": "Headers can be used to display titles and more.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card with Header",
+          "type": "text"
+        }
+      },
+      "with-footer": {
+        "description": {
+          "value": "Footers can be used to display actions, summaries, or other relevant content.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Card with Footer",
+          "type": "text"
+        }
+      },
+      "images": {
+        "description": {
+          "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Images",
+          "type": "text"
+        }
+      },
+      "sharp": {
+        "title": {
+          "value": "Sharp Card",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the sharp variant attribute for the Card to Use a different style.",
+          "type": "text"
+        }
       }
     },
     "carousel-item": {
@@ -406,6 +574,16 @@
           "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
           "type": "text"
         }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
       }
     },
     "color-picker": {
@@ -431,7 +609,7 @@
     "details": {
       "default": {
         "description": {
-          "value": "Details show a brief summary and expand to show additional content.",
+          "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
           "type": "text"
         },
         "title": {
@@ -449,26 +627,6 @@
           "type": "text"
         }
       },
-      "summary-icon": {
-        "title": {
-          "value": "Customizing the Summary Icon",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the expand-icon and collapse-icon slots to change the expand and collapse icons, respectively. To disable the animation, override the rotate property on the summary-icon part as shown below.",
-          "type": "text"
-        }
-      },
-      "grouping": {
-        "title": {
-          "value": "Grouping Details",
-          "type": "text"
-        },
-        "description": {
-          "value": "Details are designed to function independently, but you can simulate a group or “accordion” where only one is shown at a time by listening for the syn-show event.",
-          "type": "text"
-        }
-      },
       "size": {
         "title": {
           "value": "Sizes",
@@ -476,6 +634,46 @@
         },
         "description": {
           "value": "Use the size attribute to change a detail’s size.",
+          "type": "text"
+        }
+      },
+      "open": {
+        "title": {
+          "value": "Open",
+          "type": "text"
+        },
+        "description": {
+          "value": "Details show a brief summary and expand to show additional content.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "contained": {
+        "title": {
+          "value": "Contained",
+          "type": "text"
+        },
+        "description": {
+          "value": "To give content more structure, you can use the property contained.",
+          "type": "text"
+        }
+      },
+      "icon": {
+        "title": {
+          "value": "Prefix Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix Icon to prepend an icon to the details.",
           "type": "text"
         }
       }
@@ -1644,6 +1842,16 @@
           "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
           "type": "text"
         }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
+          "type": "text"
+        }
       }
     },
     "skeleton": {
@@ -1768,16 +1976,98 @@
           "value": "The invalid status is used to warn the user that the Switch is invalid.",
           "type": "text"
         }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
       }
     },
     "tab-group": {
-      "description": {
-        "value": "Tab groups organize content into a container that shows one section at a time.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tab groups organize content into a container that shows one section at a time. Tab groups make use of tabs and tab panels. Each tab must be slotted into the nav slot and its panel must refer to a tab panel of the same name.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tab Group",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Tab Group",
-        "type": "text"
+      "start": {
+        "title": {
+          "value": "Tabs on Start",
+          "type": "text"
+        },
+        "description": {
+          "value": "Tabs can be shown on the starting side by setting placement to start.",
+          "type": "text"
+        }
+      },
+      "end": {
+        "title": {
+          "value": "Tabs on End",
+          "type": "text"
+        },
+        "description": {
+          "value": "Tabs can be shown on the ending side by setting placement to end.",
+          "type": "text"
+        }
+      },
+      "closable": {
+        "title": {
+          "value": "Closable Tabs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the closable attribute to a tab to show a close button. This example shows how you can dynamically remove tabs from the DOM when the close button is activated.",
+          "type": "text"
+        }
+      },
+      "scrolling": {
+        "title": {
+          "value": "Scrolling Tabs",
+          "type": "text"
+        },
+        "description": {
+          "value": "When there are more tabs than horizontal space allows, the nav will be scrollable.",
+          "type": "text"
+        }
+      },
+      "manuel": {
+        "title": {
+          "value": "Manual Activation",
+          "type": "text"
+        },
+        "description": {
+          "value": "When focused, keyboard users can press Left or Right to select the desired tab. By default, the corresponding tab panel will be shown immediately (automatic activation). You can change this behavior by setting activation=\"manual\" which will require the user to press Space or Enter before showing the tab panel (manual activation).",
+          "type": "text"
+        }
+      },
+      "hierachy": {
+        "title": {
+          "value": "Visual Hierarchy",
+          "type": "text"
+        },
+        "description": {
+          "value": "To structure the Page, you can use different tab styles.",
+          "type": "text"
+        }
+      },
+      "icon": {
+        "title": {
+          "value": "Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "It is also possible to a Add icon to the Tabs.",
+          "type": "text"
+        }
       }
     },
     "tab-panel": {
@@ -1791,13 +2081,15 @@
       }
     },
     "tab": {
-      "description": {
-        "value": "Tabs are used inside tab groups to represent and activate tab panels.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Tab",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tabs are used inside tab groups to represent and activate tab panels.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tab",
+          "type": "text"
+        }
       }
     },
     "tag": {
@@ -2160,8 +2452,50 @@
         }
       }
     },
+    "styles": {
+      "body": {
+        "description": {
+          "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values.\nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\n\nIt is also possible to format the text bold or semibold for certain text passages and UI elements such as label.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Body and UI text",
+          "type": "text"
+        }
+      },
+      "headings": {
+        "description": {
+          "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\n- building page hierarchy,\n- helping users scan large chunks of text,\n- providing a title to a page or piece of content,\n-as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Headings",
+          "type": "text"
+        }
+      },
+      "weight": {
+        "description": {
+          "value": "Supported font weights",
+          "type": "text"
+        },
+        "title": {
+          "value": "Font-Weights",
+          "type": "text"
+        }
+      }
+    },
     "templates": {
-      "default": {
+      "application-shell": {
+        "title": {
+          "value": "Application Shell",
+          "type": "text"
+        },
+        "description": {
+          "value": "Description for application shell",
+          "type": "text"
+        }
+      },
+      "contact-form": {
         "title": {
           "value": "Forms",
           "type": "text"
@@ -2178,6 +2512,16 @@
         },
         "description": {
           "value": "Contact Form",
+          "type": "text"
+        }
+      },
+      "table": {
+        "title": {
+          "value": "Table",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
           "type": "text"
         }
       }
@@ -2417,6 +2761,58 @@
           "type": "text"
         }
       }
+    },
+    "table": {
+      "default": {
+        "title": {
+          "value": "Table-cell",
+          "type": "text"
+        },
+        "description": {
+          "value": "The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows.\n\n DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.",
+          "type": "text"
+        }
+      },
+      "header": {
+        "title": {
+          "value": "Header",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.",
+          "type": "text"
+        }
+      },
+      "alternating": {
+        "title": {
+          "value": "Alternating",
+          "type": "text"
+        },
+        "description": {
+          "value": "The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.",
+          "type": "text"
+        }
+      },
+      "border": {
+        "title": {
+          "value": "Border",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the border attribute to define different borders in a cell. Borders can also be combined.",
+          "type": "text"
+        }
+      },
+      "scroll": {
+        "title": {
+          "value": "Scrolling Behaviour",
+          "type": "text"
+        },
+        "description": {
+          "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
+          "type": "text"
+        }
+      }
     }
   },
   "assets": {
@@ -2609,6 +3005,16 @@
       },
       "title": {
         "value": "Z-Index Tokens",
+        "type": "text"
+      }
+    },
+    "opacity": {
+      "description": {
+        "value": "Opacity tokens apply transparency to an element.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Opacity",
         "type": "text"
       }
     }

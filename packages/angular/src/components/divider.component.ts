@@ -31,12 +31,12 @@ import '@synergy-design-system/components/components/divider/divider.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDividerComponent {
-  private _el: SynDivider;
+  public nativeElement: SynDivider;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -45,15 +45,10 @@ export class SynDividerComponent {
  */
   @Input()
   set vertical(v: SynDivider['vertical']) {
-    this._ngZone.runOutsideAngular(() => (this._el.vertical = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.vertical = v));
   }
 
   get vertical() {
-    return this._el.vertical;
-  }
-
-  @Input()
-  callHandleVerticalChange(...args: Parameters<SynDivider['handleVerticalChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleVerticalChange(...args));
+    return this.nativeElement.vertical;
   }
 }

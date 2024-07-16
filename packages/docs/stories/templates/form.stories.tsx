@@ -17,7 +17,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'default'),
+        component: generateStoryDescription('templates', 'contact-form'),
       },
       page: () => (
         <>
@@ -43,9 +43,6 @@ export const ContactForm = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
-    },
-    viewport: {
-      defaultViewport: 'default',
     },
   },
   render: () => html`
@@ -203,7 +200,7 @@ export const ContactForm = {
       </form>
     </div>
 
-    <script>
+    <script type="module">
     const firstTopic = document.querySelector('syn-checkbox:first-child');
     const firstTopicError = '${getTranslation('contactForm.topicsErrorMessage')}';
 

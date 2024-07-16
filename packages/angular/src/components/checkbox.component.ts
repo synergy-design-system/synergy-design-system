@@ -48,27 +48,27 @@ import '@synergy-design-system/components/components/checkbox/checkbox.js';
   template: '<ng-content></ng-content>',
 })
 export class SynCheckboxComponent {
-  private _el: SynCheckbox;
+  public nativeElement: SynCheckbox;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   @Input()
   set title(v: SynCheckbox['title']) {
-    this._ngZone.runOutsideAngular(() => (this._el.title = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
 
   get title() {
-    return this._el.title;
+    return this.nativeElement.title;
   }
 
   /**
@@ -76,11 +76,11 @@ export class SynCheckboxComponent {
  */
   @Input()
   set name(v: SynCheckbox['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -88,11 +88,11 @@ export class SynCheckboxComponent {
  */
   @Input()
   set value(v: SynCheckbox['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -100,11 +100,11 @@ export class SynCheckboxComponent {
  */
   @Input()
   set size(v: SynCheckbox['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -112,11 +112,11 @@ export class SynCheckboxComponent {
  */
   @Input()
   set disabled(v: SynCheckbox['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -124,11 +124,11 @@ export class SynCheckboxComponent {
  */
   @Input()
   set checked(v: SynCheckbox['checked']) {
-    this._ngZone.runOutsideAngular(() => (this._el.checked = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
   }
 
   get checked() {
-    return this._el.checked;
+    return this.nativeElement.checked;
   }
 
   /**
@@ -138,11 +138,11 @@ all/none" behavior when associated checkboxes have a mix of checked and unchecke
  */
   @Input()
   set indeterminate(v: SynCheckbox['indeterminate']) {
-    this._ngZone.runOutsideAngular(() => (this._el.indeterminate = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.indeterminate = v));
   }
 
   get indeterminate() {
-    return this._el.indeterminate;
+    return this.nativeElement.indeterminate;
   }
 
   /**
@@ -154,11 +154,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynCheckbox['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -166,11 +166,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynCheckbox['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   /**
@@ -179,81 +179,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set helpText(v: SynCheckbox['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynCheckbox['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
-  }
-
-  @Input()
-  callHandleStateChange(...args: Parameters<SynCheckbox['handleStateChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleStateChange(...args));
-  }
-
-  /**
-* Simulates a click on the checkbox.
- */
-  @Input()
-  callClick(...args: Parameters<SynCheckbox['click']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.click(...args));
-  }
-
-  /**
-* Sets focus on the checkbox.
- */
-  @Input()
-  callFocus(...args: Parameters<SynCheckbox['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
-  }
-
-  /**
-* Removes focus from the checkbox.
- */
-  @Input()
-  callBlur(...args: Parameters<SynCheckbox['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
-  }
-
-  /**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-  @Input()
-  callCheckValidity(...args: Parameters<SynCheckbox['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
-  }
-
-  /**
-* Gets the associated form, if one exists.
- */
-  @Input()
-  callGetForm(...args: Parameters<SynCheckbox['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
-  }
-
-  /**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-  @Input()
-  callReportValidity(...args: Parameters<SynCheckbox['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
-  }
-
-  /**
-* Sets a custom validation message.
-* The value provided will be shown to the user when the form is submitted.
-* To clear
-the custom validation message, call this method with an empty string.
- */
-  @Input()
-  callSetCustomValidity(...args: Parameters<SynCheckbox['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this.nativeElement.helpText;
   }
 
   /**

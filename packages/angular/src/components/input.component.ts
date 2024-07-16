@@ -63,28 +63,28 @@ import '@synergy-design-system/components/components/input/input.js';
   template: '<ng-content></ng-content>',
 })
 export class SynInputComponent {
-  private _el: SynInput;
+  public nativeElement: SynInput;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   @Input()
   set title(v: SynInput['title']) {
-    this._ngZone.runOutsideAngular(() => (this._el.title = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
 
   get title() {
-    return this._el.title;
+    return this.nativeElement.title;
   }
 
   /**
@@ -95,11 +95,11 @@ to `text`.
  */
   @Input()
   set type(v: SynInput['type']) {
-    this._ngZone.runOutsideAngular(() => (this._el.type = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
 
   get type() {
-    return this._el.type;
+    return this.nativeElement.type;
   }
 
   /**
@@ -107,11 +107,11 @@ to `text`.
  */
   @Input()
   set name(v: SynInput['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -119,11 +119,11 @@ to `text`.
  */
   @Input()
   set value(v: SynInput['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -131,11 +131,11 @@ to `text`.
  */
   @Input()
   set size(v: SynInput['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -144,11 +144,11 @@ to `text`.
  */
   @Input()
   set label(v: SynInput['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -157,11 +157,11 @@ to `text`.
  */
   @Input()
   set helpText(v: SynInput['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
+    return this.nativeElement.helpText;
   }
 
   /**
@@ -169,11 +169,11 @@ to `text`.
  */
   @Input()
   set clearable(v: SynInput['clearable']) {
-    this._ngZone.runOutsideAngular(() => (this._el.clearable = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
   }
 
   get clearable() {
-    return this._el.clearable;
+    return this.nativeElement.clearable;
   }
 
   /**
@@ -181,11 +181,11 @@ to `text`.
  */
   @Input()
   set disabled(v: SynInput['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -193,11 +193,11 @@ to `text`.
  */
   @Input()
   set placeholder(v: SynInput['placeholder']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placeholder = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
 
   get placeholder() {
-    return this._el.placeholder;
+    return this.nativeElement.placeholder;
   }
 
   /**
@@ -205,11 +205,11 @@ to `text`.
  */
   @Input()
   set readonly(v: SynInput['readonly']) {
-    this._ngZone.runOutsideAngular(() => (this._el.readonly = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.readonly = v));
   }
 
   get readonly() {
-    return this._el.readonly;
+    return this.nativeElement.readonly;
   }
 
   /**
@@ -218,11 +218,11 @@ to `text`.
  */
   @Input()
   set passwordToggle(v: SynInput['passwordToggle']) {
-    this._ngZone.runOutsideAngular(() => (this._el.passwordToggle = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.passwordToggle = v));
   }
 
   get passwordToggle() {
-    return this._el.passwordToggle;
+    return this.nativeElement.passwordToggle;
   }
 
   /**
@@ -231,11 +231,11 @@ to `text`.
  */
   @Input()
   set passwordVisible(v: SynInput['passwordVisible']) {
-    this._ngZone.runOutsideAngular(() => (this._el.passwordVisible = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.passwordVisible = v));
   }
 
   get passwordVisible() {
-    return this._el.passwordVisible;
+    return this.nativeElement.passwordVisible;
   }
 
   /**
@@ -243,11 +243,11 @@ to `text`.
  */
   @Input()
   set noSpinButtons(v: SynInput['noSpinButtons']) {
-    this._ngZone.runOutsideAngular(() => (this._el.noSpinButtons = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.noSpinButtons = v));
   }
 
   get noSpinButtons() {
-    return this._el.noSpinButtons;
+    return this.nativeElement.noSpinButtons;
   }
 
   /**
@@ -259,11 +259,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynInput['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -271,11 +271,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynInput['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   /**
@@ -283,11 +283,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set pattern(v: SynInput['pattern']) {
-    this._ngZone.runOutsideAngular(() => (this._el.pattern = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.pattern = v));
   }
 
   get pattern() {
-    return this._el.pattern;
+    return this.nativeElement.pattern;
   }
 
   /**
@@ -295,11 +295,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set minlength(v: SynInput['minlength']) {
-    this._ngZone.runOutsideAngular(() => (this._el.minlength = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.minlength = v));
   }
 
   get minlength() {
-    return this._el.minlength;
+    return this.nativeElement.minlength;
   }
 
   /**
@@ -307,11 +307,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set maxlength(v: SynInput['maxlength']) {
-    this._ngZone.runOutsideAngular(() => (this._el.maxlength = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
   }
 
   get maxlength() {
-    return this._el.maxlength;
+    return this.nativeElement.maxlength;
   }
 
   /**
@@ -320,11 +320,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set min(v: SynInput['min']) {
-    this._ngZone.runOutsideAngular(() => (this._el.min = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
   }
 
   get min() {
-    return this._el.min;
+    return this.nativeElement.min;
   }
 
   /**
@@ -333,11 +333,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set max(v: SynInput['max']) {
-    this._ngZone.runOutsideAngular(() => (this._el.max = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
   }
 
   get max() {
-    return this._el.max;
+    return this.nativeElement.max;
   }
 
   /**
@@ -347,11 +347,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set step(v: SynInput['step']) {
-    this._ngZone.runOutsideAngular(() => (this._el.step = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.step = v));
   }
 
   get step() {
-    return this._el.step;
+    return this.nativeElement.step;
   }
 
   /**
@@ -359,11 +359,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set autocapitalize(v: SynInput['autocapitalize']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocapitalize = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocapitalize = v));
   }
 
   get autocapitalize() {
-    return this._el.autocapitalize;
+    return this.nativeElement.autocapitalize;
   }
 
   /**
@@ -371,11 +371,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set autocorrect(v: SynInput['autocorrect']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocorrect = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
   }
 
   get autocorrect() {
-    return this._el.autocorrect;
+    return this.nativeElement.autocorrect;
   }
 
   /**
@@ -385,11 +385,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set autocomplete(v: SynInput['autocomplete']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocomplete = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocomplete = v));
   }
 
   get autocomplete() {
-    return this._el.autocomplete;
+    return this.nativeElement.autocomplete;
   }
 
   /**
@@ -397,11 +397,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set autofocus(v: SynInput['autofocus']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autofocus = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
   }
 
   get autofocus() {
-    return this._el.autofocus;
+    return this.nativeElement.autofocus;
   }
 
   /**
@@ -409,11 +409,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set enterkeyhint(v: SynInput['enterkeyhint']) {
-    this._ngZone.runOutsideAngular(() => (this._el.enterkeyhint = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.enterkeyhint = v));
   }
 
   get enterkeyhint() {
-    return this._el.enterkeyhint;
+    return this.nativeElement.enterkeyhint;
   }
 
   /**
@@ -421,11 +421,11 @@ implied, allowing any numeric value.
  */
   @Input()
   set spellcheck(v: SynInput['spellcheck']) {
-    this._ngZone.runOutsideAngular(() => (this._el.spellcheck = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.spellcheck = v));
   }
 
   get spellcheck() {
-    return this._el.spellcheck;
+    return this.nativeElement.spellcheck;
   }
 
   /**
@@ -434,124 +434,11 @@ keyboard on supportive devices.
  */
   @Input()
   set inputmode(v: SynInput['inputmode']) {
-    this._ngZone.runOutsideAngular(() => (this._el.inputmode = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.inputmode = v));
   }
 
   get inputmode() {
-    return this._el.inputmode;
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynInput['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
-  }
-
-  @Input()
-  callHandleStepChange(...args: Parameters<SynInput['handleStepChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleStepChange(...args));
-  }
-
-  @Input()
-  callHandleValueChange(...args: Parameters<SynInput['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleValueChange(...args));
-  }
-
-  /**
-* Sets focus on the input.
- */
-  @Input()
-  callFocus(...args: Parameters<SynInput['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
-  }
-
-  /**
-* Removes focus from the input.
- */
-  @Input()
-  callBlur(...args: Parameters<SynInput['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
-  }
-
-  /**
-* Selects all the text in the input.
- */
-  @Input()
-  callSelect(...args: Parameters<SynInput['select']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.select(...args));
-  }
-
-  /**
-* Sets the start and end positions of the text selection (0-based).
- */
-  @Input()
-  callSetSelectionRange(...args: Parameters<SynInput['setSelectionRange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setSelectionRange(...args));
-  }
-
-  /**
-* Replaces a range of text with a new string.
- */
-  @Input()
-  callSetRangeText(...args: Parameters<SynInput['setRangeText']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setRangeText(...args));
-  }
-
-  /**
-* Displays the browser picker for an input element (only works if the browser supports it for the input type).
- */
-  @Input()
-  callShowPicker(...args: Parameters<SynInput['showPicker']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.showPicker(...args));
-  }
-
-  /**
-* Increments the value of a numeric input type by the value of the step attribute.
- */
-  @Input()
-  callStepUp(...args: Parameters<SynInput['stepUp']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.stepUp(...args));
-  }
-
-  /**
-* Decrements the value of a numeric input type by the value of the step attribute.
- */
-  @Input()
-  callStepDown(...args: Parameters<SynInput['stepDown']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.stepDown(...args));
-  }
-
-  /**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-  @Input()
-  callCheckValidity(...args: Parameters<SynInput['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
-  }
-
-  /**
-* Gets the associated form, if one exists.
- */
-  @Input()
-  callGetForm(...args: Parameters<SynInput['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
-  }
-
-  /**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-  @Input()
-  callReportValidity(...args: Parameters<SynInput['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
-  }
-
-  /**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-  @Input()
-  callSetCustomValidity(...args: Parameters<SynInput['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this.nativeElement.inputmode;
   }
 
   /**

@@ -58,28 +58,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynNavItem>();
-
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynNavItem['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-/**
-* Removes focus from the button.
- */
-const callBlur = (...args: Parameters<SynNavItem['blur']>) => element.value?.blur(...args);
-/**
-* Simulates a click on the nav-items button, link or summary.
- */
-const callClick = (...args: Parameters<SynNavItem['click']>) => element.value?.click(...args);
-/**
-* Sets focus on the nav-item
- */
-const callFocus = (...args: Parameters<SynNavItem['focus']>) => element.value?.focus(...args);
+const nativeElement = ref<SynNavItem>();
 
 defineExpose({
-  callHandleOpenChange,
-  callBlur,
-  callClick,
-  callFocus,
+  nativeElement,
 });
 
 // Map attributes
@@ -168,7 +150,7 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 <template>
   <syn-nav-item
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
 
@@ -176,8 +158,5 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
     @syn-focus="$emit('syn-focus', $event)"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
-    <slot name="children" />
   </syn-nav-item>
 </template>

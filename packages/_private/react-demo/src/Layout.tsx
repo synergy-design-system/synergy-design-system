@@ -25,8 +25,7 @@ export const Layout: FC = () => {
 
   return (
     <>
-      <SynHeader>
-        @synergy-design-system/react Form Demo
+      <SynHeader label="@synergy-design-system/react Form Demo">
         {/* React does not support automatic slotting, so we have to create a slot element :( */}
         <div slot="meta-navigation" style={{ display: 'contents' }}>
           <ThemeSwitch />

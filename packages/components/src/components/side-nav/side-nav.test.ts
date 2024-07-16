@@ -115,8 +115,8 @@ describe('<syn-side-nav>', () => {
 
   describe('when using non-rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedDrawerOpenSize = '25rem';
-      const expectedSideNavOpenSize = '400px';
+      const expectedDrawerOpenSize = '320px';
+      const expectedSideNavOpenSize = '320px';
 
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
@@ -167,7 +167,7 @@ describe('<syn-side-nav>', () => {
 
   describe('when using rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
-      const expectedDrawerOpenSize = '25rem';
+      const expectedDrawerOpenSize = '320px';
       const expectedSideNavOpenSize = '72px';
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
@@ -188,7 +188,7 @@ describe('<syn-side-nav>', () => {
     });
 
     it('should be visible and shrunk without the open attribute', async () => {
-      const expectedDrawerCloseSize = '4.5rem';
+      const expectedDrawerCloseSize = '72px';
       const expectedSideNavCloseSize = '72px';
 
       const sideNav = await fixture<SynSideNav>(html`
@@ -269,6 +269,25 @@ describe('<syn-side-nav>', () => {
       await sideNav.updateComplete;
 
       expect(baseDrawer.hidden).to.be.true;
+    });
+
+    it('should open the side-nav if nav-item is focused and close it if it looses focus', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav rail>
+          <syn-nav-item vertical>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const navItem = sideNav.querySelector('syn-nav-item')!;
+
+      expect(sideNav.open).to.be.false;
+
+      navItem.focus();
+
+      expect(sideNav.open).to.be.true;
+
+      navItem.blur();
+
+      expect(sideNav.open).to.be.false;
     });
   });
 });

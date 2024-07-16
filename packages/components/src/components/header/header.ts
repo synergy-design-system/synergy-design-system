@@ -1,4 +1,3 @@
-/* eslint-disable */
 import SynHeader from './header.component.js';
 
 export * from './header.component.js';

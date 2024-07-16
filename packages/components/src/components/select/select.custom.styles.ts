@@ -1,6 +1,19 @@
 import { css } from 'lit';
 
 export default css`
+  /**
+   * Invalid user data
+   */
+  :host([data-user-invalid]) .select__combobox {
+    border-color: var(--syn-input-border-color-focus-error);
+  }
+
+  :host([data-user-invalid]) .select--standard:not(.select--disabled).select--open .select__combobox,
+  :host([data-user-invalid]) .select--standard:not(.select--disabled).select--focused .select__combobox {
+    border-color: var(--syn-input-border-color-focus-error);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
+  }
+
   /* Clear button */
   .select__clear {
     color: var(--syn-input-icon-icon-clearable-color);
@@ -19,6 +32,7 @@ export default css`
   }
 
   /* Change select border on hover */
+  /* stylelint-disable-next-line no-descending-specificity */
   .select:not(.select--disabled):hover .select__combobox {
     border-color: var(--syn-input-color-hover);
   }

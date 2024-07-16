@@ -37,50 +37,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynButton>();
-
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynButton['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-/**
-* Simulates a click on the button.
- */
-const callClick = (...args: Parameters<SynButton['click']>) => element.value?.click(...args);
-/**
-* Sets focus on the button.
- */
-const callFocus = (...args: Parameters<SynButton['focus']>) => element.value?.focus(...args);
-/**
-* Removes focus from the button.
- */
-const callBlur = (...args: Parameters<SynButton['blur']>) => element.value?.blur(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynButton['checkValidity']>) => element.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynButton['getForm']>) => element.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynButton['reportValidity']>) => element.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-const callSetCustomValidity = (...args: Parameters<SynButton['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const nativeElement = ref<SynButton>();
 
 defineExpose({
-  callHandleDisabledChange,
-  callClick,
-  callFocus,
-  callBlur,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -234,14 +194,12 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-button
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-blur="$emit('syn-blur', $event)"
 
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
-    <slot name="prefix" />
-    <slot name="suffix" />
   </syn-button>
 </template>

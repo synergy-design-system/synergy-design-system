@@ -21,12 +21,10 @@ import '@synergy-design-system/components/components/menu/menu.js';
 import type { SynMenu, SynSelectEvent } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynMenu>();
-
-// Map methods
+const nativeElement = ref<SynMenu>();
 
 defineExpose({
-
+  nativeElement,
 });
 
 // Map attributes
@@ -61,7 +59,7 @@ export type { SynSelectEvent } from '@synergy-design-system/components';
   <syn-menu
     v-bind="visibleProps"
 
-    ref="element"
+    ref="nativeElement"
     @syn-select="$emit('syn-select', $event)"
   >
     <slot />

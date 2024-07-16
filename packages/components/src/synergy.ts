@@ -4,11 +4,17 @@
 // !!! and run `pnpm build` to recreate this file
 
 // Components
+export { default as SynAccordion } from './components/accordion/accordion.js';
 export { default as SynAlert } from './components/alert/alert.js';
 export { default as SynBadge } from './components/badge/badge.js';
+export { default as SynBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item.js';
+export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js';
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
+export { default as SynCard } from './components/card/card.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
+export { default as SynDetails } from './components/details/details.js';
+export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynDropdown } from './components/dropdown/dropdown.js';
@@ -33,6 +39,9 @@ export { default as SynSelect } from './components/select/select.js';
 export { default as SynSideNav } from './components/side-nav/side-nav.js';
 export { default as SynSpinner } from './components/spinner/spinner.js';
 export { default as SynSwitch } from './components/switch/switch.js';
+export { default as SynTabGroup } from './components/tab-group/tab-group.js';
+export { default as SynTabPanel } from './components/tab-panel/tab-panel.js';
+export { default as SynTab } from './components/tab/tab.js';
 export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
 export { default as SynTooltip } from './components/tooltip/tooltip.js';

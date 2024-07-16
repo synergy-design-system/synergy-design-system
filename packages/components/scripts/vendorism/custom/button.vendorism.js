@@ -1,9 +1,10 @@
 import { removeSection, removeSections } from '../remove-section.js';
+import { addSectionAfter, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
-  'button.component.ts',
-  'button.styles.ts',
-  'button.test.ts',
+  'button/button.component.ts',
+  'button/button.styles.ts',
+  'button/button.test.ts',
 ];
 
 /**
@@ -27,16 +28,49 @@ const transformComponent = (path, originalContent) => {
     ['@property({ reflect: true }) variant:', ';', { preserveEnd: true, preserveStart: true, removePrecedingWhitespace: false }],
   ], originalContent);
 
-  content = content.replace('variant:', "variant: 'filled' | 'outline' | 'text' = 'outline'");
-  content = content.replace('!this.outline', 'this.variant === \'filled\'');
-  content = content.replace('this.outline', 'this.variant === \'outline\'');
+  content = replaceSections([
+    ['variant:', "variant: 'filled' | 'outline' | 'text' = 'outline'"],
+    ['!this.outline', 'this.variant === \'filled\''],
+    ['this.outline', 'this.variant === \'outline\''],
+    // Set "primary" as default color
+    // If we need more colors later, a "color" prop would have to be added
+    ["this.variant === 'primary'", 'true'],
+    // Rename "standard" class to default
+    ['button--standard', 'button--filled'],
 
-  // Set "primary" as default color
-  // If we need more colors later, a "color" prop would have to be added
-  content = content.replace("this.variant === 'primary'", 'true');
+    // Add default slot handling for icon-only buttons
+    ['import { HasSlotController', 'import { HasSlotController, getTextContent'],
+    [
+      '<slot part="label" class="button__label"></slot>',
+      // eslint-disable-next-line no-template-curly-in-string
+      '<slot part="label" class=${classMap({ \'button__label\': true, \'button__icon-only\': this.iconOnly })} @slotchange=${this.handleSlotChange}></slot>',
+    ],
+  ], content);
 
-  // Rename "standard" class to default
-  content = content.replace(/button--standard/g, 'button--filled');
+  // Add default slot handling for icon-only buttons
+  content = addSectionAfter(
+    content,
+    "@query('.button') button: HTMLButtonElement | HTMLLinkElement;",
+    `  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+
+  @state() private iconOnly = false;`,
+  );
+
+  content = addSectionAfter(
+    content,
+    `private isLink() {
+    return this.href ? true : false;
+  }`,
+    `  private handleSlotChange() {
+    const textContent = getTextContent(this.defaultSlot).trim();
+    const assignedElements = this.defaultSlot.assignedElements({flatten: true})
+    const iconOnlyElement = assignedElements.length === 1 && assignedElements[0].tagName.toLowerCase() === 'syn-icon';
+
+    this.iconOnly = iconOnlyElement && textContent === '';
+  }`,
+    { newlinesBeforeInsertion: 2 },
+  );
+
   return {
     content,
     path,

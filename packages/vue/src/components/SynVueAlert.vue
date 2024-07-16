@@ -38,35 +38,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynAlert>();
-
-// Map methods
-const callHandleOpenChange = (...args: Parameters<SynAlert['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-const callHandleDurationChange = (...args: Parameters<SynAlert['handleDurationChange']>) => element.value?.handleDurationChange(...args);
-/**
-* Shows the alert.
- */
-const callShow = (...args: Parameters<SynAlert['show']>) => element.value?.show(...args);
-/**
-* Hides the alert
- */
-const callHide = (...args: Parameters<SynAlert['hide']>) => element.value?.hide(...args);
-/**
-* Displays the alert as a toast notification.
-* This will move the alert out of its position in the DOM and, when
-dismissed, it will be removed from the DOM completely.
-* By storing a reference to the alert, you can reuse it by
-calling this method again.
-* The returned promise will resolve after the alert is hidden.
- */
-const callToast = (...args: Parameters<SynAlert['toast']>) => element.value?.toast(...args);
+const nativeElement = ref<SynAlert>();
 
 defineExpose({
-  callHandleOpenChange,
-  callHandleDurationChange,
-  callShow,
-  callHide,
-  callToast,
+  nativeElement,
 });
 
 // Map attributes
@@ -143,7 +118,7 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 <template>
   <syn-alert
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
 
@@ -151,6 +126,5 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
-    <slot name="icon" />
   </syn-alert>
 </template>

@@ -15,11 +15,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-demo",
+            "outputPath": {
+              "base": "dist/angular-demo"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -34,10 +35,12 @@
             "styles": [
               "@synergy-design-system/tokens/themes/dark.css",
               "@synergy-design-system/tokens/themes/light.css",
-              "@synergy-design-system/components/themes/utility.css",
+              "@synergy-design-system/components/index.css",
+              "@synergy-design-system/styles/index.css",
               "src/app.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -56,9 +59,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true

@@ -47,17 +47,17 @@ import '@synergy-design-system/components/components/alert/alert.js';
   template: '<ng-content></ng-content>',
 })
 export class SynAlertComponent {
-  private _el: SynAlert;
+  public nativeElement: SynAlert;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this._el.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this._el.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this._el.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
   }
 
   /**
@@ -67,11 +67,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
  */
   @Input()
   set open(v: SynAlert['open']) {
-    this._ngZone.runOutsideAngular(() => (this._el.open = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
 
   get open() {
-    return this._el.open;
+    return this.nativeElement.open;
   }
 
   /**
@@ -79,11 +79,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
  */
   @Input()
   set closable(v: SynAlert['closable']) {
-    this._ngZone.runOutsideAngular(() => (this._el.closable = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.closable = v));
   }
 
   get closable() {
-    return this._el.closable;
+    return this.nativeElement.closable;
   }
 
   /**
@@ -91,11 +91,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
  */
   @Input()
   set variant(v: SynAlert['variant']) {
-    this._ngZone.runOutsideAngular(() => (this._el.variant = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
 
   get variant() {
-    return this._el.variant;
+    return this.nativeElement.variant;
   }
 
   /**
@@ -108,50 +108,11 @@ the alert will not close on its own.
  */
   @Input()
   set duration(v: SynAlert['duration']) {
-    this._ngZone.runOutsideAngular(() => (this._el.duration = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.duration = v));
   }
 
   get duration() {
-    return this._el.duration;
-  }
-
-  @Input()
-  callHandleOpenChange(...args: Parameters<SynAlert['handleOpenChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleOpenChange(...args));
-  }
-
-  @Input()
-  callHandleDurationChange(...args: Parameters<SynAlert['handleDurationChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDurationChange(...args));
-  }
-
-  /**
-* Shows the alert.
- */
-  @Input()
-  callShow(...args: Parameters<SynAlert['show']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.show(...args));
-  }
-
-  /**
-* Hides the alert
- */
-  @Input()
-  callHide(...args: Parameters<SynAlert['hide']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.hide(...args));
-  }
-
-  /**
-* Displays the alert as a toast notification.
-* This will move the alert out of its position in the DOM and, when
-dismissed, it will be removed from the DOM completely.
-* By storing a reference to the alert, you can reuse it by
-calling this method again.
-* The returned promise will resolve after the alert is hidden.
- */
-  @Input()
-  callToast(...args: Parameters<SynAlert['toast']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.toast(...args));
+    return this.nativeElement.duration;
   }
 
   /**

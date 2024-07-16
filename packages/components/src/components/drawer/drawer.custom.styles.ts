@@ -5,7 +5,7 @@ export default css`
     /**
      * Used as the default padding for the drawer title
      */
-    --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) 0 var(--syn-spacing-large);
+    --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-large);
 
     /**
      * Defines the default body spacing
@@ -15,7 +15,7 @@ export default css`
     /**
      * Defines the default footer spacing
      */
-    --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
+    --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large) var(--syn-spacing-medium);
   }
 
   /**
@@ -51,7 +51,7 @@ export default css`
   .drawer__header-actions {
     align-items: flex-start;
     gap: var(--syn-spacing-x-small);
-    padding: var(--syn-spacing-large) var(--syn-spacing-x-small) 0 0;
+    padding: var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-large) 0;
   }
 
   .drawer__title {
@@ -66,8 +66,8 @@ export default css`
    * When omitting this statement, we will get rounding problems via line-height
    */
   .drawer__title,
-  .header-actions {
-    min-height: 64px;
+  .drawer__header-actions {
+    min-height: 88px;
   }
 
   .drawer__header-actions syn-icon-button,

@@ -1,3 +1,97 @@
+# [@synergy-design-system/tokens-v2.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.4.0...tokens/2.5.0) (2024-07-11)
+
+
+### Features
+
+* ✨ add table stylings ([#522](https://github.com/synergy-design-system/synergy-design-system/issues/522)) ([18a030b](https://github.com/synergy-design-system/synergy-design-system/commit/18a030be92344a9f0d038e5518c8347f0fbebb4e))
+
+# [@synergy-design-system/tokens-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.3.1...tokens/2.4.0) (2024-07-01)
+
+
+### Features
+
+* ✨ Added help-text for checkbox and switch ([#520](https://github.com/synergy-design-system/synergy-design-system/issues/520)) ([7914402](https://github.com/synergy-design-system/synergy-design-system/commit/79144026cae9d283ea37c861ede2836aab1173b3))
+
+# [@synergy-design-system/tokens-v2.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.3.0...tokens/2.3.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* 🤔 added invalid state to syn-select ([#517](https://github.com/synergy-design-system/synergy-design-system/issues/517)) ([ac290d1](https://github.com/synergy-design-system/synergy-design-system/commit/ac290d16dd208342d2c2565259895bf8eca62a96))
+
+# [@synergy-design-system/tokens-v2.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.2.0...tokens/2.3.0) (2024-06-21)
+
+
+### Features
+
+* ✨ syn-details ([#468](https://github.com/synergy-design-system/synergy-design-system/issues/468)) ([e064922](https://github.com/synergy-design-system/synergy-design-system/commit/e064922ef435f3173db12548375e6032d281421a))
+
+# [@synergy-design-system/tokens-v2.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.1.0...tokens/2.2.0) (2024-06-18)
+
+
+### Features
+
+* ✨ Styles Package ([#495](https://github.com/synergy-design-system/synergy-design-system/issues/495)) ([5e7b3dc](https://github.com/synergy-design-system/synergy-design-system/commit/5e7b3dc54bc9d94060fafc8119648e9e01bd07b7))
+
+# [@synergy-design-system/tokens-v2.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.0.0...tokens/2.1.0) (2024-06-18)
+
+
+### Features
+
+* ✨ syn-tab ([#496](https://github.com/synergy-design-system/synergy-design-system/issues/496)) ([921299e](https://github.com/synergy-design-system/synergy-design-system/commit/921299e8f37db2b0a5f3e53a891f8f03ce39e12d))
+
+# [@synergy-design-system/tokens-v2.0.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.20.0...tokens/2.0.0) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 v2 breaking changes ([#448](https://github.com/synergy-design-system/synergy-design-system/issues/448)) ([b251fa7](https://github.com/synergy-design-system/synergy-design-system/commit/b251fa72ec6668d005eed23c561e901dc050ab83))
+
+
+### BREAKING CHANGES
+
+* syn-header - Deprecate default slot in favor of label slot
+* syn-header - fix attribute naming
+* syn-prio-nav - Deprecated prop "priority-menu-label"
+* syn-side-nav - Adjust default width of open sidenav
+* syn-card - Rename nested prop to sharp
+* Wrappers - Remove deprecated methods in wrappers
+
+# [@synergy-design-system/tokens-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.19.0...tokens/1.20.0) (2024-06-05)
+
+
+### Features
+
+* ✨ icon-only button ([#498](https://github.com/synergy-design-system/synergy-design-system/issues/498)) ([d223e2c](https://github.com/synergy-design-system/synergy-design-system/commit/d223e2cd649fce2bb9109798613d4b7c60ce2117))
+
+# [@synergy-design-system/tokens-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.18.0...tokens/1.19.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-breadcrumb ([#470](https://github.com/synergy-design-system/synergy-design-system/issues/470)) ([3f15e28](https://github.com/synergy-design-system/synergy-design-system/commit/3f15e28c60829f344d07c3751d19e1cf8787e64e))
+
+# [@synergy-design-system/tokens-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.17.0...tokens/1.18.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-card ([#467](https://github.com/synergy-design-system/synergy-design-system/issues/467)) ([6fa03de](https://github.com/synergy-design-system/synergy-design-system/commit/6fa03def4564236b737df851880902da03b4f47d))
+
+# [@synergy-design-system/tokens-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.16.0...tokens/1.17.0) (2024-05-08)
+
+
+### Features
+
+* ✨ syn-dialog ([#458](https://github.com/synergy-design-system/synergy-design-system/issues/458)) ([7247f0c](https://github.com/synergy-design-system/synergy-design-system/commit/7247f0cca654ea10ec5968d92175e546c43515cd))
+
+# [@synergy-design-system/tokens-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.15.0...tokens/1.16.0) (2024-05-02)
+
+
+### Features
+
+* ✨ adjust syn opacity token ([#457](https://github.com/synergy-design-system/synergy-design-system/issues/457)) ([0f44c01](https://github.com/synergy-design-system/synergy-design-system/commit/0f44c012d05930d3c01b62756f761563ee24d684))
+
 # [@synergy-design-system/tokens-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/1.14.0...tokens/1.15.0) (2024-04-26)
 
 

@@ -10,15 +10,66 @@ It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.styl
 Run the following steps to install the required packages.
 
 ```bash
-# Install the base library and required css files
-npm install --save @synergy-design-system/components @synergy-design-system/tokens
+# Install the base library
+npm install --save @synergy-design-system/components
+
+# Install the required design tokens
+# (only needed if you do not install peerDeps automatically)
+npm install --save @synergy-design-system/tokens
 ```
 
 ---
 
-### 2. Load the design tokens
+### 2. Load the design tokens (required) and utility classes (recommended)
 
 The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
+
+This package also comes with css utilities that are required to make synergy work.
+You may either load all of them in one bundle (recommended) or just include the bits that you need.
+
+> When loading custom bits, please make sure to always include `dist/styles/utility.css`!
+> Without these utilities, fullscreen components **will** not work as intended!
+
+##### List of available css utilities
+
+| Utility | Required? | Path                      | Description                                                                                                                                                                                                                                                   |
+| :------ | :-------: | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| fouc    |           | `dist/styles/fouc.css`    | Defaults for handling [Flash of Undefined Components (FOUC)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/). Scoped to only target Synergy Components to make sure it does not overlap with other custom elements already defined. |
+| utility |    ✔     | `dist/styles/utility.css` | Utilities that have to be in the light DOM to make Synergy work. For example, these include scroll locking for fullscreen components. **This is required, your application layout may break if not available**!                                               |
+
+##### 2.1. Loading all css utilities (recommended)
+
+```html
+<!-- Example 1: Loading all utility functions -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      src="../node_modules/@synergy-design-system/components/dist/styles/index.css"
+    />
+  </head>
+  <body></body>
+</html>
+```
+
+##### 2.2. Load only parts of the utilities
+
+```html
+<!-- Example 2: Loading only the required utility functions -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      src="../node_modules/@synergy-design-system/components/dist/styles/utility.css"
+    />
+  </head>
+  <body></body>
+</html>
+```
 
 ---
 
@@ -61,9 +112,8 @@ When using a build system, you should load the bundle in JavaScript or TypeScrip
 // Do not forget to load the design tokens!
 import "@synergy-design-system/tokens/themes/light.css";
 
-// Optional, but highly recommended:
 // Add the css utility functions.
-import "@synergy-design-system/components/themes/utility.css";
+import "@synergy-design-system/components/index.css";
 
 // This will load synergy.js via the exports map
 import "@synergy-design-system/components";
@@ -102,9 +152,8 @@ When using a build system, you may also load the bundle in JavaScript or TypeScr
 // Do not forget to load the design tokens!
 import "@synergy-design-system/tokens/themes/light.css";
 
-// Optional, but highly recommended:
 // Add the css utility functions.
-import "@synergy-design-system/components/themes/utility.css";
+import "@synergy-design-system/components/index.css";
 
 // This will only load and define the button itself
 import "@synergy-design-system/components/components/button/button.js";
@@ -158,6 +207,12 @@ This package ships with a [custom-elements-manifest](https://github.com/webcompo
 
 > Note the path above is valid for installations using npm.
 > When using another package manager, make sure to set the proper path to `vscode.html-custom-data.json`!
+
+---
+
+### 6. Breaking changes between major versions
+
+Please have a look at the official [breaking changes list](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs) for information how to update to new major versions of Synergy.
 
 ---
 

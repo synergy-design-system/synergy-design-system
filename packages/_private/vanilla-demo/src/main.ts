@@ -4,7 +4,8 @@ import history from 'history/browser';
 import type { SynChangeEvent, SynNavItem, SynSwitch } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
-import '@synergy-design-system/components/themes/utility.css';
+import '@synergy-design-system/components/index.css';
+import '@synergy-design-system/styles';
 import './app.css';
 import '@synergy-design-system/components';
 
@@ -106,6 +107,11 @@ const initApp = async () => {
   });
 };
 
-await initRouting();
-await initApp();
-await initThemeSwitch();
+const bootstrap = async () => {
+  await initRouting();
+  await initApp();
+  await initThemeSwitch();
+};
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+bootstrap();

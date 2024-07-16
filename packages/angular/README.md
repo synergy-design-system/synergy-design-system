@@ -9,7 +9,7 @@ This package aims for an improved UX when used in Angular applications:
 - Auto-completion
 - Event handling
 
-> We are currently supporting Angular version ^16.2.12 and ^17.0.0 as well as Typescript version > 5.0.0.
+> We are currently supporting Angular version ^16.2.12, ^17.0.0 and ^18.0.0 as well as Typescript version > 5.0.0.
 
 ## Getting started
 
@@ -21,6 +21,9 @@ Run the following steps to install the required packages.
 # Install the required dependencies
 npm install --save @synergy-design-system/angular @synergy-design-system/components @synergy-design-system/tokens
 
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
 # If not already installed, install Angular's peer dependencies
 # Install step for angular@17
 npm install --save @angular/core@17 @angular/forms@17
@@ -31,8 +34,11 @@ npm install --save @synergy-design-system/assets
 
 ### 2. Add the desired theme to your application
 
-The components will not display correctly without the needed theme.
+The components will not display correctly without the needed theme and utility classes.
 Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
+
+> This example includes the optional @synergy-design-system/styles package.
+> If you do not want to use the styles package, just remove the last import.
 
 ```json
 {
@@ -41,7 +47,11 @@ Please include either light or dark theme in your application, for example in a 
       "architect": {
         "build": {
           "options": {
-            "styles": ["@synergy-design-system/tokens/themes/light.css"]
+            "styles": [
+              "@synergy-design-system/tokens/themes/light.css",
+              "@synergy-design-system/components/index.css",
+              "@synergy-design-system/styles/index.css"
+            ]
           }
         }
       }
@@ -170,15 +180,9 @@ An example for how these types can be used in case of event handling, is shown b
   }
 ```
 
-### 7. Usage of methods
+### 7. Obtaining a reference to the underlying native element (e.g. for usage of methods)
 
-Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
-
-In Angular they can be used by prefixing each method name with `call`.
-
-`focus` -> `callFocus`, `click`-> `callClick`, ...
-
-An example for calling such a method in an Angular component is shown here:
+Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all angular components.
 
 ```js
 import { Component, ViewChild } from '@angular/core';
@@ -197,7 +201,7 @@ export class Home {
 
   handleClick() {
     // Increment the count via calling the method
-    this.count.callStepUp();
+    this.count.nativeElement.stepUp();
   }
 }
 ```

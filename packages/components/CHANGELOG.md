@@ -1,3 +1,132 @@
+# [@synergy-design-system/components-v2.4.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.0...components/2.4.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* 🤔 added invalid state to syn-select ([#517](https://github.com/synergy-design-system/synergy-design-system/issues/517)) ([ac290d1](https://github.com/synergy-design-system/synergy-design-system/commit/ac290d16dd208342d2c2565259895bf8eca62a96))
+
+# [@synergy-design-system/components-v2.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.3.0...components/2.4.0) (2024-06-21)
+
+
+### Features
+
+*  ✨ Add open / close handling for side-nav in rail mode for keyboard focus ([#513](https://github.com/synergy-design-system/synergy-design-system/issues/513)) ([ab1ccc2](https://github.com/synergy-design-system/synergy-design-system/commit/ab1ccc24837dcbf5b56195f4f31c03555b47d2f6))
+
+# [@synergy-design-system/components-v2.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.2.1...components/2.3.0) (2024-06-21)
+
+
+### Features
+
+* ✨ syn-details ([#468](https://github.com/synergy-design-system/synergy-design-system/issues/468)) ([e064922](https://github.com/synergy-design-system/synergy-design-system/commit/e064922ef435f3173db12548375e6032d281421a))
+
+# [@synergy-design-system/components-v2.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.2.0...components/2.2.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* 🤔 syn-tab-group may throw an error when unmounted too quick ([#512](https://github.com/synergy-design-system/synergy-design-system/issues/512)) ([49ca556](https://github.com/synergy-design-system/synergy-design-system/commit/49ca55659358577973122fff9059a6c36b5343d9))
+
+# [@synergy-design-system/components-v2.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.1.0...components/2.2.0) (2024-06-18)
+
+
+### Features
+
+* ✨ Styles Package ([#495](https://github.com/synergy-design-system/synergy-design-system/issues/495)) ([5e7b3dc](https://github.com/synergy-design-system/synergy-design-system/commit/5e7b3dc54bc9d94060fafc8119648e9e01bd07b7))
+
+# [@synergy-design-system/components-v2.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.0.0...components/2.1.0) (2024-06-18)
+
+
+### Features
+
+* ✨ syn-tab ([#496](https://github.com/synergy-design-system/synergy-design-system/issues/496)) ([921299e](https://github.com/synergy-design-system/synergy-design-system/commit/921299e8f37db2b0a5f3e53a891f8f03ce39e12d))
+
+# [@synergy-design-system/components-v2.0.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.27.0...components/2.0.0) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 v2 breaking changes ([#448](https://github.com/synergy-design-system/synergy-design-system/issues/448)) ([b251fa7](https://github.com/synergy-design-system/synergy-design-system/commit/b251fa72ec6668d005eed23c561e901dc050ab83))
+
+
+### BREAKING CHANGES
+
+* syn-header - Deprecate default slot in favor of label slot
+* syn-header - fix attribute naming
+* syn-prio-nav - Deprecated prop "priority-menu-label"
+* syn-side-nav - Adjust default width of open sidenav
+* syn-card - Rename nested prop to sharp
+* Wrappers - Remove deprecated methods in wrappers
+
+# [@synergy-design-system/components-v1.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.3...components/1.27.0) (2024-06-05)
+
+
+### Features
+
+* ✨ icon-only button ([#498](https://github.com/synergy-design-system/synergy-design-system/issues/498)) ([d223e2c](https://github.com/synergy-design-system/synergy-design-system/commit/d223e2cd649fce2bb9109798613d4b7c60ce2117))
+
+# [@synergy-design-system/components-v1.26.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.2...components/1.26.3) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔  syn-nav-item getting too wide when in syn-side-nav with keyboard navigation ([#503](https://github.com/synergy-design-system/synergy-design-system/issues/503)) ([e297474](https://github.com/synergy-design-system/synergy-design-system/commit/e2974749b8a3d19b3a7c1ecd3fda0f1855ceca7c))
+
+# [@synergy-design-system/components-v1.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.1...components/1.26.2) (2024-06-05)
+
+
+### Bug Fixes
+
+* 🤔 Support Angular@18 ([#502](https://github.com/synergy-design-system/synergy-design-system/issues/502)) ([10cb7fc](https://github.com/synergy-design-system/synergy-design-system/commit/10cb7fc47c951a9dfb0ea1f6070780262c0632c4))
+
+# [@synergy-design-system/components-v1.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.26.0...components/1.26.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* 🤔 Nav-item has incorrect hover state when :focus ([#497](https://github.com/synergy-design-system/synergy-design-system/issues/497)) ([ace15b3](https://github.com/synergy-design-system/synergy-design-system/commit/ace15b3c67a88c8136ce97aa4df522f1d18eded5))
+
+# [@synergy-design-system/components-v1.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.25.0...components/1.26.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-breadcrumb ([#470](https://github.com/synergy-design-system/synergy-design-system/issues/470)) ([3f15e28](https://github.com/synergy-design-system/synergy-design-system/commit/3f15e28c60829f344d07c3751d19e1cf8787e64e))
+
+# [@synergy-design-system/components-v1.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.1...components/1.25.0) (2024-05-15)
+
+
+### Features
+
+* ✨ syn-card ([#467](https://github.com/synergy-design-system/synergy-design-system/issues/467)) ([6fa03de](https://github.com/synergy-design-system/synergy-design-system/commit/6fa03def4564236b737df851880902da03b4f47d))
+
+# [@synergy-design-system/components-v1.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.24.0...components/1.24.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* 🤔 syn-header label uses wrong text color ([#487](https://github.com/synergy-design-system/synergy-design-system/issues/487)) ([a09ea5e](https://github.com/synergy-design-system/synergy-design-system/commit/a09ea5ea26610b3e1107ed9b742050a4f53c0947))
+
+# [@synergy-design-system/components-v1.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.1...components/1.24.0) (2024-05-13)
+
+
+### Features
+
+* ✨ expose native element in vue and angular wrapper ([#478](https://github.com/synergy-design-system/synergy-design-system/issues/478)) ([c70a7d6](https://github.com/synergy-design-system/synergy-design-system/commit/c70a7d6c88709fa9262279092eebc653d1e2402d))
+
+# [@synergy-design-system/components-v1.23.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.23.0...components/1.23.1) (2024-05-08)
+
+
+### Bug Fixes
+
+* 🤔 Syn-Checkbox uses wrong line-height when in multi-line mode ([#456](https://github.com/synergy-design-system/synergy-design-system/issues/456)) ([b072591](https://github.com/synergy-design-system/synergy-design-system/commit/b072591bb1c8e6052cbff96936905c173ec64ce5))
+
+# [@synergy-design-system/components-v1.23.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.22.0...components/1.23.0) (2024-05-08)
+
+
+### Features
+
+* ✨ syn-dialog ([#458](https://github.com/synergy-design-system/synergy-design-system/issues/458)) ([7247f0c](https://github.com/synergy-design-system/synergy-design-system/commit/7247f0cca654ea10ec5968d92175e546c43515cd))
+
 # [@synergy-design-system/components-v1.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/1.21.0...components/1.22.0) (2024-04-29)
 
 

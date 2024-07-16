@@ -11,6 +11,10 @@ import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 import { AppRoutingModule } from './app-routing.module';
+import {
+  SynNavItemRouterLinkDirective,
+  SynNavItemRouterLinkActiveDirective,
+} from './directives';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,8 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     SynergyComponentsModule,
     SynergyFormsModule,
+    SynNavItemRouterLinkDirective,
+    SynNavItemRouterLinkActiveDirective,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,6 +7,7 @@
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/react": "workspace:*",
+    "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*"
   },
   "devDependencies": {
@@ -54,7 +55,8 @@
   "scripts": {
     "format.eslint": "pnpm lint --fix",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "start": "vite"
+    "start": "vite",
+    "_build": "vite build"
   },
   "type": "module",
   "version": "0.1.0"

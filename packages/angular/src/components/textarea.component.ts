@@ -44,27 +44,27 @@ import '@synergy-design-system/components/components/textarea/textarea.js';
   template: '<ng-content></ng-content>',
 })
 export class SynTextareaComponent {
-  private _el: SynTextarea;
+  public nativeElement: SynTextarea;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this._el.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this._el.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this._el.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this._el.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
   }
 
   @Input()
   set title(v: SynTextarea['title']) {
-    this._ngZone.runOutsideAngular(() => (this._el.title = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
 
   get title() {
-    return this._el.title;
+    return this.nativeElement.title;
   }
 
   /**
@@ -72,11 +72,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set name(v: SynTextarea['name']) {
-    this._ngZone.runOutsideAngular(() => (this._el.name = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
 
   get name() {
-    return this._el.name;
+    return this.nativeElement.name;
   }
 
   /**
@@ -84,11 +84,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set value(v: SynTextarea['value']) {
-    this._ngZone.runOutsideAngular(() => (this._el.value = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
 
   get value() {
-    return this._el.value;
+    return this.nativeElement.value;
   }
 
   /**
@@ -96,11 +96,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set size(v: SynTextarea['size']) {
-    this._ngZone.runOutsideAngular(() => (this._el.size = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
 
   get size() {
-    return this._el.size;
+    return this.nativeElement.size;
   }
 
   /**
@@ -109,11 +109,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set label(v: SynTextarea['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
@@ -122,11 +122,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set helpText(v: SynTextarea['helpText']) {
-    this._ngZone.runOutsideAngular(() => (this._el.helpText = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
 
   get helpText() {
-    return this._el.helpText;
+    return this.nativeElement.helpText;
   }
 
   /**
@@ -134,11 +134,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set placeholder(v: SynTextarea['placeholder']) {
-    this._ngZone.runOutsideAngular(() => (this._el.placeholder = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
 
   get placeholder() {
-    return this._el.placeholder;
+    return this.nativeElement.placeholder;
   }
 
   /**
@@ -146,11 +146,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set rows(v: SynTextarea['rows']) {
-    this._ngZone.runOutsideAngular(() => (this._el.rows = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.rows = v));
   }
 
   get rows() {
-    return this._el.rows;
+    return this.nativeElement.rows;
   }
 
   /**
@@ -158,11 +158,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set resize(v: SynTextarea['resize']) {
-    this._ngZone.runOutsideAngular(() => (this._el.resize = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.resize = v));
   }
 
   get resize() {
-    return this._el.resize;
+    return this.nativeElement.resize;
   }
 
   /**
@@ -170,11 +170,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set disabled(v: SynTextarea['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -182,11 +182,11 @@ export class SynTextareaComponent {
  */
   @Input()
   set readonly(v: SynTextarea['readonly']) {
-    this._ngZone.runOutsideAngular(() => (this._el.readonly = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.readonly = v));
   }
 
   get readonly() {
-    return this._el.readonly;
+    return this.nativeElement.readonly;
   }
 
   /**
@@ -198,11 +198,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set form(v: SynTextarea['form']) {
-    this._ngZone.runOutsideAngular(() => (this._el.form = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
 
   get form() {
-    return this._el.form;
+    return this.nativeElement.form;
   }
 
   /**
@@ -210,11 +210,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set required(v: SynTextarea['required']) {
-    this._ngZone.runOutsideAngular(() => (this._el.required = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
 
   get required() {
-    return this._el.required;
+    return this.nativeElement.required;
   }
 
   /**
@@ -222,11 +222,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set minlength(v: SynTextarea['minlength']) {
-    this._ngZone.runOutsideAngular(() => (this._el.minlength = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.minlength = v));
   }
 
   get minlength() {
-    return this._el.minlength;
+    return this.nativeElement.minlength;
   }
 
   /**
@@ -234,11 +234,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set maxlength(v: SynTextarea['maxlength']) {
-    this._ngZone.runOutsideAngular(() => (this._el.maxlength = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
   }
 
   get maxlength() {
-    return this._el.maxlength;
+    return this.nativeElement.maxlength;
   }
 
   /**
@@ -246,11 +246,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set autocapitalize(v: SynTextarea['autocapitalize']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocapitalize = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocapitalize = v));
   }
 
   get autocapitalize() {
-    return this._el.autocapitalize;
+    return this.nativeElement.autocapitalize;
   }
 
   /**
@@ -258,11 +258,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set autocorrect(v: SynTextarea['autocorrect']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocorrect = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
   }
 
   get autocorrect() {
-    return this._el.autocorrect;
+    return this.nativeElement.autocorrect;
   }
 
   /**
@@ -272,11 +272,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set autocomplete(v: SynTextarea['autocomplete']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autocomplete = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocomplete = v));
   }
 
   get autocomplete() {
-    return this._el.autocomplete;
+    return this.nativeElement.autocomplete;
   }
 
   /**
@@ -284,11 +284,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set autofocus(v: SynTextarea['autofocus']) {
-    this._ngZone.runOutsideAngular(() => (this._el.autofocus = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
   }
 
   get autofocus() {
-    return this._el.autofocus;
+    return this.nativeElement.autofocus;
   }
 
   /**
@@ -296,11 +296,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set enterkeyhint(v: SynTextarea['enterkeyhint']) {
-    this._ngZone.runOutsideAngular(() => (this._el.enterkeyhint = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.enterkeyhint = v));
   }
 
   get enterkeyhint() {
-    return this._el.enterkeyhint;
+    return this.nativeElement.enterkeyhint;
   }
 
   /**
@@ -308,11 +308,11 @@ the same document or shadow root for this to work.
  */
   @Input()
   set spellcheck(v: SynTextarea['spellcheck']) {
-    this._ngZone.runOutsideAngular(() => (this._el.spellcheck = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.spellcheck = v));
   }
 
   get spellcheck() {
-    return this._el.spellcheck;
+    return this.nativeElement.spellcheck;
   }
 
   /**
@@ -321,108 +321,11 @@ keyboard on supportive devices.
  */
   @Input()
   set inputmode(v: SynTextarea['inputmode']) {
-    this._ngZone.runOutsideAngular(() => (this._el.inputmode = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.inputmode = v));
   }
 
   get inputmode() {
-    return this._el.inputmode;
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynTextarea['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
-  }
-
-  @Input()
-  callHandleRowsChange(...args: Parameters<SynTextarea['handleRowsChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleRowsChange(...args));
-  }
-
-  @Input()
-  callHandleValueChange(...args: Parameters<SynTextarea['handleValueChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleValueChange(...args));
-  }
-
-  /**
-* Sets focus on the textarea.
- */
-  @Input()
-  callFocus(...args: Parameters<SynTextarea['focus']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.focus(...args));
-  }
-
-  /**
-* Removes focus from the textarea.
- */
-  @Input()
-  callBlur(...args: Parameters<SynTextarea['blur']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.blur(...args));
-  }
-
-  /**
-* Selects all the text in the textarea.
- */
-  @Input()
-  callSelect(...args: Parameters<SynTextarea['select']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.select(...args));
-  }
-
-  /**
-* Gets or sets the textarea's scroll position.
- */
-  @Input()
-  callScrollPosition(...args: Parameters<SynTextarea['scrollPosition']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.scrollPosition(...args));
-  }
-
-  /**
-* Sets the start and end positions of the text selection (0-based).
- */
-  @Input()
-  callSetSelectionRange(...args: Parameters<SynTextarea['setSelectionRange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setSelectionRange(...args));
-  }
-
-  /**
-* Replaces a range of text with a new string.
- */
-  @Input()
-  callSetRangeText(...args: Parameters<SynTextarea['setRangeText']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setRangeText(...args));
-  }
-
-  /**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-  @Input()
-  callCheckValidity(...args: Parameters<SynTextarea['checkValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.checkValidity(...args));
-  }
-
-  /**
-* Gets the associated form, if one exists.
- */
-  @Input()
-  callGetForm(...args: Parameters<SynTextarea['getForm']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.getForm(...args));
-  }
-
-  /**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-  @Input()
-  callReportValidity(...args: Parameters<SynTextarea['reportValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.reportValidity(...args));
-  }
-
-  /**
-* Sets a custom validation message.
-* Pass an empty string to restore validity.
- */
-  @Input()
-  callSetCustomValidity(...args: Parameters<SynTextarea['setCustomValidity']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.setCustomValidity(...args));
+    return this.nativeElement.inputmode;
   }
 
   /**

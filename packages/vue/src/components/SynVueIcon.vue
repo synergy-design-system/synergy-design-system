@@ -23,15 +23,10 @@ import '@synergy-design-system/components/components/icon/icon.js';
 import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynIcon>();
-
-// Map methods
-const callHandleLabelChange = (...args: Parameters<SynIcon['handleLabelChange']>) => element.value?.handleLabelChange(...args);
-const callSetIcon = (...args: Parameters<SynIcon['setIcon']>) => element.value?.setIcon(...args);
+const nativeElement = ref<SynIcon>();
 
 defineExpose({
-  callHandleLabelChange,
-  callSetIcon,
+  nativeElement,
 });
 
 // Map attributes
@@ -96,7 +91,7 @@ export type { SynErrorEvent } from '@synergy-design-system/components';
 <template>
   <syn-icon
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
 
     @syn-load="$emit('syn-load', $event)"
     @syn-error="$emit('syn-error', $event)"

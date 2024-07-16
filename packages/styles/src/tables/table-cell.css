@@ -1,0 +1,137 @@
+/**
+ * Table cell classes
+ *
+ * @boolean { true } syn-table-cell Applies the table cell styling
+ * @boolean syn-table-cell--alternating Applies an alternating style to help separate rows visually
+ * @boolean syn-table-cell--border-start Applies a border to the left of the table cell
+ * @boolean syn-table-cell--border-end Applies a border to the right of the table cell
+ * @boolean syn-table-cell--border-top Applies a border to the top of the table cell
+ * @boolean syn-table-cell--border-bottom Applies a border to the bottom of the table cell
+ * @boolean syn-table-cell--header Applies the table cell header styling
+ * @variant { NO_DEFAULT | bottom | top | start | end } syn-table-cell--shadow Applies the selected shadow to the table cell
+ * @boolean syn-table-cell--shadow-active Displays the table shadow
+ */
+
+.syn-table-cell,
+.syn-table--default td,
+.syn-table--alternating td,
+.syn-table--border td {
+	background-color: var(--syn-color-neutral-0);
+	color: var(--syn-typography-color-text);
+	font: var(--syn-body-small-regular);
+	height: var(--syn-spacing-large);
+	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+	text-align: start;
+	vertical-align: top;
+}
+
+.syn-table-cell--alternating,
+.syn-table--alternating tr:nth-child(even) > td {
+	background-color: var(--syn-color-neutral-50);
+}
+
+/* Border */
+.syn-table-cell--border-start {
+	border-inline-start: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-end,
+.syn-table--border tr > td:not(:last-child) {
+	border-inline-end: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-top {
+	border-top: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+.syn-table-cell--border-bottom,
+.syn-table--border tr:not(:last-child) > td {
+	border-bottom: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+
+
+/* Header */
+.syn-table-cell--header,
+.syn-table--default th,
+.syn-table--alternating th,
+.syn-table--border th {
+	background-color: var(--syn-color-neutral-200);
+	color: var(--syn-typography-color-text);
+	font: var(--syn-body-small-semibold);
+	height: var(--syn-spacing-large);
+	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+	text-align: start;
+	vertical-align: top;
+}
+
+/* Shadow */
+.syn-table-cell--shadow-bottom::after,
+.syn-table-cell--shadow-top::after,
+.syn-table-cell--shadow-start::after,
+.syn-table-cell--shadow-end::after {
+	/* Fallback for no color-mix support */
+	--shadow-start: rgb(49 55 58 / 0%) ;
+	--shadow-end: rgb(49 55 58 / 15%);
+
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	transition-duration: 0.25s;
+	transition-property: opacity;
+	transition-timing-function: cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+/* I can not use var(--syn-color-neutral-950) here for some reason and therefore `grey`is used. If doing this, the fallback will not be used */
+@supports (background: color-mix(in srgb, grey 0%, transparent)) {
+	.syn-table-cell--shadow-bottom::after,
+	.syn-table-cell--shadow-top::after,
+	.syn-table-cell--shadow-start::after,
+	.syn-table-cell--shadow-end::after {
+		--shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
+		--shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 15%, transparent);  
+	}
+}
+
+.syn-table-cell--shadow-bottom::after,
+.syn-table-cell--shadow-top::after {
+	height: var(--syn-spacing-x-small);
+	left: 0;
+	right: 0;
+}
+
+.syn-table-cell--shadow-start::after,
+.syn-table-cell--shadow-end::after {
+	bottom: 0;
+	top: 0;
+	width: var(--syn-spacing-x-small);
+}
+
+.syn-table-cell--shadow-bottom::after {
+	background: linear-gradient(0deg, var(--shadow-start) 0%, var(--shadow-end) 100%);
+	bottom: calc(var(--syn-spacing-x-small) * -1);
+}
+
+.syn-table-cell--shadow-top::after {
+	background: linear-gradient(180deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	top: calc(var(--syn-spacing-x-small) * -1);
+}
+
+.syn-table-cell--shadow-start::after,
+:dir(rtl) .syn-table-cell--shadow-end::after {
+	background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	left: calc(var(--syn-spacing-x-small) * -1);
+	right: unset;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.syn-table-cell--shadow-end::after,
+:dir(rtl) .syn-table-cell--shadow-start::after {
+	background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	left: unset;
+	right: calc(var(--syn-spacing-x-small) * -1);
+}
+
+.syn-table-cell--shadow-active::after {
+	opacity: 1;
+}

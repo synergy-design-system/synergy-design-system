@@ -43,12 +43,12 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
   template: '<ng-content></ng-content>',
 })
 export class SynOptgroupComponent {
-  private _el: SynOptgroup;
+  public nativeElement: SynOptgroup;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
   }
 
@@ -57,11 +57,11 @@ export class SynOptgroupComponent {
  */
   @Input()
   set disabled(v: SynOptgroup['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this._el.disabled = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
 
   get disabled() {
-    return this._el.disabled;
+    return this.nativeElement.disabled;
   }
 
   /**
@@ -70,15 +70,10 @@ export class SynOptgroupComponent {
  */
   @Input()
   set label(v: SynOptgroup['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
-  }
-
-  @Input()
-  callHandleDisabledChange(...args: Parameters<SynOptgroup['handleDisabledChange']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleDisabledChange(...args));
+    return this.nativeElement.label;
   }
 }

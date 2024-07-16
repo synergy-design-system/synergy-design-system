@@ -10,7 +10,6 @@ import {
   getIsTwoWayBindingEnabledFor,
   job,
   lcFirstLetter,
-  ucFirstLetter,
 } from '../shared.js';
 
 const headerComment = createHeader('angular');
@@ -36,7 +35,7 @@ const getEventListeners = ({
       const control = getControlAttributeForTwoWayBinding(tagNameWithoutPrefix);
       additionalCodeToRun = `this.${control}Change.emit(this.${control})`;
     }
-    return `this._el.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); ${additionalCodeToRun} });`;
+    return `this.nativeElement.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); ${additionalCodeToRun} });`;
   })
   .join('\n');
 
@@ -66,27 +65,13 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
     ${createComment(attr.description || '')}
     @Input()
     set ${attr.fieldName}(v: ${componentName}['${attr.fieldName}']) {
-      this._ngZone.runOutsideAngular(() => (this._el.${attr.fieldName} = v));
+      this._ngZone.runOutsideAngular(() => (this.nativeElement.${attr.fieldName} = v));
     }
     get ${attr.fieldName}() {
-      return this._el.${attr.fieldName};
+      return this.nativeElement.${attr.fieldName};
     }
   `.trim())
   .join('\n\n');
-
-const getMethodInputs = (component, members = []) => members
-  // Only include methods
-  .filter(method => method.kind === 'method')
-  // Filter out all private methods
-  .filter(method => !method.privacy || method.privacy !== 'private')
-  .map(member => `
-    ${createComment(member.description || '')}
-    @Input()
-    call${ucFirstLetter(member.name)}(...args: Parameters<${component}['${member.name}']>) {
-      return this._ngZone.runOutsideAngular(() => this._el.${member.name}(...args));
-    }
-  `.trim())
-  .join('\n');
 
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
@@ -106,7 +91,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const eventOutputs = getEventOutputs(component);
 
     const attributeInputs = getAttributeInputs(component.name, component.attributes);
-    const methodInputs = getMethodInputs(component.name, component.members);
 
     const source = `
       ${headerComment}
@@ -129,18 +113,16 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         template: '<ng-content></ng-content>',
       })
       export class ${component.name}Component {
-        private _el: ${component.name};
+        public nativeElement: ${component.name};
         private _ngZone: NgZone;
       
         constructor(e: ElementRef, ngZone: NgZone) {
-          this._el = e.nativeElement;
+          this.nativeElement = e.nativeElement;
           this._ngZone = ngZone;
           ${eventListeners}
         }
 
         ${attributeInputs}
-
-        ${methodInputs}
 
         ${eventOutputs}
       }

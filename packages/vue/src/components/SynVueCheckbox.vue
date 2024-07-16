@@ -39,54 +39,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynCheckbox>();
-
-// Map methods
-const callHandleDisabledChange = (...args: Parameters<SynCheckbox['handleDisabledChange']>) => element.value?.handleDisabledChange(...args);
-const callHandleStateChange = (...args: Parameters<SynCheckbox['handleStateChange']>) => element.value?.handleStateChange(...args);
-/**
-* Simulates a click on the checkbox.
- */
-const callClick = (...args: Parameters<SynCheckbox['click']>) => element.value?.click(...args);
-/**
-* Sets focus on the checkbox.
- */
-const callFocus = (...args: Parameters<SynCheckbox['focus']>) => element.value?.focus(...args);
-/**
-* Removes focus from the checkbox.
- */
-const callBlur = (...args: Parameters<SynCheckbox['blur']>) => element.value?.blur(...args);
-/**
-* Checks for validity but does not show a validation message.
-* Returns `true` when valid and `false` when invalid.
- */
-const callCheckValidity = (...args: Parameters<SynCheckbox['checkValidity']>) => element.value?.checkValidity(...args);
-/**
-* Gets the associated form, if one exists.
- */
-const callGetForm = (...args: Parameters<SynCheckbox['getForm']>) => element.value?.getForm(...args);
-/**
-* Checks for validity and shows the browser's validation message if the control is invalid.
- */
-const callReportValidity = (...args: Parameters<SynCheckbox['reportValidity']>) => element.value?.reportValidity(...args);
-/**
-* Sets a custom validation message.
-* The value provided will be shown to the user when the form is submitted.
-* To clear
-the custom validation message, call this method with an empty string.
- */
-const callSetCustomValidity = (...args: Parameters<SynCheckbox['setCustomValidity']>) => element.value?.setCustomValidity(...args);
+const nativeElement = ref<SynCheckbox>();
 
 defineExpose({
-  callHandleDisabledChange,
-  callHandleStateChange,
-  callClick,
-  callFocus,
-  callBlur,
-  callCheckValidity,
-  callGetForm,
-  callReportValidity,
-  callSetCustomValidity,
+  nativeElement,
 });
 
 // Map attributes
@@ -206,7 +162,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-checkbox
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
@@ -215,6 +171,5 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-invalid="$emit('syn-invalid', $event)"
   >
     <slot />
-    <slot name="help-text" />
   </syn-checkbox>
 </template>

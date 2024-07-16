@@ -11,7 +11,9 @@ import {
   NgZone,
   Output,
 } from '@angular/core';
-import type { SynBurgerMenuHideEvent, SynBurgerMenuShowEvent, SynHeader } from '@synergy-design-system/components';
+import type {
+  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent, SynHeader,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/header/header.js';
 
 /**
@@ -22,18 +24,21 @@ import '@synergy-design-system/components/components/header/header.js';
  * @status stable
  * @since 1.10.0
  *
- * @slot - The label for the header.
- * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided.
- * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons.
+ * @slot label - The label for the header
+ * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided
+ * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons
  *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
  * @slot navigation - This slot can be used to add an optional horizontal navigation
- * @slot show-burger-menu - An icon to use in lieu of the default show burger menu icon
- * @slot hide-burger-menu - An icon to use in lieu of the default hide burger menu icon
+ * @slot open-burger-menu-icon - An icon to use in lieu of the default burger-menu=open state.
+ *                      The default close icon is a 'x'.
+ * @slot closed-burger-menu-icon - An icon to use in lieu of the default burger-menu=closed state.
+ *                      The default open icon is a burger menu.
  *
- * @event syn-burger-menu-show - Emitted when the burger menu button is toggled to visible
- * @event syn-burger-menu-hide - Emitted when the burger menu button is toggled to not visible
+ * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to closed
+ * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to hidden
+ * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - The component's base wrapper
  * @csspart content - The wrapper most content items reside
  * @csspart logo - The wrapper the application logo resides in
  * @csspart label - The element wrapping the application name
@@ -47,82 +52,64 @@ import '@synergy-design-system/components/components/header/header.js';
   template: '<ng-content></ng-content>',
 })
 export class SynHeaderComponent {
-  private _el: SynHeader;
+  public nativeElement: SynHeader;
 
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
-    this._el = e.nativeElement;
+    this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this._el.addEventListener('syn-burger-menu-show', (e: SynBurgerMenuShowEvent) => { this.synBurgerMenuShowEvent.emit(e); });
-    this._el.addEventListener('syn-burger-menu-hide', (e: SynBurgerMenuHideEvent) => { this.synBurgerMenuHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-closed', (e: SynBurgerMenuClosedEvent) => { this.synBurgerMenuClosedEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-hidden', (e: SynBurgerMenuHiddenEvent) => { this.synBurgerMenuHiddenEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-burger-menu-open', (e: SynBurgerMenuOpenEvent) => { this.synBurgerMenuOpenEvent.emit(e); });
   }
 
   /**
 * The headers label.
-* If you need to display HTML, use the `default` slot instead.
+* If you need to display HTML, use the `label` slot instead.
  */
   @Input()
   set label(v: SynHeader['label']) {
-    this._ngZone.runOutsideAngular(() => (this._el.label = v));
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
 
   get label() {
-    return this._el.label;
+    return this.nativeElement.label;
   }
 
   /**
-* Adds a button to toggle the burger menu's visibility.
-The button is added automatically, if the component finds a syn-side-nav in non-rail mode.
+* Defines the current visibility and icon of the burger-menu icon.
+The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
+The following values can be used:
+- hidden: The burger menu is not visible
+- open: The burger menu is visible and shows the close icon
+- closed: The burger menu is visible and shows the open icon
  */
   @Input()
-  set showBurgerMenu(v: SynHeader['showBurgerMenu']) {
-    this._ngZone.runOutsideAngular(() => (this._el.showBurgerMenu = v));
+  set burgerMenu(v: SynHeader['burgerMenu']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.burgerMenu = v));
   }
 
-  get showBurgerMenu() {
-    return this._el.showBurgerMenu;
-  }
-
-  /**
-* Determines whether or not the burger menu is currently visible.
- */
-  @Input()
-  set burgerMenuVisible(v: SynHeader['burgerMenuVisible']) {
-    this._ngZone.runOutsideAngular(() => (this._el.burgerMenuVisible = v));
-  }
-
-  get burgerMenuVisible() {
-    return this._el.burgerMenuVisible;
-  }
-
-  @Input()
-  callHandleBurgerMenuVisible(...args: Parameters<SynHeader['handleBurgerMenuVisible']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.handleBurgerMenuVisible(...args));
+  get burgerMenu() {
+    return this.nativeElement.burgerMenu;
   }
 
   /**
-* Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation
-like showing the burger menu icon and open / close handling.
-
-If no side navigation is connected, the header will use the first `syn-side-nav` element it
-finds.
+* Emitted when the burger menu is toggled to closed
  */
-  @Input()
-  callConnectSideNavigation(...args: Parameters<SynHeader['connectSideNavigation']>) {
-    return this._ngZone.runOutsideAngular(() => this._el.connectSideNavigation(...args));
-  }
+  @Output() synBurgerMenuClosedEvent = new EventEmitter<SynBurgerMenuClosedEvent>();
 
   /**
-* Emitted when the burger menu button is toggled to visible
+* Emitted when the burger menu is toggled to hidden
  */
-  @Output() synBurgerMenuShowEvent = new EventEmitter<SynBurgerMenuShowEvent>();
+  @Output() synBurgerMenuHiddenEvent = new EventEmitter<SynBurgerMenuHiddenEvent>();
 
   /**
-* Emitted when the burger menu button is toggled to not visible
+* Emitted when the burger menu is toggled to open
  */
-  @Output() synBurgerMenuHideEvent = new EventEmitter<SynBurgerMenuHideEvent>();
+  @Output() synBurgerMenuOpenEvent = new EventEmitter<SynBurgerMenuOpenEvent>();
 }
 
-export type { SynBurgerMenuShowEvent } from '@synergy-design-system/components';
-export type { SynBurgerMenuHideEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
+export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';

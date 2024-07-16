@@ -57,27 +57,10 @@ import type {
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
-const element = ref<SynSideNav>();
-
-// Map methods
-const callHandleModeChange = (...args: Parameters<SynSideNav['handleModeChange']>) => element.value?.handleModeChange(...args);
-const callHandleOpenChange = (...args: Parameters<SynSideNav['handleOpenChange']>) => element.value?.handleOpenChange(...args);
-const callHandleFocusTrapping = (...args: Parameters<SynSideNav['handleFocusTrapping']>) => element.value?.handleFocusTrapping(...args);
-/**
-* Shows the side-nav.
- */
-const callShow = (...args: Parameters<SynSideNav['show']>) => element.value?.show(...args);
-/**
-* Hides the side-nav
- */
-const callHide = (...args: Parameters<SynSideNav['hide']>) => element.value?.hide(...args);
+const nativeElement = ref<SynSideNav>();
 
 defineExpose({
-  callHandleModeChange,
-  callHandleOpenChange,
-  callHandleFocusTrapping,
-  callShow,
-  callHide,
+  nativeElement,
 });
 
 // Map attributes
@@ -161,7 +144,7 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 <template>
   <syn-side-nav
     v-bind="visibleProps"
-    ref="element"
+    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
 
@@ -169,6 +152,5 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
   >
     <slot />
-    <slot name="footer" />
   </syn-side-nav>
 </template>

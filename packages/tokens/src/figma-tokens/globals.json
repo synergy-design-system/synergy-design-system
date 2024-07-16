@@ -332,6 +332,10 @@
       "value": "{dimension.base}*4",
       "type": "spacing"
     },
+    "medium-large": {
+      "value": "{dimension.base}*5",
+      "type": "spacing"
+    },
     "large": {
       "value": "{dimension.base}*6",
       "type": "spacing"
@@ -417,7 +421,7 @@
     "type": "other"
   },
   "opacity": {
-    "medium": {
+    "50": {
       "value": "0.5",
       "type": "opacity",
       "description": "50%"

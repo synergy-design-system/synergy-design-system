@@ -102,7 +102,15 @@ const preview: Preview = {
                   js_pre_processor: 'none',
                   html: code,
                   css: '@import url("https://esm.sh/@synergy-design-system/tokens/dist/themes/light.css");',
-                  js: 'import * as syn from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";'
+                  js: `import * as components from "https://esm.sh/@synergy-design-system/components/dist/synergy.js";
+
+// Override defaultLibrary to make it work with the CDN
+const { registerIconLibrary } = components;
+
+registerIconLibrary("default", {
+  resolver: (name) =>
+    \`https://esm.sh/@synergy-design-system/assets@1.6.0/src/icons/\${name}.svg\`
+});`
                 };
 
                 const input = document.createElement('input');
@@ -124,4 +132,4 @@ const preview: Preview = {
   },
 };
 
-export default preview;
+export default preview;;

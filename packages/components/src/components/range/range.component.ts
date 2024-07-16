@@ -21,6 +21,8 @@ import {
 } from './utility.js';
 import styles from './range.styles.js';
 
+const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
+
 /**
  * @summary Ranges allow the user to select values within a given range using one or two knob.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
@@ -333,7 +335,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.dataset.pointerId = event.pointerId.toString();
     knob.setPointerCapture(event.pointerId);
     knob.classList.add('grabbed');
-    await (knob.parentElement as SynTooltip).show();
+
+    // Show the tooltip on touch devices
+    if (hasTouch()) {
+      await (knob.parentElement as SynTooltip).show();
+    }
   }
 
   #onDragKnob(event: PointerEvent) {
@@ -382,7 +388,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.releasePointerCapture(event.pointerId);
     delete knob.dataset.pointerId;
     this.emit('syn-change');
-    await (knob.parentElement as SynTooltip).hide();
+
+    // Hide the tooltip on touch devices
+    if (hasTouch()) {
+      await (knob.parentElement as SynTooltip).hide();
+    }
   }
 
   #moveKnob(knob: HTMLDivElement, value: number) {

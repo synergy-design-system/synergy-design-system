@@ -6,10 +6,14 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:compat/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2023,
   },
+  plugins: [
+    'compat',
+  ],
   rules: {
 
     // Disabled as we use it for templating a lot

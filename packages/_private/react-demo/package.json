@@ -3,6 +3,7 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
+  "browserslist": "defaults and supports es6-module",
   "dependencies": {
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",

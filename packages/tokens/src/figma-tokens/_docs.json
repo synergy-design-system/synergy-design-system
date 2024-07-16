@@ -1805,7 +1805,7 @@
       },
       "tooltip-placement": {
         "description": {
-          "value": "By default, the tooltip is shown on top. Set tooltip to bottom to show it below the slider.",
+          "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the slider.",
           "type": "text"
         },
         "title": {
@@ -1815,7 +1815,7 @@
       },
       "tooltip-disabled": {
         "description": {
-          "value": "To disable the tooltip, set tooltip to none.",
+          "value": "To disable the tooltip, set tooltip-placement to none.",
           "type": "text"
         },
         "title": {

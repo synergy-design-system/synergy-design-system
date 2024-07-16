@@ -274,9 +274,9 @@ export const CustomTrackOffset: Story = {
   render: () => html`
     <syn-range
       class="custom-track-offset"
-      max="100"
-      min="0"
-      value="25"
+      max="50"
+      min="-50"
+      value="0"
     ></syn-range>
     <style>
       .custom-track-offset {
@@ -381,7 +381,7 @@ export const TooltipPlacement: Story = {
   },
   render: () => html`
     <syn-range
-      tooltip="bottom"
+      tooltip-placement="bottom"
       max="100"
       min="0"
       value="50"
@@ -401,7 +401,7 @@ export const TooltipDisabled: Story = {
     <syn-range
       max="100"
       min="0"
-      tooltip-disabled
+      tooltip-placement="none"
       value="50"
     ></syn-range>
   `,

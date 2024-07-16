@@ -28,7 +28,6 @@ describe('<syn-range>', () => {
     expect(el.name).to.equal('');
     expect(el.size).to.equal('medium');
     expect(el.step).to.equal(1);
-    expect(el.tooltipDisabled).to.equal(false);
     expect(el.tooltipPlacement).to.equal('top');
     expect(el.value).to.equal('0');
     expect(el.valueAsArray).to.deep.equal([0]);
@@ -47,8 +46,8 @@ describe('<syn-range>', () => {
       expect(tooltip.content).to.equal('Value: 5');
     });
 
-    it('should disable the tooltip if the tooltipDisabled attribute is set', async () => {
-      const el = await fixture<SynRange>(html`<syn-range tooltip-disabled></syn-range>`);
+    it('should disable the tooltip if the tooltip-placement is set to "none"', async () => {
+      const el = await fixture<SynRange>(html`<syn-range tooltip-placement="none"></syn-range>`);
       const tooltip = el.shadowRoot!.querySelector('syn-tooltip')!;
 
       expect(tooltip).to.have.attribute('disabled');

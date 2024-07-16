@@ -181,6 +181,7 @@ export class SynRangeComponent {
 
   /**
 * The preferred placement of the range's tooltip.
+* Use "none" to disable the tooltip
  */
   @Input()
   set tooltipPlacement(v: SynRange['tooltipPlacement']) {
@@ -189,18 +190,6 @@ export class SynRangeComponent {
 
   get tooltipPlacement() {
     return this.nativeElement.tooltipPlacement;
-  }
-
-  /**
-* Set the visibility of the tooltip
- */
-  @Input()
-  set tooltipDisabled(v: SynRange['tooltipDisabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.tooltipDisabled = v));
-  }
-
-  get tooltipDisabled() {
-    return this.nativeElement.tooltipDisabled;
   }
 
   /**

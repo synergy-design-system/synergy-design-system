@@ -101,11 +101,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** The range's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** The preferred placement of the range's tooltip. */
-  @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: 'top' | 'bottom' = 'top';
-
-  /** Set the visibility of the tooltip  */
-  @property({ attribute: 'tooltip-disabled', type: Boolean }) tooltipDisabled = false;
+  /** The preferred placement of the range's tooltip. Use "none" to disable the tooltip */
+  @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: 'top' | 'bottom' | 'none' = 'top';
 
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
@@ -322,7 +319,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  #onClickKnob(event: PointerEvent) {
+  async #onClickKnob(event: PointerEvent) {
     if (this.disabled) return;
     const knob = event.target as HTMLDivElement;
     this.#updateTooltip(knob);
@@ -336,7 +333,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.dataset.pointerId = event.pointerId.toString();
     knob.setPointerCapture(event.pointerId);
     knob.classList.add('grabbed');
-    (knob.parentElement as SynTooltip).show();
+    await (knob.parentElement as SynTooltip).show();
   }
 
   #onDragKnob(event: PointerEvent) {
@@ -509,7 +506,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #updateTooltip(knob: HTMLDivElement) {
-    if (this.tooltipDisabled) return;
+    if (this.tooltipPlacement === 'none') return;
     const sliderId = +knob.dataset.sliderId!;
     if (!this.#sliderValues.has(sliderId)) return;
     const value = this.#sliderValues.get(sliderId)!;
@@ -564,8 +561,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return html`
         <syn-tooltip
           hoist
-          .disabled=${this.tooltipDisabled || this.disabled}
-          .placement=${this.tooltipPlacement}
+          .disabled=${this.tooltipPlacement === 'none' || this.disabled}
+          .placement=${this.tooltipPlacement as 'top' | 'bottom'}
         >
           <div
             aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}

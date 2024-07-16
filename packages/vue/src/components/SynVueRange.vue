@@ -109,13 +109,9 @@ const props = defineProps<{
 
   /**
 * The preferred placement of the range's tooltip.
+* Use "none" to disable the tooltip
  */
   'tooltipPlacement'?: SynRange['tooltipPlacement'];
-
-  /**
-* Set the visibility of the tooltip
- */
-  'tooltipDisabled'?: SynRange['tooltipDisabled'];
 
   /**
 * The current values of the input (in ascending order) as a string of space separated values

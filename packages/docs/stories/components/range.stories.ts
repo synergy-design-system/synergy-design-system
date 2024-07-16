@@ -295,7 +295,47 @@ export const MultiKnob: Story = {
     },
   },
   render: () => html`
-    <syn-range max="100" min="0" value="30 70" id="multi-knob"></syn-range>
+    <syn-range max="100" min="0" value="30 70"></syn-range>
+  `,
+};
+
+export const MultiKnobWithRestrictedMovement = {
+  parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    docs: {
+      description: {
+        story: generateStoryDescription('range', 'multi-knob-restrict-movement'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-range
+      class="range-restrict-movement"
+      value="30 70"
+      label="Demo of restricting values"
+      min="0"
+      max="100"
+      step="1"
+    ></syn-range>
+    <script type="module">
+      Array
+        .from(document.querySelectorAll('.range-restrict-movement'))
+        .forEach((el) => {
+          el.addEventListener('syn-move', e => {
+            const { detail, target } = e;
+            const values = target.valueAsArray;
+            const { knob, value } = detail;
+
+            if (knob === target.knobs[0] && value > values[1]) {
+              e.preventDefault();
+            }
+
+            if (knob === target.knobs[1] && value < values[0]) {
+              e.preventDefault();
+            }
+          });
+        });
+    </script>
   `,
 };
 

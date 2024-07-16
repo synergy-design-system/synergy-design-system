@@ -12,7 +12,7 @@ import {
   Output,
 } from '@angular/core';
 import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynRange,
+  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynMoveEvent, SynRange,
 } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/range/range.js';
 
@@ -36,6 +36,7 @@ import '@synergy-design-system/components/components/range/range.js';
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
+ * @event syn-move - Emitted when the user moves a knob. Cancel to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -77,6 +78,7 @@ export class SynRangeComponent {
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-move', (e: SynMoveEvent) => { this.synMoveEvent.emit(e); });
   }
 
   /**
@@ -254,6 +256,12 @@ The form must be in the same document or shadow root for this to work.
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
+* Emitted when the user moves a knob.
+* Cancel to prevent movement.
+ */
+  @Output() synMoveEvent = new EventEmitter<SynMoveEvent>();
+
+  /**
 * Support for two way data binding
  */
   @Output() valueChange = new EventEmitter<SynRange['value']>();
@@ -264,3 +272,4 @@ export type { SynChangeEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynMoveEvent } from '@synergy-design-system/components';

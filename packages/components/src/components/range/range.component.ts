@@ -41,6 +41,7 @@ import styles from './range.styles.js';
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
+ * @event syn-move - Emitted when the user moves a knob. Cancel to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -297,6 +298,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const unit = this.step / (this.max - this.min);
     const nextValue = this.min + this.step * Math.round(pos / unit);
 
+    // Get the knob that is placed closest to the click position
     const knob = knobs.reduce((prev, curr) => {
       const currValue = this.#sliderValues.get(+curr.dataset.sliderId!)!;
       const prevValue = this.#sliderValues.get(+prev.dataset.sliderId!)!;
@@ -349,6 +351,19 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const pos = getNormalizedValueFromClientX(this.baseDiv, knob, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const value = this.min + this.step * Math.round(pos / unit);
+
+    const synMove = this.emit('syn-move', {
+      cancelable: true,
+      detail: {
+        knob,
+        value,
+      },
+    });
+
+    if (synMove.defaultPrevented) {
+      return;
+    }
+
     this.#sliderValues.set(sliderId, value);
     this.#moveKnob(knob, value);
 

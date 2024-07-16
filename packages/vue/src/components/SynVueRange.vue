@@ -25,6 +25,7 @@
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
+ * @event syn-move - Emitted when the user moves a knob. Cancel to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -52,7 +53,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/range/range.js';
 
 import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynRange,
+  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynMoveEvent, SynRange,
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -173,6 +174,12 @@ defineEmits<{
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
+* Emitted when the user moves a knob.
+* Cancel to prevent movement.
+ */
+  'syn-move': [e: SynMoveEvent];
+
+  /**
 * Support for two way data binding
  */
   'update:modelValue': [newValue: SynRange['value']];
@@ -185,6 +192,7 @@ export type { SynChangeEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynMoveEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -197,6 +205,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-focus="$emit('syn-focus', $event)"
     @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
+    @syn-move="$emit('syn-move', $event)"
   >
     <slot />
   </syn-range>

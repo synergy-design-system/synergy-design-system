@@ -1783,6 +1783,16 @@
           "type": "text"
         }
       },
+      "multi-knob-restrict-movement": {
+        "description": {
+          "value": "You can prevent the knobs from overlapping by listening to the provided `syn-move` event.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Multi knob with restricted movement",
+          "type": "text"
+        }
+      },
       "ticks": {
         "description": {
           "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",

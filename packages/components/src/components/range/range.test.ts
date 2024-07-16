@@ -385,7 +385,81 @@ describe('<syn-range>', () => {
       await resetMouse();
       await el.updateComplete;
 
-      expect(inputHandler).to.have.been.called;
+      expect(inputHandler).to.have.been.calledOnce;
+    });
+
+    it('should emit a syn-move event when the user has dragged a knob', async () => {
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+      const moveHandler = sinon.spy();
+
+      el.addEventListener('syn-move', moveHandler);
+
+      const knob = el.shadowRoot!.querySelector('.knob')!;
+      const rect = knob.getBoundingClientRect();
+
+      await sendMouse({
+        position: [rect.left, rect.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      await sendMouse({
+        position: [rect.left + 10, rect.top],
+        type: 'move',
+      });
+
+      await sendMouse({
+        position: [rect.left + 20, rect.top],
+        type: 'move',
+      });
+
+      await resetMouse();
+      await el.updateComplete;
+
+      expect(moveHandler).to.have.been.called;
+    });
+
+    it('should not move the knob when the emitted `syn-move` event is prevented', async () => {
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+      const inputHandler = sinon.spy();
+      const moveHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-move', e => {
+        e.preventDefault();
+        moveHandler();
+      });
+
+      const knob = el.shadowRoot!.querySelector('.knob')!;
+      const rect = knob.getBoundingClientRect();
+
+      await sendMouse({
+        position: [rect.left, rect.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      await sendMouse({
+        position: [rect.left + 10, rect.top],
+        type: 'move',
+      });
+
+      await sendMouse({
+        position: [rect.left + 20, rect.top],
+        type: 'move',
+      });
+
+      await resetMouse();
+      await el.updateComplete;
+
+      expect(moveHandler).to.have.been.called;
+      expect(inputHandler).to.not.have.been.called;
     });
 
     it('should not emit syn-change or syn-input when the value is set programmatically', async () => {

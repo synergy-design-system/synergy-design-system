@@ -1,8 +1,7 @@
 ---
 name: Report a bug
 about: Use this template to report a bug.
-title: "fix: 🤔 "
-labels: bug, status/triage
+title: "fix: 🐛 "
 ---
 
 <!--
@@ -39,5 +38,5 @@ If it is possible and meaningful please also consider to provide a screenshot or
 
 - [ ] All DoD items successfully completed
 <!--
-Add further specific criterias for the bug-fix.
+Add further specific criteria for the bug-fix.
 -->

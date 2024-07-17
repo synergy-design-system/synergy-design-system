@@ -139,7 +139,7 @@ When adding a `click` listener to a `<syn-nav-item>` that has content in the `pr
 
 ### Cause
 
-Synergy components make heavy use of [ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM). When using the ShadowDOM, all internal events will get [__retargeted__ to the events instance](https://lit.dev/docs/components/events/#shadowdom-retargeting). However, slotted elements are still part of the LightDOM and are not part of this retargetting. Therefore, when clicking a slotted `<syn-icon>`, the `event.target` will reference the slotted `<syn-icon>`.
+Synergy components make heavy use of [ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM). When using the ShadowDOM, all internal events will get [**retargeted** to the events instance](https://lit.dev/docs/components/events/#shadowdom-retargeting). However, slotted elements are still part of the LightDOM and are not part of this retargetting. Therefore, when clicking a slotted `<syn-icon>`, the `event.target` will reference the slotted `<syn-icon>`.
 
 ### Proposed Solution
 
@@ -157,7 +157,7 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
 <script type="module">
   // This listener will only work when "Home" is clicked
   // It will display a runtime error (unknown property "href") when the syn-icon is clicked
-  document.querySelector('syn-nav-item').addEventListener('click', e => {
+  document.querySelector("syn-nav-item").addEventListener("click", e => {
     const { target } = e;
     document.location = target.ref;
   });
@@ -172,11 +172,11 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
 <script type="module">
   // This listener will only work when "Home" is clicked
   // It will display a runtime error (unknown property "href") when the syn-icon is clicked
-  document.querySelector('syn-nav-item').addEventListener('click', e => {
+  document.querySelector("syn-nav-item").addEventListener("click", e => {
     const { target } = e;
     // Will either match directly (when the syn-nav-item is clicked)
     // or via DOM traversal, if the syn-icon is clicked.
-    const navItem = target.closest('syn-nav-item');
+    const navItem = target.closest("syn-nav-item");
     document.location = navItem.ref;
   });
 </script>

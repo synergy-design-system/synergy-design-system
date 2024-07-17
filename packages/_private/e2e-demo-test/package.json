@@ -1,6 +1,5 @@
 {
   "name": "@synergy-design-system/e2e-demo-test",
-  "browserslist": "defaults and supports es6-module",
   "private": true,
   "version": "0.1.0",
   "type": "module",

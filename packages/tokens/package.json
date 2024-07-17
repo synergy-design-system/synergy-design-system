@@ -3,7 +3,6 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
-  "browserslist": "defaults and supports es6-module",
   "description": "Design tokens for the SICK Design System",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",

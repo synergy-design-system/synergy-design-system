@@ -41,4 +41,8 @@ module.exports = {
 
     'sort-keys': 'warn',
   },
+  settings: {
+    // Support browserslist without package.json
+    browsers: ['defaults and supports es6-module'],
+  },
 };

@@ -7,7 +7,6 @@
     "url": "https://www.sick.com"
   },
   "type": "module",
-  "browserslist": "defaults and supports es6-module",
   "description": "SICK AG Synergy Design System for web based applications",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {

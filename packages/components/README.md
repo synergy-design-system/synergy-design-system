@@ -1,7 +1,7 @@
 # @synergy-design-system/components
 
 This package provides the base of the Synergy Design System as native web components.
-It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.style/).
+It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.style/). Synergy officially supports the latest two versions of all major browsers (as defined by browserslist) and is actively linted and integration tested against those targets.
 
 ## Getting started
 

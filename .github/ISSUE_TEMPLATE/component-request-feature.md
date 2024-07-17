@@ -2,7 +2,7 @@
 name: Component/Request feature
 about: Use this template for a request of adding new features to an existing component.
 title: "feat: ✨ "
-labels: component/change, enhancement, status/triage
+labels: component/change, enhancement
 ---
 
 <!--
@@ -37,5 +37,5 @@ As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [
 
 - [ ] All DoD items successfully completed
 <!--
-Add further specific criterias for the new feature.
+Add further specific criteria for the new feature.
 -->

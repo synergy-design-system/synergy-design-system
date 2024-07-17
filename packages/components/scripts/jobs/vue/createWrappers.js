@@ -133,6 +133,64 @@ const getSlot = (slots = []) => {
   return hasSlots ? '<slot></slot>' : '';
 };
 
+/**
+ * Get the vue emit declaration
+ * @param {string} emits The emit attributes gathered via getEmits
+ * @returns {string} Empty string if no emits are there, otherwise the emits definition
+ */
+const getVueEmits = (emits) => {
+  if (!emits) {
+    return '';
+  }
+  return `
+    // Map events
+    defineEmits<{
+      ${emits}
+    }>();
+  `.trim();
+};
+
+/**
+ * Get the vue props for the component
+ * @param {unknown[]} props The props to get
+ * @returns {string} An empty string or a vue sfc template string used in <script setup>
+ */
+const getVueProps = (props = []) => {
+  if (!props) {
+    return '';
+  }
+
+  return `
+    // Map attributes
+    const props = defineProps<{
+      ${props}
+    }>();
+
+    // Make sure prop binding only forwards the props that are actually there.
+    // This is needed because :param="param" also adds an empty attribute
+    // when using web-components, which breaks optional arguments like size in SynInput
+    // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+    const visibleProps = computed(() => Object.fromEntries(
+      Object
+        .entries(props)
+        .filter(([, value]) => typeof value !== 'undefined')
+    ));
+  `.trim();
+};
+
+/**
+ * Get the visual bindings for the components props
+ * @see getVueProps
+ * @param {unknown[]} props props The props to get
+ * @returns {string} The visible bindings for the component or an empty string
+ */
+const getVisibleBindings = (props = []) => {
+  if (!props) {
+    return '';
+  }
+  return 'v-bind="visibleProps"';
+};
+
 export const runCreateWrappers = job('Vue: Creating Component Wrappers...', async (metadata, outDir) => {
   // List of components
   const components = await getAllComponents(metadata);
@@ -203,25 +261,9 @@ defineExpose({
   nativeElement,
 });
 
-// Map attributes
-const props = defineProps<{
-  ${props}
-}>();
+${getVueProps(props)}
 
-// Make sure prop binding only forwards the props that are actually there.
-// This is needed because :param="param" also adds an empty attribute
-// when using web-components, which breaks optional arguments like size in SynInput
-// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined')
-));
-
-// Map events
-defineEmits<{
-  ${emits}
-}>();
+${getVueEmits(emits)}
 </script>
 
 ${exports}
@@ -229,7 +271,7 @@ ${exports}
   <${component.tagName}
     ${emitAttributes}
     ${defaultValueBinding}
-    v-bind="visibleProps"
+    ${getVisibleBindings(props)}
     ref="nativeElement"
   >
     ${slots}

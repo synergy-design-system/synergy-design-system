@@ -35,7 +35,8 @@ Component.define('syn-range');
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
- * @event syn-move - Emitted when the user moves a knob. Cancel to prevent movement.
+ * @event syn-move - Emitted when the user moves a knob, either via touch or keyboard.
+ * Use `Event.preventDefault()` to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.

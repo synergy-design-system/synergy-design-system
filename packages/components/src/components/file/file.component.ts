@@ -135,9 +135,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    */
   @property({ reflect: true }) form = '';
 
-  /** Indicates that the input should receive focus on page load. */
-  @property({ type: Boolean }) autofocus: boolean;
-
   /** Suppress the value from being displayed in the input */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 

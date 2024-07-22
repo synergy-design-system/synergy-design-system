@@ -115,11 +115,6 @@ or shadow root for this to work.
   'form'?: SynFile['form'];
 
   /**
-* Indicates that the input should receive focus on page load.
- */
-  'autofocus'?: SynFile['autofocus'];
-
-  /**
 * Suppress the value from being displayed in the input
  */
   'hideValue'?: SynFile['hideValue'];

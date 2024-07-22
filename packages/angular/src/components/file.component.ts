@@ -206,18 +206,6 @@ or shadow root for this to work.
   }
 
   /**
-* Indicates that the input should receive focus on page load.
- */
-  @Input()
-  set autofocus(v: SynFile['autofocus']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
-  }
-
-  get autofocus() {
-    return this.nativeElement.autofocus;
-  }
-
-  /**
 * Suppress the value from being displayed in the input
  */
   @Input()

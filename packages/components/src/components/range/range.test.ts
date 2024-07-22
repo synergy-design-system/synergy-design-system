@@ -487,19 +487,27 @@ describe('<syn-range>', () => {
 
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
+      const moveHandler = sinon.spy();
 
       el.addEventListener('syn-change', changeHandler);
       el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-move', moveHandler);
 
       return {
         changeHandler,
         el,
         inputHandler,
+        moveHandler,
       };
     };
 
     it('should increment the value by the step when pressing the ArrowUp key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -510,12 +518,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('52');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should increment the value by the step when pressing the ArrowRight key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -526,12 +540,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('52');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should increment the value by one fifth of the step when pressing the PageUp key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -542,12 +562,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('70');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should increment to the max value when pressing the PageUp key and the wanted value is too big', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.value = '90';
       await el.updateComplete;
@@ -561,12 +587,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('100');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should jump to the max value when pressing the End key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -577,12 +609,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('100');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should decrement the value by the step when pressing the ArrowDown key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -593,12 +631,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('48');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should decrement the value by the step when pressing the ArrowLeft key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -609,12 +653,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('48');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should decrement the value by one fifth of the step when pressing the PageDown key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -625,12 +675,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('30');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should decrement to the min value when pressing the PageDown key and the wanted value is too small', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.value = '10';
       await el.updateComplete;
@@ -644,12 +700,18 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('0');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
     });
 
     it('should jump to the min value when pressing the Home key', async () => {
-      const { changeHandler, el, inputHandler } = await createFixture();
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
 
       el.focus();
       expect(el.value).to.equal('50');
@@ -660,8 +722,38 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('0');
 
+      expect(moveHandler).to.have.been.calledOnce;
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
+    });
+
+    it('should not emit the syn-change and syn-input event when the user has moved the knob via keyboard', async () => {
+      const {
+        changeHandler,
+        el,
+        inputHandler,
+        moveHandler,
+      } = await createFixture();
+
+      el.addEventListener('syn-move', e => {
+        e.preventDefault();
+      });
+
+      el.value = '10';
+      await el.updateComplete;
+
+      el.focus();
+      expect(el.value).to.equal('10');
+
+      await sendKeys({
+        press: 'PageDown',
+      });
+
+      expect(el.value).to.equal('10');
+
+      expect(moveHandler).to.have.been.calledOnce;
+      expect(changeHandler).to.not.have.been.calledOnce;
+      expect(inputHandler).to.not.have.been.calledOnce;
     });
 
     it('should move the focus to the next knob when pressing the Tab key', async () => {

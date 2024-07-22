@@ -43,7 +43,8 @@ const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' 
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
- * @event syn-move - Emitted when the user moves a knob. Cancel to prevent movement.
+ * @event syn-move - Emitted when the user moves a knob, either via touch or keyboard.
+ * Use `Event.preventDefault()` to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -442,39 +443,41 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const knob = event.target as HTMLDivElement;
     const sliderId = +knob.dataset.sliderId!;
 
-    let value = this.#sliderValues.get(sliderId);
-    if (value === undefined) return;
+    const currentValue = this.#sliderValues.get(sliderId);
+    if (currentValue === undefined) return;
+
+    let value = currentValue;
 
     switch (event.key) {
     case 'ArrowUp':
     case 'Up':
-      value = Math.min(value + this.step, this.max);
+      value = Math.min(currentValue + this.step, this.max);
       break;
     case 'ArrowDown':
     case 'Down':
-      value = Math.max(value - this.step, this.min);
+      value = Math.max(currentValue - this.step, this.min);
       break;
     case 'ArrowLeft':
     case 'Left':
       value = this.#rtl
-        ? Math.min(value + this.step, this.max)
-        : Math.max(value - this.step, this.min);
+        ? Math.min(currentValue + this.step, this.max)
+        : Math.max(currentValue - this.step, this.min);
       break;
     case 'ArrowRight':
     case 'Right':
       value = this.#rtl
-        ? Math.max(value - this.step, this.min)
-        : Math.min(value + this.step, this.max);
+        ? Math.max(currentValue - this.step, this.min)
+        : Math.min(currentValue + this.step, this.max);
       break;
     case 'PageUp':
       value = Math.min(
-        value + ((this.max - this.min) / 5),
+        currentValue + ((this.max - this.min) / 5),
         this.max,
       );
       break;
     case 'PageDown':
       value = Math.max(
-        (value - (this.max - this.min) / 5),
+        (currentValue - (this.max - this.min) / 5),
         this.min,
       );
       break;
@@ -488,15 +491,24 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    if (value !== this.#sliderValues.get(sliderId)) {
+    if (value !== currentValue) {
+      // Make sure the user is able to intercept movement
+      const synMove = this.emit('syn-move', {
+        cancelable: true,
+        detail: {
+          knob,
+          value,
+        },
+      });
+
+      if (synMove.defaultPrevented) {
+        return;
+      }
+
       this.#moveKnob(knob, value);
 
       this.#sliderValues.set(sliderId, value);
       this.#value = Array.from(this.#sliderValues.values());
-
-      // Determine the position of the knob in the array as the focus might have changed
-      const index = this.#value.findIndex(v => v === value);
-      this.knobs[index].focus();
 
       this.#updateActiveTrack();
       this.#updateTooltip(knob);

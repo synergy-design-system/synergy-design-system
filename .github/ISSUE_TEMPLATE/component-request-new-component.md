@@ -2,7 +2,6 @@
 name: Component/Request new component
 about: Use this template to request a new component
 title: "feat: ✨ "
-labels: component/new, status/triage, enhancement
 ---
 
 <!--
@@ -31,5 +30,5 @@ As a [PERSONA] of the Synergy Design System, I would like to [REQUIRE] so that [
 
 - [ ] All DoD items successfully completed
 <!--
-Add further specific criterias for the new component.
+Add further specific criteria for the new component.
 -->

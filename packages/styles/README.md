@@ -2,6 +2,8 @@
 
 This package provides easy to use standalone helper classes based on the [Synergy Design Tokens](https://synergy-design-system.github.io/?path=/docs/packages-tokens--docs).
 
+The included styles use CSS features supported by the latest two versions of all major browsers (as defined by browserslist) and is actively linted and tested against those targets.
+
 ---
 
 ## 1. Installation

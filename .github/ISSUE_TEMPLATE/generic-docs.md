@@ -2,7 +2,6 @@
 name: Documentation
 about: Use this template to adjust the documentation.
 title: "docs: 📚 "
-labels: docs, status/triage
 ---
 
 # Description
@@ -15,4 +14,10 @@ Please describe what documentation should be changed.
 
 <!--
 Please provide a reason for this change to exist.
+-->
+
+# Acceptance criteria
+
+<!--
+Add specific criteria
 -->

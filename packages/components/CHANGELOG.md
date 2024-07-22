@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.4.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.1...components/2.4.2) (2024-07-17)
+
+
+### Bug Fixes
+
+* 🤔 Typescript error on vue components with no properties ([#558](https://github.com/synergy-design-system/synergy-design-system/issues/558)) ([8564df1](https://github.com/synergy-design-system/synergy-design-system/commit/8564df1880fc6e17b6dc077a1cde7c4262705699))
+
 # [@synergy-design-system/components-v2.4.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.0...components/2.4.1) (2024-06-25)
 
 

@@ -65,12 +65,10 @@ const initRouting = async () => {
       e.preventDefault();
       e.stopPropagation();
 
-      const navItem = (e.target as HTMLElement).tagName.toLowerCase() === 'syn-nav-item'
-        ? (e.target as SynNavItem)
-        : (e.target as HTMLElement).closest('syn-nav-item') as SynNavItem;
+      const clickedNavItem = (e.target as HTMLElement).closest('syn-nav-item') as SynNavItem;
 
-      if (navItem) {
-        history.push(history.createHref(navItem.href));
+      if (clickedNavItem) {
+        history.push(history.createHref(clickedNavItem.href));
       }
     });
   });

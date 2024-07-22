@@ -44,4 +44,14 @@ export default css`
   :host([size="large"]) .input__chosen {
     font-size: var(--syn-input-label-font-size-large);
   }
+
+  /**
+   * Special case for regular inputs:
+   * When the user uses drag and drop, highlight the button with the primary color
+   */
+  .form-control--user-dragging:not([disabled]) .input__button::part(base) {
+    background: none;
+    border-color: var(--syn-color-primary-900);
+    color: var(--syn-color-primary-900);
+  }
 `;

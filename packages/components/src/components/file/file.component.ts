@@ -1,5 +1,5 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -17,7 +17,7 @@ import SynButton from '../button/button.component.js';
 import styles from './file.styles.js';
 
 /**
- * @summary File controls allow selecting an arbitary number of files for uploading.
+ * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @status stable
  *
  * @dependency syn-button
@@ -60,6 +60,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
 
   private readonly localize = new LocalizeController(this);
+
+  @state() private userIsDragging = false;
 
   /** List of uploaded files */
   @property({ attribute: false }) files: FileList | null = null;
@@ -215,6 +217,30 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.emit('syn-change');
   }
 
+  private handleDragOver(e: DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.userIsDragging = true;
+  }
+
+  private handleDragLeave(e: DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.userIsDragging = false;
+  }
+
+  private handleDrop(e: DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Use the transferred file list from the drag drop interface
+    if (e.dataTransfer?.files) {
+      this.files = e.dataTransfer.files;
+    }
+
+    this.userIsDragging = false;
+  }
+
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderDropzone() {
     console.log(this);
@@ -285,7 +311,12 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--small': this.size === 'small',
+          'form-control--user-dragging': this.userIsDragging,
         })}
+        @dragenter=${this.handleDragOver}
+        @dragleave=${this.handleDragLeave}
+        @dragover=${this.handleDragOver}
+        @drop=${this.handleDrop}
         part="form-control"
       >
         <label

@@ -20,7 +20,7 @@ const { generateTemplate } = storybookTemplate('syn-file');
 
 const meta: Meta = {
   args: overrideArgs([
-    // { name: 'label', type: 'slot', value: '<span slot="label">App Name</span>' },
+    // { name: 'label', type: 'attribute', value: '' },
   ], defaultArgs),
   argTypes,
   component: 'syn-file',

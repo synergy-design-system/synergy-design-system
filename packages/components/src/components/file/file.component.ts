@@ -1,10 +1,14 @@
-// import { classMap } from 'lit/directives/class-map.js';
-import { property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { property, query } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { defaultValue } from '../../internal/default-value.js';
+import { watch } from '../../internal/watch.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { LocalizeController } from '../../utilities/localize.js';
 import { FormControlController } from '../../internal/form.js';
+import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
@@ -33,7 +37,9 @@ import styles from './file.styles.js';
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart base - The component's base wrapper.
- * @csspart input - The internal `<input>` control.
+ * @csspart input-wrapper - The wrapper around the button and placeholder.
+ * @csspart input-button - The syn-button acting as a file input.
+ * @csspart input-placeholder - The placeholder text for the file input.
  */
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
@@ -51,11 +57,28 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     assumeInteractionOn: ['syn-blur', 'syn-input'],
   });
 
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+
+  private readonly localize = new LocalizeController(this);
+
+  /** List of uploaded files */
+  @property({ attribute: false }) files: FileList | null = null;
+
   /** The name of the input, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  /** The current value of the input, submitted as a name/value pair with form data. */
-  @property() value = '';
+  /**
+   * The current value of the input, submitted as a name/value pair with form data.
+   * Beware that the only valid value when setting a file input is an empty string!
+   */
+  @property({ type: String })
+  set value(v: string) {
+    this.input.value = v;
+  }
+
+  get value() {
+    return this.input?.value;
+  }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue = '';
@@ -109,9 +132,15 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Suppress the value from being displayed in the input */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 
+  /** The inputs hidden input[type="file"] */
+  @query('.input__control') input: HTMLInputElement;
+
+  /** The inputs button the user will interact with */
+  @query('.input__button') button: SynButton;
+
   /** Gets the validity state object */
   get validity(): ValidityState {
-    console.log('validity', this);
+    console.log('validity', this, this.files);
     return {
       badInput: false,
       customError: false,
@@ -158,10 +187,147 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     console.log('setCustomValidity!', this, message);
   }
 
-  render() {
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid
+    this.formControlController.setValidity(this.disabled);
+  }
+
+  /** Sets focus on the button. */
+  focus(options?: FocusOptions) {
+    this.button.focus(options);
+  }
+
+  /** Removes focus from the button. */
+  blur() {
+    this.button.blur();
+  }
+
+  private handleClick() {
+    this.input.click();
+  }
+
+  private handleChange(e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
+    const target = e.target as HTMLInputElement;
+    this.files = target.files;
+    this.emit('syn-change');
+  }
+
+  /* eslint-disable @typescript-eslint/unbound-method */
+  private renderDropzone() {
     console.log(this);
+    return html``;
+  }
+  /* eslint-enable @typescript-eslint/unbound-method */
+
+  /* eslint-disable @typescript-eslint/unbound-method */
+  private renderInput() {
+    const buttonText = this.multiple
+      ? this.localize.term('fileButtonTextMultiple')
+      : this.localize.term('fileButtonText');
+
+    let hasFiles = false;
+    let fileChosenLabel = this.localize.term('fileNoFilesChosen');
+    if (this.multiple && this.files?.length) {
+      hasFiles = true;
+      fileChosenLabel = `${this.files.length} ${this.localize.term('fileChosen')}`;
+    } else if (this.files?.length) {
+      hasFiles = true;
+      fileChosenLabel = this.files[0].name;
+    }
+
     return html`
-      <div>SynFile</div>
+      <div
+        class="input__wrapper"
+        part="input-wrapper"
+      >
+        <syn-button
+          class="input__button"
+          @click=${this.handleClick}
+          ?disabled=${this.disabled}
+          part="input-button"
+          size=${this.size}
+          variant="outline"
+        >
+          ${buttonText}
+        </syn-button>
+        
+        <span
+          class=${classMap({
+            input__chosen: true,
+            'input__chosen--hidden': this.hideValue,
+            'input__chosen--placeholder': !hasFiles,
+          })}
+          part="input-placeholder"
+        >
+          ${fileChosenLabel}
+        </span>
+      </div>
     `;
   }
+  /* eslint-enable @typescript-eslint/unbound-method */
+
+  /* eslint-disable @typescript-eslint/unbound-method */
+  // eslint-disable-next-line complexity
+  render() {
+    const hasLabel = this.label || !!this.hasSlotController.test('label');
+    const hasHelpText = this.helpText ? true : !!this.hasSlotController.test('help-text');
+    const output = this.dropzone ? this.renderDropzone() : this.renderInput();
+
+    return html`
+      <div
+        class=${classMap({
+          'form-control': true,
+          'form-control--has-help-text': hasHelpText,
+          'form-control--has-label': hasLabel,
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--small': this.size === 'small',
+        })}
+        part="form-control"
+      >
+        <label
+          aria-hidden=${hasLabel ? 'false' : 'true'}
+          class="form-control__label"
+          for="input"
+          part="form-control-label"
+        >
+          <slot name="label">${this.label}</slot>
+        </label>
+
+        <div
+          class="form-control-input"
+          part="form-control-input"
+        >
+
+          ${output}
+
+          <input
+            accept=${this.accept}
+            aria-describedby="help-text"
+            aria-hidden="true"
+            @change=${this.handleChange}
+            class="input__control"
+            ?disabled=${this.disabled}
+            id="input"
+            ?multiple=${this.multiple}
+            name=${ifDefined(this.name)}
+            type="file"
+          >
+        </div>
+
+        <div
+          aria-hidden=${hasHelpText ? 'false' : 'true'}
+          class="form-control__help-text"
+          id="help-text"
+          part="form-control-help-text"
+        >
+          <slot name="help-text">${this.helpText}</slot>
+        </div>
+      </div>
+    `;
+  }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }

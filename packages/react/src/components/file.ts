@@ -36,7 +36,9 @@ Component.define('syn-file');
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart base - The component's base wrapper.
- * @csspart input - The internal `<input>` control.
+ * @csspart input-wrapper - The wrapper around the button and placeholder.
+ * @csspart input-button - The syn-button acting as a file input.
+ * @csspart input-placeholder - The placeholder text for the file input.
  */
 export const SynFile = createComponent({
   displayName: 'SynFile',

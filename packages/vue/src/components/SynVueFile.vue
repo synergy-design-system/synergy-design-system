@@ -26,7 +26,9 @@
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart base - The component's base wrapper.
- * @csspart input - The internal `<input>` control.
+ * @csspart input-wrapper - The wrapper around the button and placeholder.
+ * @csspart input-button - The syn-button acting as a file input.
+ * @csspart input-placeholder - The placeholder text for the file input.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/file/file.js';
@@ -51,6 +53,7 @@ const props = defineProps<{
 
   /**
 * The current value of the input, submitted as a name/value pair with form data.
+Beware that the only valid value when setting a file input is an empty string!
  */
   'value'?: SynFile['value'];
 

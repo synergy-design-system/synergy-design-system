@@ -1,5 +1,8 @@
 # Known Issues and recipes - Vue
 
+> ⚠️ This file includes all known issues and limitations when using our Angular wrappers.
+> There may be other interesting bits of Information in our [components limitation documentation](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs).
+
 ---
 
 ## Using vitest for testing
@@ -20,7 +23,7 @@ When using `vitest` for testing applications including `@synergy-design-system/v
 
 ### Proposed Solution
 
-Adjust vitests [deps.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
+Adjust vitests [deps.server.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
 
 #### Solution:
 

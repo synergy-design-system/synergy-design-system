@@ -1,4 +1,6 @@
-# Known Issues and recipes - Components
+# Known Issues and limitations - Components
+
+This file lists known issues and limitations of Synergy Web Components and useful Information with working on web-components.
 
 ---
 
@@ -18,11 +20,11 @@ Synergies `<syn-button>` may get drawn without inner paddings when inserting con
 
 The `<syn-button>` element uses a [slotchange](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/button/button.component.ts#L202C17-L202C27) listener to dynamically apply classes that effect the layout of the component.
 
-As stated via [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event) `slotchange` events are fired when the **nodes** of a slot changes. As most frameworks are reusing instances of `Text` nodes, those events may not trigger when the framework does not fully redraw the components content.
+As stated via [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event) `slotchange` events are fired when the **nodes** of a slot change. As most frameworks are reusing instances of `Text` nodes, those events will not trigger when the framework does not fully redraw the components content.
 
 ### Proposed Solution
 
-Rendering is a crucial task of current frontend frameworks. Most frameworks will try to reuse created `Text` nodes. However, for most frameworks it is enough to wrap the slot contents with an `HTMLElement`.
+Rendering is a crucial task of current frontend frameworks. Most frameworks will try to reuse created `Text` nodes. However, for most frameworks it is enough to wrap the slot contents with any `HTMLElement`.
 
 #### Solution:
 
@@ -170,8 +172,7 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
 </syn-nav-item>
 
 <script type="module">
-  // This listener will only work when "Home" is clicked
-  // It will display a runtime error (unknown property "href") when the syn-icon is clicked
+  // This listener will work when any part of the syn-button is clicked
   document.querySelector("syn-nav-item").addEventListener("click", e => {
     const { target } = e;
     // Will either match directly (when the syn-nav-item is clicked)

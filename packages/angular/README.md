@@ -2,7 +2,7 @@
 
 This package provides [Angular](https://angular.io/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
-This package aims for an improved UX when used in Angular applications:
+It aims for an improved UX when used in Angular applications:
 
 - Form support
 - Two way data-binding for properties
@@ -10,6 +10,10 @@ This package aims for an improved UX when used in Angular applications:
 - Event handling
 
 > We are currently supporting Angular version ^16.2.12, ^17.0.0 and ^18.0.0 as well as Typescript version > 5.0.0.
+
+## Known issues and limitations
+
+Got any problems using our Angular wrappers? Please take a look at [our list of known issues and limitations](https://synergy-design-system.github.io/?path=/docs/limitations-angular--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+).
 
 ## Getting started
 

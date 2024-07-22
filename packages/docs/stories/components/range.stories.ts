@@ -257,7 +257,7 @@ export const CustomTrackColors: Story = {
     ></syn-range>
     <style>
       .custom-track-color {
-        --track-color-active: var(--syn-color-success-600);
+        --track-color-active: var(--syn-color-success-700);
       }
     </style>
   `,

@@ -141,6 +141,8 @@ export const Dropzone: Story = {
       dropzone
       help-text="This is a help text"
       label="This is a label"
+      multiple
+      size="medium"
     ></syn-file>
   `,
 } as Story;
@@ -200,5 +202,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   Dropzone,
-});
+}, 350);
 /* eslint-enable sort-keys */

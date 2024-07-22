@@ -48,6 +48,7 @@ const translation: Translation = {
   fileButtonText: 'Datei auswählen',
   fileButtonTextMultiple: 'Dateien auswählen',
   fileChosen: 'Dateien',
+  fileDragDrop: 'Datei ablegen oder auswählen',
   fileNoFilesChosen: 'Keine Dateien ausgewählt',
   menu: 'Menü',
   notification: 'Benachrichtigung',

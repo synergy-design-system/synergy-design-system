@@ -30,6 +30,7 @@ export interface Translation extends DefaultTranslation {
   fileButtonText: string;
   fileButtonTextMultiple: string;
   fileChosen: string;
+  fileDragDrop: string;
   fileNoFilesChosen: string;
   menu: string;
   notification: string;

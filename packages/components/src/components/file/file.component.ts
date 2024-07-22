@@ -14,6 +14,7 @@ import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
+import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
 
 /**
@@ -21,6 +22,7 @@ import styles from './file.styles.js';
  * @status stable
  *
  * @dependency syn-button
+ * @dependency syn-icon
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
@@ -40,6 +42,10 @@ import styles from './file.styles.js';
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
+ * @csspart dropzone-wrapper - The element wrapping the drop zone.
+ * @csspart dropzone-background - The background of the drop zone.
+ * @csspart dropzone-icon - The icon for the drop zone.
+ * @csspart dropzone-text - The text for the drop zone.
  */
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
@@ -51,6 +57,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   static dependencies = {
     'syn-button': SynButton,
+    'syn-icon': SynIcon,
   };
 
   private readonly formControlController = new FormControlController(this, {
@@ -205,7 +212,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.button.blur();
   }
 
-  private handleClick() {
+  private handleClick(e: Event) {
+    e.preventDefault();
     this.input.click();
   }
 
@@ -213,8 +221,16 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     e.preventDefault();
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
+
+    const changeEvent = this.emit('syn-change', {
+      cancelable: true,
+    });
+
+    if (changeEvent.defaultPrevented) {
+      return;
+    }
+
     this.files = target.files;
-    this.emit('syn-change');
   }
 
   private handleDragOver(e: DragEvent) {
@@ -241,10 +257,71 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.userIsDragging = false;
   }
 
+  /**
+   * Needed to handle the cancel event from the input[type="file"] in case of drag and drop.
+   * There is no way to synchronize the value property between drag&drop and the input.
+   */
+  private handleCancel() {
+    this.files = null;
+    this.value = '';
+    this.emit('syn-change');
+  }
+
+  private renderValue() {
+    let hasFiles = false;
+    let fileChosenLabel = this.localize.term('fileNoFilesChosen');
+
+    if (this.files && this.files?.length > 0) {
+      hasFiles = true;
+      fileChosenLabel = this.multiple
+        ? `${this.files.length} ${this.localize.term('fileChosen')}`
+        : this.files[0].name;
+    }
+
+    return html`
+      <span
+        class=${classMap({
+          input__chosen: true,
+          'input__chosen--hidden': this.hideValue,
+          'input__chosen--placeholder': !hasFiles,
+        })}
+        part="input-placeholder"
+      >
+        ${fileChosenLabel}
+      </span>
+    `;
+  }
+
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderDropzone() {
-    console.log(this);
-    return html``;
+    return html`
+      <div
+        class="dropzone__wrapper"
+        @click=${this.handleClick}
+        @keypress=${this.handleClick}
+        tabindex=${this.disabled ? -1 : 0}
+        part="dropzone-wrapper"
+      >
+        <div
+          class="dropzone__background"
+          part="dropzone-background"
+        >
+          <syn-icon
+            class="dropzone__icon"
+            name="upload_file"
+            part="dropzone-icon"
+            library="default"
+          ></syn-icon>
+          <p
+            class="dropzone__text"
+            part="dropzone-text"
+          >
+            <strong>${this.localize.term('fileDragDrop')}</strong>
+            ${this.renderValue()}
+          </p>
+        </div>
+      </div>
+    `;
   }
   /* eslint-enable @typescript-eslint/unbound-method */
 
@@ -253,16 +330,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     const buttonText = this.multiple
       ? this.localize.term('fileButtonTextMultiple')
       : this.localize.term('fileButtonText');
-
-    let hasFiles = false;
-    let fileChosenLabel = this.localize.term('fileNoFilesChosen');
-    if (this.multiple && this.files?.length) {
-      hasFiles = true;
-      fileChosenLabel = `${this.files.length} ${this.localize.term('fileChosen')}`;
-    } else if (this.files?.length) {
-      hasFiles = true;
-      fileChosenLabel = this.files[0].name;
-    }
 
     return html`
       <div
@@ -280,16 +347,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           ${buttonText}
         </syn-button>
         
-        <span
-          class=${classMap({
-            input__chosen: true,
-            'input__chosen--hidden': this.hideValue,
-            'input__chosen--placeholder': !hasFiles,
-          })}
-          part="input-placeholder"
-        >
-          ${fileChosenLabel}
-        </span>
+        ${this.renderValue()}
       </div>
     `;
   }
@@ -339,6 +397,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             accept=${this.accept}
             aria-describedby="help-text"
             aria-hidden="true"
+            @cancel=${this.handleCancel}
             @change=${this.handleChange}
             class="input__control"
             ?disabled=${this.disabled}

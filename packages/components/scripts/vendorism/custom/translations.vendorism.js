@@ -22,6 +22,10 @@ const translations = {
     de: 'Dateien',
     en: 'files',
   },
+  fileDragDrop: {
+    de: 'Datei ablegen oder auswählen',
+    en: 'Drop or choose file',
+  },
   fileNoFilesChosen: {
     de: 'Keine Dateien ausgewählt',
     en: 'No files chosen',

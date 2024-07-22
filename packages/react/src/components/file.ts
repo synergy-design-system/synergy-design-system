@@ -16,10 +16,11 @@ const tagName = 'syn-file';
 Component.define('syn-file');
 
 /**
- * @summary File controls allow selecting an arbitary number of files for uploading.
+ * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @status stable
  *
  * @dependency syn-button
+ * @dependency syn-icon
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
@@ -39,6 +40,10 @@ Component.define('syn-file');
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
+ * @csspart dropzone-wrapper - The element wrapping the drop zone.
+ * @csspart dropzone-background - The background of the drop zone.
+ * @csspart dropzone-icon - The icon for the drop zone.
+ * @csspart dropzone-text - The text for the drop zone.
  */
 export const SynFile = createComponent({
   displayName: 'SynFile',

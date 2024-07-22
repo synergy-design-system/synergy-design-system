@@ -2,7 +2,6 @@
 name: Chore
 about: Use this template for internal tooling adjustments (e.g. build jobs, internal package updates, ...).
 title: "chore: 🔧 "
-labels: status/triage
 ---
 
 # Description

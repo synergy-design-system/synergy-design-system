@@ -23,7 +23,7 @@ When using `vitest` for testing applications including `@synergy-design-system/v
 
 ### Proposed Solution
 
-Adjust vitests [deps.server.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
+Adjust vitests [server.deps.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
 
 #### Solution:
 

@@ -3,6 +3,10 @@
 This package provides the base of the Synergy Design System as native web components.
 It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.style/). Synergy officially supports the latest two versions of all major browsers (as defined by browserslist) and is actively linted and integration tested against those targets.
 
+## Known issues and limitations
+
+Got any problems using our components? Please take a look at [our list of known issues and limitations](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+).
+
 ## Getting started
 
 ### 1. Package installation

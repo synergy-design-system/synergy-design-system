@@ -49,6 +49,7 @@ const translation: Translation = {
   fileButtonTextMultiple: 'Choose files',
   fileChosen: 'files',
   fileDragDrop: 'Drop or choose file',
+  fileErrorInvalidAccept: 'One or more files have an invalid file format',
   fileNoFilesChosen: 'No files chosen',
   menu: 'Menu',
   notification: 'Notification',

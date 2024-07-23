@@ -9,6 +9,11 @@ export default css`
     display: none;
   }
 
+  /* Validation */
+  :host([data-invalid]) .form-control__help-text {
+    color: var(--syn-input-help-text-color-error);
+  }
+
   /* Regular Input */
   .input__wrapper {
     align-items: center;

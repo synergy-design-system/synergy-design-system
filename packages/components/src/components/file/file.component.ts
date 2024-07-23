@@ -16,6 +16,10 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
+import {
+  acceptStringToArray,
+  fileHasValidAcceptType,
+} from './utils.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -144,28 +148,17 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** The inputs button the user will interact with */
   @query('.input__button') button: SynButton;
 
+  /** The dropzone */
+  @query('.dropzone__wrapper') dropzoneWrapper: HTMLDivElement;
+
   /** Gets the validity state object */
-  get validity(): ValidityState {
-    console.log('validity', this, this.files);
-    return {
-      badInput: false,
-      customError: false,
-      patternMismatch: false,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: true,
-      valueMissing: false,
-    };
+  get validity() {
+    return this.input.validity;
   }
 
   /** Gets the validation message */
   get validationMessage() {
-    console.log('validationMessage', this);
-    return '';
+    return this.input.validationMessage;
   }
 
   /**
@@ -173,8 +166,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    * Returns `true` when valid and `false` when invalid.
    */
   checkValidity() {
-    console.log('checkValidity', this);
-    return true;
+    return this.input.checkValidity();
   }
 
   /** Gets the associated form, if one exists. */
@@ -184,13 +176,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    console.log('reportValidity', this);
-    return true;
+    return this.input.reportValidity();
   }
 
   /** Sets a custom validation message. Pass an empty string to restore validity. */
   setCustomValidity(message: string) {
-    console.log('setCustomValidity!', this, message);
+    this.input.setCustomValidity(message);
+    this.formControlController.updateValidity();
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -201,12 +193,62 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /** Sets focus on the button. */
   focus(options?: FocusOptions) {
+    if (this.dropzone) {
+      this.dropzoneWrapper.focus(options);
+      this.emit('syn-focus');
+      return;
+    }
+
     this.button.focus(options);
   }
 
   /** Removes focus from the button. */
   blur() {
+    if (this.dropzone) {
+      this.dropzoneWrapper.blur();
+      this.emit('syn-blur');
+      return;
+    }
+
     this.button.blur();
+  }
+
+  /**
+   * Handle file uploads and validate them against the accept attribute
+   * @param files The files to check for
+   */
+  private handleFiles(files: FileList | null) {
+    if (!files) {
+      this.value = '';
+      this.setCustomValidity('');
+      return;
+    }
+
+    const acceptArray = acceptStringToArray(this.accept);
+
+    // Validate the files against the accept attribute
+    const isValid = Array
+      .from(files)
+      .every(f => fileHasValidAcceptType(f, acceptArray));
+
+    if (isValid) {
+      const changeEvent = this.emit('syn-change', {
+        cancelable: true,
+      });
+
+      if (changeEvent.defaultPrevented) {
+        return;
+      }
+
+      this.files = files;
+      this.setCustomValidity('');
+    } else {
+      this.formControlController.setValidity(false);
+      this.formControlController.emitInvalidEvent();
+      this.setCustomValidity(this.localize.term('fileErrorInvalidAccept'));
+      this.value = '';
+      this.files = null;
+    }
   }
 
   private handleClick(e: Event) {
@@ -214,20 +256,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.input.click();
   }
 
+  /** Handles the change event of the native input */
   private handleChange(e: Event) {
     e.preventDefault();
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
 
-    const changeEvent = this.emit('syn-change', {
-      cancelable: true,
-    });
-
-    if (changeEvent.defaultPrevented) {
-      return;
-    }
-
-    this.files = target.files;
+    this.handleFiles(target.files);
   }
 
   private handleDragOver(e: DragEvent) {
@@ -248,7 +283,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
     // Use the transferred file list from the drag drop interface
     if (e.dataTransfer?.files) {
-      this.files = e.dataTransfer.files;
+      this.handleFiles(e.dataTransfer.files);
     }
 
     this.userIsDragging = false;
@@ -261,6 +296,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private handleCancel() {
     this.files = null;
     this.value = '';
+    this.setCustomValidity('');
     this.emit('syn-change');
   }
 
@@ -270,9 +306,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
     if (this.files && this.files?.length > 0) {
       hasFiles = true;
-      fileChosenLabel = this.multiple
-        ? `${this.files.length} ${this.localize.term('fileChosen')}`
-        : this.files[0].name;
+      fileChosenLabel = this.files.length === 1
+        ? this.files[0].name
+        : `${this.files.length} ${this.localize.term('fileChosen')}`;
     }
 
     return html`

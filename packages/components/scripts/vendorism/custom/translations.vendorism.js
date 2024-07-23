@@ -26,6 +26,10 @@ const translations = {
     de: 'Datei ablegen oder auswählen',
     en: 'Drop or choose file',
   },
+  fileErrorInvalidAccept: {
+    de: 'Eine oder mehrere Dateien haben ein ungültiges Dateiformat',
+    en: 'One or more files have an invalid file format',
+  },
   fileNoFilesChosen: {
     de: 'Keine Dateien ausgewählt',
     en: 'No files chosen',

@@ -138,6 +138,7 @@ export const Dropzone: Story = {
   },
   render: () => html`
     <syn-file
+      accept="text/plain,image/*"
       dropzone
       help-text="This is a help text"
       label="This is a label"
@@ -180,16 +181,20 @@ export const Invalid: Story = {
       },
     },
   },
-  play: async ({ canvasElement }) => {
-    console.log('TODO: Implement play function', canvasElement);
-    await new Promise((resolve) => {
-      setTimeout(resolve, 1000);
-    });
-  },
   render: () => html`
-    <form>
-      <syn-file label="This is a label TODO: ERROR HANDLING!"></syn-file>
-    </form>
+    <syn-file
+      accept="text/plain"
+      class="syn-file-invalid"
+      help-text="This is a help text"
+      label="This is a label"
+    ></syn-file>
+    <script type="module">
+      customElements.whenDefined('syn-file').then(() => {
+        document
+          .querySelector('.syn-file-invalid')
+          .setCustomValidity('This is an error text');
+      });
+    </script>
   `,
 } as Story;
 

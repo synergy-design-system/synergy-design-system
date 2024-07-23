@@ -119,8 +119,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   @property({ type: String }) accept = '';
 
   /**
-   * Specifies the types of files that the server accepts
-   * Can be set either to user or environment
+   * Specifies the types of files that the server accepts.
+   * Can be set either to user or environment.
+   * Works only when not using a dropzone!
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture
    */
   @property({ type: String }) capture: 'user' | 'environment';
@@ -142,13 +143,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Suppress the value from being displayed in the input */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 
-  /** The inputs hidden input[type="file"] */
+  // The inputs hidden input[type="file"]
   @query('.input__control') input: HTMLInputElement;
 
-  /** The inputs button the user will interact with */
+  // The inputs button the user will interact with
   @query('.input__button') button: SynButton;
 
-  /** The dropzone */
+  // The dropzone
   @query('.dropzone__wrapper') dropzoneWrapper: HTMLDivElement;
 
   /** Gets the validity state object */
@@ -191,7 +192,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.formControlController.setValidity(this.disabled);
   }
 
-  /** Sets focus on the button. */
+  /** Sets focus on the button or dropzone. */
   focus(options?: FocusOptions) {
     if (this.dropzone) {
       this.dropzoneWrapper.focus(options);
@@ -202,7 +203,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.button.focus(options);
   }
 
-  /** Removes focus from the button. */
+  /** Removes focus from the button or dropzone. */
   blur() {
     if (this.dropzone) {
       this.dropzoneWrapper.blur();

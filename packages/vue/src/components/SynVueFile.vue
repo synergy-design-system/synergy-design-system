@@ -95,8 +95,9 @@ Beware that the only valid value when setting a file input is an empty string!
   'accept'?: SynFile['accept'];
 
   /**
-* Specifies the types of files that the server accepts
-Can be set either to user or environment
+* Specifies the types of files that the server accepts.
+Can be set either to user or environment.
+Works only when not using a dropzone!
  */
   'capture'?: SynFile['capture'];
 

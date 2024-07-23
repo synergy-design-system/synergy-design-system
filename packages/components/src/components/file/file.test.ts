@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-// import sinon from 'sinon';
+import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import {
   expect,
@@ -36,6 +36,30 @@ describe('<syn-file>', () => {
       expect(el.multiple).to.be.undefined;
       expect(el.form).to.equal('');
       expect(el.hideValue).to.be.false;
+    });
+
+    it('should be disabled with the disabled attribute', async () => {
+      const el = await fixture<SynFile>(html`<syn-file disabled></syn-file>`);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
+
+      expect(input.disabled).to.be.true;
+    });
+
+    it('should emit a syn-focus event when the focus event is called', async () => {
+      const el = await fixture<SynFile>(html`<syn-file label="Name"></syn-file>`);
+      const focusEvent = sinon.spy();
+      el.addEventListener('syn-focus', focusEvent);
+      el.focus();
+      expect(focusEvent).to.have.been.calledOnce;
+    });
+
+    it('should emit a syn-blur event when the blur method is called', async () => {
+      const el = await fixture<SynFile>(html`<syn-file label="Name"></syn-file>`);
+      const blurEvent = sinon.spy();
+      el.addEventListener('syn-blur', blurEvent);
+      el.focus();
+      el.blur();
+      expect(blurEvent).to.have.been.calledOnce;
     });
   });
 });

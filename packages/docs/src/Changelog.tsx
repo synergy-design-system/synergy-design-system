@@ -1,5 +1,5 @@
 import React, {
-  FC,
+  type FC,
 } from 'react';
 import { Markdown } from '@storybook/blocks';
 
@@ -10,8 +10,7 @@ type Props = {
 export const ChangelogFormatter: FC<Props> = ({ children }) => (
   <>
     <h1>Changelog</h1>
-    <hr></hr>
-
+    <hr />
     <Markdown
       options={{
         overrides: {
@@ -19,7 +18,7 @@ export const ChangelogFormatter: FC<Props> = ({ children }) => (
             component: 'h2',
             props: {
               style: {
-                'font-size': 'var(--syn-font-size-medium)',
+                fontSize: 'var(--syn-font-size-medium)',
                 margin: 'var(--syn-spacing-x-large) 0 var(--syn-spacing-x-small) 0',
               },
             },
@@ -28,16 +27,15 @@ export const ChangelogFormatter: FC<Props> = ({ children }) => (
             component: 'h4',
             props: {
               style: {
-                'font-size': 'var(--syn-font-size-small)',
+                fontSize: 'var(--syn-font-size-small)',
                 margin: '0 0 var(--syn-spacing-2x-small) 0',
               },
-
             },
           },
           ul: {
             props: {
               style: {
-                'margin-top': '0',
+                marginTop: 0,
               },
             },
           },

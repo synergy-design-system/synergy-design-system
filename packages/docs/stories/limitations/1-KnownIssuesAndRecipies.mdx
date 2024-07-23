@@ -1,0 +1,70 @@
+import { Meta, Markdown } from "@storybook/blocks";
+
+<Meta title="Limitations/Known Issues and limitations" />
+
+# Known Issues and limitations
+
+This section lists known issues and limitations for the Synergy Design System and its component wrappers.
+
+<ul className="syn-navigation-list">
+  <li>
+    <a href="../?path=/docs/limitations-angular--docs"><img src="/ng.webp" /> @synergy-design-system/angular</a>
+  </li>
+  <li>
+    <a href="../?path=/docs/limitations-components--docs"><img src="/html5.png" /> @synergy-design-system/components</a>
+  </li>
+  <li>
+    <a><img src="/react.webp" /> @synergy-design-system/react</a>
+  </li>
+  <li>
+    <a href="../?path=/docs/limitations-vue--docs"><img src="/vue.webp" /> @synergy-design-system/vue</a>
+  </li>
+</ul>
+
+<style>{`
+.syn-navigation-list {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-medium);
+    justify-content: center;
+    align-items: center;
+    padding: var(--syn-spacing-large);
+    border-radius: var(--syn-spacing-3x-small);
+    text-align: center;
+  }
+
+  a[href]:hover {
+    color: var(--syn-color-primary-950);
+    background: var(--syn-color-neutral-50);
+    img {
+      transform: scale(1.5);
+      filter: grayscale(0);
+    }
+  }
+
+  a:not([href]) {
+    color: var(--syn-color-primary-600);
+    cursor: not-allowed;
+  }
+
+  img {
+    display: block;
+    height: 50px;
+    margin-bottom: 10px;
+    will-change: transform;
+    transition: transform var(--syn-transition-slow), filter var(--syn-transition-fast);
+    filter: grayscale(1);
+  }
+}
+`}</style>

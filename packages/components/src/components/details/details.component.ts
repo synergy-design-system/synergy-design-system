@@ -76,10 +76,10 @@ export default class SynDetails extends SynergyElement {
   /** Disables the details so it can't be toggled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws the details as contained element. */
+	/** Draws the details as contained element. */
   @property({ type: Boolean, reflect: true }) contained = false;
 
-  /** The details's size. */
+	/** The details's size. */
   @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
 
   firstUpdated() {
@@ -104,7 +104,7 @@ export default class SynDetails extends SynergyElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.detailsObserver.disconnect();
+    this.detailsObserver?.disconnect();
   }
 
   private handleSummaryClick(event: MouseEvent) {
@@ -207,11 +207,11 @@ export default class SynDetails extends SynergyElement {
         part="base"
         class=${classMap({
           details: true,
-          'details--size-medium': this.size === 'medium',
+					'details--size-medium': this.size === 'medium',
           'details--size-large': this.size === 'large',
           'details--open': this.open,
           'details--disabled': this.disabled,
-          'details--contained': this.contained,
+					'details--contained': this.contained,
         })}
       >
         <summary

@@ -44,7 +44,7 @@ export const addSectionAfter = (content, search, insert, options = {}) => {
   }
 
   if (tabsBeforeInsertion > 0) {
-    additions += new Array(tabsBeforeInsertion).fill('\t').join('');
+    additions += new Array(tabsBeforeInsertion).fill('  ').join('');
   }
 
   output = additions + output;

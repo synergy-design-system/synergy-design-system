@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------
 export { default as SynVueAccordion } from './components/SynVueAccordion.vue';
 export { default as SynVueAlert } from './components/SynVueAlert.vue';
+export { default as SynVueAutocomplete } from './components/SynVueAutocomplete.vue';
 export { default as SynVueBadge } from './components/SynVueBadge.vue';
 export { default as SynVueBreadcrumb } from './components/SynVueBreadcrumb.vue';
 export { default as SynVueBreadcrumbItem } from './components/SynVueBreadcrumbItem.vue';

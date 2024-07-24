@@ -31,6 +31,7 @@ syn-textarea:not(:defined) {
 }
 
 syn-alert:not(:defined),
+syn-autocomplete:not(:defined),
 syn-badge:not(:defined),
 syn-breadcrumb-item:not(:defined),
 syn-button:not(:defined),

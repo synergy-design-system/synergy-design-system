@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { setupAutocomplete as synergyAutoComplete } from '@synergy-design-system/components/utilities/autocomplete-config.js';
+import { setupAutocomplete as synergyAutoComplete, setupAutocompleteNew as synergyAutoCompleteNew } from '@synergy-design-system/components/utilities/autocomplete-config.js';
 import React from 'react';
 import type { Meta } from '@storybook/web-components';
 import {
@@ -8,7 +8,7 @@ import {
   Subtitle,
   Title,
 } from '@storybook/blocks';
-import { html } from 'lit';
+import { html, render } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
@@ -465,3 +465,131 @@ export const SuggestionContainerHeight = {
     `;
   },
 };
+
+export const Autocompleter = {
+  parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    chromatic: {
+      ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
+    },
+  },
+  render: () => html`
+      <syn-input id="autocompleter" label="Max-height for list">
+        <syn-icon slot="suffix" name="search"></syn-icon>
+
+      </syn-input>
+      <style>
+        syn-input#container-height::part(listbox) {
+          max-height: 110px;
+        }
+      </style>
+      <script type="module">
+        import autocompleter from '../../node_modules/autocompleter';
+        var countries = [
+            { label: 'United Kingdom', value: 'UK' },
+            { label: 'United States', value: 'US' }
+        ];
+        const synInput = document.querySelector('#autocompleter');
+        const input = synInput.shadowRoot.querySelector('input');
+        const popup = document.createElement('syn-popup');
+        popup.active = true;
+        popup.autoSize = 'vertical';
+        popup.autoSizePadding = 16;
+        popup.placement = 'bottom-start';
+        popup.anchor = synInput;
+        popup.sync = 'width';
+        synInput.shadowRoot?.appendChild(popup);
+        const ul = document.createElement('div');
+        popup.appendChild(ul);
+        
+
+
+        autocompleter({
+          input: input,
+          emtpyMsg: 'No results found',
+          fetch: function(text, update) {
+            console.log(text);
+            console.log(update);
+            text = text.toLowerCase();
+            // you can also use AJAX requests instead of preloaded data
+            var suggestions = countries.filter(n => n.label.toLowerCase().startsWith(text))
+            console.log(suggestions);
+            update(suggestions);
+          },
+          container: ul,
+          onSelect: (item) => {
+            synInput.value = item.label;
+            console.log('select');
+            console.log(item);
+          }
+
+        });
+
+      </script>
+    `,
+};
+
+export const AutocompleterConfig = {
+  parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    chromatic: {
+      ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
+    },
+  },
+  render: () => {
+    const setupAutocomplete = synergyAutoCompleteNew;
+    return html`
+      <syn-input id="autocompleter" label="Max-height for list">
+        <syn-icon slot="suffix" name="search"></syn-icon>
+      </syn-input>
+      <style>
+      </style>
+      <script type="module">
+        import autocompleter from '../../node_modules/autocompleter';
+        const setupAutocomplete = ${setupAutocomplete};
+
+        var countries = [
+            { label: 'United Kingdom', value: 'UK' },
+            { label: 'United States', value: 'US' }
+        ];
+        const synInput = document.querySelector('#autocompleter');
+        const { config } = setupAutocomplete(synInput, countries);
+        console.log('????');
+        autocompleter({
+          ...config,
+          minLength: 1,
+          showOnFocus: true,
+        });
+      </script>
+    `;
+  },
+};
+
+export const SynAuto = {
+  render: () => html`
+  <input id="country" />
+  <script type="module">
+  import autocompleter from '../../node_modules/autocompleter';
+    var countries = [
+          { label: 'United Kingdom', value: 'UK' },
+            { label: 'United States', value: 'US' }
+        ];
+        var input = document.getElementById('country');
+
+    autocompleter({
+      input: input,
+      fetch: function(text, update) {
+          text = text.toLowerCase();
+          // you can also use AJAX requests instead of preloaded data
+          var suggestions = countries.filter(n => n.label.toLowerCase().startsWith(text))
+          update(suggestions);
+      },
+      onSelect: function(item) {
+          input.value = item.label;
+      }
+    });
+  </script>
+  `,
+}

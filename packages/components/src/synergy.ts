@@ -6,6 +6,7 @@
 // Components
 export { default as SynAccordion } from './components/accordion/accordion.js';
 export { default as SynAlert } from './components/alert/alert.js';
+export { default as SynAutocomplete } from './components/autocomplete/autocomplete.js';
 export { default as SynBadge } from './components/badge/badge.js';
 export { default as SynBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item.js';
 export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js';

@@ -65,7 +65,10 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   };
 
   private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['syn-blur', 'syn-input'],
+    assumeInteractionOn: ['syn-change'],
+    // This makes sure the value sent in formdata events is always the files object
+    // @see internals/form.ts #handleFormData for more information
+    value: (el: SynFile) => el.files,
   });
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -75,10 +78,17 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   @state() private userIsDragging = false;
 
   /** List of uploaded files */
-  @property({ attribute: false }) files: FileList | null = null;
+  @property({ attribute: false })
+  set files(v: FileList | null) {
+    this.input.files = v;
+  }
+
+  get files() {
+    return this.input?.files;
+  }
 
   /** The name of the input, submitted as a name/value pair with form data. */
-  @property() name = '';
+  @property({ type: String }) name = '';
 
   /**
    * The current value of the input, submitted as a name/value pair with form data.
@@ -231,12 +241,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /**
    * Handle file uploads and validate them against the accept attribute
    * @param files The files to check for
+   * @returns Whether the files are valid
    */
   private handleFiles(files: FileList | null) {
     if (!files) {
       this.value = '';
       this.setCustomValidity('');
-      return;
+      return true;
     }
 
     const acceptArray = acceptStringToArray(this.accept);
@@ -247,14 +258,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       .every(f => fileHasValidAcceptType(f, acceptArray));
 
     if (isValid) {
-      const changeEvent = this.emit('syn-change', {
-        cancelable: true,
-      });
-
-      if (changeEvent.defaultPrevented) {
-        return;
-      }
-
       this.files = files;
       this.setCustomValidity('');
     } else {
@@ -264,6 +267,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       this.value = '';
       this.files = null;
     }
+
+    return isValid;
   }
 
   private handleClick(e: Event) {
@@ -276,6 +281,14 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     e.preventDefault();
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
+
+    const changeEvent = this.emit('syn-change', {
+      cancelable: true,
+    });
+
+    if (changeEvent.defaultPrevented) {
+      return;
+    }
 
     this.handleFiles(target.files);
   }
@@ -298,7 +311,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
     // Use the transferred file list from the drag drop interface
     if (e.dataTransfer?.files) {
-      this.handleFiles(e.dataTransfer.files);
+      const isValid = this.handleFiles(e.dataTransfer.files);
+      if (isValid) this.input.dispatchEvent(new Event('change'));
     }
 
     this.userIsDragging = false;

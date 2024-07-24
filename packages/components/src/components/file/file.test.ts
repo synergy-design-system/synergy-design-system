@@ -16,14 +16,19 @@ import { runFormControlBaseTests } from '../../internal/test/form-control-base-t
 // We are skipping this rule for now.
 const ignoredRules = ['color-contrast'];
 
-/**
- * Emulate the upload of a file to a <syn-file> element
- * @param el The element to upload the file to
- * @param files One or multiple files. If omitted, will use a default file
- */
-const fakeFileUpload = async (el: SynFile, files?: File | File[]) => {
-  const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
+const getUploadedFileNames = (entry: FormDataEntryValue | null) => {
+  if (entry instanceof FileList) {
+    return Array.from(entry).map((file) => file.name).join(', ');
+  }
 
+  if (entry instanceof File) {
+    return entry.name;
+  }
+
+  return '';
+};
+
+const createFiles = (files?: File | File[]) => {
   const list = new DataTransfer();
 
   if (files) {
@@ -34,7 +39,19 @@ const fakeFileUpload = async (el: SynFile, files?: File | File[]) => {
     list.items.add(file);
   }
 
-  const fileList = list.files;
+  return list.files;
+};
+
+/**
+ * Emulate the upload of a file to a <syn-file> element
+ * @param el The element to upload the file to
+ * @param files One or multiple files. If omitted, will use a default file
+ */
+const fakeFileUpload = async (el: SynFile, files?: FileList | File | File[]) => {
+  const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
+
+  const fileList = files instanceof FileList ? files : createFiles(files);
+
   input.files = fileList;
 
   input.dispatchEvent(new Event('change'));
@@ -103,7 +120,7 @@ describe('<syn-file>', () => {
           expect(el.hasAttribute('data-invalid')).to.be.false;
           expect(el.hasAttribute('data-valid')).to.be.true;
           expect(el.hasAttribute('data-user-invalid')).to.be.false;
-          expect(el.hasAttribute('data-user-valid')).to.be.false;
+          expect(el.hasAttribute('data-user-valid')).to.be.true;
 
           await fakeFileUpload(el, []);
           await el.updateComplete;
@@ -123,7 +140,7 @@ describe('<syn-file>', () => {
           expect(el.hasAttribute('data-optional')).to.be.false;
           expect(el.hasAttribute('data-invalid')).to.be.true;
           expect(el.hasAttribute('data-valid')).to.be.false;
-          expect(el.hasAttribute('data-user-invalid')).to.be.false;
+          expect(el.hasAttribute('data-user-invalid')).to.be.true;
           expect(el.hasAttribute('data-user-valid')).to.be.false;
 
           await fakeFileUpload(el);
@@ -144,7 +161,7 @@ describe('<syn-file>', () => {
           await fakeFileUpload(input);
 
           const formData = new FormData(form);
-          expect(formData.get('a')).to.include('demo.jpg');
+          expect(getUploadedFileNames(formData.get('a'))).to.equal('demo.jpg');
         });
 
         it('should serialize its name and value with JSON', async () => {
@@ -154,7 +171,7 @@ describe('<syn-file>', () => {
           await fakeFileUpload(input);
 
           const json = serialize(form) as { a: '' };
-          expect(json.a).to.include('demo.jpg');
+          expect(json.a).to.equal('demo.jpg');
         });
 
         it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
@@ -186,7 +203,7 @@ describe('<syn-file>', () => {
 
           const formData = new FormData(form);
 
-          expect(formData.get('a')).to.include('demo.jpg');
+          expect(getUploadedFileNames(formData.get('a'))).to.equal('demo.jpg');
         });
       });
 
@@ -281,7 +298,7 @@ describe('<syn-file>', () => {
 
           const formData = new FormData(form);
 
-          expect(formData.get('a')).to.include('demo.jpg');
+          expect(getUploadedFileNames(formData.get('a'))).to.equal('demo.jpg');
           expect(formData.get('b')).to.be.null;
           expect(formData.get('c')).to.equal('3');
         });
@@ -292,7 +309,6 @@ describe('<syn-file>', () => {
   it('should have default values', async () => {
     const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
 
-    expect(el.files).to.be.null;
     expect(el.name).to.equal('');
     expect(el.value).to.equal('');
     expect(el.size).to.equal('medium');

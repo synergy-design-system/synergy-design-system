@@ -52,7 +52,7 @@
 
           <!-- contact-form -->
           <div class="router-page" data-route="/contact-form">
-            <form id="form-demo">
+            <form enctype="multipart/form-data" id="form-demo" method="post" novalidate>
 
               <!-- PersonalInformation -->
               <fieldset class="syn-fieldset">
@@ -240,6 +240,17 @@
                   placeholder="Please provide additional information that might be helpful for your inquiry"
                   rows="10"
                 ></syn-textarea>
+
+                <syn-file
+                  accept="image/*"
+                  dropzone
+                  help-text="Please upload images only"
+                  id="screenshot"
+                  label="Optional Screenshot(s)"
+                  multiple
+                  name="files"
+                ></syn-file>
+
               </fieldset>
               <!-- /AdditionalInformation -->
 

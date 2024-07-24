@@ -89,7 +89,7 @@ export const addSectionBefore = (content, search, insert, options = {}) => {
   }
 
   if (tabsAfterInsertion > 0) {
-    output += new Array(tabsAfterInsertion).fill('\t').join('');
+    output += new Array(tabsAfterInsertion).fill('  ').join('');
   }
 
   return content.slice(0, index) + output + content.slice(index);

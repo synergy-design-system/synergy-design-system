@@ -1,5 +1,5 @@
 import { removeSections } from '../remove-section.js';
-import { addSectionAfter, replaceSections } from '../replace-section.js';
+import { addSectionsAfter, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'details.component.ts',
@@ -16,11 +16,22 @@ const FILES_TO_TRANSFORM = [
 const transformComponent = (path, originalContent) => {
   let content = originalContent;
 
-  // Make sure to always use the system chevron
-  content = content.replaceAll(
-    // eslint-disable-next-line no-template-curly-in-string
-    "name=${isRtl ? 'chevron-left' : 'chevron-right'}",
-    'name="chevron-down"',
+  content = replaceSections(
+    [
+      // Make sure to always use the system chevron
+      [
+        // eslint-disable-next-line no-template-curly-in-string
+        "name=${isRtl ? 'chevron-left' : 'chevron-right'}",
+        'name="chevron-down"',
+      ],
+
+      // Make sure to only call the disconnect method if the detailsObserver exists
+      [
+        'this.detailsObserver.disconnect();',
+        'this.detailsObserver?.disconnect();',
+      ],
+    ],
+    content,
   );
 
   content = removeSections([
@@ -29,39 +40,36 @@ const transformComponent = (path, originalContent) => {
     ['\'details--rtl', 'isRtl'],
   ], content);
 
-  // Add support for size attribute
-  content = addSectionAfter(
-    content,
-    '@property({ type: Boolean, reflect: true }) disabled = false;',
-    `
-  /** The details's size. */
-  @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
-    `,
-  );
+  content = addSectionsAfter([
+    // Add support for size attribute
+    [
+      '@property({ type: Boolean, reflect: true }) disabled = false;',
+      `/** The details's size. */
+  @property({ reflect: true }) size: 'medium' | 'large' = 'medium';`,
+      { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
+    ],
+    // Add classes for size attribute
+    [
+      'details: true,',
+      `'details--size-medium': this.size === 'medium',
+          'details--size-large': this.size === 'large',`,
+      { tabsBeforeInsertion: 5 },
+    ],
 
-  content = addSectionAfter(
-    content,
-    'details: true,',
-    `          'details--size-medium': this.size === 'medium',
-          'details--size-large': this.size === 'large',
-    `,
-  );
-
-  // Add support for contained attribute
-  content = addSectionAfter(
-    content,
-    '@property({ type: Boolean, reflect: true }) disabled = false;',
-    `
-  /** Draws the details as contained element. */
-  @property({ type: Boolean, reflect: true }) contained = false;
-    `,
-  );
-
-  content = addSectionAfter(
-    content,
-    '\'details--disabled\': this.disabled,',
-    '          \'details--contained\': this.contained,',
-  );
+    // Add support for contained attribute
+    [
+      '@property({ type: Boolean, reflect: true }) disabled = false;',
+      `/** Draws the details as contained element. */
+  @property({ type: Boolean, reflect: true }) contained = false;`,
+      { newlinesBeforeInsertion: 2, tabsBeforeInsertion: 1 },
+    ],
+    // Add classes for 'contained' attribute
+    [
+      '\'details--disabled\': this.disabled,',
+      '\'details--contained\': this.contained,',
+      { tabsBeforeInsertion: 5 },
+    ],
+  ], content);
 
   return {
     content,

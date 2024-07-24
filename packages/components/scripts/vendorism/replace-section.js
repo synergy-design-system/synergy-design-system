@@ -44,7 +44,7 @@ export const addSectionAfter = (content, search, insert, options = {}) => {
   }
 
   if (tabsBeforeInsertion > 0) {
-    additions += new Array(tabsBeforeInsertion).fill('\t').join('');
+    additions += new Array(tabsBeforeInsertion).fill('  ').join('');
   }
 
   output = additions + output;
@@ -89,7 +89,7 @@ export const addSectionBefore = (content, search, insert, options = {}) => {
   }
 
   if (tabsAfterInsertion > 0) {
-    output += new Array(tabsAfterInsertion).fill('\t').join('');
+    output += new Array(tabsAfterInsertion).fill('  ').join('');
   }
 
   return content.slice(0, index) + output + content.slice(index);

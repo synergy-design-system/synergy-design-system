@@ -81,7 +81,7 @@ export default class SynTabGroup extends SynergyElement {
   /** Disables the scroll arrows that appear when tabs overflow. */
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
-	/** Draws the tab group as a contained element. */
+  /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
   /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */

@@ -104,7 +104,7 @@ export default class SynDetails extends SynergyElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.detailsObserver.disconnect();
+    this.detailsObserver?.disconnect();
   }
 
   private handleSummaryClick(event: MouseEvent) {

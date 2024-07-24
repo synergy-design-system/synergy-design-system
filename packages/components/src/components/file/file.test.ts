@@ -4,6 +4,7 @@ import {
   expect,
   fixture,
   html,
+  oneEvent,
   // waitUntil,
 } from '@open-wc/testing';
 import { serialize } from '../../../dist/synergy.js';
@@ -13,6 +14,32 @@ import { runFormControlBaseTests } from '../../internal/test/form-control-base-t
 // The input__chosen text color is too light.
 // We are skipping this rule for now.
 const ignoredRules = ['color-contrast'];
+
+/**
+ * Emulate the upload of a file to a <syn-file> element
+ * @param el The element to upload the file to
+ * @param files One or multiple files. If omitted, will use a default file
+ */
+const fakeFileUpload = async (el: SynFile, files?: File | File[]) => {
+  const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
+
+  const list = new DataTransfer();
+
+  if (files) {
+    const data = Array.isArray(files) ? files : [files];
+    data.forEach((file) => list.items.add(file));
+  } else {
+    const file = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+    list.items.add(file);
+  }
+
+  const fileList = list.files;
+  input.files = fileList;
+
+  input.dispatchEvent(new Event('change'));
+
+  await el.updateComplete;
+};
 
 describe('<syn-file>', () => {
   it('passes accessibility test', async () => {
@@ -94,19 +121,69 @@ describe('<syn-file>', () => {
       await el.updateComplete;
       expect(el.checkValidity()).to.be.false;
     });
+
+    it('should receive the correct validation attributes ("states") when valid', async () => {
+      const el = await fixture<SynFile>(html`<syn-file required></syn-file>`);
+
+      await fakeFileUpload(el);
+      expect(el.checkValidity()).to.be.true;
+      expect(el.hasAttribute('data-required')).to.be.true;
+      expect(el.hasAttribute('data-optional')).to.be.false;
+      expect(el.hasAttribute('data-invalid')).to.be.false;
+      expect(el.hasAttribute('data-valid')).to.be.true;
+      expect(el.hasAttribute('data-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-user-valid')).to.be.false;
+
+      await fakeFileUpload(el, []);
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.false;
+
+      await fakeFileUpload(el);
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.true;
+    });
+
+    it('should receive the correct validation attributes ("states") when invalid', async () => {
+      const el = await fixture<SynFile>(html`<syn-file required></syn-file>`);
+
+      await fakeFileUpload(el, []);
+      expect(el.checkValidity()).to.be.false;
+      expect(el.hasAttribute('data-required')).to.be.true;
+      expect(el.hasAttribute('data-optional')).to.be.false;
+      expect(el.hasAttribute('data-invalid')).to.be.true;
+      expect(el.hasAttribute('data-valid')).to.be.false;
+      expect(el.hasAttribute('data-user-invalid')).to.be.false;
+      expect(el.hasAttribute('data-user-valid')).to.be.false;
+
+      await fakeFileUpload(el);
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.true;
+
+      await fakeFileUpload(el, []);
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.false;
+    });
   });
 
   describe('when submitting a form', () => {
     it('should serialize its name and value with FormData', async () => {
       const form = await fixture<HTMLFormElement>(html`<form><syn-file name="a"></syn-file></form>`);
+      const input = form.querySelector('syn-file')!;
+
+      await fakeFileUpload(input);
+
       const formData = new FormData(form);
-      expect(formData.get('a')).to.equal('');
+      expect(formData.get('a')).to.include('demo.jpg');
     });
 
     it('should serialize its name and value with JSON', async () => {
       const form = await fixture<HTMLFormElement>(html`<form><syn-file name="a"></syn-file></form>`);
+      const input = form.querySelector('syn-file')!;
+
+      await fakeFileUpload(input);
+
       const json = serialize(form) as { a: '' };
-      expect(json.a).to.equal('');
+      expect(json.a).to.include('demo.jpg');
     });
 
     it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
@@ -128,13 +205,114 @@ describe('<syn-file>', () => {
           <form id="f">
             <syn-button type="submit">Submit</syn-button>
           </form>
-          <syn-input form="f" name="a"></syn-input>
+          <syn-file form="f" name="a"></syn-file>
         </div>
       `);
       const form = el.querySelector('form')!;
+      const input = el.querySelector('syn-file')!;
+
+      await fakeFileUpload(input);
+
       const formData = new FormData(form);
 
-      expect(formData.get('a')).to.equal('');
+      expect(formData.get('a')).to.include('demo.jpg');
+    });
+  });
+
+  describe('when resetting a form', () => {
+    it('should reset the element to its initial value', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-file name="a"></syn-file>
+          <syn-button type="reset">Reset</syn-button>
+        </form>
+      `);
+      const button = form.querySelector('syn-button')!;
+      const input = form.querySelector('syn-file')!;
+
+      await fakeFileUpload(input);
+
+      await input.updateComplete;
+
+      setTimeout(() => button.click());
+      await oneEvent(form, 'reset');
+      await input.updateComplete;
+
+      expect(input.value).to.equal('');
+
+      input.defaultValue = '';
+
+      setTimeout(() => button.click());
+      await oneEvent(form, 'reset');
+      await input.updateComplete;
+
+      expect(input.value).to.equal('');
+    });
+  });
+
+  describe('when calling HTMLFormElement.reportValidity()', () => {
+    it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-file required></syn-file>
+          <syn-button type="submit">Submit</syn-button>
+        </form>
+      `);
+
+      expect(form.reportValidity()).to.be.false;
+    });
+
+    it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form novalidate>
+          <syn-file required></syn-file>
+          <syn-button type="submit">Submit</syn-button>
+        </form>
+      `);
+
+      expect(form.reportValidity()).to.be.true;
+    });
+  });
+
+  describe('when the value changes', () => {
+    it('should emit syn-change when the user has uploaded something', async () => {
+      const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+      await fakeFileUpload(el);
+
+      expect(changeHandler).to.have.been.calledOnce;
+    });
+  });
+
+  describe('when using FormControlController', () => {
+    it('should submit with the correct form when the form attribute changes', async () => {
+      const el = await fixture<HTMLFormElement>(html`
+        <div>
+          <form id="f1">
+            <input type="hidden" name="b" value="2" />
+            <syn-button type="submit">Submit</syn-button>
+          </form>
+          <form id="f2">
+            <input type="hidden" name="c" value="3" />
+            <syn-button type="submit">Submit</syn-button>
+          </form>
+          <syn-file form="f1" name="a"></syn-file>
+        </div>
+      `);
+      const form = el.querySelector<HTMLFormElement>('#f2')!;
+      const input = document.querySelector('syn-file')!;
+      await fakeFileUpload(input);
+
+      input.form = 'f2';
+      await input.updateComplete;
+
+      const formData = new FormData(form);
+
+      expect(formData.get('a')).to.include('demo.jpg');
+      expect(formData.get('b')).to.be.null;
+      expect(formData.get('c')).to.equal('3');
     });
   });
 

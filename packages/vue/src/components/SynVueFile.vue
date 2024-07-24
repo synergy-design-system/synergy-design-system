@@ -116,6 +116,11 @@ or shadow root for this to work.
   'form'?: SynFile['form'];
 
   /**
+* Makes the input a required field.
+ */
+  'required'?: SynFile['required'];
+
+  /**
 * Suppress the value from being displayed in the input
  */
   'hideValue'?: SynFile['hideValue'];

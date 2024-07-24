@@ -207,6 +207,18 @@ or shadow root for this to work.
   }
 
   /**
+* Makes the input a required field.
+ */
+  @Input()
+  set required(v: SynFile['required']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  }
+
+  get required() {
+    return this.nativeElement.required;
+  }
+
+  /**
 * Suppress the value from being displayed in the input
  */
   @Input()

@@ -40,7 +40,7 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
     "vue": "^3.4.24"

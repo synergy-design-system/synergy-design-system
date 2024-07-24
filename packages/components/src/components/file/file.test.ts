@@ -9,6 +9,7 @@ import {
 } from '@open-wc/testing';
 import { serialize } from '../../../dist/synergy.js';
 import type SynFile from './file.js';
+import { acceptStringToArray, fileHasValidAcceptType } from './utils.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 
 // The input__chosen text color is too light.
@@ -318,6 +319,38 @@ describe('<syn-file>', () => {
     const uploadButton = el.shadowRoot!.querySelector('.input__button')!;
 
     expect(uploadButton).to.exist;
+  });
+
+  describe('when using the file handling utilities', () => {
+    describe('acceptStringToArray', () => {
+      it('should return a normalized array of accept criteria', () => {
+        expect(acceptStringToArray(' image/*,   audio/* , , ')).to.deep.equal([
+          'image/*',
+          'audio/*',
+        ]);
+        expect(acceptStringToArray('')).to.deep.equal([]);
+        expect(acceptStringToArray('     ')).to.deep.equal([]);
+      });
+    });
+
+    describe('fileHasValidAcceptType', () => {
+      it('should return true if the file matches the criteria', () => {
+        const file = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+
+        expect(fileHasValidAcceptType(file, ['image/*'])).to.be.true;
+        expect(fileHasValidAcceptType(file, ['image/jpeg'])).to.be.true;
+        expect(fileHasValidAcceptType(file, ['image/png'])).to.be.false;
+        expect(fileHasValidAcceptType(file, ['image/*', 'audio/*'])).to.be.true;
+        expect(fileHasValidAcceptType(file, [])).to.be.true;
+      });
+
+      it('should return false if the file does not match the criteria', () => {
+        const file = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+
+        expect(fileHasValidAcceptType(file, ['audio/*'])).to.be.false;
+        expect(fileHasValidAcceptType(file, ['audio/*', 'video/*'])).to.be.false;
+      });
+    });
   });
 
   createTests('when using <syn-file> without dropzone', false);

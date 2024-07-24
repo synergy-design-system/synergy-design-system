@@ -34,6 +34,7 @@ export const fileHasValidAcceptType = (f: File, accept: string[]) => {
  * @returns String array of the accept criteria
  */
 export const acceptStringToArray = (accept: string) => accept
+  .trim()
   .split(',')
   .map(a => a.trim())
   .filter(Boolean);

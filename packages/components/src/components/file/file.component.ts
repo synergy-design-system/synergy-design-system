@@ -140,6 +140,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    */
   @property({ reflect: true }) form = '';
 
+  /** Makes the input a required field. */
+  @property({ reflect: true, type: Boolean }) required = false;
+
   /** Suppress the value from being displayed in the input */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 
@@ -192,6 +195,12 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.formControlController.setValidity(this.disabled);
   }
 
+  @watch('value', { waitUntilFirstUpdate: true })
+  async handleValueChange() {
+    await this.updateComplete;
+    this.formControlController.updateValidity();
+  }
+
   /** Sets focus on the button or dropzone. */
   focus(options?: FocusOptions) {
     if (this.dropzone) {
@@ -212,6 +221,11 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     }
 
     this.button.blur();
+  }
+
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
   }
 
   /**
@@ -436,8 +450,10 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             class="input__control"
             ?disabled=${this.disabled}
             id="input"
+            @invalid=${this.handleInvalid}
             ?multiple=${this.multiple}
             name=${ifDefined(this.name)}
+            ?required=${this.required}
             type="file"
           >
         </div>

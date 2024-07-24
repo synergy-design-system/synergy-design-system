@@ -7,6 +7,11 @@
  * @returns True if the file matches the criteria, false otherwise
  */
 export const fileHasValidAcceptType = (f: File, accept: string[]) => {
+  // Always allow empty accept attributes
+  if (accept.length === 0) {
+    return true;
+  }
+
   const { type } = f;
   const [prefix, suffix] = type.split('/');
 
@@ -30,4 +35,5 @@ export const fileHasValidAcceptType = (f: File, accept: string[]) => {
  */
 export const acceptStringToArray = (accept: string) => accept
   .split(',')
-  .map(a => a.trim());
+  .map(a => a.trim())
+  .filter(Boolean);

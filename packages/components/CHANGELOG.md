@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.4.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.2...components/2.4.3) (2024-07-24)
+
+
+### Bug Fixes
+
+* 🤔 syn-side-nav and syn-details may throw an error when unmounted too quick ([#565](https://github.com/synergy-design-system/synergy-design-system/issues/565)) ([c308e28](https://github.com/synergy-design-system/synergy-design-system/commit/c308e28cd3dbdd452273b1c1d80344c3f378f1dc))
+
 # [@synergy-design-system/components-v2.4.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.1...components/2.4.2) (2024-07-17)
 
 

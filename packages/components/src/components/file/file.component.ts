@@ -46,10 +46,10 @@ import {
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart dropzone-wrapper - The element wrapping the drop zone.
- * @csspart dropzone-background - The background of the drop zone.
- * @csspart dropzone-icon - The icon for the drop zone.
- * @csspart dropzone-text - The text for the drop zone.
+ * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart droparea-background - The background of the drop zone.
+ * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-text - The text for the drop zone.
  */
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
@@ -118,8 +118,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Disables the input. */
   @property({ reflect: true, type: Boolean }) disabled = false;
 
-  /** Draw the file input as a dropzone */
-  @property({ type: Boolean }) dropzone = false;
+  /** Draw the file input as a drop area */
+  @property({ type: Boolean }) droparea = false;
 
   /**
    * Comma separated list of supported file types
@@ -131,7 +131,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /**
    * Specifies the types of files that the server accepts.
    * Can be set either to user or environment.
-   * Works only when not using a dropzone!
+   * Works only when not using a droparea!
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture
    */
   @property({ type: String }) capture: 'user' | 'environment';
@@ -162,8 +162,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   // The inputs button the user will interact with
   @query('.input__button') button: SynButton;
 
-  // The dropzone
-  @query('.dropzone__wrapper') dropzoneWrapper: HTMLDivElement;
+  // The droparea
+  @query('.droparea__wrapper') dropareaWrapper: HTMLDivElement;
 
   /** Gets the validity state object */
   get validity() {
@@ -211,10 +211,10 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.formControlController.updateValidity();
   }
 
-  /** Sets focus on the button or dropzone. */
+  /** Sets focus on the button or droparea. */
   focus(options?: FocusOptions) {
-    if (this.dropzone) {
-      this.dropzoneWrapper.focus(options);
+    if (this.droparea) {
+      this.dropareaWrapper.focus(options);
       this.emit('syn-focus');
       return;
     }
@@ -222,10 +222,10 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.button.focus(options);
   }
 
-  /** Removes focus from the button or dropzone. */
+  /** Removes focus from the button or droparea. */
   blur() {
-    if (this.dropzone) {
-      this.dropzoneWrapper.blur();
+    if (this.droparea) {
+      this.dropareaWrapper.blur();
       this.emit('syn-blur');
       return;
     }
@@ -355,28 +355,28 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  private renderDropzone() {
+  private renderDroparea() {
     return html`
       <div
-        class="dropzone__wrapper"
+        class="droparea__wrapper"
         @click=${this.handleClick}
         @keypress=${this.handleClick}
         tabindex=${this.disabled ? -1 : 0}
-        part="dropzone-wrapper"
+        part="droparea-wrapper"
       >
         <div
-          class="dropzone__background"
-          part="dropzone-background"
+          class="droparea__background"
+          part="droparea-background"
         >
           <syn-icon
-            class="dropzone__icon"
+            class="droparea__icon"
             name="upload_file"
-            part="dropzone-icon"
+            part="droparea-icon"
             library="default"
           ></syn-icon>
           <p
-            class="dropzone__text"
-            part="dropzone-text"
+            class="droparea__text"
+            part="droparea-text"
           >
             <strong>${this.localize.term('fileDragDrop')}</strong>
             ${this.renderValue()}
@@ -420,7 +420,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   render() {
     const hasLabel = this.label || !!this.hasSlotController.test('label');
     const hasHelpText = this.helpText ? true : !!this.hasSlotController.test('help-text');
-    const output = this.dropzone ? this.renderDropzone() : this.renderInput();
+    const output = this.droparea ? this.renderDroparea() : this.renderInput();
 
     return html`
       <div

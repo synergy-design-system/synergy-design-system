@@ -15,7 +15,8 @@
     "vendorism",
     "slotchange",
     "optiongroup",
-    "aria-describedby"
+    "aria-describedby",
+    "droparea"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

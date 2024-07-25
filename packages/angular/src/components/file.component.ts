@@ -41,10 +41,10 @@ import '@synergy-design-system/components/components/file/file.js';
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart dropzone-wrapper - The element wrapping the drop zone.
- * @csspart dropzone-background - The background of the drop zone.
- * @csspart dropzone-icon - The icon for the drop zone.
- * @csspart dropzone-text - The text for the drop zone.
+ * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart droparea-background - The background of the drop zone.
+ * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-text - The text for the drop zone.
  */
 @Component({
   selector: 'syn-file',
@@ -141,15 +141,15 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* Draw the file input as a dropzone
+* Draw the file input as a drop area
  */
   @Input()
-  set dropzone(v: SynFile['dropzone']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.dropzone = v));
+  set droparea(v: SynFile['droparea']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.droparea = v));
   }
 
-  get dropzone() {
-    return this.nativeElement.dropzone;
+  get droparea() {
+    return this.nativeElement.droparea;
   }
 
   /**
@@ -167,7 +167,7 @@ Beware that the only valid value when setting a file input is an empty string!
   /**
 * Specifies the types of files that the server accepts.
 Can be set either to user or environment.
-Works only when not using a dropzone!
+Works only when not using a droparea!
  */
   @Input()
   set capture(v: SynFile['capture']) {

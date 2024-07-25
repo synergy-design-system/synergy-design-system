@@ -30,10 +30,10 @@
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart dropzone-wrapper - The element wrapping the drop zone.
- * @csspart dropzone-background - The background of the drop zone.
- * @csspart dropzone-icon - The icon for the drop zone.
- * @csspart dropzone-text - The text for the drop zone.
+ * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart droparea-background - The background of the drop zone.
+ * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-text - The text for the drop zone.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/file/file.js';
@@ -85,9 +85,9 @@ Beware that the only valid value when setting a file input is an empty string!
   'disabled'?: SynFile['disabled'];
 
   /**
-* Draw the file input as a dropzone
+* Draw the file input as a drop area
  */
-  'dropzone'?: SynFile['dropzone'];
+  'droparea'?: SynFile['droparea'];
 
   /**
 * Comma separated list of supported file types
@@ -97,7 +97,7 @@ Beware that the only valid value when setting a file input is an empty string!
   /**
 * Specifies the types of files that the server accepts.
 Can be set either to user or environment.
-Works only when not using a dropzone!
+Works only when not using a droparea!
  */
   'capture'?: SynFile['capture'];
 

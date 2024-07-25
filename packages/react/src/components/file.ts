@@ -40,10 +40,10 @@ Component.define('syn-file');
  * @csspart input-wrapper - The wrapper around the button and placeholder.
  * @csspart input-button - The syn-button acting as a file input.
  * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart dropzone-wrapper - The element wrapping the drop zone.
- * @csspart dropzone-background - The background of the drop zone.
- * @csspart dropzone-icon - The icon for the drop zone.
- * @csspart dropzone-text - The text for the drop zone.
+ * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart droparea-background - The background of the drop zone.
+ * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-text - The text for the drop zone.
  */
 export const SynFile = createComponent({
   displayName: 'SynFile',

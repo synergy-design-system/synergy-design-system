@@ -16,20 +16,16 @@ export function serialize(form: HTMLFormElement) {
   const formData = new FormData(form);
   const object: Record<string, unknown> = {};
 
-  const getValue = (value: unknown) => value instanceof File
-    ? value.name
-    : value;
-    
   formData.forEach((value, key) => {
     if (Reflect.has(object, key)) {
       const entry = object[key];
       if (Array.isArray(entry)) {
-        entry.push(getValue(value));
+        entry.push(value);
       } else {
-        object[key] = [object[key], getValue(value)];
+        object[key] = [object[key], value];
       }
     } else {
-      object[key] = getValue(value);
+      object[key] = value;
     }
   });
 

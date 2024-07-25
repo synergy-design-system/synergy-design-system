@@ -283,11 +283,15 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
     }
 
     // Close when pressing escape
-    if (event.key === 'Escape' && this.open && !this.closeWatcher) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.hide();
-      this.displayInput.focus({ preventScroll: true });
+    if (event.key === 'Escape') {
+      this.value = '';
+      this.displayInput.value = '';
+
+      if (this.open && !this.closeWatcher) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.hide();
+      }
     }
 
     // Handle enter.
@@ -319,7 +323,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
     }
 
     // Navigate options
-    if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
+    if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       const allOptions = this.getAllOptions();
       const currentIndex = allOptions.indexOf(this.currentOption);
       let newIndex = Math.max(0, currentIndex);
@@ -338,12 +342,19 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       } else if (event.key === 'ArrowUp') {
         newIndex = currentIndex - 1;
         if (newIndex < 0) newIndex = allOptions.length - 1;
-      } else if (event.key === 'Home') {
-        newIndex = 0;
-      } else if (event.key === 'End') {
-        newIndex = allOptions.length - 1;
       }
       this.setCurrentOption(allOptions[newIndex]);
+    }
+
+    // Move cursor
+    if (['Home', 'End'].includes(event.key)) {
+      // Prevent scrolling
+      event.preventDefault();
+      if (event.key === 'Home') {
+        this.displayInput.setSelectionRange(0, 0);
+      } else if (event.key === 'End') {
+        this.displayInput.setSelectionRange(this.displayInput.value.length, this.displayInput.value.length);
+      }
     }
   };
 

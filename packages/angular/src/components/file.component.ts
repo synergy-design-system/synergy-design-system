@@ -66,6 +66,18 @@ export class SynFileComponent {
   }
 
   /**
+* List of uploaded files
+ */
+  @Input()
+  set files(v: SynFile['files']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.files = v));
+  }
+
+  get files() {
+    return this.nativeElement.files;
+  }
+
+  /**
 * The name of the input, submitted as a name/value pair with form data.
  */
   @Input()
@@ -249,6 +261,11 @@ or shadow root for this to work.
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() filesChange = new EventEmitter<SynFile['files']>();
 }
 
 export type { SynBlurEvent } from '@synergy-design-system/components';

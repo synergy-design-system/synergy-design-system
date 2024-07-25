@@ -78,7 +78,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   @state() private userIsDragging = false;
 
   /** List of uploaded files */
-  @property({ attribute: false })
+  @property({ type: Object })
   set files(v: FileList | null) {
     if (this.input) {
       this.input.files = v;
@@ -144,7 +144,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    * Indicates whether the user can select more than one file.
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple
    */
-  @property({ type: Boolean }) multiple: boolean;
+  @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element.

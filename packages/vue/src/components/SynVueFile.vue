@@ -52,6 +52,11 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
+* List of uploaded files
+ */
+  'files'?: SynFile['files'];
+
+  /**
 * The name of the input, submitted as a name/value pair with form data.
  */
   'name'?: SynFile['name'];
@@ -124,6 +129,11 @@ or shadow root for this to work.
 * Suppress the value from being displayed in the input
  */
   'hideValue'?: SynFile['hideValue'];
+
+  /**
+* Support for two way data binding
+ */
+  modelValue?: SynFile['files'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -157,6 +167,11 @@ defineEmits<{
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   'syn-invalid': [e: SynInvalidEvent];
+
+  /**
+* Support for two way data binding
+ */
+  'update:modelValue': [newValue: SynFile['files']];
 }>();
 </script>
 
@@ -171,11 +186,12 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
   <syn-file
     v-bind="visibleProps"
     ref="nativeElement"
+    :files="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.files !== 'undefined' ? props.files : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
-
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
+    @syn-input="$emit('update:modelValue', $event.target.files)"
   >
     <slot />
   </syn-file>

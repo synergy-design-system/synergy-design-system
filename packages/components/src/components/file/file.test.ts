@@ -337,7 +337,7 @@ describe('<syn-file>', () => {
     expect(el.droparea).to.be.false;
     expect(el.accept).to.equal('');
     expect(el.capture).to.be.undefined;
-    expect(el.multiple).to.be.undefined;
+    expect(el.multiple).to.be.false;
     expect(el.form).to.equal('');
     expect(el.hideValue).to.be.false;
   });

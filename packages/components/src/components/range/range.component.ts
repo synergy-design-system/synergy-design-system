@@ -24,7 +24,7 @@ import styles from './range.styles.js';
 const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
 
 /**
- * @summary Ranges allow the user to select values within a given range using one or two knob.
+ * @summary Ranges allow the user to select values within a given range using one or two knobs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
  *
@@ -60,9 +60,9 @@ const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' 
  * @csspart ticks - The container that wraps the tick marks.
  * @csspart knob - The knob(s) that the user can drag to change the range.
  *
- * @cssproperty --thumb-size - The size of the thumb.
- * @cssproperty --thumb-clickable-area - The clickable area around the thumb.
- * Per default this uses 40% of the thumb size. Must be a scale css value (e.g. 1.8).
+ * @cssproperty --knob-size - The size of a knob.
+ * @cssproperty --knob-clickable-area - The clickable area around the knob.
+ * Per default this uses 40% of the knob size. Must be a scale css value (e.g. 1.8).
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
@@ -401,7 +401,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
     // eslint-disable-next-line no-param-reassign
-    knob.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
+    knob.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-knob-size) * ${pos} )`;
     this.#updateTooltip(knob);
   }
 

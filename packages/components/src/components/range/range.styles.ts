@@ -6,24 +6,24 @@ export default css`
      * Values here apply for the default size of "medium"
      * For other sizes, see below
      */
-    --thumb-size: var(--syn-spacing-medium);
-    --thumb-clickable-area: 1.4;
+    --knob-size: var(--syn-spacing-medium);
+    --knob-clickable-area: 1.4;
     --track-active-offset: 0px;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
     --track-height: 4px;
 
     /* This is needed to get the full with of the element, including the border */
-    --full-thumb-size: calc(var(--thumb-size) + (var(--syn-focus-ring-width) * 2));
+    --full-knob-size: calc(var(--knob-size) + (var(--syn-focus-ring-width) * 2));
   }
 
   /* Sizes */
   :host([size='small']) {
-    --thumb-size: var(--syn-spacing-small);
+    --knob-size: var(--syn-spacing-small);
   }
 
   :host([size='large']) {
-    --thumb-size: var(--syn-spacing-medium-large);
+    --knob-size: var(--syn-spacing-medium-large);
   }
 
   .form-control {
@@ -99,7 +99,7 @@ export default css`
 
   /* Internal helper for a better click surface on tracks */
   .track__click-helper {
-    inset: -16px calc(var(--full-thumb-size) / 2 * -1);
+    inset: -16px calc(var(--full-knob-size) / 2 * -1);
     position: absolute;
   }
 
@@ -107,8 +107,8 @@ export default css`
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
-    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--full-thumb-size) / 2 - 5px);
-    width: calc(100% + 10px - var(--full-thumb-size));
+    margin: calc((var(--full-knob-size) - var(--track-height)) / 2) calc(var(--full-knob-size) / 2 - 5px);
+    width: calc(100% + 10px - var(--full-knob-size));
   }
 
   .active-track {
@@ -126,12 +126,12 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     cursor: pointer;
     display: block;
-    height: var(--full-thumb-size);
+    height: var(--full-knob-size);
     position: absolute;
     top: 0;
     transition: transform var(--syn-transition-fast) ease-in-out, background-color var(--syn-transition-fast) ease-in-out, box-shadow var(--syn-transition-fast) ease-in-out;
     user-select: none;
-    width: var(--full-thumb-size);
+    width: var(--full-knob-size);
     z-index: 3;
   }
 
@@ -143,7 +143,7 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     content: "";
     display: block;
-    inset: calc(var(--full-thumb-size) * (var(--thumb-clickable-area) / 2) * -1);
+    inset: calc(var(--full-knob-size) * (var(--knob-clickable-area) / 2) * -1);
     position: absolute;
   }
 
@@ -178,14 +178,14 @@ export default css`
   @media (any-hover: hover) {
     :host(:not([disabled])) .knob:hover:not(.grabbed)  {
       background: var(--syn-color-primary-900);
-      transform: scale(var(--thumb-clickable-area));
+      transform: scale(var(--knob-clickable-area));
     }
   }
 
   /* Ticks */
   .ticks {
     cursor: pointer;
-    margin: 1px calc(var(--full-thumb-size) / 2) 0;
+    margin: 1px calc(var(--full-knob-size) / 2) 0;
     position: relative;
     user-select: none;
   }

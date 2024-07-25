@@ -19,7 +19,6 @@ import { FormControlController } from '../../internal/form.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { LocalizeController } from '../../utilities/localize.js';
-import { scrollIntoView } from '../../internal/scroll.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -35,6 +34,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
 import styles from './autocomplete.styles.js';
 import { filterOnlyOptions, getAssignedElementsForSlot } from './utils.js';
+import { scrollIntoView } from '../../internal/scroll.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
@@ -190,7 +190,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
   /** Highlight the search query in the autocomplete list. */
   //TODO: better naming?
-  @property({ type: Boolean, reflect: true }) highlight = true;
+  @property({ type: Boolean, reflect: true }) highlight = false;
 
   /** Gets the validity state object */
   get validity() {
@@ -344,6 +344,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
         if (newIndex < 0) newIndex = allOptions.length - 1;
       }
       this.setCurrentOption(allOptions[newIndex]);
+      scrollIntoView(this.currentOption, this.listbox, 'vertical', 'auto');
     }
 
     // Move cursor

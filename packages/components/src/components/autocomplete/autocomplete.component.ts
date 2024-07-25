@@ -186,7 +186,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
   /** Show autocomplete on focus event. Focus event will ignore the `threshold` property and will always show the list. */
   //TODO: better naming?
-  @property({ attribute: 'show-on-focus', type: Boolean, reflect: true }) showOnFocus = true;
+  @property({ attribute: 'show-on-focus', type: Boolean, reflect: true }) showOnFocus = false;
 
   /** Highlight the search query in the autocomplete list. */
   //TODO: better naming?
@@ -330,12 +330,6 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       // Open it
       if (!this.open) {
         this.show();
-
-        // If an option is already selected, stop here because we want that one to remain highlighted when the listbox
-        // opens for the first time
-        if (this.currentOption) {
-          return;
-        }
       }
 
       if (event.key === 'ArrowDown') {
@@ -454,8 +448,9 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
   private setCurrentOption(option: SynOption | null) {
     const allOptions = this.getAllOptions();
 
-    // TODO: add aria-descendentactive
     // Clear selection
+    this.displayInput.removeAttribute('aria-activedescendant');
+
     allOptions.forEach(el => {
       el.current = false;
       el.setAttribute('aria-selected', 'false');
@@ -466,6 +461,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       this.currentOption = option;
       option.current = true;
       option.setAttribute('aria-selected', 'true');
+      this.displayInput.setAttribute('aria-activedescendant', option.id);
     }
   }
 
@@ -539,21 +535,12 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       this.listbox.hidden = false;
       this.popup.active = true;
 
-      // Select the appropriate option based on value after the listbox opens
-      requestAnimationFrame(() => {
-        this.setCurrentOption(this.currentOption);
-      });
-
       const { keyframes, options } = getAnimation(this, 'select.show', { dir: this.localize.dir() });
       await animateTo(this.popup.popup, keyframes, options);
 
-      // Make sure the current option is scrolled into view (required for Safari)
-      if (this.currentOption) {
-        scrollIntoView(this.currentOption, this.listbox, 'vertical', 'auto');
-      }
-
       this.emit('syn-after-show');
     } else {
+      this.displayInput.removeAttribute('aria-activedescendant');
       // Hide
       this.emit('syn-hide');
       this.removeOpenListeners();
@@ -637,9 +624,10 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
   private createAutocompleteOptionsFromQuery(queryString: string) {
     if (this.threshold <= queryString.length) {
       const allOptions = this.getSlottedOptions();
-      allOptions.forEach(option => {
+      allOptions.forEach((option, index) => {
         if (option.getTextLabel().toLowerCase().includes(queryString.toLowerCase())) {
           const optionCopy = option.cloneNode(true) as SynOption;
+          optionCopy.id = `syn-autocomplete-option-${index}`;
           if (this.highlight) {
             const nodes = optionCopy.childNodes;
             [...nodes].forEach(node => {
@@ -835,10 +823,9 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
         >
           <slot name="help-text">${this.helpText}</slot>
         </div>
-          <div style="display: none" aria-hidden="true">
-            <slot
-            ></slot>
-          </div>
+        <div style="display: none" aria-hidden="true">
+          <slot></slot>
+        </div>
       </div>
     `;
   }

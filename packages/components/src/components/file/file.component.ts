@@ -80,7 +80,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** List of uploaded files */
   @property({ attribute: false })
   set files(v: FileList | null) {
-    this.input.files = v;
+    if (this.input) {
+      this.input.files = v;
+    }
   }
 
   get files() {
@@ -96,7 +98,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    */
   @property({ type: String })
   set value(v: string) {
-    this.input.value = v;
+    if (this.input) {
+      this.input.value = v;
+    }
   }
 
   get value() {

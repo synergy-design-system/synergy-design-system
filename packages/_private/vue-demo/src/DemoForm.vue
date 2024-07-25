@@ -276,7 +276,6 @@ const synChange = () => {
         id="screenshot"
         label="Optional Screenshot(s)"
         multiple
-        required
         name="files"
         v-model="formData.files"
       />

@@ -176,7 +176,7 @@ export default css`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
    */
   @media (any-hover: hover) {
-    :host(:not([disabled])) .knob:hover:not(.grabbed)  {
+    :host(:not([disabled])) .knob:hover  {
       background: var(--syn-color-primary-900);
       transform: scale(var(--knob-clickable-area));
     }

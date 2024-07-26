@@ -64,7 +64,11 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
 @import url("https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/components']}/dist/styles/index.css");
 
 /* Import styles */
-@import url("https://esm.sh/@synergy-design-system/styles@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/styles']}/dist/index.css");`,
+@import url("https://esm.sh/@synergy-design-system/styles@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/styles']}/dist/index.css");
+
+body {
+  font-family: var(--syn-font-sans);
+}`,
           css_external: '',
           description: '',
           editors: 1110,

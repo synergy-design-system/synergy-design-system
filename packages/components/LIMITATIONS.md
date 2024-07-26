@@ -145,16 +145,17 @@ Use `currentTarget` instead, which aims for the element on which the listener is
     Home
     <syn-icon name="home" slot="prefix"></syn-icon>
   </syn-nav-item>
-<syn-side-nav>
-
-<script type="module">
-  // This listener will only work when "Home" is clicked
-  // It will display a runtime error (unknown property "href") when the syn-icon is clicked
-  document.querySelector("syn-nav-item").addEventListener("click", e => {
-    const { target } = e;
-    document.location = target.ref;
-  });
-</script>
+  <syn-side-nav>
+    <script type="module">
+      // This listener will only work when "Home" is clicked
+      // It will display a runtime error (unknown property "href") when the syn-icon is clicked
+      document.querySelector("syn-nav-item").addEventListener("click", e => {
+        const { target } = e;
+        document.location = target.ref;
+      });
+    </script></syn-side-nav
+  ></syn-side-nav
+>
 ```
 
 #### Solution
@@ -164,7 +165,7 @@ Use `currentTarget` instead, which aims for the element on which the listener is
   // This listener will work when any part of the syn-button is clicked
   document.querySelector("syn-side-nav").addEventListener("click", e => {
     const { target } = e;
-    document.location = target.closest('syn-nav-item').ref;
+    document.location = target.closest("syn-nav-item").ref;
   });
 </script>
 ```

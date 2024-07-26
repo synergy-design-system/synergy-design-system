@@ -997,7 +997,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/dropzone and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
+          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
           "type": "text"
         }
       },
@@ -1031,13 +1031,13 @@
           "type": "text"
         }
       },
-      "dropzone": {
+      "droparea": {
         "title": {
-          "value": "Dropzone",
+          "value": "Droparea",
           "type": "text"
         },
         "description": {
-          "value": "Use the dropzone attribute to switch to a full-width button with a dropzone area. The dropzone supports every attribute besides “Sizes”.",
+          "value": "Use the droparea attribute to switch to a full-width button with a drop area.",
           "type": "text"
         }
       },

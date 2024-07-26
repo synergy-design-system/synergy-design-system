@@ -359,9 +359,12 @@ describe('<syn-file>', () => {
   describe('when using the file handling utilities', () => {
     describe('acceptStringToArray', () => {
       it('should return a normalized array of accept criteria', () => {
-        expect(acceptStringToArray(' image/*,   audio/* , , ')).to.deep.equal([
+        expect(acceptStringToArray(' image/*,   audio/* , , .jpg, *.doc, *. png ')).to.deep.equal([
           'image/*',
           'audio/*',
+          '.jpg',
+          '.doc',
+          '.png',
         ]);
         expect(acceptStringToArray('')).to.deep.equal([]);
         expect(acceptStringToArray('     ')).to.deep.equal([]);

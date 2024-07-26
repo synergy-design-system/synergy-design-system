@@ -128,18 +128,18 @@ export const Sizes: Story = {
   `,
 } as Story;
 
-export const Dropzone: Story = {
+export const Droparea: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('file', 'dropzone'),
+        story: generateStoryDescription('file', 'droparea'),
       },
     },
   },
   render: () => html`
     <syn-file
       accept="text/plain,image/*"
-      dropzone
+      droparea
       help-text="This is a help text"
       label="This is a label"
       multiple
@@ -206,6 +206,6 @@ export const Screenshot: Story = generateScreenshotStory({
   HideValue,
   Disabled,
   Sizes,
-  Dropzone,
+  Droparea,
 }, 350);
 /* eslint-enable sort-keys */

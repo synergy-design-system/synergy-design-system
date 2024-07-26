@@ -1,4 +1,27 @@
 /**
+ * Sanitize an accept specifier according to specs
+ * @param specifier The specifier to sanitize
+ * @returns The sanitized specifier
+ */
+const sanitizeSpecifier = (specifier: string) => {
+  const trimmed = specifier.trim();
+
+  // Case 1: We have a mime type
+  if (trimmed.includes('/')) {
+    return trimmed;
+  }
+
+  // Case 2: We have a file extension
+  if (trimmed.includes('.')) {
+    const [, ...rest] = trimmed.split('.');
+    const sanitizedValue = rest.map(s => s.trim()).join('');
+    return `.${sanitizedValue}`;
+  }
+
+  return '';
+};
+
+/**
  * Check if a file matches a list of provided accept criteria
  * @see https://codepen.io/schilchSICKAG/pen/XWLKEyZ
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
@@ -36,5 +59,5 @@ export const fileHasValidAcceptType = (f: File, accept: string[]) => {
 export const acceptStringToArray = (accept: string) => accept
   .trim()
   .split(',')
-  .map(a => a.trim())
+  .map(sanitizeSpecifier)
   .filter(Boolean);

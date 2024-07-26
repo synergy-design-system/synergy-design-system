@@ -14,7 +14,8 @@
     "themeable",
     "vendorism",
     "slotchange",
-    "optiongroup"
+    "optiongroup",
+    "codepen",
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

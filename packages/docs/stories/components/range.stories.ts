@@ -276,7 +276,7 @@ export const CustomTrackOffset: Story = {
       class="custom-track-offset"
       max="50"
       min="-50"
-      value="0"
+      value="-15"
     ></syn-range>
     <style>
       .custom-track-offset {

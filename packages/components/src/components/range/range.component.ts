@@ -116,7 +116,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   get value() {
-    return this.#value.join(' ');
+    return this.#value.slice().sort(numericSort).join(' ');
   }
 
   /** Gets or sets the current values of the range as an array of numbers */

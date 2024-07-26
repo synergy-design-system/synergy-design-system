@@ -79,6 +79,22 @@ export const HelpText: Story = {
   `,
 } as Story;
 
+export const Multiple: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'multiple'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-file
+      label="Multiple file input"
+      multiple
+    ></syn-file>
+  `,
+} as Story;
+
 export const HideValue: Story = {
   parameters: {
     docs: {
@@ -104,11 +120,18 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-file
-      disabled
-      label="This is a label"
-    ></syn-file>
-  `,
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <syn-file
+        disabled
+        label="This is a label"
+      ></syn-file>
+      <syn-file
+        disabled
+        droparea
+        label="This is a label"
+      ></syn-file>
+    </div>
+`,
 } as Story;
 
 export const Sizes: Story = {
@@ -200,17 +223,27 @@ export const Invalid: Story = {
     },
   },
   render: () => html`
-    <syn-file
-      accept="text/plain"
-      class="syn-file-invalid"
-      help-text="This is a help text"
-      label="This is a label"
-    ></syn-file>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <syn-file
+        accept="text/plain"
+        class="syn-file-invalid"
+        help-text="This is a help text"
+        label="This is a label"
+      ></syn-file>
+      <syn-file
+        accept="text/plain"
+        class="syn-file-invalid"
+        droparea
+        help-text="This is a help text"
+        label="This is a label"
+      ></syn-file>
+    </div>
+
     <script type="module">
       customElements.whenDefined('syn-file').then(() => {
         document
-          .querySelector('.syn-file-invalid')
-          .setCustomValidity('This is an error text');
+          .querySelectorAll('.syn-file-invalid')
+          .forEach(f => f.setCustomValidity('This is an error text'));
       });
     </script>
   `,
@@ -221,6 +254,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Label,
   HelpText,
+  Multiple,
   HideValue,
   Disabled,
   Sizes,

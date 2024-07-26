@@ -135,7 +135,7 @@ Synergy components make heavy use of [ShadowDOM](https://developer.mozilla.org/e
 
 ### Proposed Solution
 
-Use `currentTarget` instead, which aims for the element on which the listener is attached on instead of the event origin.
+Try to match on the next `<syn-nav-item>` with the closest selector. This will also match for slotted elements.
 
 #### Problem
 

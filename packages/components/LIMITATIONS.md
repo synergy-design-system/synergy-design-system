@@ -140,10 +140,12 @@ Use `currentTarget` instead, which aims for the element on which the listener is
 #### Problem
 
 ```html
-<syn-nav-item href="/">
-  Home
-  <syn-icon name="home" slot="prefix"></syn-icon>
-</syn-nav-item>
+<syn-side-nav>
+  <syn-nav-item href="/">
+    Home
+    <syn-icon name="home" slot="prefix"></syn-icon>
+  </syn-nav-item>
+<syn-side-nav>
 
 <script type="module">
   // This listener will only work when "Home" is clicked
@@ -158,16 +160,11 @@ Use `currentTarget` instead, which aims for the element on which the listener is
 #### Solution
 
 ```html
-<syn-nav-item href="/">
-  Home
-  <syn-icon name="home" slot="prefix"></syn-icon>
-</syn-nav-item>
-
 <script type="module">
   // This listener will work when any part of the syn-button is clicked
-  document.querySelector("syn-nav-item").addEventListener("click", e => {
-    const { currentTarget } = e;
-    document.location = currentTarget.ref;
+  document.querySelector("syn-side-nav").addEventListener("click", e => {
+    const { target } = e;
+    document.location = target.closest('syn-nav-item').ref;
   });
 </script>
 ```

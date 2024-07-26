@@ -5,13 +5,7 @@ export default css`
     display: block;
   }
 
-  .select__listbox > [role="option"] mark {
-    background-color: transparent;
-    color: var(--syn-color-neutral-950);
-    font: var(--syn-body-medium-bold);
+  .select__listbox ::slotted(syn-option[hidden]) {
+    display: none;
   }
-
-  .select__listbox > [role="option"][aria-selected='true'] mark {
-    color: var(--syn-color-neutral-0);
-  }       
 `;

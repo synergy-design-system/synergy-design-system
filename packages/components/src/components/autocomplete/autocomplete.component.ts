@@ -11,7 +11,7 @@
 // eslint-disable-next-line import/no-duplicates
 import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import { html } from 'lit';
+import { css, html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { defaultValue } from '../../internal/default-value.js';
@@ -135,7 +135,7 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       toAttribute: (value: string[]) => value.join(' '),
     },
   })
-    value: string | string[] = '';
+  value: string | string[] = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue: string | string[] = '';
@@ -324,8 +324,9 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
     // Navigate options
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
-      const allOptions = this.getAllOptions();
-      const currentIndex = allOptions.indexOf(this.currentOption);
+      const visibleOptions = this.getAllOptions().filter(option => !option.hidden);
+
+      const currentIndex = visibleOptions.indexOf(this.currentOption);
       let newIndex = Math.max(0, currentIndex);
 
       // Prevent scrolling
@@ -338,12 +339,12 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
       if (event.key === 'ArrowDown') {
         newIndex = currentIndex + 1;
-        if (newIndex > allOptions.length - 1) newIndex = 0;
+        if (newIndex > visibleOptions.length - 1) newIndex = 0;
       } else if (event.key === 'ArrowUp') {
         newIndex = currentIndex - 1;
-        if (newIndex < 0) newIndex = allOptions.length - 1;
+        if (newIndex < 0) newIndex = visibleOptions.length - 1;
       }
-      this.setCurrentOption(allOptions[newIndex]);
+      this.setCurrentOption(visibleOptions[newIndex]);
       scrollIntoView(this.currentOption, this.listbox, 'vertical', 'auto');
     }
 
@@ -427,7 +428,6 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
   private handleOptionClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    // TODO: allow also li or div with role option
     const option = target.closest('syn-option');
     const oldValue = this.value;
     if (option && !option.disabled) {
@@ -450,9 +450,8 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
   }
 
   // Gets an array of all <syn-option> elements
-  // TODO: allow also li or div with role option
   private getAllOptions() {
-    return [...this.listbox.querySelectorAll<SynOption>('syn-option')];
+    return [...this.querySelectorAll<SynOption>('syn-option')];
   }
 
   // Sets the current option, which is the option the user is currently interacting with (e.g. via keyboard). Only one
@@ -563,8 +562,6 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       this.listbox.hidden = true;
       this.popup.active = false;
 
-      // Remove all options
-      this.listbox.innerHTML = '';
       this.emit('syn-after-hide');
     }
   }
@@ -623,8 +620,6 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
   }
 
   private handleInput() {
-    // remove old options
-    this.listbox.innerHTML = '';
     const inputValue = this.displayInput.value;
     this.createAutocompleteOptionsFromQuery(inputValue);
     this.value = inputValue;
@@ -633,38 +628,67 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
     this.emit('syn-input');
   }
 
+  private createMarkElement(queryString: string) {
+    const mark = document.createElement('mark');
+    const markStyle = document.createElement('style');
+    const markRules = css`
+      syn-option mark {
+        background-color: transparent;
+        color: var(--syn-color-neutral-950);
+        font: var(--syn-body-medium-bold);
+      }
+
+      syn-option[aria-selected='true'] mark {
+        color: var(--syn-color-neutral-0);
+      }       
+    `;
+    markStyle.appendChild(document.createTextNode(markRules.cssText));
+    mark.appendChild(markStyle);
+    mark.appendChild(document.createTextNode(queryString));
+    return mark;
+  }
+
   private createAutocompleteOptionsFromQuery(queryString: string) {
     if (this.threshold <= queryString.length) {
       const allOptions = this.getSlottedOptions();
-      allOptions.forEach((option, index) => {
+      let optionAvailable = false;
+      allOptions.forEach((option) => {
         if (option.getTextLabel().toLowerCase().includes(queryString.toLowerCase())) {
-          const optionCopy = option.cloneNode(true) as SynOption;
-          optionCopy.id = `syn-autocomplete-option-${index}`;
+          optionAvailable = true;
           if (this.highlight) {
-            const nodes = optionCopy.childNodes;
+            // Recreate the original innerHTML
+            option.innerHTML = option.dataset.content ?? option.innerHTML;
+
+            const markElement = this.createMarkElement(queryString);
+
+            const nodes = option.childNodes;
             [...nodes].forEach(node => {
               if (node.nodeType === Node.ELEMENT_NODE) {
                 const element = node as HTMLElement;
                 if (!element.hasAttribute('slot')) {
-                  element.innerHTML = element.innerHTML.replace(new RegExp(queryString, 'i'), `<mark>${queryString}</mark>`);
+                  element.innerHTML = element.innerHTML.replace(new RegExp(queryString, 'i'), markElement.outerHTML);
                 }
               }
 
               if (node.nodeType === Node.TEXT_NODE) {
                 // It is only a textnode. To be able to add a mark element, we need to remove the text node and exchange it with another html element
-                const content = node.textContent?.replace(new RegExp(queryString, 'i'), `<mark>${queryString}</mark>`) || '';
+                const content = node.textContent?.replace(new RegExp(queryString, 'i'), markElement.outerHTML) ?? '';
                 const optionContent = document.createElement('span');
                 optionContent.innerHTML = content;
                 node.remove();
-                optionCopy.appendChild(optionContent);
+                option.appendChild(optionContent);
               }
             });
           }
-          this.listbox.appendChild(optionCopy);
+          option.hidden = false;
+          option.removeAttribute('aria-hidden');
+        } else {
+          option.hidden = true;
+          option.setAttribute('aria-hidden', 'true');
         }
       });
       // TODO: check if we need to use the this.show method here
-      this.open = true;
+      this.open = optionAvailable;
     } else {
       this.open = false;
     }
@@ -672,9 +696,9 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
 
   private createAllAutocompleteOptions() {
     const allOptions = this.getSlottedOptions();
-    allOptions.forEach(option => {
-      const optionCopy = option.cloneNode(true) as SynOption;
-      this.listbox.appendChild(optionCopy);
+    allOptions.forEach((option) => {
+      option.hidden = false;
+      option.removeAttribute('aria-hidden');
     });
   }
 
@@ -691,6 +715,18 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
     return filterOnlyOptions(getAssignedElementsForSlot(this.defaultSlot));
   }
 
+  private slotChange() {
+    const slottedOptions = this.getSlottedOptions();
+    slottedOptions.forEach((option, index) => {
+      if (option.dataset.autocomplete !== 'true') {
+        option.id = option.id || `syn-autocomplete-option-${index}`;
+        option.dataset.autocomplete = 'true';
+        // Cache the original content for recreating the innerHTML
+        option.dataset.content = option.innerHTML;
+      }
+    });
+  }
+
   // eslint-disable-next-line complexity
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
@@ -704,13 +740,13 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
       <div
         part="form-control"
         class=${classMap({
-        'form-control': true,
-        'form-control--small': this.size === 'small',
-        'form-control--medium': this.size === 'medium',
-        'form-control--large': this.size === 'large',
-        'form-control--has-label': hasLabel,
-        'form-control--has-help-text': hasHelpText,
-      })}
+      'form-control': true,
+      'form-control--small': this.size === 'small',
+      'form-control--medium': this.size === 'medium',
+      'form-control--large': this.size === 'large',
+      'form-control--has-label': hasLabel,
+      'form-control--has-help-text': hasHelpText,
+    })}
       >
         <label
           id="label"
@@ -725,18 +761,18 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
         <div part="form-control-input" class="form-control-input">
           <syn-popup
             class=${classMap({
-            select: true,
-              'select--standard': true,
-              'select--open': this.open,
-              'select--disabled': this.disabled,
-              'select--focused': this.hasFocus,
-              'select--placeholder-visible': isPlaceholderVisible,
-              'select--top': this.placement === 'top',
-              'select--bottom': this.placement === 'bottom',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large',
-            })}
+      select: true,
+      'select--standard': true,
+      'select--open': this.open,
+      'select--disabled': this.disabled,
+      'select--focused': this.hasFocus,
+      'select--placeholder-visible': isPlaceholderVisible,
+      'select--top': this.placement === 'top',
+      'select--bottom': this.placement === 'bottom',
+      'select--small': this.size === 'small',
+      'select--medium': this.size === 'medium',
+      'select--large': this.size === 'large',
+    })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
@@ -822,7 +858,8 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
               tabindex="-1"
               @mousedown=${this.preventLoosingFocus}
               @mouseup=${this.handleOptionClick}
-            >             
+            >
+              <slot @slotchange=${this.slotChange}></slot>      
             </div>
           </syn-popup>
         </div>
@@ -834,9 +871,6 @@ export default class SynAutocomplete extends SynergyElement implements SynergyFo
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
           <slot name="help-text">${this.helpText}</slot>
-        </div>
-        <div style="display: none" aria-hidden="true">
-          <slot></slot>
         </div>
       </div>
     `;

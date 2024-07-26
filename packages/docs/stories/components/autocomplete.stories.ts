@@ -71,7 +71,7 @@ export const Default = {
     args: overrideArgs({
       name: 'default',
       type: 'slot',
-      value: createColorOptions(),
+      value: createColorOptions().join('\n'),
     }, args),
     controls: {
       disable: false,
@@ -82,18 +82,8 @@ export const Default = {
       },
     },
   },
-  render: (renderArgs: unknown) => html`
-    ${generateTemplate({ args: renderArgs })}
-    <script type="module">
-      const auto = document.querySelector('syn-autocomplete');
-      auto.addEventListener('syn-change', (event) => {
-        // console.log('change', event.target.value);
-      });
-      auto.addEventListener('syn-input', (event) => {
-        // console.log('input', event.target.value);
-      });
-    </script>
-  `,
+  render: (renderArgs: unknown) => generateTemplate({ args: renderArgs }),
+
 } as Story;
 
 // TODO: do we still need this?

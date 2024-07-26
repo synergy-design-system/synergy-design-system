@@ -74,20 +74,49 @@ const preview: Preview = {
       },
       source: {
         format: 'html', transform: (code: string, storyContext: StoryContext) => {
-          const id = 'story--' + storyContext.id;
-          const storiesOnDocsPage = document.querySelectorAll(`#${id}, #${id}--primary`);
-          storiesOnDocsPage.forEach((element) => {
-            const button = element.closest('.docs-story').querySelector('.docblock-code-toggle');
-            if (button) {
-              element.closest('.docs-story').querySelectorAll('.docblock-codepen-button').forEach((el) => {
-                el.remove();
-              });
+          // We hijack the formatter to keep track of every story's code change and add a button to edit it on CodePen 
+          const storiesOnDocsPage = document.querySelectorAll(`#anchor--${storyContext.id}`);
 
-              const newButton = button.cloneNode(true);
-              newButton.textContent = 'Edit on CodePen';
-              newButton.classList.add('docblock-codepen-button');
-              button.parentElement.appendChild(newButton);
-              newButton.addEventListener('click', () => {
+          // Unfortunately, the editable story in a docs page has the same ID as the first story.
+          storiesOnDocsPage.forEach((story) => {
+            const showCodeButton = story.querySelector('.docblock-code-toggle');
+            if (showCodeButton) {
+              const editCodeButton = showCodeButton.cloneNode(true);
+              editCodeButton.textContent = 'Edit on CodePen';
+              editCodeButton.classList.add('docblock-codepen-button');
+
+              const isEditableStory = story.querySelector('.sb-bar');
+
+              // We want to remove old buttons, but as described two stories share the same ID.
+              // This leads to this little hack to make sure that always the correct button is visible for every story.
+              //
+              // Part 1: For the editable story (with '.sb-bar') remove all buttons except the last one
+              //         as this could contain the correct button for the editable story
+              if (isEditableStory) {
+                story.querySelectorAll('.docblock-codepen-button:not(:last-of-type)').forEach((el) => {
+                  el.remove();
+                });
+              }
+              else {
+                story.querySelectorAll('.docblock-codepen-button').forEach((el) => {
+                  el.remove();
+                });
+              }
+
+              // Add the button to the end
+              showCodeButton.parentElement.appendChild(editCodeButton);
+
+              // Part 2: Hide the last button, because the one before the last is the correct one for the editable story
+              if (isEditableStory) {
+                story.querySelectorAll('.docblock-codepen-button:not(:last-of-type)').forEach((el) => {
+                  el.style.display = 'block';
+                  el.style.borderRight = 'none';
+                });
+                story.querySelector('.docblock-codepen-button:last-of-type').style.display = 'none';
+              }
+
+              // Finally add the event listener to the button
+              editCodeButton.addEventListener('click', () => {
                 const form = document.createElement('form');
                 form.action = 'https://codepen.io/pen/define';
                 form.method = 'POST';

@@ -373,9 +373,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         >
           <syn-icon
             class="droparea__icon"
-            name="upload_file"
+            name="upload-file"
             part="droparea-icon"
-            library="default"
+            library="system"
           ></syn-icon>
           <p
             class="droparea__text"

@@ -1,6 +1,6 @@
-# Known Issues and limitations - Components
+# Known issues and limitations - Components
 
-This file lists known issues and limitations of Synergy Web Components and useful Information with working on web-components.
+This file lists known issues and limitations of Synergy Web Components and useful information with working on web-components.
 
 ---
 
@@ -26,13 +26,14 @@ As stated via [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotEle
 
 Rendering is a crucial task of current frontend frameworks. Most frameworks will try to reuse created `Text` nodes. However, for most frameworks it is enough to wrap the slot contents with any `HTMLElement`.
 
-#### Solution:
+#### Problem
 
 ```html
-<!-- Before -->
 <syn-button>DYNAMIC_TEXT</syn-button>
+```
 
-<!-- After -->
+#### Solution
+```html
 <syn-button>
   <span>DYNAMIC_TEXT</span>
 </syn-button>
@@ -61,7 +62,7 @@ Synergy uses shared `CustomEvents` for all of its components. Per default, all o
 If the dialog should only be closed, listen to the `syn-request-close` event instead of `syn-hide`.
 In other cases, make sure to suppress the other elements emitted `syn-hide` events.
 
-#### Solution 1:
+#### Problem
 
 ```html
 <!-- Before -->
@@ -76,8 +77,10 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
     target.close();
   });
 </script>
+```
 
-<!-- After -->
+#### Solution 1
+```html
 <syn-dialog open>
   <syn-details open summary="Example"></syn-details>
 </syn-dialog>
@@ -96,21 +99,6 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
 #### Solution 2:
 
 ```html
-<!-- Before -->
-<syn-dialog open>
-  <syn-details open summary="Example"></syn-details>
-</syn-dialog>
-
-<script type="module">
-  // This listener is also fired when the syn-details is closed!
-  document.querySelector("syn-dialog").addEventListener("syn-hide", e => {
-    const { target } = e;
-    console.log(target.tagName); // May be SYN-DIALOG or SYN-DETAILS!
-    target.close();
-  });
-</script>
-
-<!-- After -->
 <syn-dialog open>
   <syn-details open summary="Example"></syn-details>
 </syn-dialog>
@@ -145,12 +133,11 @@ Synergy components make heavy use of [ShadowDOM](https://developer.mozilla.org/e
 
 ### Proposed Solution
 
-Try to match on the next `<syn-nav-item>` with the closest selector. This will also match for slotted elements.
+Use `currentTarget` instead, which aims for the element on which the listener is attached on instead of the event origin.
 
-#### Solution:
+#### Problem
 
 ```html
-<!-- Before -->
 <syn-nav-item href="/">
   Home
   <syn-icon name="home" slot="prefix"></syn-icon>
@@ -164,8 +151,10 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
     document.location = target.ref;
   });
 </script>
+```
 
-<!-- After -->
+#### Solution
+```html
 <syn-nav-item href="/">
   Home
   <syn-icon name="home" slot="prefix"></syn-icon>
@@ -174,11 +163,8 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
 <script type="module">
   // This listener will work when any part of the syn-button is clicked
   document.querySelector("syn-nav-item").addEventListener("click", e => {
-    const { target } = e;
-    // Will either match directly (when the syn-nav-item is clicked)
-    // or via DOM traversal, if the syn-icon is clicked.
-    const navItem = target.closest("syn-nav-item");
-    document.location = navItem.ref;
+    const { currentTarget } = e;
+    document.location = currentTarget.ref;
   });
 </script>
 ```

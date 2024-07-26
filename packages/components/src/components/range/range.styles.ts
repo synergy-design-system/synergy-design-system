@@ -73,12 +73,29 @@ export default css`
     flex: 0 0 auto;
   }
 
+  /* Sizing for the prefix and suffix */
+  .form-control--small .input__prefix ::slotted(*) {
+    margin-inline-end: var(--syn-spacing-x-small);
+  }
+
+  .form-control--small .input__suffix ::slotted(*) {
+    margin-inline-start: var(--syn-spacing-x-small);
+  }
+
   .form-control--medium .input__prefix ::slotted(*) {
-    margin-inline: var(--syn-input-spacing-medium) var(--syn-input-spacing-small);
+    margin-inline-end: var(--syn-input-spacing-small);
   }
 
   .form-control--medium .input__suffix ::slotted(*) {
-    margin-inline: var(--syn-input-spacing-small) var(--syn-input-spacing-medium);
+    margin-inline-start: var(--syn-input-spacing-small);
+  }
+
+  .form-control--large .input__prefix ::slotted(*) {
+    margin-inline-end: var(--syn-input-spacing-medium);
+  }
+
+  .form-control--large .input__suffix ::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-medium);
   }
 
   .form-control--medium .input__prefix ::slotted(syn-icon),

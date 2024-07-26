@@ -6,17 +6,14 @@ import {
 import {
   type FC,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import type { SynSideNav as SynSideNavType } from '@synergy-design-system/components';
 import { RouterLink } from './RouterLink';
 import { ThemeSwitch } from './ThemeSwitch';
 
 export const Layout: FC = () => {
   const location = useLocation();
-  const sideNavRef = useRef<SynSideNavType>(null);
   const [currentNavigationPath, setCurrentNavigationPath] = useState('/');
 
   useEffect(() => {
@@ -32,7 +29,7 @@ export const Layout: FC = () => {
         </div>
       </SynHeader>
       <div className="main">
-        <SynSideNav rail ref={sideNavRef}>
+        <SynSideNav rail>
           <RouterLink href="/" current={currentNavigationPath === '/'}>
             Home
             <SynIcon name="home" slot="prefix" />

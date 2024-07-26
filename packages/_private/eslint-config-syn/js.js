@@ -6,10 +6,14 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:compat/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2023,
   },
+  plugins: [
+    'compat',
+  ],
   rules: {
 
     // Disabled as we use it for templating a lot
@@ -36,5 +40,9 @@ module.exports = {
     }],
 
     'sort-keys': 'warn',
+  },
+  settings: {
+    // Support browserslist without package.json
+    browsers: ['defaults and supports es6-module'],
   },
 };

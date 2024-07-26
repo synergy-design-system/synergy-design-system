@@ -1,6 +1,6 @@
 /**
  * Make routing work with `syn-nav-item` and `routerLink` and `routerLinkActive`
- * Origianal solution by @xkabylgSICKAG
+ * Original solution by @xkabylgSICKAG
  * @see https://github.com/synergy-design-system/synergy-design-system/issues/442
  */
 import {

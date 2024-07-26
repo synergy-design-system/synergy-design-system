@@ -30,4 +30,3 @@ Because of the details outlined above, you will have to provide a custom directi
 Create your own directive that builds upon the original `routerLink` as can be seen [in our Angular Demo Repository](https://github.com/synergy-design-system/synergy-design-system/commit/10cb7fc47c951a9dfb0ea1f6070780262c0632c4#diff-6e0efa9162f915825307fe7e43299d0d492102de8759c191a8b898fd6bfc9069).
 
 ---
-

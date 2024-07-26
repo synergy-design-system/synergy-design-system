@@ -33,6 +33,7 @@ Rendering is a crucial task of current frontend frameworks. Most frameworks will
 ```
 
 #### Solution
+
 ```html
 <syn-button>
   <span>DYNAMIC_TEXT</span>
@@ -80,6 +81,7 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
 ```
 
 #### Solution 1
+
 ```html
 <syn-dialog open>
   <syn-details open summary="Example"></syn-details>
@@ -154,6 +156,7 @@ Use `currentTarget` instead, which aims for the element on which the listener is
 ```
 
 #### Solution
+
 ```html
 <syn-nav-item href="/">
   Home

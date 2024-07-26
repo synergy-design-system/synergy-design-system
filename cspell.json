@@ -15,7 +15,7 @@
     "vendorism",
     "slotchange",
     "optiongroup",
-    "codepen",
+    "codepen"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

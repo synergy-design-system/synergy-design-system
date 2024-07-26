@@ -42,13 +42,15 @@
  * @csspart ticks - The container that wraps the tick marks.
  * @csspart knob - The knob(s) that the user can drag to change the range.
  *
- * @cssproperty --knob-size - The size of a knob.
- * @cssproperty --knob-clickable-area - The clickable area around the knob.
- * Per default this uses 40% of the knob size. Must be a scale css value (e.g. 1.8).
+ * @cssproperty --thumb-size - The size of a knob.
+ * @cssproperty --thumb-hit-area-size - The clickable area around the knob.
+ * Per default this is set to 140% of the knob size. Must be a scale css value (defaults to 1.4).
+ * @cssproperty --track-hit-area-size - The clickable area around the track (top and left).
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
- * @cssproperty --track-active-offset - The point of origin of the active track.
+ * @cssproperty --track-active-offset - The point of origin of the active track,
+ * starting at the left side of the range.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/range/range.js';

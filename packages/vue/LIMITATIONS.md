@@ -1,11 +1,11 @@
 # Known Issues and recipes - Vue
 
-> ⚠️ This file includes all known issues and limitations when using our Angular wrappers.
-> There may be other interesting bits of Information in our [components limitation documentation](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs).
+> ⚠️ This file includes all known issues and limitations when using the Vue wrappers.
+> There may be other interesting bits of information in the [components limitation documentation](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs).
 
 ---
 
-## Using vitest for testing
+## Using Vitest for testing
 
 ### Meta Information
 
@@ -15,17 +15,17 @@
 
 ### Description
 
-When using `vitest` for testing applications including `@synergy-design-system/vue`, there may be a `TypeError` with the message `TypeError: Unknown file extension ".vue"`.
+When using `Vitest` for testing applications including `@synergy-design-system/vue`, there may be a `TypeError` with the message `TypeError: Unknown file extension ".vue"`.
 
 ### Cause
 
-`@synergy-design-system/vue` ships the raw `.vue` files. This works fine for Vite based setups. However, vitest **does not process external dependencies** by default.
+`@synergy-design-system/vue` ships the raw `.vue` files. This works fine for Vite based setups. However, Vitest **does not process external dependencies** by default.
 
-### Proposed Solution
+### Proposed solution
 
-Adjust vitests [server.deps.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
+Adjust Vitests [server.deps.inline](https://vitest.dev/config/#server-deps-inline) parameter to include `@synergy-design-system/vue`.
 
-#### Solution:
+#### Solution
 
 ```typescript
 // vitest.config.ts

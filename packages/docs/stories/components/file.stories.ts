@@ -25,7 +25,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-file',
   parameters: {
-    design: generateFigmaPluginObject('10540-8605'),
+    design: generateFigmaPluginObject('21709-49135'),
     docs: {
       description: {
         component: generateStoryDescription('file', 'default'),
@@ -137,14 +137,32 @@ export const Droparea: Story = {
     },
   },
   render: () => html`
-    <syn-file
-      accept="text/plain,image/*"
-      droparea
-      help-text="This is a help text"
-      label="This is a label"
-      multiple
-      size="medium"
-    ></syn-file>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Small"
+        multiple
+        size="small"
+      ></syn-file>
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Medium"
+        multiple
+        size="medium"
+      ></syn-file>
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Large"
+        multiple
+        size="large"
+      ></syn-file>
+    </div>
   `,
 } as Story;
 

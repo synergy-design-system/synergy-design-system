@@ -11,10 +11,6 @@ import type SynFile from './file.js';
 import { acceptStringToArray, fileHasValidAcceptType } from './utils.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 
-// The input__chosen text color is too light.
-// We are skipping this rule for now.
-const ignoredRules = ['color-contrast'];
-
 /**
  * Serialize a form with files to a JSON object
  * @param form The form to serialize
@@ -83,7 +79,7 @@ describe('<syn-file>', () => {
     describe(description, () => {
       it('passes accessibility test', async () => {
         const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
-        await expect(el).to.be.accessible({ ignoredRules });
+        await expect(el).to.be.accessible();
       });
 
       it('should be disabled with the disabled attribute', async () => {

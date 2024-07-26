@@ -39,7 +39,7 @@ export default css`
   }
 
   .input__chosen--placeholder {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-input-help-text-color);
   }
 
   :host([size="small"]) .input__chosen {
@@ -62,6 +62,8 @@ export default css`
 
   /* Drop Area */
   .droparea__wrapper {
+    --highlight-color: var(--syn-color-primary-600);
+
     border: var(--syn-border-width-small) dashed var(--syn-input-border-color);
     font: var(--syn-body-medium-regular);
     padding: var(--syn-spacing-x-large) var(--syn-spacing-large);
@@ -73,6 +75,15 @@ export default css`
     outline-offset: var(--syn-focus-ring-offset);
   }
 
+  /* Adjust the highlight to match an inactive item */
+  :host([disabled]) .droparea__wrapper {
+    --highlight-color: var(--syn-color-neutral-600);
+  }
+
+  :host([disabled]) .input__chosen {
+    display: none;
+  }
+
   .droparea__background {
     align-items: center;
     display: flex;
@@ -81,7 +92,7 @@ export default css`
   }
 
   .droparea__icon {
-    color: var(--syn-color-primary-600);
+    color: var(--highlight-color);
     font-size: var(--syn-spacing-3x-large);
   }
 
@@ -92,15 +103,8 @@ export default css`
   }
 
   .droparea__text strong {
-    color: var(--syn-color-primary-600);
+    color: var(--highlight-color);
     font-weight: var(--syn-font-weight-bold);
-  }
-
-  .form-control--user-dragging .droparea__wrapper,
-  .droparea__wrapper:not(:focus-visible):hover {
-    background: var(--syn-color-primary-50);
-    border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
-    cursor: pointer;
   }
 
   /* Sizes */
@@ -118,5 +122,19 @@ export default css`
 
   :host([size="large"]) .droparea__icon {
     font-size: var(--syn-spacing-4x-large)
+  }
+
+  /* Disabled Styles */
+  :host([disabled]) .droparea__wrapper,
+  :host([disabled]) .input__chosen {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  :host(:not([disabled])) .form-control--user-dragging .droparea__wrapper,
+  :host(:not([disabled])) .droparea__wrapper:not(:focus-visible):hover {
+    background: var(--syn-color-primary-50);
+    border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
+    cursor: pointer;
   }
 `;

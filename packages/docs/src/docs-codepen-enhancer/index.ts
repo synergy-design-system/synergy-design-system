@@ -5,7 +5,7 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
   // We hijack the formatter to keep track of every story's code change
   // and add a button to edit it on CodePen
   const storiesOnDocsPage = document.querySelectorAll(`#anchor--${storyContext.id}`);
-  const packageVersionString = import.meta.env.VITE_PACKAGE_VERSIONS as string;
+  const packageVersionString = import.meta.env.STORYBOOK_PACKAGE_VERSIONS as string;
   const packageVersions = JSON.parse(packageVersionString) as Record<string, string>;
 
   // Unfortunately, the editable story in a docs page has the same ID as the first story.

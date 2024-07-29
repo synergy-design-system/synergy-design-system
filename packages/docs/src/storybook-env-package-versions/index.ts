@@ -14,7 +14,7 @@ function StorybookEnvPackageVersions(options: PackageVersionsPluginOptions): Sto
       try {
         const packageJson = JSON.parse(
           readFileSync(join(root, packagePath, 'package.json'), 'utf-8'),
-        ) as { name: string, version: string };
+        ) as { name: string, version: string; };
         acc[packageJson.name] = packageJson.version;
       } catch (error) {
         console.error(`Failed to read package.json from ${packagePath}:`, error);
@@ -23,7 +23,7 @@ function StorybookEnvPackageVersions(options: PackageVersionsPluginOptions): Sto
     }, {} as Record<string, string>);
     return {
       ...config,
-      VITE_PACKAGE_VERSIONS: JSON.stringify(versions),
+      STORYBOOK_PACKAGE_VERSIONS: JSON.stringify(versions),
     };
   };
 }

@@ -39,6 +39,7 @@ const synRefreshComponentBundle = () => {
       // Whenever one of our component files has changed,
       // make sure to recreate our bundle
       fileWatcher.add('./src/components/**/!(*.(test)).ts');
+      fileWatcher.add('./src/utilities/**/!(*.(test)).ts');
 
       // Make sure to only rebuild our components if a component and its associates did change
       fileWatcher.on('change', async (changedFile) => {

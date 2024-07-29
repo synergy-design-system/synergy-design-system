@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------
 export { SynAccordionComponent } from './accordion.component';
 export { SynAlertComponent } from './alert.component';
+export { SynAutocompleteComponent } from './autocomplete.component';
 export { SynBadgeComponent } from './badge.component';
 export { SynBreadcrumbComponent } from './breadcrumb.component';
 export { SynBreadcrumbItemComponent } from './breadcrumb-item.component';

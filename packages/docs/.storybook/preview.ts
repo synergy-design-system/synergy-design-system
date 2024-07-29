@@ -12,6 +12,7 @@ import '../src/docs.css';
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import { LIGHT_THEME, DARK_THEME } from './modes.js';
 import { generateFigmaPluginObject } from "../src/helpers/figma.js";
+import { storybookUtilities } from '../src/helpers/component.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
@@ -70,7 +71,7 @@ const preview: Preview = {
       toc: {
         headingSelector: 'h2, h3',
       },
-      source: { format: 'html' }
+      source: { transform: (code: string) => storybookUtilities.codeOptimizer(code), format: 'html' }
     },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.

@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
   SynDivider,
+  SynIcon,
   SynInput,
   SynOptgroup,
   SynOption,
@@ -16,6 +17,7 @@ import {
 } from '@synergy-design-system/react';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
+import { useAutoComplete } from './customHooks';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -30,6 +32,7 @@ const initialFormData = {
   email: '',
   gender: '',
   name: '',
+  nationality: '',
   newsletterAngular: false,
   newsletterBeta: false,
   newsletterReact: false,
@@ -41,6 +44,8 @@ const initialFormData = {
   role: '',
   topics: [],
 };
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -76,6 +81,30 @@ export const DemoForm = () => {
       formRef.current?.removeEventListener('syn-change', listener);
     };
   }, []);
+
+  const nationalitiesInput = useRef<SynInputType>(null);
+
+  const autoCompleteConfig = {
+    data: {
+      src: nationalities,
+    },
+    resultItem: {
+      highlight: true,
+    },
+    resultsList: {
+      maxResults: undefined,
+    },
+    threshold: 0,
+  };
+  /* eslint-disable */
+  const nationalitiesAutoComplete = useAutoComplete(nationalitiesInput, autoCompleteConfig);
+  useEffect(() => {
+    if (!nationalitiesAutoComplete) return;
+    (nationalitiesAutoComplete.input as HTMLInputElement).addEventListener('focus', () => {
+      nationalitiesAutoComplete.start();
+    });
+  }, [nationalitiesAutoComplete]);
+  /* eslint-enable */
 
   return (
     <form
@@ -170,6 +199,19 @@ export const DemoForm = () => {
           value={formData.date}
           type="date"
         />
+
+        <SynInput
+          id="input-nationality"
+          label="Nationality"
+          name="nationality"
+          required
+          value={formData.nationality}
+          type="search"
+          ref={nationalitiesInput}
+          placeholder='Please choose your nationality'
+        >
+          <SynIcon slot="suffix" name="search" />
+        </SynInput>
 
       </DemoFieldset>
       {/* /PersonalInformation */}

@@ -4,6 +4,7 @@ import {
   SynVueButton,
   SynVueCheckbox,
   SynVueDivider,
+  SynVueIcon,
   SynVueInput,
   SynVueOptgroup,
   SynVueOption,
@@ -13,8 +14,13 @@ import {
   SynVueSwitch,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
+// @ts-expect-error autoComplete.js does not have types
+import autoComplete from '@tarekraafat/autocomplete.js';
+import { setupAutocomplete } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const initialFormData = {
   code: '',
@@ -23,6 +29,7 @@ const initialFormData = {
   email: '',
   gender: '',
   name: '',
+  nationality: '',
   newsletterAngular: false,
   newsletterBeta: false,
   newsletterReact: false,
@@ -66,6 +73,35 @@ const synChange = () => {
   // Log the normalized data
   console.log(normalizedData);
 };
+
+const initializeAutoComplete = () => {
+  Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
+    const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
+    const nationalityAutoComplete = new autoComplete({
+      ...autoCompleteConfig,
+      threshold: 0,
+      placeHolder: 'Please choose your nationality',
+      data: {
+        src: nationalities,
+      },
+      events: {
+        input: {
+          focus() {
+            nationalityAutoComplete.start();
+          },
+        },
+      },
+      resultItem: {
+        highlight: true,
+      },
+      resultsList: {
+        maxResults: undefined,
+      },
+    });
+  });
+}
+
+initializeAutoComplete();
 </script>
 
 <template>
@@ -147,6 +183,17 @@ const synChange = () => {
         v-model="formData.date"
         type="date"
       />
+
+      <SynVueInput
+        id="input-nationality"
+        label="Nationality"
+        name="nationality"
+        required
+        v-model="formData.nationality"
+        type="search"
+      >
+        <SynVueIcon slot="suffix" name="search" />
+      </SynVueInput>
 
     </DemoFieldset>
     <!-- /PersonalInformation -->
@@ -311,5 +358,9 @@ form .syn-fieldset:last-of-type {
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);
+}
+
+#input-nationality::part(listbox) {
+  max-height: 300px;
 }
 </style>

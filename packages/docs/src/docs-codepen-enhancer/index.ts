@@ -1,13 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { StoryContext } from '@storybook/web-components';
 
-// eslint-disable-next-line
-declare const __VITE_PACKAGE_VERSIONS__: Record<string, string>;
-
 export default function docsCodepenEnhancer(code: string, storyContext: StoryContext) {
   // We hijack the formatter to keep track of every story's code change
   // and add a button to edit it on CodePen
   const storiesOnDocsPage = document.querySelectorAll(`#anchor--${storyContext.id}`);
+  const packageVersionString = import.meta.env.VITE_PACKAGE_VERSIONS as string;
+  const packageVersions = JSON.parse(packageVersionString) as Record<string, string>;
 
   // Unfortunately, the editable story in a docs page has the same ID as the first story.
   storiesOnDocsPage.forEach((story) => {
@@ -58,13 +57,13 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
         // Docs: https://blog.codepen.io/documentation/prefill/
         const data = {
           css: `/* Import theme */
-@import url("https://esm.sh/@synergy-design-system/tokens@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/tokens']}/dist/themes/light.css");
+@import url("https://esm.sh/@synergy-design-system/tokens@${packageVersions['@synergy-design-system/tokens']}/dist/themes/light.css");
 
 /* Import utilities */
-@import url("https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/components']}/dist/styles/index.css");
+@import url("https://esm.sh/@synergy-design-system/components@${packageVersions['@synergy-design-system/components']}/dist/styles/index.css");
 
 /* Import styles */
-@import url("https://esm.sh/@synergy-design-system/styles@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/styles']}/dist/index.css");
+@import url("https://esm.sh/@synergy-design-system/styles@${packageVersions['@synergy-design-system/styles']}/dist/index.css");
 
 body {
   font-family: var(--syn-font-sans);
@@ -74,14 +73,14 @@ body {
           editors: 1110,
           head: '<meta name="viewport" content="width=device-width">',
           html: code,
-          js: `import * as components from "https://esm.sh/@synergy-design-system/components@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/components']}/dist/synergy.js";
+          js: `import * as components from "https://esm.sh/@synergy-design-system/components@${packageVersions['@synergy-design-system/components']}/dist/synergy.js";
 
 // Override to make icons work with CDN
 const { registerIconLibrary } = components;
 
 registerIconLibrary("default", {
 resolver: (name) =>
-\`https://esm.sh/@synergy-design-system/assets@${__VITE_PACKAGE_VERSIONS__['@synergy-design-system/assets']}/src/icons/\${name}.svg\`
+\`https://esm.sh/@synergy-design-system/assets@${packageVersions['@synergy-design-system/assets']}/src/icons/\${name}.svg\`
 });`,
           js_external: '',
           js_module: true,

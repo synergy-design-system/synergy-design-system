@@ -219,7 +219,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   focus(options?: FocusOptions) {
     if (this.droparea) {
       this.dropareaWrapper.focus(options);
-      this.emit('syn-focus');
       return;
     }
 
@@ -230,7 +229,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   blur() {
     if (this.droparea) {
       this.dropareaWrapper.blur();
-      this.emit('syn-blur');
       return;
     }
 
@@ -339,6 +337,20 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.emit('syn-change');
   }
 
+  /**
+   * Handle the focus of the droparea and emit focus event
+   */
+  private handleFocus() {
+    this.emit('syn-focus');
+  }
+
+  /**
+   * Handle the blur of the droparea and emit blur event
+   */
+  private handleBlur() {
+    this.emit('syn-blur');
+  }
+
   private renderValue() {
     let hasFiles = false;
     let fileChosenLabel = this.localize.term('fileNoFilesChosen');
@@ -371,6 +383,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         class="droparea__wrapper"
         @click=${this.handleClick}
         @keypress=${this.handleClick}
+        @focus=${this.handleFocus}
+        @blur=${this.handleBlur}
         tabindex=${this.disabled ? -1 : 0}
         part="droparea-wrapper"
       >

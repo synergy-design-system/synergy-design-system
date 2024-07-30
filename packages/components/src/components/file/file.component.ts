@@ -37,7 +37,8 @@ import {
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
- *
+ * @event syn-error - Emitted when multiple files are selected via drag and drop, without
+ * the `multiple` property being set.
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
@@ -312,10 +313,16 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     e.preventDefault();
     e.stopPropagation();
 
-    // Use the transferred file list from the drag drop interface
-    if (e.dataTransfer?.files) {
-      const isValid = this.handleFiles(e.dataTransfer.files);
-      if (isValid) this.input.dispatchEvent(new Event('change'));
+    const files = e.dataTransfer?.files;
+
+    if (files) {
+      if (!this.multiple && files.length > 1) {
+        this.emit('syn-error');
+      } else {
+        // Use the transferred file list from the drag drop interface
+        const isValid = this.handleFiles(e.dataTransfer.files);
+        if (isValid) this.input.dispatchEvent(new Event('change'));
+      }
     }
 
     this.userIsDragging = false;

@@ -106,6 +106,24 @@ describe('<syn-file>', () => {
         expect(blurEvent).to.have.been.calledOnce;
       });
 
+      it('should emit a syn-error event when multiple attribute is not set, but several files are dragged in ', async () => {
+        const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
+        const div = el.shadowRoot!.querySelector<HTMLDivElement>('.form-control')!;
+
+        const file1 = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+        const file2 = new File(['content 2'], 'demo2.jpg', { type: 'image/jpeg' });
+        const errorEvent = sinon.spy();
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file1);
+        dataTransfer.items.add(file2);
+
+        el.addEventListener('syn-error', errorEvent);
+        // eslint-disable-next-line compat/compat
+        div.dispatchEvent(new DragEvent('drop', { dataTransfer }));
+
+        expect(errorEvent).to.have.been.calledOnce;
+      });
+
       describe('when using constraint validation', () => {
         it('should be valid by default', async () => {
           const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
@@ -190,9 +208,9 @@ describe('<syn-file>', () => {
         });
 
         it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
-          const input = await fixture<HTMLFormElement>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+          const input = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
 
-          (input as unknown as SynFile).setCustomValidity('Invalid selection');
+          input.setCustomValidity('Invalid selection');
           await input.updateComplete;
 
           expect(input.checkValidity()).to.be.false;
@@ -340,15 +358,19 @@ describe('<syn-file>', () => {
 
   it('should look like a droparea when the droparea attribute is set', async () => {
     const el = await fixture<SynFile>(html`<syn-file droparea></syn-file>`);
+    const uploadButton = el.shadowRoot!.querySelector('.input__button')!;
     const droparea = el.shadowRoot!.querySelector('.droparea__wrapper')!;
 
     expect(droparea).to.exist;
+    expect(uploadButton).to.not.exist;
   });
 
   it('should look like a default upload button when the droparea attribute is not set', async () => {
     const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
     const uploadButton = el.shadowRoot!.querySelector('.input__button')!;
+    const droparea = el.shadowRoot!.querySelector('.droparea__wrapper')!;
 
+    expect(droparea).to.not.exist;
     expect(uploadButton).to.exist;
   });
 

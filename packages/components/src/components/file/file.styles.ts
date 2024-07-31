@@ -5,8 +5,31 @@ export default css`
     display: block;
   }
 
-  #input {
-    display: none;
+  .input__control {
+    /**
+     * Visually hide the input type=file without display:none
+     * This is necessary for accessibility reasons and so the native html input validation popup 
+     * is shown.
+     */
+    border: 0;
+    clip-path: inset(50%);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .form-control--droparea .input__control {
+    /* move the input into the center, so the native validation popup is centered to the droparea */
+    left: 50%;
+  }
+
+  .form-control-input {
+    /* needed, so the native validation popup is centered correctly */
+    position: relative;
   }
 
   /* Validation */

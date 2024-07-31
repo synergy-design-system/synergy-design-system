@@ -5,6 +5,7 @@ import '../../../components/src/components/file/file.js';
 import type { SynFile } from '@synergy-design-system/components';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components';
+import { userEvent } from '@storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -222,30 +223,58 @@ export const Invalid: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    try {
+      const form = canvasElement.querySelector('form')!;
+      const files = form.querySelectorAll('syn-file');
+      const button = form.querySelector('syn-button')!;
+
+      if (button && files) {
+        files.forEach(f => f.setCustomValidity('This is an error text'));
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
+        await userEvent.click(button);
+        button.click();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <form class="custom-validity">
       <syn-file
-        accept="text/plain"
         class="syn-file-invalid"
         help-text="This is a help text"
         label="This is a label"
       ></syn-file>
       <syn-file
-        accept="text/plain"
         class="syn-file-invalid"
         droparea
         help-text="This is a help text"
         label="This is a label"
       ></syn-file>
-    </div>
-
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
     <script type="module">
-      customElements.whenDefined('syn-file').then(() => {
-        document
-          .querySelectorAll('.syn-file-invalid')
-          .forEach(f => f.setCustomValidity('This is an error text'));
+      const form = document.querySelector('form');
+       // Handle submit
+      form.addEventListener('submit', event => {
+        event.preventDefault();
       });
     </script>
+    <style>
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      syn-button {
+        align-self: flex-start;
+      }
+    </style>
   `,
 } as Story;
 

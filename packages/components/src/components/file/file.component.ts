@@ -39,6 +39,7 @@ import {
  * and its constraints aren't satisfied.
  * @event syn-error - Emitted when multiple files are selected via drag and drop, without
  * the `multiple` property being set.
+ *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
@@ -450,6 +451,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       <div
         class=${classMap({
           'form-control': true,
+          'form-control--droparea': this.droparea,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
           'form-control--large': this.size === 'large',
@@ -482,7 +484,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           <input
             accept=${this.accept}
             aria-describedby="help-text"
-            aria-hidden="true"
             @cancel=${this.handleCancel}
             @change=${this.handleChange}
             class="input__control"
@@ -493,6 +494,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             name=${ifDefined(this.name)}
             ?required=${this.required}
             type="file"
+            tabindex="-1"
           >
         </div>
 

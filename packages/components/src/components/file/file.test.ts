@@ -78,7 +78,7 @@ describe('<syn-file>', () => {
   const createTests = (description: string, droparea: boolean) => {
     describe(description, () => {
       it('passes accessibility test', async () => {
-        const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+        const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} label="File"></syn-file>`);
         await expect(el).to.be.accessible();
       });
 

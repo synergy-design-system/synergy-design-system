@@ -49,7 +49,6 @@ const translation: Translation = {
   fileButtonTextMultiple: 'Dateien auswählen',
   fileChosen: 'Dateien',
   fileDragDrop: 'Datei ablegen oder auswählen',
-  fileErrorInvalidAccept: 'Eine oder mehrere Dateien haben ein ungültiges Dateiformat',
   fileNoFilesChosen: 'Keine Dateien ausgewählt',
   menu: 'Menü',
   notification: 'Benachrichtigung',

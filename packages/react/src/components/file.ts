@@ -9,7 +9,7 @@ import Component from '@synergy-design-system/components/components/file/file.co
 
 import { type EventName } from '@lit/react';
 import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInvalidEvent,
+  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFocusEvent, SynInputEvent,
 } from '@synergy-design-system/components';
 
 const tagName = 'syn-file';
@@ -25,12 +25,15 @@ Component.define('syn-file');
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
  * Alternatively, you can use the `help-text` attribute.
+ * @slot droparea-icon - Optional droparea icon to use instead of the default.
+ * Works best with `<syn-icon>`.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event syn-error - Emitted when multiple files are selected via drag and drop, without
+ * the `multiple` property being set.
  * @event syn-focus - Emitted when the control gains focus.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- * and its constraints aren't satisfied.
+ * @event syn-input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -41,7 +44,7 @@ Component.define('syn-file');
  * @csspart input-placeholder - The placeholder text for the file input.
  * @csspart droparea-wrapper - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
- * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
  */
 export const SynFile = createComponent({
@@ -50,8 +53,9 @@ export const SynFile = createComponent({
   events: {
     onSynBlur: 'syn-blur' as EventName<SynBlurEvent>,
     onSynChange: 'syn-change' as EventName<SynChangeEvent>,
+    onSynError: 'syn-error' as EventName<SynErrorEvent>,
     onSynFocus: 'syn-focus' as EventName<SynFocusEvent>,
-    onSynInvalid: 'syn-invalid' as EventName<SynInvalidEvent>,
+    onSynInput: 'syn-input' as EventName<SynInputEvent>,
   },
   react: React,
   tagName,
@@ -59,5 +63,6 @@ export const SynFile = createComponent({
 
 export type { SynBlurEvent } from '@synergy-design-system/components';
 export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';

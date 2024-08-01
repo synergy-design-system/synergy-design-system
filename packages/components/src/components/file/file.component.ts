@@ -16,10 +16,6 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
-import {
-  acceptStringToArray,
-  fileHasValidAcceptType,
-} from './utils.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -36,12 +32,10 @@ import {
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
- * Calling `event.preventDefault()` will stop validating the accept attribute with the file types
- * @event syn-focus - Emitted when the control gains focus.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- * and its constraints aren't satisfied.
  * @event syn-error - Emitted when multiple files are selected via drag and drop, without
  * the `multiple` property being set.
+ * @event syn-focus - Emitted when the control gains focus.
+ * @event syn-input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -256,32 +250,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.files = files;
   }
 
-  /**
-   * Validate the files against the accept attribute
-   *
-   * @param files the files to check for
-   */
-  private handleInvalidFileTypes(files: FileList | null) {
-    if (!files) {
-      this.setCustomValidity('');
-      return;
-    }
-
-    const acceptArray = acceptStringToArray(this.accept);
-
-    // Validate the files against the accept attribute
-    const isValid = Array
-      .from(files)
-      .every(f => fileHasValidAcceptType(f, acceptArray));
-
-    if (isValid) {
-      this.setCustomValidity('');
-    } else {
-      this.setCustomValidity(this.localize.term('fileErrorInvalidAccept'));
-      this.formControlController.setValidity(false);
-    }
-  }
-
   private handleClick(e: Event) {
     e.preventDefault();
     this.input.click();
@@ -291,17 +259,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private handleChange(e: Event) {
     e.preventDefault();
     e.stopPropagation();
-    const target = e.target as HTMLInputElement;
 
-    const changeEvent = this.emit('syn-change', {
-      cancelable: true,
-    });
-
-    if (changeEvent.defaultPrevented) {
-      return;
-    }
-
-    this.handleInvalidFileTypes(target.files);
+    this.emit('syn-input');
+    this.emit('syn-change');
   }
 
   private handleDragOver(e: DragEvent) {

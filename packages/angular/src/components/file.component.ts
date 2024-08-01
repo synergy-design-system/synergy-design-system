@@ -12,7 +12,7 @@ import {
   Output,
 } from '@angular/core';
 import type {
-  SynBlurEvent, SynChangeEvent, SynFile, SynFocusEvent, SynInvalidEvent,
+  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFile, SynFocusEvent, SynInputEvent,
 } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/file/file.js';
 
@@ -26,12 +26,15 @@ import '@synergy-design-system/components/components/file/file.js';
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
  * Alternatively, you can use the `help-text` attribute.
+ * @slot droparea-icon - Optional droparea icon to use instead of the default.
+ * Works best with `<syn-icon>`.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event syn-error - Emitted when multiple files are selected via drag and drop, without
+ * the `multiple` property being set.
  * @event syn-focus - Emitted when the control gains focus.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- * and its constraints aren't satisfied.
+ * @event syn-input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -42,7 +45,7 @@ import '@synergy-design-system/components/components/file/file.js';
  * @csspart input-placeholder - The placeholder text for the file input.
  * @csspart droparea-wrapper - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
- * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
  */
 @Component({
@@ -60,8 +63,9 @@ export class SynFileComponent {
     this._ngZone = ngZone;
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.filesChange.emit(this.files); });
   }
 
   /**
@@ -252,14 +256,19 @@ or shadow root for this to work.
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
+* Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
+ */
+  @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
+
+  /**
 * Emitted when the control gains focus.
  */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+* Emitted when the control receives input.
  */
-  @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+  @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
 * Support for two way data binding
@@ -269,5 +278,6 @@ or shadow root for this to work.
 
 export type { SynBlurEvent } from '@synergy-design-system/components';
 export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';

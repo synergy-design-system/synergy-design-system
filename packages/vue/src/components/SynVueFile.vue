@@ -15,12 +15,15 @@
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
  * Alternatively, you can use the `help-text` attribute.
+ * @slot droparea-icon - Optional droparea icon to use instead of the default.
+ * Works best with `<syn-icon>`.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event syn-error - Emitted when multiple files are selected via drag and drop, without
+ * the `multiple` property being set.
  * @event syn-focus - Emitted when the control gains focus.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- * and its constraints aren't satisfied.
+ * @event syn-input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -31,14 +34,14 @@
  * @csspart input-placeholder - The placeholder text for the file input.
  * @csspart droparea-wrapper - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
- * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/file/file.js';
 
 import type {
-  SynBlurEvent, SynChangeEvent, SynFile, SynFocusEvent, SynInvalidEvent,
+  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFile, SynFocusEvent, SynInputEvent,
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -158,14 +161,19 @@ defineEmits<{
   'syn-change': [e: SynChangeEvent];
 
   /**
+* Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
+ */
+  'syn-error': [e: SynErrorEvent];
+
+  /**
 * Emitted when the control gains focus.
  */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+* Emitted when the control receives input.
  */
-  'syn-invalid': [e: SynInvalidEvent];
+  'syn-input': [e: SynInputEvent];
 
   /**
 * Support for two way data binding
@@ -177,8 +185,9 @@ defineEmits<{
 <script lang="ts">
 export type { SynBlurEvent } from '@synergy-design-system/components';
 export type { SynChangeEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
-export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynInputEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -188,9 +197,9 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     :files="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.files !== 'undefined' ? props.files : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
+    @syn-error="$emit('syn-error', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-invalid="$emit('syn-invalid', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.files)"
+    @syn-input="$emit('update:modelValue', $event.target.files); $emit('syn-input', $event)"
   >
     <slot />
   </syn-file>

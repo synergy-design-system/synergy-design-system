@@ -34,6 +34,7 @@ import {
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+ * Calling `event.preventDefault()` will stop validating the accept attribute with the file types
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
@@ -242,15 +243,26 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   }
 
   /**
-   * Handle file uploads and validate them against the accept attribute
-   * @param files The files to check for
-   * @returns Whether the files are valid
+   * Handle file uploads
+   * @param files The files to handle
    */
   private handleFiles(files: FileList | null) {
     if (!files) {
       this.value = '';
+      return;
+    }
+    this.files = files;
+  }
+
+  /**
+   * Validate the files against the accept attribute
+   *
+   * @param files the files to check for
+   */
+  private handleInvalidFileTypes(files: FileList | null) {
+    if (!files) {
       this.setCustomValidity('');
-      return true;
+      return;
     }
 
     const acceptArray = acceptStringToArray(this.accept);
@@ -261,17 +273,11 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       .every(f => fileHasValidAcceptType(f, acceptArray));
 
     if (isValid) {
-      this.files = files;
       this.setCustomValidity('');
     } else {
-      this.formControlController.setValidity(false);
-      this.formControlController.emitInvalidEvent();
       this.setCustomValidity(this.localize.term('fileErrorInvalidAccept'));
-      this.value = '';
-      this.files = null;
+      this.formControlController.setValidity(false);
     }
-
-    return isValid;
   }
 
   private handleClick(e: Event) {
@@ -293,7 +299,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       return;
     }
 
-    this.handleFiles(target.files);
+    this.handleInvalidFileTypes(target.files);
   }
 
   private handleDragOver(e: DragEvent) {
@@ -319,8 +325,8 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         this.emit('syn-error');
       } else {
         // Use the transferred file list from the drag drop interface
-        const isValid = this.handleFiles(e.dataTransfer.files);
-        if (isValid) this.input.dispatchEvent(new Event('change'));
+        this.handleFiles(e.dataTransfer.files);
+        this.input.dispatchEvent(new Event('change'));
       }
     }
 

@@ -336,17 +336,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   }
 
   /**
-   * Needed to handle the cancel event from the input[type="file"] in case of drag and drop.
-   * There is no way to synchronize the value property between drag&drop and the input.
-   */
-  private handleCancel() {
-    this.files = null;
-    this.value = '';
-    this.setCustomValidity('');
-    this.emit('syn-change');
-  }
-
-  /**
    * Handle the focus of the droparea and emit focus event
    */
   private handleFocus() {
@@ -491,7 +480,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           <input
             accept=${this.accept}
             aria-describedby="help-text"
-            @cancel=${this.handleCancel}
             @change=${this.handleChange}
             class="input__control"
             ?disabled=${this.disabled}

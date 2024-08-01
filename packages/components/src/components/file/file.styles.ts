@@ -33,27 +33,31 @@ export default css`
   }
 
   /* Validation */
-  :host([data-invalid]) .form-control__help-text {
+  :host([data-invalid]:not([disabled])) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);
+  }
+
+  :host([data-invalid]:not([disabled])) .droparea__wrapper {
+    border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
   }
 
   /* Regular Input */
   .input__wrapper {
     align-items: center;
     display: flex;
-    gap: var(--syn-spacing-medium);
+    gap: var(--syn-input-spacing-medium);
   }
 
   :host([size="small"]) .input__wrapper {
-    gap: var(--syn-spacing-small);
+    gap: var(--syn-input-spacing-small);
   }
 
   :host([size="large"]) .input__wrapper {
-    gap: var(--syn-spacing-large);
+    gap: var(--syn-input-spacing-large);
   }
 
   .input__chosen {
-    color: var(--syn-color-neutral-800);
+    color: var(--syn-input-help-text-color);
     font-size: var(--syn-input-label-font-size-medium);
   }
 
@@ -94,6 +98,7 @@ export default css`
   }
 
   .droparea__wrapper:focus-visible {
+    border: var(--syn-border-width-small) dashed var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
@@ -124,6 +129,7 @@ export default css`
   .droparea__text {
     display: flex;
     flex-direction: column;
+    gap: var(--syn-spacing-3x-small);
     margin: 0;
   }
 

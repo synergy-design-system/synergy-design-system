@@ -21,7 +21,6 @@ const { generateTemplate } = storybookTemplate('syn-file');
 
 const meta: Meta = {
   args: overrideArgs([
-    // { name: 'label', type: 'attribute', value: '' },
   ], defaultArgs),
   argTypes,
   component: 'syn-file',
@@ -144,7 +143,7 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
       <syn-file size="small" label="Small"></syn-file>
       <syn-file size="medium" label="Medium"></syn-file>
       <syn-file size="large" label="Large"></syn-file>
@@ -161,7 +160,7 @@ export const Droparea: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
       <syn-file
         accept="text/plain,image/*"
         droparea
@@ -208,7 +207,7 @@ export const Focus: Story = {
     }
   },
   render: () => html`
-    <syn-file label="This is a label"></syn-file>
+    <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
   `,
 } as Story;
 
@@ -244,11 +243,6 @@ export const Invalid: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-      <syn-file
-        class="syn-file-invalid"
-        help-text="This is a help text"
-        label="This is a label"
-      ></syn-file>
       <syn-file
         class="syn-file-invalid"
         droparea

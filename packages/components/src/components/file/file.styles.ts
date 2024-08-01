@@ -32,11 +32,6 @@ export default css`
     position: relative;
   }
 
-  /* Validation */
-  :host([data-user-invalid]:not([disabled])) .droparea__wrapper {
-    border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
-  }
-
   /* Regular Input */
   .input__wrapper {
     align-items: center;
@@ -163,5 +158,11 @@ export default css`
     background: var(--syn-color-primary-50);
     border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
     cursor: pointer;
+  }
+
+  /* Validation */
+  /* stylelint-disable-next-line no-descending-specificity */
+  :host([data-user-invalid]:not([disabled])) .droparea__wrapper {
+    border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
   }
 `;

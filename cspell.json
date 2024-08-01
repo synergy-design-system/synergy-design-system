@@ -16,7 +16,8 @@
     "slotchange",
     "optiongroup",
     "aria-describedby",
-    "droparea"
+    "droparea",
+    "codepen"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

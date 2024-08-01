@@ -31,6 +31,8 @@ import {
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input.
  * Alternatively, you can use the `help-text` attribute.
+ * @slot droparea-icon - Optional droparea icon to use instead of the default.
+ * Works best with `<syn-icon>`.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -50,7 +52,7 @@ import {
  * @csspart input-placeholder - The placeholder text for the file input.
  * @csspart droparea-wrapper - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
- * @csspart droparea-icon - The icon for the drop zone.
+ * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
  */
 export default class SynFile extends SynergyElement implements SynergyFormControl {
@@ -399,12 +401,11 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           class="droparea__background"
           part="droparea-background"
         >
-          <syn-icon
-            class="droparea__icon"
-            name="upload-file"
-            part="droparea-icon"
-            library="system"
-          ></syn-icon>
+          <span part="droparea-icon" class="droparea__icon">
+            <slot name="droparea-icon">
+              <syn-icon name="upload-file" library="system" ></syn-icon>
+            </slot>
+          </span>
           <p
             class="droparea__text"
             part="droparea-text"

@@ -115,7 +115,9 @@ export default css`
   }
 
   .droparea__icon {
+    align-items: center;
     color: var(--highlight-color);
+    display: flex;
     font-size: var(--syn-spacing-3x-large);
   }
 

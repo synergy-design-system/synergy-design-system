@@ -33,11 +33,7 @@ export default css`
   }
 
   /* Validation */
-  :host([data-invalid]:not([disabled])) .form-control__help-text {
-    color: var(--syn-input-help-text-color-error);
-  }
-
-  :host([data-invalid]:not([disabled])) .droparea__wrapper {
+  :host([data-user-invalid]:not([disabled])) .droparea__wrapper {
     border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
   }
 

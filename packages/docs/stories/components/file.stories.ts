@@ -246,7 +246,7 @@ export const Invalid: Story = {
       <syn-file
         class="syn-file-invalid"
         droparea
-        help-text="This is a help text"
+        help-text="This is an error text."
         label="This is a label"
       ></syn-file>
       <syn-button type="submit" variant="filled">Submit</syn-button>

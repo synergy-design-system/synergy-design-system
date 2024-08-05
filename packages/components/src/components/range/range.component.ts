@@ -6,7 +6,7 @@ import { property, query, queryAll } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { defaultValue } from '../../internal/default-value.js';
-import { FormControlController } from '../../internal/form.js';
+import { FormControlController, customErrorValidityState, validValidityState } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -54,7 +54,6 @@ const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' 
  * @csspart track-wrapper - The wrapper for the track.
  * @csspart track - The inactive track.
  * @csspart active-track - The active track.
- * @csspart ticks - The container that wraps the tick marks.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart ticks - The container that wraps the tick marks.
@@ -124,7 +123,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const oldValue = this.#value;
     this.#value = Array.isArray(value) ? value.slice().sort(numericSort) : value || [];
     if (arraysDiffer(oldValue, this.#value)) {
-      this.requestUpdate('value', oldValue.join(','));
+      this.requestUpdate('value', oldValue.join(' '));
     }
   }
 
@@ -145,7 +144,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   /**
    * A function used to format the tooltip's value.
-   * The range's value is passed as the only argument.
+   * The value of the thumb is passed as the only argument.
    * The function should return a string to display in the tooltip.
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
@@ -271,19 +270,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   /** Gets the validity state object */
   public get validity(): ValidityState {
-    return {
-      badInput: false,
-      customError: !!this.#validationError,
-      patternMismatch: false,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: !this.#validationError,
-      valueMissing: false,
-    };
+    if (this.#validationError) return customErrorValidityState;
+
+    return validValidityState;
   }
 
   /** Gets the validation message */
@@ -332,8 +321,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (knob.dataset.pointerId) {
       knob.releasePointerCapture(+knob.dataset.pointerId);
     }
-
-    if (this.disabled) return;
 
     knob.dataset.pointerId = event.pointerId.toString();
     knob.setPointerCapture(event.pointerId);
@@ -569,9 +556,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       if (!isMultiple) {
         ariaLabel = this.tooltipFormatter(value);
-        ariaLabeledBy = ifDefined(hasLabel) ? 'label aria-label-hidden' : 'label-hidden';
+        ariaLabeledBy = hasLabel ? 'label aria-label-hidden' : 'label-hidden';
       } else {
-        ariaLabeledBy = ifDefined(hasLabel) ? `label aria-label-hidden ${id}` : 'id label-hidden';
+        ariaLabeledBy = hasLabel ? `label aria-label-hidden ${id}` : 'id label-hidden';
 
         if (index === 0) {
           ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;

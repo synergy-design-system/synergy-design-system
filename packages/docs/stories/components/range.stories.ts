@@ -329,14 +329,8 @@ export const MultiKnobWithRestrictedMovement = {
             const [firstKnob, lastKnob] = target.knobs;
             const [firstValue, lastValue] = values;
 
-            if (knob === firstKnob && value > lastValue) {
+            if ((knob === firstKnob && value > lastValue ) || knob === lastKnob && value < firstValue) {
               e.preventDefault();
-              target.valueAsArray = [lastValue, lastValue];
-            }
-            
-            if (knob === lastKnob && value < firstValue) {
-              e.preventDefault();
-              target.valueAsArray = [firstValue, firstValue];
             }
           });
         });

@@ -1,4 +1,4 @@
-import type { WebComponentsRenderer, Preview } from "@storybook/web-components";
+import type { WebComponentsRenderer, Preview } from '@storybook/web-components';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
@@ -11,7 +11,8 @@ import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import { LIGHT_THEME, DARK_THEME } from './modes.js';
-import { generateFigmaPluginObject } from "../src/helpers/figma.js";
+import { generateFigmaPluginObject } from '../src/helpers/figma.js';
+import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
@@ -70,7 +71,9 @@ const preview: Preview = {
       toc: {
         headingSelector: 'h2, h3',
       },
-      source: { format: 'html' }
+      source: {
+        format: 'html', transform: docsCodepenEnhancer,
+      }
     },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.

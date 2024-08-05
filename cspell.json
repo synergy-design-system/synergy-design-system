@@ -17,7 +17,8 @@
     "optiongroup",
     "labelledby",
     "valuenow",
-    "valuetext"
+    "valuetext",
+    "codepen"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

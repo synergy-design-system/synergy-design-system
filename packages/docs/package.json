@@ -72,7 +72,8 @@
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint --fix",
     "chromatic": "chromatic ${CHROMATIC_PROJECT_TOKEN} --build-script-name=build",
-    "start": "storybook dev -p 6006"
+    "start": "storybook dev -p 6006",
+    "preview": "vite preview"
   },
   "type": "module",
   "version": "0.1.0"

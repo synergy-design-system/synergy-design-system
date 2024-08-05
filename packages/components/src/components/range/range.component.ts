@@ -356,7 +356,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const synMove = this.emit('syn-move', {
       cancelable: true,
       detail: {
-        knob,
+        element: knob,
         value,
       },
     });
@@ -496,7 +496,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const synMove = this.emit('syn-move', {
         cancelable: true,
         detail: {
-          knob,
+          element: knob,
           value,
         },
       });

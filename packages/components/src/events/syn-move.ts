@@ -1,5 +1,5 @@
 export type SynMoveEvent = CustomEvent<{
-  knob: HTMLDivElement;
+  element: HTMLDivElement;
   value: number;
 }>;
 

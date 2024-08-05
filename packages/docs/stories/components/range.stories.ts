@@ -324,12 +324,12 @@ export const MultiKnobWithRestrictedMovement = {
           el.addEventListener('syn-move', e => {
             const { detail, target } = e;
             const values = target.valueAsArray;
-            const { knob, value } = detail;
+            const { element, value } = detail;
 
             const [firstKnob, lastKnob] = target.knobs;
             const [firstValue, lastValue] = values;
 
-            if ((knob === firstKnob && value > lastValue ) || knob === lastKnob && value < firstValue) {
+            if ((element === firstKnob && value > lastValue ) || element === lastKnob && value < firstValue) {
               e.preventDefault();
             }
           });

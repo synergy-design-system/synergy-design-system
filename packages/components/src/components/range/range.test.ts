@@ -521,6 +521,29 @@ describe('<syn-range>', () => {
 
       expect(changeHandler).to.not.have.been.called;
     });
+
+    it('should emit a syn-change and syn-input event when the user clicks the track', async () => {
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+      el.addEventListener('syn-input', inputHandler);
+
+      const track = el.shadowRoot!.querySelector('.track')!;
+      const rect = track.getBoundingClientRect();
+
+      await sendMouse({
+        position: [rect.left + 120, rect.top],
+        type: 'click',
+      });
+
+      await resetMouse();
+
+      expect(el.value).to.equal('15');
+      expect(changeHandler).to.have.been.called;
+      expect(inputHandler).to.have.been.called;
+    });
   });
 
   describe('when using keyboard navigation', () => {

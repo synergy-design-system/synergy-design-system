@@ -315,6 +315,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     if (arraysDiffer(prevValue, this.#value)) {
       this.#lastChangeValue = Array.from(this.#value);
+      this.emit('syn-input');
       this.emit('syn-change');
     }
   }

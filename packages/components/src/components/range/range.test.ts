@@ -1,4 +1,6 @@
+/* eslint-disable import/no-duplicates */
 /* eslint-disable @typescript-eslint/no-floating-promises */
+import '../../../dist/synergy.js';
 import sinon from 'sinon';
 import { resetMouse, sendKeys, sendMouse } from '@web/test-runner-commands';
 import {
@@ -274,6 +276,53 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('5');
       expect(changeHandler).to.have.been.called;
+    });
+
+    it('should not emit a syn-change event when the user has dragged a knob to the same value again', async () => {
+      const el = await fixture<SynRange>(html`<syn-range ></syn-range>`);
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+      el.addEventListener('syn-input', inputHandler);
+
+      const knob = el.shadowRoot!.querySelector('.knob')!;
+      const rect = knob.getBoundingClientRect();
+      expect(knob).to.not.have.class('grabbed');
+      expect(el.value).to.equal('0');
+
+      await sendMouse({
+        position: [rect.left, rect.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      expect(knob).to.have.class('grabbed');
+
+      await sendMouse({
+        position: [rect.left + 50, rect.top],
+        type: 'move',
+      });
+
+      expect(el.value).to.equal('5');
+
+      await sendMouse({
+        position: [rect.left, rect.top],
+        type: 'move',
+      });
+
+      await resetMouse();
+
+      await el.updateComplete;
+
+      expect(knob).to.not.have.class('grabbed');
+
+      expect(el.value).to.equal('0');
+      expect(inputHandler).to.have.been.called;
+      expect(changeHandler).to.not.have.been.called;
     });
 
     it('should allow to set more than one value', async () => {

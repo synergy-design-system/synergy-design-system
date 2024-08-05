@@ -171,6 +171,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #nextId = 1;
 
+  #lastChangeValue: number [] = [];
+
   get #rtl() {
     return this.localize.dir() === 'rtl';
   }
@@ -182,6 +184,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   firstUpdated() {
     this.formControlController.updateValidity();
+    // initialize the lastChangeValue with the initial value
+    this.#lastChangeValue = Array.from(this.#value);
   }
 
   protected override willUpdate(changedProperties: PropertyValues) {
@@ -211,6 +215,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (arraysDiffer(this.#value, adjustedValue)) {
       this.#value = adjustedValue;
       if (!changedProperties.has('value')) {
+        this.#lastChangeValue = Array.from(this.#value);
         this.emit('syn-change');
       }
     }
@@ -309,6 +314,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
+      this.#lastChangeValue = Array.from(this.#value);
       this.emit('syn-change');
     }
   }
@@ -377,7 +383,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     knob.classList.remove('grabbed');
     knob.releasePointerCapture(event.pointerId);
     delete knob.dataset.pointerId;
-    this.emit('syn-change');
+
+    if (arraysDiffer(this.#lastChangeValue, this.#value)) {
+      this.#lastChangeValue = Array.from(this.#value);
+      this.emit('syn-change');
+    }
 
     // Hide the tooltip on touch devices
     if (hasTouch()) {
@@ -502,6 +512,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.#updateActiveTrack();
       this.#updateTooltip(knob);
 
+      this.#lastChangeValue = Array.from(this.#value);
       this.emit('syn-input');
       this.emit('syn-change');
     }

@@ -47,7 +47,6 @@ import '@synergy-design-system/components/components/range/range.js';
  * @csspart track-wrapper - The wrapper for the track.
  * @csspart track - The inactive track.
  * @csspart active-track - The active track.
- * @csspart ticks - The container that wraps the tick marks.
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart ticks - The container that wraps the tick marks.

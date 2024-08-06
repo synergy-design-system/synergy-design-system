@@ -155,6 +155,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @queryAll('.knob') knobs: NodeListOf<HTMLDivElement>;
 
+  @query('.range__validation-input') validationInput: HTMLInputElement;
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
 
   private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
@@ -168,6 +170,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   #hasFocus = false;
 
   #validationError = '';
+
+  #validationTimeout: NodeJS.Timeout;
 
   #nextId = 1;
 
@@ -251,7 +255,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const isValid = !this.#validationError;
 
     if (!isValid) {
-      this.emit('syn-invalid');
+      this.formControlController.emitInvalidEvent();
     }
 
     return isValid;
@@ -259,12 +263,30 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   public reportValidity() {
-    return this.checkValidity();
+    if (this.disabled) return true;
+
+    const isValid = this.validity.valid;
+
+    this.formControlController.setValidity(isValid);
+    this.validationInput.hidden = true;
+    clearTimeout(this.#validationTimeout);
+
+    if (!isValid) {
+      // Show the browser's constraint validation message
+      this.validationInput.hidden = false;
+      this.validationInput.reportValidity();
+      this.#validationTimeout = setTimeout(() => {
+        this.validationInput.hidden = true;
+      }, 10000);
+    }
+
+    return isValid;
   }
 
   /** Sets a custom validation message. Pass an empty string to restore validity. */
   public setCustomValidity(message: string) {
     this.#validationError = message;
+    this.validationInput.setCustomValidity(message);
     this.formControlController.updateValidity();
   }
 
@@ -548,6 +570,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#updateTooltip(knob);
   }
 
+  #handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
+  }
+
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderKnobs(hasLabel: boolean) {
     // Aria special handling:
@@ -659,6 +686,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           </span>
 
           <div class="input__wrapper" part="input-wrapper">
+            <input
+              class="range__validation-input"
+              tabindex="-1"
+              hidden
+              @invalid=${this.#handleInvalid}
+            />
+
             <div
               class="track__wrapper"
               @click=${this.#onClickTrack}

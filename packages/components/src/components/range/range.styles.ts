@@ -207,4 +207,23 @@ export default css`
     position: relative;
     user-select: none;
   }
+
+  /**
+   * Visually hide the html input without display:none
+   * This is necessary for accessibility reasons and so the native html input validation popup 
+   * is shown.
+   */
+  .range__validation-input {
+    border: 0;
+    bottom: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    left: 50%;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 `;

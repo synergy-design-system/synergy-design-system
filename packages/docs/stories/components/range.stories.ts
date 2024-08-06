@@ -3,6 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import type { SynRange } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { userEvent } from '@storybook/test';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
 import {
@@ -120,8 +121,25 @@ export const Invalid: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    try {
+      const range = canvasElement.querySelector('syn-range');
+      const button = canvasElement.querySelector('syn-button');
+
+      if (range && button) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
+        await userEvent.click(button);
+        button.click();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
   render: () => html`
-    <form>
+    <form class="custom-validity">
       <syn-range
         help-text="This input is required."
         id="range-invalid"
@@ -132,10 +150,26 @@ export const Invalid: Story = {
       >
 
       </syn-range>
+      <syn-button type="submit">Submit</syn-button>
     </form>
-    <script>
-      document.querySelector('#range-invalid').setCustomValidity('Please enter a valid value');
+    <script type="module">
+      document.querySelector('form').addEventListener('submit', e => {
+        e.preventDefault();
+      });
+
+      const range = document.querySelector('#range-invalid');
+      range.setCustomValidity('Please enter a valid value');
     </script>
+    <style>
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      syn-button {
+        align-self: flex-start;
+      }
+    </style>
   `,
 };
 

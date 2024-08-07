@@ -320,7 +320,7 @@ export const CustomTrackOffset: Story = {
   `,
 };
 
-export const MultiKnob: Story = {
+export const MultiThumb: Story = {
   parameters: {
     docs: {
       description: {
@@ -333,7 +333,7 @@ export const MultiKnob: Story = {
   `,
 };
 
-export const MultiKnobWithRestrictedMovement = {
+export const MultiThumbWithRestrictedMovement = {
   parameters: {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     docs: {
@@ -360,10 +360,10 @@ export const MultiKnobWithRestrictedMovement = {
             const values = target.valueAsArray;
             const { element, value } = detail;
 
-            const [firstKnob, lastKnob] = target.knobs;
+            const [firstThumb, lastThumb] = target.thumbs;
             const [firstValue, lastValue] = values;
 
-            if ((element === firstKnob && value > lastValue ) || element === lastKnob && value < firstValue) {
+            if ((element === firstThumb && value > lastValue ) || element === lastThumb && value < firstValue) {
               e.preventDefault();
             }
           });
@@ -477,7 +477,7 @@ export const Screenshot: Story = generateScreenshotStory({
   PrefixSuffixText,
   CustomTrackColors,
   CustomTrackOffset,
-  MultiKnob,
+  MultiThumb,
   Ticks,
   TooltipPlacement,
   TooltipDisabled,

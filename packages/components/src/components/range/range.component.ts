@@ -24,7 +24,7 @@ import styles from './range.styles.js';
 const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
 
 /**
- * @summary Ranges allow the user to select values within a given range using one or two knobs.
+ * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
  *
@@ -43,7 +43,7 @@ const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' 
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
- * @event syn-move - Emitted when the user moves a knob, either via touch or keyboard.
+ * @event syn-move - Emitted when the user moves a thumb, either via touch or keyboard.
  * Use `Event.preventDefault()` to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
@@ -57,11 +57,11 @@ const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' 
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart ticks - The container that wraps the tick marks.
- * @csspart knob - The knob(s) that the user can drag to change the range.
+ * @csspart thumb - The thumb(s) that the user can drag to change the range.
  *
- * @cssproperty --thumb-size - The size of a knob.
- * @cssproperty --thumb-hit-area-size - The clickable area around the knob.
- * Per default this is set to 140% of the knob size. Must be a scale css value (defaults to 1.4).
+ * @cssproperty --thumb-size - The size of a thumb.
+ * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
+ * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
  * @cssproperty --track-hit-area-size - The clickable area around the track (top and left).
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
@@ -153,7 +153,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
-  @queryAll('.knob') knobs: NodeListOf<HTMLDivElement>;
+  @queryAll('.thumb') thumbs: NodeListOf<HTMLDivElement>;
 
   @query('.range__validation-input') validationInput: HTMLInputElement;
 
@@ -195,8 +195,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
      * Otherwise it will read the new value on change multiple times instead of just one time.
      * The aria-hidden needs to be set where the aria-live attribute is set, to silence it.
      */
-    this.knobs.forEach((knob) => {
-      const tooltip = knob.parentElement as SynTooltip;
+    this.thumbs.forEach((thumb) => {
+      const tooltip = thumb.parentElement as SynTooltip;
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       tooltip.updateComplete.then(() => {
         const tooltipBody = tooltip.shadowRoot!.querySelector('.tooltip__body');
@@ -241,19 +241,19 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   protected override updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
     // eslint-disable-next-line no-restricted-syntax
-    for (const knob of this.knobs) {
-      const rangeId = +knob.dataset.rangeId!;
+    for (const thumb of this.thumbs) {
+      const rangeId = +thumb.dataset.rangeId!;
       // eslint-disable-next-line no-continue
       if (!this.#rangeValues.has(rangeId)) continue;
-      this.#moveKnob(knob, this.#rangeValues.get(rangeId)!);
+      this.#moveThumb(thumb, this.#rangeValues.get(rangeId)!);
     }
     this.#updateActiveTrack();
   }
 
   override focus(options?: FocusOptions) {
-    const firstKnob = this.knobs.item(0);
-    if (firstKnob) {
-      firstKnob.focus(options);
+    const firstThumb = this.thumbs.item(0);
+    if (firstThumb) {
+      firstThumb.focus(options);
     } else {
       super.focus(options);
     }
@@ -324,25 +324,25 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (this.disabled) return;
     const { clientX } = event;
 
-    const knobs = Array.from(this.knobs);
-    const pos = getNormalizedValueFromClientX(this.baseDiv, knobs.at(0)!, clientX, this.#rtl);
+    const thumbs = Array.from(this.thumbs);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, thumbs.at(0)!, clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const nextValue = this.min + this.step * Math.round(pos / unit);
 
-    // Get the knob that is placed closest to the click position
-    const knob = knobs.reduce((prev, curr) => {
+    // Get the thumb that is placed closest to the click position
+    const thumb = thumbs.reduce((prev, curr) => {
       const currValue = this.#rangeValues.get(+curr.dataset.rangeId!)!;
       const prevValue = this.#rangeValues.get(+prev.dataset.rangeId!)!;
 
       return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
     });
 
-    const rangeId = +knob.dataset.rangeId!;
+    const rangeId = +thumb.dataset.rangeId!;
 
     if (!rangeId) return;
 
     this.#rangeValues.set(rangeId, nextValue);
-    this.#moveKnob(knob, nextValue);
+    this.#moveThumb(thumb, nextValue);
 
     const prevValue = this.#value;
     this.#value = Array.from(this.#rangeValues.values());
@@ -355,43 +355,43 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  async #onClickKnob(event: PointerEvent) {
+  async #onClickThumb(event: PointerEvent) {
     if (this.disabled) return;
-    const knob = event.target as HTMLDivElement;
-    this.#updateTooltip(knob);
+    const thumb = event.target as HTMLDivElement;
+    this.#updateTooltip(thumb);
 
-    if (knob.dataset.pointerId) {
-      knob.releasePointerCapture(+knob.dataset.pointerId);
+    if (thumb.dataset.pointerId) {
+      thumb.releasePointerCapture(+thumb.dataset.pointerId);
     }
 
-    knob.dataset.pointerId = event.pointerId.toString();
-    knob.setPointerCapture(event.pointerId);
-    knob.classList.add('grabbed');
+    thumb.dataset.pointerId = event.pointerId.toString();
+    thumb.setPointerCapture(event.pointerId);
+    thumb.classList.add('grabbed');
 
     // Show the tooltip on touch devices
     if (hasTouch()) {
-      await (knob.parentElement as SynTooltip).show();
+      await (thumb.parentElement as SynTooltip).show();
     }
   }
 
-  #onDragKnob(event: PointerEvent) {
+  #onDragThumb(event: PointerEvent) {
     if (this.disabled) return;
 
-    const knob = event.target as HTMLDivElement;
-    const rangeId = +knob.dataset.rangeId!;
+    const thumb = event.target as HTMLDivElement;
+    const rangeId = +thumb.dataset.rangeId!;
     if (!this.#rangeValues.has(rangeId)) return;
 
-    const pointerId = knob.dataset.pointerId ? +knob.dataset.pointerId : null;
+    const pointerId = thumb.dataset.pointerId ? +thumb.dataset.pointerId : null;
     if (pointerId !== event.pointerId) return;
 
-    const pos = getNormalizedValueFromClientX(this.baseDiv, knob, event.clientX, this.#rtl);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, thumb, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const value = this.min + this.step * Math.round(pos / unit);
 
     const synMove = this.emit('syn-move', {
       cancelable: true,
       detail: {
-        element: knob,
+        element: thumb,
         value,
       },
     });
@@ -401,7 +401,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
 
     this.#rangeValues.set(rangeId, value);
-    this.#moveKnob(knob, value);
+    this.#moveThumb(thumb, value);
 
     const prevValue = this.#value;
     this.#value = Array.from(this.#rangeValues.values());
@@ -412,13 +412,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  async #onReleaseKnob(event: PointerEvent) {
-    const knob = event.target as HTMLDivElement;
-    if (!knob.dataset.pointerId || event.pointerId !== +knob.dataset.pointerId) return;
+  async #onReleaseThumb(event: PointerEvent) {
+    const thumb = event.target as HTMLDivElement;
+    if (!thumb.dataset.pointerId || event.pointerId !== +thumb.dataset.pointerId) return;
 
-    knob.classList.remove('grabbed');
-    knob.releasePointerCapture(event.pointerId);
-    delete knob.dataset.pointerId;
+    thumb.classList.remove('grabbed');
+    thumb.releasePointerCapture(event.pointerId);
+    delete thumb.dataset.pointerId;
 
     if (arraysDiffer(this.#lastChangeValue, this.#value)) {
       this.#lastChangeValue = Array.from(this.#value);
@@ -427,17 +427,17 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     // Hide the tooltip on touch devices
     if (hasTouch()) {
-      await (knob.parentElement as SynTooltip).hide();
+      await (thumb.parentElement as SynTooltip).hide();
     }
   }
 
-  #moveKnob(knob: HTMLDivElement, value: number) {
-    knob.setAttribute('aria-valuenow', value.toString());
-    knob.setAttribute('aria-valuetext', this.tooltipFormatter(value));
+  #moveThumb(thumb: HTMLDivElement, value: number) {
+    thumb.setAttribute('aria-valuenow', value.toString());
+    thumb.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
     // eslint-disable-next-line no-param-reassign
-    knob.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
-    this.#updateTooltip(knob);
+    thumb.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
+    this.#updateTooltip(thumb);
   }
 
   #updateActiveTrack() {
@@ -452,7 +452,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    // If there is only one knob, the active track should start at the beginning and end at the knob
+    // If there is only one thumb, the active track should start at the beginning
+    // and end at the thumb
     if (this.#value.length === 1) {
       const start = getComputedStyle(this).getPropertyValue('--track-active-offset') || '0%';
       const end = (100 * (this.#value[0] - this.min)) / (this.max - this.min);
@@ -463,10 +464,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    // The render order of the knobs is not guaranteed to be the same as the value order.
+    // The render order of the thumbs is not guaranteed to be the same as the value order.
     const sortedValues = this.#value.slice().sort(numericSort);
 
-    // Multi knob: Place the active track between the first and last knob
+    // Multi thumb: Place the active track between the first and last thumb
     const start = (100 * (sortedValues[0] - this.min)) / (this.max - this.min);
     const end = (100 * (sortedValues[sortedValues.length - 1] - this.min)) / (this.max - this.min);
 
@@ -475,8 +476,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onKeyPress(event: KeyboardEvent) {
-    const knob = event.target as HTMLDivElement;
-    const rangeId = +knob.dataset.rangeId!;
+    const thumb = event.target as HTMLDivElement;
+    const rangeId = +thumb.dataset.rangeId!;
 
     const currentValue = this.#rangeValues.get(rangeId);
     if (currentValue === undefined) return;
@@ -531,7 +532,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const synMove = this.emit('syn-move', {
         cancelable: true,
         detail: {
-          element: knob,
+          element: thumb,
           value,
         },
       });
@@ -540,13 +541,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         return;
       }
 
-      this.#moveKnob(knob, value);
+      this.#moveThumb(thumb, value);
 
       this.#rangeValues.set(rangeId, value);
       this.#value = Array.from(this.#rangeValues.values());
 
       this.#updateActiveTrack();
-      this.#updateTooltip(knob);
+      this.#updateTooltip(thumb);
 
       this.#lastChangeValue = Array.from(this.#value);
       this.emit('syn-input');
@@ -563,24 +564,24 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#hasFocus = false;
   }
 
-  #updateTooltip(knob: HTMLDivElement) {
+  #updateTooltip(thumb: HTMLDivElement) {
     if (this.tooltipPlacement === 'none') return;
-    const rangeId = +knob.dataset.rangeId!;
+    const rangeId = +thumb.dataset.rangeId!;
     if (!this.#rangeValues.has(rangeId)) return;
     const value = this.#rangeValues.get(rangeId)!;
-    const tooltip = knob.parentElement as SynTooltip;
+    const tooltip = thumb.parentElement as SynTooltip;
     tooltip.content = this.tooltipFormatter(value);
   }
 
-  #onFocusKnob(event: FocusEvent) {
+  #onFocusThumb(event: FocusEvent) {
     if (this.disabled) return;
     if (!this.#hasFocus) {
       this.#hasFocus = true;
       this.emit('syn-focus');
     }
-    const knob = event.target as HTMLDivElement;
-    if (!knob?.dataset?.rangeId) return;
-    this.#updateTooltip(knob);
+    const thumb = event.target as HTMLDivElement;
+    if (!thumb?.dataset?.rangeId) return;
+    this.#updateTooltip(thumb);
   }
 
   #handleInvalid(event: Event) {
@@ -589,9 +590,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  private renderKnobs(hasLabel: boolean) {
+  private renderThumbs(hasLabel: boolean) {
     // Aria special handling:
-    // 1. When there is only one label: Use the provided label as the aria-label for the knob
+    // 1. When there is only one label: Use the provided label as the aria-label for the thumb
     // 2. When we have multiple label: Set the label for the first and last item to itself
     const isMultiple = this.#value.length > 1;
 
@@ -601,7 +602,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const rangeId = this.#nextId;
       this.#rangeValues.set(rangeId, value);
 
-      const id = `knob-${rangeId}`;
+      const id = `thumb-${rangeId}`;
 
       let ariaLabel = '';
       let ariaLabeledBy = '';
@@ -634,18 +635,18 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             aria-valuemin="${this.min}"
             aria-valuenow="${value}"
             aria-valuetext="${this.tooltipFormatter(value)}"
-            class="knob"
+            class="thumb"
             data-range-id="${rangeId}"
             id=${id}
-            part="knob"
+            part="thumb"
             role="slider"
             tabindex="${this.disabled ? -1 : 0}"
-            @pointerdown=${this.#onClickKnob}
-            @pointermove=${this.#onDragKnob}
-            @pointerup=${this.#onReleaseKnob}
-            @pointercancel=${this.#onReleaseKnob}
+            @pointerdown=${this.#onClickThumb}
+            @pointermove=${this.#onDragThumb}
+            @pointerup=${this.#onReleaseThumb}
+            @pointercancel=${this.#onReleaseThumb}
             @keydown=${this.#onKeyPress}
-            @focus=${this.#onFocusKnob}
+            @focus=${this.#onFocusThumb}
           ></div>
         </syn-tooltip>
       `;
@@ -716,7 +717,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
               <div class="active-track" part="active-track"></div>
             </div>
 
-            ${this.renderKnobs(hasLabel)}
+            ${this.renderThumbs(hasLabel)}
 
             <div
               class="ticks"

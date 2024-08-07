@@ -243,16 +243,16 @@ describe('<syn-range>', () => {
   });
 
   describe('when the value changes', () => {
-    it('should emit a syn-change event when the user has dragged a knob', async () => {
+    it('should emit a syn-change event when the user has dragged a thumb', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
 
       el.addEventListener('syn-change', changeHandler);
 
-      const knob = el.shadowRoot!.querySelector('.knob')!;
-      const rect = knob.getBoundingClientRect();
+      const thumb = el.shadowRoot!.querySelector('.thumb')!;
+      const rect = thumb.getBoundingClientRect();
 
-      expect(knob).to.not.have.class('grabbed');
+      expect(thumb).to.not.have.class('grabbed');
 
       await sendMouse({
         position: [rect.left, rect.top],
@@ -263,7 +263,7 @@ describe('<syn-range>', () => {
         type: 'down',
       });
 
-      expect(knob).to.have.class('grabbed');
+      expect(thumb).to.have.class('grabbed');
 
       await sendMouse({
         position: [rect.left + 50, rect.top],
@@ -271,14 +271,14 @@ describe('<syn-range>', () => {
       });
 
       await resetMouse();
-      expect(knob).to.not.have.class('grabbed');
+      expect(thumb).to.not.have.class('grabbed');
       await el.updateComplete;
 
       expect(el.value).to.equal('5');
       expect(changeHandler).to.have.been.called;
     });
 
-    it('should not emit a syn-change event when the user has dragged a knob to the same value again', async () => {
+    it('should not emit a syn-change event when the user has dragged a thumb to the same value again', async () => {
       const el = await fixture<SynRange>(html`<syn-range ></syn-range>`);
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
@@ -286,9 +286,9 @@ describe('<syn-range>', () => {
       el.addEventListener('syn-change', changeHandler);
       el.addEventListener('syn-input', inputHandler);
 
-      const knob = el.shadowRoot!.querySelector('.knob')!;
-      const rect = knob.getBoundingClientRect();
-      expect(knob).to.not.have.class('grabbed');
+      const thumb = el.shadowRoot!.querySelector('.thumb')!;
+      const rect = thumb.getBoundingClientRect();
+      expect(thumb).to.not.have.class('grabbed');
       expect(el.value).to.equal('0');
 
       await sendMouse({
@@ -300,7 +300,7 @@ describe('<syn-range>', () => {
         type: 'down',
       });
 
-      expect(knob).to.have.class('grabbed');
+      expect(thumb).to.have.class('grabbed');
 
       await sendMouse({
         position: [rect.left + 50, rect.top],
@@ -318,7 +318,7 @@ describe('<syn-range>', () => {
 
       await el.updateComplete;
 
-      expect(knob).to.not.have.class('grabbed');
+      expect(thumb).to.not.have.class('grabbed');
 
       expect(el.value).to.equal('0');
       expect(inputHandler).to.have.been.called;
@@ -331,21 +331,21 @@ describe('<syn-range>', () => {
 
       el.addEventListener('syn-change', changeHandler);
 
-      const knobs = Array.from(el.shadowRoot!.querySelectorAll('.knob'));
+      const thumbs = Array.from(el.shadowRoot!.querySelectorAll('.thumb'));
 
-      expect(knobs).to.have.length(2);
+      expect(thumbs).to.have.length(2);
 
-      const knobStart = knobs.at(0)!;
-      const knobEnd = knobs.at(-1)!;
+      const thumbStart = thumbs.at(0)!;
+      const thumbEnd = thumbs.at(-1)!;
 
-      const rectStart = knobStart.getBoundingClientRect();
-      const rectEnd = knobEnd.getBoundingClientRect();
+      const rectStart = thumbStart.getBoundingClientRect();
+      const rectEnd = thumbEnd.getBoundingClientRect();
 
       const startLeft = Math.floor(rectStart.left);
       const endLeft = Math.floor(rectEnd.left);
 
-      expect(knobStart).to.not.have.class('grabbed');
-      expect(knobEnd).to.not.have.class('grabbed');
+      expect(thumbStart).to.not.have.class('grabbed');
+      expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
         position: [startLeft, rectStart.top],
@@ -356,8 +356,8 @@ describe('<syn-range>', () => {
         type: 'down',
       });
 
-      expect(knobStart).to.have.class('grabbed');
-      expect(knobEnd).to.not.have.class('grabbed');
+      expect(thumbStart).to.have.class('grabbed');
+      expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
         position: [startLeft + 50, rectStart.top],
@@ -365,16 +365,16 @@ describe('<syn-range>', () => {
       });
 
       await resetMouse();
-      expect(knobStart).to.not.have.class('grabbed');
-      expect(knobEnd).to.not.have.class('grabbed');
+      expect(thumbStart).to.not.have.class('grabbed');
+      expect(thumbEnd).to.not.have.class('grabbed');
       await el.updateComplete;
 
       expect(el.value).to.equal('25 80');
       expect(changeHandler).to.have.been.called;
 
-      // Second knob
-      expect(knobStart).to.not.have.class('grabbed');
-      expect(knobEnd).to.not.have.class('grabbed');
+      // Second thumb
+      expect(thumbStart).to.not.have.class('grabbed');
+      expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
         position: [endLeft, rectStart.top],
@@ -385,8 +385,8 @@ describe('<syn-range>', () => {
         type: 'down',
       });
 
-      expect(knobStart).to.not.have.class('grabbed');
-      expect(knobEnd).to.have.class('grabbed');
+      expect(thumbStart).to.not.have.class('grabbed');
+      expect(thumbEnd).to.have.class('grabbed');
 
       await sendMouse({
         position: [endLeft + 50, rectStart.top],
@@ -394,22 +394,22 @@ describe('<syn-range>', () => {
       });
 
       await resetMouse();
-      expect(knobStart).to.not.have.class('grabbed');
-      expect(knobEnd).to.not.have.class('grabbed');
+      expect(thumbStart).to.not.have.class('grabbed');
+      expect(thumbEnd).to.not.have.class('grabbed');
       await el.updateComplete;
 
       expect(el.value).to.equal('25 85');
       expect(changeHandler).to.have.been.called;
     });
 
-    it('should emit a syn-input event while the user is dragging the knob', async () => {
+    it('should emit a syn-input event while the user is dragging the thumb', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
 
       el.addEventListener('syn-input', inputHandler);
 
-      const knob = el.shadowRoot!.querySelector('.knob')!;
-      const rect = knob.getBoundingClientRect();
+      const thumb = el.shadowRoot!.querySelector('.thumb')!;
+      const rect = thumb.getBoundingClientRect();
 
       await sendMouse({
         position: [rect.left, rect.top],
@@ -436,14 +436,14 @@ describe('<syn-range>', () => {
       expect(inputHandler).to.have.been.calledOnce;
     });
 
-    it('should emit a syn-move event when the user has dragged a knob', async () => {
+    it('should emit a syn-move event when the user has dragged a thumb', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const moveHandler = sinon.spy();
 
       el.addEventListener('syn-move', moveHandler);
 
-      const knob = el.shadowRoot!.querySelector('.knob')!;
-      const rect = knob.getBoundingClientRect();
+      const thumb = el.shadowRoot!.querySelector('.thumb')!;
+      const rect = thumb.getBoundingClientRect();
 
       await sendMouse({
         position: [rect.left, rect.top],
@@ -470,7 +470,7 @@ describe('<syn-range>', () => {
       expect(moveHandler).to.have.been.called;
     });
 
-    it('should not move the knob when the emitted `syn-move` event is prevented', async () => {
+    it('should not move the thumb when the emitted `syn-move` event is prevented', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
       const moveHandler = sinon.spy();
@@ -481,8 +481,8 @@ describe('<syn-range>', () => {
         moveHandler();
       });
 
-      const knob = el.shadowRoot!.querySelector('.knob')!;
-      const rect = knob.getBoundingClientRect();
+      const thumb = el.shadowRoot!.querySelector('.thumb')!;
+      const rect = thumb.getBoundingClientRect();
 
       await sendMouse({
         position: [rect.left, rect.top],
@@ -799,7 +799,7 @@ describe('<syn-range>', () => {
       expect(inputHandler).to.have.been.calledOnce;
     });
 
-    it('should not emit the syn-change and syn-input event when the user has moved the knob via keyboard', async () => {
+    it('should not emit the syn-change and syn-input event when the user has moved the thumb via keyboard', async () => {
       const {
         changeHandler,
         el,
@@ -828,25 +828,25 @@ describe('<syn-range>', () => {
       expect(inputHandler).to.not.have.been.calledOnce;
     });
 
-    it('should move the focus to the next knob when pressing the Tab key', async () => {
+    it('should move the focus to the next thumb when pressing the Tab key', async () => {
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
-      const knobs = Array.from(el.shadowRoot!.querySelectorAll('.knob'));
+      const thumbs = Array.from(el.shadowRoot!.querySelectorAll('.thumb'));
 
-      expect(knobs).to.have.length(2);
+      expect(thumbs).to.have.length(2);
 
-      const knobStart = knobs.at(0)! as HTMLDivElement;
-      const knobEnd = knobs.at(-1)! as HTMLDivElement;
+      const thumbStart = thumbs.at(0)! as HTMLDivElement;
+      const thumbEnd = thumbs.at(-1)! as HTMLDivElement;
 
       el.focus();
 
       expect(document.activeElement).to.equal(el);
-      expect(el.shadowRoot!.activeElement).to.equal(knobStart);
+      expect(el.shadowRoot!.activeElement).to.equal(thumbStart);
 
       await sendKeys({
         press: 'Tab',
       });
 
-      expect(el.shadowRoot!.activeElement).to.equal(knobEnd);
+      expect(el.shadowRoot!.activeElement).to.equal(thumbEnd);
     });
   });
 

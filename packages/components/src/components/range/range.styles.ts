@@ -131,7 +131,7 @@ export default css`
     z-index: 2;
   }
 
-  .knob {
+  .thumb {
     background-color: var(--syn-color-primary-600);
     border: var(--syn-focus-ring-width) solid var(--syn-color-neutral-0);
     border-radius: var(--syn-border-radius-circle);
@@ -147,9 +147,9 @@ export default css`
   }
 
   /**
-   * Adds some space to the knob that makes it easier to click and drag
+   * Adds some space to the thumb that makes it easier to click and drag
    */
-  .knob::after {
+  .thumb::after {
     background: transparent;
     border-radius: var(--syn-border-radius-circle);
     content: "";
@@ -158,27 +158,27 @@ export default css`
     position: absolute;
   }
 
-  .knob:hover {
+  .thumb:hover {
     cursor: grab;  
   }
 
-  .knob.grabbed {
+  .thumb.grabbed {
     cursor: grabbing;
   }
 
-  .knob:focus-visible {
+  .thumb:focus-visible {
     outline: none;
   }
 
-  .knob:not(.grabbed):focus-visible {
+  .thumb:not(.grabbed):focus-visible {
     background: var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
     outline-offset: 0;
   }
 
   :host([disabled]) .track__wrapper,
-  :host([disabled]) .knob,
-  :host([disabled]) .knob.grabbed {
+  :host([disabled]) .thumb,
+  :host([disabled]) .thumb.grabbed {
     cursor: not-allowed;
   }
 
@@ -187,7 +187,7 @@ export default css`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
    */
   @media (any-hover: hover) {
-    :host(:not([disabled])) .knob:hover  {
+    :host(:not([disabled])) .thumb:hover  {
       background: var(--syn-color-primary-900);
       transform: scale(var(--thumb-hit-area-size));
     }

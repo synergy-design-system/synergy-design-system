@@ -16,7 +16,7 @@ const tagName = 'syn-range';
 Component.define('syn-range');
 
 /**
- * @summary Ranges allow the user to select values within a given range using one or two knobs.
+ * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
  *
@@ -35,7 +35,7 @@ Component.define('syn-range');
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity
  * and its constraints aren't satisfied.
- * @event syn-move - Emitted when the user moves a knob, either via touch or keyboard.
+ * @event syn-move - Emitted when the user moves a thumb, either via touch or keyboard.
  * Use `Event.preventDefault()` to prevent movement.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
@@ -49,11 +49,11 @@ Component.define('syn-range');
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  * @csspart ticks - The container that wraps the tick marks.
- * @csspart knob - The knob(s) that the user can drag to change the range.
+ * @csspart thumb - The thumb(s) that the user can drag to change the range.
  *
- * @cssproperty --thumb-size - The size of a knob.
- * @cssproperty --thumb-hit-area-size - The clickable area around the knob.
- * Per default this is set to 140% of the knob size. Must be a scale css value (defaults to 1.4).
+ * @cssproperty --thumb-size - The size of a thumb.
+ * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
+ * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
  * @cssproperty --track-hit-area-size - The clickable area around the track (top and left).
  * @cssproperty --track-color-active - Color of the track representing the current value.
  * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.

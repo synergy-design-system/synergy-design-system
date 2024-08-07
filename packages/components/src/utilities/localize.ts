@@ -30,9 +30,9 @@ export interface Translation extends DefaultTranslation {
   menu: string;
   notification: string;
   openMenu: string;
+  rangeMax: string;
+  rangeMin: string;
   sideNav: string;
-  sliderMax: string;
-  sliderMin: string;
   success: string;
   warning: string;
 

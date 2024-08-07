@@ -48,9 +48,9 @@ const translation: Translation = {
   menu: 'Menü',
   notification: 'Benachrichtigung',
   openMenu: 'Menü öffnen',
+  rangeMax: 'Maximum',
+  rangeMin: 'Minimum',
   sideNav: 'Seitennavigation',
-  sliderMax: 'Maximum',
-  sliderMin: 'Minimum',
   success: 'Erfolg',
   warning: 'Warnung',
 };

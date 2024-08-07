@@ -22,17 +22,17 @@ const translations = {
     de: 'Menü öffnen',
     en: 'Open menu',
   },
-  sideNav: {
-    de: 'Seitennavigation',
-    en: 'Side navigation',
-  },
-  sliderMax: {
+  rangeMax: {
     de: 'Maximum',
     en: 'Maximum',
   },
-  sliderMin: {
+  rangeMin: {
     de: 'Minimum',
     en: 'Minimum',
+  },
+  sideNav: {
+    de: 'Seitennavigation',
+    en: 'Side navigation',
   },
   success: {
     de: 'Erfolg',

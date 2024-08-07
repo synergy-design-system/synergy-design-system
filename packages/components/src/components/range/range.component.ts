@@ -165,7 +165,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #value: readonly number[] = [0];
 
-  #sliderValues = new Map<number, number>();
+  #rangeValues = new Map<number, number>();
 
   #hasFocus = false;
 
@@ -242,10 +242,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     super.updated(changedProperties);
     // eslint-disable-next-line no-restricted-syntax
     for (const knob of this.knobs) {
-      const sliderId = +knob.dataset.sliderId!;
+      const rangeId = +knob.dataset.rangeId!;
       // eslint-disable-next-line no-continue
-      if (!this.#sliderValues.has(sliderId)) continue;
-      this.#moveKnob(knob, this.#sliderValues.get(sliderId)!);
+      if (!this.#rangeValues.has(rangeId)) continue;
+      this.#moveKnob(knob, this.#rangeValues.get(rangeId)!);
     }
     this.#updateActiveTrack();
   }
@@ -331,21 +331,21 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     // Get the knob that is placed closest to the click position
     const knob = knobs.reduce((prev, curr) => {
-      const currValue = this.#sliderValues.get(+curr.dataset.sliderId!)!;
-      const prevValue = this.#sliderValues.get(+prev.dataset.sliderId!)!;
+      const currValue = this.#rangeValues.get(+curr.dataset.rangeId!)!;
+      const prevValue = this.#rangeValues.get(+prev.dataset.rangeId!)!;
 
       return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
     });
 
-    const sliderId = +knob.dataset.sliderId!;
+    const rangeId = +knob.dataset.rangeId!;
 
-    if (!sliderId) return;
+    if (!rangeId) return;
 
-    this.#sliderValues.set(sliderId, nextValue);
+    this.#rangeValues.set(rangeId, nextValue);
     this.#moveKnob(knob, nextValue);
 
     const prevValue = this.#value;
-    this.#value = Array.from(this.#sliderValues.values());
+    this.#value = Array.from(this.#rangeValues.values());
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
@@ -378,8 +378,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     if (this.disabled) return;
 
     const knob = event.target as HTMLDivElement;
-    const sliderId = +knob.dataset.sliderId!;
-    if (!this.#sliderValues.has(sliderId)) return;
+    const rangeId = +knob.dataset.rangeId!;
+    if (!this.#rangeValues.has(rangeId)) return;
 
     const pointerId = knob.dataset.pointerId ? +knob.dataset.pointerId : null;
     if (pointerId !== event.pointerId) return;
@@ -400,11 +400,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    this.#sliderValues.set(sliderId, value);
+    this.#rangeValues.set(rangeId, value);
     this.#moveKnob(knob, value);
 
     const prevValue = this.#value;
-    this.#value = Array.from(this.#sliderValues.values());
+    this.#value = Array.from(this.#rangeValues.values());
     this.#updateActiveTrack();
 
     if (arraysDiffer(prevValue, this.#value)) {
@@ -476,9 +476,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #onKeyPress(event: KeyboardEvent) {
     const knob = event.target as HTMLDivElement;
-    const sliderId = +knob.dataset.sliderId!;
+    const rangeId = +knob.dataset.rangeId!;
 
-    const currentValue = this.#sliderValues.get(sliderId);
+    const currentValue = this.#rangeValues.get(rangeId);
     if (currentValue === undefined) return;
 
     let value = currentValue;
@@ -542,8 +542,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       this.#moveKnob(knob, value);
 
-      this.#sliderValues.set(sliderId, value);
-      this.#value = Array.from(this.#sliderValues.values());
+      this.#rangeValues.set(rangeId, value);
+      this.#value = Array.from(this.#rangeValues.values());
 
       this.#updateActiveTrack();
       this.#updateTooltip(knob);
@@ -565,9 +565,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #updateTooltip(knob: HTMLDivElement) {
     if (this.tooltipPlacement === 'none') return;
-    const sliderId = +knob.dataset.sliderId!;
-    if (!this.#sliderValues.has(sliderId)) return;
-    const value = this.#sliderValues.get(sliderId)!;
+    const rangeId = +knob.dataset.rangeId!;
+    if (!this.#rangeValues.has(rangeId)) return;
+    const value = this.#rangeValues.get(rangeId)!;
     const tooltip = knob.parentElement as SynTooltip;
     tooltip.content = this.tooltipFormatter(value);
   }
@@ -579,7 +579,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.emit('syn-focus');
     }
     const knob = event.target as HTMLDivElement;
-    if (!knob?.dataset?.sliderId) return;
+    if (!knob?.dataset?.rangeId) return;
     this.#updateTooltip(knob);
   }
 
@@ -595,13 +595,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     // 2. When we have multiple label: Set the label for the first and last item to itself
     const isMultiple = this.#value.length > 1;
 
-    this.#sliderValues.clear();
+    this.#rangeValues.clear();
     return this.#value.map((value, index) => {
       this.#nextId += 1;
-      const sliderId = this.#nextId;
-      this.#sliderValues.set(sliderId, value);
+      const rangeId = this.#nextId;
+      this.#rangeValues.set(rangeId, value);
 
-      const id = `knob-${sliderId}`;
+      const id = `knob-${rangeId}`;
 
       let ariaLabel = '';
       let ariaLabeledBy = '';
@@ -612,9 +612,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         ariaLabeledBy = hasLabel ? `label aria-label-hidden ${id}` : `aria-label-hidden ${id}`;
 
         if (index === 0) {
-          ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
+          ariaLabel = `${this.localize.term('rangeMin')} (${this.tooltipFormatter(value)})`;
         } else if (index === this.#value.length - 1) {
-          ariaLabel = `${this.localize.term('sliderMax')} (${this.tooltipFormatter(value)})`;
+          ariaLabel = `${this.localize.term('rangeMax')} (${this.tooltipFormatter(value)})`;
         } else {
           ariaLabel = this.tooltipFormatter(value);
         }
@@ -635,7 +635,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             aria-valuenow="${value}"
             aria-valuetext="${this.tooltipFormatter(value)}"
             class="knob"
-            data-slider-id="${sliderId}"
+            data-range-id="${rangeId}"
             id=${id}
             part="knob"
             role="slider"

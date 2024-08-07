@@ -190,6 +190,19 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.updateValidity();
     // initialize the lastChangeValue with the initial value
     this.#lastChangeValue = Array.from(this.#value);
+    /**
+     * Silence the screen reader for the tooltip.
+     * Otherwise it will read the new value on change multiple times instead of just one time.
+     * The aria-hidden needs to be set where the aria-live attribute is set, to silence it.
+     */
+    this.knobs.forEach((knob) => {
+      const tooltip = knob.parentElement as SynTooltip;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      tooltip.updateComplete.then(() => {
+        const tooltipBody = tooltip.shadowRoot!.querySelector('.tooltip__body');
+        tooltipBody?.setAttribute('aria-hidden', 'true');
+      });
+    });
   }
 
   protected override willUpdate(changedProperties: PropertyValues) {
@@ -594,10 +607,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       let ariaLabeledBy = '';
 
       if (!isMultiple) {
-        ariaLabel = this.tooltipFormatter(value);
-        ariaLabeledBy = hasLabel ? 'label aria-label-hidden' : 'label-hidden';
+        ariaLabeledBy = hasLabel ? 'label aria-label-hidden' : '';
       } else {
-        ariaLabeledBy = hasLabel ? `label aria-label-hidden ${id}` : 'id label-hidden';
+        ariaLabeledBy = hasLabel ? `label aria-label-hidden ${id}` : `aria-label-hidden ${id}`;
 
         if (index === 0) {
           ariaLabel = `${this.localize.term('sliderMin')} (${this.tooltipFormatter(value)})`;
@@ -621,7 +633,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             aria-valuemax="${this.max}"
             aria-valuemin="${this.min}"
             aria-valuenow="${value}"
-            aria-valuetext="${ariaLabel} ${this.tooltipFormatter(value)}"
+            aria-valuetext="${this.tooltipFormatter(value)}"
             class="knob"
             data-slider-id="${sliderId}"
             id=${id}
@@ -676,7 +688,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           <slot name="label">${this.label}</slot>
         </label>
 
-        <label id="aria-label-hidden">
+        <label id="aria-label-hidden" class="visually-hidden">
           (${this.#value.map(this.tooltipFormatter).join(' - ')})
         </label>
 
@@ -687,7 +699,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
           <div class="input__wrapper" part="input-wrapper">
             <input
-              class="range__validation-input"
+              class="range__validation-input visually-hidden"
               tabindex="-1"
               hidden
               @invalid=${this.#handleInvalid}

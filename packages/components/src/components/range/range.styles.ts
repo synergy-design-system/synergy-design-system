@@ -103,13 +103,6 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
-  /**
-   * Hide the aria label. Only used for aria controls
-   */
-  #aria-label-hidden {
-    display: none;
-  }
-
   .track__wrapper {
     cursor: pointer;
     position: relative;
@@ -209,16 +202,14 @@ export default css`
   }
 
   /**
-   * Visually hide the html input without display:none
-   * This is necessary for accessibility reasons and so the native html input validation popup 
-   * is shown.
+   * Visually hide elements without display:none to make aria and other accessibility stuff work correctly
+   * This is necessary for accessibility reasons and e.g. for the native html input validation popup to be
+   * shown.
    */
-  .range__validation-input {
+  .visually-hidden {
     border: 0;
-    bottom: 0;
     clip: rect(0, 0, 0, 0);
     height: 1px;
-    left: 50%;
     margin: -1px;
     overflow: hidden;
     padding: 0;
@@ -226,4 +217,13 @@ export default css`
     white-space: nowrap;
     width: 1px;
   }
+
+  /**
+   * Position the validation input to the bottom and center of the range track
+   */
+  .range__validation-input {
+    bottom: 0;
+    left: 50%;
+  }
+  
 `;

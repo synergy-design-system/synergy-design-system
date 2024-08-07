@@ -15,7 +15,7 @@ import type SynRange from './range.js';
 
 describe('<syn-range>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+    const el = await fixture<SynRange>(html`<syn-range label="Volume"></syn-range>`);
     await expect(el).to.be.accessible();
   });
 

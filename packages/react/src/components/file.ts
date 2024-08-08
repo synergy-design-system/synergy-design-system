@@ -46,6 +46,17 @@ Component.define('syn-file');
  * @csspart droparea-background - The background of the drop zone.
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
+ *
+ * @animation file.iconDrop.small - The animation to use for the file icon
+ * when a file is dropped for size small
+ * @animation file.iconDrop.medium - The animation to use for the file icon
+ * when a file is dropped for size medium
+ * @animation file.iconDrop.large - The animation to use for the file icon
+ * when a file is dropped for size large
+ * @animation file.text.disappear - The disappear animation to use for the file placeholder text
+ * when a file is dropped
+ * @animation file.text.appear - The appear animation to use for the file placeholder text
+ * when a file is dropped
  */
 export const SynFile = createComponent({
   displayName: 'SynFile',

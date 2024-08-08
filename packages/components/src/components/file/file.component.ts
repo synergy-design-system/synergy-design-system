@@ -16,6 +16,8 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { animateTo } from '../../internal/animate.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -48,6 +50,17 @@ import styles from './file.styles.js';
  * @csspart droparea-background - The background of the drop zone.
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-text - The text for the drop zone.
+ *
+ * @animation file.iconDrop.small - The animation to use for the file icon
+ * when a file is dropped for size small
+ * @animation file.iconDrop.medium - The animation to use for the file icon
+ * when a file is dropped for size medium
+ * @animation file.iconDrop.large - The animation to use for the file icon
+ * when a file is dropped for size large
+ * @animation file.text.disappear - The disappear animation to use for the file placeholder text
+ * when a file is dropped
+ * @animation file.text.appear - The appear animation to use for the file placeholder text
+ * when a file is dropped
  */
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
@@ -167,6 +180,12 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   // The droparea
   @query('.droparea__wrapper') dropareaWrapper: HTMLDivElement;
 
+  // The droparea icon
+  @query('.droparea__icon') dropareaIcon: HTMLSpanElement;
+
+  // File name placeholer
+  @query('.input__chosen') inputChosen: HTMLSpanElement;
+
   /** Gets the validity state object */
   get validity() {
     return this.input.validity;
@@ -276,7 +295,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.userIsDragging = false;
   }
 
-  private handleDrop(e: DragEvent) {
+  private async handleDrop(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -287,7 +306,18 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         this.emit('syn-error');
       } else {
         // Use the transferred file list from the drag drop interface
-        this.handleFiles(e.dataTransfer.files);
+        const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
+        const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
+
+        if (this.droparea) {
+          const dropIconAnimation = getAnimation(this.dropareaIcon, `file.iconDrop.${this.size}`, { dir: this.localize.dir() });
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
+        }
+
+        await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
+        this.handleFiles(files);
+        await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
         this.input.dispatchEvent(new Event('change'));
       }
     }
@@ -466,3 +496,45 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   }
   /* eslint-enable @typescript-eslint/unbound-method */
 }
+
+setDefaultAnimation('file.iconDrop.small', {
+  keyframes: [
+    { scale: 1 },
+    { scale: 0.8 },
+    { scale: 1 },
+  ],
+  options: { duration: 600, easing: 'ease-out' },
+});
+
+setDefaultAnimation('file.iconDrop.medium', {
+  keyframes: [
+    { scale: 1 },
+    { scale: 0.7 },
+    { scale: 1 },
+  ],
+  options: { duration: 600, easing: 'ease-out' },
+});
+
+setDefaultAnimation('file.iconDrop.large', {
+  keyframes: [
+    { scale: 1 },
+    { scale: 0.6 },
+    { scale: 1 }],
+  options: { duration: 600, easing: 'ease-out' },
+});
+
+setDefaultAnimation('file.text.disappear', {
+  keyframes: [
+    { opacity: 1 },
+    { opacity: 0, transform: 'translateY(-100%)' },
+  ],
+  options: { duration: 300, easing: 'cubic-bezier(0.45, 1.45, 0.8, 1)' },
+});
+
+setDefaultAnimation('file.text.appear', {
+  keyframes: [
+    { opacity: 0, transform: 'translateY(100%)' },
+    { opacity: 1 },
+  ],
+  options: { duration: 300, easing: 'cubic-bezier(0.45, 1.45, 0.8, 1)' },
+});

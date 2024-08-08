@@ -17,6 +17,7 @@ export { SynDialogComponent } from './dialog.component';
 export { SynDividerComponent } from './divider.component';
 export { SynDrawerComponent } from './drawer.component';
 export { SynDropdownComponent } from './dropdown.component';
+export { SynFileComponent } from './file.component';
 export { SynHeaderComponent } from './header.component';
 export { SynIconButtonComponent } from './icon-button.component';
 export { SynIconComponent } from './icon.component';

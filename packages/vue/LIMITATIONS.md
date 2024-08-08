@@ -1,4 +1,4 @@
-# Known Issues and recipes - Vue
+# Known Issues and limitations - Vue
 
 > ⚠️ This file includes all known issues and limitations when using the Vue wrappers.
 > There may be other interesting bits of information in the [components limitation documentation](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs).

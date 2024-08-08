@@ -10,13 +10,33 @@ const translations = {
     de: 'Gefahr',
     en: 'Danger',
   },
-  notification: {
-    de: 'Benachrichtigung',
-    en: 'Notification',
+  fileButtonText: {
+    de: 'Datei auswählen',
+    en: 'Choose file',
+  },
+  fileButtonTextMultiple: {
+    de: 'Dateien auswählen',
+    en: 'Choose files',
+  },
+  fileChosen: {
+    de: 'Dateien',
+    en: 'files',
+  },
+  fileDragDrop: {
+    de: 'Datei ablegen oder auswählen',
+    en: 'Drop or choose file',
+  },
+  fileNoFilesChosen: {
+    de: 'Keine Dateien ausgewählt',
+    en: 'No files chosen',
   },
   menu: {
     de: 'Menü',
     en: 'Menu',
+  },
+  notification: {
+    de: 'Benachrichtigung',
+    en: 'Notification',
   },
   openMenu: {
     de: 'Menü öffnen',

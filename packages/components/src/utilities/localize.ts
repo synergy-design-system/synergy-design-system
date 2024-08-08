@@ -27,6 +27,11 @@ export { registerTranslation } from '@shoelace-style/localize';
 export interface Translation extends DefaultTranslation {
   closeMenu: string;
   danger: string;
+  fileButtonText: string;
+  fileButtonTextMultiple: string;
+  fileChosen: string;
+  fileDragDrop: string;
+  fileNoFilesChosen: string;
   menu: string;
   notification: string;
   openMenu: string;

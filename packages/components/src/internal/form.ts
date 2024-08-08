@@ -232,6 +232,15 @@ export class FormControlController implements ReactiveController {
       name.length > 0 &&
       typeof value !== 'undefined'
     ) {
+      // Add support for file inputs
+      if (value instanceof FileList) {
+        const file = value as FileList;
+        for (const f of file) {
+          event.formData.append(name, f, f.name);
+        }
+        return;
+      }
+    
       if (Array.isArray(value)) {
         (value as unknown[]).forEach(val => {
           event.formData.append(name, (val as string | number | boolean).toString());

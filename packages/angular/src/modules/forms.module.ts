@@ -50,14 +50,30 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor { }
 })
 export class SynCheckedValueAccessor extends CheckboxControlValueAccessor { }
 
+@Directive({
+  providers: [{
+    multi: true,
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SynFileValueAccessor),
+  }],
+  selector: 'syn-file[formControlName], syn-file[formControl], syn-file[ngModel]',
+  // Overwrite the change event, because we only emit syn-change event
+  host: {
+    '(syn-change)': 'onChange($event.target.files)',
+  },
+})
+export class SynFileValueAccessor extends DefaultValueAccessor { }
+
 @NgModule({
   declarations: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
+    SynFileValueAccessor,
   ],
   exports: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
+    SynFileValueAccessor,
   ],
   imports: [],
 })

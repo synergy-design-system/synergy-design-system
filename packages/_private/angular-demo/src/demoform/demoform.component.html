@@ -1,4 +1,5 @@
 <form
+  enctype="multipart/form-data"
   [formGroup]="formData"
   (reset)="reset()"
   (ngSubmit)="submit(formData)"
@@ -195,6 +196,16 @@
       name="comment"
       placeholder="Please provide additional information that might be helpful for your inquiry"
       [rows]="10"
+    />
+    <syn-file
+      accept="image/*"
+      [droparea]="true"
+      formControlName="files"
+      help-text="Please upload images only"
+      id="screenshot"
+      label="Optional Screenshot(s)"
+      [multiple]="true"
+      name="files"
     />
   </demo-fieldset>
   <!-- /AdditionalInformation -->

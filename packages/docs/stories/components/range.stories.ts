@@ -410,6 +410,9 @@ export const TooltipPlacement: Story = {
       description: {
         story: generateStoryDescription('range', 'tooltip-placement'),
       },
+      story: {
+        height: '80px',
+      },
     },
   },
   render: () => html`

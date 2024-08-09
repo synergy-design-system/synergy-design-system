@@ -12,7 +12,7 @@ export default css`
     --track-active-offset: 0px;
     --track-color-active: var(--syn-color-primary-600);
     --track-color-inactive: var(--syn-color-neutral-200);
-    --track-height: 4px;
+    --track-height: var(--syn-spacing-2x-small);
 
     /* This is needed to get the full with of the element, including the border */
     --full-thumb-size: calc(var(--thumb-size) + (var(--syn-focus-ring-width) * 2));
@@ -41,6 +41,7 @@ export default css`
     display: inline-flex;
     flex: 1 1 auto;
     font-family: var(--syn-input-font-family);
+    font-size: var(--syn-input-font-size-medium);
     font-weight: var(--syn-input-font-weight);
     justify-content: start;
     letter-spacing: var(--syn-input-letter-spacing);
@@ -68,6 +69,7 @@ export default css`
   .input__prefix,
   .input__suffix {
     align-items: center;
+    color: var(--syn-input-icon-color);
     cursor: default;
     display: inline-flex;
     flex: 0 0 auto;
@@ -75,10 +77,12 @@ export default css`
 
   /* Sizing for the prefix and suffix */
   .form-control--small .input__prefix ::slotted(*) {
+    font-size: var(--syn-input-font-size-small);
     margin-inline-end: var(--syn-spacing-x-small);
   }
 
   .form-control--small .input__suffix ::slotted(*) {
+    font-size: var(--syn-input-font-size-small);
     margin-inline-start: var(--syn-spacing-x-small);
   }
 
@@ -91,16 +95,28 @@ export default css`
   }
 
   .form-control--large .input__prefix ::slotted(*) {
+    font-size: var(--syn-input-font-size-large);
     margin-inline-end: var(--syn-input-spacing-medium);
   }
 
   .form-control--large .input__suffix ::slotted(*) {
+    font-size: var(--syn-input-font-size-large);
     margin-inline-start: var(--syn-input-spacing-medium);
+  }
+
+  .form-control--small .input__prefix ::slotted(syn-icon),
+  .form-control--small .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-font-size-medium);
   }
 
   .form-control--medium .input__prefix ::slotted(syn-icon),
   .form-control--medium .input__suffix ::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
+  }
+  
+  .form-control--large .input__prefix ::slotted(syn-icon),
+  .form-control--large .input__suffix ::slotted(syn-icon) {
+    font-size: var(--syn-font-size-2x-large);
   }
 
   .track__wrapper {

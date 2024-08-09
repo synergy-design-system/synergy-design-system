@@ -10,6 +10,8 @@
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
  *
+ * @slot - The tick's label
+ *
  * @csspart base - The component's base wrapper.
  * @csspart label - The component's label.
  *
@@ -54,5 +56,7 @@ const visibleProps = computed(() => Object.fromEntries(
 
     v-bind="visibleProps"
     ref="nativeElement"
-  />
+  >
+    <slot />
+  </syn-range-tick>
 </template>

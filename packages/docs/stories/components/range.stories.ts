@@ -141,7 +141,7 @@ export const Invalid: Story = {
   render: () => html`
     <form class="custom-validity">
       <syn-range
-        help-text="This input is required."
+        help-text="This is an error text"
         id="range-invalid"
         label="Label"
         max="100"
@@ -230,7 +230,7 @@ export const PrefixSuffixText: Story = {
       <span slot="suffix">100</span>
     </syn-range>
 
-    <p style="margin: var(--syn-spacing-x-large) 0;">This can be used to add input fields or icons.</p>
+    <br><br>
 
     <syn-range label="Estimated Time" class="suffix-input-field" min="0" max="60" value="30">
       <span slot="prefix">0</span>
@@ -457,7 +457,20 @@ export const TooltipFormatter: Story = {
       max="100"
       min="0"
       value="50"
-    ></syn-range>
+    >
+      <nav slot="ticks">
+        <syn-range-tick label="0%"></syn-range-tick>
+        <syn-range-tick label="50%"></syn-range-tick>
+        <syn-range-tick label="100%"></syn-range-tick>
+      </nav>
+    </syn-range>
+    <style>
+      .tooltip-formatter nav {
+        justify-content: space-between;
+        flex-direction: row;
+        display: flex;
+      }
+    </style>
     <script>
       document
         .querySelectorAll('.tooltip-formatter')

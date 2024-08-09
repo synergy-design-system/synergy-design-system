@@ -20,6 +20,8 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
  *
+ * @slot - The tick's label
+ *
  * @csspart base - The component's base wrapper.
  * @csspart label - The component's label.
  *

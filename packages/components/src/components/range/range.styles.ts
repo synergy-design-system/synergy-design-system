@@ -118,8 +118,7 @@ export default css`
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
-    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--full-thumb-size) / 2 - 5px);
-    width: calc(100% + 10px - var(--full-thumb-size));
+    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) 0;
   }
 
   .active-track {
@@ -196,7 +195,7 @@ export default css`
   /* Ticks */
   .ticks {
     cursor: pointer;
-    margin: 1px calc(var(--full-thumb-size) / 2) 0;
+    margin: 1px 0;
     position: relative;
     user-select: none;
   }

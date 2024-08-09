@@ -432,7 +432,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     thumb.setAttribute('aria-valuetext', this.tooltipFormatter(value));
     const pos = (value - this.min) / (this.max - this.min);
     // eslint-disable-next-line no-param-reassign
-    thumb.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) * ${pos} )`;
+    thumb.style.insetInlineStart = `calc( ${100 * pos}% - var(--full-thumb-size) / 2 )`;
     this.#updateTooltip(thumb);
   }
 

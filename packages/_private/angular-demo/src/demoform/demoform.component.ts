@@ -1,4 +1,4 @@
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { normalizeData } from '../shared';
@@ -7,8 +7,10 @@ const initialData = {
   code: '',
   comment: '',
   date: '',
+  donations: '2000 4000',
   email: '',
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -31,6 +33,8 @@ export class DemoForm {
 
   @ViewChild('form') form!: ElementRef<HTMLFormElement>;
 
+  @ViewChild('donationRef') donationRef!: ElementRef<SynRange>;
+
   formData!: FormGroup;
 
   private _initFormData() {
@@ -41,6 +45,16 @@ export class DemoForm {
 
   constructor(private fb: FormBuilder) {
     this._initFormData();
+  }
+
+  ngAfterViewInit() {
+    const formatter = new Intl.NumberFormat('de-DE', {
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+      style: 'currency',
+    });
+
+    this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
   }
 
   reset() {

@@ -25,7 +25,8 @@ const defaultSelectors = [
   'syn-select',
   'syn-radio-group',
   'syn-button-group',
-];
+  'syn-range',
+].sort();
 
 /**
  * List of components that use the checked property in forms

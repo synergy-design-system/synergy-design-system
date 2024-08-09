@@ -86,3 +86,9 @@ form .syn-fieldset:last-of-type {
   display: flex;
   gap: var(--syn-spacing-medium);
 }
+
+#happiness-fields syn-range nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

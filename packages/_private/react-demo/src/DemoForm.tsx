@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import type {
+  SynChangeEvent,
+  SynRange as SynRangeNativeElement,
+} from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
@@ -10,6 +13,8 @@ import {
   SynOption,
   SynRadio,
   SynRadioGroup,
+  SynRange,
+  SynRangeTick,
   SynSelect,
   SynSwitch,
   SynTextarea,
@@ -27,8 +32,10 @@ const initialFormData = {
   code: '',
   comment: '',
   date: '',
+  donations: '2000 4000',
   email: '',
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -42,13 +49,23 @@ const initialFormData = {
   topics: [],
 };
 
+const formatter = new Intl.NumberFormat('de-DE', {
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+  style: 'currency',
+});
+
 export const DemoForm = () => {
+  const donationsRef = useRef<SynRangeNativeElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitary custom events :(
   useEffect(() => {
+    // Add a custom formatter for the donation field
+    donationsRef.current!.tooltipFormatter = value => formatter.format(value);
+
     const listener = (e: SynChangeEvent) => {
       const form = formRef.current as HTMLFormElement;
 
@@ -228,6 +245,43 @@ export const DemoForm = () => {
         </SynSelect>
       </DemoFieldset>
       {/* /Topics */}
+
+      <SynDivider />
+
+      {/* Happiness */}
+      <DemoFieldset id="happiness-fields" legend="Happiness">
+        <SynRange
+          id="happiness"
+          label="How happy are you with the Synergy Design System?"
+          max={10}
+          min={0}
+          name="happiness"
+          value={formData.happiness}
+        >
+          <nav slot="ticks">
+            <SynRangeTick label="🤮" />
+            <SynRangeTick label="🥱" />
+            <SynRangeTick label="😍" />
+          </nav>
+        </SynRange>
+
+        <SynRange
+          id="donations"
+          label="I would donate between"
+          max={6000}
+          min={0}
+          name="donations"
+          value={formData.donations}
+          ref={donationsRef}
+        >
+          <nav slot="ticks">
+            <SynRangeTick>0 €</SynRangeTick>
+            <SynRangeTick>6.000 €</SynRangeTick>
+          </nav>
+        </SynRange>
+
+      </DemoFieldset>
+      {/* /Happiness */}
 
       <SynDivider />
 

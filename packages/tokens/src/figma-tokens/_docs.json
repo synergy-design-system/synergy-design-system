@@ -2994,6 +2994,22 @@
           "title": {
             "value": "Body and UI text",
             "type": "text"
+          },
+          "xsmall-title": {
+            "value": "x-small",
+            "type": "text"
+          },
+          "small-title": {
+            "value": "small",
+            "type": "text"
+          },
+          "medium-title": {
+            "value": "medium",
+            "type": "text"
+          },
+          "large-title": {
+            "value": "large",
+            "type": "text"
           }
         }
       },

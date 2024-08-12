@@ -153,10 +153,16 @@ export default css`
     opacity: 0.5;
   }
 
-  :host(:not([disabled])) .form-control--user-dragging .droparea__wrapper,
-  :host(:not([disabled])) .droparea__wrapper:not(:focus-visible):hover {
+  :host(:not([disabled])) .form-control--user-dragging .droparea__wrapper {
     background: var(--syn-color-primary-50);
     border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
+    cursor: pointer;
+  }
+
+  :host(:not([disabled])) .droparea__wrapper:not(:focus-visible):hover {
+    --highlight-color: var(--syn-color-primary-900);
+
+    border: var(--syn-border-width-small) dashed var(--syn-color-primary-900);
     cursor: pointer;
   }
 

@@ -164,6 +164,18 @@
       "text-inverted": {
         "value": "{neutral.0}",
         "type": "color"
+      },
+      "link": {
+        "value": "{primary.600}",
+        "type": "color"
+      },
+      "link-hover": {
+        "value": "{primary.900}",
+        "type": "color"
+      },
+      "link-active": {
+        "value": "{primary.950}",
+        "type": "color"
       }
     }
   }

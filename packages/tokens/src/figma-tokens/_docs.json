@@ -1794,13 +1794,45 @@
         }
       },
       "ticks": {
-        "description": {
-          "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
-          "type": "text"
+        "default": {
+          "description": {
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Ticks",
+            "type": "text"
+          }
+        },
+        "label": {
+          "title": {
+            "value": "Labels",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the label attribute to give the tick a label.",
+            "type": "text"
+          }
+        },
+        "grouping": {
+          "title": {
+            "value": "Grouping",
+            "type": "text"
+          },
+          "description": {
+            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+            "type": "text"
+          }
         },
         "title": {
-          "value": "Ticks",
-          "type": "text"
+          "suddivision": {
+            "value": "Subdivision Ticks",
+            "type": "text"
+          },
+          "description": {
+            "value": "It is possible to divide the space between major ticks for finer scale readings.",
+            "type": "text"
+          }
         }
       },
       "tooltip-placement": {

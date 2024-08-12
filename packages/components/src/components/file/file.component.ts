@@ -526,14 +526,14 @@ setDefaultAnimation('file.iconDrop.large', {
 setDefaultAnimation('file.text.disappear', {
   keyframes: [
     { opacity: 1 },
-    { opacity: 0, transform: 'translateY(-50%)' },
+    { opacity: 0, transform: 'translateY(-40%)' },
   ],
   options: { duration: 300, easing: 'cubic-bezier(0.45, 1.45, 0.8, 1)' },
 });
 
 setDefaultAnimation('file.text.appear', {
   keyframes: [
-    { opacity: 0, transform: 'translateY(50%)' },
+    { opacity: 0, transform: 'translateY(40%)' },
     { opacity: 1 },
   ],
   options: { duration: 300, easing: 'cubic-bezier(0.45, 1.45, 0.8, 1)' },

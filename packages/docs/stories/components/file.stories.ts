@@ -229,7 +229,6 @@ export const Invalid: Story = {
       const button = form.querySelector('syn-button')!;
 
       if (button && files) {
-        files.forEach(f => f.setCustomValidity('This is an error text'));
         // make sure to always fire both events:
         // 1. userEvent.click is needed for storybooks play function to register
         // 2. button.click is needed to really click the button
@@ -252,6 +251,9 @@ export const Invalid: Story = {
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <script type="module">
+      const file = document.querySelector('.syn-file-invalid');
+      file.setCustomValidity('This is an error text');
+      
       const form = document.querySelector('form');
        // Handle submit
       form.addEventListener('submit', event => {

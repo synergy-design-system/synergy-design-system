@@ -2915,6 +2915,16 @@
             "value": "Text colors",
             "type": "text"
           }
+        },
+        "link": {
+          "description": {
+            "value": "Default color used for links within the application",
+            "type": "text"
+          },
+          "title": {
+            "value": "Link colors",
+            "type": "text"
+          }
         }
       }
     },

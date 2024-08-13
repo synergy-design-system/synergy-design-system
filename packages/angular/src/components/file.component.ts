@@ -40,20 +40,16 @@ import '@synergy-design-system/components/components/file/file.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart input-wrapper - The wrapper around the button and placeholder.
- * @csspart input-button - The syn-button acting as a file input.
- * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart button-wrapper - The wrapper around the button and text value.
+ * @csspart button - The syn-button acting as a file input.
+ * @csspart value - The chosen files or placeholder text for the file input.
+ * @csspart droparea - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
- * @csspart droparea-text - The text for the drop zone.
+ * @csspart droparea-value - The text for the drop zone.
  *
- * @animation file.iconDrop.small - The animation to use for the file icon
- * when a file is dropped for size small
- * @animation file.iconDrop.medium - The animation to use for the file icon
- * when a file is dropped for size medium
- * @animation file.iconDrop.large - The animation to use for the file icon
- * when a file is dropped for size large
+ * @animation file.iconDrop - The animation to use for the file icon
+ * when a file is dropped
  * @animation file.text.disappear - The disappear animation to use for the file placeholder text
  * when a file is dropped
  * @animation file.text.appear - The appear animation to use for the file placeholder text

@@ -367,7 +367,7 @@ describe('<syn-file>', () => {
 
   it('should look like a droparea when the droparea attribute is set', async () => {
     const el = await fixture<SynFile>(html`<syn-file droparea></syn-file>`);
-    const uploadButton = el.shadowRoot!.querySelector('.input__button')!;
+    const uploadButton = el.shadowRoot!.querySelector('.button')!;
     const droparea = el.shadowRoot!.querySelector('.droparea__wrapper')!;
 
     expect(droparea).to.exist;
@@ -376,7 +376,7 @@ describe('<syn-file>', () => {
 
   it('should look like a default upload button when the droparea attribute is not set', async () => {
     const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
-    const uploadButton = el.shadowRoot!.querySelector('.input__button')!;
+    const uploadButton = el.shadowRoot!.querySelector('.button')!;
     const droparea = el.shadowRoot!.querySelector('.droparea__wrapper')!;
 
     expect(droparea).to.not.exist;

@@ -169,13 +169,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   @query('.input__control') input: HTMLInputElement;
 
-  @query('.input__button') button: SynButton;
+  @query('.button') button: SynButton;
 
   @query('.droparea__wrapper') dropareaWrapper: HTMLDivElement;
 
   @query('.droparea__icon') dropareaIcon: HTMLSpanElement;
 
-  @query('.input__chosen') inputChosen: HTMLSpanElement;
+  @query('.input__value') inputChosen: HTMLSpanElement;
 
   /** Gets the validity state object */
   get validity() {

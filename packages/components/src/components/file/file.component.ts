@@ -26,8 +26,8 @@ import { animateTo } from '../../internal/animate.js';
  * @dependency syn-button
  * @dependency syn-icon
  *
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
- * @slot help-text - Text that describes how to use the input.
+ * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - Text that describes how to use the file control.
  * Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
  * Works best with `<syn-icon>`.
@@ -84,7 +84,14 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   @state() private userIsDragging = false;
 
-  /** List of uploaded files */
+  /**
+   * The selected files as a FileList object containing a list of File objects.
+   * The FileList behaves like an array, so you can get the number of selected files
+   * via its length property.
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files
+   */
   @property({ type: Object })
   set files(v: FileList | null) {
     if (this.input) {
@@ -96,12 +103,22 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     return this.input?.files;
   }
 
-  /** The name of the input, submitted as a name/value pair with form data. */
+  /** The name of the file control, submitted as a name/value pair with form data. */
   @property({ type: String }) name = '';
 
   /**
    * The current value of the input, submitted as a name/value pair with form data.
    * Beware that the only valid value when setting a file input is an empty string!
+   */
+
+  /**
+   * The value of the file control contains a string that represents the path of the selected file.
+   * If multiple files are selected, the value represents the first file in the list.
+   * If no file is selected, the value is an empty string.
+   * Beware that the only valid value when setting a file control is an empty string!
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value
    */
   @property({ type: String })
   set value(v: string) {
@@ -117,23 +134,28 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue = '';
 
-  /** The input's size. */
+  /** The file control's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** The input's label. If you need to display HTML, use the `label` slot instead. */
+  /** The file control's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
-  /** The input's help text. If you need to display HTML, use the `help-text` slot instead. */
+  /**
+   * The file control's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** Disables the input. */
+  /** Disables the file control. */
   @property({ reflect: true, type: Boolean }) disabled = false;
 
-  /** Draw the file input as a drop area */
+  /** Draw the file control as a drop area */
   @property({ type: Boolean }) droparea = false;
 
   /**
    * Comma separated list of supported file types
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
    * @example <syn-file accept=".jpg,.jpeg,.png,.gif,text/plain,image/*"></syn-file>
    */
@@ -143,12 +165,16 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
    * Specifies the types of files that the server accepts.
    * Can be set either to user or environment.
    * Works only when not using a droparea!
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture
    */
   @property({ type: String }) capture: 'user' | 'environment';
 
   /**
    * Indicates whether the user can select more than one file.
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple
    */
   @property({ reflect: true, type: Boolean }) multiple = false;
@@ -164,14 +190,14 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Makes the input a required field. */
   @property({ reflect: true, type: Boolean }) required = false;
 
-  /** Suppress the value from being displayed in the input */
+  /** Suppress the value from being displayed in the file control */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 
   @query('.input__control') input: HTMLInputElement;
 
   @query('.button') button: SynButton;
 
-  @query('.droparea__wrapper') dropareaWrapper: HTMLDivElement;
+  @query('.droparea') dropareaWrapper: HTMLDivElement;
 
   @query('.droparea__icon') dropareaIcon: HTMLSpanElement;
 
@@ -355,7 +381,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private renderDroparea() {
     return html`
       <div
-        class="droparea__wrapper"
+        class="droparea"
         @click=${this.handleClick}
         @keypress=${this.handleClick}
         @focus=${this.handleFocus}

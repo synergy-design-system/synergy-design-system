@@ -82,7 +82,7 @@ export default css`
   }
 
   /* Drop Area */
-  .droparea__wrapper {
+  .droparea {
     --highlight-color: var(--syn-color-primary-600);
 
     border: var(--syn-border-width-small) dashed var(--syn-input-border-color);
@@ -91,14 +91,14 @@ export default css`
     transition: var(--syn-transition-medium) background;
   }
 
-  .droparea__wrapper:focus-visible {
+  .droparea:focus-visible {
     border: var(--syn-border-width-small) dashed var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
 
   /* Adjust the highlight to match an inactive item */
-  :host([disabled]) .droparea__wrapper {
+  :host([disabled]) .droparea {
     --highlight-color: var(--syn-color-neutral-600);
   }
 
@@ -134,7 +134,7 @@ export default css`
 
   /* Sizes */
   /* stylelint-disable-next-line no-descending-specificity */
-  .form-control--small .droparea__wrapper {
+  .form-control--small .droparea {
     font: var(--syn-body-small-regular);
   }
 
@@ -143,7 +143,7 @@ export default css`
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
-  .form-control--large .droparea__wrapper {
+  .form-control--large .droparea {
     font: var(--syn-body-large-regular);
   }
 
@@ -152,19 +152,19 @@ export default css`
   }
 
   /* Disabled Styles */
-  :host([disabled]) .droparea__wrapper,
+  :host([disabled]) .droparea,
   :host([disabled]) .input__value {
     cursor: not-allowed;
     opacity: 0.5;
   }
 
-  :host(:not([disabled])) .form-control--user-dragging .droparea__wrapper {
+  :host(:not([disabled])) .form-control--user-dragging .droparea {
     background: var(--syn-color-primary-50);
     border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
     cursor: pointer;
   }
 
-  :host(:not([disabled])) .droparea__wrapper:not(:focus-visible):hover {
+  :host(:not([disabled])) .droparea:not(:focus-visible):hover {
     --highlight-color: var(--syn-color-primary-900);
 
     border: var(--syn-border-width-small) dashed var(--syn-color-primary-900);
@@ -173,7 +173,7 @@ export default css`
 
   /* Validation */
   /* stylelint-disable-next-line no-descending-specificity */
-  :host([data-user-invalid]:not([disabled])) .droparea__wrapper {
+  :host([data-user-invalid]:not([disabled])) .droparea {
     border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
   }
 `;

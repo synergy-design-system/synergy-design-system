@@ -354,13 +354,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   private renderValue() {
     let hasFiles = false;
-    let fileChosenLabel = this.localize.term('fileNoFilesChosen');
+    let fileChosenLabel = this.localize.term('numFilesSelected', 0);
 
     if (this.files && this.files?.length > 0) {
       hasFiles = true;
       fileChosenLabel = this.files.length === 1
         ? this.files[0].name
-        : `${this.files.length} ${this.localize.term('fileChosen')}`;
+        : this.localize.term('numFilesSelected', this.files.length);
     }
 
     return html`

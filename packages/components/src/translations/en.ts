@@ -47,11 +47,13 @@ const translation: Translation = {
   danger: 'Danger',
   fileButtonText: 'Choose file',
   fileButtonTextMultiple: 'Choose files',
-  fileChosen: 'files',
   fileDragDrop: 'Drop or choose file',
-  fileNoFilesChosen: 'No files chosen',
   menu: 'Menu',
   notification: 'Notification',
+  numFilesSelected: num => {
+      if (num === 0) return 'No files chosen';
+      return `${num} files`;
+    },
   openMenu: 'Open menu',
   sideNav: 'Side navigation',
   success: 'Success',

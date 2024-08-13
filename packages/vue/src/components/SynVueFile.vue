@@ -12,8 +12,8 @@
  * @dependency syn-button
  * @dependency syn-icon
  *
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
- * @slot help-text - Text that describes how to use the input.
+ * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - Text that describes how to use the file control.
  * Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
  * Works best with `<syn-icon>`.
@@ -61,50 +61,57 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* List of uploaded files
+* The selected files as a FileList object containing a list of File objects.
+The FileList behaves like an array, so you can get the number of selected files
+via its length property.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
  */
   'files'?: SynFile['files'];
 
   /**
-* The name of the input, submitted as a name/value pair with form data.
+* The name of the file control, submitted as a name/value pair with form data.
  */
   'name'?: SynFile['name'];
 
   /**
-* The current value of the input, submitted as a name/value pair with form data.
-Beware that the only valid value when setting a file input is an empty string!
+* The value of the file control contains a string that represents the path of the selected file.
+If multiple files are selected, the value represents the first file in the list.
+If no file is selected, the value is an empty string.
+Beware that the only valid value when setting a file control is an empty string!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
  */
   'value'?: SynFile['value'];
 
   /**
-* The input's size.
+* The file control's size.
  */
   'size'?: SynFile['size'];
 
   /**
-* The input's label.
+* The file control's label.
 * If you need to display HTML, use the `label` slot instead.
  */
   'label'?: SynFile['label'];
 
   /**
-* The input's help text.
-* If you need to display HTML, use the `help-text` slot instead.
+* The file control's help text.
+If you need to display HTML, use the `help-text` slot instead.
  */
   'helpText'?: SynFile['helpText'];
 
   /**
-* Disables the input.
+* Disables the file control.
  */
   'disabled'?: SynFile['disabled'];
 
   /**
-* Draw the file input as a drop area
+* Draw the file control as a drop area
  */
   'droparea'?: SynFile['droparea'];
 
   /**
 * Comma separated list of supported file types
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
  */
   'accept'?: SynFile['accept'];
 
@@ -112,11 +119,13 @@ Beware that the only valid value when setting a file input is an empty string!
 * Specifies the types of files that the server accepts.
 Can be set either to user or environment.
 Works only when not using a droparea!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
  */
   'capture'?: SynFile['capture'];
 
   /**
 * Indicates whether the user can select more than one file.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
   'multiple'?: SynFile['multiple'];
 
@@ -135,7 +144,7 @@ or shadow root for this to work.
   'required'?: SynFile['required'];
 
   /**
-* Suppress the value from being displayed in the input
+* Suppress the value from being displayed in the file control
  */
   'hideValue'?: SynFile['hideValue'];
 

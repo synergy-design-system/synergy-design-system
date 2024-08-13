@@ -23,8 +23,8 @@ import '@synergy-design-system/components/components/file/file.js';
  * @dependency syn-button
  * @dependency syn-icon
  *
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
- * @slot help-text - Text that describes how to use the input.
+ * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - Text that describes how to use the file control.
  * Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
  * Works best with `<syn-icon>`.
@@ -76,7 +76,10 @@ export class SynFileComponent {
   }
 
   /**
-* List of uploaded files
+* The selected files as a FileList object containing a list of File objects.
+The FileList behaves like an array, so you can get the number of selected files
+via its length property.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
  */
   @Input()
   set files(v: SynFile['files']) {
@@ -88,7 +91,7 @@ export class SynFileComponent {
   }
 
   /**
-* The name of the input, submitted as a name/value pair with form data.
+* The name of the file control, submitted as a name/value pair with form data.
  */
   @Input()
   set name(v: SynFile['name']) {
@@ -100,8 +103,11 @@ export class SynFileComponent {
   }
 
   /**
-* The current value of the input, submitted as a name/value pair with form data.
-Beware that the only valid value when setting a file input is an empty string!
+* The value of the file control contains a string that represents the path of the selected file.
+If multiple files are selected, the value represents the first file in the list.
+If no file is selected, the value is an empty string.
+Beware that the only valid value when setting a file control is an empty string!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
  */
   @Input()
   set value(v: SynFile['value']) {
@@ -113,7 +119,7 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* The input's size.
+* The file control's size.
  */
   @Input()
   set size(v: SynFile['size']) {
@@ -125,7 +131,7 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* The input's label.
+* The file control's label.
 * If you need to display HTML, use the `label` slot instead.
  */
   @Input()
@@ -138,8 +144,8 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* The input's help text.
-* If you need to display HTML, use the `help-text` slot instead.
+* The file control's help text.
+If you need to display HTML, use the `help-text` slot instead.
  */
   @Input()
   set helpText(v: SynFile['helpText']) {
@@ -151,7 +157,7 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* Disables the input.
+* Disables the file control.
  */
   @Input()
   set disabled(v: SynFile['disabled']) {
@@ -163,7 +169,7 @@ Beware that the only valid value when setting a file input is an empty string!
   }
 
   /**
-* Draw the file input as a drop area
+* Draw the file control as a drop area
  */
   @Input()
   set droparea(v: SynFile['droparea']) {
@@ -176,6 +182,7 @@ Beware that the only valid value when setting a file input is an empty string!
 
   /**
 * Comma separated list of supported file types
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
  */
   @Input()
   set accept(v: SynFile['accept']) {
@@ -190,6 +197,7 @@ Beware that the only valid value when setting a file input is an empty string!
 * Specifies the types of files that the server accepts.
 Can be set either to user or environment.
 Works only when not using a droparea!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
  */
   @Input()
   set capture(v: SynFile['capture']) {
@@ -202,6 +210,7 @@ Works only when not using a droparea!
 
   /**
 * Indicates whether the user can select more than one file.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
   @Input()
   set multiple(v: SynFile['multiple']) {
@@ -241,7 +250,7 @@ or shadow root for this to work.
   }
 
   /**
-* Suppress the value from being displayed in the input
+* Suppress the value from being displayed in the file control
  */
   @Input()
   set hideValue(v: SynFile['hideValue']) {

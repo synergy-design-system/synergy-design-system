@@ -29,11 +29,10 @@ export interface Translation extends DefaultTranslation {
   danger: string;
   fileButtonText: string;
   fileButtonTextMultiple: string;
-  fileChosen: string;
   fileDragDrop: string;
-  fileNoFilesChosen: string;
   menu: string;
   notification: string;
+  numFilesSelected: (num: number) => string;
   openMenu: string;
   sideNav: string;
   success: string;

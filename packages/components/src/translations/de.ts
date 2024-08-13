@@ -47,11 +47,13 @@ const translation: Translation = {
   danger: 'Gefahr',
   fileButtonText: 'Datei auswählen',
   fileButtonTextMultiple: 'Dateien auswählen',
-  fileChosen: 'Dateien',
   fileDragDrop: 'Datei ablegen oder auswählen',
-  fileNoFilesChosen: 'Keine Dateien ausgewählt',
   menu: 'Menü',
   notification: 'Benachrichtigung',
+  numFilesSelected: num => {
+      if (num === 0) return 'Keine Dateien ausgewählt';
+      return `${num} Dateien`;
+    },
   openMenu: 'Menü öffnen',
   sideNav: 'Seitennavigation',
   success: 'Erfolg',

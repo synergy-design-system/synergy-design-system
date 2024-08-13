@@ -22,8 +22,8 @@ Component.define('syn-file');
  * @dependency syn-button
  * @dependency syn-icon
  *
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
- * @slot help-text - Text that describes how to use the input.
+ * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - Text that describes how to use the file control.
  * Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
  * Works best with `<syn-icon>`.

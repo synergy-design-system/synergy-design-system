@@ -133,6 +133,7 @@ export default css`
   }
 
   /* Sizes */
+  /* stylelint-disable-next-line no-descending-specificity */
   .form-control--small .droparea__wrapper {
     font: var(--syn-body-small-regular);
   }
@@ -141,6 +142,7 @@ export default css`
     font-size: var(--syn-spacing-2x-large)
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .form-control--large .droparea__wrapper {
     font: var(--syn-body-large-regular);
   }

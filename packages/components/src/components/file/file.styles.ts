@@ -32,39 +32,42 @@ export default css`
     position: relative;
   }
 
-  /* Regular Input */
-  .input__wrapper {
+  /* Regular Input with button only */
+  .button__wrapper {
     align-items: center;
     display: flex;
     gap: var(--syn-input-spacing-medium);
   }
 
-  :host([size="small"]) .input__wrapper {
+  .form-control--small .button__wrapper {
     gap: var(--syn-input-spacing-small);
   }
 
-  :host([size="large"]) .input__wrapper {
+  :host([size="large"]) .button__wrapper {
     gap: var(--syn-input-spacing-large);
   }
 
-  .input__chosen {
+  /**
+   * The value of the chosen file(s) or the placeholder text
+   */
+  .input__value {
     color: var(--syn-input-help-text-color);
     font-size: var(--syn-input-label-font-size-medium);
   }
 
-  .input__chosen.input__chosen--hidden {
+  .input__value.input__value--hidden {
     display: none;
   }
 
-  .input__chosen--placeholder {
+  .input__value--placeholder {
     color: var(--syn-input-help-text-color);
   }
 
-  :host([size="small"]) .input__chosen {
+  .form-control--small .input__value {
     font-size: var(--syn-input-label-font-size-small);
   }
 
-  :host([size="large"]) .input__chosen {
+  .form-control--large .input__value {
     font-size: var(--syn-input-label-font-size-large);
   }
 
@@ -72,7 +75,7 @@ export default css`
    * Special case for regular inputs:
    * When the user uses drag and drop, highlight the button with the primary color
    */
-  .form-control--user-dragging:not([disabled]) .input__button::part(base) {
+  .form-control--user-dragging:not([disabled]) .button::part(base) {
     background: none;
     border-color: var(--syn-color-primary-900);
     color: var(--syn-color-primary-900);
@@ -99,7 +102,7 @@ export default css`
     --highlight-color: var(--syn-color-neutral-600);
   }
 
-  :host([disabled]) .input__chosen {
+  :host([disabled]) .input__value {
     display: none;
   }
 
@@ -130,25 +133,25 @@ export default css`
   }
 
   /* Sizes */
-  :host([size="small"]) .droparea__wrapper {
+  .form-control--small .droparea__wrapper {
     font: var(--syn-body-small-regular);
   }
 
-  :host([size="small"]) .droparea__icon {
+  .form-control--small .droparea__icon {
     font-size: var(--syn-spacing-2x-large)
   }
 
-  :host([size="large"]) .droparea__wrapper {
+  .form-control--large .droparea__wrapper {
     font: var(--syn-body-large-regular);
   }
 
-  :host([size="large"]) .droparea__icon {
+  .form-control--large .droparea__icon {
     font-size: var(--syn-spacing-4x-large)
   }
 
   /* Disabled Styles */
   :host([disabled]) .droparea__wrapper,
-  :host([disabled]) .input__chosen {
+  :host([disabled]) .input__value {
     cursor: not-allowed;
     opacity: 0.5;
   }

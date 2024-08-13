@@ -43,13 +43,13 @@ import { animateTo } from '../../internal/animate.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart input-wrapper - The wrapper around the button and placeholder.
- * @csspart input-button - The syn-button acting as a file input.
- * @csspart input-placeholder - The placeholder text for the file input.
- * @csspart droparea-wrapper - The element wrapping the drop zone.
+ * @csspart button-wrapper - The wrapper around the button and text value.
+ * @csspart button - The syn-button acting as a file input.
+ * @csspart value - The chosen files or placeholder text for the file input.
+ * @csspart droparea - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
- * @csspart droparea-text - The text for the drop zone.
+ * @csspart droparea-value - The text for the drop zone.
  *
  * @animation file.iconDrop.small - The animation to use for the file icon
  * when a file is dropped for size small
@@ -171,19 +171,14 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Suppress the value from being displayed in the input */
   @property({ attribute: 'hide-value', type: Boolean }) hideValue = false;
 
-  // The inputs hidden input[type="file"]
   @query('.input__control') input: HTMLInputElement;
 
-  // The inputs button the user will interact with
   @query('.input__button') button: SynButton;
 
-  // The droparea
   @query('.droparea__wrapper') dropareaWrapper: HTMLDivElement;
 
-  // The droparea icon
   @query('.droparea__icon') dropareaIcon: HTMLSpanElement;
 
-  // File name placeholer
   @query('.input__chosen') inputChosen: HTMLSpanElement;
 
   /** Gets the validity state object */
@@ -257,10 +252,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.formControlController.emitInvalidEvent(event);
   }
 
-  /**
-   * Handle file uploads
-   * @param files The files to handle
-   */
   private handleFiles(files: FileList | null) {
     if (!files) {
       this.value = '';
@@ -353,11 +344,11 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     return html`
       <span
         class=${classMap({
-          input__chosen: true,
-          'input__chosen--hidden': this.hideValue,
-          'input__chosen--placeholder': !hasFiles,
+          input__value: true,
+          'input__value--hidden': this.hideValue,
+          'input__value--placeholder': !hasFiles,
         })}
-        part="input-placeholder"
+        part="value"
       >
         ${fileChosenLabel}
       </span>
@@ -374,7 +365,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         @focus=${this.handleFocus}
         @blur=${this.handleBlur}
         tabindex=${this.disabled ? -1 : 0}
-        part="droparea-wrapper"
+        part="droparea"
       >
         <div
           class="droparea__background"
@@ -387,7 +378,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           </span>
           <p
             class="droparea__text"
-            part="droparea-text"
+            part="droparea-value"
           >
             <strong>${this.localize.term('fileDragDrop')}</strong>
             ${this.renderValue()}
@@ -399,27 +390,26 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /* eslint-enable @typescript-eslint/unbound-method */
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  private renderInput() {
+  private renderButton() {
     const buttonText = this.multiple
       ? this.localize.term('fileButtonTextMultiple')
       : this.localize.term('fileButtonText');
 
     return html`
       <div
-        class="input__wrapper"
-        part="input-wrapper"
+        class="button__wrapper"
+        part="button-wrapper"
       >
         <syn-button
-          class="input__button"
+          class="button"
           @click=${this.handleClick}
           ?disabled=${this.disabled}
-          part="input-button"
+          part="button"
           size=${this.size}
           variant="outline"
         >
           ${buttonText}
         </syn-button>
-        
         ${this.renderValue()}
       </div>
     `;
@@ -431,7 +421,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   render() {
     const hasLabel = this.label || !!this.hasSlotController.test('label');
     const hasHelpText = this.helpText ? true : !!this.hasSlotController.test('help-text');
-    const output = this.droparea ? this.renderDroparea() : this.renderInput();
 
     return html`
       <div
@@ -465,7 +454,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           part="form-control-input"
         >
 
-          ${output}
+          ${this.droparea ? this.renderDroparea() : this.renderButton()}
 
           <input
             accept=${this.accept}

@@ -51,7 +51,7 @@ export default css`
    * The value of the chosen file(s) or the placeholder text
    */
   .input__value {
-    color: var(--syn-input-help-text-color);
+    color: var(--syn-input-color);
     font-size: var(--syn-input-label-font-size-medium);
   }
 

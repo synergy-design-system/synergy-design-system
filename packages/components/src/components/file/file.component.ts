@@ -51,12 +51,8 @@ import { animateTo } from '../../internal/animate.js';
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-value - The text for the drop zone.
  *
- * @animation file.iconDrop.small - The animation to use for the file icon
- * when a file is dropped for size small
- * @animation file.iconDrop.medium - The animation to use for the file icon
- * when a file is dropped for size medium
- * @animation file.iconDrop.large - The animation to use for the file icon
- * when a file is dropped for size large
+ * @animation file.iconDrop - The animation to use for the file icon
+ * when a file is dropped
  * @animation file.text.disappear - The disappear animation to use for the file placeholder text
  * when a file is dropped
  * @animation file.text.appear - The appear animation to use for the file placeholder text
@@ -301,7 +297,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
 
         if (this.droparea) {
-          const dropIconAnimation = getAnimation(this.dropareaIcon, `file.iconDrop.${this.size}`, { dir: this.localize.dir() });
+          const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
           animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
         }
@@ -486,29 +482,12 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /* eslint-enable @typescript-eslint/unbound-method */
 }
 
-setDefaultAnimation('file.iconDrop.small', {
-  keyframes: [
-    { scale: 1 },
-    { scale: 0.8 },
-    { scale: 1 },
-  ],
-  options: { duration: 600, easing: 'ease-out' },
-});
-
-setDefaultAnimation('file.iconDrop.medium', {
+setDefaultAnimation('file.iconDrop', {
   keyframes: [
     { scale: 1 },
     { scale: 0.7 },
     { scale: 1 },
   ],
-  options: { duration: 600, easing: 'ease-out' },
-});
-
-setDefaultAnimation('file.iconDrop.large', {
-  keyframes: [
-    { scale: 1 },
-    { scale: 0.6 },
-    { scale: 1 }],
   options: { duration: 600, easing: 'ease-out' },
 });
 

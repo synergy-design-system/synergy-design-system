@@ -180,6 +180,17 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
+   * Indicates that the file control should let the user select directories instead of files.
+   * When a directory is selected, the directory and its entire hierarchy of contents are included
+   * in the set of selected items.
+   * Note: This is a non-standard attribute but is supported in the major browsers.
+   * [see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory
+   */
+  @property({ reflect: true, type: Boolean }) webkitdirectory = false;
+
+  /**
    * By default, form controls are associated with the nearest containing `<form>` element.
    * This attribute allows you to place the form control outside of a form and associate it
    * with the form that has this `id`. The form must be in the same document
@@ -491,6 +502,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             ?required=${this.required}
             type="file"
             tabindex="-1"
+            ?webkitdirectory=${this.webkitdirectory}
           >
         </div>
 

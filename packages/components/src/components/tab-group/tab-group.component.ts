@@ -31,12 +31,14 @@ import type SynTabPanel from '../tab-panel/tab-panel.js';
  *
  * @slot - Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.
  * @slot nav - Used for grouping tabs in the tab group. Must be `<syn-tab>` elements.
+ * @slot prefix - An optional prefix element that will be shown before the navigation tabs.
+ * @slot suffix - An optional suffix element that will be shown after the navigation tabs.
  *
  * @event {{ name: String }} syn-tab-show - Emitted when a tab is shown. The payload of the event returns the "panel" attribute of the shown tab.
  * @event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden. The payload of the event returns the "panel" attribute of the hidden tab.
  *
  * @csspart base - The component's base wrapper.
- * @csspart nav - The tab group's navigation container where tabs are slotted in.
+ * @csspart nav - The tab group's navigation container where tabs and prefix/suffix are slotted in.
  * @csspart tabs - The container that wraps the tabs.
  * @csspart active-tab-indicator - The line that highlights the currently selected tab.
  * @csspart body - The tab group's body where tab panels are slotted in.
@@ -420,10 +422,12 @@ export default class SynTabGroup extends SynergyElement {
             : ''}
 
           <div class="tab-group__nav">
+            <slot name="prefix"></slot>
             <div part="tabs" class="tab-group__tabs" role="tablist">
               <div part="active-tab-indicator" class="tab-group__indicator"></div>
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>
+            <slot name="suffix"></slot>
           </div>
 
           ${this.hasScrollControls

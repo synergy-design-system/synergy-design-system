@@ -2068,6 +2068,26 @@
           "value": "It is also possible to a Add icon to the Tabs.",
           "type": "text"
         }
+      },
+      "prefix-suffix": {
+        "title": {
+          "value": "Prefix and Suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add content to the start and end of tabs using the prefix and suffix slots.",
+          "type": "text"
+        }
+      },
+      "prefix-suffix-on-start": {
+        "title": {
+          "value": "Prefix and Suffix on Start",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add content to the start and end of tabs using the prefix and suffix slots.",
+          "type": "text"
+        }
       }
     },
     "tab-panel": {

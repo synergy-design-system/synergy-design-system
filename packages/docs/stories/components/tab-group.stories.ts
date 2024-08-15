@@ -315,6 +315,47 @@ export const Icons: Story = {
   </syn-tab-group>
 `,
 };
+export const PrefixAndSuffix: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'prefix-suffix'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tab-group>
+    <h2 slot="prefix" style="margin: 0; margin-inline-end: var(--syn-spacing-medium); align-self: center;">Prefix</h2>
+    <div slot="suffix" style="margin-inline-start: var(--syn-spacing-medium);"><syn-button>Suffix</syn-button></div>
+
+    <syn-tab slot="nav" panel="general" active>General</syn-tab>
+    <syn-tab slot="nav" panel="custom">Custom</syn-tab>
+    <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
+    <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
+    ${createTabPanelsHtml()}
+  `,
+};
+
+export const PrefixAndSuffixOnStart: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tab-group', 'prefix-suffix-on-start'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-tab-group placement="start">
+    <h2 slot="prefix" style="margin: 0; margin-block-end: var(--syn-spacing-medium);">Prefix</h2>
+    <div slot="suffix" style="margin-block-start: var(--syn-spacing-medium);"><syn-button>Suffix</syn-button></div>
+
+    <syn-tab slot="nav" panel="general" active>General</syn-tab>
+    <syn-tab slot="nav" panel="custom">Custom</syn-tab>
+    <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
+    <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
+    ${createTabPanelsHtml()}
+  `,
+};
 
 // For this screenshot story to work correctly, we needed to explicitly set the active prop on each
 // first tab and first tab-panel, although the tab-group sets the first tab and tab-panel active

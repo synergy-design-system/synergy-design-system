@@ -28,9 +28,14 @@ import { animateTo } from '../../internal/animate.js';
  *
  * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the file control.
- * Alternatively, you can use the `help-text` attribute.
+ *    Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
- * Works best with `<syn-icon>`.
+ *    Works best with `<syn-icon>`.
+ * @slot trigger - Optional content to be used as trigger instead of the default content.
+ *    Opening the file dialog on click and as well as drag and drop will work for this content.
+ *    Following attributes will no longer work: *label*, *droparea*, *help-text*, *size*,
+ *    *hide-value*. Also if using the disabled attribute, the disabled styling will not be
+ *    applied and must be taken care of yourself.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -263,21 +268,21 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /** Sets focus on the button or droparea. */
   focus(options?: FocusOptions) {
     if (this.droparea) {
-      this.dropareaWrapper.focus(options);
+      this.dropareaWrapper?.focus(options);
       return;
     }
 
-    this.button.focus(options);
+    this.button?.focus(options);
   }
 
   /** Removes focus from the button or droparea. */
   blur() {
     if (this.droparea) {
-      this.dropareaWrapper.blur();
+      this.dropareaWrapper?.blur();
       return;
     }
 
-    this.button.blur();
+    this.button?.blur();
   }
 
   private handleInvalid(event: Event) {
@@ -319,6 +324,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.userIsDragging = false;
   }
 
+  // eslint-disable-next-line complexity
   private async handleDrop(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -330,18 +336,24 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         this.emit('syn-error');
       } else {
         // Use the transferred file list from the drag drop interface
-        const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
-        const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
+        const hasTrigger = this.hasSlotController.test('trigger');
+        if (!hasTrigger) {
+          const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
+          const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
 
-        if (this.droparea) {
-          const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
+          if (this.droparea) {
+            const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
+          }
+          // eslint-disable-next-line max-len
+          await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
+          this.handleFiles(files);
+          await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
+        } else {
+          this.handleFiles(files);
         }
 
-        await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
-        this.handleFiles(files);
-        await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
         this.input.dispatchEvent(new Event('change'));
       }
     }
@@ -454,6 +466,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   render() {
     const hasLabel = this.label || !!this.hasSlotController.test('label');
     const hasHelpText = this.helpText ? true : !!this.hasSlotController.test('help-text');
+    const hasTrigger = !!this.hasSlotController.test('trigger');
 
     return html`
       <div
@@ -473,48 +486,57 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         @drop=${this.handleDrop}
         part="form-control"
       >
-        <label
-          aria-hidden=${hasLabel ? 'false' : 'true'}
-          class="form-control__label"
-          for="input"
-          part="form-control-label"
+      ${
+        hasTrigger
+          ? html`
+              <div @click=${this.handleClick} @keypress=${this.handleClick}>
+                <slot name="trigger"></slot>
+              </div>
+            `
+          : html`
+              <label
+                aria-hidden=${hasLabel ? 'false' : 'true'}
+                class="form-control__label"
+                for="input"
+                part="form-control-label"
+              >
+                <slot name="label">${this.label}</slot>
+              </label>
+
+              <div
+                class="form-control-input"
+                part="form-control-input"
+              >
+
+                ${this.droparea ? this.renderDroparea() : this.renderButton()}
+              </div>
+
+              <div
+                aria-hidden=${hasHelpText ? 'false' : 'true'}
+                class="form-control__help-text"
+                id="help-text"
+                part="form-control-help-text"
+              >
+                <slot name="help-text">${this.helpText}</slot>
+              </div>
+            `
+        }
+        <input
+          accept=${this.accept}
+          aria-describedby="help-text"
+          @change=${this.handleChange}
+          class="input__control"
+          ?disabled=${this.disabled}
+          id="input"
+          @invalid=${this.handleInvalid}
+          ?multiple=${this.multiple}
+          name=${ifDefined(this.name)}
+          ?required=${this.required}
+          type="file"
+          tabindex="-1"
+          ?webkitdirectory=${this.webkitdirectory}
         >
-          <slot name="label">${this.label}</slot>
-        </label>
-
-        <div
-          class="form-control-input"
-          part="form-control-input"
-        >
-
-          ${this.droparea ? this.renderDroparea() : this.renderButton()}
-
-          <input
-            accept=${this.accept}
-            aria-describedby="help-text"
-            @change=${this.handleChange}
-            class="input__control"
-            ?disabled=${this.disabled}
-            id="input"
-            @invalid=${this.handleInvalid}
-            ?multiple=${this.multiple}
-            name=${ifDefined(this.name)}
-            ?required=${this.required}
-            type="file"
-            tabindex="-1"
-            ?webkitdirectory=${this.webkitdirectory}
-          >
-        </div>
-
-        <div
-          aria-hidden=${hasHelpText ? 'false' : 'true'}
-          class="form-control__help-text"
-          id="help-text"
-          part="form-control-help-text"
-        >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
-      </div>
+    </div>
     `;
   }
   /* eslint-enable @typescript-eslint/unbound-method */

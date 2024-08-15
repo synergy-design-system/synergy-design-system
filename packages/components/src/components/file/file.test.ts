@@ -6,9 +6,11 @@ import {
   html,
   oneEvent,
 } from '@open-wc/testing';
+import type { TemplateResult } from 'lit';
 import { serialize } from '../../../dist/synergy.js';
 import type SynFile from './file.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
+import type SynButton from '../button/button.component.js';
 
 /**
  * Serialize a form with files to a JSON object
@@ -74,39 +76,42 @@ const fakeFileUpload = async (el: SynFile, files?: FileList | File | File[]) => 
 };
 
 describe('<syn-file>', () => {
-  const createTests = (description: string, droparea: boolean) => {
+  const createTests = (description: string, droparea: boolean, triggerSlot?: TemplateResult) => {
     describe(description, () => {
-      it('passes accessibility test', async () => {
-        const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} label="File"></syn-file>`);
-        await expect(el).to.be.accessible();
-      });
+      // Don't run this tests for the trigger slot case
+      if (!triggerSlot) {
+        it('passes accessibility test', async () => {
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} label="File"></syn-file>`);
+          await expect(el).to.be.accessible();
+        });
+
+        it('should emit a syn-focus event when the focus method is called', async () => {
+          const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
+          const focusEvent = sinon.spy();
+          el.addEventListener('syn-focus', focusEvent);
+          el.focus();
+          expect(focusEvent).to.have.been.calledOnce;
+        });
+
+        it('should emit a syn-blur event when the blur method is called', async () => {
+          const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
+          const blurEvent = sinon.spy();
+          el.addEventListener('syn-blur', blurEvent);
+          el.focus();
+          el.blur();
+          expect(blurEvent).to.have.been.calledOnce;
+        });
+      }
 
       it('should be disabled with the disabled attribute', async () => {
-        const el = await fixture<SynFile>(html`<syn-file disabled ?droparea=${droparea}></syn-file>`);
+        const el = await fixture<SynFile>(html`<syn-file disabled ?droparea=${droparea}>${triggerSlot}</syn-file>`);
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
 
         expect(input.disabled).to.be.true;
       });
 
-      it('should emit a syn-focus event when the focus method is called', async () => {
-        const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
-        const focusEvent = sinon.spy();
-        el.addEventListener('syn-focus', focusEvent);
-        el.focus();
-        expect(focusEvent).to.have.been.calledOnce;
-      });
-
-      it('should emit a syn-blur event when the blur method is called', async () => {
-        const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
-        const blurEvent = sinon.spy();
-        el.addEventListener('syn-blur', blurEvent);
-        el.focus();
-        el.blur();
-        expect(blurEvent).to.have.been.calledOnce;
-      });
-
       it('should emit a syn-error event when multiple attribute is not set, but several files are dragged in ', async () => {
-        const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}></syn-file>`);
+        const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}>${triggerSlot}</syn-file>`);
         const div = el.shadowRoot!.querySelector<HTMLDivElement>('.form-control')!;
 
         const file1 = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
@@ -125,25 +130,25 @@ describe('<syn-file>', () => {
 
       describe('when using constraint validation', () => {
         it('should be valid by default', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}>${triggerSlot}</syn-file>`);
           expect(el.checkValidity()).to.be.true;
         });
 
         it('should be invalid when required and empty', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required>${triggerSlot}</syn-file>`);
           expect(el.reportValidity()).to.be.false;
           expect(el.checkValidity()).to.be.false;
         });
 
         it('should be invalid when required and disabled is removed', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} disabled required></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} disabled required>${triggerSlot}</syn-file>`);
           el.disabled = false;
           await el.updateComplete;
           expect(el.checkValidity()).to.be.false;
         });
 
         it('should receive the correct validation attributes ("states") when valid', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required>${triggerSlot}</syn-file>`);
 
           await fakeFileUpload(el);
           expect(el.checkValidity()).to.be.true;
@@ -164,7 +169,7 @@ describe('<syn-file>', () => {
         });
 
         it('should receive the correct validation attributes ("states") when invalid', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea} required>${triggerSlot}</syn-file>`);
 
           await fakeFileUpload(el, []);
           expect(el.checkValidity()).to.be.false;
@@ -187,7 +192,7 @@ describe('<syn-file>', () => {
 
       describe('when submitting a form', () => {
         it('should serialize its name and value with FormData', async () => {
-          const form = await fixture<HTMLFormElement>(html`<form><syn-file ?droparea=${droparea} name="a"></syn-file></form>`);
+          const form = await fixture<HTMLFormElement>(html`<form><syn-file ?droparea=${droparea} name="a">${triggerSlot}</syn-file></form>`);
           const input = form.querySelector('syn-file')!;
 
           await fakeFileUpload(input);
@@ -197,7 +202,7 @@ describe('<syn-file>', () => {
         });
 
         it('should serialize its name and value with JSON', async () => {
-          const form = await fixture<HTMLFormElement>(html`<form><syn-file ?droparea=${droparea} name="a"></syn-file></form>`);
+          const form = await fixture<HTMLFormElement>(html`<form><syn-file ?droparea=${droparea} name="a">${triggerSlot}</syn-file></form>`);
           const input = form.querySelector('syn-file')!;
 
           await fakeFileUpload(input);
@@ -207,7 +212,7 @@ describe('<syn-file>', () => {
         });
 
         it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
-          const input = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+          const input = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}>${triggerSlot}</syn-file>`);
 
           input.setCustomValidity('Invalid selection');
           await input.updateComplete;
@@ -225,7 +230,7 @@ describe('<syn-file>', () => {
               <form id="f">
                 <syn-button type="submit">Submit</syn-button>
               </form>
-              <syn-file ?droparea=${droparea} form="f" name="a"></syn-file>
+              <syn-file ?droparea=${droparea} form="f" name="a">${triggerSlot}</syn-file>
             </div>
           `);
           const form = el.querySelector('form')!;
@@ -243,11 +248,11 @@ describe('<syn-file>', () => {
         it('should reset the element to its initial value', async () => {
           const form = await fixture<HTMLFormElement>(html`
             <form>
-              <syn-file ?droparea=${droparea} name="a"></syn-file>
-              <syn-button type="reset">Reset</syn-button>
+              <syn-file ?droparea=${droparea} name="a">${triggerSlot}</syn-file>
+              <syn-button id="reset" type="reset">Reset</syn-button>
             </form>
           `);
-          const button = form.querySelector('syn-button')!;
+          const button = form.querySelector('#reset') as SynButton;
           const input = form.querySelector('syn-file')!;
 
           await fakeFileUpload(input);
@@ -274,7 +279,7 @@ describe('<syn-file>', () => {
         it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
           const form = await fixture<HTMLFormElement>(html`
             <form>
-              <syn-file ?droparea=${droparea} required></syn-file>
+              <syn-file ?droparea=${droparea} required>${triggerSlot}</syn-file>
               <syn-button type="submit">Submit</syn-button>
             </form>
           `);
@@ -285,7 +290,7 @@ describe('<syn-file>', () => {
         it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
           const form = await fixture<HTMLFormElement>(html`
             <form novalidate>
-              <syn-file ?droparea=${droparea} required></syn-file>
+              <syn-file ?droparea=${droparea} required>${triggerSlot}</syn-file>
               <syn-button type="submit">Submit</syn-button>
             </form>
           `);
@@ -296,7 +301,7 @@ describe('<syn-file>', () => {
 
       describe('when the value changes', () => {
         it('should emit syn-change when the user has uploaded something', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}>${triggerSlot}</syn-file>`);
           const changeHandler = sinon.spy();
 
           el.addEventListener('syn-change', changeHandler);
@@ -306,7 +311,7 @@ describe('<syn-file>', () => {
         });
 
         it('should emit syn-input when the user has uploaded something', async () => {
-          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}></syn-file>`);
+          const el = await fixture<SynFile>(html`<syn-file ?droparea=${droparea}>${triggerSlot}</syn-file>`);
           const inputHandler = sinon.spy();
 
           el.addEventListener('syn-input', inputHandler);
@@ -328,7 +333,7 @@ describe('<syn-file>', () => {
                 <input type="hidden" name="c" value="3" />
                 <syn-button type="submit">Submit</syn-button>
               </form>
-              <syn-file ?droparea=${droparea} form="f1" name="a"></syn-file>
+              <syn-file ?droparea=${droparea} form="f1" name="a"> ${triggerSlot}</syn-file>
             </div>
           `);
           const form = el.querySelector<HTMLFormElement>('#f2')!;
@@ -383,7 +388,23 @@ describe('<syn-file>', () => {
     expect(uploadButton).to.exist;
   });
 
+  it('should not show default content when the trigger slot is used', async () => {
+    const el = await fixture<SynFile>(html`
+      <syn-file label="Label" help-text="Help text">
+        <syn-button slot="trigger">Trigger</syn-button>
+      </syn-file>
+    `);
+    const label = el.shadowRoot!.querySelector('.form-control__label')!;
+    const input = el.shadowRoot!.querySelector('.form-control-input')!;
+    const helpText = el.shadowRoot!.querySelector('.form-control__help-text')!;
+
+    expect(label).to.not.exist;
+    expect(input).to.not.exist;
+    expect(helpText).to.not.exist;
+  });
+
   createTests('when using <syn-file> without droparea', false);
   createTests('when using <syn-file> with droparea', true);
+  createTests('when using <syn-file> with trigger slot', false, html`<syn-button slot="trigger">Trigger</syn-button>`);
   runFormControlBaseTests('syn-file');
 });

@@ -14,9 +14,14 @@
  *
  * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the file control.
- * Alternatively, you can use the `help-text` attribute.
+ *    Alternatively, you can use the `help-text` attribute.
  * @slot droparea-icon - Optional droparea icon to use instead of the default.
- * Works best with `<syn-icon>`.
+ *    Works best with `<syn-icon>`.
+ * @slot trigger - Optional content to be used as trigger instead of the default content.
+ *    Opening the file dialog on click and as well as drag and drop will work for this content.
+ *    Following attributes will no longer work: *label*, *droparea*, *help-text*, *size*,
+ *    *hide-value*. Also if using the disabled attribute, the disabled styling will not be
+ *    applied and must be taken care of yourself.
  *
  * @event syn-blur - Emitted when the control loses focus.
  * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
@@ -128,6 +133,15 @@ Works only when not using a droparea!
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
   'multiple'?: SynFile['multiple'];
+
+  /**
+* Indicates that the file control should let the user select directories instead of files.
+When a directory is selected, the directory and its entire hierarchy of contents are included
+in the set of selected items.
+Note: This is a non-standard attribute but is supported in the major browsers.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
+ */
+  'webkitdirectory'?: SynFile['webkitdirectory'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.

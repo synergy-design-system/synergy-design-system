@@ -46,6 +46,7 @@ Component.define('syn-file');
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart button-wrapper - The wrapper around the button and text value.
  * @csspart button - The syn-button acting as a file input.
+ * @csspart button__base - The syn-button's exported `base` part.
  * @csspart value - The chosen files or placeholder text for the file input.
  * @csspart droparea - The element wrapping the drop zone.
  * @csspart droparea-background - The background of the drop zone.

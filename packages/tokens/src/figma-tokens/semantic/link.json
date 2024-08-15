@@ -1,0 +1,30 @@
+{
+  "link": {
+    "color": {
+      "value": "{primary.600}",
+      "type": "color"
+    },
+    "color-hover": {
+      "value": "{primary.900}",
+      "type": "color"
+    },
+    "color-active": {
+      "value": "{primary.950}",
+      "type": "color"
+    },
+    "low-emphasis": {
+      "color": {
+        "value": "{typography.color.text}",
+        "type": "color"
+      },
+      "color-hover": {
+        "value": "{primary.900}",
+        "type": "color"
+      },
+      "color-active": {
+        "value": "{primary.950}",
+        "type": "color"
+      }
+    }
+  }
+}

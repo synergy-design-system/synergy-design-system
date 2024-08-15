@@ -89,27 +89,16 @@ export const HelpText: Story = {
   `,
 };
 
-export const Focus: Story = {
+export const Disabled: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
-        story: generateStoryDescription('range', 'focus'),
+        story: generateStoryDescription('range', 'disabled'),
       },
     },
   },
-  play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-range') as SynRange;
-    if (input) {
-      input.focus();
-    }
-  },
   render: () => html`
-    <form>
-      <syn-range max="100" min="0" value="50"></syn-range>
-    </form>
+    <syn-range disabled max="100" min="0" value="50"></syn-range>
   `,
 };
 
@@ -143,7 +132,6 @@ export const Invalid: Story = {
       <syn-range
         help-text="This is an error text"
         id="range-invalid"
-        label="Label"
         max="100"
         min="0"
         value="50"
@@ -173,16 +161,27 @@ export const Invalid: Story = {
   `,
 };
 
-export const Disabled: Story = {
+export const Focus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('range', 'disabled'),
+        story: generateStoryDescription('range', 'focus'),
       },
     },
   },
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-range') as SynRange;
+    if (input) {
+      input.focus();
+    }
+  },
   render: () => html`
-    <syn-range disabled max="100" min="0" value="50"></syn-range>
+    <form>
+      <syn-range max="100" min="0" value="50"></syn-range>
+    </form>
   `,
 };
 
@@ -230,7 +229,9 @@ export const PrefixSuffixText: Story = {
       <span slot="suffix">100</span>
     </syn-range>
 
-    <br><br>
+    <br>
+    <p>This can be used to add input fields or icons.</p>
+    <br>
 
     <syn-range label="Estimated Time" class="suffix-input-field" min="0" max="60" value="30">
       <span slot="prefix">0</span>
@@ -249,6 +250,7 @@ export const PrefixSuffixText: Story = {
         align-items: center;
         display: flex;
         gap: var(--syn-spacing-medium);
+
         syn-input {
           min-width: 0;
         }
@@ -381,6 +383,7 @@ export const Ticks: Story = {
     },
   },
   render: () => html`
+  <div class="wrapper">
     <syn-range
       class="syn-range-with-tick"
       max="100"
@@ -394,11 +397,47 @@ export const Ticks: Story = {
         <syn-range-tick label="100"></syn-range-tick>
       </nav>
     </syn-range>
+    
+    <p>It is possible to divide the space between major ticks for finer scale readings.</p>
+   
+    <syn-range
+      class="syn-range-with-tick"
+      max="100"
+      min="0"
+      value="50"
+      label="Volume"
+    >
+      <nav slot="ticks">
+        <syn-range-tick label="0"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick label="50"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick class="subdivision"></syn-range-tick>
+        <syn-range-tick label="100"></syn-range-tick>
+      </nav>
+    </syn-range>
+
+  </div>
     <style>
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-large);
+      }
+
       .syn-range-with-tick nav {
         justify-content: space-between;
         flex-direction: row;
         display: flex;
+      }
+
+      .subdivision {
+        --tick-height: var(--syn-spacing-2x-small);
       }
     </style>
   `,
@@ -487,8 +526,8 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
   HelpText,
-  Invalid,
   Disabled,
+  Invalid,
   Sizes,
   PrefixSuffixText,
   CustomTrackColors,

@@ -1824,8 +1824,8 @@
             "type": "text"
           }
         },
-        "title": {
-          "suddivision": {
+        "subdivision": {
+          "title": {
             "value": "Subdivision Ticks",
             "type": "text"
           },

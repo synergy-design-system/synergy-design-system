@@ -11,6 +11,8 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
+
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-range-tick');
 const { generateTemplate } = storybookTemplate('syn-range-tick');
@@ -23,8 +25,8 @@ const meta: Meta = {
     design: generateFigmaPluginObject('0628-87581'),
     docs: {
       description: {
-        // TODO: exchange asap as available
-        // component: generateStoryDescription('range-tick', 'default'),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        component: docsTokens.components.range.ticks.default.description.value,
       },
     },
   },
@@ -41,8 +43,8 @@ export const Default: Story = {
     },
     docs: {
       description: {
-        // TODO: exchange asap as available
-        // story: generateStoryDescription('range-tick', 'default'),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        story: docsTokens.components.range.ticks.default.description.value,
       },
     },
   },
@@ -53,8 +55,8 @@ export const Labels: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: exchange asap as available
-        // story: generateStoryDescription('range-tick', 'labels'),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        story: docsTokens.components.range.ticks.label.description.value,
       },
     },
   },
@@ -67,8 +69,8 @@ export const Grouping: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: exchange asap as available
-        // story: generateStoryDescription('range', 'labels'),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        story: docsTokens.components.range.ticks.grouping.description.value,
       },
     },
   },
@@ -127,11 +129,49 @@ export const Grouping: Story = {
   `,
 };
 
+export const SubdivisionTicks: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        story: docsTokens.components.range.ticks.subdivision.description.value,
+      },
+    },
+  },
+  render: () => html`
+    <div class="grouping">
+      <syn-range-tick label="0"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick label="50"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick label="100"></syn-range-tick> 
+    </div>
+    <style>
+      .grouping {
+        justify-content: space-between;
+        flex-direction: row;
+        display: flex;
+      }
+
+      .subdivision {
+        --tick-height: var(--syn-spacing-2x-small);
+      }
+    </style>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
   Grouping,
+  SubdivisionTicks,
 }, 230);
 /* eslint-enable sort-keys */

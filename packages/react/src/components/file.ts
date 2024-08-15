@@ -51,6 +51,7 @@ Component.define('syn-file');
  * @csspart droparea-background - The background of the drop zone.
  * @csspart droparea-icon - The container that wraps the icon for the drop zone.
  * @csspart droparea-value - The text for the drop zone.
+ * @csspart trigger - The container that wraps the trigger.
  *
  * @animation file.iconDrop - The animation to use for the file icon
  * when a file is dropped

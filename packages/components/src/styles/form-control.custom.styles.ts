@@ -37,7 +37,6 @@ export default css`
   }
 
   /* ERROR */
-  :host([data-invalid]) .form-control__help-text,
   :host([data-user-invalid]) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);
    }

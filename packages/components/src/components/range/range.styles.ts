@@ -241,4 +241,12 @@ export default css`
     left: 50%;
   }
   
+
+  :host([data-user-invalid]) .active-track {
+    --track-color-active: var(--syn-input-border-color-focus-error);
+  }
+
+  :host([data-user-invalid]) .thumb {
+    background-color: var(--syn-input-border-color-focus-error);
+  }
 `;

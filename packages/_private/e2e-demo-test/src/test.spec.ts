@@ -66,12 +66,12 @@ async function fillForm(form: TestPage, page?: Page) {
 
   // Drag the donations handle to a - - 100% rating
   if (page) {
-    const firstKnob = await form.donations.locator('.knob').first().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
+    const firstKnob = await form.donations.locator('.thumb').first().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
     const firstTick = '#donations syn-range-tick:first-of-type';
 
     await page.dragAndDrop(firstKnob, firstTick);
 
-    const lastKnob = await form.donations.locator('.knob').last().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
+    const lastKnob = await form.donations.locator('.thumb').last().evaluate((knob: HTMLDivElement) => `#${knob.id}`);
     const lastTick = '#donations syn-range-tick:last-of-type';
 
     await page.dragAndDrop(lastKnob, lastTick);

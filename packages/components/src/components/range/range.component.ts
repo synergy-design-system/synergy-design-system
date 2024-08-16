@@ -364,10 +364,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     thumb.setPointerCapture(event.pointerId);
     thumb.classList.add('grabbed');
 
-    // Show the tooltip on touch devices
-    if (hasTouch()) {
-      await (thumb.parentElement as SynTooltip).show();
-    }
+    await (thumb.parentElement as SynTooltip).show();
   }
 
   #onDragThumb(event: PointerEvent) {
@@ -421,10 +418,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.emit('syn-change');
     }
 
-    // Hide the tooltip on touch devices
-    if (hasTouch()) {
-      await (thumb.parentElement as SynTooltip).hide();
-    }
+    await (thumb.parentElement as SynTooltip).hide();
   }
 
   #moveThumb(thumb: HTMLDivElement, value: number) {
@@ -622,6 +616,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           hoist
           .disabled=${this.tooltipPlacement === 'none' || this.disabled}
           .placement=${this.tooltipPlacement as 'top' | 'bottom'}
+          trigger="focus"
         >
           <div
             aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}

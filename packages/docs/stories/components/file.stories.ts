@@ -218,7 +218,7 @@ export const Invalid: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('file', 'focus'),
+        story: generateStoryDescription('file', 'invalid'),
       },
     },
   },
@@ -251,13 +251,9 @@ export const Invalid: Story = {
       <syn-button type="submit" variant="filled">Submit</syn-button>
     </form>
     <script type="module">
-      const file = document.querySelector('.syn-file-invalid');
-      file.setCustomValidity('This is an error text');
-      
-      const form = document.querySelector('form');
-       // Handle submit
-      form.addEventListener('submit', event => {
-        event.preventDefault();
+      const files = document.querySelectorAll('.syn-file-invalid');
+      files.forEach((file) => {
+        file.setCustomValidity('This is an error text');
       });
     </script>
     <style>

@@ -37,6 +37,11 @@ const props = defineProps<{
 * If you need to display HTML, use the default slot instead.
  */
   'label'?: SynRangeTick['label'];
+
+  /**
+* Whether the tick should be shown as a subdivision.
+ */
+  'subdivision'?: SynRangeTick['subdivision'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

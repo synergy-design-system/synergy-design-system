@@ -141,15 +141,15 @@ export const SubdivisionTicks: Story = {
   render: () => html`
     <div class="grouping">
       <syn-range-tick label="0"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick label="50"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
-      <syn-range-tick class="subdivision"></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick label="100"></syn-range-tick> 
     </div>
     <style>
@@ -157,10 +157,6 @@ export const SubdivisionTicks: Story = {
         justify-content: space-between;
         flex-direction: row;
         display: flex;
-      }
-
-      .subdivision {
-        --tick-height: var(--syn-spacing-2x-small);
       }
     </style>
   `,

@@ -31,6 +31,11 @@ export default class SynRangeTick extends SynergyElement {
   /** The ticks's label. If you need to display HTML, use the default slot instead. */
   @property() label = '';
 
+  /**
+   * Whether the tick should be shown as a subdivision.
+   */
+  @property({ reflect: true, type: Boolean }) subdivision = false;
+
   render() {
     const hasLabel = this.hasSlotController.test('[default]') || this.label?.length > 0;
     return html`
@@ -38,6 +43,7 @@ export default class SynRangeTick extends SynergyElement {
         class=${classMap({
           tick: true,
           'tick--has-label': hasLabel,
+          'tick--subdivision': this.subdivision,
         })}
         part="base"
       >

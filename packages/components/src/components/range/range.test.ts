@@ -246,16 +246,19 @@ describe('<syn-range>', () => {
     it('should emit a syn-change event when the user has dragged a thumb', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
+      const baseDiv = el.shadowRoot!.querySelector('.base')!.getBoundingClientRect().width;
+      const moveSteps = Math.round((baseDiv / 100) * 5);
 
       el.addEventListener('syn-change', changeHandler);
 
       const thumb = el.shadowRoot!.querySelector('.thumb')!;
       const rect = thumb.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
 
       expect(thumb).to.not.have.class('grabbed');
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'click',
       });
 
@@ -266,7 +269,7 @@ describe('<syn-range>', () => {
       expect(thumb).to.have.class('grabbed');
 
       await sendMouse({
-        position: [rect.left + 50, rect.top],
+        position: [center + moveSteps, rect.top],
         type: 'move',
       });
 
@@ -288,11 +291,15 @@ describe('<syn-range>', () => {
 
       const thumb = el.shadowRoot!.querySelector('.thumb')!;
       const rect = thumb.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      const baseDiv = el.shadowRoot!.querySelector('.base')!.getBoundingClientRect().width;
+      const moveSteps = Math.round((baseDiv / 100) * 5);
+
       expect(thumb).to.not.have.class('grabbed');
       expect(el.value).to.equal('0');
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'click',
       });
 
@@ -303,14 +310,14 @@ describe('<syn-range>', () => {
       expect(thumb).to.have.class('grabbed');
 
       await sendMouse({
-        position: [rect.left + 50, rect.top],
+        position: [center + moveSteps, rect.top],
         type: 'move',
       });
 
       expect(el.value).to.equal('5');
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'move',
       });
 
@@ -341,14 +348,17 @@ describe('<syn-range>', () => {
       const rectStart = thumbStart.getBoundingClientRect();
       const rectEnd = thumbEnd.getBoundingClientRect();
 
-      const startLeft = Math.floor(rectStart.left);
-      const endLeft = Math.floor(rectEnd.left);
+      const startCenter = Math.floor(rectStart.left + rectStart.width / 2);
+      const endCenter = Math.floor(rectEnd.left + rectEnd.width / 2);
+
+      const baseDiv = el.shadowRoot!.querySelector('.base')!.getBoundingClientRect().width;
+      const moveSteps = Math.round((baseDiv / 100) * 5);
 
       expect(thumbStart).to.not.have.class('grabbed');
       expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
-        position: [startLeft, rectStart.top],
+        position: [startCenter, rectStart.top],
         type: 'click',
       });
 
@@ -360,7 +370,7 @@ describe('<syn-range>', () => {
       expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
-        position: [startLeft + 50, rectStart.top],
+        position: [startCenter + moveSteps, rectStart.top],
         type: 'move',
       });
 
@@ -377,7 +387,7 @@ describe('<syn-range>', () => {
       expect(thumbEnd).to.not.have.class('grabbed');
 
       await sendMouse({
-        position: [endLeft, rectStart.top],
+        position: [endCenter, rectStart.top],
         type: 'click',
       });
 
@@ -389,7 +399,7 @@ describe('<syn-range>', () => {
       expect(thumbEnd).to.have.class('grabbed');
 
       await sendMouse({
-        position: [endLeft + 50, rectStart.top],
+        position: [endCenter + moveSteps, rectStart.top],
         type: 'move',
       });
 
@@ -410,9 +420,10 @@ describe('<syn-range>', () => {
 
       const thumb = el.shadowRoot!.querySelector('.thumb')!;
       const rect = thumb.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'click',
       });
 
@@ -421,19 +432,19 @@ describe('<syn-range>', () => {
       });
 
       await sendMouse({
-        position: [rect.left + 10, rect.top],
+        position: [center + 10, rect.top],
         type: 'move',
       });
 
       await sendMouse({
-        position: [rect.left + 20, rect.top],
+        position: [center + 20, rect.top],
         type: 'move',
       });
 
       await resetMouse();
       await el.updateComplete;
 
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(inputHandler).to.have.been.calledTwice;
     });
 
     it('should emit a syn-move event when the user has dragged a thumb', async () => {
@@ -444,9 +455,10 @@ describe('<syn-range>', () => {
 
       const thumb = el.shadowRoot!.querySelector('.thumb')!;
       const rect = thumb.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'click',
       });
 
@@ -455,12 +467,12 @@ describe('<syn-range>', () => {
       });
 
       await sendMouse({
-        position: [rect.left + 10, rect.top],
+        position: [center + 10, rect.top],
         type: 'move',
       });
 
       await sendMouse({
-        position: [rect.left + 20, rect.top],
+        position: [center + 20, rect.top],
         type: 'move',
       });
 
@@ -483,9 +495,10 @@ describe('<syn-range>', () => {
 
       const thumb = el.shadowRoot!.querySelector('.thumb')!;
       const rect = thumb.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
 
       await sendMouse({
-        position: [rect.left, rect.top],
+        position: [center, rect.top],
         type: 'click',
       });
 
@@ -494,12 +507,12 @@ describe('<syn-range>', () => {
       });
 
       await sendMouse({
-        position: [rect.left + 10, rect.top],
+        position: [center + 10, rect.top],
         type: 'move',
       });
 
       await sendMouse({
-        position: [rect.left + 20, rect.top],
+        position: [center + 20, rect.top],
         type: 'move',
       });
 

@@ -21,8 +21,6 @@ import {
 } from './utility.js';
 import styles from './range.styles.js';
 
-const hasTouch = () => window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
-
 /**
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
@@ -321,7 +319,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const { clientX } = event;
 
     const thumbs = Array.from(this.thumbs);
-    const pos = getNormalizedValueFromClientX(this.baseDiv, thumbs.at(0)!, clientX, this.#rtl);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const nextValue = this.min + this.step * Math.round(pos / unit);
 
@@ -377,7 +375,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const pointerId = thumb.dataset.pointerId ? +thumb.dataset.pointerId : null;
     if (pointerId !== event.pointerId) return;
 
-    const pos = getNormalizedValueFromClientX(this.baseDiv, thumb, event.clientX, this.#rtl);
+    const pos = getNormalizedValueFromClientX(this.baseDiv, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
     const value = this.min + this.step * Math.round(pos / unit);
 

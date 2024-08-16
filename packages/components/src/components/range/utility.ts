@@ -21,18 +21,16 @@ export const arraysDiffer = (a: readonly number[], b: readonly number[]): boolea
 // eslint-disable-next-line complexity
 export const getNormalizedValueFromClientX = (
   baseDiv: HTMLElement,
-  handle: HTMLElement,
   x: number,
   isRtl: boolean,
 ): number => {
   const bounds = baseDiv.getBoundingClientRect();
-  const { clientWidth } = handle;
-  const size = bounds.width - clientWidth;
+  const size = bounds.width;
   if (size <= 0) return 0;
 
   let nextX = x;
 
-  nextX -= bounds.left + clientWidth / 2;
+  nextX -= bounds.left;
   if (nextX <= 0) return isRtl ? 1 : 0;
   if (nextX >= size) return isRtl ? 0 : 1;
   nextX /= size;

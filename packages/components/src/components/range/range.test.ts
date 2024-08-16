@@ -243,6 +243,10 @@ describe('<syn-range>', () => {
   });
 
   describe('when the value changes', () => {
+    afterEach(async () => {
+      await resetMouse();
+    });
+
     it('should emit a syn-change event when the user has dragged a thumb', async () => {
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
@@ -441,7 +445,6 @@ describe('<syn-range>', () => {
         type: 'move',
       });
 
-      await resetMouse();
       await el.updateComplete;
 
       expect(inputHandler).to.have.been.calledTwice;
@@ -476,7 +479,6 @@ describe('<syn-range>', () => {
         type: 'move',
       });
 
-      await resetMouse();
       await el.updateComplete;
 
       expect(moveHandler).to.have.been.called;
@@ -516,7 +518,6 @@ describe('<syn-range>', () => {
         type: 'move',
       });
 
-      await resetMouse();
       await el.updateComplete;
 
       expect(moveHandler).to.have.been.called;
@@ -550,8 +551,6 @@ describe('<syn-range>', () => {
         position: [rect.left + 120, rect.top],
         type: 'click',
       });
-
-      await resetMouse();
 
       expect(el.value).to.equal('15');
       expect(changeHandler).to.have.been.called;

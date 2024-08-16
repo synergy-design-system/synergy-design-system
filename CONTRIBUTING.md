@@ -1,8 +1,8 @@
-# Synergy Design System Contribution Guidelines
+# Synergy Contribution Guidelines
 
 ## Table of contents
 
-- [Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
+- [Synergy Contribution Guidelines](#synergy-design-system-contribution-guidelines)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting started](#getting-started)
@@ -28,9 +28,9 @@ To achieve this, we are using some common conventions when contributing features
 
 ## Getting started
 
-- Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/goals-and-guidelines--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
+- Familiarize yourself with the [Principles of Synergy](https://synergy-design-system.github.io/?path=/docs/goals-and-guidelines--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
 
-- Have a look at the [Storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of the design system and its components.
+- Have a look at the [Storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of Synergy and its components.
 
 - Synergy components are embedded in a monorepo structure with packages (e. g. `components`) managed by `pnpm` (instead of `npm`). Linting and formatting rules are centralized at root level. Packages have to be run individually (e.g. `cd packages/docs && pnpm start` to start the development server).
 

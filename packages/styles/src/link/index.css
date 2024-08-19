@@ -4,23 +4,70 @@
  * @boolean { false } syn-link--quiet Applies the quiet link styling
  * @boolean { false } syn-link--disabled Applies the disabled link styling
  */
-.syn-link,
-.syn-link--medium {
-  background: green;
+.syn-link {
+  align-items: center;
+  color: var(--syn-link-color);
+  display: inline-flex;
+  font: var(--syn-body-medium-regular);
+  gap: var(--syn-spacing-x-small);
 }
- 
+
+/* Use inline text styling when there is no syn-icon */
+.syn-link:not(:has(syn-icon)) {
+  display: inline;
+}
+
+.syn-link:not(.syn-link--disabled):hover {
+  color: var(--syn-link-color-hover);
+}
+
+.syn-link:not(.syn-link--disabled):active {
+  color: var(--syn-link-color-active);
+}
+
+.syn-link:not(.syn-link--disabled):focus-visible {
+  outline: var(--syn-focus-ring);
+  outline-offset: var(--syn-focus-ring-offset);
+}
+
+/* Overrides for smaller links */
 .syn-link--small {
-  background: yellow;
+  font: var(--syn-body-small-regular);
+  gap: var(--syn-spacing-2x-small);
 }
 
 .syn-link--large {
-  background: blue;
+  font: var(--syn-body-large-regular);
+  gap: var(--syn-spacing-small);
 }
 
+/* Quite Variant of links use other colors */
 .syn-link--quiet {
-  background: purple;
+  color: var(--syn-link-low-emphasis-color);
 }
 
+.syn-link--quiet:hover {
+  color: var(--syn-link-low-emphasis-color-hover);
+}
+
+.syn-link--quiet:active {
+  color: var(--syn-link-low-emphasis-color-active);
+}
+
+/* Styling for disabled links */
 .syn-link--disabled {
-  background: orange;
+  cursor: not-allowed;
+  opacity: var(--syn-input-disabled-opacity);
+}
+
+/*
+ * We set pointer-events to none to prevent the link from being clicked
+ * This is done in :active to allow using a custom cursor
+ */
+.syn-link--disabled:active {
+  pointer-events: none;
+}
+
+.syn-link--disabled:focus {
+  outline: none;
 }

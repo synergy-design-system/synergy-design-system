@@ -18,6 +18,7 @@ export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynDropdown } from './components/dropdown/dropdown.js';
+export { default as SynFile } from './components/file/file.js';
 export { default as SynHeader } from './components/header/header.js';
 export { default as SynIconButton } from './components/icon-button/icon-button.js';
 export { default as SynIcon } from './components/icon/icon.js';

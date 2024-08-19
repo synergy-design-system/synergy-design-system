@@ -12,6 +12,7 @@ const componentsUsingBlockLayout = [
   'details',
   'divider',
   'header',
+  'file',
   'menu',
   'menu-item',
   'menu-label',

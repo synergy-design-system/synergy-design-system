@@ -15,6 +15,8 @@
     "vendorism",
     "slotchange",
     "optiongroup",
+    "aria-describedby",
+    "droparea",
     "codepen"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],

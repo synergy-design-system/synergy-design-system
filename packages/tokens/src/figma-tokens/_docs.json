@@ -960,6 +960,108 @@
         }
       }
     },
+    "file": {
+      "default": {
+        "title": {
+          "value": "File",
+          "type": "text"
+        },
+        "description": {
+          "value": "File control is a component with which a user can select a local file. It shows the value of the selected file.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a file selector with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "multiple": {
+        "title": {
+          "value": "Multiple",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
+          "type": "text"
+        }
+      },
+      "hide-value": {
+        "title": {
+          "value": "Hide Value",
+          "type": "text"
+        },
+        "description": {
+          "value": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a file input.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a file uploads size.",
+          "type": "text"
+        }
+      },
+      "droparea": {
+        "title": {
+          "value": "Droparea",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the droparea attribute to switch to a full-width button with a drop area.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
+      }     
+    },
     "format-bytes": {
       "description": {
         "value": "Formats a number as a human readable bytes value.",

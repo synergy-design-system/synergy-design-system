@@ -301,6 +301,7 @@ export const createFrameworkIndex = (
  */
 export const TWOWAY_BINDING_ENABLED_ELEMENTS = [
   'checkbox',
+  'file',
   'input',
   'radio-group',
   'select',
@@ -326,6 +327,8 @@ export const getControlAttributeForTwoWayBinding = (componentName) => {
   case 'checkbox':
   case 'switch':
     return 'checked';
+  case 'file':
+    return 'files';
   default:
     return 'value';
   }

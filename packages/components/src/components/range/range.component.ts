@@ -155,7 +155,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.range__validation-input') validationInput: HTMLInputElement;
 
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'prefix', 'suffix', 'ticks');
 
   private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
@@ -577,6 +577,32 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
+  #updatePrefixSuffixPosition() {
+    const hasTicksSlot = this.hasSlotController.test('ticks');
+    const hasPrefixSlot = this.hasSlotController.test('prefix');
+    const hasSuffixSlot = this.hasSlotController.test('suffix');
+
+    if (hasTicksSlot && (hasPrefixSlot || hasSuffixSlot)) {
+      let ticksHeight = this.shadowRoot?.querySelector('.ticks')?.clientHeight;
+      if (ticksHeight) {
+        // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
+        ticksHeight += 2;
+
+        ticksHeight /= 2;
+
+        if (hasPrefixSlot) {
+          const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
+          prefix.style.transform = `translateY(-${ticksHeight}px)`;
+        }
+
+        if (hasSuffixSlot) {
+          const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
+          suffix.style.transform = `translateY(-${ticksHeight}px)`;
+        }
+      }
+    }
+  }
+
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderThumbs(hasLabel: boolean) {
     // Aria special handling:
@@ -651,6 +677,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasSuffixSlot = this.hasSlotController.test('suffix');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+    this.#updatePrefixSuffixPosition();
 
     return html`
       <div

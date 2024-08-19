@@ -1,0 +1,26 @@
+/**
+ * Link styles
+ * @variant {small | medium | large} syn-link The size of the link
+ * @boolean { false } syn-link--quiet Applies the quiet link styling
+ * @boolean { false } syn-link--disabled Applies the disabled link styling
+ */
+.syn-link,
+.syn-link--medium {
+  background: green;
+}
+ 
+.syn-link--small {
+  background: yellow;
+}
+
+.syn-link--large {
+  background: blue;
+}
+
+.syn-link--quiet {
+  background: purple;
+}
+
+.syn-link--disabled {
+  background: orange;
+}

@@ -1368,6 +1368,68 @@
         }
       }
     },
+    "link": {
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a Link.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Link has been focused by the keyboard interaction and that the Link component is ready for use.",
+          "type": "text"
+        }
+      },
+      "prefix-suffix-icons": {
+        "title": {
+          "value": "Prefix and Suffix Icons.",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add icons.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change the Link size.",
+          "type": "text"
+        }
+      },
+      "inline": {
+        "title": {
+          "value": "Inline",
+          "type": "text"
+        },
+        "description": {
+          "value": "If a link is placed within body text, it only breaks if variant without icon is used. If an icon is needed, a line break applies, and the body text is placed above and below the link.",
+          "type": "text"
+        }
+      },
+      "quiet": {
+        "title": {
+          "value": "Quiet",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the Quiet attribute to have a low emphasis variant of a Link. This can be used if the link should not attract too much attention.",
+          "type": "text"
+        }
+      }
+    },
     "menu-item": {
       "default": {
         "description": {
@@ -2582,6 +2644,16 @@
         },
         "title": {
           "value": "Font-Weights",
+          "type": "text"
+        }
+      },
+      "link": {
+        "description": {
+          "value": "Links can be used to display a link to other pages.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Link",
           "type": "text"
         }
       }

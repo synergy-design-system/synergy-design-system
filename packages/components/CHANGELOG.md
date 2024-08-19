@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.3...components/2.5.0) (2024-08-19)
+
+
+### Features
+
+* ✨ create syn-file ([#563](https://github.com/synergy-design-system/synergy-design-system/issues/563)) ([181f121](https://github.com/synergy-design-system/synergy-design-system/commit/181f121ee87e43ba0381ec4288470d3414467d8e))
+
 # [@synergy-design-system/components-v2.4.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.2...components/2.4.3) (2024-07-24)
 
 

@@ -392,9 +392,9 @@ export const Ticks: Story = {
       label="Volume"
     >
       <nav slot="ticks">
-        <syn-range-tick label="0"></syn-range-tick>
-        <syn-range-tick label="50"></syn-range-tick>
-        <syn-range-tick label="100"></syn-range-tick>
+        <syn-range-tick>0</syn-range-tick>
+        <syn-range-tick>50</syn-range-tick>
+        <syn-range-tick>100</syn-range-tick>
       </nav>
     </syn-range>
     
@@ -408,17 +408,17 @@ export const Ticks: Story = {
       label="Volume"
     >
       <nav slot="ticks">
-        <syn-range-tick label="0"></syn-range-tick>
+        <syn-range-tick>0</syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
-        <syn-range-tick label="50"></syn-range-tick>
+        <syn-range-tick>50</syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
         <syn-range-tick subdivision></syn-range-tick>
-        <syn-range-tick label="100"></syn-range-tick>
+        <syn-range-tick>100</syn-range-tick>
       </nav>
     </syn-range>
 
@@ -494,9 +494,9 @@ export const TooltipFormatter: Story = {
       value="50"
     >
       <nav slot="ticks">
-        <syn-range-tick label="0%"></syn-range-tick>
-        <syn-range-tick label="50%"></syn-range-tick>
-        <syn-range-tick label="100%"></syn-range-tick>
+        <syn-range-tick>0%</syn-range-tick>
+        <syn-range-tick>50%</syn-range-tick>
+        <syn-range-tick>100%</syn-range-tick>
       </nav>
     </syn-range>
     <style>

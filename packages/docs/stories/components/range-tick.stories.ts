@@ -61,7 +61,7 @@ export const Labels: Story = {
     },
   },
   render: () => html`
-    <syn-range-tick label="0"></syn-range-tick>
+    <syn-range-tick>0</syn-range-tick>
   `,
 };
 
@@ -77,18 +77,18 @@ export const Grouping: Story = {
   render: () => html`
     <div class="groupings">
       <div class="even-group">
-        <syn-range-tick label="0"></syn-range-tick>
-        <syn-range-tick label="50"></syn-range-tick>
-        <syn-range-tick label="100"></syn-range-tick> 
+        <syn-range-tick>0</syn-range-tick>
+        <syn-range-tick>50</syn-range-tick>
+        <syn-range-tick>100</syn-range-tick> 
       </div>
 
       <div class="uneven-group">
-        <syn-range-tick label="1"></syn-range-tick>
-        <syn-range-tick label="2"></syn-range-tick>
-        <syn-range-tick label="3"></syn-range-tick> 
-        <syn-range-tick label="5"></syn-range-tick> 
-        <syn-range-tick label="8"></syn-range-tick> 
-        <syn-range-tick label="13"></syn-range-tick> 
+        <syn-range-tick>1</syn-range-tick>
+        <syn-range-tick>2</syn-range-tick>
+        <syn-range-tick>3</syn-range-tick> 
+        <syn-range-tick>5</syn-range-tick> 
+        <syn-range-tick>8</syn-range-tick> 
+        <syn-range-tick>13</syn-range-tick> 
       </div>
     </div>
     <style>
@@ -140,17 +140,17 @@ export const SubdivisionTicks: Story = {
   },
   render: () => html`
     <div class="grouping">
-      <syn-range-tick label="0"></syn-range-tick>
+      <syn-range-tick>0</syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
-      <syn-range-tick label="50"></syn-range-tick>
+      <syn-range-tick>50</syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick subdivision></syn-range-tick>
-      <syn-range-tick label="100"></syn-range-tick> 
+      <syn-range-tick>100</syn-range-tick> 
     </div>
     <style>
       .grouping {

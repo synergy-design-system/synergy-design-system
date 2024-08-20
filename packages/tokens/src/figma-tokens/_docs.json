@@ -1912,7 +1912,7 @@
             "type": "text"
           },
           "description": {
-            "value": "Use the label attribute to give the tick a label.",
+            "value": "Use the default slot to give the tick a label.",
             "type": "text"
           }
         },

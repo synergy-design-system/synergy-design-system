@@ -34,12 +34,6 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The ticks's label.
-* If you need to display HTML, use the default slot instead.
- */
-  'label'?: SynRangeTick['label'];
-
-  /**
 * Whether the tick should be shown as a subdivision.
  */
   'subdivision'?: SynRangeTick['subdivision'];

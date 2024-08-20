@@ -45,19 +45,6 @@ export class SynRangeTickComponent {
   }
 
   /**
-* The ticks's label.
-* If you need to display HTML, use the default slot instead.
- */
-  @Input()
-  set label(v: SynRangeTick['label']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
-  }
-
-  get label() {
-    return this.nativeElement.label;
-  }
-
-  /**
 * Whether the tick should be shown as a subdivision.
  */
   @Input()

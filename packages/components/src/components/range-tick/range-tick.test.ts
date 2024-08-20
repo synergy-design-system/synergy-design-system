@@ -15,8 +15,6 @@ describe('<syn-range-tick>', () => {
 
   it('should have default values', async () => {
     const el = await fixture<SynRangeTick>(html`<syn-range-tick>Tick Label</syn-range-tick>`);
-
-    expect(el.label).to.equal('');
     expect(el.subdivision).to.be.false;
   });
 

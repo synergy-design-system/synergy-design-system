@@ -239,9 +239,9 @@ const synChange = () => {
         v-model="formData.happiness"
       >
         <nav slot="ticks">
-          <SynVueRangeTick label="🤮"></SynVueRangeTick>
-          <SynVueRangeTick label="🥱"></SynVueRangeTick>
-          <SynVueRangeTick label="😍"></SynVueRangeTick>
+          <SynVueRangeTick>🤮</SynVueRangeTick>
+          <SynVueRangeTick>🥱</SynVueRangeTick>
+          <SynVueRangeTick>😍</SynVueRangeTick>
         </nav>
       </SynVueRange>
 

@@ -269,9 +269,9 @@ export const DemoForm = () => {
           value={formData.happiness}
         >
           <nav slot="ticks">
-            <SynRangeTick label="🤮" />
-            <SynRangeTick label="🥱" />
-            <SynRangeTick label="😍" />
+            <SynRangeTick>🤮</SynRangeTick>
+            <SynRangeTick>🥱</SynRangeTick>
+            <SynRangeTick>😍</SynRangeTick>
           </nav>
         </SynRange>
 

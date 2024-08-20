@@ -26,9 +26,6 @@ export default class SynRangeTick extends SynergyElement {
     styles,
   ];
 
-  /** The ticks's label. If you need to display HTML, use the default slot instead. */
-  @property() label = '';
-
   /**
    * Whether the tick should be shown as a subdivision.
    */
@@ -45,9 +42,7 @@ export default class SynRangeTick extends SynergyElement {
       >
         <div class="tick-line" part="line"></div>
         <div class="tick-label" part="label">
-          <slot>
-            ${this.label}
-          </slot>
+          <slot></slot>
         </div>
       </div>
     `;

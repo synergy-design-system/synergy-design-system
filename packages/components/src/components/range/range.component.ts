@@ -582,23 +582,25 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasPrefixSlot = this.hasSlotController.test('prefix');
     const hasSuffixSlot = this.hasSlotController.test('suffix');
 
-    if (hasTicksSlot && (hasPrefixSlot || hasSuffixSlot)) {
-      let ticksHeight = this.shadowRoot?.querySelector('.ticks')?.clientHeight;
-      if (ticksHeight) {
-        // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
-        ticksHeight += 2;
+    if (!hasTicksSlot) {
+      return;
+    }
 
-        ticksHeight /= 2;
+    let ticksHeight = this.shadowRoot?.querySelector('.ticks')?.clientHeight;
+    if (ticksHeight) {
+      // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
+      ticksHeight += 2;
 
-        if (hasPrefixSlot) {
-          const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
-          prefix.style.transform = `translateY(-${ticksHeight}px)`;
-        }
+      ticksHeight /= 2;
 
-        if (hasSuffixSlot) {
-          const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
-          suffix.style.transform = `translateY(-${ticksHeight}px)`;
-        }
+      if (hasPrefixSlot) {
+        const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
+        prefix.style.transform = `translateY(-${ticksHeight}px)`;
+      }
+
+      if (hasSuffixSlot) {
+        const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
+        suffix.style.transform = `translateY(-${ticksHeight}px)`;
       }
     }
   }

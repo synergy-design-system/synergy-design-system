@@ -11,7 +11,6 @@
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
-    "@microsoft/fast-element": "^1.13.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",

@@ -15,7 +15,7 @@
     "change-case": "^5.4.4",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
-    "rimraf": "^5.0.10",
+    "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
     "style-dictionary": "^3.9.2",

@@ -18,8 +18,6 @@ const transformComponent = (path, originalContent) => {
 
   content = replaceSections([
     ['filled', 'readonly'],
-    // Make sure we don't unobserve an undefined element
-    // @todo: Remove when shoelace ships this fix
   ], content);
 
   return {

@@ -20,6 +20,14 @@ export default css`
     font-size: var(--syn-spacing-large);
   }
 
+  .select--small .select__clear {
+    font-size: var(--syn-spacing-medium);
+  }
+
+  .select--large .select__clear {
+    font-size: var(--syn-spacing-x-large);
+  }
+
   .select--medium .select__clear {
     margin-inline-start: var(--syn-spacing-small);
   }
@@ -37,22 +45,35 @@ export default css`
     border-color: var(--syn-input-color-hover);
   }
 
-  /* Prefix */
+  /* Prefix and Suffix */
 
   /* Small */
   .select--small .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-spacing-x-small);
   }
 
+  .select--small .select__suffix::slotted(*) {
+    margin-inline-start: var(--syn-spacing-x-small);
+  }
+
   .select--medium .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-small);
+  }
+
+  .select--medium .select__suffix::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-small);
   }
 
   .select--large .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-medium);
   }
 
-  .select__prefix {
+  .select--large .select__suffix::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-medium);
+  }
+
+  .select__prefix,
+  .select__suffix {
     color: var(--syn-input-help-text-color);
   }
 

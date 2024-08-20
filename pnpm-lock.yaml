@@ -272,7 +272,7 @@ importers:
         version: 3.2.0
       stylelint:
         specifier: ^16.8.2
-        version: 16.8.2(typescript@5.5.4)
+        version: 16.8.2
 
   packages/_private/vanilla-demo:
     dependencies:
@@ -618,8 +618,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2
       vendorism:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^5.0.0
+        version: 5.0.0
       vue-tsc:
         specifier: ^2.0.29
         version: 2.0.29(typescript@5.5.4)
@@ -820,7 +820,7 @@ importers:
         version: 7.0.8(semantic-release@19.0.5)
       stylelint:
         specifier: ^16.8.2
-        version: 16.8.2(typescript@5.5.4)
+        version: 16.8.2
 
   packages/tokens:
     devDependencies:
@@ -868,7 +868,7 @@ importers:
         version: 3.9.2
       stylelint:
         specifier: ^16.8.2
-        version: 16.8.2(typescript@5.5.4)
+        version: 16.8.2
 
   packages/vue:
     dependencies:
@@ -8515,7 +8515,6 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       typescript: 5.4.5
-    dev: true
 
   /cosmiconfig@9.0.0(typescript@5.5.4):
     resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
@@ -8531,6 +8530,7 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       typescript: 5.5.4
+    dev: true
 
   /critters@0.0.24:
     resolution: {integrity: sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==}
@@ -16860,7 +16860,7 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
     dependencies:
-      stylelint: 16.8.2(typescript@5.5.4)
+      stylelint: 16.8.2
     dev: false
 
   /stylelint-config-standard@36.0.1(stylelint@16.8.2):
@@ -16869,7 +16869,7 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
     dependencies:
-      stylelint: 16.8.2(typescript@5.5.4)
+      stylelint: 16.8.2
       stylelint-config-recommended: 14.0.1(stylelint@16.8.2)
     dev: false
 
@@ -16881,7 +16881,7 @@ packages:
     dependencies:
       doiuse: 6.0.2
       postcss: 8.4.41
-      stylelint: 16.8.2(typescript@5.5.4)
+      stylelint: 16.8.2
     dev: false
 
   /stylelint-order@6.0.4(stylelint@16.8.2):
@@ -16891,8 +16891,56 @@ packages:
     dependencies:
       postcss: 8.4.41
       postcss-sorting: 8.0.2(postcss@8.4.41)
-      stylelint: 16.8.2(typescript@5.5.4)
+      stylelint: 16.8.2
     dev: false
+
+  /stylelint@16.8.2:
+    resolution: {integrity: sha512-fInKATippQhcSm7AB+T32GpI+626yohrg33GkFT/5jzliUw5qhlwZq2UQQwgl3HsHrf09oeARi0ZwgY/UWEv9A==}
+    engines: {node: '>=18.12.0'}
+    hasBin: true
+    dependencies:
+      '@csstools/css-parser-algorithms': 3.0.1(@csstools/css-tokenizer@3.0.1)
+      '@csstools/css-tokenizer': 3.0.1
+      '@csstools/media-query-list-parser': 3.0.1(@csstools/css-parser-algorithms@3.0.1)(@csstools/css-tokenizer@3.0.1)
+      '@csstools/selector-specificity': 4.0.0(postcss-selector-parser@6.1.2)
+      '@dual-bundle/import-meta-resolve': 4.1.0
+      balanced-match: 2.0.0
+      colord: 2.9.3
+      cosmiconfig: 9.0.0(typescript@5.4.5)
+      css-functions-list: 3.2.2
+      css-tree: 2.3.1
+      debug: 4.3.6
+      fast-glob: 3.3.2
+      fastest-levenshtein: 1.0.16
+      file-entry-cache: 9.0.0
+      global-modules: 2.0.0
+      globby: 11.1.0
+      globjoin: 0.1.4
+      html-tags: 3.3.1
+      ignore: 5.3.2
+      imurmurhash: 0.1.4
+      is-plain-object: 5.0.0
+      known-css-properties: 0.34.0
+      mathml-tag-names: 2.1.3
+      meow: 13.2.0
+      micromatch: 4.0.7
+      normalize-path: 3.0.0
+      picocolors: 1.0.1
+      postcss: 8.4.41
+      postcss-resolve-nested-selector: 0.1.6
+      postcss-safe-parser: 7.0.0(postcss@8.4.41)
+      postcss-selector-parser: 6.1.2
+      postcss-value-parser: 4.2.0
+      resolve-from: 5.0.0
+      string-width: 4.2.3
+      strip-ansi: 7.1.0
+      supports-hyperlinks: 3.0.0
+      svg-tags: 1.0.0
+      table: 6.8.2
+      write-file-atomic: 5.0.1
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   /stylelint@16.8.2(typescript@5.5.4):
     resolution: {integrity: sha512-fInKATippQhcSm7AB+T32GpI+626yohrg33GkFT/5jzliUw5qhlwZq2UQQwgl3HsHrf09oeARi0ZwgY/UWEv9A==}
@@ -16941,6 +16989,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
+    dev: true
 
   /stylus-lookup@5.0.1:
     resolution: {integrity: sha512-tLtJEd5AGvnVy4f9UHQMw4bkJJtaAcmo54N+ovQBjDY3DuWyK9Eltxzr5+KG0q4ew6v2EHyuWWNnHeiw/Eo7rQ==}
@@ -17477,7 +17526,6 @@ packages:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /typescript@5.5.4:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
@@ -17783,8 +17831,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  /vendorism@3.0.0:
-    resolution: {integrity: sha512-QdmbtoICR7QHhGatgh0flU1q55CzOEuKDCqQlzHwL+bNFFj8uhW3MMQycouNSadPVifGB2FvTx/vkFhik0QuKA==}
+  /vendorism@5.0.0:
+    resolution: {integrity: sha512-HlBCY7VxCnB6UIVi+fKfwf4joi+gMDOr49yRMuyvydcpq0C5xqZN9Hv8FQVpozgj/Il1r6TWhNec2r7Ymx123g==}
     dependencies:
       '@guoyunhe/downloader': 1.3.0
       dependency-tree: 10.0.9

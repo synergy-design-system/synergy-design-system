@@ -114,7 +114,7 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "^3.0.0",
+    "vendorism": "^5.0.0",
     "vue-tsc": "^2.0.29"
   },
   "release": {

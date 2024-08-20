@@ -133,7 +133,6 @@ export default class SynRadioButton extends SynergyElement {
           aria-disabled=${this.disabled}
           type="button"
           value=${ifDefined(this.value)}
-          tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
           @click=${this.handleClick}

@@ -227,6 +227,14 @@ export default css`
     color: var(--syn-input-placeholder-color);
   }
 
+  /* Suffix */
+  .select__suffix {
+    flex: 0;
+    display: inline-flex;
+    align-items: center;
+    color: var(--syn-input-placeholder-color);
+  }
+
   /* Clear button */
   .select__clear {
     display: inline-flex;
@@ -289,10 +297,11 @@ export default css`
   }
 
   .select__listbox ::slotted(small) {
+    display: block;
     font-size: var(--syn-font-size-small);
     font-weight: var(--syn-font-weight-semibold);
     color: var(--syn-color-neutral-500);
-    padding-block: var(--syn-spacing-x-small);
+    padding-block: var(--syn-spacing-2x-small);
     padding-inline: var(--syn-spacing-x-large);
   }
 `;

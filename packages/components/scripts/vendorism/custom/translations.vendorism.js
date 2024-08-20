@@ -10,6 +10,18 @@ const translations = {
     de: 'Gefahr',
     en: 'Danger',
   },
+  fileButtonText: {
+    de: 'Datei auswählen',
+    en: 'Choose file',
+  },
+  fileButtonTextMultiple: {
+    de: 'Dateien auswählen',
+    en: 'Choose files',
+  },
+  fileDragDrop: {
+    de: 'Datei ablegen oder auswählen',
+    en: 'Drop or choose file',
+  },
   menu: {
     de: 'Menü',
     en: 'Menu',
@@ -17,6 +29,17 @@ const translations = {
   notification: {
     de: 'Benachrichtigung',
     en: 'Notification',
+  },
+  numFilesSelected: {
+    de: num => {
+      if (num === 0) return 'Keine Dateien ausgewählt';
+      return `${num} Dateien`;
+    },
+    en: num => {
+      if (num === 0) return 'No files chosen';
+      return `${num} files`;
+    },
+    type: '(num: number) => string',
   },
   openMenu: {
     de: 'Menü öffnen',

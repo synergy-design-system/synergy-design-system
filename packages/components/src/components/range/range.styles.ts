@@ -216,6 +216,14 @@ export default css`
     user-select: none;
   }
 
+  .form-control--small .ticks ::slotted(*) {
+    font-size: var(--syn-font-size-small);
+  }
+
+  .form-control--large .ticks ::slotted(*) {
+    font-size: var(--syn-font-size-large);
+  }
+
   /**
    * Visually hide elements without display:none to make aria and other accessibility stuff work correctly
    * This is necessary for accessibility reasons and e.g. for the native html input validation popup to be

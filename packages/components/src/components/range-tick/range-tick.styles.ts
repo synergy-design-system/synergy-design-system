@@ -8,7 +8,8 @@ export default css`
 
   .tick {
     color: var(--syn-input-icon-color);
-    font: var(--syn-body-medium-regular);
+    font-family: var(--syn-font-family);
+    font-weight: var(--syn-font-weight-normal);
     line-height: var(--syn-line-height-denser);
     width: 1px;
   }

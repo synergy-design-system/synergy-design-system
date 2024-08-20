@@ -170,6 +170,7 @@ export const Inline: StoryObj = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: StoryObj = generateScreenshotStory({
+  Default,
   Quiet,
   Disabled,
   PrefixSuffixIcons,

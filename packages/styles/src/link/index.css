@@ -36,6 +36,15 @@
   gap: var(--syn-spacing-2x-small);
 }
 
+/*
+ * Overrides for medium links.
+ * Note: The default styles are already set for medium links, just here for completeness
+ */
+.syn-link--medium {
+  font: var(--syn-body-medium-regular);
+  gap: var(--syn-spacing-x-small);
+}
+
 .syn-link--large {
   font: var(--syn-body-large-regular);
   gap: var(--syn-spacing-small);

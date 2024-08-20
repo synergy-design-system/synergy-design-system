@@ -24,6 +24,7 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart label - The component's label.
+ * @csspart line - The component's tick line.
  *
  * @cssproperty --tick-height - The height of the tick marker.
  * @cssproperty --tick-label-top - The top offset of the tick label.

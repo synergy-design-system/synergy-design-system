@@ -4,6 +4,7 @@ import {
   SynVueButton,
   SynVueCheckbox,
   SynVueDivider,
+  SynVueFile,
   SynVueInput,
   SynVueOptgroup,
   SynVueOption,
@@ -15,8 +16,8 @@ import {
   SynVueSwitch,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
+import { serialize } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
-import { normalizeData } from './shared';
 
 const initialFormData = {
   code: '',
@@ -24,6 +25,7 @@ const initialFormData = {
   date: '',
   donations: '2000 4000',
   email: '',
+  files: undefined,
   gender: '',
   happiness: '5',
   name: '',
@@ -79,7 +81,7 @@ const submit = (e: Event) => {
 }
 
 const synChange = () => {
-  const normalizedData = normalizeData(new FormData(formRef.value));
+  const normalizedData = serialize(formRef.value!);
 
   // Log the normalized data
   console.log(normalizedData);
@@ -320,6 +322,16 @@ const synChange = () => {
         placeholder="Please provide additional information that might be helpful for your inquiry"
         :rows="10"
         v-model="formData.comment"
+      />
+      <SynVueFile
+        accept="image/*"
+        droparea
+        help-text="Please upload images only"
+        id="screenshot"
+        label="Optional Screenshot(s)"
+        multiple
+        name="files"
+        v-model="formData.files"
       />
     </DemoFieldset>
     <!-- /AdditionalInformation -->

@@ -36,8 +36,8 @@ export default css`
    padding: var(--syn-input-spacing-small) 0;
   }
 
-  /* ERROR */
-  :host([data-user-invalid]) .form-control__help-text {
+    /* ERROR */
+  :host([data-user-invalid]:not([disabled])) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);
    }
 

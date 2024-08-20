@@ -1,7 +1,7 @@
 import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
+import { serialize } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { normalizeData } from '../shared';
 
 const initialData = {
   code: '',
@@ -9,6 +9,7 @@ const initialData = {
   date: '',
   donations: '2000 4000',
   email: '',
+  files: undefined,
   gender: '',
   happiness: '5',
   name: '',
@@ -70,10 +71,10 @@ export class DemoForm {
     }
   }
 
-  synChange(e: SynChangeEvent) {
+  synChange(_: SynChangeEvent) {
     const form = this.form.nativeElement;
 
-    const normalizedData = normalizeData(new FormData(form));
+    const normalizedData = serialize(form);
 
     // Log the normalized data
     console.log(normalizedData);

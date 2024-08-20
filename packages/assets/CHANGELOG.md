@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.6.0...assets/1.7.0) (2024-08-19)
+
+
+### Features
+
+* ✨ create syn-file ([#563](https://github.com/synergy-design-system/synergy-design-system/issues/563)) ([181f121](https://github.com/synergy-design-system/synergy-design-system/commit/181f121ee87e43ba0381ec4288470d3414467d8e))
+
 # [@synergy-design-system/assets-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.5.1...assets/1.6.0) (2024-06-18)
 
 

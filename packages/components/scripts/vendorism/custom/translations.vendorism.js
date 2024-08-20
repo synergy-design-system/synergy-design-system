@@ -65,7 +65,10 @@ const getTranslationsForLanguage = (language) => Object
 const getTranslationTableAsString = (table) => Object
   .entries(table)
   .reduce(
-    (acc, [key, value]) => `${acc}${key}: '${value}',\n  `,
+    (acc, [key, value]) => {
+      const val = typeof value === 'function' ? value : `'${value}'`;
+      return `${acc}${key}: ${val},\n  `;
+    },
     '',
   );
 
@@ -84,7 +87,10 @@ export const vendorLocalize = (path, originalContent) => {
   }
 
   const additionalItems = Object.keys(getTranslationsForLanguage('en')).sort();
-  const additionalTypes = additionalItems.map((item, index) => `${index > 0 ? '  ' : ''}${item}: string;`).join('\n');
+  const additionalTypes = additionalItems.map((item, index) => {
+    const extendedType = translations[item].type ?? 'string';
+    return `${index > 0 ? '  ' : ''}${item}: ${extendedType};`;
+  }).join('\n');
 
   const content = originalContent.replace(
     '$code',

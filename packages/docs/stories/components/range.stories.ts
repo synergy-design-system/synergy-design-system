@@ -365,8 +365,14 @@ export const MultiThumbWithRestrictedMovement = {
             const [firstThumb, lastThumb] = target.thumbs;
             const [firstValue, lastValue] = values;
 
-            if ((element === firstThumb && value > lastValue ) || element === lastThumb && value < firstValue) {
+            if (element === firstThumb && value > lastValue) {
               e.preventDefault();
+              target.valueAsArray = [lastValue, lastValue];
+            }
+            
+            if (element === lastThumb && value < firstValue) {
+              e.preventDefault();
+              target.valueAsArray = [firstValue, firstValue];
             }
           });
         });

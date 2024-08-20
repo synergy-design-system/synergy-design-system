@@ -3,31 +3,31 @@ import { css } from 'lit';
 export default css`
   :host {
     --tick-height: var(--syn-spacing-x-small);
-
-    /* Make the label position dependent on the tick height, so it will adapt if the tick-height is changed */
-    --tick-label-top: calc(var(--tick-height) + var(--syn-spacing-3x-small));
+    --tick-label-top: 10px;
   }
 
   .tick {
-    background: var(--syn-color-neutral-400);
     color: var(--syn-input-icon-color);
     font: var(--syn-body-medium-regular);
-    height: var(--tick-height);
-    position: relative;
+    line-height: var(--syn-line-height-denser);
     width: 1px;
   }
 
-  .tick--has-label {
-    margin-bottom: var(--syn-spacing-medium-large);
+  .tick-line {
+    background: var(--syn-color-neutral-400);
+    height: var(--tick-height);
+  }
+
+  .tick--subdivision .tick-line{
+    height: calc(var(--tick-height) / 2);
   }
 
   .tick-label {
-    position: absolute;
-    transform: translate(-50%, var(--tick-label-top));
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: var(--tick-label-top);
+    text-align: center;
     white-space: nowrap;
-  }
-
-  .tick--subdivision {
-    height: calc(var(--tick-height) / 2);
   }
 `;

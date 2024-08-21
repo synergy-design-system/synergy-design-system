@@ -169,7 +169,9 @@ export default css`
     border-radius: var(--syn-border-radius-circle);
     content: "";
     display: block;
-    inset: calc(var(--full-thumb-size) * (var(--thumb-hit-area-size) / 2) * -1);
+  
+    /* The --thumb-size needs to be used to subtract from, because the border of the thumb is not calculated into the inset */
+    inset: calc((var(--thumb-size) - (var(--full-thumb-size) * var(--thumb-hit-area-size)) ) / 2);
     position: absolute;
   }
 
@@ -205,6 +207,11 @@ export default css`
     :host(:not([disabled])) .thumb:hover  {
       background: var(--syn-color-primary-900);
       transform: scale(var(--thumb-hit-area-size));
+    }
+
+    :host(:not([disabled])) .thumb:hover::after  {
+      /* Unset the area of the thumb click and drag area space, so it does not scale with the hover */
+      inset: unset;
     }
   }
 

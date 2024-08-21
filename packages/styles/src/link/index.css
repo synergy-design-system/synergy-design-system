@@ -5,16 +5,34 @@
  * @boolean { false } syn-link--disabled Applies the disabled link styling
  */
 .syn-link {
-  align-items: center;
+  /* The size of the icon */
+  --syn-link-icon-size: var(--syn-spacing-large);
+
+  /* The gap that is used when there are pre or suffix icons */
+  --syn-link-icon-gap: var(--syn-spacing-x-small);
+
+  /* The font size used for the link */
+  --syn-link-font-size: inherit;
+
+  /* The font weight to use for the link */
+  --syn-link-font-weight: inherit;
+
   color: var(--syn-link-color);
-  display: inline-flex;
-  font: var(--syn-body-medium-regular);
-  gap: var(--syn-spacing-x-small);
+  display: inline;
+  font-family: var(--syn-font-sans);
+  font-size: var(--syn-link-font-size);
+  font-weight: var(--syn-link-font-weight);
+  text-decoration: underline;
 }
 
-/* Use inline text styling when there is no syn-icon */
-.syn-link:not(:has(syn-icon)) {
-  display: inline;
+.syn-link:has(syn-icon) {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--syn-link-icon-gap);
+}
+
+.syn-link syn-icon {
+  font-size: var(--syn-link-icon-size);
 }
 
 .syn-link:not(.syn-link--disabled):hover {
@@ -32,51 +50,45 @@
 
 /* Overrides for smaller links */
 .syn-link--small {
-  font: var(--syn-body-small-regular);
-  gap: var(--syn-spacing-2x-small);
+  --syn-link-icon-size: var(--syn-spacing-medium);
+  --syn-link-icon-gap: var(--syn-spacing-2x-small);
+  --syn-link-font-size: var(--syn-font-size-small);
+  --syn-link-font-weight: var(--syn-font-weight-bold);
 }
 
 /*
  * Overrides for medium links.
- * Note: The default styles are already set for medium links, just here for completeness
  */
 .syn-link--medium {
-  font: var(--syn-body-medium-regular);
-  gap: var(--syn-spacing-x-small);
+  --syn-link-icon-size: var(--syn-spacing-large);
+  --syn-link-icon-gap: var(--syn-spacing-x-small);
+  --syn-link-font-size: var(--syn-font-size-medium);
+  --syn-link-font-weight: var(--syn-font-weight-bold);
 }
 
 .syn-link--large {
-  font: var(--syn-body-large-regular);
-  gap: var(--syn-spacing-small);
+  --syn-link-icon-size: var(--syn-spacing-x-large);
+  --syn-link-icon-gap: var(--syn-spacing-small);
+  --syn-link-font-size: var(--syn-font-size-large);
+  --syn-link-font-weight: var(--syn-font-weight-bold);
 }
 
 /* Quite Variant of links use other colors */
-.syn-link--quiet {
-  color: var(--syn-link-low-emphasis-color);
+.syn-link--quiet:not(.syn-link--disabled) {
+  color: var(--syn-link-quiet-color);
 }
 
-.syn-link--quiet:hover {
-  color: var(--syn-link-low-emphasis-color-hover);
+.syn-link--quiet:not(.syn-link--disabled):hover {
+  color: var(--syn-link-quiet-color-hover);
 }
 
-.syn-link--quiet:active {
-  color: var(--syn-link-low-emphasis-color-active);
+.syn-link--quiet:not(.syn-link--disabled):active {
+  color: var(--syn-link-quiet-color-active);
 }
 
 /* Styling for disabled links */
-.syn-link--disabled {
+.syn-link--disabled:not([href]),
+a.syn-link:not([href]) {
   cursor: not-allowed;
   opacity: var(--syn-input-disabled-opacity);
-}
-
-/*
- * We set pointer-events to none to prevent the link from being clicked
- * This is done in :active to allow using a custom cursor
- */
-.syn-link--disabled:active {
-  pointer-events: none;
-}
-
-.syn-link--disabled:focus {
-  outline: none;
 }

@@ -12,7 +12,7 @@
       "value": "{primary.950}",
       "type": "color"
     },
-    "low-emphasis": {
+    "quiet": {
       "color": {
         "value": "{typography.color.text}",
         "type": "color"

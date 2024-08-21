@@ -115,7 +115,7 @@ export const Quiet: StoryObj = {
   render: () => html`
     <a href="javascript:void(0)" class="syn-link syn-link--quiet">
       <syn-icon name="keyboard_arrow_right"></syn-icon>
-      Link Label
+      Silence is gold
     </a>
   `,
 };
@@ -131,7 +131,7 @@ export const Disabled: StoryObj = {
   render: () => html`
     <a class="syn-link syn-link--disabled">
       <syn-icon name="keyboard_arrow_right"></syn-icon>
-      Link Label
+      Disabled
     </a>
   `,
 };
@@ -154,9 +154,9 @@ export const Focus: StoryObj = {
     }
   },
   render: () => html`
-    <a href="javascript:void(0)" class="syn-link">
+    <a href="javascript:void(0)" class="syn-link syn-link--medium">
       <syn-icon name="keyboard_arrow_right"></syn-icon>
-      Link Label
+      Link
     </a>
   `,
 };
@@ -173,15 +173,15 @@ export const Size: StoryObj = {
     <div style="display: flex; gap: var(--syn-spacing-large);">
       <a href="javascript:void(0)" class="syn-link syn-link--small">
         <syn-icon name="keyboard_arrow_right"></syn-icon>
-        Link Label
+        Small
       </a>
       <a href="javascript:void(0)" class="syn-link syn-link--medium">
         <syn-icon name="keyboard_arrow_right"></syn-icon>
-        Link Label
+        Medium
       </a>
       <a href="javascript:void(0)" class="syn-link syn-link--large">
         <syn-icon name="keyboard_arrow_right"></syn-icon>
-        Link Label
+        Large
       </a>
     </div>
   `,

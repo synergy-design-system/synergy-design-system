@@ -1060,7 +1060,7 @@
           "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
           "type": "text"
         }
-      }     
+      }
     },
     "format-bytes": {
       "description": {
@@ -1385,7 +1385,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that the Link has been focused by the keyboard interaction and that the Link component is ready for use.",
+          "value": "The focus event gives the user feedback that the Link has been focused by the keyboard interaction.",
           "type": "text"
         }
       },

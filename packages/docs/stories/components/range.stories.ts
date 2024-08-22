@@ -52,6 +52,9 @@ export const Default: Story = {
       description: {
         story: generateStoryDescription('range', 'default'),
       },
+      story: {
+        height: '80px',
+      },
     },
   },
   render: (args: unknown) => generateTemplate({ args }),
@@ -170,6 +173,9 @@ export const Focus: Story = {
       description: {
         story: generateStoryDescription('range', 'focus'),
       },
+      story: {
+        height: '80px',
+      },
     },
   },
   play: ({ canvasElement }) => {
@@ -282,6 +288,9 @@ export const CustomTrackColors: Story = {
       description: {
         story: generateStoryDescription('range', 'custom-track-colors'),
       },
+      story: {
+        height: '80px',
+      },
     },
   },
   render: () => html`
@@ -305,6 +314,9 @@ export const CustomTrackOffset: Story = {
       description: {
         story: generateStoryDescription('range', 'custom-track-offset'),
       },
+      story: {
+        height: '80px',
+      },
     },
   },
   render: () => html`
@@ -327,6 +339,9 @@ export const MultiThumb: Story = {
     docs: {
       description: {
         story: generateStoryDescription('range', 'multi-knob'),
+      },
+      story: {
+        height: '80px',
       },
     },
   },

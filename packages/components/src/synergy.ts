@@ -46,6 +46,7 @@ export { default as SynTab } from './components/tab/tab.js';
 export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
 export { default as SynTooltip } from './components/tooltip/tooltip.js';
+export { default as SynValidate } from './components/validate/validate.js';
 
 // Utilities
 // export * from './utilities/animation.js';

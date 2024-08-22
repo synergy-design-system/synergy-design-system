@@ -27,6 +27,7 @@ const componentsUsingBlockLayout = [
   'textarea',
   'tab-group',
   'tab-panel',
+  'validate',
 ]
   .map(c => `syn-${c}`)
   .sort();

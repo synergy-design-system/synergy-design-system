@@ -17,7 +17,8 @@
     "optiongroup",
     "aria-describedby",
     "droparea",
-    "codepen"
+    "codepen",
+    "exportparts"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

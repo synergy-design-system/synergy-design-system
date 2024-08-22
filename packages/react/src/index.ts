@@ -45,3 +45,4 @@ export { SynTabPanel } from './components/tab-panel.js';
 export { SynTag } from './components/tag.js';
 export { SynTextarea } from './components/textarea.js';
 export { SynTooltip } from './components/tooltip.js';
+export { SynValidate } from './components/validate.js';

@@ -2915,6 +2915,78 @@
           "type": "text"
         }
       }
+    },
+    "validate": {
+      "default": {
+        "title": {
+          "value": "Validate",
+          "type": "text"
+        },
+        "description": {
+          "value": "Validate offers options for convenient error handling in forms and form elements.",
+          "type": "text"
+        }
+      },
+      "inline": {
+        "title": {
+          "value": "Inline",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the inline attribute to show the invalid message below the selected element.",
+          "type": "text"
+        }
+      },
+      "hide-icon": {
+        "title": {
+          "value": "Hide Icon",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use hide-icon to hide the icon in inline style.",
+          "type": "text"
+        }
+      },
+      "live": {
+        "title": {
+          "value": "Live",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the live attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit.",
+          "type": "text"
+        }
+      },
+      "custom-validation": {
+        "title": {
+          "value": "Custom Validation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the custom-validation attribute to use whichever error to text you need, overriding the default browser errors.",
+          "type": "text"
+        }
+      },
+      "custom-form-field": {
+        "title": {
+          "value": "Custom Form Field",
+          "type": "text"
+        },
+        "description": {
+          "value": "Wrap the element around any other form field, that follows browser standards to use all features.",
+          "type": "text"
+        }
+      },
+      "error-summary": {
+        "title": {
+          "value": "Error Summary",
+          "type": "text"
+        },
+        "description": {
+          "value": "Wrap  the element around a form to show all error messages at a single place in addition to the single messages. Per default, buttons are created, that focus the invalid form field.",
+          "type": "text"
+        }
+      }
     }
   },
   "assets": {

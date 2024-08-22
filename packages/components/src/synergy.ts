@@ -6,7 +6,6 @@
 // Components
 export { default as SynAccordion } from './components/accordion/accordion.js';
 export { default as SynAlert } from './components/alert/alert.js';
-export { default as SynAutocomplete } from './components/autocomplete/autocomplete.js';
 export { default as SynBadge } from './components/badge/badge.js';
 export { default as SynBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item.js';
 export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js';
@@ -14,6 +13,7 @@ export { default as SynButtonGroup } from './components/button-group/button-grou
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCard } from './components/card/card.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
+export { default as SynCombobox } from './components/combobox/combobox.js';
 export { default as SynDetails } from './components/details/details.js';
 export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
@@ -52,7 +52,6 @@ export { default as SynTooltip } from './components/tooltip/tooltip.js';
 export * from './utilities/base-path.js';
 export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
-export * from './utilities/autocomplete-config.js';
 
 // Events
 export * from './events/events.js';

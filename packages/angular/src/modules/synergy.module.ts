@@ -8,7 +8,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
   SynAccordionComponent,
   SynAlertComponent,
-  SynAutocompleteComponent,
   SynBadgeComponent,
   SynBreadcrumbComponent,
   SynBreadcrumbItemComponent,
@@ -16,6 +15,7 @@ import {
   SynButtonGroupComponent,
   SynCardComponent,
   SynCheckboxComponent,
+  SynComboboxComponent,
   SynDetailsComponent,
   SynDialogComponent,
   SynDividerComponent,
@@ -53,7 +53,6 @@ import {
 const components = [
   SynAccordionComponent,
   SynAlertComponent,
-  SynAutocompleteComponent,
   SynBadgeComponent,
   SynBreadcrumbComponent,
   SynBreadcrumbItemComponent,
@@ -61,6 +60,7 @@ const components = [
   SynButtonGroupComponent,
   SynCardComponent,
   SynCheckboxComponent,
+  SynComboboxComponent,
   SynDetailsComponent,
   SynDialogComponent,
   SynDividerComponent,

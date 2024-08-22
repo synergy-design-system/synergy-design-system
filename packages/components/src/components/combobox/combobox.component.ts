@@ -7,7 +7,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable max-len */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nochec
 // eslint-disable-next-line import/no-duplicates
 import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
@@ -32,7 +31,7 @@ import selectStyles from '../select/select.styles.js';
 import selectCustomStyles from '../select/select.custom.styles.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
-import styles from './autocomplete.styles.js';
+import styles from './combobox.styles.js';
 import { filterOnlyOptions, getAssignedElementsForSlot } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 
@@ -80,7 +79,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
-export default class SynAutocomplete extends SynergyElement implements SynergyFormControl {
+export default class SynCombobox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, selectStyles, selectCustomStyles];
 
   static dependencies = {

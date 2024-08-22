@@ -21,7 +21,6 @@ export const runCreateExports = job('Creating component exports in src/synergy.t
 export * from './utilities/base-path.js';
 export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
-export * from './utilities/autocomplete-config.js';
 
 // Events
 export * from './events/events.js';

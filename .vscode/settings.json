@@ -128,7 +128,7 @@
     "packages/components/src/components/radio/radio.styles.ts": true,
     "packages/components/src/components/radio/radio.test.ts": true,
     "packages/components/src/components/radio/radio.ts": true,
-    "packages/components/src/components/select/select.component.ts": false,
+    "packages/components/src/components/select/select.component.ts": true,
     "packages/components/src/components/select/select.styles.ts": true,
     "packages/components/src/components/select/select.test.ts": true,
     "packages/components/src/components/select/select.ts": true,

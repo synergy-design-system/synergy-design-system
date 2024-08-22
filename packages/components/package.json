@@ -71,7 +71,6 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "@tarekraafat/autocomplete.js": "^10.2.7",
     "@types/mocha": "^10.0.6",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.7.1",

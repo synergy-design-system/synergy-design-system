@@ -31,13 +31,13 @@ syn-textarea:not(:defined) {
 }
 
 syn-alert:not(:defined),
-syn-autocomplete:not(:defined),
 syn-badge:not(:defined),
 syn-breadcrumb-item:not(:defined),
 syn-button:not(:defined),
 syn-button-group:not(:defined),
 syn-card:not(:defined),
 syn-checkbox:not(:defined),
+syn-combobox:not(:defined),
 syn-dialog:not(:defined),
 syn-drawer:not(:defined),
 syn-dropdown:not(:defined),

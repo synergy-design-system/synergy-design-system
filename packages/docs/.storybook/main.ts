@@ -20,16 +20,10 @@ const config: StorybookConfig = {
     name: "@storybook/web-components-vite",
     options: {},
   },
-  staticDirs: [
-    '../public', {
-      from: '../../assets/src',
-      to: '/assets'
-    },
-    {
-      from: '../node_modules/@tarekraafat/autocomplete.js/dist',
-      to: '/autocomplete'
-    }
-  ],
+  staticDirs: ['../public', {
+    from: '../../assets/src',
+    to: '/assets'
+  }],
   stories: [
     "../stories/Welcome.mdx",
     "../stories/GoalsAndGuidelines.mdx",

@@ -5,15 +5,15 @@
 // ---------------------------------------------------------------------
 import * as React from 'react';
 import { createComponent } from '@lit/react';
-import Component from '@synergy-design-system/components/components/autocomplete/autocomplete.component.js';
+import Component from '@synergy-design-system/components/components/combobox/combobox.component.js';
 
 import { type EventName } from '@lit/react';
 import type {
   SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
 } from '@synergy-design-system/components';
 
-const tagName = 'syn-autocomplete';
-Component.define('syn-autocomplete');
+const tagName = 'syn-combobox';
+Component.define('syn-combobox');
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
@@ -59,8 +59,8 @@ Component.define('syn-autocomplete');
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
-export const SynAutocomplete = createComponent({
-  displayName: 'SynAutocomplete',
+export const SynCombobox = createComponent({
+  displayName: 'SynCombobox',
   elementClass: Component,
   events: {
     onSynChange: 'syn-change' as EventName<SynChangeEvent>,

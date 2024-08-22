@@ -271,11 +271,27 @@ export const PrefixSuffixText: Story = {
             const { target } = e;
             if (target.tagName !== 'SYN-RANGE') return;
             target.querySelector('syn-input').value = target.value;
+            range.setCustomValidity('');
           });
 
           input.addEventListener('syn-input', e => {
             const { target } = e;
             target.closest('syn-range').value = target.value;
+
+            const inputValidationMessage = target.validationMessage;
+
+            if(inputValidationMessage) {
+              range.setCustomValidity(inputValidationMessage);
+            } else {
+              range.setCustomValidity('');
+            }
+          });
+
+          input.addEventListener('syn-change', e => {
+            const { target } = e;
+            if(!target.checkValidity()) {
+              range.reportValidity();
+            }
           });
         });
     </script>

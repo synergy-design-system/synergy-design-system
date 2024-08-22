@@ -181,6 +181,7 @@ export default css`
   }
 
   .thumb.grabbed {
+    background: var(--syn-color-primary-950);
     cursor: grabbing;
   }
 
@@ -206,10 +207,13 @@ export default css`
    */
   @media (any-hover: hover) {
     :host(:not([disabled])) .thumb:hover  {
-      background: var(--syn-color-primary-900);
       transform: scale(var(--thumb-hit-area-size));
     }
 
+    :host(:not([disabled])) .thumb:not(.grabbed):hover  {
+      background: var(--syn-color-primary-900);
+    }
+    
     :host(:not([disabled])) .thumb:hover::after  {
       /* Unset the area of the thumb click and drag area space, so it does not scale with the hover */
       inset: unset;

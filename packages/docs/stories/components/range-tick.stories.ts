@@ -125,6 +125,10 @@ export const Grouping: Story = {
       .uneven-group syn-range-tick:nth-child(5) {
         flex-grow: 5;
       }
+
+      .uneven-group syn-range-tick:nth-child(6) {
+        flex-grow: 0;
+      }
     </style>
   `,
 };

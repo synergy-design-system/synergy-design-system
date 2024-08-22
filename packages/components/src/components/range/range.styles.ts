@@ -53,13 +53,11 @@ export default css`
     -webkit-user-select: none;
     vertical-align: middle;
     width: 100%;
-    z-index: 0; /* Needed to not bleed absolute positioned elements out */
   }
 
   .input__wrapper {
     flex: 1 0 auto;
     position: relative;
-    will-change: transform;
   }
 
   :host([disabled]) .base {

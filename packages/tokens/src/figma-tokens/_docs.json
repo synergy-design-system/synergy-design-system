@@ -960,6 +960,108 @@
         }
       }
     },
+    "file": {
+      "default": {
+        "title": {
+          "value": "File",
+          "type": "text"
+        },
+        "description": {
+          "value": "File control is a component with which a user can select a local file. It shows the value of the selected file.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a file selector with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "multiple": {
+        "title": {
+          "value": "Multiple",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
+          "type": "text"
+        }
+      },
+      "hide-value": {
+        "title": {
+          "value": "Hide Value",
+          "type": "text"
+        },
+        "description": {
+          "value": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a file input.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a file uploads size.",
+          "type": "text"
+        }
+      },
+      "droparea": {
+        "title": {
+          "value": "Droparea",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the droparea attribute to switch to a full-width button with a drop area.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
+      }     
+    },
     "format-bytes": {
       "description": {
         "value": "Formats a number as a human readable bytes value.",
@@ -1673,13 +1775,197 @@
       }
     },
     "range": {
-      "description": {
-        "value": "Ranges allow the user to select a single value within a given range using a slider.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Ranges allow the user to select values within a given range using a thumb.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Range",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Range",
-        "type": "text"
+      "labels": {
+        "description": {
+          "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "description": {
+          "value": "Add descriptive help text to a range with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a range’s size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable a range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "description": {
+          "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Prefix and Suffix",
+          "type": "text"
+        }
+      },
+      "custom-track-colors": {
+        "description": {
+          "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Track Colors",
+          "type": "text"
+        }
+      },
+      "custom-track-offset": {
+        "description": {
+          "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Track Offset",
+          "type": "text"
+        }
+      },
+      "multi-knob": {
+        "description": {
+          "value": "You can add multiple range-thumbs to your range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Multi thumb",
+          "type": "text"
+        }
+      },
+      "multi-knob-restrict-movement": {
+        "description": {
+          "value": "You can prevent the thumbs from overlapping by listening to the provided `syn-move` event.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Multi thumb with restricted movement",
+          "type": "text"
+        }
+      },
+      "ticks": {
+        "default": {
+          "description": {
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Ticks",
+            "type": "text"
+          }
+        },
+        "label": {
+          "title": {
+            "value": "Labels",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the default slot to give the tick a label.",
+            "type": "text"
+          }
+        },
+        "grouping": {
+          "title": {
+            "value": "Grouping",
+            "type": "text"
+          },
+          "description": {
+            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+            "type": "text"
+          }
+        },
+        "subdivision": {
+          "title": {
+            "value": "Subdivision Ticks",
+            "type": "text"
+          },
+          "description": {
+            "value": "It is possible to divide the space between major ticks for finer scale readings.",
+            "type": "text"
+          }
+        }
+      },
+      "tooltip-placement": {
+        "description": {
+          "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tooltip Placement",
+          "type": "text"
+        }
+      },
+      "tooltip-disabled": {
+        "description": {
+          "value": "To disable the tooltip, set tooltip-placement to none.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disable the Tooltip",
+          "type": "text"
+        }
+      },
+      "tooltip-formatter": {
+        "description": {
+          "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Tooltip Formatter",
+          "type": "text"
+        }
       }
     },
     "rating": {
@@ -1803,13 +2089,13 @@
           "type": "text"
         }
       },
-      "prefix": {
+      "prefix-suffix": {
         "title": {
-          "value": "Prefix Icons",
+          "value": "Prefix and Suffix Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix slot to prepend an icon to the control.",
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       },
@@ -2514,6 +2800,16 @@
           "value": "Contact Form",
           "type": "text"
         }
+      },
+      "table": {
+        "title": {
+          "value": "Table",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {
@@ -2748,6 +3044,58 @@
         },
         "description": {
           "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing.",
+          "type": "text"
+        }
+      }
+    },
+    "table": {
+      "default": {
+        "title": {
+          "value": "Table-cell",
+          "type": "text"
+        },
+        "description": {
+          "value": "The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows.\n\n DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.",
+          "type": "text"
+        }
+      },
+      "header": {
+        "title": {
+          "value": "Header",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.",
+          "type": "text"
+        }
+      },
+      "alternating": {
+        "title": {
+          "value": "Alternating",
+          "type": "text"
+        },
+        "description": {
+          "value": "The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.",
+          "type": "text"
+        }
+      },
+      "border": {
+        "title": {
+          "value": "Border",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the border attribute to define different borders in a cell. Borders can also be combined.",
+          "type": "text"
+        }
+      },
+      "scroll": {
+        "title": {
+          "value": "Scrolling Behaviour",
+          "type": "text"
+        },
+        "description": {
+          "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
           "type": "text"
         }
       }

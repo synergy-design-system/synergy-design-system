@@ -6,8 +6,26 @@
       "customSyntax": "postcss-lit"
     }
   ],
-  "plugins": ["stylelint-order"],
+  "plugins": ["stylelint-order", "stylelint-no-unsupported-browser-features"],
   "rules": {
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "browsers": [
+          "last 2 versions, not dead, > 0.2% and fully supports es6-module"
+        ],
+        "severity": "warning",
+        "ignore": [
+          "css-sticky",
+          "css-overflow",
+          "css-focus-visible",
+          "css-logical-props",
+          "flexbox-gap",
+          "css3-cursors",
+          "css-display-contents"
+        ]
+      }
+    ],
     "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^[a-z][a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?$",
@@ -15,7 +33,8 @@
     "value-keyword-case": [
       "lower",
       {
-        "camelCaseSvgKeywords": true
+        "camelCaseSvgKeywords": true,
+        "ignoreFunctions": ["color-mix"]
       }
     ]
   }

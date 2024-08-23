@@ -2,11 +2,15 @@
 
 This package provides [vue.js](https://vuejs.org/) wrappers for [Synergy Web Components](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/components).
 
-This package aims to provide an improved developer experience in Vue applications:
+It aims to provide an improved developer experience in Vue applications:
 
 - Provides two way data binding and `v-model`
 - Autocompletion and Types
 - Better custom event handling of `synergy` events
+
+## Known issues and limitations
+
+Got any problems using our Vue wrappers? Please take a look at [our list of known issues and limitations](https://synergy-design-system.github.io/?path=/docs/limitations-vue--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+).
 
 ## Getting started
 

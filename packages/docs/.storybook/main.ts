@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
+import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index';
 
 const config: StorybookConfig = {
   addons: [
@@ -16,6 +17,9 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true,
   },
+  env: StorybookEnvPackageVersions({
+    packagePaths: ['../components', '../assets', '../styles', '../tokens'],
+  }),
   framework: {
     name: "@storybook/web-components-vite",
     options: {},
@@ -29,6 +33,7 @@ const config: StorybookConfig = {
     "../stories/GoalsAndGuidelines.mdx",
     "../stories/Presentation.mdx",
     "../stories/Contributing.mdx",
+    "../stories/limitations/**/*.mdx",
     "../stories/packages/**/*.mdx",
     "../stories/tokens/**/*.@(mdx|stories.*)",
     "../stories/components/**/*.@(mdx|stories.*)",

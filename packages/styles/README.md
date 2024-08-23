@@ -2,6 +2,8 @@
 
 This package provides easy to use standalone helper classes based on the [Synergy Design Tokens](https://synergy-design-system.github.io/?path=/docs/packages-tokens--docs).
 
+The included styles use CSS features supported by the latest two versions of all major browsers (as defined by browserslist) and is actively linted and tested against those targets.
+
 ---
 
 ## 1. Installation
@@ -73,6 +75,9 @@ import "@synergy-design-system/styles/typography.css";
 
 <!-- BEGIN INLINE COMMENT -->
 
+- tables.css
+  - table-cell.css
+  - table.css
 - typography.css
   - body.css
   - heading.css
@@ -107,12 +112,19 @@ When adding comments to your modules, please add a list of all variants of your 
 
 ```css
 /**
- * The "variant" syn-fieldset takes care that two classes will exist in documentation:
+ * The "variant" syn-fieldset takes care that two classes will exist in documentation. The first variant value will be the selected one:
  * - syn-fieldset-small and
  * - syn-fieldset-large
  * @variant {small | large } syn-fieldset
  *
- * @variant syn-boolean-value This value will also be available as a class.
- * However, it will display as a boolean value in storybook
+ * The "variant" syn-shadow takes care that 4 classes will exist in documentation. There will be no default value selected via the NO_DEFAULT option:
+ * @variant { NO_DEFAULT | bottom | top | start | end } syn-shadow
+ *
+ * The "boolean" syn-boolean-false will display as a boolean value in storybook with 'false' as default value
+ * @variant syn-boolean-false This value will also be available as a class.
+ *
+ * The "boolean" syn-boolean-true will display as a boolean value in storybook with 'true' as default value
+ * @boolean { true } syn-boolean-true This value will also be available as a class.
+ * 
  */
 ```

@@ -125,9 +125,3 @@ export default class SynRadio extends SynergyElement {
     `;
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'syn-radio': SynRadio;
-  }
-}

@@ -4,10 +4,11 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-compat": "^6.0.0",
     "eslint-plugin-import": "^2.29.1"
   },
   "description": "ESLint core rules used in the Synergy Design System",

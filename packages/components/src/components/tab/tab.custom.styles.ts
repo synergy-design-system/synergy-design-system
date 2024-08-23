@@ -28,11 +28,11 @@ export default css`
   /**
    * Focus
    */
-  .tab:focus-visible {
+  :host(:focus-visible) {
     outline-offset: calc(var(--syn-focus-ring-offset) * -1);
   }
 
-  .tab:focus-visible:not(.tab--disabled) {
+  :host(:focus-visible:not(.tab--disabled)) {
     color: var(--syn-typography-color-text);
   }
 

@@ -45,9 +45,18 @@ const translation: Translation = {
   // @see scripts/vendorism/translations.vendorism.js
   closeMenu: 'Menü schließen',
   danger: 'Gefahr',
-  notification: 'Benachrichtigung',
+  fileButtonText: 'Datei auswählen',
+  fileButtonTextMultiple: 'Dateien auswählen',
+  fileDragDrop: 'Datei ablegen oder auswählen',
   menu: 'Menü',
+  notification: 'Benachrichtigung',
+  numFilesSelected: num => {
+      if (num === 0) return 'Keine Dateien ausgewählt';
+      return `${num} Dateien`;
+    },
   openMenu: 'Menü öffnen',
+  rangeMax: 'Maximum',
+  rangeMin: 'Minimum',
   sideNav: 'Seitennavigation',
   success: 'Erfolg',
   warning: 'Warnung',

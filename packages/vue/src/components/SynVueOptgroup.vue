@@ -63,10 +63,6 @@ const visibleProps = computed(() => Object.fromEntries(
     .filter(([, value]) => typeof value !== 'undefined'),
 ));
 
-// Map events
-defineEmits<{
-
-}>();
 </script>
 
 <template>

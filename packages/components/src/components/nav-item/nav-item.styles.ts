@@ -190,12 +190,13 @@ export default css`
   /**
    * Show prefix only
    */
-  /* stylelint-disable-next-line no-descending-specificity */
+  /* stylelint-disable no-descending-specificity */
   .nav-item--show-prefix-only .nav-item__content-container,
   .nav-item--show-prefix-only .nav-item__suffix,
   .nav-item--show-prefix-only .nav-item__chevron {
     height: var(--syn-spacing-large);
   }
+  /* stylelint-enable no-descending-specificity */
 
   /**
    * Adjust the paddings for the label, depending if there is a pre- and/or suffix available.
@@ -214,19 +215,21 @@ export default css`
   /**
    * Multi line content
    */
-  /* stylelint-disable-next-line no-descending-specificity */
+  /* stylelint-disable no-descending-specificity */
   .nav-item--multi-line .nav-item__suffix,
   .nav-item--multi-line .nav-item__prefix,
   .nav-item--multi-line .nav-item__chevron {
     align-self: flex-start;
   }
+  /* stylelint-enable no-descending-specificity */
 
-  /* stylelint-disable-next-line no-descending-specificity */
+  /* stylelint-disable no-descending-specificity */
   .nav-item--multi-line .nav-item__suffix::slotted(syn-icon),
   :not(.nav-item--show-prefix-only).nav-item--multi-line .nav-item__prefix::slotted(syn-icon),
   .nav-item--multi-line .nav-item__chevron {
     align-self: flex-start;
   }
+  /* stylelint-enable no-descending-specificity */
 
   /**
    * The current indicator tells the user that the nav-item is the active one

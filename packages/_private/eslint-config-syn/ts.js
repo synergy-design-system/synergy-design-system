@@ -6,6 +6,7 @@ module.exports = {
     'airbnb-base',
     'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:compat/recommended',
   ],
   rules: {
     ...defaultCfg.rules,

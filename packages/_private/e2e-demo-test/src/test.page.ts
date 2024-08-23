@@ -98,6 +98,17 @@ export default class TestPage {
     return this.page.locator(selectors.topicLoc);
   }
 
+  /**
+   * Because who wouldn't want to get happiness? 🤷‍♂️
+   */
+  get happiness(): Locator {
+    return this.page.locator(selectors.happinessLoc);
+  }
+
+  get donations(): Locator {
+    return this.page.locator(selectors.donations);
+  }
+
   get submit(): Locator {
     return this.page.locator(selectors.submit);
   }

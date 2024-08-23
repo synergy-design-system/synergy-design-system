@@ -156,4 +156,9 @@ export default css`
       outline-offset: -1px;
     }
   }
+
+  ::slotted(syn-menu) {
+    max-width: var(--auto-size-available-width) !important;
+    max-height: var(--auto-size-available-height) !important;
+  }
 `;

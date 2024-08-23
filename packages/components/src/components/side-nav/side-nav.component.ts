@@ -310,8 +310,10 @@ export default class SynSideNav extends SynergyElement {
     super.disconnectedCallback();
 
     //  Remove modal listeners
-    unlockBodyScrolling(this.drawer);
-    this.drawer.modal.deactivate();
+    if (this.drawer) {
+      unlockBodyScrolling(this.drawer);
+      this.drawer.modal.deactivate();
+    }
   }
 
   render() {

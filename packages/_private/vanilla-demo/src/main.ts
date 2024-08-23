@@ -1,14 +1,19 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import history from 'history/browser';
-import type { SynChangeEvent, SynCombobox, SynNavItem, SynSwitch } from '@synergy-design-system/components';
+import {
+  type SynChangeEvent,
+  type SynCombobox,
+  type SynNavItem,
+  type SynRange,
+  type SynSwitch,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
-// eslint-disable-next-line import/no-duplicates
-import '@synergy-design-system/components';
+import { serialize } from '@synergy-design-system/components';
 
 const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
@@ -26,28 +31,6 @@ const setActiveView = (pathname: string) => {
   });
 };
 
-// We have to adjust the original form data
-// so it is possible to send multiple values
-// This prevents errors with select[multiple]
-// that will send all three selected elements
-// in form-data with the same name.
-// This will make sure multiple uses "," as separator for multi values
-const normalizeData = (data: FormData) => Array
-  .from(data)
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string
-  .map(([key, value]) => [key, value.toString()])
-  .reduce((prev, curr) => {
-    const [currKey, currVal] = curr;
-    const finalValue = typeof prev[currKey] !== 'undefined'
-      ? `${prev[currKey]},${currVal}`
-      : currVal;
-
-    return {
-      ...prev,
-      [currKey]: finalValue,
-    };
-  }, {} as Record<string, string>);
-
 const initRouting = async () => {
   history.listen(({ location }) => {
     const { pathname } = location;
@@ -63,9 +46,10 @@ const initRouting = async () => {
       e.preventDefault();
       e.stopPropagation();
 
-      if ((e.target as HTMLElement).tagName.toLowerCase() === 'syn-nav-item') {
-        const target = e.target as SynNavItem;
-        history.push(history.createHref(target.href));
+      const clickedNavItem = (e.target as HTMLElement).closest('syn-nav-item') as SynNavItem;
+
+      if (clickedNavItem) {
+        history.push(history.createHref(clickedNavItem.href));
       }
     });
   });
@@ -86,12 +70,26 @@ const initThemeSwitch = async () => {
 };
 
 const initApp = async () => {
-  await customElements.whenDefined('syn-button');
+  await Promise.allSettled([
+    customElements.whenDefined('syn-button'),
+    customElements.whenDefined('syn-range'),
+  ]);
+
+  const formatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
+
+  // Add a custom formatter for the donation field
+  document
+    .querySelector<SynRange>('#donations')!
+    .tooltipFormatter = value => formatter.format(value);
 
   const form = document.querySelector('form')!;
 
   form.addEventListener('syn-change', () => {
-    console.log(normalizeData(new FormData(form)));
+    console.log(serialize(form));
   });
 
   form.addEventListener('submit', (e: SubmitEvent) => {

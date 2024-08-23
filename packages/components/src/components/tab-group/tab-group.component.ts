@@ -60,6 +60,7 @@ export default class SynTabGroup extends SynergyElement {
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
   private tabs: SynTab[] = [];
+  private focusableTabs: SynTab[] = [];
   private panels: SynTabPanel[] = [];
 
   @query('.tab-group') tabGroup: HTMLElement;
@@ -81,7 +82,7 @@ export default class SynTabGroup extends SynergyElement {
   /** Disables the scroll arrows that appear when tabs overflow. */
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
-	/** Draws the tab group as a contained element. */
+  /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
   
   /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */
@@ -141,14 +142,10 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
-  private getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {
+  private getAllTabs() {
     const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
 
-    return [...(slot.assignedElements() as SynTab[])].filter(el => {
-      return options.includeDisabled
-        ? el.tagName.toLowerCase() === 'syn-tab'
-        : el.tagName.toLowerCase() === 'syn-tab' && !el.disabled;
-    });
+    return slot.assignedElements() as SynTab[];
   }
 
   private getAllPanels() {
@@ -195,43 +192,45 @@ export default class SynTabGroup extends SynergyElement {
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = this.tabs.find(t => t.matches(':focus'));
-      const isRtl = this.localize.dir() === 'rtl';
+      const isRtl = this.matches(':dir(rtl)');
+      let nextTab: null | SynTab = null;
 
       if (activeEl?.tagName.toLowerCase() === 'syn-tab') {
-        let index = this.tabs.indexOf(activeEl);
-
         if (event.key === 'Home') {
-          index = 0;
+          nextTab = this.focusableTabs[0];
         } else if (event.key === 'End') {
-          index = this.tabs.length - 1;
+          nextTab = this.focusableTabs[this.focusableTabs.length - 1];
         } else if (
           (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
         ) {
-          index--;
+          const currentIndex = this.tabs.findIndex(el => el === activeEl);
+          nextTab = this.findNextFocusableTab(currentIndex, 'backward');
         } else if (
           (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
         ) {
-          index++;
+          const currentIndex = this.tabs.findIndex(el => el === activeEl);
+          nextTab = this.findNextFocusableTab(currentIndex, 'forward');
         }
 
-        if (index < 0) {
-          index = this.tabs.length - 1;
+        if (!nextTab) {
+          return;
         }
 
-        if (index > this.tabs.length - 1) {
-          index = 0;
-        }
-
-        this.tabs[index].focus({ preventScroll: true });
+        nextTab.tabIndex = 0;
+        nextTab.focus({ preventScroll: true });
 
         if (this.activation === 'auto') {
-          this.setActiveTab(this.tabs[index], { scrollBehavior: 'smooth' });
+          this.setActiveTab(nextTab, { scrollBehavior: 'smooth' });
+        } else {
+          this.tabs.forEach(tabEl => {
+            tabEl.tabIndex = tabEl === nextTab ? 0 : -1;
+          });
         }
 
         if (['top'].includes(this.placement)) {
-          scrollIntoView(this.tabs[index], this.nav, 'horizontal');
+          scrollIntoView(nextTab, this.nav, 'horizontal');
         }
 
         event.preventDefault();
@@ -271,7 +270,10 @@ export default class SynTabGroup extends SynergyElement {
       this.activeTab = tab;
 
       // Sync active tab and panel
-      this.tabs.forEach(el => (el.active = el === this.activeTab));
+      this.tabs.forEach(el => {
+        el.active = el === this.activeTab;
+        el.tabIndex = el === this.activeTab ? 0 : -1;
+      });
       this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
       this.syncIndicator();
 
@@ -310,7 +312,7 @@ export default class SynTabGroup extends SynergyElement {
 
     const width = currentTab.clientWidth;
     const height = currentTab.clientHeight;
-    const isRtl = this.localize.dir() === 'rtl';
+    const isRtl = this.matches(':dir(rtl)');
 
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
@@ -342,12 +344,42 @@ export default class SynTabGroup extends SynergyElement {
 
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs({ includeDisabled: false });
+    this.tabs = this.getAllTabs();
+    this.focusableTabs = this.tabs.filter(el => !el.disabled);
+
     this.panels = this.getAllPanels();
     this.syncIndicator();
 
     // After updating, show or hide scroll controls as needed
     this.updateComplete.then(() => this.updateScrollControls());
+  }
+
+  private findNextFocusableTab(currentIndex: number, direction: 'forward' | 'backward') {
+    let nextTab = null;
+    const iterator = direction === 'forward' ? 1 : -1;
+    let nextIndex = currentIndex + iterator;
+
+    while (currentIndex < this.tabs.length) {
+      nextTab = this.tabs[nextIndex] || null;
+
+      if (nextTab === null) {
+        // This is where wrapping happens. If we're moving forward and get to the end, then we jump to the beginning. If we're moving backward and get to the start, then we jump to the end.
+        if (direction === 'forward') {
+          nextTab = this.focusableTabs[0];
+        } else {
+          nextTab = this.focusableTabs[this.focusableTabs.length - 1];
+        }
+        break;
+      }
+
+      if (!nextTab.disabled) {
+        break;
+      }
+
+      nextIndex += iterator;
+    }
+
+    return nextTab;
   }
 
   @watch('noScrollControls', { waitUntilFirstUpdate: true })

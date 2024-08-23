@@ -1,3 +1,38 @@
+# [@synergy-design-system/components-v2.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.6.0...components/2.7.0) (2024-08-23)
+
+
+### Features
+
+* ✨ Upgrade packages to latest versions ([#592](https://github.com/synergy-design-system/synergy-design-system/issues/592)) ([e43c563](https://github.com/synergy-design-system/synergy-design-system/commit/e43c5630b6c43ef855af6815604c7649376104ee)), closes [#2078](https://github.com/synergy-design-system/synergy-design-system/issues/2078) [#2063](https://github.com/synergy-design-system/synergy-design-system/issues/2063) [#2041](https://github.com/synergy-design-system/synergy-design-system/issues/2041) [#2041](https://github.com/synergy-design-system/synergy-design-system/issues/2041) [#2116](https://github.com/synergy-design-system/synergy-design-system/issues/2116) [#2121](https://github.com/synergy-design-system/synergy-design-system/issues/2121) [#1992](https://github.com/synergy-design-system/synergy-design-system/issues/1992) [#2079](https://github.com/synergy-design-system/synergy-design-system/issues/2079) [#2009](https://github.com/synergy-design-system/synergy-design-system/issues/2009) [#1967](https://github.com/synergy-design-system/synergy-design-system/issues/1967) [#1947](https://github.com/synergy-design-system/synergy-design-system/issues/1947) [#1974](https://github.com/synergy-design-system/synergy-design-system/issues/1974) [#1985](https://github.com/synergy-design-system/synergy-design-system/issues/1985) [#2001](https://github.com/synergy-design-system/synergy-design-system/issues/2001)
+
+# [@synergy-design-system/components-v2.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.5.0...components/2.6.0) (2024-08-23)
+
+
+### Features
+
+* ✨ syn-range ([#551](https://github.com/synergy-design-system/synergy-design-system/issues/551)) ([ee0f1fa](https://github.com/synergy-design-system/synergy-design-system/commit/ee0f1fa27dbaf8fe2fac840fba9cc2274715e377))
+
+# [@synergy-design-system/components-v2.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.3...components/2.5.0) (2024-08-19)
+
+
+### Features
+
+* ✨ create syn-file ([#563](https://github.com/synergy-design-system/synergy-design-system/issues/563)) ([181f121](https://github.com/synergy-design-system/synergy-design-system/commit/181f121ee87e43ba0381ec4288470d3414467d8e))
+
+# [@synergy-design-system/components-v2.4.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.2...components/2.4.3) (2024-07-24)
+
+
+### Bug Fixes
+
+* 🤔 syn-side-nav and syn-details may throw an error when unmounted too quick ([#565](https://github.com/synergy-design-system/synergy-design-system/issues/565)) ([c308e28](https://github.com/synergy-design-system/synergy-design-system/commit/c308e28cd3dbdd452273b1c1d80344c3f378f1dc))
+
+# [@synergy-design-system/components-v2.4.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.1...components/2.4.2) (2024-07-17)
+
+
+### Bug Fixes
+
+* 🤔 Typescript error on vue components with no properties ([#558](https://github.com/synergy-design-system/synergy-design-system/issues/558)) ([8564df1](https://github.com/synergy-design-system/synergy-design-system/commit/8564df1880fc6e17b6dc077a1cde7c4262705699))
+
 # [@synergy-design-system/components-v2.4.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.4.0...components/2.4.1) (2024-06-25)
 
 

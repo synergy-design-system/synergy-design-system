@@ -15,7 +15,13 @@
     "vendorism",
     "slotchange",
     "optiongroup",
-    "combobox"
+    "combobox",
+    "labelledby",
+    "valuenow",
+    "valuetext",
+    "aria-describedby",
+    "droparea",
+    "codepen"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

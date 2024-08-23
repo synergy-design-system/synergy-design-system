@@ -137,7 +137,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       toAttribute: (value: string[]) => value.join(' '),
     },
   })
-  value: string | string[] = '';
+    value: string | string[] = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue: string | string[] = '';
@@ -186,7 +186,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ type: Number, reflect: true }) threshold = 1;
 
   /** Show combobox on focus event. Focus event will ignore the `threshold` property and will always show the list. */
-  //TODO: better naming?
+  // TODO: better naming?
   @property({ attribute: 'show-on-focus', type: Boolean, reflect: true }) showOnFocus = false;
 
   /**
@@ -277,9 +277,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.emit('syn-focus');
     // Only open it, when there are combobox options
     // if (this.showOnFocus) {
-      // TODO: if there is already something types in, do we need to only show the valid selections?
-      // this.createAllComboboxOptions();
-      // this.updateComplete.then(() => this.open = true);
+    // TODO: if there is already something types in, do we need to only show the valid selections?
+    // this.createAllComboboxOptions();
+    // this.updateComplete.then(() => this.open = true);
     // }
   }
 

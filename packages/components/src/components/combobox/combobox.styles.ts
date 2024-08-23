@@ -1,6 +1,8 @@
 import { css } from 'lit';
 
 export default css`
+  /* stylelint-disable no-descending-specificity */
+
   :host {
     display: block;
   }
@@ -74,6 +76,7 @@ export default css`
   }
 
   .combobox__display-input {
+    -webkit-appearance: none;
     background: none;
     border: none;
     color: var(--syn-input-color);
@@ -83,7 +86,6 @@ export default css`
     overflow: hidden;
     padding: 0;
     position: relative;
-    -webkit-appearance: none;
     width: 100%;
   }
 
@@ -288,23 +290,24 @@ export default css`
 
   /* Listbox */
   .combobox__listbox {
-    display: block;
-    position: relative;
-    font-family: var(--syn-font-sans);
-    font-size: var(--syn-font-size-medium);
-    font-weight: var(--syn-font-weight-normal);
-    box-shadow: var(--syn-shadow-medium);
     background: var(--syn-panel-background-color);
     border: solid var(--syn-panel-border-width) var(--syn-panel-border-color);
     border-radius: var(--syn-border-radius-none);
-    padding-block: var(--syn-spacing-x-small);
-    padding-inline: 0;
-    overflow: auto;
-    overscroll-behavior: none;
+    box-shadow: var(--syn-shadow-medium);
+    display: block;
+    font-family: var(--syn-font-sans);
+    font-size: var(--syn-font-size-medium);
+    font-weight: var(--syn-font-weight-normal);
 
     /* Make sure it adheres to the popup's auto size */
-    max-width: var(--auto-size-available-width);
     max-height: var(--auto-size-available-height);
+    max-width: var(--auto-size-available-width);
+    overflow: auto;
+    overscroll-behavior: none;
+    padding-block: var(--syn-spacing-x-small);
+    padding-inline: 0;
+    position: relative;
+
   }
 
   .combobox__listbox ::slotted(syn-divider) {
@@ -312,9 +315,9 @@ export default css`
   }
 
   .combobox__listbox ::slotted(small) {
+    color: var(--syn-color-neutral-500);
     font-size: var(--syn-font-size-small);
     font-weight: var(--syn-font-weight-semibold);
-    color: var(--syn-color-neutral-500);
     padding-block: var(--syn-spacing-x-small);
     padding-inline: var(--syn-spacing-x-large);
   }
@@ -341,4 +344,6 @@ export default css`
     .select__listbox ::slotted(syn-optgroup:first-of-type) {
     --display-divider: none;
   }
+
+  /* stylelint-enable no-descending-specificity */
 `;

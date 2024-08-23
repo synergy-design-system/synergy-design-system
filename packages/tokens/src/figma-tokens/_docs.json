@@ -2089,13 +2089,13 @@
           "type": "text"
         }
       },
-      "prefix": {
+      "prefix-suffix": {
         "title": {
-          "value": "Prefix Icons",
+          "value": "Prefix and Suffix Icons",
           "type": "text"
         },
         "description": {
-          "value": "Use the prefix slot to prepend an icon to the control.",
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       },

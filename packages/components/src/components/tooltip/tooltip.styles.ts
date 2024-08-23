@@ -53,6 +53,8 @@ export default css`
     font-size: var(--syn-tooltip-font-size);
     font-weight: var(--syn-tooltip-font-weight);
     line-height: var(--syn-tooltip-line-height);
+    text-align: start;
+    white-space: normal;
     color: var(--syn-tooltip-color);
     padding: var(--syn-tooltip-padding);
     pointer-events: none;

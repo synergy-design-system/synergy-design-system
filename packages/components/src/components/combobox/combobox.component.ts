@@ -28,8 +28,6 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
-import selectStyles from '../select/select.styles.js';
-import selectCustomStyles from '../select/select.custom.styles.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
 import styles from './combobox.styles.js';
@@ -37,8 +35,8 @@ import { filterOnlyOptions, getAssignedElementsForSlot } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 
 /**
- * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @summary Comboboxes allow you to choose items from a menu of predefined options.
+ * @documentation https://synergy.style/components/combobox
  * @status stable
  * @since 2.0
  *
@@ -57,15 +55,15 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @event syn-input - Emitted when the control receives input.
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-blur - Emitted when the control loses focus.
- * @event syn-show - Emitted when the select's menu opens.
- * @event syn-after-show - Emitted after the select's menu opens and all animations are complete.
- * @event syn-hide - Emitted when the select's menu closes.
- * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
+ * @event syn-show - Emitted when the combobox's menu opens.
+ * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
+ * @event syn-hide - Emitted when the combobox's menu closes.
+ * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The select's wrapper.
+ * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
@@ -81,7 +79,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  */
 export default class SynCombobox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, selectStyles, selectCustomStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
 
   static dependencies = {
     'syn-icon': SynIcon,
@@ -99,15 +97,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private closeWatcher: CloseWatcher | null;
 
-  @query('.select') popup: SynPopup;
+  @query('.combobox') popup: SynPopup;
 
-  @query('.select__combobox') combobox: HTMLSlotElement;
+  @query('.combobox__inputs') combobox: HTMLSlotElement;
 
-  @query('.select__display-input') displayInput: HTMLInputElement;
+  @query('.combobox__display-input') displayInput: HTMLInputElement;
 
-  @query('.select__value-input') valueInput: HTMLInputElement;
+  @query('.combobox__value-input') valueInput: HTMLInputElement;
 
-  @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.combobox__listbox') listbox: HTMLSlotElement;
 
   @query('.listbox__options') filteredWrapper: HTMLSlotElement;
 
@@ -129,7 +127,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property() name = '';
 
   /**
-   * The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the
+   * The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the
    * value attribute will be a space-delimited list of values based on the options selected, and the value property will
    * be an array. **For this reason, values must not contain spaces.**
    */
@@ -144,16 +142,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue: string | string[] = '';
 
-  /** The select's size. */
+  /** The combobox's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** Placeholder text to show as a hint when the select is empty. */
+  /** Placeholder text to show as a hint when the combobox is empty. */
   @property() placeholder = '';
 
-  /** Disables the select control. */
+  /** Disables the combobox control. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Adds a clear button when the select is not empty. */
+  /** Adds a clear button when the combobox is not empty. */
   @property({ type: Boolean }) clearable = false;
 
   /**
@@ -162,16 +160,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   @property({ type: Boolean }) hoist = false;
 
-  /** The select's label. If you need to display HTML, use the `label` slot instead. */
+  /** The combobox's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
   /**
-   * The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox
+   * The preferred placement of the combobox's menu. Note that the actual placement may vary as needed to keep the listbox
    * inside of the viewport.
    */
   @property({ reflect: true }) placement: 'top' | 'bottom' = 'bottom';
 
-  /** The select's help text. If you need to display HTML, use the `help-text` slot instead. */
+  /** The combobox's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
   /**
@@ -181,7 +179,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   @property({ reflect: true }) form = '';
 
-  /** The select's required attribute. */
+  /** The combobox's required attribute. */
   @property({ type: Boolean, reflect: true }) required = false;
 
   /** The minimum length of the text required to show the combobox. */
@@ -291,7 +289,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private handleDocumentFocusIn = (event: KeyboardEvent) => {
-    // Close when focusing out of the select
+    // Close when focusing out of the combobox
     const path = event.composedPath();
     if (this && !path.includes(this)) {
       this.hide();
@@ -300,7 +298,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private handleDocumentKeyDown = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
-    const isClearButton = target.closest('.select__clear') !== null;
+    const isClearButton = target.closest('.combobox__clear') !== null;
     const isIconButton = target.closest('syn-icon-button') !== null;
 
     // Ignore presses when the target is an icon button (e.g. the remove button in <syn-tag>)
@@ -387,7 +385,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   };
 
   private handleDocumentMouseDown = (event: MouseEvent) => {
-    // Close when clicking outside of the select
+    // Close when clicking outside of the combobox
     const path = event.composedPath();
     if (this && !path.includes(this)) {
       this.hide();
@@ -571,7 +569,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.listbox.hidden = false;
       this.popup.active = true;
 
-      const { keyframes, options } = getAnimation(this, 'select.show', { dir: this.localize.dir() });
+      const { keyframes, options } = getAnimation(this, 'combobox.show', { dir: this.localize.dir() });
       await animateTo(this.popup.popup, keyframes, options);
 
       this.emit('syn-after-show');
@@ -582,7 +580,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.removeOpenListeners();
 
       await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'select.hide', { dir: this.localize.dir() });
+      const { keyframes, options } = getAnimation(this, 'combobox.hide', { dir: this.localize.dir() });
       await animateTo(this.popup.popup, keyframes, options);
       this.listbox.hidden = true;
       this.popup.active = false;
@@ -724,17 +722,17 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         <div part="form-control-input" class="form-control-input">
           <syn-popup
             class=${classMap({
-              select: true,
-              'select--standard': true,
-              'select--open': this.open,
-              'select--disabled': this.disabled,
-              'select--focused': this.hasFocus,
-              'select--placeholder-visible': isPlaceholderVisible,
-              'select--top': this.placement === 'top',
-              'select--bottom': this.placement === 'bottom',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large',
+              combobox: true,
+              'combobox--standard': true,
+              'combobox--open': this.open,
+              'combobox--disabled': this.disabled,
+              'combobox--focused': this.hasFocus,
+              'combobox--placeholder-visible': isPlaceholderVisible,
+              'combobox--top': this.placement === 'top',
+              'combobox--bottom': this.placement === 'bottom',
+              'combobox--small': this.size === 'small',
+              'combobox--medium': this.size === 'medium',
+              'combobox--large': this.size === 'large',
             })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
@@ -746,16 +744,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
           >
             <div
               part="combobox"
-              class="select__combobox"
+              class="combobox__inputs"
               slot="anchor"
               @keydown=${this.handleComboboxKeyDown}
               @mousedown=${this.handleComboboxMouseDown}
             >
-              <slot part="prefix" name="prefix" class="select__prefix"></slot>
+              <slot part="prefix" name="prefix" class="combobox__prefix"></slot>
 
               <input
                 part="display-input"
-                class="select__display-input"
+                class="combobox__display-input"
                 type="text"
                 placeholder=${this.placeholder}
                 .disabled=${this.disabled}
@@ -781,7 +779,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               />
 
               <input
-                class="select__value-input"
+                class="combobox__value-input"
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
@@ -796,7 +794,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         ? html`
                     <button
                       part="clear-button"
-                      class="select__clear"
+                      class="combobox__clear"
                       type="button"
                       aria-label=${this.localize.term('clearEntry')}
                       @mousedown=${this.preventLoosingFocus}
@@ -817,7 +815,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               aria-expanded=${this.open ? 'true' : 'false'}
               aria-labelledby="label"
               part="listbox"
-              class="select__listbox"
+              class="combobox__listbox"
               tabindex="-1"
               @mousedown=${this.preventLoosingFocus}
               @mouseup=${this.handleOptionClick}
@@ -843,7 +841,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 }
 
-setDefaultAnimation('select.show', {
+setDefaultAnimation('combobox.show', {
   keyframes: [
     { opacity: 0, scale: 0.9 },
     { opacity: 1, scale: 1 },
@@ -851,7 +849,7 @@ setDefaultAnimation('select.show', {
   options: { duration: 100, easing: 'ease' },
 });
 
-setDefaultAnimation('select.hide', {
+setDefaultAnimation('combobox.hide', {
   keyframes: [
     { opacity: 1, scale: 1 },
     { opacity: 0, scale: 0.9 },

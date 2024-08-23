@@ -115,7 +115,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() displayLabel = '';
 
-  @state() currentOption: SynOption;
+  @state() currentOption: SynOption | undefined;
 
   @state() selectedOptions: SynOption[] = [];
 
@@ -325,6 +325,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // If it's not open, open it
       if (!this.open) {
+        const inputValue = this.displayInput.value;
+        this.createComboboxOptionsFromQuery(inputValue);
         this.show();
         return;
       }
@@ -350,7 +352,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       const filteredOptions = this.getAllFilteredOptions();
 
-      const currentIndex = filteredOptions.indexOf(this.currentOption);
+      const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
       let newIndex = Math.max(0, currentIndex);
 
       // Prevent scrolling
@@ -358,6 +360,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // Open it
       if (!this.open) {
+        const inputValue = this.displayInput.value;
+        this.createComboboxOptionsFromQuery(inputValue);
         this.show();
       }
 
@@ -369,7 +373,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         if (newIndex < 0) newIndex = filteredOptions.length - 1;
       }
       this.setCurrentOption(filteredOptions[newIndex]);
-      scrollIntoView(this.currentOption, this.listbox, 'vertical', 'auto');
+      scrollIntoView(this.currentOption!, this.listbox, 'vertical', 'auto');
     }
 
     // Move cursor
@@ -431,7 +435,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     event.stopPropagation();
 
     if (this.value !== '') {
+      this.value = '';
+      this.displayInput.value = '';
       this.setSelectedOptions([]);
+      // TODO: clearify if the listbox should stay open like this or be closed
+      this.createComboboxOptionsFromQuery('');
 
       this.displayInput.focus({ preventScroll: true });
 
@@ -496,6 +504,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       option.current = true;
       option.setAttribute('aria-selected', 'true');
       this.displayInput.setAttribute('aria-activedescendant', option.id);
+    } else {
+      this.currentOption = undefined;
     }
   }
 
@@ -523,8 +533,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.selectedOptions = this.getAllFilteredOptions().filter(el => el.selected);
 
     // Update the value and display label
-    this.value = this.selectedOptions[0]?.value ?? '';
-    this.displayLabel = this.selectedOptions[0]?.getTextLabel() ?? '';
+    this.value = this.selectedOptions[0]?.value ?? this.displayInput.value;
+    this.displayLabel = this.selectedOptions[0]?.getTextLabel() ?? this.displayInput.value;
 
     // Update validity
     this.updateComplete.then(() => {

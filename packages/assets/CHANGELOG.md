@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.7.0...assets/1.8.0) (2024-08-23)
+
+
+### Features
+
+* ✨ Upgrade packages to latest versions ([#592](https://github.com/synergy-design-system/synergy-design-system/issues/592)) ([e43c563](https://github.com/synergy-design-system/synergy-design-system/commit/e43c5630b6c43ef855af6815604c7649376104ee)), closes [#2078](https://github.com/synergy-design-system/synergy-design-system/issues/2078) [#2063](https://github.com/synergy-design-system/synergy-design-system/issues/2063) [#2041](https://github.com/synergy-design-system/synergy-design-system/issues/2041) [#2041](https://github.com/synergy-design-system/synergy-design-system/issues/2041) [#2116](https://github.com/synergy-design-system/synergy-design-system/issues/2116) [#2121](https://github.com/synergy-design-system/synergy-design-system/issues/2121) [#1992](https://github.com/synergy-design-system/synergy-design-system/issues/1992) [#2079](https://github.com/synergy-design-system/synergy-design-system/issues/2079) [#2009](https://github.com/synergy-design-system/synergy-design-system/issues/2009) [#1967](https://github.com/synergy-design-system/synergy-design-system/issues/1967) [#1947](https://github.com/synergy-design-system/synergy-design-system/issues/1947) [#1974](https://github.com/synergy-design-system/synergy-design-system/issues/1974) [#1985](https://github.com/synergy-design-system/synergy-design-system/issues/1985) [#2001](https://github.com/synergy-design-system/synergy-design-system/issues/2001)
+
 # [@synergy-design-system/assets-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.6.0...assets/1.7.0) (2024-08-19)
 
 

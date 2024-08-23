@@ -36,6 +36,8 @@ export { default as SynProgressRing } from './components/progress-ring/progress-
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';
 export { default as SynRadio } from './components/radio/radio.js';
+export { default as SynRangeTick } from './components/range-tick/range-tick.js';
+export { default as SynRange } from './components/range/range.js';
 export { default as SynSelect } from './components/select/select.js';
 export { default as SynSideNav } from './components/side-nav/side-nav.js';
 export { default as SynSpinner } from './components/spinner/spinner.js';

@@ -1775,13 +1775,197 @@
       }
     },
     "range": {
-      "description": {
-        "value": "Ranges allow the user to select a single value within a given range using a slider.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Ranges allow the user to select values within a given range using a thumb.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Range",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Range",
-        "type": "text"
+      "labels": {
+        "description": {
+          "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "description": {
+          "value": "Add descriptive help text to a range with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a range’s size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable a range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "description": {
+          "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Prefix and Suffix",
+          "type": "text"
+        }
+      },
+      "custom-track-colors": {
+        "description": {
+          "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Track Colors",
+          "type": "text"
+        }
+      },
+      "custom-track-offset": {
+        "description": {
+          "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Track Offset",
+          "type": "text"
+        }
+      },
+      "multi-knob": {
+        "description": {
+          "value": "You can add multiple range-thumbs to your range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Multi thumb",
+          "type": "text"
+        }
+      },
+      "multi-knob-restrict-movement": {
+        "description": {
+          "value": "You can prevent the thumbs from overlapping by listening to the provided `syn-move` event.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Multi thumb with restricted movement",
+          "type": "text"
+        }
+      },
+      "ticks": {
+        "default": {
+          "description": {
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+            "type": "text"
+          },
+          "title": {
+            "value": "Ticks",
+            "type": "text"
+          }
+        },
+        "label": {
+          "title": {
+            "value": "Labels",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the default slot to give the tick a label.",
+            "type": "text"
+          }
+        },
+        "grouping": {
+          "title": {
+            "value": "Grouping",
+            "type": "text"
+          },
+          "description": {
+            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+            "type": "text"
+          }
+        },
+        "subdivision": {
+          "title": {
+            "value": "Subdivision Ticks",
+            "type": "text"
+          },
+          "description": {
+            "value": "It is possible to divide the space between major ticks for finer scale readings.",
+            "type": "text"
+          }
+        }
+      },
+      "tooltip-placement": {
+        "description": {
+          "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tooltip Placement",
+          "type": "text"
+        }
+      },
+      "tooltip-disabled": {
+        "description": {
+          "value": "To disable the tooltip, set tooltip-placement to none.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disable the Tooltip",
+          "type": "text"
+        }
+      },
+      "tooltip-formatter": {
+        "description": {
+          "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Custom Tooltip Formatter",
+          "type": "text"
+        }
       }
     },
     "rating": {

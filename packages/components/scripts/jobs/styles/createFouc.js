@@ -22,6 +22,7 @@ const componentsUsingBlockLayout = [
   'prio-nav',
   'progress-bar',
   'radio-group',
+  'range',
   'select',
   'side-nav',
   'textarea',

@@ -75,7 +75,7 @@ const transformComponent = (path, originalContent) => {
     // isRtl check is no longer needed, as it is used nowhere
     [
       'render() {',
-      "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false },
+      "const isRtl = this.matches(':dir(rtl)');", { preserveStart: true, removePrecedingWhitespace: false },
     ],
 
     // remove 'bottom' placement

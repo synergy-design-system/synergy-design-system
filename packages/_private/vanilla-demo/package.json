@@ -17,10 +17,10 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.0",
-    "stylelint": "^16.3.1",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.10",
-    "vite-plugin-static-copy": "^1.0.3"
+    "stylelint": "^16.8.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1",
+    "vite-plugin-static-copy": "^1.0.6"
   },
   "dependencies": {
     "@synergy-design-system/components": "workspace:*",

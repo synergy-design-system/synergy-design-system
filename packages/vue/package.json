@@ -40,10 +40,10 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "2.5.0",
+  "version": "2.7.0",
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
-    "vue": "^3.4.24"
+    "vue": "^3.4.38"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

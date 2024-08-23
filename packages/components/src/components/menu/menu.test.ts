@@ -14,6 +14,7 @@ import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type { SynSelectEvent } from '../../events/syn-select.js';
 import type SynMenu from './menu.js';
+import type SynMenuItem from '../menu-item/menu-item.component.js';
 
 describe('<syn-menu>', () => {
   it('emits syn-select with the correct event detail when clicking an item', async () => {
@@ -108,24 +109,48 @@ describe('<syn-menu>', () => {
 
     expect(selectHandler).to.not.have.been.called;
   });
-});
 
-// @see https://github.com/synergy-design-system/synergy/issues/1596
-it('Should fire "syn-select" when clicking an element within a menu-item', async () => {
-  // eslint-disable-next-line
-  const selectHandler = sinon.spy(() => {});
+  // @see https://github.com/synergy-design-system/synergy/issues/1596
+  it('Should fire "syn-select" when clicking an element within a menu-item', async () => {
+    // eslint-disable-next-line
+    const selectHandler = sinon.spy(() => {});
 
-  const menu: SynMenu = await fixture(html`
-    <syn-menu>
-      <syn-menu-item>
-        <span>Menu item</span>
-      </syn-menu-item>
-    </syn-menu>
-  `);
+    const menu: SynMenu = await fixture(html`
+      <syn-menu>
+        <syn-menu-item>
+          <span>Menu item</span>
+        </syn-menu-item>
+      </syn-menu>
+    `);
 
-  menu.addEventListener('syn-select', selectHandler);
-  const span = menu.querySelector('span')!;
-  await clickOnElement(span);
+    menu.addEventListener('syn-select', selectHandler);
+    const span = menu.querySelector('span')!;
+    await clickOnElement(span);
 
-  expect(selectHandler).to.have.been.calledOnce;
+    expect(selectHandler).to.have.been.calledOnce;
+  });
+
+  // @see https://github.com/synergy-design-system/synergy/issues/2115
+  it('Should be able to check a checkbox menu item in a submenu', async () => {
+    const menu: SynMenu = await fixture(html`
+      <syn-menu style="max-width: 200px;">
+        <syn-menu-item>
+          <span>Menu item</span>
+          <syn-menu slot="submenu">
+            <syn-menu-item type="checkbox" checked>Checkbox</syn-menu-item>
+          </syn-menu>
+        </syn-menu-item>
+      </syn-menu>
+    `);
+
+    const menuItem = menu.querySelector<SynMenuItem>('syn-menu-item')!;
+    const checkbox = menu.querySelector<SynMenuItem>("[type='checkbox']")!;
+
+    expect(checkbox.checked).to.equal(true);
+    await clickOnElement(menuItem); // Focus the menu item
+    await sendKeys({ press: 'ArrowRight' }); // Open the submenu
+    await clickOnElement(checkbox); // Click the checkbox
+    await checkbox.updateComplete;
+    expect(checkbox.checked).to.equal(false);
+  });
 });

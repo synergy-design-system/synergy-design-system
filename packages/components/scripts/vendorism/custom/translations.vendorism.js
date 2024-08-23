@@ -45,6 +45,14 @@ const translations = {
     de: 'Menü öffnen',
     en: 'Open menu',
   },
+  rangeMax: {
+    de: 'Maximum',
+    en: 'Maximum',
+  },
+  rangeMin: {
+    de: 'Minimum',
+    en: 'Minimum',
+  },
   sideNav: {
     de: 'Seitennavigation',
     en: 'Side navigation',

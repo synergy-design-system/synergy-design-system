@@ -181,7 +181,44 @@
                   </syn-optgroup>
                 </syn-select>
               </fieldset>
-              <!-- / Topics -->
+              <!-- /Topics -->
+
+              <syn-divider></syn-divider>
+
+              <!-- Happiness -->
+              <fieldset id="happiness-fields" class="syn-fieldset">
+                <legend class="syn-legend">Happiness</legend>
+                <syn-range
+                  id="happiness"
+                  label="How happy are you with the Synergy Design System?"
+                  max="10"
+                  min="0"
+                  value="5"
+                  name="happiness"
+                >
+                  <nav slot="ticks">
+                    <syn-range-tick>🤮</syn-range-tick>
+                    <syn-range-tick>🥱</syn-range-tick>
+                    <syn-range-tick>😍</syn-range-tick>
+                  </nav>
+                </syn-range>
+
+                <syn-range
+                  id="donations"
+                  label="I would donate between"
+                  max="6000"
+                  min="0"
+                  value="2000 4000"
+                  name="donations"
+                >
+                  <nav slot="ticks">
+                    <syn-range-tick>0 €</syn-range-tick>
+                    <syn-range-tick>6.000 €</syn-range-tick>
+                  </nav>
+                </syn-range>
+
+              </fieldset>
+              <!-- /.Happiness -->
 
               <syn-divider></syn-divider>
 

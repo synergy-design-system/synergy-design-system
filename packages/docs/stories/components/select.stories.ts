@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/select/select';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynButton, SynSelect } from '@synergy-design-system/components';
+import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
 import { openSelect } from '../../src/helpers/select.js';
@@ -306,25 +306,20 @@ export const Invalid: Story = {
     },
   },
   play: async ({ canvasElement }) => {
-    try {
-      const form = canvasElement.querySelector('form')!;
-      const select = form.querySelector('syn-select');
-      const button = form.querySelector('syn-button') as SynButton;
+    const form = canvasElement.querySelector('form')!;
+    const select = form.querySelector('syn-select');
+    const button = form.querySelector('syn-button');
 
-      if (button && select) {
-        // make sure to always fire both events:
-        // 1. userEvent.click is needed for storybooks play function to register
-        // 2. button.click is needed to really click the button
-        // userEvent.click works on native elements only
-        await userEvent.click(button);
-        button.click();
-      }
-    } catch (error) {
-      console.error('Error in play function:', error);
+    if (button && select) {
+      // make sure to always fire both events:
+      // 1. userEvent.click is needed for storybooks play function to register
+      // 2. button.click is needed to really click the button
+      // userEvent.click works on native elements only
+      await userEvent.click(button);
+      button.click();
     }
   },
   render: () => html`
-
     <form class="custom-validity">
       <syn-select label="Select one" required>
         <syn-option value="option-1">Option 1</syn-option>
@@ -346,11 +341,11 @@ export const Invalid: Story = {
   `,
 };
 
-export const PrefixIcons: Story = {
+export const PrefixSuffixIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('select', 'prefix'),
+        story: generateStoryDescription('select', 'prefix-suffix'),
       },
     },
   },
@@ -360,6 +355,7 @@ export const PrefixIcons: Story = {
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-select>
     <br />
     <syn-select placeholder="Medium" size="medium" clearable>
@@ -367,6 +363,7 @@ export const PrefixIcons: Story = {
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-select>
     <br />
     <syn-select placeholder="Large" size="large" clearable>
@@ -374,6 +371,7 @@ export const PrefixIcons: Story = {
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-select>
   `,
 };
@@ -449,6 +447,7 @@ const ScreenshotStoryDefault: Story = {
       <syn-option value="Option_1">Option 1</syn-option>
       <syn-option value="Option_2">Option 2</syn-option>
       <syn-option value="Option_3">Option 3</syn-option>
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-select>
   `,
 };

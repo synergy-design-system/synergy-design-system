@@ -25,7 +25,8 @@ const defaultSelectors = [
   'syn-select',
   'syn-radio-group',
   'syn-button-group',
-];
+  'syn-range',
+].sort();
 
 /**
  * List of file upload enabled elements

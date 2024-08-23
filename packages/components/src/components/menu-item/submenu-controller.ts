@@ -9,7 +9,6 @@
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { type HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
-import { type LocalizeController } from '../../utilities/localize.js';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type SynMenuItem from './menu-item.js';
 import type SynPopup from '../popup/popup.js';
@@ -23,17 +22,11 @@ export class SubmenuController implements ReactiveController {
   private isPopupConnected = false;
   private skidding = 0;
   private readonly hasSlotController: HasSlotController;
-  private readonly localize: LocalizeController;
   private readonly submenuOpenDelay = 100;
 
-  constructor(
-    host: ReactiveControllerHost & SynMenuItem,
-    hasSlotController: HasSlotController,
-    localize: LocalizeController
-  ) {
+  constructor(host: ReactiveControllerHost & SynMenuItem, hasSlotController: HasSlotController) {
     (this.host = host).addController(this);
     this.hasSlotController = hasSlotController;
-    this.localize = localize;
   }
 
   hostConnected() {
@@ -210,8 +203,7 @@ export class SubmenuController implements ReactiveController {
   private handlePopupReposition = () => {
     const submenuSlot: HTMLSlotElement | null = this.host.renderRoot.querySelector("slot[name='submenu']");
     const menu = submenuSlot?.assignedElements({ flatten: true }).filter(el => el.localName === 'syn-menu')[0];
-    const isRtl = this.localize.dir() === 'rtl';
-
+    const isRtl = this.host.matches(':dir(rtl)');
     if (!menu) {
       return;
     }
@@ -275,7 +267,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   renderSubmenu() {
-    const isLtr = this.localize.dir() === 'ltr';
+    const isRtl = this.host.matches(':dir(rtl)');
 
     // Always render the slot, but conditionally render the outer <syn-popup>
     if (!this.isConnected) {
@@ -285,12 +277,14 @@ export class SubmenuController implements ReactiveController {
     return html`
       <syn-popup
         ${ref(this.popupRef)}
-        placement=${isLtr ? 'right-start' : 'left-start'}
+        placement=${isRtl ? 'left-start' : 'right-start'}
         anchor="anchor"
         flip
         flip-fallback-strategy="best-fit"
         skidding="${this.skidding}"
         strategy="fixed"
+        auto-size="vertical"
+        auto-size-padding="10"
       >
         <slot name="submenu"></slot>
       </syn-popup>

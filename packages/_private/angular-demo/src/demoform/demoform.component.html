@@ -138,6 +138,42 @@
 
   <syn-divider />
 
+  <!-- Happiness -->
+  <demo-fieldset id="happiness-fields" legend="Happiness">
+    <syn-range
+      formControlName="happiness"
+      id="happiness"
+      label="How happy are you with the Synergy Design System?"
+      [max]=10
+      [min]=0
+      name="happiness"
+    >
+      <nav slot="ticks">
+        <syn-range-tick>🤮</syn-range-tick>
+        <syn-range-tick>🥱</syn-range-tick>
+        <syn-range-tick>😍</syn-range-tick>
+      </nav>
+    </syn-range>
+
+    <syn-range
+      formControlName="donations"
+      id="donations"
+      label="I would donate between"
+      [max]="6000"
+      [min]="0"
+      name="donations"
+      #donationRef
+    >
+      <nav slot="ticks">
+        <syn-range-tick>0 €</syn-range-tick>
+        <syn-range-tick>6.000 €</syn-range-tick>
+      </nav>
+    </syn-range>
+  </demo-fieldset>
+  <!-- /.Happiness -->
+
+  <syn-divider />
+
   <!-- Marketing -->
   <demo-fieldset legend="Please inform me about the following technologies">
     <syn-checkbox

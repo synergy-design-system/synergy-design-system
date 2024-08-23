@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {
   SynVueButton,
   SynVueCheckbox,
@@ -9,6 +9,8 @@ import {
   SynVueOptgroup,
   SynVueOption,
   SynVueRadio,
+  SynVueRange,
+  SynVueRangeTick,
   SynVueRadioGroup,
   SynVueSelect,
   SynVueSwitch,
@@ -21,9 +23,11 @@ const initialFormData = {
   code: '',
   comment: '',
   date: '',
+  donations: '2000 4000',
   email: '',
   files: undefined,
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -42,6 +46,20 @@ const formData = ref({
 });
 
 const formRef = ref<HTMLFormElement>();
+
+// Custom formatter for donations
+const donationsRef = ref<InstanceType<typeof SynVueRange> | null>(null);
+
+onMounted(() => {
+  const formatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
+
+  // Add a custom formatter for the donation field
+  donationsRef.value!.nativeElement!.tooltipFormatter = value => formatter.format(value);
+});
 
 const reset = () => {
   formData.value = {
@@ -210,6 +228,42 @@ const synChange = () => {
 
     <SynVueDivider />
 
+    <!-- Happiness -->
+    <DemoFieldset id="happiness-fields" legend="Happiness">
+      <SynVueRange
+        id="happiness"
+        label="How happy are you with the Synergy Design System?"
+        :max="10"
+        :min="0"
+        name="happiness"
+        v-model="formData.happiness"
+      >
+        <nav slot="ticks">
+          <SynVueRangeTick>🤮</SynVueRangeTick>
+          <SynVueRangeTick>🥱</SynVueRangeTick>
+          <SynVueRangeTick>😍</SynVueRangeTick>
+        </nav>
+      </SynVueRange>
+
+      <SynVueRange
+        id="donations"
+        label="I would donate between"
+        :max="6000"
+        :min="0"
+        name="donations"
+        v-model="formData.donations"
+        ref="donationsRef"
+      >
+        <nav slot="ticks">
+          <syn-range-tick>0 €</syn-range-tick>
+          <syn-range-tick>6.000 €</syn-range-tick>
+        </nav>
+      </SynVueRange>
+    </DemoFieldset>
+    <!-- /.Happiness -->
+
+    <SynVueDivider />
+
     <!-- Marketing -->
     <DemoFieldset legend="Please inform me about the following technologies">
       <SynVueCheckbox
@@ -320,6 +374,12 @@ form .syn-fieldset:last-of-type {
 }
 
 /* Special overrides */
+#happiness-fields syn-range nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);

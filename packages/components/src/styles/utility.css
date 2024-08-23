@@ -14,7 +14,10 @@
 
 @supports (scrollbar-gutter: stable) {
   .syn-scroll-lock {
-    scrollbar-gutter: stable !important;
+    scrollbar-gutter: var(--syn-scroll-lock-gutter) !important;
+  }
+
+  .syn-scroll-lock body {
     overflow: hidden !important;
   }
 }

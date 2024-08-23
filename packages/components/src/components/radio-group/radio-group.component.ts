@@ -143,7 +143,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     const radios = this.getAllRadios();
     const oldValue = this.value;
 
-    if (target.disabled) {
+    if (!target || target.disabled) {
       return;
     }
 
@@ -179,7 +179,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       radio.checked = false;
 
       if (!this.hasButtonGroup) {
-        radio.tabIndex = -1;
+        radio.setAttribute('tabindex', '-1');
       }
     });
 
@@ -187,7 +187,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     radios[index].checked = true;
 
     if (!this.hasButtonGroup) {
-      radios[index].tabIndex = 0;
+      radios[index].setAttribute('tabindex', '0');
       radios[index].focus();
     } else {
       radios[index].shadowRoot!.querySelector('button')!.focus();
@@ -236,10 +236,10 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         const buttonRadio = radios[0].shadowRoot?.querySelector('button');
 
         if (buttonRadio) {
-          buttonRadio.tabIndex = 0;
+          buttonRadio.setAttribute('tabindex', '0');
         }
       } else {
-        radios[0].tabIndex = 0;
+        radios[0].setAttribute('tabindex', '0');
       }
     }
 

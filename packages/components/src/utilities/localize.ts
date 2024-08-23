@@ -34,6 +34,8 @@ export interface Translation extends DefaultTranslation {
   notification: string;
   numFilesSelected: (num: number) => string;
   openMenu: string;
+  rangeMax: string;
+  rangeMin: string;
   sideNav: string;
   success: string;
   warning: string;

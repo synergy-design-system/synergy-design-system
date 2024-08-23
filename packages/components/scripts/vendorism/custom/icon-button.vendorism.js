@@ -28,9 +28,7 @@ export const vendorIconButton = (path, content) => {
   const modifiers = `'icon-button--focused': this.hasFocus,
           'icon-button--small': this.size === 'small',
           'icon-button--medium': this.size === 'medium',
-          'icon-button--large': this.size === 'large',
-          'icon-button--primary': this.color === 'primary',
-          'icon-button--neutral': this.color === 'neutral'`;
+          'icon-button--large': this.size === 'large',`;
   output.content = output.content.replace("'icon-button--focused': this.hasFocus", modifiers);
 
   // Adapt test to work with size property

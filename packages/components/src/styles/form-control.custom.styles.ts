@@ -41,12 +41,10 @@ export default css`
     color: var(--syn-input-help-text-color-error);
    }
 
-    /* DISABLED */
-
+  /* DISABLED */
   :host([disabled]) .form-control--has-label .form-control__label,
   :host([disabled]) .form-control--has-help-text .form-control__help-text {
     cursor: not-allowed;
     opacity: 0.5;
   }
-
 `;

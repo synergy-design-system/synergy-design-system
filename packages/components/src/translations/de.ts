@@ -55,6 +55,8 @@ const translation: Translation = {
       return `${num} Dateien`;
     },
   openMenu: 'Menü öffnen',
+  rangeMax: 'Maximum',
+  rangeMin: 'Minimum',
   sideNav: 'Seitennavigation',
   success: 'Erfolg',
   warning: 'Warnung',

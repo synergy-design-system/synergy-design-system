@@ -1,7 +1,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import history from 'history/browser';
-import type { SynChangeEvent, SynNavItem, SynSwitch } from '@synergy-design-system/components';
+import {
+  type SynChangeEvent,
+  type SynNavItem,
+  type SynRange,
+  type SynSwitch,
+} from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -62,7 +67,21 @@ const initThemeSwitch = async () => {
 };
 
 const initApp = async () => {
-  await customElements.whenDefined('syn-button');
+  await Promise.allSettled([
+    customElements.whenDefined('syn-button'),
+    customElements.whenDefined('syn-range'),
+  ]);
+
+  const formatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
+
+  // Add a custom formatter for the donation field
+  document
+    .querySelector<SynRange>('#donations')!
+    .tooltipFormatter = value => formatter.format(value);
 
   const form = document.querySelector('form')!;
 

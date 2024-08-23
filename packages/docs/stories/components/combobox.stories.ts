@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/autocomplete/autocomplete';
+import '../../../components/src/components/combobox/combobox';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynButton } from '@synergy-design-system/components';
 import { html } from 'lit';
@@ -17,14 +17,14 @@ import {
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-const { args, argTypes } = storybookDefaults('syn-autocomplete');
-const { overrideArgs } = storybookHelpers('syn-autocomplete');
-const { generateTemplate } = storybookTemplate('syn-autocomplete');
+const { args, argTypes } = storybookDefaults('syn-combobox');
+const { overrideArgs } = storybookHelpers('syn-combobox');
+const { generateTemplate } = storybookTemplate('syn-combobox');
 
 const meta: Meta = {
   args,
   argTypes,
-  component: 'syn-autocomplete',
+  component: 'syn-combobox',
   parameters: {
     design: generateFigmaPluginObject('5069-7562'),
     docs: {
@@ -36,7 +36,7 @@ const meta: Meta = {
       },
     },
   },
-  title: 'Components/syn-autocomplete',
+  title: 'Components/syn-combobox',
 };
 export default meta;
 
@@ -51,10 +51,10 @@ const colors = [
   'Red',
   'Orange',
   'Magenta',
-  'Black',
   'White',
   'Purple',
   'Pink',
+  'Black',
   'Brown',
 ].sort();
 
@@ -96,9 +96,13 @@ export const CustomResultItem: Story = {
     },
   },
   render: () => html`
-    <syn-autocomplete label="Custom result item">
+    <syn-combobox label="Custom result item">
      ${createColorOptionsHtml()}
-    </syn-autocomplete>
+    </syn-combobox>
+    <script type="module">
+      const combobox = document.querySelector('syn-combobox');
+      
+    </script>
   `,
 };
 
@@ -111,9 +115,18 @@ export const HighlightQuery: Story = {
     },
   },
   render: () => html`
-    <syn-autocomplete label="Highlight query" highlight>
+    <syn-combobox label="Highlight query">
      ${createColorOptionsHtml()}
-    </syn-autocomplete>
+    </syn-combobox>
+    <script type="module">
+      const combobox = document.querySelector('syn-combobox');
+      combobox.getOption = (option, queryString) => {
+        const mark = document.createElement('mark');
+        mark.textContent = queryString;
+        option.innerHTML = option.innerHTML.replace(new RegExp(queryString, 'i'), mark.outerHTML);
+        return option; 
+      }
+    </script>
   `,
 };
 
@@ -126,9 +139,9 @@ export const OpenOnClick: Story = {
     },
   },
   render: () => html`
-    <syn-autocomplete label="Highlight query" highlight>
+    <syn-combobox label="Highlight query">
      ${createColorOptionsHtml()}
-    </syn-autocomplete>
+    </syn-combobox>
   `,
 };
 
@@ -141,12 +154,12 @@ export const GroupElements: Story = {
     },
   },
   render: () => html`
-    <syn-autocomplete label="Group elements" highlight>
+    <syn-combobox label="Group elements">
       <syn-optgroup label="Colors">
         <syn-option value="Yellow">Yellow</syn-option>
         <syn-option value="Light Green">Light Green</syn-option>
-    </syn-optgroup>
-    </syn-autocomplete>
+      </syn-optgroup>
+    </syn-combobox>
   `,
 };
 
@@ -159,9 +172,9 @@ export const SuggestionContainerHeight: Story = {
     },
   },
   render: () => html`
-    <syn-autocomplete id="max-height" label="Max Height for list" highlight>
+    <syn-combobox id="max-height" label="Max Height for list">
       ${createColorOptionsHtml()}
-    </syn-autocomplete>
+    </syn-combobox>
     <style>
       #max-height::part(listbox) {
         max-height: 112px;

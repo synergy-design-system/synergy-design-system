@@ -8,9 +8,10 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // eslint-disable-next-line import/no-duplicates
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import { css, html } from 'lit';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { defaultValue } from '../../internal/default-value.js';
@@ -108,6 +109,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @query('.select__listbox') listbox: HTMLSlotElement;
 
+  @query('.listbox__options') filteredWrapper: HTMLSlotElement;
+
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   @state() private hasFocus = false;
@@ -120,7 +123,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() open = false;
 
-  /** The name of the autosuggest, submitted as a name/value pair with form data. */
+  @state() filteredOptions: SynOption[] = [];
+
+  /** The name of the combobox, submitted as a name/value pair with form data. */
   @property() name = '';
 
   /**
@@ -179,17 +184,28 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /** The select's required attribute. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  /** The minimum length of the text required to show the autocomplete. */
-  //TODO: better naming? but minLength is already used by the html input
+  /** The minimum length of the text required to show the combobox. */
   @property({ type: Number, reflect: true }) threshold = 1;
 
-  /** Show autocomplete on focus event. Focus event will ignore the `threshold` property and will always show the list. */
+  /** Show combobox on focus event. Focus event will ignore the `threshold` property and will always show the list. */
   //TODO: better naming?
   @property({ attribute: 'show-on-focus', type: Boolean, reflect: true }) showOnFocus = false;
 
-  /** Highlight the search query in the autocomplete list. */
-  //TODO: better naming?
-  @property({ type: Boolean, reflect: true }) highlight = false;
+  /**
+   * A function that customizes the rendered option. The first argument is the option, the second
+   * is the query string, which is typed into the combobox. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+   * the specified value.
+   */
+  @property() getOption: (option: SynOption, queryString: string) => TemplateResult | string | HTMLElement = (option) => option;
+
+  /**
+   * A function used to filter options in the combobox component.
+   *
+   * @param option - The option to be filtered.
+   * @param queryString - The query string used for filtering.
+   * @returns A boolean indicating whether the option should be included in the filtered results.
+   */
+  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryString) => option.getTextLabel().toLowerCase().includes(queryString.toLowerCase());
 
   /** Gets the validity state object */
   get validity() {
@@ -206,6 +222,17 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
+  }
+
+  protected get options() {
+    return this.filteredOptions.map((option) => {
+      if (option.dataset.original === 'true') {
+        return option;
+      }
+      const queryString = this.displayInput.value;
+      const optionHtml = this.getOption(option, queryString);
+      return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
+    });
   }
 
   private addOpenListeners() {
@@ -250,12 +277,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private handleFocus() {
     this.hasFocus = true;
     this.emit('syn-focus');
-    // Only open it, when there are autocomplete options
-    if (this.showOnFocus) {
+    // Only open it, when there are combobox options
+    // if (this.showOnFocus) {
       // TODO: if there is already something types in, do we need to only show the valid selections?
-      this.createAllAutocompleteOptions();
-      this.updateComplete.then(() => this.open = true);
-    }
+      // this.createAllComboboxOptions();
+      // this.updateComplete.then(() => this.open = true);
+    // }
   }
 
   private handleBlur() {
@@ -323,9 +350,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Navigate options
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
-      const visibleOptions = this.getAllOptions().filter(option => !option.hidden);
+      const filteredOptions = this.getAllFilteredOptions();
 
-      const currentIndex = visibleOptions.indexOf(this.currentOption);
+      const currentIndex = filteredOptions.indexOf(this.currentOption);
       let newIndex = Math.max(0, currentIndex);
 
       // Prevent scrolling
@@ -338,12 +365,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       if (event.key === 'ArrowDown') {
         newIndex = currentIndex + 1;
-        if (newIndex > visibleOptions.length - 1) newIndex = 0;
+        if (newIndex > filteredOptions.length - 1) newIndex = 0;
       } else if (event.key === 'ArrowUp') {
         newIndex = currentIndex - 1;
-        if (newIndex < 0) newIndex = visibleOptions.length - 1;
+        if (newIndex < 0) newIndex = filteredOptions.length - 1;
       }
-      this.setCurrentOption(visibleOptions[newIndex]);
+      this.setCurrentOption(filteredOptions[newIndex]);
       scrollIntoView(this.currentOption, this.listbox, 'vertical', 'auto');
     }
 
@@ -371,7 +398,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.focus();
   }
 
-  private handleComboboxMouseDown(event: MouseEvent) {
+  private async handleComboboxMouseDown(event: MouseEvent) {
     const path = event.composedPath();
     const isIconButton = path.some(el => el instanceof Element && el.tagName.toLowerCase() === 'syn-icon-button');
 
@@ -382,11 +409,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     event.preventDefault();
     if (!this.open) {
-      // Only open it, when there are autocomplete options
-      if (this.showOnFocus && this.hasFocus) {
-        this.createAllAutocompleteOptions();
-        this.open = !this.open;
-      }
+      // if (this.showOnFocus && this.hasFocus) {
+      const inputValue = this.displayInput.value;
+      this.createComboboxOptionsFromQuery(inputValue);
+      await this.updateComplete;
+      this.open = !this.open;
     } else {
       this.open = !this.open;
     }
@@ -448,15 +475,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   }
 
-  // Gets an array of all <syn-option> elements
-  private getAllOptions() {
-    return [...this.querySelectorAll<SynOption>('syn-option')];
+  private getAllFilteredOptions() {
+    return [...this.filteredWrapper.querySelectorAll<SynOption>('syn-option')];
   }
 
   // Sets the current option, which is the option the user is currently interacting with (e.g. via keyboard). Only one
   // option may be "current" at a time.
   private setCurrentOption(option: SynOption | null) {
-    const allOptions = this.getAllOptions();
+    const allOptions = this.getAllFilteredOptions();
 
     // Clear selection
     this.displayInput.removeAttribute('aria-activedescendant');
@@ -477,7 +503,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   // Sets the selected option(s)
   private setSelectedOptions(option: SynOption | SynOption[]) {
-    const allOptions = this.getAllOptions();
+    const allOptions = this.getAllFilteredOptions();
     const newSelectedOptions = Array.isArray(option) ? option : [option];
 
     // Clear existing selection
@@ -496,7 +522,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   // value, and the display value
   private selectionChanged() {
     // Update selected options cache
-    this.selectedOptions = this.getAllOptions().filter(el => el.selected);
+    this.selectedOptions = this.getAllFilteredOptions().filter(el => el.selected);
 
     // Update the value and display label
     this.value = this.selectedOptions[0]?.value ?? '';
@@ -524,7 +550,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
-    const allOptions = this.getAllOptions();
+    const allOptions = this.getAllFilteredOptions();
     const value = Array.isArray(this.value) ? this.value : [this.value];
 
     // Select only the options that match the new value
@@ -533,7 +559,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
-    if (this.open && !this.disabled && this.listbox.children.length > 0) {
+    if (this.open && !this.disabled && this.filteredWrapper.children.length > 0) {
       // Reset the current option
       this.setCurrentOption(null);
 
@@ -618,87 +644,30 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.blur();
   }
 
-  private handleInput() {
+  private createComboboxOptionsFromQuery(queryString: string) {
+    const allOptions = this.getSlottedOptions();
+    this.filteredOptions = [];
+    allOptions.forEach((option) => {
+      if (this.filter(option, queryString) || queryString === '') {
+        const clonedOption = option.cloneNode(true) as SynOption;
+        this.filteredOptions.push(clonedOption);
+      }
+    });
+  }
+
+  private async handleInput() {
     const inputValue = this.displayInput.value;
-    this.createAutocompleteOptionsFromQuery(inputValue);
+    if (this.threshold <= inputValue.length) {
+      this.createComboboxOptionsFromQuery(inputValue);
+      await this.updateComplete;
+      this.open = this.filteredWrapper.children.length > 0;
+    } else {
+      this.open = false;
+    }
     this.value = inputValue;
 
     this.formControlController.updateValidity();
     this.emit('syn-input');
-  }
-
-  private createMarkElement(queryString: string) {
-    const mark = document.createElement('mark');
-    const markStyle = document.createElement('style');
-    const markRules = css`
-      syn-option mark {
-        background-color: transparent;
-        color: var(--syn-color-neutral-950);
-        font: var(--syn-body-medium-bold);
-      }
-
-      syn-option[aria-selected='true'] mark {
-        color: var(--syn-color-neutral-0);
-      }       
-    `;
-    markStyle.appendChild(document.createTextNode(markRules.cssText));
-    mark.appendChild(markStyle);
-    mark.appendChild(document.createTextNode(queryString));
-    return mark;
-  }
-
-  private createAutocompleteOptionsFromQuery(queryString: string) {
-    if (this.threshold <= queryString.length) {
-      const allOptions = this.getSlottedOptions();
-      let optionAvailable = false;
-      allOptions.forEach((option) => {
-        if (option.getTextLabel().toLowerCase().includes(queryString.toLowerCase())) {
-          optionAvailable = true;
-          if (this.highlight) {
-            // Recreate the original innerHTML
-            option.innerHTML = option.dataset.content ?? option.innerHTML;
-
-            const markElement = this.createMarkElement(queryString);
-
-            const nodes = option.childNodes;
-            [...nodes].forEach(node => {
-              if (node.nodeType === Node.ELEMENT_NODE) {
-                const element = node as HTMLElement;
-                if (!element.hasAttribute('slot')) {
-                  element.innerHTML = element.innerHTML.replace(new RegExp(queryString, 'i'), markElement.outerHTML);
-                }
-              }
-
-              if (node.nodeType === Node.TEXT_NODE) {
-                // It is only a textnode. To be able to add a mark element, we need to remove the text node and exchange it with another html element
-                const content = node.textContent?.replace(new RegExp(queryString, 'i'), markElement.outerHTML) ?? '';
-                const optionContent = document.createElement('span');
-                optionContent.innerHTML = content;
-                node.remove();
-                option.appendChild(optionContent);
-              }
-            });
-          }
-          option.hidden = false;
-          option.removeAttribute('aria-hidden');
-        } else {
-          option.hidden = true;
-          option.setAttribute('aria-hidden', 'true');
-        }
-      });
-      // TODO: check if we need to use the this.show method here
-      this.open = optionAvailable;
-    } else {
-      this.open = false;
-    }
-  }
-
-  private createAllAutocompleteOptions() {
-    const allOptions = this.getSlottedOptions();
-    allOptions.forEach((option) => {
-      option.hidden = false;
-      option.removeAttribute('aria-hidden');
-    });
   }
 
   private handleChange() {
@@ -717,12 +686,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private slotChange() {
     const slottedOptions = this.getSlottedOptions();
     slottedOptions.forEach((option, index) => {
-      if (option.dataset.autocomplete !== 'true') {
-        option.id = option.id || `syn-autocomplete-option-${index}`;
-        option.dataset.autocomplete = 'true';
-        // Cache the original content for recreating the innerHTML
-        option.dataset.content = option.innerHTML;
-      }
+      option.id = option.id || `syn-combobox-option-${index}`;
     });
   }
 
@@ -739,13 +703,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       <div
         part="form-control"
         class=${classMap({
-      'form-control': true,
-      'form-control--small': this.size === 'small',
-      'form-control--medium': this.size === 'medium',
-      'form-control--large': this.size === 'large',
-      'form-control--has-label': hasLabel,
-      'form-control--has-help-text': hasHelpText,
-    })}
+          'form-control': true,
+          'form-control--small': this.size === 'small',
+          'form-control--medium': this.size === 'medium',
+          'form-control--large': this.size === 'large',
+          'form-control--has-label': hasLabel,
+          'form-control--has-help-text': hasHelpText,
+        })}
       >
         <label
           id="label"
@@ -760,18 +724,18 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         <div part="form-control-input" class="form-control-input">
           <syn-popup
             class=${classMap({
-      select: true,
-      'select--standard': true,
-      'select--open': this.open,
-      'select--disabled': this.disabled,
-      'select--focused': this.hasFocus,
-      'select--placeholder-visible': isPlaceholderVisible,
-      'select--top': this.placement === 'top',
-      'select--bottom': this.placement === 'bottom',
-      'select--small': this.size === 'small',
-      'select--medium': this.size === 'medium',
-      'select--large': this.size === 'large',
-    })}
+              select: true,
+              'select--standard': true,
+              'select--open': this.open,
+              'select--disabled': this.disabled,
+              'select--focused': this.hasFocus,
+              'select--placeholder-visible': isPlaceholderVisible,
+              'select--top': this.placement === 'top',
+              'select--bottom': this.placement === 'bottom',
+              'select--small': this.size === 'small',
+              'select--medium': this.size === 'medium',
+              'select--large': this.size === 'large',
+            })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
@@ -858,6 +822,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mousedown=${this.preventLoosingFocus}
               @mouseup=${this.handleOptionClick}
             >
+              <div class="listbox__options">
+                ${this.options}
+              </div>
               <slot @slotchange=${this.slotChange}></slot>      
             </div>
           </syn-popup>

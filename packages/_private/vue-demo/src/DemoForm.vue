@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import {
   SynVueButton,
   SynVueCheckbox,
+  SynVueCombobox,
   SynVueDivider,
   SynVueIcon,
   SynVueInput,
@@ -14,9 +15,6 @@ import {
   SynVueSwitch,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
-// @ts-expect-error autoComplete.js does not have types
-import autoComplete from '@tarekraafat/autocomplete.js';
-import { setupAutocomplete } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
 import { normalizeData } from './shared';
 
@@ -73,35 +71,6 @@ const synChange = () => {
   // Log the normalized data
   console.log(normalizedData);
 };
-
-const initializeAutoComplete = () => {
-  Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
-    const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
-    const nationalityAutoComplete = new autoComplete({
-      ...autoCompleteConfig,
-      threshold: 0,
-      placeHolder: 'Please choose your nationality',
-      data: {
-        src: nationalities,
-      },
-      events: {
-        input: {
-          focus() {
-            nationalityAutoComplete.start();
-          },
-        },
-      },
-      resultItem: {
-        highlight: true,
-      },
-      resultsList: {
-        maxResults: undefined,
-      },
-    });
-  });
-}
-
-initializeAutoComplete();
 </script>
 
 <template>
@@ -184,16 +153,15 @@ initializeAutoComplete();
         type="date"
       />
 
-      <SynVueInput
+      <SynVueCombobox
         id="input-nationality"
         label="Nationality"
         name="nationality"
         required
         v-model="formData.nationality"
-        type="search"
       >
-        <SynVueIcon slot="suffix" name="search" />
-      </SynVueInput>
+        <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
+      </SynVueCombobox>
 
     </DemoFieldset>
     <!-- /PersonalInformation -->

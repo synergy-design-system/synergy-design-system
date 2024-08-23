@@ -16,8 +16,8 @@ const tagName = 'syn-combobox';
 Component.define('syn-combobox');
 
 /**
- * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @summary Comboboxes allow you to choose items from a menu of predefined options.
+ * @documentation https://synergy.style/components/combobox
  * @status stable
  * @since 2.0
  *
@@ -36,15 +36,15 @@ Component.define('syn-combobox');
  * @event syn-input - Emitted when the control receives input.
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-blur - Emitted when the control loses focus.
- * @event syn-show - Emitted when the select's menu opens.
- * @event syn-after-show - Emitted after the select's menu opens and all animations are complete.
- * @event syn-hide - Emitted when the select's menu closes.
- * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
+ * @event syn-show - Emitted when the combobox's menu opens.
+ * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
+ * @event syn-hide - Emitted when the combobox's menu closes.
+ * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The select's wrapper.
+ * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.

@@ -306,6 +306,7 @@ export const TWOWAY_BINDING_ENABLED_ELEMENTS = [
   'select',
   'switch',
   'textarea',
+  'combobox',
 ];
 
 /**

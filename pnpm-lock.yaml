@@ -61,9 +61,6 @@ importers:
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens
-      '@tarekraafat/autocomplete.js':
-        specifier: ^10.2.7
-        version: 10.2.7
       rxjs:
         specifier: ~7.8.1
         version: 7.8.1
@@ -181,9 +178,6 @@ importers:
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens
-      '@tarekraafat/autocomplete.js':
-        specifier: ^10.2.7
-        version: 10.2.7
     devDependencies:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
@@ -241,7 +235,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.2.10
-        version: 5.2.10(@types/node@20.12.7)
+        version: 5.2.10
       vite-plugin-static-copy:
         specifier: ^1.0.3
         version: 1.0.3(vite@5.2.10)
@@ -288,9 +282,6 @@ importers:
       '@synergy-design-system/tokens':
         specifier: workspace:*
         version: link:../../tokens
-      '@tarekraafat/autocomplete.js':
-        specifier: ^10.2.7
-        version: 10.2.7
       history:
         specifier: ^5.3.0
         version: 5.3.0
@@ -315,7 +306,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.2.10
-        version: 5.2.10(@types/node@20.12.7)
+        version: 5.2.10
       vite-plugin-static-copy:
         specifier: ^1.0.3
         version: 1.0.3(vite@5.2.10)
@@ -337,9 +328,6 @@ importers:
       '@synergy-design-system/vue':
         specifier: workspace:*
         version: link:../../vue
-      '@tarekraafat/autocomplete.js':
-        specifier: ^10.2.7
-        version: 10.2.7
       vue:
         specifier: ^3.4.24
         version: 3.4.24(typescript@5.4.5)
@@ -1225,7 +1213,7 @@ packages:
       '@angular/compiler': 18.0.3
       typescript: '>=5.4 <5.5'
     dependencies:
-      '@angular/compiler': 18.0.3
+      '@angular/compiler': 18.0.3(@angular/core@18.0.3)
       '@babel/core': 7.24.7
       '@jridgewell/sourcemap-codec': 1.4.15
       chokidar: 3.6.0
@@ -1239,18 +1227,6 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/compiler@18.0.3:
-    resolution: {integrity: sha512-wrXxgBsZX4yTrj/oZ8PDGmvhqj9S2TZfcuivaUitprNC2uBWTVb1UcOS45Qw9YlLB0sYa2AmBudICDqYpb8lfw==}
-    engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
-    peerDependencies:
-      '@angular/core': 18.0.3
-    peerDependenciesMeta:
-      '@angular/core':
-        optional: true
-    dependencies:
-      tslib: 2.6.3
-    dev: true
-
   /@angular/compiler@18.0.3(@angular/core@18.0.3):
     resolution: {integrity: sha512-wrXxgBsZX4yTrj/oZ8PDGmvhqj9S2TZfcuivaUitprNC2uBWTVb1UcOS45Qw9YlLB0sYa2AmBudICDqYpb8lfw==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
@@ -1262,7 +1238,6 @@ packages:
     dependencies:
       '@angular/core': 18.0.3(rxjs@7.8.1)(zone.js@0.14.7)
       tslib: 2.6.3
-    dev: false
 
   /@angular/core@18.0.3(rxjs@7.8.1)(zone.js@0.14.7):
     resolution: {integrity: sha512-376hijhEqNpeA+qKncpVTIaZXRdBT6RctEBnFhJ2l57aHPH5S3oaSBQu1k3TEi07FlKOD4XF1+NzX9dvdup1eg==}
@@ -6617,10 +6592,6 @@ packages:
       - supports-color
     dev: true
 
-  /@tarekraafat/autocomplete.js@10.2.7:
-    resolution: {integrity: sha512-iE+dnXI8/LrTaSORrnNdSyXg/bFCbCpz/R5GUdB3ioW+9PVEhglxNcSDQNeCXtrbRG0kOBFUd4unEiwcmqyn8A==}
-    dev: false
-
   /@testing-library/dom@9.3.4:
     resolution: {integrity: sha512-FlS4ZWlp97iiNWig0Muq8p+3rVDjRiYE+YKGbAqXOu9nwJFFOdL00kFpz42M+4huzYi86vAK1sOOfyOG45muIQ==}
     engines: {node: '>=14'}
@@ -7525,7 +7496,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.2.10(@types/node@20.12.7)
+      vite: 5.2.10
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -17787,6 +17758,7 @@ packages:
   /semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
+    requiresBuild: true
     dev: true
 
   /semver@6.3.1:
@@ -19625,7 +19597,42 @@ packages:
       fast-glob: 3.3.2
       fs-extra: 11.2.0
       picocolors: 1.0.0
-      vite: 5.2.10(@types/node@20.12.7)
+      vite: 5.2.10
+    dev: true
+
+  /vite@5.2.10:
+    resolution: {integrity: sha512-PAzgUZbP7msvQvqdSD+ErD5qGnSFiGOoWmV5yAKUEI0kdhjbH6nMWVyZQC/hSc4aXwc0oJ9aEdIiF9Oje0JFCw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.16.1
+    optionalDependencies:
+      fsevents: 2.3.3
     dev: true
 
   /vite@5.2.10(@types/node@20.12.7):

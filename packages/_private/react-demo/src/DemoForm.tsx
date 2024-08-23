@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent, SynInput as SynInputType } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
+  SynCombobox,
   SynDivider,
   SynIcon,
   SynInput,
@@ -17,7 +18,6 @@ import {
 } from '@synergy-design-system/react';
 import { DemoFieldset } from './DemoFieldset';
 import { normalizeData } from './shared';
-import { useAutoComplete } from './customHooks';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -81,30 +81,6 @@ export const DemoForm = () => {
       formRef.current?.removeEventListener('syn-change', listener);
     };
   }, []);
-
-  const nationalitiesInput = useRef<SynInputType>(null);
-
-  const autoCompleteConfig = {
-    data: {
-      src: nationalities,
-    },
-    resultItem: {
-      highlight: true,
-    },
-    resultsList: {
-      maxResults: undefined,
-    },
-    threshold: 0,
-  };
-  /* eslint-disable */
-  const nationalitiesAutoComplete = useAutoComplete(nationalitiesInput, autoCompleteConfig);
-  useEffect(() => {
-    if (!nationalitiesAutoComplete) return;
-    (nationalitiesAutoComplete.input as HTMLInputElement).addEventListener('focus', () => {
-      nationalitiesAutoComplete.start();
-    });
-  }, [nationalitiesAutoComplete]);
-  /* eslint-enable */
 
   return (
     <form
@@ -200,18 +176,18 @@ export const DemoForm = () => {
           type="date"
         />
 
-        <SynInput
+        <SynCombobox
           id="input-nationality"
           label="Nationality"
           name="nationality"
           required
           value={formData.nationality}
-          type="search"
-          ref={nationalitiesInput}
           placeholder='Please choose your nationality'
         >
-          <SynIcon slot="suffix" name="search" />
-        </SynInput>
+          {
+            nationalities.map((national) => <SynOption>{national}</SynOption>)
+          }
+        </SynCombobox>
 
       </DemoFieldset>
       {/* /PersonalInformation */}

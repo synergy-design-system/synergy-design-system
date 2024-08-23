@@ -77,16 +77,15 @@
       type="date"
     />
 
-    <syn-input
+    <syn-combobox
       formControlName="nationality"
       id="input-nationality"
       label="Nationality"
       name="nationality"
       [required]="true"
-      type="search"
     >
-      <syn-icon name="search" slot="suffix"></syn-icon>
-    </syn-input>
+      <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
+    </syn-combobox>
 
   </demo-fieldset>
   <!-- /PersonalInformation -->

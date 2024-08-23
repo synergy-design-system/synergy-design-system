@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import history from 'history/browser';
-import type { SynChangeEvent, SynNavItem, SynSwitch } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynCombobox, SynNavItem, SynSwitch } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -9,10 +9,6 @@ import '@synergy-design-system/styles';
 import './app.css';
 // eslint-disable-next-line import/no-duplicates
 import '@synergy-design-system/components';
-// eslint-disable-next-line import/no-duplicates
-import { setupAutocomplete } from '@synergy-design-system/components';
-// @ts-expect-error autoComplete.js does not have types
-import autoComplete from '@tarekraafat/autocomplete.js';
 
 const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
@@ -114,40 +110,20 @@ const initApp = async () => {
   });
 };
 
-const initAutoComplete = () => {
-  /* eslint-disable */
-  Promise.all([customElements.whenDefined('syn-input'), customElements.whenDefined('syn-popup')]).then(() => {
-    const { config: autoCompleteConfig } = setupAutocomplete('#input-nationality');
-    const nationalityAutoComplete = new autoComplete({
-      ...autoCompleteConfig,
-      threshold: 0,
-      placeHolder: 'Please choose your nationality',
-      data: {
-        src: nationalities,
-      },
-      events: {
-        input: {
-          focus() {
-            nationalityAutoComplete.start();
-          }
-        }
-      },
-      resultItem: {
-        highlight: true,
-      },
-      resultsList: {
-        maxResults: undefined,
-      }
-    });
+const initCombobox = () => {
+  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality');
+  nationalities.forEach((nationality) => {
+    const option = document.createElement('syn-option');
+    option.innerText = nationality;
+    nationalitiesEl?.appendChild(option);
   });
-  /* eslint-enable */
 };
 
 const bootstrap = async () => {
   await initRouting();
   await initApp();
   await initThemeSwitch();
-  initAutoComplete();
+  initCombobox();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

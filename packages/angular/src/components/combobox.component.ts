@@ -17,8 +17,8 @@ import type {
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 /**
- * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @summary Comboboxes allow you to choose items from a menu of predefined options.
+ * @documentation https://synergy.style/components/combobox
  * @status stable
  * @since 2.0
  *
@@ -37,15 +37,15 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @event syn-input - Emitted when the control receives input.
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-blur - Emitted when the control loses focus.
- * @event syn-show - Emitted when the select's menu opens.
- * @event syn-after-show - Emitted after the select's menu opens and all animations are complete.
- * @event syn-hide - Emitted when the select's menu closes.
- * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
+ * @event syn-show - Emitted when the combobox's menu opens.
+ * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
+ * @event syn-hide - Emitted when the combobox's menu closes.
+ * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The select's wrapper.
+ * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
@@ -75,7 +75,7 @@ export class SynComboboxComponent {
     this._ngZone = ngZone;
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
     this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
     this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
@@ -86,7 +86,7 @@ export class SynComboboxComponent {
   }
 
   /**
-* The name of the autosuggest, submitted as a name/value pair with form data.
+* The name of the combobox, submitted as a name/value pair with form data.
  */
   @Input()
   set name(v: SynCombobox['name']) {
@@ -98,7 +98,7 @@ export class SynComboboxComponent {
   }
 
   /**
-* The current value of the select, submitted as a name/value pair with form data.
+* The current value of the combobox, submitted as a name/value pair with form data.
 * When `multiple` is enabled, the
 value attribute will be a space-delimited list of values based on the options selected, and the value property will
 be an array.
@@ -114,7 +114,7 @@ be an array.
   }
 
   /**
-* The select's size.
+* The combobox's size.
  */
   @Input()
   set size(v: SynCombobox['size']) {
@@ -126,7 +126,7 @@ be an array.
   }
 
   /**
-* Placeholder text to show as a hint when the select is empty.
+* Placeholder text to show as a hint when the combobox is empty.
  */
   @Input()
   set placeholder(v: SynCombobox['placeholder']) {
@@ -138,7 +138,7 @@ be an array.
   }
 
   /**
-* Disables the select control.
+* Disables the combobox control.
  */
   @Input()
   set disabled(v: SynCombobox['disabled']) {
@@ -150,7 +150,7 @@ be an array.
   }
 
   /**
-* Adds a clear button when the select is not empty.
+* Adds a clear button when the combobox is not empty.
  */
   @Input()
   set clearable(v: SynCombobox['clearable']) {
@@ -176,7 +176,7 @@ be an array.
   }
 
   /**
-* The select's label.
+* The combobox's label.
 * If you need to display HTML, use the `label` slot instead.
  */
   @Input()
@@ -189,7 +189,7 @@ be an array.
   }
 
   /**
-* The preferred placement of the select's menu.
+* The preferred placement of the combobox's menu.
 * Note that the actual placement may vary as needed to keep the listbox
 inside of the viewport.
  */
@@ -203,7 +203,7 @@ inside of the viewport.
   }
 
   /**
-* The select's help text.
+* The combobox's help text.
 * If you need to display HTML, use the `help-text` slot instead.
  */
   @Input()
@@ -232,7 +232,7 @@ the same document or shadow root for this to work.
   }
 
   /**
-* The select's required attribute.
+* The combobox's required attribute.
  */
   @Input()
   set required(v: SynCombobox['required']) {
@@ -244,7 +244,7 @@ the same document or shadow root for this to work.
   }
 
   /**
-* The minimum length of the text required to show the autocomplete.
+* The minimum length of the text required to show the combobox.
  */
   @Input()
   set threshold(v: SynCombobox['threshold']) {
@@ -256,7 +256,7 @@ the same document or shadow root for this to work.
   }
 
   /**
-* Show autocomplete on focus event.
+* Show combobox on focus event.
 * Focus event will ignore the `threshold` property and will always show the list.
  */
   @Input()
@@ -269,15 +269,31 @@ the same document or shadow root for this to work.
   }
 
   /**
-* Highlight the search query in the autocomplete list.
+* A function that customizes the rendered option.
+* The first argument is the option, the second
+is the query string, which is typed into the combobox.
+* The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+the specified value.
  */
   @Input()
-  set highlight(v: SynCombobox['highlight']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.highlight = v));
+  set getOption(v: SynCombobox['getOption']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.getOption = v));
   }
 
-  get highlight() {
-    return this.nativeElement.highlight;
+  get getOption() {
+    return this.nativeElement.getOption;
+  }
+
+  /**
+* A function used to filter options in the combobox component.
+ */
+  @Input()
+  set filter(v: SynCombobox['filter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.filter = v));
+  }
+
+  get filter() {
+    return this.nativeElement.filter;
   }
 
   /**
@@ -306,22 +322,22 @@ the same document or shadow root for this to work.
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the select's menu opens.
+* Emitted when the combobox's menu opens.
  */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the select's menu opens and all animations are complete.
+* Emitted after the combobox's menu opens and all animations are complete.
  */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the select's menu closes.
+* Emitted when the combobox's menu closes.
  */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the select's menu closes and all animations are complete.
+* Emitted after the combobox's menu closes and all animations are complete.
  */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 
@@ -329,6 +345,11 @@ the same document or shadow root for this to work.
 * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
+
+  /**
+* Support for two way data binding
+ */
+  @Output() valueChange = new EventEmitter<SynCombobox['value']>();
 }
 
 export type { SynChangeEvent } from '@synergy-design-system/components';

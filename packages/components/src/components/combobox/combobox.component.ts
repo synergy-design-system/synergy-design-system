@@ -116,8 +116,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() selectedOption: SynOption | undefined;
 
-  @state() open = false;
-
   @state() filteredOptions: Array<SynOption | SynOptGroup> = [];
 
   /** The name of the combobox, submitted as a name/value pair with form data. */
@@ -142,6 +140,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /** Adds a clear button when the combobox is not empty. */
   @property({ type: Boolean }) clearable = false;
+
+  /**
+   * Indicates whether or not the combobox is open. You can toggle this attribute to show and hide the listbox, or you can
+   * use the `show()` and `hide()` methods and this attribute will reflect the combobox's open state.
+   */
+  @property({ reflect: true, type: Boolean }) open = false;
 
   /**
    * Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
@@ -319,11 +323,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // If it's not open, open it
       if (!this.open) {
-        const inputValue = this.displayInput.value;
-        this.createComboboxOptionsFromQuery(inputValue);
-        this.updateComplete.then(() => {
-          this.show();
-        });
+        this.show();
         return;
       }
 
@@ -359,11 +359,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // Open it
       if (!this.open) {
-        const inputValue = this.displayInput.value;
-        this.createComboboxOptionsFromQuery(inputValue);
-        this.updateComplete.then(() => {
-          this.show();
-        });
+        this.show();
       }
 
       if (event.key === 'ArrowDown') {
@@ -401,22 +397,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.focus();
   }
 
-  private async handleComboboxMouseDown(event: MouseEvent) {
+  private handleComboboxMouseDown(event: MouseEvent) {
     // Ignore disabled controls
     if (this.disabled) {
       return;
     }
 
     event.preventDefault();
-    if (!this.open) {
-      // if (this.showOnFocus && this.hasFocus) {
-      const inputValue = this.displayInput.value;
-      this.createComboboxOptionsFromQuery(inputValue);
-      await this.updateComplete;
-      this.open = this.filteredWrapper.children.length > 0;
-    } else {
-      this.open = !this.open;
-    }
+    this.open = !this.open;
     this.displayInput.focus({ preventScroll: true });
   }
 
@@ -567,6 +555,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       // Reset the current option
       this.setCurrentOption(null);
 
+      // create the filtered listbox
+      const queryString = this.displayInput.value;
+      this.createComboboxOptionsFromQuery(queryString);
+      await this.updateComplete;
+
       if (this.filteredOptions.length === 0) {
         this.open = false;
         return;
@@ -601,7 +594,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /** Shows the listbox. */
-  private async show() {
+  async show() {
     if (this.open || this.disabled) {
       this.open = false;
       return undefined;
@@ -612,7 +605,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /** Hides the listbox. */
-  private async hide() {
+  async hide() {
     if (!this.open || this.disabled) {
       this.open = false;
       return undefined;

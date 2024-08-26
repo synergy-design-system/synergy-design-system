@@ -6,13 +6,13 @@
  */
 .syn-link {
   /* The size of the icon */
-  --syn-link-icon-size: var(--syn-spacing-large);
+  --syn-link-icon-size: 1em;
 
   /* The gap that is used when there are pre or suffix icons */
   --syn-link-icon-gap: var(--syn-spacing-x-small);
 
   /* The font size used for the link */
-  --syn-link-font-size: inherit;
+  --syn-link-font-size: 1em;
 
   color: var(--syn-link-color);
   display: inline;

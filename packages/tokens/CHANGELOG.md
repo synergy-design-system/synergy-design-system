@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.8.0...tokens/2.9.0) (2024-08-26)
+
+
+### Features
+
+* ✨ link css ([#589](https://github.com/synergy-design-system/synergy-design-system/issues/589)) ([cdf54fc](https://github.com/synergy-design-system/synergy-design-system/commit/cdf54fcb348cc3b5a41993cff530424bdf6b6802))
+
 # [@synergy-design-system/tokens-v2.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.7.0...tokens/2.8.0) (2024-08-23)
 
 

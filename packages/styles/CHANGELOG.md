@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.2.0...styles/1.3.0) (2024-08-26)
+
+
+### Features
+
+* ✨ link css ([#589](https://github.com/synergy-design-system/synergy-design-system/issues/589)) ([cdf54fc](https://github.com/synergy-design-system/synergy-design-system/commit/cdf54fcb348cc3b5a41993cff530424bdf6b6802))
+
 # [@synergy-design-system/styles-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.1.0...styles/1.2.0) (2024-08-23)
 
 

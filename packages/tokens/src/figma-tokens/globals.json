@@ -426,5 +426,15 @@
       "type": "opacity",
       "description": "50%"
     }
+  },
+  "text-decoration": {
+    "default": {
+      "value": "none",
+      "type": "textDecoration"
+    },
+    "underline": {
+      "value": "underline",
+      "type": "textDecoration"
+    }
   }
 }

@@ -29,8 +29,11 @@ import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
+import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
-import { filterOnlyOptions, getAssignedElementsForSlot, normalizeString } from './utils.js';
+import {
+  filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot, normalizeString,
+} from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 
 /**
@@ -115,7 +118,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() open = false;
 
-  @state() filteredOptions: SynOption[] = [];
+  @state() filteredOptions: Array<SynOption | SynOptGroup> = [];
 
   /** The name of the combobox, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -644,7 +647,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     allOptions.forEach((option) => {
       if (this.filter(option, queryString) || queryString === '') {
         const clonedOption = option.cloneNode(true) as SynOption;
-        this.filteredOptions.push(clonedOption);
+        // Check if the option has a syn-optgroup as parent
+        const hasOptgroup = option.parentElement?.tagName.toLowerCase() === 'syn-optgroup';
+        if (hasOptgroup) {
+          const optgroup = option.parentElement as SynOptGroup;
+          const filteredOptgroup = this.filteredOptions.find((el) => el.id === optgroup.id);
+          // Check if the optgroup was already added to the filteredOptions
+          if (!filteredOptgroup) {
+            const clonedOptgroup = option.parentElement.cloneNode() as SynOptGroup;
+            this.filteredOptions.push(clonedOptgroup);
+            clonedOptgroup.appendChild(clonedOption);
+          } else {
+            filteredOptgroup?.appendChild(clonedOption);
+          }
+        } else {
+          this.filteredOptions.push(clonedOption);
+        }
       }
     });
   }
@@ -678,14 +696,28 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private getSlottedOptions() {
-    return filterOnlyOptions(getAssignedElementsForSlot(this.defaultSlot));
+    return getAllOptions(getAssignedElementsForSlot(this.defaultSlot)).flat();
   }
 
-  private slotChange() {
+  private getSlottedOptGroups(): SynOptGroup[] {
+    return filterOnlyOptgroups(getAssignedElementsForSlot(this.defaultSlot));
+  }
+
+  private handleDefaultSlotChange() {
     const slottedOptions = this.getSlottedOptions();
-    slottedOptions.forEach((option, index) => {
-      option.id = option.id || `syn-combobox-option-${index}`;
-    });
+    const slottedOptgroups = this.getSlottedOptGroups();
+    if (customElements.get('syn-option')) {
+      slottedOptions.forEach((option, index) => {
+        option.id = option.id || `syn-combobox-option-${index}`;
+      });
+
+      slottedOptgroups.forEach((optgroup, index) => {
+        optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
+      });
+    } else {
+      // Rerun this handler when <syn-option> is registered
+      customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
+    }
   }
 
   // eslint-disable-next-line complexity
@@ -823,7 +855,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               <div class="listbox__options">
                 ${this.options}
               </div>
-              <slot @slotchange=${this.slotChange}></slot>      
+              <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
             </div>
           </syn-popup>
         </div>

@@ -58,7 +58,7 @@ const colors = [
   'Brown',
 ].sort();
 
-const createColorOption = (color: string) => `<syn-option value="${color}">${color}</syn-option>`;
+const createColorOption = (color: string) => `<syn-option value="${color.replaceAll(' ', '_')}">${color}</syn-option>`;
 
 const createColorOptionHtml = (color: string) => unsafeHTML(createColorOption(color));
 
@@ -97,12 +97,8 @@ export const CustomResultItem: Story = {
   },
   render: () => html`
     <syn-combobox label="Custom result item">
-     ${createColorOptionsHtml()}
+      ${createColorOptionsHtml()}
     </syn-combobox>
-    <script type="module">
-      const combobox = document.querySelector('syn-combobox');
-      
-    </script>
   `,
 };
 
@@ -121,10 +117,12 @@ export const HighlightQuery: Story = {
     <script type="module">
       const combobox = document.querySelector('syn-combobox');
       combobox.getOption = (option, queryString) => {
-        const mark = document.createElement('mark');
-        mark.textContent = queryString;
-        option.innerHTML = option.innerHTML.replace(new RegExp(queryString, 'i'), mark.outerHTML);
-        return option; 
+        if(queryString) {
+          const mark = document.createElement('mark');
+          mark.textContent = queryString;
+          option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+        }
+      return option; 
       }
     </script>
   `,
@@ -155,9 +153,39 @@ export const GroupElements: Story = {
   },
   render: () => html`
     <syn-combobox label="Group elements">
-      <syn-optgroup label="Colors">
-        <syn-option value="Yellow">Yellow</syn-option>
-        <syn-option value="Light Green">Light Green</syn-option>
+      <syn-optgroup label="B">
+        ${createColorOptionHtml('Black')}
+        ${createColorOptionHtml('Blue')}
+        ${createColorOptionHtml('Brown')}
+      </syn-optgroup>
+      <syn-optgroup label="G">
+        ${createColorOptionHtml('Green')}
+        ${createColorOptionHtml('Grey')}
+      </syn-optgroup>
+      <syn-optgroup label="L">
+        ${createColorOptionHtml('Light Green')}
+      </syn-optgroup>
+      <syn-optgroup label="M">
+        ${createColorOptionHtml('Magenta')}
+      </syn-optgroup>
+      <syn-optgroup label="O">
+        ${createColorOptionHtml('Orange')}
+      </syn-optgroup>
+      <syn-optgroup label="W">
+        ${createColorOptionHtml('White')}
+      </syn-optgroup>
+      <syn-optgroup label="P">
+        ${createColorOptionHtml('Pink')}
+        ${createColorOptionHtml('Purple')}
+      </syn-optgroup>
+      <syn-optgroup label="R">
+        ${createColorOptionHtml('Red')}
+      </syn-optgroup>
+      <syn-optgroup label="W">
+        ${createColorOptionHtml('White')}
+      </syn-optgroup>
+      <syn-optgroup label="Y">
+        ${createColorOptionHtml('Yellow')}
       </syn-optgroup>
     </syn-combobox>
   `,

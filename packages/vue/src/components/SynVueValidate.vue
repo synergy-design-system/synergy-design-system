@@ -51,6 +51,11 @@ instead of form submit.
   'live'?: SynValidate['live'];
 
   /**
+* Define a custom event name to listen for
+ */
+  'on'?: SynValidate['on'];
+
+  /**
 * Custom validation message to be displayed when the input is invalid.
 Will override the default browser validation message.
  */

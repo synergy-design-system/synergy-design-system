@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj as Story } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, unsafeStatic } from 'lit/static-html.js';
 import '../../../components/src/components/validate/validate.js';
 import {
   generateScreenshotStory,
@@ -17,6 +17,18 @@ const { args: defaultArgs, argTypes } = storybookDefaults('syn-validate');
 const { overrideArgs } = storybookHelpers('syn-validate');
 const { generateTemplate } = storybookTemplate('syn-validate');
 
+/**
+ * Create a validation trigger
+ * @param selector The selector to apply the validation trigger
+ */
+const createValidationTrigger = (selector: string) => unsafeStatic(`
+  <script type="module">
+    customElements.whenDefined('syn-validate').then(() => {
+      document.querySelector('${selector}').validate();
+    });
+  </script>
+`);
+
 const meta: Meta = {
   args: overrideArgs([
     {
@@ -24,7 +36,8 @@ const meta: Meta = {
       type: 'slot',
       value: `
         <syn-input
-          label="Inline Validation"
+          label="Invalid input"
+          type="email"
           value="team(at)synergy.com"
         ></syn-input>
       `.trim(),
@@ -67,12 +80,17 @@ export const Inline: Story = {
     },
   },
   render: () => html`
-    <syn-validate inline>
+    <syn-validate
+      class="validation-inline"
+      inline
+    >
       <syn-input
         label="Inline Validation"
+        type="email"
         value="team(at)synergy.com"
       ></syn-input>
-    </syn-validate>  
+    </syn-validate>
+    ${createValidationTrigger('.validation-inline')}
   `,
 };
 
@@ -85,12 +103,17 @@ export const HideIcon: Story = {
     },
   },
   render: () => html`
-    <syn-validate hide-icon>
-      <syn-radio-group label="Live validation">
-        <syn-radio value="wrong">Wrong</syn-radio>
+    <syn-validate
+      class="validation-hide-icon"
+      hide-icon
+      inline
+    >
+      <syn-radio-group required label="Hide icon">
+        <syn-radio>Wrong</syn-radio>
         <syn-radio value="correct">Correct</syn-radio>
       </syn-radio-group>
-    </syn-validate>  
+    </syn-validate>
+    ${createValidationTrigger('.validation-hide-icon')}
   `,
 };
 
@@ -103,12 +126,17 @@ export const Live: Story = {
     },
   },
   render: () => html`
-    <syn-validate live>
-      <syn-radio-group label="Live validation">
-        <syn-radio value="wrong">Wrong</syn-radio>
+    <syn-validate
+      class="validation-live"
+      inline
+      live
+    >
+      <syn-radio-group required label="Live validation">
+        <syn-radio>Wrong</syn-radio>
         <syn-radio value="correct">Correct</syn-radio>
       </syn-radio-group>
-    </syn-validate>  
+    </syn-validate>
+    ${createValidationTrigger('.validation-live')}
   `,
 };
 
@@ -121,12 +149,19 @@ export const CustomValidation: Story = {
     },
   },
   render: () => html`
-    <syn-validate custom-validation="Include an &quot;@&quot; in the email address, otherwise you will never get our marvelous newsletter">
+    <syn-validate
+      class="validation-custom-validation"
+      custom-validation="Include an &quot;@&quot; in the email address, otherwise you will never get our marvelous newsletter"
+      inline
+      live
+    >
       <syn-input
-        label="Inline Validation"
+        label="Custom validation"
+        type="email"
         value="team(at)synergy.com"
       ></syn-input>
-    </syn-validate>  
+    </syn-validate>
+    ${createValidationTrigger('.validation-custom-validation')}
   `,
 };
 
@@ -139,35 +174,15 @@ export const CustomFormField: Story = {
     },
   },
   render: () => html`
-    <syn-validate live>
+    <syn-validate
+      class="validation-custom-form-field"
+      live
+      inline
+    >
+      <input type="email" name="what" value="here" minlength="5" required />
       TODO
     </syn-validate>  
-  `,
-};
-
-export const ErrorSummary: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('validate', 'error-summary'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-validate live>
-      <form>
-        <syn-radio-group label="Live validation">
-          <syn-radio value="wrong">Wrong</syn-radio>
-          <syn-radio value="correct">Correct</syn-radio>
-        </syn-radio-group>
-
-        <syn-input
-          label="Inline Validation"
-          value="team(at)synergy.com"
-        ></syn-input>
-
-      </form>
-    </syn-validate>  
+    ${createValidationTrigger('.validation-custom-form-field')}
   `,
 };
 
@@ -179,6 +194,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Live,
   CustomValidation,
   CustomFormField,
-  ErrorSummary,
 });
 /* eslint-enable sort-keys */

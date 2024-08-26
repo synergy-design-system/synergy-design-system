@@ -1,20 +1,10 @@
 import type { CSSResultGroup } from 'lit';
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
-import { property, queryAssignedElements, state } from 'lit/decorators.js';
-import type {
-  SynChangeEvent,
-  SynInputEvent,
-} from '../../events/events.js';
+import { property, query, queryAssignedElements, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynAlert from '../alert/alert.component.js';
 import styles from './validate.styles.js';
-import {
-  ENABLED_FORM_ELEMENTS,
-  getIsNativeFormElement,
-  getIsSynergyFormElement,
-} from './utility.js';
 
 /**
  * @summary Validate is a helper that may be used to wrap
@@ -37,15 +27,15 @@ export default class SynValidate extends SynergyElement {
     'syn-alert': SynAlert,
   };
 
-  @queryAssignedElements({
-    selector: ENABLED_FORM_ELEMENTS.join(','),
-  }) private input: HTMLElement[];
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
-  @state() private isValid = true;
+  @queryAssignedElements() private slottedChildren: HTMLElement[];
+
+  @state() validationMessage = '';
 
   /** Show the invalid message underneath the element, using a syn-alert */
   @property({ reflect: true, type: Boolean }) inline = false;
-
+  
   /** Do not show the error icon when using inline validation */
   @property({ attribute: 'hide-icon', reflect: true, type: Boolean }) hideIcon = false;
 
@@ -55,51 +45,85 @@ export default class SynValidate extends SynergyElement {
    */
   @property({ reflect: true, type: Boolean }) live = false;
 
+  /** Define a custom event name to listen for */
+  @property() on = '';
+
   /**
    * Custom validation message to be displayed when the input is invalid.
    * Will override the default browser validation message.
    */
-  @property({ attribute: 'custom-validation', type: String }) customValidation = '';
+  @property({ attribute: 'custom-validation', type: String, reflect: true }) customValidation = '';
 
-  validate(event: SynChangeEvent | SynInputEvent | Event) {
+  /**
+   * Get the input element to validate. Defined as the first slotted element
+   * @returns The input element or undefined if not found
+   */
+  private getInput() {
+    const input = this.slottedChildren[0];
+    return input as HTMLFormElement | undefined;
+  }
+
+  /**
+   * Get the event name to listen for.
+   * Will return the custom event name if defined, otherwise will return 'input' or 'change',
+   * depending on if it is a synergy element or not.
+   * @returns The event name to listen for
+   */
+  private getUsedEventName() {
+    if (this.on) {
+      return this.on;
+    }
+
+    const input = this.getInput();
+    const isSynergyElement = input instanceof SynergyElement;
+
+    // Check if we should use synergies custom events
+    const baseEventName = this.live ? 'input' : 'change';
+
+    return isSynergyElement ? `syn-${baseEventName}` : baseEventName;
+  }
+
+  validate = () => {
     const {
       customValidation,
       inline,
     } = this;
-    
-    const target = event.target as HTMLInputElement;
-    const isValid = target.checkValidity();
 
-    if (customValidation) {
-      target.setCustomValidity(customValidation);
-    } else {
-      target.setCustomValidity('');
+    const input = this.getInput();
+
+    if (!input) {
+      return;
     }
+
+    input.setCustomValidity(customValidation || '');
+
+    const isValid = input.checkValidity();
+
+    // Regular case: Use inline browser validation
+    if (!inline) {
+      input.reportValidity();
+      return;
+    }
+
+    // When using inline validation, sync the needed attributes
+    const validationMessage = isValid ? '' : customValidation || input.validationMessage;
+    this.validationMessage = validationMessage;
   }
 
-  // eslint-disable-next-line complexity
   firstUpdated() {
-    if (!this.input || !this.input.length) {
-      return;
-    }
+    this.defaultSlot.addEventListener(this.getUsedEventName(), this.validate);
+  }
 
-    const [input] = this.input;
-
-    const isSynElement = getIsSynergyFormElement(input);
-    const isNativeElement = getIsNativeFormElement(input);
-
-    // Skip as we have an invalid element slotted
-    if (!isSynElement && !isNativeElement) {
-      return;
-    }
-
-    const listenerToUse = this.live ? 'input' : 'change';
-    const finalListenerName = isSynElement ? `syn-${listenerToUse}` : listenerToUse;
-
-    input.addEventListener(finalListenerName, e => this.validate(e));
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.defaultSlot.removeEventListener(this.getUsedEventName(), this.validate);
   }
 
   private renderInlineValidation() {
+    if (!this.inline || !this.validationMessage) {
+      return '';
+    }
+
     return html`
       <syn-alert
         open
@@ -110,19 +134,15 @@ export default class SynValidate extends SynergyElement {
           ? html`<syn-icon slot="icon" name="info"></syn-icon>`
           : ''
         }
-        ${this.customValidation}
+        ${this.validationMessage}
       </syn-alert>
     `;
   }
 
   render() {
-    console.log(this, this.isValid);
     return html`
       <div
-        class=${classMap({
-          validate: true,
-          'validate--inline': this.inline,
-        })}
+        class="validate"
         part="base"
       >
         <slot
@@ -130,7 +150,7 @@ export default class SynValidate extends SynergyElement {
           part="input-wrapper"
         ></slot>
         
-        ${this.inline ? this.renderInlineValidation() : ''}
+        ${this.renderInlineValidation()}
       </div>
     `;
   }

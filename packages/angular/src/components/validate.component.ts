@@ -83,6 +83,18 @@ instead of form submit.
   }
 
   /**
+* Define a custom event name to listen for
+ */
+  @Input()
+  set on(v: SynValidate['on']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.on = v));
+  }
+
+  get on() {
+    return this.nativeElement.on;
+  }
+
+  /**
 * Custom validation message to be displayed when the input is invalid.
 Will override the default browser validation message.
  */

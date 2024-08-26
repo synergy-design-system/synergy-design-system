@@ -3232,16 +3232,6 @@
           "value": "Wrap the element around any other form field, that follows browser standards to use all features.",
           "type": "text"
         }
-      },
-      "error-summary": {
-        "title": {
-          "value": "Error Summary",
-          "type": "text"
-        },
-        "description": {
-          "value": "Wrap  the element around a form to show all error messages at a single place in addition to the single messages. Per default, buttons are created, that focus the invalid form field.",
-          "type": "text"
-        }
       }
     }
   },

@@ -9,7 +9,6 @@ import type {
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynAlert from '../alert/alert.component.js';
-import SynTooltip from '../tooltip/tooltip.component.js';
 import styles from './validate.styles.js';
 import {
   ENABLED_FORM_ELEMENTS,
@@ -20,6 +19,8 @@ import {
 /**
  * @summary Validate is a helper that may be used to wrap
  * synergy input fields and forms to provide validation message.
+ *
+ * @dependency syn-alert
  *
  * @slot - The input fields or form element to be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
@@ -34,7 +35,6 @@ export default class SynValidate extends SynergyElement {
 
   static dependencies = {
     'syn-alert': SynAlert,
-    'syn-tooltip': SynTooltip,
   };
 
   @queryAssignedElements({
@@ -70,11 +70,11 @@ export default class SynValidate extends SynergyElement {
     const target = event.target as HTMLInputElement;
     const isValid = target.checkValidity();
 
-    // if (customValidation) {
-    //   target.setCustomValidity(customValidation);
-    // } else {
-    //   target.setCustomValidity('');
-    // }
+    if (customValidation) {
+      target.setCustomValidity(customValidation);
+    } else {
+      target.setCustomValidity('');
+    }
   }
 
   // eslint-disable-next-line complexity
@@ -99,6 +99,22 @@ export default class SynValidate extends SynergyElement {
     input.addEventListener(finalListenerName, e => this.validate(e));
   }
 
+  private renderInlineValidation() {
+    return html`
+      <syn-alert
+        open
+        exportparts="base:alert,message:alert-message"
+        variant="danger"
+      >
+        ${!this.hideIcon
+          ? html`<syn-icon slot="icon" name="info"></syn-icon>`
+          : ''
+        }
+        ${this.customValidation}
+      </syn-alert>
+    `;
+  }
+
   render() {
     console.log(this, this.isValid);
     return html`
@@ -109,23 +125,12 @@ export default class SynValidate extends SynergyElement {
         })}
         part="base"
       >
-        
         <slot
           class="validate__input-wrapper"
           part="input-wrapper"
         ></slot>
         
-        <syn-alert
-          open
-          exportparts="base:alert,message:alert-message"
-          variant="danger"
-        >
-          ${!this.hideIcon
-            ? html`<syn-icon slot="icon" name="info"></syn-icon>`
-            : ''
-          }
-          ${this.customValidation}
-        </syn-alert>
+        ${this.inline ? this.renderInlineValidation() : ''}
       </div>
     `;
   }

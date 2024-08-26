@@ -14,8 +14,15 @@ Component.define('syn-validate');
  * @summary Validate is a helper that may be used to wrap
  * synergy input fields and forms to provide validation message.
  *
+ * @dependency syn-alert
+ *
  * @slot - The input fields or form element to be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart input-wrapper - The container that wraps the input field.
+ * @csspart alert - The container that wraps the alert.
+ * @csspart alert-message - The container that wraps the alert message.
  */
 export const SynValidate = createComponent({
   displayName: 'SynValidate',

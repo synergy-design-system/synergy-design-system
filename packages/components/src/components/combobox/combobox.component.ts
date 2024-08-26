@@ -209,13 +209,23 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   protected get options() {
-    return this.filteredOptions.map((option) => {
-      if (option.dataset.original === 'true') {
-        return option;
+    return this.filteredOptions.map((item: SynOption | SynOptGroup) => {
+      const renderOption = (option: SynOption) => {
+        const queryString = this.displayInput.value;
+        const optionHtml = this.getOption(option, queryString);
+        return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
+      };
+
+      if (item.tagName.toLowerCase() === 'syn-optgroup') {
+        Array.from(item.children).forEach((option: HTMLElement) => {
+          if (option.tagName.toLowerCase() === 'syn-option') {
+            renderOption(option as SynOption);
+          }
+        });
+
+        return item;
       }
-      const queryString = this.displayInput.value;
-      const optionHtml = this.getOption(option, queryString);
-      return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
+      return renderOption(item as SynOption);
     });
   }
 
@@ -282,7 +292,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   };
 
-  private handleDocumentKeyDown = async (event: KeyboardEvent) => {
+  private handleDocumentKeyDown = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
     const isClearButton = target.closest('.combobox__clear') !== null;
 
@@ -311,8 +321,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       if (!this.open) {
         const inputValue = this.displayInput.value;
         this.createComboboxOptionsFromQuery(inputValue);
-        await this.updateComplete;
-        this.show();
+        this.updateComplete.then(() => {
+          this.show();
+        });
         return;
       }
 
@@ -350,8 +361,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       if (!this.open) {
         const inputValue = this.displayInput.value;
         this.createComboboxOptionsFromQuery(inputValue);
-        await this.updateComplete;
-        this.show();
+        this.updateComplete.then(() => {
+          this.show();
+        });
       }
 
       if (event.key === 'ArrowDown') {

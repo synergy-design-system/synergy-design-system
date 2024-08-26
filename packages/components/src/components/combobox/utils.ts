@@ -26,3 +26,10 @@ export const isOption = (item: HTMLElement): item is SynOption => (
  * @returns New array of all found syn-nav-items
  */
 export const filterOnlyOptions = (items: HTMLElement[]) => items.filter(isOption);
+
+/**
+ * Normalize a string by removing accents and converting to lowercase
+ * @param str The string to normalize
+ * @returns The normalized string
+ */
+export const normalizeString = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();

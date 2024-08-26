@@ -31,7 +31,7 @@ import SynTag from '../tag/tag.component.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
 import styles from './combobox.styles.js';
-import { filterOnlyOptions, getAssignedElementsForSlot } from './utils.js';
+import { filterOnlyOptions, getAssignedElementsForSlot, normalizeString } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 
 /**
@@ -198,12 +198,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /**
    * A function used to filter options in the combobox component.
+   * The default filter method is a case- and diacritic-insensitive string comparison.
    *
    * @param option - The option to be filtered.
    * @param queryString - The query string used for filtering.
    * @returns A boolean indicating whether the option should be included in the filtered results.
    */
-  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryString) => option.getTextLabel().toLowerCase().includes(queryString.toLowerCase());
+  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryString) => normalizeString(option.getTextLabel()).includes(normalizeString(queryString));
 
   /** Gets the validity state object */
   get validity() {

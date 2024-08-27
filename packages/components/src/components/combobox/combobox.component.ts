@@ -62,6 +62,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-error - Emitted when the combobox menu fails to open.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -543,6 +544,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
+    // Disabled form controls are always valid
+    this.formControlController.setValidity(this.disabled);
+
     // Close the listbox when the control is disabled
     if (this.disabled) {
       this.open = false;
@@ -569,6 +573,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       if (this.filteredOptions.length === 0) {
         this.open = false;
+        this.emit('syn-error');
         return;
       }
 
@@ -608,7 +613,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     this.open = true;
-    return waitForEvent(this, 'syn-after-show');
+    return Promise.race([waitForEvent(this, 'syn-after-show'), waitForEvent(this, 'syn-error')]);
   }
 
   /** Hides the listbox. */

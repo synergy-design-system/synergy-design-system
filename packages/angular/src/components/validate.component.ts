@@ -45,7 +45,7 @@ export class SynValidateComponent {
   }
 
   /**
-* Show the invalid message underneath the element, using a syn-alert
+* Show the validation message underneath the element, using a syn-alert
  */
   @Input()
   set inline(v: SynValidate['inline']) {
@@ -69,7 +69,8 @@ export class SynValidateComponent {
   }
 
   /**
-* Define the events to listen for
+* Defines the events that trigger the validation.
+Defaults to the `invalid` and `change` events.
  */
   @Input()
   set on(v: SynValidate['on']) {
@@ -83,6 +84,7 @@ export class SynValidateComponent {
   /**
 * Custom validation message to be displayed when the input is invalid.
 Will override the default browser validation message.
+Set to an empty string to reset the validation message.
  */
   @Input()
   set customValidation(v: SynValidate['customValidation']) {

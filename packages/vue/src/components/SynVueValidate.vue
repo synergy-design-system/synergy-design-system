@@ -34,7 +34,7 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Show the invalid message underneath the element, using a syn-alert
+* Show the validation message underneath the element, using a syn-alert
  */
   'inline'?: SynValidate['inline'];
 
@@ -44,13 +44,15 @@ const props = defineProps<{
   'hideIcon'?: SynValidate['hideIcon'];
 
   /**
-* Define the events to listen for
+* Defines the events that trigger the validation.
+Defaults to the `invalid` and `change` events.
  */
   'on'?: SynValidate['on'];
 
   /**
 * Custom validation message to be displayed when the input is invalid.
 Will override the default browser validation message.
+Set to an empty string to reset the validation message.
  */
   'customValidation'?: SynValidate['customValidation'];
 }>();

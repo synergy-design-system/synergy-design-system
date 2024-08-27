@@ -34,13 +34,17 @@ export default class SynValidate extends SynergyElement {
 
   @state() validationMessage = '';
 
-  /** Show the invalid message underneath the element, using a syn-alert */
+  /** Show the validation message underneath the element, using a syn-alert */
   @property({ reflect: true, type: Boolean }) inline = false;
 
   /** Do not show the error icon when using inline validation */
   @property({ attribute: 'hide-icon', reflect: true, type: Boolean }) hideIcon = false;
 
-  /** Define the events to listen for */
+  /**
+   * Defines the events that trigger the validation.
+   * Defaults to the `invalid` and `change` events.
+   * @example <syn-validate on="invalid change"></syn-validate>
+   */
   @property({
     converter: {
       fromAttribute: (e: string) => e.split(' ').map(s => s.trim()),
@@ -53,6 +57,7 @@ export default class SynValidate extends SynergyElement {
   /**
    * Custom validation message to be displayed when the input is invalid.
    * Will override the default browser validation message.
+   * Set to an empty string to reset the validation message.
    */
   @property({
     attribute: 'custom-validation',

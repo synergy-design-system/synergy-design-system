@@ -67,7 +67,7 @@ export default class SynValidate extends SynergyElement {
 
   /**
    * Clean up old event listeners and attach new ones after changes of the "on" property
-   * @param old Orignal event listeners to use
+   * @param old Original event listeners to use
    * @param next Next event listeners to use
    */
   @watch('on', { waitUntilFirstUpdate: true })
@@ -149,7 +149,7 @@ export default class SynValidate extends SynergyElement {
   /**
    * Triggers a validation run, showing the validation message if needed.
    */
-  public validate = (e: Event) => {
+  private validate = (e: Event) => {
     if (e.type.includes('invalid')) {
       this.handleInvalidEvent(e);
       return;

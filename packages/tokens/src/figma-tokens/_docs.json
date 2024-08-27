@@ -114,7 +114,7 @@
         }
       },
       "toast-notifications": {
-        "titel": {
+        "title": {
           "value": "Toast Notifications",
           "type": "text"
         },
@@ -1166,7 +1166,7 @@
         }
       },
       "label": {
-        "titel": {
+        "title": {
           "value": "Accessibility Label",
           "type": "text"
         },

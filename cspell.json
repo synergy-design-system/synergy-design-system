@@ -21,7 +21,11 @@
     "aria-describedby",
     "droparea",
     "codepen",
-    "exportparts"
+    "exportparts",
+    "prio",
+    "stylesheet",
+    "keyframes",
+    "autofocus"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

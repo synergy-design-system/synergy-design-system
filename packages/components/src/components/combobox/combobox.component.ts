@@ -218,6 +218,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   firstUpdated() {
     // initially set the displayLabel if the value was set via property initially
     this.displayLabel = this.value;
+    this.formControlController.updateValidity();
   }
 
   protected get options() {
@@ -304,7 +305,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   };
 
-  private handleDocumentKeyDown = (event: KeyboardEvent) => {
+  private handleDocumentKeyDown = async (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
     const isClearButton = target.closest('.combobox__clear') !== null;
 
@@ -357,18 +358,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Navigate options
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
-      const filteredOptions = this.getAllFilteredOptions();
-
-      const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
-      let newIndex = Math.max(0, currentIndex);
-
       // Prevent scrolling
       event.preventDefault();
-
       // Open it
       if (!this.open) {
-        this.show();
+        await this.show();
       }
+
+      const filteredOptions = this.getAllFilteredOptions();
+      const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
+      let newIndex = Math.max(0, currentIndex);
 
       if (event.key === 'ArrowDown') {
         newIndex = currentIndex + 1;

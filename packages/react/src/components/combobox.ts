@@ -9,7 +9,7 @@ import Component from '@synergy-design-system/components/components/combobox/com
 
 import { type EventName } from '@lit/react';
 import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
+  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynErrorEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
 } from '@synergy-design-system/components';
 
 const tagName = 'syn-combobox';
@@ -41,6 +41,7 @@ Component.define('syn-combobox');
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-error - Emitted when the combobox menu fails to open.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -68,6 +69,7 @@ export const SynCombobox = createComponent({
     onSynHide: 'syn-hide' as EventName<SynHideEvent>,
     onSynAfterHide: 'syn-after-hide' as EventName<SynAfterHideEvent>,
     onSynInvalid: 'syn-invalid' as EventName<SynInvalidEvent>,
+    onSynError: 'syn-error' as EventName<SynErrorEvent>,
   },
   react: React,
   tagName,
@@ -83,3 +85,4 @@ export type { SynAfterShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';

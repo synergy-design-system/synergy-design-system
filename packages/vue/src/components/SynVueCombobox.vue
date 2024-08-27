@@ -31,6 +31,7 @@
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-error - Emitted when the combobox menu fails to open.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -48,7 +49,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
+  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynErrorEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
 } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -226,6 +227,11 @@ defineEmits<{
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
+* Emitted when the combobox menu fails to open.
+ */
+  'syn-error': [e: SynErrorEvent];
+
+  /**
 * Support for two way data binding
  */
   'update:modelValue': [newValue: SynCombobox['value']];
@@ -243,16 +249,17 @@ export type { SynAfterShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
   <syn-combobox
     @syn-change="$emit('syn-change', $event)"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-clear="$emit('syn-clear', $event)"
+    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
+    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     v-bind="visibleProps"
     ref="nativeElement"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-show="$emit('syn-show', $event)"
@@ -260,6 +267,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
+    @syn-error="$emit('syn-error', $event)"
   >
     <slot />
   </syn-combobox>

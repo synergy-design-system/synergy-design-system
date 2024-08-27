@@ -12,7 +12,7 @@ import {
   Output,
 } from '@angular/core';
 import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
+  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynErrorEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
 } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
@@ -42,6 +42,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-error - Emitted when the combobox menu fails to open.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -78,6 +79,7 @@ export class SynComboboxComponent {
     this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
     this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
   }
 
   /**
@@ -340,6 +342,11 @@ The default filter method is a case- and diacritic-insensitive string comparison
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
+* Emitted when the combobox menu fails to open.
+ */
+  @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
+
+  /**
 * Support for two way data binding
  */
   @Output() valueChange = new EventEmitter<SynCombobox['value']>();
@@ -355,3 +362,4 @@ export type { SynAfterShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynErrorEvent } from '@synergy-design-system/components';

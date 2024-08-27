@@ -31,10 +31,11 @@ async function getCheckedValue(locator: Locator) {
  * Set the locators inner inputs value
  * @param locator The original form locator
  * @param value The value to set
+ * @param inputSelector The selector for the input to write to
  */
-async function fillField(locator: Locator, value: string) {
+async function fillField(locator: Locator, value: string, inputSelector: string = 'input') {
   await locator.focus();
-  await locator.locator('input').fill(value);
+  await locator.locator(inputSelector).fill(value);
   await locator.blur();
 }
 
@@ -51,7 +52,7 @@ async function fillForm(form: TestPage, page?: Page) {
   await fillField(form.birth, '2000-02-29');
   await fillField(form.password, 'Password123');
   await fillField(form.passwordRecovery, '1234');
-  // await fillField(form.nationality, 'German');
+  await fillField(form.nationality, 'German', '.combobox__display-input');
   await form.topics.click();
   await form.angular.click();
   await form.topics.evaluate((role: SynSelect) => {
@@ -86,7 +87,7 @@ async function checkInitialState(form: TestPage) {
   expect(await getInputValue(form.email)).toBe('');
   expect(await getInputValue(form.phone)).toBe('');
   expect(await getInputValue(form.birth)).toBe('');
-  // expect(await getInputValue(form.nationality)).toBe('');
+  expect(await getInputValue(form.nationality)).toBe('');
   expect(await getInputValue(form.password)).toBe('invalid');
   expect(await getInputValue(form.passwordRecovery)).toBe('');
   expect(await getInputValue(form.topics)).toEqual([]);

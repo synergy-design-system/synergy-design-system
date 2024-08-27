@@ -22,6 +22,7 @@ import {
   SynSelect,
   SynSwitch,
   SynTextarea,
+  SynValidate,
 } from '@synergy-design-system/react';
 import { DemoFieldset } from './DemoFieldset';
 
@@ -85,7 +86,10 @@ export const DemoForm = () => {
       let finalValue;
 
       switch (element.tagName.toLocaleLowerCase()) {
-      case 'syn-checkbox': finalValue = (element as NativeCheckbox).checked; break;
+      case 'syn-checkbox':
+      case 'syn-switch':
+        finalValue = (element as NativeCheckbox).checked;
+        break;
       case 'syn-file': finalValue = (element as NativeFile).files; break;
       default: finalValue = value;
       }
@@ -129,34 +133,38 @@ export const DemoForm = () => {
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">
 
-        <SynRadioGroup
-          id="radiogroup-gender"
-          name="gender"
-          label="Please tell us your gender"
-          required
-          value={formData.gender}
-        >
-          <SynRadio value="f">Female</SynRadio>
-          <SynRadio value="m">Male</SynRadio>
-          <SynRadio value="other">Other</SynRadio>
-        </SynRadioGroup>
+        <SynValidate inline>
+          <SynRadioGroup
+            id="radiogroup-gender"
+            name="gender"
+            label="Please tell us your gender"
+            required
+            value={formData.gender}
+          >
+            <SynRadio value="f">Female</SynRadio>
+            <SynRadio value="m">Male</SynRadio>
+            <SynRadio value="other">Other</SynRadio>
+          </SynRadioGroup>
+        </SynValidate>
 
-        <SynSelect
-          id="select-role"
-          label="Current position"
-          name="role"
-          required
-          value={formData.role}
-        >
-          <SynOptgroup label="Developers">
-            <SynOption value="backend">Backend Developer</SynOption>
-            <SynOption value="frontend">Frontend Developer</SynOption>
-          </SynOptgroup>
-          <SynOptgroup label="Other">
-            <SynOption value="lead">Team Lead</SynOption>
-            <SynOption value="other">Other (please specify in comment section below)</SynOption>
-          </SynOptgroup>
-        </SynSelect>
+        <SynValidate inline>
+          <SynSelect
+            id="select-role"
+            label="Current position"
+            name="role"
+            required
+            value={formData.role}
+          >
+            <SynOptgroup label="Developers">
+              <SynOption value="backend">Backend Developer</SynOption>
+              <SynOption value="frontend">Frontend Developer</SynOption>
+            </SynOptgroup>
+            <SynOptgroup label="Other">
+              <SynOption value="lead">Team Lead</SynOption>
+              <SynOption value="other">Other (please specify in comment section below)</SynOption>
+            </SynOptgroup>
+          </SynSelect>
+        </SynValidate>
 
         <SynInput
           id="input-text"
@@ -205,17 +213,19 @@ export const DemoForm = () => {
 
       {/* Security */}
       <DemoFieldset legend="Security">
-        <SynInput
-          id="input-password"
-          label="Provide a secure password"
-          name="password"
-          password-toggle
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          placeholder="Please provide at least one uppercase and lowercase letter and a number"
-          required
-          type="password"
-          value={formData.password}
-        />
+        <SynValidate inline>
+          <SynInput
+            id="input-password"
+            label="Provide a secure password"
+            name="password"
+            password-toggle
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            placeholder="Please provide at least one uppercase and lowercase letter and a number"
+            required
+            type="password"
+            value={formData.password}
+          />
+        </SynValidate>
 
         <SynInput
           id="input-number"

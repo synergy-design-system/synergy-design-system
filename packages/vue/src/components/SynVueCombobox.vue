@@ -7,19 +7,20 @@
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/combobox
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
- * @since 2.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
  *
- * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot - The listbox options. Must be `<syn-option>` elements.
+ *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot help-text - Text that describes how to use the combobox.
+ *    Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -30,20 +31,27 @@
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity
+ *    and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
  *
- * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
- * @csspart listbox - The listbox container where options are slotted.
+ * @csspart display-input - The element that displays the selected option's label,
+ *     an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted
+ *   and the filtered options list exists.
+ * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ *
+ * @animation combobox.show - The animation to use when showing the combobox.
+ * @animation combobox.hide - The animation to use when hiding the combobox.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/combobox/combobox.js';
@@ -93,15 +101,15 @@ const props = defineProps<{
 
   /**
 * Indicates whether or not the combobox is open.
-* You can toggle this attribute to show and hide the listbox, or you can
-use the `show()` and `hide()` methods and this attribute will reflect the combobox's open state.
+You can toggle this attribute to show and hide the listbox, or you can use the `show()`
+and `hide()` methods and this attribute will reflect the combobox's open state.
  */
   'open'?: SynCombobox['open'];
 
   /**
-* Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
-`overflow: auto|scroll`.
-* Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
+* Enable this option to prevent the listbox from being clipped,
+when the component is placed inside a container with `overflow: auto|scroll`.
+Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
   'hoist'?: SynCombobox['hoist'];
 
@@ -113,8 +121,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the combob
 
   /**
 * The preferred placement of the combobox's menu.
-* Note that the actual placement may vary as needed to keep the listbox
-inside of the viewport.
+Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
  */
   'placement'?: SynCombobox['placement'];
 
@@ -126,10 +133,9 @@ inside of the viewport.
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
-* This attribute allows you
-to place the form control outside of a form and associate it with the form that has this `id`.
-* The form must be in
-the same document or shadow root for this to work.
+This attribute allows you to place the form control outside of a form and associate it
+with the form that has this `id`.
+The form must be in the same document or shadow root for this to work.
  */
   'form'?: SynCombobox['form'];
 
@@ -139,7 +145,7 @@ the same document or shadow root for this to work.
   'required'?: SynCombobox['required'];
 
   /**
-* The minimum length of the text required to show the combobox.
+* The minimum length of the text required to show the combobox, when typing in the input field.
  */
   'threshold'?: SynCombobox['threshold'];
 
@@ -147,8 +153,8 @@ the same document or shadow root for this to work.
 * A function that customizes the rendered option.
 * The first argument is the option, the second
 is the query string, which is typed into the combobox.
-* The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
-the specified value.
+The function should return either a Lit TemplateResult or a string containing trusted HTML
+of the symbol to render at the specified value.
  */
   'getOption'?: SynCombobox['getOption'];
 

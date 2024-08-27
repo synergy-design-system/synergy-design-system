@@ -1,13 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-return-assign */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable complexity */
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable max-len */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// eslint-disable-next-line import/no-duplicates
 import type { CSSResultGroup, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
@@ -38,19 +28,20 @@ import { scrollIntoView } from '../../internal/scroll.js';
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/combobox
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
- * @since 2.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
  *
- * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot - The listbox options. Must be `<syn-option>` elements.
+ *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot help-text - Text that describes how to use the combobox.
+ *    Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -61,23 +52,35 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity
+ *    and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
  *
- * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
- * @csspart listbox - The listbox container where options are slotted.
+ * @csspart display-input - The element that displays the selected option's label,
+ *     an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted
+ *   and the filtered options list exists.
+ * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ *
+ * @animation combobox.show - The animation to use when showing the combobox.
+ * @animation combobox.hide - The animation to use when hiding the combobox.
  */
 export default class SynCombobox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
+  static styles: CSSResultGroup = [
+    componentStyles,
+    formControlStyles,
+    styles,
+    formControlCustomStyles,
+  ];
 
   static dependencies = {
     'syn-icon': SynIcon,
@@ -145,14 +148,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ type: Boolean }) clearable = false;
 
   /**
-   * Indicates whether or not the combobox is open. You can toggle this attribute to show and hide the listbox, or you can
-   * use the `show()` and `hide()` methods and this attribute will reflect the combobox's open state.
+   * Indicates whether or not the combobox is open.
+   * You can toggle this attribute to show and hide the listbox, or you can use the `show()`
+   * and `hide()` methods and this attribute will reflect the combobox's open state.
    */
   @property({ reflect: true, type: Boolean }) open = false;
 
   /**
-   * Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
-   * `overflow: auto|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
+   * Enable this option to prevent the listbox from being clipped,
+   * when the component is placed inside a container with `overflow: auto|scroll`.
+   * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
    */
   @property({ type: Boolean }) hoist = false;
 
@@ -160,8 +165,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property() label = '';
 
   /**
-   * The preferred placement of the combobox's menu. Note that the actual placement may vary as needed to keep the listbox
-   * inside of the viewport.
+   * The preferred placement of the combobox's menu.
+   * Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
    */
   @property({ reflect: true }) placement: 'top' | 'bottom' = 'bottom';
 
@@ -169,23 +174,28 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ attribute: 'help-text' }) helpText = '';
 
   /**
-   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
-   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
-   * the same document or shadow root for this to work.
+   * By default, form controls are associated with the nearest containing `<form>` element.
+   * This attribute allows you to place the form control outside of a form and associate it
+   * with the form that has this `id`.
+   * The form must be in the same document or shadow root for this to work.
    */
   @property({ reflect: true }) form = '';
 
   /** The combobox's required attribute. */
   @property({ reflect: true, type: Boolean }) required = false;
 
-  /** The minimum length of the text required to show the combobox. */
+  /**
+   * The minimum length of the text required to show the combobox, when typing in the input field.
+   */
   @property({ reflect: true, type: Number }) threshold = 1;
 
   /**
    * A function that customizes the rendered option. The first argument is the option, the second
-   * is the query string, which is typed into the combobox. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
-   * the specified value.
+   * is the query string, which is typed into the combobox.
+   * The function should return either a Lit TemplateResult or a string containing trusted HTML
+   * of the symbol to render at the specified value.
    */
+  // eslint-disable-next-line max-len, class-methods-use-this
   @property() getOption: (option: SynOption, queryString: string) => TemplateResult | string | HTMLElement = (option) => option;
 
   /**
@@ -196,7 +206,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * @param queryString - The query string used for filtering.
    * @returns A boolean indicating whether the option should be included in the filtered results.
    */
-  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryString) => normalizeString(option.getTextLabel()).includes(normalizeString(queryString));
+  // eslint-disable-next-line class-methods-use-this
+  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryStr) => {
+    const normalizedOption = normalizeString(option.getTextLabel());
+    const normalizedQuery = normalizeString(queryStr);
+    return normalizedOption.includes(normalizedQuery);
+  };
 
   /** Gets the validity state object */
   get validity() {
@@ -252,7 +267,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
 
-    // If the component is rendered in a shadow root, we need to attach the focusin listener there too
+    // If the component is rendered in a shadow root,
+    // we need to attach the focusin listener there too
     if (this.getRootNode() !== document) {
       this.getRootNode().addEventListener('focusin', this.handleDocumentFocusIn);
     }
@@ -262,6 +278,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.closeWatcher = new CloseWatcher();
       this.closeWatcher.onclose = () => {
         if (this.open) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           this.hide();
           this.displayInput.focus({ preventScroll: true });
         }
@@ -284,12 +301,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private handleFocus() {
     this.hasFocus = true;
     this.emit('syn-focus');
-    // Only open it, when there are combobox options
-    // if (this.showOnFocus) {
-    // TODO: if there is already something types in, do we need to only show the valid selections?
-    // this.createAllComboboxOptions();
-    // this.updateComplete.then(() => this.open = true);
-    // }
   }
 
   private handleBlur() {
@@ -301,11 +312,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Close when focusing out of the combobox
     const path = event.composedPath();
     if (this && !path.includes(this)) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.hide();
     }
   };
 
-  private handleDocumentKeyDown = async (event: KeyboardEvent) => {
+  /* eslint-disable @typescript-eslint/no-floating-promises */
+  // eslint-disable-next-line complexity
+  private handleDocumentKeyDown = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
     const isClearButton = target.closest('.combobox__clear') !== null;
 
@@ -322,6 +336,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         event.preventDefault();
         event.stopPropagation();
         this.hide();
+        this.displayInput.focus({ preventScroll: true });
       }
     }
 
@@ -362,22 +377,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       event.preventDefault();
       // Open it
       if (!this.open) {
-        await this.show();
+        // we need to wait for the end of `show`, otherwise the filtered list is not yet there
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.show().then(() => {
+          this.selectNextOption(event.key === 'ArrowDown');
+        });
+        return;
       }
 
-      const filteredOptions = this.getAllFilteredOptions();
-      const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
-      let newIndex = Math.max(0, currentIndex);
-
-      if (event.key === 'ArrowDown') {
-        newIndex = currentIndex + 1;
-        if (newIndex > filteredOptions.length - 1) newIndex = 0;
-      } else if (event.key === 'ArrowUp') {
-        newIndex = currentIndex - 1;
-        if (newIndex < 0) newIndex = filteredOptions.length - 1;
-      }
-      this.setCurrentOption(filteredOptions[newIndex]);
-      scrollIntoView(this.currentOption!, this.listbox, 'vertical', 'auto');
+      this.selectNextOption(event.key === 'ArrowDown');
     }
 
     // Move cursor
@@ -387,15 +395,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       if (event.key === 'Home') {
         this.displayInput.setSelectionRange(0, 0);
       } else if (event.key === 'End') {
-        this.displayInput.setSelectionRange(this.displayInput.value.length, this.displayInput.value.length);
+        this.displayInput.setSelectionRange(
+          this.displayInput.value.length,
+          this.displayInput.value.length,
+        );
       }
     }
   };
+  /* eslint-enable @typescript-eslint/no-floating-promises */
 
   private handleDocumentMouseDown = (event: MouseEvent) => {
     // Close when clicking outside of the combobox
     const path = event.composedPath();
     if (this && !path.includes(this)) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.hide();
     }
   };
@@ -411,8 +424,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     event.preventDefault();
-    this.open = !this.open;
     this.displayInput.focus({ preventScroll: true });
+    this.open = !this.open;
   }
 
   private handleComboboxKeyDown(event: KeyboardEvent) {
@@ -438,6 +451,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.displayInput.focus({ preventScroll: true });
 
       // Emit after update
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.emit('syn-clear');
         this.emit('syn-input');
@@ -446,12 +460,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private preventLoosingFocus(event: MouseEvent) {
     // Don't lose focus of the input or propagate events
     event.stopPropagation();
     event.preventDefault();
   }
 
+  /* eslint-disable @typescript-eslint/no-floating-promises */
   private handleOptionClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const option = target.closest('syn-option');
@@ -474,13 +490,36 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.displayInput.focus({ preventScroll: true });
     }
   }
+  /* eslint-enable @typescript-eslint/no-floating-promises */
+
+  /**
+   * Selects the following or previous option.
+   *
+   * @param isNext - A boolean indicating whether to select the following option (true)
+   *                 or the previous option (false).
+   */
+  private selectNextOption(isNext: boolean) {
+    const filteredOptions = this.getAllFilteredOptions();
+    const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
+    let newIndex = Math.max(0, currentIndex);
+
+    if (isNext) {
+      newIndex = currentIndex + 1;
+      if (newIndex > filteredOptions.length - 1) newIndex = 0;
+    } else {
+      newIndex = currentIndex - 1;
+      if (newIndex < 0) newIndex = filteredOptions.length - 1;
+    }
+    this.setCurrentOption(filteredOptions[newIndex]);
+    scrollIntoView(this.currentOption!, this.listbox, 'vertical', 'auto');
+  }
 
   private getAllFilteredOptions() {
     return [...this.filteredWrapper.querySelectorAll<SynOption>('syn-option')];
   }
 
-  // Sets the current option, which is the option the user is currently interacting with (e.g. via keyboard). Only one
-  // option may be "current" at a time.
+  // Sets the current option, which is the option the user is currently interacting with
+  // (e.g. via keyboard). Only one option may be "current" at a time.
   private setCurrentOption(option: SynOption | null) {
     const allOptions = this.getAllFilteredOptions();
 
@@ -488,6 +527,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.removeAttribute('aria-activedescendant');
 
     allOptions.forEach(el => {
+      // eslint-disable-next-line no-param-reassign
       el.current = false;
       el.setAttribute('aria-selected', 'false');
     });
@@ -495,6 +535,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Select the target option
     if (option) {
       this.currentOption = option;
+      // eslint-disable-next-line no-param-reassign
       option.current = true;
       option.setAttribute('aria-selected', 'true');
       this.displayInput.setAttribute('aria-activedescendant', option.id);
@@ -508,10 +549,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const allOptions = this.getAllFilteredOptions();
 
     // Clear existing selection
-    allOptions.forEach(el => (el.selected = false));
+    allOptions.forEach(el => {
+      // eslint-disable-next-line no-param-reassign
+      el.selected = false;
+    });
 
     // Set the new selection
     if (option) {
+      // eslint-disable-next-line no-param-reassign
       option.selected = true;
       this.lastOptionValue = option.value;
     }
@@ -520,16 +565,17 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.selectionChanged();
   }
 
-  // This method must be called whenever the selection changes. It will update the selected options cache, the current
-  // value, and the display value
+  // This method must be called whenever the selection changes.
+  // It will update the selected options cache, the current value, and the display value
   private selectionChanged() {
     // Update selected options cache
     this.selectedOption = this.getAllFilteredOptions().find(el => el.selected);
 
-    // Update the value and display label
+    // Update the value
     this.value = this.selectedOption?.value ?? this.displayInput.value;
 
-    // Update validity
+    // Update validity and display label
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
       this.displayLabel = this.selectedOption?.getTextLabel() ?? this.displayInput.value;
       this.formControlController.updateValidity();
@@ -549,6 +595,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Close the listbox when the control is disabled
     if (this.disabled) {
       this.open = false;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.handleOpenChange();
     }
   }
@@ -571,6 +618,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       await this.updateComplete;
 
       if (this.filteredOptions.length === 0) {
+        // Don't open the listbox if there are no options
         this.open = false;
         this.emit('syn-error');
         return;
@@ -626,7 +674,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return waitForEvent(this, 'syn-after-hide');
   }
 
-  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
+  /**
+   * Checks for validity but does not show a validation message.
+   * Returns `true` when valid and `false` when invalid.
+   */
   checkValidity() {
     return this.valueInput.checkValidity();
   }
@@ -700,10 +751,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private handleChange() {
-    // Only update the value and emit the event, if the change event occurred by user typing something in and removing focus of the combobox
+    // Only update the value and emit the event, if the change event occurred by
+    // the user typing something in and removing focus of the combobox
     if (!this.selectedOption) {
       this.value = this.displayInput.value;
       // Update validity
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.formControlController.updateValidity();
       });
@@ -724,18 +777,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const slottedOptgroups = this.getSlottedOptGroups();
     if (customElements.get('syn-option')) {
       slottedOptions.forEach((option, index) => {
+        // eslint-disable-next-line no-param-reassign
         option.id = option.id || `syn-combobox-option-${index}`;
       });
 
       slottedOptgroups.forEach((optgroup, index) => {
+        // eslint-disable-next-line no-param-reassign
         optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
       });
     } else {
       // Rerun this handler when <syn-option> is registered
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
     }
   }
 
+  /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
@@ -750,11 +807,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         part="form-control"
         class=${classMap({
           'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
           'form-control--has-help-text': hasHelpText,
+          'form-control--has-label': hasLabel,
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--small': this.size === 'small',
         })}
       >
         <label
@@ -771,16 +828,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
           <syn-popup
             class=${classMap({
               combobox: true,
-              'combobox--standard': true,
-              'combobox--open': this.open,
+              'combobox--bottom': this.placement === 'bottom',
               'combobox--disabled': this.disabled,
               'combobox--focused': this.hasFocus,
-              'combobox--placeholder-visible': isPlaceholderVisible,
-              'combobox--top': this.placement === 'top',
-              'combobox--bottom': this.placement === 'bottom',
-              'combobox--small': this.size === 'small',
-              'combobox--medium': this.size === 'medium',
               'combobox--large': this.size === 'large',
+              'combobox--medium': this.size === 'medium',
+              'combobox--open': this.open,
+              'combobox--placeholder-visible': isPlaceholderVisible,
+              'combobox--small': this.size === 'small',
+              'combobox--standard': true,
+              'combobox--top': this.placement === 'top',
             })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
@@ -870,7 +927,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mousedown=${this.preventLoosingFocus}
               @mouseup=${this.handleOptionClick}
             >
-              <div class="listbox__options">
+              <div class="listbox__options" part="filtered-listbox">
                 ${this.options}
               </div>
               <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
@@ -889,6 +946,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       </div>
     `;
   }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }
 
 setDefaultAnimation('combobox.show', {

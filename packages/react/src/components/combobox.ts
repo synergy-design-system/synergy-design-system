@@ -17,19 +17,20 @@ Component.define('syn-combobox');
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/combobox
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
- * @since 2.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
  *
- * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot - The listbox options. Must be `<syn-option>` elements.
+ *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot help-text - Text that describes how to use the combobox.
+ *    Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -40,20 +41,27 @@ Component.define('syn-combobox');
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity
+ *    and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
  *
- * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
- * @csspart listbox - The listbox container where options are slotted.
+ * @csspart display-input - The element that displays the selected option's label,
+ *     an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted
+ *   and the filtered options list exists.
+ * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ *
+ * @animation combobox.show - The animation to use when showing the combobox.
+ * @animation combobox.hide - The animation to use when hiding the combobox.
  */
 export const SynCombobox = createComponent({
   displayName: 'SynCombobox',

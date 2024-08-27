@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
@@ -5,9 +6,9 @@ import {
 } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
+import { serialize } from '../../../dist/synergy.js';
 import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
-import { serialize } from '../../utilities/form.js';
 import type SynOption from '../option/option.js';
 import type SynCombobox from './combobox.js';
 
@@ -37,6 +38,34 @@ describe('<syn-combobox>', () => {
 
       await expect(combobox).to.be.accessible();
     });
+  });
+
+  it('default properties', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+
+    expect(el.name).to.equal('');
+    expect(el.value).to.equal('');
+    expect(el.defaultValue).to.equal('');
+    expect(el.size).to.equal('medium');
+    expect(el.placeholder).to.equal('');
+    expect(el.disabled).to.be.false;
+    expect(el.clearable).to.be.false;
+    expect(el.open).to.be.false;
+    expect(el.hoist).to.be.false;
+    expect(el.label).to.equal('');
+    expect(el.placement).to.equal('bottom');
+    expect(el.helpText).to.equal('');
+    expect(el.form).to.equal('');
+    expect(el.required).to.be.false;
+    expect(el.threshold).to.equal(1);
+    expect(el.getOption).to.be.a('function');
+    expect(el.filter).to.be.a('function');
   });
 
   it('should be disabled with the disabled attribute', async () => {
@@ -90,16 +119,38 @@ describe('<syn-combobox>', () => {
       </syn-combobox>
     `);
     const label = el.shadowRoot!.querySelector('[part~="form-control-label"]')!;
-    const submitHandler = sinon.spy();
+    const focusHandler = sinon.spy();
 
-    el.addEventListener('syn-focus', submitHandler);
+    el.addEventListener('syn-focus', focusHandler);
     (label as HTMLLabelElement).click();
-    await waitUntil(() => submitHandler.calledOnce);
+    await waitUntil(() => focusHandler.calledOnce);
 
-    expect(submitHandler).to.have.been.calledOnce;
+    expect(focusHandler).to.have.been.calledOnce;
   });
 
   describe('when the value changes', () => {
+    it('should emit syn-change and syn-input when the user types in the combobox', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(changeHandler).to.have.been.calledOnce;
+      expect(inputHandler).to.have.been.calledThrice;
+    });
+
     it('should emit syn-change and syn-input when the value is changed with the mouse', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
@@ -441,6 +492,20 @@ describe('<syn-combobox>', () => {
       expect(combobox.checkValidity()).to.be.false;
     });
 
+    it('should be invalid when required and disabled is removed', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox disabled required>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      expect(el.checkValidity()).to.be.true;
+      el.disabled = false;
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.false;
+    });
+
     it('should focus on the displayInput when constraint validation occurs', async () => {
       const el = await fixture<HTMLFormElement>(html`
         <form>
@@ -537,6 +602,25 @@ describe('<syn-combobox>', () => {
       expect(combobox.hasAttribute('data-user-invalid')).to.be.false;
       expect(combobox.hasAttribute('data-user-valid')).to.be.false;
     });
+
+    it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
+      const combobox = await fixture<SynCombobox>(html`
+        <syn-combobox label="Combobox one">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      combobox.setCustomValidity('Invalid selection');
+      await combobox.updateComplete;
+
+      expect(combobox.checkValidity()).to.be.false;
+      expect(combobox.hasAttribute('data-invalid')).to.be.true;
+      expect(combobox.hasAttribute('data-valid')).to.be.false;
+      expect(combobox.hasAttribute('data-user-invalid')).to.be.false;
+      expect(combobox.hasAttribute('data-user-valid')).to.be.false;
+    });
   });
 
   describe('when submitting a form', () => {
@@ -611,6 +695,71 @@ describe('<syn-combobox>', () => {
       await oneEvent(form, 'reset');
       await combobox.updateComplete;
       expect(combobox.value).to.equal('option-1');
+    });
+  });
+
+  describe('when calling HTMLFormElement.reportValidity()', () => {
+    it('should be invalid when the combobox is empty and form.reportValidity() is called', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox required>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+          <syn-button type="submit">Submit</syn-button>
+        </form>
+      `);
+
+      expect(form.reportValidity()).to.be.false;
+    });
+
+    it('should be valid when the combobox is empty, reportValidity() is called, and the form has novalidate', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form novalidate>
+          <syn-combobox required>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+          <syn-button type="submit">Submit</syn-button>
+        </form>
+      `);
+
+      expect(form.reportValidity()).to.be.true;
+    });
+  });
+
+  describe('when using FormControlController', () => {
+    it('should submit with the correct form when the form attribute changes', async () => {
+      const el = await fixture<HTMLFormElement>(html`
+        <div>
+          <form id="f1">
+            <input type="hidden" name="b" value="2" />
+            <syn-button type="submit">Submit</syn-button>
+          </form>
+          <form id="f2">
+            <input type="hidden" name="c" value="3" />
+            <syn-button type="submit">Submit</syn-button>
+          </form>
+          <syn-combobox form="f1" name="a" value="option">
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+        </div>
+      `);
+      const form = el.querySelector<HTMLFormElement>('#f2')!;
+      const combobox = document.querySelector('syn-combobox')!;
+
+      combobox.form = 'f2';
+      await combobox.updateComplete;
+
+      const formData = new FormData(form);
+
+      expect(formData.get('a')).to.equal('option');
+      expect(formData.get('b')).to.be.null;
+      expect(formData.get('c')).to.equal('3');
     });
   });
 

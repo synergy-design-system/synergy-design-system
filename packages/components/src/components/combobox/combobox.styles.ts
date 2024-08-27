@@ -101,17 +101,6 @@ export default css`
     outline: none;
   }
 
-  /* Visually hide the display input when multiple is enabled */
-  .combobox--multiple:not(.combobox--placeholder-visible) .combobox__display-input {
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-  }
-
   /**
    * Visually the value input as it should not be visible, but only handle value validation  
    */
@@ -125,23 +114,6 @@ export default css`
     top: 0;
     width: 100%;
     z-index: -1;
-  }
-
-  .combobox__tags {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    margin-inline-start: var(--syn-spacing-medium);
-  }
-
-  .combobox__tags::slotted(syn-tag) {
-    cursor: pointer !important;
-  }
-
-  .combobox--disabled .combobox__tags,
-  .combobox--disabled .combobox__tags::slotted(syn-tag) {
-    cursor: not-allowed !important;
   }
 
   /* Standard combobox */
@@ -183,13 +155,8 @@ export default css`
     margin-inline-end: var(--syn-spacing-x-small);
   }
 
-  .combobox--small.combobox--multiple:not(.combobox--placeholder-visible) .combobox__inputs {
-    padding-block: 2px;
-    padding-inline-start: 0;
-  }
-
-  .combobox--small .combobox__tags {
-    gap: var(--syn-spacing-2x-small);
+  .combobox--small .combobox__suffix::slotted(*) {
+    margin-inline-start: var(--syn-spacing-x-small);
   }
 
   .combobox--medium .combobox__inputs {
@@ -208,16 +175,11 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-small);
   }
 
-  .combobox--medium.combobox--multiple:not(.combobox--placeholder-visible) .combobox__input {
-    padding-block: 3px;
-    padding-inline-start: 0;
+  .combobox--medium .combobox__suffix::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-small);
   }
 
-  .combobox--medium .combobox__tags {
-    gap: var(--syn-spacing-x-small);
-  }
-
-  .combobox--large .combobox__input {
+  .combobox--large .combobox__inputs {
     border-radius: var(--syn-input-border-radius-large);
     font-size: var(--syn-input-font-size-large);
     min-height: var(--syn-input-height-large);
@@ -233,17 +195,20 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-medium);
   }
 
-  .combobox--large.combobox--multiple:not(.combobox--placeholder-visible) .combobox__input {
-    padding-block: 4px;
-    padding-inline-start: 0;
-  }
-
-  .combobox--large .combobox__tags {
-    gap: var(--syn-spacing-small);
+  .combobox--large .combobox__suffix::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-medium);
   }
   
   /* Prefix */
   .combobox__prefix {
+    align-items: center;
+    color: var(--syn-input-help-text-color);
+    display: inline-flex;
+    flex: 0;
+  }
+
+  /* Suffix */
+  .combobox__suffix {
     align-items: center;
     color: var(--syn-input-help-text-color);
     display: inline-flex;

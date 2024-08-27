@@ -23,11 +23,11 @@ Component.define('syn-combobox');
  *
  * @dependency syn-icon
  * @dependency syn-popup
- * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+ * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
@@ -48,14 +48,9 @@ Component.define('syn-combobox');
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
+ * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
  * @csspart listbox - The listbox container where options are slotted.
- * @csspart tags - The container that houses option tags when `multiselect` is used.
- * @csspart tag - The individual tags that represent each multiselect option.
- * @csspart tag__base - The tag's base part.
- * @csspart tag__content - The tag's content part.
- * @csspart tag__remove-button - The tag's remove button.
- * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */

@@ -3,10 +3,10 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/combobox/combobox';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynButton } from '@synergy-design-system/components';
+import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { userEvent } from '@storybook/test';
-import { openSelect } from '../../src/helpers/select.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -15,7 +15,6 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const { args, argTypes } = storybookDefaults('syn-combobox');
 const { overrideArgs } = storybookHelpers('syn-combobox');
@@ -78,7 +77,8 @@ export const Default = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('select', 'default'),
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'default'),
       },
     },
   },
@@ -86,73 +86,159 @@ export const Default = {
 
 } as Story;
 
-// TODO: do we still need this?
-export const CustomResultItem: Story = {
+export const Labels: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('select', 'labels'),
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
       },
     },
   },
   render: () => html`
-    <syn-combobox label="Custom result item">
+    <syn-combobox label="Preferred Color">
       ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const HelpText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Preferred Color" help-text="Select a color">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const Placeholder: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Preferred Color" help-text="Select a color" placeholder="Selected color">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const elm = canvasElement.querySelector<SynCombobox>('syn-combobox');
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    elm?.focus();
+  },
+  render: () => html`
+    <syn-combobox>
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const SimpleSuggests: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    combobox.show();
+  },
+  render: () => html`
+    <syn-combobox label="Preferred Color" value="g">
+     ${createColorOptionsHtml()}
     </syn-combobox>
   `,
 };
 
 export const HighlightQuery: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('select', 'labels'),
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
       },
     },
   },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    combobox.show();
+  },
   render: () => html`
-    <syn-combobox label="Highlight query">
+    <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
      ${createColorOptionsHtml()}
     </syn-combobox>
     <script type="module">
-      const combobox = document.querySelector('syn-combobox');
-      combobox.getOption = (option, queryString) => {
-        if(queryString) {
-          const mark = document.createElement('mark');
-          mark.textContent = queryString;
-          option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+      const comboboxes = document.querySelectorAll('.highlight-combobox');
+      comboboxes.forEach((combobox) => {
+        combobox.getOption = (option, queryString) => {
+          if(queryString) {
+            const mark = document.createElement('mark');
+            mark.textContent = queryString;
+            option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+          }
+          return option; 
         }
-      return option; 
-      }
+      });
     </script>
   `,
 };
 
-export const OpenOnClick: Story = {
+export const GroupingQuery: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('select', 'labels'),
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
       },
     },
   },
-  render: () => html`
-    <syn-combobox label="Highlight query">
-     ${createColorOptionsHtml()}
-    </syn-combobox>
-  `,
-};
-
-export const GroupElements: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('select', 'labels'),
-      },
-    },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    combobox.show();
   },
   render: () => html`
-    <syn-combobox label="Group elements">
+    <syn-combobox label="Group elements" value="g">
       <syn-optgroup label="B">
         ${createColorOptionHtml('Black')}
         ${createColorOptionHtml('Blue')}
@@ -193,11 +279,21 @@ export const GroupElements: Story = {
 
 export const SuggestionContainerHeight: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
-        story: generateStoryDescription('select', 'labels'),
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
       },
     },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    combobox.value = 'g';
+    await combobox.updateComplete;
+    combobox.show();
   },
   render: () => html`
     <syn-combobox id="max-height" label="Max Height for list">
@@ -210,3 +306,173 @@ export const SuggestionContainerHeight: Story = {
     </style>
   `,
 };
+
+export const Clearable: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox value="Green" clearable>
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox  disabled placeholder="Disabled">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox size="small" placeholder="Small">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+
+    <br />
+
+    <syn-combobox size="medium" placeholder="Medium">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+
+    <br />
+
+    <syn-combobox size="large" placeholder="Large">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const Invalid: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const form = canvasElement.querySelector('form')!;
+    const combobox = form.querySelector('syn-combobox');
+    const button = form.querySelector('syn-button');
+
+    if (button && combobox) {
+      // make sure to always fire both events:
+      // 1. userEvent.click is needed for storybooks play function to register
+      // 2. button.click is needed to really click the button
+      // userEvent.click works on native elements only
+      await userEvent.click(button);
+      button.click();
+    }
+  },
+  render: () => html`
+    <form class="custom-validity">
+      <syn-combobox required placeholder="Type something" help-text="This is a help-text">
+        ${createColorOptionsHtml()}
+      </syn-combobox>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
+  `,
+};
+
+export const PrefixSuffixTextAndIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox placeholder="Small" size="small" clearable>
+      <span slot="prefix">prefix</span>
+      <span slot="suffix">suffix</span>
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+    <br />
+    <syn-combobox placeholder="Medium" size="medium" clearable>
+      <span slot="prefix">prefix</span>
+      <span slot="suffix">suffix</span>
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+    <br />
+    <syn-combobox placeholder="Large" size="large" clearable>
+      <span slot="prefix">prefix</span>
+      <span slot="suffix">suffix</span>
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+
+    <br />
+
+    <syn-combobox placeholder="Small" size="small" clearable>
+      <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      ${createColorOptionsHtml()}
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+    </syn-combobox>
+    <br />
+    <syn-combobox placeholder="Medium" size="medium" clearable>
+      <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      ${createColorOptionsHtml()}
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+    </syn-combobox>
+    <br />
+    <syn-combobox placeholder="Large" size="large" clearable>
+      <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+      ${createColorOptionsHtml()}
+      <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+    </syn-combobox>
+  `,
+};
+
+// Bundled screenshot story
+/* eslint-disable sort-keys */
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Labels,
+  HelpText,
+  Placeholder,
+  Clearable,
+  Disabled,
+  Sizes,
+  PrefixSuffixTextAndIcons,
+}, 500);
+/* eslint-enable sort-keys */

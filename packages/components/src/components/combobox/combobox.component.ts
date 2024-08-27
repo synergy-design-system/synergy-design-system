@@ -48,6 +48,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+ * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
@@ -68,6 +69,7 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
+ * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
  * @csspart listbox - The listbox container where options are slotted.
  * @csspart clear-button - The clear button.
@@ -210,6 +212,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
+  }
+
+  firstUpdated() {
+    // initially set the displayLabel if the value was set via property initially
+    this.displayLabel = this.value;
   }
 
   protected get options() {
@@ -828,7 +835,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               />
        
               ${hasClearIcon
-        ? html`
+                ? html`
                     <button
                       part="clear-button"
                       class="combobox__clear"
@@ -843,7 +850,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                       </slot>
                     </button>
                   `
-        : ''}
+                : ''}
+
+                <slot name="suffix" part="suffix" class="combobox__suffix"></slot>
             </div>
 
             <div

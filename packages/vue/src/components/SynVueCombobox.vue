@@ -13,11 +13,11 @@
  *
  * @dependency syn-icon
  * @dependency syn-popup
- * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+ * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
@@ -38,14 +38,9 @@
  * @csspart form-control-help-text - The help text's wrapper.
  * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
+ * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
  * @csspart listbox - The listbox container where options are slotted.
- * @csspart tags - The container that houses option tags when `multiselect` is used.
- * @csspart tag - The individual tags that represent each multiselect option.
- * @csspart tag__base - The tag's base part.
- * @csspart tag__content - The tag's content part.
- * @csspart tag__remove-button - The tag's remove button.
- * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
@@ -72,10 +67,6 @@ const props = defineProps<{
 
   /**
 * The current value of the combobox, submitted as a name/value pair with form data.
-* When `multiple` is enabled, the
-value attribute will be a space-delimited list of values based on the options selected, and the value property will
-be an array.
-* **For this reason, values must not contain spaces.**
  */
   'value'?: SynCombobox['value'];
 
@@ -98,6 +89,13 @@ be an array.
 * Adds a clear button when the combobox is not empty.
  */
   'clearable'?: SynCombobox['clearable'];
+
+  /**
+* Indicates whether or not the combobox is open.
+* You can toggle this attribute to show and hide the listbox, or you can
+use the `show()` and `hide()` methods and this attribute will reflect the combobox's open state.
+ */
+  'open'?: SynCombobox['open'];
 
   /**
 * Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
@@ -145,12 +143,6 @@ the same document or shadow root for this to work.
   'threshold'?: SynCombobox['threshold'];
 
   /**
-* Show combobox on focus event.
-* Focus event will ignore the `threshold` property and will always show the list.
- */
-  'showOnFocus'?: SynCombobox['showOnFocus'];
-
-  /**
 * A function that customizes the rendered option.
 * The first argument is the option, the second
 is the query string, which is typed into the combobox.
@@ -161,6 +153,7 @@ the specified value.
 
   /**
 * A function used to filter options in the combobox component.
+The default filter method is a case- and diacritic-insensitive string comparison.
  */
   'filter'?: SynCombobox['filter'];
 

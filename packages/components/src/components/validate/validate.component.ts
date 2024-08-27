@@ -1,8 +1,9 @@
 import type { CSSResultGroup } from 'lit';
 import { html } from 'lit';
-import { property, query, queryAssignedElements, state } from 'lit/decorators.js';
+import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
 import styles from './validate.styles.js';
 
@@ -27,7 +28,7 @@ export default class SynValidate extends SynergyElement {
     'syn-alert': SynAlert,
   };
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  controller = new AbortController();
 
   @queryAssignedElements() private slottedChildren: HTMLElement[];
 
@@ -35,24 +36,39 @@ export default class SynValidate extends SynergyElement {
 
   /** Show the invalid message underneath the element, using a syn-alert */
   @property({ reflect: true, type: Boolean }) inline = false;
-  
+
   /** Do not show the error icon when using inline validation */
   @property({ attribute: 'hide-icon', reflect: true, type: Boolean }) hideIcon = false;
 
-  /**
-   * Enable to validate on each input change (e.g. when a keystroke occurs on an input)
-   * instead of form submit.
-   */
-  @property({ reflect: true, type: Boolean }) live = false;
-
-  /** Define a custom event name to listen for */
-  @property() on = '';
+  /** Define the events to listen for */
+  @property({
+    converter: {
+      fromAttribute: (e: string) => e.split(' ').map(s => s.trim()),
+      toAttribute: (a: string[]) => a.map(e => e.trim()).join(' '),
+    },
+    reflect: true,
+    type: Array,
+  }) on: string[] = ['invalid', 'change'];
 
   /**
    * Custom validation message to be displayed when the input is invalid.
    * Will override the default browser validation message.
    */
-  @property({ attribute: 'custom-validation', type: String, reflect: true }) customValidation = '';
+  @property({
+    attribute: 'custom-validation',
+    reflect: true,
+    type: String,
+  }) customValidation = '';
+
+  /**
+   * Clean up old event listeners and attach new ones after changes of the "on" property
+   * @param old Orignal event listeners to use
+   * @param next Next event listeners to use
+   */
+  @watch('on', { waitUntilFirstUpdate: true })
+  handleListenerChange(_: string[], next: string[]) {
+    this.attachEvents(next);
+  }
 
   /**
    * Get the input element to validate. Defined as the first slotted element
@@ -60,63 +76,90 @@ export default class SynValidate extends SynergyElement {
    */
   private getInput() {
     const input = this.slottedChildren[0];
-    return input as HTMLFormElement | undefined;
+    return input ? input as HTMLInputElement : undefined;
   }
 
   /**
-   * Get the event name to listen for.
-   * Will return the custom event name if defined, otherwise will return 'input' or 'change',
-   * depending on if it is a synergy element or not.
-   * @returns The event name to listen for
+   * Get the event names to listen for.
+   * If the found input is a synergy element, will use syn- prefixes.
+   * @returns The event names to listen for
    */
-  private getUsedEventName() {
-    if (this.on) {
-      return this.on;
-    }
+  private getUsedEventNames() {
+    const events = this.on;
 
     const input = this.getInput();
     const isSynergyElement = input instanceof SynergyElement;
 
-    // Check if we should use synergies custom events
-    const baseEventName = this.live ? 'input' : 'change';
-
-    return isSynergyElement ? `syn-${baseEventName}` : baseEventName;
+    return isSynergyElement ? events.map((event) => `syn-${event}`) : events;
   }
 
-  validate = () => {
-    const {
-      customValidation,
-      inline,
-    } = this;
-
+  /**
+   * Attach the given events to the input
+   * @param eventsToAdd The events to attach. If omitted, will use the ones from the on property
+   */
+  private attachEvents(eventsToAdd?: string[]) {
+    this.controller.abort();
+    this.controller = new AbortController();
     const input = this.getInput();
 
     if (!input) {
       return;
     }
 
-    input.setCustomValidity(customValidation || '');
+    const events = eventsToAdd || this.getUsedEventNames();
+    events.forEach(e => {
+      input.addEventListener(e, this.validate, {
+        signal: this.controller.signal,
+      });
+    });
+  }
 
-    const isValid = input.checkValidity();
+  private setValidationMessage(input: HTMLInputElement) {
+    const { customValidation } = this;
+    const validationMessage = customValidation || input.validationMessage;
 
-    // Regular case: Use inline browser validation
-    if (!inline) {
-      input.reportValidity();
-      return;
-    }
-
-    // When using inline validation, sync the needed attributes
-    const validationMessage = isValid ? '' : customValidation || input.validationMessage;
     this.validationMessage = validationMessage;
   }
 
+  private handleInvalidEvent(e: Event) {
+    const { inline } = this;
+
+    // If we do not use inline validation, skip
+    if (!inline) {
+      return;
+    }
+
+    e.preventDefault();
+
+    const input = e.target as HTMLInputElement;
+
+    this.setValidationMessage(input);
+  }
+
+  private handleGenericEvent(e: Event) {
+    const input = e.target as HTMLInputElement;
+    this.setValidationMessage(input);
+  }
+
+  /**
+   * Triggers a validation run, showing the validation message if needed.
+   */
+  public validate = (e: Event) => {
+    if (e.type.includes('invalid')) {
+      this.handleInvalidEvent(e);
+      return;
+    }
+
+    this.handleGenericEvent(e);
+  };
+
   firstUpdated() {
-    this.defaultSlot.addEventListener(this.getUsedEventName(), this.validate);
+    this.attachEvents();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.defaultSlot.removeEventListener(this.getUsedEventName(), this.validate);
+    this.controller.abort();
   }
 
   private renderInlineValidation() {

@@ -44,14 +44,7 @@ const props = defineProps<{
   'hideIcon'?: SynValidate['hideIcon'];
 
   /**
-* Enable to validate on each input change (e.g.
-* when a keystroke occurs on an input)
-instead of form submit.
- */
-  'live'?: SynValidate['live'];
-
-  /**
-* Define a custom event name to listen for
+* Define the events to listen for
  */
   'on'?: SynValidate['on'];
 

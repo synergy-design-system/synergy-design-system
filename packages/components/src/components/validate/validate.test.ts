@@ -9,6 +9,6 @@ describe('<syn-validate>', () => {
         <syn-input label="Email" type="email"></syn-input>
       </syn-validate>
     `);
-    await expect(el).to.be.accessible();  
+    await expect(el).to.be.accessible();
   });
 });

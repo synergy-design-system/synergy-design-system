@@ -210,7 +210,7 @@ export const DemoForm = () => {
           placeholder='Please choose your nationality'
         >
           {
-            nationalities.map((national) => <SynOption>{national}</SynOption>)
+            nationalities.map((national) => <SynOption value={national}>{national}</SynOption>)
           }
         </SynCombobox>
 

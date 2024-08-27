@@ -179,7 +179,7 @@ const synChange = () => {
         required
         v-model="formData.nationality"
       >
-        <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
+        <SynVueOption  v-for="nationality in nationalities" :key="nationality" :value="nationality">{{ nationality  }}</SynVueOption>
       </SynVueCombobox>
 
     </DemoFieldset>

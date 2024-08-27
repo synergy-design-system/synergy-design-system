@@ -113,6 +113,7 @@ const initCombobox = () => {
   nationalities.forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;
+    option.value = nationality;
     nationalitiesEl?.appendChild(option);
   });
 };

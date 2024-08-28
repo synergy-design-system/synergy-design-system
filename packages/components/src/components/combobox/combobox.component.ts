@@ -652,7 +652,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   }
 
-  /** Shows the listbox. */
+  /**
+   * Shows the listbox. If it is not possible to open the listbox, because there are no
+   * appropriate filtered options, a syn-error is emitted and the listbox stays closed.
+   */
   async show() {
     if (this.open || this.disabled) {
       this.open = false;

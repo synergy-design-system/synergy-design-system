@@ -109,12 +109,20 @@ const initApp = async () => {
 };
 
 const initCombobox = () => {
-  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality');
+  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
+  nationalitiesEl.getOption = (option, query) => {
+    if (query) {
+      const mark = document.createElement('mark');
+      mark.textContent = query;
+      option.innerHTML = option.getTextLabel().replace(new RegExp(query, 'i'), mark.outerHTML);
+    }
+    return option;
+  };
   nationalities.forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;
     option.value = nationality;
-    nationalitiesEl?.appendChild(option);
+    nationalitiesEl.appendChild(option);
   });
 };
 

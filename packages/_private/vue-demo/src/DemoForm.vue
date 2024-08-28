@@ -53,6 +53,7 @@ const formRef = ref<HTMLFormElement>();
 
 // Custom formatter for donations
 const donationsRef = ref<InstanceType<typeof SynVueRange> | null>(null);
+const nationalityRef = ref<InstanceType<typeof SynVueCombobox> | null>(null);
 
 onMounted(() => {
   const formatter = new Intl.NumberFormat('de-DE', {
@@ -63,6 +64,17 @@ onMounted(() => {
 
   // Add a custom formatter for the donation field
   donationsRef.value!.nativeElement!.tooltipFormatter = value => formatter.format(value);
+
+  // Add a custom renderer for the filtered nationalities
+  nationalityRef.value!.nativeElement!.getOption = (option, query) => {
+      if (query) {
+        const mark = document.createElement('mark');
+        mark.textContent = query;
+        // eslint-disable-next-line no-param-reassign
+        option.innerHTML = option.getTextLabel().replace(new RegExp(query, 'i'), mark.outerHTML);
+      }
+      return option;
+  };
 });
 
 const reset = () => {
@@ -178,6 +190,7 @@ const synChange = () => {
         name="nationality"
         required
         v-model="formData.nationality"
+        ref="nationalityRef"
       >
         <SynVueOption  v-for="nationality in nationalities" :key="nationality" :value="nationality">{{ nationality  }}</SynVueOption>
       </SynVueCombobox>

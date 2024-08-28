@@ -1,4 +1,4 @@
-import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynRange, SynCombobox } from '@synergy-design-system/components';
 import { serialize } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -37,6 +37,8 @@ export class DemoForm {
 
   @ViewChild('donationRef') donationRef!: ElementRef<SynRange>;
 
+  @ViewChild('nationalityRef') nationalityRef!: ElementRef<SynCombobox>;
+
   formData!: FormGroup;
 
   nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
@@ -59,6 +61,14 @@ export class DemoForm {
     });
 
     this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
+    this.nationalityRef.nativeElement!.getOption = (option, query) => {
+      if (query) {
+        const mark = document.createElement('mark');
+        mark.textContent = query;
+        option.innerHTML = option.getTextLabel().replace(new RegExp(query, 'i'), mark.outerHTML);
+      }
+      return option;
+    }
   }
 
   reset() {

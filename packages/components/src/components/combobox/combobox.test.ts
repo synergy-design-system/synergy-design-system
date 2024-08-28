@@ -290,6 +290,7 @@ describe('<syn-combobox>', () => {
 
       expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
       expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+      expect(el.displayInput.getAttribute('aria-activedescendant')).to.equal(firstOption.id);
     });
 
     it('should open the listbox when the ArrowUp key is pressed and select the last option with syn-combobox is on focus', async () => {
@@ -312,6 +313,7 @@ describe('<syn-combobox>', () => {
 
       expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
       expect(lastOption.getAttribute('aria-selected')).to.equal('true');
+      expect(el.displayInput.getAttribute('aria-activedescendant')).to.equal(lastOption.id);
     });
 
     it('should open the listbox when a letter key is pressed with syn-combobox is on focus with filtered options', async () => {
@@ -907,6 +909,58 @@ describe('<syn-combobox>', () => {
     await el.updateComplete;
 
     expect(filteredListbox.children.length).to.equal(4);
+  });
+
+  it('should use the custom filter if the filter property is used', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="test">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+    const filterHandler = sinon.spy((option: SynOption) => option.getTextLabel().toLowerCase().includes('green'));
+
+    el.filter = filterHandler;
+
+    await el.show();
+    await el.updateComplete;
+
+    const filteredListbox = el.shadowRoot!.querySelector('.listbox__options')!;
+    const options = filteredListbox.querySelectorAll('syn-option');
+
+    expect(filterHandler).to.have.been.calledThrice;
+    expect(options.length).to.equal(2);
+  });
+
+  it('should use the custom getOption renderer if the getOption property is used', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+
+    const getOptionHandler = sinon.spy((option: SynOption) => {
+      const updatedText = option.getTextLabel().concat(' - custom');
+      // eslint-disable-next-line no-param-reassign
+      option.textContent = updatedText;
+      return option;
+    });
+
+    el.getOption = getOptionHandler;
+
+    await el.show();
+    await el.updateComplete;
+
+    const filteredListbox = el.shadowRoot!.querySelector('.listbox__options')!;
+    const options = filteredListbox.querySelectorAll('syn-option');
+
+    options.forEach((option, index) => {
+      expect(option.getTextLabel()).to.equal(`Option ${index + 1} - custom`);
+    });
+    expect(getOptionHandler).to.have.been.calledThrice;
   });
 
   runFormControlBaseTests('syn-combobox');

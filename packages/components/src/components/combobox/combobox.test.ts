@@ -63,7 +63,6 @@ describe('<syn-combobox>', () => {
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
     expect(el.required).to.be.false;
-    expect(el.threshold).to.equal(1);
     expect(el.getOption).to.be.a('function');
     expect(el.filter).to.be.a('function');
   });

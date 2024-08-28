@@ -185,11 +185,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ reflect: true, type: Boolean }) required = false;
 
   /**
-   * The minimum length of the text required to show the combobox, when typing in the input field.
-   */
-  @property({ reflect: true, type: Number }) threshold = 1;
-
-  /**
    * A function that customizes the rendered option. The first argument is the option, the second
    * is the query string, which is typed into the combobox.
    * The function should return either a Lit TemplateResult or a string containing trusted HTML
@@ -739,13 +734,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private async handleInput() {
     const inputValue = this.displayInput.value;
-    if (this.threshold <= inputValue.length) {
-      this.createComboboxOptionsFromQuery(inputValue);
-      await this.updateComplete;
-      this.open = this.filteredWrapper.children.length > 0;
-    } else {
-      this.open = false;
-    }
+    this.createComboboxOptionsFromQuery(inputValue);
+    await this.updateComplete;
+    this.open = this.filteredWrapper.children.length > 0;
     this.value = inputValue;
     this.setSelectedOption(undefined);
 

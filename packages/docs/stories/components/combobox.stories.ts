@@ -277,6 +277,39 @@ export const GroupingQuery: Story = {
   `,
 };
 
+export const DynamicallyAddedOptions: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        // TODO: update asap as doc tokens are available
+        // story: generateStoryDescription('select', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Dynamical options" class="dynamical-combobox">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-1">Option 2</syn-option>
+      <syn-option value="option-1">Option 3</syn-option>
+    </syn-combobox>
+    <script type="module">
+      const comboboxes = document.querySelectorAll('.dynamical-combobox');
+      comboboxes.forEach((combobox) => {
+        // After api request the options are added dynamically
+        setTimeout(() => {
+          const option = document.createElement('syn-option');
+          option.value = 'option-4';
+          option.textContent = 'Option 4';
+          combobox.appendChild(option);
+        }, 2000);
+      });
+    </script>
+  `,
+};
+
 export const SuggestionContainerHeight: Story = {
   parameters: {
     chromatic: {

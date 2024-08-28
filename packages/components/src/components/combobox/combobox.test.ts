@@ -860,5 +860,54 @@ describe('<syn-combobox>', () => {
     expect(errorHandler).to.have.been.calledOnce;
   });
 
+  it('should update the filtered list when an option changes', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+    const secondSlottedOption = el.querySelectorAll('syn-option')[1];
+
+    await el.show();
+    const filteredListbox = el.shadowRoot!.querySelector('.listbox__options')!;
+    const secondOption = filteredListbox.querySelectorAll('syn-option')[1];
+
+    expect(secondOption.getTextLabel()).to.equal('Option 2');
+
+    secondSlottedOption.textContent = 'updated';
+    await oneEvent(secondSlottedOption, 'slotchange');
+    await el.updateComplete;
+    const secondUpdatedOption = filteredListbox.querySelectorAll('syn-option')[1];
+
+    expect(secondUpdatedOption.getTextLabel()).to.equal('updated');
+  });
+
+  it('should update the filtered list when an option is added dynamically', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+    const newOption = document.createElement('syn-option');
+    newOption.value = 'option-4';
+    newOption.textContent = 'Option 4';
+
+    await el.show();
+    const filteredListbox = el.shadowRoot!.querySelector('.listbox__options')!;
+
+    expect(filteredListbox.children.length).to.equal(3);
+
+    el.appendChild(newOption);
+    const slotWrapper = el.shadowRoot!.querySelector('.combobox__listbox')!;
+    await oneEvent(slotWrapper, 'slotchange');
+    await el.updateComplete;
+
+    expect(filteredListbox.children.length).to.equal(4);
+  });
+
   runFormControlBaseTests('syn-combobox');
 });

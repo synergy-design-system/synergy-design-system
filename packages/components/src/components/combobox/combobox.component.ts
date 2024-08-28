@@ -779,6 +779,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         // eslint-disable-next-line no-param-reassign
         optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
       });
+
+      if (this.open) {
+        this.createComboboxOptionsFromQuery(this.displayInput.value);
+      }
     } else {
       // Rerun this handler when <syn-option> is registered
       // eslint-disable-next-line @typescript-eslint/no-floating-promises

@@ -257,18 +257,6 @@ The form must be in the same document or shadow root for this to work.
   }
 
   /**
-* The minimum length of the text required to show the combobox, when typing in the input field.
- */
-  @Input()
-  set threshold(v: SynCombobox['threshold']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.threshold = v));
-  }
-
-  get threshold() {
-    return this.nativeElement.threshold;
-  }
-
-  /**
 * A function that customizes the rendered option.
 * The first argument is the option, the second
 is the query string, which is typed into the combobox.

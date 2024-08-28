@@ -324,14 +324,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Close when pressing escape
     if (event.key === 'Escape') {
-      this.value = '';
-      this.displayInput.value = '';
+      this.clearCombobox();
 
       if (this.open && !this.closeWatcher) {
         event.preventDefault();
         event.stopPropagation();
         this.hide();
-        this.displayInput.focus({ preventScroll: true });
       }
     }
 
@@ -372,12 +370,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       event.preventDefault();
       // Open it
       if (!this.open) {
-        // we need to wait for the end of `show`, otherwise the filtered list is not yet there
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        this.show().then(() => {
-          this.selectNextOption(event.key === 'ArrowDown');
-        });
-        return;
+        this.show();
       }
 
       this.selectNextOption(event.key === 'ArrowDown');
@@ -434,15 +427,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private handleClearClick(event: MouseEvent) {
     event.stopPropagation();
+    this.clearCombobox();
+    // TODO: clearify if the listbox should stay open like this or be closed
+  }
 
+  private clearCombobox() {
     if (this.value !== '') {
       this.value = '';
       this.displayInput.value = '';
       this.lastOptionValue = '';
       this.setSelectedOption(undefined);
-      // TODO: clearify if the listbox should stay open like this or be closed
-      this.createComboboxOptionsFromQuery('');
-
       this.displayInput.focus({ preventScroll: true });
 
       // Emit after update
@@ -582,6 +576,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.formControlController.emitInvalidEvent(event);
   }
 
+  @watch('filter', { waitUntilFirstUpdate: true })
+  handleFilterChange() {
+    this.createComboboxOptionsFromQuery(this.value);
+  }
+
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Disabled form controls are always valid
@@ -599,19 +598,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   handleValueChange() {
     // set the display label here in case of the value was set via property only
     this.displayLabel = this.value;
+    this.createComboboxOptionsFromQuery(this.value);
+    this.setCurrentOption(null);
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
-      // Reset the current option
-      this.setCurrentOption(null);
-
-      // create the filtered listbox
-      const queryString = this.displayInput.value;
-      this.createComboboxOptionsFromQuery(queryString);
-      await this.updateComplete;
-
       if (this.filteredOptions.length === 0) {
         // Don't open the listbox if there are no options
         this.open = false;
@@ -632,6 +625,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       this.emit('syn-after-show');
     } else {
+      this.setCurrentOption(null);
       this.displayInput.removeAttribute('aria-activedescendant');
       // Hide
       this.emit('syn-hide');
@@ -734,10 +728,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private async handleInput() {
     const inputValue = this.displayInput.value;
-    this.createComboboxOptionsFromQuery(inputValue);
+    this.value = inputValue;
     await this.updateComplete;
     this.open = this.filteredWrapper.children.length > 0;
-    this.value = inputValue;
     this.setSelectedOption(undefined);
 
     this.formControlController.updateValidity();
@@ -766,29 +759,27 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return filterOnlyOptgroups(getAssignedElementsForSlot(this.defaultSlot));
   }
 
+  /* eslint-disable no-param-reassign */
   private handleDefaultSlotChange() {
     const slottedOptions = this.getSlottedOptions();
     const slottedOptgroups = this.getSlottedOptGroups();
     if (customElements.get('syn-option')) {
       slottedOptions.forEach((option, index) => {
-        // eslint-disable-next-line no-param-reassign
         option.id = option.id || `syn-combobox-option-${index}`;
       });
 
       slottedOptgroups.forEach((optgroup, index) => {
-        // eslint-disable-next-line no-param-reassign
         optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
       });
 
-      if (this.open) {
-        this.createComboboxOptionsFromQuery(this.displayInput.value);
-      }
+      this.createComboboxOptionsFromQuery(this.value);
     } else {
       // Rerun this handler when <syn-option> is registered
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
     }
   }
+  /* eslint-enable no-param-reassign */
 
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity

@@ -57,7 +57,7 @@ const colors = [
   'Brown',
 ].sort();
 
-const createColorOption = (color: string) => `<syn-option value="${color.replaceAll(' ', '_')}">${color}</syn-option>`;
+const createColorOption = (color: string) => `<syn-option value="${color.replaceAll(' ', '_').toLowerCase().concat('bla')}">${color}</syn-option>`;
 
 const createColorOptionHtml = (color: string) => unsafeHTML(createColorOption(color));
 
@@ -97,8 +97,58 @@ export const Labels: Story = {
   },
   render: () => html`
     <syn-combobox label="Preferred Color">
-      ${createColorOptionsHtml()}
+      <syn-option value="opt-1">
+        <syn-icon name="wallpaper"></syn-icon>
+        Option 1
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
+      <syn-option value="opt-2">
+        <syn-icon name="wallpaper"></syn-icon>
+        Option 2
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
+      <syn-option value="opt-3">
+        <syn-icon name="wallpaper"></syn-icon>
+        Option 3
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
     </syn-combobox>
+    <br/>
+    <syn-combobox label="Preferred Color" class="highlight">
+      <syn-option value="opt-1">
+        <syn-icon name="wallpaper"></syn-icon>
+        <span>
+          Option 1
+        </span>
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
+      <syn-option value="opt-2">
+        <syn-icon name="wallpaper"></syn-icon>
+        <span>
+          Option 2
+        </span>
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
+      <syn-option value="opt-3">
+        <syn-icon name="wallpaper"></syn-icon>
+        <span>
+          Option 3
+        </span>
+        <syn-icon name="add" slot="suffix"></syn-icon>
+      </syn-option>
+    </syn-combobox>
+    <script type="module">
+      const combobox = document.querySelector('.highlight');
+      combobox.getOption = (option, queryString) => {
+        if(queryString) {
+          const mark = document.createElement('mark');
+          mark.textContent = queryString;
+          const textNode = Array.from(option.children).find(child => child.tagName.toLowerCase() === 'span');
+          textNode.innerHTML = textNode.textContent.replace(new RegExp(queryString, 'i'), mark.outerHTML);
+        }
+        return option; 
+      }
+    </script>
   `,
 };
 
@@ -112,9 +162,36 @@ export const HelpText: Story = {
     },
   },
   render: () => html`
-    <syn-combobox label="Preferred Color" help-text="Select a color">
+    <syn-combobox label="Preferred Color" help-text="Select a color" clearable value="g">
       ${createColorOptionsHtml()}
     </syn-combobox>
+    <script type="module">
+      const combobox = document.querySelector('syn-combobox');
+      // combobox.filter = (option, query) => {
+      //   return option.getTextLabel().toLowerCase().includes('green');
+
+      // }
+      combobox.updateComplete.then(() => {
+        combobox.show();
+      });
+
+      setTimeout(() => {
+        combobox.getOption = (option, queryString) => {
+          if(queryString) {
+            const mark = document.createElement('mark');
+            mark.textContent = queryString;
+            option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+          }
+          return option; 
+        }
+      }, 3000);
+      // combobox.addEventListener('syn-change', (event) => {
+      //   console.log('syn-change', combobox.value);
+      // });
+      // combobox.addEventListener('syn-input', (event) => {
+      //   console.log('syn-input', combobox.value);
+      // });
+    </script>
   `,
 };
 

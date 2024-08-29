@@ -1,0 +1,327 @@
+/* eslint-disable no-console */
+import { useEffect, useRef, useState } from 'react';
+import { serialize } from '@synergy-design-system/components';
+import type {
+  SynCheckbox as NativeCheckbox,
+  SynFile as NativeFile,
+  SynChangeEvent,
+} from '@synergy-design-system/components';
+import {
+  SynButton,
+  SynCheckbox,
+  SynDivider,
+  SynFile,
+  SynInput,
+  SynOptgroup,
+  SynOption,
+  SynRadio,
+  SynRadioGroup,
+  SynRange,
+  SynRangeTick,
+  SynSelect,
+  SynSwitch,
+  SynTextarea,
+  SynValidate,
+} from '@synergy-design-system/react';
+import { DemoFieldset } from './DemoFieldset';
+
+type FormEnabledElements = HTMLElement & {
+  checked?: boolean;
+  name: string;
+  value?: string;
+};
+
+const initialFormData = {
+  code: '',
+  comment: '',
+  date: '',
+  donations: '2000 4000',
+  email: '',
+  files: undefined,
+  gender: '',
+  happiness: '5',
+  name: '',
+  newsletterAngular: false,
+  newsletterBeta: false,
+  newsletterReact: false,
+  newsletterStandard: false,
+  newsletterVanilla: false,
+  newsletterVue: false,
+  password: 'invalid',
+  phone: '',
+  role: '',
+  topics: [],
+};
+
+export const DemoFormValidate = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState(initialFormData);
+
+  // This is needed, as shoelace does its event with `syn-` prefix
+  // and react wont let us bind arbitary custom events :(
+  useEffect(() => {
+    const listener = (e: SynChangeEvent) => {
+      const form = formRef.current as HTMLFormElement;
+
+      const normalizedData = serialize(form);
+
+      // Log the normalized data
+      console.log(normalizedData);
+
+      // Set the field into state
+      const element = e.target as FormEnabledElements;
+      const { name, value } = element;
+
+      let finalValue;
+
+      switch (element.tagName.toLocaleLowerCase()) {
+      case 'syn-checkbox':
+      case 'syn-switch':
+        finalValue = (element as NativeCheckbox).checked;
+        break;
+      case 'syn-file': finalValue = (element as NativeFile).files; break;
+      default: finalValue = value;
+      }
+
+      setFormData((curr) => ({
+        ...curr,
+        [name]: finalValue,
+      }));
+    };
+
+    formRef.current?.addEventListener('syn-change', listener);
+    return () => {
+      formRef.current?.removeEventListener('syn-change', listener);
+    };
+  }, []);
+
+  return (
+    <form
+      encType="multipart/form-data"
+      method="post"
+      onReset={() => {
+        setFormData(initialFormData);
+      }}
+      onSubmit={e => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const formElement = e.target as HTMLFormElement;
+        const isValid = formElement.reportValidity();
+
+        const content = isValid
+          ? 'Your data was successfully submitted'
+          : 'Your data could not be submitted! Please provide all required information!';
+
+        // eslint-disable-next-line no-alert
+        alert(content);
+      }}
+      ref={formRef}
+    >
+
+      {/* PersonalInformation */}
+      <DemoFieldset legend="Personal Information">
+
+        <SynValidate inline on={['input']}>
+          <SynRadioGroup
+            id="radiogroup-gender"
+            name="gender"
+            label="Please tell us your gender"
+            required
+            value={formData.gender}
+          >
+            <SynRadio value="f">Female</SynRadio>
+            <SynRadio value="m">Male</SynRadio>
+            <SynRadio value="other">Other</SynRadio>
+          </SynRadioGroup>
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynSelect
+            id="select-role"
+            label="Current position"
+            name="role"
+            required
+            value={formData.role}
+          >
+            <SynOptgroup label="Developers">
+              <SynOption value="backend">Backend Developer</SynOption>
+              <SynOption value="frontend">Frontend Developer</SynOption>
+            </SynOptgroup>
+            <SynOptgroup label="Other">
+              <SynOption value="lead">Team Lead</SynOption>
+              <SynOption value="other">Other (please specify in comment section below)</SynOption>
+            </SynOptgroup>
+          </SynSelect>
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynInput
+            id="input-text"
+            label="Name"
+            minlength={5}
+            maxlength={20}
+            name="name"
+            placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
+            required
+            value={formData.name}
+            type="text"
+          />
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynInput
+            id="input-email"
+            label="E-Mail"
+            name="email"
+            placeholder="Please insert your E-mail address"
+            required
+            value={formData.email}
+            type="email"
+          />
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynInput
+            id="input-date"
+            label="Date of birth"
+            name="date"
+            required
+            value={formData.date}
+            type="date"
+          />
+        </SynValidate>
+
+      </DemoFieldset>
+      {/* /PersonalInformation */}
+
+      <SynDivider />
+
+      {/* Security */}
+      <DemoFieldset legend="Security">
+        <SynValidate inline on={['input', 'blur']}>
+          <SynInput
+            id="input-password"
+            label="Provide a secure password"
+            name="password"
+            password-toggle
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            placeholder="Please provide at least one uppercase and lowercase letter and a number"
+            required
+            type="password"
+            value={formData.password}
+          />
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynInput
+            id="input-number"
+            label="Please provide a fallback numeric value that may be used for password recovery"
+            min="1000"
+            max="9999"
+            name="code"
+            placeholder="Please choose a value with four digits, e.g. 1234"
+            type="number"
+            value={formData.code}
+          />
+        </SynValidate>
+      </DemoFieldset>
+      {/* /Security */}
+
+      <SynDivider />
+
+      <SynDivider />
+
+      {/* Happiness */}
+      <DemoFieldset id="happiness-fields" legend="Happiness">
+        <SynValidate inline on={['input', 'blur']}>
+          <SynRange
+            id="happiness"
+            label="How happy are you with the Synergy Design System?"
+            max={10}
+            min={0}
+            name="happiness"
+            value={formData.happiness}
+          >
+            <nav slot="ticks">
+              <SynRangeTick>🤮</SynRangeTick>
+              <SynRangeTick>🥱</SynRangeTick>
+              <SynRangeTick>😍</SynRangeTick>
+            </nav>
+          </SynRange>
+        </SynValidate>
+
+      </DemoFieldset>
+      {/* /Happiness */}
+
+      <SynDivider />
+
+      {/* Marketing */}
+      <DemoFieldset legend="Please inform me about the following technologies">
+        <SynValidate inline on={['input', 'blur']}>
+          <SynCheckbox
+            checked={formData.newsletterStandard}
+            id="checkbox-newsletter-default"
+            name="newsletterStandard"
+          >
+            Please subscribe me to the synergy newsletter
+          </SynCheckbox>
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynSwitch
+            checked={formData.newsletterBeta}
+            id="checkbox-newsletter-beta"
+            name="newsletterBeta"
+          >
+            I am interested in the Synergy Beta Program
+          </SynSwitch>
+        </SynValidate>
+      </DemoFieldset>
+      {/* /Marketing */}
+
+      <SynDivider />
+
+      { /* AdditionalInformation */ }
+      <DemoFieldset legend="Additional Information">
+        <SynValidate inline on={['input', 'blur']}>
+          <SynTextarea
+            id="additional-info"
+            label="Comment"
+            name="comment"
+            placeholder="Please provide additional information that might be helpful for your inquiry"
+            required
+            rows={10}
+          >
+            {formData.comment}
+          </SynTextarea>
+        </SynValidate>
+        <SynValidate inline on={['input', 'blur']}>
+          <SynFile
+            accept="image/*"
+            droparea
+            help-text="Please upload images only"
+            files={formData.files}
+            id="screenshot"
+            label="Optional Screenshot(s)"
+            multiple
+            name="files"
+            required
+          />
+        </SynValidate>
+      </DemoFieldset>
+
+      { /* /AdditionalInformation */ }
+
+      <SynDivider />
+
+      {/* Actions */}
+      <div className="syn-fieldset syn-submit-buttons">
+        <SynButton variant="outline" type="reset">Reset</SynButton>
+        <SynButton variant="filled" type="submit">Send</SynButton>
+      </div>
+      {/* /Actions */}
+
+    </form>
+  );
+};

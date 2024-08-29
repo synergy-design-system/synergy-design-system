@@ -5,7 +5,10 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
+import { arraysDiffer } from './utility.js';
 import styles from './validate.styles.js';
+
+// on: live
 
 /**
  * @summary Validate is a helper that may be used to wrap
@@ -66,13 +69,16 @@ export default class SynValidate extends SynergyElement {
   }) customValidation = '';
 
   /**
-   * Clean up old event listeners and attach new ones after changes of the "on" property
+   * Automatically refresh all event listeners when the on property changes.
    * @param old Original event listeners to use
    * @param next Next event listeners to use
    */
   @watch('on', { waitUntilFirstUpdate: true })
-  handleListenerChange(_: string[], next: string[]) {
-    this.attachEvents(next);
+  handleListenerChange(old: string[], next: string[]) {
+    if (arraysDiffer(old, next)) {
+      console.log(old, next);
+      this.updateEvents();
+    }
   }
 
   /**
@@ -87,22 +93,36 @@ export default class SynValidate extends SynergyElement {
   /**
    * Get the event names to listen for.
    * If the found input is a synergy element, will use syn- prefixes.
+   * Will also make sure to always listen to the invalid event.
    * @returns The event names to listen for
    */
   private getUsedEventNames() {
-    const events = this.on;
-
+    const [...events] = this.on;
     const input = this.getInput();
     const isSynergyElement = input instanceof SynergyElement;
 
-    return isSynergyElement ? events.map((event) => `syn-${event}`) : events;
+    // Make sure to always have an invalid event
+    if (!events.includes('invalid')) {
+      events.push('invalid');
+    }
+
+    // If the input is a synergy element, use syn- prefixed events.
+    // Only adjust items that do not already have syn- prefixes to
+    // prevent event names like syn-syn-input from being added.
+    if (isSynergyElement) {
+      return events.map(e => {
+        if (e.startsWith('syn-')) return e;
+        return `syn-${e}`;
+      });
+    }
+    return events;
   }
 
   /**
-   * Attach the given events to the input
+   * Update the events on the input element.
    * @param eventsToAdd The events to attach. If omitted, will use the ones from the on property
    */
-  private attachEvents(eventsToAdd?: string[]) {
+  private updateEvents() {
     this.controller.abort();
     this.controller = new AbortController();
     const input = this.getInput();
@@ -111,9 +131,10 @@ export default class SynValidate extends SynergyElement {
       return;
     }
 
-    const events = eventsToAdd || this.getUsedEventNames();
+    const events = this.getUsedEventNames();
     events.forEach(e => {
       input.addEventListener(e, this.validate, {
+        capture: e.includes('invalid'),
         signal: this.controller.signal,
       });
     });
@@ -126,40 +147,22 @@ export default class SynValidate extends SynergyElement {
     this.validationMessage = validationMessage;
   }
 
-  private handleInvalidEvent(e: Event) {
-    const { inline } = this;
-
-    // If we do not use inline validation, skip
-    if (!inline) {
-      return;
-    }
-
-    e.preventDefault();
-
-    const input = e.target as HTMLInputElement;
-
-    this.setValidationMessage(input);
-  }
-
-  private handleGenericEvent(e: Event) {
-    const input = e.target as HTMLInputElement;
-    this.setValidationMessage(input);
-  }
-
   /**
    * Triggers a validation run, showing the validation message if needed.
    */
   private validate = (e: Event) => {
-    if (e.type.includes('invalid')) {
-      this.handleInvalidEvent(e);
-      return;
+    // Make sure to always prevent the invalid event when using inline validation
+    if (e.type.includes('invalid') && this.inline) {
+      e.preventDefault();
+      e.stopPropagation();
     }
 
-    this.handleGenericEvent(e);
+    const input = e.target as HTMLInputElement;
+    this.setValidationMessage(input);
   };
 
   firstUpdated() {
-    this.attachEvents();
+    this.updateEvents();
   }
 
   disconnectedCallback() {

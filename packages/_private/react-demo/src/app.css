@@ -23,6 +23,11 @@ syn-header {
   z-index: 50;
 }
 
+.custom-logo syn-icon {
+  display: block;
+  width: auto;
+  height: 32px;
+}
 
 /* Form Wrappers */
 .syn-fieldset {

@@ -1060,7 +1060,7 @@
           "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
           "type": "text"
         }
-      }     
+      }
     },
     "format-bytes": {
       "description": {
@@ -3096,6 +3096,158 @@
         },
         "description": {
           "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
+          "type": "text"
+        }
+      }
+    },
+    "combobox": {
+      "default": {
+        "title": {
+          "value": "Combobox",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Combobox suggests items based on the user input.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the Combobox an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "help-text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to an Combobox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "placeholder": {
+        "title": {
+          "value": "Placeholder",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus attribute provides feedback to the users, informing them that the Combobox component is ready for use.",
+          "type": "text"
+        }
+      },
+      "on-click": {
+        "title": {
+          "value": "Open on Click",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Open on klick opens the list without entering anything.",
+          "type": "text"
+        }
+      },
+      "simple": {
+        "title": {
+          "value": "Simple suggests",
+          "type": "text"
+        },
+        "description": {
+          "value": "A simple suggestions list shows the User a filter list.",
+          "type": "text"
+        }
+      },
+      "highlight": {
+        "title": {
+          "value": "Highlight Query",
+          "type": "text"
+        },
+        "description": {
+          "value": "The highlight function Query, highlights the search term in the list.",
+          "type": "text"
+        }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping Query",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use <syn-optgroup> to group listbox items visually.",
+          "type": "text"
+        }
+      },
+      "container-height": {
+        "title": {
+          "value": "Suggestion Container Height",
+          "type": "text"
+        },
+        "description": {
+          "value": "This function sets the height of the open options automatically adjust based on the filtering.",
+          "type": "text"
+        }
+      },
+      "clearable": {
+        "title": {
+          "value": "Clearable",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the clearable attribute to add a clear button when the Combobox has content.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable an Combobox.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change an Combobox size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the combobox is invalid. For example, if the entry is mandatory.",
+          "type": "text"
+        }
+      },
+      "preffix-sufffix": {
+        "title": {
+          "value": "Prefix Suffix Text and Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add text and icons.",
           "type": "text"
         }
       }

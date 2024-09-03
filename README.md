@@ -5,7 +5,7 @@
   <img alt="Logo" src="./packages/docs/public/synergy_logo_light.png" width="400">
 </picture>
 
-Welcome to the home of the Synergy. Synergy is the foundation to efficiently build a consistent digital landscape for SICK.
+Welcome to the home of Synergy. Synergy is the foundation to efficiently build a consistent digital landscape for SICK.
 
 This project is mainly intended for usage in [SICK](https://www.sick.com) applications to ensure a unique look and feel across applications, however you may also use it [for your own projects for free](./LICENSE) as well.
 

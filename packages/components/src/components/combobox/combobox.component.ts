@@ -40,6 +40,8 @@ import { scrollIntoView } from '../../internal/scroll.js';
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed.
+ *    Rotates on open and close.
  * @slot help-text - Text that describes how to use the combobox.
  *    Alternatively, you can use the `help-text` attribute.
  *
@@ -903,6 +905,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 : ''}
 
                 <slot name="suffix" part="suffix" class="combobox__suffix"></slot>
+
+                <slot name="expand-icon" part="expand-icon" class="combobox__expand-icon">
+                  <syn-icon library="system" name="chevron-down"></syn-icon>
+                </slot>
             </div>
 
             <div

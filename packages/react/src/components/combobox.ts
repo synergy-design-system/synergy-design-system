@@ -29,6 +29,8 @@ Component.define('syn-combobox');
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed.
+ *    Rotates on open and close.
  * @slot help-text - Text that describes how to use the combobox.
  *    Alternatively, you can use the `help-text` attribute.
  *

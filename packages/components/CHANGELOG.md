@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.0...components/2.7.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* 🐛 syn-icon-button is not honoring 'currentColor' correctly ([#597](https://github.com/synergy-design-system/synergy-design-system/issues/597)) ([670528c](https://github.com/synergy-design-system/synergy-design-system/commit/670528c9ebdec2465e905141fe6930204aceca56))
+
 # [@synergy-design-system/components-v2.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.6.0...components/2.7.0) (2024-08-23)
 
 

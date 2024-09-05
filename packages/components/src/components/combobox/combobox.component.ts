@@ -324,14 +324,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    // Close when pressing escape
+    // Close when pressing escape and open / clear input if not open
     if (event.key === 'Escape') {
-      this.clearCombobox();
-
       if (this.open && !this.closeWatcher) {
         event.preventDefault();
         event.stopPropagation();
         this.hide();
+        this.displayInput.focus({ preventScroll: true });
+      } else if (!this.open) {
+        this.clearCombobox();
       }
     }
 

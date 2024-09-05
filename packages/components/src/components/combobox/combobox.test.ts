@@ -394,7 +394,7 @@ describe('<syn-combobox>', () => {
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
     });
 
-    it('should close the listbox and clear the input when Escape key is pressed with syn-combobox is on focus', async () => {
+    it('should close the listbox when Escape key is pressed with syn-combobox is on focus', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option">
           <syn-option value="option-1">Option 1</syn-option>
@@ -407,6 +407,26 @@ describe('<syn-combobox>', () => {
       el.focus();
       await el.updateComplete;
       await sendKeys({ press: 'Enter' });
+      await el.updateComplete;
+      await sendKeys({ press: 'Escape' });
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
+      expect(displayInput.value).to.equal('option');
+      expect(el.value).to.equal('option');
+    });
+
+    it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+
+      el.focus();
       await el.updateComplete;
       await sendKeys({ press: 'Escape' });
       await el.updateComplete;

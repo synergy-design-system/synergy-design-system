@@ -7,25 +7,6 @@ export default css`
     font-size: inherit;
   }
 
-  /* Color variants */
-  .icon-button--neutral,
-  .icon-button--neutral:focus-visible:not(.icon-button--disabled):not(:hover) {
-    color: var(--syn-color-neutral-950);
-  }
-
-  .icon-button--primary,
-  .icon-button--primary:focus-visible:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-600);
-  }
-
-  .icon-button--primary:hover:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-900);
-  }
-
-  .icon-button--primary:active:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-950);
-  }
-
   .icon-button--disabled {
     color: var(--syn-color-neutral-400);
   }
@@ -35,6 +16,28 @@ export default css`
     border-radius: var(--syn-border-radius-none);
   }
 
+  /* Colors */
+  :host([color="currentColor"]) {
+    color: currentColor;
+  }
+
+  :host([color="primary"]),
+  :host([color="primary"]) .icon-button:focus-visible:not(.icon-button--disabled) {
+    color: var(--syn-color-primary-600);
+  }
+
+  :host([color="primary"]) .icon-button:hover:not(.icon-button--disabled) {
+    color: var(--syn-color-primary-900);
+  }
+
+  :host([color="primary"]) .icon-button:active:not(.icon-button--disabled) {
+    color: var(--syn-color-primary-950);
+  }
+
+  :host([color="neutral"]),
+  :host([color="neutral"]) .icon-button:focus-visible:not(.icon-button--disabled):not(:hover) {
+    color: var(--syn-color-neutral-950);
+  }
 
   /* Sizes */
   .icon-button--small {
@@ -43,7 +46,6 @@ export default css`
 
   .icon-button--medium {
     font-size: var(--syn-font-size-x-large);
-
   }
 
   .icon-button--large {

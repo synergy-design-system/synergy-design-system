@@ -57,7 +57,7 @@ const colors = [
   'Brown',
 ].sort();
 
-const createColorOption = (color: string) => `<syn-option value="${color.replaceAll(' ', '_').toLowerCase().concat('bla')}">${color}</syn-option>`;
+const createColorOption = (color: string) => `<syn-option value="${color}">${color}</syn-option>`;
 
 const createColorOptionHtml = (color: string) => unsafeHTML(createColorOption(color));
 
@@ -70,7 +70,10 @@ export const Default = {
     args: overrideArgs({
       name: 'default',
       type: 'slot',
-      value: createColorOptions().join('\n'),
+      value: `
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>`,
     }, args),
     controls: {
       disable: false,
@@ -94,59 +97,11 @@ export const Labels: Story = {
     },
   },
   render: () => html`
-    <syn-combobox label="Preferred Color">
-      <syn-option value="opt-1">
-        <syn-icon name="wallpaper"></syn-icon>
-        Option 1
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
-      <syn-option value="opt-2">
-        <syn-icon name="wallpaper"></syn-icon>
-        Option 2
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
-      <syn-option value="opt-3">
-        <syn-icon name="wallpaper"></syn-icon>
-        Option 3
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
+    <syn-combobox label="State">
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
     </syn-combobox>
-    <br/>
-    <syn-combobox label="Preferred Color" class="highlight">
-      <syn-option value="opt-1">
-        <syn-icon name="wallpaper"></syn-icon>
-        <span>
-          Option 1
-        </span>
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
-      <syn-option value="opt-2">
-        <syn-icon name="wallpaper"></syn-icon>
-        <span>
-          Option 2
-        </span>
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
-      <syn-option value="opt-3">
-        <syn-icon name="wallpaper"></syn-icon>
-        <span>
-          Option 3
-        </span>
-        <syn-icon name="add" slot="suffix"></syn-icon>
-      </syn-option>
-    </syn-combobox>
-    <script type="module">
-      const combobox = document.querySelector('.highlight');
-      combobox.getOption = (option, queryString) => {
-        if(queryString) {
-          const mark = document.createElement('mark');
-          mark.textContent = queryString;
-          const textNode = Array.from(option.children).find(child => child.tagName.toLowerCase() === 'span');
-          textNode.innerHTML = textNode.textContent.replace(new RegExp(queryString, 'i'), mark.outerHTML);
-        }
-        return option; 
-      }
-    </script>
   `,
 };
 
@@ -159,36 +114,11 @@ export const HelpText: Story = {
     },
   },
   render: () => html`
-    <syn-combobox label="Preferred Color" help-text="Select a color" clearable value="g">
-      ${createColorOptionsHtml()}
+    <syn-combobox label="State" help-text="Select a State">
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
     </syn-combobox>
-    <script type="module">
-      const combobox = document.querySelector('syn-combobox');
-      // combobox.filter = (option, query) => {
-      //   return option.getTextLabel().toLowerCase().includes('green');
-
-      // }
-      combobox.updateComplete.then(() => {
-        combobox.show();
-      });
-
-      setTimeout(() => {
-        combobox.getOption = (option, queryString) => {
-          if(queryString) {
-            const mark = document.createElement('mark');
-            mark.textContent = queryString;
-            option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
-          }
-          return option; 
-        }
-      }, 3000);
-      // combobox.addEventListener('syn-change', (event) => {
-      //   console.log('syn-change', combobox.value);
-      // });
-      // combobox.addEventListener('syn-input', (event) => {
-      //   console.log('syn-input', combobox.value);
-      // });
-    </script>
   `,
 };
 
@@ -201,8 +131,10 @@ export const Placeholder: Story = {
     },
   },
   render: () => html`
-    <syn-combobox label="Preferred Color" help-text="Select a color" placeholder="Selected color">
-      ${createColorOptionsHtml()}
+    <syn-combobox label="State" help-text="Select a State" placeholder="Select a State">
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
     </syn-combobox>
   `,
 };
@@ -220,13 +152,13 @@ export const Focus: Story = {
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynCombobox>('syn-combobox');
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     elm?.focus();
   },
   render: () => html`
     <syn-combobox>
-      ${createColorOptionsHtml()}
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
     </syn-combobox>
   `,
 };
@@ -245,7 +177,7 @@ export const SimpleSuggests: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
     await combobox.updateComplete;
-    combobox.show();
+    await combobox.show();
   },
   render: () => html`
     <syn-combobox label="Preferred Color" value="g">
@@ -268,7 +200,7 @@ export const HighlightQuery: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
     await combobox.updateComplete;
-    combobox.show();
+    await combobox.show();
   },
   render: () => html`
     <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
@@ -304,7 +236,7 @@ export const GroupingQuery: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
     await combobox.updateComplete;
-    combobox.show();
+    await combobox.show();
   },
   render: () => html`
     <syn-combobox label="Group elements" value="g">
@@ -360,20 +292,25 @@ export const DynamicallyAddedOptions: Story = {
   },
   render: () => html`
     <syn-combobox label="Dynamical options" class="dynamical-combobox">
-      <syn-option value="option-1">Option 1</syn-option>
-      <syn-option value="option-1">Option 2</syn-option>
-      <syn-option value="option-1">Option 3</syn-option>
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
     </syn-combobox>
     <script type="module">
       const comboboxes = document.querySelectorAll('.dynamical-combobox');
       comboboxes.forEach((combobox) => {
         // After api request the options are added dynamically
-        setTimeout(() => {
+        let index = 4;
+        let timeout = setInterval(() => {
           const option = document.createElement('syn-option');
-          option.value = 'option-4';
-          option.textContent = 'Option 4';
+          const value = 'Option_' + index++;
+          option.value = value;
+          option.textContent = value;
           combobox.appendChild(option);
-        }, 2000);
+          if(index > 10) {
+            clearInterval(timeout);
+          }
+        }, 4000);
       });
     </script>
   `,
@@ -392,12 +329,11 @@ export const SuggestionContainerHeight: Story = {
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
-    combobox.value = 'g';
     await combobox.updateComplete;
-    combobox.show();
+    await combobox.show();
   },
   render: () => html`
-    <syn-combobox id="max-height" label="Max Height for list">
+    <syn-combobox id="max-height" label="Preferred color" value="g">
       ${createColorOptionsHtml()}
     </syn-combobox>
     <style>
@@ -492,7 +428,7 @@ export const Invalid: Story = {
   },
   render: () => html`
     <form class="custom-validity">
-      <syn-combobox required placeholder="Type something" help-text="This is a help-text">
+      <syn-combobox required placeholder="Type something" help-text="This is required">
         ${createColorOptionsHtml()}
       </syn-combobox>
       <syn-button type="submit" variant="filled">Submit</syn-button>

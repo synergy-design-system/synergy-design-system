@@ -25,10 +25,10 @@ const meta: Meta = {
   argTypes,
   component: 'syn-combobox',
   parameters: {
-    design: generateFigmaPluginObject('5069-7562'),
+    design: generateFigmaPluginObject('25272-35634'),
     docs: {
       description: {
-        component: generateStoryDescription('select', 'default'),
+        component: generateStoryDescription('combobox', 'default'),
       },
       story: {
         height: '250px',
@@ -77,8 +77,7 @@ export const Default = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'default'),
+        story: generateStoryDescription('combobox', 'default'),
       },
     },
   },
@@ -90,8 +89,7 @@ export const Labels: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'label'),
       },
     },
   },
@@ -156,8 +154,7 @@ export const HelpText: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'help-text'),
       },
     },
   },
@@ -199,8 +196,7 @@ export const Placeholder: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'placeholder'),
       },
     },
   },
@@ -218,8 +214,7 @@ export const Focus: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'focus'),
       },
     },
   },
@@ -243,8 +238,7 @@ export const SimpleSuggests: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'simple'),
       },
     },
   },
@@ -267,8 +261,7 @@ export const HighlightQuery: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'highlight'),
       },
     },
   },
@@ -304,8 +297,7 @@ export const GroupingQuery: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'grouping'),
       },
     },
   },
@@ -394,8 +386,7 @@ export const SuggestionContainerHeight: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'container-height'),
       },
     },
   },
@@ -421,8 +412,7 @@ export const Clearable: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'clearable'),
       },
     },
   },
@@ -437,8 +427,7 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'disabled'),
       },
     },
   },
@@ -453,8 +442,7 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'size'),
       },
     },
   },
@@ -484,8 +472,7 @@ export const Invalid: Story = {
     },
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'invalid'),
       },
     },
   },
@@ -527,8 +514,7 @@ export const PrefixSuffixTextAndIcons: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
+        story: generateStoryDescription('combobox', 'preffix-sufffix'),
       },
     },
   },

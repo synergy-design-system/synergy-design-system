@@ -36,12 +36,6 @@
         "camelCaseSvgKeywords": true,
         "ignoreFunctions": ["color-mix"]
       }
-    ],
-    "property-no-vendor-prefix": [
-      true,
-      {
-        "ignoreProperties": ["appearance"]
-      }
     ]
   }
 }

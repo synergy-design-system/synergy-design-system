@@ -49,6 +49,9 @@ const transformStyles = (selectContent) => {
     ['.combobox--medium .combobox__tags', '}'],
     ['.combobox--large .combobox__tags', '}'],
     ['/* Multi Select */', '}'],
+    // remove unneeded stylelint disable line, as the whole stylelint is disabled
+    ['/* stylelint-disable-next-line no-descending-specificity', '*/'],
+
   ], content);
 
   return content;

@@ -290,7 +290,6 @@ export default css`
   }
 
   /* Change combobox border on hover */
-  /* stylelint-disable-next-line no-descending-specificity */
   .combobox:not(.combobox--disabled):hover .combobox__inputs {
     border-color: var(--syn-input-color-hover);
   }

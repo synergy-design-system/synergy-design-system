@@ -21,6 +21,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynOption from '../option/option.component.js';
 import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
+import customStyles from './combobox.custom.styles.js';
 import {
   filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot, normalizeString,
 } from './utils.js';
@@ -82,6 +83,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     formControlStyles,
     styles,
     formControlCustomStyles,
+    customStyles,
   ];
 
   static dependencies = {

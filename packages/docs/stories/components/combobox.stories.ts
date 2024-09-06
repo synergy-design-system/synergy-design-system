@@ -278,44 +278,6 @@ export const GroupingQuery: Story = {
   `,
 };
 
-export const DynamicallyAddedOptions: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        // TODO: update asap as doc tokens are available
-        // story: generateStoryDescription('select', 'labels'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-combobox label="Dynamical options" class="dynamical-combobox">
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
-    </syn-combobox>
-    <script type="module">
-      const comboboxes = document.querySelectorAll('.dynamical-combobox');
-      comboboxes.forEach((combobox) => {
-        // After api request the options are added dynamically
-        let index = 4;
-        let timeout = setInterval(() => {
-          const option = document.createElement('syn-option');
-          const value = 'Option_' + index++;
-          option.value = value;
-          option.textContent = value;
-          combobox.appendChild(option);
-          if(index > 10) {
-            clearInterval(timeout);
-          }
-        }, 4000);
-      });
-    </script>
-  `,
-};
-
 export const SuggestionContainerHeight: Story = {
   parameters: {
     chromatic: {
@@ -495,6 +457,74 @@ export const PrefixSuffixTextAndIcons: Story = {
   `,
 };
 
+export const AsyncOptions: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'async-options'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Async options" class="async-combobox">
+      <syn-option value="Option_1">Option_1</syn-option>
+      <syn-option value="Option_2">Option_2</syn-option>
+      <syn-option value="Option_3">Option_3</syn-option>
+    </syn-combobox>
+    <script type="module">
+      const comboboxes = document.querySelectorAll('.async-combobox');
+      comboboxes.forEach((combobox) => {
+        // After api request the options are added async
+        let index = 4;
+        let timeout = setInterval(() => {
+          const option = document.createElement('syn-option');
+          const value = 'Option_' + index++;
+          option.value = value;
+          option.textContent = value;
+          combobox.appendChild(option);
+          if(index > 10) {
+            clearInterval(timeout);
+          }
+        }, 4000);
+      });
+    </script>
+  `,
+};
+
+export const CustomFilter: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'custom-filter'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Custom Filter" class="filter-combobox">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+    <script type="module">
+      const comboboxes = document.querySelectorAll('.filter-combobox');
+      comboboxes.forEach((combobox) => {
+        const oldFilter = combobox.filter;
+        combobox.filter = (option, queryString) => {
+          // only show options for more than 2 characters on text input
+          if(queryString && queryString.length > 2) {
+            return oldFilter(option, queryString);
+          }
+          return false;
+        }
+      });
+    </script>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -506,5 +536,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   PrefixSuffixTextAndIcons,
+  AsyncOptions,
+  CustomFilter,
 }, 500);
 /* eslint-enable sort-keys */

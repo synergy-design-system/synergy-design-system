@@ -95,7 +95,7 @@ export default css`
     z-index: -1;
   }
 
-  /* Standard comboboxs */
+  /* Standard combobox */
   .combobox--standard .combobox__inputs {
     background-color: var(--syn-input-background-color);
     border: solid var(--syn-input-border-width) var(--syn-input-border-color);
@@ -164,7 +164,9 @@ export default css`
 
   .combobox--large .combobox__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-large);
-  }/* Prefix */
+  }
+
+/* Prefix */
   .combobox__prefix {
     flex: 0;
     display: inline-flex;
@@ -325,6 +327,8 @@ export default css`
   .combobox__suffix {
     color: var(--syn-input-help-text-color);
   }
+
+
 
   /* Listbox */
   .combobox__listbox {

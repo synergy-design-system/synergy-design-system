@@ -33,6 +33,11 @@ const transformStyles = (selectContent) => {
       'select',
       'combobox',
     ],
+    // Fix typo
+    [
+      '/* Standard comboboxs */',
+      '/* Standard combobox */',
+    ],
   ], selectContent);
 
   content = removeSections([
@@ -47,7 +52,7 @@ const transformStyles = (selectContent) => {
   }`],
     ['.combobox--small .combobox__tags', '}'],
     ['.combobox--medium .combobox__tags', '}'],
-    ['.combobox--large .combobox__tags', '}'],
+    ['.combobox--large .combobox__tags', '}', { additionalNewlines: 2 }],
     ['/* Multi Select */', '}'],
     // remove unneeded stylelint disable line, as the whole stylelint is disabled
     ['/* stylelint-disable-next-line no-descending-specificity', '*/'],

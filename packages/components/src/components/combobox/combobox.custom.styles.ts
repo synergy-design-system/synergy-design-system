@@ -24,4 +24,11 @@ export default css`
   .combobox__display-input {
     cursor: text;
   }
+
+  /**
+   * Make sure to hide the syn-divider for the first syn-optgroup
+   */
+  .listbox__options syn-optgroup:first-of-type::part(divider) {
+    display: none;
+  }
 `;

@@ -706,29 +706,36 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private createComboboxOptionsFromQuery(queryString: string) {
-    const allOptions = this.getSlottedOptions();
-    this.filteredOptions = [];
-    allOptions.forEach((option) => {
-      if (this.filter(option, queryString) || queryString === '') {
+    const optgroups: SynOptGroup[] = [];
+
+    this.filteredOptions = this.getSlottedOptions()
+      .filter(option => this.filter(option, queryString) || queryString === '')
+      .map(option => {
         const clonedOption = option.cloneNode(true) as SynOption;
+
         // Check if the option has a syn-optgroup as parent
         const hasOptgroup = option.parentElement?.tagName.toLowerCase() === 'syn-optgroup';
-        if (hasOptgroup) {
-          const optgroup = option.parentElement as SynOptGroup;
-          const filteredOptgroup = this.filteredOptions.find((el) => el.id === optgroup.id);
-          // Check if the optgroup was already added to the filteredOptions
-          if (!filteredOptgroup) {
-            const clonedOptgroup = option.parentElement.cloneNode() as SynOptGroup;
-            this.filteredOptions.push(clonedOptgroup);
-            clonedOptgroup.appendChild(clonedOption);
-          } else {
-            filteredOptgroup?.appendChild(clonedOption);
-          }
-        } else {
-          this.filteredOptions.push(clonedOption);
+        if (!hasOptgroup) {
+          return clonedOption;
         }
-      }
-    });
+
+        const optgroup = option.parentElement as SynOptGroup;
+        const filteredOptgroup = optgroups.find((el) => el.id === optgroup.id);
+
+        // Check if the optgroup was already added to the filteredOptions.
+        // It should only be added once!
+        if (filteredOptgroup) {
+          filteredOptgroup?.appendChild(clonedOption);
+          return undefined;
+        }
+
+        const clonedOptgroup = optgroup.cloneNode() as SynOptGroup;
+        clonedOptgroup.appendChild(clonedOption);
+        optgroups.push(clonedOptgroup);
+        return clonedOptgroup;
+      })
+      // we need to remove the undefined values here
+      .filter(el => el) as Array<SynOption | SynOptGroup>;
   }
 
   private async handleInput() {

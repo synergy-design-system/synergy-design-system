@@ -20,4 +20,8 @@ export default css`
   .listbox__options syn-option[aria-selected='true'] mark {
     color: var(--syn-color-neutral-0);
   }
+
+  .combobox__display-input {
+    cursor: text;
+  }
 `;

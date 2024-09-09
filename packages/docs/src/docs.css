@@ -95,12 +95,12 @@ body {
   outline: none;
 }
 
-.sbdocs a:hover {
+.sbdocs a:not(.syn-link):hover {
   color: var(--syn-color-primary-800);
 }
 
 
-a:focus-visible,
+a:not(.syn-link):focus-visible,
 button:focus-visible {
   outline: var(--syn-focus-ring);
   outline-offset: var(--syn-focus-ring-offset);

@@ -8,11 +8,13 @@ export type RenderArgs = {
  * Default renderer for styles
  * @param args The default arguments
  * @param tag The tag to use. Defaults to "span"
+ * @param tagAttributes Optional attributes to use on the tag
  * @returns The rendered HTML
  */
 export const renderStyles = (
   args: RenderArgs,
   tag: string = 'span',
+  tagAttributes: Record<string, string> = {},
 ) => {
   const {
     'default-slot': defaultSlot,
@@ -33,8 +35,26 @@ export const renderStyles = (
   const classes = additionalClasses.join(' ');
   const usedTag = unsafeStatic(tag);
 
+  // Build a dynamic map of all attributes
+  const attributeObj = Object.entries(tagAttributes);
+  let attributeMap = '';
+
+  // Add support for classes
+  if (attributeObj.length === 0) {
+    attributeMap = `class="${classes}"`;
+  } else {
+    attributeMap = attributeObj.reduce((acc, [key, value]) => {
+      const finalValue = key === 'class' ? `${value} ${classes}` : value;
+      return `${acc} ${key}="${finalValue}"`;
+    }, '');
+  }
+
+  const finalAttributes = attributeMap.length > 0
+    ? unsafeStatic(attributeMap)
+    : '';
+
   return html`
-    <${usedTag} class=${classes}>
+    <${usedTag} ${finalAttributes}>
       ${unsafeStatic(defaultSlot)}
     </${usedTag}>
   `;

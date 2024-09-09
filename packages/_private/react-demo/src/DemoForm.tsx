@@ -100,7 +100,10 @@ export const DemoForm = () => {
       let finalValue;
 
       switch (element.tagName.toLocaleLowerCase()) {
-      case 'syn-checkbox': finalValue = (element as NativeCheckbox).checked; break;
+      case 'syn-checkbox':
+      case 'syn-switch':
+        finalValue = (element as NativeCheckbox).checked;
+        break;
       case 'syn-file': finalValue = (element as NativeFile).files; break;
       default: finalValue = value;
       }

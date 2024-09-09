@@ -21,7 +21,8 @@
     "valuetext",
     "aria-describedby",
     "droparea",
-    "codepen"
+    "codepen",
+    "listbox"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

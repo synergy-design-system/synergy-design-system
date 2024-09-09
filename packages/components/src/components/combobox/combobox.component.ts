@@ -628,21 +628,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       await animateTo(this.popup.popup, keyframes, options);
 
       this.emit('syn-after-show');
-    } else {
-      this.setCurrentOption(null);
-      this.displayInput.removeAttribute('aria-activedescendant');
-      // Hide
-      this.emit('syn-hide');
-      this.removeOpenListeners();
-
-      await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'combobox.hide', { dir: this.localize.dir() });
-      await animateTo(this.popup.popup, keyframes, options);
-      this.listbox.hidden = true;
-      this.popup.active = false;
-
-      this.emit('syn-after-hide');
+      return;
     }
+
+    this.setCurrentOption(null);
+    this.displayInput.removeAttribute('aria-activedescendant');
+    // Hide
+    this.emit('syn-hide');
+    this.removeOpenListeners();
+
+    await stopAnimations(this);
+    const { keyframes, options } = getAnimation(this, 'combobox.hide', { dir: this.localize.dir() });
+    await animateTo(this.popup.popup, keyframes, options);
+    this.listbox.hidden = true;
+    this.popup.active = false;
+
+    this.emit('syn-after-hide');
   }
 
   /**

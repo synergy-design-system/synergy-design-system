@@ -225,9 +225,14 @@ export const DemoForm = () => {
           placeholder='Please choose your nationality'
           ref={nationalityRef}
         >
-          {
-            nationalities.map((national) => <SynOption value={national}>{national}</SynOption>)
-          }
+          {nationalities.map(n => (
+            <SynOption
+              value={n}
+              key={n}
+            >
+              {n}
+            </SynOption>
+          ))}
         </SynCombobox>
 
       </DemoFieldset>

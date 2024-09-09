@@ -97,7 +97,7 @@ export default css`
   /* Listbox */
   .select__listbox {
     /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */
-    border-radius: 0;
+    border-radius: var(--syn-border-radius-none);
     box-shadow: var(--syn-shadow-medium);
   }
 

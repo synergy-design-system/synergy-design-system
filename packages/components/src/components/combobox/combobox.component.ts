@@ -762,32 +762,31 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return filterOnlyOptgroups(getAssignedElementsForSlot(this.defaultSlot));
   }
 
-  /* eslint-disable no-param-reassign */
+  /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises */
   private handleDefaultSlotChange() {
+    // Rerun this handler when <syn-option> is registered
+    if (!customElements.get('syn-option')) {
+      customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
+      return;
+    }
+
     const slottedOptions = this.getSlottedOptions();
     const slottedOptgroups = this.getSlottedOptGroups();
-    if (customElements.get('syn-option')) {
-      slottedOptions.forEach((option, index) => {
-        option.id = option.id || `syn-combobox-option-${index}`;
-      });
+    slottedOptions.forEach((option, index) => {
+      option.id = option.id || `syn-combobox-option-${index}`;
+    });
 
-      slottedOptgroups.forEach((optgroup, index) => {
-        optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
-      });
+    slottedOptgroups.forEach((optgroup, index) => {
+      optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
+    });
 
-      this.createComboboxOptionsFromQuery(this.value);
+    this.createComboboxOptionsFromQuery(this.value);
 
-      if (this.hasFocus && this.value.length > 0 && !this.open) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        this.show();
-      }
-    } else {
-      // Rerun this handler when <syn-option> is registered
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
+    if (this.hasFocus && this.value.length > 0 && !this.open) {
+      this.show();
     }
   }
-  /* eslint-enable no-param-reassign */
+  /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises */
 
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity

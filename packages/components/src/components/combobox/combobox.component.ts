@@ -726,7 +726,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return clonedOptgroup;
       })
       // we need to remove the undefined values here
-      .filter(el => el) as Array<SynOption | SynOptGroup>;
+      .filter(Boolean) as Array<SynOption | SynOptGroup>;
   }
 
   private async handleInput() {

@@ -541,36 +541,21 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   }
 
-  // Sets the selected option
+  /**
+   * Updates the selected options cache, the current value, and the display value
+   */
   private setSelectedOption(option: SynOption | undefined) {
-    const allOptions = this.getAllFilteredOptions();
+    this.selectedOption = option;
 
-    // Clear existing selection
-    allOptions.forEach(el => {
-      // eslint-disable-next-line no-param-reassign
-      el.selected = false;
-    });
-
-    // Set the new selection
-    if (option) {
-      // eslint-disable-next-line no-param-reassign
-      option.selected = true;
-      this.lastOptionValue = option.value;
-    }
-
-    // Update selection, value, and display label
-    this.selectionChanged();
-  }
-
-  // This method must be called whenever the selection changes.
-  // It will update the selected options cache, the current value, and the display value
-  private selectionChanged() {
-    // Update selected options cache
-    this.selectedOption = this.getAllFilteredOptions().find(el => el.selected);
-
-    // Update the value. Check if the selected option has a value,
+    // Check if the selected option has a value,
     // if not take the text content of the option otherwise the input text
     const optionValue = this.selectedOption?.value || this.selectedOption?.getTextLabel();
+
+    if (option) {
+      this.lastOptionValue = optionValue || '';
+    }
+
+    // Update the value
     this.value = optionValue ?? this.displayInput.value;
 
     // Update validity and display label

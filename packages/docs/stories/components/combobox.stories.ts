@@ -57,7 +57,7 @@ const colors = [
   'Brown',
 ].sort();
 
-const createColorOption = (color: string) => `<syn-option value="${color}">${color}</syn-option>`;
+const createColorOption = (color: string) => `<syn-option value="${color.replaceAll(' ', '_')}">${color}</syn-option>`;
 
 const createColorOptionHtml = (color: string) => unsafeHTML(createColorOption(color));
 
@@ -485,7 +485,6 @@ export const AsyncOptions: Story = {
         let timeout = setInterval(() => {
           const option = document.createElement('syn-option');
           const value = 'Option ' + index++;
-          option.value = value;
           option.textContent = value;
           combobox.appendChild(option);
           if(index > 10) {

@@ -791,6 +791,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       });
 
       this.createComboboxOptionsFromQuery(this.value);
+
+      if (this.hasFocus && this.value.length > 0 && !this.open) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.show();
+      }
     } else {
       // Rerun this handler when <syn-option> is registered
       // eslint-disable-next-line @typescript-eslint/no-floating-promises

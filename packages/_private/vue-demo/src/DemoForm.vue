@@ -69,9 +69,11 @@ onMounted(() => {
   nationalityRef.value!.nativeElement!.getOption = (option, query) => {
       if (query) {
         const mark = document.createElement('mark');
-        mark.textContent = query;
-        // eslint-disable-next-line no-param-reassign
-        option.innerHTML = option.getTextLabel().replace(new RegExp(query, 'i'), mark.outerHTML);
+        const optionLabel = option.getTextLabel();
+        const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
+
+        mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
+        option.innerHTML = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
       }
       return option;
   };
@@ -192,7 +194,7 @@ const synChange = () => {
         v-model="formData.nationality"
         ref="nationalityRef"
       >
-        <SynVueOption  v-for="nationality in nationalities" :key="nationality" :value="nationality">{{ nationality  }}</SynVueOption>
+        <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
       </SynVueCombobox>
 
     </DemoFieldset>

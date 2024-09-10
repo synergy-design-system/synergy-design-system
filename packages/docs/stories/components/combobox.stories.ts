@@ -212,8 +212,11 @@ export const HighlightQuery: Story = {
         combobox.getOption = (option, queryString) => {
           if(queryString) {
             const mark = document.createElement('mark');
-            mark.textContent = queryString;
-            option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+            const optionLabel = option.getTextLabel();
+            const queryIndex = optionLabel.toLowerCase().indexOf(queryString.toLowerCase());
+        
+            mark.textContent = optionLabel.slice(queryIndex, queryIndex + queryString.length);
+            option.innerHTML = optionLabel.replace(new RegExp(queryString, 'i'), mark.outerHTML);
           }
           return option; 
         }

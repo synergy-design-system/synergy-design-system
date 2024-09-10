@@ -75,9 +75,12 @@ export const DemoForm = () => {
     nationalityRef.current!.getOption = (option, queryString) => {
       if (queryString) {
         const mark = document.createElement('mark');
-        mark.textContent = queryString;
+        const optionLabel = option.getTextLabel();
+        const queryIndex = optionLabel.toLowerCase().indexOf(queryString.toLowerCase());
+
+        mark.textContent = optionLabel.slice(queryIndex, queryIndex + queryString.length);
         // eslint-disable-next-line no-param-reassign
-        option.innerHTML = option.getTextLabel().replace(new RegExp(queryString, 'i'), mark.outerHTML);
+        option.innerHTML = optionLabel.replace(new RegExp(queryString, 'i'), mark.outerHTML);
       }
       return option;
     };
@@ -227,7 +230,6 @@ export const DemoForm = () => {
         >
           {nationalities.map(n => (
             <SynOption
-              value={n}
               key={n}
             >
               {n}

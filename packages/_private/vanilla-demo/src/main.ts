@@ -113,15 +113,17 @@ const initCombobox = () => {
   nationalitiesEl.getOption = (option, query) => {
     if (query) {
       const mark = document.createElement('mark');
-      mark.textContent = query;
-      option.innerHTML = option.getTextLabel().replace(new RegExp(query, 'i'), mark.outerHTML);
+      const optionLabel = option.getTextLabel();
+      const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
+
+      mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
+      option.innerHTML = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
     }
     return option;
   };
   nationalities.forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;
-    option.value = nationality;
     nationalitiesEl.appendChild(option);
   });
 };

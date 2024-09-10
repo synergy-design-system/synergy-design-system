@@ -416,8 +416,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    this.displayInput.focus({ preventScroll: true });
-    this.open = !this.open;
+    const toggleListboxOpen = () => (this.open ? this.hide() : this.show());
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    toggleListboxOpen().then(() => {
+      setTimeout(() => this.displayInput.focus({ preventScroll: true }));
+    });
   }
 
   private handleComboboxKeyDown(event: KeyboardEvent) {

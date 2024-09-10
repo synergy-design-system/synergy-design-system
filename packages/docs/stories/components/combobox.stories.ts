@@ -71,9 +71,9 @@ export const Default = {
       name: 'default',
       type: 'slot',
       value: `
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>`,
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>`,
     }, args),
     controls: {
       disable: false,
@@ -98,9 +98,9 @@ export const Labels: Story = {
   },
   render: () => html`
     <syn-combobox label="State">
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
     </syn-combobox>
   `,
 };
@@ -115,9 +115,9 @@ export const HelpText: Story = {
   },
   render: () => html`
     <syn-combobox label="State" help-text="Select a State">
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
     </syn-combobox>
   `,
 };
@@ -132,9 +132,9 @@ export const Placeholder: Story = {
   },
   render: () => html`
     <syn-combobox label="State" help-text="Select a State" placeholder="Select a State">
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
     </syn-combobox>
   `,
 };
@@ -156,9 +156,9 @@ export const Focus: Story = {
   },
   render: () => html`
     <syn-combobox>
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
     </syn-combobox>
   `,
 };
@@ -470,9 +470,9 @@ export const AsyncOptions: Story = {
   },
   render: () => html`
     <syn-combobox label="Async options" class="async-combobox">
-      <syn-option value="Option_1">Option_1</syn-option>
-      <syn-option value="Option_2">Option_2</syn-option>
-      <syn-option value="Option_3">Option_3</syn-option>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
     </syn-combobox>
     <script type="module">
       const comboboxes = document.querySelectorAll('.async-combobox');
@@ -481,7 +481,7 @@ export const AsyncOptions: Story = {
         let index = 4;
         let timeout = setInterval(() => {
           const option = document.createElement('syn-option');
-          const value = 'Option_' + index++;
+          const value = 'Option ' + index++;
           option.value = value;
           option.textContent = value;
           combobox.appendChild(option);

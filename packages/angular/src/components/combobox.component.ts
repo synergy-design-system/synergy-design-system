@@ -263,7 +263,7 @@ The form must be in the same document or shadow root for this to work.
 * The first argument is the option, the second
 is the query string, which is typed into the combobox.
 The function should return either a Lit TemplateResult or a string containing trusted HTML
-of the symbol to render at the specified value.
+to render in the shown list of filtered options.
  */
   @Input()
   set getOption(v: SynCombobox['getOption']) {

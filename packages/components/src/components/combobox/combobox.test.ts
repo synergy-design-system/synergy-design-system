@@ -983,5 +983,24 @@ describe('<syn-combobox>', () => {
     expect(getOptionHandler).to.have.been.calledThrice;
   });
 
+  it('should work with options that do not have a value', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option>Option 1</syn-option>
+        <syn-option>Option 2</syn-option>
+        <syn-option>Option 3</syn-option>
+      </syn-combobox>
+    `);
+    await el.show();
+
+    const filteredListbox = el.shadowRoot!.querySelector('.listbox__options')!;
+    const secondOption = filteredListbox.querySelectorAll<SynOption>('syn-option')[1];
+
+    await clickOnElement(secondOption);
+    await el.updateComplete;
+
+    expect(el.value).to.equal('Option 2');
+  });
+
   runFormControlBaseTests('syn-combobox');
 });

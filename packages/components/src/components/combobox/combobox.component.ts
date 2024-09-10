@@ -192,7 +192,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * A function that customizes the rendered option. The first argument is the option, the second
    * is the query string, which is typed into the combobox.
    * The function should return either a Lit TemplateResult or a string containing trusted HTML
-   * of the symbol to render at the specified value.
+   * to render in the shown list of filtered options.
    */
   // eslint-disable-next-line max-len, class-methods-use-this
   @property() getOption: (option: SynOption, queryString: string) => TemplateResult | string | HTMLElement = (option) => option;
@@ -568,8 +568,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Update selected options cache
     this.selectedOption = this.getAllFilteredOptions().find(el => el.selected);
 
-    // Update the value
-    this.value = this.selectedOption?.value ?? this.displayInput.value;
+    // Update the value. Check if the selected option has a value,
+    // if not take the text content of the option otherwise the input text
+    const optionValue = this.selectedOption?.value || this.selectedOption?.getTextLabel();
+    this.value = optionValue ?? this.displayInput.value;
 
     // Update validity and display label
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

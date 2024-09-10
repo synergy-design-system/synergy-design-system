@@ -23,7 +23,7 @@ const meta: Meta = {
   args: overrideArgs([
     { name: 'name', type: 'attribute', value: 'wallpaper' },
     { name: 'label', type: 'attribute', value: 'Wallpaper' },
-    { name: 'color', type: 'attribute', value: 'neutral' },
+    // { name: 'color', type: 'attribute', value: 'neutral' },
     { name: 'size', type: 'attribute', value: 'medium' },
   ], defaultArgs),
   argTypes,

@@ -144,6 +144,7 @@ export const DemoFormValidate = () => {
             required
             value={formData.role}
           >
+            <SynOption value="">---</SynOption>
             <SynOptgroup label="Developers">
               <SynOption value="backend">Backend Developer</SynOption>
               <SynOption value="frontend">Frontend Developer</SynOption>
@@ -248,6 +249,16 @@ export const DemoFormValidate = () => {
               <SynRangeTick>🥱</SynRangeTick>
               <SynRangeTick>😍</SynRangeTick>
             </nav>
+            <div slot="suffix">
+              <SynInput
+                name="happiness"
+                type="number"
+                value={formData.happiness}
+                size="small"
+                min={0}
+                max={10}
+              />
+            </div>
           </SynRange>
         </SynValidate>
 
@@ -263,6 +274,7 @@ export const DemoFormValidate = () => {
             checked={formData.newsletterStandard}
             id="checkbox-newsletter-default"
             name="newsletterStandard"
+            required
           >
             Please subscribe me to the synergy newsletter
           </SynCheckbox>
@@ -273,6 +285,7 @@ export const DemoFormValidate = () => {
             checked={formData.newsletterBeta}
             id="checkbox-newsletter-beta"
             name="newsletterBeta"
+            required
           >
             I am interested in the Synergy Beta Program
           </SynSwitch>
@@ -300,7 +313,6 @@ export const DemoFormValidate = () => {
           <SynFile
             accept="image/*"
             droparea
-            help-text="Please upload images only"
             files={formData.files}
             id="screenshot"
             label="Optional Screenshot(s)"

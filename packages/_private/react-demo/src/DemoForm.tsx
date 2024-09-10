@@ -243,7 +243,7 @@ export const DemoForm = () => {
           label="I am interested in the following technologies"
           multiple
           name="topics"
-          value={formData.topics.join(' ')}
+          value={formData.topics}
         >
           <SynOptgroup label="Frontend">
             <SynOption value="angular">Angular</SynOption>

@@ -15,3 +15,23 @@ export const arraysDiffer = (a: readonly string[], b: readonly string[]): boolea
   }
   return false;
 };
+
+/**
+ * Low level interface to check for event type
+ * @param eventName The event name to check
+ * @param type The type to check
+ * @returns True if the event name is of the provided type, false otherwise
+ */
+const isEventOfType = (eventName: string, type: string) => eventName.includes(type);
+
+/**
+ * Check if the provided event name is a blur event
+ * @param eventName The event name to check
+ */
+export const isBlurEvent = (eventName: string) => isEventOfType(eventName, 'blur');
+
+/**
+ * Check if the provided event is an invalid event
+ * @param eventName The event name to check
+ */
+export const isInvalidEvent = (eventName: string) => isEventOfType(eventName, 'invalid');

@@ -5,7 +5,11 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
-import { arraysDiffer } from './utility.js';
+import {
+  arraysDiffer,
+  isBlurEvent,
+  isInvalidEvent,
+} from './utility.js';
 import styles from './validate.styles.js';
 
 // on: live
@@ -132,9 +136,9 @@ export default class SynValidate extends SynergyElement {
     }
 
     const events = this.getUsedEventNames();
-    events.forEach(e => {
-      input.addEventListener(e, this.validate, {
-        capture: e.includes('invalid'),
+    events.forEach(eventName => {
+      input.addEventListener(eventName, this.validate, {
+        capture: isInvalidEvent(eventName),
         signal: this.controller.signal,
       });
     });
@@ -148,16 +152,49 @@ export default class SynValidate extends SynergyElement {
   }
 
   /**
+   * Handle the blur event during validation
+   */
+  private handleFocus(input: HTMLInputElement) {
+    const activeElement = document.activeElement! as HTMLElement;
+    const activeElementIsWrapped = activeElement.closest('syn-validate');
+    const targetIsWrapped = input.closest('syn-validate');
+    const activeElementIsCurrentInstance = activeElementIsWrapped === this;
+
+    console.log(activeElement, activeElementIsWrapped, targetIsWrapped, activeElementIsCurrentInstance, input);
+
+    if (activeElementIsCurrentInstance) {
+      console.log('scroll to the current isntance!');
+      input.scrollIntoView({ block: 'nearest' });
+      input.focus();
+    }
+
+    if (!activeElementIsWrapped && targetIsWrapped) {
+      console.log('scroll to the invalid field!');
+      input.scrollIntoView({ block: 'nearest' });
+      input.focus();
+    }
+  }
+
+  /**
    * Triggers a validation run, showing the validation message if needed.
    */
   private validate = (e: Event) => {
     // Make sure to always prevent the invalid event when using inline validation
-    if (e.type.includes('invalid') && this.inline) {
+    if (isInvalidEvent(e.type) && this.inline) {
       e.preventDefault();
       e.stopPropagation();
     }
 
     const input = e.target as HTMLInputElement;
+    const isValid = input.validity.valid;
+
+    // If the active element that has focus is placed in a validate component,
+    // make sure to not loose focus.
+    if (!isValid && !isBlurEvent(e.type)) {
+      console.log('here', e, input)
+      this.handleFocus(input);
+    }
+
     this.setValidationMessage(input);
   };
 

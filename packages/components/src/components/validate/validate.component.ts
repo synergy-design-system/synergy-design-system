@@ -154,25 +154,18 @@ export default class SynValidate extends SynergyElement {
   /**
    * Handle the blur event during validation
    */
+  // eslint-disable-next-line complexity
   private handleFocus(input: HTMLInputElement) {
-    const activeElement = document.activeElement! as HTMLElement;
+    const activeElement = document.activeElement! as HTMLInputElement;
     const activeElementIsWrapped = activeElement.closest('syn-validate');
-    const targetIsWrapped = input.closest('syn-validate');
-    const activeElementIsCurrentInstance = activeElementIsWrapped === this;
 
-    console.log(activeElement, activeElementIsWrapped, targetIsWrapped, activeElementIsCurrentInstance, input);
-
-    if (activeElementIsCurrentInstance) {
-      console.log('scroll to the current isntance!');
-      input.scrollIntoView({ block: 'nearest' });
-      input.focus();
+    if (!activeElement.validity.valid && activeElementIsWrapped) {
+      console.log('active element is invalid, do not scroll');
+      return;
     }
 
-    if (!activeElementIsWrapped && targetIsWrapped) {
-      console.log('scroll to the invalid field!');
-      input.scrollIntoView({ block: 'nearest' });
-      input.focus();
-    }
+    input.scrollIntoView({ block: 'nearest' });
+    input.focus();
   }
 
   /**
@@ -191,7 +184,6 @@ export default class SynValidate extends SynergyElement {
     // If the active element that has focus is placed in a validate component,
     // make sure to not loose focus.
     if (!isValid && !isBlurEvent(e.type)) {
-      console.log('here', e, input)
       this.handleFocus(input);
     }
 

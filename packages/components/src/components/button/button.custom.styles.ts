@@ -1,6 +1,10 @@
 import { css } from 'lit';
 
 export default css`
+  .button {
+    font-weight: var(--syn-font-weight-bold);
+  }
+
   .button:focus-visible {
     outline: var(--syn-focus-ring-color) solid var(--syn-focus-ring-width);
     outline-offset: var(--syn-focus-ring-width);

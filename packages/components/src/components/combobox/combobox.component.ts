@@ -497,15 +497,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   private selectNextOption(isNext: boolean) {
     const filteredOptions = this.getAllFilteredOptions();
-    const currentIndex = this.currentOption ? filteredOptions.indexOf(this.currentOption) : -1;
+
+    if (filteredOptions.length === 0) {
+      return;
+    }
+
+    const currentIndex = filteredOptions.indexOf(this.currentOption!);
     let newIndex = Math.max(0, currentIndex);
 
     if (isNext) {
-      newIndex = currentIndex + 1;
-      if (newIndex > filteredOptions.length - 1) newIndex = 0;
+      const nextIndex = currentIndex + 1;
+      newIndex = (nextIndex > filteredOptions.length - 1) ? 0 : nextIndex;
     } else {
-      newIndex = currentIndex - 1;
-      if (newIndex < 0) newIndex = filteredOptions.length - 1;
+      const previousIndex = currentIndex - 1;
+      newIndex = previousIndex < 0 ? filteredOptions.length - 1 : previousIndex;
     }
     this.setCurrentOption(filteredOptions[newIndex]);
     scrollIntoView(this.currentOption!, this.listbox, 'vertical', 'auto');

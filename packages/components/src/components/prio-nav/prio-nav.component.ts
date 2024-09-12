@@ -142,37 +142,40 @@ export default class SynPrioNav extends SynergyElement {
     const navItems = this.getSlottedNavItems();
 
     if (!this.itemPositionsCached) {
+      // Save the position of all the elements in a cache
       this.cacheItemPositions(navItems);
     }
 
     // Get the widths of the horizontal nav and the priority menu
     // We subtract the width of the priority menu to get the final width
     const { width } = this.horizontalNav.getBoundingClientRect();
-    const { clientWidth } = this.priorityMenu;
-    const finalWidth = width - clientWidth;
 
-    // Cache the first item
-    let firstHiddenItemRightPos: number | undefined;
-
+    let anyHiddenItems = false;
     let visibleItems = 0;
 
-    // Save the position of all the elements in a cache
-    navItems.forEach(item => {
-      // Make sure to use the cache obtained in createGhostItems
-      const isHidden = firstHiddenItemRightPos || parseFloat(item.dataset.right!) >= finalWidth;
+    const gapStr = window.getComputedStyle(this.horizontalNav).gap;
+    let gap = 0;
+    if (gapStr.endsWith('px')) {
+      gap = parseFloat(gapStr);
+    }
+
+    const priorityMenuSize = this.priorityMenu.clientWidth + gap;
+
+    // Check from right to left so that the size of the priority menu is
+    // always taken into account once it's shown
+    navItems.reverse().forEach(item => {
+      // If we haven't hidden any items yet, the priority menu size doesn't
+      // need to be taken into account, since it isn't visible.
+      const finalWidth = anyHiddenItems ? (width - priorityMenuSize) : width;
+      const isHidden = parseFloat(item.dataset.right!) >= finalWidth;
 
       if (isHidden) {
+        anyHiddenItems = true;
         item.removeAttribute('horizontal');
         item.setAttribute('slot', 'menu');
 
         // Makes sure the item is focusable in a syn-dropdown
         item.setAttribute('role', 'menuitem');
-
-        // Get the position of the first item
-        // Will get used to position the priority menu
-        if (!firstHiddenItemRightPos) {
-          firstHiddenItemRightPos = parseFloat(item.dataset.right!);
-        }
       } else {
         visibleItems += 1;
         item.setAttribute('horizontal', 'true');

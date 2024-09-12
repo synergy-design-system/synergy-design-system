@@ -193,8 +193,8 @@ describe('<syn-combobox>', () => {
 
       el.focus();
       await el.updateComplete;
-      await sendKeys({ press: 'Enter' }); // open the dropdown
-      await aTimeout(500); // wait for the dropdown to open
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
       await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' }); // move selection to the third option
@@ -204,7 +204,7 @@ describe('<syn-combobox>', () => {
 
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
-      expect(el.value).to.equal('option-2');
+      expect(el.value).to.equal('option-3');
     });
 
     it('should not emit syn-change or syn-input when the value is changed programmatically', async () => {
@@ -253,23 +253,6 @@ describe('<syn-combobox>', () => {
   });
 
   describe('keyboard handling', () => {
-    it('should open the listbox when the Enter key is pressed with syn-combobox is on focus', async () => {
-      const el = await fixture<SynCombobox>(html`
-        <syn-combobox>
-          <syn-option value="option-1">Option 1</syn-option>
-          <syn-option value="option-2">Option 2</syn-option>
-          <syn-option value="option-3">Option 3</syn-option>
-        </syn-combobox>
-      `);
-      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
-      el.focus();
-      await el.updateComplete;
-      await sendKeys({ press: 'Enter' });
-      await el.updateComplete;
-
-      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
-    });
-
     it('should open the listbox when the ArrowDown key is pressed and select the first option with syn-combobox is on focus', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
@@ -394,6 +377,23 @@ describe('<syn-combobox>', () => {
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
     });
 
+    it('should not open the listbox when the Enter key is pressed with syn-combobox is on focus', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' });
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
+    });
+
     it('should close the listbox when Escape key is pressed with syn-combobox is on focus', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option">
@@ -406,7 +406,7 @@ describe('<syn-combobox>', () => {
 
       el.focus();
       await el.updateComplete;
-      await sendKeys({ press: 'Enter' });
+      await sendKeys({ press: 'ArrowDown' });
       await el.updateComplete;
       await sendKeys({ press: 'Escape' });
       await el.updateComplete;
@@ -414,6 +414,32 @@ describe('<syn-combobox>', () => {
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
       expect(displayInput.value).to.equal('option');
       expect(el.value).to.equal('option');
+    });
+
+    it('should close the listbox when Enter key is pressed with syn-combobox is on focus', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+
+      el.focus();
+      await el.updateComplete;
+
+      await sendKeys({ type: 'opt' });
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+
+      await sendKeys({ press: 'Enter' });
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
+      expect(displayInput.value).to.equal('opt');
+      expect(el.value).to.equal('opt');
     });
 
     it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
@@ -690,6 +716,55 @@ describe('<syn-combobox>', () => {
       const formData = new FormData(form);
 
       expect(formData.get('a')).to.equal('option-1');
+    });
+
+    it('should submit the form when pressing enter in a form without a submit button', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+        </form> 
+      `);
+      const combobox = form.querySelector('syn-combobox')!;
+      const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
+
+      form.addEventListener('submit', submitHandler);
+      combobox.focus();
+      await sendKeys({ press: 'Enter' });
+      await waitUntil(() => submitHandler.calledOnce);
+
+      expect(submitHandler).to.have.been.calledOnce;
+    });
+
+    it('should prevent submission when pressing enter in a combobox and canceling the keydown event', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+        </form> 
+      `);
+      const combobox = form.querySelector('syn-combobox')!;
+      const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
+      const keydownHandler = sinon.spy((event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+        }
+      });
+
+      form.addEventListener('submit', submitHandler);
+      combobox.addEventListener('keydown', keydownHandler);
+      combobox.focus();
+      await sendKeys({ press: 'Enter' });
+      await waitUntil(() => keydownHandler.calledOnce);
+
+      expect(keydownHandler).to.have.been.calledOnce;
+      expect(submitHandler).to.not.have.been.called;
     });
   });
 

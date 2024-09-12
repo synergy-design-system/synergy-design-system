@@ -340,12 +340,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Handle enter.
     if (event.key === 'Enter') {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-
-      // If it's not open, open it
-      if (!this.open) {
-        this.show();
+      // Pressing enter when focused on an input should submit the form like a native input, but
+      // we wait a tick before submitting to allow users to cancel the keydown event if they need to
+      const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      if (!this.open && !hasModifier) {
+        setTimeout(() => {
+          if (!event.defaultPrevented) {
+            this.formControlController.submit();
+          }
+        });
         return;
       }
 
@@ -361,11 +364,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
             this.emit('syn-change');
           });
         }
-
-        this.hide();
-        this.displayInput.focus({ preventScroll: true });
       }
 
+      this.hide();
+      this.displayInput.focus({ preventScroll: true });
       return;
     }
 
@@ -373,6 +375,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       // Prevent scrolling
       event.preventDefault();
+      event.stopPropagation();
       // Open it
       if (!this.open) {
         this.show();
@@ -385,6 +388,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (['Home', 'End'].includes(event.key)) {
       // Prevent scrolling
       event.preventDefault();
+      event.stopPropagation();
       if (event.key === 'Home') {
         this.displayInput.setSelectionRange(0, 0);
       } else if (event.key === 'End') {
@@ -429,7 +433,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    event.stopPropagation();
     this.handleDocumentKeyDown(event);
   }
 

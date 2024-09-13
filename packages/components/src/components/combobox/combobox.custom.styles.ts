@@ -21,7 +21,7 @@ export default css`
     color: var(--syn-color-neutral-0);
   }
 
-  .combobox__display-input {
+  .combobox:not(.combobox--disabled) .combobox__display-input {
     cursor: text;
   }
 

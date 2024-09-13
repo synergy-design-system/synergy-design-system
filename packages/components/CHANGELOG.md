@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.7.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.1...components/2.7.2) (2024-09-13)
+
+
+### Bug Fixes
+
+* 🐛 Wrong font weight for text content in button ([#606](https://github.com/synergy-design-system/synergy-design-system/issues/606)) ([42f3054](https://github.com/synergy-design-system/synergy-design-system/commit/42f3054cb7652ab16e5e276e499f6c60eeebf81b))
+
 # [@synergy-design-system/components-v2.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.0...components/2.7.1) (2024-09-05)
 
 

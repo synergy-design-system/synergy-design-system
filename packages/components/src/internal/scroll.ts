@@ -41,6 +41,20 @@ export function lockBodyScrolling(lockingEl: HTMLElement) {
   if (!document.documentElement.classList.contains('syn-scroll-lock')) {
     /** Scrollbar width + body padding calculation can go away once Safari has scrollbar-gutter support. */
     const scrollbarWidth = getScrollbarWidth() + getExistingBodyPadding(); // must be measured before the `syn-scroll-lock` class is applied
+
+    let scrollbarGutterProperty = getComputedStyle(document.documentElement).scrollbarGutter;
+
+    // default is auto, unsupported browsers is "undefined"
+    if (!scrollbarGutterProperty || scrollbarGutterProperty === 'auto') {
+      scrollbarGutterProperty = 'stable';
+    }
+
+    /** Sometimes the scrollbar width is 1px, even then, we assume nothing is overflowing. */
+    if (scrollbarWidth < 2) {
+      // if there's no scrollbar, just set it to an empty string so whatever the user has set gets used. This is useful if the page is not overflowing and showing a scrollbar, or if the user has overflow: hidden, or any other reason a scrollbar may not be showing.
+      scrollbarGutterProperty = '';
+    }
+    document.documentElement.style.setProperty('--syn-scroll-lock-gutter', scrollbarGutterProperty);
     document.documentElement.classList.add('syn-scroll-lock');
     document.documentElement.style.setProperty('--syn-scroll-lock-size', `${scrollbarWidth}px`);
   }

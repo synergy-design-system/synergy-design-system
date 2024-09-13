@@ -18,6 +18,7 @@ export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynDropdown } from './components/dropdown/dropdown.js';
+export { default as SynFile } from './components/file/file.js';
 export { default as SynHeader } from './components/header/header.js';
 export { default as SynIconButton } from './components/icon-button/icon-button.js';
 export { default as SynIcon } from './components/icon/icon.js';
@@ -35,6 +36,8 @@ export { default as SynProgressRing } from './components/progress-ring/progress-
 export { default as SynRadioButton } from './components/radio-button/radio-button.js';
 export { default as SynRadioGroup } from './components/radio-group/radio-group.js';
 export { default as SynRadio } from './components/radio/radio.js';
+export { default as SynRangeTick } from './components/range-tick/range-tick.js';
+export { default as SynRange } from './components/range/range.js';
 export { default as SynSelect } from './components/select/select.js';
 export { default as SynSideNav } from './components/side-nav/side-nav.js';
 export { default as SynSpinner } from './components/spinner/spinner.js';

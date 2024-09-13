@@ -9,6 +9,7 @@
     "semantic/button",
     "semantic/toggle",
     "semantic/typography",
+    "semantic/link",
     "semantic/overlays",
     "semantic/panels",
     "semantic/tooltip",

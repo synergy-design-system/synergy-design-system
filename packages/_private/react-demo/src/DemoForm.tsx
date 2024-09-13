@@ -1,21 +1,29 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import type { SynChangeEvent } from '@synergy-design-system/components';
+import { serialize } from '@synergy-design-system/components';
+import type {
+  SynCheckbox as NativeCheckbox,
+  SynFile as NativeFile,
+  SynChangeEvent,
+  SynRange as SynRangeNativeElement,
+} from '@synergy-design-system/components';
 import {
   SynButton,
   SynCheckbox,
   SynDivider,
+  SynFile,
   SynInput,
   SynOptgroup,
   SynOption,
   SynRadio,
   SynRadioGroup,
+  SynRange,
+  SynRangeTick,
   SynSelect,
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/react';
 import { DemoFieldset } from './DemoFieldset';
-import { normalizeData } from './shared';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -27,8 +35,11 @@ const initialFormData = {
   code: '',
   comment: '',
   date: '',
+  donations: '2000 4000',
   email: '',
+  files: undefined,
   gender: '',
+  happiness: '5',
   name: '',
   newsletterAngular: false,
   newsletterBeta: false,
@@ -42,28 +53,45 @@ const initialFormData = {
   topics: [],
 };
 
+const formatter = new Intl.NumberFormat('de-DE', {
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+  style: 'currency',
+});
+
 export const DemoForm = () => {
+  const donationsRef = useRef<SynRangeNativeElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitary custom events :(
   useEffect(() => {
+    // Add a custom formatter for the donation field
+    donationsRef.current!.tooltipFormatter = value => formatter.format(value);
+
     const listener = (e: SynChangeEvent) => {
       const form = formRef.current as HTMLFormElement;
 
-      const normalizedData = normalizeData(new FormData(form));
+      const normalizedData = serialize(form);
 
       // Log the normalized data
       console.log(normalizedData);
 
       // Set the field into state
       const element = e.target as FormEnabledElements;
-      const { checked, name, value } = element;
+      const { name, value } = element;
 
-      const finalValue = typeof checked !== 'undefined'
-        ? checked
-        : value;
+      let finalValue;
+
+      switch (element.tagName.toLocaleLowerCase()) {
+      case 'syn-checkbox':
+      case 'syn-switch':
+        finalValue = (element as NativeCheckbox).checked;
+        break;
+      case 'syn-file': finalValue = (element as NativeFile).files; break;
+      default: finalValue = value;
+      }
 
       setFormData((curr) => ({
         ...curr,
@@ -79,6 +107,8 @@ export const DemoForm = () => {
 
   return (
     <form
+      encType="multipart/form-data"
+      method="post"
       onReset={() => {
         setFormData(initialFormData);
       }}
@@ -231,6 +261,43 @@ export const DemoForm = () => {
 
       <SynDivider />
 
+      {/* Happiness */}
+      <DemoFieldset id="happiness-fields" legend="Happiness">
+        <SynRange
+          id="happiness"
+          label="How happy are you with the Synergy Design System?"
+          max={10}
+          min={0}
+          name="happiness"
+          value={formData.happiness}
+        >
+          <nav slot="ticks">
+            <SynRangeTick>🤮</SynRangeTick>
+            <SynRangeTick>🥱</SynRangeTick>
+            <SynRangeTick>😍</SynRangeTick>
+          </nav>
+        </SynRange>
+
+        <SynRange
+          id="donations"
+          label="I would donate between"
+          max={6000}
+          min={0}
+          name="donations"
+          value={formData.donations}
+          ref={donationsRef}
+        >
+          <nav slot="ticks">
+            <SynRangeTick>0 €</SynRangeTick>
+            <SynRangeTick>6.000 €</SynRangeTick>
+          </nav>
+        </SynRange>
+
+      </DemoFieldset>
+      {/* /Happiness */}
+
+      <SynDivider />
+
       {/* Marketing */}
       <DemoFieldset legend="Please inform me about the following technologies">
         <SynCheckbox
@@ -291,6 +358,16 @@ export const DemoForm = () => {
         >
           {formData.comment}
         </SynTextarea>
+        <SynFile
+          accept="image/*"
+          droparea
+          help-text="Please upload images only"
+          files={formData.files}
+          id="screenshot"
+          label="Optional Screenshot(s)"
+          multiple
+          name="files"
+        />
       </DemoFieldset>
 
       { /* /AdditionalInformation */ }

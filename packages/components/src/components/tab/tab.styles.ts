@@ -36,15 +36,15 @@ export default css`
     color: var(--syn-color-primary-600);
   }
 
-  .tab:focus {
-    outline: none;
+  :host(:focus) {
+    outline: transparent;
   }
 
-  .tab:focus-visible:not(.tab--disabled) {
+  :host(:focus-visible):not([disabled]) {
     color: var(--syn-color-primary-600);
   }
 
-  .tab:focus-visible {
+  :host(:focus-visible) {
     outline: var(--syn-focus-ring);
     outline-offset: calc(-1 * var(--syn-focus-ring-width) - var(--syn-focus-ring-offset));
   }

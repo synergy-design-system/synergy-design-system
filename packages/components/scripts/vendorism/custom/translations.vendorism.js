@@ -10,17 +10,48 @@ const translations = {
     de: 'Gefahr',
     en: 'Danger',
   },
-  notification: {
-    de: 'Benachrichtigung',
-    en: 'Notification',
+  fileButtonText: {
+    de: 'Datei auswählen',
+    en: 'Choose file',
+  },
+  fileButtonTextMultiple: {
+    de: 'Dateien auswählen',
+    en: 'Choose files',
+  },
+  fileDragDrop: {
+    de: 'Datei ablegen oder auswählen',
+    en: 'Drop or choose file',
   },
   menu: {
     de: 'Menü',
     en: 'Menu',
   },
+  notification: {
+    de: 'Benachrichtigung',
+    en: 'Notification',
+  },
+  numFilesSelected: {
+    de: num => {
+      if (num === 0) return 'Keine Dateien ausgewählt';
+      return `${num} Dateien`;
+    },
+    en: num => {
+      if (num === 0) return 'No files chosen';
+      return `${num} files`;
+    },
+    type: '(num: number) => string',
+  },
   openMenu: {
     de: 'Menü öffnen',
     en: 'Open menu',
+  },
+  rangeMax: {
+    de: 'Maximum',
+    en: 'Maximum',
+  },
+  rangeMin: {
+    de: 'Minimum',
+    en: 'Minimum',
   },
   sideNav: {
     de: 'Seitennavigation',
@@ -57,7 +88,10 @@ const getTranslationsForLanguage = (language) => Object
 const getTranslationTableAsString = (table) => Object
   .entries(table)
   .reduce(
-    (acc, [key, value]) => `${acc}${key}: '${value}',\n  `,
+    (acc, [key, value]) => {
+      const val = typeof value === 'function' ? value : `'${value}'`;
+      return `${acc}${key}: ${val},\n  `;
+    },
     '',
   );
 
@@ -76,7 +110,10 @@ export const vendorLocalize = (path, originalContent) => {
   }
 
   const additionalItems = Object.keys(getTranslationsForLanguage('en')).sort();
-  const additionalTypes = additionalItems.map((item, index) => `${index > 0 ? '  ' : ''}${item}: string;`).join('\n');
+  const additionalTypes = additionalItems.map((item, index) => {
+    const extendedType = translations[item].type ?? 'string';
+    return `${index > 0 ? '  ' : ''}${item}: ${extendedType};`;
+  }).join('\n');
 
   const content = originalContent.replace(
     '$code',

@@ -124,8 +124,6 @@ export default class SynIconButton extends SynergyElement {
           'icon-button--small': this.size === 'small',
           'icon-button--medium': this.size === 'medium',
           'icon-button--large': this.size === 'large',
-          'icon-button--primary': this.color === 'primary',
-          'icon-button--neutral': this.color === 'neutral'
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}

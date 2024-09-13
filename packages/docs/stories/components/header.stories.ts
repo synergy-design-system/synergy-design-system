@@ -128,9 +128,9 @@ export const MetaNavigation: Story = {
   render: () => html`
     <syn-header label="App Name">
       <nav slot="meta-navigation">
-        <syn-icon-button color="neutral" name="apps" label="Apps"></syn-icon-button>
-        <syn-icon-button color="neutral" name="account_circle" label="Account"></syn-icon-button>
-        <syn-icon-button color="neutral" name="more_vert" label="More"></syn-icon-button>
+        <syn-icon-button name="apps" label="Apps"></syn-icon-button>
+        <syn-icon-button name="account_circle" label="Account"></syn-icon-button>
+        <syn-icon-button name="more_vert" label="More"></syn-icon-button>
       </nav>
     </syn-header>
   `,

@@ -20,13 +20,14 @@ import {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SynDefaultValueAccessor),
   }],
-  selector: `syn-dropdown[formControlName], syn-dropdown[formControl], syn-dropdown[ngModel],
+  selector: `syn-button-group[formControlName], syn-button-group[formControl], syn-button-group[ngModel],
+    syn-dropdown[formControlName], syn-dropdown[formControl], syn-dropdown[ngModel],
     syn-input[formControlName], syn-input[formControl], syn-input[ngModel],
-    syn-textarea[formControlName], syn-textarea[formControl], syn-textarea[ngModel],
+    syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel],
+    syn-range[formControlName], syn-range[formControl], syn-range[ngModel],
     syn-range[formControlName], syn-range[formControl], syn-range[ngModel],
     syn-select[formControlName], syn-select[formControl], syn-select[ngModel],
-    syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel],
-    syn-button-group[formControlName], syn-button-group[formControl], syn-button-group[ngModel]`,
+    syn-textarea[formControlName], syn-textarea[formControl], syn-textarea[ngModel]`,
   host: {
     // Overwrite the input event, because we only emit syn-input event
     '(syn-input)': '$any(this)._handleInput($event.target.value)',
@@ -50,14 +51,30 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor { }
 })
 export class SynCheckedValueAccessor extends CheckboxControlValueAccessor { }
 
+@Directive({
+  providers: [{
+    multi: true,
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SynFileValueAccessor),
+  }],
+  selector: 'syn-file[formControlName], syn-file[formControl], syn-file[ngModel]',
+  // Overwrite the change event, because we only emit syn-change event
+  host: {
+    '(syn-change)': 'onChange($event.target.files)',
+  },
+})
+export class SynFileValueAccessor extends DefaultValueAccessor { }
+
 @NgModule({
   declarations: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
+    SynFileValueAccessor,
   ],
   exports: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
+    SynFileValueAccessor,
   ],
   imports: [],
 })

@@ -207,6 +207,28 @@ describe('<syn-combobox>', () => {
       expect(el.value).to.equal('option-3');
     });
 
+    it('should not emit syn-change or syn-input when a disabled option is selected with the keyboard', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2" disabled>Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
+      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+    });
+
     it('should not emit syn-change or syn-input when the value is changed programmatically', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option-1">
@@ -507,6 +529,31 @@ describe('<syn-combobox>', () => {
 
       expect(displayInput.selectionStart).to.equal(6);
       expect(displayInput.selectionEnd).to.equal(6);
+    });
+
+    it('should not close the listbox when Enter key is pressed with a disabled option is selected', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option disabled value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
+      await el.updateComplete;
+
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+      expect(el.value).to.equal('option');
     });
   });
 

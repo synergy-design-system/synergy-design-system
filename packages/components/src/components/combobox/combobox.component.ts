@@ -352,8 +352,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return;
       }
 
-      // If it is open, update the value based on the current selection and close it
-      if (this.currentOption && !this.currentOption.disabled) {
+      if (!this.open || (this.currentOption && this.currentOption.disabled)) {
+        return;
+      }
+
+      // Update the value based on the current selection and close it
+      if (this.currentOption) {
         const oldValue = this.lastOptionValue;
         this.setSelectedOption(this.currentOption);
 

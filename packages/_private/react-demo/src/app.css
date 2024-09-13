@@ -67,6 +67,10 @@ form .syn-fieldset:last-of-type {
   justify-content: space-between;
 }
 
+#input-nationality::part(listbox) {
+  max-height: 300px;
+}
+
 .main {
   flex-grow: 1;
   display: flex;

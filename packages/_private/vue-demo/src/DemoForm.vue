@@ -181,7 +181,6 @@ const synChange = () => {
         id="input-date"
         label="Date of birth"
         name="date"
-        placeholder="Please insert your E-mail address"
         v-model="formData.date"
         type="date"
       />

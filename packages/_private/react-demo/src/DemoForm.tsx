@@ -65,7 +65,7 @@ export const DemoForm = () => {
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
-  // and react wont let us bind arbitary custom events :(
+  // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
     // Add a custom formatter for the donation field
     donationsRef.current!.tooltipFormatter = value => formatter.format(value);

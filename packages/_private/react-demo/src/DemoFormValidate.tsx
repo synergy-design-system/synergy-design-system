@@ -58,7 +58,7 @@ export const DemoFormValidate = () => {
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
-  // and react wont let us bind arbitary custom events :(
+  // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
     const listener = (e: SynChangeEvent) => {
       const form = formRef.current as HTMLFormElement;
@@ -122,7 +122,7 @@ export const DemoFormValidate = () => {
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">
 
-        <SynValidate inline on={['input']}>
+        <SynValidate inline>
           <SynRadioGroup
             id="radiogroup-gender"
             name="gender"
@@ -130,13 +130,14 @@ export const DemoFormValidate = () => {
             required
             value={formData.gender}
           >
+            <SynRadio value="">invalid</SynRadio>
             <SynRadio value="f">Female</SynRadio>
             <SynRadio value="m">Male</SynRadio>
             <SynRadio value="other">Other</SynRadio>
           </SynRadioGroup>
         </SynValidate>
 
-        <SynValidate inline on={['input', 'blur']}>
+        <SynValidate inline>
           <SynSelect
             id="select-role"
             label="Current position"
@@ -156,7 +157,7 @@ export const DemoFormValidate = () => {
           </SynSelect>
         </SynValidate>
 
-        <SynValidate inline on={['input', 'blur']}>
+        <SynValidate inline>
           <SynInput
             id="input-text"
             label="Name"
@@ -170,7 +171,7 @@ export const DemoFormValidate = () => {
           />
         </SynValidate>
 
-        <SynValidate inline on={['input', 'blur']}>
+        <SynValidate inline on="live">
           <SynInput
             id="input-email"
             label="E-Mail"
@@ -269,7 +270,7 @@ export const DemoFormValidate = () => {
 
       {/* Marketing */}
       <DemoFieldset legend="Please inform me about the following technologies">
-        <SynValidate inline on={['input', 'blur']}>
+        <SynValidate inline>
           <SynCheckbox
             checked={formData.newsletterStandard}
             id="checkbox-newsletter-default"
@@ -280,7 +281,7 @@ export const DemoFormValidate = () => {
           </SynCheckbox>
         </SynValidate>
 
-        <SynValidate inline on={['input', 'blur']}>
+        <SynValidate inline>
           <SynSwitch
             checked={formData.newsletterBeta}
             id="checkbox-newsletter-beta"

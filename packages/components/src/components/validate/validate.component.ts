@@ -12,8 +12,6 @@ import {
 } from './utility.js';
 import styles from './validate.styles.js';
 
-// on: live
-
 /**
  * @summary Validate is a helper that may be used to wrap
  * synergy input fields and forms to provide validation message.
@@ -50,27 +48,39 @@ export default class SynValidate extends SynergyElement {
   /**
    * Defines the events that trigger the validation.
    * Defaults to the `invalid` and `change` events.
-   * @example <syn-validate on="invalid change"></syn-validate>
+   * `invalid` will always automatically be included.
+   * You may also use the `live` keyword to validate on every input change.
+   * @example ```html
+   * <!-- Use default validation (invalid, change) -->
+   * <syn-validate></syn-validate>
+   *
+   * <!-- Validate on invalid and change events (invalid, change) -->
+   * <syn-validate on="invalid change"></syn-validate>
+   *
+   * <!-- Validate on live events (invalid, blur, input)-->
+   * <syn-validate on="live"></syn-validate>
+   *
+   * <!-- Validate on live and custom events (invalid, focus, input, change) -->
+   * <syn-validate on="live focus change"></syn-validate>
+   * ```
    */
   @property({
     converter: {
       fromAttribute: (e: string) => e.split(' ').map(s => s.trim()),
-      toAttribute: (a: string[]) => a.map(e => e.trim()).join(' '),
+      toAttribute: (a: string[] | string) => {
+        if (!Array.isArray(a)) return a;
+        return a.map(e => e.trim()).join(' ');
+      },
     },
     reflect: true,
-    type: Array,
-  }) on: string[] = ['invalid', 'change'];
+  }) on: string[] | string = ['invalid', 'change'];
 
   /**
    * Custom validation message to be displayed when the input is invalid.
    * Will override the default browser validation message.
    * Set to an empty string to reset the validation message.
    */
-  @property({
-    attribute: 'custom-validation',
-    reflect: true,
-    type: String,
-  }) customValidation = '';
+  @property({ attribute: 'custom-validation', type: String }) customValidation = '';
 
   /**
    * Automatically refresh all event listeners when the on property changes.
@@ -80,7 +90,6 @@ export default class SynValidate extends SynergyElement {
   @watch('on', { waitUntilFirstUpdate: true })
   handleListenerChange(old: string[], next: string[]) {
     if (arraysDiffer(old, next)) {
-      console.log(old, next);
       this.updateEvents();
     }
   }
@@ -96,12 +105,18 @@ export default class SynValidate extends SynergyElement {
 
   /**
    * Get the event names to listen for.
-   * If the found input is a synergy element, will use syn- prefixes.
-   * Will also make sure to always listen to the invalid event.
+   * If the input is a synergy element, will use syn- prefixes.
    * @returns The event names to listen for
    */
   private getUsedEventNames() {
-    const [...events] = this.on;
+    // Make sure to always use an array of events
+    // This is needed because on may be a special value like "live"
+    const on = Array.isArray(this.on) ? this.on : [this.on];
+
+    // Filter makes sure to remove empty values, e.g.
+    // <syn-validate on=""></syn-validate>
+    const [...events] = on.filter(Boolean);
+
     const input = this.getInput();
     const isSynergyElement = input instanceof SynergyElement;
 
@@ -110,21 +125,30 @@ export default class SynValidate extends SynergyElement {
       events.push('invalid');
     }
 
+    // Special handling for the live keyword:
+    // live always means on input and blur
+    if (events.includes('live')) {
+      events.push('input');
+      events.push('blur');
+    }
+
+    // Make sure to remove duplicated events and the live property
+    const finalEvents = Array.from(new Set(events.filter(e => e !== 'live')));
+
     // If the input is a synergy element, use syn- prefixed events.
     // Only adjust items that do not already have syn- prefixes to
     // prevent event names like syn-syn-input from being added.
     if (isSynergyElement) {
-      return events.map(e => {
+      return finalEvents.map(e => {
         if (e.startsWith('syn-')) return e;
         return `syn-${e}`;
       });
     }
-    return events;
+    return finalEvents;
   }
 
   /**
    * Update the events on the input element.
-   * @param eventsToAdd The events to attach. If omitted, will use the ones from the on property
    */
   private updateEvents() {
     this.controller.abort();
@@ -159,7 +183,7 @@ export default class SynValidate extends SynergyElement {
     const activeElement = document.activeElement! as HTMLInputElement;
     const activeElementIsWrapped = activeElement.closest('syn-validate');
 
-    if (!activeElement.validity.valid && activeElementIsWrapped) {
+    if (!activeElement.validity?.valid && activeElementIsWrapped) {
       console.log('active element is invalid, do not scroll');
       return;
     }
@@ -178,8 +202,8 @@ export default class SynValidate extends SynergyElement {
       e.stopPropagation();
     }
 
-    const input = e.target as HTMLInputElement;
-    const isValid = input.validity.valid;
+    const input = e.currentTarget as HTMLInputElement;
+    const isValid = input.validity?.valid;
 
     // If the active element that has focus is placed in a validate component,
     // make sure to not loose focus.

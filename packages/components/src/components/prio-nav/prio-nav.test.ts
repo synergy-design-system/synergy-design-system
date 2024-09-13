@@ -190,5 +190,16 @@ describe('<syn-prio-nav>', () => {
       expect(itemsInDefaultSlot).to.have.length(6);
       expect(itemsInPrioritySlot).to.be.empty;
     });
+
+    it("should not hide items if there's enough space", async () => {
+      // 6 items of 100px = 600px
+      // 5 gaps of 24px = 120px
+      // 720px should be enough, but give it 1px extra since we're dealing with floats in some parts
+      const nav = await createFixture(721);
+      const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
+
+      expect(itemsInDefaultSlot).to.have.length(6);
+      expect(itemsInPrioritySlot).to.be.empty;
+    });
   });
 });

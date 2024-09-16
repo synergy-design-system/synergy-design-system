@@ -6,8 +6,8 @@ syn-header {
 
 .custom-logo syn-icon {
   display: block;
-  width: auto;
   height: 32px;
+  width: auto;
 }
 
 .main {

@@ -13,7 +13,12 @@ export default defineConfig({
           src: 'node_modules/@synergy-design-system/assets/src/icons/*',
           dest: './assets/icons/',
         },
-      ]
+        // Allow loading subpages from the src/pages directory
+        {
+          src: './src/pages/*',
+          dest: './pages/',
+        },
+      ],
     }),
   ], 
 })

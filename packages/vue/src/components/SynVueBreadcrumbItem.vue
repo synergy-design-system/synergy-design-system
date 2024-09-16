@@ -43,39 +43,34 @@ const props = defineProps<{
 internally.
 * When unset, a button will be rendered instead.
  */
-  'href'?: SynBreadcrumbItem['href'];
+  href?: SynBreadcrumbItem['href'];
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is set.
- */
-  'target'?: SynBreadcrumbItem['target'];
+   * Tells the browser where to open the link.
+   * Only used when `href` is set.
+   */
+  target?: SynBreadcrumbItem['target'];
 
   /**
-* The `rel` attribute to use on the link.
-* Only used when `href` is set.
- */
-  'rel'?: SynBreadcrumbItem['rel'];
+   * The `rel` attribute to use on the link.
+   * Only used when `href` is set.
+   */
+  rel?: SynBreadcrumbItem['rel'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-breadcrumb-item
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-breadcrumb-item v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-breadcrumb-item>
 </template>

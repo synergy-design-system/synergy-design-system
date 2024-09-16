@@ -6,14 +6,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDrawer, SynHideEvent, SynInitialFocusEvent, SynRequestCloseEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynDrawer } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInitialFocusEvent } from '@synergy-design-system/components';
+import type { SynRequestCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/drawer/drawer.js';
 
 /**
@@ -80,18 +84,41 @@ import '@synergy-design-system/components/components/drawer/drawer.js';
 })
 export class SynDrawerComponent {
   public nativeElement: SynDrawer;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-initial-focus',
+      (e: SynInitialFocusEvent) => {
+        this.synInitialFocusEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-request-close',
+      (e: SynRequestCloseEvent) => {
+        this.synRequestCloseEvent.emit(e);
+      },
+    );
   }
 
   /**
@@ -103,7 +130,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
   set open(v: SynDrawer['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -118,19 +144,17 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
   set label(v: SynDrawer['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The direction from which the drawer will open.
- */
+   * The direction from which the drawer will open.
+   */
   @Input()
   set placement(v: SynDrawer['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-
   get placement() {
     return this.nativeElement.placement;
   }
@@ -144,7 +168,6 @@ its parent element, set this attribute and add `position: relative` to the paren
   set contained(v: SynDrawer['contained']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
   }
-
   get contained() {
     return this.nativeElement.contained;
   }
@@ -158,42 +181,41 @@ accessible way for users to dismiss the drawer.
   set noHeader(v: SynDrawer['noHeader']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
   }
-
   get noHeader() {
     return this.nativeElement.noHeader;
   }
 
   /**
-* Emitted when the drawer opens.
- */
+   * Emitted when the drawer opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the drawer opens and all animations are complete.
- */
+   * Emitted after the drawer opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the drawer closes.
- */
+   * Emitted when the drawer closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the drawer closes and all animations are complete.
- */
+   * Emitted after the drawer closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 
   /**
-* Emitted when the drawer opens and is ready to receive focus.
-* Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- */
+   * Emitted when the drawer opens and is ready to receive focus.
+   * Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+   */
   @Output() synInitialFocusEvent = new EventEmitter<SynInitialFocusEvent>();
 
   /**
-* Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape.
-* Calling `event.preventDefault()` will keep the drawer open.
-* Avoid using this unless closing the drawer will result in destructive behavior such as data loss.
- */
+   * Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape.
+   * Calling `event.preventDefault()` will keep the drawer open.
+   * Avoid using this unless closing the drawer will result in destructive behavior such as data loss.
+   */
   @Output() synRequestCloseEvent = new EventEmitter<SynRequestCloseEvent>();
 }
 

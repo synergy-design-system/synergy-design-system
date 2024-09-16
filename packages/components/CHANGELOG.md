@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.7.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.2...components/2.7.3) (2024-09-16)
+
+
+### Bug Fixes
+
+* 🤔 Build: Use prettier for formatting generated framework wrappers ([#611](https://github.com/synergy-design-system/synergy-design-system/issues/611)) ([a6b2c90](https://github.com/synergy-design-system/synergy-design-system/commit/a6b2c90f9efd411ae5b6adc71a8ae559114dc651))
+
+# [@synergy-design-system/components-v2.7.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.1...components/2.7.2) (2024-09-13)
+
+
+### Bug Fixes
+
+* 🐛 Wrong font weight for text content in button ([#606](https://github.com/synergy-design-system/synergy-design-system/issues/606)) ([42f3054](https://github.com/synergy-design-system/synergy-design-system/commit/42f3054cb7652ab16e5e276e499f6c60eeebf81b))
+
 # [@synergy-design-system/components-v2.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.0...components/2.7.1) (2024-09-05)
 
 

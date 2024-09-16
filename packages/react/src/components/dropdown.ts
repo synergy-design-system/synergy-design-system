@@ -8,9 +8,10 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/dropdown/dropdown.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-dropdown';
 Component.define('syn-dropdown');

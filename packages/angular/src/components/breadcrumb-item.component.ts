@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynBreadcrumbItem } from '@synergy-design-system/components';
 
@@ -40,7 +40,6 @@ import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-
 })
 export class SynBreadcrumbItemComponent {
   public nativeElement: SynBreadcrumbItem;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -58,33 +57,30 @@ internally.
   set href(v: SynBreadcrumbItem['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-
   get href() {
     return this.nativeElement.href;
   }
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is set.
- */
+   * Tells the browser where to open the link.
+   * Only used when `href` is set.
+   */
   @Input()
   set target(v: SynBreadcrumbItem['target']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
-
   get target() {
     return this.nativeElement.target;
   }
 
   /**
-* The `rel` attribute to use on the link.
-* Only used when `href` is set.
- */
+   * The `rel` attribute to use on the link.
+   * Only used when `href` is set.
+   */
   @Input()
   set rel(v: SynBreadcrumbItem['rel']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
   }
-
   get rel() {
     return this.nativeElement.rel;
   }

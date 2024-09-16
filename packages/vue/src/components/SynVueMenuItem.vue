@@ -46,51 +46,46 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The type of menu item to render.
-* To use `checked`, this value must be set to `checkbox`.
- */
-  'type'?: SynMenuItem['type'];
+   * The type of menu item to render.
+   * To use `checked`, this value must be set to `checkbox`.
+   */
+  type?: SynMenuItem['type'];
 
   /**
-* Draws the item in a checked state.
- */
-  'checked'?: SynMenuItem['checked'];
+   * Draws the item in a checked state.
+   */
+  checked?: SynMenuItem['checked'];
 
   /**
-* A unique value to store in the menu item.
-* This can be used as a way to identify menu items when selected.
- */
-  'value'?: SynMenuItem['value'];
+   * A unique value to store in the menu item.
+   * This can be used as a way to identify menu items when selected.
+   */
+  value?: SynMenuItem['value'];
 
   /**
-* Draws the menu item in a loading state.
- */
-  'loading'?: SynMenuItem['loading'];
+   * Draws the menu item in a loading state.
+   */
+  loading?: SynMenuItem['loading'];
 
   /**
-* Draws the menu item in a disabled state, preventing selection.
- */
-  'disabled'?: SynMenuItem['disabled'];
+   * Draws the menu item in a disabled state, preventing selection.
+   */
+  disabled?: SynMenuItem['disabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-menu-item
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-menu-item v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-menu-item>
 </template>

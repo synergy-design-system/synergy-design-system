@@ -6,12 +6,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynBlurEvent, SynFocusEvent, SynIconButton } from '@synergy-design-system/components';
+import type { SynIconButton } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/icon-button/icon-button.js';
 
 /**
@@ -34,37 +36,38 @@ import '@synergy-design-system/components/components/icon-button/icon-button.js'
 })
 export class SynIconButtonComponent {
   public nativeElement: SynIconButton;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
   }
 
   /**
-* The name of the icon to draw.
-* Available names depend on the icon library being used.
- */
+   * The name of the icon to draw.
+   * Available names depend on the icon library being used.
+   */
   @Input()
   set name(v: SynIconButton['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The name of a registered custom icon library.
- */
+   * The name of a registered custom icon library.
+   */
   @Input()
   set library(v: SynIconButton['library']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
-
   get library() {
     return this.nativeElement.library;
   }
@@ -78,45 +81,41 @@ can result in XSS attacks.
   set src(v: SynIconButton['src']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
-
   get src() {
     return this.nativeElement.src;
   }
 
   /**
-* When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
- */
+   * When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
+   */
   @Input()
   set href(v: SynIconButton['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-
   get href() {
     return this.nativeElement.href;
   }
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is set.
- */
+   * Tells the browser where to open the link.
+   * Only used when `href` is set.
+   */
   @Input()
   set target(v: SynIconButton['target']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
-
   get target() {
     return this.nativeElement.target;
   }
 
   /**
-* Tells the browser to download the linked file as this filename.
-* Only used when `href` is set.
- */
+   * Tells the browser to download the linked file as this filename.
+   * Only used when `href` is set.
+   */
   @Input()
   set download(v: SynIconButton['download']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.download = v));
   }
-
   get download() {
     return this.nativeElement.download;
   }
@@ -130,19 +129,17 @@ that describes what the icon button does.
   set label(v: SynIconButton['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The icon button's size.
- */
+   * The icon button's size.
+   */
   @Input()
   set size(v: SynIconButton['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
@@ -155,31 +152,29 @@ The default "currentColor" makes it possible to easily style the icon button fro
   set color(v: SynIconButton['color']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.color = v));
   }
-
   get color() {
     return this.nativeElement.color;
   }
 
   /**
-* Disables the button.
- */
+   * Disables the button.
+   */
   @Input()
   set disabled(v: SynIconButton['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Emitted when the icon button loses focus.
- */
+   * Emitted when the icon button loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the icon button gains focus.
- */
+   * Emitted when the icon button gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 }
 

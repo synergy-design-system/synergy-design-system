@@ -18,7 +18,8 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/menu/menu.js';
 
-import type { SynMenu, SynSelectEvent } from '@synergy-design-system/components';
+import type { SynSelectEvent } from '@synergy-design-system/components';
+import type { SynMenu } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynMenu>();
@@ -30,8 +31,8 @@ defineExpose({
 // Map events
 defineEmits<{
   /**
-* Emitted when a menu item is selected.
- */
+   * Emitted when a menu item is selected.
+   */
   'syn-select': [e: SynSelectEvent];
 }>();
 </script>
@@ -41,11 +42,7 @@ export type { SynSelectEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
-  <syn-menu
-    ref="nativeElement"
-
-    @syn-select="$emit('syn-select', $event)"
-  >
-    <slot />
+  <syn-menu @syn-select="$emit('syn-select', $event)" ref="nativeElement">
+    <slot></slot>
   </syn-menu>
 </template>

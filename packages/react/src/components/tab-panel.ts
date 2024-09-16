@@ -25,9 +25,7 @@ Component.define('syn-tab-panel');
 export const SynTabPanel = createComponent({
   displayName: 'SynTabPanel',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

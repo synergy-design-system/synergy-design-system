@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.7.1",
+  "version": "2.7.3",
   "description": "",
   "repository": {
     "type": "git",
@@ -95,7 +95,6 @@
     "eslint-plugin-lit": "^1.14.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-playwright": "^1.6.2",
-    "eslint-plugin-vue": "^9.27.0",
     "eslint-plugin-wc": "^2.1.1",
     "globby": "^14.0.2",
     "jsdom": "^24.1.1",

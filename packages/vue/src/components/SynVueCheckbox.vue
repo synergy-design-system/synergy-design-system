@@ -34,9 +34,12 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/checkbox/checkbox.js';
 
-import type {
-  SynBlurEvent, SynChangeEvent, SynCheckbox, SynFocusEvent, SynInputEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynCheckbox } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynCheckbox>();
@@ -47,39 +50,39 @@ defineExpose({
 
 // Map attributes
 const props = defineProps<{
-  'title'?: SynCheckbox['title'];
+  title?: SynCheckbox['title'];
 
   /**
-* The name of the checkbox, submitted as a name/value pair with form data.
- */
-  'name'?: SynCheckbox['name'];
+   * The name of the checkbox, submitted as a name/value pair with form data.
+   */
+  name?: SynCheckbox['name'];
 
   /**
-* The current value of the checkbox, submitted as a name/value pair with form data.
- */
-  'value'?: SynCheckbox['value'];
+   * The current value of the checkbox, submitted as a name/value pair with form data.
+   */
+  value?: SynCheckbox['value'];
 
   /**
-* The checkbox's size.
- */
-  'size'?: SynCheckbox['size'];
+   * The checkbox's size.
+   */
+  size?: SynCheckbox['size'];
 
   /**
-* Disables the checkbox.
- */
-  'disabled'?: SynCheckbox['disabled'];
+   * Disables the checkbox.
+   */
+  disabled?: SynCheckbox['disabled'];
 
   /**
-* Draws the checkbox in a checked state.
- */
-  'checked'?: SynCheckbox['checked'];
+   * Draws the checkbox in a checked state.
+   */
+  checked?: SynCheckbox['checked'];
 
   /**
 * Draws the checkbox in an indeterminate state.
 * This is usually applied to checkboxes that represents a "select
 all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
  */
-  'indeterminate'?: SynCheckbox['indeterminate'];
+  indeterminate?: SynCheckbox['indeterminate'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -88,22 +91,22 @@ to place the form control outside of a form and associate it with the form that 
 * The form must be in
 the same document or shadow root for this to work.
  */
-  'form'?: SynCheckbox['form'];
+  form?: SynCheckbox['form'];
 
   /**
-* Makes the checkbox a required field.
- */
-  'required'?: SynCheckbox['required'];
+   * Makes the checkbox a required field.
+   */
+  required?: SynCheckbox['required'];
 
   /**
-* The checkbox's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynCheckbox['helpText'];
+   * The checkbox's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynCheckbox['helpText'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynCheckbox['checked'];
 }>();
 
@@ -111,42 +114,42 @@ the same document or shadow root for this to work.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the checkbox loses focus.
- */
+   * Emitted when the checkbox loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the checked state changes.
- */
+   * Emitted when the checked state changes.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the checkbox gains focus.
- */
+   * Emitted when the checkbox gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the checkbox receives input.
- */
+   * Emitted when the checkbox receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynCheckbox['checked']];
 }>();
 </script>
@@ -161,15 +164,23 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-checkbox
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.checked); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.checked);
+      $emit('syn-input', $event);
+    "
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    :checked="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.checked !== 'undefined'
+          ? props.checked
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-checkbox>
 </template>

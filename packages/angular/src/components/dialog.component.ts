@@ -6,14 +6,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDialog, SynHideEvent, SynInitialFocusEvent, SynRequestCloseEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynDialog } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInitialFocusEvent } from '@synergy-design-system/components';
+import type { SynRequestCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/dialog/dialog.js';
 
 /**
@@ -73,18 +77,41 @@ import '@synergy-design-system/components/components/dialog/dialog.js';
 })
 export class SynDialogComponent {
   public nativeElement: SynDialog;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-initial-focus', (e: SynInitialFocusEvent) => { this.synInitialFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-request-close', (e: SynRequestCloseEvent) => { this.synRequestCloseEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-initial-focus',
+      (e: SynInitialFocusEvent) => {
+        this.synInitialFocusEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-request-close',
+      (e: SynRequestCloseEvent) => {
+        this.synRequestCloseEvent.emit(e);
+      },
+    );
   }
 
   /**
@@ -96,7 +123,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
   set open(v: SynDialog['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -111,7 +137,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
   set label(v: SynDialog['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
@@ -125,42 +150,41 @@ accessible way for users to dismiss the dialog.
   set noHeader(v: SynDialog['noHeader']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
   }
-
   get noHeader() {
     return this.nativeElement.noHeader;
   }
 
   /**
-* Emitted when the dialog opens.
- */
+   * Emitted when the dialog opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the dialog opens and all animations are complete.
- */
+   * Emitted after the dialog opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the dialog closes.
- */
+   * Emitted when the dialog closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the dialog closes and all animations are complete.
- */
+   * Emitted after the dialog closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 
   /**
-* Emitted when the dialog opens and is ready to receive focus.
-* Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- */
+   * Emitted when the dialog opens and is ready to receive focus.
+   * Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+   */
   @Output() synInitialFocusEvent = new EventEmitter<SynInitialFocusEvent>();
 
   /**
-* Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape.
-* Calling `event.preventDefault()` will keep the dialog open.
-* Avoid using this unless closing the dialog will result in destructive behavior such as data loss.
- */
+   * Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape.
+   * Calling `event.preventDefault()` will keep the dialog open.
+   * Avoid using this unless closing the dialog will result in destructive behavior such as data loss.
+   */
   @Output() synRequestCloseEvent = new EventEmitter<SynRequestCloseEvent>();
 }
 

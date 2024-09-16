@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynAccordion } from '@synergy-design-system/components';
 
@@ -33,7 +33,6 @@ import '@synergy-design-system/components/components/accordion/accordion.js';
 })
 export class SynAccordionComponent {
   public nativeElement: SynAccordion;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -42,37 +41,34 @@ export class SynAccordionComponent {
   }
 
   /**
-* Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
- */
+   * Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
+   */
   @Input()
   set closeOthers(v: SynAccordion['closeOthers']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.closeOthers = v));
   }
-
   get closeOthers() {
     return this.nativeElement.closeOthers;
   }
 
   /**
-* Draws the accordion and the slotted `<syn-details>` as contained elements.
- */
+   * Draws the accordion and the slotted `<syn-details>` as contained elements.
+   */
   @Input()
   set contained(v: SynAccordion['contained']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
   }
-
   get contained() {
     return this.nativeElement.contained;
   }
 
   /**
-* The size that should be applied to all slotted `<syn-details>` elements
- */
+   * The size that should be applied to all slotted `<syn-details>` elements
+   */
   @Input()
   set size(v: SynAccordion['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }

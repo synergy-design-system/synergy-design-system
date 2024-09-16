@@ -6,14 +6,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynMoveEvent, SynRange,
-} from '@synergy-design-system/components';
+import type { SynRange } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynMoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/range/range.js';
 
 /**
@@ -69,139 +73,143 @@ import '@synergy-design-system/components/components/range/range.js';
 })
 export class SynRangeComponent {
   public nativeElement: SynRange;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-move', (e: SynMoveEvent) => { this.synMoveEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-move', (e: SynMoveEvent) => {
+      this.synMoveEvent.emit(e);
+    });
   }
 
   /**
-* The name of the range, submitted as a name/value pair with form data.
- */
+   * The name of the range, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynRange['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The range's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The range's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynRange['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The range's help text.
-* If you need to display HTML, use the help-text slot instead.
- */
+   * The range's help text.
+   * If you need to display HTML, use the help-text slot instead.
+   */
   @Input()
   set helpText(v: SynRange['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* Disables the range.
- */
+   * Disables the range.
+   */
   @Input()
   set disabled(v: SynRange['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* The minimum acceptable value of the range.
- */
+   * The minimum acceptable value of the range.
+   */
   @Input()
   set min(v: SynRange['min']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
   }
-
   get min() {
     return this.nativeElement.min;
   }
 
   /**
-* The maximum acceptable value of the range.
- */
+   * The maximum acceptable value of the range.
+   */
   @Input()
   set max(v: SynRange['max']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
   }
-
   get max() {
     return this.nativeElement.max;
   }
 
   /**
-* The interval at which the range will increase and decrease.
- */
+   * The interval at which the range will increase and decrease.
+   */
   @Input()
   set step(v: SynRange['step']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.step = v));
   }
-
   get step() {
     return this.nativeElement.step;
   }
 
   /**
-* The range's size.
- */
+   * The range's size.
+   */
   @Input()
   set size(v: SynRange['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* The preferred placement of the range's tooltip.
-* Use "none" to disable the tooltip
- */
+   * The preferred placement of the range's tooltip.
+   * Use "none" to disable the tooltip
+   */
   @Input()
   set tooltipPlacement(v: SynRange['tooltipPlacement']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.tooltipPlacement = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.tooltipPlacement = v),
+    );
   }
-
   get tooltipPlacement() {
     return this.nativeElement.tooltipPlacement;
   }
 
   /**
-* The current values of the input (in ascending order) as a string of space separated values
- */
+   * The current values of the input (in ascending order) as a string of space separated values
+   */
   @Input()
   set value(v: SynRange['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
@@ -216,45 +224,44 @@ The form must be in the same document or shadow root for this to work.
   set form(v: SynRange['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Emitted when the user moves a thumb, either via touch or keyboard.
-* Use `Event.preventDefault()` to prevent movement.
- */
+   * Emitted when the user moves a thumb, either via touch or keyboard.
+   * Use `Event.preventDefault()` to prevent movement.
+   */
   @Output() synMoveEvent = new EventEmitter<SynMoveEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynRange['value']>();
 }
 

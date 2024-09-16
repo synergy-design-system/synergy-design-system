@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynBreadcrumb } from '@synergy-design-system/components';
 
@@ -35,7 +35,6 @@ import '@synergy-design-system/components/components/breadcrumb/breadcrumb.js';
 })
 export class SynBreadcrumbComponent {
   public nativeElement: SynBreadcrumb;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -52,7 +51,6 @@ screen readers and other assistive devices to provide more context for users.
   set label(v: SynBreadcrumb['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }

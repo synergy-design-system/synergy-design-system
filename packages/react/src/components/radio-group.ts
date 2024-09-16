@@ -8,7 +8,9 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/radio-group/radio-group.component.js';
 
 import { type EventName } from '@lit/react';
-import type { SynChangeEvent, SynInputEvent, SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-radio-group';
 Component.define('syn-radio-group');

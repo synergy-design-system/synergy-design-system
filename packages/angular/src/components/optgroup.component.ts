@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynOptgroup } from '@synergy-design-system/components';
 
@@ -44,7 +44,6 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
 })
 export class SynOptgroupComponent {
   public nativeElement: SynOptgroup;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -53,26 +52,24 @@ export class SynOptgroupComponent {
   }
 
   /**
-* Disables all options in the optgroup.
- */
+   * Disables all options in the optgroup.
+   */
   @Input()
   set disabled(v: SynOptgroup['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* The optgroups label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The optgroups label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynOptgroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }

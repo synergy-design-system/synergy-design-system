@@ -23,9 +23,7 @@ Component.define('syn-button-group');
 export const SynButtonGroup = createComponent({
   displayName: 'SynButtonGroup',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

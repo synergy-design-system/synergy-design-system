@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynDivider } from '@synergy-design-system/components';
 
@@ -32,7 +32,6 @@ import '@synergy-design-system/components/components/divider/divider.js';
 })
 export class SynDividerComponent {
   public nativeElement: SynDivider;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -41,13 +40,12 @@ export class SynDividerComponent {
   }
 
   /**
-* Draws the divider in a vertical orientation.
- */
+   * Draws the divider in a vertical orientation.
+   */
   @Input()
   set vertical(v: SynDivider['vertical']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.vertical = v));
   }
-
   get vertical() {
     return this.nativeElement.vertical;
   }

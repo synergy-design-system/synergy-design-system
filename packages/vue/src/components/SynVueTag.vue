@@ -25,7 +25,8 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tag/tag.js';
 
-import type { SynRemoveEvent, SynTag } from '@synergy-design-system/components';
+import type { SynRemoveEvent } from '@synergy-design-system/components';
+import type { SynTag } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTag>();
@@ -37,31 +38,31 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The tag's size.
- */
-  'size'?: SynTag['size'];
+   * The tag's size.
+   */
+  size?: SynTag['size'];
 
   /**
-* Makes the tag removable and shows a remove button.
- */
-  'removable'?: SynTag['removable'];
+   * Makes the tag removable and shows a remove button.
+   */
+  removable?: SynTag['removable'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the remove button is activated.
- */
+   * Emitted when the remove button is activated.
+   */
   'syn-remove': [e: SynRemoveEvent];
 }>();
 </script>
@@ -72,11 +73,9 @@ export type { SynRemoveEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-tag
-    v-bind="visibleProps"
-
-    ref="nativeElement"
     @syn-remove="$emit('syn-remove', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-tag>
 </template>

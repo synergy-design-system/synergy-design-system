@@ -6,14 +6,17 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynChangeEvent, SynCheckbox, SynFocusEvent, SynInputEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynCheckbox } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/checkbox/checkbox.js';
 
 /**
@@ -49,84 +52,88 @@ import '@synergy-design-system/components/components/checkbox/checkbox.js';
 })
 export class SynCheckboxComponent {
   public nativeElement: SynCheckbox;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.checkedChange.emit(this.checked); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.checkedChange.emit(this.checked);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   @Input()
   set title(v: SynCheckbox['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-
   get title() {
     return this.nativeElement.title;
   }
 
   /**
-* The name of the checkbox, submitted as a name/value pair with form data.
- */
+   * The name of the checkbox, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynCheckbox['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The current value of the checkbox, submitted as a name/value pair with form data.
- */
+   * The current value of the checkbox, submitted as a name/value pair with form data.
+   */
   @Input()
   set value(v: SynCheckbox['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The checkbox's size.
- */
+   * The checkbox's size.
+   */
   @Input()
   set size(v: SynCheckbox['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Disables the checkbox.
- */
+   * Disables the checkbox.
+   */
   @Input()
   set disabled(v: SynCheckbox['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Draws the checkbox in a checked state.
- */
+   * Draws the checkbox in a checked state.
+   */
   @Input()
   set checked(v: SynCheckbox['checked']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
   }
-
   get checked() {
     return this.nativeElement.checked;
   }
@@ -138,9 +145,10 @@ all/none" behavior when associated checkboxes have a mix of checked and unchecke
  */
   @Input()
   set indeterminate(v: SynCheckbox['indeterminate']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.indeterminate = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.indeterminate = v),
+    );
   }
-
   get indeterminate() {
     return this.nativeElement.indeterminate;
   }
@@ -156,64 +164,61 @@ the same document or shadow root for this to work.
   set form(v: SynCheckbox['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Makes the checkbox a required field.
- */
+   * Makes the checkbox a required field.
+   */
   @Input()
   set required(v: SynCheckbox['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
 
   /**
-* The checkbox's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The checkbox's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynCheckbox['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* Emitted when the checkbox loses focus.
- */
+   * Emitted when the checkbox loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the checked state changes.
- */
+   * Emitted when the checked state changes.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the checkbox gains focus.
- */
+   * Emitted when the checkbox gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the checkbox receives input.
- */
+   * Emitted when the checkbox receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() checkedChange = new EventEmitter<SynCheckbox['checked']>();
 }
 

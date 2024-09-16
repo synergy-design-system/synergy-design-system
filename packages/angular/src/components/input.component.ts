@@ -6,14 +6,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynInput, SynInputEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynInput } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynClearEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 
 /**
@@ -64,25 +68,36 @@ import '@synergy-design-system/components/components/input/input.js';
 })
 export class SynInputComponent {
   public nativeElement: SynInput;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => {
+      this.synClearEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   @Input()
   set title(v: SynInput['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-
   get title() {
     return this.nativeElement.title;
   }
@@ -97,155 +112,148 @@ to `text`.
   set type(v: SynInput['type']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
-
   get type() {
     return this.nativeElement.type;
   }
 
   /**
-* The name of the input, submitted as a name/value pair with form data.
- */
+   * The name of the input, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynInput['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The current value of the input, submitted as a name/value pair with form data.
- */
+   * The current value of the input, submitted as a name/value pair with form data.
+   */
   @Input()
   set value(v: SynInput['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The input's size.
- */
+   * The input's size.
+   */
   @Input()
   set size(v: SynInput['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* The input's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The input's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynInput['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The input's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The input's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynInput['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* Adds a clear button when the input is not empty.
- */
+   * Adds a clear button when the input is not empty.
+   */
   @Input()
   set clearable(v: SynInput['clearable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
   }
-
   get clearable() {
     return this.nativeElement.clearable;
   }
 
   /**
-* Disables the input.
- */
+   * Disables the input.
+   */
   @Input()
   set disabled(v: SynInput['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Placeholder text to show as a hint when the input is empty.
- */
+   * Placeholder text to show as a hint when the input is empty.
+   */
   @Input()
   set placeholder(v: SynInput['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-
   get placeholder() {
     return this.nativeElement.placeholder;
   }
 
   /**
-* Makes the input readonly.
- */
+   * Makes the input readonly.
+   */
   @Input()
   set readonly(v: SynInput['readonly']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.readonly = v));
   }
-
   get readonly() {
     return this.nativeElement.readonly;
   }
 
   /**
-* Adds a button to toggle the password's visibility.
-* Only applies to password types.
- */
+   * Adds a button to toggle the password's visibility.
+   * Only applies to password types.
+   */
   @Input()
   set passwordToggle(v: SynInput['passwordToggle']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.passwordToggle = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.passwordToggle = v),
+    );
   }
-
   get passwordToggle() {
     return this.nativeElement.passwordToggle;
   }
 
   /**
-* Determines whether or not the password is currently visible.
-* Only applies to password input types.
- */
+   * Determines whether or not the password is currently visible.
+   * Only applies to password input types.
+   */
   @Input()
   set passwordVisible(v: SynInput['passwordVisible']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.passwordVisible = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.passwordVisible = v),
+    );
   }
-
   get passwordVisible() {
     return this.nativeElement.passwordVisible;
   }
 
   /**
-* Hides the increment/decrement spin buttons for number inputs.
- */
+   * Hides the increment/decrement spin buttons for number inputs.
+   */
   @Input()
   set noSpinButtons(v: SynInput['noSpinButtons']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.noSpinButtons = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.noSpinButtons = v),
+    );
   }
-
   get noSpinButtons() {
     return this.nativeElement.noSpinButtons;
   }
@@ -261,81 +269,74 @@ the same document or shadow root for this to work.
   set form(v: SynInput['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Makes the input a required field.
- */
+   * Makes the input a required field.
+   */
   @Input()
   set required(v: SynInput['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
 
   /**
-* A regular expression pattern to validate input against.
- */
+   * A regular expression pattern to validate input against.
+   */
   @Input()
   set pattern(v: SynInput['pattern']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.pattern = v));
   }
-
   get pattern() {
     return this.nativeElement.pattern;
   }
 
   /**
-* The minimum length of input that will be considered valid.
- */
+   * The minimum length of input that will be considered valid.
+   */
   @Input()
   set minlength(v: SynInput['minlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.minlength = v));
   }
-
   get minlength() {
     return this.nativeElement.minlength;
   }
 
   /**
-* The maximum length of input that will be considered valid.
- */
+   * The maximum length of input that will be considered valid.
+   */
   @Input()
   set maxlength(v: SynInput['maxlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
   }
-
   get maxlength() {
     return this.nativeElement.maxlength;
   }
 
   /**
-* The input's minimum value.
-* Only applies to date and number input types.
- */
+   * The input's minimum value.
+   * Only applies to date and number input types.
+   */
   @Input()
   set min(v: SynInput['min']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
   }
-
   get min() {
     return this.nativeElement.min;
   }
 
   /**
-* The input's maximum value.
-* Only applies to date and number input types.
- */
+   * The input's maximum value.
+   * Only applies to date and number input types.
+   */
   @Input()
   set max(v: SynInput['max']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
   }
-
   get max() {
     return this.nativeElement.max;
   }
@@ -349,31 +350,30 @@ implied, allowing any numeric value.
   set step(v: SynInput['step']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.step = v));
   }
-
   get step() {
     return this.nativeElement.step;
   }
 
   /**
-* Controls whether and how text input is automatically capitalized as it is entered by the user.
- */
+   * Controls whether and how text input is automatically capitalized as it is entered by the user.
+   */
   @Input()
   set autocapitalize(v: SynInput['autocapitalize']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocapitalize = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.autocapitalize = v),
+    );
   }
-
   get autocapitalize() {
     return this.nativeElement.autocapitalize;
   }
 
   /**
-* Indicates whether the browser's autocorrect feature is on or off.
- */
+   * Indicates whether the browser's autocorrect feature is on or off.
+   */
   @Input()
   set autocorrect(v: SynInput['autocorrect']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
   }
-
   get autocorrect() {
     return this.nativeElement.autocorrect;
   }
@@ -387,43 +387,39 @@ implied, allowing any numeric value.
   set autocomplete(v: SynInput['autocomplete']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocomplete = v));
   }
-
   get autocomplete() {
     return this.nativeElement.autocomplete;
   }
 
   /**
-* Indicates that the input should receive focus on page load.
- */
+   * Indicates that the input should receive focus on page load.
+   */
   @Input()
   set autofocus(v: SynInput['autofocus']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
   }
-
   get autofocus() {
     return this.nativeElement.autofocus;
   }
 
   /**
-* Used to customize the label or icon of the Enter key on virtual keyboards.
- */
+   * Used to customize the label or icon of the Enter key on virtual keyboards.
+   */
   @Input()
   set enterkeyhint(v: SynInput['enterkeyhint']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.enterkeyhint = v));
   }
-
   get enterkeyhint() {
     return this.nativeElement.enterkeyhint;
   }
 
   /**
-* Enables spell checking on the input.
- */
+   * Enables spell checking on the input.
+   */
   @Input()
   set spellcheck(v: SynInput['spellcheck']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.spellcheck = v));
   }
-
   get spellcheck() {
     return this.nativeElement.spellcheck;
   }
@@ -436,44 +432,43 @@ keyboard on supportive devices.
   set inputmode(v: SynInput['inputmode']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.inputmode = v));
   }
-
   get inputmode() {
     return this.nativeElement.inputmode;
   }
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the clear button is activated.
- */
+   * Emitted when the clear button is activated.
+   */
   @Output() synClearEvent = new EventEmitter<SynClearEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynInput['value']>();
 }
 

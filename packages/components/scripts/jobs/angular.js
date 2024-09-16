@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import * as jobs from './angular/index.js';
-import { createRunPrepare, runAdjustPackageVersion } from './shared.js';
+import {
+  createRunFormat,
+  createRunPrepare,
+  runAdjustPackageVersion,
+} from './shared.js';
+
+const runFormat = createRunFormat('Angular: Running code formatter...');
 
 /**
  * Run all steps to create new react components
@@ -30,6 +36,6 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateNgModule(metadata, modulesDir);
   await jobs.runCreateFormsModule(modulesDir);
   await jobs.runCreateExports(outDir);
-  await jobs.runFormat(outDir, angularPackageDir);
+  await runFormat(outDir);
   await jobs.runNgPackagr();
 };

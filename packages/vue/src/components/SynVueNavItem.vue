@@ -53,9 +53,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/nav-item/nav-item.js';
 
-import type {
-  SynBlurEvent, SynFocusEvent, SynHideEvent, SynNavItem, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynNavItem } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynNavItem>();
@@ -73,69 +75,69 @@ If provided, the navigation item will use an anchor tag otherwise it will use a 
 If the 'children' slot is provided, the navigation item will ignore the 'href' and use
 accordion behavior.
  */
-  'href'?: SynNavItem['href'];
+  href?: SynNavItem['href'];
 
-  'current'?: SynNavItem['current'];
-
-  /**
-* Disables the navigation item.
- */
-  'disabled'?: SynNavItem['disabled'];
+  current?: SynNavItem['current'];
 
   /**
-* The navigation item's orientation.
- */
-  'horizontal'?: SynNavItem['horizontal'];
+   * Disables the navigation item.
+   */
+  disabled?: SynNavItem['disabled'];
+
+  /**
+   * The navigation item's orientation.
+   */
+  horizontal?: SynNavItem['horizontal'];
 
   /**
 * Appends a chevron to the right side of a navigation item.
 Only used if `horizontal` is false.
  */
-  'chevron'?: SynNavItem['chevron'];
+  chevron?: SynNavItem['chevron'];
 
   /**
 * Reflects HTML details element state and allows control from parent.
 Only used if `horizontal` is false and `children` is defined.
  */
-  'open'?: SynNavItem['open'];
+  open?: SynNavItem['open'];
 
   /**
 * Toggle to true to show a divider above the element.
 Only available when horizontal is false.
  */
-  'divider'?: SynNavItem['divider'];
+  divider?: SynNavItem['divider'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
- */
+   * Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.
- */
+   * Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 }>();
 </script>
@@ -149,14 +151,12 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-nav-item
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
-
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-nav-item>
 </template>

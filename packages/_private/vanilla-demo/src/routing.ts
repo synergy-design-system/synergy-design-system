@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
+import history from 'history/browser';
 import type { SynNavItem } from '@synergy-design-system/components';
-import { history } from './history.js';
 import { noop } from './utils.js';
 import {
   afterRenderDefaultForm,
@@ -26,7 +26,7 @@ const routes = [
   },
 ];
 
-export const routeTo = async (href: string) => {
+export const routeTo = async (href: string, force: boolean = false) => {
   const { pathname } = history.location;
 
   const route = routes.find(r => r.href === href);
@@ -40,16 +40,17 @@ export const routeTo = async (href: string) => {
     item.current = current;
   });
 
+  // No new navigation should take place if we are on the same "page",
+  // unless the user forced it.
+  if (!force && pathname === href) {
+    return;
+  }
+
   const res = await fetch(`/pages/${route.page}.html`);
   const data = await res.text();
 
   // Update dom
   document.querySelector('main')!.innerHTML = data;
-
-  // No new navigation should take place if we are on the same "page"
-  if (pathname === href) {
-    return;
-  }
 
   history.push(history.createHref(href));
 
@@ -68,7 +69,7 @@ export const initRouting = async () => {
   await customElements.whenDefined('syn-nav-item');
 
   // Initialize with the home page loaded
-  routeTo(history.location.pathname).then(() => {}).catch(console.error);
+  routeTo(history.location.pathname, true).then(() => {}).catch(console.error);
 
   document.addEventListener('DOMContentLoaded', () => {
     // Allow the logo to be clickable

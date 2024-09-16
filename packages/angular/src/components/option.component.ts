@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynOption } from '@synergy-design-system/components';
 
@@ -40,7 +40,6 @@ import '@synergy-design-system/components/components/option/option.js';
 })
 export class SynOptionComponent {
   public nativeElement: SynOption;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -60,19 +59,17 @@ multiple values.
   set value(v: SynOption['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* Draws the option in a disabled state, preventing selection.
- */
+   * Draws the option in a disabled state, preventing selection.
+   */
   @Input()
   set disabled(v: SynOption['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }

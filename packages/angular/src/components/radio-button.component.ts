@@ -6,12 +6,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynBlurEvent, SynFocusEvent, SynRadioButton } from '@synergy-design-system/components';
+import type { SynRadioButton } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/radio-button/radio-button.js';
 
 /**
@@ -41,37 +43,38 @@ import '@synergy-design-system/components/components/radio-button/radio-button.j
 })
 export class SynRadioButtonComponent {
   public nativeElement: SynRadioButton;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
   }
 
   /**
-* The radio's value.
-* When selected, the radio group will receive this value.
- */
+   * The radio's value.
+   * When selected, the radio group will receive this value.
+   */
   @Input()
   set value(v: SynRadioButton['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* Disables the radio button.
- */
+   * Disables the radio button.
+   */
   @Input()
   set disabled(v: SynRadioButton['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
@@ -85,31 +88,29 @@ this attribute can typically be omitted.
   set size(v: SynRadioButton['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Draws a pill-style radio button with rounded edges.
- */
+   * Draws a pill-style radio button with rounded edges.
+   */
   @Input()
   set pill(v: SynRadioButton['pill']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.pill = v));
   }
-
   get pill() {
     return this.nativeElement.pill;
   }
 
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 }
 

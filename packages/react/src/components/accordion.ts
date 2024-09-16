@@ -24,9 +24,7 @@ Component.define('syn-accordion');
 export const SynAccordion = createComponent({
   displayName: 'SynAccordion',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

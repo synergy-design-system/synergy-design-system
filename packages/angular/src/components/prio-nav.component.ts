@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynPrioNav } from '@synergy-design-system/components';
 
@@ -56,7 +56,6 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 })
 export class SynPrioNavComponent {
   public nativeElement: SynPrioNav;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {

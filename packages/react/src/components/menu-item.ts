@@ -39,9 +39,7 @@ Component.define('syn-menu-item');
 export const SynMenuItem = createComponent({
   displayName: 'SynMenuItem',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

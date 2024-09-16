@@ -54,9 +54,12 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/file/file.js';
 
-import type {
-  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFile, SynFocusEvent, SynInputEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFile } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynFile>();
@@ -73,12 +76,12 @@ The FileList behaves like an array, so you can get the number of selected files
 via its length property.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
  */
-  'files'?: SynFile['files'];
+  files?: SynFile['files'];
 
   /**
-* The name of the file control, submitted as a name/value pair with form data.
- */
-  'name'?: SynFile['name'];
+   * The name of the file control, submitted as a name/value pair with form data.
+   */
+  name?: SynFile['name'];
 
   /**
 * The value of the file control contains a string that represents the path of the selected file.
@@ -87,40 +90,40 @@ If no file is selected, the value is an empty string.
 Beware that the only valid value when setting a file control is an empty string!
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
  */
-  'value'?: SynFile['value'];
+  value?: SynFile['value'];
 
   /**
-* The file control's size.
- */
-  'size'?: SynFile['size'];
+   * The file control's size.
+   */
+  size?: SynFile['size'];
 
   /**
-* The file control's label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynFile['label'];
+   * The file control's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynFile['label'];
 
   /**
 * The file control's help text.
 If you need to display HTML, use the `help-text` slot instead.
  */
-  'helpText'?: SynFile['helpText'];
+  helpText?: SynFile['helpText'];
 
   /**
-* Disables the file control.
- */
-  'disabled'?: SynFile['disabled'];
+   * Disables the file control.
+   */
+  disabled?: SynFile['disabled'];
 
   /**
-* Draw the file control as a drop area
- */
-  'droparea'?: SynFile['droparea'];
+   * Draw the file control as a drop area
+   */
+  droparea?: SynFile['droparea'];
 
   /**
 * Comma separated list of supported file types
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
  */
-  'accept'?: SynFile['accept'];
+  accept?: SynFile['accept'];
 
   /**
 * Specifies the types of files that the server accepts.
@@ -128,13 +131,13 @@ Can be set either to user or environment.
 Works only when not using a droparea!
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
  */
-  'capture'?: SynFile['capture'];
+  capture?: SynFile['capture'];
 
   /**
 * Indicates whether the user can select more than one file.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
-  'multiple'?: SynFile['multiple'];
+  multiple?: SynFile['multiple'];
 
   /**
 * Indicates that the file control should let the user select directories instead of files.
@@ -143,7 +146,7 @@ in the set of selected items.
 Note: This is a non-standard attribute but is supported in the major browsers.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
  */
-  'webkitdirectory'?: SynFile['webkitdirectory'];
+  webkitdirectory?: SynFile['webkitdirectory'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -152,21 +155,21 @@ with the form that has this `id`.
 * The form must be in the same document
 or shadow root for this to work.
  */
-  'form'?: SynFile['form'];
+  form?: SynFile['form'];
 
   /**
-* Makes the input a required field.
- */
-  'required'?: SynFile['required'];
+   * Makes the input a required field.
+   */
+  required?: SynFile['required'];
 
   /**
-* Suppress the value from being displayed in the file control
- */
-  'hideValue'?: SynFile['hideValue'];
+   * Suppress the value from being displayed in the file control
+   */
+  hideValue?: SynFile['hideValue'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynFile['files'];
 }>();
 
@@ -174,42 +177,42 @@ or shadow root for this to work.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
- */
+   * Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
+   */
   'syn-error': [e: SynErrorEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynFile['files']];
 }>();
 </script>
@@ -224,15 +227,23 @@ export type { SynInputEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-file
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :files="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.files !== 'undefined' ? props.files : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-error="$emit('syn-error', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.files); $emit('syn-input', $event)"
-  >
-    <slot />
+    @syn-input="
+      $emit('update:modelValue', $event.target.files);
+      $emit('syn-input', $event);
+    "
+    :files="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.files !== 'undefined'
+          ? props.files
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-file>
 </template>

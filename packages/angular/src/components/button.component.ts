@@ -6,14 +6,15 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynButton, SynFocusEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynButton } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/button/button.js';
 
 /**
@@ -47,83 +48,82 @@ import '@synergy-design-system/components/components/button/button.js';
 })
 export class SynButtonComponent {
   public nativeElement: SynButton;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   @Input()
   set title(v: SynButton['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-
   get title() {
     return this.nativeElement.title;
   }
 
   /**
-* The button's theme variant.
- */
+   * The button's theme variant.
+   */
   @Input()
   set variant(v: SynButton['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-
   get variant() {
     return this.nativeElement.variant;
   }
 
   /**
-* The button's size.
- */
+   * The button's size.
+   */
   @Input()
   set size(v: SynButton['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Draws the button with a caret.
-* Used to indicate that the button triggers a dropdown menu or similar behavior.
- */
+   * Draws the button with a caret.
+   * Used to indicate that the button triggers a dropdown menu or similar behavior.
+   */
   @Input()
   set caret(v: SynButton['caret']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.caret = v));
   }
-
   get caret() {
     return this.nativeElement.caret;
   }
 
   /**
-* Disables the button.
- */
+   * Disables the button.
+   */
   @Input()
   set disabled(v: SynButton['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Draws the button in a loading state.
- */
+   * Draws the button in a loading state.
+   */
   @Input()
   set loading(v: SynButton['loading']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.loading = v));
   }
-
   get loading() {
     return this.nativeElement.loading;
   }
@@ -138,7 +138,6 @@ export class SynButtonComponent {
   set type(v: SynButton['type']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
-
   get type() {
     return this.nativeElement.type;
   }
@@ -151,7 +150,6 @@ This attribute is ignored when `href` is present.
   set name(v: SynButton['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
@@ -165,32 +163,29 @@ button is the submitter.
   set value(v: SynButton['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
- */
+   * When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
+   */
   @Input()
   set href(v: SynButton['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-
   get href() {
     return this.nativeElement.href;
   }
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is present.
- */
+   * Tells the browser where to open the link.
+   * Only used when `href` is present.
+   */
   @Input()
   set target(v: SynButton['target']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
-
   get target() {
     return this.nativeElement.target;
   }
@@ -208,20 +203,18 @@ setting the attribute to an empty string or a value of your choice, respectively
   set rel(v: SynButton['rel']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
   }
-
   get rel() {
     return this.nativeElement.rel;
   }
 
   /**
-* Tells the browser to download the linked file as this filename.
-* Only used when `href` is present.
- */
+   * Tells the browser to download the linked file as this filename.
+   * Only used when `href` is present.
+   */
   @Input()
   set download(v: SynButton['download']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.download = v));
   }
-
   get download() {
     return this.nativeElement.download;
   }
@@ -236,84 +229,80 @@ value of this attribute must be an id of a form in the same document or shadow r
   set form(v: SynButton['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Used to override the form owner's `action` attribute.
- */
+   * Used to override the form owner's `action` attribute.
+   */
   @Input()
   set formAction(v: SynButton['formAction']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.formAction = v));
   }
-
   get formAction() {
     return this.nativeElement.formAction;
   }
 
   /**
-* Used to override the form owner's `enctype` attribute.
- */
+   * Used to override the form owner's `enctype` attribute.
+   */
   @Input()
   set formEnctype(v: SynButton['formEnctype']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.formEnctype = v));
   }
-
   get formEnctype() {
     return this.nativeElement.formEnctype;
   }
 
   /**
-* Used to override the form owner's `method` attribute.
- */
+   * Used to override the form owner's `method` attribute.
+   */
   @Input()
   set formMethod(v: SynButton['formMethod']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.formMethod = v));
   }
-
   get formMethod() {
     return this.nativeElement.formMethod;
   }
 
   /**
-* Used to override the form owner's `novalidate` attribute.
- */
+   * Used to override the form owner's `novalidate` attribute.
+   */
   @Input()
   set formNoValidate(v: SynButton['formNoValidate']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.formNoValidate = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.formNoValidate = v),
+    );
   }
-
   get formNoValidate() {
     return this.nativeElement.formNoValidate;
   }
 
   /**
-* Used to override the form owner's `target` attribute.
- */
+   * Used to override the form owner's `target` attribute.
+   */
   @Input()
   set formTarget(v: SynButton['formTarget']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.formTarget = v));
   }
-
   get formTarget() {
     return this.nativeElement.formTarget;
   }
 
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 }
 

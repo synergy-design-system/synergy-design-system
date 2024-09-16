@@ -81,6 +81,15 @@ export const getPath = (wantedPath) => path.join(
 );
 
 /**
+ * Format a folder using prettier
+ * @param {string} dirPath The path to use
+ */
+export const formatFolder = async (dirPath) => await execPromise(
+  `pnpm exec prettier --single-quote --bracket-same-line -w ${dirPath}`,
+  { stdio: 'inherit' },
+);
+
+/**
  * Format a file using prettier
  * @param {String} filePath Path to the wanted file
  * @param {String} parser One of the parsers available in prettier
@@ -150,6 +159,16 @@ export const createRunPrepare = (label) => job(label, async (...dirs) => {
     })),
   );
 });
+
+/**
+ * Create a formatter job with a custom label
+ * @param {string} label The label to use
+ * @returns {job}
+ */
+export const createRunFormat = (label) => job(
+  label,
+  (outDir) => formatFolder(outDir),
+);
 
 /**
  * Creates a framework header that will be used to prepend on generated files

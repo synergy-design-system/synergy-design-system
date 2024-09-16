@@ -38,9 +38,10 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
 
-import type {
-  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent, SynHeader,
-} from '@synergy-design-system/components';
+import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
+import type { SynHeader } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynHeader>();
@@ -52,10 +53,10 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The headers label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynHeader['label'];
+   * The headers label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynHeader['label'];
 
   /**
 * Defines the current visibility and icon of the burger-menu icon.
@@ -65,34 +66,34 @@ The following values can be used:
 - open: The burger menu is visible and shows the close icon
 - closed: The burger menu is visible and shows the open icon
  */
-  'burgerMenu'?: SynHeader['burgerMenu'];
+  burgerMenu?: SynHeader['burgerMenu'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the burger menu is toggled to closed
- */
+   * Emitted when the burger menu is toggled to closed
+   */
   'syn-burger-menu-closed': [e: SynBurgerMenuClosedEvent];
 
   /**
-* Emitted when the burger menu is toggled to hidden
- */
+   * Emitted when the burger menu is toggled to hidden
+   */
   'syn-burger-menu-hidden': [e: SynBurgerMenuHiddenEvent];
 
   /**
-* Emitted when the burger menu is toggled to open
- */
+   * Emitted when the burger menu is toggled to open
+   */
   'syn-burger-menu-open': [e: SynBurgerMenuOpenEvent];
 }>();
 </script>
@@ -105,13 +106,11 @@ export type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-header
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-burger-menu-closed="$emit('syn-burger-menu-closed', $event)"
-
     @syn-burger-menu-hidden="$emit('syn-burger-menu-hidden', $event)"
     @syn-burger-menu-open="$emit('syn-burger-menu-open', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-header>
 </template>

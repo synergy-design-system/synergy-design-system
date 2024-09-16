@@ -33,9 +33,12 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/switch/switch.js';
 
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynSwitch,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynSwitch } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSwitch>();
@@ -46,32 +49,32 @@ defineExpose({
 
 // Map attributes
 const props = defineProps<{
-  'title'?: SynSwitch['title'];
+  title?: SynSwitch['title'];
 
   /**
-* The name of the switch, submitted as a name/value pair with form data.
- */
-  'name'?: SynSwitch['name'];
+   * The name of the switch, submitted as a name/value pair with form data.
+   */
+  name?: SynSwitch['name'];
 
   /**
-* The current value of the switch, submitted as a name/value pair with form data.
- */
-  'value'?: SynSwitch['value'];
+   * The current value of the switch, submitted as a name/value pair with form data.
+   */
+  value?: SynSwitch['value'];
 
   /**
-* The switch's size.
- */
-  'size'?: SynSwitch['size'];
+   * The switch's size.
+   */
+  size?: SynSwitch['size'];
 
   /**
-* Disables the switch.
- */
-  'disabled'?: SynSwitch['disabled'];
+   * Disables the switch.
+   */
+  disabled?: SynSwitch['disabled'];
 
   /**
-* Draws the switch in a checked state.
- */
-  'checked'?: SynSwitch['checked'];
+   * Draws the switch in a checked state.
+   */
+  checked?: SynSwitch['checked'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -80,22 +83,22 @@ to place the form control outside of a form and associate it with the form that 
 * The form must be in
 the same document or shadow root for this to work.
  */
-  'form'?: SynSwitch['form'];
+  form?: SynSwitch['form'];
 
   /**
-* Makes the switch a required field.
- */
-  'required'?: SynSwitch['required'];
+   * Makes the switch a required field.
+   */
+  required?: SynSwitch['required'];
 
   /**
-* The switch's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynSwitch['helpText'];
+   * The switch's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynSwitch['helpText'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynSwitch['checked'];
 }>();
 
@@ -103,42 +106,42 @@ the same document or shadow root for this to work.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the control's checked state changes.
- */
+   * Emitted when the control's checked state changes.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynSwitch['checked']];
 }>();
 </script>
@@ -153,15 +156,23 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-switch
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :checked="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.checked !== 'undefined' ? props.checked : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.checked); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.checked);
+      $emit('syn-input', $event);
+    "
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    :checked="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.checked !== 'undefined'
+          ? props.checked
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-switch>
 </template>

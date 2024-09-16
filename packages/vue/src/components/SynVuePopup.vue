@@ -37,7 +37,8 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/popup/popup.js';
 
-import type { SynPopup, SynRepositionEvent } from '@synergy-design-system/components';
+import type { SynRepositionEvent } from '@synergy-design-system/components';
+import type { SynPopup } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynPopup>();
@@ -55,38 +56,38 @@ element `id`, a DOM element reference, or a `VirtualElement`.
 * If the anchor lives inside the popup, use the
 `anchor` slot instead.
  */
-  'anchor'?: SynPopup['anchor'];
+  anchor?: SynPopup['anchor'];
 
   /**
 * Activates the positioning logic and shows the popup.
 * When this attribute is removed, the positioning logic is torn
 down and the popup will be hidden.
  */
-  'active'?: SynPopup['active'];
+  active?: SynPopup['active'];
 
   /**
 * The preferred placement of the popup.
 * Note that the actual placement will vary as configured to keep the
 panel inside of the viewport.
  */
-  'placement'?: SynPopup['placement'];
+  placement?: SynPopup['placement'];
 
   /**
 * Determines how the popup is positioned.
 * The `absolute` strategy works well in most cases, but if overflow is
 clipped, using a `fixed` position strategy can often workaround it.
  */
-  'strategy'?: SynPopup['strategy'];
+  strategy?: SynPopup['strategy'];
 
   /**
-* The distance in pixels from which to offset the panel away from its anchor.
- */
-  'distance'?: SynPopup['distance'];
+   * The distance in pixels from which to offset the panel away from its anchor.
+   */
+  distance?: SynPopup['distance'];
 
   /**
-* The distance in pixels from which to offset the panel along its anchor.
- */
-  'skidding'?: SynPopup['skidding'];
+   * The distance in pixels from which to offset the panel along its anchor.
+   */
+  skidding?: SynPopup['skidding'];
 
   /**
 * Attaches an arrow to the popup.
@@ -95,7 +96,7 @@ clipped, using a `fixed` position strategy can often workaround it.
 * For additional customizations, you can also target the arrow using
 `::part(arrow)` in your stylesheet.
  */
-  'arrow'?: SynPopup['arrow'];
+  arrow?: SynPopup['arrow'];
 
   /**
 * The placement of the arrow.
@@ -104,21 +105,21 @@ anchor as possible, considering available space and `arrow-padding`.
 * A value of `start`, `end`, or `center` will
 align the arrow to the start, end, or center of the popover instead.
  */
-  'arrowPlacement'?: SynPopup['arrowPlacement'];
+  arrowPlacement?: SynPopup['arrowPlacement'];
 
   /**
 * The amount of padding between the arrow and the edges of the popup.
 * If the popup has a border-radius, for example,
 this will prevent it from overflowing the corners.
  */
-  'arrowPadding'?: SynPopup['arrowPadding'];
+  arrowPadding?: SynPopup['arrowPadding'];
 
   /**
 * When set, placement of the popup will flip to the opposite site to keep it in view.
 * You can use
 `flipFallbackPlacements` to further configure how the fallback placement is determined.
  */
-  'flip'?: SynPopup['flip'];
+  flip?: SynPopup['flip'];
 
   /**
 * If the preferred placement doesn't fit, popup will be tested in these fallback placements until one fits.
@@ -128,14 +129,14 @@ string of any number of placements separated by a space, e.g.
 * If no placement fits, the flip
 fallback strategy will be used instead.
  */
-  'flipFallbackPlacements'?: SynPopup['flipFallbackPlacements'];
+  flipFallbackPlacements?: SynPopup['flipFallbackPlacements'];
 
   /**
 * When neither the preferred placement nor the fallback placements fit, this value will be used to determine whether
 the popup should be positioned using the best available fit based on available space or as it was initially
 preferred.
  */
-  'flipFallbackStrategy'?: SynPopup['flipFallbackStrategy'];
+  flipFallbackStrategy?: SynPopup['flipFallbackStrategy'];
 
   /**
 * The flip boundary describes clipping element(s) that overflow will be checked relative to when flipping.
@@ -144,17 +145,17 @@ default, the boundary includes overflow ancestors that will cause the element to
 * If needed, you can
 change the boundary by passing a reference to one or more elements to this property.
  */
-  'flipBoundary'?: SynPopup['flipBoundary'];
+  flipBoundary?: SynPopup['flipBoundary'];
 
   /**
-* The amount of padding, in pixels, to exceed before the flip behavior will occur.
- */
-  'flipPadding'?: SynPopup['flipPadding'];
+   * The amount of padding, in pixels, to exceed before the flip behavior will occur.
+   */
+  flipPadding?: SynPopup['flipPadding'];
 
   /**
-* Moves the popup along the axis to keep it in view when clipped.
- */
-  'shift'?: SynPopup['shift'];
+   * Moves the popup along the axis to keep it in view when clipped.
+   */
+  shift?: SynPopup['shift'];
 
   /**
 * The shift boundary describes clipping element(s) that overflow will be checked relative to when shifting.
@@ -163,22 +164,22 @@ default, the boundary includes overflow ancestors that will cause the element to
 * If needed, you can
 change the boundary by passing a reference to one or more elements to this property.
  */
-  'shiftBoundary'?: SynPopup['shiftBoundary'];
+  shiftBoundary?: SynPopup['shiftBoundary'];
 
   /**
-* The amount of padding, in pixels, to exceed before the shift behavior will occur.
- */
-  'shiftPadding'?: SynPopup['shiftPadding'];
+   * The amount of padding, in pixels, to exceed before the shift behavior will occur.
+   */
+  shiftPadding?: SynPopup['shiftPadding'];
 
   /**
-* When set, this will cause the popup to automatically resize itself to prevent it from overflowing.
- */
-  'autoSize'?: SynPopup['autoSize'];
+   * When set, this will cause the popup to automatically resize itself to prevent it from overflowing.
+   */
+  autoSize?: SynPopup['autoSize'];
 
   /**
-* Syncs the popup's width or height to that of the anchor element.
- */
-  'sync'?: SynPopup['sync'];
+   * Syncs the popup's width or height to that of the anchor element.
+   */
+  sync?: SynPopup['sync'];
 
   /**
 * The auto-size boundary describes clipping element(s) that overflow will be checked relative to when resizing.
@@ -187,12 +188,12 @@ default, the boundary includes overflow ancestors that will cause the element to
 * If needed, you can
 change the boundary by passing a reference to one or more elements to this property.
  */
-  'autoSizeBoundary'?: SynPopup['autoSizeBoundary'];
+  autoSizeBoundary?: SynPopup['autoSizeBoundary'];
 
   /**
-* The amount of padding, in pixels, to exceed before the auto-size behavior will occur.
- */
-  'autoSizePadding'?: SynPopup['autoSizePadding'];
+   * The amount of padding, in pixels, to exceed before the auto-size behavior will occur.
+   */
+  autoSizePadding?: SynPopup['autoSizePadding'];
 
   /**
 * When a gap exists between the anchor and the popup element, this option will add a "hover bridge" that fills the
@@ -202,25 +203,25 @@ because the pointer never technically leaves the element.
 * The hover bridge will only be drawn when the popover is
 active.
  */
-  'hoverBridge'?: SynPopup['hoverBridge'];
+  hoverBridge?: SynPopup['hoverBridge'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the popup is repositioned.
-* This event can fire a lot, so avoid putting expensive operations in your listener or consider debouncing it.
- */
+   * Emitted when the popup is repositioned.
+   * This event can fire a lot, so avoid putting expensive operations in your listener or consider debouncing it.
+   */
   'syn-reposition': [e: SynRepositionEvent];
 }>();
 </script>
@@ -231,11 +232,9 @@ export type { SynRepositionEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-popup
-    v-bind="visibleProps"
-
-    ref="nativeElement"
     @syn-reposition="$emit('syn-reposition', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-popup>
 </template>

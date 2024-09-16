@@ -28,12 +28,8 @@ const nativeElement = ref<SynSpinner>();
 defineExpose({
   nativeElement,
 });
-
 </script>
 
 <template>
-  <syn-spinner
-
-    ref="nativeElement"
-  />
+  <syn-spinner ref="nativeElement"> </syn-spinner>
 </template>

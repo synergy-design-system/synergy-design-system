@@ -8,7 +8,9 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/header/header.component.js';
 
 import { type EventName } from '@lit/react';
-import type { SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-header';
 Component.define('syn-header');
@@ -47,9 +49,12 @@ export const SynHeader = createComponent({
   displayName: 'SynHeader',
   elementClass: Component,
   events: {
-    onSynBurgerMenuClosed: 'syn-burger-menu-closed' as EventName<SynBurgerMenuClosedEvent>,
-    onSynBurgerMenuHidden: 'syn-burger-menu-hidden' as EventName<SynBurgerMenuHiddenEvent>,
-    onSynBurgerMenuOpen: 'syn-burger-menu-open' as EventName<SynBurgerMenuOpenEvent>,
+    onSynBurgerMenuClosed:
+      'syn-burger-menu-closed' as EventName<SynBurgerMenuClosedEvent>,
+    onSynBurgerMenuHidden:
+      'syn-burger-menu-hidden' as EventName<SynBurgerMenuHiddenEvent>,
+    onSynBurgerMenuOpen:
+      'syn-burger-menu-open' as EventName<SynBurgerMenuOpenEvent>,
   },
   react: React,
   tagName,

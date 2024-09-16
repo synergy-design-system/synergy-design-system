@@ -35,9 +35,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/details/details.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDetails, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynDetails } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDetails>();
@@ -53,60 +55,60 @@ const props = defineProps<{
 * You can toggle this attribute to show and hide the details, or you
 can use the `show()` and `hide()` methods and this attribute will reflect the details' open state.
  */
-  'open'?: SynDetails['open'];
+  open?: SynDetails['open'];
 
   /**
-* The summary to show in the header.
-* If you need to display HTML, use the `summary` slot instead.
- */
-  'summary'?: SynDetails['summary'];
+   * The summary to show in the header.
+   * If you need to display HTML, use the `summary` slot instead.
+   */
+  summary?: SynDetails['summary'];
 
   /**
-* Disables the details so it can't be toggled.
- */
-  'disabled'?: SynDetails['disabled'];
+   * Disables the details so it can't be toggled.
+   */
+  disabled?: SynDetails['disabled'];
 
   /**
-* Draws the details as contained element.
- */
-  'contained'?: SynDetails['contained'];
+   * Draws the details as contained element.
+   */
+  contained?: SynDetails['contained'];
 
   /**
-* The details's size.
- */
-  'size'?: SynDetails['size'];
+   * The details's size.
+   */
+  size?: SynDetails['size'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the details opens.
- */
+   * Emitted when the details opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the details opens and all animations are complete.
- */
+   * Emitted after the details opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the details closes.
- */
+   * Emitted when the details closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the details closes and all animations are complete.
- */
+   * Emitted after the details closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 }>();
 </script>
@@ -120,14 +122,12 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-details
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
-
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-details>
 </template>

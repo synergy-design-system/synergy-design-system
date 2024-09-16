@@ -50,14 +50,10 @@ const nativeElement = ref<SynPrioNav>();
 defineExpose({
   nativeElement,
 });
-
 </script>
 
 <template>
-  <syn-prio-nav
-
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-prio-nav ref="nativeElement">
+    <slot></slot>
   </syn-prio-nav>
 </template>

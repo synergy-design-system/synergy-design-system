@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynRangeTick } from '@synergy-design-system/components';
 
@@ -36,7 +36,6 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
 })
 export class SynRangeTickComponent {
   public nativeElement: SynRangeTick;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -45,13 +44,12 @@ export class SynRangeTickComponent {
   }
 
   /**
-* Whether the tick should be shown as a subdivision.
- */
+   * Whether the tick should be shown as a subdivision.
+   */
   @Input()
   set subdivision(v: SynRangeTick['subdivision']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.subdivision = v));
   }
-
   get subdivision() {
     return this.nativeElement.subdivision;
   }

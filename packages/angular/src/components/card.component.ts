@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynCard } from '@synergy-design-system/components';
 
@@ -44,7 +44,6 @@ import '@synergy-design-system/components/components/card/card.js';
 })
 export class SynCardComponent {
   public nativeElement: SynCard;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -53,15 +52,14 @@ export class SynCardComponent {
   }
 
   /**
-* Draws the card with sharp edges.
-* Can be used e.g.
-* when nesting multiple syn-cards to create hierarchy.
- */
+   * Draws the card with sharp edges.
+   * Can be used e.g.
+   * when nesting multiple syn-cards to create hierarchy.
+   */
   @Input()
   set sharp(v: SynCard['sharp']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
   }
-
   get sharp() {
     return this.nativeElement.sharp;
   }

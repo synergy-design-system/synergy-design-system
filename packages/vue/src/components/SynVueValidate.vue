@@ -46,6 +46,8 @@ const props = defineProps<{
   /**
 * Defines the events that trigger the validation.
 Defaults to the `invalid` and `change` events.
+`invalid` will always automatically be included.
+You may also use the `live` keyword to validate on every input change.
  */
   'on'?: SynValidate['on'];
 

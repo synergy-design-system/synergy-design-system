@@ -25,20 +25,20 @@ await jobs.runEsBuildComponents(outDir, __PACKAGE_VERSION__);
 await jobs.runCem();
 await jobs.runCreateStyles({ componentDistDir: outDir, stylesDir: getPath('../src/styles') });
 
-// await Promise.all([
-//   jobs.runCreateReactWrappers({
-//     componentDistDir: outDir,
-//     componentPackageDir: componentDir,
-//     reactPackageDir,
-//   }),
-//   jobs.runCreateAngularWrappers({
-//     angularPackageDir,
-//     componentDistDir: outDir,
-//     componentPackageDir: componentDir,
-//   }),
-//   jobs.runCreateVueWrappers({
-//     componentDistDir: outDir,
-//     componentPackageDir: componentDir,
-//     vuePackageDir,
-//   }),
-// ]);
+await Promise.all([
+  jobs.runCreateReactWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    reactPackageDir,
+  }),
+  jobs.runCreateAngularWrappers({
+    angularPackageDir,
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+  }),
+  jobs.runCreateVueWrappers({
+    componentDistDir: outDir,
+    componentPackageDir: componentDir,
+    vuePackageDir,
+  }),
+]);

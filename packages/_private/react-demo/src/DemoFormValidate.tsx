@@ -35,22 +35,15 @@ const initialFormData = {
   code: '',
   comment: '',
   date: '',
-  donations: '2000 4000',
   email: '',
   files: undefined,
   gender: '',
   happiness: '5',
   name: '',
-  newsletterAngular: false,
   newsletterBeta: false,
-  newsletterReact: false,
   newsletterStandard: false,
-  newsletterVanilla: false,
-  newsletterVue: false,
   password: 'invalid',
-  phone: '',
   role: '',
-  topics: [],
 };
 
 export const DemoFormValidate = () => {
@@ -229,8 +222,6 @@ export const DemoFormValidate = () => {
         </SynValidate>
       </DemoFieldset>
       {/* /Security */}
-
-      <SynDivider />
 
       <SynDivider />
 

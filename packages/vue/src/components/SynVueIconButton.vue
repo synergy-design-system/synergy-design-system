@@ -21,7 +21,9 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/icon-button/icon-button.js';
 
-import type { SynBlurEvent, SynFocusEvent, SynIconButton } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynIconButton } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynIconButton>();
@@ -33,84 +35,84 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the icon to draw.
-* Available names depend on the icon library being used.
- */
-  'name'?: SynIconButton['name'];
+   * The name of the icon to draw.
+   * Available names depend on the icon library being used.
+   */
+  name?: SynIconButton['name'];
 
   /**
-* The name of a registered custom icon library.
- */
-  'library'?: SynIconButton['library'];
+   * The name of a registered custom icon library.
+   */
+  library?: SynIconButton['library'];
 
   /**
 * An external URL of an SVG file.
 * Be sure you trust the content you are including, as it will be executed as code and
 can result in XSS attacks.
  */
-  'src'?: SynIconButton['src'];
+  src?: SynIconButton['src'];
 
   /**
-* When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
- */
-  'href'?: SynIconButton['href'];
+   * When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
+   */
+  href?: SynIconButton['href'];
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is set.
- */
-  'target'?: SynIconButton['target'];
+   * Tells the browser where to open the link.
+   * Only used when `href` is set.
+   */
+  target?: SynIconButton['target'];
 
   /**
-* Tells the browser to download the linked file as this filename.
-* Only used when `href` is set.
- */
-  'download'?: SynIconButton['download'];
+   * Tells the browser to download the linked file as this filename.
+   * Only used when `href` is set.
+   */
+  download?: SynIconButton['download'];
 
   /**
 * A description that gets read by assistive devices.
 * For optimal accessibility, you should always include a label
 that describes what the icon button does.
  */
-  'label'?: SynIconButton['label'];
+  label?: SynIconButton['label'];
 
   /**
-* The icon button's size.
- */
-  'size'?: SynIconButton['size'];
+   * The icon button's size.
+   */
+  size?: SynIconButton['size'];
 
   /**
 * The color of the icon button.
 The default "currentColor" makes it possible to easily style the icon button from outside without any CSS variables.
  */
-  'color'?: SynIconButton['color'];
+  color?: SynIconButton['color'];
 
   /**
-* Disables the button.
- */
-  'disabled'?: SynIconButton['disabled'];
+   * Disables the button.
+   */
+  disabled?: SynIconButton['disabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the icon button loses focus.
- */
+   * Emitted when the icon button loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the icon button gains focus.
- */
+   * Emitted when the icon button gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 }>();
 </script>
@@ -122,10 +124,9 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-icon-button
-    v-bind="visibleProps"
-    ref="nativeElement"
-
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-  />
+    v-bind="visibleProps"
+    ref="nativeElement">
+  </syn-icon-button>
 </template>

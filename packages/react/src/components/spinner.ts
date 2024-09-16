@@ -25,9 +25,7 @@ Component.define('syn-spinner');
 export const SynSpinner = createComponent({
   displayName: 'SynSpinner',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

@@ -6,14 +6,16 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynFocusEvent, SynHideEvent, SynNavItem, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynNavItem } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/nav-item/nav-item.js';
 
 /**
@@ -68,16 +70,23 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
 })
 export class SynNavItemComponent {
   public nativeElement: SynNavItem;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
   }
 
   /**
@@ -91,7 +100,6 @@ accordion behavior.
   set href(v: SynNavItem['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-
   get href() {
     return this.nativeElement.href;
   }
@@ -100,31 +108,28 @@ accordion behavior.
   set current(v: SynNavItem['current']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.current = v));
   }
-
   get current() {
     return this.nativeElement.current;
   }
 
   /**
-* Disables the navigation item.
- */
+   * Disables the navigation item.
+   */
   @Input()
   set disabled(v: SynNavItem['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* The navigation item's orientation.
- */
+   * The navigation item's orientation.
+   */
   @Input()
   set horizontal(v: SynNavItem['horizontal']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.horizontal = v));
   }
-
   get horizontal() {
     return this.nativeElement.horizontal;
   }
@@ -137,7 +142,6 @@ Only used if `horizontal` is false.
   set chevron(v: SynNavItem['chevron']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.chevron = v));
   }
-
   get chevron() {
     return this.nativeElement.chevron;
   }
@@ -150,7 +154,6 @@ Only used if `horizontal` is false and `children` is defined.
   set open(v: SynNavItem['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -163,29 +166,28 @@ Only available when horizontal is false.
   set divider(v: SynNavItem['divider']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.divider = v));
   }
-
   get divider() {
     return this.nativeElement.divider;
   }
 
   /**
-* Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
- */
+   * Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.
- */
+   * Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 }
 

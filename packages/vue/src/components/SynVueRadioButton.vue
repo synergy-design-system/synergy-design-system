@@ -28,7 +28,9 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/radio-button/radio-button.js';
 
-import type { SynBlurEvent, SynFocusEvent, SynRadioButton } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynRadioButton } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadioButton>();
@@ -40,49 +42,49 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The radio's value.
-* When selected, the radio group will receive this value.
- */
-  'value'?: SynRadioButton['value'];
+   * The radio's value.
+   * When selected, the radio group will receive this value.
+   */
+  value?: SynRadioButton['value'];
 
   /**
-* Disables the radio button.
- */
-  'disabled'?: SynRadioButton['disabled'];
+   * Disables the radio button.
+   */
+  disabled?: SynRadioButton['disabled'];
 
   /**
 * The radio button's size.
 * When used inside a radio group, the size will be determined by the radio group's size so
 this attribute can typically be omitted.
  */
-  'size'?: SynRadioButton['size'];
+  size?: SynRadioButton['size'];
 
   /**
-* Draws a pill-style radio button with rounded edges.
- */
-  'pill'?: SynRadioButton['pill'];
+   * Draws a pill-style radio button with rounded edges.
+   */
+  pill?: SynRadioButton['pill'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 }>();
 </script>
@@ -94,12 +96,10 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-radio-button
-    v-bind="visibleProps"
-    ref="nativeElement"
-
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-radio-button>
 </template>

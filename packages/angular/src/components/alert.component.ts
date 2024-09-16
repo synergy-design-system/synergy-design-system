@@ -6,14 +6,16 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynAlert, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynAlert } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/alert/alert.js';
 
 /**
@@ -48,16 +50,29 @@ import '@synergy-design-system/components/components/alert/alert.js';
 })
 export class SynAlertComponent {
   public nativeElement: SynAlert;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
   }
 
   /**
@@ -69,31 +84,28 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
   set open(v: SynAlert['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
 
   /**
-* Enables a close button that allows the user to dismiss the alert.
- */
+   * Enables a close button that allows the user to dismiss the alert.
+   */
   @Input()
   set closable(v: SynAlert['closable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.closable = v));
   }
-
   get closable() {
     return this.nativeElement.closable;
   }
 
   /**
-* The alert's theme variant.
- */
+   * The alert's theme variant.
+   */
   @Input()
   set variant(v: SynAlert['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-
   get variant() {
     return this.nativeElement.variant;
   }
@@ -110,29 +122,28 @@ the alert will not close on its own.
   set duration(v: SynAlert['duration']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.duration = v));
   }
-
   get duration() {
     return this.nativeElement.duration;
   }
 
   /**
-* Emitted when the alert opens.
- */
+   * Emitted when the alert opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the alert opens and all animations are complete.
- */
+   * Emitted after the alert opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the alert closes.
- */
+   * Emitted when the alert closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the alert closes and all animations are complete.
- */
+   * Emitted after the alert closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }
 

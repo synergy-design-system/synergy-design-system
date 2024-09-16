@@ -8,9 +8,12 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/range/range.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynMoveEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynMoveEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-range';
 Component.define('syn-range');

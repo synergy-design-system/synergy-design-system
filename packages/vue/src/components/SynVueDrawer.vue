@@ -65,9 +65,13 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/drawer/drawer.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDrawer, SynHideEvent, SynInitialFocusEvent, SynRequestCloseEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInitialFocusEvent } from '@synergy-design-system/components';
+import type { SynRequestCloseEvent } from '@synergy-design-system/components';
+import type { SynDrawer } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDrawer>();
@@ -83,7 +87,7 @@ const props = defineProps<{
 * You can toggle this attribute to show and hide the drawer, or you can
 use the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.
  */
-  'open'?: SynDrawer['open'];
+  open?: SynDrawer['open'];
 
   /**
 * The drawer's label as displayed in the header.
@@ -91,71 +95,71 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
 `no-header`, as it is required for proper accessibility.
 * If you need to display HTML, use the `label` slot instead.
  */
-  'label'?: SynDrawer['label'];
+  label?: SynDrawer['label'];
 
   /**
-* The direction from which the drawer will open.
- */
-  'placement'?: SynDrawer['placement'];
+   * The direction from which the drawer will open.
+   */
+  placement?: SynDrawer['placement'];
 
   /**
 * By default, the drawer slides out of its containing block (usually the viewport).
 * To make the drawer slide out of
 its parent element, set this attribute and add `position: relative` to the parent.
  */
-  'contained'?: SynDrawer['contained'];
+  contained?: SynDrawer['contained'];
 
   /**
 * Removes the header.
 * This will also remove the default close button, so please ensure you provide an easy,
 accessible way for users to dismiss the drawer.
  */
-  'noHeader'?: SynDrawer['noHeader'];
+  noHeader?: SynDrawer['noHeader'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the drawer opens.
- */
+   * Emitted when the drawer opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the drawer opens and all animations are complete.
- */
+   * Emitted after the drawer opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the drawer closes.
- */
+   * Emitted when the drawer closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the drawer closes and all animations are complete.
- */
+   * Emitted after the drawer closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 
   /**
-* Emitted when the drawer opens and is ready to receive focus.
-* Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- */
+   * Emitted when the drawer opens and is ready to receive focus.
+   * Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+   */
   'syn-initial-focus': [e: SynInitialFocusEvent];
 
   /**
-* Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape.
-* Calling `event.preventDefault()` will keep the drawer open.
-* Avoid using this unless closing the drawer will result in destructive behavior such as data loss.
- */
+   * Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape.
+   * Calling `event.preventDefault()` will keep the drawer open.
+   * Avoid using this unless closing the drawer will result in destructive behavior such as data loss.
+   */
   'syn-request-close': [e: SynRequestCloseEvent];
 }>();
 </script>
@@ -171,16 +175,14 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-drawer
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-
     @syn-initial-focus="$emit('syn-initial-focus', $event)"
     @syn-request-close="$emit('syn-request-close', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-drawer>
 </template>

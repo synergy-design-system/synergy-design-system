@@ -6,14 +6,22 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynSelect, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynSelect } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynClearEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/select/select.js';
 
 /**
@@ -70,32 +78,57 @@ import '@synergy-design-system/components/components/select/select.js';
 })
 export class SynSelectComponent {
   public nativeElement: SynSelect;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => {
+      this.synClearEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   /**
-* The name of the select, submitted as a name/value pair with form data.
- */
+   * The name of the select, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynSelect['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
@@ -111,43 +144,39 @@ be an array.
   set value(v: SynSelect['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The select's size.
- */
+   * The select's size.
+   */
   @Input()
   set size(v: SynSelect['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Placeholder text to show as a hint when the select is empty.
- */
+   * Placeholder text to show as a hint when the select is empty.
+   */
   @Input()
   set placeholder(v: SynSelect['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-
   get placeholder() {
     return this.nativeElement.placeholder;
   }
 
   /**
-* Allows more than one option to be selected.
- */
+   * Allows more than one option to be selected.
+   */
   @Input()
   set multiple(v: SynSelect['multiple']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.multiple = v));
   }
-
   get multiple() {
     return this.nativeElement.multiple;
   }
@@ -160,33 +189,32 @@ indicate the number of additional items that are selected.
  */
   @Input()
   set maxOptionsVisible(v: SynSelect['maxOptionsVisible']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxOptionsVisible = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.maxOptionsVisible = v),
+    );
   }
-
   get maxOptionsVisible() {
     return this.nativeElement.maxOptionsVisible;
   }
 
   /**
-* Disables the select control.
- */
+   * Disables the select control.
+   */
   @Input()
   set disabled(v: SynSelect['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Adds a clear button when the select is not empty.
- */
+   * Adds a clear button when the select is not empty.
+   */
   @Input()
   set clearable(v: SynSelect['clearable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
   }
-
   get clearable() {
     return this.nativeElement.clearable;
   }
@@ -200,7 +228,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
   set open(v: SynSelect['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -214,20 +241,18 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
   set hoist(v: SynSelect['hoist']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
-
   get hoist() {
     return this.nativeElement.hoist;
   }
 
   /**
-* The select's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The select's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynSelect['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
@@ -241,20 +266,18 @@ inside of the viewport.
   set placement(v: SynSelect['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-
   get placement() {
     return this.nativeElement.placement;
   }
 
   /**
-* The select's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The select's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynSelect['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
@@ -270,19 +293,17 @@ the same document or shadow root for this to work.
   set form(v: SynSelect['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* The select's required attribute.
- */
+   * The select's required attribute.
+   */
   @Input()
   set required(v: SynSelect['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
@@ -298,64 +319,63 @@ the specified value.
   set getTag(v: SynSelect['getTag']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.getTag = v));
   }
-
   get getTag() {
     return this.nativeElement.getTag;
   }
 
   /**
-* Emitted when the control's value changes.
- */
+   * Emitted when the control's value changes.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the control's value is cleared.
- */
+   * Emitted when the control's value is cleared.
+   */
   @Output() synClearEvent = new EventEmitter<SynClearEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the select's menu opens.
- */
+   * Emitted when the select's menu opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the select's menu opens and all animations are complete.
- */
+   * Emitted after the select's menu opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the select's menu closes.
- */
+   * Emitted when the select's menu closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the select's menu closes and all animations are complete.
- */
+   * Emitted after the select's menu closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynSelect['value']>();
 }
 

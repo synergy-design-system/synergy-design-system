@@ -42,35 +42,30 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Disables all options in the optgroup.
- */
-  'disabled'?: SynOptgroup['disabled'];
+   * Disables all options in the optgroup.
+   */
+  disabled?: SynOptgroup['disabled'];
 
   /**
-* The optgroups label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynOptgroup['label'];
+   * The optgroups label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynOptgroup['label'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-optgroup
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-optgroup v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-optgroup>
 </template>

@@ -23,9 +23,7 @@ Component.define('syn-divider');
 export const SynDivider = createComponent({
   displayName: 'SynDivider',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

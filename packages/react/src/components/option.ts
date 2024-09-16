@@ -31,9 +31,7 @@ Component.define('syn-option');
 export const SynOption = createComponent({
   displayName: 'SynOption',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

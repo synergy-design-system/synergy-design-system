@@ -32,9 +32,10 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/radio-group/radio-group.js';
 
-import type {
-  SynChangeEvent, SynInputEvent, SynInvalidEvent, SynRadioGroup,
-} from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynRadioGroup } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadioGroup>();
@@ -51,29 +52,29 @@ const props = defineProps<{
 * If you need to display HTML, use the `label` slot
 instead.
  */
-  'label'?: SynRadioGroup['label'];
+  label?: SynRadioGroup['label'];
 
   /**
-* The radio groups's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynRadioGroup['helpText'];
+   * The radio groups's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynRadioGroup['helpText'];
 
   /**
-* The name of the radio group, submitted as a name/value pair with form data.
- */
-  'name'?: SynRadioGroup['name'];
+   * The name of the radio group, submitted as a name/value pair with form data.
+   */
+  name?: SynRadioGroup['name'];
 
   /**
-* The current value of the radio group, submitted as a name/value pair with form data.
- */
-  'value'?: SynRadioGroup['value'];
+   * The current value of the radio group, submitted as a name/value pair with form data.
+   */
+  value?: SynRadioGroup['value'];
 
   /**
-* The radio group's size.
-* This size will be applied to all child radios and radio buttons.
- */
-  'size'?: SynRadioGroup['size'];
+   * The radio group's size.
+   * This size will be applied to all child radios and radio buttons.
+   */
+  size?: SynRadioGroup['size'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -82,16 +83,16 @@ to place the form control outside of a form and associate it with the form that 
 * The form must be in
 the same document or shadow root for this to work.
  */
-  'form'?: SynRadioGroup['form'];
+  form?: SynRadioGroup['form'];
 
   /**
-* Ensures a child radio is checked before allowing the containing form to submit.
- */
-  'required'?: SynRadioGroup['required'];
+   * Ensures a child radio is checked before allowing the containing form to submit.
+   */
+  required?: SynRadioGroup['required'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynRadioGroup['value'];
 }>();
 
@@ -99,32 +100,32 @@ the same document or shadow root for this to work.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the radio group's selected value changes.
- */
+   * Emitted when the radio group's selected value changes.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the radio group receives user input.
- */
+   * Emitted when the radio group receives user input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynRadioGroup['value']];
 }>();
 </script>
@@ -137,13 +138,21 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-radio-group
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-change="$emit('syn-change', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.value);
+      $emit('syn-input', $event);
+    "
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-radio-group>
 </template>

@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynBadge } from '@synergy-design-system/components';
 
@@ -32,7 +32,6 @@ import '@synergy-design-system/components/components/badge/badge.js';
 })
 export class SynBadgeComponent {
   public nativeElement: SynBadge;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -41,13 +40,12 @@ export class SynBadgeComponent {
   }
 
   /**
-* The badge's theme variant.
- */
+   * The badge's theme variant.
+   */
   @Input()
   set variant(v: SynBadge['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-
   get variant() {
     return this.nativeElement.variant;
   }

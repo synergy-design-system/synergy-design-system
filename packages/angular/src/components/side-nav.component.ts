@@ -6,14 +6,16 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynSideNav,
-} from '@synergy-design-system/components';
+import type { SynSideNav } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/side-nav/side-nav.js';
 
 /**
@@ -67,16 +69,29 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
 })
 export class SynSideNavComponent {
   public nativeElement: SynSideNav;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
   }
 
   /**
@@ -99,7 +114,6 @@ Without `open`, the side-nav will only show the prefix of nav-item's.
   set open(v: SynSideNav['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -116,7 +130,6 @@ If this is not the case you should use a burger navigation.
   set rail(v: SynSideNav['rail']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.rail = v));
   }
-
   get rail() {
     return this.nativeElement.rail;
   }
@@ -127,31 +140,32 @@ To disable the focus trapping, set this attribute.
  */
   @Input()
   set noFocusTrapping(v: SynSideNav['noFocusTrapping']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.noFocusTrapping = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.noFocusTrapping = v),
+    );
   }
-
   get noFocusTrapping() {
     return this.nativeElement.noFocusTrapping;
   }
 
   /**
-* Emitted when the side-nav opens.
- */
+   * Emitted when the side-nav opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the side-nav opens and all animations are complete.
- */
+   * Emitted after the side-nav opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the side-nav closes.
- */
+   * Emitted when the side-nav closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the side-nav closes and all animations are complete.
- */
+   * Emitted after the side-nav closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }
 

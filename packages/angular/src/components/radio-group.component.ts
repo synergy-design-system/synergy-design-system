@@ -6,14 +6,15 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynChangeEvent, SynInputEvent, SynInvalidEvent, SynRadioGroup,
-} from '@synergy-design-system/components';
+import type { SynRadioGroup } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/radio-group/radio-group.js';
 
 /**
@@ -47,15 +48,21 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
 })
 export class SynRadioGroupComponent {
   public nativeElement: SynRadioGroup;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   /**
@@ -68,57 +75,52 @@ instead.
   set label(v: SynRadioGroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The radio groups's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The radio groups's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynRadioGroup['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* The name of the radio group, submitted as a name/value pair with form data.
- */
+   * The name of the radio group, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynRadioGroup['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The current value of the radio group, submitted as a name/value pair with form data.
- */
+   * The current value of the radio group, submitted as a name/value pair with form data.
+   */
   @Input()
   set value(v: SynRadioGroup['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The radio group's size.
-* This size will be applied to all child radios and radio buttons.
- */
+   * The radio group's size.
+   * This size will be applied to all child radios and radio buttons.
+   */
   @Input()
   set size(v: SynRadioGroup['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
@@ -134,41 +136,39 @@ the same document or shadow root for this to work.
   set form(v: SynRadioGroup['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Ensures a child radio is checked before allowing the containing form to submit.
- */
+   * Ensures a child radio is checked before allowing the containing form to submit.
+   */
   @Input()
   set required(v: SynRadioGroup['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
 
   /**
-* Emitted when the radio group's selected value changes.
- */
+   * Emitted when the radio group's selected value changes.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the radio group receives user input.
- */
+   * Emitted when the radio group receives user input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynRadioGroup['value']>();
 }
 

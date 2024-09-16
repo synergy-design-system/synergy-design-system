@@ -8,9 +8,11 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/file/file.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFocusEvent, SynInputEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-file';
 Component.define('syn-file');

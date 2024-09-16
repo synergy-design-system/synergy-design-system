@@ -32,14 +32,10 @@ const nativeElement = ref<SynMenuLabel>();
 defineExpose({
   nativeElement,
 });
-
 </script>
 
 <template>
-  <syn-menu-label
-
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-menu-label ref="nativeElement">
+    <slot></slot>
   </syn-menu-label>
 </template>

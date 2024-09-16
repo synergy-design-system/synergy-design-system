@@ -6,14 +6,16 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDetails, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynDetails } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/details/details.js';
 
 /**
@@ -50,16 +52,29 @@ import '@synergy-design-system/components/components/details/details.js';
 })
 export class SynDetailsComponent {
   public nativeElement: SynDetails;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
   }
 
   /**
@@ -71,78 +86,73 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
   set open(v: SynDetails['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
 
   /**
-* The summary to show in the header.
-* If you need to display HTML, use the `summary` slot instead.
- */
+   * The summary to show in the header.
+   * If you need to display HTML, use the `summary` slot instead.
+   */
   @Input()
   set summary(v: SynDetails['summary']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.summary = v));
   }
-
   get summary() {
     return this.nativeElement.summary;
   }
 
   /**
-* Disables the details so it can't be toggled.
- */
+   * Disables the details so it can't be toggled.
+   */
   @Input()
   set disabled(v: SynDetails['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Draws the details as contained element.
- */
+   * Draws the details as contained element.
+   */
   @Input()
   set contained(v: SynDetails['contained']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
   }
-
   get contained() {
     return this.nativeElement.contained;
   }
 
   /**
-* The details's size.
- */
+   * The details's size.
+   */
   @Input()
   set size(v: SynDetails['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Emitted when the details opens.
- */
+   * Emitted when the details opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the details opens and all animations are complete.
- */
+   * Emitted after the details opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the details closes.
- */
+   * Emitted when the details closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the details closes and all animations are complete.
- */
+   * Emitted after the details closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }
 

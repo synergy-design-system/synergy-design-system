@@ -24,7 +24,8 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tab/tab.js';
 
-import type { SynCloseEvent, SynTab } from '@synergy-design-system/components';
+import type { SynCloseEvent } from '@synergy-design-system/components';
+import type { SynTab } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTab>();
@@ -36,42 +37,42 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the tab panel this tab is associated with.
-* The panel must be located in the same tab group.
- */
-  'panel'?: SynTab['panel'];
+   * The name of the tab panel this tab is associated with.
+   * The panel must be located in the same tab group.
+   */
+  panel?: SynTab['panel'];
 
   /**
-* Draws the tab in an active state.
- */
-  'active'?: SynTab['active'];
+   * Draws the tab in an active state.
+   */
+  active?: SynTab['active'];
 
   /**
-* Makes the tab closable and shows a close button.
- */
-  'closable'?: SynTab['closable'];
+   * Makes the tab closable and shows a close button.
+   */
+  closable?: SynTab['closable'];
 
   /**
-* Disables the tab and prevents selection.
- */
-  'disabled'?: SynTab['disabled'];
+   * Disables the tab and prevents selection.
+   */
+  disabled?: SynTab['disabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the tab is closable and the close button is activated.
- */
+   * Emitted when the tab is closable and the close button is activated.
+   */
   'syn-close': [e: SynCloseEvent];
 }>();
 </script>
@@ -82,11 +83,9 @@ export type { SynCloseEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-tab
-    v-bind="visibleProps"
-
-    ref="nativeElement"
     @syn-close="$emit('syn-close', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-tab>
 </template>

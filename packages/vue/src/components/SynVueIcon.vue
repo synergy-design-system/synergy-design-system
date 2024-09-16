@@ -20,7 +20,9 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/icon/icon.js';
 
-import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-system/components';
+import type { SynLoadEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynIcon } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynIcon>();
@@ -32,53 +34,53 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the icon to draw.
-* Available names depend on the icon library being used.
- */
-  'name'?: SynIcon['name'];
+   * The name of the icon to draw.
+   * Available names depend on the icon library being used.
+   */
+  name?: SynIcon['name'];
 
   /**
 * An external URL of an SVG file.
 * Be sure you trust the content you are including, as it will be executed as code and
 can result in XSS attacks.
  */
-  'src'?: SynIcon['src'];
+  src?: SynIcon['src'];
 
   /**
 * An alternate description to use for assistive devices.
 * If omitted, the icon will be considered presentational and
 ignored by assistive devices.
  */
-  'label'?: SynIcon['label'];
+  label?: SynIcon['label'];
 
   /**
-* The name of a registered custom icon library.
- */
-  'library'?: SynIcon['library'];
+   * The name of a registered custom icon library.
+   */
+  library?: SynIcon['library'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the icon has loaded.
-* When using `spriteSheet: true` this will not emit.
- */
+   * Emitted when the icon has loaded.
+   * When using `spriteSheet: true` this will not emit.
+   */
   'syn-load': [e: SynLoadEvent];
 
   /**
-* Emitted when the icon fails to load due to an error.
-* When using `spriteSheet: true` this will not emit.
- */
+   * Emitted when the icon fails to load due to an error.
+   * When using `spriteSheet: true` this will not emit.
+   */
   'syn-error': [e: SynErrorEvent];
 }>();
 </script>
@@ -90,10 +92,9 @@ export type { SynErrorEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-icon
-    v-bind="visibleProps"
-    ref="nativeElement"
-
     @syn-load="$emit('syn-load', $event)"
     @syn-error="$emit('syn-error', $event)"
-  />
+    v-bind="visibleProps"
+    ref="nativeElement">
+  </syn-icon>
 </template>

@@ -27,9 +27,7 @@ Component.define('syn-range-tick');
 export const SynRangeTick = createComponent({
   displayName: 'SynRangeTick',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

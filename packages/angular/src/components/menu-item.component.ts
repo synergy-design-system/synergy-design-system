@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynMenuItem } from '@synergy-design-system/components';
 
@@ -48,7 +48,6 @@ import '@synergy-design-system/components/components/menu-item/menu-item.js';
 })
 export class SynMenuItemComponent {
   public nativeElement: SynMenuItem;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -57,63 +56,58 @@ export class SynMenuItemComponent {
   }
 
   /**
-* The type of menu item to render.
-* To use `checked`, this value must be set to `checkbox`.
- */
+   * The type of menu item to render.
+   * To use `checked`, this value must be set to `checkbox`.
+   */
   @Input()
   set type(v: SynMenuItem['type']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
-
   get type() {
     return this.nativeElement.type;
   }
 
   /**
-* Draws the item in a checked state.
- */
+   * Draws the item in a checked state.
+   */
   @Input()
   set checked(v: SynMenuItem['checked']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
   }
-
   get checked() {
     return this.nativeElement.checked;
   }
 
   /**
-* A unique value to store in the menu item.
-* This can be used as a way to identify menu items when selected.
- */
+   * A unique value to store in the menu item.
+   * This can be used as a way to identify menu items when selected.
+   */
   @Input()
   set value(v: SynMenuItem['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* Draws the menu item in a loading state.
- */
+   * Draws the menu item in a loading state.
+   */
   @Input()
   set loading(v: SynMenuItem['loading']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.loading = v));
   }
-
   get loading() {
     return this.nativeElement.loading;
   }
 
   /**
-* Draws the menu item in a disabled state, preventing selection.
- */
+   * Draws the menu item in a disabled state, preventing selection.
+   */
   @Input()
   set disabled(v: SynMenuItem['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }

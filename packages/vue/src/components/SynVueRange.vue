@@ -54,9 +54,13 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/range/range.js';
 
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynMoveEvent, SynRange,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynMoveEvent } from '@synergy-design-system/components';
+import type { SynRange } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRange>();
@@ -68,57 +72,57 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the range, submitted as a name/value pair with form data.
- */
-  'name'?: SynRange['name'];
+   * The name of the range, submitted as a name/value pair with form data.
+   */
+  name?: SynRange['name'];
 
   /**
-* The range's label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynRange['label'];
+   * The range's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynRange['label'];
 
   /**
-* The range's help text.
-* If you need to display HTML, use the help-text slot instead.
- */
-  'helpText'?: SynRange['helpText'];
+   * The range's help text.
+   * If you need to display HTML, use the help-text slot instead.
+   */
+  helpText?: SynRange['helpText'];
 
   /**
-* Disables the range.
- */
-  'disabled'?: SynRange['disabled'];
+   * Disables the range.
+   */
+  disabled?: SynRange['disabled'];
 
   /**
-* The minimum acceptable value of the range.
- */
-  'min'?: SynRange['min'];
+   * The minimum acceptable value of the range.
+   */
+  min?: SynRange['min'];
 
   /**
-* The maximum acceptable value of the range.
- */
-  'max'?: SynRange['max'];
+   * The maximum acceptable value of the range.
+   */
+  max?: SynRange['max'];
 
   /**
-* The interval at which the range will increase and decrease.
- */
-  'step'?: SynRange['step'];
+   * The interval at which the range will increase and decrease.
+   */
+  step?: SynRange['step'];
 
   /**
-* The range's size.
- */
-  'size'?: SynRange['size'];
+   * The range's size.
+   */
+  size?: SynRange['size'];
 
   /**
-* The preferred placement of the range's tooltip.
-* Use "none" to disable the tooltip
- */
-  'tooltipPlacement'?: SynRange['tooltipPlacement'];
+   * The preferred placement of the range's tooltip.
+   * Use "none" to disable the tooltip
+   */
+  tooltipPlacement?: SynRange['tooltipPlacement'];
 
   /**
-* The current values of the input (in ascending order) as a string of space separated values
- */
-  'value'?: SynRange['value'];
+   * The current values of the input (in ascending order) as a string of space separated values
+   */
+  value?: SynRange['value'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -126,11 +130,11 @@ This attribute allows you to place the form control outside of a form
 and associate it with the form that has this `id`.
 The form must be in the same document or shadow root for this to work.
  */
-  'form'?: SynRange['form'];
+  form?: SynRange['form'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynRange['value'];
 }>();
 
@@ -138,48 +142,48 @@ The form must be in the same document or shadow root for this to work.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Emitted when the user moves a thumb, either via touch or keyboard.
-* Use `Event.preventDefault()` to prevent movement.
- */
+   * Emitted when the user moves a thumb, either via touch or keyboard.
+   * Use `Event.preventDefault()` to prevent movement.
+   */
   'syn-move': [e: SynMoveEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynRange['value']];
 }>();
 </script>
@@ -195,16 +199,24 @@ export type { SynMoveEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-range
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.value);
+      $emit('syn-input', $event);
+    "
     @syn-invalid="$emit('syn-invalid', $event)"
     @syn-move="$emit('syn-move', $event)"
-  >
-    <slot />
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-range>
 </template>

@@ -46,7 +46,7 @@ export const routeTo = async (href: string, force: boolean = false) => {
     return;
   }
 
-  const res = await fetch(`/pages/${route.page}.html`);
+  const res = await fetch(`/pages/${route.page}.txt`);
   const data = await res.text();
 
   // Update dom

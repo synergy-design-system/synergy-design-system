@@ -1,0 +1,221 @@
+<form
+  enctype="multipart/form-data"
+  [formGroup]="formData"
+  (reset)="reset()"
+  (ngSubmit)="submit(formData)"
+  (syn-change)="synChange($event)"
+  #form
+  ngNativeValidate
+>
+  <!-- PersonalInformation -->
+  <demo-fieldset legend="Personal Information">
+
+    <syn-validate [inline]="true">
+      <syn-radio-group
+        formControlName="gender"
+        id="radiogroup-gender"
+        name="gender"
+        label="Please tell us your gender"
+        [required]="true"
+      >
+        <syn-radio value="">invalid</syn-radio>
+        <syn-radio value="f">Female</syn-radio>
+        <syn-radio value="m">Male</syn-radio>
+        <syn-radio value="other">Other</syn-radio>
+      </syn-radio-group>
+    </syn-validate>
+
+    <syn-validate [inline]="true">
+      <syn-select
+        formControlName="role"
+        id="select-role"
+        label="Current position"
+        name="role"
+        [required]="true"
+      >
+        <syn-option value="">---</syn-option>
+        <syn-optgroup label="Developers">
+          <syn-option value="backend">Backend Developer</syn-option>
+          <syn-option value="frontend">Frontend Developer</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Other">
+          <syn-option value="lead">Team Lead</syn-option>
+          <syn-option value="other">Other (please specify in comment section below)</syn-option>
+        </syn-optgroup>
+      </syn-select>
+    </syn-validate>
+
+    <syn-validate [inline]="true">
+      <syn-input
+        formControlName="name"
+        id="input-text"
+        label="Name"
+        [minlength]="5"
+        [maxlength]="20"
+        name="name"
+        placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
+        [required]="true"
+        type="text"
+      />
+    </syn-validate>
+
+    <syn-validate [inline]="true" on="live">
+      <syn-input
+        formControlName="email"
+        id="input-email"
+        label="E-Mail"
+        name="email"
+        placeholder="Please insert your E-mail address"
+        [required]="true"
+        type="email"
+      />
+    </syn-validate>
+
+    <syn-validate [inline]="true" [on]="['input', 'blur']">
+      <syn-input
+        formControlName="date"
+        id="input-date"
+        label="Date of birth"
+        name="date"
+        type="date"
+      />
+    </syn-validate>
+
+  </demo-fieldset>
+  <!-- /PersonalInformation -->
+
+  <syn-divider />
+
+  <!-- Security -->
+  <demo-fieldset legend="Security">
+    <syn-validate [inline]=true [on]="['input', 'blur']">
+      <syn-input
+        formControlName="password"
+        id="input-password"
+        label="Provide a secure password"
+        name="password"
+        password-toggle
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        placeholder="Please provide at least one uppercase and lowercase letter and a number"
+        [required]="true"
+        type="password"
+      />
+    </syn-validate>
+
+    <syn-validate [inline]=true [on]="['input', 'blur']">
+      <syn-input
+        formControlName="code"
+        id="input-number"
+        label="Please provide a fallback numeric value that may be used for password recovery"
+        min="1000"
+        max="9999"
+        name="code"
+        placeholder="Please choose a value with four digits, e.g. 1234"
+        type="number"
+      />
+    </syn-validate>
+  </demo-fieldset>
+  <!-- /Security -->
+
+  <syn-divider />
+
+  <!-- Happiness -->
+  <demo-fieldset id="happiness-fields" legend="Happiness">
+    <syn-validate [inline]="true" on="live">
+      <syn-range
+        formControlName="happiness"
+        id="happiness"
+        label="How happy are you with the Synergy Design System?"
+        [max]=10
+        [min]=0
+        name="happiness"
+      >
+        <nav slot="ticks">
+          <syn-range-tick>🤮</syn-range-tick>
+          <syn-range-tick>🥱</syn-range-tick>
+          <syn-range-tick>😍</syn-range-tick>
+        </nav>
+
+        <div slot="suffix">
+          <syn-input
+            formControlName="happiness"
+            type="number"
+            size="small"
+            [min]=0
+            [max]=10
+          />
+        </div>
+      </syn-range>
+    </syn-validate>
+
+  </demo-fieldset>
+  <!-- /.Happiness -->
+
+  <syn-divider />
+
+  <!-- Marketing -->
+  <demo-fieldset legend="Please inform me about the following technologies">
+    <syn-validate [inline]="true">
+      <syn-checkbox
+        formControlName="newsletterStandard"
+        id="checkbox-newsletter-default"
+        name="newsletterStandard"
+        [required]="true"
+      >
+        Please subscribe me to the synergy newsletter
+      </syn-checkbox>
+    </syn-validate>
+    <syn-validate [inline]="true">
+      <syn-switch
+        formControlName="newsletterBeta"
+        id="checkbox-newsletter-beta"
+        name="newsletterBeta"
+        [required]="true"
+      >
+        I am interested in the Synergy Beta Program
+      </syn-switch>
+    </syn-validate>
+  </demo-fieldset>
+  <!-- /Marketing -->
+
+  <syn-divider />
+
+  <!-- AdditionalInformation -->
+  <demo-fieldset legend="Additional Information">
+    <syn-validate [inline]="true" on="live">
+      <syn-textarea
+        id="additional-info"
+        formControlName="comment"
+        label="Comment"
+        name="comment"
+        placeholder="Please provide additional information that might be helpful for your inquiry"
+        [required]="true"
+        [rows]="10"
+      />
+    </syn-validate>
+    <syn-validate [inline]="true" on="live">
+      <syn-file
+        accept="image/*"
+        [droparea]="true"
+        formControlName="files"
+        help-text="Please upload images only"
+        id="screenshot"
+        label="Optional Screenshot(s)"
+        [multiple]="true"
+        name="files"
+        [required]="true"
+      />
+    </syn-validate>
+  </demo-fieldset>
+  <!-- /AdditionalInformation -->
+
+  <syn-divider />
+
+  <!-- Actions -->
+  <div class="syn-submit-buttons">
+    <syn-button variant="outline" type="reset">Reset</syn-button>
+    <syn-button variant="filled" type="submit">Send</syn-button>
+  </div>
+  <!-- /Actions -->
+
+</form>

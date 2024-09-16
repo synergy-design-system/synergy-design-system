@@ -1,4 +1,13 @@
-<syn-header label="synergy-design-system/angular Form Demo">
+<syn-header label="synergy-design-system/angular Components Demo">
+  <a
+    class="custom-logo"
+    href="/"
+    routerLink="/"
+    slot="logo"
+  >
+    <syn-icon name="logo-color" library="system" />
+  </a>
+
   <theme-switch slot="meta-navigation" />
 </syn-header>
 
@@ -10,7 +19,11 @@
     </syn-nav-item>
     <syn-nav-item [divider]="true" routerLink="/contact-form" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Contact Form
-      <syn-icon name="description" slot="prefix"></syn-icon>
+      <syn-icon name="contact_mail" slot="prefix"></syn-icon>
+    </syn-nav-item>
+    <syn-nav-item [divider]="true" routerLink="/contact-form-validate" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
+      Contact Form (Validation)
+      <syn-icon name="contact_emergency" slot="prefix"></syn-icon>
     </syn-nav-item>
   </syn-side-nav>
   <main class="content">

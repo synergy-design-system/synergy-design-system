@@ -4,6 +4,12 @@ syn-header {
   z-index: 50;
 }
 
+.custom-logo syn-icon {
+  display: block;
+  width: auto;
+  height: 32px;
+}
+
 .main {
   flex-grow: 1;
   display: flex;

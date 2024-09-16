@@ -34,14 +34,14 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* Show the validation message underneath the element, using a syn-alert
- */
-  'inline'?: SynValidate['inline'];
+   * Show the validation message underneath the element, using a syn-alert
+   */
+  inline?: SynValidate['inline'];
 
   /**
-* Do not show the error icon when using inline validation
- */
-  'hideIcon'?: SynValidate['hideIcon'];
+   * Do not show the error icon when using inline validation
+   */
+  hideIcon?: SynValidate['hideIcon'];
 
   /**
 * Defines the events that trigger the validation.
@@ -49,34 +49,29 @@ Defaults to the `invalid` and `change` events.
 `invalid` will always automatically be included.
 You may also use the `live` keyword to validate on every input change.
  */
-  'on'?: SynValidate['on'];
+  on?: SynValidate['on'];
 
   /**
 * Custom validation message to be displayed when the input is invalid.
 Will override the default browser validation message.
 Set to an empty string to reset the validation message.
  */
-  'customValidation'?: SynValidate['customValidation'];
+  customValidation?: SynValidate['customValidation'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-validate
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-validate v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-validate>
 </template>

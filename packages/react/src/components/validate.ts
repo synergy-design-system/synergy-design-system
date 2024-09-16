@@ -27,9 +27,7 @@ Component.define('syn-validate');
 export const SynValidate = createComponent({
   displayName: 'SynValidate',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

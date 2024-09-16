@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynValidate } from '@synergy-design-system/components';
 
@@ -36,7 +36,6 @@ import '@synergy-design-system/components/components/validate/validate.js';
 })
 export class SynValidateComponent {
   public nativeElement: SynValidate;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -45,25 +44,23 @@ export class SynValidateComponent {
   }
 
   /**
-* Show the validation message underneath the element, using a syn-alert
- */
+   * Show the validation message underneath the element, using a syn-alert
+   */
   @Input()
   set inline(v: SynValidate['inline']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.inline = v));
   }
-
   get inline() {
     return this.nativeElement.inline;
   }
 
   /**
-* Do not show the error icon when using inline validation
- */
+   * Do not show the error icon when using inline validation
+   */
   @Input()
   set hideIcon(v: SynValidate['hideIcon']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.hideIcon = v));
   }
-
   get hideIcon() {
     return this.nativeElement.hideIcon;
   }
@@ -78,7 +75,6 @@ You may also use the `live` keyword to validate on every input change.
   set on(v: SynValidate['on']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.on = v));
   }
-
   get on() {
     return this.nativeElement.on;
   }
@@ -90,9 +86,10 @@ Set to an empty string to reset the validation message.
  */
   @Input()
   set customValidation(v: SynValidate['customValidation']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.customValidation = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.customValidation = v),
+    );
   }
-
   get customValidation() {
     return this.nativeElement.customValidation;
   }

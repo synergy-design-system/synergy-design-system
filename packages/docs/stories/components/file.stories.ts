@@ -189,6 +189,35 @@ export const Droparea: Story = {
   `,
 } as Story;
 
+export const Directory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'droparea'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-file
+        accept="text/plain,image/*"
+        help-text="This is a help text"
+        label="Button"
+        webkitdirectory
+        accept="image/png, image/jpeg"
+      ></syn-file>
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Droparea"
+        webkitdirectory
+        accept="image/png, image/jpeg"
+      ></syn-file>
+    </div>
+  `,
+} as Story;
+
 export const Focus: Story = {
   parameters: {
     chromatic: {
@@ -280,5 +309,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   Droparea,
+  Directory,
 }, 350);
 /* eslint-enable sort-keys */

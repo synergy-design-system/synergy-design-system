@@ -11,6 +11,7 @@ import { serialize } from '../../../dist/synergy.js';
 import type SynFile from './file.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type SynButton from '../button/button.component.js';
+import { acceptStringToArray, fileHasValidAcceptType } from './utils.js';
 
 /**
  * Serialize a form with files to a JSON object
@@ -401,6 +402,40 @@ describe('<syn-file>', () => {
     expect(label).to.not.exist;
     expect(input).to.not.exist;
     expect(helpText).to.not.exist;
+  });
+  describe('when using the file handling utilities', () => {
+    describe('acceptStringToArray', () => {
+      it('should return a normalized array of accept criteria', () => {
+        expect(acceptStringToArray(' image/*,   audio/* , , .jpg, *.doc, *. png ')).to.deep.equal([
+          'image/*',
+          'audio/*',
+          '.jpg',
+          '.doc',
+          '.png',
+        ]);
+        expect(acceptStringToArray('')).to.deep.equal([]);
+        expect(acceptStringToArray('     ')).to.deep.equal([]);
+      });
+    });
+
+    describe('fileHasValidAcceptType', () => {
+      it('should return true if the file matches the criteria', () => {
+        const file = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+
+        expect(fileHasValidAcceptType(file, ['image/*'])).to.be.true;
+        expect(fileHasValidAcceptType(file, ['image/jpeg'])).to.be.true;
+        expect(fileHasValidAcceptType(file, ['image/png'])).to.be.false;
+        expect(fileHasValidAcceptType(file, ['image/*', 'audio/*'])).to.be.true;
+        expect(fileHasValidAcceptType(file, [])).to.be.true;
+      });
+
+      it('should return false if the file does not match the criteria', () => {
+        const file = new File(['content'], 'demo.jpg', { type: 'image/jpeg' });
+
+        expect(fileHasValidAcceptType(file, ['audio/*'])).to.be.false;
+        expect(fileHasValidAcceptType(file, ['audio/*', 'video/*'])).to.be.false;
+      });
+    });
   });
 
   createTests('when using <syn-file> without droparea', false);

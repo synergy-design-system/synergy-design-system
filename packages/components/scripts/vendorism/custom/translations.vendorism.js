@@ -18,9 +18,17 @@ const translations = {
     de: 'Dateien auswählen',
     en: 'Choose files',
   },
+  folderButtonText: {
+    de: 'Ordner auswählen',
+    en: 'Choose folder',
+  },
   fileDragDrop: {
     de: 'Datei ablegen oder auswählen',
     en: 'Drop or choose file',
+  },
+  folderDragDrop: {
+    de: 'Ordner ablegen oder auswählen',
+    en: 'Drop or choose folder',
   },
   menu: {
     de: 'Menü',

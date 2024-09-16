@@ -18,6 +18,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { animateTo } from '../../internal/animate.js';
+import { acceptStringToArray, fileHasValidAcceptType } from './utils.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -180,6 +181,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /**
    * Indicates whether the user can select more than one file.
+   * Has no effect if webkitdirectory is set.
    * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple
@@ -300,6 +302,54 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.files = files;
   }
 
+  private async handleTransferItems(items: DataTransferItemList | null): Promise<FileList> {
+    if (!items) {
+      this.value = '';
+      return new Promise((_resolve, reject) => { reject(new Error('No items found')); });
+    }
+
+    const itemsArray = Array.from(items);
+
+    const entries: (FileSystemEntry | null)[] = itemsArray.map((item) => item.webkitGetAsEntry());
+
+    const filesPromises = entries.map(entry => this.getFilesFromEntry(entry));
+    const filesArray = await Promise.all(filesPromises);
+    const files = filesArray.flat();
+
+    function arrayToFileList(f: File[]): FileList {
+      const dataTransfer = new DataTransfer();
+      f.forEach(file => dataTransfer.items.add(file));
+      return dataTransfer.files;
+    }
+
+    const acceptArray = acceptStringToArray(this.accept);
+
+    // Validate the files against the accept attribute
+    return arrayToFileList(Array.from(files).filter(f => fileHasValidAcceptType(f, acceptArray)));
+  }
+
+  private async getFilesFromEntry(entry: FileSystemEntry | null): Promise<File[]> {
+    if (!entry) {
+      return [];
+    }
+    if (entry.isFile) {
+      return new Promise<File[]>((resolve, reject) => {
+        (entry as FileSystemFileEntry).file(file => resolve([file]), reject);
+      });
+    }
+    if (entry.isDirectory) {
+      return new Promise<File[]>((resolve, reject) => {
+        const dirReader = (entry as FileSystemDirectoryEntry).createReader();
+        dirReader.readEntries((entries) => {
+          Promise.all(entries.map(e => this.getFilesFromEntry(e)))
+            .then((files) => { resolve(files.flat()); })
+            .catch(reject);
+        });
+      });
+    }
+    return [];
+  }
+
   private handleClick(e: Event) {
     e.preventDefault();
     this.input.click();
@@ -331,10 +381,19 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     e.preventDefault();
     e.stopPropagation();
 
-    const files = e.dataTransfer?.files;
+    if (!e.dataTransfer) {
+      return;
+    }
+
+    let { files } = e.dataTransfer;
+
+    if (this.webkitdirectory) {
+      const items = e.dataTransfer?.items;
+      files = await this.handleTransferItems(items);
+    }
 
     if (files) {
-      if (!this.multiple && files.length > 1) {
+      if (!this.multiple && !this.webkitdirectory && files.length > 1) {
         this.emit('syn-error');
       } else {
         // Use the transferred file list from the drag drop interface
@@ -427,7 +486,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             class="droparea__text"
             part="droparea-value"
           >
-            <strong>${this.localize.term('fileDragDrop')}</strong>
+            <strong>${this.localize.term(this.webkitdirectory ? 'folderDragDrop' : 'fileDragDrop')}</strong>
             ${this.renderValue()}
           </p>
         </div>
@@ -438,9 +497,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderButton() {
-    const buttonText = this.multiple
-      ? this.localize.term('fileButtonTextMultiple')
-      : this.localize.term('fileButtonText');
+    let buttonText = this.localize.term('fileButtonText');
+    if (this.multiple) {
+      buttonText = this.localize.term('fileButtonTextMultiple');
+    }
+    if (this.webkitdirectory) {
+      buttonText = this.localize.term('folderButtonText');
+    }
 
     return html`
       <div

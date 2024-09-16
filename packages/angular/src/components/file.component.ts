@@ -220,6 +220,7 @@ Works only when not using a droparea!
 
   /**
 * Indicates whether the user can select more than one file.
+Has no effect if webkitdirectory is set.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
   @Input()

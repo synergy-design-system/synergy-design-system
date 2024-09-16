@@ -47,7 +47,9 @@ const translation: Translation = {
   danger: 'Gefahr',
   fileButtonText: 'Datei auswählen',
   fileButtonTextMultiple: 'Dateien auswählen',
+  folderButtonText: 'Ordner auswählen',
   fileDragDrop: 'Datei ablegen oder auswählen',
+  folderDragDrop: 'Ordner ablegen oder auswählen',
   menu: 'Menü',
   notification: 'Benachrichtigung',
   numFilesSelected: num => {

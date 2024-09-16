@@ -93,6 +93,10 @@ export const ContactForm = {
       flex-flow: wrap;
       margin-bottom: var(--syn-spacing-2x-large);
       gap: var(--syn-spacing-large) var(--syn-spacing-large);
+
+      /* TODO: this two css properties can be removed, when this issue is fixed https://github.com/synergy-design-system/synergy-design-system/issues/612 */
+      position: relative;
+      z-index: 1;
     }
 
     .fields > * {

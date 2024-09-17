@@ -20,7 +20,7 @@ const availablePages = {
  * Create test cases for a given framework
  * @param framework The framework to create the test cases for
  */
-const createTestCaseFor = (framework: Framework) => {
+const createTestCases = (framework: Framework) => {
   const { name, port } = framework;
 
   const host = `http://localhost:${port}`;
@@ -68,7 +68,7 @@ const createTestCaseFor = (framework: Framework) => {
       expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
     });
 
-    test('Form submit (native validation)', async ({ page }) => {
+    test('Form submit', async ({ page }) => {
       const form = new DemoForm(page);
       await form.goto(getURL(availablePages.form));
 
@@ -102,4 +102,4 @@ const createTestCaseFor = (framework: Framework) => {
   });
 };
 
-frameworks.forEach(createTestCaseFor);
+frameworks.forEach(createTestCases);

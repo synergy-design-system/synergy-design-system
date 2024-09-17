@@ -1,4 +1,4 @@
-import { Locator, Page, Response } from '@playwright/test';
+import { Page, Response } from '@playwright/test';
 
 /**
  * Gauge visual regression test class

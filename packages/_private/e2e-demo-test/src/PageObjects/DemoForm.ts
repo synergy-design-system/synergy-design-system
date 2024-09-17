@@ -1,8 +1,9 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator } from '@playwright/test';
 import type { Expect } from '@playwright/test';
 import type { SynSelect } from '@synergy-design-system/components';
 import selectors from '../test.selector';
 import { PageObject } from './PageObject.js';
+import { BaseFormObject } from './BaseForm.js';
 import {
   fillField,
   getCheckedValue,
@@ -12,25 +13,11 @@ import {
 /**
  * Page object for the demo form
  */
-export class DemoForm extends PageObject {
-  get form(): Locator {
-    return this.page.locator(selectors.formLoc);
-  }
+export class DemoForm extends BaseFormObject {
+  protected initialPage: string = PageObject.availablePages.form;
 
   get additionalInfo(): Locator {
     return this.page.locator(selectors.addInfoLoc);
-  }
-
-  get email(): Locator {
-    return this.page.locator(selectors.emailLoc);
-  }
-
-  get gender(): Locator {
-    return this.page.locator(selectors.genderLoc);
-  }
-
-  get name(): Locator {
-    return this.page.locator(selectors.nameLoc);
   }
 
   get newsSyn(): Locator {
@@ -68,10 +55,6 @@ export class DemoForm extends PageObject {
     ];
   }
 
-  get password(): Locator {
-    return this.page.locator(selectors.passLoc);
-  }
-
   get passwordRecovery(): Locator {
     return this.page.locator(selectors.passRcvryLoc);
   }
@@ -80,31 +63,12 @@ export class DemoForm extends PageObject {
     return this.page.locator(selectors.phoneLoc);
   }
 
-  get role(): Locator {
-    return this.page.locator(selectors.roleLoc);
-  }
-
   get topics(): Locator {
     return this.page.locator(selectors.topicLoc);
   }
 
-  /**
-   * Because who wouldn't want to get happiness? 🤷‍♂️
-   */
-  get happiness(): Locator {
-    return this.page.locator(selectors.happinessLoc);
-  }
-
   get donations(): Locator {
     return this.page.locator(selectors.donations);
-  }
-
-  get submit(): Locator {
-    return this.page.locator(selectors.submit);
-  }
-
-  get reset(): Locator {
-    return this.page.locator(selectors.reset);
   }
 
   get birth(): Locator {
@@ -122,15 +86,11 @@ export class DemoForm extends PageObject {
     ];
   }
 
-  get frontend(): Locator {
-    return this.page.locator(selectors.frontend);
-  }
-
   get angular(): Locator {
     return this.page.locator(selectors.angular);
   }
 
-  async fill(page?: Page) {
+  async fill() {
     await this.gender.getByText('Female').check();
     await fillField(this.name, 'Maxim');
     await fillField(this.email, 'max@musterman.de');
@@ -157,17 +117,15 @@ export class DemoForm extends PageObject {
     });
 
     // Drag the donations handle to a - - 100% rating
-    if (page) {
-      const firstKnob = await this.donations.locator('.thumb').first().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
-      const firstTick = '#donations syn-range-tick:first-of-type';
+    const firstKnob = await this.donations.locator('.thumb').first().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
+    const firstTick = '#donations syn-range-tick:first-of-type';
 
-      await page.dragAndDrop(firstKnob, firstTick);
+    await this.page.dragAndDrop(firstKnob, firstTick);
 
-      const lastKnob = await this.donations.locator('.thumb').last().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
-      const lastTick = '#donations syn-range-tick:last-of-type';
+    const lastKnob = await this.donations.locator('.thumb').last().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
+    const lastTick = '#donations syn-range-tick:last-of-type';
 
-      await page.dragAndDrop(lastKnob, lastTick);
-    }
+    await this.page.dragAndDrop(lastKnob, lastTick);
   }
 
   async checkInitialState(expect: Expect) {

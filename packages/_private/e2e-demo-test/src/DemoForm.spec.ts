@@ -1,44 +1,20 @@
-import {
-  expect,
-  test,
-} from '@playwright/test';
-import type {
-  SynInput,
-} from '@synergy-design-system/components';
-import { type Framework, frameworks } from '../frameworks.config';
+import { expect, test } from '@playwright/test';
+import type { SynInput } from '@synergy-design-system/components';
 import { DemoForm } from './PageObjects/index.js';
 import {
+  createTestCases,
   getInputValue,
 } from './helpers.js';
 
-const availablePages = {
-  form: '/contact-form',
-  index: '/',
-};
-
-/**
- * Create test cases for a given framework
- * @param framework The framework to create the test cases for
- */
-const createTestCases = (framework: Framework) => {
-  const { name, port } = framework;
-
-  const host = `http://localhost:${port}`;
-
-  /**
-   * Get a navigation path
-   * @param path The path to navigate to
-   * @returns Path to navigate to
-   */
-  const getURL = (path: string = '') => `${host}${path}`;
-
+// Default form tests
+createTestCases(({ name, port }) => {
   test.describe(`${name}: Contact form test on port ${port}`, () => {
     test('Form reset', async ({ page }) => {
-      const form = new DemoForm(page);
-      await form.goto(getURL(availablePages.form));
+      const form = new DemoForm(page, port);
+      await form.loadInitialPage();
 
       // fill-out the form correctly
-      await form.fill(page);
+      await form.fill();
 
       // submit valid form
       await form.reset.click();
@@ -48,8 +24,8 @@ const createTestCases = (framework: Framework) => {
     });
 
     test('Invalid form submit', async ({ page }) => {
-      const form = new DemoForm(page);
-      await form.goto(getURL(availablePages.form));
+      const form = new DemoForm(page, port);
+      await form.loadInitialPage();
 
       // submit invalid form
       await form.submit.click();
@@ -69,8 +45,8 @@ const createTestCases = (framework: Framework) => {
     });
 
     test('Form submit', async ({ page }) => {
-      const form = new DemoForm(page);
-      await form.goto(getURL(availablePages.form));
+      const form = new DemoForm(page, port);
+      await form.loadInitialPage();
 
       // react on submit / confirm dialog
       let submitted = false;
@@ -87,7 +63,7 @@ const createTestCases = (framework: Framework) => {
       await form.checkInitialState(expect);
 
       // fill-out the form correctly
-      await form.fill(page);
+      await form.fill();
 
       // submit valid form
       await form.submit.click();
@@ -100,6 +76,4 @@ const createTestCases = (framework: Framework) => {
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
   });
-};
-
-frameworks.forEach(createTestCases);
+});

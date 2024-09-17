@@ -303,7 +303,8 @@ export const SuggestionContainerHeight: Story = {
     </syn-combobox>
     <style>
       #max-height::part(listbox) {
-        max-height: 112px;
+        /* if there is not enough space for the desired height, use the available calculated height */
+        max-height: min(var(--auto-size-available-height), 112px);
       }
     </style>
   `,

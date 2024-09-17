@@ -404,6 +404,6 @@ form .syn-fieldset:last-of-type {
 }
 
 #input-nationality::part(listbox) {
-  max-height: 300px;
+  max-height: min(var(--auto-size-available-height), 300px);
 }
 </style>

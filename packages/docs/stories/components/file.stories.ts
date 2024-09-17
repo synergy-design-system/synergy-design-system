@@ -310,5 +310,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Sizes,
   Droparea,
   Directory,
-}, 350);
+}, 750);
 /* eslint-enable sort-keys */

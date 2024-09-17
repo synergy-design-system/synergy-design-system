@@ -388,6 +388,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     let { files } = e.dataTransfer;
 
     if (this.webkitdirectory) {
+      // in case of a folder drop, overwrite the files with the folder content
       const items = e.dataTransfer?.items;
       files = await this.handleTransferItems(items);
     }

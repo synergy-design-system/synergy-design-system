@@ -52,9 +52,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/side-nav/side-nav.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynSideNav,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynSideNav } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSideNav>();
@@ -81,7 +83,7 @@ With `open` will show the whole side-nav with an overlay for touch devices
 or without an overlay for non-touch devices.
 Without `open`, the side-nav will only show the prefix of nav-item's.
  */
-  'open'?: SynSideNav['open'];
+  open?: SynSideNav['open'];
 
   /**
 * Use the rail attribute to only show the prefix of navigation items in closed state.
@@ -91,45 +93,45 @@ On touch devices the navigation opens on click and shows an overlay.
 Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
 If this is not the case you should use a burger navigation.
  */
-  'rail'?: SynSideNav['rail'];
+  rail?: SynSideNav['rail'];
 
   /**
 * By default, the side-nav traps the focus if in non-rail mode and open.
 To disable the focus trapping, set this attribute.
  */
-  'noFocusTrapping'?: SynSideNav['noFocusTrapping'];
+  noFocusTrapping?: SynSideNav['noFocusTrapping'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the side-nav opens.
- */
+   * Emitted when the side-nav opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the side-nav opens and all animations are complete.
- */
+   * Emitted after the side-nav opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the side-nav closes.
- */
+   * Emitted when the side-nav closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the side-nav closes and all animations are complete.
- */
+   * Emitted after the side-nav closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 }>();
 </script>
@@ -143,14 +145,12 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-side-nav
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
-
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-side-nav>
 </template>

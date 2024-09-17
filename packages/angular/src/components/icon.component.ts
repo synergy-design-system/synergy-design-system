@@ -6,12 +6,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynErrorEvent, SynIcon, SynLoadEvent } from '@synergy-design-system/components';
+import type { SynIcon } from '@synergy-design-system/components';
+import type { SynLoadEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/icon/icon.js';
 
 /**
@@ -33,25 +35,27 @@ import '@synergy-design-system/components/components/icon/icon.js';
 })
 export class SynIconComponent {
   public nativeElement: SynIcon;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-load', (e: SynLoadEvent) => { this.synLoadEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-load', (e: SynLoadEvent) => {
+      this.synLoadEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => {
+      this.synErrorEvent.emit(e);
+    });
   }
 
   /**
-* The name of the icon to draw.
-* Available names depend on the icon library being used.
- */
+   * The name of the icon to draw.
+   * Available names depend on the icon library being used.
+   */
   @Input()
   set name(v: SynIcon['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
@@ -65,7 +69,6 @@ can result in XSS attacks.
   set src(v: SynIcon['src']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
-
   get src() {
     return this.nativeElement.src;
   }
@@ -79,33 +82,31 @@ ignored by assistive devices.
   set label(v: SynIcon['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The name of a registered custom icon library.
- */
+   * The name of a registered custom icon library.
+   */
   @Input()
   set library(v: SynIcon['library']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
-
   get library() {
     return this.nativeElement.library;
   }
 
   /**
-* Emitted when the icon has loaded.
-* When using `spriteSheet: true` this will not emit.
- */
+   * Emitted when the icon has loaded.
+   * When using `spriteSheet: true` this will not emit.
+   */
   @Output() synLoadEvent = new EventEmitter<SynLoadEvent>();
 
   /**
-* Emitted when the icon fails to load due to an error.
-* When using `spriteSheet: true` this will not emit.
- */
+   * Emitted when the icon fails to load due to an error.
+   * When using `spriteSheet: true` this will not emit.
+   */
   @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
 }
 

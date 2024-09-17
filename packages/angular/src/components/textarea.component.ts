@@ -6,14 +6,17 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynTextarea,
-} from '@synergy-design-system/components';
+import type { SynTextarea } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/textarea/textarea.js';
 
 /**
@@ -45,146 +48,145 @@ import '@synergy-design-system/components/components/textarea/textarea.js';
 })
 export class SynTextareaComponent {
   public nativeElement: SynTextarea;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
   }
 
   @Input()
   set title(v: SynTextarea['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-
   get title() {
     return this.nativeElement.title;
   }
 
   /**
-* The name of the textarea, submitted as a name/value pair with form data.
- */
+   * The name of the textarea, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynTextarea['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The current value of the textarea, submitted as a name/value pair with form data.
- */
+   * The current value of the textarea, submitted as a name/value pair with form data.
+   */
   @Input()
   set value(v: SynTextarea['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The textarea's size.
- */
+   * The textarea's size.
+   */
   @Input()
   set size(v: SynTextarea['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* The textarea's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The textarea's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynTextarea['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
 
   /**
-* The textarea's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The textarea's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynTextarea['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* Placeholder text to show as a hint when the input is empty.
- */
+   * Placeholder text to show as a hint when the input is empty.
+   */
   @Input()
   set placeholder(v: SynTextarea['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-
   get placeholder() {
     return this.nativeElement.placeholder;
   }
 
   /**
-* The number of rows to display by default.
- */
+   * The number of rows to display by default.
+   */
   @Input()
   set rows(v: SynTextarea['rows']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.rows = v));
   }
-
   get rows() {
     return this.nativeElement.rows;
   }
 
   /**
-* Controls how the textarea can be resized.
- */
+   * Controls how the textarea can be resized.
+   */
   @Input()
   set resize(v: SynTextarea['resize']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.resize = v));
   }
-
   get resize() {
     return this.nativeElement.resize;
   }
 
   /**
-* Disables the textarea.
- */
+   * Disables the textarea.
+   */
   @Input()
   set disabled(v: SynTextarea['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Makes the textarea readonly.
- */
+   * Makes the textarea readonly.
+   */
   @Input()
   set readonly(v: SynTextarea['readonly']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.readonly = v));
   }
-
   get readonly() {
     return this.nativeElement.readonly;
   }
@@ -200,67 +202,63 @@ the same document or shadow root for this to work.
   set form(v: SynTextarea['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Makes the textarea a required field.
- */
+   * Makes the textarea a required field.
+   */
   @Input()
   set required(v: SynTextarea['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
 
   /**
-* The minimum length of input that will be considered valid.
- */
+   * The minimum length of input that will be considered valid.
+   */
   @Input()
   set minlength(v: SynTextarea['minlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.minlength = v));
   }
-
   get minlength() {
     return this.nativeElement.minlength;
   }
 
   /**
-* The maximum length of input that will be considered valid.
- */
+   * The maximum length of input that will be considered valid.
+   */
   @Input()
   set maxlength(v: SynTextarea['maxlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
   }
-
   get maxlength() {
     return this.nativeElement.maxlength;
   }
 
   /**
-* Controls whether and how text input is automatically capitalized as it is entered by the user.
- */
+   * Controls whether and how text input is automatically capitalized as it is entered by the user.
+   */
   @Input()
   set autocapitalize(v: SynTextarea['autocapitalize']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocapitalize = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.autocapitalize = v),
+    );
   }
-
   get autocapitalize() {
     return this.nativeElement.autocapitalize;
   }
 
   /**
-* Indicates whether the browser's autocorrect feature is on or off.
- */
+   * Indicates whether the browser's autocorrect feature is on or off.
+   */
   @Input()
   set autocorrect(v: SynTextarea['autocorrect']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
   }
-
   get autocorrect() {
     return this.nativeElement.autocorrect;
   }
@@ -274,43 +272,39 @@ the same document or shadow root for this to work.
   set autocomplete(v: SynTextarea['autocomplete']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocomplete = v));
   }
-
   get autocomplete() {
     return this.nativeElement.autocomplete;
   }
 
   /**
-* Indicates that the input should receive focus on page load.
- */
+   * Indicates that the input should receive focus on page load.
+   */
   @Input()
   set autofocus(v: SynTextarea['autofocus']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
   }
-
   get autofocus() {
     return this.nativeElement.autofocus;
   }
 
   /**
-* Used to customize the label or icon of the Enter key on virtual keyboards.
- */
+   * Used to customize the label or icon of the Enter key on virtual keyboards.
+   */
   @Input()
   set enterkeyhint(v: SynTextarea['enterkeyhint']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.enterkeyhint = v));
   }
-
   get enterkeyhint() {
     return this.nativeElement.enterkeyhint;
   }
 
   /**
-* Enables spell checking on the textarea.
- */
+   * Enables spell checking on the textarea.
+   */
   @Input()
   set spellcheck(v: SynTextarea['spellcheck']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.spellcheck = v));
   }
-
   get spellcheck() {
     return this.nativeElement.spellcheck;
   }
@@ -323,39 +317,38 @@ keyboard on supportive devices.
   set inputmode(v: SynTextarea['inputmode']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.inputmode = v));
   }
-
   get inputmode() {
     return this.nativeElement.inputmode;
   }
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynTextarea['value']>();
 }
 

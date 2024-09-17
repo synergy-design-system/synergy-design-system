@@ -33,9 +33,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/alert/alert.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynAlert, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynAlert } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynAlert>();
@@ -51,17 +53,17 @@ const props = defineProps<{
 * You can toggle this attribute to show and hide the alert, or you can
 use the `show()` and `hide()` methods and this attribute will reflect the alert's open state.
  */
-  'open'?: SynAlert['open'];
+  open?: SynAlert['open'];
 
   /**
-* Enables a close button that allows the user to dismiss the alert.
- */
-  'closable'?: SynAlert['closable'];
+   * Enables a close button that allows the user to dismiss the alert.
+   */
+  closable?: SynAlert['closable'];
 
   /**
-* The alert's theme variant.
- */
-  'variant'?: SynAlert['variant'];
+   * The alert's theme variant.
+   */
+  variant?: SynAlert['variant'];
 
   /**
 * The length of time, in milliseconds, the alert will show before closing itself.
@@ -71,39 +73,39 @@ the alert before it closes (e.g.
 * Defaults to `Infinity`, meaning
 the alert will not close on its own.
  */
-  'duration'?: SynAlert['duration'];
+  duration?: SynAlert['duration'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the alert opens.
- */
+   * Emitted when the alert opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the alert opens and all animations are complete.
- */
+   * Emitted after the alert opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the alert closes.
- */
+   * Emitted when the alert closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the alert closes and all animations are complete.
- */
+   * Emitted after the alert closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 }>();
 </script>
@@ -117,14 +119,12 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-alert
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
-
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-alert>
 </template>

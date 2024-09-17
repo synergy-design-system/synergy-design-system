@@ -37,27 +37,22 @@ const props = defineProps<{
 * This will not be shown on the screen, but it will be announced by
 screen readers and other assistive devices to provide more context for users.
  */
-  'label'?: SynBreadcrumb['label'];
+  label?: SynBreadcrumb['label'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-breadcrumb
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-breadcrumb v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-breadcrumb>
 </template>

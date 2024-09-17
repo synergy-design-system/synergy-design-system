@@ -31,9 +31,7 @@ Component.define('syn-progress-ring');
 export const SynProgressRing = createComponent({
   displayName: 'SynProgressRing',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

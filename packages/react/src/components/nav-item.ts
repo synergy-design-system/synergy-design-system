@@ -8,9 +8,10 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynBlurEvent, SynFocusEvent, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-nav-item';
 Component.define('syn-nav-item');

@@ -35,9 +35,7 @@ Component.define('syn-card');
 export const SynCard = createComponent({
   displayName: 'SynCard',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

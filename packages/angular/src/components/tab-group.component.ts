@@ -6,12 +6,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynTabGroup, SynTabHideEvent, SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabGroup } from '@synergy-design-system/components';
+import type { SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
 
 /**
@@ -50,24 +52,32 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
 })
 export class SynTabGroupComponent {
   public nativeElement: SynTabGroup;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-tab-show', (e: SynTabShowEvent) => { this.synTabShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-tab-hide', (e: SynTabHideEvent) => { this.synTabHideEvent.emit(e); });
+    this.nativeElement.addEventListener(
+      'syn-tab-show',
+      (e: SynTabShowEvent) => {
+        this.synTabShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-tab-hide',
+      (e: SynTabHideEvent) => {
+        this.synTabHideEvent.emit(e);
+      },
+    );
   }
 
   /**
-* The placement of the tabs.
- */
+   * The placement of the tabs.
+   */
   @Input()
   set placement(v: SynTabGroup['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-
   get placement() {
     return this.nativeElement.placement;
   }
@@ -81,58 +91,56 @@ manual, the tab will receive focus but will not show until the user presses spac
   set activation(v: SynTabGroup['activation']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.activation = v));
   }
-
   get activation() {
     return this.nativeElement.activation;
   }
 
   /**
-* Disables the scroll arrows that appear when tabs overflow.
- */
+   * Disables the scroll arrows that appear when tabs overflow.
+   */
   @Input()
   set noScrollControls(v: SynTabGroup['noScrollControls']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.noScrollControls = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.noScrollControls = v),
+    );
   }
-
   get noScrollControls() {
     return this.nativeElement.noScrollControls;
   }
 
   /**
-* Draws the tab group as a contained element.
- */
+   * Draws the tab group as a contained element.
+   */
   @Input()
   set contained(v: SynTabGroup['contained']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
   }
-
   get contained() {
     return this.nativeElement.contained;
   }
 
   /**
-* Draws the tab group with edges instead of roundings.
-* Takes only effect if used with the 'contained' property
- */
+   * Draws the tab group with edges instead of roundings.
+   * Takes only effect if used with the 'contained' property
+   */
   @Input()
   set sharp(v: SynTabGroup['sharp']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
   }
-
   get sharp() {
     return this.nativeElement.sharp;
   }
 
   /**
-* Emitted when a tab is shown.
-* The payload of the event returns the "panel" attribute of the shown tab.
- */
+   * Emitted when a tab is shown.
+   * The payload of the event returns the "panel" attribute of the shown tab.
+   */
   @Output() synTabShowEvent = new EventEmitter<SynTabShowEvent>();
 
   /**
-* Emitted when a tab is hidden.
-* The payload of the event returns the "panel" attribute of the hidden tab.
- */
+   * Emitted when a tab is hidden.
+   * The payload of the event returns the "panel" attribute of the hidden tab.
+   */
   @Output() synTabHideEvent = new EventEmitter<SynTabHideEvent>();
 }
 

@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynButtonGroup } from '@synergy-design-system/components';
 
@@ -32,7 +32,6 @@ import '@synergy-design-system/components/components/button-group/button-group.j
 })
 export class SynButtonGroupComponent {
   public nativeElement: SynButtonGroup;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -49,7 +48,6 @@ devices when interacting with the control and is strongly recommended.
   set label(v: SynButtonGroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }

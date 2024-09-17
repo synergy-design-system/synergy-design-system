@@ -58,9 +58,13 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/dialog/dialog.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDialog, SynHideEvent, SynInitialFocusEvent, SynRequestCloseEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInitialFocusEvent } from '@synergy-design-system/components';
+import type { SynRequestCloseEvent } from '@synergy-design-system/components';
+import type { SynDialog } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDialog>();
@@ -76,7 +80,7 @@ const props = defineProps<{
 * You can toggle this attribute to show and hide the dialog, or you can
 use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
  */
-  'open'?: SynDialog['open'];
+  open?: SynDialog['open'];
 
   /**
 * The dialog's label as displayed in the header.
@@ -84,59 +88,59 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
 `no-header`, as it is required for proper accessibility.
 * If you need to display HTML, use the `label` slot instead.
  */
-  'label'?: SynDialog['label'];
+  label?: SynDialog['label'];
 
   /**
 * Disables the header.
 * This will also remove the default close button, so please ensure you provide an easy,
 accessible way for users to dismiss the dialog.
  */
-  'noHeader'?: SynDialog['noHeader'];
+  noHeader?: SynDialog['noHeader'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the dialog opens.
- */
+   * Emitted when the dialog opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the dialog opens and all animations are complete.
- */
+   * Emitted after the dialog opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the dialog closes.
- */
+   * Emitted when the dialog closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the dialog closes and all animations are complete.
- */
+   * Emitted after the dialog closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 
   /**
-* Emitted when the dialog opens and is ready to receive focus.
-* Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- */
+   * Emitted when the dialog opens and is ready to receive focus.
+   * Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+   */
   'syn-initial-focus': [e: SynInitialFocusEvent];
 
   /**
-* Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape.
-* Calling `event.preventDefault()` will keep the dialog open.
-* Avoid using this unless closing the dialog will result in destructive behavior such as data loss.
- */
+   * Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape.
+   * Calling `event.preventDefault()` will keep the dialog open.
+   * Avoid using this unless closing the dialog will result in destructive behavior such as data loss.
+   */
   'syn-request-close': [e: SynRequestCloseEvent];
 }>();
 </script>
@@ -152,16 +156,14 @@ export type { SynRequestCloseEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-dialog
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-
     @syn-initial-focus="$emit('syn-initial-focus', $event)"
     @syn-request-close="$emit('syn-request-close', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-dialog>
 </template>

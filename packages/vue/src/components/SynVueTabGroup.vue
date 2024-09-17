@@ -37,7 +37,9 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
 
-import type { SynTabGroup, SynTabHideEvent, SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabHideEvent } from '@synergy-design-system/components';
+import type { SynTabGroup } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTabGroup>();
@@ -49,56 +51,56 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The placement of the tabs.
- */
-  'placement'?: SynTabGroup['placement'];
+   * The placement of the tabs.
+   */
+  placement?: SynTabGroup['placement'];
 
   /**
 * When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel.
 * When set to
 manual, the tab will receive focus but will not show until the user presses spacebar or enter.
  */
-  'activation'?: SynTabGroup['activation'];
+  activation?: SynTabGroup['activation'];
 
   /**
-* Disables the scroll arrows that appear when tabs overflow.
- */
-  'noScrollControls'?: SynTabGroup['noScrollControls'];
+   * Disables the scroll arrows that appear when tabs overflow.
+   */
+  noScrollControls?: SynTabGroup['noScrollControls'];
 
   /**
-* Draws the tab group as a contained element.
- */
-  'contained'?: SynTabGroup['contained'];
+   * Draws the tab group as a contained element.
+   */
+  contained?: SynTabGroup['contained'];
 
   /**
-* Draws the tab group with edges instead of roundings.
-* Takes only effect if used with the 'contained' property
- */
-  'sharp'?: SynTabGroup['sharp'];
+   * Draws the tab group with edges instead of roundings.
+   * Takes only effect if used with the 'contained' property
+   */
+  sharp?: SynTabGroup['sharp'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when a tab is shown.
-* The payload of the event returns the "panel" attribute of the shown tab.
- */
+   * Emitted when a tab is shown.
+   * The payload of the event returns the "panel" attribute of the shown tab.
+   */
   'syn-tab-show': [e: SynTabShowEvent];
 
   /**
-* Emitted when a tab is hidden.
-* The payload of the event returns the "panel" attribute of the hidden tab.
- */
+   * Emitted when a tab is hidden.
+   * The payload of the event returns the "panel" attribute of the hidden tab.
+   */
   'syn-tab-hide': [e: SynTabHideEvent];
 }>();
 </script>
@@ -110,12 +112,10 @@ export type { SynTabHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-tab-group
-    v-bind="visibleProps"
-    ref="nativeElement"
-
     @syn-tab-show="$emit('syn-tab-show', $event)"
     @syn-tab-hide="$emit('syn-tab-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-tab-group>
 </template>

@@ -6,12 +6,13 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynCloseEvent, SynTab } from '@synergy-design-system/components';
+import type { SynTab } from '@synergy-design-system/components';
+import type { SynCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab/tab.js';
 
 /**
@@ -37,67 +38,64 @@ import '@synergy-design-system/components/components/tab/tab.js';
 })
 export class SynTabComponent {
   public nativeElement: SynTab;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-close', (e: SynCloseEvent) => { this.synCloseEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-close', (e: SynCloseEvent) => {
+      this.synCloseEvent.emit(e);
+    });
   }
 
   /**
-* The name of the tab panel this tab is associated with.
-* The panel must be located in the same tab group.
- */
+   * The name of the tab panel this tab is associated with.
+   * The panel must be located in the same tab group.
+   */
   @Input()
   set panel(v: SynTab['panel']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.panel = v));
   }
-
   get panel() {
     return this.nativeElement.panel;
   }
 
   /**
-* Draws the tab in an active state.
- */
+   * Draws the tab in an active state.
+   */
   @Input()
   set active(v: SynTab['active']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.active = v));
   }
-
   get active() {
     return this.nativeElement.active;
   }
 
   /**
-* Makes the tab closable and shows a close button.
- */
+   * Makes the tab closable and shows a close button.
+   */
   @Input()
   set closable(v: SynTab['closable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.closable = v));
   }
-
   get closable() {
     return this.nativeElement.closable;
   }
 
   /**
-* Disables the tab and prevents selection.
- */
+   * Disables the tab and prevents selection.
+   */
   @Input()
   set disabled(v: SynTab['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Emitted when the tab is closable and the close button is activated.
- */
+   * Emitted when the tab is closable and the close button is activated.
+   */
   @Output() synCloseEvent = new EventEmitter<SynCloseEvent>();
 }
 

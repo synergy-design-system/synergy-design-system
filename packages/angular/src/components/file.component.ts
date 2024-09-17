@@ -6,14 +6,17 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBlurEvent, SynChangeEvent, SynErrorEvent, SynFile, SynFocusEvent, SynInputEvent,
-} from '@synergy-design-system/components';
+import type { SynFile } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/file/file.js';
 
 /**
@@ -69,17 +72,27 @@ import '@synergy-design-system/components/components/file/file.js';
 })
 export class SynFileComponent {
   public nativeElement: SynFile;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.filesChange.emit(this.files); });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => {
+      this.synErrorEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.filesChange.emit(this.files);
+    });
   }
 
   /**
@@ -92,19 +105,17 @@ via its length property.
   set files(v: SynFile['files']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.files = v));
   }
-
   get files() {
     return this.nativeElement.files;
   }
 
   /**
-* The name of the file control, submitted as a name/value pair with form data.
- */
+   * The name of the file control, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynFile['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
@@ -120,32 +131,29 @@ Beware that the only valid value when setting a file control is an empty string!
   set value(v: SynFile['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The file control's size.
- */
+   * The file control's size.
+   */
   @Input()
   set size(v: SynFile['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* The file control's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The file control's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynFile['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
@@ -158,31 +166,28 @@ If you need to display HTML, use the `help-text` slot instead.
   set helpText(v: SynFile['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
 
   /**
-* Disables the file control.
- */
+   * Disables the file control.
+   */
   @Input()
   set disabled(v: SynFile['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Draw the file control as a drop area
- */
+   * Draw the file control as a drop area
+   */
   @Input()
   set droparea(v: SynFile['droparea']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.droparea = v));
   }
-
   get droparea() {
     return this.nativeElement.droparea;
   }
@@ -195,7 +200,6 @@ If you need to display HTML, use the `help-text` slot instead.
   set accept(v: SynFile['accept']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.accept = v));
   }
-
   get accept() {
     return this.nativeElement.accept;
   }
@@ -210,7 +214,6 @@ Works only when not using a droparea!
   set capture(v: SynFile['capture']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.capture = v));
   }
-
   get capture() {
     return this.nativeElement.capture;
   }
@@ -223,7 +226,6 @@ Works only when not using a droparea!
   set multiple(v: SynFile['multiple']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.multiple = v));
   }
-
   get multiple() {
     return this.nativeElement.multiple;
   }
@@ -237,9 +239,10 @@ Note: This is a non-standard attribute but is supported in the major browsers.
  */
   @Input()
   set webkitdirectory(v: SynFile['webkitdirectory']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.webkitdirectory = v));
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.webkitdirectory = v),
+    );
   }
-
   get webkitdirectory() {
     return this.nativeElement.webkitdirectory;
   }
@@ -255,63 +258,60 @@ or shadow root for this to work.
   set form(v: SynFile['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* Makes the input a required field.
- */
+   * Makes the input a required field.
+   */
   @Input()
   set required(v: SynFile['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
 
   /**
-* Suppress the value from being displayed in the file control
- */
+   * Suppress the value from being displayed in the file control
+   */
   @Input()
   set hideValue(v: SynFile['hideValue']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.hideValue = v));
   }
-
   get hideValue() {
     return this.nativeElement.hideValue;
   }
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
- */
+   * Emitted when multiple files are selected via drag and drop, without the `multiple` property being set.
+   */
   @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() filesChange = new EventEmitter<SynFile['files']>();
 }
 

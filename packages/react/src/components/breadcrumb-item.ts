@@ -31,9 +31,7 @@ Component.define('syn-breadcrumb-item');
 export const SynBreadcrumbItem = createComponent({
   displayName: 'SynBreadcrumbItem',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

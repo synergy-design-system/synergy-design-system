@@ -6,12 +6,13 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynRemoveEvent, SynTag } from '@synergy-design-system/components';
+import type { SynTag } from '@synergy-design-system/components';
+import type { SynRemoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tag/tag.js';
 
 /**
@@ -38,42 +39,41 @@ import '@synergy-design-system/components/components/tag/tag.js';
 })
 export class SynTagComponent {
   public nativeElement: SynTag;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-remove', (e: SynRemoveEvent) => { this.synRemoveEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-remove', (e: SynRemoveEvent) => {
+      this.synRemoveEvent.emit(e);
+    });
   }
 
   /**
-* The tag's size.
- */
+   * The tag's size.
+   */
   @Input()
   set size(v: SynTag['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Makes the tag removable and shows a remove button.
- */
+   * Makes the tag removable and shows a remove button.
+   */
   @Input()
   set removable(v: SynTag['removable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.removable = v));
   }
-
   get removable() {
     return this.nativeElement.removable;
   }
 
   /**
-* Emitted when the remove button is activated.
- */
+   * Emitted when the remove button is activated.
+   */
   @Output() synRemoveEvent = new EventEmitter<SynRemoveEvent>();
 }
 

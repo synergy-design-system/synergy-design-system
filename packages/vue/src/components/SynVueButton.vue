@@ -32,9 +32,10 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/button/button.js';
 
-import type {
-  SynBlurEvent, SynButton, SynFocusEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynButton } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynButton>();
@@ -45,33 +46,33 @@ defineExpose({
 
 // Map attributes
 const props = defineProps<{
-  'title'?: SynButton['title'];
+  title?: SynButton['title'];
 
   /**
-* The button's theme variant.
- */
-  'variant'?: SynButton['variant'];
+   * The button's theme variant.
+   */
+  variant?: SynButton['variant'];
 
   /**
-* The button's size.
- */
-  'size'?: SynButton['size'];
+   * The button's size.
+   */
+  size?: SynButton['size'];
 
   /**
-* Draws the button with a caret.
-* Used to indicate that the button triggers a dropdown menu or similar behavior.
- */
-  'caret'?: SynButton['caret'];
+   * Draws the button with a caret.
+   * Used to indicate that the button triggers a dropdown menu or similar behavior.
+   */
+  caret?: SynButton['caret'];
 
   /**
-* Disables the button.
- */
-  'disabled'?: SynButton['disabled'];
+   * Disables the button.
+   */
+  disabled?: SynButton['disabled'];
 
   /**
-* Draws the button in a loading state.
- */
-  'loading'?: SynButton['loading'];
+   * Draws the button in a loading state.
+   */
+  loading?: SynButton['loading'];
 
   /**
 * The type of button.
@@ -79,31 +80,31 @@ const props = defineProps<{
 `<button>` elements behave.
 * When the type is `submit`, the button will submit the surrounding form.
  */
-  'type'?: SynButton['type'];
+  type?: SynButton['type'];
 
   /**
 * The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
 This attribute is ignored when `href` is present.
  */
-  'name'?: SynButton['name'];
+  name?: SynButton['name'];
 
   /**
 * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
 button is the submitter.
 * This attribute is ignored when `href` is present.
  */
-  'value'?: SynButton['value'];
+  value?: SynButton['value'];
 
   /**
-* When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
- */
-  'href'?: SynButton['href'];
+   * When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.
+   */
+  href?: SynButton['href'];
 
   /**
-* Tells the browser where to open the link.
-* Only used when `href` is present.
- */
-  'target'?: SynButton['target'];
+   * Tells the browser where to open the link.
+   * Only used when `href` is present.
+   */
+  target?: SynButton['target'];
 
   /**
 * When using `href`, this attribute will map to the underlying link's `rel` attribute.
@@ -114,13 +115,13 @@ specific tab/window, this will prevent that from working correctly.
 * You can remove or change the default value by
 setting the attribute to an empty string or a value of your choice, respectively.
  */
-  'rel'?: SynButton['rel'];
+  rel?: SynButton['rel'];
 
   /**
-* Tells the browser to download the linked file as this filename.
-* Only used when `href` is present.
- */
-  'download'?: SynButton['download'];
+   * Tells the browser to download the linked file as this filename.
+   * Only used when `href` is present.
+   */
+  download?: SynButton['download'];
 
   /**
 * The "form owner" to associate the button with.
@@ -128,59 +129,59 @@ setting the attribute to an empty string or a value of your choice, respectively
 * The
 value of this attribute must be an id of a form in the same document or shadow root as the button.
  */
-  'form'?: SynButton['form'];
+  form?: SynButton['form'];
 
   /**
-* Used to override the form owner's `action` attribute.
- */
-  'formAction'?: SynButton['formAction'];
+   * Used to override the form owner's `action` attribute.
+   */
+  formAction?: SynButton['formAction'];
 
   /**
-* Used to override the form owner's `enctype` attribute.
- */
-  'formEnctype'?: SynButton['formEnctype'];
+   * Used to override the form owner's `enctype` attribute.
+   */
+  formEnctype?: SynButton['formEnctype'];
 
   /**
-* Used to override the form owner's `method` attribute.
- */
-  'formMethod'?: SynButton['formMethod'];
+   * Used to override the form owner's `method` attribute.
+   */
+  formMethod?: SynButton['formMethod'];
 
   /**
-* Used to override the form owner's `novalidate` attribute.
- */
-  'formNoValidate'?: SynButton['formNoValidate'];
+   * Used to override the form owner's `novalidate` attribute.
+   */
+  formNoValidate?: SynButton['formNoValidate'];
 
   /**
-* Used to override the form owner's `target` attribute.
- */
-  'formTarget'?: SynButton['formTarget'];
+   * Used to override the form owner's `target` attribute.
+   */
+  formTarget?: SynButton['formTarget'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the button loses focus.
- */
+   * Emitted when the button loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the button gains focus.
- */
+   * Emitted when the button gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 }>();
 </script>
@@ -193,13 +194,11 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-button
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-blur="$emit('syn-blur', $event)"
-
     @syn-focus="$emit('syn-focus', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-button>
 </template>

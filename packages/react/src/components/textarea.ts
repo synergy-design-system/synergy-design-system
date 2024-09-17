@@ -8,9 +8,11 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/textarea/textarea.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-textarea';
 Component.define('syn-textarea');

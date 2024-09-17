@@ -35,9 +35,7 @@ Component.define('syn-optgroup');
 export const SynOptgroup = createComponent({
   displayName: 'SynOptgroup',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

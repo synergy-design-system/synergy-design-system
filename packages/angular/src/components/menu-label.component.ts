@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynMenuLabel } from '@synergy-design-system/components';
 
@@ -38,7 +38,6 @@ import '@synergy-design-system/components/components/menu-label/menu-label.js';
 })
 export class SynMenuLabelComponent {
   public nativeElement: SynMenuLabel;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {

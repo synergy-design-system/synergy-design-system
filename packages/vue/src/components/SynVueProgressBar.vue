@@ -38,39 +38,34 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The current progress as a percentage, 0 to 100.
- */
-  'value'?: SynProgressBar['value'];
+   * The current progress as a percentage, 0 to 100.
+   */
+  value?: SynProgressBar['value'];
 
   /**
-* When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
- */
-  'indeterminate'?: SynProgressBar['indeterminate'];
+   * When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
+   */
+  indeterminate?: SynProgressBar['indeterminate'];
 
   /**
-* A custom label for assistive devices.
- */
-  'label'?: SynProgressBar['label'];
+   * A custom label for assistive devices.
+   */
+  label?: SynProgressBar['label'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-progress-bar
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-progress-bar v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-progress-bar>
 </template>

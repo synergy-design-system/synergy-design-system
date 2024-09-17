@@ -27,7 +27,9 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/radio/radio.js';
 
-import type { SynBlurEvent, SynFocusEvent, SynRadio } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynRadio } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadio>();
@@ -39,44 +41,44 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The radio's value.
-* When selected, the radio group will receive this value.
- */
-  'value'?: SynRadio['value'];
+   * The radio's value.
+   * When selected, the radio group will receive this value.
+   */
+  value?: SynRadio['value'];
 
   /**
 * The radio's size.
 * When used inside a radio group, the size will be determined by the radio group's size so this
 attribute can typically be omitted.
  */
-  'size'?: SynRadio['size'];
+  size?: SynRadio['size'];
 
   /**
-* Disables the radio.
- */
-  'disabled'?: SynRadio['disabled'];
+   * Disables the radio.
+   */
+  disabled?: SynRadio['disabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 }>();
 </script>
@@ -88,12 +90,10 @@ export type { SynFocusEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-radio
-    v-bind="visibleProps"
-    ref="nativeElement"
-
     @syn-blur="$emit('syn-blur', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-radio>
 </template>

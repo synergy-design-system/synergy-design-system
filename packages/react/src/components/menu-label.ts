@@ -29,9 +29,7 @@ Component.define('syn-menu-label');
 export const SynMenuLabel = createComponent({
   displayName: 'SynMenuLabel',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

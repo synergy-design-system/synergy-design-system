@@ -45,32 +45,27 @@ from other options in the same group.
 * Values may not contain spaces, as spaces are used as delimiters when listing
 multiple values.
  */
-  'value'?: SynOption['value'];
+  value?: SynOption['value'];
 
   /**
-* Draws the option in a disabled state, preventing selection.
- */
-  'disabled'?: SynOption['disabled'];
+   * Draws the option in a disabled state, preventing selection.
+   */
+  disabled?: SynOption['disabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-option
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-option v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-option>
 </template>

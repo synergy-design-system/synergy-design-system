@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynProgressRing } from '@synergy-design-system/components';
 
@@ -40,7 +40,6 @@ import '@synergy-design-system/components/components/progress-ring/progress-ring
 })
 export class SynProgressRingComponent {
   public nativeElement: SynProgressRing;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -49,25 +48,23 @@ export class SynProgressRingComponent {
   }
 
   /**
-* The current progress as a percentage, 0 to 100.
- */
+   * The current progress as a percentage, 0 to 100.
+   */
   @Input()
   set value(v: SynProgressRing['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* A custom label for assistive devices.
- */
+   * A custom label for assistive devices.
+   */
   @Input()
   set label(v: SynProgressRing['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }

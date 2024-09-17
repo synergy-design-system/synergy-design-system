@@ -5,7 +5,6 @@ import type {
   SynCheckbox as NativeCheckbox,
   SynFile as NativeFile,
   SynChangeEvent,
-  SynCombobox as SynComboboxNativeElement,
   SynRange as SynRangeNativeElement,
 } from '@synergy-design-system/components';
 import {
@@ -65,15 +64,12 @@ const formatter = new Intl.NumberFormat('de-DE', {
 
 export const DemoForm = () => {
   const donationsRef = useRef<SynRangeNativeElement>(null);
-  const nationalityRef = useRef<SynComboboxNativeElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitary custom events :(
   useEffect(() => {
-    nationalityRef.current!.getOption = highlightOptionRenderer;
-
     // Add a custom formatter for the donation field
     donationsRef.current!.tooltipFormatter = value => formatter.format(value);
 
@@ -215,7 +211,7 @@ export const DemoForm = () => {
           required
           value={formData.nationality}
           placeholder='Please choose your nationality'
-          ref={nationalityRef}
+          getOption={highlightOptionRenderer}
         >
           {nationalities.map(n => (
             <SynOption

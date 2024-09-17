@@ -85,7 +85,7 @@
       label="Nationality"
       name="nationality"
       [required]="true"
-      #nationalityRef
+      [getOption]="highlightOptionRenderer"
     >
       <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
     </syn-combobox>

@@ -1,4 +1,4 @@
-import type { SynChangeEvent, SynRange, SynCombobox } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -37,11 +37,11 @@ export class DemoForm {
 
   @ViewChild('donationRef') donationRef!: ElementRef<SynRange>;
 
-  @ViewChild('nationalityRef') nationalityRef!: ElementRef<SynCombobox>;
-
   formData!: FormGroup;
 
   nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+
+  highlightOptionRenderer = highlightOptionRenderer;
 
   private _initFormData() {
     this.formData = this.fb.group({
@@ -61,7 +61,6 @@ export class DemoForm {
     });
 
     this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
-    this.nationalityRef.nativeElement!.getOption = highlightOptionRenderer;
   }
 
   reset() {

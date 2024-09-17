@@ -7,6 +7,7 @@ import {
   type SynNavItem,
   type SynRange,
   type SynSwitch,
+  highlightOptionRenderer,
 } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
@@ -110,17 +111,7 @@ const initApp = async () => {
 
 const initCombobox = () => {
   const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
-  nationalitiesEl.getOption = (option, query) => {
-    if (query) {
-      const mark = document.createElement('mark');
-      const optionLabel = option.getTextLabel();
-      const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
-
-      mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
-      option.innerHTML = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
-    }
-    return option;
-  };
+  nationalitiesEl.getOption = highlightOptionRenderer;
   nationalities.forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;

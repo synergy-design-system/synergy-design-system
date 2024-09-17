@@ -1,4 +1,4 @@
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -26,6 +26,7 @@ import {
   filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot, normalizeString,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
+import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
@@ -193,9 +194,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * is the query string, which is typed into the combobox.
    * The function should return either a Lit TemplateResult or a string containing trusted HTML
    * to render in the shown list of filtered options.
+   * If the query string should be highlighted use the `highlightOptionRenderer` function.
    */
-  // eslint-disable-next-line max-len, class-methods-use-this
-  @property() getOption: (option: SynOption, queryString: string) => TemplateResult | string | HTMLElement = (option) => option;
+  @property() getOption: OptionRenderer = defaultOptionRenderer;
 
   /**
    * A function used to filter options in the combobox component.

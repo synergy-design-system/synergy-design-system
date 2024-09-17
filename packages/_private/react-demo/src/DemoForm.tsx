@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import { serialize } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import type {
   SynCheckbox as NativeCheckbox,
   SynFile as NativeFile,
@@ -72,18 +72,7 @@ export const DemoForm = () => {
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitary custom events :(
   useEffect(() => {
-    nationalityRef.current!.getOption = (option, queryString) => {
-      if (queryString) {
-        const mark = document.createElement('mark');
-        const optionLabel = option.getTextLabel();
-        const queryIndex = optionLabel.toLowerCase().indexOf(queryString.toLowerCase());
-
-        mark.textContent = optionLabel.slice(queryIndex, queryIndex + queryString.length);
-        // eslint-disable-next-line no-param-reassign
-        option.innerHTML = optionLabel.replace(new RegExp(queryString, 'i'), mark.outerHTML);
-      }
-      return option;
-    };
+    nationalityRef.current!.getOption = highlightOptionRenderer;
 
     // Add a custom formatter for the donation field
     donationsRef.current!.tooltipFormatter = value => formatter.format(value);

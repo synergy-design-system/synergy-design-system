@@ -7,6 +7,7 @@ import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { userEvent } from '@storybook/test';
+import { highlightOptionRenderer } from '../../../components/src/components/combobox/option-renderer.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -202,27 +203,26 @@ export const HighlightQuery: Story = {
     await combobox.updateComplete;
     await combobox.show();
   },
-  render: () => html`
+  render: () => {
+    const optionRenderer = highlightOptionRenderer;
+    return html`
     <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
      ${createColorOptionsHtml()}
     </syn-combobox>
     <script type="module">
+      // the highlight option renderer utility function can be imported via:
+      // import { highlightOptionRenderer } from '@synergy-design-system/components';
+
+      // preview-ignore:start
+      const highlightOptionRenderer = ${optionRenderer};
+      // preview-ignore:end
+    
       const comboboxes = document.querySelectorAll('.highlight-combobox');
       comboboxes.forEach((combobox) => {
-        combobox.getOption = (option, queryString) => {
-          if(queryString) {
-            const mark = document.createElement('mark');
-            const optionLabel = option.getTextLabel();
-            const queryIndex = optionLabel.toLowerCase().indexOf(queryString.toLowerCase());
-        
-            mark.textContent = optionLabel.slice(queryIndex, queryIndex + queryString.length);
-            option.innerHTML = optionLabel.replace(new RegExp(queryString, 'i'), mark.outerHTML);
-          }
-          return option; 
-        }
+        combobox.getOption = highlightOptionRenderer;
       });
     </script>
-  `,
+  `},
 };
 
 export const GroupingQuery: Story = {

@@ -17,7 +17,7 @@ import {
   SynVueSwitch,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
-import { serialize } from '@synergy-design-system/components';
+import { serialize, highlightOptionRenderer } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
@@ -65,18 +65,8 @@ onMounted(() => {
   // Add a custom formatter for the donation field
   donationsRef.value!.nativeElement!.tooltipFormatter = value => formatter.format(value);
 
-  // Add a custom renderer for the filtered nationalities
-  nationalityRef.value!.nativeElement!.getOption = (option, query) => {
-      if (query) {
-        const mark = document.createElement('mark');
-        const optionLabel = option.getTextLabel();
-        const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
-
-        mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
-        option.innerHTML = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
-      }
-      return option;
-  };
+  // Use the highlight renderer for the filtered nationalities
+  nationalityRef.value!.nativeElement!.getOption = highlightOptionRenderer;
 });
 
 const reset = () => {

@@ -1,5 +1,5 @@
 import type { SynChangeEvent, SynRange, SynCombobox } from '@synergy-design-system/components';
-import { serialize } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -61,17 +61,7 @@ export class DemoForm {
     });
 
     this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
-    this.nationalityRef.nativeElement!.getOption = (option, query) => {
-      if (query) {
-        const mark = document.createElement('mark');
-        const optionLabel = option.getTextLabel();
-        const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
-
-        mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
-        option.innerHTML = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
-      }
-      return option;
-    }
+    this.nationalityRef.nativeElement!.getOption = highlightOptionRenderer;
   }
 
   reset() {

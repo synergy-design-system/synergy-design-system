@@ -6,14 +6,23 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynErrorEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynCombobox } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynClearEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 /**
@@ -73,93 +82,115 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
 })
 export class SynComboboxComponent {
   public nativeElement: SynCombobox;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => { this.synChangeEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => { this.synClearEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => { this.synInputEvent.emit(e); this.valueChange.emit(this.value); });
-    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => { this.synFocusEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => { this.synBlurEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => { this.synInvalidEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => { this.synErrorEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
+      this.synChangeEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-clear', (e: SynClearEvent) => {
+      this.synClearEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
+      this.synInputEvent.emit(e);
+      this.valueChange.emit(this.value);
+    });
+    this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
+      this.synFocusEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
+      this.synBlurEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
+      this.synInvalidEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => {
+      this.synErrorEvent.emit(e);
+    });
   }
 
   /**
-* The name of the combobox, submitted as a name/value pair with form data.
- */
+   * The name of the combobox, submitted as a name/value pair with form data.
+   */
   @Input()
   set name(v: SynCombobox['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* The current value of the combobox, submitted as a name/value pair with form data.
- */
+   * The current value of the combobox, submitted as a name/value pair with form data.
+   */
   @Input()
   set value(v: SynCombobox['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-
   get value() {
     return this.nativeElement.value;
   }
 
   /**
-* The combobox's size.
- */
+   * The combobox's size.
+   */
   @Input()
   set size(v: SynCombobox['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-
   get size() {
     return this.nativeElement.size;
   }
 
   /**
-* Placeholder text to show as a hint when the combobox is empty.
- */
+   * Placeholder text to show as a hint when the combobox is empty.
+   */
   @Input()
   set placeholder(v: SynCombobox['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-
   get placeholder() {
     return this.nativeElement.placeholder;
   }
 
   /**
-* Disables the combobox control.
- */
+   * Disables the combobox control.
+   */
   @Input()
   set disabled(v: SynCombobox['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* Adds a clear button when the combobox is not empty.
- */
+   * Adds a clear button when the combobox is not empty.
+   */
   @Input()
   set clearable(v: SynCombobox['clearable']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
   }
-
   get clearable() {
     return this.nativeElement.clearable;
   }
@@ -173,7 +204,6 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
   set open(v: SynCombobox['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
@@ -187,20 +217,18 @@ Hoisting uses a fixed positioning strategy that works in many, but not all, scen
   set hoist(v: SynCombobox['hoist']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
-
   get hoist() {
     return this.nativeElement.hoist;
   }
 
   /**
-* The combobox's label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The combobox's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynCombobox['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
@@ -213,20 +241,18 @@ Note that the actual placement may vary as needed to keep the listbox inside of 
   set placement(v: SynCombobox['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-
   get placement() {
     return this.nativeElement.placement;
   }
 
   /**
-* The combobox's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
+   * The combobox's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
   @Input()
   set helpText(v: SynCombobox['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-
   get helpText() {
     return this.nativeElement.helpText;
   }
@@ -241,19 +267,17 @@ The form must be in the same document or shadow root for this to work.
   set form(v: SynCombobox['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-
   get form() {
     return this.nativeElement.form;
   }
 
   /**
-* The combobox's required attribute.
- */
+   * The combobox's required attribute.
+   */
   @Input()
   set required(v: SynCombobox['required']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
   }
-
   get required() {
     return this.nativeElement.required;
   }
@@ -264,12 +288,12 @@ The form must be in the same document or shadow root for this to work.
 is the query string, which is typed into the combobox.
 The function should return either a Lit TemplateResult or a string containing trusted HTML
 to render in the shown list of filtered options.
+If the query string should be highlighted use the `highlightOptionRenderer` function.
  */
   @Input()
   set getOption(v: SynCombobox['getOption']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.getOption = v));
   }
-
   get getOption() {
     return this.nativeElement.getOption;
   }
@@ -282,69 +306,68 @@ The default filter method is a case- and diacritic-insensitive string comparison
   set filter(v: SynCombobox['filter']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.filter = v));
   }
-
   get filter() {
     return this.nativeElement.filter;
   }
 
   /**
-* Emitted when the control's value changes.
- */
+   * Emitted when the control's value changes.
+   */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-* Emitted when the control's value is cleared.
- */
+   * Emitted when the control's value is cleared.
+   */
   @Output() synClearEvent = new EventEmitter<SynClearEvent>();
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-* Emitted when the combobox's menu opens.
- */
+   * Emitted when the combobox's menu opens.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the combobox's menu opens and all animations are complete.
- */
+   * Emitted after the combobox's menu opens and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the combobox's menu closes.
- */
+   * Emitted when the combobox's menu closes.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the combobox's menu closes and all animations are complete.
- */
+   * Emitted after the combobox's menu closes and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
-* Emitted when the combobox menu fails to open.
- */
+   * Emitted when the combobox menu fails to open.
+   */
   @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   @Output() valueChange = new EventEmitter<SynCombobox['value']>();
 }
 

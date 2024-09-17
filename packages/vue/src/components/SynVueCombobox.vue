@@ -58,9 +58,18 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynCombobox, SynErrorEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynClearEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynCombobox } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynCombobox>();
@@ -72,66 +81,66 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the combobox, submitted as a name/value pair with form data.
- */
-  'name'?: SynCombobox['name'];
+   * The name of the combobox, submitted as a name/value pair with form data.
+   */
+  name?: SynCombobox['name'];
 
   /**
-* The current value of the combobox, submitted as a name/value pair with form data.
- */
-  'value'?: SynCombobox['value'];
+   * The current value of the combobox, submitted as a name/value pair with form data.
+   */
+  value?: SynCombobox['value'];
 
   /**
-* The combobox's size.
- */
-  'size'?: SynCombobox['size'];
+   * The combobox's size.
+   */
+  size?: SynCombobox['size'];
 
   /**
-* Placeholder text to show as a hint when the combobox is empty.
- */
-  'placeholder'?: SynCombobox['placeholder'];
+   * Placeholder text to show as a hint when the combobox is empty.
+   */
+  placeholder?: SynCombobox['placeholder'];
 
   /**
-* Disables the combobox control.
- */
-  'disabled'?: SynCombobox['disabled'];
+   * Disables the combobox control.
+   */
+  disabled?: SynCombobox['disabled'];
 
   /**
-* Adds a clear button when the combobox is not empty.
- */
-  'clearable'?: SynCombobox['clearable'];
+   * Adds a clear button when the combobox is not empty.
+   */
+  clearable?: SynCombobox['clearable'];
 
   /**
 * Indicates whether or not the combobox is open.
 You can toggle this attribute to show and hide the listbox, or you can use the `show()`
 and `hide()` methods and this attribute will reflect the combobox's open state.
  */
-  'open'?: SynCombobox['open'];
+  open?: SynCombobox['open'];
 
   /**
 * Enable this option to prevent the listbox from being clipped,
 when the component is placed inside a container with `overflow: auto|scroll`.
 Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
-  'hoist'?: SynCombobox['hoist'];
+  hoist?: SynCombobox['hoist'];
 
   /**
-* The combobox's label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynCombobox['label'];
+   * The combobox's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynCombobox['label'];
 
   /**
 * The preferred placement of the combobox's menu.
 Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
  */
-  'placement'?: SynCombobox['placement'];
+  placement?: SynCombobox['placement'];
 
   /**
-* The combobox's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynCombobox['helpText'];
+   * The combobox's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynCombobox['helpText'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -139,12 +148,12 @@ This attribute allows you to place the form control outside of a form and associ
 with the form that has this `id`.
 The form must be in the same document or shadow root for this to work.
  */
-  'form'?: SynCombobox['form'];
+  form?: SynCombobox['form'];
 
   /**
-* The combobox's required attribute.
- */
-  'required'?: SynCombobox['required'];
+   * The combobox's required attribute.
+   */
+  required?: SynCombobox['required'];
 
   /**
 * A function that customizes the rendered option.
@@ -152,18 +161,19 @@ The form must be in the same document or shadow root for this to work.
 is the query string, which is typed into the combobox.
 The function should return either a Lit TemplateResult or a string containing trusted HTML
 to render in the shown list of filtered options.
+If the query string should be highlighted use the `highlightOptionRenderer` function.
  */
-  'getOption'?: SynCombobox['getOption'];
+  getOption?: SynCombobox['getOption'];
 
   /**
 * A function used to filter options in the combobox component.
 The default filter method is a case- and diacritic-insensitive string comparison.
  */
-  'filter'?: SynCombobox['filter'];
+  filter?: SynCombobox['filter'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynCombobox['value'];
 }>();
 
@@ -171,72 +181,72 @@ The default filter method is a case- and diacritic-insensitive string comparison
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control's value changes.
- */
+   * Emitted when the control's value changes.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the control's value is cleared.
- */
+   * Emitted when the control's value is cleared.
+   */
   'syn-clear': [e: SynClearEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the combobox's menu opens.
- */
+   * Emitted when the combobox's menu opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the combobox's menu opens and all animations are complete.
- */
+   * Emitted after the combobox's menu opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the combobox's menu closes.
- */
+   * Emitted when the combobox's menu closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the combobox's menu closes and all animations are complete.
- */
+   * Emitted after the combobox's menu closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Emitted when the combobox menu fails to open.
- */
+   * Emitted when the combobox menu fails to open.
+   */
   'syn-error': [e: SynErrorEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynCombobox['value']];
 }>();
 </script>
@@ -259,10 +269,10 @@ export type { SynErrorEvent } from '@synergy-design-system/components';
   <syn-combobox
     @syn-change="$emit('syn-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
-    v-bind="visibleProps"
-    ref="nativeElement"
+    @syn-input="
+      $emit('update:modelValue', $event.target.value);
+      $emit('syn-input', $event);
+    "
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-show="$emit('syn-show', $event)"
@@ -271,7 +281,15 @@ export type { SynErrorEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
     @syn-error="$emit('syn-error', $event)"
-  >
-    <slot />
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-combobox>
 </template>

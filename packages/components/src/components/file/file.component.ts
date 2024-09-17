@@ -303,14 +303,19 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   }
 
   private async handleTransferItems(items: DataTransferItemList | null): Promise<FileList> {
-    if (!items) {
+    if (!items || items.length !== 1) {
       this.value = '';
-      return new Promise((_resolve, reject) => { reject(new Error('No items found')); });
+      return new Promise((_resolve, reject) => { reject(new Error('No proper items found')); });
     }
 
     const itemsArray = Array.from(items);
 
     const entries: (FileSystemEntry | null)[] = itemsArray.map((item) => item.webkitGetAsEntry());
+
+    if (!entries[0]?.isDirectory) {
+      this.value = '';
+      return new Promise((_resolve, reject) => { reject(new Error('Not a folder')); });
+    }
 
     const filesPromises = entries.map(entry => this.getFilesFromEntry(entry));
     const filesArray = await Promise.all(filesPromises);

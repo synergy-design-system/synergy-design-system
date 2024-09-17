@@ -200,19 +200,15 @@ export const Directory: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
       <syn-file
-        accept="text/plain,image/*"
         help-text="This is a help text"
         label="Button"
         webkitdirectory
-        accept="image/png, image/jpeg"
       ></syn-file>
       <syn-file
-        accept="text/plain,image/*"
         droparea
         help-text="This is a help text"
         label="Droparea"
         webkitdirectory
-        accept="image/png, image/jpeg"
       ></syn-file>
     </div>
   `,

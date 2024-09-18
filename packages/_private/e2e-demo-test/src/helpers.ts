@@ -1,7 +1,6 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator } from '@playwright/test';
 import type {
   SynCheckbox,
-  SynFile,
   SynInput,
   SynSelect,
   SynSwitch,

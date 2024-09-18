@@ -108,7 +108,15 @@ export default class SynValidate extends SynergyElement {
    * If the input is a synergy element, will use syn- prefixes.
    * @returns The event names to listen for
    */
+  // eslint-disable-next-line complexity
   private getUsedEventNames() {
+    const input = this.getInput();
+
+    // If there is no input, skip before doing any harm
+    if (!input) {
+      return [];
+    }
+
     // Make sure to always use an array of events
     // This is needed because on may be a special value like "live"
     const on = Array.isArray(this.on) ? this.on : [this.on];
@@ -117,7 +125,6 @@ export default class SynValidate extends SynergyElement {
     // <syn-validate on=""></syn-validate>
     const [...events] = on.filter(Boolean);
 
-    const input = this.getInput();
     const isSynergyElement = input instanceof SynergyElement;
 
     // Make sure to always have an invalid event
@@ -178,13 +185,13 @@ export default class SynValidate extends SynergyElement {
   /**
    * Handle the blur event during validation
    */
-  // eslint-disable-next-line complexity
+  // eslint-disable-next-line class-methods-use-this
   private handleFocus(input: HTMLInputElement) {
     const activeElement = document.activeElement! as HTMLInputElement;
     const activeElementIsWrapped = activeElement.closest('syn-validate');
 
     if (!activeElement.validity?.valid && activeElementIsWrapped) {
-      console.log('active element is invalid, do not scroll');
+      // The active element is invalid do not scroll
       return;
     }
 

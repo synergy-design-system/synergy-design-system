@@ -111,14 +111,47 @@ import '@fontsource/open-sans/700-italic.css';
 }
 ```
 
-### Installing via Google Fonts
+### Using the SICK CDN
 
-> ⚠️ This is only suited for development purposes and **must never be used in production**.
+This is the simplest default font behavor. The `Open Sans` font is loaded from the SICK CDN.
 
-1. Include the following link in your project's HTML file:
+```css
+/* Regular */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.ttf") format("truetype");
+}
+ 
+/* Semi Bold */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.ttf") format("truetype");
+}
+ 
+/* Bold */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.ttf") format("truetype");
+}
+```
+
+For better performance, you may also add the following statement to your HTML:
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link rel="preload" href="https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 ```

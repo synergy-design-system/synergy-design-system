@@ -197,7 +197,6 @@
           label="Optional Screenshot(s)"
           multiple
           name="files"
-          required
         ></syn-file>
       </syn-validate>
 

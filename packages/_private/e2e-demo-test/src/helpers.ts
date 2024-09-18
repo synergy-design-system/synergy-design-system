@@ -1,6 +1,7 @@
-import { Locator } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import type {
   SynCheckbox,
+  SynFile,
   SynInput,
   SynSelect,
   SynSwitch,
@@ -18,14 +19,25 @@ export const getCheckedValue = async (locator: Locator) => locator
 
 /**
  * Set the locators inner inputs value
+ *
+ * @param locator The original form locator
+ * @param value The value to set
+ * @param selector The selector to use in the shadow root
+ */
+export const fillField = async (locator: Locator, value: string, selector = 'input') => {
+  await locator.focus();
+  await locator.locator(selector).fill(value);
+  await locator.blur();
+};
+
+export const fillInput = async (locator: Locator, value: string) => fillField(locator, value, 'input');
+
+/**
+ * Set the locators inner inputs value
  * @param locator The original form locator
  * @param value The value to set
  */
-export const fillField = async (locator: Locator, value: string) => {
-  await locator.focus();
-  await locator.locator('input').fill(value);
-  await locator.blur();
-};
+export const fillTextArea = async (locator: Locator, value: string) => fillField(locator, value, 'textarea');
 
 export const createTestCases = (callback: FrameworkCallback) => {
   frameworks.forEach(framework => {

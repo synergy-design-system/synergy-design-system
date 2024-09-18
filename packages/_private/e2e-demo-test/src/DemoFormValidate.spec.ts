@@ -11,13 +11,9 @@ createTestCases(({ name, port }) => {
       const form = new DemoFormValidate(page, port);
       await form.loadInitialPage();
 
-      // fill-out the form correctly
+      // fill-out the form correctly and check the original state
       await form.fill();
-
-      // submit valid form
       await form.reset.click();
-
-      // check reset state
       await form.checkInitialState(expect);
     });
 
@@ -36,6 +32,35 @@ createTestCases(({ name, port }) => {
       );
       expect(states.length).toBe(form.allRequiredInputs.length);
       expect(states.every((state) => !state)).toBe(true);
+    });
+
+    test('Form submit', async ({ page }) => {
+      const form = new DemoFormValidate(page, port);
+      await form.loadInitialPage();
+
+      // react on submit / confirm dialog
+      let submitted = false;
+      page.on('dialog', dialog => {
+        submitted = true;
+        dialog
+          .accept()
+          .catch(() => {
+            submitted = false;
+          });
+      });
+
+      // check initial state
+      await form.checkInitialState(expect);
+
+      // fill-out the form correctly
+      await form.fill();
+
+      // submit valid form
+      await form.submit.click();
+
+      expect(submitted).toBe(true);
+
+      expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
   });
 });

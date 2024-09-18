@@ -181,7 +181,6 @@ export const DemoFormValidate = () => {
             id="input-date"
             label="Date of birth"
             name="date"
-            required
             value={formData.date}
             type="date"
           />
@@ -310,7 +309,6 @@ export const DemoFormValidate = () => {
             label="Optional Screenshot(s)"
             multiple
             name="files"
-            required
           />
         </SynValidate>
       </DemoFieldset>

@@ -1,12 +1,10 @@
 import { Locator } from '@playwright/test';
 import type { Expect } from '@playwright/test';
-import type { SynSelect } from '@synergy-design-system/components';
-import selectors from '../test.selector';
 import { PageObject } from './PageObject.js';
 import { BaseFormObject } from './BaseForm.js';
 import {
   fillField,
-  getCheckedValue,
+  fillTextArea,
   getInputValue,
 } from '../helpers.js';
 
@@ -15,11 +13,14 @@ export class DemoFormValidate extends BaseFormObject {
 
   get allRequiredInputs(): Locator[] {
     return [
-      this.name,
-      this.password,
-      this.role,
-      this.email,
+      this.additionalInfo,
       this.gender,
+      this.role,
+      this.name,
+      this.email,
+      this.password,
+      this.newsSyn,
+      this.newsBeta,
     ];
   }
 
@@ -28,11 +29,20 @@ export class DemoFormValidate extends BaseFormObject {
     await fillField(this.name, 'Maxim');
     await fillField(this.email, 'max@musterman.de');
 
-    // await form.role.evaluate(role => (role as SynSelect).value = 'frontend');
     await this.role.click();
     await this.frontend.click();
 
     await fillField(this.password, 'Password123');
+
+    await this.newsSyn.click({
+      position: { x: 20, y: 20 },
+    });
+
+    await this.newsBeta.click({
+      position: { x: 20, y: 20 },
+    });
+
+    await fillTextArea(this.additionalInfo, 'Comment');
 
     // Drag the happiness handle to a 9 of 10 rating
     await this.happiness.dragTo(this.happiness, {
@@ -45,7 +55,9 @@ export class DemoFormValidate extends BaseFormObject {
     expect(await getInputValue(this.role)).toBe('');
     expect(await getInputValue(this.name)).toBe('');
     expect(await getInputValue(this.email)).toBe('');
+    expect(await getInputValue(this.birth)).toBe('');
     expect(await getInputValue(this.password)).toBe('invalid');
+    expect(await getInputValue(this.passwordRecovery)).toBe('');
 
     const all = (await Promise.all(this.allRequiredInputs.map((input) => input.getAttribute('data-invalid'))));
     all.forEach((val) => expect(val).toBe(''));

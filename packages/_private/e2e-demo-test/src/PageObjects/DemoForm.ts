@@ -16,14 +16,6 @@ import {
 export class DemoForm extends BaseFormObject {
   protected initialPage: string = PageObject.availablePages.form;
 
-  get additionalInfo(): Locator {
-    return this.page.locator(selectors.addInfoLoc);
-  }
-
-  get newsSyn(): Locator {
-    return this.page.locator(selectors.newsLocSyn);
-  }
-
   get newsNg(): Locator {
     return this.page.locator(selectors.newsLocSynNg);
   }
@@ -40,10 +32,6 @@ export class DemoForm extends BaseFormObject {
     return this.page.locator(selectors.newsLocVanilla);
   }
 
-  get newsBeta(): Locator {
-    return this.page.locator(selectors.newsLocBeta);
-  }
-
   get allNews(): Array<Locator> {
     return [
       this.newsBeta,
@@ -53,10 +41,6 @@ export class DemoForm extends BaseFormObject {
       this.newsVanilla,
       this.newsVue,
     ];
-  }
-
-  get passwordRecovery(): Locator {
-    return this.page.locator(selectors.passRcvryLoc);
   }
 
   get phone(): Locator {
@@ -69,10 +53,6 @@ export class DemoForm extends BaseFormObject {
 
   get donations(): Locator {
     return this.page.locator(selectors.donations);
-  }
-
-  get birth(): Locator {
-    return this.page.locator(selectors.birth);
   }
 
   get allRequiredInputs(): Array<Locator> {

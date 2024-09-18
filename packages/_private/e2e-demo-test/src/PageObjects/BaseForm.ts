@@ -1,48 +1,67 @@
-import { Locator } from '@playwright/test';
 import { PageObject } from './PageObject.js';
 import selectors from '../test.selector';
 
 export class BaseFormObject extends PageObject {
-  get form(): Locator {
+  get additionalInfo() {
+    return this.page.locator(selectors.addInfoLoc);
+  }
+
+  get form() {
     return this.page.locator(selectors.formLoc);
   }
 
-  get name(): Locator {
+  get birth() {
+    return this.page.locator(selectors.birth);
+  }
+
+  get name() {
     return this.page.locator(selectors.nameLoc);
   }
 
-  get submit(): Locator {
+  get submit() {
     return this.page.locator(selectors.submit);
   }
 
-  get reset(): Locator {
+  get reset() {
     return this.page.locator(selectors.reset);
   }
 
-  get email(): Locator {
+  get email() {
     return this.page.locator(selectors.emailLoc);
   }
 
-  get password(): Locator {
+  get password() {
     return this.page.locator(selectors.passLoc);
   }
 
-  get gender(): Locator {
+  get passwordRecovery() {
+    return this.page.locator(selectors.passRcvryLoc);
+  }
+
+  get gender() {
     return this.page.locator(selectors.genderLoc);
   }
 
-  get role(): Locator {
+  get role() {
     return this.page.locator(selectors.roleLoc);
   }
 
-  get frontend(): Locator {
+  get frontend() {
     return this.page.locator(selectors.frontend);
+  }
+
+  get newsBeta() {
+    return this.page.locator(selectors.newsLocBeta);
+  }
+
+  get newsSyn() {
+    return this.page.locator(selectors.newsLocSyn);
   }
 
   /**
    * Because who wouldn't want to get happiness? 🤷‍♂️
    */
-  get happiness(): Locator {
+  get happiness() {
     return this.page.locator(selectors.happinessLoc);
   }
 }

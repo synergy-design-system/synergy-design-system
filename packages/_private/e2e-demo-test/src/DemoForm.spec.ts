@@ -13,13 +13,9 @@ createTestCases(({ name, port }) => {
       const form = new DemoForm(page, port);
       await form.loadInitialPage();
 
-      // fill-out the form correctly
+      // fill-out the form correctly and check the original state
       await form.fill();
-
-      // submit valid form
       await form.reset.click();
-
-      // check reset state
       await form.checkInitialState(expect);
     });
 

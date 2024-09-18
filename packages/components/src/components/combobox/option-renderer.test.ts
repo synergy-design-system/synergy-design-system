@@ -12,7 +12,7 @@ describe('option-renderer', () => {
       const option = document.createElement('syn-option');
       option.textContent = optionLabel;
       option.value = optionValue;
-      const renderedOption = defaultOptionRenderer(option);
+      const renderedOption = defaultOptionRenderer(option) as SynOption;
 
       expect(renderedOption.value).to.equal(optionValue);
       expect(renderedOption.textContent).to.equal(optionLabel);
@@ -26,7 +26,7 @@ describe('option-renderer', () => {
         <syn-option>Option 1</syn-option>
       `);
 
-      const renderedOption = highlightOptionRenderer(option, '');
+      const renderedOption = highlightOptionRenderer(option, '') as SynOption;
 
       expect(renderedOption.children.length).to.equal(0);
       expect(renderedOption.textContent).to.equal('Option 1');
@@ -40,7 +40,7 @@ describe('option-renderer', () => {
       const query = 'pt';
       expect(option.childNodes[0].textContent).to.equal('Option 1');
 
-      const renderedOption = highlightOptionRenderer(option, query);
+      const renderedOption = highlightOptionRenderer(option, query) as SynOption;
       const mark = renderedOption.childNodes[1];
 
       expect(renderedOption.childNodes[0].textContent).to.equal('O');
@@ -58,7 +58,7 @@ describe('option-renderer', () => {
 
       expect(option.childNodes[0].textContent).to.equal('Option 1');
 
-      const renderedOption = highlightOptionRenderer(option, query);
+      const renderedOption = highlightOptionRenderer(option, query) as SynOption;
       const mark = renderedOption.children[0];
       expect(mark.textContent).to.equal('Opt');
     });
@@ -72,7 +72,7 @@ describe('option-renderer', () => {
       `);
 
       const query = 'opt';
-      const renderedOption = highlightOptionRenderer(option, query);
+      const renderedOption = highlightOptionRenderer(option, query) as SynOption;
       const prefix = renderedOption.querySelector('[slot="prefix"]')!;
       const { children } = renderedOption;
       const mark = children[1];
@@ -95,7 +95,7 @@ describe('option-renderer', () => {
       `);
 
       const query = 'opt';
-      const renderedOption = highlightOptionRenderer(option, query);
+      const renderedOption = highlightOptionRenderer(option, query) as SynOption;
       const suffix = renderedOption.querySelector('[slot="suffix"]')!;
       const { children } = renderedOption;
       const mark = children[1];

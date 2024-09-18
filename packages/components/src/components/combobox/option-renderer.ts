@@ -10,7 +10,7 @@ import type SynOption from '../option/option.component.js';
  */
 export type OptionRenderer = (
   option: SynOption,
-  query: string
+  query?: string
 ) => TemplateResult | string | HTMLElement;
 
 /**

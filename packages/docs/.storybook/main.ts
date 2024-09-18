@@ -32,7 +32,7 @@ const config: StorybookConfig = {
     "../stories/Welcome.mdx",
     "../stories/GoalsAndGuidelines.mdx",
     "../stories/Presentation.mdx",
-    "../stories/Prequisites.mdx",
+    "../stories/Prerequisites.mdx",
     "../stories/Contributing.mdx",
     "../stories/limitations/**/*.mdx",
     "../stories/packages/**/*.mdx",

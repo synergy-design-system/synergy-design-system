@@ -2902,6 +2902,16 @@
           "value": "These examples demonstrate the usage of syn-link in simple grouping contexts: Horizontal and Vertical alignment.",
           "type": "text"
         }
+      },
+      "tag": {
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

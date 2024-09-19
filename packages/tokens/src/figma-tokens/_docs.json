@@ -2882,6 +2882,16 @@
           "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
           "type": "text"
         }
+      },
+      "tag": {
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

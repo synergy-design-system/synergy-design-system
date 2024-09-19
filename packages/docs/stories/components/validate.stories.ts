@@ -11,6 +11,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
+import '../../src/validate-demo-radio.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-validate');
@@ -114,10 +115,11 @@ export const HideIcon: Story = {
       hide-icon
       inline
     >
-      <syn-radio-group required label="Hide icon">
-        <syn-radio>Wrong</syn-radio>
-        <syn-radio value="correct">Correct</syn-radio>
-      </syn-radio-group>
+      <syn-input
+        label="Inline Validation"
+        type="email"
+        value="team(at)synergy.com"
+      ></syn-input>
     </syn-validate>
   `,
 };
@@ -134,7 +136,7 @@ export const Live: Story = {
     <syn-validate
       class="validation-live"
       inline
-      .on=${['invalid', 'input']}
+      on="live"
     >
       <syn-radio-group required label="Live validation">
         <syn-radio>Wrong</syn-radio>
@@ -176,13 +178,14 @@ export const CustomFormField: Story = {
     },
   },
   render: () => html`
+    <h3 style="margin: 0; padding: 0;">Choose SICK´s brand color</h3>
     <syn-validate
       class="validation-custom-form-field"
       inline
+      on="live"
     >
-      <input type="email" name="what" value="here" minlength="5" required />
-      TODO
-    </syn-validate>  
+      <validate-demo-radio name="color"></validate-demo-radio>
+    </syn-validate>
   `,
 };
 

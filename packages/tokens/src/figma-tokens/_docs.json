@@ -2882,6 +2882,16 @@
           "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
           "type": "text"
         }
+      },
+      "footer": {
+        "title": {
+          "value": "Footer",
+          "type": "text"
+        },
+        "description": {
+          "value": "The footer is the area located at the bottom of the application window, below the content area.\n\nThe footer may contain one or more links pointing to legal information items as well as a copyright symbol and current year. The standard links can include things like: \n- Imprint (e.g. https://www.sick.com/imprint)\n- Terms and conditions (e.g. https://www.sick.com/tac)\n- Terms of use (e.g. https://www.sick.com/terms-of-use)\n- Data protection (e.g. https://www.sick.com/dataprotection)\n\nIf you don't want to use the links in the footer, please make sure to include the legal required links somewhere else.\n\nThe footer links can be placed on any background color. If you need a more compact version of the footer, simply adjust the top and bottom margins from spacing.large (24px) to spacing.medium (16px).",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

@@ -1,8 +1,8 @@
-# Synergy Contribution Guidelines
+# Synergy Design System Contribution Guidelines
 
 ## Table of contents
 
-- [Synergy Contribution Guidelines](#synergy-design-system-contribution-guidelines)
+- [Synergy Design System Contribution Guidelines](#synergy-design-system-contribution-guidelines)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting started](#getting-started)

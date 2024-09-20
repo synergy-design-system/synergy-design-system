@@ -3223,16 +3223,6 @@
           "type": "text"
         }
       },
-      "on-click": {
-        "title": {
-          "value": "Open on Click",
-          "type": "text"
-        },
-        "description": {
-          "value": "The open on click opens the list without entering anything.",
-          "type": "text"
-        }
-      },
       "simple": {
         "title": {
           "value": "Simple suggests",

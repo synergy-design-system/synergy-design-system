@@ -1031,6 +1031,16 @@
           "type": "text"
         }
       },
+      "directory": {
+        "title": {
+          "value": "Directory",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the webkitdirectory attribute to enable selecting folders.",
+          "type": "text"
+        }
+      },
       "droparea": {
         "title": {
           "value": "Droparea",

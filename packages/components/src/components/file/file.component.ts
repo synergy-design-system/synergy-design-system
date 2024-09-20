@@ -18,7 +18,6 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { animateTo } from '../../internal/animate.js';
-import { acceptStringToArray, fileHasValidAcceptType } from './utils.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -327,10 +326,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       return dataTransfer.files;
     }
 
-    const acceptArray = acceptStringToArray(this.accept);
-
-    // Validate the files against the accept attribute
-    return arrayToFileList(Array.from(files).filter(f => fileHasValidAcceptType(f, acceptArray)));
+    return arrayToFileList(Array.from(files));
   }
 
   private async getFilesFromEntry(entry: FileSystemEntry | null): Promise<File[]> {

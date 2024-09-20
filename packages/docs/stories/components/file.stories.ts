@@ -193,7 +193,7 @@ export const Directory: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('file', 'droparea'),
+        story: generateStoryDescription('file', 'directory'),
       },
     },
   },

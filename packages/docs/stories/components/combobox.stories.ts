@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
@@ -164,152 +166,6 @@ export const Focus: Story = {
   `,
 };
 
-export const SimpleSuggests: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('combobox', 'simple'),
-      },
-    },
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
-    await combobox.updateComplete;
-    await combobox.show();
-  },
-  render: () => html`
-    <syn-combobox label="Preferred Color" value="g">
-     ${createColorOptionsHtml()}
-    </syn-combobox>
-  `,
-};
-
-export const HighlightQuery: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('combobox', 'highlight'),
-      },
-    },
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
-    await combobox.updateComplete;
-    await combobox.show();
-  },
-  render: () => {
-    const optionRenderer = highlightOptionRenderer;
-    return html`
-    <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
-     ${createColorOptionsHtml()}
-    </syn-combobox>
-    <script type="module">
-      // the highlight option renderer utility function can be imported via:
-      // import { highlightOptionRenderer } from '@synergy-design-system/components';
-
-      // preview-ignore:start
-      const highlightOptionRenderer = ${optionRenderer};
-      // preview-ignore:end
-    
-      const comboboxes = document.querySelectorAll('.highlight-combobox');
-      comboboxes.forEach((combobox) => {
-        combobox.getOption = highlightOptionRenderer;
-      });
-    </script>
-  `},
-};
-
-export const GroupingQuery: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('combobox', 'grouping'),
-      },
-    },
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
-    await combobox.updateComplete;
-    await combobox.show();
-  },
-  render: () => html`
-    <syn-combobox label="Group elements" value="g">
-      <syn-optgroup label="B">
-        ${createColorOptionHtml('Black')}
-        ${createColorOptionHtml('Blue')}
-        ${createColorOptionHtml('Brown')}
-      </syn-optgroup>
-      <syn-optgroup label="G">
-        ${createColorOptionHtml('Green')}
-        ${createColorOptionHtml('Grey')}
-      </syn-optgroup>
-      <syn-optgroup label="L">
-        ${createColorOptionHtml('Light Green')}
-      </syn-optgroup>
-      <syn-optgroup label="M">
-        ${createColorOptionHtml('Magenta')}
-      </syn-optgroup>
-      <syn-optgroup label="O">
-        ${createColorOptionHtml('Orange')}
-      </syn-optgroup>
-      <syn-optgroup label="W">
-        ${createColorOptionHtml('White')}
-      </syn-optgroup>
-      <syn-optgroup label="P">
-        ${createColorOptionHtml('Pink')}
-        ${createColorOptionHtml('Purple')}
-      </syn-optgroup>
-      <syn-optgroup label="R">
-        ${createColorOptionHtml('Red')}
-      </syn-optgroup>
-      <syn-optgroup label="W">
-        ${createColorOptionHtml('White')}
-      </syn-optgroup>
-      <syn-optgroup label="Y">
-        ${createColorOptionHtml('Yellow')}
-      </syn-optgroup>
-    </syn-combobox>
-  `,
-};
-
-export const SuggestionContainerHeight: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('combobox', 'container-height'),
-      },
-    },
-  },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
-    await combobox.updateComplete;
-    await combobox.show();
-  },
-  render: () => html`
-    <syn-combobox id="max-height" label="Preferred color" value="g">
-      ${createColorOptionsHtml()}
-    </syn-combobox>
-    <style>
-      #max-height::part(listbox) {
-        /* if there is not enough space for the desired height, use the available calculated height */
-        max-height: min(var(--auto-size-available-height), 112px);
-      }
-    </style>
-  `,
-};
-
 export const Clearable: Story = {
   parameters: {
     docs: {
@@ -458,6 +314,153 @@ export const PrefixSuffixTextAndIcons: Story = {
       ${createColorOptionsHtml()}
       <syn-icon name="wallpaper" slot="suffix"></syn-icon>
     </syn-combobox>
+  `,
+};
+
+export const SimpleSuggests: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'simple'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    await combobox.show();
+  },
+  render: () => html`
+    <syn-combobox label="Preferred Color" value="g">
+     ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const HighlightQuery: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'highlight'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    await combobox.show();
+  },
+  render: () => {
+    const optionRenderer = highlightOptionRenderer;
+    return html`
+    <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
+     ${createColorOptionsHtml()}
+    </syn-combobox>
+    <script type="module">
+      // the highlight option renderer utility function can be imported via:
+      // import { highlightOptionRenderer } from '@synergy-design-system/components';
+
+      // preview-ignore:start
+      const highlightOptionRenderer = ${optionRenderer};
+      // preview-ignore:end
+    
+      const comboboxes = document.querySelectorAll('.highlight-combobox');
+      comboboxes.forEach((combobox) => {
+        combobox.getOption = highlightOptionRenderer;
+      });
+    </script>
+  `;
+  },
+};
+
+export const GroupingQuery: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'grouping'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    await combobox.show();
+  },
+  render: () => html`
+    <syn-combobox label="Group elements" value="g">
+      <syn-optgroup label="B">
+        ${createColorOptionHtml('Black')}
+        ${createColorOptionHtml('Blue')}
+        ${createColorOptionHtml('Brown')}
+      </syn-optgroup>
+      <syn-optgroup label="G">
+        ${createColorOptionHtml('Green')}
+        ${createColorOptionHtml('Grey')}
+      </syn-optgroup>
+      <syn-optgroup label="L">
+        ${createColorOptionHtml('Light Green')}
+      </syn-optgroup>
+      <syn-optgroup label="M">
+        ${createColorOptionHtml('Magenta')}
+      </syn-optgroup>
+      <syn-optgroup label="O">
+        ${createColorOptionHtml('Orange')}
+      </syn-optgroup>
+      <syn-optgroup label="W">
+        ${createColorOptionHtml('White')}
+      </syn-optgroup>
+      <syn-optgroup label="P">
+        ${createColorOptionHtml('Pink')}
+        ${createColorOptionHtml('Purple')}
+      </syn-optgroup>
+      <syn-optgroup label="R">
+        ${createColorOptionHtml('Red')}
+      </syn-optgroup>
+      <syn-optgroup label="W">
+        ${createColorOptionHtml('White')}
+      </syn-optgroup>
+      <syn-optgroup label="Y">
+        ${createColorOptionHtml('Yellow')}
+      </syn-optgroup>
+    </syn-combobox>
+  `,
+};
+
+export const SuggestionContainerHeight: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'container-height'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    await combobox.show();
+  },
+  render: () => html`
+    <syn-combobox id="max-height" label="Preferred color" value="g">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+    <style>
+      #max-height::part(listbox) {
+        /* if there is not enough space for the desired height, use the available calculated height */
+        max-height: min(var(--auto-size-available-height), 112px);
+      }
+    </style>
   `,
 };
 

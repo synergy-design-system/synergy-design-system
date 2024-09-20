@@ -444,7 +444,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private handleClearClick(event: MouseEvent) {
     event.stopPropagation();
     this.clearCombobox();
-    // TODO: clearify if the listbox should stay open like this or be closed
   }
 
   private clearCombobox() {

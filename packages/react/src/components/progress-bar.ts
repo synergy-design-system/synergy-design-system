@@ -31,9 +31,7 @@ Component.define('syn-progress-bar');
 export const SynProgressBar = createComponent({
   displayName: 'SynProgressBar',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

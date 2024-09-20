@@ -47,9 +47,7 @@ Component.define('syn-prio-nav');
 export const SynPrioNav = createComponent({
   displayName: 'SynPrioNav',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

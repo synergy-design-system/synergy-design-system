@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynTabPanel } from '@synergy-design-system/components';
 
@@ -34,7 +34,6 @@ import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 })
 export class SynTabPanelComponent {
   public nativeElement: SynTabPanel;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
@@ -43,25 +42,23 @@ export class SynTabPanelComponent {
   }
 
   /**
-* The tab panel's name.
- */
+   * The tab panel's name.
+   */
   @Input()
   set name(v: SynTabPanel['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-
   get name() {
     return this.nativeElement.name;
   }
 
   /**
-* When true, the tab panel will be shown.
- */
+   * When true, the tab panel will be shown.
+   */
   @Input()
   set active(v: SynTabPanel['active']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.active = v));
   }
-
   get active() {
     return this.nativeElement.active;
   }

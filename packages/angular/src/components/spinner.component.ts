@@ -6,10 +6,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
 import type { SynSpinner } from '@synergy-design-system/components';
 
@@ -34,7 +34,6 @@ import '@synergy-design-system/components/components/spinner/spinner.js';
 })
 export class SynSpinnerComponent {
   public nativeElement: SynSpinner;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {

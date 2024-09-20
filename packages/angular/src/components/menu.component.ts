@@ -6,12 +6,13 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type { SynMenu, SynSelectEvent } from '@synergy-design-system/components';
+import type { SynMenu } from '@synergy-design-system/components';
+import type { SynSelectEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/menu/menu.js';
 
 /**
@@ -31,18 +32,19 @@ import '@synergy-design-system/components/components/menu/menu.js';
 })
 export class SynMenuComponent {
   public nativeElement: SynMenu;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-select', (e: SynSelectEvent) => { this.synSelectEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-select', (e: SynSelectEvent) => {
+      this.synSelectEvent.emit(e);
+    });
   }
 
   /**
-* Emitted when a menu item is selected.
- */
+   * Emitted when a menu item is selected.
+   */
   @Output() synSelectEvent = new EventEmitter<SynSelectEvent>();
 }
 

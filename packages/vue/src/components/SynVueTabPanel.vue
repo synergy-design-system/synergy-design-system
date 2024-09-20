@@ -32,34 +32,29 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The tab panel's name.
- */
-  'name'?: SynTabPanel['name'];
+   * The tab panel's name.
+   */
+  name?: SynTabPanel['name'];
 
   /**
-* When true, the tab panel will be shown.
- */
-  'active'?: SynTabPanel['active'];
+   * When true, the tab panel will be shown.
+   */
+  active?: SynTabPanel['active'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
-
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-tab-panel
-
-    v-bind="visibleProps"
-    ref="nativeElement"
-  >
-    <slot />
+  <syn-tab-panel v-bind="visibleProps" ref="nativeElement">
+    <slot></slot>
   </syn-tab-panel>
 </template>

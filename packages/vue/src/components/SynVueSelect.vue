@@ -55,9 +55,17 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/select/select.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynBlurEvent, SynChangeEvent, SynClearEvent, SynFocusEvent, SynHideEvent, SynInputEvent, SynInvalidEvent, SynSelect, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynClearEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynSelect } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSelect>();
@@ -69,9 +77,9 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The name of the select, submitted as a name/value pair with form data.
- */
-  'name'?: SynSelect['name'];
+   * The name of the select, submitted as a name/value pair with form data.
+   */
+  name?: SynSelect['name'];
 
   /**
 * The current value of the select, submitted as a name/value pair with form data.
@@ -80,22 +88,22 @@ value attribute will be a space-delimited list of values based on the options se
 be an array.
 * **For this reason, values must not contain spaces.**
  */
-  'value'?: SynSelect['value'];
+  value?: SynSelect['value'];
 
   /**
-* The select's size.
- */
-  'size'?: SynSelect['size'];
+   * The select's size.
+   */
+  size?: SynSelect['size'];
 
   /**
-* Placeholder text to show as a hint when the select is empty.
- */
-  'placeholder'?: SynSelect['placeholder'];
+   * Placeholder text to show as a hint when the select is empty.
+   */
+  placeholder?: SynSelect['placeholder'];
 
   /**
-* Allows more than one option to be selected.
- */
-  'multiple'?: SynSelect['multiple'];
+   * Allows more than one option to be selected.
+   */
+  multiple?: SynSelect['multiple'];
 
   /**
 * The maximum number of selected options to show when `multiple` is true.
@@ -103,50 +111,50 @@ be an array.
 indicate the number of additional items that are selected.
 * Set to 0 to remove the limit.
  */
-  'maxOptionsVisible'?: SynSelect['maxOptionsVisible'];
+  maxOptionsVisible?: SynSelect['maxOptionsVisible'];
 
   /**
-* Disables the select control.
- */
-  'disabled'?: SynSelect['disabled'];
+   * Disables the select control.
+   */
+  disabled?: SynSelect['disabled'];
 
   /**
-* Adds a clear button when the select is not empty.
- */
-  'clearable'?: SynSelect['clearable'];
+   * Adds a clear button when the select is not empty.
+   */
+  clearable?: SynSelect['clearable'];
 
   /**
 * Indicates whether or not the select is open.
 * You can toggle this attribute to show and hide the menu, or you can
 use the `show()` and `hide()` methods and this attribute will reflect the select's open state.
  */
-  'open'?: SynSelect['open'];
+  open?: SynSelect['open'];
 
   /**
 * Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
 `overflow: auto|scroll`.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
-  'hoist'?: SynSelect['hoist'];
+  hoist?: SynSelect['hoist'];
 
   /**
-* The select's label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynSelect['label'];
+   * The select's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynSelect['label'];
 
   /**
 * The preferred placement of the select's menu.
 * Note that the actual placement may vary as needed to keep the listbox
 inside of the viewport.
  */
-  'placement'?: SynSelect['placement'];
+  placement?: SynSelect['placement'];
 
   /**
-* The select's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynSelect['helpText'];
+   * The select's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynSelect['helpText'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -155,12 +163,12 @@ to place the form control outside of a form and associate it with the form that 
 * The form must be in
 the same document or shadow root for this to work.
  */
-  'form'?: SynSelect['form'];
+  form?: SynSelect['form'];
 
   /**
-* The select's required attribute.
- */
-  'required'?: SynSelect['required'];
+   * The select's required attribute.
+   */
+  required?: SynSelect['required'];
 
   /**
 * A function that customizes the tags to be rendered when multiple=true.
@@ -169,11 +177,11 @@ is the current tag's index.
 * The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
 the specified value.
  */
-  'getTag'?: SynSelect['getTag'];
+  getTag?: SynSelect['getTag'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynSelect['value'];
 }>();
 
@@ -181,67 +189,67 @@ the specified value.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control's value changes.
- */
+   * Emitted when the control's value changes.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the control's value is cleared.
- */
+   * Emitted when the control's value is cleared.
+   */
   'syn-clear': [e: SynClearEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when the select's menu opens.
- */
+   * Emitted when the select's menu opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the select's menu opens and all animations are complete.
- */
+   * Emitted after the select's menu opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the select's menu closes.
- */
+   * Emitted when the select's menu closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the select's menu closes and all animations are complete.
- */
+   * Emitted after the select's menu closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynSelect['value']];
 }>();
 </script>
@@ -262,11 +270,11 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 <template>
   <syn-select
     @syn-change="$emit('syn-change', $event)"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-clear="$emit('syn-clear', $event)"
-    v-bind="visibleProps"
-    ref="nativeElement"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.value);
+      $emit('syn-input', $event);
+    "
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-show="$emit('syn-show', $event)"
@@ -274,7 +282,15 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-select>
 </template>

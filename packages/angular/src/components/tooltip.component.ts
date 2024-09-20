@@ -6,14 +6,16 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynTooltip,
-} from '@synergy-design-system/components';
+import type { SynTooltip } from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tooltip/tooltip.js';
 
 /**
@@ -51,27 +53,39 @@ import '@synergy-design-system/components/components/tooltip/tooltip.js';
 })
 export class SynTooltipComponent {
   public nativeElement: SynTooltip;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => { this.synShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-show', (e: SynAfterShowEvent) => { this.synAfterShowEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => { this.synHideEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-after-hide', (e: SynAfterHideEvent) => { this.synAfterHideEvent.emit(e); });
+    this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
+      this.synShowEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-show',
+      (e: SynAfterShowEvent) => {
+        this.synAfterShowEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener('syn-hide', (e: SynHideEvent) => {
+      this.synHideEvent.emit(e);
+    });
+    this.nativeElement.addEventListener(
+      'syn-after-hide',
+      (e: SynAfterHideEvent) => {
+        this.synAfterHideEvent.emit(e);
+      },
+    );
   }
 
   /**
-* The tooltip's content.
-* If you need to display HTML, use the `content` slot instead.
- */
+   * The tooltip's content.
+   * If you need to display HTML, use the `content` slot instead.
+   */
   @Input()
   set content(v: SynTooltip['content']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.content = v));
   }
-
   get content() {
     return this.nativeElement.content;
   }
@@ -85,56 +99,51 @@ inside of the viewport.
   set placement(v: SynTooltip['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-
   get placement() {
     return this.nativeElement.placement;
   }
 
   /**
-* Disables the tooltip so it won't show when triggered.
- */
+   * Disables the tooltip so it won't show when triggered.
+   */
   @Input()
   set disabled(v: SynTooltip['disabled']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
   }
-
   get disabled() {
     return this.nativeElement.disabled;
   }
 
   /**
-* The distance in pixels from which to offset the tooltip away from its target.
- */
+   * The distance in pixels from which to offset the tooltip away from its target.
+   */
   @Input()
   set distance(v: SynTooltip['distance']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
-
   get distance() {
     return this.nativeElement.distance;
   }
 
   /**
-* Indicates whether or not the tooltip is open.
-* You can use this in lieu of the show/hide methods.
- */
+   * Indicates whether or not the tooltip is open.
+   * You can use this in lieu of the show/hide methods.
+   */
   @Input()
   set open(v: SynTooltip['open']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
   }
-
   get open() {
     return this.nativeElement.open;
   }
 
   /**
-* The distance in pixels from which to offset the tooltip along its target.
- */
+   * The distance in pixels from which to offset the tooltip along its target.
+   */
   @Input()
   set skidding(v: SynTooltip['skidding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
-
   get skidding() {
     return this.nativeElement.skidding;
   }
@@ -151,7 +160,6 @@ programmatically.
   set trigger(v: SynTooltip['trigger']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.trigger = v));
   }
-
   get trigger() {
     return this.nativeElement.trigger;
   }
@@ -166,29 +174,28 @@ scenarios.
   set hoist(v: SynTooltip['hoist']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
   }
-
   get hoist() {
     return this.nativeElement.hoist;
   }
 
   /**
-* Emitted when the tooltip begins to show.
- */
+   * Emitted when the tooltip begins to show.
+   */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();
 
   /**
-* Emitted after the tooltip has shown and all animations are complete.
- */
+   * Emitted after the tooltip has shown and all animations are complete.
+   */
   @Output() synAfterShowEvent = new EventEmitter<SynAfterShowEvent>();
 
   /**
-* Emitted when the tooltip begins to hide.
- */
+   * Emitted when the tooltip begins to hide.
+   */
   @Output() synHideEvent = new EventEmitter<SynHideEvent>();
 
   /**
-* Emitted after the tooltip has hidden and all animations are complete.
- */
+   * Emitted after the tooltip has hidden and all animations are complete.
+   */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
 }
 

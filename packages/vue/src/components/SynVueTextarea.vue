@@ -30,9 +30,12 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/textarea/textarea.js';
 
-import type {
-  SynBlurEvent, SynChangeEvent, SynFocusEvent, SynInputEvent, SynInvalidEvent, SynTextarea,
-} from '@synergy-design-system/components';
+import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import type { SynFocusEvent } from '@synergy-design-system/components';
+import type { SynInputEvent } from '@synergy-design-system/components';
+import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynTextarea } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTextarea>();
@@ -43,59 +46,59 @@ defineExpose({
 
 // Map attributes
 const props = defineProps<{
-  'title'?: SynTextarea['title'];
+  title?: SynTextarea['title'];
 
   /**
-* The name of the textarea, submitted as a name/value pair with form data.
- */
-  'name'?: SynTextarea['name'];
+   * The name of the textarea, submitted as a name/value pair with form data.
+   */
+  name?: SynTextarea['name'];
 
   /**
-* The current value of the textarea, submitted as a name/value pair with form data.
- */
-  'value'?: SynTextarea['value'];
+   * The current value of the textarea, submitted as a name/value pair with form data.
+   */
+  value?: SynTextarea['value'];
 
   /**
-* The textarea's size.
- */
-  'size'?: SynTextarea['size'];
+   * The textarea's size.
+   */
+  size?: SynTextarea['size'];
 
   /**
-* The textarea's label.
-* If you need to display HTML, use the `label` slot instead.
- */
-  'label'?: SynTextarea['label'];
+   * The textarea's label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
+  label?: SynTextarea['label'];
 
   /**
-* The textarea's help text.
-* If you need to display HTML, use the `help-text` slot instead.
- */
-  'helpText'?: SynTextarea['helpText'];
+   * The textarea's help text.
+   * If you need to display HTML, use the `help-text` slot instead.
+   */
+  helpText?: SynTextarea['helpText'];
 
   /**
-* Placeholder text to show as a hint when the input is empty.
- */
-  'placeholder'?: SynTextarea['placeholder'];
+   * Placeholder text to show as a hint when the input is empty.
+   */
+  placeholder?: SynTextarea['placeholder'];
 
   /**
-* The number of rows to display by default.
- */
-  'rows'?: SynTextarea['rows'];
+   * The number of rows to display by default.
+   */
+  rows?: SynTextarea['rows'];
 
   /**
-* Controls how the textarea can be resized.
- */
-  'resize'?: SynTextarea['resize'];
+   * Controls how the textarea can be resized.
+   */
+  resize?: SynTextarea['resize'];
 
   /**
-* Disables the textarea.
- */
-  'disabled'?: SynTextarea['disabled'];
+   * Disables the textarea.
+   */
+  disabled?: SynTextarea['disabled'];
 
   /**
-* Makes the textarea readonly.
- */
-  'readonly'?: SynTextarea['readonly'];
+   * Makes the textarea readonly.
+   */
+  readonly?: SynTextarea['readonly'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.
@@ -104,64 +107,64 @@ to place the form control outside of a form and associate it with the form that 
 * The form must be in
 the same document or shadow root for this to work.
  */
-  'form'?: SynTextarea['form'];
+  form?: SynTextarea['form'];
 
   /**
-* Makes the textarea a required field.
- */
-  'required'?: SynTextarea['required'];
+   * Makes the textarea a required field.
+   */
+  required?: SynTextarea['required'];
 
   /**
-* The minimum length of input that will be considered valid.
- */
-  'minlength'?: SynTextarea['minlength'];
+   * The minimum length of input that will be considered valid.
+   */
+  minlength?: SynTextarea['minlength'];
 
   /**
-* The maximum length of input that will be considered valid.
- */
-  'maxlength'?: SynTextarea['maxlength'];
+   * The maximum length of input that will be considered valid.
+   */
+  maxlength?: SynTextarea['maxlength'];
 
   /**
-* Controls whether and how text input is automatically capitalized as it is entered by the user.
- */
-  'autocapitalize'?: SynTextarea['autocapitalize'];
+   * Controls whether and how text input is automatically capitalized as it is entered by the user.
+   */
+  autocapitalize?: SynTextarea['autocapitalize'];
 
   /**
-* Indicates whether the browser's autocorrect feature is on or off.
- */
-  'autocorrect'?: SynTextarea['autocorrect'];
+   * Indicates whether the browser's autocorrect feature is on or off.
+   */
+  autocorrect?: SynTextarea['autocorrect'];
 
   /**
 * Specifies what permission the browser has to provide assistance in filling out form field values.
 * Refer to
 [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
  */
-  'autocomplete'?: SynTextarea['autocomplete'];
+  autocomplete?: SynTextarea['autocomplete'];
 
   /**
-* Indicates that the input should receive focus on page load.
- */
-  'autofocus'?: SynTextarea['autofocus'];
+   * Indicates that the input should receive focus on page load.
+   */
+  autofocus?: SynTextarea['autofocus'];
 
   /**
-* Used to customize the label or icon of the Enter key on virtual keyboards.
- */
-  'enterkeyhint'?: SynTextarea['enterkeyhint'];
+   * Used to customize the label or icon of the Enter key on virtual keyboards.
+   */
+  enterkeyhint?: SynTextarea['enterkeyhint'];
 
   /**
-* Enables spell checking on the textarea.
- */
-  'spellcheck'?: SynTextarea['spellcheck'];
+   * Enables spell checking on the textarea.
+   */
+  spellcheck?: SynTextarea['spellcheck'];
 
   /**
 * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
 keyboard on supportive devices.
  */
-  'inputmode'?: SynTextarea['inputmode'];
+  inputmode?: SynTextarea['inputmode'];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   modelValue?: SynTextarea['value'];
 }>();
 
@@ -169,42 +172,42 @@ keyboard on supportive devices.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the control loses focus.
- */
+   * Emitted when the control loses focus.
+   */
   'syn-blur': [e: SynBlurEvent];
 
   /**
-* Emitted when an alteration to the control's value is committed by the user.
- */
+   * Emitted when an alteration to the control's value is committed by the user.
+   */
   'syn-change': [e: SynChangeEvent];
 
   /**
-* Emitted when the control gains focus.
- */
+   * Emitted when the control gains focus.
+   */
   'syn-focus': [e: SynFocusEvent];
 
   /**
-* Emitted when the control receives input.
- */
+   * Emitted when the control receives input.
+   */
   'syn-input': [e: SynInputEvent];
 
   /**
-* Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- */
+   * Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+   */
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
-* Support for two way data binding
- */
+   * Support for two way data binding
+   */
   'update:modelValue': [newValue: SynTextarea['value']];
 }>();
 </script>
@@ -219,15 +222,23 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-textarea
-    v-bind="visibleProps"
-    ref="nativeElement"
-    :value="typeof props.modelValue !== 'undefined' ? props.modelValue : typeof props.value !== 'undefined' ? props.value : undefined"
     @syn-blur="$emit('syn-blur', $event)"
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="$emit('update:modelValue', $event.target.value); $emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', $event.target.value);
+      $emit('syn-input', $event);
+    "
     @syn-invalid="$emit('syn-invalid', $event)"
-  >
-    <slot />
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-textarea>
 </template>

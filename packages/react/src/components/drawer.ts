@@ -8,9 +8,12 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/drawer/drawer.component.js';
 
 import { type EventName } from '@lit/react';
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynInitialFocusEvent, SynRequestCloseEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynInitialFocusEvent } from '@synergy-design-system/components';
+import type { SynRequestCloseEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-drawer';
 Component.define('syn-drawer');

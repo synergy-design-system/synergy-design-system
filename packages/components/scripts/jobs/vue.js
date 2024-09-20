@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import * as jobs from './vue/index.js';
-import { createRunPrepare, runAdjustPackageVersion } from './shared.js';
+import {
+  createRunFormat,
+  createRunPrepare,
+  runAdjustPackageVersion,
+} from './shared.js';
+
+const runFormat = createRunFormat('Vue: Running code formatter...');
 
 /**
  * Run all steps to create new react components
@@ -26,7 +32,7 @@ export const runCreateVueWrappers = async ({
   await runAdjustPackageVersion('Vue: Adjusting vue package.json version field...')(componentPackageDir, vuePackageDir);
   await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
   await jobs.runCreateWrappers(metadata, outDir);
-  await jobs.runFormat(outDir, vuePackageDir);
+  await runFormat(outDir);
 
   await jobs.runVueTypeScript(distDir, vuePackageDir);
 };

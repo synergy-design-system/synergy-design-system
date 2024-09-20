@@ -36,9 +36,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tooltip/tooltip.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynHideEvent, SynShowEvent, SynTooltip,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynTooltip } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTooltip>();
@@ -50,38 +52,38 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
-* The tooltip's content.
-* If you need to display HTML, use the `content` slot instead.
- */
-  'content'?: SynTooltip['content'];
+   * The tooltip's content.
+   * If you need to display HTML, use the `content` slot instead.
+   */
+  content?: SynTooltip['content'];
 
   /**
 * The preferred placement of the tooltip.
 * Note that the actual placement may vary as needed to keep the tooltip
 inside of the viewport.
  */
-  'placement'?: SynTooltip['placement'];
+  placement?: SynTooltip['placement'];
 
   /**
-* Disables the tooltip so it won't show when triggered.
- */
-  'disabled'?: SynTooltip['disabled'];
+   * Disables the tooltip so it won't show when triggered.
+   */
+  disabled?: SynTooltip['disabled'];
 
   /**
-* The distance in pixels from which to offset the tooltip away from its target.
- */
-  'distance'?: SynTooltip['distance'];
+   * The distance in pixels from which to offset the tooltip away from its target.
+   */
+  distance?: SynTooltip['distance'];
 
   /**
-* Indicates whether or not the tooltip is open.
-* You can use this in lieu of the show/hide methods.
- */
-  'open'?: SynTooltip['open'];
+   * Indicates whether or not the tooltip is open.
+   * You can use this in lieu of the show/hide methods.
+   */
+  open?: SynTooltip['open'];
 
   /**
-* The distance in pixels from which to offset the tooltip along its target.
- */
-  'skidding'?: SynTooltip['skidding'];
+   * The distance in pixels from which to offset the tooltip along its target.
+   */
+  skidding?: SynTooltip['skidding'];
 
   /**
 * Controls how the tooltip is activated.
@@ -91,7 +93,7 @@ options can be passed by separating them with a space.
 * When manual is used, the tooltip must be activated
 programmatically.
  */
-  'trigger'?: SynTooltip['trigger'];
+  trigger?: SynTooltip['trigger'];
 
   /**
 * Enable this option to prevent the tooltip from being clipped when the component is placed inside a container with
@@ -99,39 +101,39 @@ programmatically.
 * Hoisting uses a fixed positioning strategy that works in many, but not all,
 scenarios.
  */
-  'hoist'?: SynTooltip['hoist'];
+  hoist?: SynTooltip['hoist'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the tooltip begins to show.
- */
+   * Emitted when the tooltip begins to show.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the tooltip has shown and all animations are complete.
- */
+   * Emitted after the tooltip has shown and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the tooltip begins to hide.
- */
+   * Emitted when the tooltip begins to hide.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the tooltip has hidden and all animations are complete.
- */
+   * Emitted after the tooltip has hidden and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 }>();
 </script>
@@ -145,14 +147,12 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-tooltip
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
-
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-tooltip>
 </template>

@@ -4,8 +4,11 @@
  */
 @supports (scrollbar-gutter: stable) {
   html.syn-scroll-lock:has(#storybook-docs) {
+    scrollbar-gutter: unset !important;    
+  }
+
+  html.syn-scroll-lock:has(#storybook-docs) body {
     overflow: unset !important;
-    scrollbar-gutter: unset !important;
   }
 }
 

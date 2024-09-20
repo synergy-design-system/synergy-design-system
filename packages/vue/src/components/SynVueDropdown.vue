@@ -32,9 +32,11 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/dropdown/dropdown.js';
 
-import type {
-  SynAfterHideEvent, SynAfterShowEvent, SynDropdown, SynHideEvent, SynShowEvent,
-} from '@synergy-design-system/components';
+import type { SynShowEvent } from '@synergy-design-system/components';
+import type { SynAfterShowEvent } from '@synergy-design-system/components';
+import type { SynHideEvent } from '@synergy-design-system/components';
+import type { SynAfterHideEvent } from '@synergy-design-system/components';
+import type { SynDropdown } from '@synergy-design-system/components';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDropdown>();
@@ -50,19 +52,19 @@ const props = defineProps<{
 * You can toggle this attribute to show and hide the dropdown, or you
 can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
  */
-  'open'?: SynDropdown['open'];
+  open?: SynDropdown['open'];
 
   /**
 * The preferred placement of the dropdown panel.
 * Note that the actual placement may vary as needed to keep the panel
 inside of the viewport.
  */
-  'placement'?: SynDropdown['placement'];
+  placement?: SynDropdown['placement'];
 
   /**
-* Disables the dropdown so the panel will not open.
- */
-  'disabled'?: SynDropdown['disabled'];
+   * Disables the dropdown so the panel will not open.
+   */
+  disabled?: SynDropdown['disabled'];
 
   /**
 * By default, the dropdown is closed when an item is selected.
@@ -70,61 +72,61 @@ inside of the viewport.
 * Useful for
 dropdowns that allow for multiple interactions.
  */
-  'stayOpenOnSelect'?: SynDropdown['stayOpenOnSelect'];
+  stayOpenOnSelect?: SynDropdown['stayOpenOnSelect'];
 
   /**
-* The distance in pixels from which to offset the panel away from its trigger.
- */
-  'distance'?: SynDropdown['distance'];
+   * The distance in pixels from which to offset the panel away from its trigger.
+   */
+  distance?: SynDropdown['distance'];
 
   /**
-* The distance in pixels from which to offset the panel along its trigger.
- */
-  'skidding'?: SynDropdown['skidding'];
+   * The distance in pixels from which to offset the panel along its trigger.
+   */
+  skidding?: SynDropdown['skidding'];
 
   /**
 * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
 `overflow: auto|scroll`.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
-  'hoist'?: SynDropdown['hoist'];
+  hoist?: SynDropdown['hoist'];
 
   /**
-* Syncs the popup width or height to that of the trigger element.
- */
-  'sync'?: SynDropdown['sync'];
+   * Syncs the popup width or height to that of the trigger element.
+   */
+  sync?: SynDropdown['sync'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
 // This is needed because :param="param" also adds an empty attribute
 // when using web-components, which breaks optional arguments like size in SynInput
 // @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
-const visibleProps = computed(() => Object.fromEntries(
-  Object
-    .entries(props)
-    .filter(([, value]) => typeof value !== 'undefined'),
-));
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 
 // Map events
 defineEmits<{
   /**
-* Emitted when the dropdown opens.
- */
+   * Emitted when the dropdown opens.
+   */
   'syn-show': [e: SynShowEvent];
 
   /**
-* Emitted after the dropdown opens and all animations are complete.
- */
+   * Emitted after the dropdown opens and all animations are complete.
+   */
   'syn-after-show': [e: SynAfterShowEvent];
 
   /**
-* Emitted when the dropdown closes.
- */
+   * Emitted when the dropdown closes.
+   */
   'syn-hide': [e: SynHideEvent];
 
   /**
-* Emitted after the dropdown closes and all animations are complete.
- */
+   * Emitted after the dropdown closes and all animations are complete.
+   */
   'syn-after-hide': [e: SynAfterHideEvent];
 }>();
 </script>
@@ -138,14 +140,12 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
 
 <template>
   <syn-dropdown
-    v-bind="visibleProps"
-    ref="nativeElement"
     @syn-show="$emit('syn-show', $event)"
     @syn-after-show="$emit('syn-after-show', $event)"
-
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
-  >
-    <slot />
+    v-bind="visibleProps"
+    ref="nativeElement">
+    <slot></slot>
   </syn-dropdown>
 </template>

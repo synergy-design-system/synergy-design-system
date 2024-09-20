@@ -6,14 +6,15 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
+  Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import type {
-  SynBurgerMenuClosedEvent, SynBurgerMenuHiddenEvent, SynBurgerMenuOpenEvent, SynHeader,
-} from '@synergy-design-system/components';
+import type { SynHeader } from '@synergy-design-system/components';
+import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
+import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/header/header.js';
 
 /**
@@ -53,26 +54,39 @@ import '@synergy-design-system/components/components/header/header.js';
 })
 export class SynHeaderComponent {
   public nativeElement: SynHeader;
-
   private _ngZone: NgZone;
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
     this._ngZone = ngZone;
-    this.nativeElement.addEventListener('syn-burger-menu-closed', (e: SynBurgerMenuClosedEvent) => { this.synBurgerMenuClosedEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-burger-menu-hidden', (e: SynBurgerMenuHiddenEvent) => { this.synBurgerMenuHiddenEvent.emit(e); });
-    this.nativeElement.addEventListener('syn-burger-menu-open', (e: SynBurgerMenuOpenEvent) => { this.synBurgerMenuOpenEvent.emit(e); });
+    this.nativeElement.addEventListener(
+      'syn-burger-menu-closed',
+      (e: SynBurgerMenuClosedEvent) => {
+        this.synBurgerMenuClosedEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-burger-menu-hidden',
+      (e: SynBurgerMenuHiddenEvent) => {
+        this.synBurgerMenuHiddenEvent.emit(e);
+      },
+    );
+    this.nativeElement.addEventListener(
+      'syn-burger-menu-open',
+      (e: SynBurgerMenuOpenEvent) => {
+        this.synBurgerMenuOpenEvent.emit(e);
+      },
+    );
   }
 
   /**
-* The headers label.
-* If you need to display HTML, use the `label` slot instead.
- */
+   * The headers label.
+   * If you need to display HTML, use the `label` slot instead.
+   */
   @Input()
   set label(v: SynHeader['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-
   get label() {
     return this.nativeElement.label;
   }
@@ -89,24 +103,25 @@ The following values can be used:
   set burgerMenu(v: SynHeader['burgerMenu']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.burgerMenu = v));
   }
-
   get burgerMenu() {
     return this.nativeElement.burgerMenu;
   }
 
   /**
-* Emitted when the burger menu is toggled to closed
- */
-  @Output() synBurgerMenuClosedEvent = new EventEmitter<SynBurgerMenuClosedEvent>();
+   * Emitted when the burger menu is toggled to closed
+   */
+  @Output() synBurgerMenuClosedEvent =
+    new EventEmitter<SynBurgerMenuClosedEvent>();
 
   /**
-* Emitted when the burger menu is toggled to hidden
- */
-  @Output() synBurgerMenuHiddenEvent = new EventEmitter<SynBurgerMenuHiddenEvent>();
+   * Emitted when the burger menu is toggled to hidden
+   */
+  @Output() synBurgerMenuHiddenEvent =
+    new EventEmitter<SynBurgerMenuHiddenEvent>();
 
   /**
-* Emitted when the burger menu is toggled to open
- */
+   * Emitted when the burger menu is toggled to open
+   */
   @Output() synBurgerMenuOpenEvent = new EventEmitter<SynBurgerMenuOpenEvent>();
 }
 

@@ -8,7 +8,8 @@ import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/tab-group/tab-group.component.js';
 
 import { type EventName } from '@lit/react';
-import type { SynTabHideEvent, SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabShowEvent } from '@synergy-design-system/components';
+import type { SynTabHideEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-tab-group';
 Component.define('syn-tab-group');

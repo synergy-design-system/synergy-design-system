@@ -23,9 +23,7 @@ Component.define('syn-badge');
 export const SynBadge = createComponent({
   displayName: 'SynBadge',
   elementClass: Component,
-  events: {
-
-  },
+  events: {},
   react: React,
   tagName,
 });

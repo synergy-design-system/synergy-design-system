@@ -3195,7 +3195,7 @@
       },
       "help-text": {
         "title": {
-          "value": "help-text",
+          "value": "Help Text",
           "type": "text"
         },
         "description": {

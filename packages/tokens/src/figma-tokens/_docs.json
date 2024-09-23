@@ -1060,6 +1060,16 @@
           "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
           "type": "text"
         }
+      },
+      "directory": {
+        "title": {
+          "value": "Directory",
+          "type": "text"
+        },
+        "description": {
+          "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files and subdirectories within it (including the full directory hierarchy) are uploaded as part of the selection. Although this feature is not part of the official HTML specification, it is widely supported across major browsers.",
+          "type": "text"
+        }
       }
     },
     "format-bytes": {

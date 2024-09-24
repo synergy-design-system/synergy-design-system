@@ -13,6 +13,7 @@ export { default as SynButtonGroup } from './components/button-group/button-grou
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCard } from './components/card/card.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
+export { default as SynCombobox } from './components/combobox/combobox.js';
 export { default as SynDetails } from './components/details/details.js';
 export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
@@ -55,6 +56,8 @@ export { default as SynValidate } from './components/validate/validate.js';
 export * from './utilities/base-path.js';
 export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
+
+export * from './components/combobox/option-renderer.js';
 
 // Events
 export * from './events/events.js';

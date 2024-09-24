@@ -81,6 +81,10 @@ form .syn-fieldset:last-of-type {
   gap: var(--syn-spacing-medium);
 }
 
+#input-nationality::part(listbox) {
+  max-height: min(var(--auto-size-available-height), 300px);
+}
+
 #happiness-fields syn-range nav {
   display: flex;
   flex-direction: row;

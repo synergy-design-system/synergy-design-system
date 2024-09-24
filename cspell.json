@@ -15,6 +15,7 @@
     "vendorism",
     "slotchange",
     "optiongroup",
+    "combobox",
     "labelledby",
     "valuenow",
     "valuetext",
@@ -26,6 +27,7 @@
     "stylesheet",
     "keyframes",
     "autofocus"
+    "listbox"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

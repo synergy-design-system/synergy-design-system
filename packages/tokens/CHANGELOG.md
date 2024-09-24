@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.9.0...tokens/2.10.0) (2024-09-24)
+
+
+### Features
+
+* ✨add syn-combobox ([#542](https://github.com/synergy-design-system/synergy-design-system/issues/542)) ([9be251b](https://github.com/synergy-design-system/synergy-design-system/commit/9be251b327f9ea63fb29c1194d2471d87c195ed4))
+
 # [@synergy-design-system/tokens-v2.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.8.0...tokens/2.9.0) (2024-08-26)
 
 

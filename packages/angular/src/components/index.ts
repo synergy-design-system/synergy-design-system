@@ -12,6 +12,7 @@ export { SynButtonComponent } from './button.component';
 export { SynButtonGroupComponent } from './button-group.component';
 export { SynCardComponent } from './card.component';
 export { SynCheckboxComponent } from './checkbox.component';
+export { SynComboboxComponent } from './combobox.component';
 export { SynDetailsComponent } from './details.component';
 export { SynDialogComponent } from './dialog.component';
 export { SynDividerComponent } from './divider.component';

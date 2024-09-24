@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.3...components/2.8.0) (2024-09-24)
+
+
+### Features
+
+* ✨add syn-combobox ([#542](https://github.com/synergy-design-system/synergy-design-system/issues/542)) ([9be251b](https://github.com/synergy-design-system/synergy-design-system/commit/9be251b327f9ea63fb29c1194d2471d87c195ed4))
+
 # [@synergy-design-system/components-v2.7.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.2...components/2.7.3) (2024-09-16)
 
 

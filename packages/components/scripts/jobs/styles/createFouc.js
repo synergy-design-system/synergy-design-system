@@ -9,6 +9,7 @@ import { job } from '../shared.js';
 const componentsUsingBlockLayout = [
   'accordion',
   'breadcrumb',
+  'combobox',
   'details',
   'divider',
   'header',

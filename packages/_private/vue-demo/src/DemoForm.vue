@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import {
   SynVueButton,
   SynVueCheckbox,
+  SynVueCombobox,
   SynVueDivider,
   SynVueFile,
   SynVueInput,
@@ -16,8 +17,10 @@ import {
   SynVueSwitch,
   SynVueTextarea,
 } from '@synergy-design-system/vue';
-import { serialize } from '@synergy-design-system/components';
+import { serialize, highlightOptionRenderer } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const initialFormData = {
   code: '',
@@ -29,6 +32,7 @@ const initialFormData = {
   gender: '',
   happiness: '5',
   name: '',
+  nationality: '',
   newsletterAngular: false,
   newsletterBeta: false,
   newsletterReact: false,
@@ -49,7 +53,6 @@ const formRef = ref<HTMLFormElement>();
 
 // Custom formatter for donations
 const donationsRef = ref<InstanceType<typeof SynVueRange> | null>(null);
-
 onMounted(() => {
   const formatter = new Intl.NumberFormat('de-DE', {
     currency: 'EUR',
@@ -163,10 +166,21 @@ const synChange = () => {
         id="input-date"
         label="Date of birth"
         name="date"
-        placeholder="Please insert your E-mail address"
         v-model="formData.date"
         type="date"
       />
+
+      <SynVueCombobox
+        id="input-nationality"
+        label="Nationality"
+        name="nationality"
+        required
+        v-model="formData.nationality"
+        ref="nationalityRef"
+        :getOption="highlightOptionRenderer"
+      >
+        <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
+      </SynVueCombobox>
 
     </DemoFieldset>
     <!-- /PersonalInformation -->
@@ -383,5 +397,9 @@ form .syn-fieldset:last-of-type {
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);
+}
+
+#input-nationality::part(listbox) {
+  max-height: min(var(--auto-size-available-height), 300px);
 }
 </style>

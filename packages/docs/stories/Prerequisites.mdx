@@ -1,0 +1,157 @@
+import { Meta, Markdown } from "@storybook/blocks";
+import Contributing from '../../../CONTRIBUTING.md?raw';
+
+<Meta title="Prerequisites" />
+
+# Prerequisites
+
+## Fonts
+
+The Synergy Design System makes use of the `Open Sans` typeface.
+Because there are various ways of loading fonts, depending on used bundler, pre- and postprocessors and usage of a CDN, Synergy does **not provide** this font.
+You need to include it into your own project.
+
+The following information may be helpful to get you started including your own copy of `Open Sans` in your project for quicker bootstrapping:
+
+### Local Installation
+
+1. Download the `Open Sans` font from the [SICK Brand Portal](https://brand.sick.com/document/49#/-/resources-1).
+2. Extract the ZIP file to a destination reachable by your project (e.g. a `public` folder).
+3. Include the font in your project by adding the following CSS to your project (where `PUBLIC_PATH` is the path to the folder containing the font files).
+
+```css
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/PUBLIC_PATH/Regular/OpenSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/PUBLIC_PATH/Italic/OpenSans-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/PUBLIC_PATH/SemiBold/OpenSans-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/PUBLIC_PATH/SemiBoldItalic/OpenSans-SemiBoldItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/PUBLIC_PATH/Bold/OpenSans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/PUBLIC_PATH/BoldItalic/OpenSans-BoldItalic.woff2') format('woff2');
+}
+```
+
+### Installing via local npm package (e.g. for vite or webpack based setups)
+
+1. Install the `@fontsource/open-sans` package into your project.
+2. Include the font in your project by adding the following import statements to your project:
+
+```js
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/400-italic.css';
+import '@fontsource/open-sans/600.css';
+import '@fontsource/open-sans/600-italic.css';
+import '@fontsource/open-sans/700.css';
+import '@fontsource/open-sans/700-italic.css';
+```
+
+### Installing via local npm package (angular)
+
+1. Install the `@fontsource/open-sans` package into your project.
+2. Adjust your `angular.json` file to include the needed stylesheets (where project_name is the name of your project):
+
+```json
+{
+  "projects": {
+    "project_name": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "@fontsource/open-sans/400.css",
+              "@fontsource/open-sans/400-italic.css",
+              "@fontsource/open-sans/600.css",
+              "@fontsource/open-sans/600-italic.css",
+              "@fontsource/open-sans/700.css",
+              "@fontsource/open-sans/700-italic.css",
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Using the SICK CDN
+
+This is the simplest default font behavior. The `Open Sans` font is loaded from the SICK CDN.
+
+```css
+/* Regular */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.ttf") format("truetype");
+}
+ 
+/* Semi Bold */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/SemiBold/OpenSans-SemiBold.ttf") format("truetype");
+}
+ 
+/* Bold */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.woff2") format("woff2"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.woff") format("woff"),
+        url("https://cdn.sick.com/media/fonts/opensans-v1/Bold/OpenSans-Bold.ttf") format("truetype");
+}
+```
+
+For better performance, you may also add the following statement to your HTML:
+
+```html
+<link rel="preload" href="https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+```

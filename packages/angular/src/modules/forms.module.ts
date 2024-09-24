@@ -19,6 +19,7 @@ import {
     },
   ],
   selector: `syn-button-group[formControlName], syn-button-group[formControl], syn-button-group[ngModel],
+    syn-combobox[formControlName], syn-combobox[formControl], syn-combobox[ngModel],
     syn-dropdown[formControlName], syn-dropdown[formControl], syn-dropdown[ngModel],
     syn-input[formControlName], syn-input[formControl], syn-input[ngModel],
     syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel],

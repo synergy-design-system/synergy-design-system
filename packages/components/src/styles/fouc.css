@@ -9,6 +9,7 @@
  */
 syn-accordion:not(:defined),
 syn-breadcrumb:not(:defined),
+syn-combobox:not(:defined),
 syn-details:not(:defined),
 syn-divider:not(:defined),
 syn-file:not(:defined),

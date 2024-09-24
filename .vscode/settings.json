@@ -53,6 +53,7 @@
     "packages/components/src/components/checkbox/checkbox.styles.ts": true,
     "packages/components/src/components/checkbox/checkbox.test.ts": true,
     "packages/components/src/components/checkbox/checkbox.ts": true,
+    "packages/components/src/components/combobox/combobox.styles.ts": true,
     "packages/components/src/components/details/details.component.ts": true,
     "packages/components/src/components/details/details.styles.ts": true,
     "packages/components/src/components/details/details.test.ts": true,

@@ -26,6 +26,7 @@ const defaultSelectors = [
   'syn-radio-group',
   'syn-button-group',
   'syn-range',
+  'syn-combobox',
 ].sort();
 
 /**

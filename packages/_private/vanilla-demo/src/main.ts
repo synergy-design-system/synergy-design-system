@@ -3,9 +3,11 @@
 import history from 'history/browser';
 import {
   type SynChangeEvent,
+  type SynCombobox,
   type SynNavItem,
   type SynRange,
   type SynSwitch,
+  highlightOptionRenderer,
 } from '@synergy-design-system/components';
 
 // Load webfonts
@@ -22,6 +24,8 @@ import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
 import { serialize } from '@synergy-design-system/components';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
 
@@ -114,10 +118,21 @@ const initApp = async () => {
   });
 };
 
+const initCombobox = () => {
+  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
+  nationalitiesEl.getOption = highlightOptionRenderer;
+  nationalities.forEach((nationality) => {
+    const option = document.createElement('syn-option');
+    option.innerText = nationality;
+    nationalitiesEl.appendChild(option);
+  });
+};
+
 const bootstrap = async () => {
   await initRouting();
   await initApp();
   await initThemeSwitch();
+  initCombobox();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

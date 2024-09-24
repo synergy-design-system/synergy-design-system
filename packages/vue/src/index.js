@@ -12,6 +12,7 @@ export { default as SynVueButton } from './components/SynVueButton.vue';
 export { default as SynVueButtonGroup } from './components/SynVueButtonGroup.vue';
 export { default as SynVueCard } from './components/SynVueCard.vue';
 export { default as SynVueCheckbox } from './components/SynVueCheckbox.vue';
+export { default as SynVueCombobox } from './components/SynVueCombobox.vue';
 export { default as SynVueDetails } from './components/SynVueDetails.vue';
 export { default as SynVueDialog } from './components/SynVueDialog.vue';
 export { default as SynVueDivider } from './components/SynVueDivider.vue';

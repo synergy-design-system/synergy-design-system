@@ -1,7 +1,7 @@
 # @synergy-design-system/tokens
 
-This package provides the design tokens that form the base for all components of the synergy design system.
-It provides multiple exports for colors, spacings, shadows, sizings, etc. that can be also consumed by applications directly.
+This package provides the design tokens that form the base for all components of the Synergy Design System.
+It provides exports for colors, spacings, shadows, sizings, typography and more that can be also consumed by applications directly.
 
 The source of the tokens can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-235&mode=design&t=GPu4VVd9yffLLAaS-0)
 

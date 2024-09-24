@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fontsource/open-sans": "^5.1.0",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",

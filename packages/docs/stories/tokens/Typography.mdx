@@ -29,7 +29,18 @@ import {
   ].map(([prop, title, category]) => (
     <>
       <h2>{title}</h2>
-      <p>{docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}</p>
+      <p>
+        {docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}
+        {prop === 'font-family' && (
+          <blockquote>
+            <strong>⚠️ Note</strong>:
+            As there are many possible setups for font loading (e.g. bundler, pre- and postprocessors, cdn...), we decided to not include the font files.
+            Because of this, <strong>you</strong> are responsible to provide the required <strong>Open Sans</strong> font.
+            Please make sure to load the font files via <code>@font-face</code> <strong>before</strong> using the tokens.
+            Examples for this can be seen at our <a href="?path=/docs/prerequisites--docs">Prerequisites Documentation section</a>.
+          </blockquote>
+        )}
+      </p>
       <table key={`syn-${prop}`}>
         <tbody>
           <>

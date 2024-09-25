@@ -25,13 +25,14 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public', {
-      from: '../../assets/src',
-      to: '/assets'
+    from: '../../assets/src',
+    to: '/assets'
   }],
   stories: [
     "../stories/Welcome.mdx",
     "../stories/GoalsAndGuidelines.mdx",
     "../stories/Presentation.mdx",
+    "../stories/Prerequisites.mdx",
     "../stories/Contributing.mdx",
     "../stories/limitations/**/*.mdx",
     "../stories/packages/**/*.mdx",

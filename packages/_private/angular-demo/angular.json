@@ -33,6 +33,12 @@
               }
             ],
             "styles": [
+              "@fontsource/open-sans/400.css",
+              "@fontsource/open-sans/400-italic.css",
+              "@fontsource/open-sans/600.css",
+              "@fontsource/open-sans/600-italic.css",
+              "@fontsource/open-sans/700.css",
+              "@fontsource/open-sans/700-italic.css",
               "@synergy-design-system/tokens/themes/dark.css",
               "@synergy-design-system/tokens/themes/light.css",
               "@synergy-design-system/components/index.css",

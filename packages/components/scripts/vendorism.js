@@ -12,6 +12,7 @@ import {
   vendorBreadcrumbItem,
   vendorButton,
   vendorCard,
+  vendorCombobox,
   vendorDetails,
   vendorDrawer,
   vendorForm,
@@ -378,6 +379,11 @@ if (!options.getOnly) {
   await execSync('mv ../docs/stories/components ./src/temp');
 
   const { removedFiles, newFiles } = await set(config);
+
+  // Copy the select styles for the combobox and adapt them for combobox
+  vendorCombobox();
+  // Make the copied select styles for the combobox readonly
+  newFiles.push('src/components/combobox/combobox.styles.ts');
 
   await updateVsCodeReadOnlyFiles(removedFiles, newFiles.filter(f => !f.includes('stories.ts')));
 

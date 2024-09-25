@@ -1,11 +1,17 @@
+<link rel="preload" href="https://cdn.sick.com/media/fonts/opensans-v1/Regular/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/font.css" />
+
 <style>
 /**
  * Make sure scroll lock is disabled for modals and the drawer
  */
 @supports (scrollbar-gutter: stable) {
   html.syn-scroll-lock:has(#storybook-docs) {
+    scrollbar-gutter: unset !important;    
+  }
+
+  html.syn-scroll-lock:has(#storybook-docs) body {
     overflow: unset !important;
-    scrollbar-gutter: unset !important;
   }
 }
 

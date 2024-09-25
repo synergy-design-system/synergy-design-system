@@ -52,8 +52,8 @@ const translation: Translation = {
   folderDragDrop: 'Drop or choose folder',
   menu: 'Menu',
   notification: 'Notification',
-  numFilesSelected: num => {
-      if (num === 0) return 'No files chosen';
+  numFilesSelected: (num, dir) => {
+      if (num === 0) return `No ${dir ? 'Folder' : 'Files'} chosen`;
       return `${num} files`;
     },
   openMenu: 'Open menu',

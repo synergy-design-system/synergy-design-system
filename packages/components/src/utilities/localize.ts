@@ -34,7 +34,7 @@ export interface Translation extends DefaultTranslation {
   folderDragDrop: string;
   menu: string;
   notification: string;
-  numFilesSelected: (num: number) => string;
+  numFilesSelected: (num: number, dir: boolean) => string;
   openMenu: string;
   rangeMax: string;
   rangeMin: string;

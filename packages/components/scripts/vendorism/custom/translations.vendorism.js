@@ -39,15 +39,15 @@ const translations = {
     en: 'Notification',
   },
   numFilesSelected: {
-    de: num => {
-      if (num === 0) return 'Keine Dateien ausgewählt';
+    de: (num, dir) => {
+      if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
       return `${num} Dateien`;
     },
-    en: num => {
-      if (num === 0) return 'No files chosen';
+    en: (num, dir) => {
+      if (num === 0) return `No ${dir ? 'Folder' : 'Files'} chosen`;
       return `${num} files`;
     },
-    type: '(num: number) => string',
+    type: '(num: number, dir: boolean) => string',
   },
   openMenu: {
     de: 'Menü öffnen',

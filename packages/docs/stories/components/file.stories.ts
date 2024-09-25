@@ -200,13 +200,11 @@ export const Directory: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
       <syn-file
-        help-text="This is a help text"
         label="Button"
         webkitdirectory
       ></syn-file>
       <syn-file
         droparea
-        help-text="This is a help text"
         label="Droparea"
         webkitdirectory
       ></syn-file>

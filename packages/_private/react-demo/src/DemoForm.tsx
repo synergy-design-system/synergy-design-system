@@ -5,7 +5,6 @@ import type {
   SynCheckbox as NativeCheckbox,
   SynFile as NativeFile,
   SynChangeEvent,
-  SynRange as SynRangeNativeElement,
 } from '@synergy-design-system/components';
 import {
   SynButton,
@@ -56,6 +55,7 @@ const initialFormData = {
 };
 
 const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+
 const formatter = new Intl.NumberFormat('de-DE', {
   currency: 'EUR',
   maximumFractionDigits: 0,
@@ -63,16 +63,12 @@ const formatter = new Intl.NumberFormat('de-DE', {
 });
 
 export const DemoForm = () => {
-  const donationsRef = useRef<SynRangeNativeElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
-    // Add a custom formatter for the donation field
-    donationsRef.current!.tooltipFormatter = value => formatter.format(value);
-
     const listener = (e: SynChangeEvent) => {
       const form = formRef.current as HTMLFormElement;
 
@@ -303,8 +299,8 @@ export const DemoForm = () => {
           max={6000}
           min={0}
           name="donations"
+          tooltipFormatter={value => formatter.format(value)}
           value={formData.donations}
-          ref={donationsRef}
         >
           <nav slot="ticks">
             <SynRangeTick>0 €</SynRangeTick>

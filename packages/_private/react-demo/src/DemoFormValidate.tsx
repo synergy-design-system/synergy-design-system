@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import { serialize } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import type {
   SynCheckbox as NativeCheckbox,
   SynFile as NativeFile,
@@ -9,6 +9,7 @@ import type {
 import {
   SynButton,
   SynCheckbox,
+  SynCombobox,
   SynDivider,
   SynFile,
   SynInput,
@@ -40,11 +41,14 @@ const initialFormData = {
   gender: '',
   happiness: '5',
   name: '',
+  nationality: '',
   newsletterBeta: false,
   newsletterStandard: false,
   password: 'invalid',
   role: '',
 };
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 export const DemoFormValidate = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -184,6 +188,24 @@ export const DemoFormValidate = () => {
             value={formData.date}
             type="date"
           />
+        </SynValidate>
+
+        <SynValidate inline on={['input', 'blur']}>
+          <SynCombobox
+            id="input-nationality"
+            label="Nationality"
+            name="nationality"
+            required
+            value={formData.nationality}
+            placeholder='Please choose your nationality'
+            getOption={highlightOptionRenderer}
+          >
+            {nationalities.map(n => (
+              <SynOption key={n}>
+                {n}
+              </SynOption>
+            ))}
+          </SynCombobox>
         </SynValidate>
 
       </DemoFieldset>

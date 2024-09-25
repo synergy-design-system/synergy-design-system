@@ -68,9 +68,17 @@
           id="input-date"
           label="Date of birth"
           name="input-date"
-          placeholder="Please insert your E-mail address"
           type="date"
         ></syn-input>
+      </syn-validate>
+
+      <syn-validate inline on="live">
+        <syn-combobox
+          id="input-nationality"
+          label="Nationality"
+          name="input-nationality"
+          required
+        ></syn-combobox>
       </syn-validate>
 
     </fieldset>

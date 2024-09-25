@@ -18,6 +18,10 @@ export class BaseFormObject extends PageObject {
     return this.page.locator(selectors.nameLoc);
   }
 
+  get nationality() {
+    return this.page.locator(selectors.nationalityLoc);
+  }
+
   get submit() {
     return this.page.locator(selectors.submit);
   }

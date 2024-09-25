@@ -58,6 +58,7 @@ export class DemoForm extends BaseFormObject {
   get allRequiredInputs(): Array<Locator> {
     return [
       this.name,
+      this.nationality,
       this.password,
       this.role,
       this.email,
@@ -83,6 +84,8 @@ export class DemoForm extends BaseFormObject {
     await fillField(this.birth, '2000-02-29');
     await fillField(this.password, 'Password123');
     await fillField(this.passwordRecovery, '1234');
+    await fillField(this.nationality, 'German', '.combobox__display-input');
+
     await this.topics.click();
     await this.angular.click();
     await this.topics.evaluate((role: SynSelect) => {
@@ -117,6 +120,7 @@ export class DemoForm extends BaseFormObject {
     expect(await getInputValue(this.birth)).toBe('');
     expect(await getInputValue(this.password)).toBe('invalid');
     expect(await getInputValue(this.passwordRecovery)).toBe('');
+    expect(await getInputValue(this.nationality)).toBe('');
     expect(await getInputValue(this.topics)).toEqual([]);
     expect(await getInputValue(this.additionalInfo)).toBe('');
     expect(await getInputValue(this.happiness)).toBe('5');

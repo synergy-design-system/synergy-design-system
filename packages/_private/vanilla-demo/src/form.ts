@@ -1,6 +1,18 @@
 /* eslint-disable no-console */
-import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
-import { serialize } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynCombobox, SynRange } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+
+const initCombobox = () => {
+  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
+  nationalitiesEl.getOption = highlightOptionRenderer;
+  nationalities.forEach((nationality) => {
+    const option = document.createElement('syn-option');
+    option.innerText = nationality;
+    nationalitiesEl.appendChild(option);
+  });
+};
 
 const setupForm = (formSelector: string) => {
   const form = document.querySelector<HTMLFormElement>(formSelector)!;
@@ -46,6 +58,9 @@ export const afterRenderDefaultForm = async () => {
     .querySelector<SynRange>('#donations')!
     .tooltipFormatter = value => formatter.format(value);
 
+  // Add custom highlighter for the combobox
+  initCombobox();
+
   setupForm('#form-demo');
 };
 
@@ -54,6 +69,9 @@ export const afterRenderValidateForm = async () => {
     customElements.whenDefined('syn-button'),
     customElements.whenDefined('syn-range'),
   ]);
+
+  // Add custom highlighter for the combobox
+  initCombobox();
 
   // Link the happiness slider to the input field
   const slider = document.querySelector<SynRange>('#happiness')!;

@@ -17,6 +17,7 @@ export class DemoFormValidate extends BaseFormObject {
       this.gender,
       this.role,
       this.name,
+      this.nationality,
       this.email,
       this.password,
       this.newsSyn,
@@ -33,6 +34,7 @@ export class DemoFormValidate extends BaseFormObject {
     await this.frontend.click();
 
     await fillField(this.password, 'Password123');
+    await fillField(this.nationality, 'German', '.combobox__display-input');
 
     await this.newsSyn.click({
       position: { x: 20, y: 20 },
@@ -58,6 +60,7 @@ export class DemoFormValidate extends BaseFormObject {
     expect(await getInputValue(this.birth)).toBe('');
     expect(await getInputValue(this.password)).toBe('invalid');
     expect(await getInputValue(this.passwordRecovery)).toBe('');
+    expect(await getInputValue(this.nationality)).toBe('');
 
     const all = (await Promise.all(this.allRequiredInputs.map((input) => input.getAttribute('data-invalid'))));
     all.forEach((val) => expect(val).toBe(''));

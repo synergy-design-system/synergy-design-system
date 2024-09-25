@@ -214,9 +214,7 @@ export const DemoForm = () => {
           getOption={highlightOptionRenderer}
         >
           {nationalities.map(n => (
-            <SynOption
-              key={n}
-            >
+            <SynOption key={n}>
               {n}
             </SynOption>
           ))}

@@ -81,6 +81,19 @@
       />
     </syn-validate>
 
+    <syn-validate [inline]=true on="live">
+      <syn-combobox
+        formControlName="nationality"
+        id="input-nationality"
+        label="Nationality"
+        name="nationality"
+        [required]="true"
+        [getOption]="highlightOptionRenderer"
+      >
+        <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
+      </syn-combobox>
+    </syn-validate>
+
   </demo-fieldset>
   <!-- /PersonalInformation -->
 

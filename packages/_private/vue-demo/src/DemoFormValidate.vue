@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import {
   SynVueButton,
+  SynVueCombobox,
   SynVueCheckbox,
   SynVueDivider,
   SynVueFile,
@@ -17,8 +18,10 @@ import {
   SynVueTextarea,
   SynVueValidate,
 } from '@synergy-design-system/vue';
-import { serialize } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import DemoFieldset from './DemoFieldset.vue';
+
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const initialFormData = {
   code: '',
@@ -29,6 +32,7 @@ const initialFormData = {
   gender: '',
   happiness: '5',
   name: '',
+  nationality: '',
   newsletterBeta: false,
   newsletterStandard: false,
   password: 'invalid',
@@ -145,10 +149,25 @@ const synChange = () => {
           id="input-date"
           label="Date of birth"
           name="date"
-          placeholder="Please insert your E-mail address"
           v-model="formData.date"
           type="date"
         />
+      </SynVueValidate>
+
+      <SynVueValidate inline on="live">
+        <SynVueCombobox
+          id="input-nationality"
+          label="Nationality"
+          name="nationality"
+          required
+          v-model="formData.nationality"
+          ref="nationalityRef"
+          :getOption="highlightOptionRenderer"
+        >
+          <SynVueOption v-for="nationality in nationalities" :key="nationality">
+            {{ nationality }}
+          </SynVueOption>
+        </SynVueCombobox>
       </SynVueValidate>
 
     </DemoFieldset>
@@ -324,5 +343,9 @@ form .syn-fieldset:last-of-type {
 #radiogroup-gender::part(form-control-input) {
   display: flex;
   gap: var(--syn-spacing-medium);
+}
+
+#input-nationality::part(listbox) {
+  max-height: min(var(--auto-size-available-height), 300px);
 }
 </style>

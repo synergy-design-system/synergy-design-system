@@ -322,7 +322,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     const filesArray = await Promise.all(filesPromises);
     const files = filesArray.flat();
 
-    function arrayToFileList(f: File[]): FileList {
+    const dataTransfer = new DataTransfer();
+    Array.from(files).forEach(f => dataTransfer.items.add(f));
+    return dataTransfer.files;
       const dataTransfer = new DataTransfer();
       f.forEach(file => dataTransfer.items.add(file));
       return dataTransfer.files;

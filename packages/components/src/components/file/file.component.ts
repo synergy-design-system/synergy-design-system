@@ -307,7 +307,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       return new Promise((_resolve, reject) => { reject(new Error('No proper items found')); });
     }
 
-    const itemsArray = Array.from(items);
+    const entries = Array
+      .from(items)
+      .map(item => item.webkitGetAsEntry());
 
     const entries: (FileSystemEntry | null)[] = itemsArray.map((item) => item.webkitGetAsEntry());
 

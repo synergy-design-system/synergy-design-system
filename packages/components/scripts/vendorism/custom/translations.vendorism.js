@@ -44,7 +44,7 @@ const translations = {
       return `${num} Dateien`;
     },
     en: (num, dir) => {
-      if (num === 0) return `No ${dir ? 'Folder' : 'Files'} chosen`;
+      if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
       return `${num} files`;
     },
     type: '(num: number, dir: boolean) => string',

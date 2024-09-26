@@ -8,9 +8,13 @@ import SynAlert from '../alert/alert.component.js';
 import {
   arraysDiffer,
   isBlurEvent,
+  isChangeEvent,
   isInvalidEvent,
+  normalizeEventAttribute,
 } from './utility.js';
 import styles from './validate.styles.js';
+
+// @todo: If no change there, revalidate on internal change! (there is an invalid event but not valid one :())
 
 /**
  * @summary Validate is a helper that may be used to wrap
@@ -23,9 +27,10 @@ import styles from './validate.styles.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the input field.
- * @csspart alert - The container that wraps the alert.
- * @csspart alert-message - The container that wraps the alert message.
- * @csspart alert-icon - The container that wraps the alert icon.
+ * @csspart alert - The syn-alert that is shown when inline is true.
+ * @csspart alert__base - The container that wraps the alert.
+ * @csspart alert__message - The container that wraps the alert message.
+ * @csspart alert__icon - The container that wraps the alert icon.
  */
 export default class SynValidate extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -51,8 +56,9 @@ export default class SynValidate extends SynergyElement {
    * Defaults to the `invalid` and `change` events.
    * `invalid` will always automatically be included.
    * You may also use the `live` keyword to validate on every input change.
+   * `live` will make sure to listen to the `invalid`, `input` and `blur` events.
    * @example ```html
-   * <!-- Use default validation (invalid, change) -->
+   * <!-- Use default validation (invalid) -->
    * <syn-validate></syn-validate>
    *
    * <!-- Validate on invalid and change events (invalid, change) -->
@@ -67,14 +73,18 @@ export default class SynValidate extends SynergyElement {
    */
   @property({
     converter: {
-      fromAttribute: (e: string) => e.split(' ').map(s => s.trim()),
-      toAttribute: (a: string[] | string) => {
-        if (!Array.isArray(a)) return a;
-        return a.map(e => e.trim()).join(' ');
+      fromAttribute: (on: string) => normalizeEventAttribute(on),
+      toAttribute: (on: string[] | string) => {
+        console.log(on);
+        if (!Array.isArray(on)) {
+          console.log(on);
+          return on.split(' ');
+        };
+        return on.map(e => e.trim()).join(' ');
       },
     },
     reflect: true,
-  }) on: string[] | string = ['invalid', 'change'];
+  }) on: string[] | string = [];
 
   /**
    * Custom validation message to be displayed when the input is invalid.
@@ -239,7 +249,8 @@ export default class SynValidate extends SynergyElement {
     return html`
       <syn-alert
         open
-        exportparts="base:alert,message:alert-message,icon:alert-icon"
+        exportparts="base:alert__base,message:alert__message,icon:alert__icon"
+        part="alert"
         variant="danger"
       >
         ${!this.hideIcon

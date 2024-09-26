@@ -47,6 +47,15 @@ describe('<syn-validate>', () => {
     });
   });
 
+  describe('when setting the "on" property', () => {
+    it('should convert the provided string into a list of event names', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur click mouseover"></syn-validate>
+      `);
+      await expect(el.on).to.deep.equal(['blur', 'click', 'mouseover']);
+    });
+  });
+
   describe('when using native form elements', () => {
     it('should call the validate method when the input is invalid and a change event is called (with default "on")', async () => {
       const el = await fixture<SynValidate>(html`

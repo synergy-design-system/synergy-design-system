@@ -31,7 +31,22 @@ const isEventOfType = (eventName: string, type: string) => eventName.includes(ty
 export const isBlurEvent = (eventName: string) => isEventOfType(eventName, 'blur');
 
 /**
+ * Check if the provided event name is a change event
+ * @param eventName The event name to check
+ */
+export const isChangeEvent = (eventName: string) => isEventOfType(eventName, 'change');
+
+/**
  * Check if the provided event is an invalid event
  * @param eventName The event name to check
  */
 export const isInvalidEvent = (eventName: string) => isEventOfType(eventName, 'invalid');
+
+/**
+ * Get a list of event names from the provided attribute string
+ * @param events The events string
+ * @returns an array of events
+ */
+export const normalizeEventAttribute = (events: string) => events
+  .split(' ')
+  .map(s => s.trim());

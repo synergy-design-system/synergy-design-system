@@ -53,7 +53,7 @@ const translation: Translation = {
   menu: 'Menu',
   notification: 'Notification',
   numFilesSelected: (num, dir) => {
-      if (num === 0) return `No ${dir ? 'Folder' : 'Files'} chosen`;
+      if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
       return `${num} files`;
     },
   openMenu: 'Open menu',

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.8.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.8.0...components/2.8.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* 🐛 syn-combobox: Keyboard navigation not working after text was entered ([#634](https://github.com/synergy-design-system/synergy-design-system/issues/634)) ([077d010](https://github.com/synergy-design-system/synergy-design-system/commit/077d010c25995663e521e2eafa065612db1cb739))
+
 # [@synergy-design-system/components-v2.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.3...components/2.8.0) (2024-09-24)
 
 

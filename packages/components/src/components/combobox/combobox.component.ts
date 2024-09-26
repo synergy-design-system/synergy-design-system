@@ -123,8 +123,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() displayLabel = '';
 
-  @state() currentOption: SynOption | undefined;
-
   @state() selectedOption: SynOption | undefined;
 
   @state() filteredOptions: Array<SynOption | SynOptGroup> = [];
@@ -237,16 +235,18 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   protected get options() {
-    return this.filteredOptions.map((item: SynOption | SynOptGroup) => {
-      const renderOption = (option: SynOption) => {
-        const queryString = this.displayInput.value;
-        const optionHtml = this.getOption(option, queryString);
-        return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
-      };
+    const renderOption = (option: SynOption) => {
+      const queryString = this.displayInput.value;
+      const optionHtml = this.getOption(option, queryString);
+      return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
+    };
 
+    return this.filteredOptions.map((item: SynOption | SynOptGroup) => {
       if (item.tagName.toLowerCase() === 'syn-optgroup') {
         Array.from(item.children).forEach((option: HTMLElement) => {
           if (option.tagName.toLowerCase() === 'syn-option') {
+            // @todo: What was the intention of this?
+            // renderOption does nothing with the group itself
             renderOption(option as SynOption);
           }
         });
@@ -341,6 +341,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Handle enter.
     if (event.key === 'Enter') {
+      const currentOption = this.getCurrentOption();
+
       // Pressing enter when focused on an input should submit the form like a native input, but
       // we wait a tick before submitting to allow users to cancel the keydown event if they need to
       const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
@@ -353,14 +355,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return;
       }
 
-      if (!this.open || (this.currentOption && this.currentOption.disabled)) {
+      if (!this.open || (currentOption && currentOption.disabled)) {
         return;
       }
 
       // Update the value based on the current selection and close it
-      if (this.currentOption) {
+      if (currentOption) {
         const oldValue = this.lastOptionValue;
-        this.setSelectedOption(this.currentOption);
+        this.setSelectedOption(currentOption);
 
         if (this.value !== oldValue) {
           // Emit after updating
@@ -509,7 +511,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    const currentIndex = filteredOptions.indexOf(this.currentOption!);
+    const currentOption = this.getCurrentOption();
+    const currentIndex = filteredOptions.indexOf(currentOption!);
     let newIndex = Math.max(0, currentIndex);
 
     if (isNext) {
@@ -520,11 +523,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       newIndex = previousIndex < 0 ? filteredOptions.length - 1 : previousIndex;
     }
     this.setCurrentOption(filteredOptions[newIndex]);
-    scrollIntoView(this.currentOption!, this.listbox, 'vertical', 'auto');
+    scrollIntoView(this.getCurrentOption()!, this.listbox, 'vertical', 'auto');
   }
 
   private getAllFilteredOptions() {
     return [...this.filteredWrapper.querySelectorAll<SynOption>('syn-option')];
+  }
+
+  private getCurrentOption() {
+    return this.getAllFilteredOptions().find(option => option.current);
   }
 
   // Sets the current option, which is the option the user is currently interacting with
@@ -543,13 +550,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Select the target option
     if (option) {
-      this.currentOption = option;
       // eslint-disable-next-line no-param-reassign
       option.current = true;
       option.setAttribute('aria-selected', 'true');
       this.displayInput.setAttribute('aria-activedescendant', option.id);
-    } else {
-      this.currentOption = undefined;
     }
   }
 

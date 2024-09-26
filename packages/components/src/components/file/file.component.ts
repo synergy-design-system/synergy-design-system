@@ -318,12 +318,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     const dataTransfer = new DataTransfer();
     Array.from(files).forEach(f => dataTransfer.items.add(f));
     return dataTransfer.files;
-      const dataTransfer = new DataTransfer();
-      f.forEach(file => dataTransfer.items.add(file));
-      return dataTransfer.files;
-    }
-
-    return arrayToFileList(Array.from(files));
   }
 
   private async getFilesFromEntry(entry: FileSystemEntry | null): Promise<File[]> {
@@ -383,71 +377,46 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
       return;
     }
 
-    let { files } = e.dataTransfer;
+    const files = this.webkitdirectory
+      ? await this.handleTransferItems(e.dataTransfer?.items)
+      : e.dataTransfer.files;
 
-    if (this.webkitdirectory) {
-      // in case of a folder drop, overwrite the files with the folder content
-      const items = e.dataTransfer?.items;
-      files = await this.handleTransferItems(items);
-    }
-
-this.userIsDragging = false;
+    this.userIsDragging = false;
 
     if (!files) {
       return;
     }
 
+    // webkitdirectory also allows multiple files
     if (!this.multiple && !this.webkitdirectory && files.length > 1) {
       this.emit('syn-error');
       return;
     }
-    // Use the transferred file list from the drag drop interface
-    const hasTrigger = this.hasSlotController.test('trigger');
-    if (!hasTrigger) {
-      const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
-      const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
 
-      if (this.droparea) {
-        const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
-      }
-      // eslint-disable-next-line max-len
-      await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
-      this.handleFiles(files);
-      await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
+    if (!this.multiple && !this.webkitdirectory && files.length > 1) {
+      this.emit('syn-error');
     } else {
-      this.handleFiles(files);
-    }
+      // Use the transferred file list from the drag drop interface
+      const hasTrigger = this.hasSlotController.test('trigger');
+      if (!hasTrigger) {
+        const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
+        const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
 
-    this.input.dispatchEvent(new Event('change'));
-      if (!this.multiple && !this.webkitdirectory && files.length > 1) {
-        this.emit('syn-error');
-      } else {
-        // Use the transferred file list from the drag drop interface
-        const hasTrigger = this.hasSlotController.test('trigger');
-        if (!hasTrigger) {
-          const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
-          const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
-
-          if (this.droparea) {
-            const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
-          }
-          // eslint-disable-next-line max-len
-          await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
-          this.handleFiles(files);
-          await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
-        } else {
-          this.handleFiles(files);
+        if (this.droparea) {
+          const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
         }
-
-        this.input.dispatchEvent(new Event('change'));
+        // eslint-disable-next-line max-len
+        await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
+        this.handleFiles(files);
+        await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
+      } else {
+        this.handleFiles(files);
       }
-    }
 
-    this.userIsDragging = false;
+      this.input.dispatchEvent(new Event('change'));
+    }
   }
 
   /**

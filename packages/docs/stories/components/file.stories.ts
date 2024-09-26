@@ -111,6 +111,28 @@ export const HideValue: Story = {
   `,
 } as Story;
 
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-file') as SynFile;
+    if (input) {
+      input.focus();
+    }
+  },
+  render: () => html`
+    <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
+  `,
+} as Story;
+
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -148,6 +170,65 @@ export const Sizes: Story = {
       <syn-file size="medium" label="Medium"></syn-file>
       <syn-file size="large" label="Large"></syn-file>
     </div>
+  `,
+} as Story;
+
+export const Invalid: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'invalid'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    try {
+      const form = canvasElement.querySelector('form')!;
+      const files = form.querySelectorAll('syn-file');
+      const button = form.querySelector('syn-button')!;
+
+      if (button && files) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
+        await userEvent.click(button);
+        button.click();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
+  render: () => html`
+    <form class="custom-validity">
+      <syn-file
+        class="syn-file-invalid"
+        droparea
+        help-text="This is an error text."
+        label="This is a label"
+      ></syn-file>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <script type="module">
+      const files = document.querySelectorAll('.syn-file-invalid');
+      files.forEach((file) => {
+        file.setCustomValidity('This is an error text');
+      });
+    </script>
+    <style>
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      syn-button {
+        align-self: flex-start;
+      }
+    </style>
   `,
 } as Story;
 
@@ -212,87 +293,6 @@ export const Directory: Story = {
   `,
 } as Story;
 
-export const Focus: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('file', 'focus'),
-      },
-    },
-  },
-  play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-file') as SynFile;
-    if (input) {
-      input.focus();
-    }
-  },
-  render: () => html`
-    <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
-  `,
-} as Story;
-
-export const Invalid: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('file', 'invalid'),
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    try {
-      const form = canvasElement.querySelector('form')!;
-      const files = form.querySelectorAll('syn-file');
-      const button = form.querySelector('syn-button')!;
-
-      if (button && files) {
-        // make sure to always fire both events:
-        // 1. userEvent.click is needed for storybooks play function to register
-        // 2. button.click is needed to really click the button
-        // userEvent.click works on native elements only
-        await userEvent.click(button);
-        button.click();
-      }
-    } catch (error) {
-      console.error('Error in play function:', error);
-    }
-  },
-  render: () => html`
-    <form class="custom-validity">
-      <syn-file
-        class="syn-file-invalid"
-        droparea
-        help-text="This is an error text."
-        label="This is a label"
-      ></syn-file>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <script type="module">
-      const files = document.querySelectorAll('.syn-file-invalid');
-      files.forEach((file) => {
-        file.setCustomValidity('This is an error text');
-      });
-    </script>
-    <style>
-      .custom-validity {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      syn-button {
-        align-self: flex-start;
-      }
-    </style>
-  `,
-} as Story;
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -302,6 +302,7 @@ export const Screenshot: Story = generateScreenshotStory({
   HideValue,
   Disabled,
   Sizes,
+  Invalid,
   Droparea,
   Directory,
 }, 750);

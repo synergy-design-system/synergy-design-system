@@ -28,6 +28,7 @@ import '@synergy-design-system/components/components/validate/validate.js';
  * @csspart input-wrapper - The container that wraps the input field.
  * @csspart alert - The container that wraps the alert.
  * @csspart alert-message - The container that wraps the alert message.
+ * @csspart alert-icon - The container that wraps the alert icon.
  */
 @Component({
   selector: 'syn-validate',

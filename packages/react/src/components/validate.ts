@@ -23,6 +23,7 @@ Component.define('syn-validate');
  * @csspart input-wrapper - The container that wraps the input field.
  * @csspart alert - The container that wraps the alert.
  * @csspart alert-message - The container that wraps the alert message.
+ * @csspart alert-icon - The container that wraps the alert icon.
  */
 export const SynValidate = createComponent({
   displayName: 'SynValidate',

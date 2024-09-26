@@ -25,6 +25,7 @@ import styles from './validate.styles.js';
  * @csspart input-wrapper - The container that wraps the input field.
  * @csspart alert - The container that wraps the alert.
  * @csspart alert-message - The container that wraps the alert message.
+ * @csspart alert-icon - The container that wraps the alert icon.
  */
 export default class SynValidate extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -238,7 +239,7 @@ export default class SynValidate extends SynergyElement {
     return html`
       <syn-alert
         open
-        exportparts="base:alert,message:alert-message"
+        exportparts="base:alert,message:alert-message,icon:alert-icon"
         variant="danger"
       >
         ${!this.hideIcon

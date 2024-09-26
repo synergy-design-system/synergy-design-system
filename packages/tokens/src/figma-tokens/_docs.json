@@ -3401,7 +3401,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the live attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit.",
+          "value": "Use the live value for the on attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit. This will automatically bind to the input and blur events.",
           "type": "text"
         }
       },

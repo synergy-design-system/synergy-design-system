@@ -15,7 +15,7 @@ const routeTo = (route: string) => {
 
 <template>
   <SynVueHeader label="@synergy-design-system/vue Components Demo">
-    <RouterLink class="custom-logo" to="/" slot="logo">
+    <RouterLink class="custom-logo" tabindex="0" to="/" slot="logo">
       <SynVueIcon name="logo-color" library="system" />
     </RouterLink>
     <ThemeSwitch slot="meta-navigation" />
@@ -53,6 +53,11 @@ syn-header {
   display: block;
   width: auto;
   height: 32px;
+}
+
+/* Safari fix for ##623 */
+.custom-logo syn-icon::part(svg) {
+  width: auto;
 }
 
 .main {

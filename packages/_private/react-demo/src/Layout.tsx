@@ -26,6 +26,7 @@ export const Layout: FC = () => {
         <Link
           className="custom-logo"
           slot="logo"
+          tabIndex={0}
           to="/"
         >
           <SynIcon name="logo-color" library="system" />

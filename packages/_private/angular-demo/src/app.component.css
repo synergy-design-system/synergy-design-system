@@ -10,6 +10,11 @@ syn-header {
   width: auto;
 }
 
+/* Safari fix for ##623 */
+.custom-logo syn-icon::part(svg) {
+  width: auto;
+}
+
 .main {
   flex-grow: 1;
   display: flex;

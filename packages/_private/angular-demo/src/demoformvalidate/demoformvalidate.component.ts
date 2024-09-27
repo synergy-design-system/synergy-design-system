@@ -1,13 +1,16 @@
 import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 const initialData = {
   code: '',
   comment: '',
   date: '',
-  email: '',
+  email: ['', [
+    Validators.required,
+    Validators.email,
+  ]],
   files: undefined,
   gender: '',
   happiness: '5',
@@ -46,6 +49,24 @@ export class DemoFormValidate {
 
   reset() {
     this._initFormData();
+  }
+
+  validateEmailField() {
+    const errors = this.formData.get('email')?.errors;
+
+    if (!errors) {
+      return '';
+    }
+
+    if (errors['required']) {
+      return 'Email is required';
+    }
+
+    if (errors['email']) {
+      return 'Invalid email';
+    }
+
+    return '';
   }
 
   submit(form: FormGroup) {

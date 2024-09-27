@@ -59,7 +59,11 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]="true" on="live">
+    <syn-validate
+      [customValidation]="validateEmailField()"
+      [inline]="true"
+      on="live"
+    >
       <syn-input
         formControlName="email"
         id="input-email"

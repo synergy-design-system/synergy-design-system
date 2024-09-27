@@ -3383,6 +3383,10 @@
         "description": {
           "value": "Use the inline attribute to show the invalid message below the selected element.",
           "type": "text"
+        },
+        "note": {
+          "value": "Per default, syn-validate uses the browser’s built-in tooltip. This shows only one error at a time and is optimized for accessbility.\nWhen using inline, you have to ensure accessibility on your side and have to have in mind it most likely will lead to layout shifts.",
+          "type": "text"
         }
       },
       "hide-icon": {
@@ -3391,7 +3395,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use hide-icon to hide the icon in inline style.",
+          "value": "Use hide-icon to hide the icon in inline style. This is especially useful when showing more than one error at a time, see template “Error Summary”.",
           "type": "text"
         }
       },
@@ -3402,6 +3406,10 @@
         },
         "description": {
           "value": "Use the live value for the on attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit. This will automatically bind to the input and blur events.",
+          "type": "text"
+        },
+        "note": {
+          "value": "Please ensure, that you really need live validation for your use case as this can have implications on accessibility.",
           "type": "text"
         }
       },

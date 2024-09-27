@@ -7,14 +7,13 @@ import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
 import {
   arraysDiffer,
+  getEventNameForElement,
   isBlurEvent,
   isInvalidEvent,
   normalizeEventAttribute,
   onConverter,
 } from './utility.js';
 import styles from './validate.styles.js';
-
-// @todo: If no change there, revalidate on internal change! (there is an invalid event but not valid one :())
 
 /**
  * @summary Validate is a helper that may be used to wrap
@@ -126,8 +125,6 @@ export default class SynValidate extends SynergyElement {
     // <syn-validate on=""></syn-validate>
     const [...events] = on.filter(Boolean);
 
-    const isSynergyElement = input instanceof SynergyElement;
-
     // Make sure to always have an invalid event
     if (!events.includes('invalid')) {
       events.push('invalid');
@@ -141,18 +138,10 @@ export default class SynValidate extends SynergyElement {
     }
 
     // Make sure to remove duplicated events and the live property
-    const finalEvents = Array.from(new Set(events.filter(e => e !== 'live')));
-
-    // If the input is a synergy element, use syn- prefixed events.
-    // Only adjust items that do not already have syn- prefixes to
-    // prevent event names like syn-syn-input from being added.
-    if (isSynergyElement) {
-      return finalEvents.map(e => {
-        if (e.startsWith('syn-')) return e;
-        return `syn-${e}`;
-      });
-    }
-    return finalEvents;
+    // and map the events to the correct event names
+    return Array
+      .from(new Set(events.filter(e => e !== 'live')))
+      .map(e => getEventNameForElement(input, e));
   }
 
   /**
@@ -174,6 +163,16 @@ export default class SynValidate extends SynergyElement {
         signal: this.controller.signal,
       });
     });
+
+    // If the change event is not included,
+    // make sure to attach a custom listener that resets the validation message
+    // This is needed as the custom message may be set on change
+    const usedChangeEvent = getEventNameForElement(input, 'change');
+    if (!events.includes(usedChangeEvent)) {
+      input.addEventListener(usedChangeEvent, this.internalRevalidate, {
+        signal: this.controller.signal,
+      });
+    }
   }
 
   private setValidationMessage(input: HTMLInputElement) {
@@ -182,6 +181,17 @@ export default class SynValidate extends SynergyElement {
 
     this.validationMessage = validationMessage;
   }
+
+  /**
+   * Set the validation message from the input element
+   * @param e The event that was received
+   */
+  private internalRevalidate = (e: Event) => {
+    const input = e.currentTarget as HTMLInputElement;
+    if (input.validity?.valid) {
+      this.validationMessage = '';
+    }
+  };
 
   /**
    * Handle the blur event during validation

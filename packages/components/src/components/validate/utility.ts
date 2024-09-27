@@ -1,4 +1,5 @@
 import type { ComplexAttributeConverter } from 'lit';
+import SynergyElement from '../../internal/synergy-element.js';
 
 /**
  * Check if two string arrays differ
@@ -51,7 +52,8 @@ export const isInvalidEvent = (eventName: string) => isEventOfType(eventName, 'i
  */
 export const normalizeEventAttribute = (events: string = '') => events
   .split(' ')
-  .map(s => s.trim());
+  .map(s => s.trim())
+  .filter(Boolean);
 
 /**
  * Custom attribute converter for the "on" property
@@ -60,3 +62,15 @@ export const onConverter = (): ComplexAttributeConverter<string> => ({
   fromAttribute: (on: string) => on,
   toAttribute: (on: string) => normalizeEventAttribute(on),
 });
+
+/**
+ * Get the event name for the provided element
+ * @param element The element to get the event name for
+ * @param eventName The event name to get
+ */
+export const getEventNameForElement = (element: HTMLElement, eventName: string) => {
+  const sanitizedEventName = eventName.trim();
+  return element instanceof SynergyElement
+    ? `syn-${sanitizedEventName.replace('syn-', '')}`
+    : sanitizedEventName;
+};

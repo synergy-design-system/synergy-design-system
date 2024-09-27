@@ -1,8 +1,68 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import '../../../dist/synergy.js';
+import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
 
 describe('<syn-validate>', () => {
+  describe('utility functions', () => {
+    describe('arraysDiffer', () => {
+      it('should return true if the arrays differ', async () => {
+        await expect(utils.arraysDiffer(['a', 'b'], ['a', 'c'])).to.equal(true);
+        await expect(utils.arraysDiffer(['a'], ['a', 'b'])).to.equal(true);
+      });
+
+      it('should return true if the array is the same', async () => {
+        await expect(utils.arraysDiffer(['a', 'b'], ['a', 'b'])).to.equal(false);
+        await expect(utils.arraysDiffer(['a', 'b'], ['b', 'a'])).to.equal(false);
+      });
+    });
+
+    describe('event utils', () => {
+      it('isBlurEvent should return true if the given event is a blur event', async () => {
+        await expect(utils.isBlurEvent('blur')).to.equal(true);
+        await expect(utils.isBlurEvent('syn-blur')).to.equal(true);
+        await expect(utils.isBlurEvent('something')).to.equal(false);
+      });
+
+      it('isChangeEvent should return true if the given event is a change event', async () => {
+        await expect(utils.isChangeEvent('change')).to.equal(true);
+        await expect(utils.isChangeEvent('syn-change')).to.equal(true);
+        await expect(utils.isChangeEvent('something')).to.equal(false);
+      });
+
+      it('isInvalidEvent should return true if the given event is a invalid event', async () => {
+        await expect(utils.isInvalidEvent('invalid')).to.equal(true);
+        await expect(utils.isInvalidEvent('syn-invalid')).to.equal(true);
+        await expect(utils.isInvalidEvent('something')).to.equal(false);
+      });
+
+      it('should return an array of event names from a space separated string', async () => {
+        await expect(utils.normalizeEventAttribute('blur change')).to.deep.equal(['blur', 'change']);
+        await expect(utils.normalizeEventAttribute('blur   change  ')).to.deep.equal(['blur', 'change']);
+        await expect(utils.normalizeEventAttribute('blur change invalid')).to.deep.equal(['blur', 'change', 'invalid']);
+        await expect(utils.normalizeEventAttribute('')).to.deep.equal([]);
+      });
+
+      it('should return the sanitized event name when getEventNameForElement is used', async () => {
+        const elNative = document.createElement('input');
+        await expect(utils.getEventNameForElement(elNative, 'blur')).to.deep.equal('blur');
+
+        const elSyn = document.createElement('syn-input');
+        await expect(utils.getEventNameForElement(elSyn, 'blur')).to.deep.equal('syn-blur');
+      });
+    });
+
+    describe('when using the custom onConverter', () => {
+      it('should return an array of event names when toAttribute is used', async () => {
+        const converter = utils.onConverter();
+        await expect(converter.toAttribute!('blur change')).to.deep.equal(['blur', 'change']);
+        await expect(converter.toAttribute!('blur   change  ')).to.deep.equal(['blur', 'change']);
+        await expect(converter.toAttribute!('blur change invalid')).to.deep.equal(['blur', 'change', 'invalid']);
+        await expect(converter.toAttribute!('')).to.deep.equal([]);
+      });
+    });
+  });
+
   it('should be accessible', async () => {
     const el = await fixture<SynValidate>(html`
       <syn-validate>
@@ -92,12 +152,17 @@ describe('<syn-validate>', () => {
       input.value = 'test@test.de';
       input.dispatchEvent(new Event('change', { bubbles: true }));
 
+      // The internalRevalidate resets to an empty message as the input is now valid
+      await expect(el.validationMessage).to.equal('');
+
+      input.focus();
+      input.value = 'test';
+      input.blur();
       expect(el.validationMessage).to.include('email address');
 
-      input.reportValidity();
       input.focus();
+      input.value = 'test@example';
       input.blur();
-
       await expect(el.validationMessage).to.equal('');
     });
   });
@@ -124,7 +189,7 @@ describe('<syn-validate>', () => {
     it('should allow switching the event listeners via the "on" property', async () => {
       const el = await fixture<SynValidate>(html`
         <syn-validate on="change">
-          <syn-input label="Demo Email" type="email"></syn-input>
+          <syn-input label="Email" type="email"></syn-input>
         </syn-validate>
       `);
 
@@ -135,7 +200,7 @@ describe('<syn-validate>', () => {
 
       input.value = 'test';
       await input.updateComplete;
-      input.emit('syn-change');
+      input.dispatchEvent(new Event('syn-change', { bubbles: true }));
 
       expect(el.validationMessage).to.include('email address');
 
@@ -143,18 +208,26 @@ describe('<syn-validate>', () => {
       // - Set the on property to only accept blur events
       // - Try again with onChange and see nothing happens anymore
       // - Finally, call blur and revalidate again
-      el.on = 'syn-blur';
+      el.on = 'blur';
       await el.updateComplete;
 
       input.value = 'test@test.de';
       await input.updateComplete;
-      input.dispatchEvent(new Event('change', { bubbles: true }));
+      input.dispatchEvent(new Event('syn-change', { bubbles: true }));
 
+      // The internalRevalidate resets to an empty message as the input is now valid
+      await expect(el.validationMessage).to.equal('');
+
+      input.focus();
+      input.value = 'test';
+      await input.updateComplete;
+      input.blur();
       expect(el.validationMessage).to.include('email address');
 
       input.focus();
+      input.value = 'test@example';
+      await input.updateComplete;
       input.blur();
-
       await expect(el.validationMessage).to.equal('');
     });
   });

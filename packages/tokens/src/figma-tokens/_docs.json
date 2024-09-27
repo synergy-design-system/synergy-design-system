@@ -3395,7 +3395,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use hide-icon to hide the icon in inline style. This is especially useful when showing more than one error at a time, see template “Error Summary”.",
+          "value": "Use hide-icon to hide the icon in inline style. This is especially useful when showing more than one error at a time.",
           "type": "text"
         }
       },

@@ -111,6 +111,28 @@ export const HideValue: Story = {
   `,
 } as Story;
 
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('syn-file') as SynFile;
+    if (input) {
+      input.focus();
+    }
+  },
+  render: () => html`
+    <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
+  `,
+} as Story;
+
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -148,66 +170,6 @@ export const Sizes: Story = {
       <syn-file size="medium" label="Medium"></syn-file>
       <syn-file size="large" label="Large"></syn-file>
     </div>
-  `,
-} as Story;
-
-export const Droparea: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('file', 'droparea'),
-      },
-    },
-  },
-  render: () => html`
-    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
-      <syn-file
-        accept="text/plain,image/*"
-        droparea
-        help-text="This is a help text"
-        label="Small"
-        multiple
-        size="small"
-      ></syn-file>
-      <syn-file
-        accept="text/plain,image/*"
-        droparea
-        help-text="This is a help text"
-        label="Medium"
-        multiple
-        size="medium"
-      ></syn-file>
-      <syn-file
-        accept="text/plain,image/*"
-        droparea
-        help-text="This is a help text"
-        label="Large"
-        multiple
-        size="large"
-      ></syn-file>
-    </div>
-  `,
-} as Story;
-
-export const Focus: Story = {
-  parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('file', 'focus'),
-      },
-    },
-  },
-  play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-file') as SynFile;
-    if (input) {
-      input.focus();
-    }
-  },
-  render: () => html`
-    <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
   `,
 } as Story;
 
@@ -270,6 +232,67 @@ export const Invalid: Story = {
   `,
 } as Story;
 
+export const Droparea: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'droparea'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Small"
+        multiple
+        size="small"
+      ></syn-file>
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Medium"
+        multiple
+        size="medium"
+      ></syn-file>
+      <syn-file
+        accept="text/plain,image/*"
+        droparea
+        help-text="This is a help text"
+        label="Large"
+        multiple
+        size="large"
+      ></syn-file>
+    </div>
+  `,
+} as Story;
+
+export const Directory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'directory'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-file
+        label="Button"
+        webkitdirectory
+      ></syn-file>
+      <syn-file
+        droparea
+        label="Droparea"
+        webkitdirectory
+      ></syn-file>
+    </div>
+  `,
+} as Story;
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -279,6 +302,8 @@ export const Screenshot: Story = generateScreenshotStory({
   HideValue,
   Disabled,
   Sizes,
+  Invalid,
   Droparea,
-}, 350);
+  Directory,
+}, 750);
 /* eslint-enable sort-keys */

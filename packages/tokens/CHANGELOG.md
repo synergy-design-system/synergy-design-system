@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.10.0...tokens/2.11.0) (2024-09-27)
+
+
+### Features
+
+* ✨ add support for folder dnd in syn-file ([#616](https://github.com/synergy-design-system/synergy-design-system/issues/616)) ([114893b](https://github.com/synergy-design-system/synergy-design-system/commit/114893b7422ae86acd5893fc3f212054ce7e297e))
+
 # [@synergy-design-system/tokens-v2.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.9.0...tokens/2.10.0) (2024-09-24)
 
 

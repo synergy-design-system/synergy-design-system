@@ -124,7 +124,6 @@ export class ValidateDemoRadio extends LitElement {
   }
 
   get validity() {
-    console.log('here');
     return this.internals.validity;
   }
 

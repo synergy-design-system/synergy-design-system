@@ -180,6 +180,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /**
    * Indicates whether the user can select more than one file.
+   * Has no effect if webkitdirectory is set.
    * [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple
@@ -300,6 +301,47 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     this.files = files;
   }
 
+  private async handleTransferItems(items: DataTransferItemList | null): Promise<FileList> {
+    if (!items) {
+      this.value = '';
+      return new Promise((_resolve, reject) => { reject(new Error('No proper items found')); });
+    }
+
+    const entries = Array
+      .from(items)
+      .map(item => item.webkitGetAsEntry());
+
+    const filesPromises = entries.map(entry => this.getFilesFromEntry(entry));
+    const filesArray = await Promise.all(filesPromises);
+    const files = filesArray.flat();
+
+    const dataTransfer = new DataTransfer();
+    Array.from(files).forEach(f => dataTransfer.items.add(f));
+    return dataTransfer.files;
+  }
+
+  private async getFilesFromEntry(entry: FileSystemEntry | null): Promise<File[]> {
+    if (!entry) {
+      return [];
+    }
+    if (entry.isFile) {
+      return new Promise<File[]>((resolve, reject) => {
+        (entry as FileSystemFileEntry).file(file => resolve([file]), reject);
+      });
+    }
+    if (entry.isDirectory) {
+      return new Promise<File[]>((resolve, reject) => {
+        const dirReader = (entry as FileSystemDirectoryEntry).createReader();
+        dirReader.readEntries((entries) => {
+          Promise.all(entries.map(e => this.getFilesFromEntry(e)))
+            .then((files) => { resolve(files.flat()); })
+            .catch(reject);
+        });
+      });
+    }
+    return [];
+  }
+
   private handleClick(e: Event) {
     e.preventDefault();
     this.input.click();
@@ -331,36 +373,44 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
     e.preventDefault();
     e.stopPropagation();
 
-    const files = e.dataTransfer?.files;
-
-    if (files) {
-      if (!this.multiple && files.length > 1) {
-        this.emit('syn-error');
-      } else {
-        // Use the transferred file list from the drag drop interface
-        const hasTrigger = this.hasSlotController.test('trigger');
-        if (!hasTrigger) {
-          const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
-          const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
-
-          if (this.droparea) {
-            const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
-          }
-          // eslint-disable-next-line max-len
-          await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
-          this.handleFiles(files);
-          await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
-        } else {
-          this.handleFiles(files);
-        }
-
-        this.input.dispatchEvent(new Event('change'));
-      }
+    if (!e.dataTransfer) {
+      return;
     }
 
+    const files = await this.handleTransferItems(e.dataTransfer?.items);
+
     this.userIsDragging = false;
+
+    if (!files) {
+      return;
+    }
+
+    // webkitdirectory also allows multiple files
+    if (!this.multiple && !this.webkitdirectory && files.length > 1) {
+      this.emit('syn-error');
+      return;
+    }
+
+    // Use the transferred file list from the drag drop interface
+    const hasTrigger = this.hasSlotController.test('trigger');
+    if (!hasTrigger) {
+      const disappearAnimation = getAnimation(this.inputChosen, 'file.text.disappear', { dir: this.localize.dir() });
+      const appearAnimation = getAnimation(this.inputChosen, 'file.text.appear', { dir: this.localize.dir() });
+
+      if (this.droparea) {
+        const dropIconAnimation = getAnimation(this.dropareaIcon, 'file.iconDrop', { dir: this.localize.dir() });
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        animateTo(this.dropareaIcon, dropIconAnimation.keyframes, dropIconAnimation.options);
+      }
+      // eslint-disable-next-line max-len
+      await animateTo(this.inputChosen, disappearAnimation.keyframes, disappearAnimation.options);
+      this.handleFiles(files);
+      await animateTo(this.inputChosen, appearAnimation.keyframes, appearAnimation.options);
+    } else {
+      this.handleFiles(files);
+    }
+
+    this.input.dispatchEvent(new Event('change'));
   }
 
   /**
@@ -379,13 +429,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   private renderValue() {
     let hasFiles = false;
-    let fileChosenLabel = this.localize.term('numFilesSelected', 0);
+    let fileChosenLabel = this.localize.term('numFilesSelected', 0, this.webkitdirectory);
 
     if (this.files && this.files?.length > 0) {
       hasFiles = true;
       fileChosenLabel = this.files.length === 1
         ? this.files[0].name
-        : this.localize.term('numFilesSelected', this.files.length);
+        : this.localize.term('numFilesSelected', this.files.length, this.webkitdirectory);
     }
 
     return html`
@@ -427,7 +477,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
             class="droparea__text"
             part="droparea-value"
           >
-            <strong>${this.localize.term('fileDragDrop')}</strong>
+            <strong>${this.localize.term(this.webkitdirectory ? 'folderDragDrop' : 'fileDragDrop')}</strong>
             ${this.renderValue()}
           </p>
         </div>
@@ -438,9 +488,13 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /* eslint-disable @typescript-eslint/unbound-method */
   private renderButton() {
-    const buttonText = this.multiple
-      ? this.localize.term('fileButtonTextMultiple')
-      : this.localize.term('fileButtonText');
+    let buttonText = this.localize.term('fileButtonText');
+    if (this.multiple) {
+      buttonText = this.localize.term('fileButtonTextMultiple');
+    }
+    if (this.webkitdirectory) {
+      buttonText = this.localize.term('folderButtonText');
+    }
 
     return html`
       <div

@@ -997,7 +997,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
+          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)",
           "type": "text"
         }
       },
@@ -1027,7 +1027,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the size attribute to change a file uploads size.",
+          "value": "Use the size attribute to change the component's size.",
           "type": "text"
         }
       },
@@ -1058,6 +1058,16 @@
         },
         "description": {
           "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
+      },
+      "directory": {
+        "title": {
+          "value": "Directory",
+          "type": "text"
+        },
+        "description": {
+          "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers.",
           "type": "text"
         }
       }

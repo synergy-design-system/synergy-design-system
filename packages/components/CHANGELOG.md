@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.8.1...components/2.9.0) (2024-09-27)
+
+
+### Features
+
+* ✨ add support for folder dnd in syn-file ([#616](https://github.com/synergy-design-system/synergy-design-system/issues/616)) ([114893b](https://github.com/synergy-design-system/synergy-design-system/commit/114893b7422ae86acd5893fc3f212054ce7e297e))
+
 # [@synergy-design-system/components-v2.8.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.8.0...components/2.8.1) (2024-09-26)
 
 

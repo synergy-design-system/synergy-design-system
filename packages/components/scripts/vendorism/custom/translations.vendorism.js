@@ -18,9 +18,17 @@ const translations = {
     de: 'Dateien auswählen',
     en: 'Choose files',
   },
+  folderButtonText: {
+    de: 'Ordner auswählen',
+    en: 'Choose folder',
+  },
   fileDragDrop: {
     de: 'Datei ablegen oder auswählen',
     en: 'Drop or choose file',
+  },
+  folderDragDrop: {
+    de: 'Ordner ablegen oder auswählen',
+    en: 'Drop or choose folder',
   },
   menu: {
     de: 'Menü',
@@ -31,15 +39,15 @@ const translations = {
     en: 'Notification',
   },
   numFilesSelected: {
-    de: num => {
-      if (num === 0) return 'Keine Dateien ausgewählt';
+    de: (num, dir) => {
+      if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
       return `${num} Dateien`;
     },
-    en: num => {
-      if (num === 0) return 'No files chosen';
+    en: (num, dir) => {
+      if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
       return `${num} files`;
     },
-    type: '(num: number) => string',
+    type: '(num: number, dir: boolean) => string',
   },
   openMenu: {
     de: 'Menü öffnen',

@@ -71,7 +71,7 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]="true" [on]="['input', 'blur']">
+    <syn-validate [inline]="true" on="input blur">
       <syn-input
         formControlName="date"
         id="input-date"
@@ -101,7 +101,7 @@
 
   <!-- Security -->
   <demo-fieldset legend="Security">
-    <syn-validate [inline]=true [on]="['input', 'blur']">
+    <syn-validate [inline]=true on="input blur">
       <syn-input
         formControlName="password"
         id="input-password"
@@ -115,7 +115,7 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]=true [on]="['input', 'blur']">
+    <syn-validate [inline]=true on="input blur">
       <syn-input
         formControlName="code"
         id="input-number"

@@ -1,3 +1,5 @@
+import type { ComplexAttributeConverter } from 'lit';
+
 /**
  * Check if two string arrays differ
  * @param a The first array
@@ -47,6 +49,14 @@ export const isInvalidEvent = (eventName: string) => isEventOfType(eventName, 'i
  * @param events The events string
  * @returns an array of events
  */
-export const normalizeEventAttribute = (events: string) => events
+export const normalizeEventAttribute = (events: string = '') => events
   .split(' ')
   .map(s => s.trim());
+
+/**
+ * Custom attribute converter for the "on" property
+ */
+export const onConverter = (): ComplexAttributeConverter<string> => ({
+  fromAttribute: (on: string) => on,
+  toAttribute: (on: string) => normalizeEventAttribute(on),
+});

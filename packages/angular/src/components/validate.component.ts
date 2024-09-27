@@ -26,9 +26,10 @@ import '@synergy-design-system/components/components/validate/validate.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the input field.
- * @csspart alert - The container that wraps the alert.
- * @csspart alert-message - The container that wraps the alert message.
- * @csspart alert-icon - The container that wraps the alert icon.
+ * @csspart alert - The syn-alert that is shown when inline is true.
+ * @csspart alert__base - The container that wraps the alert.
+ * @csspart alert__message - The container that wraps the alert message.
+ * @csspart alert__icon - The container that wraps the alert icon.
  */
 @Component({
   selector: 'syn-validate',
@@ -71,6 +72,7 @@ export class SynValidateComponent {
 Defaults to the `invalid` and `change` events.
 `invalid` will always automatically be included.
 You may also use the `live` keyword to validate on every input change.
+`live` will make sure to listen to the `invalid`, `input` and `blur` events.
  */
   @Input()
   set on(v: SynValidate['on']) {

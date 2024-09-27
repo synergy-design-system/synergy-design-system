@@ -144,7 +144,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline :on="['input', 'blur']">
+      <SynVueValidate inline on="input blur">
         <SynVueInput
           id="input-date"
           label="Date of birth"
@@ -177,7 +177,7 @@ const synChange = () => {
 
     <!-- Security -->
     <DemoFieldset legend="Security">
-      <SynVueValidate inline :on="['input', 'blur']">
+      <SynVueValidate inline on="input blur">
         <SynVueInput
           id="input-password"
           label="Provide a secure password"
@@ -191,7 +191,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline :on="['input', 'blur']">
+      <SynVueValidate inline on="input blur">
         <SynVueInput
           id="input-number"
           label="Please provide a fallback numeric value that may be used for password recovery"

@@ -8,9 +8,9 @@ import SynAlert from '../alert/alert.component.js';
 import {
   arraysDiffer,
   isBlurEvent,
-  isChangeEvent,
   isInvalidEvent,
   normalizeEventAttribute,
+  onConverter,
 } from './utility.js';
 import styles from './validate.styles.js';
 
@@ -72,19 +72,9 @@ export default class SynValidate extends SynergyElement {
    * ```
    */
   @property({
-    converter: {
-      fromAttribute: (on: string) => normalizeEventAttribute(on),
-      toAttribute: (on: string[] | string) => {
-        console.log(on);
-        if (!Array.isArray(on)) {
-          console.log(on);
-          return on.split(' ');
-        };
-        return on.map(e => e.trim()).join(' ');
-      },
-    },
+    converter: onConverter(),
     reflect: true,
-  }) on: string[] | string = [];
+  }) on: string = '';
 
   /**
    * Custom validation message to be displayed when the input is invalid.
@@ -130,7 +120,7 @@ export default class SynValidate extends SynergyElement {
 
     // Make sure to always use an array of events
     // This is needed because on may be a special value like "live"
-    const on = Array.isArray(this.on) ? this.on : [this.on];
+    const on = normalizeEventAttribute(this.on);
 
     // Filter makes sure to remove empty values, e.g.
     // <syn-validate on=""></syn-validate>

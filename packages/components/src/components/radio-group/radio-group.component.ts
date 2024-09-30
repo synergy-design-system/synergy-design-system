@@ -201,18 +201,24 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     event.preventDefault();
   }
 
-  private handleLabelClick() {
+  private handleFocus(options?: FocusOptions) {
     const radios = this.getAllRadios();
     const checked = radios.find(radio => radio.checked);
-    const radioToFocus = checked || radios[0];
+    const firstEnabledRadio = radios.find(radio => !radio.disabled);
+    const radioToFocus = checked || firstEnabledRadio;
 
-    // Move focus to the checked radio (or the first one if none are checked) when clicking the label
+    // Call focus for the checked radio
+    // If no radio is checked, focus the first one that is not disabled
     if (radioToFocus) {
-      radioToFocus.focus();
+      radioToFocus.focus(options);
     }
   }
 
-  private handleInvalid(event: Event) {
+  private handleLabelClick() {
+    this.handleFocus();
+  }
+      
+private handleInvalid(event: Event) {
     this.formControlController.setValidity(false);
     this.formControlController.emitInvalidEvent(event);
   }
@@ -335,7 +341,12 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     this.formControlController.updateValidity();
   }
 
-  render() {
+  /** Sets focus on the radio-group. */
+  focus(options?: FocusOptions) {
+    this.handleFocus(options);
+  }      
+      
+render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

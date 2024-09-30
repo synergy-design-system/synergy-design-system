@@ -107,6 +107,21 @@ describe('<syn-validate>', () => {
     });
   });
 
+  describe('when updating the customValidation property', () => {
+    it('should call the setValidationMessage method', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate>
+          <input label="Email" type="email"></input>
+        </syn-validate>
+      `);
+
+      el.customValidation = 'custom message';
+      await el.updateComplete;
+
+      await expect(el.validationMessage).to.equal('custom message');
+    });
+  });
+
   describe('when using native form elements', () => {
     it('should call the validate method when the input is invalid and an observed event is called', async () => {
       const el = await fixture<SynValidate>(html`

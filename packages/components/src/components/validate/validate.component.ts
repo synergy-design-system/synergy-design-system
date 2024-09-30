@@ -94,6 +94,14 @@ export default class SynValidate extends SynergyElement {
     }
   }
 
+  @watch('customValidation', { waitUntilFirstUpdate: true })
+  handleCustomValidationChange() {
+    const input = this.getInput();
+    if (input) {
+      this.setValidationMessage(input);
+    }
+  }
+
   /**
    * Get the input element to validate. Defined as the first slotted element
    * @returns The input element or undefined if not found

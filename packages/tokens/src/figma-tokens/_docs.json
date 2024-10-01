@@ -3431,6 +3431,10 @@
         "description": {
           "value": "Use the custom-validation attribute to use whichever error to text you need, overriding the default browser errors.",
           "type": "text"
+        },
+        "note": {
+          "value": "By using the custom-validation attribute, you can override the default browser error messages with custom text. However, please note that applying this attribute disables the browser’s native validation functionality. This means the standard error messages will not be displayed until the custom-validation attribute is removed, at which point the native functionality will be restored.",
+          "type": "text"
         }
       },
       "custom-form-field": {

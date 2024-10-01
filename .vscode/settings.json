@@ -184,6 +184,7 @@
     "packages/components/src/events/syn-remove.ts": true,
     "packages/components/src/events/syn-reposition.ts": true,
     "packages/components/src/events/syn-request-close.ts": true,
+    "packages/components/src/events/syn-resize.ts": true,
     "packages/components/src/events/syn-select.ts": true,
     "packages/components/src/events/syn-show.ts": true,
     "packages/components/src/events/syn-tab-hide.ts": true,

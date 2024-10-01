@@ -89,6 +89,7 @@ export const events = [
   'sl-clear',
   'sl-input',
   'sl-remove',
+  'sl-resize',
   'sl-show',
   'sl-after-show',
   'sl-hide',

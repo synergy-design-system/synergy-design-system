@@ -15,6 +15,7 @@ import {
   vendorCombobox,
   vendorDetails,
   vendorDrawer,
+  vendorEvents,
   vendorForm,
   vendorIcon,
   vendorIconButton,
@@ -167,17 +168,6 @@ const config = {
     path: '.',
     // Changes targeted files -> otherIncludes
     transforms: [
-      // Adjust the event map to use our own file names
-      (path, content) => {
-        const outputPath = path.startsWith('events/')
-          ? path.replace('sl-', `${libraryPrefix}-`)
-          : path;
-
-        return {
-          content,
-          path: outputPath,
-        };
-      },
       // Add lint ignore information to all vendored data and remove lint-enables
       (path, content) => {
         const eslintEnableComment = '/* eslint-enable */';
@@ -305,6 +295,7 @@ const config = {
       vendorButton,
       vendorCard,
       vendorDetails,
+      vendorEvents,
       vendorDrawer,
       vendorForm,
       vendorIconButton,

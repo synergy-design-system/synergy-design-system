@@ -485,23 +485,23 @@
       }
     },
     "carousel": {
-      "description": {
-        "value": "Carousels display an arbitrary number of content slides along a horizontal or vertical axis.",
-        "type": "text"
-      },
       "title": {
         "value": "Carousel",
+        "type": "text"
+      },
+      "description": {
+        "value": "Carousels display an arbitrary number of content slides along a horizontal or vertical axis.",
         "type": "text"
       }
     },
     "checkbox": {
       "default": {
-        "description": {
-          "value": "Checkboxes allow the user to toggle an option on or off.",
-          "type": "text"
-        },
         "title": {
           "value": "Checkbox",
+          "type": "text"
+        },
+        "description": {
+          "value": "Checkboxes allow the user to toggle an option on or off.",
           "type": "text"
         }
       },
@@ -581,39 +581,39 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       }
     },
     "color-picker": {
-      "description": {
-        "value": "Color pickers allow the user to select a color.",
-        "type": "text"
-      },
       "title": {
         "value": "Color Picker",
+        "type": "text"
+      },
+      "description": {
+        "value": "Color pickers allow the user to select a color.",
         "type": "text"
       }
     },
     "copy-button": {
-      "description": {
-        "value": "Copies data to the clipboard when the user clicks the button.",
-        "type": "text"
-      },
       "title": {
         "value": "Copy Button",
+        "type": "text"
+      },
+      "description": {
+        "value": "Copies data to the clipboard when the user clicks the button.",
         "type": "text"
       }
     },
     "details": {
       "default": {
-        "description": {
-          "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
-          "type": "text"
-        },
         "title": {
           "value": "Details",
+          "type": "text"
+        },
+        "description": {
+          "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
           "type": "text"
         }
       },
@@ -987,7 +987,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a file selector with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -1253,7 +1253,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to an input with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -1781,7 +1781,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a radio group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -1848,32 +1848,32 @@
     },
     "range": {
       "default": {
-        "description": {
-          "value": "Ranges allow the user to select values within a given range using a thumb.",
-          "type": "text"
-        },
         "title": {
           "value": "Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Ranges allow the user to select values within a given range using a thumb.",
           "type": "text"
         }
       },
       "labels": {
-        "description": {
-          "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
-          "type": "text"
-        },
         "title": {
           "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
           "type": "text"
         }
       },
       "help-text": {
-        "description": {
-          "value": "Add descriptive help text to a range with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
-          "type": "text"
-        },
         "title": {
           "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -1908,22 +1908,22 @@
         }
       },
       "disabled": {
-        "description": {
-          "value": "Use the disabled attribute to disable a range.",
-          "type": "text"
-        },
         "title": {
           "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a range.",
           "type": "text"
         }
       },
       "prefix-suffix": {
-        "description": {
-          "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
-          "type": "text"
-        },
         "title": {
           "value": "Prefix and Suffix",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
           "type": "text"
         }
       },
@@ -1938,43 +1938,43 @@
         }
       },
       "custom-track-offset": {
-        "description": {
-          "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
-          "type": "text"
-        },
         "title": {
           "value": "Custom Track Offset",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
           "type": "text"
         }
       },
       "multi-knob": {
-        "description": {
-          "value": "You can add multiple range-thumbs to your range.",
-          "type": "text"
-        },
         "title": {
           "value": "Multi thumb",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can add multiple range-thumbs to your range.",
           "type": "text"
         }
       },
       "multi-knob-restrict-movement": {
-        "description": {
-          "value": "You can prevent the thumbs from overlapping by listening to the provided `syn-move` event.",
-          "type": "text"
-        },
         "title": {
           "value": "Multi thumb with restricted movement",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can prevent the thumbs from overlapping by listening to the provided `syn-move` event.",
           "type": "text"
         }
       },
       "ticks": {
         "default": {
-          "description": {
-            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
-            "type": "text"
-          },
           "title": {
             "value": "Ticks",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
             "type": "text"
           }
         },
@@ -2010,32 +2010,32 @@
         }
       },
       "tooltip-placement": {
-        "description": {
-          "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
-          "type": "text"
-        },
         "title": {
           "value": "Tooltip Placement",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
           "type": "text"
         }
       },
       "tooltip-disabled": {
-        "description": {
-          "value": "To disable the tooltip, set tooltip-placement to none.",
-          "type": "text"
-        },
         "title": {
           "value": "Disable the Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "To disable the tooltip, set tooltip-placement to none.",
           "type": "text"
         }
       },
       "tooltip-formatter": {
-        "description": {
-          "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
-          "type": "text"
-        },
         "title": {
           "value": "Custom Tooltip Formatter",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
           "type": "text"
         }
       }
@@ -2072,12 +2072,12 @@
     },
     "select": {
       "default": {
-        "description": {
-          "value": "Selects allow you to choose items from a menu of predefined options.",
-          "type": "text"
-        },
         "title": {
           "value": "Select",
+          "type": "text"
+        },
+        "description": {
+          "value": "Selects allow you to choose items from a menu of predefined options.",
           "type": "text"
         }
       },
@@ -2097,7 +2097,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a select with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -2213,23 +2213,23 @@
       }
     },
     "skeleton": {
-      "description": {
-        "value": "Skeletons are used to provide a visual representation of where content will eventually be drawn.",
-        "type": "text"
-      },
       "title": {
         "value": "Skeleton",
+        "type": "text"
+      },
+      "description": {
+        "value": "Skeletons are used to provide a visual representation of where content will eventually be drawn.",
         "type": "text"
       }
     },
     "spinner": {
       "default": {
-        "description": {
-          "value": "Spinners are used to show the progress of an indeterminate operation.",
-          "type": "text"
-        },
         "title": {
           "value": "Spinner",
+          "type": "text"
+        },
+        "description": {
+          "value": "Spinners are used to show the progress of an indeterminate operation.",
           "type": "text"
         }
       },
@@ -2265,12 +2265,12 @@
       }
     },
     "split-panel": {
-      "description": {
-        "value": "Split panels display two adjacent panels, allowing the user to reposition them.",
-        "type": "text"
-      },
       "title": {
         "value": "Split Panel",
+        "type": "text"
+      },
+      "description": {
+        "value": "Split panels display two adjacent panels, allowing the user to reposition them.",
         "type": "text"
       }
     },
@@ -2341,7 +2341,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       }
@@ -2509,7 +2509,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a textarea with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },
@@ -2687,43 +2687,43 @@
       }
     },
     "tree-item": {
-      "description": {
-        "value": "A tree item serves as a hierarchical node that lives inside a tree.",
-        "type": "text"
-      },
       "title": {
         "value": "Tree Item",
+        "type": "text"
+      },
+      "description": {
+        "value": "A tree item serves as a hierarchical node that lives inside a tree.",
         "type": "text"
       }
     },
     "tree": {
-      "description": {
-        "value": "Trees allow you to display a hierarchical list of selectable tree items. Items with children can be expanded and collapsed as desired by the user.",
-        "type": "text"
-      },
       "title": {
         "value": "Tree",
+        "type": "text"
+      },
+      "description": {
+        "value": "Trees allow you to display a hierarchical list of selectable tree items. Items with children can be expanded and collapsed as desired by the user.",
         "type": "text"
       }
     },
     "visually-hidden": {
-      "description": {
-        "value": "The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.",
-        "type": "text"
-      },
       "title": {
         "value": "Visually Hidden",
+        "type": "text"
+      },
+      "description": {
+        "value": "The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.",
         "type": "text"
       }
     },
     "radio": {
       "default": {
-        "description": {
-          "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
-          "type": "text"
-        },
         "title": {
           "value": "Radio",
+          "type": "text"
+        },
+        "description": {
+          "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
           "type": "text"
         }
       },
@@ -2812,42 +2812,42 @@
     },
     "styles": {
       "body": {
-        "description": {
-          "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values.\nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\n\nIt is also possible to format the text bold or semibold for certain text passages and UI elements such as label.",
-          "type": "text"
-        },
         "title": {
           "value": "Body and UI text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Body text is used for long-form content where a paragraph or multiple lines of text are required. Body text styles are optimized for reading as a large chunk of information through line height and paragraph spacing. Inline links sit within body text styles and inherit the same font values.\nUI text is text used in UI components and uses the same text stylings.\n\nThe default font size is medium (16 px). Synergy supports three additional font sizes for body copy.\n\nIt is also possible to format the text bold or semibold for certain text passages and UI elements such as label.",
           "type": "text"
         }
       },
       "headings": {
-        "description": {
-          "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\n- building page hierarchy,\n- helping users scan large chunks of text,\n- providing a title to a page or piece of content,\n-as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
-          "type": "text"
-        },
         "title": {
           "value": "Headings",
+          "type": "text"
+        },
+        "description": {
+          "value": "Heading styles come in a range of sizes, and can be used in a range of contexts, such as:\n- building page hierarchy,\n- helping users scan large chunks of text,\n- providing a title to a page or piece of content,\n-as subheadings or eyebrow headings, where there is still only one H1 tag per page (as per Accessibility requirements).\n\nOur heading styles are consistently bold, to better address the visual hierarchy.",
           "type": "text"
         }
       },
       "weight": {
-        "description": {
-          "value": "Supported font weights",
-          "type": "text"
-        },
         "title": {
           "value": "Font-Weights",
+          "type": "text"
+        },
+        "description": {
+          "value": "Supported font weights",
           "type": "text"
         }
       },
       "link": {
-        "description": {
-          "value": "Links can be used to display a link to other pages.",
-          "type": "text"
-        },
         "title": {
           "value": "Link",
+          "type": "text"
+        },
+        "description": {
+          "value": "Links can be used to display a link to other pages.",
           "type": "text"
         }
       }
@@ -3239,7 +3239,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a combobox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },

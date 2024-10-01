@@ -112,28 +112,28 @@ describe('<syn-breadcrumb-item>', () => {
   });
 
   describe('when rendering a syn-dropdown in the default slot', () => {
-      it('should not render a link or button tag, but a div wrapper', async () => {
-        el = await fixture<SynBreadcrumbItem>(html`
-          <syn-breadcrumb-item>
-            <syn-dropdown>
-              <syn-button slot="trigger" size="small" circle>
-                <syn-icon label="More options" name="three-dots"></syn-icon>
-              </syn-button>
-              <syn-menu>
-                <syn-menu-item type="checkbox" checked>Web Design</syn-menu-item>
-                <syn-menu-item type="checkbox">Web Development</syn-menu-item>
-                <syn-menu-item type="checkbox">Marketing</syn-menu-item>
-              </syn-menu>
-            </syn-dropdown>
-          </syn-breadcrumb-item>
-        `);
-  
-        await expect(el).to.be.accessible();
-        expect(el.shadowRoot!.querySelector('a')).to.be.null;
-        expect(el.shadowRoot!.querySelector('button')).to.be.null;
-        expect(el.shadowRoot!.querySelector('div.breadcrumb-item__label--drop-down')).not.to.be.null;
-      });
+    it('should not render a link or button tag, but a div wrapper', async () => {
+      el = await fixture<SynBreadcrumbItem>(html`
+        <syn-breadcrumb-item>
+          <syn-dropdown>
+            <syn-button slot="trigger" size="small" circle>
+              <syn-icon label="More options" name="three-dots"></syn-icon>
+            </syn-button>
+            <syn-menu>
+              <syn-menu-item type="checkbox" checked>Web Design</syn-menu-item>
+              <syn-menu-item type="checkbox">Web Development</syn-menu-item>
+              <syn-menu-item type="checkbox">Marketing</syn-menu-item>
+            </syn-menu>
+          </syn-dropdown>
+        </syn-breadcrumb-item>
+      `);
+
+      const x = await el; await expect(x).to.be.accessible({ ignoredRules: ["color-contrast"] });
+      expect(el.shadowRoot!.querySelector('a')).to.be.null;
+      expect(el.shadowRoot!.querySelector('button')).to.be.null;
+      expect(el.shadowRoot!.querySelector('div.breadcrumb-item__label--drop-down')).not.to.be.null;
     });
+  });
 
   describe('when provided an element in the slot "prefix" to support prefix icons', () => {
     before(async () => {

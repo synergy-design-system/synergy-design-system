@@ -122,12 +122,14 @@ export default class SynPrioNav extends SynergyElement {
    * @param items The items to cache the position for
    */
   private cacheItemPositions(items: SynNavItem[]) {
+    const { left } = this.horizontalNav.getBoundingClientRect();
     items.forEach(item => {
       // We have to measure while the items are in the primary slot,
       // else we will just get the placement in the priority menu
       item.removeAttribute('slot');
       const { right } = item.getBoundingClientRect();
-      item.dataset.right = right.toString();
+      // We also need to consider the location of the parent
+      item.dataset.right = (right - left).toString();
     });
 
     this.itemPositionsCached = true;

@@ -52,21 +52,17 @@ export default class SynValidate extends SynergyElement {
 
   /**
    * Defines the events that trigger the validation.
-   * Defaults to the `invalid` and `change` events.
    * `invalid` will always automatically be included.
    * You may also use the `live` keyword to validate on every input change.
    * `live` will make sure to listen to the `invalid`, `input` and `blur` events.
    * @example ```html
-   * <!-- Use default validation (invalid) -->
-   * <syn-validate></syn-validate>
-   *
    * <!-- Validate on invalid and change events (invalid, change) -->
    * <syn-validate on="invalid change"></syn-validate>
    *
    * <!-- Validate on live events (invalid, blur, input)-->
    * <syn-validate on="live"></syn-validate>
    *
-   * <!-- Validate on live and custom events (invalid, focus, input, change) -->
+   * <!-- Validate on live and custom events (invalid, blur, input, focus, change) -->
    * <syn-validate on="live focus change"></syn-validate>
    * ```
    */
@@ -80,7 +76,7 @@ export default class SynValidate extends SynergyElement {
    * Will override the default browser validation message.
    * Set to an empty string to reset the validation message.
    */
-  @property({ attribute: 'custom-validation', type: String }) customValidation = '';
+  @property({ attribute: 'custom-validation-message', type: String }) customValidationMessage = '';
 
   /**
    * Automatically refresh all event listeners when the on property changes.
@@ -94,8 +90,8 @@ export default class SynValidate extends SynergyElement {
     }
   }
 
-  @watch('customValidation', { waitUntilFirstUpdate: true })
-  handleCustomValidationChange() {
+  @watch('customValidationMessage', { waitUntilFirstUpdate: true })
+  handleCustomValidationMessageChange() {
     const input = this.getInput();
     if (input) {
       this.setValidationMessage(input);
@@ -184,8 +180,8 @@ export default class SynValidate extends SynergyElement {
   }
 
   private setValidationMessage(input: HTMLInputElement) {
-    const { customValidation } = this;
-    const validationMessage = customValidation || input.validationMessage;
+    const { customValidationMessage } = this;
+    const validationMessage = customValidationMessage || input.validationMessage;
 
     this.validationMessage = validationMessage;
   }

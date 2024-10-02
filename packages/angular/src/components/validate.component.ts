@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/validate/validate.js';
  *
  * @dependency syn-alert
  *
- * @slot - The input fields or form element to be validated.
+ * @slot - The input field or form element to be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
  *
  * @csspart base - The component's base wrapper.
@@ -69,7 +69,6 @@ export class SynValidateComponent {
 
   /**
 * Defines the events that trigger the validation.
-Defaults to the `invalid` and `change` events.
 `invalid` will always automatically be included.
 You may also use the `live` keyword to validate on every input change.
 `live` will make sure to listen to the `invalid`, `input` and `blur` events.
@@ -88,12 +87,12 @@ Will override the default browser validation message.
 Set to an empty string to reset the validation message.
  */
   @Input()
-  set customValidation(v: SynValidate['customValidation']) {
+  set customValidationMessage(v: SynValidate['customValidationMessage']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.customValidation = v),
+      () => (this.nativeElement.customValidationMessage = v),
     );
   }
-  get customValidation() {
-    return this.nativeElement.customValidation;
+  get customValidationMessage() {
+    return this.nativeElement.customValidationMessage;
   }
 }

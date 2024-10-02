@@ -16,7 +16,7 @@ Component.define('syn-validate');
  *
  * @dependency syn-alert
  *
- * @slot - The input fields or form element to be validated.
+ * @slot - The input field or form element to be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
  *
  * @csspart base - The component's base wrapper.

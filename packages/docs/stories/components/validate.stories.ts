@@ -146,7 +146,7 @@ export const Live: Story = {
   `,
 };
 
-export const CustomValidation: Story = {
+export const CustomValidationMessage: Story = {
   parameters: {
     docs: {
       description: {
@@ -157,7 +157,7 @@ export const CustomValidation: Story = {
   render: () => html`
     <syn-validate
       class="validation-custom-validation"
-      custom-validation="Include an &quot;@&quot; in the email address, otherwise you will never get our marvelous newsletter"
+      custom-validation-message="Include an &quot;@&quot; in the email address, otherwise you will never get our marvelous newsletter"
       inline
     >
       <syn-input
@@ -195,7 +195,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Inline,
   HideIcon,
   Live,
-  CustomValidation,
+  CustomValidationMessage,
   CustomFormField,
 });
 /* eslint-enable sort-keys */

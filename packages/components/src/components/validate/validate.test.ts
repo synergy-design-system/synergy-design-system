@@ -82,7 +82,7 @@ describe('<syn-validate>', () => {
     await expect(el.inline).to.equal(false);
     await expect(el.hideIcon).to.equal(false);
     await expect(el.on).to.equal('');
-    await expect(el.customValidation).to.equal('');
+    await expect(el.customValidationMessage).to.equal('');
   });
 
   describe('when using the getInput method', () => {
@@ -107,7 +107,7 @@ describe('<syn-validate>', () => {
     });
   });
 
-  describe('when updating the customValidation property', () => {
+  describe('when updating the customValidationMessage property', () => {
     it('should call the setValidationMessage method', async () => {
       const el = await fixture<SynValidate>(html`
         <syn-validate>
@@ -115,7 +115,7 @@ describe('<syn-validate>', () => {
         </syn-validate>
       `);
 
-      el.customValidation = 'custom message';
+      el.customValidationMessage = 'custom message';
       await el.updateComplete;
 
       await expect(el.validationMessage).to.equal('custom message');

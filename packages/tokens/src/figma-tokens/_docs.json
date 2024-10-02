@@ -1831,7 +1831,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction.",
+          "value": "The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction.",
           "type": "text"
         }
       },

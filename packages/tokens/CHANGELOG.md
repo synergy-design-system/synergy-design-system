@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.11.0...tokens/2.12.0) (2024-10-02)
+
+
+### Features
+
+* ✨ syn-radio-group should allow to set focus programmatically ([#638](https://github.com/synergy-design-system/synergy-design-system/issues/638)) ([6a81714](https://github.com/synergy-design-system/synergy-design-system/commit/6a81714e1ec29ccffe0324e78cba693d1f64091d))
+
 # [@synergy-design-system/tokens-v2.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.10.0...tokens/2.11.0) (2024-09-27)
 
 

@@ -123,7 +123,15 @@ const transformComponent = (path, content) => {
   const final = addSectionsBefore([
     [
       'private handleInvalid(event: Event) {',
-      `private handleFocus(options?: FocusOptions) {
+      `private handleLabelClick() {
+    this.focus();
+  }
+      `,
+    ],
+    [
+      'render() {',
+      `/** Sets focus on the radio-group. */
+  public focus(options?: FocusOptions) {
     const radios = this.getAllRadios();
     const checked = radios.find(radio => radio.checked);
     const firstEnabledRadio = radios.find(radio => !radio.disabled);
@@ -135,18 +143,6 @@ const transformComponent = (path, content) => {
       radioToFocus.focus(options);
     }
   }
-
-  private handleLabelClick() {
-    this.handleFocus();
-  }
-      `,
-    ],
-    [
-      'render() {',
-      `/** Sets focus on the radio-group. */
-  focus(options?: FocusOptions) {
-    this.handleFocus(options);
-  }      
       `,
     ],
   ], withLabelRemoved);

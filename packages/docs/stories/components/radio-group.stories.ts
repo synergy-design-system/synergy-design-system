@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable complexity */
 /* eslint-disable import/no-relative-packages */
-
 import '../../../components/src/components/radio-group/radio-group.js';
+import type { SynRadioGroup } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';
@@ -86,6 +86,32 @@ export const HelpText: Story = {
     <syn-radio value="2">Option</syn-radio>
     <syn-radio value="3">Option</syn-radio>
   </syn-radio-group>`,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const elm = canvasElement.querySelector<SynRadioGroup>('syn-radio-group');
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    elm?.focus();
+  },
+  render: () => html`
+    <syn-radio-group label="This is a label" name="a">
+      <syn-radio value="1" disabled>Option</syn-radio>
+      <syn-radio value="2">Option</syn-radio>
+      <syn-radio value="3">Option</syn-radio>
+    </syn-radio-group>
+  `,
 };
 
 export const Disabled: Story = {
@@ -223,6 +249,7 @@ export const CustomValidity: Story = {
 };
 
 // Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
@@ -230,3 +257,4 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Checked,
 }, 230);
+/* eslint-enable sort-keys */

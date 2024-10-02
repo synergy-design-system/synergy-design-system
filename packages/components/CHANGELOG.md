@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.0...components/2.10.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* 🐛 syn-prio-nav: priority menu position is always calculated from the absolute left of the document ([#608](https://github.com/synergy-design-system/synergy-design-system/issues/608)) ([06a7974](https://github.com/synergy-design-system/synergy-design-system/commit/06a7974b6f6e93dbe7b6eee66e0c1ede99377629))
+
 # [@synergy-design-system/components-v2.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.9.0...components/2.10.0) (2024-10-02)
 
 

@@ -74,6 +74,12 @@ the alert before it closes (e.g.
 the alert will not close on its own.
  */
   duration?: SynAlert['duration'];
+
+  /**
+* Enables a countdown that indicates the remaining time the alert will be displayed.
+Typically used to indicate the remaining time before a whole app refresh.
+ */
+  countdown?: SynAlert['countdown'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

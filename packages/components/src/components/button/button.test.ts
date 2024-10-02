@@ -23,6 +23,63 @@ describe('<syn-button>', () => {
       });
     });
   });
+  describe('when an attribute is removed', () => {
+    it("should return to 'default' when attribute removed with no initial attribute", async () => {
+      const el = await fixture<SynButton>(html`<syn-button>Button label</syn-button>`);
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+
+      el.removeAttribute('variant');
+      await el.updateComplete;
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+    });
+
+    it("should return to 'default' when attribute removed with an initial attribute", async () => {
+      const el = await fixture<SynButton>(html`<syn-button variant="primary">Button label</syn-button>`);
+
+      expect(el.variant).to.equal('primary');
+      expect(el.getAttribute('variant')).to.equal('primary');
+
+      el.removeAttribute('variant');
+      await el.updateComplete;
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+    });
+  });
+
+  describe('when a property is set to null', () => {
+    it("should return to 'default' when property set to null with no initial attribute", async () => {
+      const el = await fixture<SynButton>(html`<syn-button>Button label</syn-button>`);
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+
+      // @ts-expect-error Its a test. Stop.
+      el.variant = null;
+      await el.updateComplete;
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+    });
+
+    it("should return to 'default' when property set to null with an initial attribute", async () => {
+      const el = await fixture<SynButton>(html`<syn-button variant="primary">Button label</syn-button>`);
+
+      expect(el.variant).to.equal('primary');
+      expect(el.getAttribute('variant')).to.equal('primary');
+
+      // @ts-expect-error Its a test. Stop.
+      el.variant = null;
+      await el.updateComplete;
+
+      expect(el.variant).to.equal('outline');
+      expect(el.getAttribute('variant')).to.equal('outline');
+    });
+  });
 
   describe('when provided no parameters', () => {
     it('passes accessibility test', async () => {

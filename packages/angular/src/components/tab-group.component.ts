@@ -132,6 +132,19 @@ manual, the tab will receive focus but will not show until the user presses spac
   }
 
   /**
+   * Prevent scroll buttons from being hidden when inactive.
+   */
+  @Input()
+  set fixedScrollControls(v: SynTabGroup['fixedScrollControls']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.fixedScrollControls = v),
+    );
+  }
+  get fixedScrollControls() {
+    return this.nativeElement.fixedScrollControls;
+  }
+
+  /**
    * Emitted when a tab is shown.
    * The payload of the event returns the "panel" attribute of the shown tab.
    */

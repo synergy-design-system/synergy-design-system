@@ -6,15 +6,13 @@
  */
 
 /* eslint-disable */
-import type SynMenuItem from '../components/menu-item/menu-item.js';
-
 /**
  * Synergy custom event
  */
-export type SynSelectEvent = CustomEvent<{ item: SynMenuItem }>;
+export type SynResizeEvent = CustomEvent<{ entries: ResizeObserverEntry[] }>;
 
 declare global {
   interface GlobalEventHandlersEventMap {
-    'syn-select': SynSelectEvent;
+    'syn-resize': SynResizeEvent;
   }
 }

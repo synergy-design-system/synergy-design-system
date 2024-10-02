@@ -43,7 +43,7 @@ export default class SynBreadcrumbItem extends SynergyElement {
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
-  @state() private renderType: 'button' | 'link' | 'drop-down' = 'button';
+  @state() private renderType: 'button' | 'link' | 'dropdown' = 'button';
 
   /**
    * Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered
@@ -62,7 +62,17 @@ export default class SynBreadcrumbItem extends SynergyElement {
       this.defaultSlot.assignedElements({ flatten: true }).filter(i => i.tagName.toLowerCase() === 'syn-dropdown')
         .length > 0;
 
-    this.renderType = this.href ? 'link' : hasDropdown ? 'drop-down' : 'button';
+    if (this.href) {
+      this.renderType = 'link';
+      return;
+    }
+
+    if (hasDropdown) {
+      this.renderType = 'dropdown';
+      return;
+    }
+
+    this.renderType = 'button';
   }
 
   @watch('href', { waitUntilFirstUpdate: true })
@@ -101,19 +111,20 @@ export default class SynBreadcrumbItem extends SynergyElement {
               </a>
             `
           : ''}
-          ${this.renderType === 'button' ? html`
+        ${this.renderType === 'button'
+          ? html`
               <button part="label" type="button" class="breadcrumb-item__label breadcrumb-item__label--button">
                 <slot @slotchange=${this.handleSlotChange}></slot>
               </button>
-            ` : ''}
-
-          ${this.renderType === 'drop-down'
-            ? html`
-                <div part="label" class="breadcrumb-item__label breadcrumb-item__label--drop-down">
-                  <slot @slotchange=${this.handleSlotChange}></slot>
-                </div>
-              `
-            : ''}
+            `
+          : ''}
+        ${this.renderType === 'dropdown'
+          ? html`
+              <div part="label" class="breadcrumb-item__label breadcrumb-item__label--drop-down">
+                <slot @slotchange=${this.handleSlotChange}></slot>
+              </div>
+            `
+          : ''}
 
         <span part="suffix" class="breadcrumb-item__suffix">
           <slot name="suffix"></slot>

@@ -135,7 +135,8 @@ const transformTests = (path, originalContent) => {
   let content = originalContent;
 
   content = content.replace("const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];", "const variants = ['filled', 'outline', 'text'];");
-  content = content.replace("expect(el.variant).to.equal('default');", "expect(el.variant).to.equal('outline');");
+  content = content.replaceAll("expect(el.variant).to.equal('default');", "expect(el.variant).to.equal('outline');");
+  content = content.replaceAll("expect(el.getAttribute('variant')).to.equal('default');", "expect(el.getAttribute('variant')).to.equal('outline');");
   ['outline', 'pill', 'circle'].forEach((prop) => {
     content = removeSection(content, `expect(el.${prop})`, ';');
   });

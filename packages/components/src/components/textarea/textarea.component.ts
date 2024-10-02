@@ -171,7 +171,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   disconnectedCallback() {
     super.disconnectedCallback();
     if (this.input) {
-      this.resizeObserver.unobserve(this.input);
+      this.resizeObserver?.unobserve(this.input);
     }
   }
 

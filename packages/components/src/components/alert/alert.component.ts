@@ -12,7 +12,7 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -54,10 +54,14 @@ export default class SynAlert extends SynergyElement {
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private autoHideTimeout: number;
+  private remainingTimeInterval: number;
+  private countdownAnimation?: Animation;
   private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
   private readonly localize = new LocalizeController(this);
 
   @query('[part~="base"]') base: HTMLElement;
+
+  @query('.alert__countdown-elapsed') countdownElement: HTMLElement;
 
   /**
    * Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can
@@ -78,23 +82,61 @@ export default class SynAlert extends SynergyElement {
    */
   @property({ type: Number }) duration = Infinity;
 
+  /**
+   * Enables a countdown that indicates the remaining time the alert will be displayed.
+   * Typically used to indicate the remaining time before a whole app refresh.
+   */
+  @property({ type: String, reflect: true }) countdown?: 'rtl' | 'ltr';
+
+  @state() private remainingTime = this.duration;
+
   firstUpdated() {
     this.base.hidden = !this.open;
   }
 
   private restartAutoHide() {
+    this.handleCountdownChange();
     clearTimeout(this.autoHideTimeout);
+    clearInterval(this.remainingTimeInterval);
     if (this.open && this.duration < Infinity) {
       this.autoHideTimeout = window.setTimeout(() => this.hide(), this.duration);
+      this.remainingTime = this.duration;
+      this.remainingTimeInterval = window.setInterval(() => {
+        this.remainingTime -= 100;
+      }, 100);
+    }
+  }
+
+  private pauseAutoHide() {
+    this.countdownAnimation?.pause();
+    clearTimeout(this.autoHideTimeout);
+    clearInterval(this.remainingTimeInterval);
+  }
+
+  private resumeAutoHide() {
+    if (this.duration < Infinity) {
+      this.autoHideTimeout = window.setTimeout(() => this.hide(), this.remainingTime);
+      this.remainingTimeInterval = window.setInterval(() => {
+        this.remainingTime -= 100;
+      }, 100);
+      this.countdownAnimation?.play();
+    }
+  }
+
+  private handleCountdownChange() {
+    if (this.open && this.duration < Infinity && this.countdown) {
+      const { countdownElement } = this;
+      const start = '100%';
+      const end = '0';
+      this.countdownAnimation = countdownElement.animate([{ width: start }, { width: end }], {
+        duration: this.duration,
+        easing: 'linear'
+      });
     }
   }
 
   private handleCloseClick() {
     this.hide();
-  }
-
-  private handleMouseMove() {
-    this.restartAutoHide();
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -118,6 +160,7 @@ export default class SynAlert extends SynergyElement {
       this.emit('syn-hide');
 
       clearTimeout(this.autoHideTimeout);
+      clearInterval(this.remainingTimeInterval);
 
       await stopAnimations(this.base);
       const { keyframes, options } = getAnimation(this, 'alert.hide', { dir: this.localize.dir() });
@@ -160,6 +203,7 @@ export default class SynAlert extends SynergyElement {
    */
   async toast() {
     return new Promise<void>(resolve => {
+      this.handleCountdownChange();
       if (toastStack.parentElement === null) {
         document.body.append(toastStack);
       }
@@ -197,6 +241,7 @@ export default class SynAlert extends SynergyElement {
           alert: true,
           'alert--open': this.open,
           'alert--closable': this.closable,
+          'alert--has-countdown': !!this.countdown,
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--primary': this.variant === 'primary',
           'alert--success': this.variant === 'success',
@@ -206,7 +251,8 @@ export default class SynAlert extends SynergyElement {
         })}
         role="alert"
         aria-hidden=${this.open ? 'false' : 'true'}
-        @mousemove=${this.handleMouseMove}
+        @mouseenter=${this.pauseAutoHide}
+        @mouseleave=${this.resumeAutoHide}
       >
         <div part="icon" class="alert__icon">
           <slot name="icon"></slot>
@@ -227,6 +273,21 @@ export default class SynAlert extends SynergyElement {
                 label=${this.localize.term('close')}
                 @click=${this.handleCloseClick}
               ></syn-icon-button>
+            `
+          : ''}
+
+        <div role="timer" class="alert__timer">${this.remainingTime}</div>
+
+        ${this.countdown
+          ? html`
+              <div
+                class=${classMap({
+                  alert__countdown: true,
+                  'alert__countdown--ltr': this.countdown === 'ltr'
+                })}
+              >
+                <div class="alert__countdown-elapsed"></div>
+              </div>
             `
           : ''}
       </div>

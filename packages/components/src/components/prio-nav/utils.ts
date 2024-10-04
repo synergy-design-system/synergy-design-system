@@ -26,3 +26,32 @@ export const isNavItem = (item: HTMLElement): item is SynNavItem => (
  * @returns New array of all found syn-nav-items
  */
 export const filterOnlyNavItems = (items: HTMLElement[]) => items.filter(isNavItem);
+
+/**
+ * Show a navigation item
+ * @param item The item to show
+ */
+export const showNavigationItem = (item: SynNavItem) => {
+  item.setAttribute('horizontal', 'true');
+  item.removeAttribute('slot');
+  item.removeAttribute('tabindex');
+
+  // Reset the role to the original value
+  if (item.dataset.originalRole) {
+    item.setAttribute('role', item.dataset.originalRole);
+  } else {
+    item.removeAttribute('role');
+  }
+};
+
+/**
+ * Hide a navigation item
+ * @param item The item to hide
+ */
+export const hideNavigationItem = (item: SynNavItem) => {
+  item.removeAttribute('horizontal');
+  item.setAttribute('slot', 'menu');
+
+  // Makes sure the item is focusable in a syn-dropdown
+  item.setAttribute('role', 'menuitem');
+};

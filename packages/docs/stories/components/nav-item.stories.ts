@@ -173,7 +173,7 @@ export const ChildrenClosedOrOpenVerticalOnly: Story = {
       <syn-nav-item open >
         Children open
         <nav slot="children">
-          <syn-nav-item>Item 1</syn-nav-item>
+          <syn-nav-item href="javascript:void(0)">Item 1</syn-nav-item>
           <syn-nav-item>Item 2</syn-nav-item>
         </nav>
       </syn-nav-item>

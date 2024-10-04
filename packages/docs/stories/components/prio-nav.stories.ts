@@ -99,7 +99,7 @@ export const PriorityMenu = {
 //     },
 //   },
 //   render: () => html`
-//     <syn-prio-nav id="demo-ding" style="width: 120px">
+//     <syn-prio-nav id="demo-ding">
 //       <syn-nav-item current horizontal>Domains</syn-nav-item>
 //       <syn-nav-item horizontal>Projects</syn-nav-item>
 //       <syn-nav-item horizontal>Trainings</syn-nav-item>

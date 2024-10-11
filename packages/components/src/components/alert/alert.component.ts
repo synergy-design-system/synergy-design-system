@@ -86,7 +86,7 @@ export default class SynAlert extends SynergyElement {
    * Enables a countdown that indicates the remaining time the alert will be displayed.
    * Typically used to indicate the remaining time before a whole app refresh.
    */
-  countdown? : 'rtl' | 'ltr';
+  private countdown? : 'rtl' | 'ltr';
 
   @state() private remainingTime = this.duration;
 

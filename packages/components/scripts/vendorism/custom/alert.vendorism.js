@@ -32,7 +32,7 @@ const transformComponent = (path, originalContent) => {
     // Begin remove countdown
     [
       "@property({ type: String, reflect: true }) countdown?: 'rtl' | 'ltr';",
-      "countdown? : 'rtl' | 'ltr';",
+      "private countdown? : 'rtl' | 'ltr';",
     ],
     [
       "          'alert--has-countdown': !!this.countdown,\n",

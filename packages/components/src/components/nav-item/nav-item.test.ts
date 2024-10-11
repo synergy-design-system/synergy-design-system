@@ -241,7 +241,6 @@ describe('<syn-nav-item>', () => {
     expect(base).to.not.have.class('nav-item--show-prefix-only');
   });
 
-
   it('should display current indicator on root nav-item if it has a current marked child and is not open', async () => {
     const el = await fixture<SynNavItem>(html`
       <syn-nav-item>

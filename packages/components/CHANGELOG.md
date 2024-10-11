@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.10.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.1...components/2.10.2) (2024-10-11)
+
+
+### Bug Fixes
+
+* 🐛 Various issues with syn-prio-nav ([#645](https://github.com/synergy-design-system/synergy-design-system/issues/645)) ([f509e94](https://github.com/synergy-design-system/synergy-design-system/commit/f509e94672d494aa6393cf3287a749ca8eeee1ed))
+
 # [@synergy-design-system/components-v2.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.0...components/2.10.1) (2024-10-02)
 
 

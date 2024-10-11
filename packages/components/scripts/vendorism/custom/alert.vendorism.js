@@ -1,7 +1,9 @@
+import { replaceSections } from '../replace-section.js';
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'alert.styles.ts',
+  'alert.component.ts',
 ];
 
 /**
@@ -25,6 +27,25 @@ const transformStyles = (path, originalContent) => {
   };
 };
 
+const transformComponent = (path, originalContent) => {
+  const content = replaceSections([
+    // Begin remove countdown
+    [
+      "@property({ type: String, reflect: true }) countdown?: 'rtl' | 'ltr';",
+      "private countdown? : 'rtl' | 'ltr';",
+    ],
+    [
+      "          'alert--has-countdown': !!this.countdown,\n",
+      '',
+    ],
+    // End remove countdown.
+  ], originalContent);
+  return {
+    content,
+    path,
+  };
+};
+
 export const vendorAlert = (path, content) => {
   const output = { content, path };
 
@@ -37,6 +58,10 @@ export const vendorAlert = (path, content) => {
 
   if (path.endsWith('alert.styles.ts')) {
     return transformStyles(path, content);
+  }
+
+  if (path.endsWith('alert.component.ts')) {
+    return transformComponent(path, content);
   }
 
   return output;

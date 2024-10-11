@@ -97,17 +97,17 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "del": "^7.1.0",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "globby": "^14.0.2",
-    "ora": "^8.0.1",
-    "postcss": "^8.4.41",
+    "ora": "^8.1.0",
+    "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.0",
     "prettier": "^3.3.3",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.8",
-    "stylelint": "^16.8.2"
+    "stylelint": "^16.9.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

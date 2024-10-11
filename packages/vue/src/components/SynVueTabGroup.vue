@@ -77,6 +77,11 @@ manual, the tab will receive focus but will not show until the user presses spac
    * Takes only effect if used with the 'contained' property
    */
   sharp?: SynTabGroup['sharp'];
+
+  /**
+   * Prevent scroll buttons from being hidden when inactive.
+   */
+  fixedScrollControls?: SynTabGroup['fixedScrollControls'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

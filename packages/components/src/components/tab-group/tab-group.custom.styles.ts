@@ -227,4 +227,22 @@ export default css`
     border-bottom: none;
     border-top: solid var(--track-width) var(--track-color);
   }
+
+  /**
+   * Shoelace 2.17 introduced a new attribute "fixed-scroll-controls".
+   * Per default, tab-groups now hide the scroll buttons when they are not needed.
+   * "fixed-scroll-controls" will keep the scroll buttons visible at all times,
+   * which is the default behavior of Synergy.
+   * For this reason, we make the buttons visible by default, but show them in a "disabled" state when they are not needed.
+   */
+  .tab-group--has-scroll-controls .tab-group__scroll-button--start--hidden,
+  .tab-group--has-scroll-controls .tab-group__scroll-button--end--hidden {
+    visibility: visible;
+  }
+
+  .tab-group--has-scroll-controls .tab-group__scroll-button--start--hidden::part(base),
+  .tab-group--has-scroll-controls .tab-group__scroll-button--end--hidden::part(base) {
+    opacity: var(--syn-input-disabled-opacity);
+    pointer-events: none;
+  }
 `;

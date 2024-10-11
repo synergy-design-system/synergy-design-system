@@ -12,6 +12,7 @@ export { SynButton } from './components/button.js';
 export { SynButtonGroup } from './components/button-group.js';
 export { SynCard } from './components/card.js';
 export { SynCheckbox } from './components/checkbox.js';
+export { SynCombobox } from './components/combobox.js';
 export { SynDetails } from './components/details.js';
 export { SynDialog } from './components/dialog.js';
 export { SynDivider } from './components/divider.js';

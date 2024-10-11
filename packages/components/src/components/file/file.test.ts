@@ -110,7 +110,9 @@ describe('<syn-file>', () => {
         expect(input.disabled).to.be.true;
       });
 
-      it('should emit a syn-error event when multiple attribute is not set, but several files are dragged in ', async () => {
+      // TODO: When using Playwright and its dnd feature in future this test
+      // should work (currently DataTransferItems are not supported)
+      it.skip('should emit a syn-error event when multiple attribute is not set, but several files are dragged in ', async () => {
         const el = await fixture<SynFile>(html`<syn-file label="Name" ?droparea=${droparea}>${triggerSlot}</syn-file>`);
         const div = el.shadowRoot!.querySelector<HTMLDivElement>('.form-control')!;
 

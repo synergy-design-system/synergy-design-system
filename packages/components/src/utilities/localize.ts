@@ -30,9 +30,11 @@ export interface Translation extends DefaultTranslation {
   fileButtonText: string;
   fileButtonTextMultiple: string;
   fileDragDrop: string;
+  folderButtonText: string;
+  folderDragDrop: string;
   menu: string;
   notification: string;
-  numFilesSelected: (num: number) => string;
+  numFilesSelected: (num: number, dir: boolean) => string;
   openMenu: string;
   rangeMax: string;
   rangeMin: string;

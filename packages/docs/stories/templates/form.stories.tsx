@@ -93,6 +93,10 @@ export const ContactForm = {
       flex-flow: wrap;
       margin-bottom: var(--syn-spacing-2x-large);
       gap: var(--syn-spacing-large) var(--syn-spacing-large);
+
+      /* TODO: this two css properties can be removed, when this issue is fixed https://github.com/synergy-design-system/synergy-design-system/issues/612 */
+      position: relative;
+      z-index: 1;
     }
 
     .fields > * {
@@ -178,7 +182,12 @@ export const ContactForm = {
               `)}
             </syn-select>
 
-            <syn-input label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required></syn-input>
+            <syn-combobox label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required>
+              <syn-option>Max Mustermann</syn-option>
+              <syn-option>John Doe</syn-option>
+              <syn-option>Jane Row</syn-option>
+              <syn-option>Average Joe</syn-option>
+            </syn-combobox>
             <syn-input type="tel" label="${getTranslation('contactForm.phoneLabel')}" name="phone"></syn-input>
             <syn-input type="tel" label="${getTranslation('contactForm.faxLabel')}" name="fax"></syn-input>
             <syn-input type="email" label="${getTranslation('contactForm.emailLabel')}" name="mail" required></syn-input>

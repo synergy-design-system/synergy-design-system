@@ -12,8 +12,10 @@ import {
   vendorBreadcrumbItem,
   vendorButton,
   vendorCard,
+  vendorCombobox,
   vendorDetails,
   vendorDrawer,
+  vendorEvents,
   vendorForm,
   vendorIcon,
   vendorIconButton,
@@ -22,6 +24,7 @@ import {
   vendorMenuItem,
   vendorMenuLabel,
   vendorProgressBar,
+  vendorRadioGroup,
   vendorSelect,
   vendorSpinner,
   vendorTabGroup,
@@ -88,6 +91,7 @@ export const events = [
   'sl-clear',
   'sl-input',
   'sl-remove',
+  'sl-resize',
   'sl-show',
   'sl-after-show',
   'sl-hide',
@@ -123,7 +127,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.16.0';
+const shoelaceVersion = '2.17.1';
 
 // Command line options
 const optionDefinitions = [
@@ -165,17 +169,6 @@ const config = {
     path: '.',
     // Changes targeted files -> otherIncludes
     transforms: [
-      // Adjust the event map to use our own file names
-      (path, content) => {
-        const outputPath = path.startsWith('events/')
-          ? path.replace('sl-', `${libraryPrefix}-`)
-          : path;
-
-        return {
-          content,
-          path: outputPath,
-        };
-      },
       // Add lint ignore information to all vendored data and remove lint-enables
       (path, content) => {
         const eslintEnableComment = '/* eslint-enable */';
@@ -303,6 +296,7 @@ const config = {
       vendorButton,
       vendorCard,
       vendorDetails,
+      vendorEvents,
       vendorDrawer,
       vendorForm,
       vendorIconButton,
@@ -312,6 +306,7 @@ const config = {
       vendorMenuItem,
       vendorMenuLabel,
       vendorProgressBar,
+      vendorRadioGroup,
       vendorSelect,
       vendorSpinner,
       vendorTabGroup,
@@ -378,6 +373,11 @@ if (!options.getOnly) {
   await execSync('mv ../docs/stories/components ./src/temp');
 
   const { removedFiles, newFiles } = await set(config);
+
+  // Copy the select styles for the combobox and adapt them for combobox
+  vendorCombobox();
+  // Make the copied select styles for the combobox readonly
+  newFiles.push('src/components/combobox/combobox.styles.ts');
 
   await updateVsCodeReadOnlyFiles(removedFiles, newFiles.filter(f => !f.includes('stories.ts')));
 

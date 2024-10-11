@@ -275,7 +275,7 @@ export const TableShadowLeftColumn: Story = {
         }
 
         #horizontal-scrollable-table td {
-          min-width: 112px;
+          min-width: 120px;
         }
 
         #horizontal-scrollable-table .buttons-cell {
@@ -339,7 +339,7 @@ export const TableShadowRightColumn: Story = {
         }
 
         #horizontal-scrollable-table2 td {
-          min-width: 112px;
+          min-width: 120px;
         }
 
         #horizontal-scrollable-table2 .buttons-cell {

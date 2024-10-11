@@ -997,7 +997,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are uploaded (“file” -> “files”)",
+          "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)",
           "type": "text"
         }
       },
@@ -1027,7 +1027,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the size attribute to change a file uploads size.",
+          "value": "Use the size attribute to change the component's size.",
           "type": "text"
         }
       },
@@ -1058,6 +1058,16 @@
         },
         "description": {
           "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+          "type": "text"
+        }
+      },
+      "directory": {
+        "title": {
+          "value": "Directory",
+          "type": "text"
+        },
+        "description": {
+          "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers.",
           "type": "text"
         }
       }
@@ -1105,7 +1115,7 @@
       },
       "priority-menu": {
         "description": {
-          "value": "If there is not enough space, elements will move into a dropdown.",
+          "value": "If there is not enough space, elements will move into a dropdown. If there is only space for  one item, it will display the priority menu only.",
           "type": "text"
         },
         "title": {
@@ -1821,7 +1831,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction.",
+          "value": "The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction.",
           "type": "text"
         }
       },
@@ -2889,7 +2899,27 @@
           "type": "text"
         },
         "description": {
-          "value": "The footer is the area located at the bottom of the application window, below the content area.\n\nThe footer may contain one or more links pointing to legal information items as well as a copyright symbol and current year. The standard links can include things like:\n- Imprint (e.g. https://www.sick.com/imprint)\n- Terms and conditions (e.g. https://www.sick.com/tac)\n- Terms of use (e.g. https://www.sick.com/terms-of-use)\n- Data protection (e.g. https://www.sick.com/dataprotection)\n\nIf a footer is not required or desired, ensure that all legally required links are placed elsewhere in your application, depending on legal requirements.\n\nFor example, you can: add an info icon (or similar element) to your header and display the necessary information in a dropdown menu. Alternatively, create a dedicated navigation entry to house the required legal links.\n\nThe footer links can be placed on any background color. If you need a more compact version of the footer, adjust the top and bottom margins from spacing.large (24px) to spacing.medium (16px).",
+          "value": "The footer is the area located at the bottom of the application window, below the content area.\n\nThe footer may contain one or more links pointing to legal information items as well as a copyright symbol and current year. The standard links can include things like:\n- Imprint (e.g. https://www.sick.com/imprint)\n- Terms and conditions (e.g. https://www.sick.com/tac)\n- Terms of use (e.g. https://www.sick.com/terms-of-use)\n- Data protection (e.g. https://www.sick.com/dataprotection)\n\nIf you don't want to use the links in the footer, please make sure to include the legal required links somewhere else.\n\nThe footer links can be placed on any background color. If you need a more compact version of the footer, simply adjust the top and bottom margins from spacing.large (24px) to spacing.medium (16px).",
+          "type": "text"
+        }
+      },
+      "link-list": {
+        "title": {
+          "value": "Link list",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-link in simple grouping contexts: Horizontal and Vertical alignment.",
+          "type": "text"
+        }
+      },
+      "tag": {
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
           "type": "text"
         }
       }
@@ -3178,6 +3208,168 @@
         },
         "description": {
           "value": "If the table contains a scrolling behavior the table cell gets a shadow.",
+          "type": "text"
+        }
+      }
+    },
+    "combobox": {
+      "default": {
+        "title": {
+          "value": "Combobox",
+          "type": "text"
+        },
+        "description": {
+          "value": "The combobox suggests items based on the user input.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the combobox an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a combobox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.",
+          "type": "text"
+        }
+      },
+      "placeholder": {
+        "title": {
+          "value": "Placeholder",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the placeholder attribute to add a placeholder.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus / Active",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus attribute provides feedback to the users, informing them that the combobox component is ready for use.",
+          "type": "text"
+        }
+      },
+      "simple": {
+        "title": {
+          "value": "Simple suggests",
+          "type": "text"
+        },
+        "description": {
+          "value": "A simple suggestions list shows the user a filtered list.",
+          "type": "text"
+        }
+      },
+      "highlight": {
+        "title": {
+          "value": "Highlight Query",
+          "type": "text"
+        },
+        "description": {
+          "value": "The filtered options shown in the list can be customized by passing a function to the getOption property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getOption() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.\n\nRemember that the options are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.\n\n **Note:** Be sure you trust the content you are outputting! Passing unsanitized user input to getOption() can result in XSS vulnerabilities.",
+          "type": "text"
+        }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping Query",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use <syn-optgroup> to group <syn-option>`s visually.",
+          "type": "text"
+        }
+      },
+      "container-height": {
+        "title": {
+          "value": "Suggestion Container Height",
+          "type": "text"
+        },
+        "description": {
+          "value": "The height of the filtered options list can be customized by setting the `max-height` on the `listbox` part of the combobox.",
+          "type": "text"
+        }
+      },
+      "clearable": {
+        "title": {
+          "value": "Clearable",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the clearable attribute to add a clear button when the combobox has content.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute to disable a combobox.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a combobox size.",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the combobox is invalid. For example, if the entry is mandatory.",
+          "type": "text"
+        }
+      },
+      "preffix-sufffix": {
+        "title": {
+          "value": "Prefix Suffix Text and Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the prefix and suffix slots to add text and icons.",
+          "type": "text"
+        }
+      },
+      "async-options": {
+        "title": {
+          "value": "Async Options",
+          "type": "text"
+        },
+        "description": {
+          "value": "It is possible to add options dynamically to the combobox e.g. if the option values need to be fetched asynchronously from a remote server or API.",
+          "type": "text"
+        }
+      },
+      "custom-filter": {
+        "title": {
+          "value": "Custom filter",
+          "type": "text"
+        },
+        "description": {
+          "value": "A custom filter can be applied by passing a filter function to the `filter` property. This filter() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.",
           "type": "text"
         }
       }

@@ -22,6 +22,7 @@ import {
 } from './utils.js';
 
 const getSlottedChildrenAsTuple = (el: SynPrioNav) => {
+  // @ts-expect-error slots are private, but should be tested anyways
   const { defaultSlot, menuSlot } = el;
   const slottedChildren = filterOnlyNavItems(getAssignedElementsForSlot(defaultSlot));
   const slottedPriorityItems = filterOnlyNavItems(getAssignedElementsForSlot(menuSlot));
@@ -72,17 +73,19 @@ describe('<syn-prio-nav>', () => {
      * Create a fixture for our horizontal nav
      * Note we are forcing a fixed width of the items
      * to make sure they are available in all test environments
+     * Without flex-shrink: 0, the items will shrink to fit the container,
+     * rendering most of the tests pointless
      * @param width The width to use
      * @returns A horizontal nav fixture
      */
-    const createFixture = async (width = 800) => fixture<SynPrioNav>(html`
-      <syn-prio-nav style="width: ${width}px;">
-        <syn-nav-item horizontal style="width: 100px">Item 1</syn-nav-item>
-        <syn-nav-item horizontal style="width: 100px">Item 2</syn-nav-item>
-        <syn-nav-item horizontal style="width: 100px">Item 3</syn-nav-item>
-        <syn-nav-item horizontal style="width: 100px">Item 4</syn-nav-item>
-        <syn-nav-item horizontal style="width: 100px" id="button-item" role="button">Item 5</syn-nav-item>
-        <syn-nav-item horizontal style="width: 100px">Item 6</syn-nav-item>
+    const createFixture = async (width = 800, marginLeft = 0) => fixture<SynPrioNav>(html`
+      <syn-prio-nav style="width: ${width}px; margin-left: ${marginLeft}px;">
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;">Item 1</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;">Item 2</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;">Item 3</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;">Item 4</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;" id="button-item" role="button">Item 5</syn-nav-item>
+        <syn-nav-item horizontal style="width: 100px; flex-shrink: 0;">Item 6</syn-nav-item>
       </syn-prio-nav>
     `);
 
@@ -95,6 +98,7 @@ describe('<syn-prio-nav>', () => {
     const forceSizeUpdateOnFixture = async (nav: SynPrioNav, size: number) => {
       nav.style.width = `${size}px`;
       await nav.updateComplete;
+      // @ts-expect-error needed because we have to manually trigger a "resize"
       nav.handlePriorityMenu();
       await nav.updateComplete;
     };
@@ -119,11 +123,11 @@ describe('<syn-prio-nav>', () => {
     });
 
     it('should move the items to the "menu" slot and change their role to "menuitem" if there is not enough space', async () => {
-      const nav = await createFixture(100);
+      const nav = await createFixture(300);
       const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
 
-      expect(itemsInDefaultSlot).to.have.length(1);
-      expect(itemsInPrioritySlot).to.have.length(5);
+      expect(itemsInDefaultSlot).to.have.length(2);
+      expect(itemsInPrioritySlot).to.have.length(4);
 
       expect(itemsInPrioritySlot.every(item => item.getAttribute('role') === 'menuitem')).to.be.true;
     });
@@ -135,14 +139,23 @@ describe('<syn-prio-nav>', () => {
         initialPriorityItems,
       ] = getSlottedChildrenAsTuple(nav);
 
+      // First cycle: If there is only place for one item, we still hide all items!
       await forceSizeUpdateOnFixture(nav, 200);
+
+      const [
+        afterVerySmallDefaultItems,
+        afterVerySmallPriorityItems,
+      ] = getSlottedChildrenAsTuple(nav);
+
+      // Second cycle: Resize so we have space for 2 visual items
+      await forceSizeUpdateOnFixture(nav, 300);
 
       const [
         afterSmallDefaultItems,
         afterSmallPriorityItems,
       ] = getSlottedChildrenAsTuple(nav);
 
-      // Second cycle: Resize to 600 pixels and see what we got then
+      // Third cycle: Resize to 600 pixels and see what we got then
       await forceSizeUpdateOnFixture(nav, 600);
 
       const [
@@ -151,11 +164,13 @@ describe('<syn-prio-nav>', () => {
       ] = getSlottedChildrenAsTuple(nav);
 
       expect(initialDefaultItems, 'Default-Slot: Width 800 pixels').to.have.length(6);
-      expect(afterSmallDefaultItems, 'Default-Slot: Width 200 pixels').to.have.length(1);
+      expect(afterVerySmallDefaultItems, 'Default-Slot: Width 200 pixels').to.have.length(0);
+      expect(afterSmallDefaultItems, 'Default-Slot: Width 300 pixels').to.have.length(2);
       expect(afterMediumDefaultItems, 'Default-Slot: Width 600 pixels').to.have.length(4);
 
       expect(initialPriorityItems, 'Priority-Menu: width 800 pixels').to.have.length(0);
-      expect(afterSmallPriorityItems, 'Priority-Menu: Width 200 pixels').to.have.length(5);
+      expect(afterVerySmallPriorityItems, 'Priority-Menu: Width 200 pixels').to.have.length(6);
+      expect(afterSmallPriorityItems, 'Priority-Menu: Width 300 pixels').to.have.length(4);
       expect(afterMediumPriorityItems, 'Priority-Menu: Width 600 pixels').to.have.length(2);
     });
 
@@ -177,6 +192,16 @@ describe('<syn-prio-nav>', () => {
       const buttonItemAfterResizeBack = getButtonItem(nav);
       expect(buttonItemAfterResizeBack, 'The button item should be back the default slot and exist').to.exist;
       expect(buttonItemAfterResizeBack, 'The button item should have its original role of "button"').to.have.attribute('role', 'button');
+    });
+
+    it("should work if there's a margin on the priority menu", async () => {
+      // Adding this margin should not affect the tests
+      const nav = await createFixture(800, 300);
+
+      const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
+
+      expect(itemsInDefaultSlot).to.have.length(6);
+      expect(itemsInPrioritySlot).to.be.empty;
     });
   });
 });

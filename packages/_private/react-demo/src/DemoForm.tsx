@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
-import { serialize } from '@synergy-design-system/components';
+import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import type {
   SynCheckbox as NativeCheckbox,
   SynFile as NativeFile,
@@ -10,6 +10,7 @@ import type {
 import {
   SynButton,
   SynCheckbox,
+  SynCombobox,
   SynDivider,
   SynFile,
   SynInput,
@@ -41,6 +42,7 @@ const initialFormData = {
   gender: '',
   happiness: '5',
   name: '',
+  nationality: '',
   newsletterAngular: false,
   newsletterBeta: false,
   newsletterReact: false,
@@ -53,6 +55,7 @@ const initialFormData = {
   topics: [],
 };
 
+const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 const formatter = new Intl.NumberFormat('de-DE', {
   currency: 'EUR',
   maximumFractionDigits: 0,
@@ -201,6 +204,24 @@ export const DemoForm = () => {
           type="date"
         />
 
+        <SynCombobox
+          id="input-nationality"
+          label="Nationality"
+          name="nationality"
+          required
+          value={formData.nationality}
+          placeholder='Please choose your nationality'
+          getOption={highlightOptionRenderer}
+        >
+          {nationalities.map(n => (
+            <SynOption
+              key={n}
+            >
+              {n}
+            </SynOption>
+          ))}
+        </SynCombobox>
+
       </DemoFieldset>
       {/* /PersonalInformation */}
 
@@ -243,7 +264,7 @@ export const DemoForm = () => {
           label="I am interested in the following technologies"
           multiple
           name="topics"
-          value={formData.topics.join(' ')}
+          value={formData.topics}
         >
           <SynOptgroup label="Frontend">
             <SynOption value="angular">Angular</SynOption>

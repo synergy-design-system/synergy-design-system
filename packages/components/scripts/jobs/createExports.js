@@ -22,6 +22,8 @@ export * from './utilities/base-path.js';
 export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
 
+export * from './components/combobox/option-renderer.js';
+
 // Events
 export * from './events/events.js';
 `;

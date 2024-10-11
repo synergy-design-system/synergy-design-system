@@ -23,6 +23,7 @@ export type * from './syn-move.ts';
 export type * from './syn-remove.ts';
 export type * from './syn-reposition.ts';
 export type * from './syn-request-close.ts';
+export type * from './syn-resize.ts';
 export type * from './syn-select.ts';
 export type * from './syn-show.ts';
 export type * from './syn-tab-hide.ts';

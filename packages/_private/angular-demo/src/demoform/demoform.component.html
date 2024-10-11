@@ -5,6 +5,7 @@
   (ngSubmit)="submit(formData)"
   (syn-change)="synChange($event)"
   #form
+  ngNativeValidate
 >
   <!-- PersonalInformation -->
   <demo-fieldset legend="Personal Information">
@@ -77,6 +78,17 @@
       name="date"
       type="date"
     />
+
+    <syn-combobox
+      formControlName="nationality"
+      id="input-nationality"
+      label="Nationality"
+      name="nationality"
+      [required]="true"
+      [getOption]="highlightOptionRenderer"
+    >
+      <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
+    </syn-combobox>
 
   </demo-fieldset>
   <!-- /PersonalInformation -->

@@ -9,6 +9,7 @@ export default {
   genderLoc: '#radiogroup-gender',
   happinessLoc: '#happiness',
   nameLoc: '#input-text',
+  nationalityLoc: '#input-nationality',
   newsLocBeta: '#checkbox-newsletter-beta',
   newsLocSyn: '#checkbox-newsletter-default',
   newsLocSynNg: '#checkbox-newsletter-angular',

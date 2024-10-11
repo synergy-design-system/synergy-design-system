@@ -16,13 +16,14 @@
     "@synergy-design-system/assets": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "eslint": "^8.57.0",
-    "stylelint": "^16.8.2",
+    "eslint": "^8.57.1",
+    "stylelint": "^16.9.0",
     "typescript": "^5.5.4",
-    "vite": "^5.4.1",
+    "vite": "^5.4.8",
     "vite-plugin-static-copy": "^1.0.6"
   },
   "dependencies": {
+    "@fontsource/open-sans": "^5.1.0",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",

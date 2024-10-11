@@ -1,14 +1,14 @@
 import { classMap } from 'lit/directives/class-map.js';
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 import { html, literal } from 'lit/static-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import SynDivider from '../divider/divider.component.js';
 import { HasSlotController } from '../../internal/slot.js';
+import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './nav-item.styles.js';
-import { watch } from '../../internal/watch.js';
 
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
@@ -65,6 +65,8 @@ export default class SynNavItem extends SynergyElement {
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');
 
   private resizeObserver: ResizeObserver;
+
+  private mutationObserver: MutationObserver;
 
   /**
    * The current focus state
@@ -177,12 +179,9 @@ export default class SynNavItem extends SynergyElement {
     const sideNav = this.closest('syn-side-nav');
 
     if (!this.open || !!sideNav?.rail) {
-      const navItemChildren = this.getAllNestedNavItems(this.childrenSlot);
-
-      const currentMarkedItem = navItemChildren
-        .findIndex((item) => !!item.shadowRoot?.querySelector('.nav-item--current'));
-
-      this.currentMarkedChild = currentMarkedItem !== -1;
+      this.currentMarkedChild = this
+        .getAllNestedNavItems(this.childrenSlot)
+        .some(item => item.current);
     }
   }
 
@@ -265,20 +264,44 @@ export default class SynNavItem extends SynergyElement {
     });
   }
 
-  @watch('open')
-  handleOpenChange() {
-    this.handleCurrentMarkedChild();
+  // Make sure the resize observer is disconnected when the horizontal property is set to true
+  // In this case we, never want it to use prefix only mode
+  @watch('horizontal', { waitUntilFirstUpdate: true })
+  handleHorizontalChange() {
+    if (this.horizontal) {
+      this.resizeObserver.disconnect();
+    } else {
+      this.resizeObserver.observe(this);
+    }
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver((entries) => this.handleWidth(entries));
-    this.resizeObserver.observe(this);
+    if (!this.horizontal) {
+      this.resizeObserver.observe(this);
+    }
+  }
+
+  firstUpdated(_changedProperties: PropertyValues) {
+    super.firstUpdated(_changedProperties);
+    this.mutationObserver = new MutationObserver(() => {
+      if (this.childrenSlot) {
+        this.handleCurrentMarkedChild();
+      }
+    });
+
+    this.mutationObserver.observe(this, {
+      attributeFilter: ['current', 'open'],
+      childList: true,
+      subtree: true,
+    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.resizeObserver.disconnect();
+    this.resizeObserver?.disconnect();
+    this.mutationObserver?.disconnect();
   }
 
   /**

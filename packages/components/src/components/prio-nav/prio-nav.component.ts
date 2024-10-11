@@ -14,6 +14,8 @@ import { LocalizeController } from '../../utilities/localize.js';
 import {
   filterOnlyNavItems,
   getAssignedElementsForSlot,
+  hideNavigationItem,
+  showNavigationItem,
 } from './utils.js';
 
 /**
@@ -122,12 +124,14 @@ export default class SynPrioNav extends SynergyElement {
    * @param items The items to cache the position for
    */
   private cacheItemPositions(items: SynNavItem[]) {
+    const { left } = this.horizontalNav.getBoundingClientRect();
     items.forEach(item => {
       // We have to measure while the items are in the primary slot,
       // else we will just get the placement in the priority menu
       item.removeAttribute('slot');
       const { right } = item.getBoundingClientRect();
-      item.dataset.right = right.toString();
+      // We also need to consider the location of the parent
+      item.dataset.right = (right - left).toString();
     });
 
     this.itemPositionsCached = true;
@@ -152,44 +156,38 @@ export default class SynPrioNav extends SynergyElement {
     // Cache the first item
     let firstHiddenItemRightPos: number | undefined;
 
-    let visibleItems = 0;
+    const itemVisibilities = navItems.map(item => {
+      const isHidden = !!(firstHiddenItemRightPos || parseFloat(item.dataset.right!) >= finalWidth);
 
-    // Save the position of all the elements in a cache
-    navItems.forEach(item => {
-      // Make sure to use the cache obtained in createGhostItems
-      const isHidden = firstHiddenItemRightPos || parseFloat(item.dataset.right!) >= finalWidth;
+      // Get the position of the first item
+      // Will get used to position the priority menu
+      if (isHidden && !firstHiddenItemRightPos) {
+        firstHiddenItemRightPos = parseFloat(item.dataset.right!);
+      }
 
-      if (isHidden) {
-        item.removeAttribute('horizontal');
-        item.setAttribute('slot', 'menu');
+      return {
+        isHidden,
+        item,
+      };
+    });
 
-        // Makes sure the item is focusable in a syn-dropdown
-        item.setAttribute('role', 'menuitem');
+    const visibleItems = itemVisibilities.filter(({ isHidden }) => !isHidden).length;
+    const hasOnlyOneItem = visibleItems === 1;
 
-        // Get the position of the first item
-        // Will get used to position the priority menu
-        if (!firstHiddenItemRightPos) {
-          firstHiddenItemRightPos = parseFloat(item.dataset.right!);
-        }
+    // Finally, hide or show the items based on the visibility
+    // As requested in #410, we hide all items if there is only one item
+    itemVisibilities.forEach(({ item, isHidden }) => {
+      if (isHidden || hasOnlyOneItem) {
+        hideNavigationItem(item);
       } else {
-        visibleItems += 1;
-        item.setAttribute('horizontal', 'true');
-        item.removeAttribute('slot');
-        item.removeAttribute('tabindex');
-
-        // Reset the role to the original value
-        if (item.dataset.originalRole) {
-          item.setAttribute('role', item.dataset.originalRole);
-        } else {
-          item.removeAttribute('role');
-        }
+        showNavigationItem(item);
       }
     });
 
     // Tell the render call that we have items in the priority menu
     // and toggle the visibility of the priority menu label
     this.hasItemsInDropdown = visibleItems !== navItems.length;
-    this.amountOfVisibleItems = visibleItems;
+    this.amountOfVisibleItems = hasOnlyOneItem ? 0 : visibleItems;
   }
 
   private renderPriorityMenu() {

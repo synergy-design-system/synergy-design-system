@@ -1,3 +1,52 @@
+# [@synergy-design-system/components-v2.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.2...components/2.11.0) (2024-10-11)
+
+
+### Features
+
+* ✨ Update Shoelace to 2.17.1 ([#641](https://github.com/synergy-design-system/synergy-design-system/issues/641)) ([86fd83b](https://github.com/synergy-design-system/synergy-design-system/commit/86fd83b528be24abc8dd8427604c7fd62e8c1ff2))
+
+# [@synergy-design-system/components-v2.10.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.1...components/2.10.2) (2024-10-11)
+
+
+### Bug Fixes
+
+* 🐛 Various issues with syn-prio-nav ([#645](https://github.com/synergy-design-system/synergy-design-system/issues/645)) ([f509e94](https://github.com/synergy-design-system/synergy-design-system/commit/f509e94672d494aa6393cf3287a749ca8eeee1ed))
+
+# [@synergy-design-system/components-v2.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.0...components/2.10.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* 🐛 syn-prio-nav: priority menu position is always calculated from the absolute left of the document ([#608](https://github.com/synergy-design-system/synergy-design-system/issues/608)) ([06a7974](https://github.com/synergy-design-system/synergy-design-system/commit/06a7974b6f6e93dbe7b6eee66e0c1ede99377629))
+
+# [@synergy-design-system/components-v2.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.9.0...components/2.10.0) (2024-10-02)
+
+
+### Features
+
+* ✨ syn-radio-group should allow to set focus programmatically ([#638](https://github.com/synergy-design-system/synergy-design-system/issues/638)) ([6a81714](https://github.com/synergy-design-system/synergy-design-system/commit/6a81714e1ec29ccffe0324e78cba693d1f64091d))
+
+# [@synergy-design-system/components-v2.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.8.1...components/2.9.0) (2024-09-27)
+
+
+### Features
+
+* ✨ add support for folder dnd in syn-file ([#616](https://github.com/synergy-design-system/synergy-design-system/issues/616)) ([114893b](https://github.com/synergy-design-system/synergy-design-system/commit/114893b7422ae86acd5893fc3f212054ce7e297e))
+
+# [@synergy-design-system/components-v2.8.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.8.0...components/2.8.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* 🐛 syn-combobox: Keyboard navigation not working after text was entered ([#634](https://github.com/synergy-design-system/synergy-design-system/issues/634)) ([077d010](https://github.com/synergy-design-system/synergy-design-system/commit/077d010c25995663e521e2eafa065612db1cb739))
+
+# [@synergy-design-system/components-v2.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.3...components/2.8.0) (2024-09-24)
+
+
+### Features
+
+* ✨add syn-combobox ([#542](https://github.com/synergy-design-system/synergy-design-system/issues/542)) ([9be251b](https://github.com/synergy-design-system/synergy-design-system/commit/9be251b327f9ea63fb29c1194d2471d87c195ed4))
+
 # [@synergy-design-system/components-v2.7.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.7.2...components/2.7.3) (2024-09-16)
 
 

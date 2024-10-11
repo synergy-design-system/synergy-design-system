@@ -47,20 +47,25 @@ export const Footer = {
   render: () => html`
     <style>
         .synergy-footer-demo {
+          container-type: inline-size;
+        }
+
+        .footer-content {
           align-items: center;
           display: flex;
+          flex-direction: row;
           gap: var(--syn-spacing-x-large);
           justify-content: space-between;
           padding: var(--syn-spacing-large) var(--syn-spacing-2x-large);
         }
 
-        .synergy-footer-demo .copyright {
+        .copyright {
           color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
 
-        .synergy-footer-demo .link-wrapper {
+        .link-wrapper {
           display: flex;
           gap: var(--syn-spacing-large);
           justify-content: center;
@@ -69,44 +74,43 @@ export const Footer = {
           padding: 0;
         }
 
-        /* TODO: may do something with container query. I tried it, but together with display: flex some strange things happened */
-        @media only screen and (max-width: 640px) {
+        @container (max-width: 768px) {
           .link-wrapper {
             flex-direction: column;
             gap: var(--syn-spacing-small);
           }
 
-          .synergy-footer-demo {
+          .footer-content {
             align-items: flex-start;
             flex-direction: column;
             padding: var(--syn-spacing-large) var(--syn-spacing-medium);
           }
         }
-
     </style>
     <footer class="synergy-footer-demo">
-      <nav>
-        <ul class="link-wrapper">
-          <li>
-            <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">${getTranslation('footer.linksName.imprint')}</a>
-          </li>
-          <li>
-            <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">${getTranslation('footer.linksName.termsConditions')}</a>
-          </li>
-          <li>
-            <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">${getTranslation('footer.linksName.termsOfUse')}</a>
-          </li>
-          <li>
-            <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">${getTranslation('footer.linksName.privacyPolicy')}</a>
-          </li>
-        </ul>
-      </nav>
-      <p class="copyright">&copy; 2024 SICK AG</p>
+      <div class="footer-content">
+        <nav>
+          <ul class="link-wrapper">
+            <li>
+              <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">${getTranslation('footer.linksName.imprint')}</a>
+            </li>
+            <li>
+              <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">${getTranslation('footer.linksName.termsConditions')}</a>
+            </li>
+            <li>
+              <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">${getTranslation('footer.linksName.termsOfUse')}</a>
+            </li>
+            <li>
+              <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">${getTranslation('footer.linksName.privacyPolicy')}</a>
+            </li>
+          </ul>
+        </nav>
+        <p class="copyright">&copy; 2024 SICK AG</p>
+      </div>
     </footer>
   `,
 };
 
-// TODO: I don't know why, but for some reason it does not switch the viewport to mobile2
 export const FooterTablet = {
   ...Footer,
   name: '↳ Tablet',

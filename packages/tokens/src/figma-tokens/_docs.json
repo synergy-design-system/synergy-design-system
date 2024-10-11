@@ -1115,7 +1115,7 @@
       },
       "priority-menu": {
         "description": {
-          "value": "If there is not enough space, elements will move into a dropdown.",
+          "value": "If there is not enough space, elements will move into a dropdown. If there is only space for  one item, it will display the priority menu only.",
           "type": "text"
         },
         "title": {

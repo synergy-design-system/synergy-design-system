@@ -166,20 +166,21 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-large);
   }
 
-/* Prefix */
-  .combobox__prefix {
+  .combobox--large.combobox--multiple .combobox__prefix::slotted(*) {
+    margin-inline-start: var(--syn-input-spacing-large);
+  }
+
+/* Prefix and Suffix */
+  .combobox__prefix,
+  .combobox__suffix {
     flex: 0;
     display: inline-flex;
     align-items: center;
     color: var(--syn-input-placeholder-color);
   }
 
-  /* Suffix */
-  .combobox__suffix {
-    flex: 0;
-    display: inline-flex;
-    align-items: center;
-    color: var(--syn-input-placeholder-color);
+  .combobox__suffix::slotted(*) {
+    margin-inline-start: var(--syn-spacing-small);
   }
 
   /* Clear button */

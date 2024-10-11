@@ -1,3 +1,17 @@
+# [@synergy-design-system/tokens-v2.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.12.1...tokens/2.13.0) (2024-10-11)
+
+
+### Features
+
+* ✨ Update Shoelace to 2.17.1 ([#641](https://github.com/synergy-design-system/synergy-design-system/issues/641)) ([86fd83b](https://github.com/synergy-design-system/synergy-design-system/commit/86fd83b528be24abc8dd8427604c7fd62e8c1ff2))
+
+# [@synergy-design-system/tokens-v2.12.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.12.0...tokens/2.12.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* 🐛 Various issues with syn-prio-nav ([#645](https://github.com/synergy-design-system/synergy-design-system/issues/645)) ([f509e94](https://github.com/synergy-design-system/synergy-design-system/commit/f509e94672d494aa6393cf3287a749ca8eeee1ed))
+
 # [@synergy-design-system/tokens-v2.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.11.0...tokens/2.12.0) (2024-10-02)
 
 

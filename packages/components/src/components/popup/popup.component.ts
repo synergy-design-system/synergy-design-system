@@ -272,7 +272,7 @@ export default class SynPopup extends SynergyElement {
     }
 
     // If the anchor is valid, start it up
-    if (this.anchorEl) {
+    if (this.anchorEl && this.active) {
       this.start();
     }
   }

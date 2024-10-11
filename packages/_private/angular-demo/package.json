@@ -10,14 +10,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.2.1",
-    "@angular/common": "^18.2.1",
-    "@angular/compiler": "^18.2.1",
-    "@angular/core": "^18.2.1",
-    "@angular/forms": "^18.2.1",
-    "@angular/platform-browser": "^18.2.1",
-    "@angular/platform-browser-dynamic": "^18.2.1",
-    "@angular/router": "^18.2.1",
+    "@angular/animations": "^18.2.8",
+    "@angular/common": "^18.2.8",
+    "@angular/compiler": "^18.2.8",
+    "@angular/core": "^18.2.8",
+    "@angular/forms": "^18.2.8",
+    "@angular/platform-browser": "^18.2.8",
+    "@angular/platform-browser-dynamic": "^18.2.8",
+    "@angular/router": "^18.2.8",
     "@fontsource/open-sans": "^5.1.0",
     "@synergy-design-system/angular": "workspace:*",
     "@synergy-design-system/assets": "workspace:*",
@@ -25,20 +25,20 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "rxjs": "~7.8.1",
-    "tslib": "^2.6.3",
-    "zone.js": "~0.14.10"
+    "tslib": "^2.7.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.1",
-    "@angular/cli": "^18.2.1",
-    "@angular/compiler-cli": "^18.2.1",
+    "@angular-devkit/build-angular": "^18.2.8",
+    "@angular/cli": "^18.2.8",
+    "@angular/compiler-cli": "^18.2.8",
     "@types/jasmine": "~5.1.4",
-    "jasmine-core": "~5.2.0",
+    "jasmine-core": "~5.3.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.4.5",
+    "zone.js": "~0.14.10"
   }
 }

@@ -36,13 +36,14 @@ export default css`
    * Core nav item wrapper
    */
   .nav-item {
+    align-items: center;
     background: transparent;
     border: none;
     box-shadow: inset 0 -1px 0 0 transparent;
     box-sizing: border-box;
     color: var(--syn-color-neutral-950);
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
     font: var(--syn-font-sans);
     font-size: var(--syn-font-size-small);
     min-height: var(--syn-spacing-2x-large);

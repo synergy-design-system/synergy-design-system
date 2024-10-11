@@ -184,7 +184,7 @@ describe('<syn-nav-item>', () => {
     });
   });
 
-  it('should show prefix only if there is not enough space', async () => {
+  it('should show prefix only if there is not enough space and horizontal is not set', async () => {
     const el = await fixture<SynNavItem>(html`
       <syn-nav-item>
         Label
@@ -201,6 +201,46 @@ describe('<syn-nav-item>', () => {
 
     expect(base).to.have.class('nav-item--show-prefix-only');
   });
+
+  it('should show prefix only if there is not enough space and horizontal is toggled from false to true', async () => {
+    const el = await fixture<SynNavItem>(html`
+      <syn-nav-item horizontal>
+        Label
+        <span slot="prefix">
+          prefix
+        </span>
+      </syn-nav-item>
+    `);
+
+    el.style.width = '80px';
+    const base = el.shadowRoot!.querySelector('.nav-item') as HTMLElement;
+
+    expect(base).to.not.have.class('nav-item--show-prefix-only');
+
+    el.horizontal = false;
+    await el.updateComplete;
+
+    // We need to wait because of the resize observer
+    await waitUntil(() => base.classList.contains('nav-item--show-prefix-only'));
+
+    expect(base).to.have.class('nav-item--show-prefix-only');
+  });
+
+  it('should not show prefix only if horizontal is set', async () => {
+    const el = await fixture<SynNavItem>(html`
+      <syn-nav-item horizontal>
+        Label
+        <span slot="prefix">
+          prefix
+        </span>
+      </syn-nav-item>`);
+
+    el.style.width = '80px';
+    const base = el.shadowRoot!.querySelector('.nav-item') as HTMLElement;
+
+    expect(base).to.not.have.class('nav-item--show-prefix-only');
+  });
+
 
   it('should display current indicator on root nav-item if it has a current marked child and is not open', async () => {
     const el = await fixture<SynNavItem>(html`

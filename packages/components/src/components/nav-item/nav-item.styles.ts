@@ -192,9 +192,9 @@ export default css`
    * Show prefix only
    */
   /* stylelint-disable no-descending-specificity */
-  :host(:not([horizontal])) .nav-item--show-prefix-only .nav-item__content-container,
-  :host(:not([horizontal])) .nav-item--show-prefix-only .nav-item__suffix,
-  :host(:not([horizontal])) .nav-item--show-prefix-only .nav-item__chevron {
+  .nav-item--show-prefix-only .nav-item__content-container,
+  .nav-item--show-prefix-only .nav-item__suffix,
+  .nav-item--show-prefix-only .nav-item__chevron {
     height: var(--syn-spacing-large);
   }
   /* stylelint-enable no-descending-specificity */
@@ -203,13 +203,13 @@ export default css`
    * Adjust the paddings for the label, depending if there is a pre- and/or suffix available.
    * But only if the there is a main content or additionally a prefix / suffix
    */
-  :host(:not([horizontal])) .nav-item--has-prefix.nav-item--has-content .nav-item__content-container,
-  :host(:not([horizontal])) .nav-item--has-prefix.nav-item--has-suffix .nav-item__content-container {
+  .nav-item--has-prefix.nav-item--has-content .nav-item__content-container,
+  .nav-item--has-prefix.nav-item--has-suffix .nav-item__content-container {
     margin-inline-start: var(--syn-spacing-x-small);
   }
 
-  :host(:not([horizontal])) .nav-item--has-suffix.nav-item--has-content .nav-item__content-container,
-  :host(:not([horizontal])) .nav-item--has-suffix.nav-item--has-prefix .nav-item__content-container {
+  .nav-item--has-suffix.nav-item--has-content .nav-item__content-container,
+  .nav-item--has-suffix.nav-item--has-prefix .nav-item__content-container {
     margin-inline-end: var(--syn-spacing-x-small);
   }
 

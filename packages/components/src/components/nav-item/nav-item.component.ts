@@ -5,6 +5,7 @@ import { property, query, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import SynDivider from '../divider/divider.component.js';
 import { HasSlotController } from '../../internal/slot.js';
+import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './nav-item.styles.js';
@@ -263,10 +264,23 @@ export default class SynNavItem extends SynergyElement {
     });
   }
 
+  // Make sure the resize observer is disconnected when the horizontal property is set to true
+  // In this case we, never want it to use prefix only mode
+  @watch('horizontal', { waitUntilFirstUpdate: true })
+  handleHorizontalChange() {
+    if (this.horizontal) {
+      this.resizeObserver.disconnect();
+    } else {
+      this.resizeObserver.observe(this);
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver((entries) => this.handleWidth(entries));
-    this.resizeObserver.observe(this);
+    if (!this.horizontal) {
+      this.resizeObserver.observe(this);
+    }
   }
 
   firstUpdated(_changedProperties: PropertyValues) {

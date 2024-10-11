@@ -64,14 +64,14 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.47.2",
+    "@playwright/test": "^1.48.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "@types/mocha": "^10.0.8",
+    "@types/mocha": "^10.0.9",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -90,12 +90,12 @@
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
-    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-playwright": "^1.6.2",
-    "eslint-plugin-wc": "^2.1.1",
+    "eslint-plugin-wc": "^2.2.0",
     "globby": "^14.0.2",
     "jsdom": "^25.0.1",
     "ng-packagr": "^18.2.0",
@@ -179,7 +179,7 @@
     "@shoelace-style/animations": "^1.2.0",
     "@shoelace-style/localize": "^3.2.1",
     "composed-offset-position": "^0.0.6",
-    "lit": "^3.2.0"
+    "lit": "^3.2.1"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

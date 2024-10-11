@@ -43,7 +43,7 @@
   "version": "2.10.1",
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
-    "vue": "^3.5.10"
+    "vue": "^3.5.11"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

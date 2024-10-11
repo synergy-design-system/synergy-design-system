@@ -127,18 +127,6 @@ the alert will not close on its own.
   }
 
   /**
-* Enables a countdown that indicates the remaining time the alert will be displayed.
-Typically used to indicate the remaining time before a whole app refresh.
- */
-  @Input()
-  set countdown(v: SynAlert['countdown']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.countdown = v));
-  }
-  get countdown() {
-    return this.nativeElement.countdown;
-  }
-
-  /**
    * Emitted when the alert opens.
    */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();

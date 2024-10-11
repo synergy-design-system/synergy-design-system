@@ -26,7 +26,7 @@ const meta: Meta = {
       value: `
         <syn-nav-item current horizontal>Domains</syn-nav-item>
         <syn-nav-item horizontal>Projects</syn-nav-item>
-        <syn-nav-item horizontal>Trainings</syn-nav-item>
+        <syn-nav-item horizontal href="javascript:void(0)">Trainings</syn-nav-item>
       `,
     },
   ], defaultArgs),
@@ -75,12 +75,12 @@ export const PriorityMenu = {
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-2x-large)">
       <syn-prio-nav style="width: 250px;">
         <syn-nav-item current horizontal>Domains</syn-nav-item>
-        <syn-nav-item horizontal>Projects</syn-nav-item>
+        <syn-nav-item horizontal href="javascript:void(0)">Projects</syn-nav-item>
         <syn-nav-item horizontal>Trainings</syn-nav-item>
       </syn-prio-nav>
-      <syn-prio-nav style="width: 100px;">
+      <syn-prio-nav style="width: 170px;">
         <syn-nav-item current horizontal>Domains</syn-nav-item>
-        <syn-nav-item horizontal>Projects</syn-nav-item>
+        <syn-nav-item horizontal href="javascript:void(0)">Projects</syn-nav-item>
         <syn-nav-item horizontal>Trainings</syn-nav-item>
       </syn-prio-nav>
     </div>
@@ -106,7 +106,7 @@ export const PriorityMenu = {
 //       <syn-nav-item horizontal>Item 1</syn-nav-item>
 //       <syn-nav-item horizontal>Item 2</syn-nav-item>
 //       <syn-nav-item horizontal>Item 3</syn-nav-item>
-//       <syn-menu-item href="#" role="menuitem">Hello</syn-menu-item>
+//       <syn-menu-item href="#" role="menuitem" horizontal>Hello</syn-menu-item>
 //       <syn-nav-item horizontal>Item 4</syn-nav-item>
 //     </syn-prio-nav>
 //     <syn-button>Add an Item</syn-button>

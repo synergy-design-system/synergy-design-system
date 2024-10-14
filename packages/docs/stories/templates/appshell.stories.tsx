@@ -89,9 +89,9 @@ export const SideNavigationShrinkingContent: Story = {
       #appshell-shrink {
         /**
          * Set this variable to the wanted size of the side-nav
-         * Make sure the value stays in sync, otherwise the parts my overlap
+         * Make sure the value stays in sync, otherwise the parts may overlap
          */
-        --appshell-shrink-nav-open-width: 25rem;
+        --appshell-shrink-nav-open-width: 320px;
 
         syn-side-nav::part(overlay) {
           display: none;

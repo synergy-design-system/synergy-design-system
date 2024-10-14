@@ -88,6 +88,7 @@ export const createSharedStyles = () => html`
     }
 
     .synergy-demo-application {
+      container-type: inline-size;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -104,6 +105,7 @@ export const createSharedStyles = () => html`
     }
 
     .synergy-demo-content-inner {
+      container-type: inline-size;
       display: flex;
       flex: 1 1 auto;
       flex-direction: column;
@@ -121,6 +123,12 @@ export const createSharedStyles = () => html`
       justify-content: center;
       margin: var(--syn-spacing-2x-large) var(--syn-spacing-2x-large) 0;
       padding: 0 var(--syn-spacing-small);
+    }
+
+    @container (max-width: 768px) {
+      .synergy-demo-main {
+        margin: var(--syn-spacing-medium) var(--syn-spacing-medium) 0;
+      }
     }
 
     .synergy-demo-main h1 {

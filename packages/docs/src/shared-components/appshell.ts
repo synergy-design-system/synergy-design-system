@@ -280,12 +280,21 @@ export const createSidebarConnector = (id: string) => html`
     // This is only done because in storybooks
     // doc overview multiple side-navs and headers exist.
     // Per default, the header will connect to the first side-nav automatically.
-    const elm = document.getElementById('${id}');
-    const header = elm.querySelector('syn-header');
-    const sideNav = elm.querySelector('syn-side-nav');
-    if (sideNav && header) {
-      header.connectSideNavigation(sideNav);
-    }
+    const applications = document.querySelectorAll('#${id}');
+
+    Array.from(applications).forEach((application, index) => {
+      const selector = 'story-loaded-'.concat(index);
+      if(!application.classList.contains(selector)) {
+        const header = application.querySelector('syn-header');
+        const sideNav = application.querySelector('syn-side-nav');
+        if (sideNav && header) {
+          header.connectSideNavigation(sideNav);
+        } else if(!sideNav && header) {
+          header.burgerMenu = 'hidden';
+        }
+        application.classList.add(selector);
+      }
+    });
   </script>
 `;
 

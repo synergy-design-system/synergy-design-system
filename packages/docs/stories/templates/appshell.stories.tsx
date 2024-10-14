@@ -216,6 +216,7 @@ export const TopNavigation: Story = {
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
     ${createDemoNavigation('appshell-top-navigation', 'syn-prio-nav')}
+    ${createSidebarConnector('appshell-top-navigation')}
   `,
 };
 
@@ -236,6 +237,7 @@ export const WhiteBackground: Story = {
     <!-- /.synergy-demo-application -->
     ${createSharedStyles()}
     ${createDemoNavigation('appshell-white-background', 'syn-prio-nav')}
+    ${createSidebarConnector('appshell-white-background')}
     <style>
       #appshell-white-background .synergy-demo-content {
         background: var(--syn-color-neutral-0);

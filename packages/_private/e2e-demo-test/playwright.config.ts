@@ -43,5 +43,6 @@ export default defineConfig({
     command: customCommand || `pnpm exec serve -s -p ${port} ${distDir}`,
     timeout: 120 * 1000,
     url: `http://localhost:${port}`,
+    reuseExistingServer: !process.env.CI,
   })),
 });

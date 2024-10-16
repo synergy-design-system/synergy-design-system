@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RouterLink } from './RouterLink';
 import { ThemeSwitch } from './ThemeSwitch';
 
@@ -22,7 +22,16 @@ export const Layout: FC = () => {
 
   return (
     <>
-      <SynHeader label="@synergy-design-system/react Form Demo">
+      <SynHeader label="@synergy-design-system/react Components Demo">
+        <Link
+          className="custom-logo"
+          slot="logo"
+          tabIndex={0}
+          to="/"
+        >
+          <SynIcon name="logo-color" library="system" />
+        </Link>
+
         {/* React does not support automatic slotting, so we have to create a slot element :( */}
         <div slot="meta-navigation" style={{ display: 'contents' }}>
           <ThemeSwitch />
@@ -36,7 +45,11 @@ export const Layout: FC = () => {
           </RouterLink>
           <RouterLink divider href="/contact-form" current={currentNavigationPath === '/contact-form'}>
             Contact Form
-            <SynIcon name="description" slot="prefix" />
+            <SynIcon name="contact_mail" slot="prefix" />
+          </RouterLink>
+          <RouterLink divider href="/contact-form-validate" current={currentNavigationPath === '/contact-form-validate'}>
+            Contact Form (Validation)
+            <SynIcon name="contact_emergency" slot="prefix" />
           </RouterLink>
         </SynSideNav>
         <main className="content">

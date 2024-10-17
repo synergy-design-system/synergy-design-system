@@ -10,7 +10,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { DisableFocusTrap } from '../../src/DisableFocusTrap.js';
+import { DisableFocusTrap } from '../../src/shared-components/DisableFocusTrap.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-side-nav');

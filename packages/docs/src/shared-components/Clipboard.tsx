@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import React, { FC, ReactNode } from 'react';
-import '../../components/src/components/icon-button/icon-button.js';
+import '../../../components/src/components/icon-button/icon-button.js';
 
 // Make sure ts is not sad about custom elements
 declare global {

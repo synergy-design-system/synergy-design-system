@@ -28,13 +28,16 @@ export const runCreateAngularWrappers = async ({
   const outDir = path.join(angularPackageDir, './src');
   const componentsDir = path.join(outDir, 'components');
   const modulesDir = path.join(outDir, 'modules');
+  const directivesDir = path.join(outDir, 'directives');
+
   const distDir = path.join(angularPackageDir, './dist');
 
   await runAdjustPackageVersion('Angular: Adjusting angular package.json version field...')(componentPackageDir, angularPackageDir);
-  await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir, modulesDir, componentsDir);
+  await createRunPrepare('Angular: Cleaning up artifacts...')(outDir, distDir, modulesDir, componentsDir, directivesDir);
   await jobs.runCreateComponents(metadata, componentsDir);
   await jobs.runCreateNgModule(metadata, modulesDir);
   await jobs.runCreateFormsModule(modulesDir);
+  await jobs.runCreateFValidatorDirectives(directivesDir);
   await jobs.runCreateExports(outDir);
   await runFormat(outDir);
   await jobs.runNgPackagr();

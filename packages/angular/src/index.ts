@@ -4,5 +4,6 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 export * from './components';
+export * from './directives/validators';
 export * from './modules/forms.module';
 export * from './modules/synergy.module';

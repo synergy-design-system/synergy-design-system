@@ -75,6 +75,7 @@ import {
   DefaultValueAccessor,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+ import { SynMaxValidator, SynMinValidator } from '../directives/validators';
 
 @Directive({
   providers: [{
@@ -124,11 +125,15 @@ export class SynFileValueAccessor extends DefaultValueAccessor { }
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
     SynFileValueAccessor,
+    SynMinValidator,
+    SynMaxValidator,
   ],
   exports: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
     SynFileValueAccessor,
+    SynMinValidator,
+    SynMaxValidator,
   ],
   imports: [],
 })

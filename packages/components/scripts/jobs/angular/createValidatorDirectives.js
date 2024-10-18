@@ -14,6 +14,7 @@ export const runCreateFValidatorDirectives = job('Angular: Creating ValidatorDir
 ${headerComment}
 import { Directive, forwardRef, Provider } from '@angular/core';
 import {
+  CheckboxRequiredValidator,
   MaxValidator,
   MinValidator,
   NG_VALIDATORS,
@@ -85,6 +86,37 @@ export const SYN_MAX_VALIDATOR: Provider = {
   host: {'[attr.max]': '_enabled ? max : null'},
 })
 export class SynMaxValidator extends MaxValidator {}
+
+/**
+ * @description
+ * Provider which adds \`SynCheckboxRequiredValidator\` to the \`NG_VALIDATORS\` multi-provider list.
+ */
+export const SYN_CHECKBOX_REQUIRED_VALIDATOR: Provider = {
+  provide: NG_VALIDATORS,
+  useExisting: forwardRef(() => SynCheckboxRequiredValidator),
+  multi: true,
+};
+
+/**
+ * A Directive that adds the \`required\` validator to syn-checkbox controls marked with the
+ * \`required\` attribute. The directive is provided with the \`NG_VALIDATORS\` multi-provider list.
+ *
+ * ### Adding a required syn-checkbox validator using template-driven forms
+ *
+ * The following example shows how to add a checkbox required validator to an input attached to an
+ * ngModel binding.
+ *
+ * \`\`\`
+ * <syn-checkbox ngModel required></syn-checkbox>
+ * \`\`\`
+ */
+@Directive({
+  // This validator is needed, because angular specifies the required checkbox validator especially only for \`<input type="checkbox"/>\` elements. See https://github.com/angular/angular/blob/e603e5616d2c3830a641d4cf76c891af0059798c/packages/forms/src/directives/validators.ts#L429 
+  selector: 'syn-checkbox[required][formControlName],syn-checkbox[required][formControl],syn-checkbox[required][ngModel]',
+  providers: [SYN_CHECKBOX_REQUIRED_VALIDATOR],
+  host: {'[attr.required]': '_enabled ? "" : null'},
+})
+export class SynCheckboxRequiredValidator extends CheckboxRequiredValidator {}
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');

@@ -2922,6 +2922,16 @@
           "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
           "type": "text"
         }
+      },
+      "breadcrumb": {
+        "title": {
+          "value": "Breadcrumb",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-breadcrumb in both desktop and mobile views. When the viewport width is below 768 pixels, the mobile view applies, displaying only the parent page name/link and the prefix icon for navigating one level up.",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

@@ -3,6 +3,7 @@
 import '../../../components/src/components/icon/icon.js';
 import { type Meta, type StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 
 const meta: Meta = {
@@ -15,12 +16,22 @@ type Story = StoryObj;
 
 const createIconPage = (letter: string): Story => ({
   render: () => {
+    registerIconLibrary('bundled-default', {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
+      resolver: (name) => {
+        if (name in defaultIcons) {
+          const defaultName = name as keyof typeof defaultIcons;
+          return `data:image/svg+xml,${encodeURIComponent(defaultIcons[defaultName])}`;
+        }
+        return '';
+      },
+    });
     const regex = new RegExp(`^${letter}`);
     const iconKeys = Object.keys(defaultIcons);
     const iconContainer = iconKeys.filter((key) => key.match(regex)).map((key) => (html`
       <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer"  >
         <span style="font-size: var(--syn-font-size-x-small)">${key}</span>
-        <syn-icon style="font-size: var(--syn-font-size-2x-large)" name="${key}"></syn-icon>
+        <syn-icon style="font-size: var(--syn-font-size-2x-large)" name="${key}" library="bundled-default"></syn-icon>
       </div>
       `));
     return html`<div 

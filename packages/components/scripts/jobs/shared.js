@@ -386,3 +386,52 @@ export const createComment = (str, splitToken = '. ') => {
 ${lines}
  */`;
 };
+
+/**
+ * List of component names and property-only names (not associated as attribute )
+ * to add to the framework wrapper
+ * @var {{ component: string, properties: string []}[]}
+ */
+export const ELEMENT_WITH_PROPERTY_ONLY = [
+  {
+    component: 'range',
+    properties: ['tooltipFormatter'],
+  },
+];
+
+/**
+ * Enriches the attributes of a component by preparing its attributes and adding
+ * property-only attributes to the list.
+ *
+ * @param {Object} component - The component object to enrich.
+ * @param {Array} component.attributes - The attributes of the component.
+ * @param {string} component.tagNameWithoutPrefix - The tag name of the component without prefix.
+ * @param {Array} component.members - The members of the component.
+ * @returns {Array} The enriched list of attributes and properties.
+ */
+export const enrichComponentAttributes = (component) => {
+  const { attributes } = component;
+
+  const attrAndProps = attributes ? [...attributes] : [];
+
+  const propertyOnlyComponent = ELEMENT_WITH_PROPERTY_ONLY
+    .find(({ component: name }) => name === component.tagNameWithoutPrefix);
+
+  if (propertyOnlyComponent) {
+    propertyOnlyComponent.properties.forEach((propertyName) => {
+      const property = component.members.find(member => member.name === propertyName);
+
+      if (!property) {
+        return;
+      }
+
+      const prop = {
+        ...property,
+        fieldName: propertyName,
+      };
+      attrAndProps.push(prop);
+    });
+  }
+
+  return attrAndProps;
+};

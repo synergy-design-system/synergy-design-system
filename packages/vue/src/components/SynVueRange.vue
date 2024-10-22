@@ -133,6 +133,13 @@ The form must be in the same document or shadow root for this to work.
   form?: SynRange['form'];
 
   /**
+* A function used to format the tooltip's value.
+The value of the thumb is passed as the only argument.
+The function should return a string to display in the tooltip.
+ */
+  tooltipFormatter?: SynRange['tooltipFormatter'];
+
+  /**
    * Support for two way data binding
    */
   modelValue?: SynRange['value'];

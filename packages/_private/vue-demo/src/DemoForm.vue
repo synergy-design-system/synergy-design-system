@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import {
   SynVueButton,
   SynVueCheckbox,
@@ -52,16 +52,10 @@ const formData = ref({
 const formRef = ref<HTMLFormElement>();
 
 // Custom formatter for donations
-const donationsRef = ref<InstanceType<typeof SynVueRange> | null>(null);
-onMounted(() => {
-  const formatter = new Intl.NumberFormat('de-DE', {
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    style: 'currency',
-  });
-
-  // Add a custom formatter for the donation field
-  donationsRef.value!.nativeElement!.tooltipFormatter = value => formatter.format(value);
+const formatter = new Intl.NumberFormat('de-DE', {
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+  style: 'currency',
 });
 
 const reset = () => {
@@ -176,7 +170,6 @@ const synChange = () => {
         name="nationality"
         required
         v-model="formData.nationality"
-        ref="nationalityRef"
         :getOption="highlightOptionRenderer"
       >
         <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
@@ -264,9 +257,9 @@ const synChange = () => {
         label="I would donate between"
         :max="6000"
         :min="0"
+        :tooltip-formatter="(value) => formatter.format(value)"
         name="donations"
         v-model="formData.donations"
-        ref="donationsRef"
       >
         <nav slot="ticks">
           <syn-range-tick>0 €</syn-range-tick>

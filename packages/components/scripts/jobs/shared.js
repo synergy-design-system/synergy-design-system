@@ -397,6 +397,10 @@ export const ELEMENT_WITH_PROPERTY_ONLY = [
     component: 'range',
     properties: ['tooltipFormatter'],
   },
+  {
+    component: 'dropdown',
+    properties: ['containingElement'],
+  },
 ];
 
 /**

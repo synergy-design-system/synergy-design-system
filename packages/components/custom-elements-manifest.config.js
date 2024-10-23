@@ -1,6 +1,8 @@
 /* eslint-disable */
 import * as path from 'path';
 import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
+import { decorator } from '@custom-elements-manifest/analyzer/src/utils/index.js';
+import { hasPropertyDecorator, isAlsoAttribute } from '@custom-elements-manifest/analyzer/src/features/framework-plugins/lit/utils.js';
 import { parse } from 'comment-parser';
 import { pascalCase } from 'change-case';
 import commandLineArgs from 'command-line-args';
@@ -154,6 +156,33 @@ export default {
                 event.eventName = `${pascalCase(event.name)}Event`;
               });
             }
+          }
+        }
+      }
+    },
+
+    // We can not find @property { attribute: false} properties in the custom-elements.json.
+    // They appear in members only and can not be differentiated from other properties. So we add a "propertyOnly" flag to the corresponding members.
+    {
+      name: 'synergy-enrich-property-only-attributes',
+      analyzePhase({ ts, node, moduleDoc }) {
+        switch (node.kind) {
+          case ts.SyntaxKind.ClassDeclaration: {
+               node?.members?.forEach(member => {
+              if (hasPropertyDecorator(member)) {
+                  const propertyDecorator = member.modifiers.find(decorator('property'));
+                  const propertyOptions = propertyDecorator?.expression?.arguments?.find(arg => ts.isObjectLiteralExpression(arg));
+                  const isPropertyOnly = !isAlsoAttribute(propertyOptions);
+                  if(isPropertyOnly){
+                    const className = node.name.getText();
+                    const classDoc = moduleDoc?.declarations?.find(declaration => declaration.name === className);
+
+                    const field = classDoc.members.find(classMember => classMember.name === member.name.getText());
+                    // add a propertyOnly field, so we can identify them for the wrapper creation
+                    field.propertyOnly = true;
+                  }
+                }
+            });
           }
         }
       }

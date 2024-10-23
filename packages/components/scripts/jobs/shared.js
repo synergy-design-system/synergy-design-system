@@ -388,22 +388,6 @@ ${lines}
 };
 
 /**
- * List of component names and property-only names (not associated as attribute )
- * to add to the framework wrapper
- * @var {{ component: string, properties: string []}[]}
- */
-export const ELEMENT_WITH_PROPERTY_ONLY = [
-  {
-    component: 'range',
-    properties: ['tooltipFormatter'],
-  },
-  {
-    component: 'dropdown',
-    properties: ['containingElement'],
-  },
-];
-
-/**
  * Enriches the attributes of a component by preparing its attributes and adding
  * property-only attributes to the list.
  *
@@ -418,22 +402,14 @@ export const enrichComponentAttributes = (component) => {
 
   const attrAndProps = attributes ? [...attributes] : [];
 
-  const propertyOnlyComponent = ELEMENT_WITH_PROPERTY_ONLY
-    .find(({ component: name }) => name === component.tagNameWithoutPrefix);
+  const propertyOnlyArray = component.members.filter(member => member.propertyOnly === true);
 
-  if (propertyOnlyComponent) {
-    propertyOnlyComponent.properties.forEach((propertyName) => {
-      const property = component.members.find(member => member.name === propertyName);
-
-      if (!property) {
-        return;
-      }
-
-      const prop = {
-        ...property,
-        fieldName: propertyName,
-      };
-      attrAndProps.push(prop);
+  if (propertyOnlyArray.length !== 0) {
+    propertyOnlyArray.forEach((propertyOnly) => {
+      attrAndProps.push({
+        ...propertyOnly,
+        fieldName: propertyOnly.name,
+      });
     });
   }
 

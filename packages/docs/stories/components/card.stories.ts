@@ -64,7 +64,7 @@ const meta: Meta = {
     {
       name: 'image',
       type: 'slot',
-      value: '<img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />',
+      value: '<img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />',
     },
     {
       name: 'default',
@@ -205,7 +205,7 @@ export const Images: Story = {
   },
   render: () => html`
     <syn-card class="card-image">
-      <img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
+      <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
       This are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
@@ -227,7 +227,7 @@ export const SharpCard: Story = {
   },
   render: () => html`
     <syn-card class="sharp-card" sharp>
-      <img slot="image" src="/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
+      <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
       This are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 

@@ -87,7 +87,7 @@ const createBodyRowProduct = () => html`
       <div class="product-cell">
         <img
           class="product-image"
-          src="/card-example.jpg"
+          src="https://synergy-design-system.github.io/card-example.jpg"
           alt="Multiple persons having lunch in SICK Academy"
         />
         <div>

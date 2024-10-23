@@ -63,9 +63,9 @@ const transformComponent = (path, originalContent) => {
     // Make sure we don't unobserve an undefined element
     // @todo: Remove when shoelace ships this fix
     [
-      'this.resizeObserver.unobserve(this.nav);', `
+      'this.resizeObserver?.unobserve(this.nav);', `
       if (this.nav) {
-      this.resizeObserver.unobserve(this.nav);
+      this.resizeObserver?.unobserve(this.nav);
     }
     `.trim(),
     ],

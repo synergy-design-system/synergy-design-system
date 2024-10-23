@@ -37,7 +37,7 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateComponents(metadata, componentsDir);
   await jobs.runCreateNgModule(metadata, modulesDir);
   await jobs.runCreateFormsModule(modulesDir);
-  await jobs.runCreateFValidatorDirectives(directivesDir);
+  await jobs.runCreateValidatorDirectives(directivesDir);
   await jobs.runCreateExports(outDir);
   await runFormat(outDir);
   await jobs.runNgPackagr();

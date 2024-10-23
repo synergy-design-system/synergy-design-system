@@ -4,6 +4,15 @@ import { expect, fixture, html } from '@open-wc/testing';
 import type SynTabGroup from './tab-group.js';
 
 describe('<syn-tab-group>', () => {
+  it('should not throw error when unmounted too fast', async () => {
+    const el = await fixture(html`
+      <div></div>
+    `);
+
+    el.innerHTML = '<syn-tab-group></syn-tab-group>';
+    el.innerHTML = '';
+  });
+
   describe('when sharp is provided', () => {
     it('should not add the className "tab-group--sharp" when sharp is set to "false"', async () => {
       const el = await fixture<SynTabGroup>(html`

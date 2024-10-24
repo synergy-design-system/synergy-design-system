@@ -386,3 +386,32 @@ export const createComment = (str, splitToken = '. ') => {
 ${lines}
  */`;
 };
+
+/**
+ * Enriches the attributes of a component by preparing its attributes and adding
+ * property-only attributes to the list.
+ *
+ * @param {Object} component - The component object to enrich.
+ * @param {Array} component.attributes - The attributes of the component.
+ * @param {string} component.tagNameWithoutPrefix - The tag name of the component without prefix.
+ * @param {Array} component.members - The members of the component.
+ * @returns {Array} The enriched list of attributes and properties.
+ */
+export const enrichComponentAttributes = (component) => {
+  const { attributes } = component;
+
+  const attrAndProps = attributes ? [...attributes] : [];
+
+  const propertyOnlyArray = component.members.filter(member => member.propertyOnly === true);
+
+  if (propertyOnlyArray.length !== 0) {
+    propertyOnlyArray.forEach((propertyOnly) => {
+      attrAndProps.push({
+        ...propertyOnly,
+        fieldName: propertyOnly.name,
+      });
+    });
+  }
+
+  return attrAndProps;
+};

@@ -4,6 +4,7 @@ import {
   createComment,
   createFrameworkIndex,
   createHeader,
+  enrichComponentAttributes,
   getAllComponents,
   getControlAttributeForTwoWayBinding,
   getEventAttributeForTwoWayBinding,
@@ -89,8 +90,9 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const eventExports = getEventExports(component.events);
     const eventListeners = getEventListeners(component);
     const eventOutputs = getEventOutputs(component);
+    const attributes = enrichComponentAttributes(component);
 
-    const attributeInputs = getAttributeInputs(component.name, component.attributes);
+    const attributeInputs = getAttributeInputs(component.name, attributes);
 
     const source = `
       ${headerComment}

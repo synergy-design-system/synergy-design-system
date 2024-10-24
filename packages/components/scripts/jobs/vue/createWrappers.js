@@ -5,6 +5,7 @@ import {
   createComment,
   createFrameworkIndex,
   createHeader,
+  enrichComponentAttributes,
   getAllComponents,
   getControlAttributeForTwoWayBinding,
   getEventAttributeForTwoWayBinding,
@@ -212,12 +213,13 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
     const exports = eventExports.length > 0 ? `<script lang="ts">\n${eventExports}\n</script>\n` : '';
+    const attributes = enrichComponentAttributes(component);
 
     // Prepare attributes
     const props = getDefinedProps(
       component.tagNameWithoutPrefix,
       component.name,
-      component.attributes,
+      attributes,
     );
 
     // Prepare events

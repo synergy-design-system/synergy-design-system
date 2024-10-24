@@ -174,7 +174,7 @@
       [max]="6000"
       [min]="0"
       name="donations"
-      #donationRef
+      [tooltipFormatter]="currencyFormatter"
     >
       <nav slot="ticks">
         <syn-range-tick>0 €</syn-range-tick>

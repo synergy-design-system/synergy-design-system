@@ -174,6 +174,22 @@ dropdowns that allow for multiple interactions.
   }
 
   /**
+* The dropdown will close when the user interacts outside of this element (e.g.
+* clicking).
+* Useful for composing other
+components that use a dropdown internally.
+ */
+  @Input()
+  set containingElement(v: SynDropdown['containingElement']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.containingElement = v),
+    );
+  }
+  get containingElement() {
+    return this.nativeElement.containingElement;
+  }
+
+  /**
    * Emitted when the dropdown opens.
    */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();

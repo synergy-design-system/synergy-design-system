@@ -52,7 +52,7 @@ export default class SynIcon extends SynergyElement {
 
     if (library?.spriteSheet) {
       this.svg = html`<svg part="svg">
-        <use part="use" href="${url}"></use>
+        <use part="use" href="${url}" width="100%" height="100%"></use>
       </svg>`;
 
       return this.svg;

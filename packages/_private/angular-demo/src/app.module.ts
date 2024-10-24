@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DemoFieldset } from './demofieldset/demofieldset.component';
 import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
+import { DemoFormValidate } from './demoformvalidate/demoformvalidate.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
@@ -22,6 +23,7 @@ import {
     AppComponent,
     DemoFieldset,
     DemoForm,
+    DemoFormValidate,
     ThemeSwitchComponent,
   ],
   imports: [

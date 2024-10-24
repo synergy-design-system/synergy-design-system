@@ -12,9 +12,9 @@ export const frameworks: Framework[] = [
     port: 5176,
   },
   {
-    // @todo: React does not run in production mode.
-    // Seems to be an issue with vite bundling and pnpm as the exact same config runs fine with npm.
-    customCommand: 'pnpm run -C ../react-demo start',
+    // Uncomment the custom command if the react demo crashes in the tests again.
+    // This seemed to be an issue with vite bundling and pnpm as the exact same config runs fine with npm.
+    // customCommand: 'pnpm run -C ../react-demo start',
     distDir: '../react-demo/dist',
     name: 'react',
     port: 5175,

@@ -127,32 +127,6 @@ export const createSharedStyles = () => html`
       margin: 0;
       text-align: center;
     }
-
-    .synergy-demo-footer > nav {
-      align-items: center;
-      display: flex;
-      font: var(--syn-body-x-small-regular);
-      gap: var(--syn-spacing-large);
-      height: var(--syn-spacing-3x-large);
-      justify-content: center;
-    }
-
-    .synergy-demo-footer :is(a, strong) {
-      color: var(--syn-input-help-text-color);
-    }
-
-    .synergy-demo-footer a:hover {
-      color: var(--syn-color-primary-600);
-    }
-
-    .synergy-demo-footer a:active {
-      color: var(--syn-color-primary-700);
-    }
-
-    .synergy-demo-footer a:focus {
-      outline: var(--syn-focus-ring);
-      outline-offset: var(--syn-focus-ring-offset);
-    }
   </style>
 `;
 

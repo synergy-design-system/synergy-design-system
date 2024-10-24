@@ -164,19 +164,9 @@ export const RailNavigationDesktop: Story = {
         flex-direction: row;
       }
 
-      #appshell-rail-desktop .synergy-demo-footer {
-        container-type: inline-size;
-      }
-
       @media(max-width: 420px) {
         #appshell-rail-desktop syn-side-nav {
           --side-nav-open-width: 306px;
-        }
-      }
-
-      @container (max-width: 400px) {
-        #appshell-rail-desktop .synergy-demo-footer a {
-          display: none;
         }
       }
     </style>

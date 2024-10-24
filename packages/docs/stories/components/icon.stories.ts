@@ -382,10 +382,9 @@ export const BundledIconLibrary: Story = {
 * import { registerIconLibrary } from '@synergy-design-system/components';
 *
 * registerIconLibrary('sprite', {
-*   resolver: (name) => {
 *     resolver: name => `/assets/images/sprite.svg#${name}`,
 *     mutator: svg => svg.setAttribute('fill', 'currentColor'),
-*     spriteSheet: true
+*     spriteSheet: true,
 * });
 * </script>
 *

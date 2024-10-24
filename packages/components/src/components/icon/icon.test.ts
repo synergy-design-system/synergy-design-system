@@ -162,4 +162,111 @@ describe('<syn-icon>', () => {
       expect(ev).to.exist;
     });
   });
+
+  describe('svg sprite sheets', () => {
+    //  For some reason ESLint wants to fail in CI here, but works locally.
+    /* eslint-disable */
+    it('Should properly grab an SVG and render it from bootstrap icons', async () => {
+      registerIconLibrary('sprite', {
+        resolver: name => `/public/sprite.svg#${name}`,
+        mutator: svg => svg.setAttribute('fill', 'currentColor'),
+        spriteSheet: true
+      });
+
+      const el = await fixture<SynIcon>(html`<syn-icon name="refresh" library="sprite"></syn-icon>`);
+
+      await elementUpdated(el);
+
+      const svg = el.shadowRoot?.querySelector("svg[part='svg']");
+      const use = svg?.querySelector(`use[href='/public/sprite.svg#refresh']`);
+
+      expect(svg).to.be.instanceof(SVGElement);
+      expect(use).to.be.instanceof(SVGUseElement);
+
+      // This is kind of hacky...but with no way to check "load", we just use a timeout
+      await aTimeout(1000);
+
+      // Theres no way to really test that the icon rendered properly. We just gotta trust the browser to do it's thing :)
+      // However, we can check the <use> size. It should be greater than 0x0 if loaded properly.
+      const rect = use?.getBoundingClientRect();
+      expect(rect?.width).to.be.greaterThan(0);
+      expect(rect?.width).to.be.greaterThan(0);
+    });
+
+    // https://github.com/synergy-design-system/synergy/issues/2161
+    it('Should apply mutator to multiple identical spritesheet icons', async () => {
+      registerIconLibrary('sprite', {
+        resolver: name => `/public/sprite.svg#${name}`,
+        mutator: svg => svg.setAttribute('fill', 'pink'),
+        spriteSheet: true
+      });
+
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-icon name="refresh" library="sprite"></syn-icon>
+          <syn-icon name="refresh" library="sprite"></syn-icon>
+        </div>
+      `);
+
+      const icons = [...el.querySelectorAll<SynIcon>('syn-icon')];
+
+      await Promise.allSettled(icons.map(el => elementUpdated(el)));
+
+      // This is kind of hacky...but with no way to check "load", we just use a timeout
+      await aTimeout(1000);
+      const icon1 = icons[0];
+      const icon2 = icons[1];
+
+      expect(icon1.shadowRoot?.querySelector('svg')?.getAttribute('fill')).to.equal('pink');
+      expect(icon2.shadowRoot?.querySelector('svg')?.getAttribute('fill')).to.equal('pink');
+    });
+
+    it('Should render nothing if the sprite hash is wrong', async () => {
+      registerIconLibrary('sprite', {
+        resolver: name => `/public/sprite.svg#${name}`,
+        mutator: svg => svg.setAttribute('fill', 'currentColor'),
+        spriteSheet: true
+      });
+
+      const el = await fixture<SynIcon>(html`<syn-icon name="non-existent" library="sprite"></syn-icon>`);
+
+      await elementUpdated(el);
+
+      const svg = el.shadowRoot?.querySelector("svg[part='svg']");
+      const use = svg?.querySelector('use');
+
+      // TODO: Theres no way to really test that the icon rendered properly. We just gotta trust the browser to do it's thing :)
+      // However, we can check the <use> size. If it never loaded, it should be 0x0. Ideally, we could have error tracking...
+      const rect = use?.getBoundingClientRect();
+      expect(rect?.width).to.equal(0);
+      expect(rect?.width).to.equal(0);
+
+      // Make sure the mutator is applied.
+      // https://github.com/synergy-design-system/synergy/issues/1925
+      expect(svg?.getAttribute('fill')).to.equal('currentColor');
+    });
+
+    // TODO: <use> svg icons don't emit a "load" or "error" event...if we can figure out how to get the event to emit errors.
+    // Once we figure out how to emit errors / loading perhaps we can actually test this?
+    it.skip("Should produce an error if the icon doesn't exist.", async () => {
+      registerIconLibrary('sprite', {
+        resolver(name) {
+          return `/public/sprite.svg#${name}`;
+        },
+        mutator(svg) {
+          return svg.setAttribute('fill', 'currentColor');
+        },
+        spriteSheet: true
+      });
+
+      const el = await fixture<SynIcon>(html`<syn-icon name="bad-icon" library="sprite"></syn-icon>`);
+      const listener = oneEvent(el, 'syn-error') as Promise<SynErrorEvent>;
+
+      el.name = 'bad-icon';
+      const ev = await listener;
+      await elementUpdated(el);
+      expect(ev).to.exist;
+    });
+  });
+  
 });

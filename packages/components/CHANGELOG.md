@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.11.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.2...components/2.11.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* 🐛 Incorrect scaling of syn-icon with font-size if using spritesheet ([#656](https://github.com/synergy-design-system/synergy-design-system/issues/656)) ([593cbc4](https://github.com/synergy-design-system/synergy-design-system/commit/593cbc4aec47866bed8316ac0acb63a03de0e7bf))
+
 # [@synergy-design-system/components-v2.11.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.1...components/2.11.2) (2024-10-23)
 
 

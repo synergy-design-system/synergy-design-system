@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { CopyToClipBoard } from './Clipboard.js';
-import { getRawValueFromCssProperty, getRawValueFromToken } from './helpers/tokens.js';
+import { getRawValueFromCssProperty, getRawValueFromToken } from '../helpers/tokens.js';
 
 type Props = {
   value?: string;

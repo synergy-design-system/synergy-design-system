@@ -141,10 +141,11 @@ export const Live: Story = {
       inline
       on="live"
     >
-      <syn-radio-group required label="Live validation">
-        <syn-radio>Wrong</syn-radio>
-        <syn-radio value="correct">Correct</syn-radio>
-      </syn-radio-group>
+      <syn-input
+        label="Invalid input"
+        type="email"
+        value="team(at)synergy.com"
+      ></syn-input>
     </syn-validate>
   `,
 };

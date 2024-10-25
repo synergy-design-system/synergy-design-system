@@ -51,6 +51,7 @@ const formData = ref({
 
 const formRef = ref<HTMLFormElement>();
 
+// Custom formatter for donations
 const formatter = new Intl.NumberFormat('de-DE', {
   currency: 'EUR',
   maximumFractionDigits: 0,
@@ -169,7 +170,6 @@ const synChange = () => {
         name="nationality"
         required
         v-model="formData.nationality"
-        ref="nationalityRef"
         :getOption="highlightOptionRenderer"
       >
         <SynVueOption v-for="nationality in nationalities" :key="nationality">

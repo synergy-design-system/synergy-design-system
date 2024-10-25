@@ -229,6 +229,21 @@ The form must be in the same document or shadow root for this to work.
   }
 
   /**
+* A function used to format the tooltip's value.
+The value of the thumb is passed as the only argument.
+The function should return a string to display in the tooltip.
+ */
+  @Input()
+  set tooltipFormatter(v: SynRange['tooltipFormatter']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.tooltipFormatter = v),
+    );
+  }
+  get tooltipFormatter() {
+    return this.nativeElement.tooltipFormatter;
+  }
+
+  /**
    * Emitted when the control loses focus.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

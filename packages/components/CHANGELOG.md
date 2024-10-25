@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.11.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.3...components/2.11.4) (2024-10-25)
+
+
+### Bug Fixes
+
+* 🐛 Make attribute:false properties work with all wrappers ([#658](https://github.com/synergy-design-system/synergy-design-system/issues/658)) ([6bf63e9](https://github.com/synergy-design-system/synergy-design-system/commit/6bf63e93ca36c4eed2e823bef856b8be72ed3be0))
+
 # [@synergy-design-system/components-v2.11.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.2...components/2.11.3) (2024-10-24)
 
 

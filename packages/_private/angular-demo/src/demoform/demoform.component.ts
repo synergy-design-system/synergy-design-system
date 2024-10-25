@@ -35,13 +35,17 @@ export class DemoForm {
 
   @ViewChild('form') form!: ElementRef<HTMLFormElement>;
 
-  @ViewChild('donationRef') donationRef!: ElementRef<SynRange>;
-
   formData!: FormGroup;
 
   nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
   highlightOptionRenderer = highlightOptionRenderer;
+
+  formatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
 
   private _initFormData() {
     this.formData = this.fb.group({
@@ -51,16 +55,6 @@ export class DemoForm {
 
   constructor(private fb: FormBuilder) {
     this._initFormData();
-  }
-
-  ngAfterViewInit() {
-    const formatter = new Intl.NumberFormat('de-DE', {
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-      style: 'currency',
-    });
-
-    this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
   }
 
   reset() {
@@ -83,5 +77,9 @@ export class DemoForm {
 
     // Log the normalized data
     console.log(normalizedData);
+  }
+
+  currencyFormatter = (value: number) => {
+    return this.formatter.format(value);
   }
 }

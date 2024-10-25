@@ -82,7 +82,8 @@ body {
   font-size: 0.875rem;
 }
 
-.sbdocs p {
+/* Remove the copyright class, so there is no unneeded css in the footer template, which others don't need */
+.sbdocs p:not(.copyright) {
   margin-block-end: 1.5em;
 }
 

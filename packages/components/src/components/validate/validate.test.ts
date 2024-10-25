@@ -31,12 +31,24 @@ describe('<syn-validate>', () => {
         await expect(utils.normalizeEventAttribute('')).to.deep.equal([]);
       });
 
-      it('should return the sanitized event name when getEventNameForElement is used', async () => {
-        const elNative = document.createElement('input');
-        await expect(utils.getEventNameForElement(elNative, 'blur')).to.deep.equal('blur');
+      describe('getEventNameForElement', () => {
+        it('should return the original event name when using a native DOM element', async () => {
+          const el = document.createElement('input');
+          await expect(utils.getEventNameForElement(el, 'click')).to.deep.equal('click');
+          await expect(utils.getEventNameForElement(el, '  input  ')).to.deep.equal('input');
+        });
 
-        const elSyn = document.createElement('syn-input');
-        await expect(utils.getEventNameForElement(elSyn, 'blur')).to.deep.equal('syn-blur');
+        it('should return the original event name when using a synergy element and a non whitelisted event', async () => {
+          const el = document.createElement('syn-input');
+          await expect(utils.getEventNameForElement(el, 'click')).to.deep.equal('click');
+          await expect(utils.getEventNameForElement(el, '  hover  ')).to.deep.equal('hover');
+        });
+
+        it('should return the prefixed event name when using a synergy element and a whitelisted event', async () => {
+          const el = document.createElement('syn-input');
+          await expect(utils.getEventNameForElement(el, 'change')).to.deep.equal('syn-change');
+          await expect(utils.getEventNameForElement(el, '  focus  ')).to.deep.equal('syn-focus');
+        });
       });
     });
   });

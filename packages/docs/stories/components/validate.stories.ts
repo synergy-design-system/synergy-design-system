@@ -193,6 +193,29 @@ export const CustomFormField: Story = {
   `,
 };
 
+export const BindingToCustomEventNames: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('validate', 'custom-event-names'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-validate
+      class="validation-custom-validation"
+      inline
+      on="mouseover blur"
+    >
+      <syn-input
+        label="Custom validation (triggered on hover and blur)"
+        type="email"
+        value="team(at)synergy.com"
+      ></syn-input>
+    </syn-validate>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,

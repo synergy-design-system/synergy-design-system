@@ -1,6 +1,21 @@
 import SynergyElement from '../../internal/synergy-element.js';
 
 /**
+ * @var WhitelistedSynergyFormEventNames A list of all the event names that should be transformed
+ * This is needed to allow the automatic transformation of events to synergy events,
+ * but only for those synergy needs (e.g. we do not want to transform click to syn-click).
+ */
+const WhitelistedSynergyFormEventNames = [
+  'blur',
+  'change',
+  'clear',
+  'focus',
+  'invalid',
+  'input',
+  'move',
+];
+
+/**
  * Low level interface to check for event type
  * @param eventName The event name to check
  * @param type The type to check
@@ -43,7 +58,13 @@ export const normalizeEventAttribute = (events: string = '') => events
  */
 export const getEventNameForElement = (element: HTMLElement, eventName: string) => {
   const sanitizedEventName = eventName.trim();
-  return element instanceof SynergyElement
-    ? `syn-${sanitizedEventName.replace('syn-', '')}`
+  const isSynergyElement = element instanceof SynergyElement;
+
+  if (!isSynergyElement) {
+    return sanitizedEventName;
+  }
+
+  return WhitelistedSynergyFormEventNames.includes(sanitizedEventName)
+    ? `syn-${sanitizedEventName}`
     : sanitizedEventName;
 };

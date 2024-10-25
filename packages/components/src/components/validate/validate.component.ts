@@ -6,12 +6,10 @@ import SynergyElement from '../../internal/synergy-element.js';
 import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
 import {
-  arraysDiffer,
   getEventNameForElement,
   isBlurEvent,
   isInvalidEvent,
   normalizeEventAttribute,
-  onConverter,
 } from './utility.js';
 import styles from './validate.styles.js';
 
@@ -66,10 +64,7 @@ export default class SynValidate extends SynergyElement {
    * <syn-validate on="live focus change"></syn-validate>
    * ```
    */
-  @property({
-    converter: onConverter(),
-    reflect: true,
-  }) on: string = '';
+  @property({ reflect: true }) on: string = '';
 
   /**
    * Custom validation message to be displayed when the input is invalid.
@@ -84,10 +79,8 @@ export default class SynValidate extends SynergyElement {
    * @param next Next event listeners to use
    */
   @watch('on', { waitUntilFirstUpdate: true })
-  handleListenerChange(old: string[], next: string[]) {
-    if (arraysDiffer(old, next)) {
-      this.updateEvents();
-    }
+  handleListenerChange() {
+    this.updateEvents();
   }
 
   @watch('customValidationMessage', { waitUntilFirstUpdate: true })
@@ -143,9 +136,11 @@ export default class SynValidate extends SynergyElement {
 
     // Make sure to remove duplicated events and the live property
     // and map the events to the correct event names
-    return Array
-      .from(new Set(events.filter(e => e !== 'live')))
-      .map(e => getEventNameForElement(input, e));
+    return Array.from(new Set(
+      events
+        .filter(e => e !== 'live')
+        .map(e => getEventNameForElement(input, e)),
+    ));
   }
 
   /**

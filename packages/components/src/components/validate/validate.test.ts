@@ -5,18 +5,6 @@ import type SynValidate from './validate.js';
 
 describe('<syn-validate>', () => {
   describe('utility functions', () => {
-    describe('arraysDiffer', () => {
-      it('should return true if the arrays differ', async () => {
-        await expect(utils.arraysDiffer(['a', 'b'], ['a', 'c'])).to.equal(true);
-        await expect(utils.arraysDiffer(['a'], ['a', 'b'])).to.equal(true);
-      });
-
-      it('should return true if the array is the same', async () => {
-        await expect(utils.arraysDiffer(['a', 'b'], ['a', 'b'])).to.equal(false);
-        await expect(utils.arraysDiffer(['a', 'b'], ['b', 'a'])).to.equal(false);
-      });
-    });
-
     describe('event utils', () => {
       it('isBlurEvent should return true if the given event is a blur event', async () => {
         await expect(utils.isBlurEvent('blur')).to.equal(true);
@@ -49,16 +37,6 @@ describe('<syn-validate>', () => {
 
         const elSyn = document.createElement('syn-input');
         await expect(utils.getEventNameForElement(elSyn, 'blur')).to.deep.equal('syn-blur');
-      });
-    });
-
-    describe('when using the custom onConverter', () => {
-      it('should return an array of event names when toAttribute is used', async () => {
-        const converter = utils.onConverter();
-        await expect(converter.toAttribute!('blur change')).to.deep.equal(['blur', 'change']);
-        await expect(converter.toAttribute!('blur   change  ')).to.deep.equal(['blur', 'change']);
-        await expect(converter.toAttribute!('blur change invalid')).to.deep.equal(['blur', 'change', 'invalid']);
-        await expect(converter.toAttribute!('')).to.deep.equal([]);
       });
     });
   });

@@ -95,6 +95,14 @@ dropdowns that allow for multiple interactions.
    * Syncs the popup width or height to that of the trigger element.
    */
   sync?: SynDropdown['sync'];
+
+  /**
+* The dropdown will close when the user interacts outside of this element (e.g.
+* clicking).
+* Useful for composing other
+components that use a dropdown internally.
+ */
+  containingElement?: SynDropdown['containingElement'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

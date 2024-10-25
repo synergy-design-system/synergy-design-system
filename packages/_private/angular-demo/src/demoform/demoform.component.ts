@@ -43,6 +43,12 @@ export class DemoForm {
 
   highlightOptionRenderer = highlightOptionRenderer;
 
+  formatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
+
   private _initFormData() {
     this.formData = this.fb.group({
       ...initialData,
@@ -51,16 +57,6 @@ export class DemoForm {
 
   constructor(private fb: FormBuilder) {
     this._initFormData();
-  }
-
-  ngAfterViewInit() {
-    const formatter = new Intl.NumberFormat('de-DE', {
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-      style: 'currency',
-    });
-
-    this.donationRef.nativeElement!.tooltipFormatter = value => formatter.format(value);
   }
 
   reset() {
@@ -83,5 +79,9 @@ export class DemoForm {
 
     // Log the normalized data
     console.log(normalizedData);
+  }
+
+  currencyFormatter = (value: number) => {
+    return this.formatter.format(value);
   }
 }

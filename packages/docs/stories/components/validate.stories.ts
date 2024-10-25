@@ -40,6 +40,9 @@ const meta: Meta = {
       return html`
         <form id=${uniqueId}>
           ${story()}
+          <p>
+            <syn-button type="submit">Submit</syn-button>
+          </p>
         </form>
         <script type="module">
           customElements.whenDefined('syn-validate').then(() => {

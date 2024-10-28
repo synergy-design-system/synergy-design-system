@@ -3429,7 +3429,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the custom-validation-message attribute to use whichever error to text you need, overriding the default browser errors.",
+          "value": "Use the custom-validation-message attribute to use whichever error you need as text, overriding the default browser errors.",
           "type": "text"
         },
         "note": {
@@ -3457,7 +3457,7 @@
           "type": "text"
         },
         "note": {
-          "value": "You can provide one or multiple events in the `on` property. Please use a whitespace separated list of DOM event names. `<syn-validate>` will make sure to automatically use synergies custom events. This means `<syn-validate on=\"change click\">` will bind to the `syn-change` and `click` events for a `<syn-input>` __or__ `change` and `click` events for a regular `<input>` elements.",
+          "value": "You can provide one or multiple events in the `on` property. Please use a whitespace separated list of DOM event names. `<syn-validate>` will make sure to automatically use Synergies custom events. This means `<syn-validate on=\"change click\">` will bind to the `syn-change` and `click` events for a `<syn-input>` __or__ `change` and `click` events for a regular `<input>` element.",
           "type": "text"
         }
       }

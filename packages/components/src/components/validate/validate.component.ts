@@ -253,7 +253,7 @@ export default class SynValidate extends SynergyElement {
         variant="danger"
       >
         ${!this.hideIcon
-          ? html`<syn-icon slot="icon" name="info"></syn-icon>`
+          ? html`<syn-icon slot="icon" name="error"></syn-icon>`
           : ''
         }
         ${this.validationMessage}

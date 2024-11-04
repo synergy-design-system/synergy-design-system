@@ -2,10 +2,10 @@
 import { defineConfig, devices } from '@playwright/test';
 import { frameworks } from './frameworks.config';
 
-const secondsToMs = (second: number) => second * 60 * 1000;
+const minutesToMs = (minutes: number) => minutes * 60 * 1000;
 
 export default defineConfig({
-  timeout: secondsToMs(60),
+  timeout: minutesToMs(1),
   testDir: './src',
   forbidOnly: !!process.env.CI,
   retries: 0,
@@ -38,7 +38,7 @@ export default defineConfig({
   ],
   webServer: frameworks.map(({ customCommand, distDir, port }) => ({
     command: customCommand || `pnpm exec serve -s -p ${port} ${distDir}`,
-    timeout: secondsToMs(120),
+    timeout: minutesToMs(2),
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
   })),

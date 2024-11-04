@@ -82,7 +82,7 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-export const Inline_Variant: Story = {
+export const InlineVariant: Story = {
   parameters: {
     docs: {
       description: {
@@ -219,7 +219,7 @@ export const BindingToCustomEventNames: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  Inline_Variant,
+  InlineVariant,
   HideIcon,
   Live,
   CustomValidationMessage,

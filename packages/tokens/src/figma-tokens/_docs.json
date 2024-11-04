@@ -3387,15 +3387,15 @@
       },
       "inline": {
         "title": {
-          "value": "Inline",
+          "value": "Inline variant",
           "type": "text"
         },
         "description": {
-          "value": "Use the inline attribute to show the invalid message below the selected element.",
+          "value": "Set the variant attribute to `inline` to show the invalid message below the selected element.",
           "type": "text"
         },
         "note": {
-          "value": "Per default, syn-validate uses the browser’s built-in tooltip. This shows only one error at a time and is optimized for accessbility.\nWhen using inline, you have to ensure accessibility on your side and have to have in mind it most likely will lead to layout shifts.",
+          "value": "Per default, syn-validate uses the browser’s built-in validation. This shows only one error at a time and is optimized for accessbility.\nWhen using the inline variant, you have to ensure accessibility on your side and have to have in mind it most likely will lead to layout shifts.",
           "type": "text"
         }
       },

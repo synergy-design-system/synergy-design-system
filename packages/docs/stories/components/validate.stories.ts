@@ -82,7 +82,7 @@ export const Default: Story = {
   render: (args: unknown) => generateTemplate({ args }),
 } as Story;
 
-export const Inline: Story = {
+export const Inline_Variant: Story = {
   parameters: {
     docs: {
       description: {
@@ -93,7 +93,7 @@ export const Inline: Story = {
   render: () => html`
     <syn-validate
       class="validation-inline"
-      inline
+      variant="inline"
     >
       <syn-input
         label="Inline Validation"
@@ -116,7 +116,7 @@ export const HideIcon: Story = {
     <syn-validate
       class="validation-hide-icon"
       hide-icon
-      inline
+      variant="inline"
     >
       <syn-input
         label="Inline Validation"
@@ -138,7 +138,7 @@ export const Live: Story = {
   render: () => html`
     <syn-validate
       class="validation-live"
-      inline
+      variant="inline"
       on="live"
     >
       <syn-input
@@ -162,7 +162,7 @@ export const CustomValidationMessage: Story = {
     <syn-validate
       class="validation-custom-validation"
       custom-validation-message="Include an &quot;@&quot; in the email address, otherwise you will never get our marvelous newsletter"
-      inline
+      variant="inline"
     >
       <syn-input
         label="Custom validation"
@@ -185,8 +185,8 @@ export const CustomFormField: Story = {
     <h3 style="margin: 0; padding: 0;">Choose SICK´s brand color</h3>
     <syn-validate
       class="validation-custom-form-field"
-      inline
       on="live"
+      variant="inline"
     >
       <validate-demo-radio name="color"></validate-demo-radio>
     </syn-validate>
@@ -204,8 +204,8 @@ export const BindingToCustomEventNames: Story = {
   render: () => html`
     <syn-validate
       class="validation-custom-validation"
-      inline
       on="mouseover blur"
+      variant="inline"
     >
       <syn-input
         label="Custom validation (triggered on hover and blur)"
@@ -219,7 +219,7 @@ export const BindingToCustomEventNames: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  Inline,
+  Inline_Variant,
   HideIcon,
   Live,
   CustomValidationMessage,

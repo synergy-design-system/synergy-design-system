@@ -6,7 +6,7 @@
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Personal Information</legend>
       
-      <syn-validate inline>
+      <syn-validate variant="inline">
         <syn-radio-group
           id="radiogroup-gender"
           name="gender"
@@ -20,7 +20,7 @@
         </syn-radio-group>
       </syn-validate>
 
-      <syn-validate inline>
+      <syn-validate variant="inline">
         <syn-select
           id="select-role"
           label="Current position"
@@ -39,7 +39,7 @@
         </syn-select>
       </syn-validate>
 
-      <syn-validate inline>
+      <syn-validate variant="inline">
         <syn-input
           id="input-text"
           label="Name"
@@ -52,7 +52,7 @@
         ></syn-input>
       </syn-validate>
 
-      <syn-validate inline on="live">
+      <syn-validate variant="inline" on="live">
         <syn-input
           id="input-email"
           label="E-Mail"
@@ -63,7 +63,7 @@
         ></syn-input>
       </syn-validate>
 
-      <syn-validate inline on="input blur">
+      <syn-validate variant="inline" on="input blur">
         <syn-input
           id="input-date"
           label="Date of birth"
@@ -72,7 +72,7 @@
         ></syn-input>
       </syn-validate>
 
-      <syn-validate inline on="live">
+      <syn-validate variant="inline" on="live">
         <syn-combobox
           id="input-nationality"
           label="Nationality"
@@ -90,7 +90,7 @@
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Security</legend>
       
-      <syn-validate inline on="input blur">
+      <syn-validate variant="inline" on="input blur">
         <syn-input
           id="input-password"
           label="Provide a secure password"
@@ -104,7 +104,7 @@
         ></syn-input>
       </syn-validate>
 
-      <syn-validate inline on="input blur">
+      <syn-validate variant="inline" on="input blur">
         <syn-input
           id="input-number"
           label="Please provide a fallback numeric value that may be used for password recovery"
@@ -125,7 +125,7 @@
     <!-- Happiness -->
     <fieldset id="happiness-fields" class="syn-fieldset">
       <legend class="syn-legend">Happiness</legend>
-      <syn-validate inline on="live">
+      <syn-validate variant="inline" on="live">
         <syn-range
           id="happiness"
           label="How happy are you with the Synergy Design System?"
@@ -159,7 +159,7 @@
     <fieldset class="syn-fieldset">
       <!-- We will never do this, I promise! -->
       <legend class="syn-legend">Please inform me about the following technologies</legend>
-      <syn-validate inline>
+      <syn-validate variant="inline">
         <syn-checkbox
           id="checkbox-newsletter-default"
           name="checkbox-newsletter-default"
@@ -168,7 +168,7 @@
           Please subscribe me to the synergy newsletter
         </syn-checkbox>
       </syn-validate>
-      <syn-validate inline>
+      <syn-validate variant="inline">
         <syn-switch
           id="checkbox-newsletter-beta"
           name="checkbox-newsletter-beta"
@@ -185,7 +185,7 @@
     <!-- AdditionalInformation -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Additional Information</legend>
-      <syn-validate inline on="live">
+      <syn-validate variant="inline" on="live">
         <syn-textarea
           id="additional-info"
           label="Comment"
@@ -196,7 +196,7 @@
         ></syn-textarea>
       </syn-validate>
 
-      <syn-validate inline on="live">
+      <syn-validate variant="inline" on="live">
         <syn-file
           accept="image/*"
           droparea

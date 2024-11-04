@@ -119,7 +119,7 @@ export const DemoFormValidate = () => {
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">
 
-        <SynValidate inline>
+        <SynValidate variant="inline">
           <SynRadioGroup
             id="radiogroup-gender"
             name="gender"
@@ -134,7 +134,7 @@ export const DemoFormValidate = () => {
           </SynRadioGroup>
         </SynValidate>
 
-        <SynValidate inline>
+        <SynValidate variant="inline">
           <SynSelect
             id="select-role"
             label="Current position"
@@ -154,7 +154,7 @@ export const DemoFormValidate = () => {
           </SynSelect>
         </SynValidate>
 
-        <SynValidate inline>
+        <SynValidate variant="inline">
           <SynInput
             id="input-text"
             label="Name"
@@ -168,7 +168,7 @@ export const DemoFormValidate = () => {
           />
         </SynValidate>
 
-        <SynValidate inline on="live">
+        <SynValidate variant="inline" on="live">
           <SynInput
             id="input-email"
             label="E-Mail"
@@ -180,7 +180,7 @@ export const DemoFormValidate = () => {
           />
         </SynValidate>
 
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynInput
             id="input-date"
             label="Date of birth"
@@ -190,7 +190,7 @@ export const DemoFormValidate = () => {
           />
         </SynValidate>
 
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynCombobox
             id="input-nationality"
             label="Nationality"
@@ -215,7 +215,7 @@ export const DemoFormValidate = () => {
 
       {/* Security */}
       <DemoFieldset legend="Security">
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynInput
             id="input-password"
             label="Provide a secure password"
@@ -229,7 +229,7 @@ export const DemoFormValidate = () => {
           />
         </SynValidate>
 
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynInput
             id="input-number"
             label="Please provide a fallback numeric value that may be used for password recovery"
@@ -248,7 +248,7 @@ export const DemoFormValidate = () => {
 
       {/* Happiness */}
       <DemoFieldset id="happiness-fields" legend="Happiness">
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynRange
             id="happiness"
             label="How happy are you with the Synergy Design System?"
@@ -282,7 +282,7 @@ export const DemoFormValidate = () => {
 
       {/* Marketing */}
       <DemoFieldset legend="Please inform me about the following technologies">
-        <SynValidate inline>
+        <SynValidate variant="inline">
           <SynCheckbox
             checked={formData.newsletterStandard}
             id="checkbox-newsletter-default"
@@ -293,7 +293,7 @@ export const DemoFormValidate = () => {
           </SynCheckbox>
         </SynValidate>
 
-        <SynValidate inline>
+        <SynValidate variant="inline">
           <SynSwitch
             checked={formData.newsletterBeta}
             id="checkbox-newsletter-beta"
@@ -310,7 +310,7 @@ export const DemoFormValidate = () => {
 
       { /* AdditionalInformation */ }
       <DemoFieldset legend="Additional Information">
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynTextarea
             id="additional-info"
             label="Comment"
@@ -322,7 +322,7 @@ export const DemoFormValidate = () => {
             {formData.comment}
           </SynTextarea>
         </SynValidate>
-        <SynValidate inline on="input blur">
+        <SynValidate variant="inline" on="input blur">
           <SynFile
             accept="image/*"
             droparea

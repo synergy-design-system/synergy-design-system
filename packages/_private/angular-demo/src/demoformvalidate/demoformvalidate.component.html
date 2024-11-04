@@ -10,7 +10,7 @@
   <!-- PersonalInformation -->
   <demo-fieldset legend="Personal Information">
 
-    <syn-validate [inline]="true">
+    <syn-validate variant="inline">
       <syn-radio-group
         formControlName="gender"
         id="radiogroup-gender"
@@ -25,7 +25,7 @@
       </syn-radio-group>
     </syn-validate>
 
-    <syn-validate [inline]="true">
+    <syn-validate variant="inline">
       <syn-select
         formControlName="role"
         id="select-role"
@@ -45,7 +45,7 @@
       </syn-select>
     </syn-validate>
 
-    <syn-validate [inline]="true">
+    <syn-validate variant="inline">
       <syn-input
         formControlName="name"
         id="input-text"
@@ -61,7 +61,7 @@
 
     <syn-validate
       [customValidationMessage]="validateEmailField()"
-      [inline]="true"
+      variant="inline"
       on="live"
     >
       <syn-input
@@ -75,7 +75,7 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]="true" on="input blur">
+    <syn-validate variant="inline" on="input blur">
       <syn-input
         formControlName="date"
         id="input-date"
@@ -85,7 +85,7 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]=true on="live">
+    <syn-validate variant="inline" on="live">
       <syn-combobox
         formControlName="nationality"
         id="input-nationality"
@@ -105,7 +105,7 @@
 
   <!-- Security -->
   <demo-fieldset legend="Security">
-    <syn-validate [inline]=true on="input blur">
+    <syn-validate variant="inline" on="input blur">
       <syn-input
         formControlName="password"
         id="input-password"
@@ -119,7 +119,7 @@
       />
     </syn-validate>
 
-    <syn-validate [inline]=true on="input blur">
+    <syn-validate variant="inline" on="input blur">
       <syn-input
         formControlName="code"
         id="input-number"
@@ -138,7 +138,7 @@
 
   <!-- Happiness -->
   <demo-fieldset id="happiness-fields" legend="Happiness">
-    <syn-validate [inline]="true" on="live">
+    <syn-validate variant="inline" on="live">
       <syn-range
         formControlName="happiness"
         id="happiness"
@@ -172,7 +172,7 @@
 
   <!-- Marketing -->
   <demo-fieldset legend="Please inform me about the following technologies">
-    <syn-validate [inline]="true">
+    <syn-validate variant="inline">
       <syn-checkbox
         formControlName="newsletterStandard"
         id="checkbox-newsletter-default"
@@ -182,7 +182,7 @@
         Please subscribe me to the synergy newsletter
       </syn-checkbox>
     </syn-validate>
-    <syn-validate [inline]="true">
+    <syn-validate variant="inline">
       <syn-switch
         formControlName="newsletterBeta"
         id="checkbox-newsletter-beta"
@@ -199,7 +199,7 @@
 
   <!-- AdditionalInformation -->
   <demo-fieldset legend="Additional Information">
-    <syn-validate [inline]="true" on="live">
+    <syn-validate variant="inline" on="live">
       <syn-textarea
         id="additional-info"
         formControlName="comment"
@@ -210,7 +210,7 @@
         [rows]="10"
       />
     </syn-validate>
-    <syn-validate [inline]="true" on="live">
+    <syn-validate variant="inline" on="live">
       <syn-file
         accept="image/*"
         [droparea]="true"

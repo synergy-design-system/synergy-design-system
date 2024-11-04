@@ -24,7 +24,7 @@ import styles from './validate.styles.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the input field.
- * @csspart alert - The syn-alert that is shown when inline is true.
+ * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
  * @csspart alert__base - The container that wraps the alert.
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
@@ -42,10 +42,16 @@ export default class SynValidate extends SynergyElement {
 
   @state() validationMessage = '';
 
-  /** Show the validation message underneath the element, using a syn-alert */
-  @property({ reflect: true, type: Boolean }) inline = false;
+  /**
+   * The variant that should be used to show validation alerts.
+   *
+   * The following variants are supported:
+   * - **native** (default): Uses the native browser validation, usually a browser tooltip.
+   * - **inline**: Show the validation message underneath the element, using a `<syn-alert>`
+   */
+  @property({ reflect: true }) variant: 'native' | 'inline' = 'native';
 
-  /** Do not show the error icon when using inline validation */
+  /** Do not show the error icon when using the inline variant validation */
   @property({ attribute: 'hide-icon', reflect: true, type: Boolean }) hideIcon = false;
 
   /**
@@ -213,8 +219,8 @@ export default class SynValidate extends SynergyElement {
    * Triggers a validation run, showing the validation message if needed.
    */
   private validate = (e: Event) => {
-    // Make sure to always prevent the invalid event when using inline validation
-    if (isInvalidEvent(e.type) && this.inline) {
+    // Make sure to always prevent the invalid event when not using native validation
+    if (isInvalidEvent(e.type) && this.variant !== 'native') {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -241,7 +247,7 @@ export default class SynValidate extends SynergyElement {
   }
 
   private renderInlineValidation() {
-    if (!this.inline || !this.validationMessage) {
+    if (this.variant !== 'inline' || !this.validationMessage) {
       return '';
     }
 

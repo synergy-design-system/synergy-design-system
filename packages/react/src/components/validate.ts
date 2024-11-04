@@ -21,7 +21,7 @@ Component.define('syn-validate');
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the input field.
- * @csspart alert - The syn-alert that is shown when inline is true.
+ * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
  * @csspart alert__base - The container that wraps the alert.
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.

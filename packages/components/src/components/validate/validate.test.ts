@@ -69,7 +69,7 @@ describe('<syn-validate>', () => {
       </syn-validate>
     `);
 
-    await expect(el.inline).to.equal(false);
+    await expect(el.variant).to.equal('native');
     await expect(el.hideIcon).to.equal(false);
     await expect(el.on).to.equal('');
     await expect(el.customValidationMessage).to.equal('');

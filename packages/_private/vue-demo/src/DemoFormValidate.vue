@@ -82,7 +82,7 @@ const synChange = () => {
     <!-- PersonalInformation -->
     <DemoFieldset legend="Personal Information">
 
-      <SynVueValidate inline>
+      <SynVueValidate variant="inline">
         <SynVueRadioGroup
           id="radiogroup-gender"
           name="gender"
@@ -97,7 +97,7 @@ const synChange = () => {
         </SynVueRadioGroup>
       </SynVueValidate>
 
-      <SynVueValidate inline>
+      <SynVueValidate variant="inline">
         <SynVueSelect
           id="select-role"
           label="Current position"
@@ -118,7 +118,7 @@ const synChange = () => {
       </SynVueValidate>
 
     
-      <SynVueValidate inline>
+      <SynVueValidate variant="inline">
         <SynVueInput
           id="input-text"
           label="Name"
@@ -132,7 +132,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline on="live">
+      <SynVueValidate variant="inline" on="live">
         <SynVueInput
           id="input-email"
           label="E-Mail"
@@ -144,7 +144,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline on="input blur">
+      <SynVueValidate variant="inline" on="input blur">
         <SynVueInput
           id="input-date"
           label="Date of birth"
@@ -154,7 +154,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline on="live">
+      <SynVueValidate variant="inline" on="live">
         <SynVueCombobox
           id="input-nationality"
           label="Nationality"
@@ -177,7 +177,7 @@ const synChange = () => {
 
     <!-- Security -->
     <DemoFieldset legend="Security">
-      <SynVueValidate inline on="input blur">
+      <SynVueValidate variant="inline" on="input blur">
         <SynVueInput
           id="input-password"
           label="Provide a secure password"
@@ -191,7 +191,7 @@ const synChange = () => {
         />
       </SynVueValidate>
 
-      <SynVueValidate inline on="input blur">
+      <SynVueValidate variant="inline" on="input blur">
         <SynVueInput
           id="input-number"
           label="Please provide a fallback numeric value that may be used for password recovery"
@@ -210,7 +210,7 @@ const synChange = () => {
 
     <!-- Happiness -->
     <DemoFieldset id="happiness-fields" legend="Happiness">
-      <SynVueValidate inline on="live">
+      <SynVueValidate variant="inline" on="live">
         <SynVueRange
           id="happiness"
           label="How happy are you with the Synergy Design System?"
@@ -243,7 +243,7 @@ const synChange = () => {
 
     <!-- Marketing -->
     <DemoFieldset legend="Please inform me about the following technologies">
-      <SynVueValidate inline>
+      <SynVueValidate variant="inline">
         <SynVueCheckbox
           id="checkbox-newsletter-default"
           name="newsletterStandard"
@@ -253,7 +253,7 @@ const synChange = () => {
           Please subscribe me to the synergy newsletter
         </SynVueCheckbox>
       </SynVueValidate>
-      <SynVueValidate inline>
+      <SynVueValidate variant="inline">
         <SynVueSwitch
           id="checkbox-newsletter-beta"
           name="newsletterBeta"
@@ -270,7 +270,7 @@ const synChange = () => {
 
     <!-- AdditionalInformation -->
     <DemoFieldset legend="Additional Information">
-      <SynVueValidate inline on="live">
+      <SynVueValidate variant="inline" on="live">
         <SynVueTextarea
           id="additional-info"
           label="Comment"
@@ -281,7 +281,7 @@ const synChange = () => {
           v-model="formData.comment"
         />
       </SynVueValidate>
-      <SynVueValidate on="live">
+      <SynVueValidate variant="inline" on="live">
         <SynVueFile
           accept="image/*"
           droparea

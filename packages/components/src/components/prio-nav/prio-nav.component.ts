@@ -150,8 +150,14 @@ export default class SynPrioNav extends SynergyElement {
     // Get the widths of the horizontal nav and the priority menu
     // We subtract the width of the priority menu to get the final width
     const { width } = this.horizontalNav.getBoundingClientRect();
-    const { clientWidth } = this.priorityMenu;
-    const finalWidth = width - clientWidth;
+
+    // #651: Do not take the size of the priority menu
+    // into account when it is hidden
+    const reservedPrioMenuSize = this.priorityMenu.classList.contains('priority-menu--hidden')
+      ? 0
+      : this.priorityMenu.clientWidth;
+
+    const finalWidth = width - reservedPrioMenuSize;
 
     // Cache the first item
     let firstHiddenItemRightPos: number | undefined;

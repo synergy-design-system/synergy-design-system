@@ -3449,7 +3449,7 @@
       },
       "custom-event-names": {
         "title": {
-          "value": "Using custom event names",
+          "value": "Binding To Custom Event Names",
           "type": "text"
         },
         "description": {

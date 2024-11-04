@@ -17,14 +17,14 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "@types/node": "^20.16.11",
+    "@types/node": "^20.17.6",
     "eslint": "^8.57.1",
-    "serve": "^14.2.3",
-    "stylelint": "^16.9.0",
+    "serve": "^14.2.4",
+    "stylelint": "^16.10.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@playwright/test": "^1.48.0",
+    "@playwright/test": "^1.48.2",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^"
   }

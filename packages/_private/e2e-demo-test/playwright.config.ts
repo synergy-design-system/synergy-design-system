@@ -2,8 +2,10 @@
 import { defineConfig, devices } from '@playwright/test';
 import { frameworks } from './frameworks.config';
 
+const minutesToMs = (minutes: number) => minutes * 60 * 1000;
+
 export default defineConfig({
-  // timeout: 10 * 60 * 1000,
+  timeout: minutesToMs(1),
   testDir: './src',
   forbidOnly: !!process.env.CI,
   retries: 0,
@@ -11,37 +13,33 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
-      
     }],
     [process.env.CI ? 'github' : 'list'],
   ],
   projects: [
-
     {
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome']
       },
     },
-
     {
       name: 'firefox',
       use: { 
         ...devices['Desktop Firefox'],
       },
     },
-
     {
       name: 'webkit',
       use: { 
         ...devices['Desktop Safari'],
       },
     },
-   
   ],
   webServer: frameworks.map(({ customCommand, distDir, port }) => ({
     command: customCommand || `pnpm exec serve -s -p ${port} ${distDir}`,
-    timeout: 120 * 1000,
+    timeout: minutesToMs(2),
     url: `http://localhost:${port}`,
+    reuseExistingServer: !process.env.CI,
   })),
 });

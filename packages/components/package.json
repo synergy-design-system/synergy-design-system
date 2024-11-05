@@ -14,7 +14,11 @@
   "exports": {
     ".": {
       "types": "./dist/synergy.d.ts",
-      "import": "./dist/synergy.js"
+      "import": "./dist/synergy.js",
+      "default": "./dist/synergy.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
     },
     "./custom-elements.json": "./dist/custom-elements.json",
     "./synergy.js": "./dist/synergy.js",

@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.11.4",
+  "version": "2.11.5",
   "description": "",
   "repository": {
     "type": "git",
@@ -14,7 +14,11 @@
   "exports": {
     ".": {
       "types": "./dist/synergy.d.ts",
-      "import": "./dist/synergy.js"
+      "import": "./dist/synergy.js",
+      "default": "./dist/synergy.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
     },
     "./custom-elements.json": "./dist/custom-elements.json",
     "./synergy.js": "./dist/synergy.js",
@@ -64,7 +68,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.48.0",
+    "@playwright/test": "^1.48.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -81,7 +85,7 @@
     "@web/test-runner-playwright": "^0.11.0",
     "chalk": "^5.3.0",
     "change-case": "^5.4.4",
-    "command-line-args": "^6.0.0",
+    "command-line-args": "^6.0.1",
     "comment-parser": "^1.4.1",
     "custom-element-vs-code-integration": "^1.4.1",
     "del": "^7.1.0",
@@ -94,12 +98,12 @@
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
-    "eslint-plugin-playwright": "^1.6.2",
+    "eslint-plugin-playwright": "^1.8.3",
     "eslint-plugin-wc": "^2.2.0",
     "globby": "^14.0.2",
     "jsdom": "^25.0.1",
     "ng-packagr": "^18.2.0",
-    "ora": "^8.1.0",
+    "ora": "^8.1.1",
     "postcss": "^8.4.47",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.0",
@@ -108,8 +112,8 @@
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
     "sinon": "^19.0.2",
-    "stylelint": "^16.9.0",
-    "typescript": "^5.5.4",
+    "stylelint": "^16.10.0",
+    "typescript": "~5.5.4",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
@@ -174,7 +178,7 @@
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.11",
+    "@floating-ui/dom": "^1.6.12",
     "@shoelace-style/animations": "^1.2.0",
     "@shoelace-style/localize": "^3.2.1",
     "composed-offset-position": "^0.0.6",

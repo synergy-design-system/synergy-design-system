@@ -292,5 +292,5 @@ ${exports}
   const frameworkIndex = createFrameworkIndex(headerComment, index, true);
 
   // Generate the index file
-  fs.writeFileSync(path.join(outDir, 'index.js'), frameworkIndex, 'utf8');
+  fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');
 });

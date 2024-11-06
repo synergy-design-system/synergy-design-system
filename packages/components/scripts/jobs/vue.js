@@ -34,5 +34,5 @@ export const runCreateVueWrappers = async ({
   await jobs.runCreateWrappers(metadata, outDir);
   await runFormat(outDir);
 
-  await jobs.runVueTypeScript(distDir, vuePackageDir);
+  await jobs.runVueBuild();
 };

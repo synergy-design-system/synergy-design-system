@@ -226,7 +226,7 @@ You may use it in one of the following ways:
       v-model="formValues.checkboxValue"
       required
       name="checkboxValue"
-      >Agree</SynVueCheckbox
+      >Agree</SynVueCheckbox>
     >
   </form>
 </template>

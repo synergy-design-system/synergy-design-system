@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.11.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.5...components/2.11.6) (2024-11-08)
+
+
+### Bug Fixes
+
+* 🐛 syn-prio-nav takes size of prio menu into account when it's not shown ([#665](https://github.com/synergy-design-system/synergy-design-system/issues/665)) ([3218669](https://github.com/synergy-design-system/synergy-design-system/commit/3218669c14a89b0f613edddb0d0c2866a2b0a48e))
+
+# [@synergy-design-system/components-v2.11.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.4...components/2.11.5) (2024-11-05)
+
+
+### Bug Fixes
+
+* 🐛 Add default entry for default export for better tooling compatibility ([#668](https://github.com/synergy-design-system/synergy-design-system/issues/668)) ([c1206e9](https://github.com/synergy-design-system/synergy-design-system/commit/c1206e9dce7e4d45a6b8d5569ad2163b735b9497))
+
 # [@synergy-design-system/components-v2.11.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.3...components/2.11.4) (2024-10-25)
 
 

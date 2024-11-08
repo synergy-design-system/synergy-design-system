@@ -19,7 +19,7 @@
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
     "style-dictionary": "^3.9.2",
-    "stylelint": "^16.9.0"
+    "stylelint": "^16.10.0"
   },
   "exports": {
     ".": {

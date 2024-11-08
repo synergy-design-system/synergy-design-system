@@ -73,7 +73,7 @@ export const PriorityMenu = {
   },
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-2x-large)">
-      <syn-prio-nav style="width: 250px;">
+      <syn-prio-nav style="width: 220px;">
         <syn-nav-item current horizontal>Domains</syn-nav-item>
         <syn-nav-item horizontal href="javascript:void(0)">Projects</syn-nav-item>
         <syn-nav-item horizontal>Trainings</syn-nav-item>

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.11.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.5...components/2.11.6) (2024-11-08)
+
+
+### Bug Fixes
+
+* 🐛 syn-prio-nav takes size of prio menu into account when it's not shown ([#665](https://github.com/synergy-design-system/synergy-design-system/issues/665)) ([3218669](https://github.com/synergy-design-system/synergy-design-system/commit/3218669c14a89b0f613edddb0d0c2866a2b0a48e))
+
 # [@synergy-design-system/components-v2.11.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.4...components/2.11.5) (2024-11-05)
 
 

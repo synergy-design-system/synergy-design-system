@@ -194,6 +194,15 @@ describe('<syn-prio-nav>', () => {
       expect(buttonItemAfterResizeBack, 'The button item should have its original role of "button"').to.have.attribute('role', 'button');
     });
 
+    it('should not take the priority menu into account when calculating the nav bar size and there is enough space (#651)', async () => {
+      // 6 items of 100px = 600px, 5 gaps of 24px = 120px
+      const nav = await createFixture(720);
+
+      const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
+      expect(itemsInDefaultSlot).to.have.length(6);
+      expect(itemsInPrioritySlot).to.be.empty;
+    });
+
     it("should work if there's a margin on the priority menu", async () => {
       // Adding this margin should not affect the tests
       const nav = await createFixture(800, 300);

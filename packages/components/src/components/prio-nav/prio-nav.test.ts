@@ -195,10 +195,8 @@ describe('<syn-prio-nav>', () => {
     });
 
     it('should not take the priority menu into account when calculating the nav bar size and there is enough space (#651)', async () => {
-      // 6 items of 100px = 600px
-      // 5 gaps of 24px = 120px
-      // 720px should be enough, but give it 1px extra since we're dealing with floats in some parts
-      const nav = await createFixture(721);
+      // 6 items of 100px = 600px, 5 gaps of 24px = 120px
+      const nav = await createFixture(720);
 
       const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
       expect(itemsInDefaultSlot).to.have.length(6);

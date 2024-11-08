@@ -159,11 +159,19 @@ export default class SynPrioNav extends SynergyElement {
 
     const finalWidth = width - reservedPrioMenuSize;
 
-    // Cache the first item
+    // Cache the first item that should be hidden
     let firstHiddenItemRightPos: number | undefined;
 
+    // Cache the last item so we can decide to use the finalWidth or just the width
+    // later on. This is needed as otherwise the last item will be hidden when using finalWidth
+    const lastNavItem = navItems.at(-1);
+
     const itemVisibilities = navItems.map(item => {
-      const isHidden = !!(firstHiddenItemRightPos || parseFloat(item.dataset.right!) >= finalWidth);
+      const measureWidth = item === lastNavItem ? width : finalWidth;
+      const isHidden = !!(
+        firstHiddenItemRightPos
+        || parseFloat(item.dataset.right!) > measureWidth
+      );
 
       // Get the position of the first item
       // Will get used to position the priority menu

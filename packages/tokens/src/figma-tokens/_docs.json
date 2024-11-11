@@ -3381,7 +3381,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Validate offers options for convenient error handling in forms and form elements.",
+          "value": "Validate offers options for convenient error handling in form elements.",
           "type": "text"
         }
       },

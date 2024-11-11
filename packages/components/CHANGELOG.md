@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.11.7](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.6...components/2.11.7) (2024-11-11)
+
+
+### Bug Fixes
+
+* 🤔 Vue: Using registerIconLibrary with wrappers lead to bigger bundle size ([#670](https://github.com/synergy-design-system/synergy-design-system/issues/670)) ([61a13af](https://github.com/synergy-design-system/synergy-design-system/commit/61a13afe843f113a7e8d76f9e2eb3d8089df73fe))
+
 # [@synergy-design-system/components-v2.11.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.5...components/2.11.6) (2024-11-08)
 
 

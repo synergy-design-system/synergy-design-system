@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.11.6",
+  "version": "2.11.7",
   "description": "",
   "repository": {
     "type": "git",
@@ -117,8 +117,7 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
-    "vendorism": "^5.0.0",
-    "vue-tsc": "^2.1.10"
+    "vendorism": "^5.0.0"
   },
   "release": {
     "branches": [

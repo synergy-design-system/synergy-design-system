@@ -10,7 +10,7 @@
 ### Meta Information
 
 - Framework version: Vue@3
-- Synergy version: >= 1.1.0
+- Synergy version: <= 2.11.6
 - Issues: [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476), [vitest#1388](https://github.com/vitest-dev/vitest/issues/1388)
 
 ### Description
@@ -19,7 +19,10 @@ When using `Vitest` for testing applications including `@synergy-design-system/v
 
 ### Cause
 
-`@synergy-design-system/vue` ships the raw `.vue` files. This works fine for Vite based setups. However, Vitest **does not process external dependencies** by default.
+`@synergy-design-system/vue` shipped the raw `.vue` files in version 2.11.6 and below. This works fine for Vite based setups. However, Vitest **does not process external dependencies** by default.
+
+> For newer versions of `@synergy-design-system/vue`, a precompiled version of the components is shipped.
+> If you already had this bugfix applied, you may remove it.
 
 ### Proposed solution
 
@@ -30,14 +33,14 @@ Adjust Vitests [server.deps.inline](https://vitest.dev/config/#server-deps-inlin
 ```typescript
 // vitest.config.ts
 
-// For vitest < 0.34.x
+// For vitest < 0.34.x and @synergy-design-system/vue <= 2.11.6
 test: {
   deps: {
     inline: [/@synergy-design-system\/vue/];
   }
 }
 
-// For vitest > 0.34.x
+// For vitest > 0.34.x and @synergy-design-system/vue <= 2.11.6
 test: {
   server: {
     deps: {

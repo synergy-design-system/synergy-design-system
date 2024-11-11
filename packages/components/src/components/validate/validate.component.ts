@@ -43,6 +43,8 @@ export default class SynValidate extends SynergyElement {
 
   @state() validationMessage = '';
 
+  @state() eagerFirstMount = true;
+
   /**
    * The variant that should be used to show validation alerts.
    *
@@ -83,6 +85,17 @@ export default class SynValidate extends SynergyElement {
    * Set to an empty string to reset the validation message.
    */
   @property({ attribute: 'custom-validation-message', type: String }) customValidationMessage = '';
+
+  /**
+   * Set this to true to validate the input immediately when it is rendered.
+   * Best used with a `variant` of `inline`.
+   * When setting eager, the input will not be focused automatically.
+   *
+   * When using a `variant` of `native` the browser will focus
+   * the last eager field as it is using a tooltip.
+   * In this case it is better to just provide one eager field.
+   */
+  @property({ type: Boolean }) eager = false;
 
   /**
    * Automatically refresh all event listeners when the on property changes.
@@ -224,6 +237,7 @@ export default class SynValidate extends SynergyElement {
   /**
    * Triggers a validation run, showing the validation message if needed.
    */
+  // eslint-disable-next-line complexity
   private validate = (e: Event) => {
     // Make sure to always prevent the invalid event when not using native validation
     if (isInvalidEvent(e.type) && this.variant !== 'native') {
@@ -234,6 +248,13 @@ export default class SynValidate extends SynergyElement {
     const input = e.currentTarget as HTMLInputElement;
     const isValid = input.validity?.valid;
 
+    // When we are using eager, make sure to skip the first mount
+    if (this.eager && this.eagerFirstMount) {
+      this.eagerFirstMount = false;
+      this.setValidationMessage(input);
+      return;
+    }
+
     // If the active element that has focus is placed in a validate component,
     // make sure to not loose focus.
     if (!isValid && !isBlurEvent(e.type)) {
@@ -243,8 +264,15 @@ export default class SynValidate extends SynergyElement {
     this.setValidationMessage(input);
   };
 
-  firstUpdated() {
+  async firstUpdated() {
     this.updateEvents();
+
+    // Make sure to run validation on mount if eager is set
+    if (this.eager) {
+      const input = this.getInput();
+      await this.updateComplete;
+      input?.reportValidity();
+    }
   }
 
   disconnectedCallback() {

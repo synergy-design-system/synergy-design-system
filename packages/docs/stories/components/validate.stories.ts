@@ -216,6 +216,25 @@ export const BindingToCustomEventNames: Story = {
   `,
 };
 
+export const Eager: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('validate', 'eager'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-validate eager variant="inline">
+      <syn-input
+        label="Eager validation (triggered on page load)"
+        type="email"
+        value="team(at)synergy.com"
+      ></syn-input>
+    </syn-validate>
+`,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -224,5 +243,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Live,
   CustomValidationMessage,
   CustomFormField,
+  Eager,
 });
 /* eslint-enable sort-keys */

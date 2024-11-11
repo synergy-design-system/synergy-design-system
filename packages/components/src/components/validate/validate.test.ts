@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
@@ -72,6 +73,7 @@ describe('<syn-validate>', () => {
     await expect(el.variant).to.equal('native');
     await expect(el.hideIcon).to.equal(false);
     await expect(el.on).to.equal('');
+    await expect(el.eager).to.equal(false);
     await expect(el.customValidationMessage).to.equal('');
   });
 
@@ -170,6 +172,30 @@ describe('<syn-validate>', () => {
       input.blur();
       await expect(el.validationMessage).to.equal('');
     });
+
+    it('should validate on mount if the eager property is set to true', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate eager>
+          <input label="Email" value="test" type="email"></input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('input')!;
+      const scrollSpy = sinon.spy(input, 'focus');
+
+      expect(el.validationMessage).to.include('email address');
+      expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
+
+      // Trigger another validation run to make sure it works
+      input.value = 'test';
+      input.focus();
+      input.blur();
+
+      expect(el.validationMessage).to.include('email address');
+
+      // Focus should have only be called once, because we surpress the first focus event on mount.
+      expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
+    });
   });
 
   describe('when using synergy form elements', () => {
@@ -234,6 +260,30 @@ describe('<syn-validate>', () => {
       await input.updateComplete;
       input.blur();
       await expect(el.validationMessage).to.equal('');
+    });
+
+    it('should validate on mount if the eager property is set to true', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate eager>
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const scrollSpy = sinon.spy(input, 'focus');
+
+      expect(el.validationMessage).to.include('email address');
+      expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
+
+      // Trigger another validation run to make sure it works
+      input.value = 'test';
+      input.focus();
+      input.blur();
+
+      expect(el.validationMessage).to.include('email address');
+
+      // Focus should have only be called once, because we surpress the first focus event on mount.
+      expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
     });
   });
 });

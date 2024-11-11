@@ -3460,6 +3460,16 @@
           "value": "You can provide one or multiple events in the `on` property. Please use a whitespace separated list of DOM event names. `<syn-validate>` will make sure to automatically use Synergies custom events. This means `<syn-validate on=\"change click\">` will bind to the `syn-change` and `click` events for a `<syn-input>` __or__ `change` and `click` events for a regular `<input>` element.",
           "type": "text"
         }
+      },
+      "eager": {
+        "title": {
+          "value": "Eager validation",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the eager attribute to validate the field when the component is mounted. This may be used to prefill validation messages, e.g. during page loads. Please be aware that when mixed with a `variant` of `native`, this will display the error of the last eager element in your `<form>` only!",
+          "type": "text"
+        }
       }
     }
   },

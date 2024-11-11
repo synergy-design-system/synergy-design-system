@@ -67,6 +67,17 @@ Will override the default browser validation message.
 Set to an empty string to reset the validation message.
  */
   customValidationMessage?: SynValidate['customValidationMessage'];
+
+  /**
+* Set this to true to validate the input immediately when it is rendered.
+Best used with a `variant` of `inline`.
+When setting eager, the input will not be focused automatically.
+
+When using a `variant` of `native` the browser will focus
+the last eager field as it is using a tooltip.
+In this case it is better to just provide one eager field.
+ */
+  eager?: SynValidate['eager'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

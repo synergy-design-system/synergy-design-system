@@ -107,10 +107,14 @@ describe('<syn-validate>', () => {
         </syn-validate>
       `);
 
+      const input = el.querySelector('input')!;
+      const setValidationMessageSpy = sinon.spy(input, 'setCustomValidity');
+
       el.customValidationMessage = 'custom message';
       await el.updateComplete;
 
       await expect(el.validationMessage).to.equal('custom message');
+      expect(setValidationMessageSpy).to.have.been.calledOnce;
     });
   });
 

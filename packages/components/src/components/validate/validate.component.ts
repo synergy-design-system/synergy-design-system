@@ -97,16 +97,13 @@ export default class SynValidate extends SynergyElement {
    */
   @property({ type: Boolean }) eager = false;
 
-  /**
-   * Automatically refresh all event listeners when the on property changes.
-   * @param old Original event listeners to use
-   * @param next Next event listeners to use
-   */
+  // Automatically refresh all event listeners when the on property changes.
   @watch('on', { waitUntilFirstUpdate: true })
   handleListenerChange() {
     this.updateEvents();
   }
 
+  // Synchronize the validation message on the wrapped input with the custom message
   @watch('customValidationMessage', { waitUntilFirstUpdate: true })
   handleCustomValidationMessageChange() {
     const input = this.getInput();
@@ -199,10 +196,15 @@ export default class SynValidate extends SynergyElement {
   }
 
   private setValidationMessage(input: HTMLInputElement) {
-    // @todo: Make sure to also set the custom message to the input!
     const { customValidationMessage } = this;
-    const validationMessage = customValidationMessage || input.validationMessage;
 
+    // Set the custom validation message to the input
+    // This will make sure to either:
+    // - use the custom message if one is set or
+    // - use the default message if the custom message is empty
+    input.setCustomValidity(customValidationMessage);
+
+    const validationMessage = customValidationMessage || input.validationMessage;
     this.validationMessage = validationMessage;
   }
 
@@ -248,7 +250,7 @@ export default class SynValidate extends SynergyElement {
     const input = e.currentTarget as HTMLInputElement;
     const isValid = input.validity?.valid;
 
-    // When we are using eager, make sure to skip the first mount
+    // When we are using eager, make sure to skip focus on the first mount
     if (this.eager && this.eagerFirstMount) {
       this.eagerFirstMount = false;
       this.setValidationMessage(input);

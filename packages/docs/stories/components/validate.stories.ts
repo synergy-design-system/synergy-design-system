@@ -49,7 +49,6 @@ const meta: Meta = {
             const form = document.getElementById('${uniqueId}');
             form.addEventListener('submit', (event) => {
               event.preventDefault();
-              // form.querySelector('syn-validate').validate();
             });
           });
         </script>
@@ -235,6 +234,33 @@ export const Eager: Story = {
 `,
 };
 
+// This is a custom demo that showcases how the sync between
+// the input and the validation message can be controlled.
+// As we do not an official story for this, it was left here on purpose for
+// developers that want to try it out.
+// Just uncomment the code below to interact in storybook
+/*
+export const CustomValidationDemo = {
+  render: () => html`
+    <syn-validate variant="inline" on="live" id="something-testing">
+      <syn-input label="E-Mail" required type="email"></syn-input>
+    </syn-validate>
+    <syn-button
+      onclick='document.getElementById("something-testing").customValidationMessage="Something"'
+    >Set custom message</syn-button>
+    <syn-button
+      onclick='document.getElementById("something-testing").customValidationMessage=""'
+    >Reset custom message</syn-button>
+    <syn-button
+      onclick='document.getElementById("something-testing").variant="inline"'
+    >Variant inline</syn-button>
+    <syn-button
+      onclick='document.getElementById("something-testing").variant="native"'
+    >Variant Native</syn-button>
+  `,
+};
+*/
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -244,5 +270,5 @@ export const Screenshot: Story = generateScreenshotStory({
   CustomValidationMessage,
   CustomFormField,
   Eager,
-});
+}, 200);
 /* eslint-enable sort-keys */

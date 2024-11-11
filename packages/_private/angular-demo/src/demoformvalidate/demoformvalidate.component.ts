@@ -52,7 +52,13 @@ export class DemoFormValidate {
   }
 
   validateEmailField() {
-    const errors = this.formData.get('email')?.errors;
+    const emailField = this.formData.get('email');
+    const errors = emailField?.errors;
+
+    // When the field is not changed, don´t show a message
+    if (!emailField?.dirty) {
+      return '';
+    }
 
     if (!errors) {
       return '';

@@ -228,6 +228,7 @@ You may use it in one of the following ways:
       name="checkboxValue"
       >Agree</SynVueCheckbox
     >
+    >
   </form>
 </template>
 ```

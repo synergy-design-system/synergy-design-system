@@ -262,8 +262,8 @@ const synChange = () => {
         v-model="formData.donations"
       >
         <nav slot="ticks">
-          <syn-range-tick>0 €</syn-range-tick>
-          <syn-range-tick>6.000 €</syn-range-tick>
+          <SynVueRangeTick>0 €</SynVueRangeTick>
+          <SynVueRangeTick>6.000 €</SynVueRangeTick>
         </nav>
       </SynVueRange>
     </DemoFieldset>

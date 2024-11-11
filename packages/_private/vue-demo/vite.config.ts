@@ -16,13 +16,7 @@ export default defineConfig({
         dest: './assets/icons/',
       }],
     }),
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: tag => tag.startsWith('syn-'),
-        }
-      }
-    }),
+    vue(),
   ],
   resolve: {
     alias: {

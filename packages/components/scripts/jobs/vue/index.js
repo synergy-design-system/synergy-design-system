@@ -1,2 +1,2 @@
+export * from './build.js';
 export * from './createWrappers.js';
-export * from './tsc.js';

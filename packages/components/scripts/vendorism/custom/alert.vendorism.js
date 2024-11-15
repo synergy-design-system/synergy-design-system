@@ -19,6 +19,9 @@ const transformStyles = (path, originalContent) => {
       preserveEnd: true,
       removePrecedingWhitespace: false,
     }],
+    // Remove the overflow:hidden, which came with shoelace 2.17.0,
+    // as we do not use the countdown feature and it breaks the left border style
+    ['overflow: hidden;', ''],
   ], originalContent);
 
   return {

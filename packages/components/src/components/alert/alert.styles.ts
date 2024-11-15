@@ -31,7 +31,6 @@ export default css`
     line-height: 1.6;
     color: var(--syn-color-neutral-700);
     margin: inherit;
-    overflow: hidden;
   }
 
   .alert:not(.alert--has-icon) .alert__icon,
@@ -55,7 +54,6 @@ export default css`
     flex: 1 1 auto;
     display: block;
     padding: var(--syn-spacing-large);
-    overflow: hidden;
   }
 
   .alert__close-button {

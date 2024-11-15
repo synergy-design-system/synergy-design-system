@@ -1440,6 +1440,38 @@
         }
       }
     },
+    "link-list": {
+      "horizontal": {
+        "title": {
+          "value": "Horizontal",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the horizontal attribute to indicate that it is used as a horizontal link list.",
+          "type": "text"
+        }
+      },
+      "multiline": {
+        "title": {
+          "value": "Multiline",
+          "type": "text"
+        },
+        "description": {
+          "value": "The horizontal link list automatically wraps into a new line if there is not enough space available.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change the link list size.",
+          "type": "text"
+        }
+      }
+    },
     "menu-item": {
       "default": {
         "description": {
@@ -2848,6 +2880,16 @@
         },
         "title": {
           "value": "Link",
+          "type": "text"
+        }
+      },
+      "link-list": {
+        "description": {
+          "value": "Links can be grouped horizontally or vertically.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Link list",
           "type": "text"
         }
       }

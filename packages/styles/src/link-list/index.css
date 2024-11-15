@@ -1,0 +1,51 @@
+/**
+ * Link list
+ * @variant {small | medium | large} syn-link-list The size of the link list
+ * @boolean { false } syn-link-list--horizontal Applies horizontal styling to the link list
+ */
+.syn-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-spacing-small);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.syn-link-list--horizontal {
+  flex-flow: row wrap;
+  gap: var(--syn-spacing-small) var(--syn-spacing-large);
+}
+
+/* Reset list item styles, but only for the first level */
+.syn-link-list > li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Size modifiers */
+.syn-link-list--small {
+  gap: var(--syn-spacing-x-small);
+}
+
+.syn-link-list--medium {
+  gap: var(--syn-spacing-small);
+}
+
+.syn-link-list--large {
+  gap: var(--syn-spacing-medium);
+}
+
+/* Size modifiers for horizontal version */
+.syn-link-list--horizontal.syn-link-list--small {
+  gap: var(--syn-spacing-x-small) var(--syn-spacing-medium);
+}
+
+.syn-link-list--horizontal.syn-link-list--medium {
+  gap: var(--syn-spacing-small) var(--syn-spacing-large);
+}
+
+.syn-link-list--horizontal.syn-link-list--large {
+  gap: var(--syn-spacing-medium) var(--syn-spacing-x-large);
+}

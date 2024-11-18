@@ -22,7 +22,8 @@
     "aria-describedby",
     "droparea",
     "codepen",
-    "listbox"
+    "listbox",
+    "checkmark"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

@@ -651,6 +651,9 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4
     devDependencies:
+      '@chromatic-com/storybook':
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.3.1)(storybook@8.4.2)
       '@storybook/addon-a11y':
         specifier: ^8.4.1
         version: 8.4.2(storybook@8.4.2)
@@ -2857,6 +2860,24 @@ packages:
       path: 0.12.7
       stream: 0.0.2
       util: 0.12.5
+    dev: true
+
+  /@chromatic-com/storybook@3.2.2(react@18.3.1)(storybook@8.4.2):
+    resolution: {integrity: sha512-xmXt/GW0hAPbzNTrxYuVo43Adrtjue4DeVrsoIIEeJdGaPNNeNf+DHMlJKOBdlHmCnFUoe9R/0mLM9zUp5bKWw==}
+    engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
+    peerDependencies:
+      storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+    dependencies:
+      chromatic: 11.16.5
+      filesize: 10.1.6
+      jsonfile: 6.1.0
+      react-confetti: 6.1.0(react@18.3.1)
+      storybook: 8.4.2(prettier@3.3.3)
+      strip-ansi: 7.1.0
+    transitivePeerDependencies:
+      - '@chromatic-com/cypress'
+      - '@chromatic-com/playwright'
+      - react
     dev: true
 
   /@clack/core@0.3.3:
@@ -11516,6 +11537,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /filesize@10.1.6:
+    resolution: {integrity: sha512-sJslQKU2uM33qH5nqewAwVB2QgR6w1aMNsYUp3aN5rMRyXEwJGmZvaWzeJFNTOXWlHQyBFCWrdj3fV/fsTOX8w==}
+    engines: {node: '>= 10.4.0'}
+    dev: true
+
   /filing-cabinet@4.1.6:
     resolution: {integrity: sha512-C+HZbuQTER36sKzGtUhrAPAoK6+/PrrUhYDBQEh3kBRdsyEhkLbp1ML8S0+6e6gCUrUlid+XmubxJrhvL2g/Zw==}
     engines: {node: '>=14'}
@@ -16494,6 +16520,16 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
+  /react-confetti@6.1.0(react@18.3.1):
+    resolution: {integrity: sha512-7Ypx4vz0+g8ECVxr88W9zhcQpbeujJAVqL14ZnXJ3I23mOI9/oBVTQ3dkJhUmB0D6XOtCZEM6N0Gm9PMngkORw==}
+    engines: {node: '>=10.18'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      react: 18.3.1
+      tween-functions: 1.2.0
+    dev: true
+
   /react-dom@18.3.1(react@18.3.1):
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
@@ -18569,6 +18605,10 @@ packages:
       make-fetch-happen: 13.0.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /tween-functions@1.2.0:
+    resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
     dev: true
 
   /type-check@0.4.0:

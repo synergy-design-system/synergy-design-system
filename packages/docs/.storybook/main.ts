@@ -9,6 +9,7 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "@storybook/addon-mdx-gfm",
+    '@chromatic-com/storybook',
     { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
   ],
   core: {

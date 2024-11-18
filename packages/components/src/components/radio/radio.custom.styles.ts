@@ -1,7 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-
   .radio {
     padding: var(--syn-spacing-2x-small) 0;
   }
@@ -22,10 +21,27 @@ export default css`
     border-color: var(--syn-color-primary-900);
   }
 
-  /*
- * Size modifiers
- */
+  /* Fix#456: Multi line radio fixes */
+  .radio__label {
+    line-height: var(--syn-line-height-normal);
+    position: relative;
+  }
 
+  .radio--small .radio__label {
+    top: -3px;
+  }
+
+  .radio--medium .radio__label {
+    top: -3px;
+  }
+
+  .radio--large .radio__label {
+    top: -2px;
+  }
+
+  /* /Fix#456 */
+
+  /* Size modifiers */
   .radio--small {
     --toggle-size: var(--syn-input-font-size-small);
   }

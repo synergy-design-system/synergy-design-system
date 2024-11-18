@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.11.8](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.7...components/2.11.8) (2024-11-15)
+
+
+### Bug Fixes
+
+* 🐛 syn-alert's left border does not reach the edge anymore ([#676](https://github.com/synergy-design-system/synergy-design-system/issues/676)) ([83eebd8](https://github.com/synergy-design-system/synergy-design-system/commit/83eebd8ac4762fc57c4470aaf99fcdc2143f542d))
+
 # [@synergy-design-system/components-v2.11.7](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.6...components/2.11.7) (2024-11-11)
 
 

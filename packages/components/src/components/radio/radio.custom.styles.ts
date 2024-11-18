@@ -25,6 +25,7 @@ export default css`
 
   .radio--small .radio__label {
     font: var(--syn-body-small-regular);
+    top: -3px;
   }
 
   .radio--medium .radio__label {
@@ -34,6 +35,7 @@ export default css`
 
   .radio--large .radio__label {
     font: var(--syn-body-large-regular);
+    top: -2px;
   }
 
   /* /Fix#456 */

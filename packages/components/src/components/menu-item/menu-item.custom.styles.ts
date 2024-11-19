@@ -109,4 +109,9 @@ export default css`
   .menu-item--checked .menu-item__label {
     font-weight: var(--syn-font-weight-semibold);
   }
+
+  /* Needed if we do not show the checkmark */
+  :host(:not([type="checkmark"]):not([loading])) .menu-item__label {
+    min-height: var(--syn-font-size-x-large);
+  }
 `;

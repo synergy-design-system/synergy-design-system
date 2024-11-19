@@ -103,6 +103,18 @@ export default class SynValidate extends SynergyElement {
     this.updateEvents();
   }
 
+  @watch('eager', { waitUntilFirstUpdate: false })
+  async handleEagerChange() {
+    if (this.eager) {
+      const input = this.getInput();
+      await this.updateComplete;
+      input?.reportValidity();
+      this.eagerFirstMount = true;
+    } else {
+      this.eagerFirstMount = false;
+    }
+  }
+
   // Synchronize the validation message on the wrapped input with the custom message
   @watch('customValidationMessage', { waitUntilFirstUpdate: true })
   handleCustomValidationMessageChange() {

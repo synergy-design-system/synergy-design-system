@@ -45,6 +45,10 @@ export default class SynValidate extends SynergyElement {
 
   @state() eagerFirstMount = true;
 
+  @state() isInternalTriggeredInvalid = false;
+
+  @state() lastTriggeredEvent = '';
+
   /**
    * The variant that should be used to show validation alerts.
    *
@@ -120,6 +124,7 @@ export default class SynValidate extends SynergyElement {
   handleCustomValidationMessageChange() {
     const input = this.getInput();
     if (input) {
+      this.setCustomValidationMessage(input);
       this.setValidationMessage(input);
     }
   }
@@ -209,15 +214,20 @@ export default class SynValidate extends SynergyElement {
 
   private setValidationMessage(input: HTMLInputElement) {
     const { customValidationMessage } = this;
-
-    // Set the custom validation message to the input
-    // This will make sure to either:
-    // - use the custom message if one is set or
-    // - use the default message if the custom message is empty
-    input.setCustomValidity(customValidationMessage);
-
     const validationMessage = customValidationMessage || input.validationMessage;
     this.validationMessage = validationMessage;
+  }
+
+  /**
+   * Set the custom validation message to the input. This will make sure to either:
+   * - use the custom message if one is set or
+   * - use the default message if the custom message is empty
+   */
+  private setCustomValidationMessage(input: HTMLInputElement) {
+    // Set the custom validation message on the input only once, when the customValidationMessage
+    // is changed. Otherwise there could be problems with `variant="native"` and `on="live"` or
+    //  `on="blur"`, because the browser popup will never disappear even if clicking somewhere else.
+    input.setCustomValidity(this.customValidationMessage);
   }
 
   /**
@@ -253,6 +263,12 @@ export default class SynValidate extends SynergyElement {
    */
   // eslint-disable-next-line complexity
   private validate = (e: Event) => {
+    // Make sure to stop the validate component from going into an endless cycle of triggering
+    if (isInvalidEvent(e.type) && this.variant === 'native' && this.isInternalTriggeredInvalid === true) {
+      this.isInternalTriggeredInvalid = false;
+      return;
+    }
+
     // Make sure to always prevent the invalid event when not using native validation
     if (isInvalidEvent(e.type) && this.variant !== 'native') {
       e.preventDefault();
@@ -276,6 +292,20 @@ export default class SynValidate extends SynergyElement {
     }
 
     this.setValidationMessage(input);
+
+    // Trigger reportValidity when using native validation, so the browser popup is also shown
+    // for other events than `invalid`. All events except the blur event, should trigger this.
+    // For the blur event, this is only the case for the first one.
+    const validReportValidityEvents = !isBlurEvent(e.type) || !isBlurEvent(this.lastTriggeredEvent);
+    if (validReportValidityEvents && this.variant === 'native') {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.updateComplete.then(() => {
+        this.isInternalTriggeredInvalid = true;
+        this.lastTriggeredEvent = e.type;
+
+        input.reportValidity();
+      });
+    }
   };
 
   async firstUpdated() {

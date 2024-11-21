@@ -55,6 +55,7 @@ const initialFormData = {
 };
 
 const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+
 const formatter = new Intl.NumberFormat('de-DE', {
   currency: 'EUR',
   maximumFractionDigits: 0,
@@ -66,7 +67,7 @@ export const DemoForm = () => {
   const [formData, setFormData] = useState(initialFormData);
 
   // This is needed, as shoelace does its event with `syn-` prefix
-  // and react wont let us bind arbitary custom events :(
+  // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
     const listener = (e: SynChangeEvent) => {
       const form = formRef.current as HTMLFormElement;
@@ -209,9 +210,7 @@ export const DemoForm = () => {
           getOption={highlightOptionRenderer}
         >
           {nationalities.map(n => (
-            <SynOption
-              key={n}
-            >
+            <SynOption key={n}>
               {n}
             </SynOption>
           ))}
@@ -300,8 +299,8 @@ export const DemoForm = () => {
           max={6000}
           min={0}
           name="donations"
+          tooltipFormatter={value => formatter.format(value)}
           value={formData.donations}
-          tooltipFormatter={(value) => formatter.format(value)}
         >
           <nav slot="ticks">
             <SynRangeTick>0 €</SynRangeTick>

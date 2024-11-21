@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.9.0...assets/1.10.0) (2024-11-21)
+
+
+### Features
+
+* ✨ provide accessible solution for validation ([#599](https://github.com/synergy-design-system/synergy-design-system/issues/599)) ([f8ef81a](https://github.com/synergy-design-system/synergy-design-system/commit/f8ef81a4a61af27fcb6de2c03ce13ef502fcb732))
+
 # [@synergy-design-system/assets-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.8.0...assets/1.9.0) (2024-10-11)
 
 

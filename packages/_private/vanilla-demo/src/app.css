@@ -23,6 +23,17 @@ syn-header {
   z-index: 50;
 }
 
+.custom-logo syn-icon {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+/* Safari fix for ##623 */
+.custom-logo syn-icon::part(svg) {
+  width: auto;
+}
+
 .main {
   background: var(--syn-color-neutral-0);
   display: flex;
@@ -37,18 +48,6 @@ syn-header {
   height: 100%;
   overflow-y: auto;
   padding: var(--syn-spacing-medium) var(--syn-spacing-large);
-}
-
-/* Custom Routing */
-.router-page {
-  display: none;
-  visibility: hidden;
-}
-
-/* Show active page */
-.router-page[data-active="true"] {
-  display: contents;
-  visibility: visible;
 }
 
 /* Form Wrappers */

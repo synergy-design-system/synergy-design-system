@@ -51,6 +51,7 @@ import {
   SynTagComponent,
   SynTextareaComponent,
   SynTooltipComponent,
+  SynValidateComponent,
 } from '../components';
 
 const components = [
@@ -99,6 +100,7 @@ const components = [
   SynTagComponent,
   SynTextareaComponent,
   SynTooltipComponent,
+  SynValidateComponent,
 ];
 
 @NgModule({

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.13.0...tokens/2.14.0) (2024-11-21)
+
+
+### Features
+
+* ✨ provide accessible solution for validation ([#599](https://github.com/synergy-design-system/synergy-design-system/issues/599)) ([f8ef81a](https://github.com/synergy-design-system/synergy-design-system/commit/f8ef81a4a61af27fcb6de2c03ce13ef502fcb732))
+
 # [@synergy-design-system/tokens-v2.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.12.1...tokens/2.13.0) (2024-10-11)
 
 

@@ -1,0 +1,12 @@
+<!-- index -->
+<div class="index">
+  <h1 class="syn-heading--3x-large">
+    Welcome to the Synergy Vanilla Demo!
+  </h1>
+
+  <p class="syn-body--medium">
+    In this demo some use cases and our components are tested in the Vanilla ecosystem,
+    like navigation handling, forms and theme switching.
+  </p>          
+</div>
+<!-- /index -->

@@ -5,7 +5,6 @@ html, body {
 }
 
 body {
-  background: var(--syn-color-neutral-50);
   color: var(--syn-color-neutral-900);
   font-family: var(--syn-font-sans);
   font-size: var(--syn-font-size-medium);
@@ -23,6 +22,16 @@ syn-header {
   z-index: 50;
 }
 
+.custom-logo syn-icon {
+  display: block;
+  width: auto;
+  height: 32px;
+}
+
+/* Safari fix for ##623 */
+.custom-logo syn-icon::part(svg) {
+  width: auto;
+}
 
 /* Form Wrappers */
 .syn-fieldset {

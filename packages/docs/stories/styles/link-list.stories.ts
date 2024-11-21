@@ -8,13 +8,15 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
-  storybookHelpers,
 } from '../../src/helpers/component.js';
-import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
+import { type RenderArgs as BaseRenderArgs, renderStyles } from '../../src/helpers/styles.js';
+
+interface RenderArgs extends BaseRenderArgs {
+  'syn-link-list'?: string;
+}
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
-const { args: defaultArgs, argTypes } = storybookDefaults('syn-link-list');
-const { overrideArgs } = storybookHelpers('syn-link-list');
+const { args, argTypes } = storybookDefaults('syn-link-list');
 
 const generateLinks = (amount = 4, size = 'medium') => new Array(amount)
   .fill(undefined)
@@ -29,13 +31,7 @@ const generateLinks = (amount = 4, size = 'medium') => new Array(amount)
   .join('');
 
 const meta: Meta = {
-  args: overrideArgs([
-    {
-      name: 'default',
-      type: 'slot',
-      value: generateLinks(4, 'medium'),
-    },
-  ], defaultArgs),
+  args,
   argTypes,
   component: 'syn-link-list',
   parameters: {
@@ -56,9 +52,18 @@ export const Default: StoryObj = {
       disable: false,
     },
   },
-  render: (args: unknown) => renderStyles(args as RenderArgs, 'ul', {
-    class: 'syn-link-list',
-  }),
+  render: (storyArgs) => {
+    const sizeClass = storyArgs['syn-link-list']! as string;
+    const usedSize = sizeClass.split('--').at(-1);
+    const defaultSlot = generateLinks(4, usedSize);
+    const finalArgs = {
+      ...storyArgs,
+      'default-slot': defaultSlot,
+    };
+    return renderStyles(finalArgs, 'ul', {
+      class: 'syn-link-list',
+    });
+  },
 };
 
 export const Horizontal: StoryObj = {

@@ -47,8 +47,6 @@ export default class SynValidate extends SynergyElement {
 
   @state() isInternalTriggeredInvalid = false;
 
-  @state() lastTriggeredEvent = '';
-
   @state() isValid = true;
 
   /**
@@ -305,14 +303,10 @@ export default class SynValidate extends SynergyElement {
 
     // Trigger reportValidity when using native validation, so the browser popup is also shown
     // for other events than `invalid`. All events except the blur event, should trigger this.
-    // For the blur event, this is only the case for the first one.
-    const validReportValidityEvents = !isBlurEvent(e.type) || !isBlurEvent(this.lastTriggeredEvent);
-    if (validReportValidityEvents && this.variant === 'native') {
+    if (!isBlurEvent(e.type) && this.variant === 'native') {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.isInternalTriggeredInvalid = true;
-        this.lastTriggeredEvent = e.type;
-
         input.reportValidity();
       });
     }

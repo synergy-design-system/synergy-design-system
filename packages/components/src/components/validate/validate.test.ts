@@ -419,7 +419,7 @@ describe('<syn-validate>', () => {
       expect(reportValiditySpy).to.not.have.been.called;
     });
 
-    it('should only trigger a reportValidity once on consecutive blur events', async () => {
+    it('should never trigger a reportValidity on blur events', async () => {
       const el = await fixture<SynValidate>(html`
         <syn-validate on="blur">
           <syn-input label="Email" value="test" type="email"></syn-input>
@@ -438,7 +438,7 @@ describe('<syn-validate>', () => {
 
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.have.been.calledOnce;
+      expect(reportValiditySpy).to.not.have.been.called;
     });
 
     it('should receive the correct data-user-invalid state when invalid', async () => {

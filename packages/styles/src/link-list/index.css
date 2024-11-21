@@ -1,6 +1,6 @@
 /**
  * Link list
- * @variant {small | medium | large} syn-link-list The size of the link list
+ * @variant {medium | small | large} syn-link-list The size of the link list
  * @boolean { false } syn-link-list--horizontal Applies horizontal styling to the link list
  */
 .syn-link-list {

@@ -75,6 +75,7 @@ describe('<syn-validate>', () => {
     await expect(el.on).to.equal('');
     await expect(el.eager).to.equal(false);
     await expect(el.customValidationMessage).to.equal('');
+    await expect(el.getValidity()).to.equal(true);
   });
 
   describe('when using the getInput method', () => {
@@ -96,6 +97,66 @@ describe('<syn-validate>', () => {
 
       // @ts-expect-error getInput is private, but should be tested anyways
       await expect(el.getInput()).to.equal(undefined);
+    });
+  });
+
+  describe('when using the getValidity method', () => {
+    it('should return true if the input is valid', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur">
+          <syn-input id="found" label="Email" type="email"></syn-input>
+        </syn-validate>
+      `);
+      const input = el.querySelector('syn-input')!;
+
+      // Trigger another validation run to make sure it works
+      input.value = 'test@test';
+      await input.updateComplete;
+      input.focus();
+      input.blur();
+
+      const isValid = el.getValidity();
+      await expect(isValid).to.equal(true);
+    });
+
+    it('should return false if the input is invalid', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur">
+          <syn-input id="found" label="Email" type="email"></syn-input>
+        </syn-validate>
+      `);
+      const input = el.querySelector('syn-input')!;
+
+      // Trigger another validation run to make sure it works
+      input.value = 'test';
+      await input.updateComplete;
+      input.focus();
+      input.blur();
+
+      const isValid = el.getValidity();
+      await expect(isValid).to.equal(false);
+    });
+
+    it('should initially be true', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur">
+          <syn-input id="found" label="Email" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const isValid = el.getValidity();
+      await expect(isValid).to.equal(true);
+    });
+
+    it('should initially be invalid if eager is set and the input is invalid', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur" eager>
+          <syn-input id="found" label="Email" type="email" value="test"></syn-input>
+        </syn-validate>
+      `);
+
+      const isValid = el.getValidity();
+      await expect(isValid).to.equal(false);
     });
   });
 
@@ -200,6 +261,40 @@ describe('<syn-validate>', () => {
       // Focus should have only be called once, because we surpress the first focus event on mount.
       expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
     });
+
+    it('should call the reportValidity method for `variant="native"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input">
+          <input label="Email" type="email"></input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.have.been.calledOnce;
+    });
+
+    it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input" variant="inline">
+          <input label="Email" type="email"></input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.not.have.been.called;
+    });
   });
 
   describe('when using synergy form elements', () => {
@@ -288,6 +383,84 @@ describe('<syn-validate>', () => {
 
       // Focus should have only be called once, because we surpress the first focus event on mount.
       expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
+    });
+
+    it('should call the reportValidity method for `variant="native"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.have.been.calledOnce;
+    });
+
+    it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input" variant="inline">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.not.have.been.called;
+    });
+
+    it('should only trigger a reportValidity once on consecutive blur events', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="blur">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+      input.value = 'test';
+      input.focus();
+      input.blur();
+      await el.updateComplete;
+
+      input.focus();
+      input.blur();
+
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.have.been.calledOnce;
+    });
+
+    it('should receive the correct data-user-invalid state when invalid', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(input.hasAttribute('data-user-invalid')).to.be.true;
+
+      input.value = 'test@test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(input.hasAttribute('data-user-invalid')).to.be.false;
     });
   });
 });

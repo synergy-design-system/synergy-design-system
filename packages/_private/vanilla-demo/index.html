@@ -9,7 +9,17 @@
     <!-- root -->
     <div id="root">
 
-      <syn-header label="@synergy-design-system/components Form Demo">
+      <syn-header label="@synergy-design-system/components Components Demo">
+        <a
+          class="custom-logo"
+          href="/"
+          routerLink="/"
+          slot="logo"
+          tabindex="0"
+        >
+          <syn-icon name="logo-color" library="system" />
+        </a>
+    
         <syn-switch
           data-theme-light="☀️"
           data-theme-dark="🌙"
@@ -29,286 +39,22 @@
           </syn-nav-item>
           <syn-nav-item divider href="/contact-form">
             Contact Form
-            <syn-icon name="description" slot="prefix"></syn-icon>
+            <syn-icon name="contact_mail" slot="prefix"></syn-icon>
+          </syn-nav-item>
+          <syn-nav-item divider href="/contact-form-validate">
+            Contact Form (Validation)
+            <syn-icon name="contact_emergency" slot="prefix"></syn-icon>
           </syn-nav-item>
         </syn-side-nav>
         <!-- /side-nav -->
 
         <!-- main.content -->
         <main class="content">
-          
-          <!-- index -->
+          <!-- For markup see pages in src/pages directory -->
+
           <div class="router-page" data-active="true" data-route="/">
-            <h1 class="syn-heading--3x-large">
-              Welcome to the Synergy Vanilla Demo!
-            </h1>
-          
-            <p class="syn-body--medium">
-              In this demo some use cases and our components are tested in the Vanilla ecosystem,
-              like navigation handling, forms and theme switching.
-            </p>          
+            <syn-spinner size="large"></syn-spinner>
           </div>
-          <!-- /index -->
-
-          <!-- contact-form -->
-          <div class="router-page" data-route="/contact-form">
-            <form enctype="multipart/form-data" id="form-demo" method="post">
-
-              <!-- PersonalInformation -->
-              <fieldset class="syn-fieldset">
-                <legend class="syn-legend">Personal Information</legend>
-                
-                <syn-radio-group
-                  id="radiogroup-gender"
-                  name="gender"
-                  label="Please tell us your gender"
-                  required
-                >
-                  <syn-radio value="f">Female</syn-radio>
-                  <syn-radio value="m">Male</syn-radio>
-                  <syn-radio value="other">Other</syn-radio>
-                </syn-radio-group>
-
-                <syn-select
-                  id="select-role"
-                  label="Current position"
-                  name="role"
-                  required
-                >
-                  <syn-optgroup label="Developers">
-                    <syn-option value="backend">Backend Developer</syn-option>
-                    <syn-option value="frontend">Frontend Developer</syn-option>
-                  </syn-optgroup>
-                  <syn-optgroup label="Other">
-                    <syn-option value="lead">Team Lead</syn-option>
-                    <syn-option value="other">Other (please specify in comment section below)</syn-option>
-                  </syn-optgroup>
-                </syn-select>
-
-                <syn-input
-                  id="input-text"
-                  label="Name"
-                  minlength="5"
-                  maxlength="20"
-                  name="input-text"
-                  placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
-                  required
-                  type="text"
-                ></syn-input>
-
-                <syn-input
-                  id="input-email"
-                  label="E-Mail"
-                  name="input-email"
-                  placeholder="Please insert your E-mail address"
-                  required
-                  type="email"
-                ></syn-input>
-
-                <syn-input
-                  id="input-phone"
-                  label="Phone"
-                  name="input-phone"
-                  placeholder="Please provide your phone number"
-                  required
-                  type="tel"
-                ></syn-input>
-
-                <syn-input
-                  id="input-date"
-                  label="Date of birth"
-                  name="input-date"
-                  type="date"
-                ></syn-input>
-
-                <syn-combobox
-                  id="input-nationality"
-                  label="Nationality"
-                  name="input-nationality"
-                  required
-                ></syn-combobox>
-
-              </fieldset>
-              <!-- PersonalInformation -->
-
-              <syn-divider></syn-divider>
-
-              <!-- Security -->
-              <fieldset class="syn-fieldset">
-                <legend class="syn-legend">Security</legend>
-                
-                <syn-input
-                  id="input-password"
-                  label="Provide a secure password"
-                  name="input-password"
-                  password-toggle
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  placeholder="Please provide at least one uppercase and lowercase letter and a number"
-                  required
-                  type="password"
-                  value="invalid"
-                ></syn-input>
-
-                <syn-input
-                  id="input-number"
-                  label="Please provide a fallback numeric value that may be used for password recovery"
-                  min="1000"
-                  max="9999"
-                  name="input-number"
-                  placeholder="Please choose a value with four digits, e.g. 1234"
-                  type="number"
-                >
-                </syn-input>
-
-              </fieldset>
-              <!-- /Security -->
-
-              <syn-divider></syn-divider>
-
-              <!-- Topics -->
-              <fieldset class="syn-fieldset">
-                <legend class="syn-legend">Topics</legend>
-                <syn-select
-                  clearable
-                  id="topics"
-                  label="I am interested in the following technologies"
-                  multiple
-                  name="select-topics"
-                >
-                  <syn-optgroup label="Frontend">
-                    <syn-option value="angular">Angular</syn-option>
-                    <syn-option value="react">React.js</syn-option>
-                    <syn-option value="vanilla">Vanilla.js</syn-option>
-                    <syn-option value="vue">Vue</syn-option>
-                  </syn-optgroup>
-                  <syn-optgroup label="Backend">
-                    <syn-option value="node">Node.js</syn-option>
-                    <syn-option value="Python">Python</syn-option>
-                  </syn-optgroup>
-                </syn-select>
-              </fieldset>
-              <!-- /Topics -->
-
-              <syn-divider></syn-divider>
-
-              <!-- Happiness -->
-              <fieldset id="happiness-fields" class="syn-fieldset">
-                <legend class="syn-legend">Happiness</legend>
-                <syn-range
-                  id="happiness"
-                  label="How happy are you with the Synergy Design System?"
-                  max="10"
-                  min="0"
-                  value="5"
-                  name="happiness"
-                >
-                  <nav slot="ticks">
-                    <syn-range-tick>🤮</syn-range-tick>
-                    <syn-range-tick>🥱</syn-range-tick>
-                    <syn-range-tick>😍</syn-range-tick>
-                  </nav>
-                </syn-range>
-
-                <syn-range
-                  id="donations"
-                  label="I would donate between"
-                  max="6000"
-                  min="0"
-                  value="2000 4000"
-                  name="donations"
-                >
-                  <nav slot="ticks">
-                    <syn-range-tick>0 €</syn-range-tick>
-                    <syn-range-tick>6.000 €</syn-range-tick>
-                  </nav>
-                </syn-range>
-
-              </fieldset>
-              <!-- /.Happiness -->
-
-              <syn-divider></syn-divider>
-
-              <!-- Marketing -->
-              <fieldset class="syn-fieldset">
-                <!-- We will never do this, I promise! -->
-                <legend class="syn-legend">Please inform me about the following technologies</legend>
-                <syn-checkbox
-                  id="checkbox-newsletter-default"
-                  name="checkbox-newsletter-default"
-                >
-                  Please subscribe me to the synergy newsletter
-                </syn-checkbox>
-                <syn-checkbox
-                  id="checkbox-newsletter-angular"
-                  name="checkbox-newsletter-angular"
-                >
-                  Please subscribe me to all things related to angular
-                </syn-checkbox>
-                <syn-checkbox
-                  id="checkbox-newsletter-react"
-                  name="checkbox-newsletter-react"
-                >
-                  Please subscribe me to all things related to react
-                </syn-checkbox>
-                <syn-checkbox
-                  id="checkbox-newsletter-vanilla"
-                  name="checkbox-newsletter-vanilla"
-                >
-                  Please subscribe me to all things related to vanilla.js
-                </syn-checkbox>
-                <syn-checkbox
-                  id="checkbox-newsletter-vue"
-                  name="checkbox-newsletter-vue"
-                >
-                  Please subscribe me to all things related to vue
-                </syn-checkbox>
-                <syn-switch
-                  id="checkbox-newsletter-beta"
-                  name="checkbox-newsletter-beta"
-                >
-                  I am interested in the Synergy Beta Program
-                </syn-switch>
-              </fieldset>
-              <!-- /Marketing -->
-
-              <syn-divider></syn-divider>
-
-              <!-- AdditionalInformation -->
-              <fieldset class="syn-fieldset">
-                <legend class="syn-legend">Additional Information</legend>
-                <syn-textarea
-                  id="additional-info"
-                  label="Comment"
-                  name="comment"
-                  placeholder="Please provide additional information that might be helpful for your inquiry"
-                  rows="10"
-                ></syn-textarea>
-
-                <syn-file
-                  accept="image/*"
-                  droparea
-                  help-text="Please upload images only"
-                  id="screenshot"
-                  label="Optional Screenshot(s)"
-                  multiple
-                  name="files"
-                ></syn-file>
-
-              </fieldset>
-              <!-- /AdditionalInformation -->
-
-              <syn-divider></syn-divider>
-
-              <!-- Actions -->
-              <div class="syn-fieldset syn-submit-buttons">
-                <syn-button variant="outline" type="reset">Reset</syn-button>
-                <syn-button variant="filled" type="submit">Send</syn-button>
-              </div>
-              <!-- /Actions -->
-
-            </form>
-          </div>
-          <!-- /contact-form -->
 
         </main>
         <!-- /main.content -->

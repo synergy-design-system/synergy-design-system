@@ -27,7 +27,8 @@ syn-select:not(:defined),
 syn-side-nav:not(:defined),
 syn-tab-group:not(:defined),
 syn-tab-panel:not(:defined),
-syn-textarea:not(:defined) {
+syn-textarea:not(:defined),
+syn-validate:not(:defined) {
   display: block;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;

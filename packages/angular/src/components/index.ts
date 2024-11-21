@@ -48,3 +48,4 @@ export { SynTabPanelComponent } from './tab-panel.component';
 export { SynTagComponent } from './tag.component';
 export { SynTextareaComponent } from './textarea.component';
 export { SynTooltipComponent } from './tooltip.component';
+export { SynValidateComponent } from './validate.component';

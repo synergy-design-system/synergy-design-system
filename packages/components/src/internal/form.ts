@@ -8,6 +8,7 @@
 /* eslint-disable */
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type { SynergyFormControl } from '../internal/synergy-element.js';
+import type SynValidate from '../components/validate/validate.js';
 import type SynButton from '../components/button/button.js';
 
 //
@@ -420,7 +421,13 @@ export class FormControlController implements ReactiveController {
     host.toggleAttribute('data-optional', !required);
     host.toggleAttribute('data-invalid', !isValid);
     host.toggleAttribute('data-valid', isValid);
-    host.toggleAttribute('data-user-invalid', !isValid && hasInteracted);
+    const parent = host.parentElement;
+    if (parent && parent.tagName.toLocaleUpperCase() === 'SYN-VALIDATE') {
+      const isValidateValid = (parent as SynValidate).getValidity();
+      host.toggleAttribute('data-user-invalid', !isValid && !isValidateValid);
+    } else {
+      host.toggleAttribute('data-user-invalid', !isValid && hasInteracted);
+    }
     host.toggleAttribute('data-user-valid', isValid && hasInteracted);
   }
 

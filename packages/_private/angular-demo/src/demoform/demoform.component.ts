@@ -35,8 +35,6 @@ export class DemoForm {
 
   @ViewChild('form') form!: ElementRef<HTMLFormElement>;
 
-  @ViewChild('donationRef') donationRef!: ElementRef<SynRange>;
-
   formData!: FormGroup;
 
   nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];

@@ -49,6 +49,8 @@ export default class SynValidate extends SynergyElement {
 
   @state() lastTriggeredEvent = '';
 
+  @state() isValid = true;
+
   /**
    * The variant that should be used to show validation alerts.
    *
@@ -127,6 +129,14 @@ export default class SynValidate extends SynergyElement {
       this.setCustomValidationMessage(input);
       this.setValidationMessage(input);
     }
+  }
+
+  /**
+   * Returns the validity state of the input component.
+   * `true` for valid and `false` for invalid.
+   */
+  getValidity() {
+    return this.isValid;
   }
 
   /**
@@ -276,7 +286,7 @@ export default class SynValidate extends SynergyElement {
     }
 
     const input = e.currentTarget as HTMLInputElement;
-    const isValid = input.validity?.valid;
+    this.isValid = input.validity?.valid;
 
     // When we are using eager, make sure to skip focus on the first mount
     if (this.eager && this.eagerFirstMount) {
@@ -287,7 +297,7 @@ export default class SynValidate extends SynergyElement {
 
     // If the active element that has focus is placed in a validate component,
     // make sure to not loose focus.
-    if (!isValid && !isBlurEvent(e.type)) {
+    if (!this.isValid && !isBlurEvent(e.type)) {
       this.handleFocus(input);
     }
 
@@ -315,6 +325,7 @@ export default class SynValidate extends SynergyElement {
     if (this.eager) {
       const input = this.getInput();
       await this.updateComplete;
+      this.isValid = input?.validity?.valid ?? false;
       input?.reportValidity();
     }
   }

@@ -585,6 +585,8 @@ export declare const defaultIcons : {
   "do_not_step": string,
   "do_not_touch": string,
   "dock": string,
+  "dock_to_left": string,
+  "dock_to_right": string,
   "document_scanner": string,
   "domain": string,
   "domain_add": string,

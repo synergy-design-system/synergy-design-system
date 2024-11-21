@@ -590,7 +590,11 @@ type AttributeDescription = {
   description: {
     value: string;
     type: string;
-  }
+  },
+  note?: {
+    value: string;
+    type: string;
+  },
 }
 
 /**
@@ -603,7 +607,17 @@ type AttributeDescription = {
 export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => {
  // Exchange all \n with <br/>, because single line breaks with \n are not working in storybook
  const description = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description';
- return description.replace(/\n/g, '<br/>');
+ const hint = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.note?.value ?? '';
+
+const finalDescription = description.replace(/\n/g, '<br/>');
+const finalHint = hint.length > 0 
+  ? `
+
+  > **👨‍💻 Additional developer Information**:<br>
+  > ${hint.replace(/\n/g, '<br/>')}`
+  : hint;
+
+ return `${finalDescription}${finalHint}`;
 }
 
 

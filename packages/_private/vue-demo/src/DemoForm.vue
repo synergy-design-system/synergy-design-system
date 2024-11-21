@@ -172,7 +172,9 @@ const synChange = () => {
         v-model="formData.nationality"
         :getOption="highlightOptionRenderer"
       >
-        <SynVueOption  v-for="nationality in nationalities" :key="nationality">{{ nationality  }}</SynVueOption>
+        <SynVueOption v-for="nationality in nationalities" :key="nationality">
+          {{ nationality }}
+        </SynVueOption>
       </SynVueCombobox>
 
     </DemoFieldset>
@@ -257,9 +259,9 @@ const synChange = () => {
         label="I would donate between"
         :max="6000"
         :min="0"
-        :tooltip-formatter="(value) => formatter.format(value)"
         name="donations"
         v-model="formData.donations"
+        :tooltipFormatter="(value: number) => formatter.format(value)"
       >
         <nav slot="ticks">
           <SynVueRangeTick>0 €</SynVueRangeTick>

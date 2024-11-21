@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.8...components/2.12.0) (2024-11-21)
+
+
+### Features
+
+* ✨ provide accessible solution for validation ([#599](https://github.com/synergy-design-system/synergy-design-system/issues/599)) ([f8ef81a](https://github.com/synergy-design-system/synergy-design-system/commit/f8ef81a4a61af27fcb6de2c03ce13ef502fcb732))
+
 # [@synergy-design-system/components-v2.11.8](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.7...components/2.11.8) (2024-11-15)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.12.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.0...components/2.12.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* 🤔 Syn-radio uses wrong line-height when in multi-line mode ([#681](https://github.com/synergy-design-system/synergy-design-system/issues/681)) ([1638bd9](https://github.com/synergy-design-system/synergy-design-system/commit/1638bd91a55f45fedc3eada4b69c525c150b26a3))
+
 # [@synergy-design-system/components-v2.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.11.8...components/2.12.0) (2024-11-21)
 
 

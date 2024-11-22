@@ -9,11 +9,7 @@ import {
   generateStoryDescription,
   storybookDefaults,
 } from '../../src/helpers/component.js';
-import { type RenderArgs as BaseRenderArgs, renderStyles } from '../../src/helpers/styles.js';
-
-interface RenderArgs extends BaseRenderArgs {
-  'syn-link-list'?: string;
-}
+import { renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 const { args, argTypes } = storybookDefaults('syn-link-list');
@@ -35,7 +31,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-link-list',
   parameters: {
-    design: generateFigmaPluginObject('4415-2387'),
+    design: generateFigmaPluginObject('28388-133752'),
     docs: {
       description: {
         component: generateStoryDescription('styles', 'link-list'),

@@ -1,10 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-  ::slotted(syn-radio:not(:last-child)) {
-    margin-bottom: var(--syn-spacing-x-small);
-  }
-
   :host([data-user-invalid]) {
     --syn-input-border-color: var(--syn-input-border-color-focus-error);
     --syn-input-border-color-hover: var(--syn-input-border-color-focus-error);
@@ -15,6 +11,12 @@ export default css`
 
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {
     margin-top: var(--syn-spacing-x-small);
+  }
+
+  .form-control-input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-x-small);
   }
 
 `;

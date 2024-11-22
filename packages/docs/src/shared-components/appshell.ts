@@ -26,17 +26,8 @@ export const createFooter = () => html`
       margin: 0;
     }
 
-    .link-wrapper {
-      display: flex;
-      gap: var(--syn-spacing-large);
-      justify-content: center;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
     @container (max-width: 768px) {
-      .link-wrapper {
+      .syn-link-list {
         flex-direction: column;
         gap: var(--syn-spacing-small);
       }
@@ -49,15 +40,31 @@ export const createFooter = () => html`
     }
   </style>
   <footer class="synergy-footer-demo">
-    <div class="footer-content" aria-label="Footer navigation">
-      <nav class="link-wrapper">
-        <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">${getTranslation('footer.linksName.imprint')}</a>
-        <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">${getTranslation('footer.linksName.termsConditions')}</a>
-        <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">${getTranslation('footer.linksName.termsOfUse')}</a>
-        <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">${getTranslation('footer.linksName.privacyPolicy')}</a>
-      </nav>
+    <nav class="footer-content" aria-label="Footer navigation">
+      <ul class="syn-link-list syn-link-list--medium syn-link-list--horizontal">
+        <li>
+          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">
+            ${getTranslation('footer.linksName.imprint')}
+          </a>
+        </li>
+        <li>
+          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">
+            ${getTranslation('footer.linksName.termsConditions')}
+          </a>
+        </li>
+        <li>
+          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">
+            ${getTranslation('footer.linksName.termsOfUse')}
+          </a>
+        </li>
+        <li>
+          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">
+            ${getTranslation('footer.linksName.privacyPolicy')}
+          </a>
+        </li>
+      </ul>
       <p class="copyright">&copy; 2024 SICK AG</p>
-    </div>
+    </nav>
   </footer>
   <!-- /footer -->
 `;

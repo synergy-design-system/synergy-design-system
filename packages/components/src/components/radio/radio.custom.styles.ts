@@ -1,11 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-
-  .radio {
-    padding: var(--syn-spacing-2x-small) 0;
-  }
-
   :host(:focus-visible) .radio__control {
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-width);
@@ -22,10 +17,30 @@ export default css`
     border-color: var(--syn-color-primary-900);
   }
 
-  /*
- * Size modifiers
- */
+  /* Fix#456: Multi line radio fixes */
+  .radio__label {
+    margin-inline-start: var(--syn-spacing-x-small);
+    position: relative;
+  }
 
+  .radio--small .radio__label {
+    font: var(--syn-body-small-regular);
+    top: -3px;
+  }
+
+  .radio--medium .radio__label {
+    font: var(--syn-body-medium-regular);
+    top: -3px;
+  }
+
+  .radio--large .radio__label {
+    font: var(--syn-body-large-regular);
+    top: -2px;
+  }
+
+  /* /Fix#456 */
+
+  /* Size modifiers */
   .radio--small {
     --toggle-size: var(--syn-input-font-size-small);
   }

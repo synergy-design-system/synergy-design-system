@@ -24,6 +24,7 @@ const initialData = {
 
 @Component({
   selector: 'demo-form-validate',
+  standalone: false,
   styleUrls: ['./demoformvalidate.component.css'],
   templateUrl: './demoformvalidate.component.html',
 })

@@ -402,7 +402,7 @@ describe('when handling focus', () => {
       });
     });
   });
-});      
+});
 
 describe('when the value changes', () => {
   it('should emit syn-change when toggled with the arrow keys', async () => {

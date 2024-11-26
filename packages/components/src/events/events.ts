@@ -5,6 +5,7 @@
 // !!! and run `pnpm build` to recreate this index file
 export type * from './syn-after-hide.ts';
 export type * from './syn-after-show.ts';
+export type * from './syn-attributes-changed.ts';
 export type * from './syn-blur.ts';
 export type * from './syn-burger-menu-closed.ts';
 export type * from './syn-burger-menu-hidden.ts';

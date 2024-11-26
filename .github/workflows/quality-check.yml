@@ -7,7 +7,7 @@ on:
 jobs:
   quality-gate:
     name: Validate build, lint, vendor and git diff
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,7 +55,7 @@ jobs:
   test_components:
     name: Validate tests (components)
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: mcr.microsoft.com/playwright:v1.41.2-jammy
     steps:
@@ -89,7 +89,7 @@ jobs:
   test_e2e:
     name: Validate tests (e2e)
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
@@ -134,7 +134,7 @@ jobs:
 
   chromatic-deployment:
     name: Validate Chromatic
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
     needs: [quality-gate, test_components, test_e2e]

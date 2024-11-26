@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy-docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       # This waits until releases in `release.yml` are done to get the latest version
       - name: Wait for releases to be done

@@ -29,7 +29,6 @@ export const createFooter = () => html`
     @container (max-width: 768px) {
       .syn-link-list {
         flex-direction: column;
-        gap: var(--syn-spacing-small);
       }
 
       .footer-content {

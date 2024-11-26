@@ -12,7 +12,18 @@ import {
 import { renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
-const { args, argTypes } = storybookDefaults('syn-link-list');
+const {
+  args: defaultArgs,
+  argTypes: defaultArgTypes,
+} = storybookDefaults('syn-link-list');
+
+const args = { ...defaultArgs };
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+delete args['default-slot'];
+
+const argTypes = { ...defaultArgTypes };
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+delete argTypes['default-slot'];
 
 const generateLinks = (amount = 4, size = 'medium') => new Array(amount)
   .fill(undefined)

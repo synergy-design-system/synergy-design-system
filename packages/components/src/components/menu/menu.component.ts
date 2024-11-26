@@ -45,7 +45,7 @@ export default class SynMenu extends SynergyElement {
   }
 
   private updateCheckMarksByChildPropChange = (e: SynAttributesChangedEvent) => {
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     this.handleUpdateCheckmarks(this.getAllItems());
   };
   

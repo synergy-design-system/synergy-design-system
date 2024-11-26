@@ -25,7 +25,7 @@ import type { SynAttributesChangedEvent } from '../../events/syn-attributes-chan
   }
 
   private updateCheckMarksByChildPropChange = (e: SynAttributesChangedEvent) => {
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     this.handleUpdateCheckmarks(this.getAllItems());
   };
   

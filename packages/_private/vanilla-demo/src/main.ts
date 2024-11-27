@@ -3,6 +3,7 @@
 import {
   type SynChangeEvent,
   type SynSwitch,
+  registerIconLibrary,
 } from '@synergy-design-system/components';
 
 // Load webfonts
@@ -18,6 +19,7 @@ import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
+import { createLayout } from './layout.js';
 import { initRouting } from './routing.js';
 import { capitalize } from './utils.js';
 
@@ -36,7 +38,16 @@ const initThemeSwitch = async () => {
 };
 
 const bootstrap = async () => {
+  registerIconLibrary('default', {
+    resolver: name => `/synergy-icon-sprites.svg#${name}`,
+    spriteSheet: true,
+  });
+
   await customElements.whenDefined('syn-nav-item');
+
+  // Finally load the page layout
+  document.querySelector('#root')!.innerHTML = createLayout();
+
   await initRouting();
   await initThemeSwitch();
 };

@@ -95,7 +95,7 @@ await rimraf('./src');
 await fetchAssets();
 if (fs.existsSync('./src/icons')) {
   await optimizeSVGs('./src/icons');
-  await bundleIcons('./src/icons', './src/default-icons.js');
+  await bundleIcons('./src/icons', './src/default-icons.ts');
 }
 
 if (fs.existsSync('./src/system-icons')) {

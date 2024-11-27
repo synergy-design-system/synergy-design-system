@@ -13,6 +13,7 @@
   },
   "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.2",
     "@storybook/addon-a11y": "^8.4.1",
     "@storybook/addon-designs": "^8.0.4",
     "@storybook/addon-essentials": "^8.4.1",
@@ -67,6 +68,7 @@
   },
   "scripts": {
     "build": "storybook build --output-dir dist",
+    "build-storybook": "pnpm build",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",

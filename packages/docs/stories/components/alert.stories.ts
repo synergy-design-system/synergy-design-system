@@ -75,7 +75,7 @@ export const Variants: Story = {
   },
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
-      <syn-alert variant="primary" open>
+      <syn-alert variant="primary" open id="something">
         <syn-icon slot="icon" name="info"></syn-icon>
         <strong>This is super informative</strong><br />
         You can tell by how pretty the alert is.
@@ -105,6 +105,11 @@ export const Variants: Story = {
         We're very sorry to see you go!
       </syn-alert>
     </div>
+    <style>
+      #something::part(base) {
+        overflow: hidden; 
+      }
+    </style>
   `,
 };
 

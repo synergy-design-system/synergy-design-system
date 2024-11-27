@@ -11,5 +11,5 @@
     "types": ["node"],
     "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["src", "scripts"]
 }

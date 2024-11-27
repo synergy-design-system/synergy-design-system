@@ -1,0 +1,3 @@
+syn-combobox::part(listbox) {
+  max-height: min(var(--auto-size-available-height), 300px);
+}

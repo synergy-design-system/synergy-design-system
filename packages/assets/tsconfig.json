@@ -4,18 +4,12 @@
     "target": "es2020",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": [
-      "es2020"
-    ],
+    "lib": ["es2020"],
     "strict": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "types": [
-      "node"
-    ],
-    "outDir": "dist",
+    "types": ["node"],
+    "outDir": "dist"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

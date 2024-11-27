@@ -19,8 +19,7 @@ export const createSpriteSheet = (icons: IconKeys[]) => {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([key, value]) => value
       .replace('<svg', `<symbol id="${key}"`)
-      .replace('</svg>', '</symbol>')
-    );
+      .replace('</svg>', '</symbol>'));
 
   return `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

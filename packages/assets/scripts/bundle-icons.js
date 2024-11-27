@@ -31,7 +31,7 @@ export async function bundleIcons(svgDirPath, outputFile) {
       }
     }
 
-    const jsData = `export const defaultIcons = ${JSON.stringify(jsContent, null, 2)};`;
+    const jsData = `/* eslint-disable */\nexport const defaultIcons = ${JSON.stringify(jsContent, null, 2)};`;
 
     const writeFiles = [
       fs.writeFile(outputFile, jsData),

@@ -124,10 +124,10 @@ export const footer = {
     privacyPolicy: 'Privacy Policy',
   },
   linksHref: {
-    imprint: 'https://www.sick.com/de/en/s/imprint',
-    termsConditions: 'https://www.sick.com/de/en/general-terms-and-conditions/w/tac/',
-    termsOfUse: 'https://www.sick.com/de/en/s/terms-of-use',
-    privacyPolicy: 'https://www.sick.com/de/en/sick-data-privacy-declaration/w/dataprotection/',
+    imprint: 'https://www.sick.com/imprint',
+    termsConditions: 'https://www.sick.com/tac',
+    termsOfUse: 'https://www.sick.com/terms-of-use',
+    privacyPolicy: 'https://www.sick.com/dataprotection',
   },
   copyRight: '© 2024 SICK AG',
 };

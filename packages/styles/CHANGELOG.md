@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.4.0...styles/1.5.0) (2024-11-27)
+
+
+### Features
+
+* ✨ Create styles for a syn-link-list ([#678](https://github.com/synergy-design-system/synergy-design-system/issues/678)) ([ca3b99a](https://github.com/synergy-design-system/synergy-design-system/commit/ca3b99a828e2a078b538881f74324d0bee8fde66))
+
 # [@synergy-design-system/styles-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.3.0...styles/1.4.0) (2024-10-11)
 
 

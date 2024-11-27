@@ -2,10 +2,10 @@
 import React, {
   FC, MouseEvent, useEffect, useRef, useState,
 } from 'react';
-import '../../../components/src/components/icon/icon.js';
-import '../../../components/src/components/input/input.js';
-import '../../../components/src/components/combobox/combobox.js';
-import { type SynCombobox, type SynInput } from '@synergy-design-system/components';
+import {
+  SynCombobox, SynIcon, SynInput, SynOption,
+} from '@synergy-design-system/react';
+import type { SynCombobox as SynComboboxType, SynInput as SynInputType } from '@synergy-design-system/components';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 import materialIconsMetatdata from '../materialIconsMetadata.json';
@@ -16,19 +16,6 @@ type FontIcon = {
   categories: Array<string>,
   tags: Array<string>,
 };
-
-// Make sure ts is not sad about custom elements
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      ['syn-icon']: unknown;
-      ['syn-input']: unknown;
-      ['syn-combobox']: unknown;
-      ['syn-option']: unknown;
-    }
-  }
-}
 
 const filterForCategory = (category: string) => (icon: FontIcon) => icon.categories && icon.categories.includes(category);
 
@@ -79,21 +66,21 @@ const registerIcons = () => {
 const allIcons = getAllIcons();
 
 export const IconsSearchPage: FC = () => {
-  const searchInput = useRef<SynInput>(null);
-  const combobox = useRef<SynCombobox>(null);
+  const searchInput = useRef<SynInputType>(null);
+  const combobox = useRef<SynComboboxType>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [categories, setCategories] = useState<Array<string>>([]);
 
   useEffect(() => {
     registerIcons();
-
-    searchInput.current?.addEventListener('syn-input', () => {
-      setSearchTerm(searchInput.current?.value.toLowerCase() || '');
-    });
-    combobox.current?.addEventListener('syn-input', () => {
-      setSearchTerm(combobox.current?.value.toLowerCase() || '');
-    });
   }, []);
+
+  const handleSearchTermChange = () => {
+    setSearchTerm(searchInput.current?.value.toLowerCase() || '');
+
+    // uncomment this and comment out the line above to see the delays
+    // setSearchTerm(combobox.current?.value.toLowerCase() || '');
+  };
 
   useEffect(() => {
     setCategories(getCategoriesWithIcons(searchTerm));
@@ -102,15 +89,16 @@ export const IconsSearchPage: FC = () => {
   return (
     <div>
       <div>
-        <syn-input ref={searchInput} label="Search icons"></syn-input>
+        <SynInput ref={searchInput} label="Search icons" onSynInput={handleSearchTermChange}></SynInput>
         {/* Enable following comment to check out the combobox and have a look at the delays when commenting it in */}
-        {/* <syn-combobox ref={combobox} label="Search icons" clearable >
+        {/* <SynCombobox ref={combobox} label="Search icons" clearable onSynInput={handleSearchTermChange}>
           {allIcons.map((icon) => (
-            <syn-option key={icon}>
-              <syn-icon slot="prefix" name={icon} library="bundled-default"></syn-icon>
+            <SynOption key={icon}>
+              <SynIcon slot="prefix" name={icon} library="bundled-default"></SynIcon>
               {icon}
-            </syn-option>))}
-        </syn-combobox> */}
+            </SynOption>))
+          }
+        </SynCombobox> */}
         {categories.map((category) => (
           <div key={category}>
             <h2 style={{ marginTop: 'var(--syn-spacing-3x-large)' }} id={category}>{category}</h2>
@@ -128,7 +116,7 @@ export const IconsSearchPage: FC = () => {
                   onClick={copyToClipboard}
                 >
                   <span data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-x-small)' }}>{icon}</span>
-                  <syn-icon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library="bundled-default"></syn-icon>
+                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library="bundled-default"></SynIcon>
                 </div>
               ))}
             </div>

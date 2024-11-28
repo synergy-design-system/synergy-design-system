@@ -59,23 +59,13 @@ const transformComponent = (path, originalContent) => {
       'this.indicator.style.translate = `0 ${offset.top}px`;',
       "this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-small)' : '0px' })`;",
     ],
-
-    // Make sure we don't unobserve an undefined element
-    // @todo: Remove when shoelace ships this fix
-    [
-      'this.resizeObserver?.unobserve(this.nav);', `
-      if (this.nav) {
-      this.resizeObserver?.unobserve(this.nav);
-    }
-    `.trim(),
-    ],
   ], originalContent);
 
   content = removeSections([
     // isRtl check is no longer needed, as it is used nowhere
     [
       'render() {',
-      "const isRtl = this.matches(':dir(rtl)');", { preserveStart: true, removePrecedingWhitespace: false },
+      "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false },
     ],
 
     // remove 'bottom' placement

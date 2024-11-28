@@ -84,6 +84,7 @@ import {
     useExisting: forwardRef(() => SynDefaultValueAccessor),
   }],
   selector: \`${createSelectors(defaultSelectors)}\`,
+  standalone: false,
   host: {
     // Overwrite the input event, because we only emit syn-input event
     '(syn-input)': '$any(this)._handleInput($event.target.value)',
@@ -101,6 +102,7 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor { }
     useExisting: forwardRef(() => SynCheckedValueAccessor),
   }],
   selector: \`${createSelectors(checkedSelectors)}\`,
+  standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: { '(syn-change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()' },
 })
@@ -113,6 +115,7 @@ export class SynCheckedValueAccessor extends CheckboxControlValueAccessor { }
     useExisting: forwardRef(() => SynFileValueAccessor),
   }],
   selector: \`${createSelectors(fileSelectors)}\`,
+  standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: {
     '(syn-change)': 'onChange($event.target.files)',

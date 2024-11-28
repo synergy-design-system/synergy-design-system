@@ -170,6 +170,11 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-large);
   }
 
+  .combobox--large.combobox--multiple .combobox__inputs {
+    padding-inline-start: 0;
+    padding-block: 4px;
+  }
+
 /* Prefix and Suffix */
   .combobox__prefix,
   .combobox__suffix {

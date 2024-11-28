@@ -48,6 +48,7 @@ export const SYN_MIN_VALIDATOR: Provider = {
 @Directive({
   // This validator is needed, because angular specifies the min validator especially only for \`<input />\` elements. See https://github.com/angular/angular/blob/e603e5616d2c3830a641d4cf76c891af0059798c/packages/forms/src/directives/validators.ts#L276
   selector: 'syn-input[type=number][min][formControlName],syn-input[type=number][min][formControl],syn-input[type=number][min][ngModel]',
+  standalone: false,
   providers: [SYN_MIN_VALIDATOR],
   host: {'[attr.min]': '_enabled ? min : null'},
 })
@@ -82,6 +83,7 @@ export const SYN_MAX_VALIDATOR: Provider = {
 @Directive({
   // This validator is needed, because angular specifies the max validator especially only for \`<input />\` elements. See https://github.com/angular/angular/blob/e603e5616d2c3830a641d4cf76c891af0059798c/packages/forms/src/directives/validators.ts#L224
   selector: 'syn-input[type=number][max][formControlName],syn-input[type=number][max][formControl],syn-input[type=number][max][ngModel]',
+  standalone: false,
   providers: [SYN_MAX_VALIDATOR],
   host: {'[attr.max]': '_enabled ? max : null'},
 })
@@ -113,6 +115,7 @@ export const SYN_CHECKBOX_REQUIRED_VALIDATOR: Provider = {
 @Directive({
   // This validator is needed, because angular specifies the required checkbox validator especially only for \`<input type="checkbox"/>\` elements. See https://github.com/angular/angular/blob/e603e5616d2c3830a641d4cf76c891af0059798c/packages/forms/src/directives/validators.ts#L429 
   selector: 'syn-checkbox[required][formControlName],syn-checkbox[required][formControl],syn-checkbox[required][ngModel]',
+  standalone: false,
   providers: [SYN_CHECKBOX_REQUIRED_VALIDATOR],
   host: {'[attr.required]': '_enabled ? "" : null'},
 })

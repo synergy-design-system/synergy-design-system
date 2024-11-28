@@ -195,7 +195,7 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-medium);
   }
 
-  .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
+  .select--medium.select--multiple .select__combobox {
     padding-inline-start: 0;
     padding-block: 3px;
   }
@@ -224,7 +224,7 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-large);
   }
 
-  .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
+  .select--large.select--multiple .select__combobox {
     padding-inline-start: 0;
     padding-block: 4px;
   }

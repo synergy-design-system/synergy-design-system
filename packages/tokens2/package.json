@@ -1,0 +1,44 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Design tokens for the SICK Design System",
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@types/node": "^20.17.6",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.31.0",
+    "style-dictionary": "^4.2.0",
+    "stylelint": "^16.10.0",
+    "typescript": "^5.7.2"
+  },
+  "exports": {},
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "Synergy Design System",
+    "Design Tokens"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/tokens2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/tokens"
+  },
+  "scripts": {
+    "build": "echo 'No build necessary for tokens2 package.'",
+    "lint:css": "stylelint \"dist/**/*.css\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

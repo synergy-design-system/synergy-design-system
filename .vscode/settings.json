@@ -17,6 +17,7 @@
     "packages/angular",
     "packages/react",
     "packages/tokens",
+    "packages/tokens2",
     "packages/vue"
   ],
   "files.readonlyInclude": {

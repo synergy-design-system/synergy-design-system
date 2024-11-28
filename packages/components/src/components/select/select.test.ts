@@ -214,6 +214,29 @@ describe('<syn-select>', () => {
 
       expect(handler).to.be.calledTwice;
     });
+
+    // this can happen in on ms-edge autofilling an associated input element in the same form
+    // https://github.com/synergy-design-system/synergy/issues/2117
+    it('should not throw on incomplete events', async () => {
+      const el = await fixture<SynSelect>(html`
+        <syn-select required>
+          <syn-option value="option-1">Option 1</syn-option>
+        </syn-select>
+      `);
+
+      const event = new KeyboardEvent('keydown');
+      Object.defineProperty(event, 'target', { writable: false, value: el });
+      Object.defineProperty(event, 'key', { writable: false, value: undefined });
+
+      /**
+       * If Edge does autofill, it creates a broken KeyboardEvent
+       * which is missing the key value.
+       * Using the normal dispatch mechanism does not allow to do this
+       * Thus passing the event directly to the private method for testing
+       *
+       * @ts-expect-error */
+      el.handleDocumentKeyDown(event);
+    });
   });
 
   it('should open the listbox when any letter key is pressed with syn-select is on focus', async () => {
@@ -587,6 +610,129 @@ describe('<syn-select>', () => {
     await el.hide();
     expect(hideHandler).to.have.been.calledOnce;
     expect(afterHideHandler).to.have.been.calledOnce;
+  });
+  describe('With lazily loaded options', () => {
+    describe('With no existing options', () => {
+      it('Should wait to select the option when the option exists for single select', async () => {
+        const form = await fixture<HTMLFormElement>(
+          html`<form><syn-select name="select" value="option-1"></syn-select></form>`
+        );
+        const el = form.querySelector<SynSelect>('syn-select')!;
+
+        await aTimeout(10);
+        expect(el.value).to.equal('');
+        expect(new FormData(form).get('select')).equal('');
+
+        const option = document.createElement('syn-option');
+        option.value = 'option-1';
+        option.innerText = 'Option 1';
+        el.append(option);
+
+        await aTimeout(10);
+        await el.updateComplete;
+        expect(el.value).to.equal('option-1');
+        expect(new FormData(form).get('select')).equal('option-1');
+      });
+
+      it('Should wait to select the option when the option exists for multiple select', async () => {
+        const form = await fixture<HTMLFormElement>(
+          html`<form><syn-select name="select" value="option-1" multiple></syn-select></form>`
+        );
+
+        const el = form.querySelector<SynSelect>('syn-select')!;
+        expect(Array.isArray(el.value)).to.equal(true);
+        expect(el.value.length).to.equal(0);
+
+        const option = document.createElement('syn-option');
+        option.value = 'option-1';
+        option.innerText = 'Option 1';
+        el.append(option);
+
+        await aTimeout(10);
+        await el.updateComplete;
+        expect(el.value.length).to.equal(1);
+        expect(el.value).to.have.members(['option-1']);
+        expect(new FormData(form).getAll('select')).have.members(['option-1']);
+      });
+    });
+
+    describe('With existing options', () => {
+      it('Should not select the option if options already exist for single select', async () => {
+        const form = await fixture<HTMLFormElement>(
+          html` <form>
+            <syn-select name="select" value="foo">
+              <syn-option value="bar">Bar</syn-option>
+              <syn-option value="baz">Baz</syn-option>
+            </syn-select>
+          </form>`
+        );
+
+        const el = form.querySelector<SynSelect>('syn-select')!;
+        expect(el.value).to.equal('');
+        expect(new FormData(form).get('select')).to.equal('');
+
+        const option = document.createElement('syn-option');
+        option.value = 'foo';
+        option.innerText = 'Foo';
+        el.append(option);
+
+        await aTimeout(10);
+        await el.updateComplete;
+        expect(el.value).to.equal('foo');
+        expect(new FormData(form).get('select')).to.equal('foo');
+      });
+
+      it('Should not select the option if options already exists for multiple select', async () => {
+        const form = await fixture<HTMLFormElement>(
+          html` <form>
+            <syn-select name="select" value="foo" multiple>
+              <syn-option value="bar">Bar</syn-option>
+              <syn-option value="baz">Baz</syn-option>
+            </syn-select>
+          </form>`
+        );
+
+        const el = form.querySelector<SynSelect>('syn-select')!;
+        expect(el.value).to.be.an('array');
+        expect(el.value.length).to.equal(0);
+
+        const option = document.createElement('syn-option');
+        option.value = 'foo';
+        option.innerText = 'Foo';
+        el.append(option);
+
+        await aTimeout(10);
+        await el.updateComplete;
+        expect(el.value).to.have.members(['foo']);
+        expect(new FormData(form).getAll('select')).to.have.members(['foo']);
+      });
+
+      it('Should only select the existing options if options already exists for multiple select', async () => {
+        const form = await fixture<HTMLFormElement>(
+          html` <form>
+            <syn-select name="select" value="foo bar baz" multiple>
+              <syn-option value="bar">Bar</syn-option>
+              <syn-option value="baz">Baz</syn-option>
+            </syn-select>
+          </form>`
+        );
+
+        const el = form.querySelector<SynSelect>('syn-select')!;
+        expect(el.value).to.have.members(['bar', 'baz']);
+        expect(el.value.length).to.equal(2);
+        expect(new FormData(form).getAll('select')).to.have.members(['bar', 'baz']);
+
+        const option = document.createElement('syn-option');
+        option.value = 'foo';
+        option.innerText = 'Foo';
+        el.append(option);
+
+        await aTimeout(10);
+        await el.updateComplete;
+        expect(el.value).to.have.members(['foo', 'bar', 'baz']);
+        expect(new FormData(form).getAll('select')).to.have.members(['foo', 'bar', 'baz']);
+      });
+    });
   });
 
   runFormControlBaseTests('syn-select');

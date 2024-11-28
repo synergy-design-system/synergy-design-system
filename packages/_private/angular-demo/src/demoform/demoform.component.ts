@@ -28,6 +28,7 @@ const initialData = {
 
 @Component({
   selector: 'demo-form',
+  standalone: false,
   styleUrls: ['./demoform.component.css'],
   templateUrl: './demoform.component.html',
 })

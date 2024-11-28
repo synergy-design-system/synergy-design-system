@@ -13,13 +13,19 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  const content = removeSections([
+  const contentWithRemovedStyles = removeSections([
     ['/** Draws a filled', 'filled = false;'],
     ["'select--filled", ','],
     ['/** Draws a pill-style', ';'],
     ['?pill', 'pill}'],
     ["'select--pill'", ','],
   ], originalContent);
+
+  // Quickfix, needed until shoelace updates the select components whenDefined selector
+  const content = contentWithRemovedStyles.replaceAll(
+    'wa-option',
+    'syn-option',
+  );
 
   return {
     content,

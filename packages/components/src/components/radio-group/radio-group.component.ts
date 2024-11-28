@@ -204,8 +204,8 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   private handleLabelClick() {
     this.focus();
   }
-      
-private handleInvalid(event: Event) {
+
+  private handleInvalid(event: Event) {
     this.formControlController.setValidity(false);
     this.formControlController.emitInvalidEvent(event);
   }
@@ -341,8 +341,8 @@ private handleInvalid(event: Event) {
       radioToFocus.focus(options);
     }
   }
-      
-render() {
+
+  render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

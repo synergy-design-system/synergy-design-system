@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.1...components/2.13.0) (2024-11-28)
+
+
+### Features
+
+* ✨ Update packages to latest versions ([#688](https://github.com/synergy-design-system/synergy-design-system/issues/688)) ([37fd055](https://github.com/synergy-design-system/synergy-design-system/commit/37fd055f0b4d067ea1afecb90a1bd1390de4d382))
+
 # [@synergy-design-system/components-v2.12.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.0...components/2.12.1) (2024-11-22)
 
 

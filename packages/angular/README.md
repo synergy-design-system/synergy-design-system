@@ -9,7 +9,7 @@ It aims for an improved UX when used in Angular applications:
 - Auto-completion
 - Event handling
 
-> We are currently supporting Angular version ^16.2.12, ^17.0.0 and ^18.0.0 as well as Typescript version > 5.0.0.
+> We are currently supporting Angular version ^16.2.12, ^17.0.0, ^18.0.0 and ^19.0.0 as well as Typescript version > 5.0.0.
 
 ## Known issues and limitations
 

@@ -9,6 +9,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { getTextContent, HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
 import { SubmenuController } from './submenu-controller.js';
 import { watch } from '../../internal/watch.js';
@@ -60,6 +61,7 @@ export default class SynMenuItem extends SynergyElement {
   };
 
   private cachedTextLabel: string;
+  private readonly localize = new LocalizeController(this);
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.menu-item') menuItem: HTMLElement;
@@ -166,7 +168,7 @@ export default class SynMenuItem extends SynergyElement {
   }
 
   render() {
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.localize.dir() === 'rtl';
     const isSubmenuExpanded = this.submenuController.isExpanded();
 
     return html`

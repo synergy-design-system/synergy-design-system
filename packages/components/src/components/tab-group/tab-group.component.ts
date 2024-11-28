@@ -56,14 +56,13 @@ export default class SynTabGroup extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton, 'syn-resize-observer': SynResizeObserver };
 
-  private readonly localize = new LocalizeController(this);
-
   private activeTab?: SynTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
   private tabs: SynTab[] = [];
   private focusableTabs: SynTab[] = [];
   private panels: SynTabPanel[] = [];
+  private readonly localize = new LocalizeController(this);
 
   @query('.tab-group') tabGroup: HTMLElement;
   @query('.tab-group__body') body: HTMLSlotElement;
@@ -145,6 +144,7 @@ export default class SynTabGroup extends SynergyElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.mutationObserver?.disconnect();
+
     if (this.nav) {
       this.resizeObserver?.unobserve(this.nav);
     }
@@ -200,7 +200,7 @@ export default class SynTabGroup extends SynergyElement {
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = this.tabs.find(t => t.matches(':focus'));
-      const isRtl = this.matches(':dir(rtl)');
+      const isRtl = this.localize.dir() === 'rtl';
       let nextTab: null | SynTab = null;
 
       if (activeEl?.tagName.toLowerCase() === 'syn-tab') {
@@ -320,7 +320,7 @@ export default class SynTabGroup extends SynergyElement {
 
     const width = currentTab.clientWidth;
     const height = currentTab.clientHeight;
-    const isRtl = this.matches(':dir(rtl)');
+    const isRtl = this.localize.dir() === 'rtl';
 
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069

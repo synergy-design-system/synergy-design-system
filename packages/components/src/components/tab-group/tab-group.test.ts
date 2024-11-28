@@ -92,6 +92,13 @@ describe('<syn-tab-group>', () => {
     expect(tabGroup).to.be.visible;
   });
 
+  it('should not throw error when unmounted too fast', async () => {
+    const el = await fixture(html` <div></div> `);
+
+    el.innerHTML = '<syn-tab-group></syn-tab-group>';
+    el.innerHTML = '';
+  });
+
   it('is accessible', async () => {
     const tabGroup = await fixture<SynTabGroup>(html`
       <syn-tab-group>

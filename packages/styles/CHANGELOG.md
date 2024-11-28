@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.5.0...styles/1.6.0) (2024-11-28)
+
+
+### Features
+
+* ✨ Update packages to latest versions ([#688](https://github.com/synergy-design-system/synergy-design-system/issues/688)) ([37fd055](https://github.com/synergy-design-system/synergy-design-system/commit/37fd055f0b4d067ea1afecb90a1bd1390de4d382))
+
 # [@synergy-design-system/styles-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.4.0...styles/1.5.0) (2024-11-27)
 
 

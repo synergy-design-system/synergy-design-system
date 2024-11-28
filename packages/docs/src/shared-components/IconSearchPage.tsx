@@ -2,14 +2,12 @@
 import React, {
   FC, MouseEvent, useEffect, useRef, useState,
 } from 'react';
-import {
-  SynCombobox, SynIcon, SynInput, SynOption,
-} from '@synergy-design-system/react';
-import type { SynCombobox as SynComboboxType, SynInput as SynInputType } from '@synergy-design-system/components';
+import { SynIcon, SynInput } from '@synergy-design-system/react';
+import type { SynInput as SynInputType } from '@synergy-design-system/components';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
+// If an update is done to the icons, the metadata file of material icons need to be updated. This file can be found here: https://fonts.google.com/metadata/icons
 import materialIconsMetatdata from '../materialIconsMetadata.json';
-import './IconSearchPage.css';
 
 type FontIcon = {
   name: string,
@@ -17,20 +15,27 @@ type FontIcon = {
   tags: Array<string>,
 };
 
+const synergyIcons = Object.keys(defaultIcons).map((iconName) => {
+  const metadata = materialIconsMetatdata.icons.find((icon: FontIcon) => icon.name === iconName);
+  return {
+    categories: metadata ? metadata.categories : ['No category'],
+    name: iconName,
+    tags: metadata ? metadata.tags : [],
+  };
+});
+
 const filterForCategory = (category: string) => (icon: FontIcon) => icon.categories && icon.categories.includes(category);
 
 const filterForSearchTerm = (searchTerm: string) => (icon: FontIcon) => (searchTerm === '' || icon.name.includes(searchTerm) || !!(icon.tags && icon.tags.some(tag => tag.includes(searchTerm))));
 
-const getIconsForCategoryAndSearchTerm = (category: string, searchTerm: string): string[] => materialIconsMetatdata.icons
+const getIconsForCategoryAndSearchTerm = (category: string, searchTerm: string): string[] => synergyIcons
   .filter(filterForCategory(category))
   .filter(filterForSearchTerm(searchTerm))
   .map((icon: FontIcon) => icon.name);
 
-const getAllIcons = () => materialIconsMetatdata.icons.map((icon: FontIcon) => icon.name);
-
 const getCategoriesWithIcons = (searchTerm: string): string[] => {
   const categories = new Set<string>();
-  materialIconsMetatdata.icons.forEach((icon: FontIcon) => {
+  synergyIcons.forEach((icon: FontIcon) => {
     if (filterForSearchTerm(searchTerm)(icon)) {
       icon.categories.forEach((category: string) => categories.add(category));
     }
@@ -62,12 +67,8 @@ const registerIcons = () => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const allIcons = getAllIcons();
-
 export const IconsSearchPage: FC = () => {
   const searchInput = useRef<SynInputType>(null);
-  const combobox = useRef<SynComboboxType>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [categories, setCategories] = useState<Array<string>>([]);
 
@@ -77,9 +78,6 @@ export const IconsSearchPage: FC = () => {
 
   const handleSearchTermChange = () => {
     setSearchTerm(searchInput.current?.value.toLowerCase() || '');
-
-    // uncomment this and comment out the line above to see the delays
-    // setSearchTerm(combobox.current?.value.toLowerCase() || '');
   };
 
   useEffect(() => {
@@ -87,18 +85,13 @@ export const IconsSearchPage: FC = () => {
   }, [searchTerm]);
 
   return (
-    <div>
-      <div>
+    <>
+      <div style={{
+        backgroundColor: 'var(--syn-color-neutral-0)', paddingTop: 'var(--syn-spacing-x-large)', position: 'sticky', top: 0, zIndex: 10,
+      }}>
         <SynInput ref={searchInput} label="Search icons" onSynInput={handleSearchTermChange}></SynInput>
-        {/* Enable following comment to check out the combobox and have a look at the delays when commenting it in */}
-        {/* <SynCombobox ref={combobox} label="Search icons" clearable onSynInput={handleSearchTermChange}>
-          {allIcons.map((icon) => (
-            <SynOption key={icon}>
-              <SynIcon slot="prefix" name={icon} library="bundled-default"></SynIcon>
-              {icon}
-            </SynOption>))
-          }
-        </SynCombobox> */}
+      </div>
+      <div>
         {categories.map((category) => (
           <div key={category}>
             <h2 style={{ marginTop: 'var(--syn-spacing-3x-large)' }} id={category}>{category}</h2>
@@ -123,6 +116,6 @@ export const IconsSearchPage: FC = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };

@@ -203,7 +203,7 @@ export class SubmenuController implements ReactiveController {
   private handlePopupReposition = () => {
     const submenuSlot: HTMLSlotElement | null = this.host.renderRoot.querySelector("slot[name='submenu']");
     const menu = submenuSlot?.assignedElements({ flatten: true }).filter(el => el.localName === 'syn-menu')[0];
-    const isRtl = this.host.matches(':dir(rtl)');
+    const isRtl = getComputedStyle(this.host).direction === 'rtl';
     if (!menu) {
       return;
     }
@@ -267,7 +267,7 @@ export class SubmenuController implements ReactiveController {
   }
 
   renderSubmenu() {
-    const isRtl = this.host.matches(':dir(rtl)');
+    const isRtl = getComputedStyle(this.host).direction === 'rtl';
 
     // Always render the slot, but conditionally render the outer <syn-popup>
     if (!this.isConnected) {

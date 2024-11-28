@@ -32,6 +32,7 @@ import {
     syn-range[formControlName], syn-range[formControl], syn-range[ngModel],
     syn-select[formControlName], syn-select[formControl], syn-select[ngModel],
     syn-textarea[formControlName], syn-textarea[formControl], syn-textarea[ngModel]`,
+  standalone: false,
   host: {
     // Overwrite the input event, because we only emit syn-input event
     '(syn-input)': '$any(this)._handleInput($event.target.value)',
@@ -52,6 +53,7 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor {}
   ],
   selector: `syn-checkbox[formControlName], syn-checkbox[formControl], syn-checkbox[ngModel],
     syn-switch[formControlName], syn-switch[formControl], syn-switch[ngModel]`,
+  standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: {
     '(syn-change)': 'onChange($event.target.checked)',
@@ -69,6 +71,7 @@ export class SynCheckedValueAccessor extends CheckboxControlValueAccessor {}
     },
   ],
   selector: `syn-file[formControlName], syn-file[formControl], syn-file[ngModel]`,
+  standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: {
     '(syn-change)': 'onChange($event.target.files)',

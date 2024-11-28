@@ -1,0 +1,20 @@
+{
+  "panel": {
+    "background": {
+      "color": {
+        "value": "{neutral.0}",
+        "type": "color"
+      }
+    },
+    "border": {
+      "color": {
+        "value": "{neutral.300}",
+        "type": "color"
+      },
+      "width": {
+        "value": "{border-width.small}",
+        "type": "borderWidth"
+      }
+    }
+  }
+}

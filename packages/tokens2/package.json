@@ -37,7 +37,8 @@
     "build": "echo 'No build necessary for tokens2 package.'",
     "lint:css": "stylelint \"dist/**/*.css\"",
     "lint:js": "eslint src",
-    "lint": "pnpm run /^lint:.*/"
+    "lint": "pnpm run /^lint:.*/",
+    "verify": "pnpm build && pnpm run -C ../tokens build && diff -r dist ../tokens/dist"
   },
   "type": "module",
   "version": "0.1.0"

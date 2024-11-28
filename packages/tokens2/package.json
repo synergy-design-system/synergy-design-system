@@ -35,8 +35,8 @@
   },
   "scripts": {
     "build": "echo 'No build necessary for tokens2 package.'",
-    "lint:css": "stylelint \"dist/**/*.css\"",
-    "lint:js": "eslint src",
+    "lint:css": "stylelint --allow-empty-input \"dist/**/*.css\"",
+    "lint:js": "eslint scripts",
     "lint": "pnpm run /^lint:.*/",
     "verify": "pnpm build && pnpm run -C ../tokens build && diff -r dist ../tokens/dist"
   },

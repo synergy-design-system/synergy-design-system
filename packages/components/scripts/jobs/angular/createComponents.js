@@ -50,7 +50,7 @@ const getEventOutputs = ({
     @Output() ${lcFirstLetter(event.eventName)} = new EventEmitter<${event.eventName}>();
   `);
 
-  // Add support for two way databinding
+  // Add support for two way data binding
   if (getIsTwoWayBindingEnabledFor(tagNameWithoutPrefix)) {
     const control = getControlAttributeForTwoWayBinding(tagNameWithoutPrefix);
     exportedEvents.push(`
@@ -62,16 +62,30 @@ const getEventOutputs = ({
 };
 
 const getAttributeInputs = (componentName, attributes = []) => attributes
-  .map(attr => `
-    ${createComment(attr.description || '')}
-    @Input()
-    set ${attr.fieldName}(v: ${componentName}['${attr.fieldName}']) {
-      this._ngZone.runOutsideAngular(() => (this.nativeElement.${attr.fieldName} = v));
+  .map(attr => {
+    let usedTypeForSetter = `${componentName}['${attr.fieldName}']`;
+    let calledMethod = `this.nativeElement.${attr.fieldName} = v`;
+
+    // Special overrides for booleans:
+    // When using booleans, we also need to accept an empty string
+    // as a value, which will then be used as the boolean value `true`
+    // @see https://angular.dev/tools/cli/template-typecheck#input-setter-coercion
+    if (attr?.type?.text === 'boolean') {
+      usedTypeForSetter = `'' | ${componentName}['${attr.fieldName}']`;
+      calledMethod = `this.nativeElement.${attr.fieldName} = (v === '') || v`;
     }
-    get ${attr.fieldName}() {
-      return this.nativeElement.${attr.fieldName};
-    }
-  `.trim())
+
+    return `
+      ${createComment(attr.description || '')}
+      @Input()
+      set ${attr.fieldName}(v: ${usedTypeForSetter}) {
+        this._ngZone.runOutsideAngular(() => (${calledMethod}));
+      }
+      get ${attr.fieldName}(): ${componentName}['${attr.fieldName}'] {
+        return this.nativeElement.${attr.fieldName};
+      }
+    `.trim();
+  })
   .join('\n\n');
 
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {

@@ -47,10 +47,12 @@ export class SynRangeTickComponent {
    * Whether the tick should be shown as a subdivision.
    */
   @Input()
-  set subdivision(v: SynRangeTick['subdivision']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.subdivision = v));
+  set subdivision(v: '' | SynRangeTick['subdivision']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.subdivision = v === '' || v),
+    );
   }
-  get subdivision() {
+  get subdivision(): SynRangeTick['subdivision'] {
     return this.nativeElement.subdivision;
   }
 }

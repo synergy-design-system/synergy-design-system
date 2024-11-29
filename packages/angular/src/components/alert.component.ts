@@ -81,10 +81,12 @@ export class SynAlertComponent {
 use the `show()` and `hide()` methods and this attribute will reflect the alert's open state.
  */
   @Input()
-  set open(v: SynAlert['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynAlert['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynAlert['open'] {
     return this.nativeElement.open;
   }
 
@@ -92,10 +94,12 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
    * Enables a close button that allows the user to dismiss the alert.
    */
   @Input()
-  set closable(v: SynAlert['closable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.closable = v));
+  set closable(v: '' | SynAlert['closable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.closable = v === '' || v),
+    );
   }
-  get closable() {
+  get closable(): SynAlert['closable'] {
     return this.nativeElement.closable;
   }
 
@@ -106,7 +110,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
   set variant(v: SynAlert['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-  get variant() {
+  get variant(): SynAlert['variant'] {
     return this.nativeElement.variant;
   }
 
@@ -122,7 +126,7 @@ the alert will not close on its own.
   set duration(v: SynAlert['duration']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.duration = v));
   }
-  get duration() {
+  get duration(): SynAlert['duration'] {
     return this.nativeElement.duration;
   }
 

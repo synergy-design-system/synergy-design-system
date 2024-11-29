@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.14.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.0...components/2.14.1) (2024-11-29)
+
+
+### Bug Fixes
+
+* 🤔 Adjust Paddings for syn-prio-nav ([#691](https://github.com/synergy-design-system/synergy-design-system/issues/691)) ([2c2937b](https://github.com/synergy-design-system/synergy-design-system/commit/2c2937b3d4e4c847e9cdd3df55555cc8085a4b74))
+
 # [@synergy-design-system/components-v2.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.13.0...components/2.14.0) (2024-11-29)
 
 

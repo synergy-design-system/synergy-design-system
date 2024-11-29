@@ -79,7 +79,7 @@ export class SynCheckboxComponent {
   set title(v: SynCheckbox['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-  get title() {
+  get title(): SynCheckbox['title'] {
     return this.nativeElement.title;
   }
 
@@ -90,7 +90,7 @@ export class SynCheckboxComponent {
   set name(v: SynCheckbox['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynCheckbox['name'] {
     return this.nativeElement.name;
   }
 
@@ -101,7 +101,7 @@ export class SynCheckboxComponent {
   set value(v: SynCheckbox['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynCheckbox['value'] {
     return this.nativeElement.value;
   }
 
@@ -112,7 +112,7 @@ export class SynCheckboxComponent {
   set size(v: SynCheckbox['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynCheckbox['size'] {
     return this.nativeElement.size;
   }
 
@@ -120,10 +120,12 @@ export class SynCheckboxComponent {
    * Disables the checkbox.
    */
   @Input()
-  set disabled(v: SynCheckbox['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynCheckbox['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynCheckbox['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -131,10 +133,12 @@ export class SynCheckboxComponent {
    * Draws the checkbox in a checked state.
    */
   @Input()
-  set checked(v: SynCheckbox['checked']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
+  set checked(v: '' | SynCheckbox['checked']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.checked = v === '' || v),
+    );
   }
-  get checked() {
+  get checked(): SynCheckbox['checked'] {
     return this.nativeElement.checked;
   }
 
@@ -144,12 +148,12 @@ export class SynCheckboxComponent {
 all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
  */
   @Input()
-  set indeterminate(v: SynCheckbox['indeterminate']) {
+  set indeterminate(v: '' | SynCheckbox['indeterminate']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.indeterminate = v),
+      () => (this.nativeElement.indeterminate = v === '' || v),
     );
   }
-  get indeterminate() {
+  get indeterminate(): SynCheckbox['indeterminate'] {
     return this.nativeElement.indeterminate;
   }
 
@@ -164,7 +168,7 @@ the same document or shadow root for this to work.
   set form(v: SynCheckbox['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynCheckbox['form'] {
     return this.nativeElement.form;
   }
 
@@ -172,10 +176,12 @@ the same document or shadow root for this to work.
    * Makes the checkbox a required field.
    */
   @Input()
-  set required(v: SynCheckbox['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynCheckbox['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynCheckbox['required'] {
     return this.nativeElement.required;
   }
 
@@ -187,7 +193,7 @@ the same document or shadow root for this to work.
   set helpText(v: SynCheckbox['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynCheckbox['helpText'] {
     return this.nativeElement.helpText;
   }
 

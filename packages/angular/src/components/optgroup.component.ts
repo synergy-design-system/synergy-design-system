@@ -55,10 +55,12 @@ export class SynOptgroupComponent {
    * Disables all options in the optgroup.
    */
   @Input()
-  set disabled(v: SynOptgroup['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynOptgroup['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynOptgroup['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -70,7 +72,7 @@ export class SynOptgroupComponent {
   set label(v: SynOptgroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynOptgroup['label'] {
     return this.nativeElement.label;
   }
 }

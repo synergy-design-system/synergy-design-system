@@ -139,7 +139,7 @@ The following two code examples show, how different attributes look like for web
 <syn-input
   label="Nickname"
   helpText="What would you like people to call you?"
-  [required]="true"
+  required
 ></syn-input>
 ```
 

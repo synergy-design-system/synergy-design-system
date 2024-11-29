@@ -16,7 +16,7 @@
         id="radiogroup-gender"
         name="gender"
         label="Please tell us your gender"
-        [required]="true"
+        required
       >
         <syn-radio value="">invalid</syn-radio>
         <syn-radio value="f">Female</syn-radio>
@@ -31,7 +31,7 @@
         id="select-role"
         label="Current position"
         name="role"
-        [required]="true"
+        required
       >
         <syn-option value="">---</syn-option>
         <syn-optgroup label="Developers">
@@ -54,7 +54,7 @@
         [maxlength]="20"
         name="name"
         placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
-        [required]="true"
+        required
         type="text"
       />
     </syn-validate>
@@ -70,7 +70,7 @@
         label="E-Mail"
         name="email"
         placeholder="Please insert your E-mail address"
-        [required]="true"
+        required
         type="email"
       />
     </syn-validate>
@@ -91,7 +91,7 @@
         id="input-nationality"
         label="Nationality"
         name="nationality"
-        [required]="true"
+        required
         [getOption]="highlightOptionRenderer"
       >
         <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
@@ -114,7 +114,7 @@
         password-toggle
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
         placeholder="Please provide at least one uppercase and lowercase letter and a number"
-        [required]="true"
+        required
         type="password"
       />
     </syn-validate>
@@ -177,7 +177,7 @@
         formControlName="newsletterStandard"
         id="checkbox-newsletter-default"
         name="newsletterStandard"
-        [required]="true"
+        required
       >
         Please subscribe me to the synergy newsletter
       </syn-checkbox>
@@ -187,7 +187,7 @@
         formControlName="newsletterBeta"
         id="checkbox-newsletter-beta"
         name="newsletterBeta"
-        [required]="true"
+        required
       >
         I am interested in the Synergy Beta Program
       </syn-switch>
@@ -206,19 +206,19 @@
         label="Comment"
         name="comment"
         placeholder="Please provide additional information that might be helpful for your inquiry"
-        [required]="true"
+        required
         [rows]="10"
       />
     </syn-validate>
     <syn-validate variant="inline" on="live">
       <syn-file
         accept="image/*"
-        [droparea]="true"
+        droparea
         formControlName="files"
         help-text="Please upload images only"
         id="screenshot"
         label="Optional Screenshot(s)"
-        [multiple]="true"
+        multiple
         name="files"
       />
     </syn-validate>

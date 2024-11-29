@@ -57,7 +57,7 @@ export class SynIconButtonComponent {
   set name(v: SynIconButton['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynIconButton['name'] {
     return this.nativeElement.name;
   }
 
@@ -68,7 +68,7 @@ export class SynIconButtonComponent {
   set library(v: SynIconButton['library']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
-  get library() {
+  get library(): SynIconButton['library'] {
     return this.nativeElement.library;
   }
 
@@ -81,7 +81,7 @@ can result in XSS attacks.
   set src(v: SynIconButton['src']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
-  get src() {
+  get src(): SynIconButton['src'] {
     return this.nativeElement.src;
   }
 
@@ -92,7 +92,7 @@ can result in XSS attacks.
   set href(v: SynIconButton['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-  get href() {
+  get href(): SynIconButton['href'] {
     return this.nativeElement.href;
   }
 
@@ -104,7 +104,7 @@ can result in XSS attacks.
   set target(v: SynIconButton['target']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
-  get target() {
+  get target(): SynIconButton['target'] {
     return this.nativeElement.target;
   }
 
@@ -116,7 +116,7 @@ can result in XSS attacks.
   set download(v: SynIconButton['download']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.download = v));
   }
-  get download() {
+  get download(): SynIconButton['download'] {
     return this.nativeElement.download;
   }
 
@@ -129,7 +129,7 @@ that describes what the icon button does.
   set label(v: SynIconButton['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynIconButton['label'] {
     return this.nativeElement.label;
   }
 
@@ -140,7 +140,7 @@ that describes what the icon button does.
   set size(v: SynIconButton['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynIconButton['size'] {
     return this.nativeElement.size;
   }
 
@@ -152,7 +152,7 @@ The default "currentColor" makes it possible to easily style the icon button fro
   set color(v: SynIconButton['color']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.color = v));
   }
-  get color() {
+  get color(): SynIconButton['color'] {
     return this.nativeElement.color;
   }
 
@@ -160,10 +160,12 @@ The default "currentColor" makes it possible to easily style the icon button fro
    * Disables the button.
    */
   @Input()
-  set disabled(v: SynIconButton['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynIconButton['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynIconButton['disabled'] {
     return this.nativeElement.disabled;
   }
 

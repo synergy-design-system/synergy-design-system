@@ -63,7 +63,7 @@ export class SynMenuItemComponent {
   set type(v: SynMenuItem['type']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
-  get type() {
+  get type(): SynMenuItem['type'] {
     return this.nativeElement.type;
   }
 
@@ -71,10 +71,12 @@ export class SynMenuItemComponent {
    * Draws the item in a checked state.
    */
   @Input()
-  set checked(v: SynMenuItem['checked']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
+  set checked(v: '' | SynMenuItem['checked']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.checked = v === '' || v),
+    );
   }
-  get checked() {
+  get checked(): SynMenuItem['checked'] {
     return this.nativeElement.checked;
   }
 
@@ -86,7 +88,7 @@ export class SynMenuItemComponent {
   set value(v: SynMenuItem['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynMenuItem['value'] {
     return this.nativeElement.value;
   }
 
@@ -94,10 +96,12 @@ export class SynMenuItemComponent {
    * Draws the menu item in a loading state.
    */
   @Input()
-  set loading(v: SynMenuItem['loading']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.loading = v));
+  set loading(v: '' | SynMenuItem['loading']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.loading = v === '' || v),
+    );
   }
-  get loading() {
+  get loading(): SynMenuItem['loading'] {
     return this.nativeElement.loading;
   }
 
@@ -105,10 +109,12 @@ export class SynMenuItemComponent {
    * Draws the menu item in a disabled state, preventing selection.
    */
   @Input()
-  set disabled(v: SynMenuItem['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynMenuItem['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynMenuItem['disabled'] {
     return this.nativeElement.disabled;
   }
 }

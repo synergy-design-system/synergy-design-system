@@ -59,7 +59,7 @@ multiple values.
   set value(v: SynOption['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynOption['value'] {
     return this.nativeElement.value;
   }
 
@@ -67,10 +67,12 @@ multiple values.
    * Draws the option in a disabled state, preventing selection.
    */
   @Input()
-  set disabled(v: SynOption['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynOption['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynOption['disabled'] {
     return this.nativeElement.disabled;
   }
 }

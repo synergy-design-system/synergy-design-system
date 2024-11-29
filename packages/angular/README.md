@@ -253,7 +253,7 @@ You will then be able to use the provided wrappers in the following way:
   name="test"
   [title]="myLabel"
   type="text"
-  [required]="true"
+  required
 >
   <span slot="label"> {{myLabel}} </span>
 </syn-input>

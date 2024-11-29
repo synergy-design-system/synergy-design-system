@@ -54,7 +54,7 @@ export class SynProgressRingComponent {
   set value(v: SynProgressRing['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynProgressRing['value'] {
     return this.nativeElement.value;
   }
 
@@ -65,7 +65,7 @@ export class SynProgressRingComponent {
   set label(v: SynProgressRing['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynProgressRing['label'] {
     return this.nativeElement.label;
   }
 }

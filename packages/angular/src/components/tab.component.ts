@@ -56,7 +56,7 @@ export class SynTabComponent {
   set panel(v: SynTab['panel']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.panel = v));
   }
-  get panel() {
+  get panel(): SynTab['panel'] {
     return this.nativeElement.panel;
   }
 
@@ -64,10 +64,12 @@ export class SynTabComponent {
    * Draws the tab in an active state.
    */
   @Input()
-  set active(v: SynTab['active']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.active = v));
+  set active(v: '' | SynTab['active']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.active = v === '' || v),
+    );
   }
-  get active() {
+  get active(): SynTab['active'] {
     return this.nativeElement.active;
   }
 
@@ -75,10 +77,12 @@ export class SynTabComponent {
    * Makes the tab closable and shows a close button.
    */
   @Input()
-  set closable(v: SynTab['closable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.closable = v));
+  set closable(v: '' | SynTab['closable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.closable = v === '' || v),
+    );
   }
-  get closable() {
+  get closable(): SynTab['closable'] {
     return this.nativeElement.closable;
   }
 
@@ -86,10 +90,12 @@ export class SynTabComponent {
    * Disables the tab and prevents selection.
    */
   @Input()
-  set disabled(v: SynTab['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynTab['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynTab['disabled'] {
     return this.nativeElement.disabled;
   }
 

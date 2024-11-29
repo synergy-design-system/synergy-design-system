@@ -13,16 +13,16 @@
 </syn-header>
 
 <div class="main">
-  <syn-side-nav [rail]="true">
+  <syn-side-nav rail>
     <syn-nav-item routerLink="/" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Home
       <syn-icon name="home" slot="prefix"></syn-icon>
     </syn-nav-item>
-    <syn-nav-item [divider]="true" routerLink="/contact-form" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
+    <syn-nav-item divider routerLink="/contact-form" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Contact Form
       <syn-icon name="contact_mail" slot="prefix"></syn-icon>
     </syn-nav-item>
-    <syn-nav-item [divider]="true" routerLink="/contact-form-validate" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
+    <syn-nav-item divider routerLink="/contact-form-validate" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Contact Form (Validation)
       <syn-icon name="contact_emergency" slot="prefix"></syn-icon>
     </syn-nav-item>

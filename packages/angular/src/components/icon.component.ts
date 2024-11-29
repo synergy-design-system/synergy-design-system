@@ -56,7 +56,7 @@ export class SynIconComponent {
   set name(v: SynIcon['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynIcon['name'] {
     return this.nativeElement.name;
   }
 
@@ -69,7 +69,7 @@ can result in XSS attacks.
   set src(v: SynIcon['src']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.src = v));
   }
-  get src() {
+  get src(): SynIcon['src'] {
     return this.nativeElement.src;
   }
 
@@ -82,7 +82,7 @@ ignored by assistive devices.
   set label(v: SynIcon['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynIcon['label'] {
     return this.nativeElement.label;
   }
 
@@ -93,7 +93,7 @@ ignored by assistive devices.
   set library(v: SynIcon['library']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.library = v));
   }
-  get library() {
+  get library(): SynIcon['library'] {
     return this.nativeElement.library;
   }
 

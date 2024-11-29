@@ -48,7 +48,7 @@ export class SynTabPanelComponent {
   set name(v: SynTabPanel['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynTabPanel['name'] {
     return this.nativeElement.name;
   }
 
@@ -56,10 +56,12 @@ export class SynTabPanelComponent {
    * When true, the tab panel will be shown.
    */
   @Input()
-  set active(v: SynTabPanel['active']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.active = v));
+  set active(v: '' | SynTabPanel['active']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.active = v === '' || v),
+    );
   }
-  get active() {
+  get active(): SynTabPanel['active'] {
     return this.nativeElement.active;
   }
 }

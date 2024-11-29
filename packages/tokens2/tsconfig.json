@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ESNext",
+    "module": "NodeNext",
     "lib": ["ES2022"],
     "types": ["node"],
     "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "emitDeclarationOnly": true,
+    "declaration": true
   },
-  "include": ["scripts"],
+  "include": ["scripts"]
 }

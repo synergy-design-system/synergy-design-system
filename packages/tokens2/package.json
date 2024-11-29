@@ -9,7 +9,6 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/node": "^20.17.6",
     "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.31.0",
     "style-dictionary": "^4.2.0",
     "stylelint": "^16.10.0",
     "typescript": "^5.7.2"
@@ -38,6 +37,7 @@
     "lint:css": "stylelint --allow-empty-input \"dist/**/*.css\"",
     "lint:js": "eslint scripts",
     "lint": "pnpm run /^lint:.*/",
+    "lint:types": "tsc --noEmit",
     "verify": "pnpm build && pnpm run -C ../tokens build && diff -r dist ../tokens/dist"
   },
   "type": "module",

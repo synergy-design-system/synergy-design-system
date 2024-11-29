@@ -78,7 +78,7 @@ export class SynTabGroupComponent {
   set placement(v: SynTabGroup['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynTabGroup['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -91,7 +91,7 @@ manual, the tab will receive focus but will not show until the user presses spac
   set activation(v: SynTabGroup['activation']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.activation = v));
   }
-  get activation() {
+  get activation(): SynTabGroup['activation'] {
     return this.nativeElement.activation;
   }
 
@@ -99,12 +99,12 @@ manual, the tab will receive focus but will not show until the user presses spac
    * Disables the scroll arrows that appear when tabs overflow.
    */
   @Input()
-  set noScrollControls(v: SynTabGroup['noScrollControls']) {
+  set noScrollControls(v: '' | SynTabGroup['noScrollControls']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.noScrollControls = v),
+      () => (this.nativeElement.noScrollControls = v === '' || v),
     );
   }
-  get noScrollControls() {
+  get noScrollControls(): SynTabGroup['noScrollControls'] {
     return this.nativeElement.noScrollControls;
   }
 
@@ -112,10 +112,12 @@ manual, the tab will receive focus but will not show until the user presses spac
    * Draws the tab group as a contained element.
    */
   @Input()
-  set contained(v: SynTabGroup['contained']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  set contained(v: '' | SynTabGroup['contained']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.contained = v === '' || v),
+    );
   }
-  get contained() {
+  get contained(): SynTabGroup['contained'] {
     return this.nativeElement.contained;
   }
 
@@ -124,10 +126,12 @@ manual, the tab will receive focus but will not show until the user presses spac
    * Takes only effect if used with the 'contained' property
    */
   @Input()
-  set sharp(v: SynTabGroup['sharp']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
+  set sharp(v: '' | SynTabGroup['sharp']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.sharp = v === '' || v),
+    );
   }
-  get sharp() {
+  get sharp(): SynTabGroup['sharp'] {
     return this.nativeElement.sharp;
   }
 
@@ -135,12 +139,12 @@ manual, the tab will receive focus but will not show until the user presses spac
    * Prevent scroll buttons from being hidden when inactive.
    */
   @Input()
-  set fixedScrollControls(v: SynTabGroup['fixedScrollControls']) {
+  set fixedScrollControls(v: '' | SynTabGroup['fixedScrollControls']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.fixedScrollControls = v),
+      () => (this.nativeElement.fixedScrollControls = v === '' || v),
     );
   }
-  get fixedScrollControls() {
+  get fixedScrollControls(): SynTabGroup['fixedScrollControls'] {
     return this.nativeElement.fixedScrollControls;
   }
 

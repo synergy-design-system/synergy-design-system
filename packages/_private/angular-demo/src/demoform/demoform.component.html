@@ -15,7 +15,7 @@
       id="radiogroup-gender"
       name="gender"
       label="Please tell us your gender"
-      [required]="true"
+      required
     >
       <syn-radio value="f">Female</syn-radio>
       <syn-radio value="m">Male</syn-radio>
@@ -27,7 +27,7 @@
       id="select-role"
       label="Current position"
       name="role"
-      [required]="true"
+      required
     >
       <syn-optgroup label="Developers">
         <syn-option value="backend">Backend Developer</syn-option>
@@ -47,7 +47,7 @@
       [maxlength]="20"
       name="name"
       placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
-      [required]="true"
+      required
       type="text"
     />
 
@@ -57,7 +57,7 @@
       label="E-Mail"
       name="email"
       placeholder="Please insert your E-mail address"
-      [required]="true"
+      required
       type="email"
     />
 
@@ -67,7 +67,7 @@
       label="Phone"
       name="phone"
       placeholder="Please provide your phone number"
-      [required]="true"
+      required
       type="tel"
     />
 
@@ -84,7 +84,7 @@
       id="input-nationality"
       label="Nationality"
       name="nationality"
-      [required]="true"
+      required
       [getOption]="highlightOptionRenderer"
     >
       <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
@@ -105,7 +105,6 @@
       password-toggle
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
       placeholder="Please provide at least one uppercase and lowercase letter and a number"
-      [required]="true"
       type="password"
     />
 
@@ -127,11 +126,11 @@
   <!-- Topics -->
   <demo-fieldset legend="Topics">
     <syn-select
-      [clearable]="true"
+      clearable
       formControlName="topics"
       id="topics"
       label="I am interested in the following technologies"
-      [multiple]="true"
+      multiple
       name="topics"
     >
       <syn-optgroup label="Frontend">
@@ -247,12 +246,12 @@
     />
     <syn-file
       accept="image/*"
-      [droparea]="true"
+      droparea
       formControlName="files"
       help-text="Please upload images only"
       id="screenshot"
       label="Optional Screenshot(s)"
-      [multiple]="true"
+      multiple
       name="files"
     />
   </demo-fieldset>

@@ -63,7 +63,7 @@ export class SynRadioComponent {
   set value(v: SynRadio['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynRadio['value'] {
     return this.nativeElement.value;
   }
 
@@ -76,7 +76,7 @@ attribute can typically be omitted.
   set size(v: SynRadio['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynRadio['size'] {
     return this.nativeElement.size;
   }
 
@@ -84,10 +84,12 @@ attribute can typically be omitted.
    * Disables the radio.
    */
   @Input()
-  set disabled(v: SynRadio['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynRadio['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynRadio['disabled'] {
     return this.nativeElement.disabled;
   }
 

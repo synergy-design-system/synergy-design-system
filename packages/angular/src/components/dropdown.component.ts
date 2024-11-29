@@ -80,10 +80,12 @@ export class SynDropdownComponent {
 can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
  */
   @Input()
-  set open(v: SynDropdown['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynDropdown['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynDropdown['open'] {
     return this.nativeElement.open;
   }
 
@@ -96,7 +98,7 @@ inside of the viewport.
   set placement(v: SynDropdown['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynDropdown['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -104,10 +106,12 @@ inside of the viewport.
    * Disables the dropdown so the panel will not open.
    */
   @Input()
-  set disabled(v: SynDropdown['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynDropdown['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynDropdown['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -118,12 +122,12 @@ inside of the viewport.
 dropdowns that allow for multiple interactions.
  */
   @Input()
-  set stayOpenOnSelect(v: SynDropdown['stayOpenOnSelect']) {
+  set stayOpenOnSelect(v: '' | SynDropdown['stayOpenOnSelect']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.stayOpenOnSelect = v),
+      () => (this.nativeElement.stayOpenOnSelect = v === '' || v),
     );
   }
-  get stayOpenOnSelect() {
+  get stayOpenOnSelect(): SynDropdown['stayOpenOnSelect'] {
     return this.nativeElement.stayOpenOnSelect;
   }
 
@@ -134,7 +138,7 @@ dropdowns that allow for multiple interactions.
   set distance(v: SynDropdown['distance']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
-  get distance() {
+  get distance(): SynDropdown['distance'] {
     return this.nativeElement.distance;
   }
 
@@ -145,7 +149,7 @@ dropdowns that allow for multiple interactions.
   set skidding(v: SynDropdown['skidding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
-  get skidding() {
+  get skidding(): SynDropdown['skidding'] {
     return this.nativeElement.skidding;
   }
 
@@ -155,10 +159,12 @@ dropdowns that allow for multiple interactions.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
   @Input()
-  set hoist(v: SynDropdown['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
+  set hoist(v: '' | SynDropdown['hoist']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hoist = v === '' || v),
+    );
   }
-  get hoist() {
+  get hoist(): SynDropdown['hoist'] {
     return this.nativeElement.hoist;
   }
 
@@ -169,7 +175,7 @@ dropdowns that allow for multiple interactions.
   set sync(v: SynDropdown['sync']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.sync = v));
   }
-  get sync() {
+  get sync(): SynDropdown['sync'] {
     return this.nativeElement.sync;
   }
 
@@ -185,7 +191,7 @@ components that use a dropdown internally.
       () => (this.nativeElement.containingElement = v),
     );
   }
-  get containingElement() {
+  get containingElement(): SynDropdown['containingElement'] {
     return this.nativeElement.containingElement;
   }
 

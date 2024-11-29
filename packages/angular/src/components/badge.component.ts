@@ -46,7 +46,7 @@ export class SynBadgeComponent {
   set variant(v: SynBadge['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-  get variant() {
+  get variant(): SynBadge['variant'] {
     return this.nativeElement.variant;
   }
 }

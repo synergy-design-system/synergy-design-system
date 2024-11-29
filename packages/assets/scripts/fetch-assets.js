@@ -91,7 +91,13 @@ async function fetchAssets() {
   }
 }
 
-await rimraf('./src');
+// Remove everything icon related
+await rimraf([
+  './src/icons',
+  './src/logos',
+  './src/system-icons',
+  './src/default-icons.ts',
+]);
 await fetchAssets();
 if (fs.existsSync('./src/icons')) {
   await optimizeSVGs('./src/icons');

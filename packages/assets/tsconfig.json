@@ -9,7 +9,8 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "types": ["node"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "tsBuildInfoFile": ".tsbuildinfo",
   },
   "include": ["src", "scripts"]
 }

@@ -647,6 +647,9 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../components
+      '@synergy-design-system/react':
+        specifier: workspace:*
+        version: link:../react
       '@synergy-design-system/styles':
         specifier: workspace:*
         version: link:../styles

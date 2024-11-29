@@ -100,12 +100,12 @@ export class DemoForm extends BaseFormObject {
     });
 
     // Drag the donations handle to a - - 100% rating
-    const firstKnob = await this.donations.locator('.thumb').first().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
     const firstTick = '#donations syn-range-tick:first-of-type';
+    const firstKnob = '#donations .thumb:first-of-type';
 
     await this.page.dragAndDrop(firstKnob, firstTick);
 
-    const lastKnob = await this.donations.locator('.thumb').last().evaluate((knob: HTMLDivElement) => `#donations #${knob.id}`);
+    const lastKnob = '#donations .thumb:last-of-type';
     const lastTick = '#donations syn-range-tick:last-of-type';
 
     await this.page.dragAndDrop(lastKnob, lastTick);

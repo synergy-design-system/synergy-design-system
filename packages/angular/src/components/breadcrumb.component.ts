@@ -51,7 +51,7 @@ screen readers and other assistive devices to provide more context for users.
   set label(v: SynBreadcrumb['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynBreadcrumb['label'] {
     return this.nativeElement.label;
   }
 }

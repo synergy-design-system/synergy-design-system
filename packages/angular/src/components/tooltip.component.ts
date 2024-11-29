@@ -86,7 +86,7 @@ export class SynTooltipComponent {
   set content(v: SynTooltip['content']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.content = v));
   }
-  get content() {
+  get content(): SynTooltip['content'] {
     return this.nativeElement.content;
   }
 
@@ -99,7 +99,7 @@ inside of the viewport.
   set placement(v: SynTooltip['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynTooltip['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -107,10 +107,12 @@ inside of the viewport.
    * Disables the tooltip so it won't show when triggered.
    */
   @Input()
-  set disabled(v: SynTooltip['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynTooltip['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynTooltip['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -121,7 +123,7 @@ inside of the viewport.
   set distance(v: SynTooltip['distance']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
-  get distance() {
+  get distance(): SynTooltip['distance'] {
     return this.nativeElement.distance;
   }
 
@@ -130,10 +132,12 @@ inside of the viewport.
    * You can use this in lieu of the show/hide methods.
    */
   @Input()
-  set open(v: SynTooltip['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynTooltip['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynTooltip['open'] {
     return this.nativeElement.open;
   }
 
@@ -144,7 +148,7 @@ inside of the viewport.
   set skidding(v: SynTooltip['skidding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
-  get skidding() {
+  get skidding(): SynTooltip['skidding'] {
     return this.nativeElement.skidding;
   }
 
@@ -160,7 +164,7 @@ programmatically.
   set trigger(v: SynTooltip['trigger']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.trigger = v));
   }
-  get trigger() {
+  get trigger(): SynTooltip['trigger'] {
     return this.nativeElement.trigger;
   }
 
@@ -171,10 +175,12 @@ programmatically.
 scenarios.
  */
   @Input()
-  set hoist(v: SynTooltip['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
+  set hoist(v: '' | SynTooltip['hoist']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hoist = v === '' || v),
+    );
   }
-  get hoist() {
+  get hoist(): SynTooltip['hoist'] {
     return this.nativeElement.hoist;
   }
 

@@ -129,7 +129,7 @@ export class SynSelectComponent {
   set name(v: SynSelect['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynSelect['name'] {
     return this.nativeElement.name;
   }
 
@@ -144,7 +144,7 @@ be an array.
   set value(v: SynSelect['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynSelect['value'] {
     return this.nativeElement.value;
   }
 
@@ -155,7 +155,7 @@ be an array.
   set size(v: SynSelect['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynSelect['size'] {
     return this.nativeElement.size;
   }
 
@@ -166,7 +166,7 @@ be an array.
   set placeholder(v: SynSelect['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-  get placeholder() {
+  get placeholder(): SynSelect['placeholder'] {
     return this.nativeElement.placeholder;
   }
 
@@ -174,10 +174,12 @@ be an array.
    * Allows more than one option to be selected.
    */
   @Input()
-  set multiple(v: SynSelect['multiple']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.multiple = v));
+  set multiple(v: '' | SynSelect['multiple']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.multiple = v === '' || v),
+    );
   }
-  get multiple() {
+  get multiple(): SynSelect['multiple'] {
     return this.nativeElement.multiple;
   }
 
@@ -193,7 +195,7 @@ indicate the number of additional items that are selected.
       () => (this.nativeElement.maxOptionsVisible = v),
     );
   }
-  get maxOptionsVisible() {
+  get maxOptionsVisible(): SynSelect['maxOptionsVisible'] {
     return this.nativeElement.maxOptionsVisible;
   }
 
@@ -201,10 +203,12 @@ indicate the number of additional items that are selected.
    * Disables the select control.
    */
   @Input()
-  set disabled(v: SynSelect['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynSelect['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynSelect['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -212,10 +216,12 @@ indicate the number of additional items that are selected.
    * Adds a clear button when the select is not empty.
    */
   @Input()
-  set clearable(v: SynSelect['clearable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
+  set clearable(v: '' | SynSelect['clearable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.clearable = v === '' || v),
+    );
   }
-  get clearable() {
+  get clearable(): SynSelect['clearable'] {
     return this.nativeElement.clearable;
   }
 
@@ -225,10 +231,12 @@ indicate the number of additional items that are selected.
 use the `show()` and `hide()` methods and this attribute will reflect the select's open state.
  */
   @Input()
-  set open(v: SynSelect['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynSelect['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynSelect['open'] {
     return this.nativeElement.open;
   }
 
@@ -238,10 +246,12 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
   @Input()
-  set hoist(v: SynSelect['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
+  set hoist(v: '' | SynSelect['hoist']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hoist = v === '' || v),
+    );
   }
-  get hoist() {
+  get hoist(): SynSelect['hoist'] {
     return this.nativeElement.hoist;
   }
 
@@ -253,7 +263,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
   set label(v: SynSelect['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynSelect['label'] {
     return this.nativeElement.label;
   }
 
@@ -266,7 +276,7 @@ inside of the viewport.
   set placement(v: SynSelect['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynSelect['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -278,7 +288,7 @@ inside of the viewport.
   set helpText(v: SynSelect['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynSelect['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -293,7 +303,7 @@ the same document or shadow root for this to work.
   set form(v: SynSelect['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynSelect['form'] {
     return this.nativeElement.form;
   }
 
@@ -301,10 +311,12 @@ the same document or shadow root for this to work.
    * The select's required attribute.
    */
   @Input()
-  set required(v: SynSelect['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynSelect['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynSelect['required'] {
     return this.nativeElement.required;
   }
 
@@ -319,7 +331,7 @@ the specified value.
   set getTag(v: SynSelect['getTag']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.getTag = v));
   }
-  get getTag() {
+  get getTag(): SynSelect['getTag'] {
     return this.nativeElement.getTag;
   }
 

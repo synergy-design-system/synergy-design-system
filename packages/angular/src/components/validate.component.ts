@@ -57,7 +57,7 @@ The following variants are supported:
   set variant(v: SynValidate['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
   }
-  get variant() {
+  get variant(): SynValidate['variant'] {
     return this.nativeElement.variant;
   }
 
@@ -65,10 +65,12 @@ The following variants are supported:
    * Do not show the error icon when using the inline variant validation
    */
   @Input()
-  set hideIcon(v: SynValidate['hideIcon']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hideIcon = v));
+  set hideIcon(v: '' | SynValidate['hideIcon']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hideIcon = v === '' || v),
+    );
   }
-  get hideIcon() {
+  get hideIcon(): SynValidate['hideIcon'] {
     return this.nativeElement.hideIcon;
   }
 
@@ -85,7 +87,7 @@ and [the use of form invalid events](https://developer.mozilla.org/en-US/docs/We
   set on(v: SynValidate['on']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.on = v));
   }
-  get on() {
+  get on(): SynValidate['on'] {
     return this.nativeElement.on;
   }
 
@@ -100,7 +102,7 @@ Set to an empty string to reset the validation message.
       () => (this.nativeElement.customValidationMessage = v),
     );
   }
-  get customValidationMessage() {
+  get customValidationMessage(): SynValidate['customValidationMessage'] {
     return this.nativeElement.customValidationMessage;
   }
 
@@ -114,10 +116,12 @@ the last eager field as it is using a tooltip.
 In this case it is better to just provide one eager field.
  */
   @Input()
-  set eager(v: SynValidate['eager']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.eager = v));
+  set eager(v: '' | SynValidate['eager']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.eager = v === '' || v),
+    );
   }
-  get eager() {
+  get eager(): SynValidate['eager'] {
     return this.nativeElement.eager;
   }
 }

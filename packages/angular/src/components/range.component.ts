@@ -106,7 +106,7 @@ export class SynRangeComponent {
   set name(v: SynRange['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynRange['name'] {
     return this.nativeElement.name;
   }
 
@@ -118,7 +118,7 @@ export class SynRangeComponent {
   set label(v: SynRange['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynRange['label'] {
     return this.nativeElement.label;
   }
 
@@ -130,7 +130,7 @@ export class SynRangeComponent {
   set helpText(v: SynRange['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynRange['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -138,10 +138,12 @@ export class SynRangeComponent {
    * Disables the range.
    */
   @Input()
-  set disabled(v: SynRange['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynRange['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynRange['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -152,7 +154,7 @@ export class SynRangeComponent {
   set min(v: SynRange['min']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
   }
-  get min() {
+  get min(): SynRange['min'] {
     return this.nativeElement.min;
   }
 
@@ -163,7 +165,7 @@ export class SynRangeComponent {
   set max(v: SynRange['max']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
   }
-  get max() {
+  get max(): SynRange['max'] {
     return this.nativeElement.max;
   }
 
@@ -174,7 +176,7 @@ export class SynRangeComponent {
   set step(v: SynRange['step']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.step = v));
   }
-  get step() {
+  get step(): SynRange['step'] {
     return this.nativeElement.step;
   }
 
@@ -185,7 +187,7 @@ export class SynRangeComponent {
   set size(v: SynRange['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynRange['size'] {
     return this.nativeElement.size;
   }
 
@@ -199,7 +201,7 @@ export class SynRangeComponent {
       () => (this.nativeElement.tooltipPlacement = v),
     );
   }
-  get tooltipPlacement() {
+  get tooltipPlacement(): SynRange['tooltipPlacement'] {
     return this.nativeElement.tooltipPlacement;
   }
 
@@ -210,7 +212,7 @@ export class SynRangeComponent {
   set value(v: SynRange['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynRange['value'] {
     return this.nativeElement.value;
   }
 
@@ -224,7 +226,7 @@ The form must be in the same document or shadow root for this to work.
   set form(v: SynRange['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynRange['form'] {
     return this.nativeElement.form;
   }
 
@@ -239,7 +241,7 @@ The function should return a string to display in the tooltip.
       () => (this.nativeElement.tooltipFormatter = v),
     );
   }
-  get tooltipFormatter() {
+  get tooltipFormatter(): SynRange['tooltipFormatter'] {
     return this.nativeElement.tooltipFormatter;
   }
 

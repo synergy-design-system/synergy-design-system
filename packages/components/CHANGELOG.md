@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.13.0...components/2.14.0) (2024-11-29)
+
+
+### Features
+
+* ✨ DX: Angular should allow using boolean attributes without square brackets in templates ([#694](https://github.com/synergy-design-system/synergy-design-system/issues/694)) ([78e82b8](https://github.com/synergy-design-system/synergy-design-system/commit/78e82b8bbecd427b4f6bac188537cbe19bdf5a5a))
+
 # [@synergy-design-system/components-v2.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.1...components/2.13.0) (2024-11-28)
 
 

@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React, {
-  FC, MouseEvent, useEffect, useRef, useState,
+  FC, MouseEvent, useEffect, useState,
 } from 'react';
 import { SynIcon, SynInput } from '@synergy-design-system/react';
-import type { SynInput as SynInputType } from '@synergy-design-system/components';
+import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 // If an update is done to the icons, the metadata file of material icons need to be updated. This file can be found here: https://fonts.google.com/metadata/icons
@@ -68,7 +68,6 @@ const registerIcons = () => {
 };
 
 export const IconsSearchPage: FC = () => {
-  const searchInput = useRef<SynInputType>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [categories, setCategories] = useState<Array<string>>([]);
 
@@ -76,8 +75,8 @@ export const IconsSearchPage: FC = () => {
     registerIcons();
   }, []);
 
-  const handleSearchTermChange = () => {
-    setSearchTerm(searchInput.current?.value.toLowerCase() || '');
+  const handleSearchTermChange = (event: SynInputEvent) => {
+    setSearchTerm((event.target as SynInputType).value.toLowerCase() || '');
   };
 
   useEffect(() => {
@@ -89,7 +88,7 @@ export const IconsSearchPage: FC = () => {
       <div style={{
         backgroundColor: 'var(--syn-color-neutral-0)', paddingTop: 'var(--syn-spacing-x-large)', position: 'sticky', top: 0, zIndex: 10,
       }}>
-        <SynInput ref={searchInput} label="Search icons" onSynInput={handleSearchTermChange}></SynInput>
+        <SynInput label="Search icons" onSynInput={handleSearchTermChange}></SynInput>
       </div>
       <div>
         {categories.map((category) => (

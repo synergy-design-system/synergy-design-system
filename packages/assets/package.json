@@ -3,6 +3,9 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
+  "bin": {
+    "syn-create-spritesheet": "./dist/createSpritesheetCli.js"
+  },
   "description": "Assets for the Synergy Design System",
   "devDependencies": {
     "@clack/prompts": "^0.7.0",

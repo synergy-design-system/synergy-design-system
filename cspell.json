@@ -27,7 +27,8 @@
     "stylesheet",
     "keyframes",
     "autofocus",
-    "listbox"
+    "listbox",
+    "spritesheet"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

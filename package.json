@@ -11,7 +11,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "node": ">=18.17.0",
-    "pnpm": ">=8.6.12"
+    "pnpm": ">=9.14.2"
   },
   "repository": {
     "type": "git",

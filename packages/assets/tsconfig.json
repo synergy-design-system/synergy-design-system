@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "types": ["node"],
     "outDir": "dist",
-    "tsBuildInfoFile": ".tsbuildinfo",
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "include": ["src", "scripts"]
 }

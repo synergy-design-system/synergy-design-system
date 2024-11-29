@@ -100,27 +100,37 @@ export default css`
   }
 
   /**
-   * Hover effect for the nav item.
-   * We use opacity to make sure the border-bottom is visible if used in the prio-nav in header
+   * Basic set up for the nav item prefix.
    */
-  .nav-item:not(.nav-item--disabled):hover::before {
+  .nav-item:not(.nav-item--disabled)::before {
     background: var(--syn-color-neutral-600);
     content: '';
     display: block;
     height: 100%;
     left: 0;
-    opacity: 0.11;
+    opacity: 0;
     position: absolute;
     top: 0;
     width: 100%;
     z-index: -1;
   }
 
-  .nav-item--horizontal:not(.nav-item--disabled):hover::before {
+  /**
+   * Hover effect for the nav item.
+   * We use opacity to make sure the border-bottom is visible if used in the prio-nav in header
+   */
+  .nav-item:not(.nav-item--disabled):hover::before {
+    opacity: 0.11;
+  }
+
+  /**
+   * When using horizontal, the background should extend the element
+   * on the left and right so the animation for the indicator can be seen
+   */
+  .nav-item--horizontal:not(.nav-item--disabled)::before {
     left: calc(var(--syn-spacing-x-small) * -1);
     width: calc(100% + 2 * var(--syn-spacing-x-small));
   }
-
 
   /**
    * The content wrapper is needed to get the disabled state right

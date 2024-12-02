@@ -3,12 +3,14 @@ import { register } from '@tokens-studio/sd-transforms';
 import {
   addColorPrefix,
   addFallbackFonts,
+  addMissingQuotesForStrings,
   useCssCalc,
 } from './transforms/index.js';
 
 register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(addMissingQuotesForStrings);
 StyleDictionary.registerTransform(useCssCalc);
 
 const config = {
@@ -51,6 +53,7 @@ const dictionary = new StyleDictionary();
           'syn/add-color-prefix',
           'syn/add-fallback-fonts',
           'syn/use-css-calc',
+          'syn/add-missing-quotes-for-strings',
         ],
         transformGroup: 'css',
         prefix: 'syn-',

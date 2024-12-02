@@ -128,6 +128,119 @@ Most of the magic behind assets is handled internally by Synergy, but if you nee
 </script>
 \`\`\`
 
+---
+
+## Creating a custom spritesheet
+
+For performance reasons, it may be beneficial to create a spritesheet from multiple icons.
+This can be done in multiple ways:
+
+### 1. Using the  \`createSpriteSheet\` function
+
+The \`createSpriteSheet\` function is provided by the \`@synergy-design-system/assets\` package.
+It takes an array of icon keys and returns a string representation of the SVG sprite sheet, intended to be saved into the file system.
+As we do not know how exactly you want to use the spritesheet, we will just print it to the console in the following example.
+
+\`\`\`typescript
+import { createSpriteSheet } from '@synergy-design-system/assets';
+
+const icons = ['warning', 'inventory', 'battery_charging_full', 'notifications'];
+const sheet = createSpriteSheet(icons);
+
+console.log(sheet); 
+\`\`\`
+
+### 2. Using the the \`syn-create-spritesheet\` command line utility
+
+\`\`\`bash
+# Move to the root of your project
+cd my-project
+
+# Create the spritesheet on the command line.
+# You will need to provide a list of icons to include in the spritesheet.
+# The following command will make sure to save the spritesheet to the file icons.svg
+npx syn-create-spritesheet --icons=warning,inventory,battery_charging_full,notifications > public/icons.svg
+\`\`\`
+
+### 3. Directly generating the spritesheet in vite
+
+The following example demonstrates how to generate a spritesheet directly in a vite project, running on every start of the development server.
+
+\`\`\`typescript
+import fs from 'node:fs';
+import { defineConfig } from 'vite';
+import { createSpriteSheet } from '@synergy-design-system/assets';
+
+type SynSpriteSheetOptions = {
+  /**
+   * The output file name. Make sure the path exists
+   */
+  outFileName: string;
+
+  /**
+   * List of icons to include in the sprite sheet
+   */
+  icons: Parameters<typeof createSpriteSheet>[0];
+};
+
+const defaultOptions: SynSpriteSheetOptions = {
+  icons: [],
+  outFileName: './public/synergy-icon-sprites.svg',
+};
+
+const synSpriteSheetCreator = (options: Partial<SynSpriteSheetOptions> = {}) => ({
+  buildStart: () => {
+    const finalOptions = {
+      ...defaultOptions,
+      ...options,
+    };
+    const {
+      icons,
+      outFileName,
+    } = finalOptions;
+
+    const sheet = createSpriteSheet(icons);
+
+    // Create the output file
+    fs.writeFileSync(outFileName, sheet);
+  },
+  name: 'syn-sprite-sheet-creator',
+});
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    synSpriteSheetCreator({
+      icons: ['warning', 'inventory', 'battery_charging_full', 'notifications'],
+    }),
+  ],
+  server: {
+    port: 5173,
+  },
+});
+\`\`\`
+
+### 4. Creating sprites for angular usage
+
+In an angular project, you can use the following code to create a spritesheet.
+
+\`\`\`typescript
+// Save this to a file called create-spritesheet.ts in your angular project
+import fs from 'node:fs';
+import { createSpriteSheet } from '@synergy-design-system/assets';
+
+const icons = ['warning', 'inventory', 'battery_charging_full', 'notifications'];
+const sheet = createSpriteSheet(icons);
+
+// Everything in the src/assets dir will be copied by angular per default.
+// Please refer to https://v17.angular.io/guide/workspace-config#assets-configuration
+// for more information about how to configure this setting.
+fs.writeFileSync('src/assets/icons.svg', sheet);
+\`\`\`
+
+
+
+---
 `;
 
 const meta: Meta = {

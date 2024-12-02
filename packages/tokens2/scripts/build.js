@@ -3,11 +3,13 @@ import { register } from '@tokens-studio/sd-transforms';
 import {
   addColorPrefix,
   addFallbackFonts,
+  useCssCalc,
 } from './transforms/index.js';
 
 register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(useCssCalc);
 
 const config = {
   buildPath: './dist/',
@@ -48,6 +50,7 @@ const dictionary = new StyleDictionary();
           'name/kebab',
           'syn/add-color-prefix',
           'syn/add-fallback-fonts',
+          'syn/use-css-calc',
         ],
         transformGroup: 'css',
         prefix: 'syn-',

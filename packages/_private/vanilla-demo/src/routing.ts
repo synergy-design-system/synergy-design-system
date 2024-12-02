@@ -70,16 +70,12 @@ export const initRouting = async () => {
 
   await customElements.whenDefined('syn-nav-item');
 
-  console.log('here!');
-
   // Initialize with the home page loaded
   routeTo(history.location.pathname, true).then(() => {}).catch(console.error);
 
-  console.log('there!');
-
   // Safari fix: Safari is firing DOMContentLoaded waaaay faster than chrome,
-  // so registred for an event that already took place.
-  // This is fixed by checking the readyState of the document now
+  // so we register for an event that already took place.
+  // This is fixed by checking the readyState of the document now.
   const onReady = () => {
     // Allow the logo to be clickable
     document.querySelector('.custom-logo')?.addEventListener('click', e => {

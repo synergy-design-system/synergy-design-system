@@ -31,9 +31,14 @@ const args = process.argv.slice(2);
 const argumentsObject = args.reduce<Args>((acc, arg) => {
   const [originalKey, originalValue] = arg.trim().split('=');
 
+  // Skip if the option does not have a value
+  if (!originalValue) {
+    return acc;
+  }
+
   const key = originalKey.trim().replace(/^--/, '');
 
-  const finalValue = key === 'icons'
+  const finalValue = originalValue.includes(',') || key === 'icons'
     ? originalValue.split(',').map((icon) => icon.trim())
     : originalValue.trim();
 
@@ -50,8 +55,8 @@ if (args.length === 0) {
 const allowedIconNames = Object.keys(defaultIcons);
 const { icons } = argumentsObject;
 
-if (!icons) {
-  console.log(helpMessage());
+if (!icons || icons.length === 0) {
+  console.log(helpMessage('Please provide at least one icon.'));
   process.exit(2);
 }
 

@@ -4,5 +4,17 @@
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js"],
+        "moduleDirectory": ["node_modules", "scripts"]
+      },
+      "typescript": {
+        "extensions": [".ts", ".js"],
+        "moduleDirectory": ["node_modules", "scripts"]
+      }
+    }
   }
 }

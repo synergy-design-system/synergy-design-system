@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.11.2](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.1...assets/1.11.2) (2024-12-02)
+
+
+### Bug Fixes
+
+* 🐛 Assets release process ([#700](https://github.com/synergy-design-system/synergy-design-system/issues/700)) ([c28647f](https://github.com/synergy-design-system/synergy-design-system/commit/c28647fa3fbde952e649c67bf7d98df6060ac78b))
+
 # [@synergy-design-system/assets-v1.11.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.0...assets/1.11.1) (2024-12-02)
 
 

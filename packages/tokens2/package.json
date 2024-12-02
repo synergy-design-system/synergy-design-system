@@ -7,6 +7,7 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@tokens-studio/sd-transforms": "^1.2.8",
     "@types/node": "^20.17.6",
     "eslint": "^8.57.1",
     "style-dictionary": "^4.2.0",

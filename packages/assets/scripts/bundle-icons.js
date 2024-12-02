@@ -15,12 +15,10 @@ const s = spinner();
  */
 export async function bundleIcons(svgDirPath, outputFile) {
   try {
-    const dtsOutputFile = outputFile.replace('.js', '.d.ts');
     const files = await fs.readdir(svgDirPath);
 
     s.start('Bundling SVGs');
     const jsContent = {};
-    const dtsContent = {};
 
     // eslint-disable-next-line no-restricted-syntax
     for (const file of files) {
@@ -30,18 +28,13 @@ export async function bundleIcons(svgDirPath, outputFile) {
         const fileData = await fs.readFile(filePath, 'utf8');
 
         jsContent[fileName] = `${fileData}`;
-        dtsContent[fileName] = 'string';
       }
     }
 
-    const jsData = `/* eslint-disable */\n\nexport const defaultIcons = ${JSON.stringify(jsContent, null, 2)};`;
-    let dtsData = `export declare const defaultIcons : ${JSON.stringify(dtsContent, null, 2)};`;
-    // Replace "string" with string to get the type for the d.ts file
-    dtsData = dtsData.replaceAll(': "string"', ': string');
+    const jsData = `/* eslint-disable */\nexport const defaultIcons = ${JSON.stringify(jsContent, null, 2)};`;
 
     const writeFiles = [
       fs.writeFile(outputFile, jsData),
-      fs.writeFile(dtsOutputFile, dtsData),
     ];
 
     await Promise.all(writeFiles);

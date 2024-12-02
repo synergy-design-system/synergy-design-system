@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
+import { cssVariableFormatter } from './formats/css-vars.js';
 import {
   addColorPrefix,
   addFallbackFonts,
@@ -12,6 +13,7 @@ StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
 StyleDictionary.registerTransform(useCssCalc);
+StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
   buildPath: './dist/',
@@ -34,7 +36,12 @@ const dictionary = new StyleDictionary();
         files: [{
           destination: `${theme}.css`,
           filter(token) { return !token.filePath.includes('primitive'); },
-          format: 'css/variables',
+          format: 'syn/css-variable-formatter',
+          options: {
+            // fileHeader: 'syn/header',
+            theme,
+            prefix: config.prefix,
+          },
         }],
         transforms: [
           'ts/descriptionToComment',

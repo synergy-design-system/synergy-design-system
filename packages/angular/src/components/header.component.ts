@@ -87,7 +87,7 @@ export class SynHeaderComponent {
   set label(v: SynHeader['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynHeader['label'] {
     return this.nativeElement.label;
   }
 
@@ -103,7 +103,7 @@ The following values can be used:
   set burgerMenu(v: SynHeader['burgerMenu']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.burgerMenu = v));
   }
-  get burgerMenu() {
+  get burgerMenu(): SynHeader['burgerMenu'] {
     return this.nativeElement.burgerMenu;
   }
 

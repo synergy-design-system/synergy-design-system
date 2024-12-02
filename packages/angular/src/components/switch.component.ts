@@ -78,7 +78,7 @@ export class SynSwitchComponent {
   set title(v: SynSwitch['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-  get title() {
+  get title(): SynSwitch['title'] {
     return this.nativeElement.title;
   }
 
@@ -89,7 +89,7 @@ export class SynSwitchComponent {
   set name(v: SynSwitch['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynSwitch['name'] {
     return this.nativeElement.name;
   }
 
@@ -100,7 +100,7 @@ export class SynSwitchComponent {
   set value(v: SynSwitch['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynSwitch['value'] {
     return this.nativeElement.value;
   }
 
@@ -111,7 +111,7 @@ export class SynSwitchComponent {
   set size(v: SynSwitch['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynSwitch['size'] {
     return this.nativeElement.size;
   }
 
@@ -119,10 +119,12 @@ export class SynSwitchComponent {
    * Disables the switch.
    */
   @Input()
-  set disabled(v: SynSwitch['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynSwitch['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynSwitch['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -130,10 +132,12 @@ export class SynSwitchComponent {
    * Draws the switch in a checked state.
    */
   @Input()
-  set checked(v: SynSwitch['checked']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.checked = v));
+  set checked(v: '' | SynSwitch['checked']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.checked = v === '' || v),
+    );
   }
-  get checked() {
+  get checked(): SynSwitch['checked'] {
     return this.nativeElement.checked;
   }
 
@@ -148,7 +152,7 @@ the same document or shadow root for this to work.
   set form(v: SynSwitch['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynSwitch['form'] {
     return this.nativeElement.form;
   }
 
@@ -156,10 +160,12 @@ the same document or shadow root for this to work.
    * Makes the switch a required field.
    */
   @Input()
-  set required(v: SynSwitch['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynSwitch['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynSwitch['required'] {
     return this.nativeElement.required;
   }
 
@@ -171,7 +177,7 @@ the same document or shadow root for this to work.
   set helpText(v: SynSwitch['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynSwitch['helpText'] {
     return this.nativeElement.helpText;
   }
 

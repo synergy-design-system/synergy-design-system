@@ -120,10 +120,12 @@ export class SynDialogComponent {
 use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
  */
   @Input()
-  set open(v: SynDialog['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynDialog['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynDialog['open'] {
     return this.nativeElement.open;
   }
 
@@ -137,7 +139,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
   set label(v: SynDialog['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynDialog['label'] {
     return this.nativeElement.label;
   }
 
@@ -147,10 +149,12 @@ use the `show()` and `hide()` methods and this attribute will reflect the dialog
 accessible way for users to dismiss the dialog.
  */
   @Input()
-  set noHeader(v: SynDialog['noHeader']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
+  set noHeader(v: '' | SynDialog['noHeader']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.noHeader = v === '' || v),
+    );
   }
-  get noHeader() {
+  get noHeader(): SynDialog['noHeader'] {
     return this.nativeElement.noHeader;
   }
 

@@ -54,7 +54,7 @@ export class SynProgressBarComponent {
   set value(v: SynProgressBar['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynProgressBar['value'] {
     return this.nativeElement.value;
   }
 
@@ -62,12 +62,12 @@ export class SynProgressBarComponent {
    * When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
    */
   @Input()
-  set indeterminate(v: SynProgressBar['indeterminate']) {
+  set indeterminate(v: '' | SynProgressBar['indeterminate']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.indeterminate = v),
+      () => (this.nativeElement.indeterminate = v === '' || v),
     );
   }
-  get indeterminate() {
+  get indeterminate(): SynProgressBar['indeterminate'] {
     return this.nativeElement.indeterminate;
   }
 
@@ -78,7 +78,7 @@ export class SynProgressBarComponent {
   set label(v: SynProgressBar['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynProgressBar['label'] {
     return this.nativeElement.label;
   }
 }

@@ -111,10 +111,12 @@ or without an overlay for non-touch devices.
 Without `open`, the side-nav will only show the prefix of nav-item's.
  */
   @Input()
-  set open(v: SynSideNav['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynSideNav['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynSideNav['open'] {
     return this.nativeElement.open;
   }
 
@@ -127,10 +129,12 @@ Note: The Rail is only an option if all Navigation Items on the first level have
 If this is not the case you should use a burger navigation.
  */
   @Input()
-  set rail(v: SynSideNav['rail']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.rail = v));
+  set rail(v: '' | SynSideNav['rail']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.rail = v === '' || v),
+    );
   }
-  get rail() {
+  get rail(): SynSideNav['rail'] {
     return this.nativeElement.rail;
   }
 
@@ -139,12 +143,12 @@ If this is not the case you should use a burger navigation.
 To disable the focus trapping, set this attribute.
  */
   @Input()
-  set noFocusTrapping(v: SynSideNav['noFocusTrapping']) {
+  set noFocusTrapping(v: '' | SynSideNav['noFocusTrapping']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.noFocusTrapping = v),
+      () => (this.nativeElement.noFocusTrapping = v === '' || v),
     );
   }
-  get noFocusTrapping() {
+  get noFocusTrapping(): SynSideNav['noFocusTrapping'] {
     return this.nativeElement.noFocusTrapping;
   }
 

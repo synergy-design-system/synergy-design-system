@@ -83,10 +83,12 @@ export class SynDetailsComponent {
 can use the `show()` and `hide()` methods and this attribute will reflect the details' open state.
  */
   @Input()
-  set open(v: SynDetails['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynDetails['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynDetails['open'] {
     return this.nativeElement.open;
   }
 
@@ -98,7 +100,7 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
   set summary(v: SynDetails['summary']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.summary = v));
   }
-  get summary() {
+  get summary(): SynDetails['summary'] {
     return this.nativeElement.summary;
   }
 
@@ -106,10 +108,12 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
    * Disables the details so it can't be toggled.
    */
   @Input()
-  set disabled(v: SynDetails['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynDetails['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynDetails['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -117,10 +121,12 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
    * Draws the details as contained element.
    */
   @Input()
-  set contained(v: SynDetails['contained']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  set contained(v: '' | SynDetails['contained']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.contained = v === '' || v),
+    );
   }
-  get contained() {
+  get contained(): SynDetails['contained'] {
     return this.nativeElement.contained;
   }
 
@@ -131,7 +137,7 @@ can use the `show()` and `hide()` methods and this attribute will reflect the de
   set size(v: SynDetails['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynDetails['size'] {
     return this.nativeElement.size;
   }
 

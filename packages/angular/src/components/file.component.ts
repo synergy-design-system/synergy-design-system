@@ -105,7 +105,7 @@ via its length property.
   set files(v: SynFile['files']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.files = v));
   }
-  get files() {
+  get files(): SynFile['files'] {
     return this.nativeElement.files;
   }
 
@@ -116,7 +116,7 @@ via its length property.
   set name(v: SynFile['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynFile['name'] {
     return this.nativeElement.name;
   }
 
@@ -131,7 +131,7 @@ Beware that the only valid value when setting a file control is an empty string!
   set value(v: SynFile['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynFile['value'] {
     return this.nativeElement.value;
   }
 
@@ -142,7 +142,7 @@ Beware that the only valid value when setting a file control is an empty string!
   set size(v: SynFile['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynFile['size'] {
     return this.nativeElement.size;
   }
 
@@ -154,7 +154,7 @@ Beware that the only valid value when setting a file control is an empty string!
   set label(v: SynFile['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynFile['label'] {
     return this.nativeElement.label;
   }
 
@@ -166,7 +166,7 @@ If you need to display HTML, use the `help-text` slot instead.
   set helpText(v: SynFile['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynFile['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -174,10 +174,12 @@ If you need to display HTML, use the `help-text` slot instead.
    * Disables the file control.
    */
   @Input()
-  set disabled(v: SynFile['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynFile['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynFile['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -185,10 +187,12 @@ If you need to display HTML, use the `help-text` slot instead.
    * Draw the file control as a drop area
    */
   @Input()
-  set droparea(v: SynFile['droparea']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.droparea = v));
+  set droparea(v: '' | SynFile['droparea']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.droparea = v === '' || v),
+    );
   }
-  get droparea() {
+  get droparea(): SynFile['droparea'] {
     return this.nativeElement.droparea;
   }
 
@@ -200,7 +204,7 @@ If you need to display HTML, use the `help-text` slot instead.
   set accept(v: SynFile['accept']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.accept = v));
   }
-  get accept() {
+  get accept(): SynFile['accept'] {
     return this.nativeElement.accept;
   }
 
@@ -214,7 +218,7 @@ Works only when not using a droparea!
   set capture(v: SynFile['capture']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.capture = v));
   }
-  get capture() {
+  get capture(): SynFile['capture'] {
     return this.nativeElement.capture;
   }
 
@@ -224,10 +228,12 @@ Has no effect if webkitdirectory is set.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
  */
   @Input()
-  set multiple(v: SynFile['multiple']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.multiple = v));
+  set multiple(v: '' | SynFile['multiple']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.multiple = v === '' || v),
+    );
   }
-  get multiple() {
+  get multiple(): SynFile['multiple'] {
     return this.nativeElement.multiple;
   }
 
@@ -239,12 +245,12 @@ Note: This is a non-standard attribute but is supported in the major browsers.
 [see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
  */
   @Input()
-  set webkitdirectory(v: SynFile['webkitdirectory']) {
+  set webkitdirectory(v: '' | SynFile['webkitdirectory']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.webkitdirectory = v),
+      () => (this.nativeElement.webkitdirectory = v === '' || v),
     );
   }
-  get webkitdirectory() {
+  get webkitdirectory(): SynFile['webkitdirectory'] {
     return this.nativeElement.webkitdirectory;
   }
 
@@ -259,7 +265,7 @@ or shadow root for this to work.
   set form(v: SynFile['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynFile['form'] {
     return this.nativeElement.form;
   }
 
@@ -267,10 +273,12 @@ or shadow root for this to work.
    * Makes the input a required field.
    */
   @Input()
-  set required(v: SynFile['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynFile['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynFile['required'] {
     return this.nativeElement.required;
   }
 
@@ -278,10 +286,12 @@ or shadow root for this to work.
    * Suppress the value from being displayed in the file control
    */
   @Input()
-  set hideValue(v: SynFile['hideValue']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hideValue = v));
+  set hideValue(v: '' | SynFile['hideValue']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hideValue = v === '' || v),
+    );
   }
-  get hideValue() {
+  get hideValue(): SynFile['hideValue'] {
     return this.nativeElement.hideValue;
   }
 

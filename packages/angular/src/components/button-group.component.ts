@@ -48,7 +48,7 @@ devices when interacting with the control and is strongly recommended.
   set label(v: SynButtonGroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynButtonGroup['label'] {
     return this.nativeElement.label;
   }
 }

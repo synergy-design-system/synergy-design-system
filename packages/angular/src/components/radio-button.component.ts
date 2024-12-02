@@ -64,7 +64,7 @@ export class SynRadioButtonComponent {
   set value(v: SynRadioButton['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynRadioButton['value'] {
     return this.nativeElement.value;
   }
 
@@ -72,10 +72,12 @@ export class SynRadioButtonComponent {
    * Disables the radio button.
    */
   @Input()
-  set disabled(v: SynRadioButton['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynRadioButton['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynRadioButton['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -88,7 +90,7 @@ this attribute can typically be omitted.
   set size(v: SynRadioButton['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynRadioButton['size'] {
     return this.nativeElement.size;
   }
 
@@ -96,10 +98,12 @@ this attribute can typically be omitted.
    * Draws a pill-style radio button with rounded edges.
    */
   @Input()
-  set pill(v: SynRadioButton['pill']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.pill = v));
+  set pill(v: '' | SynRadioButton['pill']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.pill = v === '' || v),
+    );
   }
-  get pill() {
+  get pill(): SynRadioButton['pill'] {
     return this.nativeElement.pill;
   }
 

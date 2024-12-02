@@ -43,10 +43,12 @@ export class SynDividerComponent {
    * Draws the divider in a vertical orientation.
    */
   @Input()
-  set vertical(v: SynDivider['vertical']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.vertical = v));
+  set vertical(v: '' | SynDivider['vertical']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.vertical = v === '' || v),
+    );
   }
-  get vertical() {
+  get vertical(): SynDivider['vertical'] {
     return this.nativeElement.vertical;
   }
 }

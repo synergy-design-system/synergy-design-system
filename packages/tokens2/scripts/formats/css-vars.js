@@ -8,7 +8,7 @@ import { fileHeader, formattedVariables } from 'style-dictionary/utils';
  * @type import('style-dictionary/types').Format cssVariableFormatter
  */
 export const cssVariableFormatter = {
-  format: ({
+  format: async ({
     dictionary,
     file,
     options,
@@ -19,9 +19,10 @@ export const cssVariableFormatter = {
     } = options;
 
     const bodySelector = `.${prefix}theme-${theme}`;
+    const header = await fileHeader({ file });
 
     return `
-:root, ${bodySelector} {
+${header}:root, ${bodySelector} {
   color-scheme: ${theme};
 ${formattedVariables({
   dictionary,

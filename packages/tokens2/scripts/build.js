@@ -1,6 +1,9 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { cssVariableFormatter } from './formats/css-vars.js';
+import { cssVariableFormatter } from './formats/index.js';
+// import { createJS, createSCSS } from './outputs/index.js';
 import {
   addColorPrefix,
   addFallbackFonts,
@@ -25,7 +28,19 @@ const config = {
   ],
 };
 
+const { author, name, version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
+
 const dictionary = new StyleDictionary();
+
+// Sets up custom file header
+StyleDictionary.registerFileHeader({
+  fileHeader: (defaultMsg = []) => [
+    `${name} version ${version}`,
+    `${author.name}`,
+    ...defaultMsg,
+  ],
+  name: 'syn/header',
+});
 
 ['dark', 'light'].forEach(async theme => {
   const themeInstance = await dictionary.extend({
@@ -38,7 +53,7 @@ const dictionary = new StyleDictionary();
           filter(token) { return !token.filePath.includes('primitive'); },
           format: 'syn/css-variable-formatter',
           options: {
-            // fileHeader: 'syn/header',
+            fileHeader: 'syn/header',
             theme,
             prefix: config.prefix,
           },
@@ -72,3 +87,14 @@ const dictionary = new StyleDictionary();
   themeInstance.buildAllPlatforms();
 });
 
+// createJS(
+//   StyleDictionary.fileHeader['syn/header'](''),
+//   join(config.buildPath, 'themes', 'light.css'),
+//   join(config.buildPath, 'js', 'index.js'),
+// );
+
+// createSCSS(
+//   StyleDictionary.fileHeader['syn/header'](''),
+//   join(config.buildPath, 'themes', 'light.css'),
+//   join(config.buildPath, 'scss', '_tokens.scss'),
+// );

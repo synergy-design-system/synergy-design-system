@@ -5,6 +5,9 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "rules": {
+    "no-param-reassign": "off"
+  },
   "settings": {
     "import/resolver": {
       "node": {

@@ -1,7 +1,11 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
+import {
+  addFallbackFonts,
+} from './transforms/index.js';
 
 register(StyleDictionary);
+StyleDictionary.registerTransform(addFallbackFonts);
 
 const config = {
   buildPath: './dist/',
@@ -33,13 +37,14 @@ const dictionary = new StyleDictionary();
           'ts/size/lineheight',
           'ts/typography/fontWeight',
           'ts/size/css/letterspacing',
-          // 'ts/typography/css/fontFamily',
-          // 'ts/typography/css/shorthand',
-          // 'ts/border/css/shorthand',
-          // 'ts/shadow/css/shorthand',
-          // 'ts/color/css/hexrgba',
-          // 'ts/color/modifiers',
-          // 'name/cti/kebab',
+          'ts/color/css/hexrgba',
+          'ts/color/modifiers',
+          'typography/css/shorthand',
+          'fontFamily/css',
+          'shadow/css/shorthand',
+          'border/css/shorthand',
+          'name/kebab',
+          'syn/add-fallback-font',
         ],
         transformGroup: 'css',
         prefix: 'syn-',

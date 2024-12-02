@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
 import { cssVariableFormatter } from './formats/index.js';
-// import { createJS, createSCSS } from './outputs/index.js';
+import { createJS, createSCSS } from './outputs/index.js';
 import {
   addColorPrefix,
   addFallbackFonts,
@@ -11,11 +11,12 @@ import {
   useCssCalc,
 } from './transforms/index.js';
 
-register(StyleDictionary);
+await register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
 StyleDictionary.registerTransform(useCssCalc);
+
 StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
@@ -28,7 +29,12 @@ const config = {
   ],
 };
 
-const { author, name, version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
+/**
+ * @type {{ author: Record<string, string>, name: string, version: string }} data
+ */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const data = JSON.parse(readFileSync('./package.json', 'utf-8'));
+const { author, name, version } = data;
 
 const dictionary = new StyleDictionary();
 
@@ -42,9 +48,9 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 ['dark', 'light'].forEach(async theme => {
   const themeInstance = await dictionary.extend({
-    preprocessors: ['tokens-studio'],
     platforms: {
       css: {
         buildPath: `${config.buildPath}themes/`,
@@ -54,10 +60,12 @@ StyleDictionary.registerFileHeader({
           format: 'syn/css-variable-formatter',
           options: {
             fileHeader: 'syn/header',
-            theme,
             prefix: config.prefix,
+            theme,
           },
         }],
+        prefix: 'syn-',
+        transformGroup: 'css',
         transforms: [
           'ts/descriptionToComment',
           'ts/size/px',
@@ -77,24 +85,24 @@ StyleDictionary.registerFileHeader({
           'syn/use-css-calc',
           'syn/add-missing-quotes-for-strings',
         ],
-        transformGroup: 'css',
-        prefix: 'syn-',
       },
     },
+    preprocessors: ['tokens-studio'],
     source: config.source.concat(`./src/figma-tokens/color/${theme}.json`),
   });
-  
-  themeInstance.buildAllPlatforms();
+
+  await themeInstance.buildAllPlatforms();
 });
 
-// createJS(
-//   StyleDictionary.fileHeader['syn/header'](''),
-//   join(config.buildPath, 'themes', 'light.css'),
-//   join(config.buildPath, 'js', 'index.js'),
-// );
+const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
+createJS(
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'js', 'index.js'),
+);
 
-// createSCSS(
-//   StyleDictionary.fileHeader['syn/header'](''),
-//   join(config.buildPath, 'themes', 'light.css'),
-//   join(config.buildPath, 'scss', '_tokens.scss'),
-// );
+createSCSS(
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'scss', '_tokens.scss'),
+);

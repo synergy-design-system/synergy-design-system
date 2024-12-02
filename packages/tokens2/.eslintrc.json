@@ -1,4 +1,8 @@
 {
+  "ignorePatterns": [
+    "dist/",
+    "node_modules/"
+  ],
   "extends": [
     "@synergy-design-system/eslint-config-syn/ts"
   ],
@@ -12,11 +16,11 @@
     "import/resolver": {
       "node": {
         "extensions": [".ts", ".js"],
-        "moduleDirectory": ["node_modules", "scripts"]
+        "moduleDirectory": ["node_modules", "scripts", "dist"]
       },
       "typescript": {
         "extensions": [".ts", ".js"],
-        "moduleDirectory": ["node_modules", "scripts"]
+        "moduleDirectory": ["node_modules", "scripts", "dist"]
       }
     }
   }

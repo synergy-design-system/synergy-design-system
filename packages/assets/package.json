@@ -52,6 +52,7 @@
     "SICK Logos"
   ],
   "files": [
+    "dist",
     "src/logos",
     "src/icons",
     "src/default-icons.d.ts",

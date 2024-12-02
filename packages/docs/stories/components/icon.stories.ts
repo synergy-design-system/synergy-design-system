@@ -233,7 +233,7 @@ const icons = ['warning', 'inventory', 'battery_charging_full', 'notifications']
 const sheet = createSpriteSheet(icons);
 
 // Everything in the src/assets dir will be copied by angular per default.
-// Please refer to https://v17.angular.io/guide/workspace-config#assets-configuration
+// Please refer to https://angular.io/guide/workspace-config#assets-configuration
 // for more information about how to configure this setting.
 fs.writeFileSync('src/assets/icons.svg', sheet);
 \`\`\`

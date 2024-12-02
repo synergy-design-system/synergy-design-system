@@ -1,10 +1,12 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
 import {
+  addColorPrefix,
   addFallbackFonts,
 } from './transforms/index.js';
 
 register(StyleDictionary);
+StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
 
 const config = {
@@ -44,7 +46,8 @@ const dictionary = new StyleDictionary();
           'shadow/css/shorthand',
           'border/css/shorthand',
           'name/kebab',
-          'syn/add-fallback-font',
+          'syn/add-color-prefix',
+          'syn/add-fallback-fonts',
         ],
         transformGroup: 'css',
         prefix: 'syn-',

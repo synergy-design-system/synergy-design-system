@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.10.0...assets/1.11.0) (2024-12-02)
+
+
+### Features
+
+* ✨ provide a way to bundle svg assets ([#692](https://github.com/synergy-design-system/synergy-design-system/issues/692)) ([081f3ed](https://github.com/synergy-design-system/synergy-design-system/commit/081f3ed0c1a20d4a10acfdf18dde3ff698fc4d5d))
+
 # [@synergy-design-system/assets-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.9.0...assets/1.10.0) (2024-11-21)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.11.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.0...assets/1.11.1) (2024-12-02)
+
+
+### Bug Fixes
+
+* 🐛  Added missing dist from files ([#699](https://github.com/synergy-design-system/synergy-design-system/issues/699)) ([82d8ae0](https://github.com/synergy-design-system/synergy-design-system/commit/82d8ae0237051923fdbb4e4e753dc0ba2fdd30fb))
+
 # [@synergy-design-system/assets-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.10.0...assets/1.11.0) (2024-12-02)
 
 

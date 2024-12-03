@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import fs from 'fs';
 import { pascalCase } from 'change-case';
 import chalk from 'chalk';

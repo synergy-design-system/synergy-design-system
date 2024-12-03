@@ -28,7 +28,8 @@ ${formattedVariables({
   dictionary,
   format: 'css',
 })}
-}`.trim();
+}
+`.trimStart();
   },
   name: 'syn/css-variable-formatter',
 };

@@ -10,6 +10,7 @@ import {
   addMissingQuotesForStrings,
   useCssCalc,
 } from './transforms/index.js';
+import { addMissingTokens } from './add-missing-tokens.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
@@ -49,7 +50,7 @@ StyleDictionary.registerFileHeader({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-['dark', 'light'].forEach(async theme => {
+const cssRuns = ['dark', 'light'].map(async theme => {
   const themeInstance = await dictionary.extend({
     platforms: {
       css: {
@@ -91,8 +92,15 @@ StyleDictionary.registerFileHeader({
     source: config.source.concat(`./src/figma-tokens/color/${theme}.json`),
   });
 
-  await themeInstance.buildAllPlatforms();
+  return themeInstance.buildAllPlatforms();
 });
+
+await Promise.all(cssRuns);
+
+addMissingTokens(
+  'syn',
+  join(config.buildPath, 'themes'),
+);
 
 const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
 createJS(

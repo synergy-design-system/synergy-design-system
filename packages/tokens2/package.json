@@ -17,10 +17,22 @@
     "stylelint": "^16.10.0",
     "typescript": "^5.7.2"
   },
-  "exports": {},
+  "exports": {
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js",
+      "default": "./dist/js/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./themes/*": "./dist/themes/*",
+    "./scss/*": "./dist/scss/*"
+  },
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "src/figma-tokens"
   ],
   "homepage": "https://synergy-design-system.github.io",
   "keywords": [

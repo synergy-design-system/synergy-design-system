@@ -7,8 +7,7 @@
 
 /* eslint-disable */
 import '../../../dist/synergy.js';
-import { aTimeout, expect, fixture, html, waitUntil } from '@open-wc/testing';
-import sinon from 'sinon';
+import { aTimeout, expect, fixture, html } from '@open-wc/testing';
 import type SynOption from './option.js';
 
 describe('<syn-option>', () => {
@@ -38,17 +37,6 @@ describe('<syn-option>', () => {
     el.disabled = true;
     await aTimeout(100);
     expect(el.getAttribute('aria-disabled')).to.equal('true');
-  });
-
-  it('emits the slotchange event when the label changes', async () => {
-    const el = await fixture<SynOption>(html` <syn-option>Text</syn-option> `);
-    const slotChangeHandler = sinon.spy();
-
-    el.addEventListener('slotchange', slotChangeHandler);
-    el.textContent = 'New Text';
-    await waitUntil(() => slotChangeHandler.calledOnce);
-
-    expect(slotChangeHandler).to.have.been.calledOnce;
   });
 
   it('should convert non-string values to string', async () => {

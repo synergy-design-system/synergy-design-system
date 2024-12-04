@@ -209,7 +209,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
       this.input.style.height = 'auto';
       this.input.style.height = `${this.input.scrollHeight}px`;
     } else {
-      (this.input.style.height as string | undefined) = undefined;
+      this.input.style.height = '';
     }
   }
 

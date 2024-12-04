@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.14.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.1...components/2.14.2) (2024-12-04)
+
+
+### Bug Fixes
+
+*  🐛 Change active tab via active property of syn-tab  ([#701](https://github.com/synergy-design-system/synergy-design-system/issues/701)) ([2f84cbe](https://github.com/synergy-design-system/synergy-design-system/commit/2f84cbe961b19247d829ec93c379778784ca1b74))
+
 # [@synergy-design-system/components-v2.14.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.0...components/2.14.1) (2024-11-29)
 
 

@@ -1,9 +1,22 @@
 {
-  "extends": "@synergy-design-system/eslint-config-syn",
+  "ignorePatterns": ["node_modules/"],
+  "extends": ["@synergy-design-system/eslint-config-syn/ts"],
+  "parserOptions": {
+    "project": "./tsconfig.lint.json"
+  },
   "rules": {
-    "import/no-extraneous-dependencies": "off",
-    "no-param-reassign": ["error", { "props": false }],
-    "no-prototype-builtins": "off",
-    "no-cond-assign": ["error", "except-parens"]
+    "no-param-reassign": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js"],
+        "moduleDirectory": ["node_modules", "scripts", "dist"]
+      },
+      "typescript": {
+        "extensions": [".ts", ".js"],
+        "moduleDirectory": ["node_modules", "scripts", "dist"]
+      }
+    }
   }
 }

@@ -878,6 +878,12 @@ importers:
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
+      semantic-release:
+        specifier: ^19.0.5
+        version: 19.0.5(encoding@0.1.13)
+      semantic-release-monorepo:
+        specifier: 7.0.5
+        version: 7.0.5(patch_hash=truyw3zny6xwfgnwjmnt4lw47m)(semantic-release@19.0.5(encoding@0.1.13))
       style-dictionary:
         specifier: ^4.2.0
         version: 4.2.0(prettier@3.4.0)

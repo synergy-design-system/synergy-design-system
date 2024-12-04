@@ -117,6 +117,14 @@ export default class SynTabGroup extends SynergyElement {
       // Sync tabs when disabled states change
       if (mutations.some(m => m.attributeName === 'disabled')) {
         this.syncTabsAndPanels();
+      // sync tabs when active state changed programmatically
+      } else if(mutations.some(m => m.attributeName === 'active')){
+        const tabs = mutations.filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'syn-tab').map(m => m.target as SynTab);  
+        const newActiveTab = tabs.find(tab => tab.active);
+
+        if(newActiveTab){
+          this.setActiveTab(newActiveTab);
+        }
       }
     });
 

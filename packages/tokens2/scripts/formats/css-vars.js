@@ -91,6 +91,7 @@ export const cssVariableFormatter = {
     return `
 ${header}:root, ${bodySelector} {
   color-scheme: ${theme};
+
 ${formattedVariables({
   dictionary,
   format: 'css',

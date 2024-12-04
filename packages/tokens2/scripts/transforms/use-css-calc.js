@@ -74,8 +74,6 @@ export const useCssCalc = {
       .replace(/\s+/g, ' ') // Make sure to use just one whitespace
       .trim();
 
-    // console.log(token.value, output);
-
     return `calc(${output})`;
   },
   transitive: true,

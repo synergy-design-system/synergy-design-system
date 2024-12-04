@@ -59,12 +59,18 @@ const compareAndAppendVariables = (sourceFilePath, targetFilePath, prefix) => {
         .map(variable => `  ${variable.property}: ${variable.value};`)
         .join('\n');
 
-      const updatedTargetData = targetData.replace(/\}\s*$/, `\n  /* Fallbacks from Shoelace */\n${missingVariablesCSS}\n}`);
+      // Search for the end of the file and add the tokens underneath them
+      const updatedTargetData = targetData.replace(
+        /\}\s*$/,
+        `\n  /* Fallbacks from Shoelace */\n${missingVariablesCSS}\n}`,
+      );
 
       writeFileSync(targetFilePath, updatedTargetData, 'utf-8');
     }
   } catch (error) {
-    console.error(chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error));
+    console.error(
+      chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error),
+    );
   }
 };
 

@@ -271,8 +271,8 @@
    * Elevations
    */
 
-  --syn-shadow-x-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.06);
-  --syn-shadow-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.12);
+  --syn-shadow-x-small: 0 1px 2px hsla(240deg, 3.8%, 46.1%, 0.06);
+  --syn-shadow-small: 0 1px 2px hsla(240deg, 3.8%, 46.1%, 0.12);
 
   /*
    * Transitions

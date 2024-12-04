@@ -1,13 +1,12 @@
 {
   "ignorePatterns": [
-    "dist/",
     "node_modules/"
   ],
   "extends": [
     "@synergy-design-system/eslint-config-syn/ts"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.lint.json"
   },
   "rules": {
     "no-param-reassign": "off"

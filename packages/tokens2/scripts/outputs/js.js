@@ -52,7 +52,6 @@ export const ${jsVar}: string;`);
 
   const tsOutput = `
 ${createHeaderComment(header)}
-
 ${tsExports.join('\n')}
 `.trim();
 

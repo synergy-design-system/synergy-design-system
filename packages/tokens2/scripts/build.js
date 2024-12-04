@@ -8,6 +8,7 @@ import {
   addColorPrefix,
   addFallbackFonts,
   addMissingQuotesForStrings,
+  adjustShadow,
   useCssCalc,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
@@ -16,6 +17,7 @@ await register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
+StyleDictionary.registerTransform(adjustShadow);
 StyleDictionary.registerTransform(useCssCalc);
 
 StyleDictionary.registerFormat(cssVariableFormatter);
@@ -66,7 +68,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
           },
         }],
         prefix: 'syn-',
-        transformGroup: 'css',
+        // transformGroup: 'tokens-studio',
         transforms: [
           'ts/descriptionToComment',
           'ts/size/px',
@@ -74,17 +76,19 @@ const cssRuns = ['dark', 'light'].map(async theme => {
           'ts/size/lineheight',
           'ts/typography/fontWeight',
           'ts/size/css/letterspacing',
-          'ts/color/css/hexrgba',
-          'ts/color/modifiers',
           'typography/css/shorthand',
           'fontFamily/css',
           'shadow/css/shorthand',
           'border/css/shorthand',
+          'ts/color/css/hexrgba',
+          'ts/color/modifiers',
+          'name/camel',
           'name/kebab',
           'syn/add-color-prefix',
           'syn/add-fallback-fonts',
           'syn/use-css-calc',
           'syn/add-missing-quotes-for-strings',
+          'syn/adjust-shadow',
         ],
       },
     },

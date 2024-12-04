@@ -134,18 +134,15 @@ export class SynSelectComponent {
   }
 
   /**
-* The current value of the select, submitted as a name/value pair with form data.
-* When `multiple` is enabled, the
-value attribute will be a space-delimited list of values based on the options selected, and the value property will
-be an array.
-* **For this reason, values must not contain spaces.**
- */
+   * The default value of the form control.
+   * Primarily used for resetting the form control.
+   */
   @Input()
-  set value(v: SynSelect['value']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
+  set defaultValue(v: SynSelect['defaultValue']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.defaultValue = v));
   }
-  get value(): SynSelect['value'] {
-    return this.nativeElement.value;
+  get defaultValue(): SynSelect['defaultValue'] {
+    return this.nativeElement.defaultValue;
   }
 
   /**
@@ -333,6 +330,21 @@ the specified value.
   }
   get getTag(): SynSelect['getTag'] {
     return this.nativeElement.getTag;
+  }
+
+  /**
+* The current value of the select, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a space-delimited list of values based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain spaces.**
+ */
+  @Input()
+  set value(v: SynSelect['value']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
+  }
+  get value(): SynSelect['value'] {
+    return this.nativeElement.value;
   }
 
   /**

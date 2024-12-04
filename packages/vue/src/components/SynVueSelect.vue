@@ -82,13 +82,10 @@ const props = defineProps<{
   name?: SynSelect['name'];
 
   /**
-* The current value of the select, submitted as a name/value pair with form data.
-* When `multiple` is enabled, the
-value attribute will be a space-delimited list of values based on the options selected, and the value property will
-be an array.
-* **For this reason, values must not contain spaces.**
- */
-  value?: SynSelect['value'];
+   * The default value of the form control.
+   * Primarily used for resetting the form control.
+   */
+  defaultValue?: SynSelect['defaultValue'];
 
   /**
    * The select's size.
@@ -178,6 +175,15 @@ is the current tag's index.
 the specified value.
  */
   getTag?: SynSelect['getTag'];
+
+  /**
+* The current value of the select, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a space-delimited list of values based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain spaces.**
+ */
+  value?: SynSelect['value'];
 
   /**
    * Support for two way data binding

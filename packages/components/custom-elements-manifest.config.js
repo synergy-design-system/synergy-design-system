@@ -225,6 +225,26 @@ export default {
       }
     },
 
+    // Since these changes from shoelace (https://github.com/shoelace-style/shoelace/pull/2255), where they removed the @property from "value" and changed the "defaultValue" and "value" handling internally
+    // The custom-elements.json generation needs to be updated, so the framework wrappers are created correctly again and the properties table of storybook documentation is correct.
+    {
+      name: 'synergy-value-defaultValue-fix',
+      packageLinkPhase({ customElementsManifest }){
+        const selectModule = customElementsManifest?.modules?.find(mod =>  mod.path.endsWith('select.js')).declarations[0];
+        const valueMember = selectModule.members.find(declaration => declaration.name === 'value');
+        const defaultValueAttribute = selectModule.attributes.find(attribute => attribute.fieldName === 'defaultValue');
+        // Rename the defaultValue name from "value" to "defaultValue"
+        defaultValueAttribute.name = defaultValueAttribute.fieldName;
+
+        // Create a attribute entry for "value" again, as it was before the changes
+        const valueAttribue = Object.assign({}, defaultValueAttribute);
+        valueAttribue.fieldName = valueMember.name;
+        valueAttribue.name = valueMember.name;
+        valueAttribue.description = valueMember.description;
+        selectModule.attributes.push(valueAttribue);
+      },
+    },
+
     // Generate custom VS Code data
     customElementVsCodePlugin({
       outdir,

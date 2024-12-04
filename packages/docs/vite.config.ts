@@ -26,6 +26,7 @@ const getCustomElementManifestPlugins = () => {
     'infer-tag-names',
     'custom-tags',
     'translate-module-paths',
+    'value-defaultValue-fix',
   ].map(i => `synergy-${i}`);
 
   const applyablePlugins = customElementConfig.plugins.filter(

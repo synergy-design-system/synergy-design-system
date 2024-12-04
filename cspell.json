@@ -28,6 +28,7 @@
     "keyframes",
     "autofocus",
     "listbox",
+    "spritesheet",
     "checkmark"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],

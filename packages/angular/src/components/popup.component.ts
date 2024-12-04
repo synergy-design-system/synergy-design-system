@@ -75,7 +75,7 @@ element `id`, a DOM element reference, or a `VirtualElement`.
   set anchor(v: SynPopup['anchor']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.anchor = v));
   }
-  get anchor() {
+  get anchor(): SynPopup['anchor'] {
     return this.nativeElement.anchor;
   }
 
@@ -85,10 +85,12 @@ element `id`, a DOM element reference, or a `VirtualElement`.
 down and the popup will be hidden.
  */
   @Input()
-  set active(v: SynPopup['active']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.active = v));
+  set active(v: '' | SynPopup['active']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.active = v === '' || v),
+    );
   }
-  get active() {
+  get active(): SynPopup['active'] {
     return this.nativeElement.active;
   }
 
@@ -101,7 +103,7 @@ panel inside of the viewport.
   set placement(v: SynPopup['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynPopup['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -114,7 +116,7 @@ clipped, using a `fixed` position strategy can often workaround it.
   set strategy(v: SynPopup['strategy']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.strategy = v));
   }
-  get strategy() {
+  get strategy(): SynPopup['strategy'] {
     return this.nativeElement.strategy;
   }
 
@@ -125,7 +127,7 @@ clipped, using a `fixed` position strategy can often workaround it.
   set distance(v: SynPopup['distance']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.distance = v));
   }
-  get distance() {
+  get distance(): SynPopup['distance'] {
     return this.nativeElement.distance;
   }
 
@@ -136,7 +138,7 @@ clipped, using a `fixed` position strategy can often workaround it.
   set skidding(v: SynPopup['skidding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.skidding = v));
   }
-  get skidding() {
+  get skidding(): SynPopup['skidding'] {
     return this.nativeElement.skidding;
   }
 
@@ -148,10 +150,12 @@ clipped, using a `fixed` position strategy can often workaround it.
 `::part(arrow)` in your stylesheet.
  */
   @Input()
-  set arrow(v: SynPopup['arrow']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.arrow = v));
+  set arrow(v: '' | SynPopup['arrow']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.arrow = v === '' || v),
+    );
   }
-  get arrow() {
+  get arrow(): SynPopup['arrow'] {
     return this.nativeElement.arrow;
   }
 
@@ -168,7 +172,7 @@ align the arrow to the start, end, or center of the popover instead.
       () => (this.nativeElement.arrowPlacement = v),
     );
   }
-  get arrowPlacement() {
+  get arrowPlacement(): SynPopup['arrowPlacement'] {
     return this.nativeElement.arrowPlacement;
   }
 
@@ -181,7 +185,7 @@ this will prevent it from overflowing the corners.
   set arrowPadding(v: SynPopup['arrowPadding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.arrowPadding = v));
   }
-  get arrowPadding() {
+  get arrowPadding(): SynPopup['arrowPadding'] {
     return this.nativeElement.arrowPadding;
   }
 
@@ -191,10 +195,12 @@ this will prevent it from overflowing the corners.
 `flipFallbackPlacements` to further configure how the fallback placement is determined.
  */
   @Input()
-  set flip(v: SynPopup['flip']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.flip = v));
+  set flip(v: '' | SynPopup['flip']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.flip = v === '' || v),
+    );
   }
-  get flip() {
+  get flip(): SynPopup['flip'] {
     return this.nativeElement.flip;
   }
 
@@ -212,7 +218,7 @@ fallback strategy will be used instead.
       () => (this.nativeElement.flipFallbackPlacements = v),
     );
   }
-  get flipFallbackPlacements() {
+  get flipFallbackPlacements(): SynPopup['flipFallbackPlacements'] {
     return this.nativeElement.flipFallbackPlacements;
   }
 
@@ -227,7 +233,7 @@ preferred.
       () => (this.nativeElement.flipFallbackStrategy = v),
     );
   }
-  get flipFallbackStrategy() {
+  get flipFallbackStrategy(): SynPopup['flipFallbackStrategy'] {
     return this.nativeElement.flipFallbackStrategy;
   }
 
@@ -242,7 +248,7 @@ change the boundary by passing a reference to one or more elements to this prope
   set flipBoundary(v: SynPopup['flipBoundary']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.flipBoundary = v));
   }
-  get flipBoundary() {
+  get flipBoundary(): SynPopup['flipBoundary'] {
     return this.nativeElement.flipBoundary;
   }
 
@@ -253,7 +259,7 @@ change the boundary by passing a reference to one or more elements to this prope
   set flipPadding(v: SynPopup['flipPadding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.flipPadding = v));
   }
-  get flipPadding() {
+  get flipPadding(): SynPopup['flipPadding'] {
     return this.nativeElement.flipPadding;
   }
 
@@ -261,10 +267,12 @@ change the boundary by passing a reference to one or more elements to this prope
    * Moves the popup along the axis to keep it in view when clipped.
    */
   @Input()
-  set shift(v: SynPopup['shift']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.shift = v));
+  set shift(v: '' | SynPopup['shift']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.shift = v === '' || v),
+    );
   }
-  get shift() {
+  get shift(): SynPopup['shift'] {
     return this.nativeElement.shift;
   }
 
@@ -281,7 +289,7 @@ change the boundary by passing a reference to one or more elements to this prope
       () => (this.nativeElement.shiftBoundary = v),
     );
   }
-  get shiftBoundary() {
+  get shiftBoundary(): SynPopup['shiftBoundary'] {
     return this.nativeElement.shiftBoundary;
   }
 
@@ -292,7 +300,7 @@ change the boundary by passing a reference to one or more elements to this prope
   set shiftPadding(v: SynPopup['shiftPadding']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.shiftPadding = v));
   }
-  get shiftPadding() {
+  get shiftPadding(): SynPopup['shiftPadding'] {
     return this.nativeElement.shiftPadding;
   }
 
@@ -303,7 +311,7 @@ change the boundary by passing a reference to one or more elements to this prope
   set autoSize(v: SynPopup['autoSize']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autoSize = v));
   }
-  get autoSize() {
+  get autoSize(): SynPopup['autoSize'] {
     return this.nativeElement.autoSize;
   }
 
@@ -314,7 +322,7 @@ change the boundary by passing a reference to one or more elements to this prope
   set sync(v: SynPopup['sync']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.sync = v));
   }
-  get sync() {
+  get sync(): SynPopup['sync'] {
     return this.nativeElement.sync;
   }
 
@@ -331,7 +339,7 @@ change the boundary by passing a reference to one or more elements to this prope
       () => (this.nativeElement.autoSizeBoundary = v),
     );
   }
-  get autoSizeBoundary() {
+  get autoSizeBoundary(): SynPopup['autoSizeBoundary'] {
     return this.nativeElement.autoSizeBoundary;
   }
 
@@ -344,7 +352,7 @@ change the boundary by passing a reference to one or more elements to this prope
       () => (this.nativeElement.autoSizePadding = v),
     );
   }
-  get autoSizePadding() {
+  get autoSizePadding(): SynPopup['autoSizePadding'] {
     return this.nativeElement.autoSizePadding;
   }
 
@@ -357,10 +365,12 @@ because the pointer never technically leaves the element.
 active.
  */
   @Input()
-  set hoverBridge(v: SynPopup['hoverBridge']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoverBridge = v));
+  set hoverBridge(v: '' | SynPopup['hoverBridge']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hoverBridge = v === '' || v),
+    );
   }
-  get hoverBridge() {
+  get hoverBridge(): SynPopup['hoverBridge'] {
     return this.nativeElement.hoverBridge;
   }
 

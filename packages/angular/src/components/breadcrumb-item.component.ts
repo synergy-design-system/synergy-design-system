@@ -57,7 +57,7 @@ internally.
   set href(v: SynBreadcrumbItem['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-  get href() {
+  get href(): SynBreadcrumbItem['href'] {
     return this.nativeElement.href;
   }
 
@@ -69,7 +69,7 @@ internally.
   set target(v: SynBreadcrumbItem['target']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
   }
-  get target() {
+  get target(): SynBreadcrumbItem['target'] {
     return this.nativeElement.target;
   }
 
@@ -81,7 +81,7 @@ internally.
   set rel(v: SynBreadcrumbItem['rel']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
   }
-  get rel() {
+  get rel(): SynBreadcrumbItem['rel'] {
     return this.nativeElement.rel;
   }
 }

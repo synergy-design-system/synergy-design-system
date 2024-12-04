@@ -44,10 +44,12 @@ export class SynAccordionComponent {
    * Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.
    */
   @Input()
-  set closeOthers(v: SynAccordion['closeOthers']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.closeOthers = v));
+  set closeOthers(v: '' | SynAccordion['closeOthers']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.closeOthers = v === '' || v),
+    );
   }
-  get closeOthers() {
+  get closeOthers(): SynAccordion['closeOthers'] {
     return this.nativeElement.closeOthers;
   }
 
@@ -55,10 +57,12 @@ export class SynAccordionComponent {
    * Draws the accordion and the slotted `<syn-details>` as contained elements.
    */
   @Input()
-  set contained(v: SynAccordion['contained']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  set contained(v: '' | SynAccordion['contained']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.contained = v === '' || v),
+    );
   }
-  get contained() {
+  get contained(): SynAccordion['contained'] {
     return this.nativeElement.contained;
   }
 
@@ -69,7 +73,7 @@ export class SynAccordionComponent {
   set size(v: SynAccordion['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynAccordion['size'] {
     return this.nativeElement.size;
   }
 }

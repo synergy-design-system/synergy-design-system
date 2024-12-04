@@ -136,7 +136,7 @@ export class SynComboboxComponent {
   set name(v: SynCombobox['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynCombobox['name'] {
     return this.nativeElement.name;
   }
 
@@ -147,7 +147,7 @@ export class SynComboboxComponent {
   set value(v: SynCombobox['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynCombobox['value'] {
     return this.nativeElement.value;
   }
 
@@ -158,7 +158,7 @@ export class SynComboboxComponent {
   set size(v: SynCombobox['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynCombobox['size'] {
     return this.nativeElement.size;
   }
 
@@ -169,7 +169,7 @@ export class SynComboboxComponent {
   set placeholder(v: SynCombobox['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-  get placeholder() {
+  get placeholder(): SynCombobox['placeholder'] {
     return this.nativeElement.placeholder;
   }
 
@@ -177,10 +177,12 @@ export class SynComboboxComponent {
    * Disables the combobox control.
    */
   @Input()
-  set disabled(v: SynCombobox['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynCombobox['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynCombobox['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -188,10 +190,12 @@ export class SynComboboxComponent {
    * Adds a clear button when the combobox is not empty.
    */
   @Input()
-  set clearable(v: SynCombobox['clearable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
+  set clearable(v: '' | SynCombobox['clearable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.clearable = v === '' || v),
+    );
   }
-  get clearable() {
+  get clearable(): SynCombobox['clearable'] {
     return this.nativeElement.clearable;
   }
 
@@ -201,10 +205,12 @@ You can toggle this attribute to show and hide the listbox, or you can use the `
 and `hide()` methods and this attribute will reflect the combobox's open state.
  */
   @Input()
-  set open(v: SynCombobox['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynCombobox['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynCombobox['open'] {
     return this.nativeElement.open;
   }
 
@@ -214,10 +220,12 @@ when the component is placed inside a container with `overflow: auto|scroll`.
 Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
  */
   @Input()
-  set hoist(v: SynCombobox['hoist']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.hoist = v));
+  set hoist(v: '' | SynCombobox['hoist']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.hoist = v === '' || v),
+    );
   }
-  get hoist() {
+  get hoist(): SynCombobox['hoist'] {
     return this.nativeElement.hoist;
   }
 
@@ -229,7 +237,7 @@ Hoisting uses a fixed positioning strategy that works in many, but not all, scen
   set label(v: SynCombobox['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynCombobox['label'] {
     return this.nativeElement.label;
   }
 
@@ -241,7 +249,7 @@ Note that the actual placement may vary as needed to keep the listbox inside of 
   set placement(v: SynCombobox['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynCombobox['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -253,7 +261,7 @@ Note that the actual placement may vary as needed to keep the listbox inside of 
   set helpText(v: SynCombobox['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynCombobox['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -267,7 +275,7 @@ The form must be in the same document or shadow root for this to work.
   set form(v: SynCombobox['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynCombobox['form'] {
     return this.nativeElement.form;
   }
 
@@ -275,10 +283,12 @@ The form must be in the same document or shadow root for this to work.
    * The combobox's required attribute.
    */
   @Input()
-  set required(v: SynCombobox['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynCombobox['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynCombobox['required'] {
     return this.nativeElement.required;
   }
 
@@ -294,7 +304,7 @@ If the query string should be highlighted use the `highlightOptionRenderer` func
   set getOption(v: SynCombobox['getOption']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.getOption = v));
   }
-  get getOption() {
+  get getOption(): SynCombobox['getOption'] {
     return this.nativeElement.getOption;
   }
 
@@ -306,7 +316,7 @@ The default filter method is a case- and diacritic-insensitive string comparison
   set filter(v: SynCombobox['filter']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.filter = v));
   }
-  get filter() {
+  get filter(): SynCombobox['filter'] {
     return this.nativeElement.filter;
   }
 

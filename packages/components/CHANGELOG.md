@@ -1,9 +1,42 @@
+# [@synergy-design-system/components-v2.14.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.1...components/2.14.2) (2024-12-04)
+
+
+### Bug Fixes
+
+*  🐛 Change active tab via active property of syn-tab  ([#701](https://github.com/synergy-design-system/synergy-design-system/issues/701)) ([2f84cbe](https://github.com/synergy-design-system/synergy-design-system/commit/2f84cbe961b19247d829ec93c379778784ca1b74))
+
+# [@synergy-design-system/components-v2.14.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.0...components/2.14.1) (2024-11-29)
+
+
+### Bug Fixes
+
+* 🤔 Adjust Paddings for syn-prio-nav ([#691](https://github.com/synergy-design-system/synergy-design-system/issues/691)) ([2c2937b](https://github.com/synergy-design-system/synergy-design-system/commit/2c2937b3d4e4c847e9cdd3df55555cc8085a4b74))
+
+# [@synergy-design-system/components-v2.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.13.0...components/2.14.0) (2024-11-29)
+
+
+### Features
+
+* ✨ DX: Angular should allow using boolean attributes without square brackets in templates ([#694](https://github.com/synergy-design-system/synergy-design-system/issues/694)) ([78e82b8](https://github.com/synergy-design-system/synergy-design-system/commit/78e82b8bbecd427b4f6bac188537cbe19bdf5a5a))
+
 # [@synergy-design-system/components-v2.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.1...components/2.13.0) (2024-11-28)
 
 
 ### Features
 
 * ✨ Update packages to latest versions ([#688](https://github.com/synergy-design-system/synergy-design-system/issues/688)) ([37fd055](https://github.com/synergy-design-system/synergy-design-system/commit/37fd055f0b4d067ea1afecb90a1bd1390de4d382))
+
+  * Upgrade Shoelace@2.18.0
+    * Added the .focus function to `<syn-radio-group>` [shoelace#2192](https://github.com/shoelace-style/shoelace/pull/2192)
+    * Fixed a bug in `<syn-tab-group>` when removed from the DOM too quickly [shoelace#2218](https://github.com/shoelace-style/shoelace/pull/2218)
+    * Fixed a bug with `<syn-select>` not respecting its initial value [shoelace#2204](https://github.com/shoelace-style/shoelace/pull/2204)
+    * Fixed a bug with certain bundlers when using dynamic imports [shoelace#2210](https://github.com/shoelace-style/shoelace/pull/2210)
+    * Fixed a bug in `<syn-textarea>` causing scroll jumping when using resize="auto" [shoelace#2182](https://github.com/shoelace-style/shoelace/pull/2182)
+    * Fixed a bug in `<syn-select>` that caused multi-selects without placeholders to have the wrong padding [shoelace#2194](https://github.com/shoelace-style/shoelace/pull/2194)
+    * Fixed a bug in `<syn-tooltip>` that caused a memory leak in disconnected elements [shoelace#2226](https://github.com/shoelace-style/shoelace/pull/2226)
+    * Fixed a bug in `<syn-select>` that caused an exception in an edge case using Edge + autofill [shoelace#2221](https://github.com/shoelace-style/shoelace/pull/2221)
+    * Updated all checks for directionality to use this.localize.dir() instead of el.matches(:dir(rtl)) so older browsers don’t error out [shoelace#2188](https://github.com/shoelace-style/shoelace/pull/2188)
+  * Add support for Angular@19
 
 # [@synergy-design-system/components-v2.12.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.12.0...components/2.12.1) (2024-11-22)
 

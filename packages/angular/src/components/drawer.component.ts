@@ -127,10 +127,12 @@ export class SynDrawerComponent {
 use the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.
  */
   @Input()
-  set open(v: SynDrawer['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynDrawer['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynDrawer['open'] {
     return this.nativeElement.open;
   }
 
@@ -144,7 +146,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
   set label(v: SynDrawer['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynDrawer['label'] {
     return this.nativeElement.label;
   }
 
@@ -155,7 +157,7 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
   set placement(v: SynDrawer['placement']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placement = v));
   }
-  get placement() {
+  get placement(): SynDrawer['placement'] {
     return this.nativeElement.placement;
   }
 
@@ -165,10 +167,12 @@ use the `show()` and `hide()` methods and this attribute will reflect the drawer
 its parent element, set this attribute and add `position: relative` to the parent.
  */
   @Input()
-  set contained(v: SynDrawer['contained']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.contained = v));
+  set contained(v: '' | SynDrawer['contained']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.contained = v === '' || v),
+    );
   }
-  get contained() {
+  get contained(): SynDrawer['contained'] {
     return this.nativeElement.contained;
   }
 
@@ -178,10 +182,12 @@ its parent element, set this attribute and add `position: relative` to the paren
 accessible way for users to dismiss the drawer.
  */
   @Input()
-  set noHeader(v: SynDrawer['noHeader']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.noHeader = v));
+  set noHeader(v: '' | SynDrawer['noHeader']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.noHeader = v === '' || v),
+    );
   }
-  get noHeader() {
+  get noHeader(): SynDrawer['noHeader'] {
     return this.nativeElement.noHeader;
   }
 

@@ -34,7 +34,7 @@ This repository is comprised of several sub-packages.
 
 ## Development environment
 
-SDS uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. If not already installed, install and configure these tools.
+Synergy uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. We also use [corepack](https://pnpm.io/installation#using-corepack) to handle the current required versions of node and pnpm. If not already installed, install and configure these tools.
 
 1. `pnpm install --recursive` installs all dependencies.
 2. `pnpm build` in the root directory forces a build all packages that provide a build job.

@@ -56,7 +56,7 @@ export class SynTagComponent {
   set size(v: SynTag['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynTag['size'] {
     return this.nativeElement.size;
   }
 
@@ -64,10 +64,12 @@ export class SynTagComponent {
    * Makes the tag removable and shows a remove button.
    */
   @Input()
-  set removable(v: SynTag['removable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.removable = v));
+  set removable(v: '' | SynTag['removable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.removable = v === '' || v),
+    );
   }
-  get removable() {
+  get removable(): SynTag['removable'] {
     return this.nativeElement.removable;
   }
 

@@ -1,6 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
 import {
+  addSectionBefore,
   addSectionsAfter, replaceSection, replaceSections,
 } from '../replace-section.js';
 
@@ -120,6 +121,19 @@ const transformComponent = (path, originalContent) => {
       { newlinesBeforeInsertion: 0 },
     ],
 
+    // Fix active tab is not settable with active property
+    [
+      `if (mutations.some(m => m.attributeName === 'disabled')) {
+        this.syncTabsAndPanels();`,
+        `      // sync tabs when active state changed programmatically
+      } else if(mutations.some(m => m.attributeName === 'active')){
+        const tabs = mutations.filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'syn-tab').map(m => m.target as SynTab);  
+        const newActiveTab = tabs.find(tab => tab.active);
+
+        if(newActiveTab){
+          this.setActiveTab(newActiveTab);
+        }`,
+    ],
   ], content);
 
   return {
@@ -160,6 +174,39 @@ const transformTests = (path, originalContent) => {
     'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual(clientRectangles.navigation?.bottom || -Infinity);',
     'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual((clientRectangles.navigation?.bottom! - 1) || -Infinity);',
   ], content);
+
+  content = addSectionBefore(
+    content,
+    "it('does not change if the active tab is reselected'",
+`it('selects a tab by changing it via active property', async () => {
+      const tabGroup = await fixture<SynTabGroup>(html\`
+        <syn-tab-group>
+          <syn-tab slot="nav" panel="general" data-testid="general-header">General</syn-tab>
+          <syn-tab slot="nav" panel="custom" data-testid="custom-header">Custom</syn-tab>
+          <syn-tab-panel name="general">This is the general tab panel.</syn-tab-panel>
+          <syn-tab-panel name="custom" data-testid="custom-tab-content">This is the custom tab panel.</syn-tab-panel>
+        </syn-tab-group>
+      \`);
+
+      const customHeader = queryByTestId<SynTab>(tabGroup, 'custom-header')!;
+      const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
+      generalHeader.focus();
+
+      expect(customHeader).not.to.have.attribute('active');
+
+      const showEventPromise = oneEvent(tabGroup, 'syn-tab-show') as Promise<SynTabShowEvent>;
+      customHeader.active = true;
+
+      await tabGroup.updateComplete;
+      expect(customHeader).to.have.attribute('active');
+      await expectPromiseToHaveName(showEventPromise, 'custom');
+      return expectOnlyOneTabPanelToBeActive(tabGroup, 'custom-tab-content');
+    });`,
+{
+  newlinesAfterInsertion: 2,
+  tabsAfterInsertion: 2,
+},
+  );
 
   return {
     content,

@@ -98,7 +98,7 @@ export class SynInputComponent {
   set title(v: SynInput['title']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.title = v));
   }
-  get title() {
+  get title(): SynInput['title'] {
     return this.nativeElement.title;
   }
 
@@ -112,7 +112,7 @@ to `text`.
   set type(v: SynInput['type']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.type = v));
   }
-  get type() {
+  get type(): SynInput['type'] {
     return this.nativeElement.type;
   }
 
@@ -123,7 +123,7 @@ to `text`.
   set name(v: SynInput['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynInput['name'] {
     return this.nativeElement.name;
   }
 
@@ -134,7 +134,7 @@ to `text`.
   set value(v: SynInput['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynInput['value'] {
     return this.nativeElement.value;
   }
 
@@ -145,7 +145,7 @@ to `text`.
   set size(v: SynInput['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynInput['size'] {
     return this.nativeElement.size;
   }
 
@@ -157,7 +157,7 @@ to `text`.
   set label(v: SynInput['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynInput['label'] {
     return this.nativeElement.label;
   }
 
@@ -169,7 +169,7 @@ to `text`.
   set helpText(v: SynInput['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynInput['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -177,10 +177,12 @@ to `text`.
    * Adds a clear button when the input is not empty.
    */
   @Input()
-  set clearable(v: SynInput['clearable']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.clearable = v));
+  set clearable(v: '' | SynInput['clearable']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.clearable = v === '' || v),
+    );
   }
-  get clearable() {
+  get clearable(): SynInput['clearable'] {
     return this.nativeElement.clearable;
   }
 
@@ -188,10 +190,12 @@ to `text`.
    * Disables the input.
    */
   @Input()
-  set disabled(v: SynInput['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynInput['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynInput['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -202,7 +206,7 @@ to `text`.
   set placeholder(v: SynInput['placeholder']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.placeholder = v));
   }
-  get placeholder() {
+  get placeholder(): SynInput['placeholder'] {
     return this.nativeElement.placeholder;
   }
 
@@ -210,10 +214,12 @@ to `text`.
    * Makes the input readonly.
    */
   @Input()
-  set readonly(v: SynInput['readonly']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.readonly = v));
+  set readonly(v: '' | SynInput['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
   }
-  get readonly() {
+  get readonly(): SynInput['readonly'] {
     return this.nativeElement.readonly;
   }
 
@@ -222,12 +228,12 @@ to `text`.
    * Only applies to password types.
    */
   @Input()
-  set passwordToggle(v: SynInput['passwordToggle']) {
+  set passwordToggle(v: '' | SynInput['passwordToggle']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.passwordToggle = v),
+      () => (this.nativeElement.passwordToggle = v === '' || v),
     );
   }
-  get passwordToggle() {
+  get passwordToggle(): SynInput['passwordToggle'] {
     return this.nativeElement.passwordToggle;
   }
 
@@ -236,12 +242,12 @@ to `text`.
    * Only applies to password input types.
    */
   @Input()
-  set passwordVisible(v: SynInput['passwordVisible']) {
+  set passwordVisible(v: '' | SynInput['passwordVisible']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.passwordVisible = v),
+      () => (this.nativeElement.passwordVisible = v === '' || v),
     );
   }
-  get passwordVisible() {
+  get passwordVisible(): SynInput['passwordVisible'] {
     return this.nativeElement.passwordVisible;
   }
 
@@ -249,12 +255,12 @@ to `text`.
    * Hides the increment/decrement spin buttons for number inputs.
    */
   @Input()
-  set noSpinButtons(v: SynInput['noSpinButtons']) {
+  set noSpinButtons(v: '' | SynInput['noSpinButtons']) {
     this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.noSpinButtons = v),
+      () => (this.nativeElement.noSpinButtons = v === '' || v),
     );
   }
-  get noSpinButtons() {
+  get noSpinButtons(): SynInput['noSpinButtons'] {
     return this.nativeElement.noSpinButtons;
   }
 
@@ -269,7 +275,7 @@ the same document or shadow root for this to work.
   set form(v: SynInput['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynInput['form'] {
     return this.nativeElement.form;
   }
 
@@ -277,10 +283,12 @@ the same document or shadow root for this to work.
    * Makes the input a required field.
    */
   @Input()
-  set required(v: SynInput['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynInput['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynInput['required'] {
     return this.nativeElement.required;
   }
 
@@ -291,7 +299,7 @@ the same document or shadow root for this to work.
   set pattern(v: SynInput['pattern']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.pattern = v));
   }
-  get pattern() {
+  get pattern(): SynInput['pattern'] {
     return this.nativeElement.pattern;
   }
 
@@ -302,7 +310,7 @@ the same document or shadow root for this to work.
   set minlength(v: SynInput['minlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.minlength = v));
   }
-  get minlength() {
+  get minlength(): SynInput['minlength'] {
     return this.nativeElement.minlength;
   }
 
@@ -313,7 +321,7 @@ the same document or shadow root for this to work.
   set maxlength(v: SynInput['maxlength']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
   }
-  get maxlength() {
+  get maxlength(): SynInput['maxlength'] {
     return this.nativeElement.maxlength;
   }
 
@@ -325,7 +333,7 @@ the same document or shadow root for this to work.
   set min(v: SynInput['min']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
   }
-  get min() {
+  get min(): SynInput['min'] {
     return this.nativeElement.min;
   }
 
@@ -337,7 +345,7 @@ the same document or shadow root for this to work.
   set max(v: SynInput['max']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
   }
-  get max() {
+  get max(): SynInput['max'] {
     return this.nativeElement.max;
   }
 
@@ -350,7 +358,7 @@ implied, allowing any numeric value.
   set step(v: SynInput['step']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.step = v));
   }
-  get step() {
+  get step(): SynInput['step'] {
     return this.nativeElement.step;
   }
 
@@ -363,7 +371,7 @@ implied, allowing any numeric value.
       () => (this.nativeElement.autocapitalize = v),
     );
   }
-  get autocapitalize() {
+  get autocapitalize(): SynInput['autocapitalize'] {
     return this.nativeElement.autocapitalize;
   }
 
@@ -374,7 +382,7 @@ implied, allowing any numeric value.
   set autocorrect(v: SynInput['autocorrect']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
   }
-  get autocorrect() {
+  get autocorrect(): SynInput['autocorrect'] {
     return this.nativeElement.autocorrect;
   }
 
@@ -387,7 +395,7 @@ implied, allowing any numeric value.
   set autocomplete(v: SynInput['autocomplete']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.autocomplete = v));
   }
-  get autocomplete() {
+  get autocomplete(): SynInput['autocomplete'] {
     return this.nativeElement.autocomplete;
   }
 
@@ -395,10 +403,12 @@ implied, allowing any numeric value.
    * Indicates that the input should receive focus on page load.
    */
   @Input()
-  set autofocus(v: SynInput['autofocus']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autofocus = v));
+  set autofocus(v: '' | SynInput['autofocus']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.autofocus = v === '' || v),
+    );
   }
-  get autofocus() {
+  get autofocus(): SynInput['autofocus'] {
     return this.nativeElement.autofocus;
   }
 
@@ -409,7 +419,7 @@ implied, allowing any numeric value.
   set enterkeyhint(v: SynInput['enterkeyhint']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.enterkeyhint = v));
   }
-  get enterkeyhint() {
+  get enterkeyhint(): SynInput['enterkeyhint'] {
     return this.nativeElement.enterkeyhint;
   }
 
@@ -417,10 +427,12 @@ implied, allowing any numeric value.
    * Enables spell checking on the input.
    */
   @Input()
-  set spellcheck(v: SynInput['spellcheck']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.spellcheck = v));
+  set spellcheck(v: '' | SynInput['spellcheck']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.spellcheck = v === '' || v),
+    );
   }
-  get spellcheck() {
+  get spellcheck(): SynInput['spellcheck'] {
     return this.nativeElement.spellcheck;
   }
 
@@ -432,7 +444,7 @@ keyboard on supportive devices.
   set inputmode(v: SynInput['inputmode']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.inputmode = v));
   }
-  get inputmode() {
+  get inputmode(): SynInput['inputmode'] {
     return this.nativeElement.inputmode;
   }
 

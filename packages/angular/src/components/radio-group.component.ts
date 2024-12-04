@@ -75,7 +75,7 @@ instead.
   set label(v: SynRadioGroup['label']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.label = v));
   }
-  get label() {
+  get label(): SynRadioGroup['label'] {
     return this.nativeElement.label;
   }
 
@@ -87,7 +87,7 @@ instead.
   set helpText(v: SynRadioGroup['helpText']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.helpText = v));
   }
-  get helpText() {
+  get helpText(): SynRadioGroup['helpText'] {
     return this.nativeElement.helpText;
   }
 
@@ -98,7 +98,7 @@ instead.
   set name(v: SynRadioGroup['name']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.name = v));
   }
-  get name() {
+  get name(): SynRadioGroup['name'] {
     return this.nativeElement.name;
   }
 
@@ -109,7 +109,7 @@ instead.
   set value(v: SynRadioGroup['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
   }
-  get value() {
+  get value(): SynRadioGroup['value'] {
     return this.nativeElement.value;
   }
 
@@ -121,7 +121,7 @@ instead.
   set size(v: SynRadioGroup['size']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
   }
-  get size() {
+  get size(): SynRadioGroup['size'] {
     return this.nativeElement.size;
   }
 
@@ -136,7 +136,7 @@ the same document or shadow root for this to work.
   set form(v: SynRadioGroup['form']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.form = v));
   }
-  get form() {
+  get form(): SynRadioGroup['form'] {
     return this.nativeElement.form;
   }
 
@@ -144,10 +144,12 @@ the same document or shadow root for this to work.
    * Ensures a child radio is checked before allowing the containing form to submit.
    */
   @Input()
-  set required(v: SynRadioGroup['required']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.required = v));
+  set required(v: '' | SynRadioGroup['required']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.required = v === '' || v),
+    );
   }
-  get required() {
+  get required(): SynRadioGroup['required'] {
     return this.nativeElement.required;
   }
 

@@ -350,6 +350,31 @@ describe('<syn-tab-group>', () => {
       return expectCustomTabToBeActiveAfter(tabGroup, () => clickOnElement(customHeader!));
     });
 
+    it('selects a tab by changing it via active property', async () => {
+      const tabGroup = await fixture<SynTabGroup>(html`
+        <syn-tab-group>
+          <syn-tab slot="nav" panel="general" data-testid="general-header">General</syn-tab>
+          <syn-tab slot="nav" panel="custom" data-testid="custom-header">Custom</syn-tab>
+          <syn-tab-panel name="general">This is the general tab panel.</syn-tab-panel>
+          <syn-tab-panel name="custom" data-testid="custom-tab-content">This is the custom tab panel.</syn-tab-panel>
+        </syn-tab-group>
+      `);
+
+      const customHeader = queryByTestId<SynTab>(tabGroup, 'custom-header')!;
+      const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
+      generalHeader.focus();
+
+      expect(customHeader).not.to.have.attribute('active');
+
+      const showEventPromise = oneEvent(tabGroup, 'syn-tab-show') as Promise<SynTabShowEvent>;
+      customHeader.active = true;
+
+      await tabGroup.updateComplete;
+      expect(customHeader).to.have.attribute('active');
+      await expectPromiseToHaveName(showEventPromise, 'custom');
+      return expectOnlyOneTabPanelToBeActive(tabGroup, 'custom-tab-content');
+    });
+
     it('does not change if the active tab is reselected', async () => {
       const tabGroup = await fixture<SynTabGroup>(html`
         <syn-tab-group>

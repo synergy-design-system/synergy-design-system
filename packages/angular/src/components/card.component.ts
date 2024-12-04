@@ -57,10 +57,12 @@ export class SynCardComponent {
    * when nesting multiple syn-cards to create hierarchy.
    */
   @Input()
-  set sharp(v: SynCard['sharp']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.sharp = v));
+  set sharp(v: '' | SynCard['sharp']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.sharp = v === '' || v),
+    );
   }
-  get sharp() {
+  get sharp(): SynCard['sharp'] {
     return this.nativeElement.sharp;
   }
 }

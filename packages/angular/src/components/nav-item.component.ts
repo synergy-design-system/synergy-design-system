@@ -100,15 +100,17 @@ accordion behavior.
   set href(v: SynNavItem['href']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.href = v));
   }
-  get href() {
+  get href(): SynNavItem['href'] {
     return this.nativeElement.href;
   }
 
   @Input()
-  set current(v: SynNavItem['current']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.current = v));
+  set current(v: '' | SynNavItem['current']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.current = v === '' || v),
+    );
   }
-  get current() {
+  get current(): SynNavItem['current'] {
     return this.nativeElement.current;
   }
 
@@ -116,10 +118,12 @@ accordion behavior.
    * Disables the navigation item.
    */
   @Input()
-  set disabled(v: SynNavItem['disabled']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.disabled = v));
+  set disabled(v: '' | SynNavItem['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
   }
-  get disabled() {
+  get disabled(): SynNavItem['disabled'] {
     return this.nativeElement.disabled;
   }
 
@@ -127,10 +131,12 @@ accordion behavior.
    * The navigation item's orientation.
    */
   @Input()
-  set horizontal(v: SynNavItem['horizontal']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.horizontal = v));
+  set horizontal(v: '' | SynNavItem['horizontal']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.horizontal = v === '' || v),
+    );
   }
-  get horizontal() {
+  get horizontal(): SynNavItem['horizontal'] {
     return this.nativeElement.horizontal;
   }
 
@@ -139,10 +145,12 @@ accordion behavior.
 Only used if `horizontal` is false.
  */
   @Input()
-  set chevron(v: SynNavItem['chevron']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.chevron = v));
+  set chevron(v: '' | SynNavItem['chevron']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.chevron = v === '' || v),
+    );
   }
-  get chevron() {
+  get chevron(): SynNavItem['chevron'] {
     return this.nativeElement.chevron;
   }
 
@@ -151,10 +159,12 @@ Only used if `horizontal` is false.
 Only used if `horizontal` is false and `children` is defined.
  */
   @Input()
-  set open(v: SynNavItem['open']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.open = v));
+  set open(v: '' | SynNavItem['open']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.open = v === '' || v),
+    );
   }
-  get open() {
+  get open(): SynNavItem['open'] {
     return this.nativeElement.open;
   }
 
@@ -163,10 +173,12 @@ Only used if `horizontal` is false and `children` is defined.
 Only available when horizontal is false.
  */
   @Input()
-  set divider(v: SynNavItem['divider']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.divider = v));
+  set divider(v: '' | SynNavItem['divider']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.divider = v === '' || v),
+    );
   }
-  get divider() {
+  get divider(): SynNavItem['divider'] {
     return this.nativeElement.divider;
   }
 

@@ -17,6 +17,7 @@ export const getSpacings = (useFullTokenName = false) => Object.fromEntries(getT
       'xsmall',
       'small',
       'medium',
+      'mediumlarge',
       'large',
       'xlarge',
       '2xlarge',

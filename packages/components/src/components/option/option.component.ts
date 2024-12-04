@@ -67,6 +67,12 @@ export default class SynOption extends SynergyElement {
 
   private handleDefaultSlotChange() {
     // When the label changes, tell the controller to update
+    customElements.whenDefined('syn-combobox').then(() => {
+      const controller = this.closest('syn-combobox');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
     customElements.whenDefined('syn-select').then(() => {
       const controller = this.closest('syn-select');
       if (controller) {

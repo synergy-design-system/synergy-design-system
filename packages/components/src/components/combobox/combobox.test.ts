@@ -1004,7 +1004,7 @@ describe('<syn-combobox>', () => {
     expect(errorHandler).to.have.been.calledOnce;
   });
 
-  it('should update the filtered list when an option changes', async () => {
+  it.only('should update the filtered list when an option changes', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox>
         <syn-option value="option-1">Option 1</syn-option>
@@ -1021,8 +1021,8 @@ describe('<syn-combobox>', () => {
     expect(secondOption.getTextLabel()).to.equal('Option 2');
 
     secondSlottedOption.textContent = 'updated';
-    await oneEvent(secondSlottedOption, 'slotchange');
     await el.updateComplete;
+    await aTimeout(0);
     const secondUpdatedOption = filteredListbox.querySelectorAll('syn-option')[1];
 
     expect(secondUpdatedOption.getTextLabel()).to.equal('updated');

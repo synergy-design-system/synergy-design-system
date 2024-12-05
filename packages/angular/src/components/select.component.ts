@@ -134,21 +134,6 @@ export class SynSelectComponent {
   }
 
   /**
-* The current value of the select, submitted as a name/value pair with form data.
-* When `multiple` is enabled, the
-value attribute will be a space-delimited list of values based on the options selected, and the value property will
-be an array.
-* **For this reason, values must not contain spaces.**
- */
-  @Input()
-  set value(v: SynSelect['value']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
-  }
-  get value(): SynSelect['value'] {
-    return this.nativeElement.value;
-  }
-
-  /**
    * The select's size.
    */
   @Input()
@@ -333,6 +318,21 @@ the specified value.
   }
   get getTag(): SynSelect['getTag'] {
     return this.nativeElement.getTag;
+  }
+
+  /**
+* The current value of the select, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a space-delimited list of values based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain spaces.**
+ */
+  @Input()
+  set value(v: SynSelect['value']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
+  }
+  get value(): SynSelect['value'] {
+    return this.nativeElement.value;
   }
 
   /**

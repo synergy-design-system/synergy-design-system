@@ -43,7 +43,7 @@ export const defaultValue =
       if (name === attributeName) {
         const converter = options.converter || defaultConverter;
         const fromAttribute =
-          typeof converter === 'function' ? converter : converter?.fromAttribute ?? defaultConverter.fromAttribute;
+          typeof converter === 'function' ? converter : (converter?.fromAttribute ?? defaultConverter.fromAttribute);
 
         const newValue: unknown = fromAttribute!(value, options.type);
 

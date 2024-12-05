@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.14.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.2...components/2.14.3) (2024-12-05)
+
+
+### Bug Fixes
+
+*  🐛  select does not respect async value property anymore ([#705](https://github.com/synergy-design-system/synergy-design-system/issues/705)) ([f4fc645](https://github.com/synergy-design-system/synergy-design-system/commit/f4fc645092ab6a902e66c7e59aeb1a5178e3956a))
+
 # [@synergy-design-system/components-v2.14.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.1...components/2.14.2) (2024-12-04)
 
 

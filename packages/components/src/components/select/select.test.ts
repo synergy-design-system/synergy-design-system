@@ -514,7 +514,9 @@ describe('<syn-select>', () => {
     expect(displayInput.value).to.equal('Option 1');
 
     option.textContent = 'updated';
-    await oneEvent(option, 'slotchange');
+
+    await aTimeout(250);
+    await option.updateComplete;
     await el.updateComplete;
 
     expect(displayInput.value).to.equal('updated');
@@ -732,6 +734,52 @@ describe('<syn-select>', () => {
         expect(el.value).to.have.members(['foo', 'bar', 'baz']);
         expect(new FormData(form).getAll('select')).to.have.members(['foo', 'bar', 'baz']);
       });
+    });
+
+    /**
+     * @see {https://github.com/synergy-design-system/synergy/issues/2254}
+     */
+    it('Should account for if `value` changed before connecting', async () => {
+      const select = await fixture<SynSelect>(html`
+        <syn-select label="Search By" multiple clearable .value=${['foo', 'bar']}>
+          <syn-option value="foo">Foo</syn-option>
+          <syn-option value="bar">Bar</syn-option>
+        </syn-select>
+      `);
+
+      // just for safe measure.
+      await aTimeout(10);
+
+      expect(select.value).to.deep.equal(['foo', 'bar']);
+    });
+
+    /**
+     * @see {https://github.com/synergy-design-system/synergy/issues/2254}
+     */
+    it('Should still work if using the value attribute', async () => {
+      const select = await fixture<SynSelect>(html`
+        <syn-select label="Search By" multiple clearable value="foo bar">
+          <syn-option value="foo">Foo</syn-option>
+          <syn-option value="bar">Bar</syn-option>
+        </syn-select>
+      `);
+
+      // just for safe measure.
+      await aTimeout(10);
+
+      expect(select.value).to.deep.equal(['foo', 'bar']);
+
+      await clickOnElement(select);
+      await select.updateComplete;
+      await clickOnElement(select.querySelector("[value='foo']")!);
+
+      await select.updateComplete;
+      await aTimeout(10);
+      expect(select.value).to.deep.equal(['bar']);
+
+      select.setAttribute('value', 'foo bar');
+      await aTimeout(10);
+      expect(select.value).to.deep.equal(['foo', 'bar']);
     });
   });
 

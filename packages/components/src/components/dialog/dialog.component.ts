@@ -123,7 +123,7 @@ export default class SynDialog extends SynergyElement {
     super.disconnectedCallback();
     this.modal.deactivate();
     unlockBodyScrolling(this);
-    this.closeWatcher?.destroy();
+    this.removeOpenListeners();
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {

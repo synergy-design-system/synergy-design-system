@@ -138,8 +138,8 @@ export class SubmenuController implements ReactiveController {
       } else {
         this.enableSubmenu(false);
         this.host.updateComplete.then(() => {
-          if (menuItems![0] instanceof HTMLElement) {
-            menuItems![0].focus();
+          if (menuItems[0] instanceof HTMLElement) {
+            menuItems[0].focus();
           }
         });
         this.host.requestUpdate();

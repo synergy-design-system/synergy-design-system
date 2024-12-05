@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import fs from 'fs';
-import { dirname } from 'path';
+import { existsSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 
 /**
  * Create a folder at provided path
@@ -10,8 +10,8 @@ import { dirname } from 'path';
 export const createFolder = (path) => {
   const dirName = dirname(path);
   try {
-    if (!fs.existsSync(dirName)) {
-      fs.mkdirSync(dirName);
+    if (!existsSync(dirName)) {
+      mkdirSync(dirName);
     }
     return true;
   } catch (error) {

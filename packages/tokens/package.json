@@ -3,28 +3,34 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
-  "description": "Design tokens for the SICK Design System",
+  "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
-    "@tokens-studio/sd-transforms": "^0.14.4",
+    "@tokens-studio/sd-transforms": "^1.2.8",
+    "@types/node": "^20.17.6",
     "chalk": "^5.3.0",
     "change-case": "^5.4.4",
     "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
-    "style-dictionary": "^3.9.2",
-    "stylelint": "^16.10.0"
+    "style-dictionary": "^4.2.0",
+    "stylelint": "^16.10.0",
+    "typescript": "^5.7.2"
   },
   "exports": {
     ".": {
       "types": "./dist/js/index.d.ts",
-      "import": "./dist/js/index.js"
+      "import": "./dist/js/index.js",
+      "default": "./dist/js/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
     },
     "./themes/*": "./dist/themes/*",
     "./scss/*": "./dist/scss/*"
@@ -103,9 +109,10 @@
     "build": "pnpm clean && node scripts/build.js",
     "clean": "rimraf build",
     "lint:css": "stylelint \"dist/**/*.css\"",
-    "lint:js": "eslint scripts",
+    "lint:js": "eslint scripts dist/js",
+    "lint:types": "tsc --noEmit",
     "lint": "pnpm run /^lint:.*/",
-    "format.eslint": "pnpm lint --fix",
+    "format.eslint": "pnpm lint:js --fix",
     "start": "pnpm build",
     "release": "semantic-release  --tagFormat 'tokens/${version}' -e semantic-release-monorepo",
     "release.dry": "semantic-release --dry-run --tagFormat 'tokens/${version}' -e semantic-release-monorepo"

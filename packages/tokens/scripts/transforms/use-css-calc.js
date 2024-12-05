@@ -1,6 +1,5 @@
 /**
  * @var supportedTypes List of supported token types we apply the calculation to
- * @type String[]
  */
 const supportedTypes = [
   'borderRadius',
@@ -16,7 +15,6 @@ const supportedTypes = [
 
 /**
  * @var supportedCalculations List of supported calculations
- * @type String[]
  */
 const supportedCalculations = [
   '*',
@@ -36,25 +34,40 @@ const supportedPrefixes = [
 ];
 
 /**
- * Custom transform used for adding calc() around variables that need it.
- * @see https://github.com/amzn/style-dictionary/issues/820
+ * Replaces all occurrences of math functions with css calc()
+ * Before: --syn-spacing-4x-small: 1px;
+ * After: --syn-spacing-4x-small: calc(4px / 4);
+ *
+ * @type import('style-dictionary/types').ValueTransform
  */
-export const calc = {
-  matcher: ({ type, value, name }) => {
-    if (!supportedTypes.includes(type)) return false;
+export const useCssCalc = {
+  filter: token => {
+    const { type, value, name } = token;
+
+    switch (true) {
+    // Type could not be detected or is not supported
+    case !type || !supportedTypes.includes(type): return false;
 
     // Make sure we have at least one supported prefix
-    const hasSupportedPrefix = supportedPrefixes.some(prefix => name.startsWith(prefix));
-    if (!hasSupportedPrefix) return false;
+    case !supportedPrefixes.some(prefix => name.startsWith(prefix)): return false;
 
-    return typeof value === 'string' && !!supportedCalculations.find((calcChar) => value.includes(calcChar));
+    // Value is not a string
+    case typeof value !== 'string': return false;
+
+    // Value does not contain any supported calculation
+    // default: return !!supportedCalculations.find((calcChar) => value.includes(calcChar));
+    default: return !!supportedCalculations.find((calcChar) => value.includes(calcChar));
+    }
   },
-  name: 'syn/calc',
-  transformer: ({ value }) => {
+  name: 'syn/use-css-calc',
+  /**
+   * @returns {unknown}
+   */
+  transform: token => {
     // CSS Calc syntax needs a whitespace before AND after the calculation because:
     //   calc(4px * 3); <-- valid
     //   calc(4px *3);  <-- invalid
-    const output = value
+    const output = token.value
       .replace(/\*/g, ' * ') // Make sure we have a whitespace after our calculation char
       .replace(/\//g, ' / ') // Make sure we have a whitespace after our calculation char
       .replace(/\+/g, ' + ') // Make sure we have a whitespace after our calculation char

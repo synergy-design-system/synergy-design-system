@@ -1,42 +1,49 @@
-import { readFileSync } from 'fs';
-import path from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
-import { registerTransforms } from '@tokens-studio/sd-transforms';
-import {
-  addColorName,
-  addFallbackFonts,
-  addQuotesForStrings,
-  calc,
-  log,
-} from './transforms/index.js';
-import { createCssVariables } from './formats/index.js';
-import { addMissingTokens } from './add-missing-tokens.js';
+import { register } from '@tokens-studio/sd-transforms';
+import { cssVariableFormatter } from './formats/index.js';
 import { createJS, createSCSS } from './outputs/index.js';
+import {
+  addColorPrefix,
+  addFallbackFonts,
+  addMissingQuotesForStrings,
+  adjustShadow,
+  useCssCalc,
+} from './transforms/index.js';
+import { addMissingTokens } from './add-missing-tokens.js';
 
-const { author, name, version } = JSON.parse(readFileSync('./package.json'));
+await register(StyleDictionary);
+StyleDictionary.registerTransform(addColorPrefix);
+StyleDictionary.registerTransform(addFallbackFonts);
+StyleDictionary.registerTransform(addMissingQuotesForStrings);
+StyleDictionary.registerTransform(adjustShadow);
+StyleDictionary.registerTransform(useCssCalc);
+
+StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
   buildPath: './dist/',
   prefix: 'syn-',
-  sourcePaths: [
+  source: [
     './src/figma-tokens/color/primitives.json',
     './src/figma-tokens/globals.json',
     './src/figma-tokens/semantic/*.json',
   ],
 };
 
-registerTransforms(StyleDictionary);
-StyleDictionary.registerTransform(calc);
-StyleDictionary.registerTransform(addColorName);
-StyleDictionary.registerTransform(addFallbackFonts);
-StyleDictionary.registerTransform(addQuotesForStrings);
-StyleDictionary.registerTransform(log);
+/**
+ * @type {{ author: Record<string, string>, name: string, version: string }} data
+ */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const data = JSON.parse(readFileSync('./package.json', 'utf-8'));
+const { author, name, version } = data;
 
-StyleDictionary.registerFormat(createCssVariables(config.prefix));
+const dictionary = new StyleDictionary();
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
-  fileHeader: (defaultMsg) => [
+  fileHeader: (defaultMsg = []) => [
     `${name} version ${version}`,
     `${author.name}`,
     ...defaultMsg,
@@ -44,61 +51,69 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-['dark', 'light'].forEach((theme) => {
-  StyleDictionary.extend({
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+const cssRuns = ['dark', 'light'].map(async theme => {
+  const themeInstance = await dictionary.extend({
     platforms: {
       css: {
         buildPath: `${config.buildPath}themes/`,
-        files: [
-          {
-            destination: `${theme}.css`,
-            filter(token) { return !token.filePath.includes('primitive'); },
-            format: 'syn/create-css-variables',
-            options: {
-              fileHeader: 'syn/header',
-              theme,
-            },
+        files: [{
+          destination: `${theme}.css`,
+          filter(token) { return !token.filePath.includes('primitive'); },
+          format: 'syn/css-variable-formatter',
+          options: {
+            fileHeader: 'syn/header',
+            prefix: config.prefix,
+            theme,
           },
-        ],
+        }],
         prefix: config.prefix,
+        // transformGroup: 'tokens-studio',
         transforms: [
+          'name/kebab',
           'ts/descriptionToComment',
           'ts/size/px',
           'ts/opacity',
           'ts/size/lineheight',
           'ts/typography/fontWeight',
           'ts/size/css/letterspacing',
-          'ts/typography/css/fontFamily',
-          'ts/typography/css/shorthand',
-          'ts/border/css/shorthand',
-          'ts/shadow/css/shorthand',
+          'typography/css/shorthand',
+          'fontFamily/css',
+          'border/css/shorthand',
           'ts/color/css/hexrgba',
           'ts/color/modifiers',
-          'name/cti/kebab',
-          'syn/add-color-name',
+          'shadow/css/shorthand',
+          'syn/add-color-prefix',
           'syn/add-fallback-fonts',
-          'syn/calc',
+          'syn/use-css-calc',
           'syn/add-missing-quotes-for-strings',
+          'syn/adjust-shadow',
         ],
       },
     },
-    source: config.sourcePaths.concat(`./src/figma-tokens/color/${theme}.json`),
-  }).buildAllPlatforms();
+    preprocessors: ['tokens-studio'],
+    source: config.source.concat(`./src/figma-tokens/color/${theme}.json`),
+  });
+
+  return themeInstance.buildAllPlatforms();
 });
 
+await Promise.all(cssRuns);
+
+addMissingTokens(
+  'syn',
+  join(config.buildPath, 'themes'),
+);
+
+const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
 createJS(
-  StyleDictionary.fileHeader['syn/header'](''),
-  path.join(config.buildPath, 'themes', 'light.css'),
-  path.join(config.buildPath, 'js', 'index.js'),
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'js', 'index.js'),
 );
 
 createSCSS(
-  StyleDictionary.fileHeader['syn/header'](''),
-  path.join(config.buildPath, 'themes', 'light.css'),
-  path.join(config.buildPath, 'scss', '_tokens.scss'),
-);
-
-await addMissingTokens(
-  'syn',
-  path.join(config.buildPath, 'themes'),
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'scss', '_tokens.scss'),
 );

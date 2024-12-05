@@ -1,18 +1,28 @@
-/* eslint-disable no-console */
 /**
  * As long as we don't have all tokens coming from Figma Tokens,
  * we will provide some fallback CSS variables from Shoelace.
  */
-import { existsSync } from 'fs';
-import { readFile, readdir, writeFile } from 'fs/promises';
+import {
+  existsSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from 'node:fs';
 import path from 'path';
 import chalk from 'chalk';
 
+/**
+ * Extract variables from the given data with the given prefix
+ * @param {string} data The original data entry
+ * @param {string} prefix The prefix to check for
+ * @returns {{property: string, value: string}[]}
+ */
 const extractVariables = (data, prefix) => {
   const variablePattern = new RegExp(`(--${prefix}-[^:]+):\\s*([^;]+);`, 'g');
   const variables = [];
   let match;
 
+  // eslint-disable-next-line no-cond-assign
   while ((match = variablePattern.exec(data)) !== null) {
     variables.push({ property: match[1], value: match[2] });
   }
@@ -20,12 +30,19 @@ const extractVariables = (data, prefix) => {
   return variables;
 };
 
-const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix) => {
+/**
+ * Compare the given source and target files and append missing variables to the target file
+ * @param {string} sourceFilePath The source file to extract the missing variables from
+ * @param {string} targetFilePath The target to apply the missing variables to
+ * @param {string} prefix The prefix to use for the variables
+ * @returns {void}
+ */
+const compareAndAppendVariables = (sourceFilePath, targetFilePath, prefix) => {
   try {
-    const [sourceData, targetData] = await Promise.all([
-      readFile(sourceFilePath, 'utf-8'),
-      readFile(targetFilePath, 'utf-8'),
-    ]);
+    const [sourceData, targetData] = [
+      readFileSync(sourceFilePath, 'utf-8'),
+      readFileSync(targetFilePath, 'utf-8'),
+    ];
 
     const sourceVariables = extractVariables(sourceData, prefix);
     const targetVariables = extractVariables(targetData, prefix);
@@ -42,20 +59,35 @@ const compareAndAppendVariables = async (sourceFilePath, targetFilePath, prefix)
         .map(variable => `  ${variable.property}: ${variable.value};`)
         .join('\n');
 
-      const updatedTargetData = targetData.replace(/\}\s*$/, `\n  /* Fallbacks from Shoelace */\n${missingVariablesCSS}\n}`);
-      await writeFile(targetFilePath, updatedTargetData, 'utf-8');
+      // Search for the end of the file and add the tokens underneath them
+      const updatedTargetData = targetData.replace(
+        /\}\s*$/,
+        `\n  /* Fallbacks from Shoelace */\n${missingVariablesCSS}\n}`,
+      );
+
+      writeFileSync(targetFilePath, updatedTargetData, 'utf-8');
     }
   } catch (error) {
-    console.error(chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error));
+    console.error(
+      chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error),
+    );
   }
 };
 
-export const addMissingTokens = async (prefix, targetDir) => {
+/**
+ * Add the missing tokens from the source directory to the target files
+ * @param {string} prefix The prefix to use for finding tokens
+ * @param {string} targetDir The target directory where the files are located
+ */
+export const addMissingTokens = (prefix, targetDir) => {
   const sourceDir = './src/shoelace-fallbacks';
 
   try {
-    const targetFiles = await readdir(targetDir);
+    const targetFiles = readdirSync(targetDir);
 
+    /**
+     * @type {void[]}
+     */
     const results = [];
 
     targetFiles.forEach((targetFile) => {

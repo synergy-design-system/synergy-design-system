@@ -779,7 +779,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises */
-  private handleDefaultSlotChange() {
+  /* @internal - used by options to update labels */
+  public handleDefaultSlotChange() {
     // Rerun this handler when <syn-option> is registered
     if (!customElements.get('syn-option')) {
       customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());

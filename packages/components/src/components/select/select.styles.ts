@@ -162,7 +162,7 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-small);
   }
 
-  .select--small.select--multiple .select__prefix::slotted(*) {
+  .select--small.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
     margin-inline-start: var(--syn-input-spacing-small);
   }
 
@@ -191,11 +191,11 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-medium);
   }
 
-  .select--medium.select--multiple .select__prefix::slotted(*) {
+  .select--medium.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
     margin-inline-start: var(--syn-input-spacing-medium);
   }
 
-  .select--medium.select--multiple .select__combobox {
+  .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
     padding-block: 3px;
   }
@@ -220,11 +220,11 @@ export default css`
     margin-inline-end: var(--syn-input-spacing-large);
   }
 
-  .select--large.select--multiple .select__prefix::slotted(*) {
+  .select--large.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
     margin-inline-start: var(--syn-input-spacing-large);
   }
 
-  .select--large.select--multiple .select__combobox {
+  .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
     padding-block: 4px;
   }

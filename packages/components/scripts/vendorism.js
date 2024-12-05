@@ -24,6 +24,7 @@ import {
   vendorMenu,
   vendorMenuItem,
   vendorMenuLabel,
+  vendorOption,
   vendorProgressBar,
   vendorSelect,
   vendorSpinner,
@@ -127,7 +128,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.18.0';
+const shoelaceVersion = '2.19.0';
 
 // Command line options
 const optionDefinitions = [
@@ -306,6 +307,7 @@ const config = {
       vendorMenu,
       vendorMenuItem,
       vendorMenuLabel,
+      vendorOption,
       vendorProgressBar,
       vendorSelect,
       vendorSpinner,

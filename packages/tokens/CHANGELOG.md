@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.15.0...tokens/2.15.1) (2024-12-05)
+
+
+### Bug Fixes
+
+* 🐛 Upgrade style-dictionary to new major version ([#702](https://github.com/synergy-design-system/synergy-design-system/issues/702)) ([723aefa](https://github.com/synergy-design-system/synergy-design-system/commit/723aefabd13d54d4e05ef2a352c884de9d36cd8f))
+
 # [@synergy-design-system/tokens-v2.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.14.0...tokens/2.15.0) (2024-11-27)
 
 

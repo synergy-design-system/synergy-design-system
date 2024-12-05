@@ -2,22 +2,22 @@ import { css } from 'lit';
 
 export default css`
   /**
-   * Internal size adjustments.
-   * Usually this will be changed via a parents select size higher in the dom tree
+   * The syn-option is now able to adjust its height from a parent item
+   * This is done by exposing multiple css variables to the outside:
+   *
+   * --option-min-height (defaults to 48px) The minimal height of an element
+   * --option-padding (defaults to var(--syn-spacing-small) var(--syn-spacing-medium)) The padding to use
+   * --option-font-size (defaults to var(--syn-font-size-medium)) The font size to use
+   * --option-checkmark-size (defaultx to var(--syn-spacing-large)) The size of the checkmark
+   * 
+   * See below for usage of these variables
    */
-  :host {
-    --option-min-height: 48px;
-    --option-padding: var(--syn-spacing-small) var(--syn-spacing-medium);
-    --option-font-size: var(--syn-font-size-medium);
-    --option-checkmark-size: var(--syn-spacing-large);
-  }
-
   .option {
-    font-size: var(--option-font-size);
+    font-size: var(--option-font-size, var(--syn-font-size-medium));
     
     /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
-    min-height: var(--option-min-height);
-    padding: var(--option-padding);
+    min-height: var(--option-min-height, 48px);
+    padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
   }
 
   .option:not(.option--current) {
@@ -30,7 +30,7 @@ export default css`
 
   .option__check {
     color: var(--syn-color-primary-600);
-    font-size: var(--option-checkmark-size);
+    font-size: var(--option-checkmark-size, var(--syn-spacing-large));
   }
 
   .option .option__check {

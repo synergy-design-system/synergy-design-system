@@ -111,21 +111,21 @@ export default css`
   }
 
   /* syn-option size adjustments */
-  :host([size="small"]) ::slotted(syn-option) {
+  :host([size="small"]) {
     --option-min-height: var(--syn-input-height-small);
     --option-padding: 0 var(--syn-input-spacing-small);
     --option-font-size: var(--syn-input-font-size-small);
     --option-checkmark-size: var(--syn-spacing-medium-large);
   }
 
-  :host([size="medium"]) ::slotted(syn-option) {
+  :host([size="medium"]) {
     --option-min-height: var(--syn-input-height-medium);
     --option-padding: 0 var(--syn-input-spacing-medium);
     --option-font-size: var(--syn-input-font-size-medium);
     --option-checkmark-size: var(--syn-spacing-large);
   }
 
-  :host([size="large"]) ::slotted(syn-option) {
+  :host([size="large"]) {
     --option-min-height: var(--syn-input-height-large);
     --option-padding: 0 var(--syn-input-spacing-large);
     --option-font-size: var(--syn-input-font-size-large);

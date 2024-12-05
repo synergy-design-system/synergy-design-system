@@ -109,4 +109,26 @@ export default css`
   .select__listbox ::slotted(syn-optgroup:first-of-type) {
     --display-divider: none;
   }
+
+  /* syn-option size adjustments */
+  :host([size="small"]) ::slotted(syn-option) {
+    --option-min-height: var(--syn-input-height-small);
+    --option-padding: 0 var(--syn-input-spacing-small);
+    --option-font-size: var(--syn-input-font-size-small);
+    --option-checkmark-size: var(--syn-spacing-medium-large);
+  }
+
+  :host([size="medium"]) ::slotted(syn-option) {
+    --option-min-height: var(--syn-input-height-medium);
+    --option-padding: 0 var(--syn-input-spacing-medium);
+    --option-font-size: var(--syn-input-font-size-medium);
+    --option-checkmark-size: var(--syn-spacing-large);
+  }
+
+  :host([size="large"]) ::slotted(syn-option) {
+    --option-min-height: var(--syn-input-height-large);
+    --option-padding: 0 var(--syn-input-spacing-large);
+    --option-font-size: var(--syn-input-font-size-large);
+    --option-checkmark-size: var(--syn-spacing-x-large);
+  }
 `;

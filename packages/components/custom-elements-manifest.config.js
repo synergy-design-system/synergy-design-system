@@ -233,15 +233,17 @@ export default {
         const selectModule = customElementsManifest?.modules?.find(mod =>  mod.path.endsWith('select.js')).declarations[0];
         const valueMember = selectModule.members.find(declaration => declaration.name === 'value');
         const defaultValueAttribute = selectModule.attributes.find(attribute => attribute.fieldName === 'defaultValue');
-        // Rename the defaultValue name from "value" to "defaultValue"
-        defaultValueAttribute.name = defaultValueAttribute.fieldName;
-
-        // Create a attribute entry for "value" again, as it was before the changes
+        
+        // Create an attribute entry for "value" again, as it was before the changes
         const valueAttribue = Object.assign({}, defaultValueAttribute);
         valueAttribue.fieldName = valueMember.name;
         valueAttribue.name = valueMember.name;
         valueAttribue.description = valueMember.description;
         selectModule.attributes.push(valueAttribue);
+
+        // Remove the defaultValue from attributes to have the same state as before the shoelace changes
+        const defaultValueIndex = selectModule.attributes.indexOf(defaultValueAttribute);
+        selectModule.attributes.splice(defaultValueIndex, 1);
       },
     },
 

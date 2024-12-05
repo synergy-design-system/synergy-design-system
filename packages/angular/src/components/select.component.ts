@@ -134,18 +134,6 @@ export class SynSelectComponent {
   }
 
   /**
-   * The default value of the form control.
-   * Primarily used for resetting the form control.
-   */
-  @Input()
-  set defaultValue(v: SynSelect['defaultValue']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.defaultValue = v));
-  }
-  get defaultValue(): SynSelect['defaultValue'] {
-    return this.nativeElement.defaultValue;
-  }
-
-  /**
    * The select's size.
    */
   @Input()

@@ -82,12 +82,6 @@ const props = defineProps<{
   name?: SynSelect['name'];
 
   /**
-   * The default value of the form control.
-   * Primarily used for resetting the form control.
-   */
-  defaultValue?: SynSelect['defaultValue'];
-
-  /**
    * The select's size.
    */
   size?: SynSelect['size'];

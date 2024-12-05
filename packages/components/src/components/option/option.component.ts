@@ -40,7 +40,6 @@ export default class SynOption extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };
 
-  private cachedTextLabel: string;
   // @ts-expect-error - Controller is currently unused
   private readonly localize = new LocalizeController(this);
 
@@ -67,19 +66,19 @@ export default class SynOption extends SynergyElement {
   }
 
   private handleDefaultSlotChange() {
-    const textLabel = this.getTextLabel();
-
-    // Ignore the first time the label is set
-    if (typeof this.cachedTextLabel === 'undefined') {
-      this.cachedTextLabel = textLabel;
-      return;
-    }
-
-    // When the label changes, emit a slotchange event so parent controls see it
-    if (textLabel !== this.cachedTextLabel) {
-      this.cachedTextLabel = textLabel;
-      this.emit('slotchange', { bubbles: true, composed: false, cancelable: false });
-    }
+    // When the label changes, tell the controller to update
+    customElements.whenDefined('syn-combobox').then(() => {
+      const controller = this.closest('syn-combobox');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
+    customElements.whenDefined('syn-select').then(() => {
+      const controller = this.closest('syn-select');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
   }
 
   private handleMouseEnter() {

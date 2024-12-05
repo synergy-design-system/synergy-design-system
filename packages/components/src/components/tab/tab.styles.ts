@@ -40,11 +40,8 @@ export default css`
     outline: transparent;
   }
 
-  :host(:focus-visible):not([disabled]) {
-    color: var(--syn-color-primary-600);
-  }
-
   :host(:focus-visible) {
+    color: var(--syn-color-primary-600);
     outline: var(--syn-focus-ring);
     outline-offset: calc(-1 * var(--syn-focus-ring-width) - var(--syn-focus-ring-offset));
   }

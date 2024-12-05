@@ -140,7 +140,7 @@ export default class SynDrawer extends SynergyElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     unlockBodyScrolling(this);
-    this.closeWatcher?.destroy();
+    this.removeOpenListeners();
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {

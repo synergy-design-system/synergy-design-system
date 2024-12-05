@@ -127,6 +127,59 @@ export const Submenus: Story = {
   `,
 };
 
+// Dev story for #368: Test multiple variations of
+// loading and checkbox states and the rerender of the menu
+// export const Demo = {
+//   render: () => html`
+//     <syn-menu style="max-width: 200px;">
+//       <syn-menu-item value="undo">Undo</syn-menu-item>
+//       <syn-menu-item value="redo">Redo</syn-menu-item>
+
+//       <syn-divider></syn-divider>
+
+//       <syn-menu-item id="bla" value="cut">Cut</syn-menu-item>
+//       <syn-menu-item value="copy">Copy</syn-menu-item>
+//       <syn-menu-item  value="paste">Paste</syn-menu-item>
+
+//       <syn-divider></syn-divider>
+
+//       <syn-menu-item>
+//         Find
+//         <syn-menu slot="submenu">
+//           <syn-menu-item value="find">Find…</syn-menu-item>
+//           <syn-menu-item value="find-previous" id="bla2">Find Next</syn-menu-item>
+//           <syn-menu-item value="find-next">Find Previous</syn-menu-item>
+//         </syn-menu>
+//       </syn-menu-item>
+//     </syn-menu>
+
+//     <syn-button
+//       @click=${() => {
+//         const elm = document.querySelector('#bla');
+//         elm.loading = !elm.loading;
+//       }}
+//     >
+//       Toggle loading for bla
+//     </syn-button>
+//     <syn-button
+//       @click=${() => {
+//         const elm = document.querySelector('#bla');
+//         elm.type = elm.type === 'checkbox' ? 'default' : 'checkbox';
+//       }}
+//     >
+//       Toggle checkbox for bla
+//     </syn-button>
+//     <syn-button
+//       @click=${() => {
+//         const elm = document.querySelector('#bla2');
+//         elm.loading = !elm.loading;
+//       }}
+//     >
+//       Toggle loading for sub item
+//     </syn-button>
+//   `,
+// };
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   InDropdowns,

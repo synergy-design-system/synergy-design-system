@@ -1,6 +1,11 @@
 import { css } from 'lit';
 
 export default css`
+  :host {
+    /* Custom override for hiding the checkmark in menus it is not needed */
+    --display-checkmark: flex;
+  }
+
   .menu-item {
     color: var(--syn-typography-color-text);
     font-size: var(--syn-font-size-medium);
@@ -31,6 +36,7 @@ export default css`
    */
   .menu-item .menu-item__chevron,
   .menu-item .menu-item__check {
+    display: var(--display-checkmark);
     font-size: var(--syn-font-size-x-large);
     width: var(--syn-font-size-x-large);
   }
@@ -102,5 +108,10 @@ export default css`
    */
   .menu-item--checked .menu-item__label {
     font-weight: var(--syn-font-weight-semibold);
+  }
+
+  /* Needed if we do not show the checkmark */
+  :host(:not([type="checkmark"]):not([loading])) .menu-item__label {
+    min-height: var(--syn-font-size-x-large);
   }
 `;

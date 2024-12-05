@@ -3,7 +3,7 @@
  * Before: syn-primary-50
  * After: syn-color-primary-50
  *
- * @type import('style-dictionary/types').NameTransform addFallbackFonts
+ * @type import('style-dictionary/types').NameTransform
  */
 export const addColorPrefix = {
   filter: token => token.type === 'color',

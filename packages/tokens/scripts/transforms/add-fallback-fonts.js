@@ -1,6 +1,9 @@
 /**
  * Add support for fallback fonts to the font-family tokens
- * @type import('style-dictionary/types').ValueTransform addFallbackFonts
+ * Before: --syn-font-sans: 'Open Sans'
+ * After: --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+ *
+ * @type import('style-dictionary/types').ValueTransform
  */
 export const addFallbackFonts = {
   filter: token => token.type === 'fontFamily',

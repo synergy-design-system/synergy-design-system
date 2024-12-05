@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /**
  * @var supportedTypes List of supported token types we apply the calculation to
  */
@@ -37,8 +34,11 @@ const supportedPrefixes = [
 ];
 
 /**
- * Add support for fallback fonts to the font-family tokens
- * @type import('style-dictionary/types').ValueTransform addFallbackFonts
+ * Replaces all occurrences of math functions with css calc()
+ * Before: --syn-spacing-4x-small: 1px;
+ * After: --syn-spacing-4x-small: calc(4px / 4);
+ *
+ * @type import('style-dictionary/types').ValueTransform
  */
 export const useCssCalc = {
   filter: token => {

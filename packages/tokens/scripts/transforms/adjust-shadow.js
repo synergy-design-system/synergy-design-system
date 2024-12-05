@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 /**
  * Removes the unwanted "dropShadow" prefix from the shadow value.
- * @type import('style-dictionary/types').ValueTransform addFallbackFonts
+ * @type import('style-dictionary/types').ValueTransform
  */
 export const adjustShadow = {
   filter: token => token.type === 'shadow',

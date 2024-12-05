@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 
 /**
- * Adjusts color tokens to use the `color` prefix
- * Before: syn-primary-50
- * After: syn-color-primary-50
+ * Exchanges all occurrences of referenced tokens for their css variable counterpart.
+ * Input: --syn-color-something: {SynColor500}
+ * Output: --syn-color-something: var(--syn-color-500)
  *
- * @type import('style-dictionary/types').Format cssVariableFormatter
+ * @type import('style-dictionary/types').Format
  */
 export const cssVariableFormatter = {
   format: async ({

@@ -67,7 +67,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
             theme,
           },
         }],
-        prefix: 'syn-',
+        prefix: config.prefix,
         // transformGroup: 'tokens-studio',
         transforms: [
           'name/kebab',

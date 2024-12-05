@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import fs from 'fs';
 import { pascalCase } from 'change-case';
 import chalk from 'chalk';
@@ -7,7 +6,7 @@ import { createFolder, createHeaderComment } from '../helpers.js';
 /**
  * Creates JavaScript exports from the provided css file
  *
- * @param {string} header The header to prepend to the output
+ * @param {string[]} header The header to prepend to the output
  * @param {string} inputFile Path to the input file
  * @param {string} outputFile Path to the output file
  */
@@ -53,7 +52,6 @@ export const ${jsVar}: string;`);
 
   const tsOutput = `
 ${createHeaderComment(header)}
-
 ${tsExports.join('\n')}
 `.trim();
 

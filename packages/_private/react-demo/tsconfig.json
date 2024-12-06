@@ -5,6 +5,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["@synergy-design-system/react/types/latest"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

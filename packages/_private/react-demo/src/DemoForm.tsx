@@ -282,7 +282,7 @@ export const DemoForm = () => {
           max={6000}
           min={0}
           name="donations"
-          tooltipFormatter={value => formatter.format((value as number))}
+          tooltipFormatter={value => formatter.format(value)}
           value={formData.donations}
         >
           <nav slot="ticks">

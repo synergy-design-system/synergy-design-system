@@ -49,6 +49,12 @@ export default css`
     width: auto;
   }
 
+  /* Prefix / Suffix color */
+  .input__prefix ::slotted(*),
+  .input__suffix ::slotted(*) {
+    color: var(--syn-input-icon-color);
+  }
+
 
   /* PADDINGS */
   .input--small .input__control {

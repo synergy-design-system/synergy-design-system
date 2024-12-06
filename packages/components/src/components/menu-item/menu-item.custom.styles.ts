@@ -23,7 +23,13 @@ export default css`
    */
   .menu-item .menu-item__prefix::slotted(syn-icon),
   .menu-item .menu-item__suffix::slotted(syn-icon) {
+    color: var(--syn-color-neutral-800);
     font-size: var(--syn-font-size-x-large);
+  }
+
+  :host(:focus-visible)  .menu-item .menu-item__prefix::slotted(syn-icon),
+  :host(:focus-visible)  .menu-item .menu-item__suffix::slotted(syn-icon) {
+    color: var(--syn-color-neutral-0);
   }
 
   /**

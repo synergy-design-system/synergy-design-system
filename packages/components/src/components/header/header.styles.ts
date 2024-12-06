@@ -86,6 +86,7 @@ export default css`
   }
 
   .header__meta-navigation ::slotted(*) {
+    color: var(--syn-color-neutral-950);
     display: contents;
     font-size: var(--syn-font-size-x-large);
   }

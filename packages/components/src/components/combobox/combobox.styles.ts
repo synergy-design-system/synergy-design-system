@@ -284,8 +284,19 @@ export default css`
   /* Expand icon */
   .combobox__expand-icon {
     color: var(--syn-color-neutral-950);
-    font-size: var(--syn-spacing-large);
     margin-inline-start: var(--syn-spacing-small);
+  }
+
+  .combobox--small .combobox__expand-icon {
+    font-size: var(--syn-spacing-medium);
+  }
+
+  .combobox--medium .combobox__expand-icon {
+    font-size: var(--syn-spacing-large);
+  }
+
+  .combobox--large .combobox__expand-icon {
+    font-size: var(--syn-spacing-x-large);
   }
 
   /* Change combobox border on hover */
@@ -304,6 +315,12 @@ export default css`
     margin-inline-start: var(--syn-spacing-x-small);
   }
 
+  .combobox--small .combobox__suffix::slotted(syn-icon),
+  .combobox--small .combobox__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-medium);
+  }
+
+  /* Medium */
   .combobox--medium .combobox__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-small);
   }
@@ -312,6 +329,12 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-small);
   }
 
+  .combobox--medium .combobox__suffix::slotted(syn-icon),
+  .combobox--medium .combobox__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+  }
+
+  /* Large */
   .combobox--large .combobox__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-medium);
   }
@@ -319,6 +342,12 @@ export default css`
   .combobox--large .combobox__suffix::slotted(*) {
     margin-inline-start: var(--syn-input-spacing-medium);
   }
+
+  .combobox--large .combobox__suffix::slotted(syn-icon),
+  .combobox--large .combobox__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-2x-large);
+  }
+
 
   .combobox__prefix,
   .combobox__suffix {

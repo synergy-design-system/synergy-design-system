@@ -49,7 +49,7 @@ export default css`
 
   .optgroup__prefix,
   .optgroup__suffix {
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-color-neutral-800);
     font-size: var(--syn-spacing-large);
   }
 `;

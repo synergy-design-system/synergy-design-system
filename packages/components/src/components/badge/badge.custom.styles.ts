@@ -4,7 +4,7 @@ export default css`
   .badge {
     border: none;
     border-radius: var(--syn-border-radius-pill);
-    font: var(--syn-body-x-small-bold);
+    font: var(--syn-body-medium-bold);
     height: var(--syn-spacing-large);
     line-height: var(--syn-spacing-large);
     min-width: var(--syn-spacing-large);

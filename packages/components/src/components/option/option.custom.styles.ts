@@ -44,4 +44,9 @@ export default css`
     color: var(--syn-color-neutral-800);
     font-size: var(--syn-spacing-large);
   }
+
+  .option--current .option__prefix::slotted(syn-icon),
+  .option--current .option__suffix::slotted(syn-icon) {
+    color: var(--syn-color-neutral-0);
+  }
 `;

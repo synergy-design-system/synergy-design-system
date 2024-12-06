@@ -41,6 +41,7 @@ export default css`
   /* Set correct icon size when someone uses syn-icon in the slots */
   .option__prefix::slotted(syn-icon),
   .option__suffix::slotted(syn-icon) {
+    color: var(--syn-color-neutral-800);
     font-size: var(--syn-spacing-large);
   }
 `;

@@ -1,4 +1,5 @@
 import { css } from 'lit';
+import sharedOptionSize from '../option/option-size.styles.js';
 
 export default css`
   /**
@@ -109,4 +110,6 @@ export default css`
   .select__listbox ::slotted(syn-optgroup:first-of-type) {
     --display-divider: none;
   }
+
+  ${sharedOptionSize}
 `;

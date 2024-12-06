@@ -13,7 +13,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./components/*": "./dist/components/*"
+    "./components/*": "./dist/components/*",
+    "./types/latest": {
+      "types": "./dist/types/syn-jsx-elements.d.ts"
+    }
   },
   "types": "./dist/index.d.ts",
   "files": [
@@ -42,8 +45,8 @@
   "type": "module",
   "version": "2.14.3",
   "devDependencies": {
-    "@types/react": "^18.3.12",
-    "react": "^18.3.1"
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

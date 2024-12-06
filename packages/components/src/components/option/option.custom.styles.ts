@@ -8,7 +8,7 @@ export default css`
    * --option-min-height (defaults to 48px) The minimal height of an element
    * --option-padding (defaults to var(--syn-spacing-small) var(--syn-spacing-medium)) The padding to use
    * --option-font-size (defaults to var(--syn-font-size-medium)) The font size to use
-   * --option-checkmark-size (defaultx to var(--syn-spacing-large)) The size of the checkmark
+   * --option-checkmark-size (defaults to var(--syn-spacing-large)) The size of the checkmark
    * 
    * See below for usage of these variables
    */

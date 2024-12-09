@@ -57,13 +57,14 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
 
   const componentTypes = components
     .map(component => ([
+      component.jsDoc,
       component.tagName,
       component.name,
       component?.events,
     ]))
-    .map(([tagName, name, events = []]) => {
+    .map(([jsDoc, tagName, name, events = []]) => {
       const eventTypeMap = events.map(({ name: eName, eventName }) => `['${eName}', ${eventName}]`);
-      return `'${tagName}': SynCustomElement<${name}, [${eventTypeMap.join(',')}]>;`;
+      return `${jsDoc}'${tagName}': SynCustomElement<${name}, [${eventTypeMap.join(',')}]>;`;
     });
 
   // Final output

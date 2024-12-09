@@ -103,8 +103,42 @@ export type SynCustomElement<
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'syn-accordion': SynCustomElement<SynAccordion, []>;
-      'syn-alert': SynCustomElement<
+      /**
+       * @summary Accordions provide the ability to group a list of `<syn-details>`.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
+       * @status stable
+       * @since 1.23.0
+       *
+       * @slot - The accordion's main content. Must be `<syn-details />` elements.
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-accordion': SynCustomElement<SynAccordion, []>;
+      /**
+       * @summary Alerts are used to display important messages inline or as toast notifications.
+       * @documentation https://synergy.style/components/alert
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - The alert's main content.
+       * @slot icon - An icon to show in the alert. Works best with `<syn-icon>`.
+       *
+       * @event syn-show - Emitted when the alert opens.
+       * @event syn-after-show - Emitted after the alert opens and all animations are complete.
+       * @event syn-hide - Emitted when the alert closes.
+       * @event syn-after-hide - Emitted after the alert closes and all animations are complete.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart icon - The container that wraps the optional icon.
+       * @csspart message - The container that wraps the alert's main content.
+       * @csspart close-button - The close button, an `<syn-icon-button>`.
+       * @csspart close-button__base - The close button's exported `base` part.
+       *
+       * @animation alert.show - The animation to use when showing the alert.
+       * @animation alert.hide - The animation to use when hiding the alert.
+       */ 'syn-alert': SynCustomElement<
         SynAlert,
         [
           ['syn-show', SynShowEvent],
@@ -113,10 +147,71 @@ declare module 'react' {
           ['syn-after-hide', SynAfterHideEvent],
         ]
       >;
-      'syn-badge': SynCustomElement<SynBadge, []>;
-      'syn-breadcrumb': SynCustomElement<SynBreadcrumb, []>;
-      'syn-breadcrumb-item': SynCustomElement<SynBreadcrumbItem, []>;
-      'syn-button': SynCustomElement<
+      /**
+       * @summary Badges are used to draw attention and display statuses or counts.
+       * @documentation https://synergy.style/components/badge
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The badge's content.
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-badge': SynCustomElement<SynBadge, []>;
+      /**
+       * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
+       * @documentation https://synergy.style/components/breadcrumb
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - One or more breadcrumb items to display.
+       * @slot separator - The separator to use between breadcrumb items. Works best with `<syn-icon>`.
+       *
+       * @dependency syn-icon
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-breadcrumb': SynCustomElement<SynBreadcrumb, []>;
+      /**
+       * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
+       * @documentation https://synergy.style/components/breadcrumb-item
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The breadcrumb item's label.
+       * @slot prefix - An optional prefix, usually an icon or icon button.
+       * @slot suffix - An optional suffix, usually an icon or icon button.
+       * @slot separator - The separator to use for the breadcrumb item. This will only change the separator for this item. If
+       * you want to change it for all items in the group, set the separator on `<syn-breadcrumb>` instead.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart label - The breadcrumb item's label.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart suffix - The container that wraps the suffix.
+       * @csspart separator - The container that wraps the separator.
+       */ 'syn-breadcrumb-item': SynCustomElement<SynBreadcrumbItem, []>;
+      /**
+       * @summary Buttons represent actions that are available to the user.
+       * @documentation https://synergy.style/components/button
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       * @dependency syn-spinner
+       *
+       * @event syn-blur - Emitted when the button loses focus.
+       * @event syn-focus - Emitted when the button gains focus.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @slot - The button's label.
+       * @slot prefix - A presentational prefix icon or similar element.
+       * @slot suffix - A presentational suffix icon or similar element.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart label - The button's label.
+       * @csspart suffix - The container that wraps the suffix.
+       * @csspart caret - The button's caret icon, an `<syn-icon>` element.
+       * @csspart spinner - The spinner that shows when the button is in the loading state.
+       */ 'syn-button': SynCustomElement<
         SynButton,
         [
           ['syn-blur', SynBlurEvent],
@@ -124,9 +219,64 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-button-group': SynCustomElement<SynButtonGroup, []>;
-      'syn-card': SynCustomElement<SynCard, []>;
-      'syn-checkbox': SynCustomElement<
+      /**
+       * @summary Button groups can be used to group related buttons into sections.
+       * @documentation https://synergy.style/components/button-group
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - One or more `<syn-button>` elements to display in the button group.
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-button-group': SynCustomElement<SynButtonGroup, []>;
+      /**
+       * @summary Cards can be used to group related subjects in a container.
+       * @documentation https://synergy.style/components/card
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The card's main content.
+       * @slot header - An optional header for the card.
+       * @slot footer - An optional footer for the card.
+       * @slot image - An optional image to render at the start of the card.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart image - The container that wraps the card's image.
+       * @csspart header - The container that wraps the card's header.
+       * @csspart body - The container that wraps the card's main content.
+       * @csspart footer - The container that wraps the card's footer.
+       *
+       * @cssproperty --border-color - The card's border color, including borders that occur inside the card.
+       * @cssproperty --border-radius - The border radius for the card's edges.
+       * @cssproperty --border-width - The width of the card's borders.
+       * @cssproperty --padding - The padding to use for the card's sections.
+       */ 'syn-card': SynCustomElement<SynCard, []>;
+      /**
+       * @summary Checkboxes allow the user to toggle an option on or off.
+       * @documentation https://synergy.style/components/checkbox
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       *
+       * @slot - The checkbox's label.
+       * @slot help-text - Text that describes how to use the checkbox. Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-blur - Emitted when the checkbox loses focus.
+       * @event syn-change - Emitted when the checked state changes.
+       * @event syn-focus - Emitted when the checkbox gains focus.
+       * @event syn-input - Emitted when the checkbox receives input.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart control - The square container that wraps the checkbox's checked state.
+       * @csspart control--checked - Matches the control part when the checkbox is checked.
+       * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+       * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
+       * @csspart indeterminate-icon - The indeterminate icon, an `<syn-icon>` element.
+       * @csspart label - The container that wraps the checkbox's label.
+       * @csspart form-control-help-text - The help text's wrapper.
+       */ 'syn-checkbox': SynCustomElement<
         SynCheckbox,
         [
           ['syn-blur', SynBlurEvent],
@@ -136,7 +286,56 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-combobox': SynCustomElement<
+      /**
+       * @summary Comboboxes allow you to choose items from a menu of predefined options.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
+       * @status stable
+       *
+       * @dependency syn-icon
+       * @dependency syn-popup
+       *
+       * @slot - The listbox options. Must be `<syn-option>` elements.
+       *    You can use `<syn-optgroup>`'s to group items visually.
+       * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
+       * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+       * @slot suffix - Used to append a presentational icon or similar element to the combobox.
+       * @slot clear-icon - An icon to use in lieu of the default clear icon.
+       * @slot expand-icon - The icon to show when the control is expanded and collapsed.
+       *    Rotates on open and close.
+       * @slot help-text - Text that describes how to use the combobox.
+       *    Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-change - Emitted when the control's value changes.
+       * @event syn-clear - Emitted when the control's value is cleared.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-show - Emitted when the combobox's menu opens.
+       * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
+       * @event syn-hide - Emitted when the combobox's menu closes.
+       * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
+       * @event syn-invalid - Emitted when the form control has been checked for validity
+       *    and its constraints aren't satisfied.
+       * @event syn-error - Emitted when the combobox menu fails to open.
+       *
+       * @csspart form-control - The form control that wraps the label, combobox, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The combobox's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
+       * @csspart prefix - The container that wraps the prefix slot.
+       * @csspart suffix - The container that wraps the suffix slot.
+       * @csspart display-input - The element that displays the selected option's label,
+       *     an `<input>` element.
+       * @csspart listbox - The listbox container where the options are slotted
+       *   and the filtered options list exists.
+       * @csspart filtered-listbox - The container that wraps the filtered options.
+       * @csspart clear-button - The clear button.
+       * @csspart expand-icon - The container that wraps the expand icon.
+       *
+       * @animation combobox.show - The animation to use when showing the combobox.
+       * @animation combobox.hide - The animation to use when hiding the combobox.
+       */ 'syn-combobox': SynCustomElement<
         SynCombobox,
         [
           ['syn-change', SynChangeEvent],
@@ -152,7 +351,33 @@ declare module 'react' {
           ['syn-error', SynErrorEvent],
         ]
       >;
-      'syn-details': SynCustomElement<
+      /**
+       * @summary Details show a brief summary and expand to show additional content.
+       * @documentation https://synergy.style/components/details
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       *
+       * @slot - The details' main content.
+       * @slot summary - The details' summary. Alternatively, you can use the `summary` attribute.
+       * @slot expand-icon - Optional expand icon to use instead of the default. Works best with `<syn-icon>`.
+       * @slot collapse-icon - Optional collapse icon to use instead of the default. Works best with `<syn-icon>`.
+       *
+       * @event syn-show - Emitted when the details opens.
+       * @event syn-after-show - Emitted after the details opens and all animations are complete.
+       * @event syn-hide - Emitted when the details closes.
+       * @event syn-after-hide - Emitted after the details closes and all animations are complete.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart header - The header that wraps both the summary and the expand/collapse icon.
+       * @csspart summary - The container that wraps the summary.
+       * @csspart summary-icon - The container that wraps the expand/collapse icons.
+       * @csspart content - The details content.
+       *
+       * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
+       * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
+       */ 'syn-details': SynCustomElement<
         SynDetails,
         [
           ['syn-show', SynShowEvent],
@@ -161,7 +386,56 @@ declare module 'react' {
           ['syn-after-hide', SynAfterHideEvent],
         ]
       >;
-      'syn-dialog': SynCustomElement<
+      /**
+       * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
+       * @documentation https://synergy.style/components/dialog
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - The dialog's main content.
+       * @slot label - The dialog's label. Alternatively, you can use the `label` attribute.
+       * @slot header-actions - Optional actions to add to the header. Works best with `<syn-icon-button>`.
+       * @slot footer - The dialog's footer, usually one or more buttons representing various options.
+       *
+       * @event syn-show - Emitted when the dialog opens.
+       * @event syn-after-show - Emitted after the dialog opens and all animations are complete.
+       * @event syn-hide - Emitted when the dialog closes.
+       * @event syn-after-hide - Emitted after the dialog closes and all animations are complete.
+       * @event syn-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
+       *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+       * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} syn-request-close - Emitted when the user attempts to
+       *   close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling
+       *   `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in
+       *   destructive behavior such as data loss.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart overlay - The overlay that covers the screen behind the dialog.
+       * @csspart panel - The dialog's panel (where the dialog and its content are rendered).
+       * @csspart header - The dialog's header. This element wraps the title and header actions.
+       * @csspart header-actions - Optional actions to add to the header. Works best with `<syn-icon-button>`.
+       * @csspart title - The dialog's title.
+       * @csspart close-button - The close button, an `<syn-icon-button>`.
+       * @csspart close-button__base - The close button's exported `base` part.
+       * @csspart body - The dialog's body.
+       * @csspart footer - The dialog's footer.
+       *
+       * @cssproperty --width - The preferred width of the dialog. Note that the dialog will shrink to accommodate smaller screens.
+       * @cssproperty --header-spacing - The amount of padding to use for the header.
+       * @cssproperty --body-spacing - The amount of padding to use for the body.
+       * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+       *
+       * @animation dialog.show - The animation to use when showing the dialog.
+       * @animation dialog.hide - The animation to use when hiding the dialog.
+       * @animation dialog.denyClose - The animation to use when a request to close the dialog is denied.
+       * @animation dialog.overlay.show - The animation to use when showing the dialog's overlay.
+       * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
+       *
+       * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
+       *   trapping and allow third-party modals spawned from an active Synergy modal, call `modal.activateExternal()` when
+       *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.
+       */ 'syn-dialog': SynCustomElement<
         SynDialog,
         [
           ['syn-show', SynShowEvent],
@@ -172,8 +446,73 @@ declare module 'react' {
           ['syn-request-close', SynRequestCloseEvent],
         ]
       >;
-      'syn-divider': SynCustomElement<SynDivider, []>;
-      'syn-drawer': SynCustomElement<
+      /**
+       * @summary Dividers are used to visually separate or group elements.
+       * @documentation https://synergy.style/components/divider
+       * @status stable
+       * @since 2.0
+       *
+       * @cssproperty --color - The color of the divider.
+       * @cssproperty --width - The width of the divider.
+       * @cssproperty --spacing - The spacing of the divider.
+       */ 'syn-divider': SynCustomElement<SynDivider, []>;
+      /**
+       * @summary Drawers slide in from a container to expose additional options and information.
+       * @documentation https://synergy.style/components/drawer
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - The drawer's main content.
+       * @slot label - The drawer's label. Alternatively, you can use the `label` attribute.
+       * @slot header-actions - Optional actions to add to the header. Works best with `<syn-icon-button>`.
+       * @slot footer - The drawer's footer, usually one or more buttons representing various options.
+       *
+       * @event syn-show - Emitted when the drawer opens.
+       * @event syn-after-show - Emitted after the drawer opens and all animations are complete.
+       * @event syn-hide - Emitted when the drawer closes.
+       * @event syn-after-hide - Emitted after the drawer closes and all animations are complete.
+       * @event syn-initial-focus - Emitted when the drawer opens and is ready to receive focus. Calling
+       *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
+       * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} syn-request-close - Emitted when the user attempts to
+       *   close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling
+       *   `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in
+       *   destructive behavior such as data loss.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart overlay - The overlay that covers the screen behind the drawer.
+       * @csspart panel - The drawer's panel (where the drawer and its content are rendered).
+       * @csspart header - The drawer's header. This element wraps the title and header actions.
+       * @csspart header-actions - Optional actions to add to the header. Works best with `<syn-icon-button>`.
+       * @csspart title - The drawer's title.
+       * @csspart close-button - The close button, an `<syn-icon-button>`.
+       * @csspart close-button__base - The close button's exported `base` part.
+       * @csspart body - The drawer's body.
+       * @csspart footer - The drawer's footer.
+       *
+       * @cssproperty --size - The preferred size of the drawer. This will be applied to the drawer's width or height
+       *   depending on its `placement`. Note that the drawer will shrink to accommodate smaller screens.
+       * @cssproperty --header-spacing - The amount of padding to use for the header.
+       * @cssproperty --body-spacing - The amount of padding to use for the body.
+       * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+       *
+       * @animation drawer.showTop - The animation to use when showing a drawer with `top` placement.
+       * @animation drawer.showEnd - The animation to use when showing a drawer with `end` placement.
+       * @animation drawer.showBottom - The animation to use when showing a drawer with `bottom` placement.
+       * @animation drawer.showStart - The animation to use when showing a drawer with `start` placement.
+       * @animation drawer.hideTop - The animation to use when hiding a drawer with `top` placement.
+       * @animation drawer.hideEnd - The animation to use when hiding a drawer with `end` placement.
+       * @animation drawer.hideBottom - The animation to use when hiding a drawer with `bottom` placement.
+       * @animation drawer.hideStart - The animation to use when hiding a drawer with `start` placement.
+       * @animation drawer.denyClose - The animation to use when a request to close the drawer is denied.
+       * @animation drawer.overlay.show - The animation to use when showing the drawer's overlay.
+       * @animation drawer.overlay.hide - The animation to use when hiding the drawer's overlay.
+       *
+       * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
+       *   trapping and allow third-party modals spawned from an active Synergy modal, call `modal.activateExternal()` when
+       *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.
+       */ 'syn-drawer': SynCustomElement<
         SynDrawer,
         [
           ['syn-show', SynShowEvent],
@@ -184,7 +523,30 @@ declare module 'react' {
           ['syn-request-close', SynRequestCloseEvent],
         ]
       >;
-      'syn-dropdown': SynCustomElement<
+      /**
+       * @summary Dropdowns expose additional content that "drops down" in a panel.
+       * @documentation https://synergy.style/components/dropdown
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-popup
+       *
+       * @slot - The dropdown's main content.
+       * @slot trigger - The dropdown's trigger, usually a `<syn-button>` element.
+       *
+       * @event syn-show - Emitted when the dropdown opens.
+       * @event syn-after-show - Emitted after the dropdown opens and all animations are complete.
+       * @event syn-hide - Emitted when the dropdown closes.
+       * @event syn-after-hide - Emitted after the dropdown closes and all animations are complete.
+       *
+       * @csspart base - The component's base wrapper, an `<syn-popup>` element.
+       * @csspart base__popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
+       * @csspart trigger - The container that wraps the trigger.
+       * @csspart panel - The panel that gets shown when the dropdown is open.
+       *
+       * @animation dropdown.show - The animation to use when showing the dropdown.
+       * @animation dropdown.hide - The animation to use when hiding the dropdown.
+       */ 'syn-dropdown': SynCustomElement<
         SynDropdown,
         [
           ['syn-show', SynShowEvent],
@@ -193,7 +555,52 @@ declare module 'react' {
           ['syn-after-hide', SynAfterHideEvent],
         ]
       >;
-      'syn-file': SynCustomElement<
+      /**
+       * @summary File controls allow selecting an arbitrary number of files for uploading.
+       * @status stable
+       *
+       * @dependency syn-button
+       * @dependency syn-icon
+       *
+       * @slot label - The file control's label. Alternatively, you can use the `label` attribute.
+       * @slot help-text - Text that describes how to use the file control.
+       *    Alternatively, you can use the `help-text` attribute.
+       * @slot droparea-icon - Optional droparea icon to use instead of the default.
+       *    Works best with `<syn-icon>`.
+       * @slot trigger - Optional content to be used as trigger instead of the default content.
+       *    Opening the file dialog on click and as well as drag and drop will work for this content.
+       *    Following attributes will no longer work: *label*, *droparea*, *help-text*, *size*,
+       *    *hide-value*. Also if using the disabled attribute, the disabled styling will not be
+       *    applied and must be taken care of yourself.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+       * @event syn-error - Emitted when multiple files are selected via drag and drop, without
+       * the `multiple` property being set.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-input - Emitted when the control receives input.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart button-wrapper - The wrapper around the button and text value.
+       * @csspart button - The syn-button acting as a file input.
+       * @csspart button__base - The syn-button's exported `base` part.
+       * @csspart value - The chosen files or placeholder text for the file input.
+       * @csspart droparea - The element wrapping the drop zone.
+       * @csspart droparea-background - The background of the drop zone.
+       * @csspart droparea-icon - The container that wraps the icon for the drop zone.
+       * @csspart droparea-value - The text for the drop zone.
+       * @csspart trigger - The container that wraps the trigger.
+       *
+       * @animation file.iconDrop - The animation to use for the file icon
+       * when a file is dropped
+       * @animation file.text.disappear - The disappear animation to use for the file placeholder text
+       * when a file is dropped
+       * @animation file.text.appear - The appear animation to use for the file placeholder text
+       * when a file is dropped
+       */ 'syn-file': SynCustomElement<
         SynFile,
         [
           ['syn-blur', SynBlurEvent],
@@ -203,7 +610,36 @@ declare module 'react' {
           ['syn-input', SynInputEvent],
         ]
       >;
-      'syn-header': SynCustomElement<
+      /**
+       * @summary The <syn-header /> element provides a generic application header
+       * that can be used to add applications name, toolbar and primary navigation.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs
+       * @status stable
+       * @since 1.10.0
+       *
+       * @slot label - The label for the header
+       * @slot logo - The logo that should be displayed. Will fall back to the SICK logo if not provided
+       * @slot meta-navigation - The meta-navigation is used to add various application toolbar icons
+       *                     Best used with `<syn-icon-button />` and `<syn-drop-down />`
+       * @slot navigation - This slot can be used to add an optional horizontal navigation
+       * @slot open-burger-menu-icon - An icon to use in lieu of the default burger-menu=open state.
+       *                      The default close icon is a 'x'.
+       * @slot closed-burger-menu-icon - An icon to use in lieu of the default burger-menu=closed state.
+       *                      The default open icon is a burger menu.
+       *
+       * @event syn-burger-menu-closed - Emitted when the burger menu is toggled to closed
+       * @event syn-burger-menu-hidden - Emitted when the burger menu is toggled to hidden
+       * @event syn-burger-menu-open - Emitted when the burger menu is toggled to open
+       *
+       * @csspart base - The component's base wrapper
+       * @csspart content - The wrapper most content items reside
+       * @csspart logo - The wrapper the application logo resides in
+       * @csspart label - The element wrapping the application name
+       * @csspart meta-navigation - The Item wrapping the optional application menu
+       * @csspart navigation - The wrapper that is holding the optional top navigation section
+       * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+       */ 'syn-header': SynCustomElement<
         SynHeader,
         [
           ['syn-burger-menu-closed', SynBurgerMenuClosedEvent],
@@ -211,15 +647,78 @@ declare module 'react' {
           ['syn-burger-menu-open', SynBurgerMenuOpenEvent],
         ]
       >;
-      'syn-icon': SynCustomElement<
+      /**
+       * @summary Icons are symbols that can be used to represent various options within an application.
+       * @documentation https://synergy.style/components/icon
+       * @status stable
+       * @since 2.0
+       *
+       * @event syn-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
+       * @event syn-error - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.
+       *
+       * @csspart svg - The internal SVG element.
+       * @csspart use - The <use> element generated when using `spriteSheet: true`
+       */ 'syn-icon': SynCustomElement<
         SynIcon,
         [['syn-load', SynLoadEvent], ['syn-error', SynErrorEvent]]
       >;
-      'syn-icon-button': SynCustomElement<
+      /**
+       * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
+       * @documentation https://synergy.style/components/icon-button
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       *
+       * @event syn-blur - Emitted when the icon button loses focus.
+       * @event syn-focus - Emitted when the icon button gains focus.
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-icon-button': SynCustomElement<
         SynIconButton,
         [['syn-blur', SynBlurEvent], ['syn-focus', SynFocusEvent]]
       >;
-      'syn-input': SynCustomElement<
+      /**
+       * @summary Inputs collect data from the user.
+       * @documentation https://synergy.style/components/input
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       * @dependency syn-divider
+       *
+       * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+       * @slot prefix - Used to prepend a presentational icon or similar element to the input.
+       * @slot suffix - Used to append a presentational icon or similar element to the input.
+       * @slot clear-icon - An icon to use in lieu of the default clear icon.
+       * @slot show-password-icon - An icon to use in lieu of the default show password icon.
+       * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
+       * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+       * @slot increment-number-stepper - An icon to use in lieu of the default increment number stepper icon.
+       * @slot decrement-number-stepper - An icon to use in lieu of the default decrement number stepper icon.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+       * @event syn-clear - Emitted when the clear button is activated.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart base - The component's base wrapper.
+       * @csspart input - The internal `<input>` control.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart clear-button - The clear button.
+       * @csspart password-toggle-button - The password toggle button.
+       * @csspart suffix - The container that wraps the suffix.
+       * @csspart stepper - The container that wraps the number stepper.
+       * @csspart decrement-number-stepper - The decrement number stepper button.
+       * @csspart increment-number-stepper - The increment number stepper button.
+       * @csspart divider - The divider between the increment and decrement number stepper buttons.
+       */ 'syn-input': SynCustomElement<
         SynInput,
         [
           ['syn-blur', SynBlurEvent],
@@ -230,10 +729,106 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-menu': SynCustomElement<SynMenu, [['syn-select', SynSelectEvent]]>;
-      'syn-menu-item': SynCustomElement<SynMenuItem, []>;
-      'syn-menu-label': SynCustomElement<SynMenuLabel, []>;
-      'syn-nav-item': SynCustomElement<
+      /**
+       * @summary Menus provide a list of options for the user to choose from.
+       * @documentation https://synergy.style/components/menu
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The menu's content, including menu items, menu labels, and dividers.
+       *
+       * @event {{ item: SynMenuItem }} syn-select - Emitted when a menu item is selected.
+       */ 'syn-menu': SynCustomElement<
+        SynMenu,
+        [['syn-select', SynSelectEvent]]
+      >;
+      /**
+       * @summary Menu items provide options for the user to pick from in a menu.
+       * @documentation https://synergy.style/components/menu-item
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       * @dependency syn-popup
+       * @dependency syn-spinner
+       *
+       * @slot - The menu item's label.
+       * @slot prefix - Used to prepend an icon or similar element to the menu item.
+       * @slot suffix - Used to append an icon or similar element to the menu item.
+       * @slot submenu - Used to denote a nested menu.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart checked-icon - The checked icon, which is only visible when the menu item is checked.
+       * @csspart prefix - The prefix container.
+       * @csspart label - The menu item label.
+       * @csspart suffix - The suffix container.
+       * @csspart spinner - The spinner that shows when the menu item is in the loading state.
+       * @csspart spinner__base - The spinner's base part.
+       * @csspart submenu-icon - The submenu icon, visible only when the menu item has a submenu (not yet implemented).
+       *
+       * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
+       */ 'syn-menu-item': SynCustomElement<SynMenuItem, []>;
+      /**
+       * @summary Menu labels are used to describe a group of menu items.
+       * @documentation https://synergy.style/components/menu-label
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-divider
+       *
+       * @slot - The menu label's content.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart divider - The divider that is displayed above the content
+       * @csspart label - The label that is displayed below the divider
+       *
+       * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
+       */ 'syn-menu-label': SynCustomElement<SynMenuLabel, []>;
+      /**
+       * @summary Flexible button / link component that can be used to quickly build navigations.
+       * Takes one of 3 forms:
+       * - button (default),
+       * - link (overrides button if a 'href' is provided),
+       * - or accordion (overrides all other if 'children' slot is defined).
+       *
+       * @status stable
+       * @since 1.14.0
+       *
+       * @dependency syn-divider
+       *
+       * @event syn-show - Emitted when the navigation item:
+       * - has children,
+       * - and is clicked while HTML details are hidden.
+       *
+       * @event syn-hide - Emitted when the navigation item:
+       * - has children,
+       * - and is clicked while HTML details are shown.
+       *
+       * @event syn-blur - Emitted when the button loses focus.
+       * @event syn-focus - Emitted when the button gains focus.
+       *
+       * @slot - The navigation item's label.
+       * @slot prefix - A presentational prefix icon or similar element.
+       * @slot suffix - A presentational suffix icon or similar element.
+       * @slot children - Slot used to provide nested child navigation elements.
+       * If provided, details and summary elements will be used.
+       * A chevron will be shown on the right side regardless of the chevron property.
+       *
+       * @csspart base - The component's base wrapper including children.
+       * @csspart children - The wrapper that holds the children
+       * @csspart content-wrapper - The component's content wrapper.
+       * @csspart content - The component's content excluding children.
+       * @csspart current-indicator - The indicator used when current is set to true
+       * @csspart chevron - The container that wraps the chevron.
+       * @csspart details - The details element rendered when there are children available
+       * @csspart divider - The components optional top divider.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart suffix - The container that wraps the suffix.
+       *
+       * @cssproperty --indentation - Numeric value, indicating the level the item is placed at.
+       * @cssproperty --indentation-stepping - The amount of pixels each level will indent.
+       * @cssproperty --display-children - Display property of the children. Defaults to "contents"
+       */ 'syn-nav-item': SynCustomElement<
         SynNavItem,
         [
           ['syn-show', SynShowEvent],
@@ -242,24 +837,217 @@ declare module 'react' {
           ['syn-focus', SynFocusEvent],
         ]
       >;
-      'syn-optgroup': SynCustomElement<SynOptgroup, []>;
-      'syn-option': SynCustomElement<SynOption, []>;
-      'syn-popup': SynCustomElement<
+      /**
+       * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
+       * @status stable
+       * @since 1.3.0
+       *
+       * @dependency syn-divider
+       *
+       * @slot - The given options. Must be `<syn-option>` elements.
+       * @slot prefix - A presentational prefix icon or similar element.
+       * @slot label - The label for the optgroup
+       * @slot suffix - A presentational suffix icon or similar element.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart label-container - The container that wraps prefix, label and base
+       * @csspart divider - The divider that is displayed above the content
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart suffix - The container that wraps the suffix.
+       * @csspart options - The container that wraps the <syn-option> elements.
+       *
+       * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
+       */ 'syn-optgroup': SynCustomElement<SynOptgroup, []>;
+      /**
+       * @summary Options define the selectable items within various form controls such as [select](/components/select).
+       * @documentation https://synergy.style/components/option
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       *
+       * @slot - The option's label.
+       * @slot prefix - Used to prepend an icon or similar element to the menu item.
+       * @slot suffix - Used to append an icon or similar element to the menu item.
+       *
+       * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
+       * @csspart base - The component's base wrapper.
+       * @csspart label - The option's label.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart suffix - The container that wraps the suffix.
+       */ 'syn-option': SynCustomElement<SynOption, []>;
+      /**
+       * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
+       * @documentation https://synergy.style/components/popup
+       * @status stable
+       * @since 2.0
+       *
+       * @event syn-reposition - Emitted when the popup is repositioned. This event can fire a lot, so avoid putting expensive
+       *  operations in your listener or consider debouncing it.
+       *
+       * @slot - The popup's content.
+       * @slot anchor - The element the popup will be anchored to. If the anchor lives outside of the popup, you can use the
+       *  `anchor` attribute or property instead.
+       *
+       * @csspart arrow - The arrow's container. Avoid setting `top|bottom|left|right` properties, as these values are
+       *  assigned dynamically as the popup moves. This is most useful for applying a background color to match the popup, and
+       *  maybe a border or box shadow.
+       * @csspart popup - The popup's container. Useful for setting a background color, box shadow, etc.
+       * @csspart hover-bridge - The hover bridge element. Only available when the `hover-bridge` option is enabled.
+       *
+       * @cssproperty [--arrow-size=6px] - The size of the arrow. Note that an arrow won't be shown unless the `arrow`
+       *  attribute is used.
+       * @cssproperty [--arrow-color=var(--syn-color-neutral-0)] - The color of the arrow.
+       * @cssproperty [--auto-size-available-width] - A read-only custom property that determines the amount of width the
+       *  popup can be before overflowing. Useful for positioning child elements that need to overflow. This property is only
+       *  available when using `auto-size`.
+       * @cssproperty [--auto-size-available-height] - A read-only custom property that determines the amount of height the
+       *  popup can be before overflowing. Useful for positioning child elements that need to overflow. This property is only
+       *  available when using `auto-size`.
+       */ 'syn-popup': SynCustomElement<
         SynPopup,
         [['syn-reposition', SynRepositionEvent]]
       >;
-      'syn-prio-nav': SynCustomElement<SynPrioNav, []>;
-      'syn-progress-bar': SynCustomElement<SynProgressBar, []>;
-      'syn-progress-ring': SynCustomElement<SynProgressRing, []>;
-      'syn-radio': SynCustomElement<
+      /**
+       * @summary The `<syn-prio-nav />` element provides a generic navigation bar
+       * that can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)
+       * together. It will automatically group all items not visible in the viewport into a custom
+       * priority menu.
+       *
+       * @example
+       * <syn-prio-nav>
+       *  <syn-nav-item current horizontal>Item 1</syn-nav-item>
+       *  <button role="menuitem">Item 2 (custom)</button>
+       *  <syn-nav-item horizontal>Item 3</syn-nav-item>
+       * </syn-prio-nav>
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
+       * @status stable
+       * @since 1.14.0
+       *
+       * @dependency syn-dropdown
+       * @dependency syn-icon
+       * @dependency syn-menu
+       * @dependency syn-nav-item
+       *
+       * @slot - The given navigation items. Must be horizontal `<syn-nav-item>`s
+       *    or have a role of "menuitem"
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart priority-menu - The wrapper around the priority menu
+       * @csspart priority-menu-nav-item - The navigation item for the priority menu
+       * @csspart priority-menu-label - The label for the priority menu
+       * @csspart priority-menu-icon - The icon for the priority menu
+       * @csspart priority-menu-container - The container for the shifted navigation items,
+       *    if there is not enough space.
+       *
+       */ 'syn-prio-nav': SynCustomElement<SynPrioNav, []>;
+      /**
+       * @summary Progress bars are used to show the status of an ongoing operation.
+       * @documentation https://synergy.style/components/progress-bar
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - A label to show inside the progress indicator.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart indicator - The progress bar's indicator.
+       * @csspart label - The progress bar's label.
+       *
+       * @cssproperty --height - The progress bar's height.
+       * @cssproperty --track-color - The color of the track.
+       * @cssproperty --indicator-color - The color of the indicator.
+       * @cssproperty --label-color - The color of the label.
+       * @cssproperty --speed - The speed of the progress bar when in indeterminate state.
+       */ 'syn-progress-bar': SynCustomElement<SynProgressBar, []>;
+      /**
+       * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
+       * @documentation https://synergy.style/components/progress-ring
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - A label to show inside the ring.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart label - The progress ring label.
+       *
+       * @cssproperty --size - The diameter of the progress ring (cannot be a percentage).
+       * @cssproperty --track-width - The width of the track.
+       * @cssproperty --track-color - The color of the track.
+       * @cssproperty --indicator-width - The width of the indicator. Defaults to the track width.
+       * @cssproperty --indicator-color - The color of the indicator.
+       * @cssproperty --indicator-transition-duration - The duration of the indicator's transition when the value changes.
+       */ 'syn-progress-ring': SynCustomElement<SynProgressRing, []>;
+      /**
+       * @summary Radios allow the user to select a single option from a group.
+       * @documentation https://synergy.style/components/radio
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       *
+       * @slot - The radio's label.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-focus - Emitted when the control gains focus.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart control - The circular container that wraps the radio's checked state.
+       * @csspart control--checked - The radio control when the radio is checked.
+       * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
+       * @csspart label - The container that wraps the radio's label.
+       */ 'syn-radio': SynCustomElement<
         SynRadio,
         [['syn-blur', SynBlurEvent], ['syn-focus', SynFocusEvent]]
       >;
-      'syn-radio-button': SynCustomElement<
+      /**
+       * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
+       * @documentation https://synergy.style/components/radio-button
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The radio button's label.
+       * @slot prefix - A presentational prefix icon or similar element.
+       * @slot suffix - A presentational suffix icon or similar element.
+       *
+       * @event syn-blur - Emitted when the button loses focus.
+       * @event syn-focus - Emitted when the button gains focus.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart button - The internal `<button>` element.
+       * @csspart button--checked - The internal button element when the radio button is checked.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart label - The container that wraps the radio button's label.
+       * @csspart suffix - The container that wraps the suffix.
+       */ 'syn-radio-button': SynCustomElement<
         SynRadioButton,
         [['syn-blur', SynBlurEvent], ['syn-focus', SynFocusEvent]]
       >;
-      'syn-radio-group': SynCustomElement<
+      /**
+       * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
+       * @documentation https://synergy.style/components/radio-group
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-button-group
+       *
+       * @slot - The default slot where `<syn-radio>` or `<syn-radio-button>` elements are placed.
+       * @slot label - The radio group's label. Required for proper accessibility. Alternatively, you can use the `label`
+       *  attribute.
+       * @slot help-text - Text that describes how to use the radio group. Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-change - Emitted when the radio group's selected value changes.
+       * @event syn-input - Emitted when the radio group receives user input.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart button-group - The button group that wraps radio buttons.
+       * @csspart button-group__base - The button group's `base` part.
+       */ 'syn-radio-group': SynCustomElement<
         SynRadioGroup,
         [
           ['syn-change', SynChangeEvent],
@@ -267,7 +1055,52 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-range': SynCustomElement<
+      /**
+       * @summary Ranges allow the user to select values within a given range using one or two thumbs.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
+       * @status stable
+       *
+       * @dependency syn-tooltip
+       *
+       * @slot label - The range's label. Alternatively, you can use the `label` attribute.
+       * @slot prefix - Used to prepend a presentational icon or similar element to the range.
+       * @slot suffix - Used to append a presentational icon or similar element to the range.
+       * @slot help-text - Text that describes how to use the range.
+       * Alternatively, you can use the `help-text` attribute.
+       * @slot ticks - Used to display tick marks at specific intervals along the range.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-invalid - Emitted when the form control has been checked for validity
+       * and its constraints aren't satisfied.
+       * @event syn-move - Emitted when the user moves a thumb, either via touch or keyboard.
+       * Use `Event.preventDefault()` to prevent movement.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart base - The component's base wrapper.
+       * @csspart input-wrapper - The container that wraps the input track and ticks.
+       * @csspart track-wrapper - The wrapper for the track.
+       * @csspart track - The inactive track.
+       * @csspart active-track - The active track.
+       * @csspart prefix - The container that wraps the prefix.
+       * @csspart suffix - The container that wraps the suffix.
+       * @csspart ticks - The container that wraps the tick marks.
+       * @csspart thumb - The thumb(s) that the user can drag to change the range.
+       *
+       * @cssproperty --thumb-size - The size of a thumb.
+       * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
+       * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
+       * @cssproperty --track-hit-area-size - The clickable area around the track (top and left).
+       * @cssproperty --track-color-active - Color of the track representing the current value.
+       * @cssproperty --track-color-inactive - Color of the track that represents the remaining value.
+       * @cssproperty --track-height - The height of the track.
+       * @cssproperty --track-active-offset - The point of origin of the active track,
+       * starting at the left side of the range.
+       */ 'syn-range': SynCustomElement<
         SynRange,
         [
           ['syn-blur', SynBlurEvent],
@@ -278,8 +1111,67 @@ declare module 'react' {
           ['syn-move', SynMoveEvent],
         ]
       >;
-      'syn-range-tick': SynCustomElement<SynRangeTick, []>;
-      'syn-select': SynCustomElement<
+      /**
+       * @summary Ticks visually improve positioning on range sliders.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
+       * @status stable
+       *
+       * @slot - The tick's label
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart label - The component's label.
+       * @csspart line - The component's tick line.
+       *
+       * @cssproperty --tick-height - The height of the tick marker.
+       * @cssproperty --tick-label-top - The top offset of the tick label.
+       */ 'syn-range-tick': SynCustomElement<SynRangeTick, []>;
+      /**
+       * @summary Selects allow you to choose items from a menu of predefined options.
+       * @documentation https://synergy.style/components/select
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon
+       * @dependency syn-popup
+       * @dependency syn-tag
+       *
+       * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.
+       * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+       * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
+       * @slot suffix - Used to append a presentational icon or similar element to the combobox.
+       * @slot clear-icon - An icon to use in lieu of the default clear icon.
+       * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+       * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-change - Emitted when the control's value changes.
+       * @event syn-clear - Emitted when the control's value is cleared.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-show - Emitted when the select's menu opens.
+       * @event syn-after-show - Emitted after the select's menu opens and all animations are complete.
+       * @event syn-hide - Emitted when the select's menu closes.
+       * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The select's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart combobox - The container the wraps the prefix, suffix, combobox, clear icon, and expand button.
+       * @csspart prefix - The container that wraps the prefix slot.
+       * @csspart suffix - The container that wraps the suffix slot.
+       * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+       * @csspart listbox - The listbox container where options are slotted.
+       * @csspart tags - The container that houses option tags when `multiselect` is used.
+       * @csspart tag - The individual tags that represent each multiselect option.
+       * @csspart tag__base - The tag's base part.
+       * @csspart tag__content - The tag's content part.
+       * @csspart tag__remove-button - The tag's remove button.
+       * @csspart tag__remove-button__base - The tag's remove button base part.
+       * @csspart clear-button - The clear button.
+       * @csspart expand-icon - The container that wraps the expand icon.
+       */ 'syn-select': SynCustomElement<
         SynSelect,
         [
           ['syn-change', SynChangeEvent],
@@ -294,7 +1186,50 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-side-nav': SynCustomElement<
+      /**
+       * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
+       * It can be used to group multiple navigation items (<syn-nav-item />s) together.
+       *
+       * @example
+       * <syn-side-nav open>
+       *  <syn-nav-item >Item 1</syn-nav-item>
+       *  <syn-nav-item divider>Item 2</syn-nav-item>
+       * </syn-side-nav>
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
+       * @status stable
+       * @since 1.14.0
+       *
+       * @dependency syn-divider
+       * @dependency syn-drawer
+       *
+       * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
+       * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
+       *    Please avoid having to many nav-items as it can massively influence the user experience.
+       *
+       * @event syn-show - Emitted when the side-nav opens.
+       * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
+       * @event syn-hide - Emitted when the side-nav closes.
+       * @event syn-after-hide - Emitted after the side-nav closes and all animations are complete.
+       *
+       * @csspart base - The components base wrapper
+       * @csspart drawer - The drawer that is used under the hood for creating the side-nav
+       * @csspart content-container - The components main content container
+       * @csspart content - The components main content
+       * @csspart footer-container - The components footer content container
+       * @csspart footer-divider - The components footer divider
+       * @csspart footer - The components footer content
+       * @csspart overlay - The overlay that covers the screen behind the side-nav.
+       *
+       * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
+       *
+       * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
+       * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
+       * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
+       * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+       * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
+       * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
+       */ 'syn-side-nav': SynCustomElement<
         SynSideNav,
         [
           ['syn-show', SynShowEvent],
@@ -303,8 +1238,43 @@ declare module 'react' {
           ['syn-after-hide', SynAfterHideEvent],
         ]
       >;
-      'syn-spinner': SynCustomElement<SynSpinner, []>;
-      'syn-switch': SynCustomElement<
+      /**
+       * @summary Spinners are used to show the progress of an indeterminate operation.
+       * @documentation https://synergy.style/components/spinner
+       * @status stable
+       * @since 2.0
+       *
+       * @csspart base - The component's base wrapper.
+       *
+       * @cssproperty --track-width - The width of the track.
+       * @cssproperty --indicator-color - The color of the spinner's indicator.
+       * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+       */ 'syn-spinner': SynCustomElement<SynSpinner, []>;
+      /**
+       * @summary Switches allow the user to toggle an option on or off.
+       * @documentation https://synergy.style/components/switch
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The switch's label.
+       * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-change - Emitted when the control's checked state changes.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart control - The control that houses the switch's thumb.
+       * @csspart thumb - The switch's thumb.
+       * @csspart label - The switch's label.
+       * @csspart form-control-help-text - The help text's wrapper.
+       *
+       * @cssproperty --width - The width of the switch.
+       * @cssproperty --height - The height of the switch.
+       * @cssproperty --thumb-size - The size of the thumb.
+       */ 'syn-switch': SynCustomElement<
         SynSwitch,
         [
           ['syn-blur', SynBlurEvent],
@@ -314,14 +1284,105 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-tab': SynCustomElement<SynTab, [['syn-close', SynCloseEvent]]>;
-      'syn-tab-group': SynCustomElement<
+      /**
+       * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
+       * @documentation https://synergy.style/components/tab
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - The tab's label.
+       *
+       * @event syn-close - Emitted when the tab is closable and the close button is activated.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart close-button - The close button, an `<syn-icon-button>`.
+       * @csspart close-button__base - The close button's exported `base` part.
+       */ 'syn-tab': SynCustomElement<SynTab, [['syn-close', SynCloseEvent]]>;
+      /**
+       * @summary Tab groups organize content into a container that shows one section at a time.
+       * @documentation https://synergy.style/components/tab-group
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.
+       * @slot nav - Used for grouping tabs in the tab group. Must be `<syn-tab>` elements.
+       *
+       * @event {{ name: String }} syn-tab-show - Emitted when a tab is shown. The payload of the event returns the "panel" attribute of the shown tab.
+       * @event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden. The payload of the event returns the "panel" attribute of the hidden tab.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart nav - The tab group's navigation container where tabs are slotted in.
+       * @csspart tabs - The container that wraps the tabs.
+       * @csspart active-tab-indicator - The line that highlights the currently selected tab.
+       * @csspart body - The tab group's body where tab panels are slotted in.
+       * @csspart scroll-button - The previous/next scroll buttons that show when tabs are scrollable, an `<syn-icon-button>`.
+       * @csspart scroll-button--start - The starting scroll button.
+       * @csspart scroll-button--end - The ending scroll button.
+       * @csspart scroll-button__base - The scroll button's exported `base` part.
+       *
+       * @cssproperty --indicator-color - The color of the active tab indicator.
+       * @cssproperty --indicator-width - The width of the active tab indicator.
+       * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
+       * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+       */ 'syn-tab-group': SynCustomElement<
         SynTabGroup,
         [['syn-tab-show', SynTabShowEvent], ['syn-tab-hide', SynTabHideEvent]]
       >;
-      'syn-tab-panel': SynCustomElement<SynTabPanel, []>;
-      'syn-tag': SynCustomElement<SynTag, [['syn-remove', SynRemoveEvent]]>;
-      'syn-textarea': SynCustomElement<
+      /**
+       * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
+       * @documentation https://synergy.style/components/tab-panel
+       * @status stable
+       * @since 2.0
+       *
+       * @slot - The tab panel's content.
+       *
+       * @csspart base - The component's base wrapper.
+       *
+       * @cssproperty --padding - The tab panel's padding.
+       */ 'syn-tab-panel': SynCustomElement<SynTabPanel, []>;
+      /**
+       * @summary Tags are used as labels to organize things or to indicate a selection.
+       * @documentation https://synergy.style/components/tag
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-icon-button
+       *
+       * @slot - The tag's content.
+       *
+       * @event syn-remove - Emitted when the remove button is activated.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart content - The tag's content.
+       * @csspart remove-button - The tag's remove button, an `<syn-icon-button>`.
+       * @csspart remove-button__base - The remove button's exported `base` part.
+       */ 'syn-tag': SynCustomElement<SynTag, [['syn-remove', SynRemoveEvent]]>;
+      /**
+       * @summary Textareas collect data from the user and allow multiple lines of text.
+       * @documentation https://synergy.style/components/textarea
+       * @status stable
+       * @since 2.0
+       *
+       * @slot label - The textarea's label. Alternatively, you can use the `label` attribute.
+       * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+       *
+       * @event syn-blur - Emitted when the control loses focus.
+       * @event syn-change - Emitted when an alteration to the control's value is committed by the user.
+       * @event syn-focus - Emitted when the control gains focus.
+       * @event syn-input - Emitted when the control receives input.
+       * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart base - The component's base wrapper.
+       * @csspart textarea - The internal `<textarea>` control.
+       */ 'syn-textarea': SynCustomElement<
         SynTextarea,
         [
           ['syn-blur', SynBlurEvent],
@@ -331,7 +1392,34 @@ declare module 'react' {
           ['syn-invalid', SynInvalidEvent],
         ]
       >;
-      'syn-tooltip': SynCustomElement<
+      /**
+       * @summary Tooltips display additional information based on a specific action.
+       * @documentation https://synergy.style/components/tooltip
+       * @status stable
+       * @since 2.0
+       *
+       * @dependency syn-popup
+       *
+       * @slot - The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.
+       * @slot content - The content to render in the tooltip. Alternatively, you can use the `content` attribute.
+       *
+       * @event syn-show - Emitted when the tooltip begins to show.
+       * @event syn-after-show - Emitted after the tooltip has shown and all animations are complete.
+       * @event syn-hide - Emitted when the tooltip begins to hide.
+       * @event syn-after-hide - Emitted after the tooltip has hidden and all animations are complete.
+       *
+       * @csspart base - The component's base wrapper, an `<syn-popup>` element.
+       * @csspart base__popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
+       * @csspart base__arrow - The popup's exported `arrow` part. Use this to target the tooltip's arrow.
+       * @csspart body - The tooltip's body where its content is rendered.
+       *
+       * @cssproperty --max-width - The maximum width of the tooltip before its content will wrap.
+       * @cssproperty --hide-delay - The amount of time to wait before hiding the tooltip when hovering.
+       * @cssproperty --show-delay - The amount of time to wait before showing the tooltip when hovering.
+       *
+       * @animation tooltip.show - The animation to use when showing the tooltip.
+       * @animation tooltip.hide - The animation to use when hiding the tooltip.
+       */ 'syn-tooltip': SynCustomElement<
         SynTooltip,
         [
           ['syn-show', SynShowEvent],
@@ -340,7 +1428,23 @@ declare module 'react' {
           ['syn-after-hide', SynAfterHideEvent],
         ]
       >;
-      'syn-validate': SynCustomElement<SynValidate, []>;
+      /**
+       * @summary Validate provides form field validation messages in a unified way.
+       * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+       * and showing the validation message in a consistent, user defined way.
+       *
+       * @dependency syn-alert
+       *
+       * @slot - The form field that should be validated.
+       * Avoid slotting in more than one element, as subsequent ones will be ignored.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart input-wrapper - The container that wraps the form field.
+       * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
+       * @csspart alert__base - The container that wraps the alert.
+       * @csspart alert__message - The container that wraps the alert message.
+       * @csspart alert__icon - The container that wraps the alert icon.
+       */ 'syn-validate': SynCustomElement<SynValidate, []>;
     }
   }
 }

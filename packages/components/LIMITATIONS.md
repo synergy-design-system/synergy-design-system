@@ -169,3 +169,80 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
   });
 </script>
 ```
+
+---
+
+## Wrong rendering order with container-type set on parent for `<syn-select>`, `<syn-combobox`, `<syn-dropdown>`, `<syn-tooltip>`
+
+### Meta Information
+
+- Framework version: ALL
+- Synergy version: ALL
+- Browsers: safari, older chrome and older firefox versions
+- Issues: [#612](https://github.com/synergy-design-system/synergy-design-system/issues/612)
+
+### Description
+
+Parts of Synergies `<syn-select>`, `<syn-combobox`, `<syn-dropdown>`, `<syn-tooltip>` may get drawn behind other elements, if the `container-type` css property of a parent element is set to something different than `normal`.
+
+### Cause
+
+Older chrome and firefox browser versions as well as current safari browser had a special handling for container queries, which was declared as a "design mistake". For this reason the browsers are already having or getting an updated handling for this and also the specification should be updated in the future.
+The old handling was that `container-type: inline-size` or `container-type: size`:
+  - created a containing block
+  - created a new stacking context
+
+For further information have a look at [this article](https://dev.to/michaelcharles/chrome-129s-container-query-change-2i77)
+
+This old behavior results in e.g. open `<syn-select>` options list not being rendered above other elements (e.g. like `<syn-checkbox>`) but behind it.
+
+### Proposed Solution
+
+To work around this problem, add a `position: relative` and a `z-index` to the element with `container-type`.
+
+#### Problem
+
+```html
+<div class="container">
+  <syn-select>
+    <syn-option value="opt1">Option 1</syn-option>
+    <syn-option value="opt2">Option 2</syn-option>
+    <syn-option value="opt3">Option 3</syn-option>
+  </syn-select>
+</div>
+
+<syn-checkbox>This is a checkbox</syn-checkbox>
+
+<style>
+  .container {
+     container-type: inline-size;
+     margin-bottom: 30px;
+  }
+</style>
+```
+
+#### Solution
+
+```html
+<div class="container">
+  <syn-select>
+    <syn-option value="opt1">Option 1</syn-option>
+    <syn-option value="opt2">Option 2</syn-option>
+    <syn-option value="opt3">Option 3</syn-option>
+  </syn-select>
+</div>
+
+<syn-checkbox>This is a checkbox</syn-checkbox>
+
+<style>
+  .container {
+     container-type: inline-size;
+     margin-bottom: 30px;
+    
+     position: relative;
+     z-index: 1;
+  }
+</style>
+```
+
+---

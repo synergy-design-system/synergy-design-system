@@ -189,8 +189,9 @@ Parts of Synergies `<syn-select>`, `<syn-combobox`, `<syn-dropdown>`, `<syn-tool
 
 Older chrome and firefox browser versions as well as current safari browser had a special handling for container queries, which was declared as a "design mistake". For this reason the browsers are already having or getting an updated handling for this and also the specification should be updated in the future.
 The old handling was that `container-type: inline-size` or `container-type: size`:
-  - created a containing block
-  - created a new stacking context
+
+- created a containing block
+- created a new stacking context
 
 For further information have a look at [this article](https://dev.to/michaelcharles/chrome-129s-container-query-change-2i77)
 
@@ -215,8 +216,8 @@ To work around this problem, add a `position: relative` and a `z-index` to the e
 
 <style>
   .container {
-     container-type: inline-size;
-     margin-bottom: 30px;
+    container-type: inline-size;
+    margin-bottom: 30px;
   }
 </style>
 ```
@@ -236,11 +237,11 @@ To work around this problem, add a `position: relative` and a `z-index` to the e
 
 <style>
   .container {
-     container-type: inline-size;
-     margin-bottom: 30px;
-    
-     position: relative;
-     z-index: 1;
+    container-type: inline-size;
+    margin-bottom: 30px;
+
+    position: relative;
+    z-index: 1;
   }
 </style>
 ```

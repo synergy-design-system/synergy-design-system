@@ -36,8 +36,19 @@ export default css`
   /* Expand icon */
   .select__expand-icon {
     color: var(--syn-color-neutral-950);
-    font-size: var(--syn-spacing-large);
     margin-inline-start: var(--syn-spacing-small);
+  }
+
+  .select--small .select__expand-icon {
+    font-size: var(--syn-spacing-medium);
+  }
+
+  .select--medium .select__expand-icon {
+    font-size: var(--syn-spacing-large);
+  }
+
+  .select--large .select__expand-icon {
+    font-size: var(--syn-spacing-x-large);
   }
 
   /* Change select border on hover */
@@ -57,6 +68,12 @@ export default css`
     margin-inline-start: var(--syn-spacing-x-small);
   }
 
+  .select--small .select__suffix::slotted(syn-icon),
+  .select--small .select__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-medium);
+  }
+
+  /* Medium */
   .select--medium .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-small);
   }
@@ -65,6 +82,12 @@ export default css`
     margin-inline-start: var(--syn-input-spacing-small);
   }
 
+  .select--medium .select__suffix::slotted(syn-icon),
+  .select--medium .select__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-x-large);
+  }
+
+  /* Large */
   .select--large .select__prefix::slotted(*) {
     margin-inline-end: var(--syn-input-spacing-medium);
   }
@@ -72,6 +95,12 @@ export default css`
   .select--large .select__suffix::slotted(*) {
     margin-inline-start: var(--syn-input-spacing-medium);
   }
+
+  .select--large .select__suffix::slotted(syn-icon),
+  .select--large .select__prefix::slotted(syn-icon) {
+    font-size: var(--syn-font-size-2x-large);
+  }
+
 
   .select__prefix,
   .select__suffix {

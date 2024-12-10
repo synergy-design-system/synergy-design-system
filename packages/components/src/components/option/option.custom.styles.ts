@@ -8,7 +8,7 @@ export default css`
    * --option-min-height (defaults to 48px) The minimal height of an element
    * --option-padding (defaults to var(--syn-spacing-small) var(--syn-spacing-medium)) The padding to use
    * --option-font-size (defaults to var(--syn-font-size-medium)) The font size to use
-   * --option-checkmark-size (defaults to var(--syn-spacing-large)) The size of the checkmark
+   * --option-icon-size (defaults to var(--syn-spacing-large)) The size of the checkmark
    * 
    * See below for usage of these variables
    */
@@ -16,7 +16,7 @@ export default css`
     font-size: var(--option-font-size, var(--syn-font-size-medium));
     
     /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
-    min-height: var(--option-min-height, 48px);
+    min-height: var(--option-min-height, var(--syn-input-height-medium)));
     padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
   }
 
@@ -30,7 +30,7 @@ export default css`
 
   .option__check {
     color: var(--syn-color-primary-600);
-    font-size: var(--option-checkmark-size, var(--syn-spacing-large));
+    font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
   .option .option__check {
@@ -55,7 +55,7 @@ export default css`
   .option__prefix::slotted(syn-icon),
   .option__suffix::slotted(syn-icon) {
     color: var(--syn-color-neutral-800);
-    font-size: var(--syn-spacing-large);
+    font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
   .option--current .option__prefix::slotted(syn-icon),

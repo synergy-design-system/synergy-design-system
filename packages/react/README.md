@@ -84,8 +84,8 @@ You may now use the components by importing them from the `@synergy-design-syste
 ```tsx
 // You may also load the complete bundle somewhere in your application,
 // but directly including only needed components leads to smaller bundles.
-import "@synergy-design-system/components/components/button/button.component.js";
-import "@synergy-design-system/components/components/input/input.component.js";
+import "@synergy-design-system/components/components/button/button.js";
+import "@synergy-design-system/components/components/input/input.js";
 
 export const MyButton = () => <syn-button type="submit">Submit me</syn-button>;
 export const MyInput = () => (

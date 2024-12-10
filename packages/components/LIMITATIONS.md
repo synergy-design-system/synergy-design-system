@@ -183,11 +183,11 @@ Try to match on the next `<syn-nav-item>` with the closest selector. This will a
 
 ### Description
 
-Parts of Synergies `<syn-select>`, `<syn-combobox`, `<syn-dropdown>`, `<syn-tooltip>` may get drawn behind other elements, if the `container-type` css property of a parent element is set to something different than `normal`.
+Parts of Synergies `<syn-select>`, `<syn-combobox>`, `<syn-dropdown>`, `<syn-tooltip>` may get drawn behind other elements, if the `container-type` css property of a parent element is set to something different than `normal`.
 
 ### Cause
 
-Older chrome and firefox browser versions as well as current safari browser had a special handling for container queries, which was declared as a "design mistake". For this reason the browsers are already having or getting an updated handling for this and also the specification should be updated in the future.
+Older chrome and firefox browser versions as well as current safari browser have a special handling for container queries, which was declared as a "design mistake". For this reason the browsers are already having or getting an updated handling for this and also the specification should be updated in the future.
 The old handling was that `container-type: inline-size` or `container-type: size`:
 
 - created a containing block

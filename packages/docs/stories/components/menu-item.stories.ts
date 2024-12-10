@@ -54,7 +54,11 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args: unknown) => html`
+    <syn-menu>
+      ${generateTemplate({ args })}
+    </syn-menu>
+  `,
 } as Story;
 
 export const PrefixAndSuffix: Story = {

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.14.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.3...components/2.14.4) (2024-12-10)
+
+
+### Bug Fixes
+
+* 🐛 Align prefixes, suffixes and build-in icons to design ([#709](https://github.com/synergy-design-system/synergy-design-system/issues/709)) ([b91fa56](https://github.com/synergy-design-system/synergy-design-system/commit/b91fa56004070cffcd6f59989b7d783c3fac4cb9))
+
 # [@synergy-design-system/components-v2.14.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.2...components/2.14.3) (2024-12-05)
 
 

@@ -1,4 +1,4 @@
-# Known Issues and limitations - Angular
+# Known Issues and limitations - React
 
 > ⚠️ This file includes all known issues and limitations when using the react wrappers.
 > There may be other interesting bits of information in the [components limitation documentation](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs).
@@ -7,7 +7,7 @@
 
 ### Meta information
 
-- Framework version: Angular@18 and below
+- Framework version: React@18 and below
 - Synergy version: < 2.15.0
 
 ### Description

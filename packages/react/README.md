@@ -7,6 +7,10 @@ This package aims for an improved UX when used in React applications:
 - Auto-completion
 - Event handling
 
+> Note that with react@19 and above, react has full support for web-components.
+> For those react versions, this package can be used by loading custom types,
+> you **do not need to use the exported components** anymore.
+
 ## Getting started
 
 ### 1. Package installation
@@ -61,7 +65,7 @@ With this version of react, you are free to **use our native web components** di
 
 However, you will likely receive errors because our elements are not known to React as available (in react speech `intrinsic`) elements. This will also occur when using typescript. For this reason, we provide **type only wrappers** for all versions of react from version 19.0.0 onward.
 
-Using synergy in a typescript project with React@19 can be easily archived via one line of code. There is no need to import `@synergy-design-system/react` in your code directly anymore!
+Using synergy in a typescript project with React@19 can be easily achieved via one line of code. There is no need to import `@synergy-design-system/react` in your code directly anymore!
 
 Just add the following definition to your projects typescript configuration file (e.g. `tsconfig.json`):
 
@@ -85,11 +89,19 @@ import "@synergy-design-system/components/components/input/input.component.js";
 
 export const MyButton = () => <syn-button type="submit">Submit me</syn-button>;
 export const MyInput = () => (
-  <syn-input name="my-button" onsyn-change={e => console.log(e)} required />
+  <syn-input name="my-input" onsyn-change={e => console.log(e)} required />
 );
 ```
 
 #### 3.1. Migrating from synergies react wrappers to native components
+
+> Notice! Due to a [currently open bug in lits react wrapper in version 1.0.6](https://github.com/lit/lit/issues/4857), you will have to provide an override for the react types temporarily. This can be archived by adding the following override in your `package.json` file:
+>
+> ```
+> "overrides": {
+>   "@types/react": "^19.0.1"
+> }
+> ```
 
 1. First make sure you have react@19 or higher installed in your project.
 2. Upgrade `@synergy-design-system/react` to the latest version.
@@ -109,7 +121,7 @@ import { SynButton, SynInput } from "@synergy-design-system/react";
 
 export const MyButton = () => <SynButton type="submit">Submit me</SynButton>;
 export const MyInput = () => (
-  <SynInput name="my-button" onSynChange={e => console.log(e)} required />
+  <SynInput name="my-input" onSynChange={e => console.log(e)} required />
 );
 ```
 

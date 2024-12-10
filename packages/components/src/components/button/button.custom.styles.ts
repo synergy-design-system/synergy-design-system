@@ -183,4 +183,19 @@ export default css`
   .button.button--large.button--has-suffix .button__suffix {
     font-size: var(--syn-font-size-2x-large);
   }
+
+  /*
+   * Caret modifier
+   */
+  .button--caret.button--small .button__caret{
+    font-size: var(--syn-font-size-medium);
+  }
+
+  .button--caret.button--medium .button__caret{
+    font-size: var(--syn-font-size-x-large);
+  }
+
+  .button--caret.button--large .button__caret{
+    font-size: var(--syn-font-size-2x-large);
+  }
 `;

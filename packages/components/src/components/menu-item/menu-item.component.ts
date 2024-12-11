@@ -20,6 +20,7 @@ import SynPopup from '../popup/popup.component.js';
 import SynSpinner from '../spinner/spinner.component.js';
 import styles from './menu-item.styles.js';
 import customStyles from './menu-item.custom.styles.js';
+import { emitEventForPropertyUpdates } from '../../internal/watchEvent.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -48,6 +49,9 @@ import type { CSSResultGroup } from 'lit';
  *
  * @cssproperty [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
  */
+@emitEventForPropertyUpdates(['type', 'loading'], {
+  waitUntilFirstUpdated: true,
+})
 export default class SynMenuItem extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = {

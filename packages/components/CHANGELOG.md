@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.4...components/2.15.0) (2024-12-11)
+
+
+### Features
+
+* ✨ adjust padding for syn-menu + syn-option checkmarks ([#682](https://github.com/synergy-design-system/synergy-design-system/issues/682)) ([09447c6](https://github.com/synergy-design-system/synergy-design-system/commit/09447c6ad2bcab3847375b21d74d4893f07095d4))
+
 # [@synergy-design-system/components-v2.14.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.3...components/2.14.4) (2024-12-10)
 
 

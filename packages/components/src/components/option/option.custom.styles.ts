@@ -16,7 +16,7 @@ export default css`
     font-size: var(--option-font-size, var(--syn-font-size-medium));
     
     /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
-    min-height: var(--option-min-height, var(--syn-input-height-medium)));
+    min-height: var(--option-min-height, var(--syn-input-height-medium));
     padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
   }
 

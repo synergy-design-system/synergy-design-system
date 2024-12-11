@@ -17,7 +17,7 @@ export default css`
     color: var(--syn-color-neutral-950);
     display: flex;
     gap: var(--syn-spacing-small);
-    min-height: var(--option-min-height, var(--syn-input-height-medium)));
+    min-height: var(--option-min-height, var(--syn-input-height-medium));
   }
 
   /**

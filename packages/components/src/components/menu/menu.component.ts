@@ -8,6 +8,9 @@
 /* eslint-disable */
 import { html } from 'lit';
 import { query } from 'lit/decorators.js';
+import { state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import type { SynAttributesChangedEvent } from '../../events/syn-attributes-changed.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './menu.styles.js';
@@ -33,10 +36,27 @@ export default class SynMenu extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
+  @state() hasMenuItemsWithCheckmarks = false;
+
+  private handleUpdateCheckmarks(items: SynMenuItem[]) {
+    // #368: Treat a menu as having checkmarks if it has any checkboxes or items with loading states
+    // The loading indicator has to be checked as well, as it's specially placed over the check mark
+    this.hasMenuItemsWithCheckmarks = items.some(item => item.type === 'checkbox' || item.loading);  
+  }
+
+  private updateCheckMarksByChildPropChange = (e: SynAttributesChangedEvent) => {
+    e.stopImmediatePropagation();
+    this.handleUpdateCheckmarks(this.getAllItems());
+  };
+  
+  disconnectedCallback() {
+    this.removeEventListener('syn-attributes-changed', this.updateCheckMarksByChildPropChange);
+  }
 
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'menu');
+    this.addEventListener('syn-attributes-changed', this.updateCheckMarksByChildPropChange);
   }
 
   private handleClick(event: MouseEvent) {
@@ -117,6 +137,7 @@ export default class SynMenu extends SynergyElement {
 
   private handleSlotChange() {
     const items = this.getAllItems();
+    this.handleUpdateCheckmarks(items);
 
     // Reset the roving tab index when the slotted items change
     if (items.length > 0) {
@@ -165,6 +186,9 @@ export default class SynMenu extends SynergyElement {
   render() {
     return html`
       <slot
+        class=${classMap({
+          'menu--no-checkmarks': !this.hasMenuItemsWithCheckmarks,
+        })}
         @slotchange=${this.handleSlotChange}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

@@ -8,9 +8,13 @@ import {
 
 const headerComment = createHeader('react');
 
-export const runCreateIntrinsicElements = job('React: Creating react intrinsic elements for react@19 and higher...', async (metadata, outDir) => {
+export const runCreateIntrinsicElements = job('React: Creating react intrinsic elements for react@19 and higher...', async (
+  metadata,
+  outDir,
+  fileName = 'syn-jsx-elements.ts',
+) => {
   const components = await getAllComponents(metadata);
-  const outFile = path.join(outDir, 'syn-jsx-elements.ts');
+  const outFile = path.join(outDir, fileName);
 
   // Get a list of all events
   const eventTypeImports = components.reduce((acc, component) => {
@@ -41,6 +45,10 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
       [K in T[number] as \`on\${K[0]}\`]: (event: K[1]) => void;
     };
 
+    /**
+    * Synergy custom element type definition
+    * This type is used to define the custom elements in the Synergy Design System
+     */
     export type SynCustomElement<
       SynElement extends HTMLElement,
       Events extends SynEventTuple[] = [],
@@ -55,23 +63,33 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
     >;
   `;
 
+  const componentExports = components
+    .map(component => ([
+      component.jsDoc,
+      component.name,
+      component?.events,
+    ]))
+    .map(([jsDoc, name, events = []]) => {
+      const eventTypeMap = events.map(({ name: eName, eventName }) => `['${eName}', ${eventName}]`);
+      return `${jsDoc}export type ${name}JSXElement = SynCustomElement<${name}, [${eventTypeMap.join(',')}]>`;
+    });
+
   const componentTypes = components
     .map(component => ([
       component.jsDoc,
       component.tagName,
       component.name,
-      component?.events,
     ]))
-    .map(([jsDoc, tagName, name, events = []]) => {
-      const eventTypeMap = events.map(({ name: eName, eventName }) => `['${eName}', ${eventName}]`);
-      return `${jsDoc}'${tagName}': SynCustomElement<${name}, [${eventTypeMap.join(',')}]>;`;
-    });
+    .map(([jsDoc, tagName, name]) => `${jsDoc}'${tagName}': ${name}JSXElement;`);
 
   // Final output
   const source = `
     ${headerComment}
+    /* eslint-disable */
     ${imports}
     
+    ${componentExports.join('\n')}
+
     declare module 'react' {
       namespace JSX {
         interface IntrinsicElements {

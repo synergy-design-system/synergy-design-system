@@ -23,7 +23,7 @@ export const vendorWebTestRunnerConfig = (path, content) => {
       '...synTestPlugins.plugins,',
       { tabsBeforeInsertion: 2 },
     ],
-    // Adjust the path to the theme to make sure we always fetch the latest version from the package
+    // Addd the synergy theme to the test runner html
     [
       '<link rel="stylesheet" href="dist/themes/light.css">',
       '<link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/themes/light.css">',
@@ -38,6 +38,11 @@ export const vendorWebTestRunnerConfig = (path, content) => {
   ], content);
 
   nextContent = replaceSections([
+    // Adjust the path to the theme to make sure we always fetch the latest version from the package
+    [
+      '<link rel="stylesheet" href="dist/themes/light.css">',
+      '<link rel="stylesheet" href="dist/styles/index.css">',
+    ],
     // Enable testing with firefox.
     // TODO: As soon as shoelace enabled it on their side, this can be removed
     // TODO: We add concurrency: 1 to prevent the issue at https://github.com/modernweb-dev/web/issues/2374

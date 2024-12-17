@@ -1,7 +1,6 @@
 import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { defaultValue } from '../../internal/default-value.js';
@@ -18,11 +17,12 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
-import type SynOption from '../option/option.component.js';
+import SynOption from '../option/option.component.js';
 import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
 import customStyles from './combobox.custom.styles.js';
 import {
+  createOptionFromDifferentTypes,
   filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot, normalizeString,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
@@ -105,6 +105,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /** The last value of a syn-option, that was selected by click or via keyboard navigation */
   private lastOptionValue = '';
 
+  private isOptionRendererTriggered = false;
+
   @query('.combobox') popup: SynPopup;
 
   @query('.combobox__inputs') combobox: HTMLSlotElement;
@@ -115,8 +117,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @query('.combobox__listbox') listbox: HTMLSlotElement;
 
-  @query('.listbox__options') filteredWrapper: HTMLSlotElement;
-
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   @state() private hasFocus = false;
@@ -125,7 +125,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() selectedOption: SynOption | undefined;
 
-  @state() filteredOptions: Array<SynOption | SynOptGroup> = [];
+  @state() numberFilteredOptions = 0;
+
+  @state() cachedOptions: SynOption [];
 
   /** The name of the combobox, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -206,7 +208,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   // eslint-disable-next-line class-methods-use-this
   @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryStr) => {
-    const normalizedOption = normalizeString(option.getTextLabel());
+    let content = option?.textContent || '';
+    if (option instanceof SynOption) {
+      content = option.getTextLabel();
+    }
+    const normalizedOption = normalizeString(content);
     const normalizedQuery = normalizeString(queryStr);
     return normalizedOption.includes(normalizedQuery);
   };
@@ -232,29 +238,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // initially set the displayLabel if the value was set via property initially
     this.displayLabel = this.value;
     this.formControlController.updateValidity();
-  }
-
-  protected get options() {
-    const renderOption = (option: SynOption) => {
-      const queryString = this.displayInput.value;
-      const optionHtml = this.getOption(option, queryString);
-      return html`${typeof optionHtml === 'string' ? unsafeHTML(optionHtml) : optionHtml}`;
-    };
-
-    return this.filteredOptions.map((item: SynOption | SynOptGroup) => {
-      if (item.tagName.toLowerCase() === 'syn-optgroup') {
-        Array.from(item.children).forEach((option: HTMLElement) => {
-          if (option.tagName.toLowerCase() === 'syn-option') {
-            // @todo: What was the intention of this?
-            // renderOption does nothing with the group itself
-            renderOption(option as SynOption);
-          }
-        });
-
-        return item;
-      }
-      return renderOption(item as SynOption);
-    });
   }
 
   private addOpenListeners() {
@@ -527,7 +510,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private getAllFilteredOptions() {
-    return [...this.filteredWrapper.querySelectorAll<SynOption>('syn-option')];
+    return this.getSlottedOptions().filter(option => !option.hidden);
   }
 
   private getCurrentOption() {
@@ -587,8 +570,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.formControlController.emitInvalidEvent(event);
   }
 
-  @watch('filter', { waitUntilFirstUpdate: true })
-  handleFilterChange() {
+  @watch(['filter', 'getOption'], { waitUntilFirstUpdate: true })
+  handlePropertiesChange() {
     this.createComboboxOptionsFromQuery(this.value);
   }
 
@@ -616,7 +599,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
-      if (this.filteredOptions.length === 0) {
+      if (this.numberFilteredOptions === 0) {
         // Don't open the listbox if there are no options
         this.open = false;
         this.emit('syn-error');
@@ -712,44 +695,57 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.blur();
   }
 
+  /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises */
   private createComboboxOptionsFromQuery(queryString: string) {
-    const optgroups: SynOptGroup[] = [];
+    this.numberFilteredOptions = 0;
+    this.isOptionRendererTriggered = true;
 
-    this.filteredOptions = this.getSlottedOptions()
-      .filter(option => this.filter(option, queryString) || queryString === '')
-      .map(option => {
-        const clonedOption = option.cloneNode(true) as SynOption;
+    // Update the syn-option's based on the query string and getOption
+    this.getSlottedOptions()
+      .forEach(option => {
+        // Use the original cached option, to do changes on it
+        const cachedOption = this.cachedOptions.find(o => o.id === option.id) || option;
+        const optionResult = this.getOption(cachedOption, queryString);
+        let updatedOption = createOptionFromDifferentTypes(optionResult);
 
-        // Check if the option has a syn-optgroup as parent
-        const hasOptgroup = option.parentElement?.tagName.toLowerCase() === 'syn-optgroup';
-        if (!hasOptgroup) {
-          return clonedOption;
+        // The type of the getOption function is incorrect, therefore use the original option
+        if (!updatedOption) {
+          updatedOption = cachedOption;
         }
 
-        const optgroup = option.parentElement as SynOptGroup;
-        const filteredOptgroup = optgroups.find((el) => el.id === optgroup.id);
+        const hideOption = !(this.filter(updatedOption, queryString) || queryString === '');
+        updatedOption.hidden = hideOption;
+        option.replaceWith(updatedOption);
 
-        // Check if the optgroup was already added to the filteredOptions.
-        // It should only be added once!
-        if (filteredOptgroup) {
-          filteredOptgroup?.appendChild(clonedOption);
-          return undefined;
+        if (!hideOption) {
+          this.numberFilteredOptions += 1;
         }
+      });
 
-        const clonedOptgroup = optgroup.cloneNode() as SynOptGroup;
-        clonedOptgroup.appendChild(clonedOption);
-        optgroups.push(clonedOptgroup);
-        return clonedOptgroup;
-      })
-      // we need to remove the undefined values here
-      .filter(Boolean) as Array<SynOption | SynOptGroup>;
+    // Update the syn-optgroup's if available
+    const visibleOptgroups = this.getSlottedOptGroups().filter(optgroup => {
+      const options = getAllOptions(Array.from(optgroup.children) as HTMLElement[]).flat();
+      const isVisible = options.some(option => !option.hidden);
+      optgroup.hidden = !isVisible;
+      return isVisible;
+    });
+
+    // Hide the divider of the first visible optgroup, as it can unfortunately not be hidden via css
+    visibleOptgroups[0]?.style.setProperty('--display-divider', 'none');
+
+    // This is needed so the component does not endlessly rerender,
+    // because the slot change event is endlessly retriggered otherwise.
+    setTimeout(() => {
+      this.isOptionRendererTriggered = false;
+    }, 0);
   }
+  /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises */
 
   private async handleInput() {
     const inputValue = this.displayInput.value;
     this.value = inputValue;
     await this.updateComplete;
-    this.open = this.filteredWrapper.children.length > 0;
+    this.open = this.numberFilteredOptions > 0;
     this.setSelectedOption(undefined);
 
     this.formControlController.updateValidity();
@@ -778,32 +774,38 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return filterOnlyOptgroups(getAssignedElementsForSlot(this.defaultSlot));
   }
 
-  /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises */
+  /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
-    // Rerun this handler when <syn-option> is registered
-    if (!customElements.get('syn-option')) {
-      customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
-      return;
-    }
+    if (!this.isOptionRendererTriggered) {
+      // Rerun this handler when <syn-option> is registered
+      if (!customElements.get('syn-option')) {
+        customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
+        return;
+      }
 
-    const slottedOptions = this.getSlottedOptions();
-    const slottedOptgroups = this.getSlottedOptGroups();
-    slottedOptions.forEach((option, index) => {
-      option.id = option.id || `syn-combobox-option-${index}`;
-    });
+      const slottedOptions = this.getSlottedOptions();
+      const slottedOptgroups = this.getSlottedOptGroups();
 
-    slottedOptgroups.forEach((optgroup, index) => {
-      optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
-    });
+      slottedOptions.forEach((option, index) => {
+        option.id = option.id || `syn-combobox-option-${index}`;
+      });
 
-    this.createComboboxOptionsFromQuery(this.value);
+      slottedOptgroups.forEach((optgroup, index) => {
+        optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
+      });
 
-    if (this.hasFocus && this.value.length > 0 && !this.open) {
-      this.show();
+      // Cache the slotted options
+      this.cachedOptions = [...slottedOptions];
+
+      this.createComboboxOptionsFromQuery(this.value);
+
+      if (this.hasFocus && this.value.length > 0 && !this.open) {
+        this.show();
+      }
     }
   }
-  /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises */
+  /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises, complexity */
 
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity
@@ -945,9 +947,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mouseup=${this.handleOptionClick}
             >
               <div class="listbox__options" part="filtered-listbox">
-                ${this.options}
+                <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
               </div>
-              <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
             </div>
           </syn-popup>
         </div>

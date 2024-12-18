@@ -404,13 +404,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.focus();
   }
 
-  private handleComboboxMouseDown() {
+  private handleComboboxMouseDown(event: MouseEvent) {
     // Ignore disabled controls
     if (this.disabled) {
       return;
     }
 
     const toggleListboxOpen = () => (this.open ? this.hide() : this.show());
+    event.preventDefault();
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     toggleListboxOpen().then(() => {

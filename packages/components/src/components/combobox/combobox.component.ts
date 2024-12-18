@@ -127,7 +127,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @state() numberFilteredOptions = 0;
 
-  @state() cachedOptions: SynOption [];
+  @state() cachedOptions: SynOption [] = [];
 
   /** The name of the combobox, submitted as a name/value pair with form data. */
   @property() name = '';

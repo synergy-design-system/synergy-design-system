@@ -27,11 +27,13 @@ export const runCreateReactWrappers = async ({
   // Internal react package paths for usage in sub packages
   const outDir = path.join(reactPackageDir, './src');
   const distDir = path.join(reactPackageDir, './dist');
+  const typesDir = path.join(outDir, './types');
   const componentDir = path.join(reactPackageDir, '/src/components');
 
   await runAdjustPackageVersion('React: Adjusting react package.json version field...')(componentPackageDir, reactPackageDir);
-  await createRunPrepare('React: Cleaning up artifacts...')(outDir, componentDir, distDir);
+  await createRunPrepare('React: Cleaning up artifacts...')(outDir, componentDir, distDir, typesDir);
   await jobs.runCreateWrappers(metadata, outDir);
+  await jobs.runCreateIntrinsicElements(metadata, typesDir);
   await runFormat(outDir);
   await jobs.runEsBuild(distDir);
   await jobs.runReactTypeScript(distDir, reactPackageDir);

@@ -52,4 +52,8 @@ export default css`
     color: var(--syn-color-neutral-800);
     font-size: var(--syn-spacing-large);
   }
+
+  .optgroup__options ::slotted(syn-option[hidden]) {
+    display: none;
+  }
 `;

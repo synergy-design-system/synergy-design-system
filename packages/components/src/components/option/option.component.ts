@@ -43,6 +43,8 @@ export default class SynOption extends SynergyElement {
   // @ts-expect-error - Controller is currently unused
   private readonly localize = new LocalizeController(this);
 
+  private isInitialized = false;
+
   @query('.option__label') defaultSlot: HTMLSlotElement;
 
   @state() current = false; // the user has keyed into the option, but hasn't selected it yet (shows a highlight)
@@ -66,19 +68,23 @@ export default class SynOption extends SynergyElement {
   }
 
   private handleDefaultSlotChange() {
-    // When the label changes, tell the controller to update
-    customElements.whenDefined('syn-combobox').then(() => {
-      const controller = this.closest('syn-combobox');
-      if (controller) {
-        controller.handleDefaultSlotChange();
-      }
-    });
-    customElements.whenDefined('syn-select').then(() => {
-      const controller = this.closest('syn-select');
-      if (controller) {
-        controller.handleDefaultSlotChange();
-      }
-    });
+      if(this.isInitialized) {
+      // When the label changes, tell the controller to update
+      customElements.whenDefined('syn-combobox').then(() => {
+        const controller = this.closest('syn-combobox');
+        if (controller) {
+          controller.handleDefaultSlotChange();
+        }
+      });
+      customElements.whenDefined('syn-select').then(() => {
+        const controller = this.closest('syn-select');
+        if (controller) {
+          controller.handleDefaultSlotChange();
+        }
+      });
+    } else {
+      this.isInitialized = true;
+    }
   }
 
   private handleMouseEnter() {

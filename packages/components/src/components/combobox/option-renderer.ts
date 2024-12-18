@@ -1,4 +1,4 @@
-import type { TemplateResult } from 'lit';
+import { type TemplateResult } from 'lit';
 import type SynOption from '../option/option.component.js';
 
 /**
@@ -24,6 +24,28 @@ export const defaultOptionRenderer: OptionRenderer = (option: SynOption) => opti
 export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query: string) => {
   if (!query) {
     return option;
+  }
+
+  const combobox = option.closest('syn-combobox');
+  // check if there is already a style for highlighting appended if not append one
+  // This is unfortunately needed as it is not possible to do something like this in css:
+  // .listbox__options ::slotted(syn-option mark)
+  if (combobox && !combobox?.querySelector('#syn-highlight-style')) {
+    const style = document.createElement('style');
+    style.id = 'syn-highlight-style';
+
+    style.textContent = `
+      syn-option mark {
+        background-color: transparent;
+        color: var(--syn-color-neutral-950);
+        font: var(--syn-body-medium-bold);
+      }
+      syn-option[aria-selected='true'] mark {
+        color: var(--syn-color-neutral-0);
+      }
+    `;
+
+    combobox.appendChild(style);
   }
 
   const clonedOption = option.cloneNode(true) as SynOption;

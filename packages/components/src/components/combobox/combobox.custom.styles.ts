@@ -1,4 +1,5 @@
 import { css } from 'lit';
+import sharedOptionSize from '../option/option-size.styles.js';
 
 export default css`
   /** 
@@ -31,4 +32,6 @@ export default css`
   .listbox__options syn-optgroup:first-of-type::part(divider) {
     display: none;
   }
+
+  ${sharedOptionSize}
 `;

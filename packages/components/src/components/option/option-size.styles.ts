@@ -10,7 +10,7 @@ export default css`
     --option-min-height: var(--syn-input-height-small);
     --option-padding: 0 var(--syn-input-spacing-small);
     --option-font-size: var(--syn-input-font-size-small);
-    --option-icon-size: var(--syn-spacing-medium-large);
+    --option-icon-size: var(--syn-spacing-medium);
   }
 
   :host([size="medium"]) {

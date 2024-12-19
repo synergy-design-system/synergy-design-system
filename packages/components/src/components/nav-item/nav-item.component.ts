@@ -223,10 +223,25 @@ export default class SynNavItem extends SynergyElement {
    * Automatically add the correct level of indentation for sub items if none is provided
    */
   private handleSlotChange() {
+    const computedStyle = getComputedStyle(this);
+    const lengthStyle = computedStyle.length;
+
+    // This workaround is needed for firefox.
+    // When the nav-item is used inside a custom-element with a custom-element in it
+    // (e.g syn-side-nav with integrated syn-drawer), the getComputedStyle property is not yet there
+    // Moving it in the next render cycle works.
+    // Probably related to the firefox special behavior. See: https://caniuse.com/mdn-api_window_getcomputedstyle
+    if (lengthStyle === 0) {
+      setTimeout(() => {
+        this.handleSlotChange();
+      });
+      return;
+    }
+
     this.handleCurrentMarkedChild();
 
     // Use the current level of the component
-    const level = getComputedStyle(this).getPropertyValue('--indentation');
+    const level = computedStyle.getPropertyValue('--indentation');
 
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);

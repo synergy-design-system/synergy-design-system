@@ -26,28 +26,6 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
     return option;
   }
 
-  const combobox = option.closest('syn-combobox');
-  // check if there is already a style for highlighting appended if not append one
-  // This is unfortunately needed as it is not possible to do something like this in css:
-  // .listbox__options ::slotted(syn-option mark)
-  if (combobox && !combobox?.querySelector('#syn-highlight-style')) {
-    const style = document.createElement('style');
-    style.id = 'syn-highlight-style';
-
-    style.textContent = `
-      syn-option mark {
-        background-color: transparent;
-        color: var(--syn-color-neutral-950);
-        font: var(--syn-body-medium-bold);
-      }
-      syn-option[aria-selected='true'] mark {
-        color: var(--syn-color-neutral-0);
-      }
-    `;
-
-    combobox.appendChild(style);
-  }
-
   const clonedOption = option.cloneNode(true) as SynOption;
   const optionLabel = clonedOption.getTextLabel();
   const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
@@ -55,6 +33,7 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
 
   const mark = document.createElement('mark');
   mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
+  mark.classList.add('syn-highlight-style');
 
   const exchangedText = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
   const previousContent = clonedOption.innerHTML.slice(0, indexLabel);

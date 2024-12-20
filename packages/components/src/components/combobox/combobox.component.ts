@@ -701,6 +701,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.numberFilteredOptions = 0;
     this.isOptionRendererTriggered = true;
 
+    // This is needed for angular. For some reason the handleDefaultSlotChange is not triggered
+    // initially and therefore the cachedOptions are not set.
+    if (this.cachedOptions.length === 0) {
+      this.cacheSlottedOptionsAndOptgroups();
+    }
+
     // Update the syn-option's based on the query string and getOption
     this.getSlottedOptions()
       .forEach(option => {
@@ -775,7 +781,25 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return filterOnlyOptgroups(getAssignedElementsForSlot(this.defaultSlot));
   }
 
-  /* eslint-disable no-param-reassign, @typescript-eslint/no-floating-promises, complexity */
+  /* eslint-disable no-param-reassign */
+  private cacheSlottedOptionsAndOptgroups() {
+    const slottedOptions = this.getSlottedOptions();
+    const slottedOptgroups = this.getSlottedOptGroups();
+
+    slottedOptions.forEach((option, index) => {
+      option.id = option.id || `syn-combobox-option-${index}`;
+    });
+
+    slottedOptgroups.forEach((optgroup, index) => {
+      optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
+    });
+
+    // Cache the slotted options
+    this.cachedOptions = [...slottedOptions];
+  }
+  /* eslint-enable no-param-reassign */
+
+  /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
     if (!this.isOptionRendererTriggered) {
@@ -785,19 +809,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return;
       }
 
-      const slottedOptions = this.getSlottedOptions();
-      const slottedOptgroups = this.getSlottedOptGroups();
-
-      slottedOptions.forEach((option, index) => {
-        option.id = option.id || `syn-combobox-option-${index}`;
-      });
-
-      slottedOptgroups.forEach((optgroup, index) => {
-        optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
-      });
-
-      // Cache the slotted options
-      this.cachedOptions = [...slottedOptions];
+      this.cacheSlottedOptionsAndOptgroups();
 
       this.createComboboxOptionsFromQuery(this.value);
 
@@ -806,7 +818,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       }
     }
   }
-  /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises, complexity */
+  /* eslint-enable @typescript-eslint/no-floating-promises, complexity */
 
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity

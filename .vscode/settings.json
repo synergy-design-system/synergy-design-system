@@ -200,7 +200,7 @@
     "packages/components/src/internal/scrollend-polyfill.ts": true,
     "packages/components/src/internal/slot.ts": true,
     "packages/components/src/internal/string.ts": true,
-    "packages/components/src/internal/synergy-element.ts": true,
+    "packages/components/src/internal/synergy-element.ts": false,
     "packages/components/src/internal/tabbable.ts": true,
     "packages/components/src/internal/test.ts": true,
     "packages/components/src/internal/test/data-testid-helpers.ts": true,

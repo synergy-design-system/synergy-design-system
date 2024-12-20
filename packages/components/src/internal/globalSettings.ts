@@ -1,6 +1,8 @@
 import type * as SynTypes from '../synergy.js';
 
-type Setting = Partial<Record<keyof typeof SynTypes | 'default', string>>;
+type SettingKey = keyof typeof SynTypes | 'default';
+type Setting = Partial<Record<SettingKey, string>>;
+type ElementSettings = Record<keyof typeof globalSettings, string>;
 
 export type SynSettings = Record<string, Setting>;
 
@@ -9,6 +11,9 @@ export type SynSettings = Record<string, Setting>;
  * This object is used to set default values for all components.
  */
 const globalSettings: SynSettings = {
+  /**
+   * Sets the default size for all components.
+   */
   size: {
     default: 'medium',
     SynButton: 'small',
@@ -41,6 +46,25 @@ export const extractSettingsForElement = (element: keyof typeof SynTypes) => {
         acc[key] = elementSetting;
       }
       return acc;
-    }, {});
+    }, ({} as ElementSettings));
   return allElementSettings;
+};
+
+/**
+ * Set a new value for a specific setting
+ * @param key The key of the setting to set.
+ * @param value The value to set.
+ * @param element The element to set the value for.
+ * @returns True if the setting was set, false if the setting does not exist.
+ */
+export const setSetting = (
+  key: keyof typeof globalSettings,
+  value?: string | undefined,
+  element: SettingKey = 'default',
+) => {
+  if (!globalSettings[key]) {
+    return false;
+  }
+  globalSettings[key][element] = value;
+  return true;
 };

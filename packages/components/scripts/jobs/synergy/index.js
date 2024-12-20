@@ -1,4 +1,5 @@
 export * from './cem.js';
+export * from './createDefaultSettings.js';
 export * from './createEventsFile.js';
 export * from './createExports.js';
 export * from './esbuildComponents.js';

@@ -1,11 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { getExportsListFromFileSystem, job } from './shared.js';
+import { getExportsListFromFileSystem, job } from '../shared.js';
 
 /**
  * This function will create the src/synergy.ts file out of available components
  */
-export const runCreateExports = job('Creating component exports in src/synergy.ts...', async (componentsDir) => {
+export const runCreateExports = job('Synergy: Creating component exports in src/synergy.ts...', async (componentsDir) => {
   const synergyMainFile = path.join(componentsDir, 'src/synergy.ts');
 
   const foundComponents = await getExportsListFromFileSystem(true);

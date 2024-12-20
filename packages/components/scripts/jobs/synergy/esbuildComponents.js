@@ -1,14 +1,14 @@
 import esbuild from 'esbuild';
 import { replace } from 'esbuild-plugin-replace';
 import { globby } from 'globby';
-import { job } from './shared.js';
+import { job } from '../shared.js';
 
 /**
  * Run esbuild for the components package
  * @param {String} distDir The dist directory where to build to
  * @param {String} __PACKAGE_VERSION__ The string __PACKAGE_VERSION__ will be replaced with this
  */
-export const runEsBuildComponents = job('Running esbuild...', async (distDir, __PACKAGE_VERSION__ = '') => {
+export const runEsBuildComponents = job('Synergy: Running esbuild...', async (distDir, __PACKAGE_VERSION__ = '') => {
   const esbuildConfig = {
     bundle: true,
     chunkNames: 'chunks/[name].[hash]',

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.0...components/2.15.1) (2024-12-20)
+
+
+### Bug Fixes
+
+* 🐛 Indentation of nested nav-items in side-nav is not shown correctly for firefox ([#722](https://github.com/synergy-design-system/synergy-design-system/issues/722)) ([916a79d](https://github.com/synergy-design-system/synergy-design-system/commit/916a79dd4a7cc6bac079d76464bffdbbfc624b51))
+
 # [@synergy-design-system/components-v2.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.14.4...components/2.15.0) (2024-12-11)
 
 

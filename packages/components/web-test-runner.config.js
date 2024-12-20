@@ -21,6 +21,7 @@ export default {
   testFramework: {
     config: {
       timeout: 3000,
+      forbidOnly: true,
       retries: 1
     }
   },
@@ -44,8 +45,8 @@ export default {
     <html lang="en-US">
       <head></head>
       <body>
-        <link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/themes/light.css">
         <link rel="stylesheet" href="dist/styles/index.css">
+        <link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/themes/light.css">
         <script>
           window.process = {env: { NODE_ENV: "production" }}
         </script>

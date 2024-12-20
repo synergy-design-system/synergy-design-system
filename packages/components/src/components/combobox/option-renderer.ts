@@ -1,4 +1,4 @@
-import type { TemplateResult } from 'lit';
+import { type TemplateResult } from 'lit';
 import type SynOption from '../option/option.component.js';
 
 /**
@@ -33,6 +33,7 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
 
   const mark = document.createElement('mark');
   mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
+  mark.classList.add('syn-highlight-style');
 
   const exchangedText = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
   const previousContent = clonedOption.innerHTML.slice(0, indexLabel);

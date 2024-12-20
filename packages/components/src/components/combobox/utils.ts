@@ -65,6 +65,8 @@ export const createElementFromTemplateResult = (template: TemplateResult) => {
   return container.firstElementChild as HTMLElement;
 };
 
+const getOptionOrUndefined = (element: HTMLElement) => (element.tagName.toLocaleLowerCase() === 'syn-option' ? element as SynOption : undefined);
+
 /**
  * This function takes an input of type `TemplateResult`, `string`, or `HTMLElement`
  * and creates an SynOption from it.
@@ -74,8 +76,6 @@ export const createElementFromTemplateResult = (template: TemplateResult) => {
  */
 export const createOptionFromDifferentTypes = (option: TemplateResult | string | HTMLElement) => {
   if (!option) return undefined;
-
-  const getOptionOrUndefined = (element: HTMLElement) => (element.tagName.toLocaleLowerCase() === 'syn-option' ? element as SynOption : undefined);
 
   if (option instanceof HTMLElement) {
     return getOptionOrUndefined(option);

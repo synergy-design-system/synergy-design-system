@@ -8,7 +8,7 @@
 /* eslint-disable */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { extractSettingsForElement } from './globalSettings.js';
+import { extractSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
 type EventTypeRequiresDetail<T> = T extends keyof GlobalEventHandlersEventMap
@@ -156,17 +156,17 @@ export default class SynergyElement extends LitElement {
     });
   }
 
+  #hasRecordedInitialProperties = false;
+
   private overrideWithGlobalSettings() {
     // Set the default settings for the element
-    const defaultSettings = extractSettingsForElement(this.constructor.name);
+    const defaultSettings = extractSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
     Object
       .entries(defaultSettings)
       .forEach(([prop, value]) => {
         (this as Record<string, unknown>)[prop] = value;
       });
   }
-
-  #hasRecordedInitialProperties = false;
 
   // Store the constructor value of all `static properties = {}`
   initialReflectedProperties: Map<string, unknown> = new Map();
@@ -183,8 +183,7 @@ export default class SynergyElement extends LitElement {
       );
 
       this.#hasRecordedInitialProperties = true;
-
-      this.overrideWithGlobalSettings();
+this.overrideWithGlobalSettings();
     }
 
     super.attributeChangedCallback(name, oldValue, newValue);

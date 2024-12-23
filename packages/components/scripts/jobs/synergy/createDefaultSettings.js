@@ -53,13 +53,18 @@ const createSynDefaultSettingsType = (components, whiteListedAttributes = []) =>
   const structure = Object
     .entries(createSynDefaultSettingsStructure(components, whiteListedAttributes))
     .reduce((acc, [attr, comp]) => {
-      const componentTypes = comp.map(c => `${c}: AllowedValueForDefaultSetting<${c}, '${attr}'>;`);
+      const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attr}'>;`);
       return `${acc}${attr}: {
         ${componentTypes.join('\n')}
       },`;
     }, '');
 
-  return `type SynDefaultSettings = {${structure}};`;
+  return `
+    /**
+     * Default settings map for all component values that have defaults set
+     */
+    type SynDefaultSettings = {${structure}};
+  `;
 };
 
 const createDefaultSettingsExport = (components, whiteListedAttributes = []) => {
@@ -82,8 +87,33 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
       },
     `, '');
 
-  return `export const settings: SynDefaultSettings = {${structure}};`;
+  return `
+    /**
+     * Default settings for all components
+     */
+    export const settings: SynDefaultSettings = {${structure}};
+  `;
 };
+
+const createSetterExport = () => `
+  /**
+   * Extracts all available default settings for a given component
+   * @param component The name of the component to get the settings for
+   * @returns key value pair of found settings for the given component
+   */
+  export const extractSettingsForElement = (component: ComponentNamesWithDefaultValues) => {
+    const allElementSettings = Object
+      .entries(settings)
+      .reduce((acc: Record<string, unknown>, [key, value]) => {
+        const elementSetting = value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
+        if (elementSetting) {
+          acc[key] = elementSetting;
+        }
+        return acc;
+      }, ({}));
+    return allElementSettings;
+  };
+`;
 
 export const createDefaultSettings = job('Synergy: Creating default settings helper...', async (
   componentDistDir,
@@ -112,16 +142,29 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
 
   // Create the needed types
   const coreTypes = [
-    'type AllowedValueForDefaultSetting<Elm extends SynergyElement, Attr extends keyof Elm> = Elm[Attr];',
+    `
+      /**
+       * Allowed value for a default setting
+       * Gets the value of a given attribute for a given component
+       */
+      type AllowedValueForDefaultSetting<Elm extends SynergyElement, Attr extends keyof Elm> = Elm[Attr];
+    `,
+    `
+      /**
+       * List of all components that have default values
+       */
+      export type ComponentNamesWithDefaultValues = ${Array.from(componentsHavingDefaults).map(c => `'${c}'`).join(' | ')};
+    `,
     createSynDefaultSettingsType(metadata, whiteListedAttributes),
   ].filter(Boolean);
 
   const exports = [
     createDefaultSettingsExport(metadata, whiteListedAttributes),
+    createSetterExport(),
   ];
 
   const outFile = `
-    /* eslint-disable @typescript-eslint/quotes, sort-keys, max-len */
+    /* eslint-disable @typescript-eslint/quotes, sort-keys, max-len, operator-linebreak */
     ${createHeader()}
 
     // Type imports

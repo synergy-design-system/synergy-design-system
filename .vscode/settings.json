@@ -192,6 +192,7 @@
     "packages/components/src/internal/active-elements.ts": true,
     "packages/components/src/internal/animate.ts": true,
     "packages/components/src/internal/default-value.ts": true,
+    "packages/components/src/internal/defaultSettings.ts": true,
     "packages/components/src/internal/event.ts": true,
     "packages/components/src/internal/form.ts": true,
     "packages/components/src/internal/modal.ts": true,

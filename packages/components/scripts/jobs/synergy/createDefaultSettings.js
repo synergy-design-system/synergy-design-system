@@ -115,7 +115,7 @@ const createDefaultExtractorExport = () => `
   };
 `;
 
-const createSetterExport = () => `
+const createElementSetterExport = () => `
   /**
    * Set the default values for a given component
    * @param component The component to set the defaults for
@@ -132,6 +132,31 @@ const createSetterExport = () => `
           (defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>)[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
         }
       });
+
+    return defaultSettings;
+  };
+`;
+
+const createGlobalSetterExport = () => `
+  /**
+   * Set the global default settings
+   * @param newSettings The new settings to set
+   */
+  export const setGlobalDefaultSettings = (
+    newSettings: RecursivePartial<SynDefaultSettings>,
+  ) => {
+    Object.entries(newSettings).forEach(([key, value]) => {
+      if (defaultSettings[key as keyof SynDefaultSettings]) {
+        Object.entries(value).forEach(([component, newValue]) => {
+          (
+            defaultSettings[key as keyof SynDefaultSettings] as Record<
+              string,
+              unknown
+            >
+          )[component] = newValue;
+        });
+      }
+    });
 
     return defaultSettings;
   };
@@ -166,6 +191,14 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
   const coreTypes = [
     `
       /**
+       * Allows for partial recursive types
+       */
+      type RecursivePartial<T> = {
+        [P in keyof T]?: T[P] extends object ? RecursivePartial<T[P]> : T[P];
+      };
+    `,
+    `
+      /**
        * Allowed value for a default setting
        * Gets the value of a given attribute for a given component
        */
@@ -191,11 +224,12 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
   const exports = [
     createDefaultSettingsExport(metadata, whiteListedAttributes),
     createDefaultExtractorExport(),
-    createSetterExport(),
+    createElementSetterExport(),
+    createGlobalSetterExport(),
   ];
 
   const outFile = `
-    /* eslint-disable @typescript-eslint/quotes, sort-keys, max-len, operator-linebreak */
+    /* eslint-disable @typescript-eslint/quotes, sort-keys, max-len, operator-linebreak, @typescript-eslint/indent */
     ${createHeader()}
 
     // Type imports

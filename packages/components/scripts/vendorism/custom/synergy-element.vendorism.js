@@ -12,7 +12,7 @@ export const vendorSynergyElement = (path, content) => {
     // Add default setting export
     [
       "'lit/decorators.js';",
-      "import { extractSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';",
+      "import { extractDefaultSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';",
     ],
     // Create the overrideGlobal method
     [
@@ -20,7 +20,7 @@ export const vendorSynergyElement = (path, content) => {
       `
   private overrideWithGlobalSettings() {
     // Set the default settings for the element
-    const defaultSettings = extractSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
+    const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
     Object
       .entries(defaultSettings)
       .forEach(([prop, value]) => {

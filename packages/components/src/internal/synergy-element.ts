@@ -8,7 +8,7 @@
 /* eslint-disable */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { extractSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';
+import { extractDefaultSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
 type EventTypeRequiresDetail<T> = T extends keyof GlobalEventHandlersEventMap
@@ -160,7 +160,7 @@ export default class SynergyElement extends LitElement {
 
   private overrideWithGlobalSettings() {
     // Set the default settings for the element
-    const defaultSettings = extractSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
+    const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
     Object
       .entries(defaultSettings)
       .forEach(([prop, value]) => {

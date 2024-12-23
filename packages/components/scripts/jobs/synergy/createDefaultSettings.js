@@ -91,19 +91,19 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
     /**
      * Default settings for all components
      */
-    export const settings: SynDefaultSettings = {${structure}};
+    export const defaultSettings: SynDefaultSettings = {${structure}};
   `;
 };
 
-const createSetterExport = () => `
+const createDefaultExtractorExport = () => `
   /**
    * Extracts all available default settings for a given component
    * @param component The name of the component to get the settings for
    * @returns key value pair of found settings for the given component
    */
-  export const extractSettingsForElement = (component: ComponentNamesWithDefaultValues) => {
+  export const extractDefaultSettingsForElement = (component: ComponentNamesWithDefaultValues) => {
     const allElementSettings = Object
-      .entries(settings)
+      .entries(defaultSettings)
       .reduce((acc: Record<string, unknown>, [key, value]) => {
         const elementSetting = value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
         if (elementSetting) {
@@ -112,6 +112,28 @@ const createSetterExport = () => `
         return acc;
       }, ({}));
     return allElementSettings;
+  };
+`;
+
+const createSetterExport = () => `
+  /**
+   * Set the default values for a given component
+   * @param component The component to set the defaults for
+   * @param newValues Map of new values to set
+   */
+  export const setDefaultSettingsForElement = <C extends SynergyElement>(
+    component: ComponentNamesWithDefaultValues,
+    newValues: Partial<ExtractSettingsForElement<C>>,
+  ) => {
+    Object
+      .entries(newValues)
+      .forEach(([key, value]) => {
+        if (defaultSettings[key as keyof SynDefaultSettings]) {
+          (defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>)[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
+        }
+      });
+
+    return defaultSettings;
   };
 `;
 
@@ -155,11 +177,20 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
        */
       export type ComponentNamesWithDefaultValues = ${Array.from(componentsHavingDefaults).map(c => `'${c}'`).join(' | ')};
     `,
+    `
+      /**
+       * Extracts all available default settings for a given component
+       */
+      export type ExtractSettingsForElement<C extends SynergyElement> = {
+        [key in keyof SynDefaultSettings]?: key extends keyof C ? AllowedValueForDefaultSetting<C, key> : never;
+      };
+    `,
     createSynDefaultSettingsType(metadata, whiteListedAttributes),
   ].filter(Boolean);
 
   const exports = [
     createDefaultSettingsExport(metadata, whiteListedAttributes),
+    createDefaultExtractorExport(),
     createSetterExport(),
   ];
 

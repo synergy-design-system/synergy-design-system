@@ -57,6 +57,15 @@ export type ComponentNamesWithDefaultValues =
   | "SynTextarea";
 
 /**
+ * Extracts all available default settings for a given component
+ */
+export type ExtractSettingsForElement<C extends SynergyElement> = {
+  [key in keyof SynDefaultSettings]?: key extends keyof C
+    ? AllowedValueForDefaultSetting<C, key>
+    : never;
+};
+
+/**
  * Default settings map for all component values that have defaults set
  */
 type SynDefaultSettings = {
@@ -89,7 +98,7 @@ type SynDefaultSettings = {
 /**
  * Default settings for all components
  */
-export const settings: SynDefaultSettings = {
+export const defaultSettings: SynDefaultSettings = {
   size: {
     SynAccordion: "medium",
     SynButton: "medium",
@@ -119,10 +128,10 @@ export const settings: SynDefaultSettings = {
  * @param component The name of the component to get the settings for
  * @returns key value pair of found settings for the given component
  */
-export const extractSettingsForElement = (
+export const extractDefaultSettingsForElement = (
   component: ComponentNamesWithDefaultValues,
 ) => {
-  const allElementSettings = Object.entries(settings).reduce(
+  const allElementSettings = Object.entries(defaultSettings).reduce(
     (acc: Record<string, unknown>, [key, value]) => {
       const elementSetting =
         value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
@@ -134,4 +143,27 @@ export const extractSettingsForElement = (
     {},
   );
   return allElementSettings;
+};
+
+/**
+ * Set the default values for a given component
+ * @param component The component to set the defaults for
+ * @param newValues Map of new values to set
+ */
+export const setDefaultSettingsForElement = <C extends SynergyElement>(
+  component: ComponentNamesWithDefaultValues,
+  newValues: Partial<ExtractSettingsForElement<C>>,
+) => {
+  Object.entries(newValues).forEach(([key, value]) => {
+    if (defaultSettings[key as keyof SynDefaultSettings]) {
+      (
+        defaultSettings[key as keyof SynDefaultSettings] as Record<
+          string,
+          unknown
+        >
+      )[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
+    }
+  });
+
+  return defaultSettings;
 };

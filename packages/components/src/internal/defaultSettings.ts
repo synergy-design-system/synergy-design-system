@@ -24,6 +24,12 @@ import type SynTag from "../components/tag/tag.js";
 import type SynTextarea from "../components/textarea/textarea.js";
 import type SynergyElement from "./synergy-element.js";
 
+// Cache for speeding up lookups
+const elementPropertyCache = new Map<
+  ComponentNamesWithDefaultValues,
+  Record<string, unknown>
+>();
+
 // Core types
 
 /**
@@ -138,6 +144,15 @@ export const defaultSettings: SynDefaultSettings = {
 export const extractDefaultSettingsForElement = (
   component: ComponentNamesWithDefaultValues,
 ) => {
+  // Check if we have the settings in cache
+  if (elementPropertyCache.has(component)) {
+    console.log(
+      "Got settings from the cache!",
+      elementPropertyCache.get(component),
+    );
+    return elementPropertyCache.get(component)!;
+  }
+
   const allElementSettings = Object.entries(defaultSettings).reduce(
     (acc: Record<string, unknown>, [key, value]) => {
       const elementSetting =
@@ -149,6 +164,7 @@ export const extractDefaultSettingsForElement = (
     },
     {},
   );
+  elementPropertyCache.set(component, allElementSettings);
   return allElementSettings;
 };
 

@@ -102,6 +102,12 @@ const createDefaultExtractorExport = () => `
    * @returns key value pair of found settings for the given component
    */
   export const extractDefaultSettingsForElement = (component: ComponentNamesWithDefaultValues) => {
+    // Check if we have the settings in cache
+    if (elementPropertyCache.has(component)) {
+      console.log('Got settings from the cache!', elementPropertyCache.get(component));
+      return elementPropertyCache.get(component)!;
+    }
+
     const allElementSettings = Object
       .entries(defaultSettings)
       .reduce((acc: Record<string, unknown>, [key, value]) => {
@@ -111,6 +117,7 @@ const createDefaultExtractorExport = () => `
         }
         return acc;
       }, ({}));
+    elementPropertyCache.set(component, allElementSettings);
     return allElementSettings;
   };
 `;
@@ -234,6 +241,9 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
 
     // Type imports
     ${typeImports.join('\n')}
+
+    // Cache for speeding up lookups
+    const elementPropertyCache = new Map<ComponentNamesWithDefaultValues, Record<string, unknown>>();
 
     // Core types
     ${coreTypes.join('\n')}

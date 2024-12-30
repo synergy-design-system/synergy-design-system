@@ -152,9 +152,28 @@ const createGlobalSetterExport = () => `
   export const setGlobalDefaultSettings = (
     newSettings: RecursivePartial<SynDefaultSettings>,
   ) => {
+    // List of all changes in the default settings
+    const detail = {} as Record<string, SynDefaultChangedAttribute[]>;
+
     Object.entries(newSettings).forEach(([key, value]) => {
       if (defaultSettings[key as keyof SynDefaultSettings]) {
         Object.entries(value).forEach(([component, newValue]) => {
+          // Create the component part of details if it does not exist yet
+          if (!detail[component]) {
+            detail[component] = [];
+          }
+
+          // Add the changed attribute to the detail object
+          detail[component].push({
+            attribute: key,
+            newValue: newValue as unknown,
+            oldValue:
+              defaultSettings[key as keyof SynDefaultSettings][
+                component as keyof SynDefaultSettings[keyof SynDefaultSettings]
+              ],
+          });
+
+          // Set the new value
           (
             defaultSettings[key as keyof SynDefaultSettings] as Record<
               string,
@@ -165,9 +184,27 @@ const createGlobalSetterExport = () => `
       }
     });
 
+    // Fire the change event
+    const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
+      detail,
+      bubbles: true,
+    });
+    dispatchEvent(event);
+
     return defaultSettings;
   };
 `;
+
+const createTypeImports = async (componentsHavingDefaults) => {
+  const componentExports = await getExportsListFromFileSystem();
+
+  const typeImports = componentExports
+    .filter(c => componentsHavingDefaults.has(c.componentClass))
+    .map(c => `import type ${c.componentClass} from '../${c.componentImportPath}';`);
+  typeImports.push("import type SynergyElement from './synergy-element.js';");
+  typeImports.push("import type { SynDefaultChangedAttribute } from '../events/events.js';");
+  return typeImports;
+};
 
 export const createDefaultSettings = job('Synergy: Creating default settings helper...', async (
   componentDistDir,
@@ -176,7 +213,6 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
   const defaultSettingsFile = path.join(componentsDir, 'src/internal/defaultSettings.ts');
 
   const metadata = await getManifestData(componentDistDir);
-  const componentExports = await getExportsListFromFileSystem();
 
   // List of attributes we want to allow an override for
   const whiteListedAttributes = ['size', 'readonly'];
@@ -189,10 +225,7 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
       .flat(),
   );
 
-  const typeImports = componentExports
-    .filter(c => componentsHavingDefaults.has(c.componentClass))
-    .map(c => `import type ${c.componentClass} from '../${c.componentImportPath}';`);
-  typeImports.push("import type SynergyElement from './synergy-element.js';");
+  const typeImports = await createTypeImports(componentsHavingDefaults);
 
   // Create the needed types
   const coreTypes = [

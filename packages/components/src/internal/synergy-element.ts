@@ -187,7 +187,6 @@ export default class SynergyElement extends LitElement {
             this.initialDefaultProperties.set(prop, this[prop as keyof typeof this & string]);
           }
       });
-
       (this.constructor as typeof SynergyElement).elementProperties.forEach(
         (obj, prop: keyof typeof this & string) => {
           // eslint-disable-next-line

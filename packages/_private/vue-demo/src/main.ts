@@ -10,6 +10,7 @@ import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
+import { setGlobalDefaultSettings } from '@synergy-design-system/components';
 import './app.css';
 
 import { createApp } from 'vue';
@@ -18,6 +19,21 @@ import App from './App.vue';
 import DemoForm from './DemoForm.vue';
 import DemoFormValidate from './DemoFormValidate.vue';
 import HomeView from './HomeView.vue';
+
+setGlobalDefaultSettings({
+  size: {
+    SynButton: 'large',
+    SynCheckbox: 'large',
+    SynCombobox: 'large',
+    SynFile: 'large',
+    SynInput: 'large',
+    SynRadioGroup: 'large',
+    SynRange: 'large',
+    SynSelect: 'large',
+    SynSwitch: 'large',
+    SynTextarea: 'large',
+  },
+});
 
 const routes = [
   { path: '/', component: HomeView },

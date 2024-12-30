@@ -147,10 +147,6 @@ export const extractDefaultSettingsForElement = (
 ) => {
   // Check if we have the settings in cache
   if (elementPropertyCache.has(component)) {
-    console.log(
-      "Got settings from the cache!",
-      elementPropertyCache.get(component),
-    );
     return elementPropertyCache.get(component)!;
   }
 

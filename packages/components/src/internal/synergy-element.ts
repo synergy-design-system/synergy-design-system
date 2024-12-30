@@ -171,8 +171,23 @@ export default class SynergyElement extends LitElement {
   // Store the constructor value of all `static properties = {}`
   initialReflectedProperties: Map<string, unknown> = new Map();
 
+  // List of properties that are set to their default values
+  initialDefaultProperties: Map<string, unknown> = new Map();
+
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (!this.#hasRecordedInitialProperties) {
+
+      // Set the initial properties.
+      // We keep track of the initial properties so we can revert them if the default settings change.
+      const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
+      Object
+        .entries(defaultSettings)
+        .forEach(([prop, value]) => {
+          if (this[prop as keyof typeof this & string] !== value) {
+            this.initialDefaultProperties.set(prop, this[prop as keyof typeof this & string]);
+          }
+      });
+
       (this.constructor as typeof SynergyElement).elementProperties.forEach(
         (obj, prop: keyof typeof this & string) => {
           // eslint-disable-next-line
@@ -183,6 +198,36 @@ export default class SynergyElement extends LitElement {
       );
 
       this.#hasRecordedInitialProperties = true;
+
+      window.addEventListener('syn-default-settings-changed', e => {
+        const { detail } = e;
+        const component = this.constructor.name as ComponentNamesWithDefaultValues;
+
+        if (!detail[component]) {
+          return;
+        }
+
+        const newValues = detail[component];
+
+        // Adjust the initialReflectedProperties to match the new default settings
+        newValues.forEach((prop) => {
+          if (this.initialReflectedProperties.has(prop.attribute)) {
+            this.initialReflectedProperties.set(prop.attribute, prop.newValue);
+          }
+        });
+
+        // Adjust the attribute if they are not already set
+        newValues.forEach((prop) => {        
+          if (
+            !this.initialDefaultProperties.has(prop.attribute) &&
+            this[prop.attribute as keyof typeof this & string] !== prop.newValue
+          ) {
+            (this as Record<string, unknown>)[prop.attribute] = prop.newValue;
+          }
+        });
+      }, {
+        capture: true,
+      });
     }
 
     super.attributeChangedCallback(name, oldValue, newValue);

@@ -29,10 +29,14 @@ export const vendorSynergyElement = (path, content) => {
   }
       `,
     ],
-    // Add the override to attributeChangedCallback
+    // Add the override to connectedCallback
     [
-      'this.#hasRecordedInitialProperties = true;',
-      'this.overrideWithGlobalSettings();',
+      `super.attributeChangedCallback(name, oldValue, newValue);
+  }`,
+      `  connectedCallback(): void {
+    super.connectedCallback();
+    this.overrideWithGlobalSettings();
+  }`,
     ],
   ], content);
 

@@ -183,10 +183,13 @@ export default class SynergyElement extends LitElement {
       );
 
       this.#hasRecordedInitialProperties = true;
-this.overrideWithGlobalSettings();
     }
 
     super.attributeChangedCallback(name, oldValue, newValue);
+  }
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.overrideWithGlobalSettings();
   }
 
   protected willUpdate(changedProperties: Parameters<LitElement['willUpdate']>[0]): void {

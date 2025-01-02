@@ -1,0 +1,29 @@
+<syn-button-group>
+  <syn-tooltip content="Set element size to small">
+    <syn-icon-button
+      [color]="currentSize === 'small' ? 'primary' : 'currentColor'"
+      name="density_small"
+      label="Set element size to small"
+      size="small"
+      (click)="switchSize('small')"
+    />
+  </syn-tooltip>
+  <syn-tooltip content="Set element size to medium">
+    <syn-icon-button
+      [color]="currentSize === 'medium' ? 'primary' : 'currentColor'"
+      name="density_medium"
+      label="Set element size to medium"
+      size="small"
+      (click)="switchSize('medium')"
+    />
+  </syn-tooltip>
+  <syn-tooltip content="Set element size to large">
+    <syn-icon-button
+      [color]="currentSize === 'large' ? 'primary' : 'currentColor'"
+      name="density_large"
+      label="Set element size to large"
+      size="small"
+      (click)="switchSize('large')"
+    />
+  </syn-tooltip>
+</syn-button-group>

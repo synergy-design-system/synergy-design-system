@@ -159,13 +159,32 @@ export default class SynergyElement extends LitElement {
   #hasRecordedInitialProperties = false;
 
   private overrideWithGlobalSettings() {
-    // Set the default settings for the element
-    const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
-    Object
-      .entries(defaultSettings)
-      .forEach(([prop, value]) => {
-        (this as Record<string, unknown>)[prop] = value;
+    window.addEventListener('syn-default-settings-changed', e => {
+      const { detail } = e;
+      const component = this.constructor.name as ComponentNamesWithDefaultValues;
+
+      if (!detail[component]) {
+        return;
+      }
+
+      const newValues = detail[component];
+
+      // Adjust the initialReflectedProperties to match the new default settings
+      newValues.forEach((prop) => {
+        if (this.initialReflectedProperties.has(prop.attribute)) {
+          this.initialReflectedProperties.set(prop.attribute, prop.newValue);
+        }
       });
+
+      // Adjust the attribute if they where not set on the element
+      newValues.forEach((prop) => {
+        if (!this.initialDefaultProperties.has(prop.attribute)) {
+          this.setAttribute(prop.attribute, prop.newValue as string);
+        }
+      });
+    }, {
+      capture: true,
+    });
   }
 
   // Store the constructor value of all `static properties = {}`
@@ -176,17 +195,6 @@ export default class SynergyElement extends LitElement {
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (!this.#hasRecordedInitialProperties) {
-
-      // Set the initial properties.
-      // We keep track of the initial properties so we can revert them if the default settings change.
-      const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
-      Object
-        .entries(defaultSettings)
-        .forEach(([prop, value]) => {
-          if (this[prop as keyof typeof this & string] !== value) {
-            this.initialDefaultProperties.set(prop, this[prop as keyof typeof this & string]);
-          }
-      });
       (this.constructor as typeof SynergyElement).elementProperties.forEach(
         (obj, prop: keyof typeof this & string) => {
           // eslint-disable-next-line
@@ -197,43 +205,46 @@ export default class SynergyElement extends LitElement {
       );
 
       this.#hasRecordedInitialProperties = true;
-
-      window.addEventListener('syn-default-settings-changed', e => {
-        const { detail } = e;
-        const component = this.constructor.name as ComponentNamesWithDefaultValues;
-
-        if (!detail[component]) {
-          return;
-        }
-
-        const newValues = detail[component];
-
-        // Adjust the initialReflectedProperties to match the new default settings
-        newValues.forEach((prop) => {
-          if (this.initialReflectedProperties.has(prop.attribute)) {
-            this.initialReflectedProperties.set(prop.attribute, prop.newValue);
-          }
-        });
-
-        // Adjust the attribute if they are not already set
-        newValues.forEach((prop) => {        
-          if (
-            !this.initialDefaultProperties.has(prop.attribute) &&
-            this[prop.attribute as keyof typeof this & string] !== prop.newValue
-          ) {
-            (this as Record<string, unknown>)[prop.attribute] = prop.newValue;
-          }
-        });
-      }, {
-        capture: true,
-      });
     }
 
     super.attributeChangedCallback(name, oldValue, newValue);
   }
+
+  private defaultValueObserver: MutationObserver;
+
   connectedCallback(): void {
     super.connectedCallback();
     this.overrideWithGlobalSettings();
+
+    const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
+
+    this.defaultValueObserver = new MutationObserver(entries => {
+      entries.forEach(entry => {
+        const { attributeName, oldValue } = entry;
+
+        // Skip, something was already set.
+        if (oldValue && oldValue !== this[attributeName as keyof this]) {
+          return;
+        }
+
+        // Skip, the attribute is not in the default settings
+        if (!defaultSettings[attributeName as string]) {
+          return;
+        }
+
+        if (this[attributeName as keyof this] !== defaultSettings[attributeName as string]) {
+          this.initialDefaultProperties.set(attributeName as string, this[attributeName as keyof this]);
+        }
+      });
+
+      // Run initially only
+      this.defaultValueObserver.disconnect();
+    });
+
+    this.defaultValueObserver.observe(this, {
+      attributeOldValue: true,
+      attributeFilter: Object.keys(defaultSettings),
+    });
   }
 
   protected willUpdate(changedProperties: Parameters<LitElement['willUpdate']>[0]): void {

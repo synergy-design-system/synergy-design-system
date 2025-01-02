@@ -11,6 +11,7 @@ import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
 import { DemoFormValidate } from './demoformvalidate/demoformvalidate.component';
 import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
+import { SizeSwitchComponent } from './sizeswitch/sizeswitch.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
   SynNavItemRouterLinkDirective,
@@ -34,7 +35,8 @@ import {
     SynergyFormsModule,
     SynNavItemRouterLinkDirective,
     SynNavItemRouterLinkActiveDirective,
-  ],
+    SizeSwitchComponent,
+],
   providers: [],
   bootstrap: [AppComponent],
 })

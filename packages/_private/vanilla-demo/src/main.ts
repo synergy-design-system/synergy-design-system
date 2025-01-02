@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import {
   type SynChangeEvent,
+  type SynIconButton,
   type SynSwitch,
   registerIconLibrary,
 } from '@synergy-design-system/components';
@@ -19,9 +20,14 @@ import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
+
 import { createLayout } from './layout.js';
 import { initRouting } from './routing.js';
-import { capitalize } from './utils.js';
+import {
+  type AvailableSizes,
+  capitalize,
+  setGlobalSize,
+} from './utils.js';
 
 const initThemeSwitch = async () => {
   await customElements.whenDefined('syn-switch');
@@ -37,6 +43,25 @@ const initThemeSwitch = async () => {
   });
 };
 
+const initSizeSwitch = async () => {
+  await customElements.whenDefined('syn-button-group');
+
+  const buttons = document.querySelectorAll<SynIconButton>('.meta-navigation syn-button-group syn-icon-button');
+  document
+    .querySelector('.meta-navigation syn-button-group')!
+    .addEventListener('click', e => {
+      const target = e.target as HTMLElement;
+      const clickedButton = target.closest('syn-icon-button') as SynIconButton;
+      const size = clickedButton.dataset.size!;
+
+      setGlobalSize(size as AvailableSizes);
+
+      buttons.forEach(btn => {
+        btn.color = btn.dataset.size === size ? 'primary' : 'currentColor';
+      });
+    });
+};
+
 const bootstrap = async () => {
   registerIconLibrary('default', {
     resolver: name => `/synergy-icon-sprites.svg#${name}`,
@@ -50,6 +75,7 @@ const bootstrap = async () => {
 
   await initRouting();
   await initThemeSwitch();
+  await initSizeSwitch();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

@@ -32,6 +32,7 @@ describe('<syn-range>', () => {
     expect(el.step).to.equal(1);
     expect(el.tooltipPlacement).to.equal('top');
     expect(el.value).to.equal('0');
+    expect(el.restrictMovement).to.be.false;
     expect(el.valueAsArray).to.deep.equal([0]);
   });
 
@@ -243,11 +244,8 @@ describe('<syn-range>', () => {
   });
 
   describe('when the value changes', () => {
-    afterEach(async () => {
-      await resetMouse();
-    });
-
     it('should emit a syn-change event when the user has dragged a thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const baseDiv = el.shadowRoot!.querySelector('.base')!.getBoundingClientRect().width;
@@ -286,7 +284,8 @@ describe('<syn-range>', () => {
     });
 
     it('should not emit a syn-change event when the user has dragged a thumb to the same value again', async () => {
-      const el = await fixture<SynRange>(html`<syn-range ></syn-range>`);
+      await resetMouse();
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
 
@@ -337,6 +336,7 @@ describe('<syn-range>', () => {
     });
 
     it('should allow to set more than one value', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
       const changeHandler = sinon.spy();
 
@@ -417,6 +417,7 @@ describe('<syn-range>', () => {
     });
 
     it('should emit a syn-input event while the user is dragging the thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
 
@@ -451,6 +452,7 @@ describe('<syn-range>', () => {
     });
 
     it('should emit a syn-move event when the user has dragged a thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const moveHandler = sinon.spy();
 
@@ -485,6 +487,7 @@ describe('<syn-range>', () => {
     });
 
     it('should not move the thumb when the emitted `syn-move` event is prevented', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
       const moveHandler = sinon.spy();
@@ -524,7 +527,43 @@ describe('<syn-range>', () => {
       expect(inputHandler).to.not.have.been.called;
     });
 
+    it('should not move the thumb when restrict is set to true and the thumbs new value would be out of bounds', async () => {
+      await resetMouse();
+      const el = await fixture<SynRange>(html`<syn-range restrict value="30 70"></syn-range>`);
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+
+      const thumbs = el.shadowRoot!.querySelectorAll('.thumb');
+      const [firstThumb, secondThumb] = Array.from(thumbs);
+
+      const rect = firstThumb.getBoundingClientRect();
+      const center = parseInt((rect.left + rect.width / 2).toFixed(0), 10);
+
+      const targetRect = secondThumb.getBoundingClientRect();
+      const targetCenter = parseInt((targetRect.left + targetRect.width / 2).toFixed(0), 10);
+
+      await sendMouse({
+        position: [center, rect.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      await sendMouse({
+        position: [center + targetCenter + 50, rect.top],
+        type: 'move',
+      });
+
+      await el.updateComplete;
+
+      expect(inputHandler).to.not.have.been.called;
+    });
+
     it('should not emit syn-change or syn-input when the value is set programmatically', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
 
@@ -537,6 +576,7 @@ describe('<syn-range>', () => {
     });
 
     it('should emit a syn-change and syn-input event when the user clicks the track', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();

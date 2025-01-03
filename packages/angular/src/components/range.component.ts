@@ -217,6 +217,19 @@ export class SynRangeComponent {
   }
 
   /**
+   * Set to true to restrict the movement of knobs
+   */
+  @Input()
+  set restrictMovement(v: '' | SynRange['restrictMovement']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.restrictMovement = v === '' || v),
+    );
+  }
+  get restrictMovement(): SynRange['restrictMovement'] {
+    return this.nativeElement.restrictMovement;
+  }
+
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 This attribute allows you to place the form control outside of a form
 and associate it with the form that has this `id`.

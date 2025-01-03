@@ -125,6 +125,11 @@ const props = defineProps<{
   value?: SynRange['value'];
 
   /**
+   * Set to true to restrict the movement of knobs
+   */
+  restrictMovement?: SynRange['restrictMovement'];
+
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 This attribute allows you to place the form control outside of a form
 and associate it with the form that has this `id`.

@@ -116,6 +116,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#value.slice().sort(numericSort).join(' ');
   }
 
+  /** Set to true to restrict the movement of knobs */
+  @property({ attribute: 'restrict', type: Boolean }) restrictMovement = false;
+
   /** Gets or sets the current values of the range as an array of numbers */
   set valueAsArray(value: readonly number[] | null) {
     const oldValue = this.#value;
@@ -365,6 +368,26 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     await (thumb.parentElement as SynTooltip).show();
   }
 
+  /**
+   * Check if a given thumb is restricted from moving
+   * @param value The current value of a thumb
+   * @param thumb The thumb element that was moved
+   * @returns True if the thumb is restricted from moving
+   */
+  #isMoveMentRestricted(value: number, thumb: HTMLDivElement) {
+    // If we are in restrict mode, we should not move the thumb
+    // if it is smaller than the previous thumb or larger than the next thumb
+    const values = this.valueAsArray!;
+    const thumbs = Array.from(this.thumbs);
+    const thumbIndex = thumbs.indexOf(thumb);
+
+    // Get the previous and next thumb and see what are our valid ranges
+    const prevValue = values[thumbIndex - 1] || this.min;
+    const nextValue = values[thumbIndex + 1] || this.max;
+
+    return value < prevValue || value > nextValue;
+  }
+
   #onDragThumb(event: PointerEvent) {
     if (this.disabled) return;
 
@@ -389,6 +412,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     if (synMove.defaultPrevented) {
       return;
+    }
+
+    if (this.restrictMovement) {
+      const isRestricted = this.#isMoveMentRestricted(value, thumb);
+      if (isRestricted) {
+        return;
+      }
     }
 
     this.#rangeValues.set(rangeId, value);
@@ -527,6 +557,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       if (synMove.defaultPrevented) {
         return;
+      }
+
+      if (this.restrictMovement) {
+        const isRestricted = this.#isMoveMentRestricted(value, thumb);
+        if (isRestricted) {
+          return;
+        }
       }
 
       this.#moveThumb(thumb, value);

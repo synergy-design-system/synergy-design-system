@@ -11,10 +11,10 @@ export const runCreateExports = job('Angular: Creating exports file...', async (
   const outFile = path.join(outDir, 'index.ts');
   const output = `
 ${headerComment}
-export * from './components';
-export * from './directives/validators';
-export * from './modules/forms.module';
-export * from './modules/synergy.module'; 
+export * from '@synergy-design-system/angular/components';
+export * from '@synergy-design-system/angular/directives/validators';
+export * from './modules/forms/forms.module';
+export * from './modules/synergy/synergy.module'; 
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');

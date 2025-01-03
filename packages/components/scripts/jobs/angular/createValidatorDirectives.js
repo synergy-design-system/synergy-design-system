@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { createHeader, job } from '../shared.js';
+import { createHeader, createNgPackageJson, job } from '../shared.js';
 
 const headerComment = createHeader('angular');
 
@@ -8,11 +8,16 @@ const headerComment = createHeader('angular');
  * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
  */
 export const runCreateValidatorDirectives = job('Angular: Creating ValidatorDirectives...', async (outDir) => {
-  const outFile = path.join(outDir, 'validators.ts');
+  const fileName = 'validators.ts';
+  const validatorDir = path.join(outDir, 'validators');
+  const outFile = path.join(validatorDir, fileName);
+
+  // Create a subdirectory for the validators
+  await fs.mkdir(validatorDir, { recursive: true });
 
   const output = `
 ${headerComment}
-import { Directive, forwardRef, Provider } from '@angular/core';
+import { Directive, forwardRef, NgModule, Provider } from '@angular/core';
 import {
   CheckboxRequiredValidator,
   MaxValidator,
@@ -120,7 +125,23 @@ export const SYN_CHECKBOX_REQUIRED_VALIDATOR: Provider = {
   host: {'[attr.required]': '_enabled ? "" : null'},
 })
 export class SynCheckboxRequiredValidator extends CheckboxRequiredValidator {}
+
+@NgModule({
+  declarations: [
+    SynMinValidator,
+    SynMaxValidator,
+    SynCheckboxRequiredValidator,
+  ],
+  exports: [
+    SynMinValidator,
+    SynMaxValidator,
+    SynCheckboxRequiredValidator,
+  ],
+ 
+})
+export class SynergyValidatorsModule {}
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');
+  createNgPackageJson(fileName, validatorDir);
 });

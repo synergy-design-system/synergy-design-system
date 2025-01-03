@@ -63,7 +63,7 @@ const createSynDefaultSettingsType = (components, whiteListedAttributes = []) =>
     /**
      * Default settings map for all component values that have defaults set
      */
-    type SynDefaultSettings = {${structure}};
+    export type SynDefaultSettings = {${structure}};
   `;
 };
 

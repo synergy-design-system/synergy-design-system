@@ -82,7 +82,7 @@ export type ExtractSettingsForElement<C extends SynergyElement> = {
 /**
  * Default settings map for all component values that have defaults set
  */
-type SynDefaultSettings = {
+export type SynDefaultSettings = {
   size: {
     SynAccordion?: AllowedValueForDefaultSetting<SynAccordion, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;

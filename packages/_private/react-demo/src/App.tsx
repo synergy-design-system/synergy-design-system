@@ -10,7 +10,7 @@ export const App = () => {
   // Use this to set the global size to medium
   // for the whole application
   useEffect(() => {
-    setGlobalSize('medium');
+    setGlobalSize('large');
   }, []);
   return (
     <BrowserRouter>

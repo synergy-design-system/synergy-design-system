@@ -23,7 +23,7 @@ export const createLayout = () => `
         </syn-tooltip>
         <syn-tooltip content="Set element size to medium">
           <syn-icon-button
-            color="currentColor"
+            color="primary"
             data-size="medium"
             name="density_medium"
             label="Set element size to medium"

@@ -43,5 +43,16 @@
   "publishConfig": {
     "directory": "dist"
   },
+  "exports": {
+    "./components/*": {
+      "types": "./components/*/index.d.ts"
+    },
+    "./modules/*": {
+      "types": "./modules/*/index.d.ts"
+    },
+    "./directives/*": {
+      "types": "./directives/*/index.d.ts"
+    }
+  },
   "sideEffects": true
 }

@@ -1633,11 +1633,11 @@
       },
       "sizes": {
         "title": {
-          "value": "Sizes",
+          "value": "*Sizes",
           "type": "text"
         },
         "description": {
-          "value": "Use the size attribute to change a option size. The size of all options should follow the parents's size attribute.",
+          "value": "Figma only: Use the size attribute to change a option size. The size of all options should follow the parents's size attribute. In development the size will be automatically set by the parent element size.",
           "type": "text"
         }
       }
@@ -2853,11 +2853,11 @@
       },
       "sizes": {
         "title": {
-          "value": "Sizes",
+          "value": "*Sizes",
           "type": "text"
         },
         "description": {
-          "value": "Use the size attribute to change a optgroup size. The size of all optgroups should follow the parent's size attribute.",
+          "value": "Figma only: Use the size attribute to change a optgroup size. The size of all optgroups should follow the parent's size attribute. In development the size will be automatically set by the parent element size.",
           "type": "text"
         }
       }

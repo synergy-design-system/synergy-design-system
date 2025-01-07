@@ -5,5 +5,5 @@
 // ---------------------------------------------------------------------
 export * from '@synergy-design-system/angular/components';
 export * from '@synergy-design-system/angular/directives/validators';
-export * from './modules/forms/forms.module';
-export * from './modules/synergy/synergy.module';
+export * from '@synergy-design-system/angular/modules/forms';
+export * from '@synergy-design-system/angular/modules/synergy';

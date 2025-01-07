@@ -153,7 +153,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     index.push({
       name: `${component.name}Component`,
-      outputPath: `./${component.tagNameWithoutPrefix}/${componentFileName.slice(0, -3)}`,
+      outputPath: `@synergy-design-system/angular/components/${component.tagNameWithoutPrefix}`,
     });
 
     fs.writeFileSync(componentPath, source, 'utf8');

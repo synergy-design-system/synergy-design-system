@@ -9,7 +9,6 @@
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { extractDefaultSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';
-import type { SynDefaultSettingsChangedEvent } from '../events/events.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
 type EventTypeRequiresDetail<T> = T extends keyof GlobalEventHandlersEventMap
@@ -159,32 +158,6 @@ export default class SynergyElement extends LitElement {
 
   #hasRecordedInitialProperties = false;
 
-  overrideWithGlobalSettings = (e: SynDefaultSettingsChangedEvent) => {
-    const { detail } = e;
-    const component = this.constructor.name as ComponentNamesWithDefaultValues;
-
-    // Skip if the component is not in the event
-    if (!detail[component]) {
-      return;
-    }
-
-    const newValues = detail[component];
-
-    // Adjust the initialReflectedProperties to match the new default settings
-    newValues.forEach((prop) => {
-      if (this.initialReflectedProperties.has(prop.attribute)) {
-        this.initialReflectedProperties.set(prop.attribute, prop.newValue);
-      }
-    });
-
-    // Adjust the attribute if they where not set on the element
-    newValues.forEach((prop) => {
-      if (!this.initialDefaultProperties.has(prop.attribute)) {
-        this.setAttribute(prop.attribute, prop.newValue as string);
-      }
-    });
-  };
-
   // Store the constructor value of all `static properties = {}`
   initialReflectedProperties: Map<string, unknown> = new Map();
 
@@ -218,17 +191,14 @@ export default class SynergyElement extends LitElement {
       return;
     }
 
-    // Add the global event listener
-    window.addEventListener('syn-default-settings-changed', this.overrideWithGlobalSettings, {
-      capture: true,
-    });
-
     this.defaultValueObserver = new MutationObserver(entries => {
       entries.forEach(entry => {
         const { attributeName, oldValue } = entry;
 
+        const newValue = this[attributeName as keyof this];
+
         // Skip, something was already set.
-        if (oldValue && oldValue !== this[attributeName as keyof this]) {
+        if (oldValue !== undefined && oldValue !== null && oldValue !== newValue) {
           return;
         }
 
@@ -237,8 +207,9 @@ export default class SynergyElement extends LitElement {
           return;
         }
 
-        if (this[attributeName as keyof this] !== defaultSettings[attributeName as string]) {
-          this.initialDefaultProperties.set(attributeName as string, this[attributeName as keyof this]);
+        if (oldValue === null && newValue !== defaultSettings[attributeName as string]) {
+          this[attributeName as keyof this] = defaultSettings[attributeName as string] as this[keyof this];
+          this.initialDefaultProperties.set(attributeName as string, newValue);
         }
       });
 
@@ -257,10 +228,6 @@ export default class SynergyElement extends LitElement {
     if (this.defaultValueObserver) {
       this.defaultValueObserver.disconnect();
     }
-
-    window.removeEventListener('syn-default-settings-changed', this.overrideWithGlobalSettings, {
-      capture: true,
-    });
   }
 
   protected willUpdate(changedProperties: Parameters<LitElement['willUpdate']>[0]): void {

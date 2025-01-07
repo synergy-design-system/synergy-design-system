@@ -14,14 +14,14 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom", "DOM.Iterable"],
     "paths": {
-      // This is only needed because we are in a monorepo. In a outside applications this is not needed
+      // This is only needed because we are in a monorepo. In an outside applications this is not needed
       "@synergy-design-system/angular": ["../../angular/dist"],
       "@synergy-design-system/angular/components": ["../../angular/dist/components"],
       "@synergy-design-system/angular/components/*": ["../../angular/dist/components/*"],

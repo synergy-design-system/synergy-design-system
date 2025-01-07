@@ -6,7 +6,6 @@ import {
   SynergyComponentsModule,
 } from '@synergy-design-system/angular';
 import { AppComponent } from './app.component';
-import { DemoFieldset } from './demofieldset/demofieldset.component';
 import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
 import { DemoFormValidate } from './demoformvalidate/demoformvalidate.component';
@@ -16,14 +15,13 @@ import {
   SynNavItemRouterLinkDirective,
   SynNavItemRouterLinkActiveDirective,
 } from './directives';
+import { DemoFieldSetModule } from './modules/demofieldset.module';
 
 @NgModule({
   declarations: [
     Home,
     AppComponent,
-    DemoFieldset,
     DemoForm,
-    DemoFormValidate,
     ThemeSwitchComponent,
   ],
   imports: [
@@ -34,6 +32,8 @@ import {
     SynergyFormsModule,
     SynNavItemRouterLinkDirective,
     SynNavItemRouterLinkActiveDirective,
+    DemoFormValidate,
+    DemoFieldSetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

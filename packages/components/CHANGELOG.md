@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.15.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.1...components/2.15.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* 🐛 Various issues with syn-combobox ([#723](https://github.com/synergy-design-system/synergy-design-system/issues/723)) ([744c485](https://github.com/synergy-design-system/synergy-design-system/commit/744c485a7c24636f5f7cdd9f61f6640e593fcb8b))
+
 # [@synergy-design-system/components-v2.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.0...components/2.15.1) (2024-12-20)
 
 

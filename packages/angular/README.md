@@ -64,7 +64,10 @@ Please include either light or dark theme in your application, for example in a 
 }
 ```
 
-### 3. Load the Synergy Module to load all components
+### 3. Importing and rendering components
+There are multiple ways to load the components:
+
+#### Load the Synergy Module to load all components
 
 > ⚠️ This is a convenience feature only and WILL create bigger bundles!
 > It is intended for bootstrapping applications in a quick way.
@@ -99,6 +102,74 @@ You will then be able to use the provided wrappers in the following way:
 This example will render the provided `<syn-button />` Angular component.
 
 ---
+
+
+#### Loading selected components only
+
+To reduce bundle size, it is recommended that you do not use the root import for a component like `import { SynInputComponent } from '@synergy-design-system/angular`, but use the specific import of the component.
+
+You can either add the needed components directly to the @Component.imports array:
+
+```typescript
+// src/app/my-component.component.ts
+import { Component } from '@angular/core';
+import { SynInputComponent } from '@synergy-design-system/angular/components/input';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+
+@Component({
+  selector: 'my-component',
+  imports: [
+    SynButtonComponent,
+    SynInputComponent,
+  ],
+  template: `
+    <syn-input label="My input"></syn-input>
+    <syn-button>Click me</syn-button>
+  `,
+})
+export class MyComponent {}
+```
+
+Or create your own reusable NgModule with only needed components:
+
+```typescript
+// src/app/used-synergy.module.ts
+import { NgModule } from '@angular/core';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+import { SynInputComponent } from '@synergy-design-system/angular/components/input';
+
+const components = [
+  SynButtonComponent,
+  SynInputComponent,
+];
+
+@NgModule({
+  imports: components,
+  exports: components,
+})
+export class UsedSynergyModule {}
+```
+
+```typescript
+// src/app/my-component.component.ts
+import { Component } from '@angular/core';
+import { UsedSynergyModule } from './used-synergy.module';
+
+
+@Component({
+  selector: 'my-component',
+  imports: [
+    UsedSynergyModule,
+  ],
+  template: `
+    <syn-input label="My input"></syn-input>
+    <syn-button>Click me</syn-button>
+  `,
+})
+export class MyComponent {}
+```
+
+
 
 ### 4. Usage of the components
 

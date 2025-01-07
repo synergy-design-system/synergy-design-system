@@ -62,4 +62,15 @@ export default css`
   .option--current .option__suffix::slotted(syn-icon) {
     color: var(--syn-color-neutral-0);
   }
+
+  /* This is needed for the highlight styling of the options in syn-combobox */
+  .option__label::slotted(.syn-highlight-style) {
+    background-color: transparent;
+    color: var(--syn-color-neutral-950);
+    font: var(--syn-body-medium-bold);
+  }
+
+  :host([aria-selected='true']) .option__label::slotted(.syn-highlight-style) {
+    color: var(--syn-color-neutral-0);
+  }
 `;

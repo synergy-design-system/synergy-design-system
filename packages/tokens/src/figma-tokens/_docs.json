@@ -1995,7 +1995,7 @@
           "type": "text"
         },
         "description": {
-          "value": "You can prevent the thumbs from overlapping by listening to the provided `syn-move` event.",
+          "value": "Set the restrict attribute to true to prevent the thumbs from overlapping.",
           "type": "text"
         }
       },
@@ -2016,7 +2016,7 @@
             "type": "text"
           },
           "description": {
-            "value": "Use the default slot to give the tick a label.",
+            "value": "Use the default slot to give the tick a label.",
             "type": "text"
           }
         },

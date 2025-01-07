@@ -24,6 +24,14 @@ export default css`
     box-shadow: var(--syn-shadow-large);
   }
 
+  .dialog__body {
+    min-height: 4rem;
+  }
+
+  .dialog__footer {
+    background: var(--syn-panel-background-color);
+  }
+
   .dialog__header-actions {
     align-items: flex-start;
     gap: var(--syn-spacing-x-small);

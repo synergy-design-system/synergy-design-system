@@ -7,12 +7,12 @@
 
 ### Meta information
 
-- Framework version: React@18 and below
-- Synergy version: < 2.15.0
+- Framework version: React < 19.0.0
+- Synergy version: < 2.16.0
 
 ### Description
 
-React did historically not ship with web components in mind. This means for older react applications, it is not possible to use web components out of the box.
+React did historically not ship with web components in mind. This means that is not possible to use all features of web components out of the box when using React until version 19.0.0.
 
 ### Cause
 
@@ -20,7 +20,7 @@ Unfortunately it seems that web components never got traction for react develope
 
 ### Proposed Solution
 
-#### Solution 1: For react <= 18.0.0
+#### Solution 1: For react < 19.0.0
 
 When using react version 18 and below, you may use our `@synergy-design-system/react` wrapper components.
 They allow seamless use of our components as automatically wrapped react elements.

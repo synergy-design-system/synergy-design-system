@@ -13,7 +13,7 @@ Got any problems using our React wrappers? Currently there are no known issues r
 
 ## Getting started
 
-### 1. Usage example 
+### 1. Usage example
 
 If you want to see a usage example, please check out our [test React repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo).
 

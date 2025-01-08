@@ -9,7 +9,7 @@ Got any problems using our components? Please take a look at [our list of known 
 
 ## Getting started
 
-### 1. Usage example 
+### 1. Usage example
 
 If you want to see a usage example, please check out our [test Web Components repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/vanilla-demo).
 

@@ -23,10 +23,18 @@
     "paths": {
       // This is only needed because we are in a monorepo. In an outside applications this is not needed
       "@synergy-design-system/angular": ["../../angular/dist"],
-      "@synergy-design-system/angular/components": ["../../angular/dist/components"],
-      "@synergy-design-system/angular/components/*": ["../../angular/dist/components/*"],
-      "@synergy-design-system/angular/directives/validators": ["../../angular/dist/directives/validators"],
-      "@synergy-design-system/angular/modules/*": ["../../angular/dist/modules/*"],
+      "@synergy-design-system/angular/components": [
+        "../../angular/dist/components"
+      ],
+      "@synergy-design-system/angular/components/*": [
+        "../../angular/dist/components/*"
+      ],
+      "@synergy-design-system/angular/directives/validators": [
+        "../../angular/dist/directives/validators"
+      ],
+      "@synergy-design-system/angular/modules/*": [
+        "../../angular/dist/modules/*"
+      ]
     }
   },
   "angularCompilerOptions": {

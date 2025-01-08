@@ -14,7 +14,7 @@ Got any problems using our Vue wrappers? Please take a look at [our list of know
 
 ## Getting started
 
-### 1. Usage example 
+### 1. Usage example
 
 If you want to see a usage example, please check out our [test Vue repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/vue-demo).
 

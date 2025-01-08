@@ -14,7 +14,7 @@
     "inlineSources": true,
     "skipLibCheck": true,
     "importHelpers": true,
-  
+
     /* Linting */
     "strict": true,
     "noUnusedParameters": true,
@@ -23,55 +23,153 @@
     "paths": {
       // We need this path resolves for typescript to be able to work correctly
       "@synergy-design-system/angular/components": ["./components/index.ts"],
-      "@synergy-design-system/angular/directives/validators": ["./directives/validators/validators.ts"],
-      "@synergy-design-system/angular/modules/forms": ["./modules/forms/forms.module.ts"],
-      "@synergy-design-system/angular/modules/synergy": ["./modules/synergy/synergy.module.ts"],
-      "@synergy-design-system/angular/components/accordion": ["./components/accordion/accordion.component.ts"],
-      "@synergy-design-system/angular/components/alert": ["./components/alert/alert.component.ts"],
-      "@synergy-design-system/angular/components/badge": ["./components/badge/badge.component.ts"],
-      "@synergy-design-system/angular/components/breadcrumb": ["./components/breadcrumb/breadcrumb.component.ts"],
-      "@synergy-design-system/angular/components/breadcrumb-item": ["./components/breadcrumb-item/breadcrumb-item.component.ts"],
-      "@synergy-design-system/angular/components/button": ["./components/button/button.component.ts"],
-      "@synergy-design-system/angular/components/button-group": ["./components/button-group/button-group.component.ts"],
-      "@synergy-design-system/angular/components/card": ["./components/card/card.component.ts"],
-      "@synergy-design-system/angular/components/checkbox": ["./components/checkbox/checkbox.component.ts"],
-      "@synergy-design-system/angular/components/combobox": ["./components/combobox/combobox.component.ts"],
-      "@synergy-design-system/angular/components/details": ["./components/details/details.component.ts"],
-      "@synergy-design-system/angular/components/dialog": ["./components/dialog/dialog.component.ts"],
-      "@synergy-design-system/angular/components/divider": ["./components/divider/divider.component.ts"],
-      "@synergy-design-system/angular/components/drawer": ["./components/drawer/drawer.component.ts"],
-      "@synergy-design-system/angular/components/dropdown": ["./components/dropdown/dropdown.component.ts"],
-      "@synergy-design-system/angular/components/file": ["./components/file/file.component.ts"],
-      "@synergy-design-system/angular/components/header": ["./components/header/header.component.ts"],
-      "@synergy-design-system/angular/components/icon-button": ["./components/icon-button/icon-button.component.ts"],
-      "@synergy-design-system/angular/components/icon": ["./components/icon/icon.component.ts"],
-      "@synergy-design-system/angular/components/input": ["./components/input/input.component.ts"],
-      "@synergy-design-system/angular/components/menu": ["./components/menu/menu.component.ts"],
-      "@synergy-design-system/angular/components/menu-item": ["./components/menu-item/menu-item.component.ts"],
-      "@synergy-design-system/angular/components/menu-label": ["./components/menu-label/menu-label.component.ts"],
-      "@synergy-design-system/angular/components/nav-item": ["./components/nav-item/nav-item.component.ts"],
-      "@synergy-design-system/angular/components/optgroup": ["./components/optgroup/optgroup.component.ts"],
-      "@synergy-design-system/angular/components/option": ["./components/option/option.component.ts"],
-      "@synergy-design-system/angular/components/popup": ["./components/popup/popup.component.ts"],
-      "@synergy-design-system/angular/components/prio-nav": ["./components/prio-nav/prio-nav.component.ts"],
-      "@synergy-design-system/angular/components/progress-bar": ["./components/progress-bar/progress-bar.component.ts"],
-      "@synergy-design-system/angular/components/progress-ring": ["./components/progress-ring/progress-ring.component.ts"],
-      "@synergy-design-system/angular/components/radio-button": ["./components/radio-button/radio-button.component.ts"],
-      "@synergy-design-system/angular/components/radio": ["./components/radio/radio.component.ts"],
-      "@synergy-design-system/angular/components/radio-group": ["./components/radio-group/radio-group.component.ts"],
-      "@synergy-design-system/angular/components/range": ["./components/range/range.component.ts"],
-      "@synergy-design-system/angular/components/range-tick": ["./components/range-tick/range-tick.component.ts"],
-      "@synergy-design-system/angular/components/select": ["./components/select/select.component.ts"],
-      "@synergy-design-system/angular/components/side-nav": ["./components/side-nav/side-nav.component.ts"],
-      "@synergy-design-system/angular/components/spinner": ["./components/spinner/spinner.component.ts"],
-      "@synergy-design-system/angular/components/switch": ["./components/switch/switch.component.ts"],
-      "@synergy-design-system/angular/components/tab": ["./components/tab/tab.component.ts"],
-      "@synergy-design-system/angular/components/tab-group": ["./components/tab-group/tab-group.component.ts"],
-      "@synergy-design-system/angular/components/tab-panel": ["./components/tab-panel/tab-panel.component.ts"],
-      "@synergy-design-system/angular/components/tag": ["./components/tag/tag.component.ts"],
-      "@synergy-design-system/angular/components/textarea": ["./components/textarea/textarea.component.ts"],
-      "@synergy-design-system/angular/components/tooltip": ["./components/tooltip/tooltip.component.ts"],
-      "@synergy-design-system/angular/components/validate": ["./components/validate/validate.component.ts"]
+      "@synergy-design-system/angular/directives/validators": [
+        "./directives/validators/validators.ts"
+      ],
+      "@synergy-design-system/angular/modules/forms": [
+        "./modules/forms/forms.module.ts"
+      ],
+      "@synergy-design-system/angular/modules/synergy": [
+        "./modules/synergy/synergy.module.ts"
+      ],
+      "@synergy-design-system/angular/components/accordion": [
+        "./components/accordion/accordion.component.ts"
+      ],
+      "@synergy-design-system/angular/components/alert": [
+        "./components/alert/alert.component.ts"
+      ],
+      "@synergy-design-system/angular/components/badge": [
+        "./components/badge/badge.component.ts"
+      ],
+      "@synergy-design-system/angular/components/breadcrumb": [
+        "./components/breadcrumb/breadcrumb.component.ts"
+      ],
+      "@synergy-design-system/angular/components/breadcrumb-item": [
+        "./components/breadcrumb-item/breadcrumb-item.component.ts"
+      ],
+      "@synergy-design-system/angular/components/button": [
+        "./components/button/button.component.ts"
+      ],
+      "@synergy-design-system/angular/components/button-group": [
+        "./components/button-group/button-group.component.ts"
+      ],
+      "@synergy-design-system/angular/components/card": [
+        "./components/card/card.component.ts"
+      ],
+      "@synergy-design-system/angular/components/checkbox": [
+        "./components/checkbox/checkbox.component.ts"
+      ],
+      "@synergy-design-system/angular/components/combobox": [
+        "./components/combobox/combobox.component.ts"
+      ],
+      "@synergy-design-system/angular/components/details": [
+        "./components/details/details.component.ts"
+      ],
+      "@synergy-design-system/angular/components/dialog": [
+        "./components/dialog/dialog.component.ts"
+      ],
+      "@synergy-design-system/angular/components/divider": [
+        "./components/divider/divider.component.ts"
+      ],
+      "@synergy-design-system/angular/components/drawer": [
+        "./components/drawer/drawer.component.ts"
+      ],
+      "@synergy-design-system/angular/components/dropdown": [
+        "./components/dropdown/dropdown.component.ts"
+      ],
+      "@synergy-design-system/angular/components/file": [
+        "./components/file/file.component.ts"
+      ],
+      "@synergy-design-system/angular/components/header": [
+        "./components/header/header.component.ts"
+      ],
+      "@synergy-design-system/angular/components/icon-button": [
+        "./components/icon-button/icon-button.component.ts"
+      ],
+      "@synergy-design-system/angular/components/icon": [
+        "./components/icon/icon.component.ts"
+      ],
+      "@synergy-design-system/angular/components/input": [
+        "./components/input/input.component.ts"
+      ],
+      "@synergy-design-system/angular/components/menu": [
+        "./components/menu/menu.component.ts"
+      ],
+      "@synergy-design-system/angular/components/menu-item": [
+        "./components/menu-item/menu-item.component.ts"
+      ],
+      "@synergy-design-system/angular/components/menu-label": [
+        "./components/menu-label/menu-label.component.ts"
+      ],
+      "@synergy-design-system/angular/components/nav-item": [
+        "./components/nav-item/nav-item.component.ts"
+      ],
+      "@synergy-design-system/angular/components/optgroup": [
+        "./components/optgroup/optgroup.component.ts"
+      ],
+      "@synergy-design-system/angular/components/option": [
+        "./components/option/option.component.ts"
+      ],
+      "@synergy-design-system/angular/components/popup": [
+        "./components/popup/popup.component.ts"
+      ],
+      "@synergy-design-system/angular/components/prio-nav": [
+        "./components/prio-nav/prio-nav.component.ts"
+      ],
+      "@synergy-design-system/angular/components/progress-bar": [
+        "./components/progress-bar/progress-bar.component.ts"
+      ],
+      "@synergy-design-system/angular/components/progress-ring": [
+        "./components/progress-ring/progress-ring.component.ts"
+      ],
+      "@synergy-design-system/angular/components/radio-button": [
+        "./components/radio-button/radio-button.component.ts"
+      ],
+      "@synergy-design-system/angular/components/radio": [
+        "./components/radio/radio.component.ts"
+      ],
+      "@synergy-design-system/angular/components/radio-group": [
+        "./components/radio-group/radio-group.component.ts"
+      ],
+      "@synergy-design-system/angular/components/range": [
+        "./components/range/range.component.ts"
+      ],
+      "@synergy-design-system/angular/components/range-tick": [
+        "./components/range-tick/range-tick.component.ts"
+      ],
+      "@synergy-design-system/angular/components/select": [
+        "./components/select/select.component.ts"
+      ],
+      "@synergy-design-system/angular/components/side-nav": [
+        "./components/side-nav/side-nav.component.ts"
+      ],
+      "@synergy-design-system/angular/components/spinner": [
+        "./components/spinner/spinner.component.ts"
+      ],
+      "@synergy-design-system/angular/components/switch": [
+        "./components/switch/switch.component.ts"
+      ],
+      "@synergy-design-system/angular/components/tab": [
+        "./components/tab/tab.component.ts"
+      ],
+      "@synergy-design-system/angular/components/tab-group": [
+        "./components/tab-group/tab-group.component.ts"
+      ],
+      "@synergy-design-system/angular/components/tab-panel": [
+        "./components/tab-panel/tab-panel.component.ts"
+      ],
+      "@synergy-design-system/angular/components/tag": [
+        "./components/tag/tag.component.ts"
+      ],
+      "@synergy-design-system/angular/components/textarea": [
+        "./components/textarea/textarea.component.ts"
+      ],
+      "@synergy-design-system/angular/components/tooltip": [
+        "./components/tooltip/tooltip.component.ts"
+      ],
+      "@synergy-design-system/angular/components/validate": [
+        "./components/validate/validate.component.ts"
+      ]
     }
   },
   "angularCompilerOptions": {
@@ -83,5 +181,10 @@
     "strictInputAccessModifiers": true
   },
   "exclude": ["node_modules", "dist", "coverage"],
-  "include": ["modules/**/*.ts", "components/**/*.ts", "directives/**/*.ts", "index.ts"]
+  "include": [
+    "modules/**/*.ts",
+    "components/**/*.ts",
+    "directives/**/*.ts",
+    "index.ts"
+  ]
 }

@@ -6,17 +6,16 @@
     "module": "ESNext",
     "emitDecoratorMetadata": true,
     "moduleResolution": "bundler",
-  
+
     /* Linting */
     "strict": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
   },
 
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
-  },
+  }
 }
-

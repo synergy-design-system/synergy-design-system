@@ -17,6 +17,7 @@ export default css`
     color: var(--syn-color-neutral-950);
     display: flex;
     gap: var(--syn-spacing-small);
+    min-height: var(--option-min-height, var(--syn-input-height-medium));
   }
 
   /**
@@ -25,8 +26,7 @@ export default css`
   .optgroup--has-prefix .optgroup__label-container,
   .optgroup--has-label .optgroup__label-container,
   .optgroup--has-suffix .optgroup__label-container {
-    padding-block: var(--syn-spacing-small);
-    padding-inline: var(--syn-spacing-medium);
+    padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
   }
 
   /**
@@ -37,7 +37,7 @@ export default css`
   .optgroup__label::slotted(*) {
     flex: 1;
     font-family: var(--syn-font-sans);
-    font-size: var(--syn-font-size-medium);
+    font-size: var(--option-font-size, var(--syn-font-size-medium));
     font-weight: var(--syn-font-weight-semibold);
     line-height: var(--syn-line-height-normal);
   }

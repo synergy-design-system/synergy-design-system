@@ -8,7 +8,6 @@
 /* eslint-disable */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { extractDefaultSettingsForElement, type ComponentNamesWithDefaultValues } from './defaultSettings.js';
 
 // Match event type name strings that are registered on GlobalEventHandlersEventMap...
 type EventTypeRequiresDetail<T> = T extends keyof GlobalEventHandlersEventMap
@@ -161,9 +160,6 @@ export default class SynergyElement extends LitElement {
   // Store the constructor value of all `static properties = {}`
   initialReflectedProperties: Map<string, unknown> = new Map();
 
-  // List of properties that are set to their default values
-  initialDefaultProperties: Map<string, unknown> = new Map();
-
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (!this.#hasRecordedInitialProperties) {
       (this.constructor as typeof SynergyElement).elementProperties.forEach(
@@ -179,55 +175,6 @@ export default class SynergyElement extends LitElement {
     }
 
     super.attributeChangedCallback(name, oldValue, newValue);
-  }
-
-  private defaultValueObserver: MutationObserver;
-
-  connectedCallback(): void {
-    super.connectedCallback();
-
-    const defaultSettings = extractDefaultSettingsForElement(this.constructor.name as ComponentNamesWithDefaultValues);
-    if (Object.keys(defaultSettings).length === 0) {
-      return;
-    }
-
-    this.defaultValueObserver = new MutationObserver(entries => {
-      entries.forEach(entry => {
-        const { attributeName, oldValue } = entry;
-
-        const newValue = this[attributeName as keyof this];
-
-        // Skip, something was already set.
-        if (oldValue !== undefined && oldValue !== null && oldValue !== newValue) {
-          return;
-        }
-
-        // Skip, the attribute is not in the default settings
-        if (!defaultSettings[attributeName as string]) {
-          return;
-        }
-
-        if (oldValue === null && newValue !== defaultSettings[attributeName as string]) {
-          this[attributeName as keyof this] = defaultSettings[attributeName as string] as this[keyof this];
-          this.initialDefaultProperties.set(attributeName as string, newValue);
-        }
-      });
-
-      // Run initially only
-      this.defaultValueObserver.disconnect();
-    });
-
-    this.defaultValueObserver.observe(this, {
-      attributeOldValue: true,
-      attributeFilter: Object.keys(defaultSettings),
-    });
-  }
-
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    if (this.defaultValueObserver) {
-      this.defaultValueObserver.disconnect();
-    }
   }
 
   protected willUpdate(changedProperties: Parameters<LitElement['willUpdate']>[0]): void {

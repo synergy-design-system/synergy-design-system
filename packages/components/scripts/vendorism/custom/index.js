@@ -19,7 +19,6 @@ export * from './option.vendorism.js';
 export * from './progress-bar.vendorism.js';
 export * from './select.vendorism.js';
 export * from './spinner.vendorism.js';
-export * from './synergy-element.vendorism.js';
 export * from './tab-group.vendorism.js';
 export * from './tag.vendorism.js';
 export * from './textarea.vendorism.js';

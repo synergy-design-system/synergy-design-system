@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.2...components/2.16.0) (2025-01-08)
+
+
+### Features
+
+* ✨ syn-select: dropdown items should be same size as the select itself ([#707](https://github.com/synergy-design-system/synergy-design-system/issues/707)) ([a4e5703](https://github.com/synergy-design-system/synergy-design-system/commit/a4e5703b9c1280ad1711f748d3825ee4f6e3806c))
+
 # [@synergy-design-system/components-v2.15.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.1...components/2.15.2) (2025-01-07)
 
 

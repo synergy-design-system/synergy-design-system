@@ -255,4 +255,43 @@ describe('<syn-nav-item>', () => {
     expect(el).property('current').to.be.false;
     expect(base).to.have.class('nav-item--current');
   });
+
+  describe('Nested syn-nav-items', () => {
+    it('should set the correct indentation level for nested nav-items', async () => {
+      const el = await fixture<SynNavItem>(html`
+        <syn-nav-item>
+          Parent
+          <syn-nav-item slot="children">Child</syn-nav-item>
+        </syn-nav-item>
+      `);
+
+      const child = el.querySelector('syn-nav-item')!;
+      expect(child.style.getPropertyValue('--indentation')).to.equal('1');
+    });
+
+    it('should set the indentation level to maximum 2 of nested children', async () => {
+      const el = await fixture<SynNavItem>(html`
+        <syn-nav-item>
+          Parent
+          <syn-nav-item slot="children" id="first">
+            First level
+            <syn-nav-item slot="children" id="second">
+              Second level
+              <syn-nav-item slot="children" id="third">
+                Third level
+              </syn-nav-item>
+            </syn-nav-item>
+          </syn-nav-item>
+        </syn-nav-item>
+      `);
+
+      const firstNested = el.querySelector('#first') as SynNavItem;
+      const secondNested = el.querySelector('#second') as SynNavItem;
+      const thirdNested = el.querySelector('#third') as SynNavItem;
+
+      expect(getComputedStyle(firstNested).getPropertyValue('--indentation')).to.equal('1');
+      expect(getComputedStyle(secondNested).getPropertyValue('--indentation')).to.equal('2');
+      expect(getComputedStyle(thirdNested).getPropertyValue('--indentation')).to.equal('2');
+    });
+  });
 });

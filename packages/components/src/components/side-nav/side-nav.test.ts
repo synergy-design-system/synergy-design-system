@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
+  aTimeout,
   expect,
   fixture,
   html,
@@ -8,6 +9,7 @@ import {
 } from '@open-wc/testing';
 import sinon from 'sinon';
 import type SynSideNav from './side-nav.js';
+import type SynNavItem from '../nav-item/nav-item.js';
 
 describe('<syn-side-nav>', () => {
   afterEach(() => {
@@ -33,7 +35,7 @@ describe('<syn-side-nav>', () => {
     it('should emit syn-show and syn-after-show when calling show()', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const showHandler = sinon.spy();
@@ -53,7 +55,7 @@ describe('<syn-side-nav>', () => {
     it('should emit syn-hide and syn-after-hide when calling hide()', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav  open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const hideHandler = sinon.spy();
@@ -75,7 +77,7 @@ describe('<syn-side-nav>', () => {
     it('should emit syn-show and syn-after-show when setting open = true', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const showHandler = sinon.spy();
@@ -95,7 +97,7 @@ describe('<syn-side-nav>', () => {
     it('should emit syn-hide and syn-after-hide when setting open = false', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const hideHandler = sinon.spy();
@@ -120,7 +122,7 @@ describe('<syn-side-nav>', () => {
 
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -141,7 +143,7 @@ describe('<syn-side-nav>', () => {
     it('should not be visible without the open attribute', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -154,7 +156,7 @@ describe('<syn-side-nav>', () => {
     it('should show an overlay on open state', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -171,7 +173,7 @@ describe('<syn-side-nav>', () => {
       const expectedSideNavOpenSize = '72px';
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -193,7 +195,7 @@ describe('<syn-side-nav>', () => {
 
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -212,7 +214,7 @@ describe('<syn-side-nav>', () => {
     it('should show no overlay on open state', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -228,7 +230,7 @@ describe('<syn-side-nav>', () => {
 
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail open>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -241,8 +243,8 @@ describe('<syn-side-nav>', () => {
     it('should not show nested open nav-item`s without the open attribute', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail>
-          <syn-nav-item class="root" vertical open>nav 1
-            <syn-nav-item vertical slot="children">nav 1</syn-nav-item> 
+          <syn-nav-item class="root" open>nav 1
+            <syn-nav-item slot="children">nav 1</syn-nav-item> 
           </syn-nav-item> 
         </syn-side-nav>
       `);
@@ -256,7 +258,7 @@ describe('<syn-side-nav>', () => {
     it('should remove the forcing of drawer visibility if rail mode changed to rail = false and open = false', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
@@ -274,7 +276,7 @@ describe('<syn-side-nav>', () => {
     it('should open the side-nav if nav-item is focused and close it if it looses focus', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav rail>
-          <syn-nav-item vertical>nav 1</syn-nav-item> 
+          <syn-nav-item>nav 1</syn-nav-item> 
         </syn-side-nav>
       `);
       const navItem = sideNav.querySelector('syn-nav-item')!;
@@ -289,5 +291,31 @@ describe('<syn-side-nav>', () => {
 
       expect(sideNav.open).to.be.false;
     });
+  });
+
+  it('should show an indentation for nested nav-items (#708)', async () => {
+    const sideNav = await fixture<SynSideNav>(html`
+      <syn-side-nav rail>
+        <syn-nav-item id="first">
+          first level
+          <syn-nav-item slot="children" id="second">
+            second level
+            <syn-nav-item slot="children" id="third">third level</syn-nav-item> 
+          </syn-nav-item> 
+        </syn-nav-item> 
+      </syn-side-nav>
+    `);
+
+    // For the firefox fix, we needed to move the `handleSlotChange` of the syn-nav-item into
+    // the next update cycle. Therefore we need to wait
+    await aTimeout(0);
+
+    const firstNested = sideNav.querySelector('#first') as SynNavItem;
+    const secondNested = sideNav.querySelector('#second') as SynNavItem;
+    const thirdNested = sideNav.querySelector('#third') as SynNavItem;
+
+    expect(getComputedStyle(firstNested).getPropertyValue('--indentation')).to.equal('0');
+    expect(getComputedStyle(secondNested).getPropertyValue('--indentation')).to.equal('1');
+    expect(getComputedStyle(thirdNested).getPropertyValue('--indentation')).to.equal('2');
   });
 });

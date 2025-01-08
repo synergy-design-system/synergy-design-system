@@ -7,6 +7,8 @@
 
 // Type imports
 import type SynAccordion from "../components/accordion/accordion.js";
+import type SynAlert from "../components/alert/alert.js";
+import type SynBadge from "../components/badge/badge.js";
 import type SynButton from "../components/button/button.js";
 import type SynCheckbox from "../components/checkbox/checkbox.js";
 import type SynCombobox from "../components/combobox/combobox.js";
@@ -22,6 +24,7 @@ import type SynSelect from "../components/select/select.js";
 import type SynSwitch from "../components/switch/switch.js";
 import type SynTag from "../components/tag/tag.js";
 import type SynTextarea from "../components/textarea/textarea.js";
+import type SynValidate from "../components/validate/validate.js";
 import type SynergyElement from "./synergy-element.js";
 import type { SynDefaultChangedAttribute } from "../events/events.js";
 
@@ -54,6 +57,8 @@ type AllowedValueForDefaultSetting<
  */
 export type ComponentNamesWithDefaultValues =
   | "SynAccordion"
+  | "SynAlert"
+  | "SynBadge"
   | "SynButton"
   | "SynCheckbox"
   | "SynCombobox"
@@ -68,7 +73,8 @@ export type ComponentNamesWithDefaultValues =
   | "SynSelect"
   | "SynSwitch"
   | "SynTag"
-  | "SynTextarea";
+  | "SynTextarea"
+  | "SynValidate";
 
 /**
  * Extracts all available default settings for a given component
@@ -101,9 +107,11 @@ export type SynDefaultSettings = {
     SynTag?: AllowedValueForDefaultSetting<SynTag, "size">;
     SynTextarea?: AllowedValueForDefaultSetting<SynTextarea, "size">;
   };
-  readonly: {
-    SynInput?: AllowedValueForDefaultSetting<SynInput, "readonly">;
-    SynTextarea?: AllowedValueForDefaultSetting<SynTextarea, "readonly">;
+  variant: {
+    SynAlert?: AllowedValueForDefaultSetting<SynAlert, "variant">;
+    SynBadge?: AllowedValueForDefaultSetting<SynBadge, "variant">;
+    SynButton?: AllowedValueForDefaultSetting<SynButton, "variant">;
+    SynValidate?: AllowedValueForDefaultSetting<SynValidate, "variant">;
   };
 };
 
@@ -131,9 +139,11 @@ export const defaultSettings: SynDefaultSettings = {
     SynTag: "medium",
     SynTextarea: "medium",
   },
-  readonly: {
-    SynInput: false,
-    SynTextarea: false,
+  variant: {
+    SynAlert: "primary",
+    SynBadge: "primary",
+    SynButton: "outline",
+    SynValidate: "native",
   },
 };
 
@@ -159,9 +169,11 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynTag: "medium",
     SynTextarea: "medium",
   },
-  readonly: {
-    SynInput: false,
-    SynTextarea: false,
+  variant: {
+    SynAlert: "primary",
+    SynBadge: "primary",
+    SynButton: "outline",
+    SynValidate: "native",
   },
 };
 

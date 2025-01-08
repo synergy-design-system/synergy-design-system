@@ -225,14 +225,15 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
   const metadata = await getManifestData(componentDistDir);
 
   // List of attributes we want to allow an override for
-  const whiteListedAttributes = ['size', 'readonly'];
+  const whiteListedAttributes = ['size', 'variant'];
 
   // Create a list of type imports
   // Make sure to just include files that acutally have defaults
   const componentsHavingDefaults = new Set(
     Object
       .values(createSynDefaultSettingsStructure(metadata, whiteListedAttributes))
-      .flat(),
+      .flat()
+      .sort(),
   );
 
   const typeImports = await createTypeImports(componentsHavingDefaults);

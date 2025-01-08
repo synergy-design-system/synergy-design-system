@@ -1,0 +1,113 @@
+import { Meta } from "@storybook/blocks";
+import { defaultSettings, extractDefaultSettingsForElement, INITIAL_DEFAULT_SETTINGS } from '../../components/src/synergy';
+
+<Meta title="Configuring global settings" />
+
+# Overriding global default settings for components
+
+Most of synergies components provide a way to configure their appearance and behavior through a set of properties.
+However, it can be cumbersome to set the same properties for all components in your application.
+
+Therefore, Synergy includes a low level API that allows you to set global defaults for the rendered components.
+This can be used to set the default size or other global settings that should be applied to all rendered components.
+
+## Setting global defaults
+
+The settings can be set on a global or component level via `setGlobalDefaultSettings` and `setDefaultSettingsForElement` respectively.
+
+### `setGlobalDefaultSettings` (**recommended**)
+
+To set global defaults for all components, you can use the `setGlobalDefaultSettings` function exported from `@synergy-design-system/components`.
+This function accepts an object with the settings you want to apply to the components.
+
+> You may provide a partial object with only the settings you want to override to leave the rest of the settings intact.
+
+```typescript
+import { setGlobalDefaultSettings } from '@synergy-design-system/components';
+
+// Sets the size for SynButtons and SynInputs to small and large respectively
+setGlobalDefaultSettings({
+  size: {
+    SynButton: 'small',
+    SynInput: 'large',
+  }
+});
+```
+
+### `setDefaultSettingsForElement`
+
+You can also set defaults scoped for a specific component using the `setDefaultSettingsForElement` function.
+This works in the reverse way of `setGlobalDefaultSettings` and allows you to set defaults for a specific component.
+
+```typescript
+import { setDefaultSettingsForElement } from '@synergy-design-system/components';
+
+// Sets the size to small and variant to primary for all newly rendered SynButton components
+setDefaultSettingsForElement('SynButton', {
+  size: 'small',
+  variant: 'primary',
+});
+```
+
+## Events
+
+When either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` is called, a `syn-default-settings-changed` event is dispatched to notify the components that the settings have changed.
+All components are listening for this event and will update their settings accordingly.
+
+> If the component was initially rendered with the default setting, it will be updated to the new default setting.
+> **However**, if it was rendered with a custom value, it will not be updated!
+
+You may also listen to the event to react to changes in the default settings.
+
+```typescript
+import { type SynDefaultSettingsChangedEvent } from '@synergy-design-system/components';
+
+window.addEventListener('syn-default-settings-changed', (event: SynDefaultSettingsChangedEvent) => {
+  console.log('Default settings changed', event.detail);
+});
+```
+
+## Currently supported settings
+
+The following settings are supported by all synergy components:
+
+<ul>
+  {Object
+    .keys(defaultSettings)
+    .map(attr => (
+      <li key={`attr-${attr}`}>
+        <strong>{attr}</strong>
+      </li>
+    ))
+  }
+</ul>
+
+## System Defaults
+
+The following list shows the default settings for all synergy components.
+
+<syn-accordion>
+{Object
+  .values(INITIAL_DEFAULT_SETTINGS)
+  .map(setting => Object.keys(setting))
+  .flat()
+  .filter((value, index, self) => self.indexOf(value) === index)
+  .sort()
+  .map(c => {
+    const settings = extractDefaultSettingsForElement(c);
+    return (
+      <syn-details summary={c} key={`${c}--details`}>
+        <ul>
+          {Object
+            .entries(settings)
+            .map(([key, value]) => (
+              <li>
+                <strong key={`${c}--${key}--key`}>{key}</strong>: {value}
+              </li>
+            ))
+          }
+        </ul>
+      </syn-details>
+    );
+})}
+</syn-accordion>

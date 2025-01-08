@@ -7,11 +7,15 @@ const mergeSelectStyles = (selectContent, selectCustomContent) => {
   // remove the header part of the custom style
   const updatedCustomContent = removeSection(selectCustomContent, 'import {', 'default css`');
 
+  // Remove the sharedOptionSize from selects custom styles
+  // as this will always be a part of the combobox customstyles
+  const withoutCustomOptionSection = removeSection(updatedCustomContent, '${sha', 'ze}');
+
   // remove the closing of the select style
   const updatedContent = replaceSection(['`;', ''], selectContent);
 
   // append the custom style to the select style
-  const mergedContent = updatedContent.concat(updatedCustomContent);
+  const mergedContent = updatedContent.concat(withoutCustomOptionSection);
   return mergedContent;
 };
 

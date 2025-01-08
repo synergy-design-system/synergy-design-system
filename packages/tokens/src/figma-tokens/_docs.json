@@ -2005,50 +2005,8 @@
           "type": "text"
         },
         "description": {
-          "value": "Set the restrict attribute to true to prevent the thumbs from overlapping.",
+          "value": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping.",
           "type": "text"
-        }
-      },
-      "ticks": {
-        "default": {
-          "title": {
-            "value": "Ticks",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
-            "type": "text"
-          }
-        },
-        "label": {
-          "title": {
-            "value": "Labels",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the default slot to give the tick a label.",
-            "type": "text"
-          }
-        },
-        "grouping": {
-          "title": {
-            "value": "Grouping",
-            "type": "text"
-          },
-          "description": {
-            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
-            "type": "text"
-          }
-        },
-        "subdivision": {
-          "title": {
-            "value": "Subdivision Ticks",
-            "type": "text"
-          },
-          "description": {
-            "value": "It is possible to divide the space between major ticks for finer scale readings.",
-            "type": "text"
-          }
         }
       },
       "tooltip-placement": {
@@ -2078,6 +2036,48 @@
         },
         "description": {
           "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
+          "type": "text"
+        }
+      }
+    },
+    "range-tick": {
+      "default": {
+        "title": {
+          "value": "Ticks",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+          "type": "text"
+        }
+      },
+      "label": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the default slot to give the tick a label.",
+          "type": "text"
+        }
+      },
+      "grouping": {
+        "title": {
+          "value": "Grouping",
+          "type": "text"
+        },
+        "description": {
+          "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+          "type": "text"
+        }
+      },
+      "subdivision": {
+        "title": {
+          "value": "Subdivision Ticks",
+          "type": "text"
+        },
+        "description": {
+          "value": "It is possible to divide the space between major ticks for finer scale readings.",
           "type": "text"
         }
       }

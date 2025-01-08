@@ -121,8 +121,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#value.slice().sort(numericSort).join(' ');
   }
 
-  /** Set to true to restrict the movement of knobs */
-  @property({ attribute: 'restrict', type: Boolean }) restrictMovement = false;
+  /**
+   * Set to true to restrict the movement of a thumb to its next and previous thumb.
+   * This only affects multi range components
+   */
+  @property({ attribute: 'restrict-movement', type: Boolean }) restrictMovement = false;
 
   /** Gets or sets the current values of the range as an array of numbers */
   set valueAsArray(value: readonly number[] | null) {
@@ -336,7 +339,16 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const currValue = this.#rangeValues.get(+curr.dataset.rangeId!)!;
       const prevValue = this.#rangeValues.get(+prev.dataset.rangeId!)!;
 
-      return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
+      const currDiff = Math.abs(currValue - nextValue);
+      const prevDiff = Math.abs(prevValue - nextValue);
+
+      if (currDiff === prevDiff) {
+        // If the difference is the same, we use the thumb which has the correct order.
+        // left track click --> prev, right track click --> curr
+        return currValue < nextValue ? curr : prev;
+      }
+
+      return currDiff < prevDiff ? curr : prev;
     });
 
     const rangeId = +thumb.dataset.rangeId!;
@@ -379,7 +391,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    * @param thumb The thumb element that was moved
    * @returns True if the thumb is restricted from moving
    */
-  #isMoveMentRestricted(value: number, thumb: HTMLDivElement) {
+  #isMovementRestricted(value: number, thumb: HTMLDivElement) {
     // If we are in restrict mode, we should not move the thumb
     // if it is smaller than the previous thumb or larger than the next thumb
     const values = this.valueAsArray!;
@@ -420,7 +432,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
 
     if (this.restrictMovement) {
-      const isRestricted = this.#isMoveMentRestricted(value, thumb);
+      const isRestricted = this.#isMovementRestricted(value, thumb);
       if (isRestricted) {
         return;
       }
@@ -565,7 +577,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       }
 
       if (this.restrictMovement) {
-        const isRestricted = this.#isMoveMentRestricted(value, thumb);
+        const isRestricted = this.#isMovementRestricted(value, thumb);
         if (isRestricted) {
           return;
         }

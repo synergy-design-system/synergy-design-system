@@ -529,7 +529,7 @@ describe('<syn-range>', () => {
 
     it('should not move the thumb when restrict is set to true and the thumbs new value would be out of bounds', async () => {
       await resetMouse();
-      const el = await fixture<SynRange>(html`<syn-range restrict value="30 70"></syn-range>`);
+      const el = await fixture<SynRange>(html`<syn-range restrict-movement value="30 70"></syn-range>`);
       const inputHandler = sinon.spy();
 
       el.addEventListener('syn-input', inputHandler);

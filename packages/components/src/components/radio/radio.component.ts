@@ -6,6 +6,7 @@
  */
 
 /* eslint-disable */
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
@@ -36,6 +37,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
  * @csspart label - The container that wraps the radio's label.
  */
+@globalSettingsDecorator()
 export default class SynRadio extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

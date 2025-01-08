@@ -138,19 +138,51 @@ export const defaultSettings: SynDefaultSettings = {
 };
 
 /**
+ * Initial default settings for all components
+ */
+export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
+  size: {
+    SynAccordion: "medium",
+    SynButton: "medium",
+    SynCheckbox: "medium",
+    SynCombobox: "medium",
+    SynDetails: "medium",
+    SynFile: "medium",
+    SynIconButton: "inherit",
+    SynInput: "medium",
+    SynRadio: "medium",
+    SynRadioButton: "medium",
+    SynRadioGroup: "medium",
+    SynRange: "medium",
+    SynSelect: "medium",
+    SynSwitch: "medium",
+    SynTag: "medium",
+    SynTextarea: "medium",
+  },
+  readonly: {
+    SynInput: false,
+    SynTextarea: false,
+  },
+};
+
+/**
  * Extracts all available default settings for a given component
  * @param component The name of the component to get the settings for
+ * @param from The source to get the settings from
  * @returns key value pair of found settings for the given component
  */
 export const extractDefaultSettingsForElement = (
   component: ComponentNamesWithDefaultValues,
+  from: "default" | "initial" = "default",
 ) => {
   // Check if we have the settings in cache
-  if (elementPropertyCache.has(component)) {
-    return elementPropertyCache.get(component)!;
-  }
+  // if (elementPropertyCache.has(component)) {
+  //   return elementPropertyCache.get(component)!;
+  // }
 
-  const allElementSettings = Object.entries(defaultSettings).reduce(
+  const store = from === "default" ? defaultSettings : INITIAL_DEFAULT_SETTINGS;
+
+  const allElementSettings = Object.entries(store).reduce(
     (acc: Record<string, unknown>, [key, value]) => {
       const elementSetting =
         value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];

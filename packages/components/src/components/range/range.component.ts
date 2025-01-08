@@ -13,6 +13,7 @@ import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import SynTooltip from '../tooltip/tooltip.component.js';
 import {
   arraysDiffer,
@@ -67,6 +68,7 @@ import styles from './range.styles.js';
  * @cssproperty --track-active-offset - The point of origin of the active track,
  * starting at the left side of the range.
  */
+@globalSettingsDecorator()
 export default class SynRange extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

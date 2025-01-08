@@ -6,6 +6,7 @@
  */
 
 /* eslint-disable */
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
@@ -37,6 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
+@globalSettingsDecorator()
 export default class SynRadioButton extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 

@@ -6,6 +6,7 @@
  */
 
 /* eslint-disable */
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -51,6 +52,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart label - The container that wraps the checkbox's label.
  * @csspart form-control-help-text - The help text's wrapper.
  */
+@globalSettingsDecorator()
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

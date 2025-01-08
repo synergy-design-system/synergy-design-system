@@ -2,9 +2,8 @@
 import SizeSwitch from './SizeSwitch.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 import { SynVueDivider, SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-import { setGlobalSize } from './shared';
 
 const router = useRouter();
 
@@ -13,10 +12,6 @@ const currentRoute = computed(() => router.currentRoute.value.path);
 const routeTo = (route: string) => {
   router.push(route);
 }
-
-onMounted(() => {
-  setGlobalSize('large');
-});
 </script>
 
 <template>

@@ -4,6 +4,7 @@ import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { watch } from '../../internal/watch.js';
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './accordion.styles.js';
 import type SynDetails from '../details/details.component.js';
@@ -19,6 +20,7 @@ import type SynDetails from '../details/details.component.js';
  *
  * @csspart base - The component's base wrapper.
  */
+@globalSettingsDecorator()
 export default class SynAccordion extends SynergyElement {
   static styles: CSSResultGroup = [
     componentStyles,

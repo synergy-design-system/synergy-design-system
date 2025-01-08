@@ -10,7 +10,7 @@ export function globalSettingsDecorator() {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
     #globalSettingsSetupComplete = false;
 
-    #initialGlobalSettingEmptyProperties = new Set<string>();
+    #initialGlobalSettingEmptyProperties = new Map<string, unknown>();
 
     #overrideWithGlobalSettings = (e: SynDefaultSettingsChangedEvent) => {
       const { detail } = e;
@@ -70,21 +70,27 @@ export function globalSettingsDecorator() {
         Proto.name as ComponentNamesWithDefaultValues,
       );
 
+      const systemDefaults = extractDefaultSettingsForElement(
+        Proto.name as ComponentNamesWithDefaultValues,
+        'initial',
+      );
+
       // Set the default values for all items that have no current value set
       Object
         .entries(defaults)
         .forEach(([key, value]) => {
-          const currentValue = this.getAttribute(key);
           const currentProp = this[key as keyof this];
+          const originalDefaultSetting = systemDefaults[key];
 
-          // On initial load, the attribute is not set, but the property is
+          // On initial load, the attribute is not set, but the property is.
           // We have to check if the current PROPERTY is the same as the default value
-          if (currentValue === null && currentProp !== value) {
-            this.#initialGlobalSettingEmptyProperties.add(key);
+          // If it is, we set the attribute to the default value and add a notification item
+          // to the initialGlobalSettingEmptyProperties map
+          if (currentProp === originalDefaultSetting) {
+            this.#initialGlobalSettingEmptyProperties.set(key, currentProp);
             // @ts-expect-error We don´t know the type of the key,
             // but are pretty sure it exists on the element
             this[key] = value;
-            // this.setAttribute(key, value as string);
           }
         });
     }

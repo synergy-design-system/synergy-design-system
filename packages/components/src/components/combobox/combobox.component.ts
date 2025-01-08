@@ -20,6 +20,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import SynOption from '../option/option.component.js';
 import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import customStyles from './combobox.custom.styles.js';
 import {
   createOptionFromDifferentTypes,
@@ -78,6 +79,7 @@ import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
  */
+@globalSettingsDecorator()
 export default class SynCombobox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

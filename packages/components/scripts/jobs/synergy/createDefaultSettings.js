@@ -92,6 +92,11 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
      * Default settings for all components
      */
     export const defaultSettings: SynDefaultSettings = {${structure}};
+
+    /**
+     * Initial default settings for all components
+     */
+    export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {${structure}};
   `;
 };
 
@@ -99,16 +104,22 @@ const createDefaultExtractorExport = () => `
   /**
    * Extracts all available default settings for a given component
    * @param component The name of the component to get the settings for
+   * @param from The source to get the settings from
    * @returns key value pair of found settings for the given component
    */
-  export const extractDefaultSettingsForElement = (component: ComponentNamesWithDefaultValues) => {
+  export const extractDefaultSettingsForElement = (
+    component: ComponentNamesWithDefaultValues,
+    from: 'default' | 'initial' = 'default',
+  ) => {
     // Check if we have the settings in cache
-    if (elementPropertyCache.has(component)) {
-      return elementPropertyCache.get(component)!;
-    }
+    // if (elementPropertyCache.has(component)) {
+    //   return elementPropertyCache.get(component)!;
+    // }
+
+    const store = from === 'default' ? defaultSettings : INITIAL_DEFAULT_SETTINGS;
 
     const allElementSettings = Object
-      .entries(defaultSettings)
+      .entries(store)
       .reduce((acc: Record<string, unknown>, [key, value]) => {
         const elementSetting = value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
         if (elementSetting) {

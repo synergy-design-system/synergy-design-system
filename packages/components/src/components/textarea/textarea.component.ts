@@ -6,6 +6,7 @@
  */
 
 /* eslint-disable */
+import { globalSettingsDecorator } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -46,6 +47,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  */
+@globalSettingsDecorator()
 export default class SynTextarea extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 

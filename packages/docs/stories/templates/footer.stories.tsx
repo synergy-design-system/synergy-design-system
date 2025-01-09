@@ -62,7 +62,7 @@ export const FooterTablet = {
       disable: true,
     },
     viewport: {
-      defaultViewport: 'mobile2',
+      defaultViewport: 'iphonexr',
     },
   },
 };
@@ -106,7 +106,7 @@ export const FooterWithinAppshellTablet = {
       disable: true,
     },
     viewport: {
-      defaultViewport: 'mobile2',
+      defaultViewport: 'iphonexr',
     },
   },
 };

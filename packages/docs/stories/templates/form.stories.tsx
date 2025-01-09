@@ -259,7 +259,7 @@ export const ContactFormTablet = {
       disable: true,
     },
     viewport: {
-      defaultViewport: 'mobile2',
+      defaultViewport: 'iphonexr',
     },
   },
 };

@@ -130,8 +130,9 @@ const props = defineProps<{
   value?: SynRange['value'];
 
   /**
-   * Set to true to restrict the movement of knobs
-   */
+* Set to true to restrict the movement of a thumb to its next and previous thumb.
+This only affects multi range components
+ */
   restrictMovement?: SynRange['restrictMovement'];
 
   /**

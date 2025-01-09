@@ -386,12 +386,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   /**
-   * Check if a given thumb is restricted from moving
-   * @param value The current value of a thumb
+   * Get the boundaries of a given thumb
    * @param thumb The thumb element that was moved
-   * @returns True if the thumb is restricted from moving
+   * @param value The current value of a thumb
+   * @returns An object containing information about the current boundaries
    */
-  #isMovementRestricted(value: number, thumb: HTMLDivElement) {
+  #movementBoundariesForThumb(thumb: HTMLDivElement, value: number) {
     // If we are in restrict mode, we should not move the thumb
     // if it is smaller than the previous thumb or larger than the next thumb
     const values = this.valueAsArray!;
@@ -402,7 +402,15 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const prevValue = values[thumbIndex - 1] || this.min;
     const nextValue = values[thumbIndex + 1] || this.max;
 
-    return value < prevValue || value > nextValue;
+    const isRestricted = value < prevValue || value > nextValue;
+    const finalValue = Math.max(prevValue, Math.min(nextValue, value));
+
+    return {
+      finalValue,
+      isRestricted,
+      nextValue,
+      prevValue,
+    };
   }
 
   #onDragThumb(event: PointerEvent) {
@@ -417,7 +425,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     const pos = getNormalizedValueFromClientX(this.baseDiv, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
-    const value = this.min + this.step * Math.round(pos / unit);
+    let value = this.min + this.step * Math.round(pos / unit);
 
     const synMove = this.emit('syn-move', {
       cancelable: true,
@@ -432,9 +440,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
 
     if (this.restrictMovement) {
-      const isRestricted = this.#isMovementRestricted(value, thumb);
-      if (isRestricted) {
-        return;
+      const movementData = this.#movementBoundariesForThumb(thumb, value);
+      if (movementData.isRestricted) {
+        value = movementData.finalValue;
+        thumb.style.zIndex = (3 + rangeId).toFixed(0);
+        thumb.focus();
       }
     }
 
@@ -577,9 +587,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       }
 
       if (this.restrictMovement) {
-        const isRestricted = this.#isMovementRestricted(value, thumb);
-        if (isRestricted) {
-          return;
+        const movementData = this.#movementBoundariesForThumb(thumb, value);
+        if (movementData.isRestricted) {
+          value = movementData.finalValue;
         }
       }
 

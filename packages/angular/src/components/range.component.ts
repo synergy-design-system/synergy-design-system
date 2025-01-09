@@ -222,8 +222,9 @@ export class SynRangeComponent {
   }
 
   /**
-   * Set to true to restrict the movement of knobs
-   */
+* Set to true to restrict the movement of a thumb to its next and previous thumb.
+This only affects multi range components
+ */
   @Input()
   set restrictMovement(v: '' | SynRange['restrictMovement']) {
     this._ngZone.runOutsideAngular(

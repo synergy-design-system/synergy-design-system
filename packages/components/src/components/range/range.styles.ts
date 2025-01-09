@@ -177,7 +177,7 @@ export default css`
   }
 
   .thumb:hover {
-    cursor: grab;  
+    cursor: grab;
   }
 
   .thumb.grabbed {

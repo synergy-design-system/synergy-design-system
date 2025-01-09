@@ -217,10 +217,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if (this.min > this.max) {
-      [this.min, this.max] = [this.max, this.min];
-    }
-
     if (this.step > this.max - this.min) {
       this.step = this.max - this.min;
     }
@@ -369,22 +365,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
-  async #onClickThumb(event: PointerEvent) {
-    if (this.disabled) return;
-    const thumb = event.target as HTMLDivElement;
-    this.#updateTooltip(thumb);
-
-    if (thumb.dataset.pointerId) {
-      thumb.releasePointerCapture(+thumb.dataset.pointerId);
-    }
-
-    thumb.dataset.pointerId = event.pointerId.toString();
-    thumb.setPointerCapture(event.pointerId);
-    thumb.classList.add('grabbed');
-
-    await (thumb.parentElement as SynTooltip).show();
-  }
-
   /**
    * Get the boundaries of a given thumb
    * @param thumb The thumb element that was moved
@@ -411,6 +391,23 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       nextValue,
       prevValue,
     };
+  }
+
+  async #onClickThumb(event: PointerEvent) {
+    if (this.disabled) return;
+
+    const thumb = event.target as HTMLDivElement;
+    this.#updateTooltip(thumb);
+
+    if (thumb.dataset.pointerId) {
+      thumb.releasePointerCapture(+thumb.dataset.pointerId);
+    }
+
+    thumb.dataset.pointerId = event.pointerId.toString();
+    thumb.setPointerCapture(event.pointerId);
+    thumb.classList.add('grabbed');
+
+    await (thumb.parentElement as SynTooltip).show();
   }
 
   #onDragThumb(event: PointerEvent) {
@@ -444,7 +441,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       if (movementData.isRestricted) {
         value = movementData.finalValue;
         thumb.style.zIndex = (3 + rangeId).toFixed(0);
-        thumb.focus();
       }
     }
 
@@ -791,7 +787,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
             <div
               class="track__wrapper"
-              @click=${this.#onClickTrack}
+              @pointerdown=${this.#onClickTrack}
               part="track-wrapper"
               role="presentation"
             >
@@ -805,7 +801,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             <div
               class="ticks"
               part="ticks"
-              @click=${this.#onClickTrack}
+              @pointerdown=${this.#onClickTrack}
               role="presentation"
             >
               <slot name="ticks"></slot>

@@ -162,6 +162,7 @@
         label="I would donate between"
         max="6000"
         min="0"
+        restrict-movement
         value="2000 4000"
         name="donations"
       >

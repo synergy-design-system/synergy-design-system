@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.16.0...components/2.17.0) (2025-01-10)
+
+
+### Features
+
+* ✨ range: restrain knobs via property ([#725](https://github.com/synergy-design-system/synergy-design-system/issues/725)) ([3dcbfe2](https://github.com/synergy-design-system/synergy-design-system/commit/3dcbfe224ede07866358c86b07e48744969e5ec4))
+
 # [@synergy-design-system/components-v2.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.2...components/2.16.0) (2025-01-08)
 
 

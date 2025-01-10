@@ -1099,6 +1099,11 @@ export type SynCustomElement<
  * @csspart ticks - The container that wraps the tick marks.
  * @csspart thumb - The thumb(s) that the user can drag to change the range.
  *
+ * @csspart tooltip__base - The base of the tooltip
+ * @csspart tooltip__arrow - The arrow of the tooltip
+ * @csspart tooltip__popup - The popup of the tooltip
+ * @csspart tooltip__body - The body of the tooltip
+ *
  * @cssproperty --thumb-size - The size of a thumb.
  * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
  * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
@@ -2316,6 +2321,11 @@ declare module 'react' {
        * @csspart suffix - The container that wraps the suffix.
        * @csspart ticks - The container that wraps the tick marks.
        * @csspart thumb - The thumb(s) that the user can drag to change the range.
+       *
+       * @csspart tooltip__base - The base of the tooltip
+       * @csspart tooltip__arrow - The arrow of the tooltip
+       * @csspart tooltip__popup - The popup of the tooltip
+       * @csspart tooltip__body - The body of the tooltip
        *
        * @cssproperty --thumb-size - The size of a thumb.
        * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.

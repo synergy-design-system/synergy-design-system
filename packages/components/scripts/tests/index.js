@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import * as jobs from '../jobs/index.js';
+import * as jobs from '../jobs/synergy/index.js';
 import { getPackageJSONAsObject, getPath } from '../jobs/shared.js';
 
 const componentDir = getPath('../');

@@ -41,6 +41,11 @@
  * @csspart ticks - The container that wraps the tick marks.
  * @csspart thumb - The thumb(s) that the user can drag to change the range.
  *
+ * @csspart tooltip__base - The base of the tooltip
+ * @csspart tooltip__arrow - The arrow of the tooltip
+ * @csspart tooltip__popup - The popup of the tooltip
+ * @csspart tooltip__body - The body of the tooltip
+ *
  * @cssproperty --thumb-size - The size of a thumb.
  * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
  * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
@@ -123,6 +128,12 @@ const props = defineProps<{
    * The current values of the input (in ascending order) as a string of space separated values
    */
   value?: SynRange['value'];
+
+  /**
+* Set to true to restrict the movement of a thumb to its next and previous thumb.
+This only affects multi range components
+ */
+  restrictMovement?: SynRange['restrictMovement'];
 
   /**
 * By default, form controls are associated with the nearest containing `<form>` element.

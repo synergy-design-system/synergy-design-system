@@ -377,37 +377,13 @@ export const MultiThumbWithRestrictedMovement = {
   },
   render: () => html`
     <syn-range
-      class="range-restrict-movement"
       value="30 70"
       label="Demo of restricting values"
       min="0"
       max="100"
+      restrict-movement
       step="1"
     ></syn-range>
-    <script type="module">
-      Array
-        .from(document.querySelectorAll('.range-restrict-movement'))
-        .forEach((el) => {
-          el.addEventListener('syn-move', e => {
-            const { detail, target } = e;
-            const values = target.valueAsArray;
-            const { element, value } = detail;
-
-            const [firstThumb, lastThumb] = target.thumbs;
-            const [firstValue, lastValue] = values;
-
-            if (element === firstThumb && value > lastValue) {
-              e.preventDefault();
-              target.valueAsArray = [lastValue, lastValue];
-            }
-            
-            if (element === lastThumb && value < firstValue) {
-              e.preventDefault();
-              target.valueAsArray = [firstValue, firstValue];
-            }
-          });
-        });
-    </script>
   `,
 };
 
@@ -415,7 +391,7 @@ export const Ticks: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('range', 'ticks'),
+        story: generateStoryDescription('range-tick', 'default'),
       },
     },
   },
@@ -435,7 +411,7 @@ export const Ticks: Story = {
       </nav>
     </syn-range>
     
-    <p>It is possible to divide the space between major ticks for finer scale readings.</p>
+    <p>${generateStoryDescription('range-tick', 'subdivision')}</p>
    
     <syn-range
       class="syn-range-with-tick"

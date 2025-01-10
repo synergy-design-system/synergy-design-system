@@ -261,6 +261,7 @@ const synChange = () => {
         :min="0"
         name="donations"
         v-model="formData.donations"
+        restrict-movement
         :tooltipFormatter="(value: number) => formatter.format(value)"
       >
         <nav slot="ticks">

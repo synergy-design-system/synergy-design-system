@@ -11,6 +11,10 @@
 ### Bug Fixes
 
 * 🐛 Various issues with syn-combobox ([#723](https://github.com/synergy-design-system/synergy-design-system/issues/723)) ([744c485](https://github.com/synergy-design-system/synergy-design-system/commit/744c485a7c24636f5f7cdd9f61f6640e593fcb8b))
+  * Fixed a bug in `<syn-combobox>` that results in incorrect toggling of the open state, when using the expand icon ([#719](https://github.com/synergy-design-system/synergy-design-system/issues/719))
+  * Fixed a bug in `<syn-combobox>` when using optgroups their label is not shown ([#712](https://github.com/synergy-design-system/synergy-design-system/issues/712))
+  * Fixed a bug in `<syn-combobox>` that results in added custom styles to syn-options are not applied ([#714](https://github.com/synergy-design-system/synergy-design-system/issues/714))
+  
 
 # [@synergy-design-system/components-v2.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.15.0...components/2.15.1) (2024-12-20)
 
@@ -163,6 +167,12 @@
 ### Bug Fixes
 
 * 🐛 Various issues with syn-prio-nav ([#645](https://github.com/synergy-design-system/synergy-design-system/issues/645)) ([f509e94](https://github.com/synergy-design-system/synergy-design-system/commit/f509e94672d494aa6393cf3287a749ca8eeee1ed))
+  * Fixed a bug in `<syn-side-nav>` that results in the parent syn-nav-item incorrectly remained the selected state ([#582](https://github.com/synergy-design-system/synergy-design-system/issues/582))
+  * Fixed a bug in `<syn-nav-item>` that results in a bad text alignment using the href attribute ([#631](https://github.com/synergy-design-system/synergy-design-system/issues/631))
+  * Updated the `<syn-prio-nav>` shrinking mechanism to have a better UX ([#410](https://github.com/synergy-design-system/synergy-design-system/issues/410))
+  * Fixed a misalignment in the `<syn-nav-item>` if using horizontal attribute and a prefix icon ([#409](https://github.com/synergy-design-system/synergy-design-system/issues/409))
+  * Fixed a misalignment in the `<syn-nav-item>` where the shrinked drop down text and icon was not centered to the other items ([#630](https://github.com/synergy-design-system/synergy-design-system/issues/630))
+  * Fixed a bug in the `<syn-prio-nav` where the items where hidden too early because of wrong calculations ([#639](https://github.com/synergy-design-system/synergy-design-system/issues/639))
 
 # [@synergy-design-system/components-v2.10.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.10.0...components/2.10.1) (2024-10-02)
 

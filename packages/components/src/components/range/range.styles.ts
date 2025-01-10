@@ -173,6 +173,9 @@ export default css`
   
     /* The --thumb-size needs to be used to subtract from, because the border of the thumb is not calculated into the inset */
     inset: calc((var(--thumb-size) - (var(--full-thumb-size) * var(--thumb-hit-area-size)) ) / 2);
+
+    /* This is needed as we also attach a pointerleave listener that stops */
+    pointer-events: none;
     position: absolute;
   }
 

@@ -182,8 +182,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #validationTimeout: NodeJS.Timeout;
 
-  #nextId = 1;
-
   #lastChangeValue: number [] = [];
 
   get #rtl() {
@@ -447,7 +445,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const movementData = this.#movementBoundariesForThumb(thumb, value);
       if (movementData.isRestricted) {
         value = movementData.finalValue;
-        thumb.style.zIndex = (3 + rangeId).toFixed(0);
+        // Make sure the thumb has the highest z-index of all thumbs
+        thumb.style.zIndex = (3 + this.thumbs.length).toFixed(0);
+      } else {
+        thumb.style.zIndex = '3';
       }
     }
 
@@ -681,8 +682,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     this.#rangeValues.clear();
     return this.#value.map((value, index) => {
-      this.#nextId += 1;
-      const rangeId = this.#nextId;
+      const rangeId = index + 1;
       this.#rangeValues.set(rangeId, value);
 
       const id = `thumb-${rangeId}`;
@@ -730,6 +730,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             @pointermove=${this.#onDragThumb}
             @pointerup=${this.#onReleaseThumb}
             @pointercancel=${this.#onReleaseThumb}
+            @pointerleave=${this.#onReleaseThumb}
             @keydown=${this.#onKeyPress}
             @focus=${this.#onFocusThumb}
           ></div>

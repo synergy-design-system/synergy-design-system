@@ -217,6 +217,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
+    // When the proposed min is bigger than the max value,
+    // we need to swap the values to make sure the min is always smaller than the max
+    // @example <syn-range min="50" max="10"> becomes <syn-range min="10" max="50">
+    if (this.min > this.max) {
+      [this.min, this.max] = [this.max, this.min];
+    }
+
     if (this.step > this.max - this.min) {
       this.step = this.max - this.min;
     }

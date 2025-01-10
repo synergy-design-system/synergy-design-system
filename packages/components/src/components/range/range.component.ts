@@ -57,6 +57,11 @@ import styles from './range.styles.js';
  * @csspart ticks - The container that wraps the tick marks.
  * @csspart thumb - The thumb(s) that the user can drag to change the range.
  *
+ * @csspart tooltip__base - The base of the tooltip
+ * @csspart tooltip__arrow - The arrow of the tooltip
+ * @csspart tooltip__popup - The popup of the tooltip
+ * @csspart tooltip__body - The body of the tooltip
+ *
  * @cssproperty --thumb-size - The size of a thumb.
  * @cssproperty --thumb-hit-area-size - The clickable area around the thumb.
  * Per default this is set to 140% of the thumb size. Must be a scale css value (defaults to 1.4).
@@ -116,6 +121,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#value.slice().sort(numericSort).join(' ');
   }
 
+  /**
+   * Set to true to restrict the movement of a thumb to its next and previous thumb.
+   * This only affects multi range components
+   */
+  @property({ attribute: 'restrict-movement', type: Boolean }) restrictMovement = false;
+
   /** Gets or sets the current values of the range as an array of numbers */
   set valueAsArray(value: readonly number[] | null) {
     const oldValue = this.#value;
@@ -171,8 +182,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #validationTimeout: NodeJS.Timeout;
 
-  #nextId = 1;
-
   #lastChangeValue: number [] = [];
 
   get #rtl() {
@@ -206,6 +215,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
+    // When the proposed min is bigger than the max value,
+    // we need to swap the values to make sure the min is always smaller than the max
+    // @example <syn-range min="50" max="10"> becomes <syn-range min="10" max="50">
     if (this.min > this.max) {
       [this.min, this.max] = [this.max, this.min];
     }
@@ -328,7 +340,16 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const currValue = this.#rangeValues.get(+curr.dataset.rangeId!)!;
       const prevValue = this.#rangeValues.get(+prev.dataset.rangeId!)!;
 
-      return Math.abs(currValue - nextValue) <= Math.abs(prevValue - nextValue) ? curr : prev;
+      const currDiff = Math.abs(currValue - nextValue);
+      const prevDiff = Math.abs(prevValue - nextValue);
+
+      if (currDiff === prevDiff) {
+        // If the difference is the same, we use the thumb which has the correct order.
+        // left track click --> prev, right track click --> curr
+        return currValue < nextValue ? curr : prev;
+      }
+
+      return currDiff < prevDiff ? curr : prev;
     });
 
     const rangeId = +thumb.dataset.rangeId!;
@@ -349,8 +370,37 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     }
   }
 
+  /**
+   * Get the boundaries of a given thumb
+   * @param thumb The thumb element that was moved
+   * @param value The current value of a thumb
+   * @returns An object containing information about the current boundaries
+   */
+  #movementBoundariesForThumb(thumb: HTMLDivElement, value: number) {
+    // If we are in restrict mode, we should not move the thumb
+    // if it is smaller than the previous thumb or larger than the next thumb
+    const values = this.valueAsArray!;
+    const thumbs = Array.from(this.thumbs);
+    const thumbIndex = thumbs.indexOf(thumb);
+
+    // Get the previous and next thumb and see what are our valid ranges
+    const prevValue = values[thumbIndex - 1] || this.min;
+    const nextValue = values[thumbIndex + 1] || this.max;
+
+    const isRestricted = value < prevValue || value > nextValue;
+    const finalValue = Math.max(prevValue, Math.min(nextValue, value));
+
+    return {
+      finalValue,
+      isRestricted,
+      nextValue,
+      prevValue,
+    };
+  }
+
   async #onClickThumb(event: PointerEvent) {
     if (this.disabled) return;
+
     const thumb = event.target as HTMLDivElement;
     this.#updateTooltip(thumb);
 
@@ -377,7 +427,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     const pos = getNormalizedValueFromClientX(this.baseDiv, event.clientX, this.#rtl);
     const unit = this.step / (this.max - this.min);
-    const value = this.min + this.step * Math.round(pos / unit);
+    let value = this.min + this.step * Math.round(pos / unit);
 
     const synMove = this.emit('syn-move', {
       cancelable: true,
@@ -389,6 +439,17 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     if (synMove.defaultPrevented) {
       return;
+    }
+
+    if (this.restrictMovement) {
+      const movementData = this.#movementBoundariesForThumb(thumb, value);
+      if (movementData.isRestricted) {
+        value = movementData.finalValue;
+        // Make sure the thumb has the highest z-index of all thumbs
+        thumb.style.zIndex = (3 + this.thumbs.length).toFixed(0);
+      } else {
+        thumb.style.zIndex = '3';
+      }
     }
 
     this.#rangeValues.set(rangeId, value);
@@ -529,6 +590,13 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         return;
       }
 
+      if (this.restrictMovement) {
+        const movementData = this.#movementBoundariesForThumb(thumb, value);
+        if (movementData.isRestricted) {
+          value = movementData.finalValue;
+        }
+      }
+
       this.#moveThumb(thumb, value);
 
       this.#rangeValues.set(rangeId, value);
@@ -614,8 +682,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
     this.#rangeValues.clear();
     return this.#value.map((value, index) => {
-      this.#nextId += 1;
-      const rangeId = this.#nextId;
+      const rangeId = index + 1;
       this.#rangeValues.set(rangeId, value);
 
       const id = `thumb-${rangeId}`;
@@ -639,6 +706,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
       return html`
         <syn-tooltip
+          exportparts="base:tooltip__base, base__arrow:tooltip__arrow, base__popup:tooltip__popup, body:tooltip__body"
           hoist
           .disabled=${this.tooltipPlacement === 'none' || this.disabled}
           .placement=${this.tooltipPlacement as 'top' | 'bottom'}
@@ -662,6 +730,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             @pointermove=${this.#onDragThumb}
             @pointerup=${this.#onReleaseThumb}
             @pointercancel=${this.#onReleaseThumb}
+            @pointerleave=${this.#onReleaseThumb}
             @keydown=${this.#onKeyPress}
             @focus=${this.#onFocusThumb}
           ></div>
@@ -726,7 +795,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
             <div
               class="track__wrapper"
-              @click=${this.#onClickTrack}
+              @pointerdown=${this.#onClickTrack}
               part="track-wrapper"
               role="presentation"
             >
@@ -740,7 +809,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             <div
               class="ticks"
               part="ticks"
-              @click=${this.#onClickTrack}
+              @pointerdown=${this.#onClickTrack}
               role="presentation"
             >
               <slot name="ticks"></slot>

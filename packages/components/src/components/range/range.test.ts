@@ -336,6 +336,11 @@ describe('<syn-range>', () => {
     });
 
     it('should allow to set more than one value', async () => {
+      if (navigator.userAgent.includes('Firefox')) {
+        console.warn('Skipping test in Firefox as drag and drop does not work right');
+        return;
+      }
+
       await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
       const changeHandler = sinon.spy();

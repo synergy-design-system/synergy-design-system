@@ -1,6 +1,6 @@
 import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -83,7 +83,7 @@ const preview: Preview = {
     viewport: {
       defaultViewport: 'defaultViewPort',
       viewports: {
-        ...INITIAL_VIEWPORTS,
+        ...MINIMAL_VIEWPORTS,
         defaultViewPort: {
           name: 'Default',
           styles: {

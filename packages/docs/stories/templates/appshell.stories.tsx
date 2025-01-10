@@ -184,7 +184,7 @@ export const RailNavigationMobile: Story = {
       disable: true,
     },
     viewport: {
-      defaultViewport: 'iphonexr',
+      defaultViewport: 'mobile2',
     },
   },
 };

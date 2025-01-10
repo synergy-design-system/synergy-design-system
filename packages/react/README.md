@@ -98,6 +98,7 @@ export const MyInput = () => (
 > Notice! Due to a [currently open bug in the `lit@react` wrapper in version 1.0.6](https://github.com/lit/lit/issues/4857), you will have to provide an override for the react types temporarily. This can be achieved by adding the following override in your `package.json` file:
 >
 > For NPM:
+>
 > ```
 > "overrides": {
 >   "@types/react": "^19.0.1"
@@ -105,10 +106,11 @@ export const MyInput = () => (
 > ```
 >
 > For Yarn:
+>
 > ```
 > "resolutions": {
 >   "@types/react": "^19.0.1"
-}
+> }
 > ```
 
 1. First make sure you have react@19 or higher installed in your project.

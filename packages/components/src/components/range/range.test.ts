@@ -32,6 +32,7 @@ describe('<syn-range>', () => {
     expect(el.step).to.equal(1);
     expect(el.tooltipPlacement).to.equal('top');
     expect(el.value).to.equal('0');
+    expect(el.restrictMovement).to.be.false;
     expect(el.valueAsArray).to.deep.equal([0]);
   });
 
@@ -243,11 +244,8 @@ describe('<syn-range>', () => {
   });
 
   describe('when the value changes', () => {
-    afterEach(async () => {
-      await resetMouse();
-    });
-
     it('should emit a syn-change event when the user has dragged a thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const baseDiv = el.shadowRoot!.querySelector('.base')!.getBoundingClientRect().width;
@@ -282,11 +280,12 @@ describe('<syn-range>', () => {
       await el.updateComplete;
 
       expect(el.value).to.equal('5');
-      expect(changeHandler).to.have.been.called;
+      expect(changeHandler.callCount).to.equal(1);
     });
 
     it('should not emit a syn-change event when the user has dragged a thumb to the same value again', async () => {
-      const el = await fixture<SynRange>(html`<syn-range ></syn-range>`);
+      await resetMouse();
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
 
@@ -332,11 +331,17 @@ describe('<syn-range>', () => {
       expect(thumb).to.not.have.class('grabbed');
 
       expect(el.value).to.equal('0');
-      expect(inputHandler).to.have.been.called;
-      expect(changeHandler).to.not.have.been.called;
+      expect(inputHandler.called).to.be.true;
+      expect(changeHandler.called).to.be.false;
     });
 
     it('should allow to set more than one value', async () => {
+      if (navigator.userAgent.includes('Firefox')) {
+        console.warn('Skipping test in Firefox as drag and drop does not work right');
+        return;
+      }
+
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
       const changeHandler = sinon.spy();
 
@@ -384,7 +389,7 @@ describe('<syn-range>', () => {
       await el.updateComplete;
 
       expect(el.value).to.equal('25 80');
-      expect(changeHandler).to.have.been.called;
+      expect(changeHandler.callCount).to.equal(1);
 
       // Second thumb
       expect(thumbStart).to.not.have.class('grabbed');
@@ -413,10 +418,11 @@ describe('<syn-range>', () => {
       await el.updateComplete;
 
       expect(el.value).to.equal('25 85');
-      expect(changeHandler).to.have.been.called;
+      expect(changeHandler.called).to.be.true;
     });
 
     it('should emit a syn-input event while the user is dragging the thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
 
@@ -447,10 +453,11 @@ describe('<syn-range>', () => {
 
       await el.updateComplete;
 
-      expect(inputHandler).to.have.been.calledTwice;
+      expect(inputHandler.callCount).to.equal(2);
     });
 
     it('should emit a syn-move event when the user has dragged a thumb', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const moveHandler = sinon.spy();
 
@@ -481,10 +488,11 @@ describe('<syn-range>', () => {
 
       await el.updateComplete;
 
-      expect(moveHandler).to.have.been.called;
+      expect(moveHandler.called).to.be.true;
     });
 
     it('should not move the thumb when the emitted `syn-move` event is prevented', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const inputHandler = sinon.spy();
       const moveHandler = sinon.spy();
@@ -520,11 +528,48 @@ describe('<syn-range>', () => {
 
       await el.updateComplete;
 
-      expect(moveHandler).to.have.been.called;
-      expect(inputHandler).to.not.have.been.called;
+      expect(moveHandler.called).to.be.true;
+      expect(inputHandler.callCount).to.equal(0);
+    });
+
+    it('should not move the thumb when restrict is set to true and the thumbs new value would be out of bounds', async () => {
+      await resetMouse();
+      const el = await fixture<SynRange>(html`<syn-range restrict-movement value="30 70"></syn-range>`);
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+
+      const thumbs = el.shadowRoot!.querySelectorAll('.thumb');
+      const [firstThumb, secondThumb] = Array.from(thumbs);
+
+      const rect = firstThumb.getBoundingClientRect();
+      const center = parseInt((rect.left + rect.width / 2).toFixed(0), 10);
+
+      const targetRect = secondThumb.getBoundingClientRect();
+      const targetCenter = parseInt((targetRect.left + targetRect.width / 2).toFixed(0), 10);
+
+      await sendMouse({
+        position: [center, rect.top],
+        type: 'click',
+      });
+
+      await sendMouse({
+        type: 'down',
+      });
+
+      await sendMouse({
+        position: [targetCenter, rect.top],
+        type: 'move',
+      });
+
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(1);
+      expect(el.valueAsArray).to.deep.equal([70, 70]);
     });
 
     it('should not emit syn-change or syn-input when the value is set programmatically', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
 
@@ -533,10 +578,11 @@ describe('<syn-range>', () => {
       el.value = '50';
       await el.updateComplete;
 
-      expect(changeHandler).to.not.have.been.called;
+      expect(changeHandler.called).to.be.false;
     });
 
     it('should emit a syn-change and syn-input event when the user clicks the track', async () => {
+      await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
@@ -553,8 +599,8 @@ describe('<syn-range>', () => {
       });
 
       expect(el.value).to.equal('15');
-      expect(changeHandler).to.have.been.called;
-      expect(inputHandler).to.have.been.called;
+      expect(changeHandler.called).to.be.true;
+      expect(inputHandler.called).to.be.true;
     });
   });
 
@@ -602,9 +648,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('52');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should increment the value by the step when pressing the ArrowRight key', async () => {
@@ -624,9 +670,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('52');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should increment the value by one fifth of the step when pressing the PageUp key', async () => {
@@ -646,9 +692,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('70');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should increment to the max value when pressing the PageUp key and the wanted value is too big', async () => {
@@ -671,9 +717,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('100');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should jump to the max value when pressing the End key', async () => {
@@ -693,9 +739,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('100');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should decrement the value by the step when pressing the ArrowDown key', async () => {
@@ -715,9 +761,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('48');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should decrement the value by the step when pressing the ArrowLeft key', async () => {
@@ -737,9 +783,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('48');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should decrement the value by one fifth of the step when pressing the PageDown key', async () => {
@@ -759,9 +805,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('30');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should decrement to the min value when pressing the PageDown key and the wanted value is too small', async () => {
@@ -784,9 +830,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('0');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should jump to the min value when pressing the Home key', async () => {
@@ -806,9 +852,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('0');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
     });
 
     it('should not emit the syn-change and syn-input event when the user has moved the thumb via keyboard', async () => {
@@ -835,9 +881,9 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('10');
 
-      expect(moveHandler).to.have.been.calledOnce;
-      expect(changeHandler).to.not.have.been.calledOnce;
-      expect(inputHandler).to.not.have.been.calledOnce;
+      expect(moveHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(0);
+      expect(inputHandler.callCount).to.equal(0);
     });
 
     it('should move the focus to the next thumb when pressing the Tab key', async () => {

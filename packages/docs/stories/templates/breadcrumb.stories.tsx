@@ -91,62 +91,62 @@ export const BreadcrumbResponsive = {
     </div>
     ${createSharedStyles()}
     <style>
-        /**
-        * Styling for medium 
-        **/
-        #responsive .truncated syn-icon-button::part(base) {
-          padding: 0;
+      #responsive {
+        container-type: inline-size;
+      }
+
+      /**
+      * Styling for medium 
+      **/
+      #responsive .truncated syn-icon-button::part(base) {
+        padding: 0;
+      }
+      #responsive .truncated syn-icon-button {
+        vertical-align: middle;
+      }
+
+      @container (max-width: 640px) and (min-width: 480px) {
+        /* Hide the two breadcrumbs, which should be shown in the drop down */
+        #responsive syn-breadcrumb-item:nth-of-type(3),
+        #responsive syn-breadcrumb-item:nth-of-type(4) {
+          display: none;
         }
-        #responsive .truncated syn-icon-button {
-          vertical-align: middle;
+      }
+
+      /**
+      * Styling for large
+      **/
+      @container (min-width: 640px) {
+        #responsive .truncated {
+          display: none;
+        }
+      }
+
+      /**
+      * Styling for large and medium 
+      **/
+      @container (min-width: 480px) {
+        /* Hide the back icon for the medium and large size */
+        #responsive .back-icon {
+          display: none;
+        }
+      }
+
+      /**
+      * Styling for small 
+      **/
+      @container (max-width: 480px) {
+        /* Hide the separator of the breadcrumb */
+        #responsive syn-breadcrumb-item::part(separator){
+          display: none;
         }
 
-        @media (max-width: 640px) and (min-width: 480px) {
-          /* Hide the two breadcrumbs, which should be shown in the drop down */
-          #responsive syn-breadcrumb-item:nth-of-type(3),
-          #responsive syn-breadcrumb-item:nth-of-type(4) {
-            display: none;
-          }
+        /* Only show the previous page breadcrumb */
+        #responsive syn-breadcrumb-item:not(:nth-last-of-type(2)) {
+          display: none;
         }
-
-
-        /**
-        * Styling for large and small 
-        **/
-        @media (min-width: 640px), (max-width: 480px) {
-          /* Hide the breadcrumb with drop down */
-          #responsive .truncated {
-            display: none;
-          }
-        }
-
-
-        /**
-        * Styling for large and medium 
-        **/
-        @media (min-width: 480px) {
-          /* Hide the back icon for the medium and large size */
-          #responsive .back-icon {
-            display: none;
-          }
-        }
-
-
-        /**
-        * Styling for small 
-        **/
-        @media (max-width: 480px) {
-          /* Hide the separator of the breadcrumb */
-          #responsive syn-breadcrumb-item::part(separator){
-            display: none;
-          }
-
-          /* Only show the previous page breadcrumb */
-          #responsive syn-breadcrumb-item:not(:nth-last-of-type(2)) {
-            display: none;
-          }
-        }
-      </style>
+      }
+    </style>
   `,
 };
 

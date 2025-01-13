@@ -1,8 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any, no-underscore-dangle */
 import type { PropertyValues } from 'lit';
 import type SynergyElement from './synergy-element.js';
-import { type ComponentNamesWithDefaultValues, extractDefaultSettingsForElement } from './defaultSettings.js';
-import type { SynDefaultSettingsChangedEvent } from '../events/events.js';
+import {
+  type ComponentNamesWithDefaultValues,
+  addGlobalEventNotification,
+  extractDefaultSettingsForElement,
+  removeGlobalEventNotification,
+} from './defaultSettings.js';
+import type { SynDefaultChangedAttribute } from '../events/events.js';
 
 type Constructor<T = object> = new (...args: any[]) => T;
 
@@ -12,50 +17,30 @@ export function globalSettingsDecorator() {
 
     #initialGlobalSettingEmptyProperties = new Map<string, unknown>();
 
-    #overrideWithGlobalSettings = (e: SynDefaultSettingsChangedEvent) => {
-      const { detail } = e;
-      const component = Proto.name as ComponentNamesWithDefaultValues;
+    // eslint-disable-next-line class-methods-use-this
+    get __originalDecoratedClassName() {
+      return Proto.name;
+    }
 
-      // Skip if the component is not in the event
-      if (!detail[component]) {
-        return;
-      }
-
-      const newValues = detail[component];
-
+    /**
+     * Override the global settings for the element
+     * Called from the global settings event
+     * @param changedProperties The properties that have changed
+     */
+    overrideGlobalSettings(changedProperties: SynDefaultChangedAttribute[]) {
       // Adjust the attribute if they where not initially set on the element
-      newValues.forEach((prop) => {
+      changedProperties.forEach((prop) => {
         if (this.#initialGlobalSettingEmptyProperties.has(prop.attribute)) {
           // @ts-expect-error We don´t know the type of the key,
           // but are pretty sure it exists on the element
           this[prop.attribute as keyof this] = prop.newValue;
-          // this.setAttribute(prop.attribute, prop.newValue as string);
         }
       });
-    };
-
-    connectedCallback() {
-      super.connectedCallback();
-
-      const defaults = extractDefaultSettingsForElement(
-        Proto.name as ComponentNamesWithDefaultValues,
-      );
-
-      if (Object.keys(defaults).length > 0) {
-        window.addEventListener('syn-default-settings-changed', this.#overrideWithGlobalSettings, {
-          capture: true,
-        });
-      }
     }
 
     disconnectedCallback() {
-      window.removeEventListener(
-        'syn-default-settings-changed',
-        this.#overrideWithGlobalSettings,
-        {
-          capture: true,
-        },
-      );
+      // Always remove the component from the global notification list
+      removeGlobalEventNotification(this);
     }
 
     protected willUpdate(changedProps: PropertyValues): void {
@@ -96,6 +81,11 @@ export function globalSettingsDecorator() {
             this[key] = value;
           }
         });
+
+      // If there where any values, add the item to the global notification list
+      if (this.#initialGlobalSettingEmptyProperties.size > 0) {
+        addGlobalEventNotification(this);
+      }
     }
   };
 }

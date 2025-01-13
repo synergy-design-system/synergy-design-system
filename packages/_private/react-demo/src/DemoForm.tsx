@@ -393,7 +393,7 @@ export const DemoForm = () => {
       {/* Actions */}
       <div className="syn-fieldset syn-submit-buttons">
         <SynButton variant="outline" type="reset">Reset</SynButton>
-        <SynButton variant="filled" type="submit">Send</SynButton>
+        <SynButton variant="filled" size="large" type="submit">Send</SynButton>
       </div>
       {/* /Actions */}
 

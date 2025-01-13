@@ -49,17 +49,20 @@ setDefaultSettingsForElement('SynButton', {
 });
 ```
 
-## Events (experimental)
+## Live update via events (experimental)
 
 > ⚠️ This feature is considered experimental and therefore hidden behind a feature flag.
 > You may enable it by importing the `enableExperimentalSettingEmitEvents` function from `@synergy-design-system/components`.
 
-When either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` is called, a `syn-default-settings-changed` event is dispatched to notify the components that the settings have changed.
-All components are listening for this event and will update their settings accordingly.
-This feature can be used to implement a layout switcher (e.g. to switch between various sizes in an application).
+When experimental event support is enabled and either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` are called, a `syn-default-settings-changed` event is dispatched to notify all components that the settings have changed.
+This feature may for example be used to implement a layout switcher (e.g. to switch between various sizes in an application).
+Please have a [look at our demo projects](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private) for further information.
 
-If the component was initially rendered with the default setting, it will be updated to the new setting.
+If the component was initially rendered with the default setting of the corresponding attribute, it will be updated to the new setting.
 **However**, if it was rendered with a custom value, it will not be updated!
+
+If the element was rendered before the event support was enabled, it will also not be updated!
+You will have to make sure to call `enableExperimentalSettingEmitEvents` before the initial render to ensure that all components are listening for the event.
 
 You may also listen to the event to react to changes in the default settings.
 

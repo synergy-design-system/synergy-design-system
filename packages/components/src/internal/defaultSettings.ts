@@ -26,93 +26,23 @@ import type SynTag from "../components/tag/tag.js";
 import type SynTextarea from "../components/textarea/textarea.js";
 import type SynValidate from "../components/validate/validate.js";
 import type SynergyElement from "./synergy-element.js";
-import type { SynDefaultChangedAttribute, SynDefaultSettingsChangedEvent } from "../events/events.js";
-
-/**
- * Internal flag to check if the global event listeners have been set up
- */
-let hasGlobalEventSetup = false;
-
-/**
- * Whether to emit events when the default settings change
- */
-let SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = false;
-
-type GlobalSettingsEnabledElement = SynergyElement & {
-  __originalDecoratedClassName: string;
-  overrideGlobalSettings: (changedProperties: SynDefaultChangedAttribute[]) => void;
-};
-
-/**
- * List of all components that have default values
- */
-export const globalEventNotificationMap = new Set<GlobalSettingsEnabledElement>();
-
-function defaultSettingsHandler(e: SynDefaultSettingsChangedEvent) {
-  const { detail } = e;
-  Object
-    .entries(detail)
-    .forEach(([componentName, changes]) => {
-      globalEventNotificationMap.forEach((element) => {
-        if (element.__originalDecoratedClassName !== 'undefined' && element.__originalDecoratedClassName === componentName) {
-          element.overrideGlobalSettings(changes);
-        }
-      });
-    });
-}
-
-/**
- * Enables or disables the experimental setting to emit events when the default settings change
- * @param enabled Whether to enable or disable the experimental setting
- */
-export const enableExperimentalSettingEmitEvents = (enabled = true) => {
-  SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = enabled;
-
-  if (!enabled) {
-    hasGlobalEventSetup = false;
-    window.removeEventListener('syn-default-settings-changed', defaultSettingsHandler, {
-      capture: true,
-    });
-    return;
-  }
-
-  if (enabled && !hasGlobalEventSetup) {
-    hasGlobalEventSetup = true;
-    window.addEventListener('syn-default-settings-changed', defaultSettingsHandler, {
-      capture: true,
-    });
-  }
-};
-
-/**
- * Adds an element to the global event notification map
- * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
- * @param element The element to add
- */
-export const addGlobalEventNotification = (element: SynergyElement) => {
-  if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS && !globalEventNotificationMap.has(element)) {
-    globalEventNotificationMap.add(element);
-  }
-};
-
-/**
- * Removes an element from the global event notification map
- * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
- * @param element The element to remove
- */
-export const removeGlobalEventNotification = (element: SynergyElement) => {
-  if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS && globalEventNotificationMap.has(element)) {
-    globalEventNotificationMap.delete(element);
-  }
-};
-
-// Cache for speeding up lookups
-const elementPropertyCache = new Map<
-  ComponentNamesWithDefaultValues,
-  Record<string, unknown>
->();
+import type {
+  SynDefaultChangedAttribute,
+  SynDefaultSettingsChangedEvent,
+} from "../events/events.js";
 
 // Core types
+
+/**
+ * Custom helper type that adds decorated properties from
+ * the globalSettings helper.
+ */
+type GlobalSettingsEnabledElement = SynergyElement & {
+  __originalDecoratedClassName: string;
+  overrideGlobalSettings: (
+    changedProperties: SynDefaultChangedAttribute[],
+  ) => void;
+};
 
 /**
  * Allows for partial recursive types
@@ -192,6 +122,109 @@ export type SynDefaultSettings = {
     SynValidate?: AllowedValueForDefaultSetting<SynValidate, "variant">;
   };
 };
+
+/**
+ * Whether to emit events when the default settings change
+ */
+let SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = false;
+
+/**
+ * Internal flag to check if the global event listeners have been set up
+ */
+let hasGlobalEventSetup = false;
+
+/**
+ * List of all components that have default values
+ */
+export const globalEventNotificationMap =
+  new Set<GlobalSettingsEnabledElement>();
+
+/**
+ * The default setting update handler that is bound to the global event
+ * @param e The syn-default-settings-change-event emitted
+ */
+function defaultSettingsHandler(e: SynDefaultSettingsChangedEvent) {
+  const { detail } = e;
+  Object.entries(detail).forEach(([componentName, changes]) => {
+    globalEventNotificationMap.forEach(element => {
+      if (
+        element.__originalDecoratedClassName !== "undefined" &&
+        element.__originalDecoratedClassName === componentName
+      ) {
+        element.overrideGlobalSettings(changes);
+      }
+    });
+  });
+}
+
+/**
+ * Enables or disables the experimental setting to emit events when the default settings change
+ * @param enabled Whether to enable or disable the experimental setting
+ */
+export const enableExperimentalSettingEmitEvents = (enabled = true) => {
+  SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = enabled;
+
+  if (!enabled) {
+    hasGlobalEventSetup = false;
+    window.removeEventListener(
+      "syn-default-settings-changed",
+      defaultSettingsHandler,
+      {
+        capture: true,
+      },
+    );
+    return;
+  }
+
+  if (enabled && !hasGlobalEventSetup) {
+    hasGlobalEventSetup = true;
+    window.addEventListener(
+      "syn-default-settings-changed",
+      defaultSettingsHandler,
+      {
+        capture: true,
+      },
+    );
+  }
+};
+
+/**
+ * Adds an element to the global event notification map
+ * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
+ * @param element The element to add
+ */
+export const addGlobalEventNotification = (
+  element: GlobalSettingsEnabledElement,
+) => {
+  if (
+    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS &&
+    !globalEventNotificationMap.has(element)
+  ) {
+    globalEventNotificationMap.add(element);
+  }
+};
+
+/**
+ * Removes an element from the global event notification map
+ * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
+ * @param element The element to remove
+ */
+export const removeGlobalEventNotification = (
+  element: GlobalSettingsEnabledElement,
+) => {
+  if (
+    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS &&
+    globalEventNotificationMap.has(element)
+  ) {
+    globalEventNotificationMap.delete(element);
+  }
+};
+
+// Cache for speeding up lookups
+const elementPropertyCache = new Map<
+  ComponentNamesWithDefaultValues,
+  Record<string, unknown>
+>();
 
 // Exports
 

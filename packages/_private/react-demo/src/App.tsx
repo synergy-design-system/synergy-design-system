@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
 import { Layout } from './Layout';
 import { DemoForm } from './DemoForm';
 import { DemoFormValidate } from './DemoFormValidate';
@@ -10,7 +11,8 @@ export const App = () => {
   // Use this to set the global size to medium
   // for the whole application
   useEffect(() => {
-    setGlobalSize('large');
+    enableExperimentalSettingEmitEvents();
+    setGlobalSize('medium');
   }, []);
   return (
     <BrowserRouter>

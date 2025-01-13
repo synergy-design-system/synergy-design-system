@@ -4,6 +4,7 @@ import {
   type SynChangeEvent,
   type SynIconButton,
   type SynSwitch,
+  enableExperimentalSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
 
@@ -63,6 +64,9 @@ const initSizeSwitch = async () => {
 };
 
 const bootstrap = async () => {
+  enableExperimentalSettingEmitEvents();
+  setGlobalSize('medium');
+
   registerIconLibrary('default', {
     resolver: name => `/synergy-icon-sprites.svg#${name}`,
     spriteSheet: true,

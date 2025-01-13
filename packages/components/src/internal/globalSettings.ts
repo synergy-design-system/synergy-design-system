@@ -26,7 +26,10 @@ export function globalSettingsDecorator() {
       // Adjust the attribute if they where not initially set on the element
       newValues.forEach((prop) => {
         if (this.#initialGlobalSettingEmptyProperties.has(prop.attribute)) {
-          this.setAttribute(prop.attribute, prop.newValue as string);
+          // @ts-expect-error We don´t know the type of the key,
+          // but are pretty sure it exists on the element
+          this[prop.attribute as keyof this] = prop.newValue;
+          // this.setAttribute(prop.attribute, prop.newValue as string);
         }
       });
     };

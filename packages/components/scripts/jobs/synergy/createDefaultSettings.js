@@ -167,11 +167,13 @@ const createElementSetterExport = () => `
       });
 
     // Fire the change event
-    const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
-      detail,
-      bubbles: true,
-    });
-    dispatchEvent(event);
+    if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
+      const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
+        detail,
+        bubbles: true,
+      });
+      dispatchEvent(event);
+  }
 
     return defaultSettings;
   };
@@ -218,11 +220,13 @@ const createGlobalSetterExport = () => `
     });
 
     // Fire the change event
-    const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
-      detail,
-      bubbles: true,
-    });
-    dispatchEvent(event);
+    if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
+      const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
+        detail,
+        bubbles: true,
+      });
+      dispatchEvent(event);
+  }
 
     return defaultSettings;
   };
@@ -308,6 +312,19 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
 
     // Type imports
     ${typeImports.join('\n')}
+
+    /**
+     * Whether to emit events when the default settings change
+     */
+    let SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = false;
+
+    /**
+     * Enables or disables the experimental setting to emit events when the default settings change
+     * @param enabled Whether to enable or disable the experimental setting
+     */
+    export const enableExperimentalSettingEmitEvents = (enabled = true) => {
+      SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = enabled;
+    };
 
     // Cache for speeding up lookups
     const elementPropertyCache = new Map<ComponentNamesWithDefaultValues, Record<string, unknown>>();

@@ -49,18 +49,28 @@ setDefaultSettingsForElement('SynButton', {
 });
 ```
 
-## Events
+## Events (experimental)
+
+> ⚠️ This feature is considered experimental and therefore hidden behind a feature flag.
+> You may enable it by importing the `enableExperimentalSettingEmitEvents` function from `@synergy-design-system/components`.
 
 When either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` is called, a `syn-default-settings-changed` event is dispatched to notify the components that the settings have changed.
 All components are listening for this event and will update their settings accordingly.
+This feature can be used to implement a layout switcher (e.g. to switch between various sizes in an application).
 
-> If the component was initially rendered with the default setting, it will be updated to the new default setting.
-> **However**, if it was rendered with a custom value, it will not be updated!
+If the component was initially rendered with the default setting, it will be updated to the new setting.
+**However**, if it was rendered with a custom value, it will not be updated!
 
 You may also listen to the event to react to changes in the default settings.
 
 ```typescript
-import { type SynDefaultSettingsChangedEvent } from '@synergy-design-system/components';
+import {
+  enableExperimentalSettingEmitEvents,
+  type SynDefaultSettingsChangedEvent
+} from '@synergy-design-system/components';
+
+// Don´t forget to enable the feature
+enableExperimentalSettingEmitEvents(true);
 
 window.addEventListener('syn-default-settings-changed', (event: SynDefaultSettingsChangedEvent) => {
   console.log('Default settings changed', event.detail);
@@ -86,28 +96,39 @@ The following settings are supported by all synergy components:
 
 The following list shows the default settings for all synergy components.
 
-<syn-accordion>
-{Object
-  .values(INITIAL_DEFAULT_SETTINGS)
-  .map(setting => Object.keys(setting))
-  .flat()
-  .filter((value, index, self) => self.indexOf(value) === index)
-  .sort()
-  .map(c => {
-    const settings = extractDefaultSettingsForElement(c);
-    return (
-      <syn-details summary={c} key={`${c}--details`}>
-        <ul>
-          {Object
-            .entries(settings)
-            .map(([key, value]) => (
-              <li>
-                <strong key={`${c}--${key}--key`}>{key}</strong>: {value}
-              </li>
-            ))
-          }
-        </ul>
-      </syn-details>
-    );
-})}
-</syn-accordion>
+<table className="syn-table--alternating syn-table--border">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Settings</th>
+    </tr>
+  </thead>
+  <tbody>
+    {Object
+      .values(INITIAL_DEFAULT_SETTINGS)
+      .map(setting => Object.keys(setting))
+      .flat()
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort()
+      .map(c => {
+        const settings = extractDefaultSettingsForElement(c);
+        return (
+          <tr key={`${c}--details`}>
+            <td><strong>{c}</strong></td>
+            <td>
+              {Object
+                .entries(settings)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([key, value]) => (
+                  <>
+                    <strong key={`${c}--${key}--key`}>{key}</strong>: {value}<br />
+                  </>
+                ))
+              }
+            </td>
+          </tr>
+        );
+    })}
+
+  </tbody>
+</table>

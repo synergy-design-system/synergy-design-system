@@ -6,7 +6,8 @@ import { createNgPackageJson } from './shared.js';
 const headerComment = createHeader('angular');
 
 /**
- * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
+ * Creates the angular validators directive,
+ * located at packages/angular/directives/validators/validators.ts
  */
 export const runCreateValidatorDirectives = job('Angular: Creating ValidatorDirectives...', async (outDir) => {
   const fileName = 'validators.ts';

@@ -8,7 +8,7 @@ import { createNgPackageJson } from './shared.js';
 const headerComment = createHeader('angular');
 
 /**
- * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
+ * Creates the angular synergy module, located at packages/angular/modules/synergy/synergy.module.ts
  */
 export const runCreateNgModule = job('Angular: Creating SynergyModule...', async (metadata, outDir) => {
   const fileName = 'synergy.module.ts';

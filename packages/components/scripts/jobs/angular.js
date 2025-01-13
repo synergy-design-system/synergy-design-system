@@ -5,7 +5,6 @@ import * as jobs from './angular/index.js';
 import {
   createRunFormat,
   createRunPrepare,
-  runAdjustPackageExports,
   runAdjustPackageVersion,
 } from './shared.js';
 
@@ -50,5 +49,5 @@ export const runCreateAngularWrappers = async ({
   await runFormat(modulesDir);
   await runFormat(directivesDir);
   await jobs.runAngularBuild();
-  await runAdjustPackageExports('Angular: Adjusting angular package exports...')(distDir);
+  await jobs.runAdjustPackageExports('Angular: Adjusting angular package exports...')(distDir);
 };

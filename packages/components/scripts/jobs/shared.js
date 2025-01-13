@@ -415,36 +415,3 @@ export const enrichComponentAttributes = (component) => {
 
   return attrAndProps;
 };
-
-/**
- * Adjust the package.json exports field located in packageDir by removing the 'src' prefix
- * @param {string} label The label
- * @returns {job}
- */
-export const runAdjustPackageExports = (label) => job(label, async (
-  packageDir,
-) => {
-  const packageJsonPath = path.join(packageDir, 'package.json');
-  // Get the exports field from the package.json
-  const packageAsString = await fs.readFile(packageJsonPath, {
-    encoding: 'utf-8',
-  });
-  const packageAsJson = JSON.parse(packageAsString);
-
-  const oldExports = packageAsJson.exports;
-
-  const updatedExports = Object.keys(oldExports).reduce((acc, key) => {
-    const updatedKey = key.replace(/^\.\/src\//, './');
-    acc[updatedKey] = oldExports[key];
-    return acc;
-  }, {});
-
-  // Write out the changed package.json file with adjusted exports
-  // and format it using prettier
-  await fs.writeFile(
-    packageJsonPath,
-    JSON.stringify({ ...packageAsJson, exports: updatedExports }),
-  );
-
-  await formatFile(packageJsonPath, 'json-stringify');
-});

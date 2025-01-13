@@ -59,7 +59,7 @@ const createSelectors = selectors => selectors
   .join(',\n    ');
 
 /**
- * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
+ * Creates the angular forms module, located at packages/angular/modules/forms/forms.module.ts
  */
 export const runCreateFormsModule = job('Angular: Creating FormsModule...', async (outDir) => {
   const fileName = 'forms.module.ts';

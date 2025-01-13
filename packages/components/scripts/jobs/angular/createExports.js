@@ -5,7 +5,7 @@ import { createHeader, job } from '../shared.js';
 const headerComment = createHeader('angular');
 
 /**
- * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
+ * Creates the index.ts exports file, located at packages/angular/index.ts
  */
 export const runCreateExports = job('Angular: Creating exports file...', async (outDir) => {
   const outFile = path.join(outDir, 'index.ts');

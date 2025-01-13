@@ -13,7 +13,7 @@ export type SynDefaultChangedAttribute = {
  * @see src/internal/defaultSettings.ts
  */
 export type SynDefaultSettingsChangedEvent = CustomEvent<
-Record< string, SynDefaultChangedAttribute[]>
+Record<string, SynDefaultChangedAttribute[]>
 >;
 
 declare global {

@@ -142,13 +142,36 @@ const createElementSetterExport = () => `
     component: ComponentNamesWithDefaultValues,
     newValues: Partial<ExtractSettingsForElement<C>>,
   ) => {
+    // List of all changes in the default settings
+    const detail = {
+      [component]: [] as SynDefaultChangedAttribute[],
+    } as Record<string, SynDefaultChangedAttribute[]>;
+
     Object
       .entries(newValues)
       .forEach(([key, value]) => {
-        if (defaultSettings[key as keyof SynDefaultSettings]) {
+        if (
+          defaultSettings[key as keyof SynDefaultSettings]
+          && typeof (defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>)[component] !== 'undefined'
+        ) {
+          detail[component].push({
+            attribute: key,
+            newValue: value,
+            oldValue: defaultSettings[key as keyof SynDefaultSettings][
+              component as keyof SynDefaultSettings[keyof SynDefaultSettings]
+            ],
+          });
+
           (defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>)[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
         }
       });
+
+    // Fire the change event
+    const event = new CustomEvent<typeof detail>("syn-default-settings-changed", {
+      detail,
+      bubbles: true,
+    });
+    dispatchEvent(event);
 
     return defaultSettings;
   };

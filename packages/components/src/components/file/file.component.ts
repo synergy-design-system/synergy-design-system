@@ -15,7 +15,7 @@ import formControlCustomStyles from '../../styles/form-control.custom.styles.js'
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
-import { globalSettingsDecorator } from '../../internal/globalSettings.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 import styles from './file.styles.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { animateTo } from '../../internal/animate.js';
@@ -66,7 +66,7 @@ import { animateTo } from '../../internal/animate.js';
  * @animation file.text.appear - The appear animation to use for the file placeholder text
  * when a file is dropped
  */
-@globalSettingsDecorator()
+@globalSettings()
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

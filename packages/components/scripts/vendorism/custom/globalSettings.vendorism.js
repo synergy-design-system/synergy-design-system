@@ -37,13 +37,13 @@ export const vendorGlobalSettings = (path, content) => {
   const withImport = addSectionAfter(
     content,
     '/* eslint-disable */',
-    "import { globalSettingsDecorator } from '../../internal/globalSettings.js';",
+    "import { globalSettings } from '../../internal/globalSettings.js';",
   );
 
   const finalContent = addSectionBefore(
     withImport,
     'export default class',
-    '@globalSettingsDecorator()',
+    '@globalSettings()',
   );
 
   return {

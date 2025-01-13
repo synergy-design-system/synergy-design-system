@@ -6,7 +6,7 @@
  */
 
 /* eslint-disable */
-import { globalSettingsDecorator } from '../../internal/globalSettings.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
 import { HasSlotController, getTextContent } from '../../internal/slot.js';
@@ -48,7 +48,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart caret - The button's caret icon, an `<syn-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-@globalSettingsDecorator()
+@globalSettings()
 export default class SynButton extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = {

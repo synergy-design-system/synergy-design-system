@@ -6,7 +6,7 @@
  */
 
 /* eslint-disable */
-import { globalSettingsDecorator } from '../../internal/globalSettings.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import {
   customErrorValidityState,
@@ -54,7 +54,7 @@ import type SynRadioButton from '../radio-button/radio-button.js';
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
-@globalSettingsDecorator()
+@globalSettings()
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-button-group': SynButtonGroup };

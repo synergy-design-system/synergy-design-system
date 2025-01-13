@@ -11,7 +11,7 @@ import type { SynDefaultChangedAttribute } from '../events/events.js';
 
 type Constructor<T = object> = new (...args: any[]) => T;
 
-export function globalSettingsDecorator() {
+export function globalSettings() {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
     #globalSettingsSetupComplete = false;
 

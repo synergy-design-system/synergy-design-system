@@ -6,7 +6,7 @@
  */
 
 /* eslint-disable */
-import { globalSettingsDecorator } from '../../internal/globalSettings.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController } from '../../internal/form.js';
@@ -80,7 +80,7 @@ import type SynOption from '../option/option.component.js';
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
-@globalSettingsDecorator()
+@globalSettings()
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {

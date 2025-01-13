@@ -6,7 +6,7 @@
  */
 
 /* eslint-disable */
-import { globalSettingsDecorator } from '../../internal/globalSettings.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
@@ -49,7 +49,7 @@ import type { CSSResultGroup } from 'lit';
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
  */
-@globalSettingsDecorator()
+@globalSettings()
 export default class SynDetails extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 

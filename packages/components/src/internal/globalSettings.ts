@@ -39,6 +39,7 @@ export function globalSettingsDecorator() {
     }
 
     disconnectedCallback() {
+      super.disconnectedCallback();
       // Always remove the component from the global notification list
       removeGlobalEventNotification(this);
     }

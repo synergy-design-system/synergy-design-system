@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import fs from 'fs';
 import path from 'path';
-import { formatFile, job } from '../shared.js';
+import { formatFile, getPath, job } from '../shared.js';
 
 /**
  * Creates an ng-package.json file for the given entry file
@@ -9,8 +9,13 @@ import { formatFile, job } from '../shared.js';
  * @param {*} outDir - the path where it is written to
  */
 export const createNgPackageJson = (entryFile, outDir) => {
+  const angularPackageDir = getPath('../../angular');
+  const ngPackagrSchemaPath = path.join(angularPackageDir, 'node_modules/ng-packagr/ng-package.schema.json');
+
+  const relativePath = path.relative(outDir, ngPackagrSchemaPath);
+
   const ngPackageJson = {
-    $schema: '../../../node_modules/ng-packagr/ng-package.schema.json',
+    $schema: relativePath,
     lib: {
       entryFile,
     },

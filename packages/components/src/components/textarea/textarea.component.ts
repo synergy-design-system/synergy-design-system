@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -24,6 +23,7 @@ import styles from './textarea.styles.js';
 import customStyles from './textarea.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.

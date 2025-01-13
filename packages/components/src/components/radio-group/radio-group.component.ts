@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import {
   customErrorValidityState,
@@ -29,6 +28,7 @@ import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
 import type SynRadioButton from '../radio-button/radio-button.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.

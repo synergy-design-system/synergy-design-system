@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController } from '../../internal/form.js';
@@ -32,6 +31,7 @@ import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.

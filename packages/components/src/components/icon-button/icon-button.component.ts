@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -17,6 +16,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './icon-button.styles.js';
 import customStyles from './icon-button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.

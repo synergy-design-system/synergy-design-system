@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -28,6 +27,7 @@ import styles from './input.styles.js';
 import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Inputs collect data from the user.

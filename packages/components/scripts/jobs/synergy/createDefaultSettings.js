@@ -8,6 +8,11 @@ import {
   job,
 } from '../shared.js';
 
+/**
+ * List of attributes we want to allow an override for
+ */
+export const ALLOWED_ATTRIBUTES = ['size', 'variant'];
+
 const getDefaultAttributes = attributes => attributes.filter(
   attr => attr.default !== undefined && !!attr.default && attr.default !== "''",
 );
@@ -243,7 +248,18 @@ const createTypeImports = async (componentsHavingDefaults) => {
   return typeImports;
 };
 
-export const createDefaultSettings = job('Synergy: Creating default settings helper...', async (
+/**
+ * Create a list of type imports
+ * Make sure to just include files that acutally have defaults
+ */
+export const getComponentsWithDefaultSettings = (metadata) => new Set(
+  Object
+    .values(createSynDefaultSettingsStructure(metadata, ALLOWED_ATTRIBUTES))
+    .flat()
+    .sort(),
+);
+
+export const createDefaultSettings = job(`Synergy: Creating default settings helper for properties ${ALLOWED_ATTRIBUTES.join(', ')}...`, async (
   componentDistDir,
   componentsDir,
 ) => {
@@ -251,17 +267,9 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
 
   const metadata = await getManifestData(componentDistDir);
 
-  // List of attributes we want to allow an override for
-  const whiteListedAttributes = ['size', 'variant'];
-
   // Create a list of type imports
   // Make sure to just include files that acutally have defaults
-  const componentsHavingDefaults = new Set(
-    Object
-      .values(createSynDefaultSettingsStructure(metadata, whiteListedAttributes))
-      .flat()
-      .sort(),
-  );
+  const componentsHavingDefaults = getComponentsWithDefaultSettings(metadata);
 
   const typeImports = await createTypeImports(componentsHavingDefaults);
 
@@ -305,11 +313,11 @@ export const createDefaultSettings = job('Synergy: Creating default settings hel
         [key in keyof SynDefaultSettings]?: key extends keyof C ? AllowedValueForDefaultSetting<C, key> : never;
       };
     `,
-    createSynDefaultSettingsType(metadata, whiteListedAttributes),
+    createSynDefaultSettingsType(metadata, ALLOWED_ATTRIBUTES),
   ].filter(Boolean);
 
   const exports = [
-    createDefaultSettingsExport(metadata, whiteListedAttributes),
+    createDefaultSettingsExport(metadata, ALLOWED_ATTRIBUTES),
     createDefaultExtractorExport(),
     createElementSetterExport(),
     createGlobalSetterExport(),

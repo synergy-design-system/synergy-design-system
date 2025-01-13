@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
@@ -17,6 +16,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './radio.styles.js';
 import customStyles from './radio.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Radios allow the user to select a single option from a group.

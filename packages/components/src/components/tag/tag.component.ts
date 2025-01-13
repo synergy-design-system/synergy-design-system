@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -17,6 +16,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './tag.styles.js';
 import customStyles from './tag.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.

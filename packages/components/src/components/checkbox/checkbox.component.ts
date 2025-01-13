@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -25,6 +24,7 @@ import styles from './checkbox.styles.js';
 import customStyles from './checkbox.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.

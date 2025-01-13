@@ -17,7 +17,6 @@ import {
   vendorDrawer,
   vendorEvents,
   vendorForm,
-  vendorGlobalSettings,
   vendorIcon,
   vendorIconButton,
   vendorInput,
@@ -320,8 +319,6 @@ const config = {
       vendorTooltip,
       vendorTranslations,
       vendorWebTestRunnerConfig,
-      // Run as the last entry as we must have all transforms applied!
-      vendorGlobalSettings,
     ],
   },
 };

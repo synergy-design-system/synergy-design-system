@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
@@ -21,6 +20,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './details.styles.js';
 import customStyles from './details.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.

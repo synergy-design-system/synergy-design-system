@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
@@ -17,6 +16,7 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './radio-button.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.

@@ -1,3 +1,4 @@
+export * from './adjustComponentsForDefaultSettings.js';
 export * from './cem.js';
 export * from './createDefaultSettings.js';
 export * from './createEventsFile.js';

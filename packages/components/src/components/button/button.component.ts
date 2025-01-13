@@ -6,7 +6,6 @@
  */
 
 /* eslint-disable */
-import { globalSettings } from '../../internal/globalSettings.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
 import { HasSlotController, getTextContent } from '../../internal/slot.js';
@@ -23,6 +22,7 @@ import styles from './button.styles.js';
 import customStyles from './button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.

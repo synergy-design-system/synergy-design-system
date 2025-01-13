@@ -21,6 +21,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { globalSettings } from '../../internal/globalSettings.js';
 
 const toastStack = Object.assign(document.createElement('div'), { className: 'syn-toast-stack' });
 
@@ -49,6 +50,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sy
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
  */
+@globalSettings()
 export default class SynAlert extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };

@@ -1,8 +1,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 import {
-  createHeader, createNgPackageJson, getAllComponents, job,
+  createHeader, getAllComponents, job,
 } from '../shared.js';
+import { createNgPackageJson } from './shared.js';
 
 const headerComment = createHeader('angular');
 

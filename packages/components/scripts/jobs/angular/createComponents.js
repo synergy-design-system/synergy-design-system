@@ -4,7 +4,6 @@ import {
   createComment,
   createFrameworkIndex,
   createHeader,
-  createNgPackageJson,
   enrichComponentAttributes,
   getAllComponents,
   getControlAttributeForTwoWayBinding,
@@ -13,6 +12,7 @@ import {
   job,
   lcFirstLetter,
 } from '../shared.js';
+import { createNgPackageJson } from './shared.js';
 
 const headerComment = createHeader('angular');
 

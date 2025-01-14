@@ -9,7 +9,7 @@ This package aims for an improved UX when used in React applications:
 
 ## Known issues and limitations
 
-Got any problems using our React wrappers? Currently there are no known issues relating to them. But please take a look at [our list of known issues and limitations of the web components](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+), maybe you can find you problem there.
+Got any problems using our React wrappers? Currently there are no known issues relating to them. But please take a look at [our list of known issues and limitations of the web components](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+), maybe you can find your problem there.
 
 ## Getting started
 

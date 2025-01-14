@@ -48,7 +48,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart caret - The button's caret icon, an `<syn-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-@globalSettings()
+@globalSettings('SynButton')
 export default class SynButton extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = {

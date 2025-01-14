@@ -35,7 +35,7 @@ export const adjustComponentsForDefaultSettings = job('Synergy: Adjusting compon
       // Add the default settings decorator
       let newContent = componentContent.replace(
         'export default class',
-        '@globalSettings()\nexport default class',
+        `@globalSettings('${c.name}')\nexport default class`,
       );
 
       // Add the missing import after the last found import statement of the component code

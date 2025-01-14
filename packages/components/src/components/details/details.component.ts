@@ -49,7 +49,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
  */
-@globalSettings()
+@globalSettings('SynDetails')
 export default class SynDetails extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 

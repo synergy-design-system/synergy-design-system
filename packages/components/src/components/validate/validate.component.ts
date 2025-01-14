@@ -31,7 +31,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
  */
-@globalSettings()
+@globalSettings('SynValidate')
 export default class SynValidate extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 

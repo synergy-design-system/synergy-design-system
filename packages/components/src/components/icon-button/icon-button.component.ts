@@ -31,7 +31,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  *
  * @csspart base - The component's base wrapper.
  */
-@globalSettings()
+@globalSettings('SynIconButton')
 export default class SynIconButton extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

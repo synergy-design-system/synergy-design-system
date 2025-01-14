@@ -38,7 +38,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
-@globalSettings()
+@globalSettings('SynRadioButton')
 export default class SynRadioButton extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 

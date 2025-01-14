@@ -37,7 +37,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
  * @csspart label - The container that wraps the radio's label.
  */
-@globalSettings()
+@globalSettings('SynRadio')
 export default class SynRadio extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

@@ -73,7 +73,7 @@ import styles from './range.styles.js';
  * @cssproperty --track-active-offset - The point of origin of the active track,
  * starting at the left side of the range.
  */
-@globalSettings()
+@globalSettings('SynRange')
 export default class SynRange extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

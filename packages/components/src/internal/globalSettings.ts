@@ -11,7 +11,14 @@ import type { SynDefaultChangedAttribute } from '../events/events.js';
 
 type Constructor<T = object> = new (...args: any[]) => T;
 
-export function globalSettings() {
+/**
+ * Global settings decorator for a synergy component
+ * Used in conjunction with the global settings event
+ *
+ * @param name The components name. This is used to get the default values for the component
+ * @returns Decorated class for usage with synergy components
+ */
+export function globalSettings(name: ComponentNamesWithDefaultValues) {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
     #globalSettingsSetupComplete = false;
 
@@ -19,7 +26,7 @@ export function globalSettings() {
 
     // eslint-disable-next-line class-methods-use-this
     get __originalDecoratedClassName() {
-      return Proto.name;
+      return name;
     }
 
     /**
@@ -55,14 +62,9 @@ export function globalSettings() {
       this.#globalSettingsSetupComplete = true;
 
       // Get the default settings
-      const defaults = extractDefaultSettingsForElement(
-        Proto.name as ComponentNamesWithDefaultValues,
-      );
+      const defaults = extractDefaultSettingsForElement(name);
 
-      const systemDefaults = extractDefaultSettingsForElement(
-        Proto.name as ComponentNamesWithDefaultValues,
-        'initial',
-      );
+      const systemDefaults = extractDefaultSettingsForElement(name, 'initial');
 
       // Set the default values for all items that have no current value set
       Object

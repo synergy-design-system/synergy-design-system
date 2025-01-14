@@ -70,7 +70,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart increment-number-stepper - The increment number stepper button.
  * @csspart divider - The divider between the increment and decrement number stepper buttons.
  */
-@globalSettings()
+@globalSettings('SynInput')
 export default class SynInput extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {

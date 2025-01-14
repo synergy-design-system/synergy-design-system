@@ -66,7 +66,7 @@ import { animateTo } from '../../internal/animate.js';
  * @animation file.text.appear - The appear animation to use for the file placeholder text
  * when a file is dropped
  */
-@globalSettings()
+@globalSettings('SynFile')
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

@@ -20,7 +20,7 @@ import type SynDetails from '../details/details.component.js';
  *
  * @csspart base - The component's base wrapper.
  */
-@globalSettings()
+@globalSettings('SynAccordion')
 export default class SynAccordion extends SynergyElement {
   static styles: CSSResultGroup = [
     componentStyles,

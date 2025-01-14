@@ -50,7 +50,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @cssproperty --height - The height of the switch.
  * @cssproperty --thumb-size - The size of the thumb.
  */
-@globalSettings()
+@globalSettings('SynSwitch')
 export default class SynSwitch extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 

@@ -80,7 +80,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
-@globalSettings()
+@globalSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {

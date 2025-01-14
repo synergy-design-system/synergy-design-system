@@ -52,7 +52,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart label - The container that wraps the checkbox's label.
  * @csspart form-control-help-text - The help text's wrapper.
  */
-@globalSettings()
+@globalSettings('SynCheckbox')
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

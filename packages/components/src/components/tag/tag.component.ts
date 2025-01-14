@@ -35,7 +35,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart remove-button - The tag's remove button, an `<syn-icon-button>`.
  * @csspart remove-button__base - The remove button's exported `base` part.
  */
-@globalSettings()
+@globalSettings('SynTag')
 export default class SynTag extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };

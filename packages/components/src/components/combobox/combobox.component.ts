@@ -79,7 +79,7 @@ import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
  */
-@globalSettings()
+@globalSettings('SynCombobox')
 export default class SynCombobox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

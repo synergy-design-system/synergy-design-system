@@ -27,7 +27,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  *
  * @csspart base - The component's base wrapper.
  */
-@globalSettings()
+@globalSettings('SynBadge')
 export default class SynBadge extends SynergyElement {
   
   private readonly localize = new LocalizeController(this);

@@ -54,7 +54,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
-@globalSettings()
+@globalSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-button-group': SynButtonGroup };

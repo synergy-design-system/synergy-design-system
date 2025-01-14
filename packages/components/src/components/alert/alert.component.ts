@@ -50,7 +50,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sy
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
  */
-@globalSettings()
+@globalSettings('SynAlert')
 export default class SynAlert extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };

@@ -47,7 +47,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  */
-@globalSettings()
+@globalSettings('SynTextarea')
 export default class SynTextarea extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 

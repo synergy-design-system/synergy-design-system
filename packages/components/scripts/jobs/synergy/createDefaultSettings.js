@@ -189,7 +189,7 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   ];
 
   const outFile = `
-    /* eslint-disable @typescript-eslint/quotes, sort-keys, max-len, operator-linebreak, @typescript-eslint/indent, no-underscore-dangle */
+    /* eslint-disable @typescript-eslint/quotes */
     ${createHeader()}
 
     // Type imports

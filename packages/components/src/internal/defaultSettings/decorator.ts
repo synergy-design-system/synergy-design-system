@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, no-underscore-dangle */
+/* eslint-disable no-underscore-dangle */
 import type { PropertyValues } from 'lit';
 import type SynergyElement from '../synergy-element.js';
 import { type ComponentNamesWithDefaultValues } from './base.js';
@@ -9,6 +9,7 @@ import {
 } from './functions.js';
 import type { SynDefaultChangedAttribute } from '../../events/events.js';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Constructor<T = object> = new (...args: any[]) => T;
 
 /**

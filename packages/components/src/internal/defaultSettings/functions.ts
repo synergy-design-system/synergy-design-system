@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/quotes, sort-keys, max-len, operator-linebreak, @typescript-eslint/indent, no-underscore-dangle */
-import type SynergyElement from "../synergy-element.js";
+/* eslint-disable no-underscore-dangle */
+import type SynergyElement from '../synergy-element.js';
 import {
   type AllowedValueForDefaultSetting,
   type ComponentNamesWithDefaultValues,
@@ -36,8 +36,8 @@ function defaultSettingsHandler(e: SynDefaultSettingsChangedEvent) {
   Object.entries(detail).forEach(([componentName, changes]) => {
     globalEventNotificationMap.forEach(element => {
       if (
-        element.__originalDecoratedClassName !== "undefined" &&
-        element.__originalDecoratedClassName === componentName
+        element.__originalDecoratedClassName !== 'undefined'
+        && element.__originalDecoratedClassName === componentName
       ) {
         element.overrideGlobalSettings(changes);
       }
@@ -93,18 +93,15 @@ export const removeGlobalEventNotification = (
   element: GlobalSettingsEnabledElement,
 ) => {
   if (
-    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS &&
-    globalEventNotificationMap.has(element)
+    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS
+    && globalEventNotificationMap.has(element)
   ) {
     globalEventNotificationMap.delete(element);
   }
 };
 
 // Cache for speeding up lookups
-const elementPropertyCache = new Map<
-  ComponentNamesWithDefaultValues,
-  Record<string, unknown>
->();
+const elementPropertyCache = new Map<ComponentNamesWithDefaultValues, Record<string, unknown>>();
 
 /**
  * Extracts all available default settings for a given component
@@ -114,19 +111,18 @@ const elementPropertyCache = new Map<
  */
 export const extractDefaultSettingsForElement = (
   component: ComponentNamesWithDefaultValues,
-  from: "default" | "initial" = "default",
+  from: 'default' | 'initial' = 'default',
 ) => {
   // Check if we have the settings in cache
   // if (elementPropertyCache.has(component)) {
   //   return elementPropertyCache.get(component)!;
   // }
 
-  const store = from === "default" ? defaultSettings : INITIAL_DEFAULT_SETTINGS;
+  const store = from === 'default' ? defaultSettings : INITIAL_DEFAULT_SETTINGS;
 
   const allElementSettings = Object.entries(store).reduce(
     (acc: Record<string, unknown>, [key, value]) => {
-      const elementSetting =
-        value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
+      const elementSetting = value[component as keyof SynDefaultSettings[keyof SynDefaultSettings]];
       if (elementSetting) {
         acc[key] = elementSetting;
       }
@@ -154,13 +150,10 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
 
   Object.entries(newValues).forEach(([key, value]) => {
     if (
-      defaultSettings[key as keyof SynDefaultSettings] &&
-      typeof (
-        defaultSettings[key as keyof SynDefaultSettings] as Record<
-          string,
-          unknown
-        >
-      )[component] !== "undefined"
+      defaultSettings[key as keyof SynDefaultSettings]
+      && typeof (
+        defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
+      )[component] !== 'undefined'
     ) {
       detail[component].push({
         attribute: key,
@@ -172,23 +165,17 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
       });
 
       (
-        defaultSettings[key as keyof SynDefaultSettings] as Record<
-          string,
-          unknown
-        >
+        defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
       )[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
     }
   });
 
   // Fire the change event
   if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
-    const event = new CustomEvent<typeof detail>(
-      "syn-default-settings-changed",
-      {
-        detail,
-        bubbles: true,
-      },
-    );
+    const event = new CustomEvent<typeof detail>('syn-default-settings-changed', {
+      bubbles: true,
+      detail,
+    });
     dispatchEvent(event);
   }
 
@@ -225,10 +212,7 @@ export const setGlobalDefaultSettings = (
 
         // Set the new value
         (
-          defaultSettings[key as keyof SynDefaultSettings] as Record<
-            string,
-            unknown
-          >
+          defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
         )[component] = newValue;
       });
     }
@@ -236,13 +220,10 @@ export const setGlobalDefaultSettings = (
 
   // Fire the change event
   if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
-    const event = new CustomEvent<typeof detail>(
-      "syn-default-settings-changed",
-      {
-        detail,
-        bubbles: true,
-      },
-    );
+    const event = new CustomEvent<typeof detail>('syn-default-settings-changed', {
+      bubbles: true,
+      detail,
+    });
     dispatchEvent(event);
   }
 

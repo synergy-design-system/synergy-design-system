@@ -16,11 +16,18 @@ const angularPackageDir = getPath('../../angular');
 const reactPackageDir = getPath('../../react');
 const vuePackageDir = getPath('../../vue');
 
+const args = process.argv.slice(2);
+
 await jobs.runCreateSynergy({
   componentDir,
   outDir,
   packageVersion,
 });
+
+// If we pass --synergy, we just want to create the synergy package
+if (args.includes('--synergy')) {
+  process.exit(0);
+}
 
 await Promise.all([
   jobs.runCreateReactWrappers({

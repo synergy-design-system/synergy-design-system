@@ -299,6 +299,7 @@ export const DemoForm = () => {
           max={6000}
           min={0}
           name="donations"
+          restrict-movement
           tooltipFormatter={value => formatter.format(value)}
           value={formData.donations}
         >

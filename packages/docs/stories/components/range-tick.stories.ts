@@ -6,13 +6,11 @@ import { html } from 'lit';
 import '../../../components/src/components/range-tick/range-tick.js';
 import {
   generateScreenshotStory,
-  // generateStoryDescription,
+  generateStoryDescription,
   storybookDefaults,
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-range-tick');
 const { generateTemplate } = storybookTemplate('syn-range-tick');
@@ -25,8 +23,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('0628-87581'),
     docs: {
       description: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        component: docsTokens.components.range.ticks.default.description.value,
+        component: generateStoryDescription('range-tick', 'default'),
       },
     },
   },
@@ -44,7 +41,7 @@ export const Default: Story = {
     docs: {
       description: {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        story: docsTokens.components.range.ticks.default.description.value,
+        story: generateStoryDescription('range-tick', 'default'),
       },
     },
   },
@@ -55,8 +52,7 @@ export const Labels: Story = {
   parameters: {
     docs: {
       description: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        story: docsTokens.components.range.ticks.label.description.value,
+        story: generateStoryDescription('range-tick', 'label'),
       },
     },
   },
@@ -69,8 +65,7 @@ export const Grouping: Story = {
   parameters: {
     docs: {
       description: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        story: docsTokens.components.range.ticks.grouping.description.value,
+        story: generateStoryDescription('range-tick', 'grouping'),
       },
     },
   },
@@ -137,8 +132,7 @@ export const SubdivisionTicks: Story = {
   parameters: {
     docs: {
       description: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        story: docsTokens.components.range.ticks.subdivision.description.value,
+        story: generateStoryDescription('range-tick', 'subdivision'),
       },
     },
   },

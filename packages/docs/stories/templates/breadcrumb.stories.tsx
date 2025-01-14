@@ -66,7 +66,7 @@ export default meta;
 
 export const BreadcrumbResponsive = {
   render: () => html`
-    <div id="responsive" class="synergy-demo-application">
+    <div id="breadcrumb-responsive" class="synergy-demo-application">
       <syn-header label="Synergy"></syn-header>
       <syn-breadcrumb>
         <syn-breadcrumb-item>Home</syn-breadcrumb-item>
@@ -91,24 +91,24 @@ export const BreadcrumbResponsive = {
     </div>
     ${createSharedStyles()}
     <style>
-      #responsive {
+      #breadcrumb-responsive {
         container-type: inline-size;
       }
 
       /**
       * Styling for medium 
       **/
-      #responsive .truncated syn-icon-button::part(base) {
+      #breadcrumb-responsive .truncated syn-icon-button::part(base) {
         padding: 0;
       }
-      #responsive .truncated syn-icon-button {
+      #breadcrumb-responsive .truncated syn-icon-button {
         vertical-align: middle;
       }
 
       @container (max-width: 640px) and (min-width: 480px) {
         /* Hide the two breadcrumbs, which should be shown in the drop down */
-        #responsive syn-breadcrumb-item:nth-of-type(3),
-        #responsive syn-breadcrumb-item:nth-of-type(4) {
+        #breadcrumb-responsive syn-breadcrumb-item:nth-of-type(3),
+        #breadcrumb-responsive syn-breadcrumb-item:nth-of-type(4) {
           display: none;
         }
       }
@@ -116,8 +116,8 @@ export const BreadcrumbResponsive = {
       /**
       * Styling for large
       **/
-      @container (min-width: 640px) {
-        #responsive .truncated {
+      @container (min-width: 641px) {
+        #breadcrumb-responsive .truncated {
           display: none;
         }
       }
@@ -125,9 +125,9 @@ export const BreadcrumbResponsive = {
       /**
       * Styling for large and medium 
       **/
-      @container (min-width: 480px) {
+      @container (min-width: 481px) {
         /* Hide the back icon for the medium and large size */
-        #responsive .back-icon {
+        #breadcrumb-responsive .back-icon {
           display: none;
         }
       }
@@ -137,12 +137,12 @@ export const BreadcrumbResponsive = {
       **/
       @container (max-width: 480px) {
         /* Hide the separator of the breadcrumb */
-        #responsive syn-breadcrumb-item::part(separator){
+        #breadcrumb-responsive syn-breadcrumb-item::part(separator){
           display: none;
         }
 
         /* Only show the previous page breadcrumb */
-        #responsive syn-breadcrumb-item:not(:nth-last-of-type(2)) {
+        #breadcrumb-responsive syn-breadcrumb-item:not(:nth-last-of-type(2)) {
           display: none;
         }
       }
@@ -150,9 +150,9 @@ export const BreadcrumbResponsive = {
   `,
 };
 
-export const BreadCrumbTruncated = {
+export const BreadcrumbTruncated = {
   render: () => html`
-    <div id="truncated" class="synergy-demo-application">
+    <div id="breadcrumb-truncated" class="synergy-demo-application">
       <syn-header label="Synergy"></syn-header>
       <syn-breadcrumb>
         <syn-breadcrumb-item>Home</syn-breadcrumb-item>
@@ -174,10 +174,10 @@ export const BreadCrumbTruncated = {
     </div>
     ${createSharedStyles()}
     <style>
-      #truncated .truncated syn-icon-button::part(base) {
+      #breadcrumb-truncated .truncated syn-icon-button::part(base) {
         padding: 0;
       }
-      #truncated .truncated syn-icon-button {
+      #breadcrumb-truncated .truncated syn-icon-button {
         vertical-align: middle;
       }
     </style>
@@ -191,7 +191,7 @@ export const BreadcrumbShort = {
     },
   },
   render: () => html`
-    <div id="short" class="synergy-demo-application">
+    <div id="breadcrumb-short" class="synergy-demo-application">
       <syn-header label="Synergy"></syn-header>
       <syn-breadcrumb >
         <syn-breadcrumb-item>Home</syn-breadcrumb-item>
@@ -207,12 +207,12 @@ export const BreadcrumbShort = {
     ${createSharedStyles()}
     <style>
       /* Hide the separator of the breadcrumb */
-      #short syn-breadcrumb-item::part(separator){
+      #breadcrumb-short syn-breadcrumb-item::part(separator){
         display: none;
       }
 
       /* Only show the previous page breadcrumb */
-      #short syn-breadcrumb-item:not(:nth-last-of-type(2)) {
+      #breadcrumb-short syn-breadcrumb-item:not(:nth-last-of-type(2)) {
         display: none;
       }
     </style>

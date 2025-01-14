@@ -22,10 +22,13 @@ let SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = false;
  */
 let hasGlobalEventSetup = false;
 
+// Cache for speeding up lookups
+const elementPropertyCache = new Map<ComponentNamesWithDefaultValues, Record<string, unknown>>();
+
 /**
  * List of all components that have default values
  */
-export const globalEventNotificationMap = new Set<GlobalSettingsEnabledElement>();
+const globalEventNotificationMap = new Set<GlobalSettingsEnabledElement>();
 
 /**
  * The default setting update handler that is bound to the global event
@@ -100,9 +103,6 @@ export const removeGlobalEventNotification = (
   }
 };
 
-// Cache for speeding up lookups
-const elementPropertyCache = new Map<ComponentNamesWithDefaultValues, Record<string, unknown>>();
-
 /**
  * Extracts all available default settings for a given component
  * @param component The name of the component to get the settings for
@@ -113,12 +113,16 @@ export const extractDefaultSettingsForElement = (
   component: ComponentNamesWithDefaultValues,
   from: 'default' | 'initial' = 'default',
 ) => {
-  // Check if we have the settings in cache
-  // if (elementPropertyCache.has(component)) {
-  //   return elementPropertyCache.get(component)!;
-  // }
-
   const store = from === 'default' ? defaultSettings : INITIAL_DEFAULT_SETTINGS;
+
+  // When we have settings in the cache, make sure to use them to speed them up when possible.
+  // This is only available when using the default source!
+  if (from === 'default') {
+    const cachedSettings = elementPropertyCache.get(component);
+    if (typeof cachedSettings !== 'undefined') {
+      return cachedSettings;
+    }
+  }
 
   const allElementSettings = Object.entries(store).reduce(
     (acc: Record<string, unknown>, [key, value]) => {
@@ -130,7 +134,12 @@ export const extractDefaultSettingsForElement = (
     },
     {},
   );
-  elementPropertyCache.set(component, allElementSettings);
+
+  // Set the cache item when we are using the default source
+  if (from === 'default') {
+    elementPropertyCache.set(component, allElementSettings);
+  }
+
   return allElementSettings;
 };
 
@@ -169,6 +178,14 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
       )[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
     }
   });
+
+  // Make sure to clean up the cache when we change the default settings
+  const cachedItem = elementPropertyCache.get(component);
+  if (typeof cachedItem !== 'undefined') {
+    detail[component].forEach(change => {
+      cachedItem[change.attribute] = change.newValue;
+    });
+  }
 
   // Fire the change event
   if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
@@ -217,6 +234,18 @@ export const setGlobalDefaultSettings = (
       });
     }
   });
+
+  // Make sure to update the cache when we change a default settings
+  Object
+    .entries(detail)
+    .forEach(([component, changes]) => {
+      const cachedItem = elementPropertyCache.get(component as ComponentNamesWithDefaultValues);
+      if (typeof cachedItem !== 'undefined') {
+        changes.forEach(change => {
+          cachedItem[change.attribute] = change.newValue;
+        });
+      }
+    });
 
   // Fire the change event
   if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {

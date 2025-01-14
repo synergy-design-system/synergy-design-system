@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/blocks";
-import { defaultSettings, extractDefaultSettingsForElement, INITIAL_DEFAULT_SETTINGS } from '../../components/src/synergy';
+import { extractDefaultSettingsForElement, INITIAL_DEFAULT_SETTINGS } from '../../components/src/synergy';
 
 <Meta title="Configuring global settings" />
 
@@ -42,10 +42,10 @@ This works in the reverse way of `setGlobalDefaultSettings` and allows you to se
 ```typescript
 import { setDefaultSettingsForElement } from '@synergy-design-system/components';
 
-// Sets the size to small and variant to primary for all newly rendered SynButton components
+// Sets the size to small and variant to filled for all newly rendered SynButton components
 setDefaultSettingsForElement('SynButton', {
   size: 'small',
-  variant: 'primary',
+  variant: 'filled',
 });
 ```
 
@@ -86,7 +86,7 @@ The following settings are supported by all synergy components:
 
 <ul>
   {Object
-    .keys(defaultSettings)
+    .keys(INITIAL_DEFAULT_SETTINGS)
     .map(attr => (
       <li key={`attr-${attr}`}>
         <strong>{attr}</strong>
@@ -132,6 +132,5 @@ The following list shows the default settings for all synergy components.
           </tr>
         );
     })}
-
   </tbody>
 </table>

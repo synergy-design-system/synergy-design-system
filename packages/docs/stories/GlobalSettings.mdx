@@ -43,7 +43,7 @@ This works in the reverse way of `setGlobalDefaultSettings` and allows you to se
 import { setDefaultSettingsForElement } from '@synergy-design-system/components';
 
 // Sets the size to small and variant to filled for all newly rendered SynButton components
-setDefaultSettingsForElement('SynButton', {
+setDefaultSettingsForElement<SynButton>('SynButton', {
   size: 'small',
   variant: 'filled',
 });

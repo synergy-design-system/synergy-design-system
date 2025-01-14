@@ -21,6 +21,7 @@ export const SizeSwitch = () => {
       <SynTooltip content="Set element size to small">
         <SynIconButton
           color={size === 'small' ? 'primary' : 'currentColor'}
+          data-size="small"
           name="density_small"
           label="Set element size to small"
           size="small"
@@ -30,6 +31,7 @@ export const SizeSwitch = () => {
       <SynTooltip content="Set element size to medium">
         <SynIconButton
           color={size === 'medium' ? 'primary' : 'currentColor'}
+          data-size="medium"
           name="density_medium"
           label="Set element size to medium"
           size="small"
@@ -39,6 +41,7 @@ export const SizeSwitch = () => {
       <SynTooltip content="Set element size to large">
         <SynIconButton
           color={size === 'large' ? 'primary' : 'currentColor'}
+          data-size="large"
           name="density_large"
           label="Set element size to large"
           size="small"

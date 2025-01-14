@@ -15,7 +15,7 @@ import { LocalizeController } from '../../utilities/localize.js';
 import styles from './badge.styles.js';
 import customStyles from './badge.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.
@@ -27,7 +27,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  *
  * @csspart base - The component's base wrapper.
  */
-@globalSettings('SynBadge')
+@enableDefaultSettings('SynBadge')
 export default class SynBadge extends SynergyElement {
   
   private readonly localize = new LocalizeController(this);

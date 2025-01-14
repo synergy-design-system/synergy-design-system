@@ -28,14 +28,14 @@ export const adjustComponentsForDefaultSettings = job('Synergy: Adjusting compon
       const componentContent = await fs.readFile(componentFile, 'utf8');
 
       // Check if the default settings decorator is already present
-      if (componentContent.includes('@globalSettings')) {
+      if (componentContent.includes('@enableDefaultSettings')) {
         return STATE_ALREADY_PRESENT;
       }
 
       // Add the default settings decorator
       let newContent = componentContent.replace(
         'export default class',
-        `@globalSettings('${c.name}')\nexport default class`,
+        `@enableDefaultSettings('${c.name}')\nexport default class`,
       );
 
       // Add the missing import after the last found import statement of the component code
@@ -43,7 +43,7 @@ export const adjustComponentsForDefaultSettings = job('Synergy: Adjusting compon
       const importStatement = componentContent.match(/import .+ from '.+';/g);
       if (importStatement) {
         const lastImport = importStatement[importStatement.length - 1];
-        newContent = newContent.replace(lastImport, `${lastImport}\nimport { globalSettings } from '../../internal/globalSettings.js';`);
+        newContent = newContent.replace(lastImport, `${lastImport}\nimport { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';`);
       }
 
       try {

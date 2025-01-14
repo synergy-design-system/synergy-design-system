@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, no-underscore-dangle */
 import type { PropertyValues } from 'lit';
-import type SynergyElement from './synergy-element.js';
+import type SynergyElement from '../synergy-element.js';
 import {
   type ComponentNamesWithDefaultValues,
   addGlobalEventNotification,
   extractDefaultSettingsForElement,
   removeGlobalEventNotification,
-} from './defaultSettings.js';
-import type { SynDefaultChangedAttribute } from '../events/events.js';
+} from '../defaultSettings.js';
+import type { SynDefaultChangedAttribute } from '../../events/events.js';
 
 type Constructor<T = object> = new (...args: any[]) => T;
 
@@ -18,7 +18,7 @@ type Constructor<T = object> = new (...args: any[]) => T;
  * @param name The components name. This is used to get the default values for the component
  * @returns Decorated class for usage with synergy components
  */
-export function globalSettings(name: ComponentNamesWithDefaultValues) {
+export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
     #globalSettingsSetupComplete = false;
 

@@ -24,7 +24,7 @@ import styles from './checkbox.styles.js';
 import customStyles from './checkbox.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
@@ -52,7 +52,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart label - The container that wraps the checkbox's label.
  * @csspart form-control-help-text - The help text's wrapper.
  */
-@globalSettings('SynCheckbox')
+@enableDefaultSettings('SynCheckbox')
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

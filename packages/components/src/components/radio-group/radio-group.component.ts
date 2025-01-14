@@ -28,7 +28,7 @@ import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
 import type SynRadioButton from '../radio-button/radio-button.js';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
@@ -54,7 +54,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
-@globalSettings('SynRadioGroup')
+@enableDefaultSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = { 'syn-button-group': SynButtonGroup };

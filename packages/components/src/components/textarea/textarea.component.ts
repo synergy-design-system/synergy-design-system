@@ -23,7 +23,7 @@ import styles from './textarea.styles.js';
 import customStyles from './textarea.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
@@ -47,7 +47,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart base - The component's base wrapper.
  * @csspart textarea - The internal `<textarea>` control.
  */
-@globalSettings('SynTextarea')
+@enableDefaultSettings('SynTextarea')
 export default class SynTextarea extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 

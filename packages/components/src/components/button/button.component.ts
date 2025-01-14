@@ -22,7 +22,7 @@ import styles from './button.styles.js';
 import customStyles from './button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Buttons represent actions that are available to the user.
@@ -48,7 +48,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart caret - The button's caret icon, an `<syn-icon>` element.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  */
-@globalSettings('SynButton')
+@enableDefaultSettings('SynButton')
 export default class SynButton extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = {

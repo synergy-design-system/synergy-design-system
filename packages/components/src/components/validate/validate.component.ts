@@ -12,7 +12,7 @@ import {
   normalizeEventAttribute,
 } from './utility.js';
 import styles from './validate.styles.js';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Validate provides form field validation messages in a unified way.
@@ -31,7 +31,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
  */
-@globalSettings('SynValidate')
+@enableDefaultSettings('SynValidate')
 export default class SynValidate extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 

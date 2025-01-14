@@ -16,7 +16,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './icon-button.styles.js';
 import customStyles from './icon-button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { globalSettings } from '../../internal/globalSettings.js';
+import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
 
 /**
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
@@ -31,7 +31,7 @@ import { globalSettings } from '../../internal/globalSettings.js';
  *
  * @csspart base - The component's base wrapper.
  */
-@globalSettings('SynIconButton')
+@enableDefaultSettings('SynIconButton')
 export default class SynIconButton extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, no-underscore-dangle */
 import type { PropertyValues } from 'lit';
 import type SynergyElement from '../synergy-element.js';
+import { type ComponentNamesWithDefaultValues } from './base.js';
 import {
-  type ComponentNamesWithDefaultValues,
   addGlobalEventNotification,
   extractDefaultSettingsForElement,
   removeGlobalEventNotification,
-} from '../defaultSettings.js';
+} from './functions.js';
 import type { SynDefaultChangedAttribute } from '../../events/events.js';
 
 type Constructor<T = object> = new (...args: any[]) => T;

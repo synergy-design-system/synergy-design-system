@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@lit/react": "^1.0.6",
+    "@lit/react": "^1.0.7",
     "@synergy-design-system/components": "workspace:^"
   },
   "description": "React wrappers for the Synergy Design System",
@@ -13,7 +13,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./components/*": "./dist/components/*"
+    "./components/*": "./dist/components/*",
+    "./types/latest": {
+      "types": "./dist/types/syn-jsx-elements.d.ts"
+    }
   },
   "types": "./dist/index.d.ts",
   "files": [
@@ -42,8 +45,8 @@
   "type": "module",
   "version": "2.17.0",
   "devDependencies": {
-    "@types/react": "^18.3.12",
-    "react": "^18.3.1"
+    "@types/react": "^19.0.7",
+    "react": "^19.0.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

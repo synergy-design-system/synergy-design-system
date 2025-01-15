@@ -2984,6 +2984,16 @@
           "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
           "type": "text"
         }
+      },
+      "breadcrumb": {
+        "title": {
+          "value": "Breadcrumb",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the use of syn-breadcrumb in desktop and mobile views. \n\nOn desktop, if there's room, always show the full breadcrumb trail.\n\nIf the viewport has not enough space for all breadcrumb items, it is possible to display a truncated version of the breadcrumb and move the items between Home and the parent page into a dropdown menu. \n\nAlternatively, an even shorter version can display only the name/link of the parent page and the prefix icon with the back arrow to navigate one level up.\n\nFor more information on breadcrumbs, visit Nielsen Norman Group:  https://www.nngroup.com/articles/breadcrumbs/",
+          "type": "text"
+        }
       }
     },
     "nav-item": {

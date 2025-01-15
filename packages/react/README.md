@@ -7,6 +7,10 @@ This package aims for an improved UX when used in React applications:
 - Auto-completion
 - Event handling
 
+> Note that with react@19 and above, react has full support for web-components.
+> For those react versions, this package can be used by loading custom types,
+> you **do not need to use the exported components** anymore.
+
 ## Known issues and limitations
 
 Got any problems using our React wrappers? Currently there are no known issues relating to them. But please take a look at [our list of known issues and limitations of the web components](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+), maybe you can find your problem there.
@@ -62,17 +66,66 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 
-### 4. Importing and rendering components
+### 4. Using native Synergy components in react (only for react >= 19.0.0) in Typescript projects
+
+React@19 finally shipped with official support for web components.
+With this version of react, you are free to **use our native web components** directly in your application.
+
+However, you will likely receive errors because our elements are not known to React as available (in react speech `intrinsic`) elements. This will also occur when using typescript. For this reason, we provide **type only wrappers** for all versions of react from version 19.0.0 onward.
+
+Using synergy in a typescript project with React@19 can be easily achieved via one line of code. There is no need to import `@synergy-design-system/react` in your code directly anymore!
+
+Just add the following definition to your projects typescript configuration file (e.g. `tsconfig.json`):
+
+```json
+{
+  "compilerOptions": {
+    "types": ["@synergy-design-system/react/types/latest"]
+  }
+}
+```
+
+This makes sure your project knows about our list of intrinsic elements. This will also enable **automatic type checks and auto completion for properties** for all synergy elements.
+
+You may now use the components by importing them from the `@synergy-design-system/component` package and rendering them in a React component.
+
+```tsx
+// You may also load the complete bundle somewhere in your application,
+// but directly including only needed components leads to smaller bundles.
+import "@synergy-design-system/components/components/button/button.js";
+import "@synergy-design-system/components/components/input/input.js";
+
+export const MyButton = () => <syn-button type="submit">Submit me</syn-button>;
+export const MyInput = () => (
+  <syn-input name="my-input" onsyn-change={e => console.log(e)} required />
+);
+```
+
+#### 4.1. Migrating from synergies react wrappers to native components
+
+1. First make sure you have react@19 or higher installed in your project.
+2. Upgrade `@synergy-design-system/react` to the latest version.
+3. Add the required types to your typescript configuration (`compilerOptions.types=['@synergy-design-system/react/types/latest']`).
+4. Run typescript to verify everything is still fine.
+5. Replace occurrences of the old synergy components with their native counterpart (e.g. `<SynButton>` should be exchanged for `<syn-button>`). When using native synergy components, make sure to double check on event names (e.g. `<SynInput onSynInput={e => null} />` will become `<syn-input onsyn-input={e => null} />`).
+6. When you are done, remove all occurrences of `@synergy-design-system/react` from your code.
+
+---
+
+### 5. Using the lit wrappers (required for react < 19.0.0, optional for react >= 19.0.0)
 
 You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a React component.
 
 ```tsx
-import { SynButton } from "@synergy-design-system/react";
+import { SynButton, SynInput } from "@synergy-design-system/react";
 
 export const MyButton = () => <SynButton type="submit">Submit me</SynButton>;
+export const MyInput = () => (
+  <SynInput name="my-input" onSynChange={e => console.log(e)} required />
+);
 ```
 
-### 5. Usage of the components
+### 6. Usage of the components
 
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
@@ -92,7 +145,7 @@ The naming of the components for React changes from kebab-case to PascalCase.
 <SynButton> My Button </SynButton>
 ```
 
-### 6. Usage of attributes
+### 7. Usage of attributes
 
 The attribute namings of the components are the same as in the documentation.
 
@@ -114,7 +167,7 @@ The attribute namings of the components are the same as in the documentation.
 />
 ```
 
-### 7. Usage of events
+### 8. Usage of events
 
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 
@@ -164,7 +217,7 @@ export const MyComponent = () => (
 );
 ```
 
-### 8. Usage of methods
+### 9. Usage of methods
 
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 

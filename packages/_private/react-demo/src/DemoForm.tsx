@@ -2,27 +2,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import type {
-  SynCheckbox as NativeCheckbox,
-  SynFile as NativeFile,
   SynChangeEvent,
-} from '@synergy-design-system/components';
-import {
-  SynButton,
   SynCheckbox,
-  SynCombobox,
-  SynDivider,
   SynFile,
-  SynInput,
-  SynOptgroup,
-  SynOption,
-  SynRadio,
-  SynRadioGroup,
-  SynRange,
-  SynRangeTick,
-  SynSelect,
-  SynSwitch,
-  SynTextarea,
-} from '@synergy-design-system/react';
+} from '@synergy-design-system/components';
 import { DemoFieldset } from './DemoFieldset';
 
 type FormEnabledElements = HTMLElement & {
@@ -66,7 +49,7 @@ export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
 
-  // This is needed, as shoelace does its event with `syn-` prefix
+  // This is needed, as synergy does its event with `syn-` prefix
   // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
     const listener = (e: SynChangeEvent) => {
@@ -86,9 +69,9 @@ export const DemoForm = () => {
       switch (element.tagName.toLocaleLowerCase()) {
       case 'syn-checkbox':
       case 'syn-switch':
-        finalValue = (element as NativeCheckbox).checked;
+        finalValue = (element as SynCheckbox).checked;
         break;
-      case 'syn-file': finalValue = (element as NativeFile).files; break;
+      case 'syn-file': finalValue = (element as SynFile).files; break;
       default: finalValue = value;
       }
 
@@ -131,36 +114,36 @@ export const DemoForm = () => {
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">
 
-        <SynRadioGroup
+        <syn-radio-group
           id="radiogroup-gender"
           name="gender"
           label="Please tell us your gender"
           required
           value={formData.gender}
         >
-          <SynRadio value="f">Female</SynRadio>
-          <SynRadio value="m">Male</SynRadio>
-          <SynRadio value="other">Other</SynRadio>
-        </SynRadioGroup>
+          <syn-radio value="f">Female</syn-radio>
+          <syn-radio value="m">Male</syn-radio>
+          <syn-radio value="other">Other</syn-radio>
+        </syn-radio-group>
 
-        <SynSelect
+        <syn-select
           id="select-role"
           label="Current position"
           name="role"
           required
           value={formData.role}
         >
-          <SynOptgroup label="Developers">
-            <SynOption value="backend">Backend Developer</SynOption>
-            <SynOption value="frontend">Frontend Developer</SynOption>
-          </SynOptgroup>
-          <SynOptgroup label="Other">
-            <SynOption value="lead">Team Lead</SynOption>
-            <SynOption value="other">Other (please specify in comment section below)</SynOption>
-          </SynOptgroup>
-        </SynSelect>
+          <syn-optgroup label="Developers">
+            <syn-option value="backend">Backend Developer</syn-option>
+            <syn-option value="frontend">Frontend Developer</syn-option>
+          </syn-optgroup>
+          <syn-optgroup label="Other">
+            <syn-option value="lead">Team Lead</syn-option>
+            <syn-option value="other">Other (please specify in comment section below)</syn-option>
+          </syn-optgroup>
+        </syn-select>
 
-        <SynInput
+        <syn-input
           id="input-text"
           label="Name"
           minlength={5}
@@ -172,7 +155,7 @@ export const DemoForm = () => {
           type="text"
         />
 
-        <SynInput
+        <syn-input
           id="input-email"
           label="E-Mail"
           name="email"
@@ -182,7 +165,7 @@ export const DemoForm = () => {
           type="email"
         />
 
-        <SynInput
+        <syn-input
           id="input-phone"
           label="Phone"
           name="phone"
@@ -192,7 +175,7 @@ export const DemoForm = () => {
           type="tel"
         />
 
-        <SynInput
+        <syn-input
           id="input-date"
           label="Date of birth"
           name="date"
@@ -200,7 +183,7 @@ export const DemoForm = () => {
           type="date"
         />
 
-        <SynCombobox
+        <syn-combobox
           id="input-nationality"
           label="Nationality"
           name="nationality"
@@ -210,20 +193,20 @@ export const DemoForm = () => {
           getOption={highlightOptionRenderer}
         >
           {nationalities.map(n => (
-            <SynOption key={n}>
+            <syn-option key={n}>
               {n}
-            </SynOption>
+            </syn-option>
           ))}
-        </SynCombobox>
+        </syn-combobox>
 
       </DemoFieldset>
       {/* /PersonalInformation */}
 
-      <SynDivider />
+      <syn-divider />
 
       {/* Security */}
       <DemoFieldset legend="Security">
-        <SynInput
+        <syn-input
           id="input-password"
           label="Provide a secure password"
           name="password"
@@ -235,7 +218,7 @@ export const DemoForm = () => {
           value={formData.password}
         />
 
-        <SynInput
+        <syn-input
           id="input-number"
           label="Please provide a fallback numeric value that may be used for password recovery"
           min="1000"
@@ -248,11 +231,11 @@ export const DemoForm = () => {
       </DemoFieldset>
       {/* /Security */}
 
-      <SynDivider />
+      <syn-divider />
 
       {/* Topics */}
       <DemoFieldset legend="Topics">
-        <SynSelect
+        <syn-select
           clearable
           id="topics"
           label="I am interested in the following technologies"
@@ -260,25 +243,25 @@ export const DemoForm = () => {
           name="topics"
           value={formData.topics}
         >
-          <SynOptgroup label="Frontend">
-            <SynOption value="angular">Angular</SynOption>
-            <SynOption value="react">React.js</SynOption>
-            <SynOption value="vanilla">Vanilla.js</SynOption>
-            <SynOption value="vue">Vue</SynOption>
-          </SynOptgroup>
-          <SynOptgroup label="Backend">
-            <SynOption value="node">Node.js</SynOption>
-            <SynOption value="Python">Python</SynOption>
-          </SynOptgroup>
-        </SynSelect>
+          <syn-optgroup label="Frontend">
+            <syn-option value="angular">Angular</syn-option>
+            <syn-option value="react">React.js</syn-option>
+            <syn-option value="vanilla">Vanilla.js</syn-option>
+            <syn-option value="vue">Vue</syn-option>
+          </syn-optgroup>
+          <syn-optgroup label="Backend">
+            <syn-option value="node">Node.js</syn-option>
+            <syn-option value="Python">Python</syn-option>
+          </syn-optgroup>
+        </syn-select>
       </DemoFieldset>
       {/* /Topics */}
 
-      <SynDivider />
+      <syn-divider />
 
       {/* Happiness */}
       <DemoFieldset id="happiness-fields" legend="Happiness">
-        <SynRange
+        <syn-range
           id="happiness"
           label="How happy are you with the Synergy Design System?"
           max={10}
@@ -287,13 +270,13 @@ export const DemoForm = () => {
           value={formData.happiness}
         >
           <nav slot="ticks">
-            <SynRangeTick>🤮</SynRangeTick>
-            <SynRangeTick>🥱</SynRangeTick>
-            <SynRangeTick>😍</SynRangeTick>
+            <syn-range-tick>🤮</syn-range-tick>
+            <syn-range-tick>🥱</syn-range-tick>
+            <syn-range-tick>😍</syn-range-tick>
           </nav>
-        </SynRange>
+        </syn-range>
 
-        <SynRange
+        <syn-range
           id="donations"
           label="I would donate between"
           max={6000}
@@ -304,68 +287,68 @@ export const DemoForm = () => {
           value={formData.donations}
         >
           <nav slot="ticks">
-            <SynRangeTick>0 €</SynRangeTick>
-            <SynRangeTick>6.000 €</SynRangeTick>
+            <syn-range-tick>0 €</syn-range-tick>
+            <syn-range-tick>6.000 €</syn-range-tick>
           </nav>
-        </SynRange>
+        </syn-range>
 
       </DemoFieldset>
       {/* /Happiness */}
 
-      <SynDivider />
+      <syn-divider />
 
       {/* Marketing */}
       <DemoFieldset legend="Please inform me about the following technologies">
-        <SynCheckbox
+        <syn-checkbox
           checked={formData.newsletterStandard}
           id="checkbox-newsletter-default"
           name="newsletterStandard"
         >
           Please subscribe me to the synergy newsletter
-        </SynCheckbox>
-        <SynCheckbox
+        </syn-checkbox>
+        <syn-checkbox
           checked={formData.newsletterAngular}
           id="checkbox-newsletter-angular"
           name="newsletterAngular"
         >
           Please subscribe me to all things related to angular
-        </SynCheckbox>
-        <SynCheckbox
+        </syn-checkbox>
+        <syn-checkbox
           checked={formData.newsletterReact}
           id="checkbox-newsletter-react"
           name="newsletterReact"
         >
           Please subscribe me to all things related to react
-        </SynCheckbox>
-        <SynCheckbox
+        </syn-checkbox>
+        <syn-checkbox
           checked={formData.newsletterVanilla}
           id="checkbox-newsletter-vanilla"
           name="newsletterVanilla"
         >
           Please subscribe me to all things related to vanilla.js
-        </SynCheckbox>
-        <SynCheckbox
+        </syn-checkbox>
+        <syn-checkbox
           checked={formData.newsletterVue}
           id="checkbox-newsletter-vue"
           name="newsletterVue"
         >
           Please subscribe me to all things related to vue
-        </SynCheckbox>
-        <SynSwitch
+        </syn-checkbox>
+        <syn-switch
           checked={formData.newsletterBeta}
           id="checkbox-newsletter-beta"
           name="newsletterBeta"
         >
           I am interested in the Synergy Beta Program
-        </SynSwitch>
+        </syn-switch>
       </DemoFieldset>
       {/* /Marketing */}
 
-      <SynDivider />
+      <syn-divider />
 
       { /* AdditionalInformation */ }
       <DemoFieldset legend="Additional Information">
-        <SynTextarea
+        <syn-textarea
           id="additional-info"
           label="Comment"
           name="comment"
@@ -373,8 +356,8 @@ export const DemoForm = () => {
           rows={10}
         >
           {formData.comment}
-        </SynTextarea>
-        <SynFile
+        </syn-textarea>
+        <syn-file
           accept="image/*"
           droparea
           help-text="Please upload images only"
@@ -388,12 +371,12 @@ export const DemoForm = () => {
 
       { /* /AdditionalInformation */ }
 
-      <SynDivider />
+      <syn-divider />
 
       {/* Actions */}
       <div className="syn-fieldset syn-submit-buttons">
-        <SynButton variant="outline" type="reset">Reset</SynButton>
-        <SynButton variant="filled" type="submit">Send</SynButton>
+        <syn-button variant="outline" type="reset">Reset</syn-button>
+        <syn-button variant="filled" type="submit">Send</syn-button>
       </div>
       {/* /Actions */}
 

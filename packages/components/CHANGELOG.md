@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.17.0...components/2.18.0) (2025-01-15)
+
+
+### Features
+
+* ✨ React: Add support for react v19 ([#710](https://github.com/synergy-design-system/synergy-design-system/issues/710)) ([7f9992a](https://github.com/synergy-design-system/synergy-design-system/commit/7f9992a36ea7403c803faff2813b4d506ef1ae26))
+
 # [@synergy-design-system/components-v2.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.16.0...components/2.17.0) (2025-01-10)
 
 

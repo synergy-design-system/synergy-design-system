@@ -105,7 +105,7 @@ export const BreadcrumbResponsive = {
         vertical-align: middle;
       }
 
-      @container (max-width: 640px) and (min-width: 480px) {
+      @container (max-width: 639px) and (min-width: 480px) {
         /* Hide the two breadcrumbs, which should be shown in the drop down */
         #breadcrumb-responsive syn-breadcrumb-item:nth-of-type(3),
         #breadcrumb-responsive syn-breadcrumb-item:nth-of-type(4) {
@@ -116,7 +116,7 @@ export const BreadcrumbResponsive = {
       /**
       * Styling for large
       **/
-      @container (min-width: 641px) {
+      @container (min-width: 640px) {
         #breadcrumb-responsive .truncated {
           display: none;
         }
@@ -125,7 +125,7 @@ export const BreadcrumbResponsive = {
       /**
       * Styling for large and medium 
       **/
-      @container (min-width: 481px) {
+      @container (min-width: 480px) {
         /* Hide the back icon for the medium and large size */
         #breadcrumb-responsive .back-icon {
           display: none;
@@ -135,7 +135,7 @@ export const BreadcrumbResponsive = {
       /**
       * Styling for small 
       **/
-      @container (max-width: 480px) {
+      @container (max-width: 479px) {
         /* Hide the separator of the breadcrumb */
         #breadcrumb-responsive syn-breadcrumb-item::part(separator){
           display: none;

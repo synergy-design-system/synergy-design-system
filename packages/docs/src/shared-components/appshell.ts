@@ -26,7 +26,7 @@ export const createFooter = () => html`
       margin: 0;
     }
 
-    @container (max-width: 768px) {
+    @container (max-width: 640px) {
       .syn-link-list {
         flex-direction: column;
       }
@@ -121,7 +121,7 @@ export const createSharedStyles = () => html`
       padding: 0 var(--syn-spacing-small);
     }
 
-    @container (max-width: 768px) {
+    @container (max-width: 640px) {
       .synergy-demo-main {
         margin: var(--syn-spacing-medium) var(--syn-spacing-medium) 0;
       }

@@ -192,11 +192,11 @@ importers:
         specifier: workspace:*
         version: link:../eslint-config-syn
       '@types/react':
-        specifier: ^19.0.0
-        version: 19.0.0
+        specifier: ^19.0.7
+        version: 19.0.7
       '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.0.0
+        specifier: ^19.0.3
+        version: 19.0.3(@types/react@19.0.7)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
@@ -766,8 +766,8 @@ importers:
   packages/react:
     dependencies:
       '@lit/react':
-        specifier: ^1.0.6
-        version: 1.0.6(@types/react@19.0.0)
+        specifier: ^1.0.7
+        version: 1.0.7(@types/react@19.0.7)
       '@synergy-design-system/components':
         specifier: workspace:^
         version: link:../components
@@ -776,8 +776,8 @@ importers:
         version: link:../tokens
     devDependencies:
       '@types/react':
-        specifier: ^19.0.0
-        version: 19.0.0
+        specifier: ^19.0.7
+        version: 19.0.7
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -2379,10 +2379,10 @@ packages:
   '@lit-labs/ssr-dom-shim@1.2.0':
     resolution: {integrity: sha512-yWJKmpGE6lUURKAaIltoPIE/wrbY3TEkqQt+X0m+7fQNnAv0keydnYvbiJFP1PnMhizmIWRWOG5KLhYyc/xl+g==}
 
-  '@lit/react@1.0.6':
-    resolution: {integrity: sha512-QIss8MPh6qUoFJmuaF4dSHts3qCsA36S3HcOLiNPShxhgYPr4XJRnCBKPipk85sR9xr6TQrOcDMfexwbNdJHYA==}
+  '@lit/react@1.0.7':
+    resolution: {integrity: sha512-cencnwwLXQKiKxjfFzSgZRngcWJzUDZi/04E0fSaF86wZgchMdvTyu+lE36DrUfvuus3bH8+xLPrhM1cTjwpzw==}
     peerDependencies:
-      '@types/react': 17 || 18
+      '@types/react': 17 || 18 || 19
 
   '@lit/reactive-element@1.6.3':
     resolution: {integrity: sha512-QuTgnG52Poic7uM1AN5yJ09QMe0O28e10XzSvWDz02TJiiKee4stsiownEIadWm8nYzyDAyT+gKzUoZmiWQtsQ==}
@@ -3854,14 +3854,16 @@ packages:
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
-  '@types/react-dom@19.0.0':
-    resolution: {integrity: sha512-1KfiQKsH1o00p9m5ag12axHQSb3FOU9H20UTrujVSkNhuCrRHiQWFqgEnTNK5ZNfnzZv8UWrnXVqCmCF9fgY3w==}
+  '@types/react-dom@19.0.3':
+    resolution: {integrity: sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==}
+    peerDependencies:
+      '@types/react': ^19.0.0
 
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
 
-  '@types/react@19.0.0':
-    resolution: {integrity: sha512-MY3oPudxvMYyesqs/kW1Bh8y9VqSmf+tzqw3ae8a9DZW68pUe3zAdHeI1jc6iAysuRdACnVknHP8AhwD4/dxtg==}
+  '@types/react@19.0.7':
+    resolution: {integrity: sha512-MoFsEJKkAtZCrC1r6CM8U22GzhG7u2Wir8ons/aCKH6MBdD1ibV24zOSSkdZVUKqN5i396zG5VKLYZ3yaUZdLA==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -12319,9 +12321,9 @@ snapshots:
 
   '@lit-labs/ssr-dom-shim@1.2.0': {}
 
-  '@lit/react@1.0.6(@types/react@19.0.0)':
+  '@lit/react@1.0.7(@types/react@19.0.7)':
     dependencies:
-      '@types/react': 19.0.0
+      '@types/react': 19.0.7
 
   '@lit/reactive-element@1.6.3':
     dependencies:
@@ -13926,16 +13928,16 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-dom@19.0.0':
+  '@types/react-dom@19.0.3(@types/react@19.0.7)':
     dependencies:
-      '@types/react': 19.0.0
+      '@types/react': 19.0.7
 
   '@types/react@18.3.12':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
 
-  '@types/react@19.0.0':
+  '@types/react@19.0.7':
     dependencies:
       csstype: 3.1.3
 

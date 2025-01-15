@@ -95,24 +95,6 @@ export const MyInput = () => (
 
 #### 3.1. Migrating from synergies react wrappers to native components
 
-> Notice! Due to a [currently open bug in the `lit@react` wrapper in version 1.0.6](https://github.com/lit/lit/issues/4857), you will have to provide an override for the react types temporarily. This can be achieved by adding the following override in your `package.json` file:
->
-> For NPM:
->
-> ```
-> "overrides": {
->   "@types/react": "^19.0.1"
-> }
-> ```
->
-> For Yarn:
->
-> ```
-> "resolutions": {
->   "@types/react": "^19.0.1"
-> }
-> ```
-
 1. First make sure you have react@19 or higher installed in your project.
 2. Upgrade `@synergy-design-system/react` to the latest version.
 3. Add the required types to your typescript configuration (`compilerOptions.types=['@synergy-design-system/react/types/latest']`).

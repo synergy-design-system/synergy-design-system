@@ -46,7 +46,7 @@ import { unlockBodyScrolling } from '../../internal/scroll.js';
  * @csspart content-container - The components main content container
  * @csspart content - The components main content
  * @csspart footer-container - The components footer content container
-(where the footer slot content is rendered)
+  (where the footer slot content is rendered)
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
  * @csspart overlay - The overlay that covers the screen behind the side-nav.

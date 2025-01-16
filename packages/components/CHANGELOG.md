@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.0...components/2.18.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* 🐛 Z-index order rendering problem with syn-side-nav in rail mode ([#737](https://github.com/synergy-design-system/synergy-design-system/issues/737)) ([dce8bb2](https://github.com/synergy-design-system/synergy-design-system/commit/dce8bb21a9594a6b6d9bc00b3201907e992dc044))
+
 # [@synergy-design-system/components-v2.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.17.0...components/2.18.0) (2025-01-15)
 
 

@@ -32,6 +32,7 @@ export default css`
   
   .side-nav__drawer::part(base){
     position: absolute;
+    z-index: var(--syn-z-index-drawer);
   }
 
   .side-nav__drawer::part(body), .side-nav__drawer::part(footer) {

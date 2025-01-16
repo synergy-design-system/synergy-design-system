@@ -46,9 +46,13 @@ import { unlockBodyScrolling } from '../../internal/scroll.js';
  * @csspart content-container - The components main content container
  * @csspart content - The components main content
  * @csspart footer-container - The components footer content container
+  (where the footer slot content is rendered)
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
  * @csspart overlay - The overlay that covers the screen behind the side-nav.
+ * @csspart panel - The side-nav's panel (where the whole content is rendered).
+ * @csspart body - The side-nav's body (where the default slot content is rendered)
+ * @csspart drawer__base - The drawer's base wrapper
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
@@ -339,7 +343,7 @@ export default class SynSideNav extends SynergyElement {
         <syn-drawer
           class="side-nav__drawer"
           ?contained=${this.rail}
-          exportparts="overlay"
+          exportparts="overlay,panel,body,base:drawer__base"
           label=${this.localize.term('sideNav')}
           no-header
           ?open=${this.open}

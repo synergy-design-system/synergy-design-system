@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.1...components/2.18.2) (2025-01-17)
+
+
+### Bug Fixes
+
+* 🐛 Checkbox and Radio have different disabled styles ([#740](https://github.com/synergy-design-system/synergy-design-system/issues/740)) ([c2c77d3](https://github.com/synergy-design-system/synergy-design-system/commit/c2c77d3d6c72175b707b1a9808bc117d6daa2674))
+
 # [@synergy-design-system/components-v2.18.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.0...components/2.18.1) (2025-01-16)
 
 

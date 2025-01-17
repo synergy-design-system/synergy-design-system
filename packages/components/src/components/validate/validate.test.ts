@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
+import type SynInput from '../input/input.component.js';
 
 describe('<syn-validate>', () => {
   describe('utility functions', () => {
@@ -462,5 +463,51 @@ describe('<syn-validate>', () => {
 
       expect(input.hasAttribute('data-user-invalid')).to.be.false;
     });
+  });
+
+  describe('regression tests', () => {
+    describe('#717: disabled and readonly should trigger validation when changed', () => {
+      it('should be invalid on mount, but not show the error message', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate id="something-tests" eager variant="inline">
+            <syn-input name="input" readonly type="email" value="test"></syn-input>
+          </syn-validate>
+        `);
+
+        const input = el.querySelector('syn-input')!;
+
+        expect(el.validationMessage).to.be.empty;
+        expect(el.isValid).to.be.false;
+        expect(el.getValidity()).to.be.false;
+        expect(input.validity.valid).to.be.false;
+        expect(el.shadowRoot!.querySelector('syn-alert')).not.to.exist;
+      });
+
+      // Make sure that we test both our custom elements and native elements
+      ['syn-input', 'input'].forEach((tag) => {
+        ['disabled', 'readonly'].forEach((prop) => {
+          it(`should show the error message when the ${prop} property on the input is removed ${tag}`, async () => {
+            // Create the input element
+            const inputElm = tag === 'syn-input'
+              ? html`<syn-input name="input" ?disabled=${prop === 'disabled'} ?readonly=${prop === 'readonly'} type="email" value="test"></syn-input>`
+              : html`<input name="input" ?disabled=${prop === 'disabled'} ?readonly=${prop === 'readonly'} type="email" value="test">`;
+
+            const el = await fixture<SynValidate>(html`
+              <syn-validate eager variant="inline">
+                ${inputElm}
+              </syn-validate>
+            `);
+
+            const input = el.querySelector(tag)!;
+            input.removeAttribute(prop);
+
+            await (input as SynInput).updateComplete;
+            await el.updateComplete;
+
+            expect(el.validationMessage).to.include('email address');
+          }); // The test
+        }); // property (disabled or readonly)
+      }); // Element type (SynInput or HTMLInputElement)
+    }); // End test #717
   });
 });

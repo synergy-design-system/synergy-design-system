@@ -368,6 +368,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.emit('syn-input');
       this.emit('syn-change');
     }
+
+    // #595: Redispatch the original event to start dragging the thumb
+    // whenever the user clicked on the track
+    const newEvt = new PointerEvent('pointerdown', event);
+    thumb.dispatchEvent(newEvt);
   }
 
   /**

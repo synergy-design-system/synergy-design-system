@@ -233,7 +233,7 @@ export type { SynInputEvent } from '@synergy-design-system/components';
     @syn-error="$emit('syn-error', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-input="
-      $emit('update:modelValue', $event.target.files);
+      $emit('update:modelValue', ($event.target as SynFile).files);
       $emit('syn-input', $event);
     "
     :files="

@@ -1230,9 +1230,13 @@ export type SynCustomElement<
  * @csspart content-container - The components main content container
  * @csspart content - The components main content
  * @csspart footer-container - The components footer content container
+  (where the footer slot content is rendered)
  * @csspart footer-divider - The components footer divider
  * @csspart footer - The components footer content
  * @csspart overlay - The overlay that covers the screen behind the side-nav.
+ * @csspart panel - The side-nav's panel (where the whole content is rendered).
+ * @csspart body - The side-nav's body (where the default slot content is rendered)
+ * @csspart drawer__base - The drawer's base wrapper
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
@@ -2399,49 +2403,53 @@ declare module 'react' {
        * @csspart expand-icon - The container that wraps the expand icon.
        */ 'syn-select': SynSelectJSXElement;
       /**
-       * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
-       * It can be used to group multiple navigation items (<syn-nav-item />s) together.
-       *
-       * @example
-       * <syn-side-nav open>
-       *  <syn-nav-item >Item 1</syn-nav-item>
-       *  <syn-nav-item divider>Item 2</syn-nav-item>
-       * </syn-side-nav>
-       *
-       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
-       * @status stable
-       * @since 1.14.0
-       *
-       * @dependency syn-divider
-       * @dependency syn-drawer
-       *
-       * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
-       * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
-       *    Please avoid having to many nav-items as it can massively influence the user experience.
-       *
-       * @event syn-show - Emitted when the side-nav opens.
-       * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
-       * @event syn-hide - Emitted when the side-nav closes.
-       * @event syn-after-hide - Emitted after the side-nav closes and all animations are complete.
-       *
-       * @csspart base - The components base wrapper
-       * @csspart drawer - The drawer that is used under the hood for creating the side-nav
-       * @csspart content-container - The components main content container
-       * @csspart content - The components main content
-       * @csspart footer-container - The components footer content container
-       * @csspart footer-divider - The components footer divider
-       * @csspart footer - The components footer content
-       * @csspart overlay - The overlay that covers the screen behind the side-nav.
-       *
-       * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
-       *
-       * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
-       * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
-       * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
-       * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
-       * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
-       * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
-       */ 'syn-side-nav': SynSideNavJSXElement;
+ * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
+ * It can be used to group multiple navigation items (<syn-nav-item />s) together.
+ *
+ * @example
+ * <syn-side-nav open>
+ *  <syn-nav-item >Item 1</syn-nav-item>
+ *  <syn-nav-item divider>Item 2</syn-nav-item>
+ * </syn-side-nav>
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
+ * @status stable
+ * @since 1.14.0
+ *
+ * @dependency syn-divider
+ * @dependency syn-drawer
+ *
+ * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
+ * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
+ *    Please avoid having to many nav-items as it can massively influence the user experience.
+ *
+ * @event syn-show - Emitted when the side-nav opens.
+ * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
+ * @event syn-hide - Emitted when the side-nav closes.
+ * @event syn-after-hide - Emitted after the side-nav closes and all animations are complete.
+ *
+ * @csspart base - The components base wrapper
+ * @csspart drawer - The drawer that is used under the hood for creating the side-nav
+ * @csspart content-container - The components main content container
+ * @csspart content - The components main content
+ * @csspart footer-container - The components footer content container
+  (where the footer slot content is rendered)
+ * @csspart footer-divider - The components footer divider
+ * @csspart footer - The components footer content
+ * @csspart overlay - The overlay that covers the screen behind the side-nav.
+ * @csspart panel - The side-nav's panel (where the whole content is rendered).
+ * @csspart body - The side-nav's body (where the default slot content is rendered)
+ * @csspart drawer__base - The drawer's base wrapper
+ *
+ * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
+ *
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
+ * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
+ */ 'syn-side-nav': SynSideNavJSXElement;
       /**
        * @summary Spinners are used to show the progress of an indeterminate operation.
        * @documentation https://synergy.style/components/spinner

@@ -315,9 +315,19 @@ export default class SynValidate extends SynergyElement {
   async firstUpdated() {
     this.updateEvents();
 
+    // #713: Make sure to set the custom validation message on mount
+    // When we have a custom element, we need to wait for it to be ready!
+    const input = this.getInput();
+
+    if (this.customValidationMessage) {
+      if (input instanceof SynergyElement) {
+        await input.updateComplete;
+      }
+      input?.setCustomValidity(this.customValidationMessage);
+    }
+
     // Make sure to run validation on mount if eager is set
     if (this.eager) {
-      const input = this.getInput();
       await this.updateComplete;
       this.isValid = input?.validity?.valid ?? false;
       input?.reportValidity();

@@ -466,6 +466,53 @@ describe('<syn-validate>', () => {
   });
 
   describe('regression tests', () => {
+    describe('#713: should call setCustomValidity when mounting with a customValidationMessage', () => {
+      // Make sure that we test both our custom elements and native elements
+      ['syn-input', 'input'].forEach((tag) => {
+        it(`Should set the error to "Custom Message" on initial load when using a <${tag}> and a custom-validation-message is provided`, async () => {
+          // Create the input element
+          const inputElm = tag === 'syn-input'
+            ? html`<syn-input name="input"></syn-input>`
+            : html`<input name="input">`;
+
+          const el = await fixture<SynValidate>(html`
+            <syn-validate eager variant="inline" custom-validation-message="Custom Message">
+              ${inputElm}
+            </syn-validate>
+          `);
+
+          const input = el.querySelector<HTMLInputElement>(tag)!;
+
+          await el.updateComplete;
+
+          await expect(el.customValidationMessage).to.equal('Custom Message');
+          expect(input.validity.customError).to.be.true;
+          await expect(input.validationMessage).to.equal('Custom Message');
+        }); // Test for both synergy and native elements
+
+        it(`Should not set the error to "Custom Message" on initial load when using a <${tag}> and no custom-validation-message is provided`, async () => {
+          // Create the input element
+          const inputElm = tag === 'syn-input'
+            ? html`<syn-input name="input"></syn-input>`
+            : html`<input name="input">`;
+
+          const el = await fixture<SynValidate>(html`
+            <syn-validate eager variant="inline">
+              ${inputElm}
+            </syn-validate>
+          `);
+
+          const input = el.querySelector<HTMLInputElement>(tag)!;
+
+          await el.updateComplete;
+
+          await expect(el.customValidationMessage).to.equal('');
+          expect(input.validity.customError).to.be.false;
+          await expect(input.validationMessage).to.equal('');
+        }); // Test for both synergy and native elements
+      }); // Element type (SynInput or HTMLInputElement)
+    }); // End test #713
+
     describe('#717: disabled and readonly should trigger validation when changed', () => {
       it('should be invalid on mount, but not show the error message', async () => {
         const el = await fixture<SynValidate>(html`
@@ -509,5 +556,5 @@ describe('<syn-validate>', () => {
         }); // property (disabled or readonly)
       }); // Element type (SynInput or HTMLInputElement)
     }); // End test #717
-  });
+  }); // End regression tests
 });

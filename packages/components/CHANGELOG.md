@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.18.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.4...components/2.18.5) (2025-01-20)
+
+
+### Bug Fixes
+
+* 🐛 syn-validate: Rendered input should be highlighted as error when loading with an invalid state ([#745](https://github.com/synergy-design-system/synergy-design-system/issues/745)) ([c07e688](https://github.com/synergy-design-system/synergy-design-system/commit/c07e6885a8c1392cd42adfd3877f7869125ced6b))
+
+# [@synergy-design-system/components-v2.18.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.3...components/2.18.4) (2025-01-20)
+
+
+### Bug Fixes
+
+* 🐛 syn-validate: Validation message not removed when the slotted input is set to readonly or disabled ([#739](https://github.com/synergy-design-system/synergy-design-system/issues/739)) ([12766f0](https://github.com/synergy-design-system/synergy-design-system/commit/12766f008f9c73de2c2f72d49d6830fa2a780b13))
+
 # [@synergy-design-system/components-v2.18.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.2...components/2.18.3) (2025-01-20)
 
 

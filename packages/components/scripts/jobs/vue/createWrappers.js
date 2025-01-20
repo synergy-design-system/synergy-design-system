@@ -67,13 +67,10 @@ const getEmitAttributes = (componentName, componentClass, events = []) => {
   // Add support for custom vue vModel binding
   const eventName = getEventAttributeForTwoWayBinding(componentName);
 
-  // @todo: This would make types more explicit,
-  // however esbuild is not able to compile it unfortunately
-  // ($event.target as ${componentClass}).${getControlAttributeForTwoWayBinding(componentName)
-  const emitterValue = `$emit('update:modelValue', $event.target.${getControlAttributeForTwoWayBinding(componentName)})`;
+  const emitterValue = `$emit('update:modelValue', ($event.target as ${componentClass}).${getControlAttributeForTwoWayBinding(componentName)})`;
 
   // It may very well be that the event we need to hook into is already
-  // declared (e.g. when using syn-input for two way databinding and as a prop, too)
+  // declared (e.g. when using syn-input for two way data-binding and as a prop, too)
   // For this reason, we have to look if there is already a bound event and adjust it
   // accordingly so it includes the calls to update:modelValue, too.
   const vmodelEvents = templateEvents.map((event) => {

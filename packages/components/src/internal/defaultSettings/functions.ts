@@ -56,6 +56,11 @@ export const enableExperimentalSettingEmitEvents = (enabled = true) => {
   SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = enabled;
 
   if (!enabled) {
+    // Make sure to always remove the old element cache
+    // when the feature is disabled.
+    // Otherwise, we could get a memory leak
+    globalEventNotificationMap.clear();
+
     hasGlobalEventSetup = false;
     window.removeEventListener('syn-default-settings-changed', defaultSettingsHandler, {
       capture: true,
@@ -95,10 +100,10 @@ export const addGlobalEventNotification = (
 export const removeGlobalEventNotification = (
   element: GlobalSettingsEnabledElement,
 ) => {
-  if (
-    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS
-    && globalEventNotificationMap.has(element)
-  ) {
+  // Always try to remove the element from the map
+  // This is done because the event support might have been disabled
+  // between the time the element was added and removed
+  if (globalEventNotificationMap.has(element)) {
     globalEventNotificationMap.delete(element);
   }
 };

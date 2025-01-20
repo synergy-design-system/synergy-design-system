@@ -45,9 +45,4 @@ export default css`
   .checkbox--large .checkbox__label {
     top: -2px;
   }
-
-  /* Disabled */
-  .checkbox--disabled .checkbox__label {
-    color: var(--syn-color-neutral-700);
-  }
 `;

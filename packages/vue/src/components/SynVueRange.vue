@@ -218,12 +218,12 @@ export type { SynMoveEvent } from '@synergy-design-system/components';
 <template>
   <syn-range
     @syn-blur="$emit('syn-blur', $event)"
-    @syn-change="$emit('syn-change', $event)"
-    @syn-focus="$emit('syn-focus', $event)"
-    @syn-input="
-      $emit('update:modelValue', $event.target.value);
-      $emit('syn-input', $event);
+    @syn-change="
+      $emit('update:modelValue', ($event.target as SynRange).value);
+      $emit('syn-change', $event);
     "
+    @syn-focus="$emit('syn-focus', $event)"
+    @syn-input="$emit('syn-input', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
     @syn-move="$emit('syn-move', $event)"
     :value="

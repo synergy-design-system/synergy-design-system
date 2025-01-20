@@ -272,7 +272,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-change="$emit('syn-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"
     @syn-input="
-      $emit('update:modelValue', $event.target.value);
+      $emit('update:modelValue', ($event.target as SynSelect).value);
       $emit('syn-input', $event);
     "
     @syn-focus="$emit('syn-focus', $event)"

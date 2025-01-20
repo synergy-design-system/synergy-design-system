@@ -168,7 +168,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-input="
-      $emit('update:modelValue', $event.target.checked);
+      $emit('update:modelValue', ($event.target as SynCheckbox).checked);
       $emit('syn-input', $event);
     "
     @syn-invalid="$emit('syn-invalid', $event)"

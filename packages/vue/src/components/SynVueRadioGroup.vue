@@ -140,7 +140,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
   <syn-radio-group
     @syn-change="$emit('syn-change', $event)"
     @syn-input="
-      $emit('update:modelValue', $event.target.value);
+      $emit('update:modelValue', ($event.target as SynRadioGroup).value);
       $emit('syn-input', $event);
     "
     @syn-invalid="$emit('syn-invalid', $event)"

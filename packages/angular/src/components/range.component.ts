@@ -88,13 +88,13 @@ export class SynRangeComponent {
     });
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
       this.synChangeEvent.emit(e);
+      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
       this.synFocusEvent.emit(e);
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);

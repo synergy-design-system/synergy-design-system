@@ -367,6 +367,8 @@ export const getControlAttributeForTwoWayBinding = (componentName) => {
  */
 export const getEventAttributeForTwoWayBinding = (componentName) => {
   switch (componentName) {
+  // #729: Syn-Range should emit on change as it may be too fast to use it with syn-input
+  case 'range': return 'syn-change';
   default: return 'syn-input';
   }
 };

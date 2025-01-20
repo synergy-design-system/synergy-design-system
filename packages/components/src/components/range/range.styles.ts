@@ -57,9 +57,6 @@ export default css`
 
   .input__wrapper {
     flex: 1 0 auto;
-
-    /* Needed so the active track and thumb do not bleed into other elements like the side-nav because of their z-indices */
-    isolation: isolate;
     position: relative;
   }
 

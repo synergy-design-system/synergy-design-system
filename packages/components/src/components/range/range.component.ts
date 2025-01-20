@@ -164,6 +164,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.active-track') activeTrack: HTMLDivElement;
 
+  @query('.ticks') ticks: HTMLDivElement;
+
   @queryAll('.thumb') thumbs: NodeListOf<HTMLDivElement>;
 
   @query('.range__validation-input') validationInput: HTMLInputElement;
@@ -173,6 +175,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
   private localize = new LocalizeController(this);
+
+  private visibilityObserver: IntersectionObserver;
 
   #value: readonly number[] = [0];
 
@@ -195,7 +199,25 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.tooltipFormatter = this.localize.number.bind(this.localize);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this?.visibilityObserver?.disconnect();
+  }
+
   firstUpdated() {
+    // #727: Check if the ticks are visible and update the prefix and suffix position when they are.
+    this.visibilityObserver = new IntersectionObserver((entries) => {
+      const entry = entries.at(0);
+      if (entry && entry.isIntersecting && entry.target.checkVisibility()) {
+        this.#updatePrefixSuffixPosition(entry.boundingClientRect.height);
+      }
+    }, {
+      // We bind the root to the parent element of the ticks to make sure we are only called
+      // when the ticks are visible, not when the ticks are scrolled out of the viewport.
+      root: this.ticks.parentElement,
+    });
+    this.visibilityObserver.observe(this.ticks);
+
     this.formControlController.updateValidity();
     // initialize the lastChangeValue with the initial value
     this.#lastChangeValue = Array.from(this.#value);
@@ -328,7 +350,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#validationError;
   }
 
-  #onClickTrack(event: PointerEvent) {
+  #onClickTrack(event: PointerEvent, focusThumb = true) {
     if (this.disabled) return;
     const { clientX } = event;
 
@@ -370,6 +392,24 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.emit('syn-input');
       this.emit('syn-change');
     }
+
+    // #595: Redispatch the original event to start dragging the thumb
+    // whenever the user clicked on the track.
+    // The check for focusThumb makes sure this does not happen when clicking on the track items
+    const newEvt = new PointerEvent('pointerdown', event);
+    if (focusThumb) {
+      if (thumb.dispatchEvent(newEvt)) {
+        this.#updateTooltip(thumb);
+      }
+    }
+  }
+
+  /**
+   * Special method for handling clicks on track items
+   * When clicking track items, we do not want the thumb to have focus
+   */
+  #onClickTrackItem(event: PointerEvent) {
+    this.#onClickTrack(event, false);
   }
 
   /**
@@ -647,7 +687,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
-  #updatePrefixSuffixPosition() {
+  #updatePrefixSuffixPosition(height?: number) {
     const hasTicksSlot = this.hasSlotController.test('ticks');
     const hasPrefixSlot = this.hasSlotController.test('prefix');
     const hasSuffixSlot = this.hasSlotController.test('suffix');
@@ -656,7 +696,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    let ticksHeight = this.shadowRoot?.querySelector('.ticks')?.clientHeight;
+    let ticksHeight = height || this.shadowRoot?.querySelector('.ticks')?.clientHeight;
     if (ticksHeight) {
       // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
       ticksHeight += 2;
@@ -750,7 +790,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasSuffixSlot = this.hasSlotController.test('suffix');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    this.#updatePrefixSuffixPosition();
 
     return html`
       <div
@@ -811,7 +850,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
             <div
               class="ticks"
               part="ticks"
-              @pointerdown=${this.#onClickTrack}
+              @pointerdown=${this.#onClickTrackItem}
               role="presentation"
             >
               <slot name="ticks"></slot>

@@ -1,3 +1,24 @@
+# [@synergy-design-system/components-v2.18.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.2...components/2.18.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* 🐛 Side-nav not working correctly for some production builds ([#744](https://github.com/synergy-design-system/synergy-design-system/issues/744)) ([c7d5a57](https://github.com/synergy-design-system/synergy-design-system/commit/c7d5a5719edca5e6759d4eae6a20b240e6143ffd))
+
+# [@synergy-design-system/components-v2.18.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.1...components/2.18.2) (2025-01-17)
+
+
+### Bug Fixes
+
+* 🐛 Checkbox and Radio have different disabled styles ([#740](https://github.com/synergy-design-system/synergy-design-system/issues/740)) ([c2c77d3](https://github.com/synergy-design-system/synergy-design-system/commit/c2c77d3d6c72175b707b1a9808bc117d6daa2674))
+
+# [@synergy-design-system/components-v2.18.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.0...components/2.18.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* 🐛 Z-index order rendering problem with syn-side-nav in rail mode ([#737](https://github.com/synergy-design-system/synergy-design-system/issues/737)) ([dce8bb2](https://github.com/synergy-design-system/synergy-design-system/commit/dce8bb21a9594a6b6d9bc00b3201907e992dc044))
+
 # [@synergy-design-system/components-v2.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.17.0...components/2.18.0) (2025-01-15)
 
 

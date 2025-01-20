@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.2...components/2.18.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* 🐛 Side-nav not working correctly for some production builds ([#744](https://github.com/synergy-design-system/synergy-design-system/issues/744)) ([c7d5a57](https://github.com/synergy-design-system/synergy-design-system/commit/c7d5a5719edca5e6759d4eae6a20b240e6143ffd))
+
 # [@synergy-design-system/components-v2.18.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.1...components/2.18.2) (2025-01-17)
 
 

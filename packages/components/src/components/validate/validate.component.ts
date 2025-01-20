@@ -1,4 +1,4 @@
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 import { html } from 'lit';
 import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -38,6 +38,8 @@ export default class SynValidate extends SynergyElement {
   };
 
   controller = new AbortController();
+
+  observer: MutationObserver;
 
   @queryAssignedElements() private slottedChildren: HTMLElement[];
 
@@ -312,7 +314,8 @@ export default class SynValidate extends SynergyElement {
     }
   };
 
-  async firstUpdated() {
+  async firstUpdated(changedProperties: PropertyValues) {
+    super.firstUpdated(changedProperties);
     this.updateEvents();
 
     // #713: Make sure to set the custom validation message on mount
@@ -334,9 +337,57 @@ export default class SynValidate extends SynergyElement {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+
+    // #717: Make sure to remove to rerun validation when
+    // disabled or readonly properties change on the input
+    this.observer = new MutationObserver(entries => {
+      const input = this.getInput();
+
+      if (!input) {
+        return;
+      }
+
+      const hasDisabledOrReadonly = entries
+        // Only check for changes on the input element
+        .filter(({ target }) => target === input)
+        // Check if the input is disabled or readonly
+        .every(entry => {
+          const target = entry.target as HTMLInputElement;
+          return target.hasAttribute('disabled') || target.hasAttribute('readonly');
+        });
+
+      if (hasDisabledOrReadonly) {
+        this.isValid = true;
+        this.validationMessage = '';
+      } else {
+        // When using a synergy element, we need to check the validity after the element is updated,
+        // as we cannot rely on the validity state of the element itself.
+        // Unfortunately, this depends on used browser :(.
+        const waitForPromise = input instanceof SynergyElement
+          ? input.updateComplete
+          : Promise.resolve();
+
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        waitForPromise.then(() => {
+          this.isValid = input?.validity?.valid ?? false;
+          this.validationMessage = input?.validationMessage ?? '';
+        });
+      }
+    });
+
+    this.observer.observe(this, {
+      attributeFilter: ['disabled', 'readonly'],
+      attributes: true,
+      subtree: true,
+    });
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
     this.controller.abort();
+    this?.observer?.disconnect();
   }
 
   private renderInlineValidation() {

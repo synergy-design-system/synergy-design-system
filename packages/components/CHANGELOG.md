@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.3...components/2.18.4) (2025-01-20)
+
+
+### Bug Fixes
+
+* 🐛 syn-validate: Validation message not removed when the slotted input is set to readonly or disabled ([#739](https://github.com/synergy-design-system/synergy-design-system/issues/739)) ([12766f0](https://github.com/synergy-design-system/synergy-design-system/commit/12766f008f9c73de2c2f72d49d6830fa2a780b13))
+
 # [@synergy-design-system/components-v2.18.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.2...components/2.18.3) (2025-01-20)
 
 

@@ -602,6 +602,25 @@ describe('<syn-range>', () => {
       expect(changeHandler.called).to.be.true;
       expect(inputHandler.called).to.be.true;
     });
+
+    it('should emit a pointer-down event on the closest thumb when clicking the track so it can be dragged instantly', async () => {
+      const pointerDownHandler = sinon.spy();
+
+      const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+      const firstThumb = el.shadowRoot!.querySelector('.thumb')!;
+
+      firstThumb.addEventListener('pointerdown', pointerDownHandler);
+
+      const track = el.shadowRoot!.querySelector('.track')!;
+      const rect = track.getBoundingClientRect();
+
+      await sendMouse({
+        position: [rect.left + 120, rect.top],
+        type: 'click',
+      });
+
+      expect(pointerDownHandler.called).to.be.true;
+    });
   });
 
   describe('when using keyboard navigation', () => {

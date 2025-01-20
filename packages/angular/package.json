@@ -22,7 +22,7 @@
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/angular"
   },
-  "version": "2.18.5",
+  "version": "2.18.6",
   "scripts": {
     "_build": "ng-packagr -c tsconfig.lib.json"
   },

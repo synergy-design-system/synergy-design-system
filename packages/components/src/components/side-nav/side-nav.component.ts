@@ -163,7 +163,7 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private forceDrawerVisibilityForRailMode() {
-    return waitForEvent(this, 'syn-after-hide').then(() => {
+    return waitForEvent(this.drawer, 'syn-after-hide').then(() => {
       this.setDrawerVisibility(true);
       this.isAnimationActive = false;
     });
@@ -233,7 +233,7 @@ export default class SynSideNav extends SynergyElement {
     }
     this.open = true;
 
-    return waitForEvent(this, 'syn-after-show');
+    return waitForEvent(this.drawer, 'syn-after-show');
   }
 
   /** Hides the side-nav */
@@ -244,7 +244,7 @@ export default class SynSideNav extends SynergyElement {
 
     this.open = false;
 
-    return waitForEvent(this, 'syn-after-hide');
+    return waitForEvent(this.drawer, 'syn-after-hide');
   }
 
   constructor() {

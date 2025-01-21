@@ -31,7 +31,7 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
 
   // List of imports needed for the generated types
   const imports = `
-    import type { DOMAttributes } from 'react';
+    import type { DOMAttributes, RefObject } from 'react';
     import type { ${synergyTypes.join(',')} } from '@synergy-design-system/components';
 
     /**
@@ -58,6 +58,7 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
       {
         children?: any;
         key?: any;
+        ref?: RefObject<SynElement | null>;
       } &
       SynEventMap<Events>
     >;
@@ -91,6 +92,13 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
     ${componentExports.join('\n')}
 
     declare module 'react' {
+      // #746: Allow synergies custom properties as css variable names
+      // @see https://github.com/frenic/csstype#what-should-i-do-when-i-get-type-errors
+      // @see https://stackoverflow.com/questions/65878880/typescript-template-literal-as-interface-key/65879197#65879197
+      interface CSSProperties {
+        [key: \`--\${string}\`]: string | undefined;
+      }
+
       namespace JSX {
         interface IntrinsicElements {
           ${componentTypes.join('\n')}

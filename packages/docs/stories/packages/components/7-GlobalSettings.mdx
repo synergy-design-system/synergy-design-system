@@ -1,11 +1,12 @@
 import { Meta } from "@storybook/blocks";
 import { extractDefaultSettingsForElement, INITIAL_DEFAULT_SETTINGS } from '../../../../components/src/synergy';
+import { snakeCase } from 'change-case';
 
 <Meta title="Packages/Components/Configuring global settings" />
 
 # Overriding global default settings for components
 
-Most of synergies components provide a way to configure their appearance and behavior through a set of properties.
+Most Synergy components provide a way to configure their appearance and behavior through a set of properties.
 However, it can be cumbersome to set the same properties for all components in your application.
 
 Therefore, Synergy includes a low level API that allows you to set global defaults for the rendered components.
@@ -99,11 +100,29 @@ The following settings are supported by all synergy components:
 
 The following list shows the default settings for all synergy components.
 
-<table className="syn-table--alternating syn-table--border">
+<table className="syn-table--alternating syn-table--border" style={{ width: '100%' }}>
   <thead>
     <tr>
-      <th>Component</th>
-      <th>Settings</th>
+      <th>
+        <syn-tooltip content="The name of the component when rendered into the DOM">
+          Component
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="The class name of the component, used as a key in setGlobalSettings or setDefaultSettingsForElement">
+          ClassName
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="Supported settings for the component">
+          Settings
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="Copy to add the call code to the clipboard">
+          Example
+        </syn-tooltip>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -115,9 +134,26 @@ The following list shows the default settings for all synergy components.
       .sort()
       .map(c => {
         const settings = extractDefaultSettingsForElement(c);
+        const componentName = snakeCase(c, {
+          delimiter: '-',
+        });
+
+        // Build the examples
+        const exampleCalls = Object
+          .entries(settings)
+          .map(([key, value]) => `
+  ${key}: {
+    ${c}: '${value}'
+  }
+          `.trim())
+        const example = `setGlobalDefaultSettings({
+  ${exampleCalls.join(',\n  ')}
+});`.trim();
+
         return (
           <tr key={`${c}--details`}>
-            <td><strong>{c}</strong></td>
+            <td><code>{`<${componentName}>`}</code></td>
+            <td>{c}</td>
             <td>
               {Object
                 .entries(settings)
@@ -128,6 +164,9 @@ The following list shows the default settings for all synergy components.
                   </>
                 ))
               }
+            </td>
+            <td>
+              <code>{example}</code>
             </td>
           </tr>
         );

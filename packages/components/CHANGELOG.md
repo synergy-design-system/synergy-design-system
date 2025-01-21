@@ -4,6 +4,10 @@
 ### Bug Fixes
 
 * 🐛 syn-range Various issues for syn-range ([#742](https://github.com/synergy-design-system/synergy-design-system/issues/742)) ([d6dc350](https://github.com/synergy-design-system/synergy-design-system/commit/d6dc3505576aa65cadb7c78f7a4a44deeffb3e4a))
+  * Syn-Range suffix jumps when used with ticks and component is not visible initially ([#727](https://github.com/synergy-design-system/synergy-design-system/issues/727))
+  * Tooltip displayed below items with higher stacking context ([#728](https://github.com/synergy-design-system/synergy-design-system/issues/728))
+  * Sliding a thumb after clicking on the track does not work without releasing the gesture ([#595](https://github.com/synergy-design-system/synergy-design-system/issues/595))
+  * Vue: Range resets all thumb values to the same when using multiple knobs and two way databinding ([#729](https://github.com/synergy-design-system/synergy-design-system/issues/729))
 
 # [@synergy-design-system/components-v2.18.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.4...components/2.18.5) (2025-01-20)
 

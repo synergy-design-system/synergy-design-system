@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.8](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.7...components/2.18.8) (2025-01-23)
+
+
+### Bug Fixes
+
+* 🐛 React: style and ref for react19 not working ([#748](https://github.com/synergy-design-system/synergy-design-system/issues/748)) ([b71d73a](https://github.com/synergy-design-system/synergy-design-system/commit/b71d73a2c4d561a9d744c7301606070b179f25c3))
+
 # [@synergy-design-system/components-v2.18.7](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.6...components/2.18.7) (2025-01-23)
 
 

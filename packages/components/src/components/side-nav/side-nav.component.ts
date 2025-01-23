@@ -204,6 +204,11 @@ export default class SynSideNav extends SynergyElement {
       this.isAnimationActive = true;
 
       if (!this.open) {
+        // Fix for accessibility error in console. see also: https://github.com/shoelace-style/shoelace/issues/2283
+        const { activeElement } = document;
+        if (activeElement && this.contains(activeElement)) {
+          (document.activeElement as HTMLElement)?.blur();
+        }
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.forceDrawerVisibilityForRailMode();
       } else {

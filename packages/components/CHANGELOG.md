@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.18.7](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.6...components/2.18.7) (2025-01-23)
+
+
+### Bug Fixes
+
+* 🐛 Accessibility error in console when using syn-side-nav as rail ([#752](https://github.com/synergy-design-system/synergy-design-system/issues/752)) ([a5d7d4d](https://github.com/synergy-design-system/synergy-design-system/commit/a5d7d4d33a59af5507940508b374306544745da1))
+
 # [@synergy-design-system/components-v2.18.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.5...components/2.18.6) (2025-01-20)
 
 

@@ -5,7 +5,7 @@
 // ---------------------------------------------------------------------
 /* eslint-disable */
 
-import type { DOMAttributes, RefObject } from 'react';
+import type { CSSProperties, DOMAttributes, RefObject } from 'react';
 import type {
   SynShowEvent,
   SynAfterShowEvent,
@@ -98,11 +98,12 @@ export type SynCustomElement<
   SynElement extends HTMLElement,
   Events extends SynEventTuple[] = [],
 > = Partial<
-  SynElement &
+  Omit<SynElement, 'style'> &
     DOMAttributes<SynElement> & {
       children?: any;
       key?: any;
       ref?: RefObject<SynElement | null>;
+      style?: CSSProperties | undefined;
     } & SynEventMap<Events>
 >;
 

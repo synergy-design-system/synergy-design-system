@@ -31,7 +31,7 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
 
   // List of imports needed for the generated types
   const imports = `
-    import type { DOMAttributes, RefObject } from 'react';
+    import type { CSSProperties, DOMAttributes, RefObject } from 'react';
     import type { ${synergyTypes.join(',')} } from '@synergy-design-system/components';
 
     /**
@@ -53,12 +53,13 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
       SynElement extends HTMLElement,
       Events extends SynEventTuple[] = [],
     > = Partial<
-      SynElement &
+      Omit<SynElement, 'style'> &
       DOMAttributes<SynElement> &
       {
         children?: any;
         key?: any;
         ref?: RefObject<SynElement | null>;
+        style?: CSSProperties | undefined;
       } &
       SynEventMap<Events>
     >;

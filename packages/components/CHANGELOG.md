@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.8...components/2.19.0) (2025-01-27)
+
+
+### Features
+
+* ✨ Tree shakable angular components ([#724](https://github.com/synergy-design-system/synergy-design-system/issues/724)) ([d65e323](https://github.com/synergy-design-system/synergy-design-system/commit/d65e323f19b819d533b1b70b146c293e4fddbe2b))
+
 # [@synergy-design-system/components-v2.18.8](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.7...components/2.18.8) (2025-01-23)
 
 

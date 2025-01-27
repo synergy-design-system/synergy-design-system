@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { createHeader, job } from '../shared.js';
+import { createNgPackageJson } from './shared.js';
 
 const headerComment = createHeader('angular');
 
@@ -58,10 +59,15 @@ const createSelectors = selectors => selectors
   .join(',\n    ');
 
 /**
- * Creates the synergy angular module, located at packages/angular/src/modules/synergy.module.ts
+ * Creates the angular forms module, located at packages/angular/modules/forms/forms.module.ts
  */
 export const runCreateFormsModule = job('Angular: Creating FormsModule...', async (outDir) => {
-  const outFile = path.join(outDir, 'forms.module.ts');
+  const fileName = 'forms.module.ts';
+  const formsModuleDir = path.join(outDir, 'forms');
+  const outFile = path.join(formsModuleDir, fileName);
+
+  // Create a subdirectory for the forms module
+  await fs.mkdir(formsModuleDir, { recursive: true });
 
   const output = `
 ${headerComment}
@@ -75,7 +81,7 @@ import {
   DefaultValueAccessor,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
- import { SynCheckboxRequiredValidator, SynMaxValidator, SynMinValidator } from '../directives/validators';
+import { SynergyValidatorsModule } from '@synergy-design-system/angular/directives/validators';
 
 @Directive({
   providers: [{
@@ -128,22 +134,20 @@ export class SynFileValueAccessor extends DefaultValueAccessor { }
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
     SynFileValueAccessor,
-    SynMinValidator,
-    SynMaxValidator,
-    SynCheckboxRequiredValidator,
   ],
   exports: [
     SynDefaultValueAccessor,
     SynCheckedValueAccessor,
     SynFileValueAccessor,
-    SynMinValidator,
-    SynMaxValidator,
-    SynCheckboxRequiredValidator,
+    SynergyValidatorsModule
   ],
-  imports: [],
+  imports: [
+    SynergyValidatorsModule
+  ],
 })
 export class SynergyFormsModule {}
 `.trim();
 
   await fs.writeFile(outFile, `${output}\n`, 'utf8');
+  createNgPackageJson(fileName, formsModuleDir);
 });

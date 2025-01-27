@@ -1,0 +1,21 @@
+{
+  "extends": "./node_modules/ng-packagr/lib/ts/conf/tsconfig.ngc.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "bundler",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true
+  }
+}

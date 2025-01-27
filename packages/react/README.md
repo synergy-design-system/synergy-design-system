@@ -11,9 +11,17 @@ This package aims for an improved UX when used in React applications:
 > For those react versions, this package can be used by loading custom types,
 > you **do not need to use the exported components** anymore.
 
+## Known issues and limitations
+
+Got any problems using our React wrappers? Currently there are no known issues relating to them. But please take a look at [our list of known issues and limitations of the web components](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+), maybe you can find your problem there.
+
 ## Getting started
 
-### 1. Package installation
+### 1. Usage example
+
+If you want to see a usage example, please check out our [test React repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo).
+
+### 2. Package installation
 
 Run the following steps to install the required packages.
 
@@ -34,9 +42,9 @@ npm install --save @synergy-design-system/assets
 > ⚠️ Note we do **not** ship React in this package.
 > You will have to install React by yourself first!
 
-### 2. Add the desired theme to your application
+### 3. Load the desired theme (required) and utility classes (recommended)
 
-The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed React application:
+The components will not display correctly without the needed theme and utility classes. Please include either light or dark theme in your application, for example in a newly installed React application:
 
 ```tsx
 // main.tsx
@@ -58,7 +66,7 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 
-### 3. Using native Synergy components in react (only for react >= 19.0.0) in Typescript projects
+### 4. Using native Synergy components in react (only for react >= 19.0.0) in Typescript projects
 
 React@19 finally shipped with official support for web components.
 With this version of react, you are free to **use our native web components** directly in your application.
@@ -93,7 +101,7 @@ export const MyInput = () => (
 );
 ```
 
-#### 3.1. Migrating from synergies react wrappers to native components
+#### 4.1. Migrating from synergies react wrappers to native components
 
 1. First make sure you have react@19 or higher installed in your project.
 2. Upgrade `@synergy-design-system/react` to the latest version.
@@ -104,7 +112,7 @@ export const MyInput = () => (
 
 ---
 
-### 4. Using the lit wrappers (required for react < 19.0.0, optional for react >= 19.0.0)
+### 5. Using the lit wrappers (required for react < 19.0.0, optional for react >= 19.0.0)
 
 You may now use the components by importing them from the `@synergy-design-system/react` package and rendering them in a React component.
 
@@ -117,7 +125,7 @@ export const MyInput = () => (
 );
 ```
 
-### 4. Usage of the components
+### 6. Usage of the components
 
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
@@ -137,7 +145,7 @@ The naming of the components for React changes from kebab-case to PascalCase.
 <SynButton> My Button </SynButton>
 ```
 
-### 5. Usage of attributes
+### 7. Usage of attributes
 
 The attribute namings of the components are the same as in the documentation.
 
@@ -159,7 +167,7 @@ The attribute namings of the components are the same as in the documentation.
 />
 ```
 
-### 6. Usage of events
+### 8. Usage of events
 
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 
@@ -209,7 +217,7 @@ export const MyComponent = () => (
 );
 ```
 
-### 7. Usage of methods
+### 9. Usage of methods
 
 Components can have methods (like `focus`, `click`, `stepUp`, etc. ), which can trigger an action, if they are called.
 

@@ -9,7 +9,11 @@ Got any problems using our components? Please take a look at [our list of known 
 
 ## Getting started
 
-### 1. Package installation
+### 1. Usage example
+
+If you want to see a usage example, please check out our [test Web Components repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/vanilla-demo).
+
+### 2. Package installation
 
 Run the following steps to install the required packages.
 
@@ -20,11 +24,17 @@ npm install --save @synergy-design-system/components
 # Install the required design tokens
 # (only needed if you do not install peerDeps automatically)
 npm install --save @synergy-design-system/tokens
+
+# Optional: Install the styles utility package
+npm install --save @synergy-design-system/styles
+
+# Optional: if icons shall be used, install the assets package
+npm install --save @synergy-design-system/assets
 ```
 
 ---
 
-### 2. Load the design tokens (required) and utility classes (recommended)
+### 3. Load the desired theme (required) and utility classes (recommended)
 
 The shipped components make heavy use of design tokens, which are provided via [@synergy-design-system/tokens](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/tokens). Make sure to follow the installation steps there for help on setting the tokens up. Usually it is enough to load the light or dark theme included there.
 
@@ -77,7 +87,7 @@ You may either load all of them in one bundle (recommended) or just include the 
 
 ---
 
-### 3. Define the elements
+### 4. Importing and rendering components
 
 There are multiple ways to load the components:
 
@@ -165,7 +175,7 @@ import "@synergy-design-system/components/components/button/button.js";
 
 ---
 
-### 4. Using the provided types
+### 5. Using the provided types
 
 The components are built using typescript and provide types for elements and events out of the box. These can be used for working with the dom when working in a typescript environment. You may use them by importing the needed types and using them for elements, like shown in this example:
 
@@ -199,7 +209,7 @@ document.addEventListener("load", () => {
 
 ---
 
-### 5. Add html autocompletion to VSCode (optional)
+### 6. Add html autocompletion to VSCode (optional)
 
 This package ships with a [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) that may be used to provide typings for tags. To enable code completion, please proceed the following way:
 
@@ -214,7 +224,7 @@ This package ships with a [custom-elements-manifest](https://github.com/webcompo
 
 ---
 
-### 6. Breaking changes between major versions
+### 7. Breaking changes between major versions
 
 Please have a look at the official [breaking changes list](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs) for information how to update to new major versions of Synergy.
 

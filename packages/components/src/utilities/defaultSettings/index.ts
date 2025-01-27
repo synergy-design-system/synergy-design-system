@@ -6,4 +6,5 @@ export {
   enableExperimentalSettingEmitEvents,
   setDefaultSettingsForElement,
   setGlobalDefaultSettings,
+  resetGlobalDefaultSettings,
 } from './functions.js';

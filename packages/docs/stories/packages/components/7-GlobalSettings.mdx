@@ -54,6 +54,17 @@ setDefaultSettingsForElement<SynButton>('SynButton', {
 });
 ```
 
+### `resetGlobalDefaultSettings`
+
+You may use `resetGlobalDefaultSettings` to reset the global default settings to their initial state.
+This will also automatically emit an event to notify all components that the settings have changed.
+
+```typescript
+import { resetGlobalDefaultSettings } from '@synergy-design-system/components';
+
+resetGlobalDefaultSettings();
+```
+
 ## Live update via events (experimental)
 
 > ⚠️ This feature is considered experimental and therefore hidden behind a feature flag.

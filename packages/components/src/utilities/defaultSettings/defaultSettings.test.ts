@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import sinon from 'sinon';
 import { expect, fixture, html } from '@open-wc/testing';
+import { INITIAL_DEFAULT_SETTINGS } from './base.js';
 import {
-  INITIAL_DEFAULT_SETTINGS,
+  type SynButton,
   enableExperimentalSettingEmitEvents,
+  resetGlobalDefaultSettings,
   setDefaultSettingsForElement,
   setGlobalDefaultSettings,
 } from '../../../dist/synergy.js';
-import type { SynButton } from '../../../dist/synergy.js';
 
 describe('GlobalSettings', () => {
   // Make sure to reset the defaults for each test
@@ -38,6 +39,17 @@ describe('GlobalSettings', () => {
       setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
       const button = await fixture<SynButton>(html`<syn-button size="small">Button</syn-button>`);
       expect(button.size).to.equal('small');
+    });
+
+    it('should return the changed settings when called', () => {
+      const newSettings = setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
+      expect(newSettings).to.deep.equal({
+        ...INITIAL_DEFAULT_SETTINGS,
+        size: {
+          ...INITIAL_DEFAULT_SETTINGS.size,
+          SynButton: 'large',
+        },
+      });
     });
 
     describe('when using the experimental event support', () => {
@@ -126,6 +138,22 @@ describe('GlobalSettings', () => {
       expect(button.size).to.equal('small');
     });
 
+    it('should return the changed settings when called', () => {
+      const newSettings = setGlobalDefaultSettings({
+        size: {
+          SynButton: 'large',
+        },
+      });
+
+      expect(newSettings).to.deep.equal({
+        ...INITIAL_DEFAULT_SETTINGS,
+        size: {
+          ...INITIAL_DEFAULT_SETTINGS.size,
+          SynButton: 'large',
+        },
+      });
+    });
+
     describe('when using the experimental event support', () => {
       it('should not dispatch the global settings event when the setting is disabled', () => {
         const spy = sinon.spy();
@@ -208,6 +236,24 @@ describe('GlobalSettings', () => {
         await tag!.updateComplete;
         expect(tag).to.have.property('size', 'small');
       });
+    });
+  });
+
+  describe('resetGlobalDefaultSettings', () => {
+    it('should reset all system settings to their original default when called', async () => {
+      setGlobalDefaultSettings({
+        size: {
+          SynButton: 'large',
+        },
+      });
+      const buttonBeforeReset = await fixture<SynButton>(html`<syn-button>Button</syn-button>`);
+      expect(buttonBeforeReset.size).to.equal('large');
+
+      const result = resetGlobalDefaultSettings();
+      expect(result).to.deep.equal(INITIAL_DEFAULT_SETTINGS);
+
+      const buttonAfterReset = await fixture<SynButton>(html`<syn-button>Button</syn-button>`);
+      expect(buttonAfterReset.size).to.equal('medium');
     });
   });
 });

@@ -210,7 +210,7 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
  */
 export const setGlobalDefaultSettings = (
   newSettings: RecursivePartial<SynDefaultSettings>,
-) => {
+): SynDefaultSettings => {
   // List of all changes in the default settings
   const detail = {} as Record<string, SynDefaultChangedAttribute[]>;
 
@@ -263,3 +263,10 @@ export const setGlobalDefaultSettings = (
 
   return defaultSettings;
 };
+
+/**
+ * Reset the global default settings to synergies initial values
+ */
+export const resetGlobalDefaultSettings = (): SynDefaultSettings => setGlobalDefaultSettings(
+  INITIAL_DEFAULT_SETTINGS,
+);

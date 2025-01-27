@@ -9,6 +9,7 @@ export const ThemeSwitch = () => {
   const [currentTheme, setCurrentTheme] = useState('🌙');
   return (
     <SynSwitch
+      size="small"
       onSynChange={(e: SynChangeEvent) => {
         const { body } = document;
         const { checked } = e.target as SynSwitchElement;

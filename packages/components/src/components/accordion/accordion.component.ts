@@ -7,6 +7,7 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './accordion.styles.js';
 import type SynDetails from '../details/details.component.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Accordions provide the ability to group a list of `<syn-details>`.
@@ -19,6 +20,7 @@ import type SynDetails from '../details/details.component.js';
  *
  * @csspart base - The component's base wrapper.
  */
+@enableDefaultSettings('SynAccordion')
 export default class SynAccordion extends SynergyElement {
   static styles: CSSResultGroup = [
     componentStyles,

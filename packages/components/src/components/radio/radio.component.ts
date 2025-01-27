@@ -16,6 +16,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './radio.styles.js';
 import customStyles from './radio.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Radios allow the user to select a single option from a group.
@@ -36,6 +37,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart checked-icon - The checked icon, an `<syn-icon>` element.
  * @csspart label - The container that wraps the radio's label.
  */
+@enableDefaultSettings('SynRadio')
 export default class SynRadio extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

@@ -16,6 +16,7 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './radio-button.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
@@ -37,6 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The container that wraps the radio button's label.
  * @csspart suffix - The container that wraps the suffix.
  */
+@enableDefaultSettings('SynRadioButton')
 export default class SynRadioButton extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 

@@ -1,9 +1,9 @@
-import fs from 'fs';
 import path from 'path';
 import * as jobs from './react/index.js';
 import {
   createRunFormat,
   createRunPrepare,
+  getManifestData,
   runAdjustPackageVersion,
 } from './shared.js';
 
@@ -20,9 +20,7 @@ export const runCreateReactWrappers = async ({
   componentPackageDir,
   reactPackageDir,
 }) => {
-  // Get the manifest information
-  const manifest = path.join(componentDistDir, '/custom-elements.json');
-  const metadata = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+  const metadata = await getManifestData(componentDistDir);
 
   // Internal react package paths for usage in sub packages
   const outDir = path.join(reactPackageDir, './src');

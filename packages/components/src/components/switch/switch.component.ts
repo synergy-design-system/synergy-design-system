@@ -23,6 +23,7 @@ import styles from './switch.styles.js';
 import customStyles from './switch.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
@@ -49,6 +50,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @cssproperty --height - The height of the switch.
  * @cssproperty --thumb-size - The size of the thumb.
  */
+@enableDefaultSettings('SynSwitch')
 export default class SynSwitch extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
 

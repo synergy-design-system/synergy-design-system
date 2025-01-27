@@ -7,6 +7,14 @@ import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../../components/src/synergy';
 
+// Enable this to set default settings for all components
+// import { setDefaultSettingsForElement, enableExperimentalSettingEmitEvents } from '../../components/src/synergy';
+// enableExperimentalSettingEmitEvents();
+// window.addEventListener('syn-default-settings-changed', console.log);
+// setDefaultSettingsForElement('SynAccordion', {
+//   size: 'small',
+// });
+
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';

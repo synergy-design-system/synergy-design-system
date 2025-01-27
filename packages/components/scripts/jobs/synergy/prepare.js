@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import { deleteAsync } from 'del';
-import { job } from './shared.js';
+import { job } from '../shared.js';
 
-export const runPrepare = job('Cleaning up artifacts...', async (dir) => {
+export const runPrepare = job('Synergy: Cleaning up artifacts...', async (dir) => {
   await Promise.all([
     deleteAsync(dir),
   ]);

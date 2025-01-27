@@ -13,8 +13,12 @@ import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
+import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
+
 import './app.css';
 import { App } from './App';
+
+enableExperimentalSettingEmitEvents(true);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

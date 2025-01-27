@@ -1,10 +1,10 @@
-import fs from 'fs';
 import path from 'path';
 import { deleteAsync } from 'del';
 import * as jobs from './angular/index.js';
 import {
   createRunFormat,
   createRunPrepare,
+  getManifestData,
   runAdjustPackageVersion,
 } from './shared.js';
 
@@ -21,9 +21,7 @@ export const runCreateAngularWrappers = async ({
   componentPackageDir,
   angularPackageDir,
 }) => {
-  // Get the manifest information
-  const manifest = path.join(componentDistDir, '/custom-elements.json');
-  const metadata = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+  const metadata = await getManifestData(componentDistDir);
 
   // Internal angular package paths for usage in sub packages
   const outDir = path.join(angularPackageDir);

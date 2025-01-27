@@ -20,6 +20,7 @@ import {
   numericSort,
 } from './utility.js';
 import styles from './range.styles.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
@@ -72,6 +73,7 @@ import styles from './range.styles.js';
  * @cssproperty --track-active-offset - The point of origin of the active track,
  * starting at the left side of the range.
  */
+@enableDefaultSettings('SynRange')
 export default class SynRange extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

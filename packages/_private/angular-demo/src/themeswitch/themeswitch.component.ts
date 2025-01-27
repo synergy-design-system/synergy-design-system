@@ -3,6 +3,7 @@ import type { SynChangeEvent, SynSwitch as SynSwitchElement } from '@synergy-des
 
 @Component({
   selector: 'theme-switch',
+  styleUrls: ['./themeswitch.component.css'],
   standalone: false,
   templateUrl: './themeswitch.component.html',
 })

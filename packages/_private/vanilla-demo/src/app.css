@@ -29,6 +29,11 @@ syn-header {
   width: auto;
 }
 
+.meta-navigation {
+  align-items: center;
+  display: flex;
+}
+
 /* Safari fix for ##623 */
 .custom-logo syn-icon::part(svg) {
   width: auto;

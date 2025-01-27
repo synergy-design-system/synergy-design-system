@@ -7,6 +7,7 @@
     "start": "npm run dev",
     "dev": "vite",
     "_build": "tsc && vite build",
+    "createsprites": "syn-create-spritesheet --icons=contact_emergency,contact_mail,home,weekend,density_small,density_medium,density_large > public/synergy-icon-sprites.svg",
     "preview": "vite preview",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",

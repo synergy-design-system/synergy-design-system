@@ -20,6 +20,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './details.styles.js';
 import customStyles from './details.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
@@ -48,6 +49,7 @@ import type { CSSResultGroup } from 'lit';
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
  */
+@enableDefaultSettings('SynDetails')
 export default class SynDetails extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 

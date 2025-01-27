@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { getAllComponents } from './shared.js';
-import * as jobs from './styles/index.js';
+import { getAllComponents } from '../shared.js';
+import * as jobs from '../styles/index.js';
 
 /**
  * Run all steps to create dynamic styles

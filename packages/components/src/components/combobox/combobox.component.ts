@@ -27,6 +27,7 @@ import {
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
@@ -78,6 +79,7 @@ import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
  */
+@enableDefaultSettings('SynCombobox')
 export default class SynCombobox extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

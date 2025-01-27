@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import type SynergyElement from '../synergy-element.js';
+import type SynergyElement from '../../internal/synergy-element.js';
 import {
   type AllowedValueForDefaultSetting,
   type ComponentNamesWithDefaultValues,

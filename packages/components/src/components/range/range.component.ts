@@ -20,7 +20,7 @@ import {
   numericSort,
 } from './utility.js';
 import styles from './range.styles.js';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.

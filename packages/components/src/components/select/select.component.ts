@@ -31,7 +31,7 @@ import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.

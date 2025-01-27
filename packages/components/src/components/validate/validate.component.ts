@@ -12,7 +12,7 @@ import {
   normalizeEventAttribute,
 } from './utility.js';
 import styles from './validate.styles.js';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Validate provides form field validation messages in a unified way.

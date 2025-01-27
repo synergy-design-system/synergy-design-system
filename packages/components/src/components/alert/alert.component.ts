@@ -21,7 +21,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 const toastStack = Object.assign(document.createElement('div'), { className: 'syn-toast-stack' });
 

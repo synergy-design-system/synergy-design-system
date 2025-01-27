@@ -20,7 +20,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './details.styles.js';
 import customStyles from './details.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.

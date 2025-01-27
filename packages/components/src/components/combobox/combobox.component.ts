@@ -27,7 +27,7 @@ import {
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.

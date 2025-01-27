@@ -25,7 +25,7 @@ import type SynSwitch from "../../components/switch/switch.js";
 import type SynTag from "../../components/tag/tag.js";
 import type SynTextarea from "../../components/textarea/textarea.js";
 import type SynValidate from "../../components/validate/validate.js";
-import type SynergyElement from "../synergy-element.js";
+import type SynergyElement from "../../internal/synergy-element.js";
 import type { SynDefaultChangedAttribute } from "../../events/events.js";
 
 // Core types

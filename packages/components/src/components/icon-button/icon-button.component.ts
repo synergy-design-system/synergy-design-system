@@ -16,7 +16,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './icon-button.styles.js';
 import customStyles from './icon-button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.

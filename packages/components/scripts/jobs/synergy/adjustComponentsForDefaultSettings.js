@@ -43,7 +43,7 @@ export const adjustComponentsForDefaultSettings = job('Synergy: Adjusting compon
       const importStatement = componentContent.match(/import .+ from '.+';/g);
       if (importStatement) {
         const lastImport = importStatement[importStatement.length - 1];
-        newContent = newContent.replace(lastImport, `${lastImport}\nimport { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';`);
+        newContent = newContent.replace(lastImport, `${lastImport}\nimport { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';`);
       }
 
       try {

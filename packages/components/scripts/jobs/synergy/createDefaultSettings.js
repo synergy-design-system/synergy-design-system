@@ -111,7 +111,7 @@ const createTypeImports = async (componentsHavingDefaults) => {
   const typeImports = componentExports
     .filter(c => componentsHavingDefaults.has(c.componentClass))
     .map(c => `import type ${c.componentClass} from '../../${c.componentImportPath}';`);
-  typeImports.push("import type SynergyElement from '../synergy-element.js';");
+  typeImports.push("import type SynergyElement from '../../internal/synergy-element.js';");
   typeImports.push("import type { SynDefaultChangedAttribute } from '../../events/events.js';");
   return typeImports;
 };
@@ -131,12 +131,12 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   componentDistDir,
   componentsDir,
 ) => {
-  const defaultSettingsFile = path.join(componentsDir, 'src/internal/defaultSettings/base.ts');
+  const defaultSettingsFile = path.join(componentsDir, 'src/utilities/defaultSettings/base.ts');
 
   const metadata = await getManifestData(componentDistDir);
 
   // Create a list of type imports
-  // Make sure to just include files that acutally have defaults
+  // Make sure to just include files that actually have defaults
   const componentsHavingDefaults = getComponentsWithDefaultSettings(metadata);
 
   const typeImports = await createTypeImports(componentsHavingDefaults);

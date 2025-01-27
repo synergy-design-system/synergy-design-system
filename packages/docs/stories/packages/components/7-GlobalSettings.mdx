@@ -16,7 +16,10 @@ This can be used to set the default size or other global settings that should be
 
 The settings can be set on a global or component level via `setGlobalDefaultSettings` and `setDefaultSettingsForElement` respectively.
 
-### `setGlobalDefaultSettings` (**recommended**)
+> ⚠️ The configured defaults are applied to all components rendered **after** the new configuration has been set.
+> This means in most cases it is crucial to call `setGlobalDefaultSettings` or `setDefaultSettingsForElement` **before rendering any components**.
+
+### `setGlobalDefaultSettings` (recommended)
 
 To set global defaults for all components, you can use the `setGlobalDefaultSettings` function exported from `@synergy-design-system/components`.
 This function accepts an object with the settings you want to apply to the components.

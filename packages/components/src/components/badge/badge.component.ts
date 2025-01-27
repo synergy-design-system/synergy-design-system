@@ -15,7 +15,7 @@ import { LocalizeController } from '../../utilities/localize.js';
 import styles from './badge.styles.js';
 import customStyles from './badge.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.

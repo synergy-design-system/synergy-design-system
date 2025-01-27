@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import type { PropertyValues } from 'lit';
-import type SynergyElement from '../synergy-element.js';
+import type SynergyElement from '../../internal/synergy-element.js';
 import { type ComponentNamesWithDefaultValues } from './base.js';
 import {
   addGlobalEventNotification,

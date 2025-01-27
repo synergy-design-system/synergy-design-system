@@ -23,7 +23,7 @@ import styles from './textarea.styles.js';
 import customStyles from './textarea.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
-import { enableDefaultSettings } from '../../internal/defaultSettings/decorator.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.

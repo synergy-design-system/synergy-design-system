@@ -60,7 +60,7 @@ export * from './utilities/form.js';
 export * from './components/combobox/option-renderer.js';
 
 // Global settings
-export * from './internal/defaultSettings/index.js';
+export * from './utilities/defaultSettings/index.js';
 
 // Events
 export * from './events/events.js';

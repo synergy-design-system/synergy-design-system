@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.19.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.0...components/2.19.1) (2025-01-27)
+
+
+### Bug Fixes
+
+* 🐛 Remove warning message in console for syn-header and syn-combobox in dev mode ([#756](https://github.com/synergy-design-system/synergy-design-system/issues/756)) ([724196c](https://github.com/synergy-design-system/synergy-design-system/commit/724196c50bb598bfaf40a30792fc140f2aa704a2))
+
 # [@synergy-design-system/components-v2.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.18.8...components/2.19.0) (2025-01-27)
 
 

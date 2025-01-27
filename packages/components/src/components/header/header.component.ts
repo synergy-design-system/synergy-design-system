@@ -127,8 +127,11 @@ export default class SynHeader extends SynergyElement {
   firstUpdated() {
     // Search for a side-nav and use the first found in case of the connectSideNavigation method
     // is not used by the user.
-    const sideNav = document.querySelector('syn-side-nav');
-    this.connectSideNavigation(sideNav);
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.updateComplete.then(() => {
+      const sideNav = document.querySelector('syn-side-nav');
+      this.connectSideNavigation(sideNav);
+    });
   }
 
   disconnectedCallback() {

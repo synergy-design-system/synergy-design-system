@@ -16,11 +16,9 @@ import '@synergy-design-system/styles';
 import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
 
 import './app.css';
-import { setGlobalSize } from './shared';
 import { App } from './App';
 
 enableExperimentalSettingEmitEvents(true);
-setGlobalSize('medium');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

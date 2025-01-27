@@ -11,7 +11,6 @@ import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-import { setGlobalSize } from './shared';
 import './app.css';
 
 import { createApp } from 'vue';
@@ -33,7 +32,6 @@ const router = createRouter({
 });
 
 enableExperimentalSettingEmitEvents();
-setGlobalSize('medium');
 
 createApp(App)
   .use(router)

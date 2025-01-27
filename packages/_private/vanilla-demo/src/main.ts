@@ -65,7 +65,6 @@ const initSizeSwitch = async () => {
 
 const bootstrap = async () => {
   enableExperimentalSettingEmitEvents();
-  setGlobalSize('medium');
 
   registerIconLibrary('default', {
     resolver: name => `/synergy-icon-sprites.svg#${name}`,

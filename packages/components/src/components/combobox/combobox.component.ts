@@ -236,7 +236,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   firstUpdated() {
     // initially set the displayLabel if the value was set via property initially
-    this.displayLabel = this.value;
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.updateComplete.then(() => {
+      this.displayLabel = this.value;
+    });
     this.formControlController.updateValidity();
   }
 

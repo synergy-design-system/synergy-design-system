@@ -12,6 +12,7 @@ import {
   job,
   lcFirstLetter,
 } from '../shared.js';
+import { createNgPackageJson } from './shared.js';
 
 const headerComment = createHeader('angular');
 
@@ -95,8 +96,12 @@ export const runCreateComponents = job('Angular: Creating components', async (me
   const index = [];
 
   components.forEach(component => {
+    const componentDir = path.join(outDir, component.tagNameWithoutPrefix);
     const componentFileName = `${component.tagNameWithoutPrefix}.component.ts`;
-    const componentPath = path.join(outDir, componentFileName);
+    // Create a subdirectory for each component
+    fs.mkdirSync(componentDir, { recursive: true });
+
+    const componentPath = path.join(componentDir, componentFileName);
     const jsDoc = component.jsDoc || '';
     const importPath = `@synergy-design-system/components/${component.path}`;
 
@@ -148,14 +153,17 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     index.push({
       name: `${component.name}Component`,
-      outputPath: `./${componentFileName.slice(0, -3)}`,
+      outputPath: `@synergy-design-system/angular/components/${component.tagNameWithoutPrefix}`,
     });
 
     fs.writeFileSync(componentPath, source, 'utf8');
+    createNgPackageJson(componentFileName, componentDir);
   });
 
   const frameworkIndex = createFrameworkIndex(headerComment, index);
 
   // Generate the index file
-  fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');
+  const indexFileName = 'index.ts';
+  fs.writeFileSync(path.join(outDir, indexFileName), frameworkIndex, 'utf8');
+  createNgPackageJson(indexFileName, outDir);
 });

@@ -17,7 +17,11 @@ Got any problems using our Angular wrappers? Please take a look at [our list of 
 
 ## Getting started
 
-### 1. Package installation
+### 1. Usage example
+
+If you want to see a usage example, please check out our [test Angular repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/angular-demo).
+
+### 2. Package installation
 
 Run the following steps to install the required packages.
 
@@ -36,7 +40,7 @@ npm install --save @angular/core@17 @angular/forms@17
 npm install --save @synergy-design-system/assets
 ```
 
-### 2. Add the desired theme to your application
+### 3. Load the desired theme (required) and utility classes (recommended)
 
 The components will not display correctly without the needed theme and utility classes.
 Please include either light or dark theme in your application, for example in a newly installed Angular application, add the following to `angular.json`:
@@ -52,8 +56,10 @@ Please include either light or dark theme in your application, for example in a 
         "build": {
           "options": {
             "styles": [
+              // Add this line to enable the light theme for your application
               "@synergy-design-system/tokens/themes/light.css",
               "@synergy-design-system/components/index.css",
+              // Optional: Import the styles package
               "@synergy-design-system/styles/index.css"
             ]
           }
@@ -64,7 +70,11 @@ Please include either light or dark theme in your application, for example in a 
 }
 ```
 
-### 3. Load the Synergy Module to load all components
+### 4. Importing and rendering components
+
+There are multiple ways to load components:
+
+#### Load the Synergy Module to load all components
 
 > ⚠️ This is a convenience feature only and WILL create bigger bundles!
 > It is intended for bootstrapping applications in a quick way.
@@ -100,7 +110,65 @@ This example will render the provided `<syn-button />` Angular component.
 
 ---
 
-### 4. Usage of the components
+#### Loading selected components only
+
+To reduce bundle size, it is recommended that you do not use the root import for components like `import { SynInputComponent, SynButtonComponent } from '@synergy-design-system/angular`, but use the specific import for each needed component.
+
+You can either add the needed components directly to the @Component.imports array:
+
+```typescript
+// src/app/my-component.component.ts
+import { Component } from "@angular/core";
+import { SynInputComponent } from "@synergy-design-system/angular/components/input";
+import { SynButtonComponent } from "@synergy-design-system/angular/components/button";
+
+@Component({
+  selector: "my-component",
+  imports: [SynButtonComponent, SynInputComponent],
+  template: `
+    <syn-input label="My input"></syn-input>
+    <syn-button>Click me</syn-button>
+  `,
+})
+export class MyComponent {}
+```
+
+Or create your own reusable NgModule with only needed components:
+
+```typescript
+// src/app/used-synergy.module.ts
+import { NgModule } from "@angular/core";
+import { SynButtonComponent } from "@synergy-design-system/angular/components/button";
+import { SynInputComponent } from "@synergy-design-system/angular/components/input";
+
+const components = [SynButtonComponent, SynInputComponent];
+
+@NgModule({
+  imports: components,
+  exports: components,
+})
+export class UsedSynergyModule {}
+```
+
+```typescript
+// src/app/my-component.component.ts
+import { Component } from "@angular/core";
+import { UsedSynergyModule } from "./used-synergy.module";
+
+@Component({
+  selector: "my-component",
+  imports: [UsedSynergyModule],
+  template: `
+    <syn-input label="My input"></syn-input>
+    <syn-button>Click me</syn-button>
+  `,
+})
+export class MyComponent {}
+```
+
+For a practical example, check out our test Angular repository. We've created a [module](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/_private/angular-demo/src/modules/used-synergy.module.ts) that includes only the necessary components, which we imported into the [component](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/_private/angular-demo/src/demoformvalidate/demoformvalidate.component.ts) that uses them.
+
+### 5. Usage of the components
 
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
@@ -119,7 +187,7 @@ The naming of the components for Angular is the same as in the documentation.
 <syn-button> My Button </syn-button>
 ```
 
-### 5. Usage of attributes
+### 6. Usage of attributes
 
 In Angular attributes must be converted from kebab-case to camelCase (e.g. myAttribute instead of my-attribute)
 
@@ -143,7 +211,7 @@ The following two code examples show, how different attributes look like for web
 ></syn-input>
 ```
 
-### 6. Usage of events
+### 7. Usage of events
 
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 
@@ -184,7 +252,7 @@ An example for how these types can be used in case of event handling, is shown b
   }
 ```
 
-### 7. Obtaining a reference to the underlying native element (e.g. for usage of methods)
+### 8. Obtaining a reference to the underlying native element (e.g. for usage of methods)
 
 Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all angular components.
 
@@ -210,7 +278,7 @@ export class Home {
 }
 ```
 
-### 8. Using synergy components in @angular/forms via SynergyFormsModule
+### 9. Using synergy components in @angular/forms via SynergyFormsModule
 
 There are two ways to use the Angular wrappers in forms: Either manual by adding a `ngDefaultControl` to the component or via our custom `SynergyFormsModule`.
 
@@ -265,7 +333,7 @@ Note that all elements that have one of the following attributes will be used as
 - Elements defining a `[formControl]` attribute
 - Elements defining a `[ngModel]` attribute
 
-### 9. Using two way data binding
+### 10. Using two way data binding
 
 Input Controls like `<syn-input />`, `<syn-checkbox />` or `<syn-select />` also support [Angulars two way data binding](https://angular.io/guide/two-way-binding) on their corresponding `value` or `checked` properties.
 

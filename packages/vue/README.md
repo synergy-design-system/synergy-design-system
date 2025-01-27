@@ -14,7 +14,11 @@ Got any problems using our Vue wrappers? Please take a look at [our list of know
 
 ## Getting started
 
-### 1. Package installation
+### 1. Usage example
+
+If you want to see a usage example, please check out our [test Vue repository](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/vue-demo).
+
+### 2. Package installation
 
 Run the following steps to install the required packages.
 
@@ -32,9 +36,9 @@ npm install --save @synergy-design-system/assets
 > ⚠️ Note we do **not** ship Vue in this package.
 > You will have to install it by yourself first!
 
-### 2. Add the desired theme to your application
+### 3. Load the desired theme (required) and utility classes (recommended)
 
-The components will not display correctly without the needed theme. Please include either light or dark theme in your application, for example in a newly installed Vue application:
+The components will not display correctly without the needed theme and utility classes. Please include either light or dark theme in your application, for example in a newly installed Vue application:
 
 ```ts
 // src/main.ts
@@ -51,7 +55,7 @@ import App from "./App.vue";
 createApp(App).mount("#app");
 ```
 
-### 3. Importing and rendering components
+### 4. Importing and rendering components
 
 You may now use the components by importing them from the `@synergy-design-system/vue` package and rendering them in your own Vue components.
 
@@ -68,7 +72,7 @@ You may now use the components by importing them from the `@synergy-design-syste
 </template>
 ```
 
-### 4. Usage of the components
+### 5. Usage of the components
 
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
@@ -88,7 +92,7 @@ The naming of the components for Vue changes from kebab-case to PascalCase with 
 <SynVueButton> My Button </SynVueButton>
 ```
 
-### 5. Usage of attributes
+### 6. Usage of attributes
 
 The attribute naming of the components are the same as in the documentation.
 
@@ -110,7 +114,7 @@ The attribute naming of the components are the same as in the documentation.
 />
 ```
 
-### 6. Usage of events
+### 7. Usage of events
 
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 They stay the same for the Vue components:
@@ -150,7 +154,7 @@ An example for how these types can be used in case of event handling, is shown b
 </template>
 ```
 
-### 7. Obtaining a reference to the underlying native element (e.g. for usage of methods)
+### 8. Obtaining a reference to the underlying native element (e.g. for usage of methods)
 
 Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all vue components.
 
@@ -173,7 +177,7 @@ Sometimes, there is a need to interact directly with the underlying native web-c
 </template>
 ```
 
-### 8. Using two way databinding
+### 9. Using two way databinding
 
 We support [Vue two way data binding](https://vuejs.org/guide/components/v-model.html) for form components out of the box.
 You may use it in one of the following ways:

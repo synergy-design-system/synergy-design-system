@@ -1,7 +1,11 @@
-import type { SynChangeEvent, SynRange } from '@synergy-design-system/components';
-import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import type { SynChangeEvent } from '@synergy-design-system/components';
+import { serialize } from '@synergy-design-system/components/utilities/form.js';
+import { highlightOptionRenderer } from '@synergy-design-system/components/components/combobox/option-renderer.js';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
+import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
 const initialData = {
   code: '',
@@ -24,9 +28,15 @@ const initialData = {
 
 @Component({
   selector: 'demo-form-validate',
-  standalone: false,
+  standalone: true,
   styleUrls: ['./demoformvalidate.component.css'],
   templateUrl: './demoformvalidate.component.html',
+  imports: [
+    UsedSynergyComponentsModule,
+    DemoFieldSetModule,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
 })
 export class DemoFormValidate {
 

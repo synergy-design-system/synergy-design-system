@@ -20,7 +20,10 @@
     "packages/vue"
   ],
   "files.readonlyInclude": {
-    "packages/angular/src/**": true,
+    "packages/angular/components/**": true,
+    "packages/angular/directives/**": true,
+    "packages/angular/index.ts": true,
+    "packages/angular/modules/**": true,
     "packages/components/src/components/alert/alert.component.ts": true,
     "packages/components/src/components/alert/alert.styles.ts": true,
     "packages/components/src/components/alert/alert.test.ts": true,

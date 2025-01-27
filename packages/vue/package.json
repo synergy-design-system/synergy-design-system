@@ -43,7 +43,7 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",
     "@vue/tsconfig": "^0.5.1",

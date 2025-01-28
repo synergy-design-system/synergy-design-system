@@ -14,6 +14,7 @@ export const AllComponents = () => (
       <React.Fragment key={name}>
         <syn-tab
           active={name === activeDemo}
+          id={`tab-${name}`}
           panel={name}
           slot="nav"
         >
@@ -23,7 +24,7 @@ export const AllComponents = () => (
           active={name === activeDemo}
           name={name}
         >
-          <div id={`tab-${name}`} style={{ display: 'contents' }}>
+          <div id={`tab-content-${name}`} style={{ display: 'contents' }}>
             <Component />
           </div>
         </syn-tab-panel>

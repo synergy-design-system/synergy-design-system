@@ -9,13 +9,14 @@ const activeDemo = Demos.at(0)?.at(0);
 </script>
 
 <template>
-  <SynVueTabGroup @syn-tab-show="e => e.target.parentElement?.scrollTo(0, 0)">
+  <SynVueTabGroup @syn-tab-show="e => (e.target as HTMLElement).parentElement?.scrollTo(0, 0)">
     <template
       v-for="([name, Component]) in Demos"
       :key="name"
     >
       <SynVueTab
         :active="name === activeDemo"
+        :id="`tab-content-${name}`"
         :panel="name as string"
         slot="nav"
       >
@@ -25,7 +26,7 @@ const activeDemo = Demos.at(0)?.at(0);
         :active="name === activeDemo"
         :name="name as string"
       >
-        <div :id="`tab-{name}`" style="display: 'contents';">
+        <div :id="`tab-content-{name}`" style="display: 'contents';">
           <component :is="Component" />
         </div>
       </SynVueTabPanel>

@@ -20,6 +20,7 @@ class AllComponents extends LitElement {
         ${Demos.map(([name, Component]) => html`
           <syn-tab
             ?active=${name === activeDemo}
+            id="tab-${name}"
             panel=${name}
             slot="nav"
           >
@@ -29,7 +30,7 @@ class AllComponents extends LitElement {
             ?active=${name === activeDemo}
             name=${name}
           >
-            <div id="tab-${name}" style="display: contents">
+            <div id="tab-content-${name}" style="display: contents">
               ${html`${Component()}`}
             </div>
           </syn-tab-panel>

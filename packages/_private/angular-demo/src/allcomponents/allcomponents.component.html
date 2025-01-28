@@ -4,6 +4,7 @@
   @for (demo of Demos; track demo[0]) {
     <syn-tab
       [active]="demo[0] === activeDemo"
+      [id]="'tab-' + demo[0]"
       [panel]="demo[0]"
       slot="nav"
     >
@@ -13,7 +14,7 @@
       [active]="demo[0] === activeDemo"
       [name]="demo[0]"
     >
-      <div [id]="'tab-' + demo[0]" style="display: contents;">
+      <div [id]="'tab-content-' + demo[0]" style="display: contents;">
         <ng-container *ngComponentOutlet="demo[1]"></ng-container>
       </div>
     </syn-tab-panel>

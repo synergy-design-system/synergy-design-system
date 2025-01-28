@@ -1,4 +1,10 @@
+const AllComponentSelectors = {
+  accordionContent: '#tab-content-Accordion',
+  accordionLink: '#tab-Accordion',
+};
+
 export default {
+  ...AllComponentSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',

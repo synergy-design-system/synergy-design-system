@@ -1,0 +1,21 @@
+<syn-tab-group
+  (syn-tab-show)="scrollToTop($event)"
+>
+  @for (demo of Demos; track demo[0]) {
+    <syn-tab
+      [active]="demo[0] === activeDemo"
+      [panel]="demo[0]"
+      slot="nav"
+    >
+      {{demo[0]}}
+    </syn-tab>
+    <syn-tab-panel
+      [active]="demo[0] === activeDemo"
+      [name]="demo[0]"
+    >
+      <div [id]="'tab-' + demo[0]" style="display: contents;">
+        <ng-container *ngComponentOutlet="demo[1]"></ng-container>
+      </div>
+    </syn-tab-panel>
+  }
+</syn-tab-group>

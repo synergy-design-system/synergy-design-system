@@ -7,6 +7,7 @@ import {
   afterRenderDefaultForm,
   afterRenderValidateForm,
 } from './form.js';
+import { afterRenderAllComponents } from './all-components.js';
 
 const history = createBrowserHistory();
 
@@ -25,6 +26,11 @@ const routes = [
     afterLoad: afterRenderValidateForm,
     href: '/contact-form-validate',
     page: 'demoform-validate',
+  },
+  {
+    afterLoad: afterRenderAllComponents,
+    href: '/all-components',
+    page: 'all-components',
   },
 ];
 

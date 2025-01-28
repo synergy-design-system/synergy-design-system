@@ -14,8 +14,8 @@ export const AllComponents = () => (
       <React.Fragment key={name}>
         <syn-tab
           active={name === activeDemo}
-          slot="nav"
           panel={name}
+          slot="nav"
         >
           {name}
         </syn-tab>

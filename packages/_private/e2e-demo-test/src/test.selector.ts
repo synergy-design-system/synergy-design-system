@@ -23,7 +23,7 @@ export default {
   newsLocSynVue: '#checkbox-newsletter-vue',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
-  passRcvryLoc: '#input-number',
+  passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',

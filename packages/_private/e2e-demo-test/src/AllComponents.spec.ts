@@ -13,6 +13,7 @@ createTestCases(({ name, port }) => {
         await AllComponents.loadInitialPage();
 
         // Initial state should be the first item is open
+        await AllComponents.activateItem('accordionLink');
         await expect(AllComponents.getLocator('accordionContent')).toBeVisible();
       }); // End open
     }); // </syn-acordion>

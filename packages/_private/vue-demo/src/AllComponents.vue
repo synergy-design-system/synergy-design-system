@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@synergy-design-system/vue';
+import type { SynTabShowEvent } from '@synergy-design-system/components';
 import * as DemoImports from './AllComponentParts/index.js';
 
 const Demos = Object
@@ -7,7 +8,7 @@ const Demos = Object
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 const activeDemo = Demos.at(0)?.at(0);
 
-const showTab = (e: Event) => {
+const showTab = (e: SynTabShowEvent) => {
   const { name } = e.detail;
   (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
@@ -26,7 +27,7 @@ const showTab = (e: Event) => {
     >
       <SynVueTab
         :active="name === activeDemo"
-        :id="`tab-content-${name}`"
+        :id="`tab-${name}`"
         :panel="name as string"
         slot="nav"
       >
@@ -36,7 +37,7 @@ const showTab = (e: Event) => {
         :active="name === activeDemo"
         :name="name as string"
       >
-        <div :id="`tab-content-{name}`" style="display: 'contents';">
+        <div :id="`tab-content-${name}`" style="display: 'contents';">
           <component :is="Component" />
         </div>
       </SynVueTabPanel>

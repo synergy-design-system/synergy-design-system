@@ -1,5 +1,6 @@
 const AllComponentSelectors = {
   accordionContent: '#tab-content-Accordion',
+  accordionDetails: '#tab-content-Accordion syn-details',
   accordionLink: '#tab-Accordion',
 };
 

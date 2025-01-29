@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit';
+import { type SynTabShowEvent } from '@synergy-design-system/components';
 import * as DemoImports from './AllComponentParts/index.js';
 
 const Demos = Object.entries(DemoImports);
@@ -13,8 +14,14 @@ class AllComponents extends LitElement {
   render() {
     return html`
       <syn-tab-group
-        @syn-tab-show=${(e: Event) => {
+        @syn-tab-show=${(e: SynTabShowEvent) => {
+          const { name } = e.detail;
           (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
+
+          const dialog = this.shadowRoot?.querySelector('syn-dialog');
+          if (dialog) {
+            dialog.open = name === 'Dialog';
+          }
         }}
       >
         ${Demos.map(([name, Component]) => html`

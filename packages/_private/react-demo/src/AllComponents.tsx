@@ -7,7 +7,13 @@ const activeDemo = Demos.at(0)?.at(0);
 export const AllComponents = () => (
   <syn-tab-group
     onsyn-tab-show={(e) => {
+      const { name } = e.detail;
       (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
+
+      const dialog = document.querySelector('syn-dialog');
+      if (dialog) {
+        dialog.open = name === 'Dialog';
+      }
     }}
   >
     {Demos.map(([name, Component]) => (

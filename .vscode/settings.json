@@ -1,10 +1,6 @@
 {
   "cSpell.language": "en,lorem",
-  "cSpell.dictionaries": [
-    "en",
-    "lorem",
-    "lorem-ipsum"
-  ],
+  "cSpell.dictionaries": ["en", "lorem", "lorem-ipsum"],
   "cSpell.enableFiletypes": ["editorconfig"],
   "stylelint.packageManager": "pnpm",
   "stylelint.validate": ["css", "less", "postcss", "javascript", "typescript"],

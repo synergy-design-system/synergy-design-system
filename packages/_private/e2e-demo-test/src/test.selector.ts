@@ -1,7 +1,13 @@
 const AllComponentSelectors = {
+  // Accordion
   accordionContent: '#tab-content-Accordion',
   accordionDetails: '#tab-content-Accordion syn-details',
   accordionLink: '#tab-Accordion',
+
+  // Alert
+  alertAll: '#tab-content-Alert syn-alert',
+  alertContent: '#tab-content-Alert',
+  alertLink: '#tab-Alert',
 };
 
 export default {

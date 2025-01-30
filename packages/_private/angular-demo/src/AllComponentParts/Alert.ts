@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynAlertComponent, SynIconComponent } from '@synergy-design-system/angular';
+import { SynAlertComponent } from '@synergy-design-system/angular/components/alert';
+import { SynIconComponent } from '@synergy-design-system/angular/components/icon';
 
 @Component({
   selector: 'demo-alert',

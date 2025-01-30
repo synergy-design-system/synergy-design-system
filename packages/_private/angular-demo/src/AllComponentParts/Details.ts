@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynDetailsComponent } from '@synergy-design-system/angular';
+import { SynDetailsComponent } from '@synergy-design-system/angular/components/details';
 
 @Component({
   selector: 'demo-details',

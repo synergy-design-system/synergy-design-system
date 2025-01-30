@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynInputComponent, SynValidateComponent } from '@synergy-design-system/angular';
+import { SynInputComponent } from '@synergy-design-system/angular/components/input';
+import { SynValidateComponent } from '@synergy-design-system/angular/components/validate';
 
 @Component({
   selector: 'demo-validate',

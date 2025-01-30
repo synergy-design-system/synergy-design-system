@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SynMenuComponent, SynMenuItemComponent, SynDividerComponent } from '@synergy-design-system/angular';
+import { SynMenuComponent } from '@synergy-design-system/angular/components/menu';
+import { SynMenuItemComponent } from '@synergy-design-system/angular/components/menu-item';
+import { SynDividerComponent } from '@synergy-design-system/angular/components/divider';
 
 @Component({
   selector: 'demo-menu',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynIconComponent } from '@synergy-design-system/angular';
+import { SynIconComponent } from '@synergy-design-system/angular/components/icon';
 
 @Component({
   selector: 'demo-icon',

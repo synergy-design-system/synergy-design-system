@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynNavItemComponent } from '@synergy-design-system/angular';
+import { SynNavItemComponent } from '@synergy-design-system/angular/components/nav-item';
 
 @Component({
   selector: 'demo-navitem',

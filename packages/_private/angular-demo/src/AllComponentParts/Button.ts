@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynButtonComponent } from '@synergy-design-system/angular';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
 
 @Component({
   selector: 'demo-button',

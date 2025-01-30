@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynRadioGroupComponent, SynRadioComponent } from '@synergy-design-system/angular';
+import { SynRadioGroupComponent } from '@synergy-design-system/angular/components/radio-group';
+import { SynRadioComponent } from '@synergy-design-system/angular/components/radio';
 
 @Component({
   selector: 'demo-radiogroup',

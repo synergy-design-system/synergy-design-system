@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynProgressRingComponent } from '@synergy-design-system/angular';
+import { SynProgressRingComponent } from '@synergy-design-system/angular/components/progress-ring';
 
 @Component({
   selector: 'demo-progressring',

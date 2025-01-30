@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SynOptgroupComponent, SynOptionComponent, SynSelectComponent } from '@synergy-design-system/angular';
+import { SynOptgroupComponent } from '@synergy-design-system/angular/components/optgroup';
+import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
+import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 
 @Component({
   selector: 'demo-optgroup',

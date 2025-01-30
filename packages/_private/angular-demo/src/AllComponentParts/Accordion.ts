@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynAccordionComponent, SynDetailsComponent } from '@synergy-design-system/angular';
+import { SynAccordionComponent } from '@synergy-design-system/angular/components/accordion';
+import { SynDetailsComponent } from '@synergy-design-system/angular/components/details';
 
 @Component({
   selector: 'demo-accordion',

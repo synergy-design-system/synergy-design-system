@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynDividerComponent } from '@synergy-design-system/angular';
+import { SynDividerComponent } from '@synergy-design-system/angular/components/divider';
 
 @Component({
   selector: 'demo-divider',

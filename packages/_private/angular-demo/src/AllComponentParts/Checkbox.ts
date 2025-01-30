@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynCheckboxComponent } from '@synergy-design-system/angular';
+import { SynCheckboxComponent } from '@synergy-design-system/angular/components/checkbox';
 
 @Component({
   selector: 'demo-checkbox',

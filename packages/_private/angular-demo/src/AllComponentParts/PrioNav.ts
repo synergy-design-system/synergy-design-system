@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynNavItemComponent, SynPrioNavComponent } from '@synergy-design-system/angular';
+import { SynNavItemComponent } from '@synergy-design-system/angular/components/nav-item';
+import { SynPrioNavComponent } from '@synergy-design-system/angular/components/prio-nav';
 
 @Component({
   selector: 'demo-prio-nav',

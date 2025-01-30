@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynCardComponent, SynButtonComponent } from '@synergy-design-system/angular';
+import { SynCardComponent } from '@synergy-design-system/angular/components/card';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
 
 @Component({
   selector: 'demo-card',

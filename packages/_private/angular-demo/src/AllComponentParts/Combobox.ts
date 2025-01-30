@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynComboboxComponent, SynOptionComponent } from '@synergy-design-system/angular';
+import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
+import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 
 @Component({
   selector: 'demo-combobox',

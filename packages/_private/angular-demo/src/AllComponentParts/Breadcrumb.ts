@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynBreadcrumbComponent, SynBreadcrumbItemComponent } from '@synergy-design-system/angular';
+import { SynBreadcrumbComponent } from '@synergy-design-system/angular/components/breadcrumb';
+import { SynBreadcrumbItemComponent } from '@synergy-design-system/angular/components/breadcrumb-item';
 
 @Component({
   selector: 'demo-breadcrumb',

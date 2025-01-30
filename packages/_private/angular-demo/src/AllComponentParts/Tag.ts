@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynIconComponent, SynTagComponent } from '@synergy-design-system/angular';
+import { SynIconComponent } from '@synergy-design-system/angular/components/icon';
+import { SynTagComponent } from '@synergy-design-system/angular/components/tag';
 
 @Component({
   selector: 'demo-tag',

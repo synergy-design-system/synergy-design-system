@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynSwitchComponent } from '@synergy-design-system/angular';
+import { SynSwitchComponent } from '@synergy-design-system/angular/components/switch';
 
 @Component({
   selector: 'demo-switch',

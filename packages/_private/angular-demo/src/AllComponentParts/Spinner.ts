@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynSpinnerComponent } from '@synergy-design-system/angular';
+import { SynSpinnerComponent } from '@synergy-design-system/angular/components/spinner';
 
 @Component({
   selector: 'demo-spinner',

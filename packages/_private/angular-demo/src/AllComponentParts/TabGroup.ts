@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SynTabComponent, SynTabGroupComponent, SynTabPanelComponent } from '@synergy-design-system/angular';
+import { SynTabComponent } from '@synergy-design-system/angular/components/tab';
+import { SynTabGroupComponent } from '@synergy-design-system/angular/components/tab-group';
+import { SynTabPanelComponent } from '@synergy-design-system/angular/components/tab-panel';
 
 @Component({
   selector: 'demo-tabgroup',

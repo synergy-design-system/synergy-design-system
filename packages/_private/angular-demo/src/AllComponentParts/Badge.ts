@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynBadgeComponent } from '@synergy-design-system/angular';
+import { SynBadgeComponent } from '@synergy-design-system/angular/components/badge';
 
 @Component({
   selector: 'demo-badge',

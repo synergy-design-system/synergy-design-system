@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynRangeComponent } from '@synergy-design-system/angular';
+import { SynRangeComponent } from '@synergy-design-system/angular/components/range';
 
 @Component({
   selector: 'demo-range',

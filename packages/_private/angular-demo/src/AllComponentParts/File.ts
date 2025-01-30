@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynFileComponent } from '@synergy-design-system/angular';
+import { SynFileComponent } from '@synergy-design-system/angular/components/file';
 
 @Component({
   selector: 'demo-file',

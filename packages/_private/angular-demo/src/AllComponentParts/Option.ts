@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynOptionComponent, SynSelectComponent } from '@synergy-design-system/angular';
+import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
+import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 
 @Component({
   selector: 'demo-option',

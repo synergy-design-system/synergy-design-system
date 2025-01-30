@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { SynDropdownComponent, SynButtonComponent, SynMenuComponent, SynMenuItemComponent, SynDividerComponent, SynIconComponent } from '@synergy-design-system/angular';
+import { SynDropdownComponent } from '@synergy-design-system/angular/components/dropdown';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+import { SynMenuComponent } from '@synergy-design-system/angular/components/menu';
+import { SynMenuItemComponent } from '@synergy-design-system/angular/components/menu-item';
+import { SynDividerComponent } from '@synergy-design-system/angular/components/divider';
+import { SynIconComponent } from '@synergy-design-system/angular/components/icon';
 
 @Component({
   selector: 'demo-dropdown',

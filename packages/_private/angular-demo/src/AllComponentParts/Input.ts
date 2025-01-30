@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynIconComponent, SynInputComponent } from '@synergy-design-system/angular';
+import { SynIconComponent } from '@synergy-design-system/angular/components/icon';
+import { SynInputComponent } from '@synergy-design-system/angular/components/input';
 
 @Component({
   selector: 'demo-input',

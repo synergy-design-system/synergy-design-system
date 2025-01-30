@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynProgressBarComponent } from '@synergy-design-system/angular';
+import { SynProgressBarComponent } from '@synergy-design-system/angular/components/progress-bar';
 
 @Component({
   selector: 'demo-progressbar',

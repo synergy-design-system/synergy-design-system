@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SynButtonComponent, SynTooltipComponent } from '@synergy-design-system/angular';
+import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+import { SynTooltipComponent } from '@synergy-design-system/angular/components/tooltip';
 
 @Component({
   selector: 'demo-tooltip',

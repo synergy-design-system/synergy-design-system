@@ -70,6 +70,10 @@ export const withSpriteSheetGenerator = {
         'home',
         'contact_mail',
         'contact_emergency',
+        'grid_view',
+        'wallpaper',
+        'house',
+        'chat',
       ],
     }),
     viteStaticCopy({

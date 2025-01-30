@@ -1,0 +1,22 @@
+export const IconButton = () => (
+  <div>
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="small"
+    />
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="medium"
+    />
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="large"
+    />
+  </div>
+);

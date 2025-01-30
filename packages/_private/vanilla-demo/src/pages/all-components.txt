@@ -1,0 +1,1 @@
+<syn-progress-bar indeterminate id="all-components"></syn-progress-bar>

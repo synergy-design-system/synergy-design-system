@@ -34,6 +34,14 @@ const decorate = <T, M extends keyof T>(
   } as MethodOf<T, M>;
 };
 
+
+// #763: Make sure the scrollend polyfill is only applied on the client side
+(() => {
+  // SSR environments should not apply the polyfill
+  if (typeof window === 'undefined') {
+    return;
+  }
+      
 const isSupported = 'onscrollend' in window;
 
 if (!isSupported) {
@@ -83,5 +91,6 @@ if (!isSupported) {
   });
 }
 
+})();
 // Without an import or export, TypeScript sees vars in this file as global
 export {};

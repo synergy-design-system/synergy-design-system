@@ -17,6 +17,7 @@ export * from './menu-label.vendorism.js';
 export * from './menu.vendorism.js';
 export * from './option.vendorism.js';
 export * from './progress-bar.vendorism.js';
+export * from './scrollend-polyfill.vendorism.js';
 export * from './select.vendorism.js';
 export * from './spinner.vendorism.js';
 export * from './tab-group.vendorism.js';

@@ -22,8 +22,6 @@ import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
-const toastStack = Object.assign(document.createElement('div'), { className: 'syn-toast-stack' });
-
 /**
  * @summary Alerts are used to display important messages inline or as toast notifications.
  * @documentation https://synergy.style/components/alert
@@ -196,6 +194,17 @@ export default class SynAlert extends SynergyElement {
     return waitForEvent(this, 'syn-after-hide');
   }
 
+  private static currentToastStack: HTMLDivElement;
+
+  private static get toastStack() {
+    if (!this.currentToastStack) {
+      this.currentToastStack = Object.assign(document.createElement('div'), {
+        className: 'syn-toast-stack',
+      });
+    }
+    return this.currentToastStack;
+  }
+
   /**
    * Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when
    * dismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by
@@ -204,11 +213,11 @@ export default class SynAlert extends SynergyElement {
   async toast() {
     return new Promise<void>(resolve => {
       this.handleCountdownChange();
-      if (toastStack.parentElement === null) {
-        document.body.append(toastStack);
+      if (SynAlert.toastStack.parentElement === null) {
+        document.body.append(SynAlert.toastStack);
       }
 
-      toastStack.appendChild(this);
+      SynAlert.toastStack.appendChild(this);
 
       // Wait for the toast stack to render
       requestAnimationFrame(() => {
@@ -220,12 +229,12 @@ export default class SynAlert extends SynergyElement {
       this.addEventListener(
         'syn-after-hide',
         () => {
-          toastStack.removeChild(this);
+          SynAlert.toastStack.removeChild(this);
           resolve();
 
           // Remove the toast stack from the DOM when there are no more alerts
-          if (toastStack.querySelector('syn-alert') === null) {
-            toastStack.remove();
+          if (SynAlert.toastStack.querySelector('syn-alert') === null) {
+            SynAlert.toastStack.remove();
           }
         },
         { once: true }

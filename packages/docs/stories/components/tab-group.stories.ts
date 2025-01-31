@@ -316,6 +316,57 @@ export const Icons: Story = {
 `,
 };
 
+export const TabInTab: Story = {
+  render: () => html`
+    <syn-tab-group style="">
+      <syn-tab-panel name="general" active="">
+        This is the general tab panel.
+      </syn-tab-panel>
+      <syn-tab-panel name="custom">
+        <!-- Begin Sub -->
+        <syn-tab-group style="">
+          <syn-tab-panel name="general" active="">
+            This is the general tab panel.
+          </syn-tab-panel>
+          <syn-tab-panel name="custom">
+                    <!-- Begin Sub -->
+        <syn-tab-group style="">
+          <syn-tab-panel name="general" active="">
+            <h1>I am aria</h1>>
+            <syn-input type="text" label="Do not change me"></syn-input>
+          </syn-tab-panel>
+          <syn-tab-panel name="custom">
+            I am happy to be here.
+          </syn-tab-panel>
+          <syn-tab-panel name="advanced">This is the advanced tab panel.</syn-tab-panel>
+          <syn-tab-panel name="disabled">This is the disabled tab panel.</syn-tab-panel>
+          <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+          <syn-tab slot="nav" panel="custom">Custom</syn-tab>
+          <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
+          <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
+        </syn-tab-group>
+        <!-- End Sub -->
+
+          </syn-tab-panel>
+          <syn-tab-panel name="advanced">This is the advanced tab panel.</syn-tab-panel>
+          <syn-tab-panel name="disabled">This is the disabled tab panel.</syn-tab-panel>
+          <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+          <syn-tab slot="nav" panel="custom">Custom</syn-tab>
+          <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
+          <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
+        </syn-tab-group>
+        <!-- End Sub -->
+      </syn-tab-panel>
+      <syn-tab-panel name="advanced">This is the advanced tab panel.</syn-tab-panel>
+      <syn-tab-panel name="disabled">This is the disabled tab panel.</syn-tab-panel>
+      <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+      <syn-tab slot="nav" panel="custom">Custom</syn-tab>
+      <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
+      <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
+    </syn-tab-group>
+  `,
+};
+
 // For this screenshot story to work correctly, we needed to explicitly set the active prop on each
 // first tab and first tab-panel, although the tab-group sets the first tab and tab-panel active
 // by itself, if none is set active.

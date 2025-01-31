@@ -48,6 +48,17 @@ import type { CSSResultGroup } from 'lit';
  * @animation alert.hide - The animation to use when hiding the alert.
  */
 export default class SynAlert extends SynergyElement {
+
+  private static currentToastStack: HTMLDivElement;
+
+  private static get toastStack() {
+    if (!this.currentToastStack) {
+      this.currentToastStack = Object.assign(document.createElement('div'), {
+        className: 'syn-toast-stack',
+      });
+    }
+    return this.currentToastStack;
+  }
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };
 
@@ -192,17 +203,6 @@ export default class SynAlert extends SynergyElement {
 
     this.open = false;
     return waitForEvent(this, 'syn-after-hide');
-  }
-
-  private static currentToastStack: HTMLDivElement;
-
-  private static get toastStack() {
-    if (!this.currentToastStack) {
-      this.currentToastStack = Object.assign(document.createElement('div'), {
-        className: 'syn-toast-stack',
-      });
-    }
-    return this.currentToastStack;
   }
 
   /**

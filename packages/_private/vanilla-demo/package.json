@@ -19,11 +19,11 @@
     "eslint": "^8.57.1",
     "stylelint": "^16.10.0",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11",
+    "vite": "^5.4.14",
     "vite-plugin-static-copy": "^1.0.6"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.1.0",
+    "@fontsource/open-sans": "^5.1.1",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",

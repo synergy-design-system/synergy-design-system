@@ -123,6 +123,53 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
+  // Fix for #757: Make sure the mutation observer is scoped correctly
+  // for slotted syn-tab-groups not bleeding out
+  content = replaceSections([
+    [
+      'this.mutationObserver = new MutationObserver(mutations => {',
+      `this.mutationObserver = new MutationObserver(mutations => {
+      // Make sure to only observe the direct children of the tab group
+      // instead of other sub elements that might be slotted in.
+      // @see https://github.com/shoelace-style/shoelace/issues/2320
+      const instanceMutations = mutations.filter(({ target }) => {
+        if (target === this) return true; // Allow self updates
+        if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
+
+        // We should only care about changes to the tab or tab panel
+        const tagName = (target as HTMLElement).tagName.toLowerCase();
+        return tagName === 'syn-tab' || tagName === 'syn-tab-panel';
+      });
+
+      if (instanceMutations.length === 0) {
+        return;
+      }
+`,
+    ],
+    [
+      'mutations.some',
+      'instanceMutations.some',
+    ],
+    [
+      'this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });',
+      `this.mutationObserver.observe(this, {
+        attributes: true,
+        attributeFilter: [
+          'active',
+          'aria-labelledby',
+          'aria-controls',
+          'disabled',
+        ],
+        childList: true,
+        subtree: true
+      });`,
+    ],
+    [
+      'const tabs = mutations',
+      'const tabs = instanceMutations',
+    ],
+  ], content);
+
   return {
     content,
     path,

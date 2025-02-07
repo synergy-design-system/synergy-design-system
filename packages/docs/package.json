@@ -36,7 +36,7 @@
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-storybook": "^0.11.2",
     "globby": "^14.0.2",
     "lit": "^3.2.1",
     "react": "^18.3.1",
@@ -44,7 +44,7 @@
     "storybook": "^8.5.3",
     "stylelint": "^16.14.1",
     "typescript": "^5.7.3",
-    "vite": "^5.4.14",
+    "vite": "^6.1.0",
     "vite-plugin-cem": "^0.8.2",
     "vite-plugin-replace": "^0.1.1",
     "wc-storybook-helpers": "^1.5.3"

@@ -816,23 +816,23 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       ora:
-        specifier: ^8.1.1
-        version: 8.1.1
+        specifier: ^8.2.0
+        version: 8.2.0
       postcss:
-        specifier: ^8.4.49
-        version: 8.4.49
+        specifier: ^8.5.1
+        version: 8.5.1
       postcss-cli:
         specifier: ^11.0.0
-        version: 11.0.0(jiti@1.21.6)(postcss@8.4.49)
+        version: 11.0.0(jiti@1.21.6)(postcss@8.5.1)
       postcss-header:
         specifier: ^3.0.3
-        version: 3.0.3(postcss@8.4.49)
+        version: 3.0.3(postcss@8.5.1)
       postcss-import:
         specifier: ^16.1.0
-        version: 16.1.0(postcss@8.4.49)
+        version: 16.1.0(postcss@8.5.1)
       prettier:
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.4.2
+        version: 3.4.2
       semantic-release:
         specifier: ^19.0.5
         version: 19.0.5(encoding@0.1.13)
@@ -840,8 +840,8 @@ importers:
         specifier: ^7.0.8
         version: 7.0.8(semantic-release@19.0.5(encoding@0.1.13))
       stylelint:
-        specifier: ^16.10.0
-        version: 16.10.0(typescript@5.7.3)
+        specifier: ^16.14.1
+        version: 16.14.1(typescript@5.7.3)
 
   packages/tokens:
     devDependencies:
@@ -8507,10 +8507,6 @@ packages:
   ora@5.4.1:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
     engines: {node: '>=10'}
-
-  ora@8.1.1:
-    resolution: {integrity: sha512-YWielGi1XzG1UTvOaCFaNgEnuhZVMSHYkW/FQ7UX8O26PtlpdM84c0f7wLPlkvx2RfiQmnzd61d/MGxmpQeJPw==}
-    engines: {node: '>=18'}
 
   ora@8.2.0:
     resolution: {integrity: sha512-weP+BZ8MVNnlCm8c0Qdc1WSWq4Qn7I+9CJGm7Qali6g44e/PUzbjNqJX5NJ9ljlNMosfJvg1fKEGILklK9cwnw==}
@@ -20264,18 +20260,6 @@ snapshots:
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
 
-  ora@8.1.1:
-    dependencies:
-      chalk: 5.4.1
-      cli-cursor: 5.0.0
-      cli-spinners: 2.9.2
-      is-interactive: 2.0.0
-      is-unicode-supported: 2.0.0
-      log-symbols: 6.0.0
-      stdin-discarder: 0.2.2
-      string-width: 7.2.0
-      strip-ansi: 7.1.0
-
   ora@8.2.0:
     dependencies:
       chalk: 5.4.1
@@ -20609,7 +20593,7 @@ snapshots:
     dependencies:
       postcss-value-parser: 3.3.1
 
-  postcss-cli@11.0.0(jiti@1.21.6)(postcss@8.4.49):
+  postcss-cli@11.0.0(jiti@1.21.6)(postcss@8.5.1):
     dependencies:
       chokidar: 3.6.0
       dependency-graph: 0.11.0
@@ -20617,9 +20601,9 @@ snapshots:
       get-stdin: 9.0.0
       globby: 14.0.2
       picocolors: 1.0.1
-      postcss: 8.4.49
-      postcss-load-config: 5.1.0(jiti@1.21.6)(postcss@8.4.49)
-      postcss-reporter: 7.1.0(postcss@8.4.49)
+      postcss: 8.5.1
+      postcss-load-config: 5.1.0(jiti@1.21.6)(postcss@8.5.1)
+      postcss-reporter: 7.1.0(postcss@8.5.1)
       pretty-hrtime: 1.0.3
       read-cache: 1.0.0
       slash: 5.1.0
@@ -20628,20 +20612,9 @@ snapshots:
       - jiti
       - tsx
 
-  postcss-header@3.0.3(postcss@8.4.49):
-    dependencies:
-      postcss: 8.4.49
-
   postcss-header@3.0.3(postcss@8.5.1):
     dependencies:
       postcss: 8.5.1
-
-  postcss-import@16.1.0(postcss@8.4.49):
-    dependencies:
-      postcss: 8.4.49
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.8
 
   postcss-import@16.1.0(postcss@8.5.1):
     dependencies:
@@ -20660,13 +20633,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  postcss-load-config@5.1.0(jiti@1.21.6)(postcss@8.4.49):
+  postcss-load-config@5.1.0(jiti@1.21.6)(postcss@8.5.1):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.3
     optionalDependencies:
       jiti: 1.21.6
-      postcss: 8.4.49
+      postcss: 8.5.1
 
   postcss-loader@8.1.1(postcss@8.4.49)(typescript@5.6.3)(webpack@5.96.1(esbuild@0.24.0)):
     dependencies:
@@ -20702,10 +20675,10 @@ snapshots:
       icss-utils: 5.1.0(postcss@8.4.49)
       postcss: 8.4.49
 
-  postcss-reporter@7.1.0(postcss@8.4.49):
+  postcss-reporter@7.1.0(postcss@8.5.1):
     dependencies:
       picocolors: 1.0.1
-      postcss: 8.4.49
+      postcss: 8.5.1
       thenby: 1.3.4
 
   postcss-resolve-nested-selector@0.1.6: {}

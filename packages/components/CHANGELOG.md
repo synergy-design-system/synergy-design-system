@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.19.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.2...components/2.19.3) (2025-02-07)
+
+
+### Bug Fixes
+
+* 🐛 syn-input is overflowing in flex and grid container with fix size ([#768](https://github.com/synergy-design-system/synergy-design-system/issues/768)) ([fb68576](https://github.com/synergy-design-system/synergy-design-system/commit/fb68576ca378466cc3eb22e0f30228d2008e84c3))
+
+# [@synergy-design-system/components-v2.19.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.1...components/2.19.2) (2025-02-07)
+
+
+### Bug Fixes
+
+* 🐛 Only apply min-width styling for syn-input type="number" with spin buttons ([#767](https://github.com/synergy-design-system/synergy-design-system/issues/767)) ([dfacbcb](https://github.com/synergy-design-system/synergy-design-system/commit/dfacbcbb79768a3cd658e0de440d270fa768fcfb))
+
 # [@synergy-design-system/components-v2.19.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.0...components/2.19.1) (2025-01-27)
 
 

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.19.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.1...components/2.19.2) (2025-02-07)
+
+
+### Bug Fixes
+
+* 🐛 Only apply min-width styling for syn-input type="number" with spin buttons ([#767](https://github.com/synergy-design-system/synergy-design-system/issues/767)) ([dfacbcb](https://github.com/synergy-design-system/synergy-design-system/commit/dfacbcbb79768a3cd658e0de440d270fa768fcfb))
+
 # [@synergy-design-system/components-v2.19.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.0...components/2.19.1) (2025-01-27)
 
 

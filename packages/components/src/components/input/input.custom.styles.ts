@@ -1,6 +1,12 @@
 import { css } from 'lit';
 
 export default css`
+  /**
+  * Fixes overflowing of the syn-input in flex and grid containers with fix width (https://github.com/synergy-design-system/synergy-design-system/issues/761)
+  */
+  .input__control {
+    width: 100%;
+  }
 
   /**
   * Min-width size adjusted for each size so 2 full digits are shown for type number

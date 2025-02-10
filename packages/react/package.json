@@ -45,7 +45,7 @@
   "type": "module",
   "version": "2.19.3",
   "devDependencies": {
-    "@types/react": "^19.0.7",
+    "@types/react": "^19.0.8",
     "react": "^19.0.0"
   },
   "peerDependencies": {

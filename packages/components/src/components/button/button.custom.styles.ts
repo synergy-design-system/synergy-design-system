@@ -126,7 +126,7 @@ export default css`
 
   .button--text.button--primary:active:not(.button--disabled) {
     background: inherit;
-    border-color:  none;
+    border-color: transparent;
     color:  var(--syn-color-primary-950);
   }
 

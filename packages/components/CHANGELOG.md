@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.3...components/2.20.0) (2025-02-10)
+
+
+### Features
+
+* ✨Update shoelace and deps to latest version ([#769](https://github.com/synergy-design-system/synergy-design-system/issues/769)) ([143d88f](https://github.com/synergy-design-system/synergy-design-system/commit/143d88f0a50c47a996be0cb1527629802266800e))
+
 # [@synergy-design-system/components-v2.19.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.2...components/2.19.3) (2025-02-07)
 
 

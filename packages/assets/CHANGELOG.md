@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.2...assets/1.12.0) (2025-02-10)
+
+
+### Features
+
+* ✨Update shoelace and deps to latest version ([#769](https://github.com/synergy-design-system/synergy-design-system/issues/769)) ([143d88f](https://github.com/synergy-design-system/synergy-design-system/commit/143d88f0a50c47a996be0cb1527629802266800e))
+
 # [@synergy-design-system/assets-v1.11.2](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.1...assets/1.11.2) (2024-12-02)
 
 

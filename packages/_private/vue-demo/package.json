@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.1.0",
+    "@fontsource/open-sans": "^5.1.1",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
@@ -23,20 +23,20 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.10.4",
+    "@rushstack/eslint-patch": "^1.10.5",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.17.8",
-    "@vitejs/plugin-vue": "^5.2.0",
+    "@types/node": "^22.13.1",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
-    "@vue/tsconfig": "^0.5.1",
+    "@vue/tsconfig": "^0.7.0",
     "eslint": "^8.57.1",
-    "eslint-plugin-vue": "^9.31.0",
-    "prettier": "^3.4.0",
-    "typescript": "~5.6.2",
-    "vite": "^5.4.11",
-    "vite-plugin-static-copy": "^1.0.6",
-    "vue-tsc": "^2.1.10"
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.4.2",
+    "typescript": "~5.7.3",
+    "vite": "^6.1.0",
+    "vite-plugin-static-copy": "^2.2.0",
+    "vue-tsc": "^2.2.0"
   },
   "type": "module"
 }

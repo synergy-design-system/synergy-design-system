@@ -147,7 +147,7 @@
     "packages/components/src/components/switch/switch.styles.ts": true,
     "packages/components/src/components/switch/switch.test.ts": true,
     "packages/components/src/components/switch/switch.ts": true,
-    "packages/components/src/components/tab-group/tab-group.component.ts": false,
+    "packages/components/src/components/tab-group/tab-group.component.ts": true,
     "packages/components/src/components/tab-group/tab-group.styles.ts": true,
     "packages/components/src/components/tab-group/tab-group.test.ts": true,
     "packages/components/src/components/tab-group/tab-group.ts": true,

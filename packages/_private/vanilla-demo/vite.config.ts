@@ -70,6 +70,15 @@ export const withSpriteSheetGenerator = {
         'home',
         'contact_mail',
         'contact_emergency',
+        'grid_view',
+        'wallpaper',
+        'house',
+        'chat',
+        'info',
+        'check_circle',
+        'settings',
+        'warning',
+        'error',
       ],
     }),
     viteStaticCopy({
@@ -90,5 +99,6 @@ export const withSpriteSheetGenerator = {
 // https://vitejs.dev/config/
 export default defineConfig(
   // Change this to withSpriteSheetGenerator to test the sprite sheet generator
+  // withSpriteSheetGenerator,
   defaultConfig,
 );

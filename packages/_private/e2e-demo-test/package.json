@@ -6,6 +6,7 @@
   "scripts": {
     "start": "pnpm test",
     "test": "pnpm run /^prepare..*/ && pnpm exec playwright test",
+    "test.ui": "pnpm run test --ui",
     "prepare.angular": "pnpm run -C ../angular-demo _build",
     "prepare.react": "pnpm run -C ../react-demo _build",
     "prepare.vanilla": "pnpm run -C ../vanilla-demo _build",

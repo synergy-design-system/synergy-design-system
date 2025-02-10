@@ -1,4 +1,17 @@
+const AllComponentSelectors = {
+  // Accordion
+  accordionContent: '#tab-content-Accordion',
+  accordionDetails: '#tab-content-Accordion syn-details',
+  accordionLink: '#tab-Accordion',
+
+  // Alert
+  alertAll: '#tab-content-Alert syn-alert',
+  alertContent: '#tab-content-Alert',
+  alertLink: '#tab-Alert',
+};
+
 export default {
+  ...AllComponentSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',
@@ -17,7 +30,7 @@ export default {
   newsLocSynVue: '#checkbox-newsletter-vue',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
-  passRcvryLoc: '#input-number',
+  passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',

@@ -153,9 +153,9 @@ export default class SynTabGroup extends SynergyElement {
         attributes: true,
         attributeFilter: [
           'active',
-          'aria-labelledby',
-          'aria-controls',
           'disabled',
+          'name',
+          'panel',
         ],
         childList: true,
         subtree: true

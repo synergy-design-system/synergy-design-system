@@ -53,5 +53,36 @@ test.describe('All components tests', () => {
         expect(availableVariants).toEqual(['primary', 'success', 'neutral', 'warning', 'danger']);
       }); // Test accessibility
     }); // </syn-alert>
+
+    test.describe(`${name}: <SynTabGroup /> ${port}`, () => {
+      test.describe('Regression#757', () => {
+        test('should not trigger the parent tab navigation when activating a subtab', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+
+          const tabGroupLink = AllComponents.getLocator('tabGroupLink');
+          const tabGroupCustom = AllComponents.getLocator('tabGroupCustom');
+          const tabGroupGeneral = AllComponents.getLocator('tabGroupGeneral');
+
+          // Check if the active tab is adjusted when navigating
+          await expect(tabGroupLink).toHaveJSProperty('active', false);
+          await AllComponents.activateItem('tabGroupLink');
+          await expect(tabGroupLink).toHaveJSProperty('active', true);
+
+          // Check if the active tab of the given sub tab group is adjusted when navigating
+          await expect(tabGroupCustom).toBeVisible();
+          await expect(tabGroupCustom).toHaveJSProperty('active', false);
+          await expect(tabGroupGeneral).toBeVisible();
+          await expect(tabGroupGeneral).toHaveJSProperty('active', true);
+
+          await tabGroupCustom.click();
+          await expect(tabGroupCustom).toHaveJSProperty('active', true);
+          await expect(tabGroupGeneral).toHaveJSProperty('active', false);
+
+          // Finally, check if the parent tab is still active
+          await expect(tabGroupLink).toHaveJSProperty('active', true);
+        });
+      }); // regression#757
+    }); // </syn-tabgroup>
   }); // End createTestCases
 }); // /test-suite

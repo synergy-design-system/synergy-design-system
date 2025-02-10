@@ -8,6 +8,11 @@ const AllComponentSelectors = {
   alertAll: '#tab-content-Alert syn-alert',
   alertContent: '#tab-content-Alert',
   alertLink: '#tab-Alert',
+
+  // Tabgroup
+  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
+  tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',
+  tabGroupLink: '#tab-TabGroup',
 };
 
 export default {

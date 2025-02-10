@@ -8,6 +8,7 @@ export class PageObject {
    * List of available pages
    */
   static availablePages = {
+    allComponents: '/all-components',
     form: '/contact-form',
     formValidate: '/contact-form-validate',
     index: '/',

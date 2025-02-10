@@ -15,6 +15,7 @@ import './app.css';
 
 import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router'
+import AllComponents from './AllComponents.vue';
 import App from './App.vue';
 import DemoForm from './DemoForm.vue';
 import DemoFormValidate from './DemoFormValidate.vue';
@@ -22,6 +23,7 @@ import HomeView from './HomeView.vue';
 
 const routes = [
   { path: '/', component: HomeView },
+  { path: '/all-components', component: AllComponents },
   { path: '/contact-form', component: DemoForm },
   { path: '/contact-form-validate', component: DemoFormValidate },
 ];

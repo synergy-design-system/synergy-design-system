@@ -40,6 +40,10 @@ const routeTo = (route: string) => {
         Contact Form (Validation)
         <SynVueIcon name="contact_emergency" slot="prefix"/>
       </SynVueNavItem>
+      <SynVueNavItem :current="currentRoute === '/all-components'" divider @click="() => routeTo('/all-components')">
+        All Components
+        <SynVueIcon name="grid_view" slot="prefix"/>
+      </SynVueNavItem>
     </SynVueSideNav>
     <main class="content">
       <RouterView />

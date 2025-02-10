@@ -51,6 +51,10 @@ export const Layout: FC = () => {
             Contact Form (Validation)
             <SynIcon name="contact_emergency" slot="prefix" />
           </RouterLink>
+          <RouterLink divider href="/all-components" current={currentNavigationPath === '/all-components'}>
+            All Components
+            <SynIcon name="grid_view" slot="prefix" />
+          </RouterLink>
         </SynSideNav>
         <main className="content">
           <Outlet />

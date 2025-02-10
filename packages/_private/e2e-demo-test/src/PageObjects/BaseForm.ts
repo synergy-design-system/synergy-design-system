@@ -39,7 +39,7 @@ export class BaseFormObject extends PageObject {
   }
 
   get passwordRecovery() {
-    return this.page.locator(selectors.passRcvryLoc);
+    return this.page.locator(selectors.passRecoveryLoc);
   }
 
   get gender() {

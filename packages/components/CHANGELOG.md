@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.20.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.20.0...components/2.20.1) (2025-02-10)
+
+
+### Bug Fixes
+
+* 🐛 SynTabGroup does not allow nested SynTabGroup as a child ([#766](https://github.com/synergy-design-system/synergy-design-system/issues/766)) ([4ccb938](https://github.com/synergy-design-system/synergy-design-system/commit/4ccb9382b2a40e009761af5aef117751f4230ccb))
+
 # [@synergy-design-system/components-v2.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.19.3...components/2.20.0) (2025-02-10)
 
 

@@ -337,6 +337,7 @@ describe('<syn-range>', () => {
 
     it('should allow to set more than one value', async () => {
       if (navigator.userAgent.includes('Firefox')) {
+        // eslint-disable-next-line no-console
         console.warn('Skipping test in Firefox as drag and drop does not work right');
         return;
       }

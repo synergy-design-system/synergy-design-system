@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.17.0...tokens/2.18.0) (2025-02-10)
+
+
+### Features
+
+* ✨Update shoelace and deps to latest version ([#769](https://github.com/synergy-design-system/synergy-design-system/issues/769)) ([143d88f](https://github.com/synergy-design-system/synergy-design-system/commit/143d88f0a50c47a996be0cb1527629802266800e))
+
 # [@synergy-design-system/tokens-v2.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.16.0...tokens/2.17.0) (2025-01-10)
 
 

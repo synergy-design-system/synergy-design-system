@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.6.0...styles/1.7.0) (2025-02-10)
+
+
+### Features
+
+* ✨Update shoelace and deps to latest version ([#769](https://github.com/synergy-design-system/synergy-design-system/issues/769)) ([143d88f](https://github.com/synergy-design-system/synergy-design-system/commit/143d88f0a50c47a996be0cb1527629802266800e))
+
 # [@synergy-design-system/styles-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.5.0...styles/1.6.0) (2024-11-28)
 
 

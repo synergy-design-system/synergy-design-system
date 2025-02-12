@@ -7,6 +7,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     minify: false,
+    lib: {
+      entry: 'src/index.ts',
+      name: 'SynVue',
+      fileName: 'syn-vue',
+    },
     rollupOptions: {
       external: ['vue'],
       input: ['src/index.ts'],

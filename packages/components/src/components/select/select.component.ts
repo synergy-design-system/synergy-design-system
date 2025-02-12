@@ -31,6 +31,7 @@ import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
@@ -79,6 +80,7 @@ import type SynOption from '../option/option.component.js';
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
+@enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {

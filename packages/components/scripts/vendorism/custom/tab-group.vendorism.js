@@ -1,8 +1,9 @@
 /* eslint-disable no-template-curly-in-string */
 import { removeSections } from '../remove-section.js';
 import {
-  addSectionBefore,
-  addSectionsAfter, replaceSection, replaceSections,
+  addSectionsAfter,
+  replaceSection,
+  replaceSections,
 } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -120,19 +121,52 @@ const transformComponent = (path, originalContent) => {
       ' The payload of the event returns the "panel" attribute of the hidden tab.',
       { newlinesBeforeInsertion: 0 },
     ],
+  ], content);
 
-    // Fix active tab is not settable with active property
+  // Fix for #757: Make sure the mutation observer is scoped correctly
+  // for slotted syn-tab-groups not bleeding out
+  content = replaceSections([
     [
-      `if (mutations.some(m => m.attributeName === 'disabled')) {
-        this.syncTabsAndPanels();`,
-        `      // sync tabs when active state changed programmatically
-      } else if(mutations.some(m => m.attributeName === 'active')){
-        const tabs = mutations.filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'syn-tab').map(m => m.target as SynTab);  
-        const newActiveTab = tabs.find(tab => tab.active);
+      'this.mutationObserver = new MutationObserver(mutations => {',
+      `this.mutationObserver = new MutationObserver(mutations => {
+      // Make sure to only observe the direct children of the tab group
+      // instead of other sub elements that might be slotted in.
+      // @see https://github.com/shoelace-style/shoelace/issues/2320
+      const instanceMutations = mutations.filter(({ target }) => {
+        if (target === this) return true; // Allow self updates
+        if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
 
-        if(newActiveTab){
-          this.setActiveTab(newActiveTab);
-        }`,
+        // We should only care about changes to the tab or tab panel
+        const tagName = (target as HTMLElement).tagName.toLowerCase();
+        return tagName === 'syn-tab' || tagName === 'syn-tab-panel';
+      });
+
+      if (instanceMutations.length === 0) {
+        return;
+      }
+`,
+    ],
+    [
+      'mutations.some',
+      'instanceMutations.some',
+    ],
+    [
+      'this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });',
+      `this.mutationObserver.observe(this, {
+        attributes: true,
+        attributeFilter: [
+          'active',
+          'disabled',
+          'name',
+          'panel',
+        ],
+        childList: true,
+        subtree: true
+      });`,
+    ],
+    [
+      'const tabs = mutations',
+      'const tabs = instanceMutations',
     ],
   ], content);
 
@@ -174,39 +208,6 @@ const transformTests = (path, originalContent) => {
     'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual(clientRectangles.navigation?.bottom || -Infinity);',
     'expect(clientRectangles.body?.top).to.be.greaterThanOrEqual((clientRectangles.navigation?.bottom! - 1) || -Infinity);',
   ], content);
-
-  content = addSectionBefore(
-    content,
-    "it('does not change if the active tab is reselected'",
-`it('selects a tab by changing it via active property', async () => {
-      const tabGroup = await fixture<SynTabGroup>(html\`
-        <syn-tab-group>
-          <syn-tab slot="nav" panel="general" data-testid="general-header">General</syn-tab>
-          <syn-tab slot="nav" panel="custom" data-testid="custom-header">Custom</syn-tab>
-          <syn-tab-panel name="general">This is the general tab panel.</syn-tab-panel>
-          <syn-tab-panel name="custom" data-testid="custom-tab-content">This is the custom tab panel.</syn-tab-panel>
-        </syn-tab-group>
-      \`);
-
-      const customHeader = queryByTestId<SynTab>(tabGroup, 'custom-header')!;
-      const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
-      generalHeader.focus();
-
-      expect(customHeader).not.to.have.attribute('active');
-
-      const showEventPromise = oneEvent(tabGroup, 'syn-tab-show') as Promise<SynTabShowEvent>;
-      customHeader.active = true;
-
-      await tabGroup.updateComplete;
-      expect(customHeader).to.have.attribute('active');
-      await expectPromiseToHaveName(showEventPromise, 'custom');
-      return expectOnlyOneTabPanelToBeActive(tabGroup, 'custom-tab-content');
-    });`,
-{
-  newlinesAfterInsertion: 2,
-  tabsAfterInsertion: 2,
-},
-  );
 
   return {
     content,

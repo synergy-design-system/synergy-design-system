@@ -1,5 +1,6 @@
 {
   "cSpell.language": "en,lorem",
+  "cSpell.dictionaries": ["en", "lorem", "lorem-ipsum"],
   "cSpell.enableFiletypes": ["editorconfig"],
   "stylelint.packageManager": "pnpm",
   "stylelint.validate": ["css", "less", "postcss", "javascript", "typescript"],
@@ -220,6 +221,7 @@
     "packages/components/src/translations/en.ts": true,
     "packages/components/src/utilities/animation-registry.ts": true,
     "packages/components/src/utilities/base-path.ts": true,
+    "packages/components/src/utilities/defaultSettings/base.ts": true,
     "packages/components/src/utilities/form.ts": true,
     "packages/components/src/utilities/icon-library.ts": true,
     "packages/components/src/utilities/localize.ts": true,

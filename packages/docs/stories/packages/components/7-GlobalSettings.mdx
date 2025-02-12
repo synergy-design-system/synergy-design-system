@@ -1,0 +1,190 @@
+import { Meta } from "@storybook/blocks";
+import { INITIAL_DEFAULT_SETTINGS } from '../../../../components/src/utilities/defaultSettings/base';
+import { extractDefaultSettingsForElement } from '../../../../components/src/utilities/defaultSettings/functions';
+import { snakeCase } from 'change-case';
+
+<Meta title="Packages/Components/Configuring global settings" />
+
+# Overriding global default settings for components
+
+Most Synergy components provide a way to configure their appearance and behavior through a set of properties.
+However, it can be cumbersome to set the same properties for all components in your application.
+
+Therefore, Synergy includes a low level API that allows you to set global defaults for the rendered components.
+This can be used to set the default size or other global settings that should be applied to all rendered components.
+
+## Setting global defaults
+
+The settings can be set on a global or component level via `setGlobalDefaultSettings` and `setDefaultSettingsForElement` respectively.
+
+> ⚠️ The configured defaults are applied to all components rendered **after** the new configuration has been set.
+> This means in most cases it is crucial to call `setGlobalDefaultSettings` or `setDefaultSettingsForElement` **before rendering any components**.
+
+### `setGlobalDefaultSettings` (recommended)
+
+To set global defaults for all components, you can use the `setGlobalDefaultSettings` function exported from `@synergy-design-system/components`.
+This function accepts an object with the settings you want to apply to the components.
+
+> You may provide a partial object with only the settings you want to override to leave the rest of the settings intact.
+
+```typescript
+import { setGlobalDefaultSettings } from '@synergy-design-system/components';
+
+// Sets the size for SynButtons and SynInputs to small and large respectively
+setGlobalDefaultSettings({
+  size: {
+    SynButton: 'small',
+    SynInput: 'large',
+  }
+});
+```
+
+### `setDefaultSettingsForElement`
+
+You can also set defaults scoped for a specific component using the `setDefaultSettingsForElement` function.
+This works in the reverse way of `setGlobalDefaultSettings` and allows you to set defaults for a specific component.
+
+```typescript
+import { setDefaultSettingsForElement } from '@synergy-design-system/components';
+
+// Sets the size to small and variant to filled for all newly rendered SynButton components
+setDefaultSettingsForElement<SynButton>('SynButton', {
+  size: 'small',
+  variant: 'filled',
+});
+```
+
+### `resetGlobalDefaultSettings`
+
+You may use `resetGlobalDefaultSettings` to reset the global default settings to their initial state.
+This will also automatically emit an event to notify all components that the settings have changed.
+
+```typescript
+import { resetGlobalDefaultSettings } from '@synergy-design-system/components';
+
+resetGlobalDefaultSettings();
+```
+
+## Live update via events (experimental)
+
+> ⚠️ This feature is considered experimental and therefore hidden behind a feature flag.
+> You may enable it by importing the `enableExperimentalSettingEmitEvents` function from `@synergy-design-system/components`.
+
+When experimental event support is enabled and either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` are called, a `syn-default-settings-changed` event is dispatched to notify all components that the settings have changed.
+This feature may for example be used to implement a layout switcher (e.g. to switch between various sizes in an application).
+Please have a [look at our demo projects](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private) for further information.
+
+If the component was initially rendered with the default setting of the corresponding attribute, it will be updated to the new setting.
+**However**, if it was rendered with a custom value, it will not be updated!
+
+If the element was rendered before the event support was enabled, it will also not be updated!
+You will have to make sure to call `enableExperimentalSettingEmitEvents` before the initial render to ensure that all components are listening for the event.
+
+You may also listen to the event to react to changes in the default settings.
+
+```typescript
+import {
+  enableExperimentalSettingEmitEvents,
+  type SynDefaultSettingsChangedEvent
+} from '@synergy-design-system/components';
+
+// Don´t forget to enable the feature
+enableExperimentalSettingEmitEvents(true);
+
+window.addEventListener('syn-default-settings-changed', (event: SynDefaultSettingsChangedEvent) => {
+  console.log('Default settings changed', event.detail);
+});
+```
+
+## Currently supported settings
+
+The following settings are supported by all synergy components:
+
+<ul>
+  {Object
+    .keys(INITIAL_DEFAULT_SETTINGS)
+    .map(attr => (
+      <li key={`attr-${attr}`}>
+        <strong>{attr}</strong>
+      </li>
+    ))
+  }
+</ul>
+
+## System Defaults
+
+The following list shows the default settings for all synergy components.
+
+<table className="syn-table--alternating syn-table--border" style={{ width: '100%' }}>
+  <thead>
+    <tr>
+      <th>
+        <syn-tooltip content="The name of the component when rendered into the DOM">
+          Component
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="The class name of the component, used as a key in setGlobalSettings or setDefaultSettingsForElement">
+          ClassName
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="Supported settings for the component">
+          Settings
+        </syn-tooltip>
+      </th>
+      <th>
+        <syn-tooltip content="Copy to add the call code to the clipboard">
+          Example
+        </syn-tooltip>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {Object
+      .values(INITIAL_DEFAULT_SETTINGS)
+      .map(setting => Object.keys(setting))
+      .flat()
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort()
+      .map(c => {
+        const settings = extractDefaultSettingsForElement(c);
+        const componentName = snakeCase(c, {
+          delimiter: '-',
+        });
+
+        // Build the examples
+        const exampleCalls = Object
+          .entries(settings)
+          .map(([key, value]) => `
+  ${key}: {
+    ${c}: '${value}'
+  }
+          `.trim())
+        const example = `setGlobalDefaultSettings({
+  ${exampleCalls.join(',\n  ')}
+});`.trim();
+
+        return (
+          <tr key={`${c}--details`}>
+            <td><code>{`<${componentName}>`}</code></td>
+            <td>{c}</td>
+            <td>
+              {Object
+                .entries(settings)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([key, value]) => (
+                  <>
+                    <strong key={`${c}--${key}--key`}>{key}</strong>: {value}<br />
+                  </>
+                ))
+              }
+            </td>
+            <td>
+              <code>{example}</code>
+            </td>
+          </tr>
+        );
+    })}
+  </tbody>
+</table>

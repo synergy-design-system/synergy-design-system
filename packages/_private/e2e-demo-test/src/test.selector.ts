@@ -1,4 +1,22 @@
+const AllComponentSelectors = {
+  // Accordion
+  accordionContent: '#tab-content-Accordion',
+  accordionDetails: '#tab-content-Accordion syn-details',
+  accordionLink: '#tab-Accordion',
+
+  // Alert
+  alertAll: '#tab-content-Alert syn-alert',
+  alertContent: '#tab-content-Alert',
+  alertLink: '#tab-Alert',
+
+  // Tabgroup
+  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
+  tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',
+  tabGroupLink: '#tab-TabGroup',
+};
+
 export default {
+  ...AllComponentSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',
@@ -17,10 +35,14 @@ export default {
   newsLocSynVue: '#checkbox-newsletter-vue',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
-  passRcvryLoc: '#input-number',
+  passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
+  sizeToggleLarge: '.meta-navigation syn-icon-button[data-size=large]',
+  sizeToggleMedium: '.meta-navigation syn-icon-button[data-size=medium]',
+  sizeToggleSmall: '.meta-navigation syn-icon-button[data-size=small]',
   submit: '.syn-submit-buttons > syn-button:nth-child(2)',
+  themeSwitch: '.meta-navigation syn-switch',
   topicLoc: '#topics',
 };

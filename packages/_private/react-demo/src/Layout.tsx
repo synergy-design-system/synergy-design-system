@@ -1,4 +1,5 @@
 import {
+  SynDivider,
   SynHeader,
   SynIcon,
   SynSideNav,
@@ -10,6 +11,7 @@ import {
 } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RouterLink } from './RouterLink';
+import { SizeSwitch } from './SizeSwitch';
 import { ThemeSwitch } from './ThemeSwitch';
 
 export const Layout: FC = () => {
@@ -32,8 +34,9 @@ export const Layout: FC = () => {
           <SynIcon name="logo-color" library="system" />
         </Link>
 
-        {/* React does not support automatic slotting, so we have to create a slot element :( */}
-        <div slot="meta-navigation" style={{ display: 'contents' }}>
+        <div className="meta-navigation" slot="meta-navigation">
+          <SizeSwitch />
+          <SynDivider vertical />
           <ThemeSwitch />
         </div>
       </SynHeader>
@@ -50,6 +53,10 @@ export const Layout: FC = () => {
           <RouterLink divider href="/contact-form-validate" current={currentNavigationPath === '/contact-form-validate'}>
             Contact Form (Validation)
             <SynIcon name="contact_emergency" slot="prefix" />
+          </RouterLink>
+          <RouterLink divider href="/all-components" current={currentNavigationPath === '/all-components'}>
+            All Components
+            <SynIcon name="grid_view" slot="prefix" />
           </RouterLink>
         </SynSideNav>
         <main className="content">

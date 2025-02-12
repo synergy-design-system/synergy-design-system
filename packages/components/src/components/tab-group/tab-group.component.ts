@@ -109,20 +109,38 @@ export default class SynTabGroup extends SynergyElement {
     });
 
     this.mutationObserver = new MutationObserver(mutations => {
+      // Make sure to only observe the direct children of the tab group
+      // instead of other sub elements that might be slotted in.
+      // @see https://github.com/shoelace-style/shoelace/issues/2320
+      const instanceMutations = mutations.filter(({ target }) => {
+        if (target === this) return true; // Allow self updates
+        if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
+
+        // We should only care about changes to the tab or tab panel
+        const tagName = (target as HTMLElement).tagName.toLowerCase();
+        return tagName === 'syn-tab' || tagName === 'syn-tab-panel';
+      });
+
+      if (instanceMutations.length === 0) {
+        return;
+      }
+
       // Update aria labels when the DOM changes
-      if (mutations.some(m => !['aria-labelledby', 'aria-controls'].includes(m.attributeName!))) {
+      if (instanceMutations.some(m => !['aria-labelledby', 'aria-controls'].includes(m.attributeName!))) {
         setTimeout(() => this.setAriaLabels());
       }
 
       // Sync tabs when disabled states change
-      if (mutations.some(m => m.attributeName === 'disabled')) {
+      if (instanceMutations.some(m => m.attributeName === 'disabled')) {
         this.syncTabsAndPanels();
-      // sync tabs when active state changed programmatically
-      } else if(mutations.some(m => m.attributeName === 'active')){
-        const tabs = mutations.filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'syn-tab').map(m => m.target as SynTab);  
+        // sync tabs when active state on tab changes
+      } else if (instanceMutations.some(m => m.attributeName === 'active')) {
+        const tabs = instanceMutations
+          .filter(m => m.attributeName === 'active' && (m.target as HTMLElement).tagName.toLowerCase() === 'syn-tab')
+          .map(m => m.target as SynTab);
         const newActiveTab = tabs.find(tab => tab.active);
 
-        if(newActiveTab){
+        if (newActiveTab) {
           this.setActiveTab(newActiveTab);
         }
       }
@@ -131,7 +149,17 @@ export default class SynTabGroup extends SynergyElement {
     // After the first update...
     this.updateComplete.then(() => {
       this.syncTabsAndPanels();
-      this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });
+      this.mutationObserver.observe(this, {
+        attributes: true,
+        attributeFilter: [
+          'active',
+          'disabled',
+          'name',
+          'panel',
+        ],
+        childList: true,
+        subtree: true
+      });
       this.resizeObserver.observe(this.nav);
 
       // Wait for tabs and tab panels to be registered

@@ -7,6 +7,7 @@
     "start": "npm run dev",
     "dev": "vite",
     "_build": "tsc && vite build",
+    "createsprites": "syn-create-spritesheet --icons=contact_emergency,contact_mail,home,weekend,density_small,density_medium,density_large > public/synergy-icon-sprites.svg",
     "preview": "vite preview",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
@@ -17,16 +18,17 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",
-    "stylelint": "^16.10.0",
-    "typescript": "^5.7.2",
-    "vite": "^5.4.11",
-    "vite-plugin-static-copy": "^1.0.6"
+    "stylelint": "^16.14.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vite-plugin-static-copy": "^2.2.0"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.1.0",
+    "@fontsource/open-sans": "^5.1.1",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "history": "^5.3.0"
+    "history": "^5.3.0",
+    "lit": "^3.2.1"
   }
 }

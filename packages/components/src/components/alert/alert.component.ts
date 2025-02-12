@@ -21,8 +21,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-
-const toastStack = Object.assign(document.createElement('div'), { className: 'syn-toast-stack' });
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Alerts are used to display important messages inline or as toast notifications.
@@ -49,6 +48,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'sy
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
  */
+@enableDefaultSettings('SynAlert')
 export default class SynAlert extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };
@@ -58,6 +58,17 @@ export default class SynAlert extends SynergyElement {
   private countdownAnimation?: Animation;
   private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
   private readonly localize = new LocalizeController(this);
+
+  private static currentToastStack: HTMLDivElement;
+
+  private static get toastStack() {
+    if (!this.currentToastStack) {
+      this.currentToastStack = Object.assign(document.createElement('div'), {
+        className: 'syn-toast-stack'
+      });
+    }
+    return this.currentToastStack;
+  }
 
   @query('[part~="base"]') base: HTMLElement;
 
@@ -204,11 +215,11 @@ export default class SynAlert extends SynergyElement {
   async toast() {
     return new Promise<void>(resolve => {
       this.handleCountdownChange();
-      if (toastStack.parentElement === null) {
-        document.body.append(toastStack);
+      if (SynAlert.toastStack.parentElement === null) {
+        document.body.append(SynAlert.toastStack);
       }
 
-      toastStack.appendChild(this);
+      SynAlert.toastStack.appendChild(this);
 
       // Wait for the toast stack to render
       requestAnimationFrame(() => {
@@ -220,12 +231,12 @@ export default class SynAlert extends SynergyElement {
       this.addEventListener(
         'syn-after-hide',
         () => {
-          toastStack.removeChild(this);
+          SynAlert.toastStack.removeChild(this);
           resolve();
 
           // Remove the toast stack from the DOM when there are no more alerts
-          if (toastStack.querySelector('syn-alert') === null) {
-            toastStack.remove();
+          if (SynAlert.toastStack.querySelector('syn-alert') === null) {
+            SynAlert.toastStack.remove();
           }
         },
         { once: true }

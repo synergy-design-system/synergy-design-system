@@ -21,6 +21,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Alerts are used to display important messages inline or as toast notifications.
@@ -47,6 +48,7 @@ import type { CSSResultGroup } from 'lit';
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
  */
+@enableDefaultSettings('SynAlert')
 export default class SynAlert extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };

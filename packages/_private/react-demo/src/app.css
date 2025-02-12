@@ -33,6 +33,11 @@ syn-header {
   width: auto;
 }
 
+.meta-navigation {
+  align-items: center;
+  display: flex;
+}
+
 /* Form Wrappers */
 .syn-fieldset {
   border: none;

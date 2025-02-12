@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import SizeSwitch from './SizeSwitch.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
-import { SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
+import { SynVueDivider, SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
 import { computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 
@@ -18,7 +19,11 @@ const routeTo = (route: string) => {
     <RouterLink class="custom-logo" tabindex="0" to="/" slot="logo">
       <SynVueIcon name="logo-color" library="system" />
     </RouterLink>
-    <ThemeSwitch slot="meta-navigation" />
+    <div class="meta-navigation" slot="meta-navigation">
+      <SizeSwitch />
+      <SynVueDivider vertical />
+      <ThemeSwitch />
+    </div>
   </SynVueHeader>
 
   <div class="main">
@@ -57,6 +62,11 @@ syn-header {
   display: block;
   width: auto;
   height: 32px;
+}
+
+.meta-navigation {
+  align-items: center;
+  display: flex;
 }
 
 /* Safari fix for ##623 */

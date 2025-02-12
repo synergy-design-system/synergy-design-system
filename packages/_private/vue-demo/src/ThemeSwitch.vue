@@ -20,7 +20,7 @@ const switchTheme = (e: SynChangeEvent) => {
 </script>
 
 <template>
-  <SynVueSwitch @syn-change="switchTheme">
+  <SynVueSwitch @syn-change="switchTheme" size="small">
     {{ currentTheme }}
   </SynVueSwitch>
 </template>

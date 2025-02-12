@@ -1,11 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { job } from './shared.js';
+import { job } from '../shared.js';
 
 /**
  * This function will create the events/events.ts file out of all vendored events
  */
-export const runCreateEvents = job('Creating events main file', async (componentsDir) => {
+export const runCreateEvents = job('Synergy: Creating events main file', async (componentsDir) => {
   const eventsDir = path.join(componentsDir, 'src/events');
 
   const contents = await fs.readdir(eventsDir);

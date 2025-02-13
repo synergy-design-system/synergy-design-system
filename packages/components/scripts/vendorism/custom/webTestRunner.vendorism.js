@@ -32,7 +32,7 @@ export const vendorWebTestRunnerConfig = (path, content) => {
     // add mocha config to fail if somewhere is `.only` used in a test
     [
       'timeout: 3000,',
-      'forbidOnly: true,',
+      'forbidOnly: !!process.env.CI,',
       { tabsBeforeInsertion: 3 },
     ],
   ], content);

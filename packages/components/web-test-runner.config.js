@@ -21,7 +21,7 @@ export default {
   testFramework: {
     config: {
       timeout: 3000,
-      forbidOnly: true,
+      forbidOnly: !!process.env.CI,
       retries: 1
     }
   },

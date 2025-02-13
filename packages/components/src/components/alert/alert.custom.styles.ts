@@ -59,9 +59,11 @@ export default css`
    * Close Icon
    */
   .alert__close-button {
+    align-self: start;
     color: var(--syn-typography-color-text);
-    padding-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
-    padding-inline-end: var(--syn-spacing-x-small);
+    margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
+    margin-inline-end: var(--syn-spacing-x-small);
+    padding-inline-end: 0;
   }
 
   /**

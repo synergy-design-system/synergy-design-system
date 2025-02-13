@@ -6,6 +6,7 @@ import '@fontsource/open-sans/600-italic.css';
 import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/700-italic.css';
 
+import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -31,6 +32,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+enableExperimentalSettingEmitEvents();
 
 createApp(App)
   .use(router)

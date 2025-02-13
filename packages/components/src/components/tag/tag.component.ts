@@ -16,6 +16,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './tag.styles.js';
 import customStyles from './tag.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.
@@ -34,6 +35,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart remove-button - The tag's remove button, an `<syn-icon-button>`.
  * @csspart remove-button__base - The remove button's exported `base` part.
  */
+@enableDefaultSettings('SynTag')
 export default class SynTag extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon-button': SynIconButton };

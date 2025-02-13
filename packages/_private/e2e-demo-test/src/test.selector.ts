@@ -39,6 +39,10 @@ export default {
   phoneLoc: '#input-phone',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
+  sizeToggleLarge: '.meta-navigation syn-icon-button[data-size=large]',
+  sizeToggleMedium: '.meta-navigation syn-icon-button[data-size=medium]',
+  sizeToggleSmall: '.meta-navigation syn-icon-button[data-size=small]',
   submit: '.syn-submit-buttons > syn-button:nth-child(2)',
+  themeSwitch: '.meta-navigation syn-switch',
   topicLoc: '#topics',
 };

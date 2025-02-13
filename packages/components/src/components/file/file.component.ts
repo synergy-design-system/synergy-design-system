@@ -18,6 +18,7 @@ import SynIcon from '../icon/icon.component.js';
 import styles from './file.styles.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { animateTo } from '../../internal/animate.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
@@ -65,6 +66,7 @@ import { animateTo } from '../../internal/animate.js';
  * @animation file.text.appear - The appear animation to use for the file placeholder text
  * when a file is dropped
  */
+@enableDefaultSettings('SynFile')
 export default class SynFile extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     componentStyles,

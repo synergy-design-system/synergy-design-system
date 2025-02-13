@@ -27,6 +27,7 @@ import styles from './input.styles.js';
 import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Inputs collect data from the user.
@@ -69,6 +70,7 @@ import type { SynergyFormControl } from '../../internal/synergy-element.js';
  * @csspart increment-number-stepper - The increment number stepper button.
  * @csspart divider - The divider between the increment and decrement number stepper buttons.
  */
+@enableDefaultSettings('SynInput')
 export default class SynInput extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
   static dependencies = {

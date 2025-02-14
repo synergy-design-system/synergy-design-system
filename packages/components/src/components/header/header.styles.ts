@@ -23,15 +23,7 @@ export default css`
     box-sizing: content-box;
     display: flex;
     min-height: 40px;
-    padding: var(--syn-spacing-large);
-  }
-
-  /**
-   * If the primary navigation is provided, use a smaller spacing
-   * between the primary content area and the navigation area
-   */
-  .header--has-navigation .header__content {
-    padding-bottom: var(--syn-spacing-medium);
+    padding: var(--syn-spacing-small) var(--syn-spacing-large);
   }
 
   /**

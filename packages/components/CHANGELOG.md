@@ -3,7 +3,9 @@
 
 ### Features
 
-* ✨ Compact header styling ([#777](https://github.com/synergy-design-system/synergy-design-system/issues/777)) ([ae9245b](https://github.com/synergy-design-system/synergy-design-system/commit/ae9245b87caa93e9f4edd9a609e83a9d2779a3ce))
+* ✨ UPDATED syn-header to a more compact form by reducing the internal padding-top/bottom from 24px to 12px. New total height is 64px, down from 88px.
+
+  Based on feedback from the stakeholder community, we only provide one header size to ensure our applications are consistent across the whole organization. ([#777](https://github.com/synergy-design-system/synergy-design-system/issues/777)) ([ae9245b](https://github.com/synergy-design-system/synergy-design-system/commit/ae9245b87caa93e9f4edd9a609e83a9d2779a3ce))
 
 # [@synergy-design-system/components-v2.21.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.21.0...components/2.21.1) (2025-02-13)
 

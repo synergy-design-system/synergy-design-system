@@ -24,6 +24,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './dialog.styles.js';
 import customStyles from './dialog.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
@@ -272,6 +273,7 @@ export default class SynDialog extends SynergyElement {
     }
 
     this.open = false;
+    blurActiveElement(this);
     return waitForEvent(this, 'syn-after-hide');
   }
 

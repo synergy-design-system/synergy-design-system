@@ -14,6 +14,7 @@ import { watch } from '../../internal/watch.js';
 import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { unlockBodyScrolling } from '../../internal/scroll.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
@@ -204,11 +205,7 @@ export default class SynSideNav extends SynergyElement {
       this.isAnimationActive = true;
 
       if (!this.open) {
-        // Fix for accessibility error in console. see also: https://github.com/shoelace-style/shoelace/issues/2283
-        const { activeElement } = document;
-        if (activeElement && this.contains(activeElement)) {
-          (document.activeElement as HTMLElement)?.blur();
-        }
+        blurActiveElement(this);
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.forceDrawerVisibilityForRailMode();
       } else {

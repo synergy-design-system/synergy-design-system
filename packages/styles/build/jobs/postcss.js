@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
+import { normalize } from 'path';
 import { globby } from 'globby';
 import postcss from 'postcss';
 import atImportPlugin from 'postcss-import';
@@ -13,16 +14,22 @@ import { getDirName, getPath, job } from '../shared.js';
  * @returns {string} outputPath
  */
 const getDistName = (inputPath) => {
-  const dirName = getDirName(inputPath);
+  const normalizedInputPath = normalize(inputPath);
+  const dirName = getDirName(normalizedInputPath);
+
+  // Use a default name of the directory for the output file
+  // Will turn src/typography/index.css into dist/typography.css
+  let distName = `./dist/${dirName}.css`;
 
   // Special case for the root node:
   // We do not want to have a file named src.css, but index.css
   // for this special bundle file.
-  if (inputPath === './src/index.css') {
-    return './dist/index.css';
+  // Turns src/index.css into dist/index.css
+  if (normalizedInputPath === normalize('./src/index.css')) {
+    distName = './dist/index.css';
   }
 
-  return `./dist/${dirName}.css`;
+  return normalize(distName);
 };
 
 /**

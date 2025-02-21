@@ -218,6 +218,7 @@ export default class SynDialog extends SynergyElement {
       this.emit('syn-after-show');
     } else {
       // Hide
+      blurActiveElement(this);
       this.emit('syn-hide');
       this.removeOpenListeners();
       this.modal.deactivate();
@@ -273,7 +274,6 @@ export default class SynDialog extends SynergyElement {
     }
 
     this.open = false;
-    blurActiveElement(this);
     return waitForEvent(this, 'syn-after-hide');
   }
 

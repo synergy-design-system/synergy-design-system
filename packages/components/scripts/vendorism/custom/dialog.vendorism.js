@@ -11,8 +11,8 @@ export const vendorDialog = (path, content) => {
       "import { blurActiveElement } from '../../internal/closeActiveElement.js';",
     ],
     [
-      'this.open = false;',
-      '    blurActiveElement(this);',
+      '// Hide',
+      '      blurActiveElement(this);',
     ],
   ], content);
   return {

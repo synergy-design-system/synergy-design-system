@@ -1,4 +1,5 @@
 import { removeSections } from '../remove-section.js';
+import { replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',
@@ -21,11 +22,14 @@ const transformComponent = (path, originalContent) => {
     ["'select--pill'", ','],
   ], originalContent);
 
-  // Quickfix, needed until shoelace updates the select components whenDefined selector
-  const content = contentWithRemovedStyles.replaceAll(
-    'wa-option',
-    'syn-option',
-  );
+  const content = replaceSections([
+    [
+      "val = Array.isArray(val) ? val : val.split(' ');",
+      `if (!Array.isArray(val)) {
+        val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
+      }`,
+    ],
+  ], contentWithRemovedStyles);
 
   return {
     content,

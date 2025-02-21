@@ -127,7 +127,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @state()
   set value(val: string | string[]) {
     if (this.multiple) {
-      val = Array.isArray(val) ? val : val.split(' ');
+      if (!Array.isArray(val)) {
+        val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
+      }
     } else {
       val = Array.isArray(val) ? val.join(' ') : val;
     }

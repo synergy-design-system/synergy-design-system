@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynDetails } from '@synergy-design-system/components';
 import type { SynShowEvent } from '@synergy-design-system/components';
@@ -17,6 +19,10 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/details/details.js';
+import {
+  setAnimation,
+  getAnimation,
+} from '@synergy-design-system/components/utilities/animation-registry.js';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
@@ -50,13 +56,16 @@ import '@synergy-design-system/components/components/details/details.js';
   standalone: true,
   template: '<ng-content></ng-content>',
 })
-export class SynDetailsComponent {
-  public nativeElement: SynDetails;
-  private _ngZone: NgZone;
+export class SynDetailsComponent implements AfterContentInit {
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynDetails;
+
+  initialOpen = this._elementRef.nativeElement.open;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
     this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
       this.synShowEvent.emit(e);
     });
@@ -75,6 +84,32 @@ export class SynDetailsComponent {
         this.synAfterHideEvent.emit(e);
       },
     );
+  }
+
+  ngAfterContentInit(): void {
+    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
+    if (!this.initialOpen && this.nativeElement.open) {
+      const dir = document.documentElement.dir || 'ltr';
+      const openAnimation = getAnimation(this.nativeElement, 'details.show', {
+        dir,
+      });
+      setAnimation(this.nativeElement, 'details.show', null);
+      this.nativeElement.details.addEventListener('transitionstart', event => {
+        const target = event.target as HTMLElement;
+        const animations = target.getAnimations();
+        animations.forEach((animation: Animation) => {
+          animation.cancel();
+        });
+      });
+
+      this.nativeElement.addEventListener(
+        'syn-after-show',
+        () => {
+          setAnimation(this.nativeElement, 'details.show', openAnimation);
+        },
+        { once: true },
+      );
+    }
   }
 
   /**

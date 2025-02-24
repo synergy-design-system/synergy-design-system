@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynRadioGroup } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
@@ -47,12 +49,13 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
   template: '<ng-content></ng-content>',
 })
 export class SynRadioGroupComponent {
-  public nativeElement: SynRadioGroup;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynRadioGroup;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
       this.synChangeEvent.emit(e);
     });

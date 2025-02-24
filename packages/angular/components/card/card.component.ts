@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynCard } from '@synergy-design-system/components';
 
@@ -43,12 +45,13 @@ import '@synergy-design-system/components/components/card/card.js';
   template: '<ng-content></ng-content>',
 })
 export class SynCardComponent {
-  public nativeElement: SynCard;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynCard;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
   }
 
   /**

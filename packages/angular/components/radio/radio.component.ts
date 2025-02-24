@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynRadio } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
@@ -41,12 +43,13 @@ import '@synergy-design-system/components/components/radio/radio.js';
   template: '<ng-content></ng-content>',
 })
 export class SynRadioComponent {
-  public nativeElement: SynRadio;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynRadio;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
       this.synBlurEvent.emit(e);
     });

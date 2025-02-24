@@ -89,6 +89,13 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
   })
   .join('\n\n');
 
+const isDetailsReturnString = (componentName, detailsString) => {
+  if (componentName === 'SynDetails') {
+    return detailsString;
+  }
+  return '';
+};
+
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
   const components = await getAllComponents(metadata);
@@ -122,10 +129,13 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         Input,
         Output,
         EventEmitter,
+        inject,
+        AfterContentInit,
       } from '@angular/core';
       import type { ${component.name} } from '@synergy-design-system/components';
       ${eventImports}
       import '${importPath}';
+      ${isDetailsReturnString(component.name, 'import { setAnimation, getAnimation } from \'@synergy-design-system/components/utilities/animation-registry.js\'')}
 
       ${jsDoc}
       @Component({
@@ -133,15 +143,38 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         standalone: true,
         template: '<ng-content></ng-content>',
       })
-      export class ${component.name}Component {
+      export class ${component.name}Component ${isDetailsReturnString(component.name, 'implements AfterContentInit')} {
+        private _elementRef = inject(ElementRef);
+        private _ngZone: NgZone = inject(NgZone);
+        
         public nativeElement: ${component.name};
-        private _ngZone: NgZone;
+
+        ${isDetailsReturnString(component.name, 'initialOpen = this._elementRef.nativeElement.open;')}
       
-        constructor(e: ElementRef, ngZone: NgZone) {
-          this.nativeElement = e.nativeElement;
-          this._ngZone = ngZone;
+        constructor() {
+          this.nativeElement = this._elementRef.nativeElement;
           ${eventListeners}
         }
+
+        ${isDetailsReturnString(component.name, `ngAfterContentInit(): void {
+    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
+    if(!this.initialOpen && this.nativeElement.open) {
+      const dir = document.documentElement.dir || 'ltr';;
+      const openAnimation = getAnimation(this.nativeElement, 'details.show', { dir });
+      setAnimation(this.nativeElement, 'details.show', null);
+      this.nativeElement.details.addEventListener('transitionstart', (event) => {
+        const target = event.target as HTMLElement;
+        const animations = target.getAnimations();
+        animations.forEach((animation: Animation) => {
+          animation.cancel();
+        });
+      });
+
+      this.nativeElement.addEventListener('syn-after-show', () => {
+        setAnimation(this.nativeElement, 'details.show', openAnimation);
+      }, { once: true });
+    }
+  }`)}
 
         ${attributeInputs}
 

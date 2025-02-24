@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynValidate } from '@synergy-design-system/components';
 
@@ -38,12 +40,13 @@ import '@synergy-design-system/components/components/validate/validate.js';
   template: '<ng-content></ng-content>',
 })
 export class SynValidateComponent {
-  public nativeElement: SynValidate;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynValidate;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
   }
 
   /**

@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynDropdown } from '@synergy-design-system/components';
 import type { SynShowEvent } from '@synergy-design-system/components';
@@ -48,12 +50,13 @@ import '@synergy-design-system/components/components/dropdown/dropdown.js';
   template: '<ng-content></ng-content>',
 })
 export class SynDropdownComponent {
-  public nativeElement: SynDropdown;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynDropdown;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
     this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
       this.synShowEvent.emit(e);
     });

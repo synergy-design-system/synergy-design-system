@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynSwitch } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
@@ -50,12 +52,13 @@ import '@synergy-design-system/components/components/switch/switch.js';
   template: '<ng-content></ng-content>',
 })
 export class SynSwitchComponent {
-  public nativeElement: SynSwitch;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynSwitch;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
       this.synBlurEvent.emit(e);
     });

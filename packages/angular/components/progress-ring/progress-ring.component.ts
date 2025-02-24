@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynProgressRing } from '@synergy-design-system/components';
 
@@ -39,12 +41,13 @@ import '@synergy-design-system/components/components/progress-ring/progress-ring
   template: '<ng-content></ng-content>',
 })
 export class SynProgressRingComponent {
-  public nativeElement: SynProgressRing;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynProgressRing;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
   }
 
   /**

@@ -10,6 +10,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  inject,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynOption } from '@synergy-design-system/components';
 
@@ -39,12 +41,13 @@ import '@synergy-design-system/components/components/option/option.js';
   template: '<ng-content></ng-content>',
 })
 export class SynOptionComponent {
-  public nativeElement: SynOption;
-  private _ngZone: NgZone;
+  private _elementRef = inject(ElementRef);
+  private _ngZone: NgZone = inject(NgZone);
 
-  constructor(e: ElementRef, ngZone: NgZone) {
-    this.nativeElement = e.nativeElement;
-    this._ngZone = ngZone;
+  public nativeElement: SynOption;
+
+  constructor() {
+    this.nativeElement = this._elementRef.nativeElement;
   }
 
   /**

@@ -156,23 +156,15 @@ export const runCreateComponents = job('Angular: Creating components', async (me
           ${eventListeners}
         }
 
-        ${isDetailsReturnString(component.name, `ngAfterContentInit(): void {
+        ${isDetailsReturnString(component.name, `  ngAfterContentInit(): void {
     // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
-    if(!this.initialOpen && this.nativeElement.open) {
-      const dir = document.documentElement.dir || 'ltr';;
-      const openAnimation = getAnimation(this.nativeElement, 'details.show', { dir });
-      setAnimation(this.nativeElement, 'details.show', null);
-      this.nativeElement.details.addEventListener('transitionstart', (event) => {
-        const target = event.target as HTMLElement;
-        const animations = target.getAnimations();
-        animations.forEach((animation: Animation) => {
+    if (!this.initialOpen && this.nativeElement.open) {
+      this.nativeElement.updateComplete.then(() => {
+        const animations = this.nativeElement.details.getAnimations({ subtree: true});
+        animations.forEach((animation) => {
           animation.cancel();
         });
       });
-
-      this.nativeElement.addEventListener('syn-after-show', () => {
-        setAnimation(this.nativeElement, 'details.show', openAnimation);
-      }, { once: true });
     }
   }`)}
 

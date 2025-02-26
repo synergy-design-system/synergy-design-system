@@ -201,19 +201,24 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (this.rail) {
-      this.isAnimationActive = true;
+    if (!this.open) {
+      blurActiveElement(this);
+    }
 
-      if (!this.open) {
-        blurActiveElement(this);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        this.forceDrawerVisibilityForRailMode();
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        waitForEvent(this.drawer, 'syn-after-show').then(() => {
-          this.isAnimationActive = false;
-        });
-      }
+    if (!this.rail) {
+      return;
+    }
+
+    this.isAnimationActive = true;
+
+    if (!this.open) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.forceDrawerVisibilityForRailMode();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      waitForEvent(this.drawer, 'syn-after-show').then(() => {
+        this.isAnimationActive = false;
+      });
     }
   }
 
@@ -354,7 +359,7 @@ export default class SynSideNav extends SynergyElement {
           @syn-request-close=${this.handleRequestClose} 
         >
           <div part="content-container" class="side-nav__content-container">
-            <slot part="content" ></slot>
+            <slot part="content"></slot>
           </div>
           
           <footer class="side-nav__footer" part="footer-container" slot="footer">  

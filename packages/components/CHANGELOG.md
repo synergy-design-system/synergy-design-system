@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.22.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.0...components/2.22.1) (2025-02-26)
+
+
+### Bug Fixes
+
+* 🐛 syn-select with multiple should not error when value is set to a falsy value ([#788](https://github.com/synergy-design-system/synergy-design-system/issues/788)) ([e0ac297](https://github.com/synergy-design-system/synergy-design-system/commit/e0ac2978f25d4d7632dea465c746cbc649776fe5))
+
 # [@synergy-design-system/components-v2.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.21.1...components/2.22.0) (2025-02-14)
 
 

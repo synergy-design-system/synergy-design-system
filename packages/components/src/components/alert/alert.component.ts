@@ -21,6 +21,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -168,6 +169,7 @@ export default class SynAlert extends SynergyElement {
       this.emit('syn-after-show');
     } else {
       // Hide
+      blurActiveElement(this);
       this.emit('syn-hide');
 
       clearTimeout(this.autoHideTimeout);

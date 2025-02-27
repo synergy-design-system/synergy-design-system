@@ -25,6 +25,7 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './drawer.styles.js';
 import customStyles from './drawer.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
@@ -246,6 +247,7 @@ export default class SynDrawer extends SynergyElement {
       this.emit('syn-after-show');
     } else {
       // Hide
+      blurActiveElement(this);
       this.emit('syn-hide');
       this.removeOpenListeners();
 

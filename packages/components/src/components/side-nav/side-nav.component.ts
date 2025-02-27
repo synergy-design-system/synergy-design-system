@@ -14,6 +14,7 @@ import { watch } from '../../internal/watch.js';
 import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { unlockBodyScrolling } from '../../internal/scroll.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.
@@ -200,23 +201,24 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (this.rail) {
-      this.isAnimationActive = true;
+    if (!this.open) {
+      blurActiveElement(this);
+    }
 
-      if (!this.open) {
-        // Fix for accessibility error in console. see also: https://github.com/shoelace-style/shoelace/issues/2283
-        const { activeElement } = document;
-        if (activeElement && this.contains(activeElement)) {
-          (document.activeElement as HTMLElement)?.blur();
-        }
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        this.forceDrawerVisibilityForRailMode();
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        waitForEvent(this.drawer, 'syn-after-show').then(() => {
-          this.isAnimationActive = false;
-        });
-      }
+    if (!this.rail) {
+      return;
+    }
+
+    this.isAnimationActive = true;
+
+    if (!this.open) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.forceDrawerVisibilityForRailMode();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      waitForEvent(this.drawer, 'syn-after-show').then(() => {
+        this.isAnimationActive = false;
+      });
     }
   }
 
@@ -357,7 +359,7 @@ export default class SynSideNav extends SynergyElement {
           @syn-request-close=${this.handleRequestClose} 
         >
           <div part="content-container" class="side-nav__content-container">
-            <slot part="content" ></slot>
+            <slot part="content"></slot>
           </div>
           
           <footer class="side-nav__footer" part="footer-container" slot="footer">  

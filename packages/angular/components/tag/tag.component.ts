@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynTag } from '@synergy-design-system/components';
@@ -40,13 +39,12 @@ import '@synergy-design-system/components/components/tag/tag.js';
   template: '<ng-content></ng-content>',
 })
 export class SynTagComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynTag;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
     this.nativeElement.addEventListener('syn-remove', (e: SynRemoveEvent) => {
       this.synRemoveEvent.emit(e);
     });

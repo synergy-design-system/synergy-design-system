@@ -140,7 +140,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         Input,
         Output,
         EventEmitter,
-        inject,
         AfterContentInit,
       } from '@angular/core';
       import type { ${component.name} } from '@synergy-design-system/components';
@@ -154,13 +153,13 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         template: '<ng-content></ng-content>',
       })
       export class ${component.name}Component ${ngAfterContentInit ? 'implements AfterContentInit' : ''} {
-        private _elementRef = inject(ElementRef);
-        private _ngZone: NgZone = inject(NgZone);
         
-        public nativeElement: ${component.name};
+      public nativeElement: ${component.name};
+      private _ngZone: NgZone;
 
-        constructor() {
-          this.nativeElement = this._elementRef.nativeElement;
+        constructor(e: ElementRef, ngZone: NgZone) {
+          this.nativeElement = e.nativeElement;
+          this._ngZone = ngZone;
           ${eventListeners}
         }
 

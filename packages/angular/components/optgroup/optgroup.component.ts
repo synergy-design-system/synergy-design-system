@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynOptgroup } from '@synergy-design-system/components';
@@ -45,13 +44,12 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
   template: '<ng-content></ng-content>',
 })
 export class SynOptgroupComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynOptgroup;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
   }
 
   /**

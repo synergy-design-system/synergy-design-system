@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynNavItem } from '@synergy-design-system/components';
@@ -71,13 +70,12 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
   template: '<ng-content></ng-content>',
 })
 export class SynNavItemComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynNavItem;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
     this.nativeElement.addEventListener('syn-show', (e: SynShowEvent) => {
       this.synShowEvent.emit(e);
     });

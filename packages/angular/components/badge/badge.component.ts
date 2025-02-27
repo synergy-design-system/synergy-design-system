@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynBadge } from '@synergy-design-system/components';
@@ -33,13 +32,12 @@ import '@synergy-design-system/components/components/badge/badge.js';
   template: '<ng-content></ng-content>',
 })
 export class SynBadgeComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynBadge;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
   }
 
   /**

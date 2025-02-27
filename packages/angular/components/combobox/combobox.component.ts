@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynCombobox } from '@synergy-design-system/components';
@@ -83,13 +82,12 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
   template: '<ng-content></ng-content>',
 })
 export class SynComboboxComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynCombobox;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
       this.synChangeEvent.emit(e);
     });

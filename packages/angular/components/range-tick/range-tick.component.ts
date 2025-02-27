@@ -10,7 +10,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  inject,
   AfterContentInit,
 } from '@angular/core';
 import type { SynRangeTick } from '@synergy-design-system/components';
@@ -37,13 +36,12 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
   template: '<ng-content></ng-content>',
 })
 export class SynRangeTickComponent {
-  private _elementRef = inject(ElementRef);
-  private _ngZone: NgZone = inject(NgZone);
-
   public nativeElement: SynRangeTick;
+  private _ngZone: NgZone;
 
-  constructor() {
-    this.nativeElement = this._elementRef.nativeElement;
+  constructor(e: ElementRef, ngZone: NgZone) {
+    this.nativeElement = e.nativeElement;
+    this._ngZone = ngZone;
   }
 
   /**

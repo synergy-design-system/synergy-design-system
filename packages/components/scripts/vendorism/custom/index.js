@@ -6,6 +6,7 @@ export * from './button.vendorism.js';
 export * from './card.vendorism.js';
 export * from './combobox.vendorism.js';
 export * from './details.vendorism.js';
+export * from './dialog.vendorism.js';
 export * from './drawer.vendorism.js';
 export * from './events.vendorism.js';
 export * from './form.vendorism.js';

@@ -24,8 +24,7 @@ export default css`
   /**
    * Card body
    */
-  .card__body,
-  .card__body::slotted(*) {
+  .card__body {
     color: var(--syn-typography-color-text);
     font: var(--syn-body-medium-regular);
   }

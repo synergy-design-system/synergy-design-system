@@ -486,6 +486,10 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
+  preventFocus(e: MouseEvent) {
+    e.preventDefault();
+  }
+      
   render() {
 
     return html`
@@ -520,6 +524,7 @@ export default class SynTabGroup extends SynergyElement {
                   tabindex="-1"
                   aria-hidden="true"
                   label=${this.localize.term('scrollToStart')}
+                  @mousedown=${this.preventFocus}
                   @click=${this.handleScrollToStart}
                 ></syn-icon-button>
               `
@@ -549,6 +554,7 @@ export default class SynTabGroup extends SynergyElement {
                   tabindex="-1"
                   aria-hidden="true"
                   label=${this.localize.term('scrollToEnd')}
+                  @mousedown=${this.preventFocus}
                   @click=${this.handleScrollToEnd}
                 ></syn-icon-button>
               `

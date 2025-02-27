@@ -2,6 +2,7 @@
 import { removeSections } from '../remove-section.js';
 import {
   addSectionsAfter,
+  addSectionsBefore,
   replaceSection,
   replaceSections,
 } from '../replace-section.js';
@@ -120,6 +121,28 @@ const transformComponent = (path, originalContent) => {
       '@event {{ name: String }} syn-tab-hide - Emitted when a tab is hidden.',
       ' The payload of the event returns the "panel" attribute of the hidden tab.',
       { newlinesBeforeInsertion: 0 },
+    ],
+  ], content);
+
+  // #782: Prevent the a11y error when the prev/next buttons are clicked
+  content = addSectionsBefore([
+    [
+      '@click=${this.handleScrollToStart}',
+      '@mousedown=${this.preventFocus}',
+      { tabsAfterInsertion: 9 },
+    ],
+    [
+      '@click=${this.handleScrollToEnd}',
+      '@mousedown=${this.preventFocus}',
+      { tabsAfterInsertion: 9 },
+    ],
+    [
+      'render() {',
+      `preventFocus(e: MouseEvent) {
+    e.preventDefault();
+  }
+      `,
+      { tabsAfterInsertion: 1 },
     ],
   ], content);
 

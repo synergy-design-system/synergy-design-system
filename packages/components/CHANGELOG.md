@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.22.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.2...components/2.22.3) (2025-02-27)
+
+
+### Bug Fixes
+
+* 🐛 syn-alert should not emit warnings when closing and a slotted element has focus ([#787](https://github.com/synergy-design-system/synergy-design-system/issues/787)) ([61c8cd3](https://github.com/synergy-design-system/synergy-design-system/commit/61c8cd3453f182c08884b40c7eada1e1c878248f))
+
+# [@synergy-design-system/components-v2.22.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.1...components/2.22.2) (2025-02-27)
+
+
+### Bug Fixes
+
+* 🐛  syn-card font-size and color of slot content can not be changed  ([#792](https://github.com/synergy-design-system/synergy-design-system/issues/792)) ([e3c470c](https://github.com/synergy-design-system/synergy-design-system/commit/e3c470ca7a07d81c06d881a81d7f3ff46829f31b))
+
 # [@synergy-design-system/components-v2.22.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.0...components/2.22.1) (2025-02-26)
 
 

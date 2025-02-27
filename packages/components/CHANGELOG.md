@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.22.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.2...components/2.22.3) (2025-02-27)
+
+
+### Bug Fixes
+
+* 🐛 syn-alert should not emit warnings when closing and a slotted element has focus ([#787](https://github.com/synergy-design-system/synergy-design-system/issues/787)) ([61c8cd3](https://github.com/synergy-design-system/synergy-design-system/commit/61c8cd3453f182c08884b40c7eada1e1c878248f))
+
 # [@synergy-design-system/components-v2.22.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.1...components/2.22.2) (2025-02-27)
 
 

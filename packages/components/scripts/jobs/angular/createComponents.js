@@ -89,6 +89,22 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
   })
   .join('\n\n');
 
+const componentsCustomization = {
+  SynDetails: {
+    ngAfterContentInit: `    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
+    if (this.nativeElement.open) {
+      this.nativeElement.updateComplete.then(() => {
+        const animations = this.nativeElement.details.getAnimations({
+          subtree: true,
+        });
+        animations.forEach(animation => {
+          animation.cancel();
+        });
+      });
+    }`,
+  },
+};
+
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
   const components = await getAllComponents(metadata);
@@ -113,6 +129,8 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     const attributeInputs = getAttributeInputs(component.name, attributes);
 
+    const ngAfterContentInit = componentsCustomization[component.name]?.ngAfterContentInit || '';
+
     const source = `
       ${headerComment}
       import {
@@ -122,6 +140,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         Input,
         Output,
         EventEmitter,
+        AfterContentInit,
       } from '@angular/core';
       import type { ${component.name} } from '@synergy-design-system/components';
       ${eventImports}
@@ -133,15 +152,20 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         standalone: true,
         template: '<ng-content></ng-content>',
       })
-      export class ${component.name}Component {
-        public nativeElement: ${component.name};
-        private _ngZone: NgZone;
-      
+      export class ${component.name}Component ${ngAfterContentInit ? 'implements AfterContentInit' : ''} {
+        
+      public nativeElement: ${component.name};
+      private _ngZone: NgZone;
+
         constructor(e: ElementRef, ngZone: NgZone) {
           this.nativeElement = e.nativeElement;
           this._ngZone = ngZone;
           ${eventListeners}
         }
+
+        ${ngAfterContentInit ? `ngAfterContentInit(): void {
+            ${ngAfterContentInit}
+          }` : ''}
 
         ${attributeInputs}
 

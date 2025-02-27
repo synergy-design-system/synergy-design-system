@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynFile } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';

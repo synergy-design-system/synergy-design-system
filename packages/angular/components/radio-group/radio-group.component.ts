@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynRadioGroup } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';

@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynTabGroup } from '@synergy-design-system/components';
 import type { SynTabShowEvent } from '@synergy-design-system/components';

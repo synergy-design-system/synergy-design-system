@@ -89,11 +89,20 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
   })
   .join('\n\n');
 
-const isDetailsReturnString = (componentName, detailsString) => {
-  if (componentName === 'SynDetails') {
-    return detailsString;
-  }
-  return '';
+const componentsCustomization = {
+  SynDetails: {
+    ngAfterContentInit: `    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
+    if (this.nativeElement.open) {
+      this.nativeElement.updateComplete.then(() => {
+        const animations = this.nativeElement.details.getAnimations({
+          subtree: true,
+        });
+        animations.forEach(animation => {
+          animation.cancel();
+        });
+      });
+    }`,
+  },
 };
 
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
@@ -120,6 +129,8 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     const attributeInputs = getAttributeInputs(component.name, attributes);
 
+    const ngAfterContentInit = componentsCustomization[component.name]?.ngAfterContentInit || '';
+
     const source = `
       ${headerComment}
       import {
@@ -135,7 +146,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
       import type { ${component.name} } from '@synergy-design-system/components';
       ${eventImports}
       import '${importPath}';
-      ${isDetailsReturnString(component.name, 'import { setAnimation, getAnimation } from \'@synergy-design-system/components/utilities/animation-registry.js\'')}
 
       ${jsDoc}
       @Component({
@@ -143,30 +153,20 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         standalone: true,
         template: '<ng-content></ng-content>',
       })
-      export class ${component.name}Component ${isDetailsReturnString(component.name, 'implements AfterContentInit')} {
+      export class ${component.name}Component ${ngAfterContentInit ? 'implements AfterContentInit' : ''} {
         private _elementRef = inject(ElementRef);
         private _ngZone: NgZone = inject(NgZone);
         
         public nativeElement: ${component.name};
 
-        ${isDetailsReturnString(component.name, 'initialOpen = this._elementRef.nativeElement.open;')}
-      
         constructor() {
           this.nativeElement = this._elementRef.nativeElement;
           ${eventListeners}
         }
 
-        ${isDetailsReturnString(component.name, `  ngAfterContentInit(): void {
-    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
-    if (!this.initialOpen && this.nativeElement.open) {
-      this.nativeElement.updateComplete.then(() => {
-        const animations = this.nativeElement.details.getAnimations({ subtree: true});
-        animations.forEach((animation) => {
-          animation.cancel();
-        });
-      });
-    }
-  }`)}
+        ${ngAfterContentInit ? `ngAfterContentInit(): void {
+            ${ngAfterContentInit}
+          }` : ''}
 
         ${attributeInputs}
 

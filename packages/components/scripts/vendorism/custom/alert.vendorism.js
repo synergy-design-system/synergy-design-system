@@ -1,4 +1,4 @@
-import { replaceSections } from '../replace-section.js';
+import { addSectionsAfter, replaceSections } from '../replace-section.js';
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -31,7 +31,7 @@ const transformStyles = (path, originalContent) => {
 };
 
 const transformComponent = (path, originalContent) => {
-  const content = replaceSections([
+  const contentWithoutCountdown = replaceSections([
     // Begin remove countdown
     [
       "@property({ type: String, reflect: true }) countdown?: 'rtl' | 'ltr';",
@@ -43,6 +43,18 @@ const transformComponent = (path, originalContent) => {
     ],
     // End remove countdown.
   ], originalContent);
+
+  // #782: Hide the active element when the alert is hidden
+  const content = addSectionsAfter([
+    [
+      "import type { CSSResultGroup } from 'lit';",
+      "import { blurActiveElement } from '../../internal/closeActiveElement.js';",
+    ],
+    [
+      '// Hide',
+      '      blurActiveElement(this);',
+    ],
+  ], contentWithoutCountdown);
   return {
     content,
     path,

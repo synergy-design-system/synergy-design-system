@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.22.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.3...components/2.22.4) (2025-02-27)
+
+
+### Bug Fixes
+
+* 🐛 syn-details in angular animates incorrectly when it is set to be open initially via property binding ([#790](https://github.com/synergy-design-system/synergy-design-system/issues/790)) ([e9f50a1](https://github.com/synergy-design-system/synergy-design-system/commit/e9f50a192ed284cd556b3328f1b5fee905bda025))
+
 # [@synergy-design-system/components-v2.22.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.2...components/2.22.3) (2025-02-27)
 
 

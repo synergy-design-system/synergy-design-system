@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynHeader } from '@synergy-design-system/components';
 import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';

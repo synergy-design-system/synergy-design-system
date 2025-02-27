@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynOptgroup } from '@synergy-design-system/components';
 

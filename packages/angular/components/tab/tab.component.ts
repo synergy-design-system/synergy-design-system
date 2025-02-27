@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynTab } from '@synergy-design-system/components';
 import type { SynCloseEvent } from '@synergy-design-system/components';

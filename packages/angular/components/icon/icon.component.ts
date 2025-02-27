@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynIcon } from '@synergy-design-system/components';
 import type { SynLoadEvent } from '@synergy-design-system/components';

@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynTag } from '@synergy-design-system/components';
 import type { SynRemoveEvent } from '@synergy-design-system/components';

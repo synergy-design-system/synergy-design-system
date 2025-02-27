@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynDetails } from '@synergy-design-system/components';
 import type { SynShowEvent } from '@synergy-design-system/components';
@@ -50,7 +51,7 @@ import '@synergy-design-system/components/components/details/details.js';
   standalone: true,
   template: '<ng-content></ng-content>',
 })
-export class SynDetailsComponent {
+export class SynDetailsComponent implements AfterContentInit {
   public nativeElement: SynDetails;
   private _ngZone: NgZone;
 
@@ -75,6 +76,20 @@ export class SynDetailsComponent {
         this.synAfterHideEvent.emit(e);
       },
     );
+  }
+
+  ngAfterContentInit(): void {
+    // This is a workaround for this issue: https://github.com/synergy-design-system/synergy-design-system/issues/784
+    if (this.nativeElement.open) {
+      this.nativeElement.updateComplete.then(() => {
+        const animations = this.nativeElement.details.getAnimations({
+          subtree: true,
+        });
+        animations.forEach(animation => {
+          animation.cancel();
+        });
+      });
+    }
   }
 
   /**

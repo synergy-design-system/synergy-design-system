@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynRadioButton } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';

@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynMenu } from '@synergy-design-system/components';
 import type { SynSelectEvent } from '@synergy-design-system/components';

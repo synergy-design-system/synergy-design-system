@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  AfterContentInit,
 } from '@angular/core';
 import type { SynPopup } from '@synergy-design-system/components';
 import type { SynRepositionEvent } from '@synergy-design-system/components';

@@ -174,6 +174,50 @@ describe('<syn-input>', () => {
         // only emit change event after pointer up
         expect(changeHandler).to.have.been.calledOnce;
       });
+
+      it('should decrement if decrement button is clicked after syn-input was removed and added to DOM again ', async () => {
+        const el = await fixture<SynInput>(html`
+          <div>
+            <syn-input type="number" value="3"></syn-input>
+          </div>
+        `);
+        const input = el.querySelector('syn-input')!;
+        const decrementButton = input.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]');
+        
+        decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+        document.dispatchEvent(new PointerEvent('pointerup'));
+        await input.updateComplete;
+        expect(input.value).to.equal('2');
+
+        input.remove();
+        el.appendChild(input);
+        decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+        document.dispatchEvent(new PointerEvent('pointerup'));
+        await input.updateComplete;
+        expect(input.value).to.equal('1');
+      }); 
+
+      it('should increment if increment button is clicked after syn-input was removed and added to DOM again ', async () => {
+        const el = await fixture<SynInput>(html`
+          <div>
+            <syn-input type="number" value="3"></syn-input>
+          </div>
+        `);
+        const input = el.querySelector('syn-input')!;
+        const incrementButton = input.shadowRoot!.querySelector<HTMLButtonElement>('[part~="increment-number-stepper"]');
+        
+        incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+        document.dispatchEvent(new PointerEvent('pointerup'));
+        await input.updateComplete;
+        expect(input.value).to.equal('4');
+
+        input.remove();
+        el.appendChild(input);
+        incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+        document.dispatchEvent(new PointerEvent('pointerup'));
+        await input.updateComplete;
+        expect(input.value).to.equal('5');
+      }); 
     });
   });    
 });

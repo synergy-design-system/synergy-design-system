@@ -58,6 +58,10 @@ class LongPressDirective extends AsyncDirective {
     return noChange;
   }
 
+  reconnected(): void {
+    this.host.addEventListener('pointerdown', this.handlePointerDown);
+  }
+
   protected disconnected(): void {
     this.stopSpinningAndCleanUp();
     this.host.removeEventListener('pointerdown', this.handlePointerDown);

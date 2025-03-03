@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.22.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.4...components/2.22.5) (2025-03-03)
+
+
+### Bug Fixes
+
+* 🐛 stepper buttons of reused syn-input type=number nodes no longer working ([#796](https://github.com/synergy-design-system/synergy-design-system/issues/796)) ([300d044](https://github.com/synergy-design-system/synergy-design-system/commit/300d044dc59d2678861e9a8306d2ee7a3db5d6c1))
+
 # [@synergy-design-system/components-v2.22.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.3...components/2.22.4) (2025-02-27)
 
 

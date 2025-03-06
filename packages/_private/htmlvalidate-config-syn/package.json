@@ -1,0 +1,42 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "HTML-Validate core rules used in the Synergy Design System",
+  "files": [
+    ".htmlvalidate.js"
+  ],
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/htmlvalidate-config-syn",
+  "keywords": [
+    "html validate",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/html-validate-config-syn",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/htmlvalidate-config-syn"
+  },
+  "scripts": {
+    "lint:html": "html-validate .",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "devDependencies": {
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@types/node": "20",
+    "eslint": "8"
+  },
+  "dependencies": {
+    "html-validate": "^9.2.1"
+  }
+}

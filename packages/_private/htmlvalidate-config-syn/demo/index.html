@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTMLValidate Config Sync Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <syn-header show-burger-menu label="@synergy-design-system/components Components Demo">
+    <a
+      class="custom-logo"
+      href="/"
+      slot="logo"
+      tabindex="0"
+      aria-label="Go to the homepage"
+    >
+      <syn-icon name="logo-color" library="system"></syn-icon>
+    </a>
+
+    <syn-switch
+      data-theme-light="☀️"
+      data-theme-dark="🌙"
+      id="theme-switch"
+      slot="meta-navigation"
+    >🌙</syn-switch>
+  </syn-header>
+
+  <!-- main -->
+  <div class="main">
+    <!-- side-nav -->
+    <syn-side-nav rail>
+      <syn-nav-item href="/">
+        Home
+        <syn-icon name="home" slot="prefix"></syn-icon>
+      </syn-nav-item>
+      <syn-nav-item divider href="/contact-form">
+        Contact Form
+        <syn-icon name="contact_mail" slot="prefix"></syn-icon>
+      </syn-nav-item>
+      <syn-nav-item divider href="/contact-form-validate">
+        Contact Form (Validation)
+        <syn-icon name="contact_emergency" slot="prefix"></syn-icon>
+      </syn-nav-item>
+      <syn-nav-item divider href="/all-components">
+        All Components
+        <syn-icon name="grid_view" slot="prefix"></syn-icon>
+      </syn-nav-item>
+    </syn-side-nav>
+    <!-- /side-nav -->
+
+    <!-- main.content -->
+    <main class="skeleton-content content">
+      <!-- contact-form-validate -->
+      <div class="contact-form-validate">
+        <form enctype="multipart/form-data" id="form-demo-validate" method="post">
+
+          <!-- PersonalInformation -->
+          <fieldset class="syn-fieldset">
+            <legend class="syn-legend">Personal Information</legend>
+
+            <syn-validate variant="inline">
+              <syn-radio-group
+                id="radiogroup-gender"
+                name="gender"
+                label="Please tell us your gender"
+                required
+              >
+                <syn-radio value="">invalid</syn-radio>
+                <syn-radio value="f">Female</syn-radio>
+                <syn-radio value="m">Male</syn-radio>
+                <syn-radio value="other">Other</syn-radio>
+              </syn-radio-group>
+            </syn-validate>
+
+            <syn-validate variant="inline">
+              <syn-select
+                id="select-role"
+                label="Current position"
+                name="role"
+                required
+              >
+                <syn-option value="">---</syn-option>
+                <syn-optgroup label="Developers">
+                  <syn-option value="backend">Backend Developer</syn-option>
+                  <syn-option value="frontend">Frontend Developer</syn-option>
+                </syn-optgroup>
+                <syn-optgroup label="Other">
+                  <syn-option value="lead">Team Lead</syn-option>
+                  <syn-option value="other">Other (please specify in comment section below)</syn-option>
+                </syn-optgroup>
+              </syn-select>
+            </syn-validate>
+
+            <syn-validate variant="inline">
+              <syn-input
+                id="input-text"
+                label="Name"
+                minlength="5"
+                maxlength="20"
+                name="input-text"
+                placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
+                required
+                type="text"
+              ></syn-input>
+            </syn-validate>
+
+            <syn-validate variant="inline" on="live">
+              <syn-input
+                id="input-email"
+                label="E-Mail"
+                name="input-email"
+                placeholder="Please insert your E-mail address"
+                required
+                type="email"
+              ></syn-input>
+            </syn-validate>
+
+            <syn-validate variant="inline" on="input blur">
+              <syn-input
+                id="input-date"
+                label="Date of birth"
+                name="input-date"
+                type="date"
+              ></syn-input>
+            </syn-validate>
+
+            <syn-validate variant="inline" on="live">
+              <syn-combobox
+                id="input-nationality"
+                label="Nationality"
+                name="input-nationality"
+                required
+              ></syn-combobox>
+            </syn-validate>
+
+          </fieldset>
+          <!-- PersonalInformation -->
+
+          <syn-divider></syn-divider>
+
+          <!-- Security -->
+          <fieldset class="syn-fieldset">
+            <legend class="syn-legend">Security</legend>
+
+            <syn-validate variant="inline" on="input blur">
+              <syn-input
+                id="input-password"
+                label="Provide a secure password"
+                name="input-password"
+                password-toggle
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                placeholder="Please provide at least one uppercase and lowercase letter and a number"
+                required
+                type="password"
+                value="invalid"
+              ></syn-input>
+            </syn-validate>
+
+            <syn-validate variant="inline" on="input blur">
+              <syn-input
+                id="input-number"
+                label="Please provide a fallback numeric value that may be used for password recovery"
+                min="1000"
+                max="9999"
+                name="input-number"
+                placeholder="Please choose a value with four digits, e.g. 1234"
+                type="number"
+              >
+              </syn-input>
+            </syn-validate>
+
+          </fieldset>
+          <!-- /Security -->
+
+          <syn-divider></syn-divider>
+
+          <!-- Happiness -->
+          <fieldset id="happiness-fields" class="syn-fieldset">
+            <legend class="syn-legend">Happiness</legend>
+            <syn-validate variant="inline" on="live">
+              <syn-range
+                id="happiness"
+                label="How happy are you with the Synergy Design System?"
+                max="10"
+                min="0"
+                value="5"
+                name="happiness"
+              >
+                <nav slot="ticks">
+                  <syn-range-tick>🤮</syn-range-tick>
+                  <syn-range-tick>🥱</syn-range-tick>
+                  <syn-range-tick>😍</syn-range-tick>
+                </nav>
+                <div slot="suffix">
+                  <syn-input
+                    type="number"
+                    size="small"
+                    min="0"
+                    max="10"
+                  ></syn-input>
+                </div>
+
+              </syn-range>
+            </syn-validate>
+          </fieldset>
+          <!-- /.Happiness -->
+
+          <syn-divider></syn-divider>
+
+          <!-- Marketing -->
+          <fieldset class="syn-fieldset">
+            <!-- We will never do this, I promise! -->
+            <legend class="syn-legend">Please inform me about the following technologies</legend>
+            <syn-validate variant="inline">
+              <syn-checkbox
+                id="checkbox-newsletter-default"
+                name="checkbox-newsletter-default"
+                required
+              >
+                Please subscribe me to the synergy newsletter
+              </syn-checkbox>
+            </syn-validate>
+            <syn-validate variant="inline">
+              <syn-switch
+                id="checkbox-newsletter-beta"
+                name="checkbox-newsletter-beta"
+                required
+              >
+                I am interested in the Synergy Beta Program
+              </syn-switch>
+            </syn-validate>
+          </fieldset>
+          <!-- /Marketing -->
+
+          <syn-divider></syn-divider>
+
+          <!-- AdditionalInformation -->
+          <fieldset class="syn-fieldset">
+            <legend class="syn-legend">Additional Information</legend>
+            <syn-validate variant="inline" on="live">
+              <syn-textarea
+                id="additional-info"
+                label="Comment"
+                name="comment"
+                placeholder="Please provide additional information that might be helpful for your inquiry"
+                required
+                rows="10"
+              ></syn-textarea>
+            </syn-validate>
+
+            <syn-validate variant="inline" on="live">
+              <syn-file
+                accept="image/*"
+                droparea
+                help-text="Please upload images only"
+                id="screenshot"
+                label="Optional Screenshot(s)"
+                multiple
+                name="files"
+              ></syn-file>
+            </syn-validate>
+
+          </fieldset>
+          <!-- /AdditionalInformation -->
+
+          <syn-divider></syn-divider>
+
+          <!-- Actions -->
+          <div class="syn-fieldset syn-submit-buttons">
+            <syn-button variant="outline" type="reset">Reset</syn-button>
+            <syn-button variant="filled" type="submit">Send</syn-button>
+          </div>
+          <!-- /Actions -->
+
+        </form>
+      </div>
+      <!-- /contact-form/validate -->
+    </main>
+  </div>
+  <!-- root -->
+</body>
+</html>

@@ -2921,7 +2921,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The app shell templates provide a quick start for your application with various combinations of header and navigation variants.",
+          "value": "The App Shell is the basic structure for building applications. \n\nIt provides consistent layout examples that include different combinations of header, navigation, and a flexible content area.",
           "type": "text"
         },
         "side-navigation": {

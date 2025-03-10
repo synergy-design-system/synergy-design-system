@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import type { PropertyValues } from 'lit';
+import type { PropertyDeclaration, PropertyValues } from 'lit';
 import type SynergyElement from '../../internal/synergy-element.js';
 import { type ComponentNamesWithDefaultValues } from './base.js';
 import {
@@ -21,9 +21,11 @@ type Constructor<T = object> = new (...args: any[]) => T;
  */
 export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
-    #globalSettingsSetupComplete = false;
+    private _globalSettingsSetupComplete = false;
 
     #initialGlobalSettingEmptyProperties = new Map<string, unknown>();
+
+    private _initialProperties: Array<string> = [];
 
     // eslint-disable-next-line class-methods-use-this
     get __originalDecoratedClassName() {
@@ -52,15 +54,30 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       removeGlobalEventNotification(this);
     }
 
+    requestUpdate(propName?: PropertyKey, oldValue?: unknown, options?: PropertyDeclaration) {
+      super.requestUpdate(propName, oldValue, options);
+
+      if (this._globalSettingsSetupComplete || this._initialProperties === undefined) {
+        return;
+      }
+
+      if (!this._initialProperties.includes(propName as string) && oldValue !== undefined) {
+        // Only explicit set properties / attributes on the element will trigger a requestUpdate
+        // (e.g. <syn-button size="medium" /> ). If the default is used (e.g. <syn-button />),
+        // the property will not appear in the _initialProperties array.
+        this._initialProperties.push(propName as string);
+      }
+    }
+
     protected willUpdate(changedProps: PropertyValues): void {
       super.willUpdate(changedProps);
 
       // Skip after the first run
-      if (this.#globalSettingsSetupComplete) {
+      if (this._globalSettingsSetupComplete) {
         return;
       }
 
-      this.#globalSettingsSetupComplete = true;
+      this._globalSettingsSetupComplete = true;
 
       // Get the default settings
       const defaults = extractDefaultSettingsForElement(name);
@@ -78,7 +95,9 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
           // We have to check if the current PROPERTY is the same as the default value
           // If it is, we set the attribute to the default value and add a notification item
           // to the initialGlobalSettingEmptyProperties map
-          if (currentProp === originalDefaultSetting) {
+          // We also need to check if the default value of the property was used
+          // or the property was explicitly set on the element
+          if (currentProp === originalDefaultSetting && !this._initialProperties.includes(key)) {
             this.#initialGlobalSettingEmptyProperties.set(key, currentProp);
             // @ts-expect-error We don´t know the type of the key,
             // but are pretty sure it exists on the element

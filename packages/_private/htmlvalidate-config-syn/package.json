@@ -4,8 +4,17 @@
     "url": "https://www.sick.com"
   },
   "description": "HTML-Validate core rules used in the Synergy Design System",
+  "exports": {
+    ".":{
+      "default": "./.htmlvalidate.js"
+    },
+    "./scripts/createElements.js": {
+      "default": "./scripts/createElements.js"
+    }
+  },
   "files": [
-    ".htmlvalidate.js"
+    ".htmlvalidate.js",
+    "scripts"
   ],
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/htmlvalidate-config-syn",
   "keywords": [
@@ -34,15 +43,14 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/components": "workspace:*",
     "@types/node": "20",
     "eslint": "^8.57.1",
     "html-validate": "^9.2.1"
   },
-  "dependencies": {
-    "@synergy-design-system/components": "workspace:*"
-  },
   "peerDependencies": {
-    "html-validate": "^9.2.1"
+    "html-validate": "^9.2.1",
+    "@synergy-design-system/components": "workspace:*"
   },
   "release": {
     "branches": [

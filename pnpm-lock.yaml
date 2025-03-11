@@ -162,10 +162,6 @@ importers:
         version: 8.57.1
 
   packages/_private/htmlvalidate-config-syn:
-    dependencies:
-      '@synergy-design-system/components':
-        specifier: workspace:*
-        version: link:../../components
     devDependencies:
       '@semantic-release/changelog':
         specifier: ^6.0.3
@@ -176,6 +172,9 @@ importers:
       '@semantic-release/git':
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@19.0.5(encoding@0.1.13))
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../../components
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../eslint-config-syn

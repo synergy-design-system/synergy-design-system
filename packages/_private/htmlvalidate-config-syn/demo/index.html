@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <syn-header show-burger-menu label="@synergy-design-system/components Components Demo">
+  <!-- Uncomment the next statement to see the HTMLValidate error -->
+  <!-- <syn-header show-burger-menu label="@synergy-design-system/components Components Demo"> -->
+  <syn-header label="@synergy-design-system/components Components Demo">
     <a
       class="custom-logo"
       href="/"
@@ -136,9 +138,13 @@
           </fieldset>
           <!-- PersonalInformation -->
 
+          <!-- Uncomment the next statement to check for elements that must be empty -->
+          <!--
           <syn-divider>
             <em>Disallowed</em>
           </syn-divider>
+          -->
+          <syn-divider></syn-divider>
 
           <!-- Security -->
           <fieldset class="syn-fieldset">

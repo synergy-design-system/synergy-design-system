@@ -21,13 +21,13 @@ type Constructor<T = object> = new (...args: any[]) => T;
  */
 export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
   return <T extends Constructor<SynergyElement>>(Proto: T): T => class extends Proto {
-    private _globalSettingsSetupComplete = false;
+    #globalSettingsSetupComplete = false;
 
     #initialGlobalSettingEmptyProperties = new Map<string, unknown>();
 
-    private _initialProperties: Array<string> = [];
+    #initialProperties: Array<string> = [];
 
-    private _systemDefaultSettings: Record<string, unknown>;
+    #systemDefaultSettings: Record<string, unknown>;
 
     private _isInitialized = false;
 
@@ -41,7 +41,7 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       super(...args);
       this._isInitialized = true;
-      this._systemDefaultSettings = extractDefaultSettingsForElement(name, 'initial');
+      this.#systemDefaultSettings = extractDefaultSettingsForElement(name, 'initial');
     }
 
     /**
@@ -74,30 +74,30 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
         // element initialization is not ready
         !this._isInitialized
         // setup is already complete
-        || this._globalSettingsSetupComplete
+        || this.#globalSettingsSetupComplete
         || !propName
         // skip properties, which do not belong to global settings
-        || !(propName in this._systemDefaultSettings)
+        || !(propName in this.#systemDefaultSettings)
         // skip properties, which are already in the initial properties
-        || this._initialProperties?.includes(propName as string)) {
+        || this.#initialProperties?.includes(propName as string)) {
         return;
       }
 
       // Only explicit set properties / attributes on the element will trigger a requestUpdate
       // (e.g. <syn-button size="medium" /> ). If the default is used (e.g. <syn-button />),
       // the property will not appear in the _initialProperties array.
-      this._initialProperties.push(propName as string);
+      this.#initialProperties.push(propName as string);
     }
 
     protected willUpdate(changedProps: PropertyValues): void {
       super.willUpdate(changedProps);
 
       // Skip after the first run
-      if (this._globalSettingsSetupComplete) {
+      if (this.#globalSettingsSetupComplete) {
         return;
       }
 
-      this._globalSettingsSetupComplete = true;
+      this.#globalSettingsSetupComplete = true;
 
       // Get the default settings
       const defaults = extractDefaultSettingsForElement(name);
@@ -107,7 +107,7 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
         .entries(defaults)
         .forEach(([key, value]) => {
           const currentProp = this[key as keyof this];
-          const originalDefaultSetting = this._systemDefaultSettings[key];
+          const originalDefaultSetting = this.#systemDefaultSettings[key];
 
           // On initial load, the attribute is not set, but the property is.
           // We have to check if the current PROPERTY is the same as the default value
@@ -115,7 +115,7 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
           // to the initialGlobalSettingEmptyProperties map
           // We also need to check if the default value of the property was used
           // or the property was explicitly set on the element
-          if (currentProp === originalDefaultSetting && !this._initialProperties.includes(key)) {
+          if (currentProp === originalDefaultSetting && !this.#initialProperties.includes(key)) {
             this.#initialGlobalSettingEmptyProperties.set(key, currentProp);
             // @ts-expect-error We don´t know the type of the key,
             // but are pretty sure it exists on the element

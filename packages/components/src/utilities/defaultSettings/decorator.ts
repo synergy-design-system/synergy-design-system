@@ -27,9 +27,21 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
 
     private _initialProperties: Array<string> = [];
 
+    private _systemDefaultSettings: Record<string, unknown>;
+
+    private _isInitialized = false;
+
     // eslint-disable-next-line class-methods-use-this
     get __originalDecoratedClassName() {
       return name;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    constructor(...args: any[]) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      super(...args);
+      this._isInitialized = true;
+      this._systemDefaultSettings = extractDefaultSettingsForElement(name, 'initial');
     }
 
     /**
@@ -54,19 +66,27 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       removeGlobalEventNotification(this);
     }
 
+    // eslint-disable-next-line complexity
     requestUpdate(propName?: PropertyKey, oldValue?: unknown, options?: PropertyDeclaration) {
       super.requestUpdate(propName, oldValue, options);
 
-      if (this._globalSettingsSetupComplete || this._initialProperties === undefined) {
+      if (
+        // element initialization is not ready
+        !this._isInitialized
+        // setup is already complete
+        || this._globalSettingsSetupComplete
+        || !propName
+        // skip properties, which do not belong to global settings
+        || !(propName in this._systemDefaultSettings)
+        // skip properties, which are already in the initial properties
+        || this._initialProperties?.includes(propName as string)) {
         return;
       }
 
-      if (!this._initialProperties.includes(propName as string) && oldValue !== undefined) {
-        // Only explicit set properties / attributes on the element will trigger a requestUpdate
-        // (e.g. <syn-button size="medium" /> ). If the default is used (e.g. <syn-button />),
-        // the property will not appear in the _initialProperties array.
-        this._initialProperties.push(propName as string);
-      }
+      // Only explicit set properties / attributes on the element will trigger a requestUpdate
+      // (e.g. <syn-button size="medium" /> ). If the default is used (e.g. <syn-button />),
+      // the property will not appear in the _initialProperties array.
+      this._initialProperties.push(propName as string);
     }
 
     protected willUpdate(changedProps: PropertyValues): void {
@@ -82,14 +102,12 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       // Get the default settings
       const defaults = extractDefaultSettingsForElement(name);
 
-      const systemDefaults = extractDefaultSettingsForElement(name, 'initial');
-
       // Set the default values for all items that have no current value set
       Object
         .entries(defaults)
         .forEach(([key, value]) => {
           const currentProp = this[key as keyof this];
-          const originalDefaultSetting = systemDefaults[key];
+          const originalDefaultSetting = this._systemDefaultSettings[key];
 
           // On initial load, the attribute is not set, but the property is.
           // We have to check if the current PROPERTY is the same as the default value

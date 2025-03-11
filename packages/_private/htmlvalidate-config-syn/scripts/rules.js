@@ -5,6 +5,25 @@ const currentDirname = path.dirname(new URL(import.meta.url).pathname);
 const metadataPath = path.resolve(currentDirname, '../node_modules/@synergy-design-system/components/dist/custom-elements.json');
 const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
 
+/**
+ * Creates a deprecation message for a given synergy version
+ * @param {string} version The Synergy Version the attribute was deprecated in
+ * @param {string} reason [optional]
+ * @returns {string} The final deprecation message
+ */
+const deprecateIn = (version, reason = '') => `
+This attribute was deprecated in Synergy version ${version}!
+${reason}
+Further information can be found at https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/BREAKING_CHANGES.md#version-${version.replaceAll('.', '')} for further information.
+`.trim();
+
+// Utility classes for deprecation.
+// Please add one deprecation warning per major version.
+// Also note that you have to return a function that calls
+// deprecateIn, otherwise the message will not be displayed.
+const deprecatedInSyn2 = (reason = '') => () => deprecateIn('2.0', reason);
+
+// Shared settings for form associated elements
 const formAssociated = {
   disablable: true,
   listed: true,
@@ -78,6 +97,13 @@ const SynButtonGroup = {
  * @type {import('html-validate').MetaElement}
  */
 const SynCard = {
+  attributes: {
+    nested: {
+      allowed: deprecatedInSyn2('Please use the `sharp` property instead.'),
+      boolean: true,
+    },
+  },
+  flow: true,
   sectioning: true,
 };
 
@@ -156,8 +182,8 @@ const SynFile = {
 const SynHeader = {
   attributes: {
     'show-burger-menu': {
+      allowed: deprecatedInSyn2('Please use the `burger-menu` attribute instead.'),
       boolean: true,
-      deprecated: 'This attribute was deprecated in Synergy@2.0',
     },
   },
   flow: true,
@@ -430,6 +456,7 @@ const createAttributes = (declaration) => {
   const attributes = (declaration.attributes || [])
     .filter(attr => !!attr?.type?.text)
     .map(attr => {
+      // Special case for boolean attributes
       if (attr.type.text === 'boolean') {
         return {
           [attr.name]: {
@@ -438,6 +465,7 @@ const createAttributes = (declaration) => {
         };
       }
 
+      // Special case for attributes that have a fixed set of values
       if (attr.type.text.includes('|')) {
         const values = attr
           .type
@@ -461,6 +489,7 @@ const createAttributes = (declaration) => {
         };
       }
 
+      // Default case, just return the attribute
       return {
         [attr.name]: {},
       };
@@ -474,12 +503,23 @@ const createAttributes = (declaration) => {
   return attributes;
 };
 
+const createTextContent = (declaration) => {
+  const { slots } = declaration;
+
+  // If the element does not have slots, disallow text content
+  if (!slots || slots.length === 0) {
+    return 'none';
+  }
+  return 'default';
+};
+
 const createMetaElement = (declaration) => ({
   ...defaults[declaration.name],
   attributes: {
     ...defaults[declaration.name]?.attributes,
     ...createAttributes(declaration),
   },
+  textContent: createTextContent(declaration),
 });
 
 export const createMetaData = () => {
@@ -501,4 +541,5 @@ export const createMetaData = () => {
   return output;
 };
 
-createMetaData();
+// Enable for debugging
+// console.log(createMetaData());

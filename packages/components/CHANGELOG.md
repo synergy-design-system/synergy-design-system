@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.22.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.5...components/2.22.6) (2025-03-11)
+
+
+### Bug Fixes
+
+* 🐛 setGlobalDefaultSettings does overwrite explicitly set default property values with new default size ([#801](https://github.com/synergy-design-system/synergy-design-system/issues/801)) ([46b3ebd](https://github.com/synergy-design-system/synergy-design-system/commit/46b3ebd5f39f58682995d75e3b665dfd6b800961))
+
 # [@synergy-design-system/components-v2.22.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.4...components/2.22.5) (2025-03-03)
 
 

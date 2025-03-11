@@ -41,6 +41,12 @@ describe('GlobalSettings', () => {
       expect(button.size).to.equal('small');
     });
 
+    it('should render the button with its original size when a size=medium property is provided', async () => {
+      setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
+      const button = await fixture<SynButton>(html`<syn-button size="medium">Button</syn-button>`);
+      expect(button.size).to.equal('medium');
+    });
+
     it('should return the changed settings when called', () => {
       const newSettings = setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
       expect(newSettings).to.deep.equal({

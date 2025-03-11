@@ -1,39 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-
-const currentDirname = path.dirname(new URL(import.meta.url).pathname);
-const metadataPath = path.resolve(currentDirname, '../node_modules/@synergy-design-system/components/dist/custom-elements.json');
-const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
-
-/**
- * Creates a deprecation message for a given synergy version
- * @param {string} version The Synergy Version the attribute will be deprecated in
- * @param {string} reason [optional]
- * @returns {string} The final deprecation message
- */
-// eslint-disable-next-line no-unused-vars
-const willDeprecateInRelease = (version, reason = '') => `
-  This attribute is deprecated and will be removed in Synergy version ${version}!
-  ${reason}
-`.trim();
-
-/**
- * Creates a deprecation message for a given synergy version
- * @param {string} version The Synergy Version the attribute was deprecated in
- * @param {string} reason [optional]
- * @returns {string} The final deprecation message
- */
-const deprecatedForRelease = (version, reason = '') => `
-This attribute was deprecated in Synergy version ${version}!
-${reason}
-Further information can be found at https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/BREAKING_CHANGES.md#version-${version.replaceAll('.', '')} for further information.
-`.trim();
-
-// Utility classes for deprecation.
-// Please add one deprecation warning per major version.
-// Also note that you have to return a function that calls
-// deprecateIn, otherwise the message will not be displayed.
-const deprecatedForV2 = (reason = '') => () => deprecatedForRelease('2.0', reason);
+import { deprecatedForV2 } from './deprecation.js';
 
 // Shared settings for form associated elements
 const formAssociated = {
@@ -420,7 +385,11 @@ const SynValidate = {
   formAssociated,
 };
 
-const defaults = {
+/**
+ * Final list of all rules
+ * @see createElements.js
+ */
+export const rules = {
   SynAccordion,
   SynAlert,
   SynBadge,
@@ -466,99 +435,3 @@ const defaults = {
   SynTooltip,
   SynValidate,
 };
-
-/**
- * Creates the attributes for a given declaration
- * @returns {import('html-validate').MetaElement}
- */
-const createAttributes = (declaration) => {
-  const attributes = (declaration.attributes || [])
-    .filter(attr => !!attr?.type?.text)
-    .map(attr => {
-      // Special case for boolean attributes
-      if (attr.type.text === 'boolean') {
-        return {
-          [attr.name]: {
-            boolean: true,
-          },
-        };
-      }
-
-      // Special case for attributes that have a fixed set of values
-      if (attr.type.text.includes('|')) {
-        const values = attr
-          .type
-          .text
-          .split('|')
-          .filter(value => value.includes("'"))
-          .map(value => value.trim().replaceAll("'", ''))
-          .filter(Boolean);
-
-        if (values.length === 0) {
-          return {
-            [attr.name]: {},
-          };
-        }
-
-        return {
-          [attr.name]: {
-            enum: values,
-            omit: true,
-          },
-        };
-      }
-
-      // Default case, just return the attribute
-      return {
-        [attr.name]: {},
-      };
-    })
-    .filter(Boolean)
-    .reduce((acc, curr) => ({
-      ...acc,
-      ...curr,
-    }), {});
-
-  return attributes;
-};
-
-const createTextContent = (declaration) => {
-  const { slots } = declaration;
-
-  // If the element does not have slots, disallow text content
-  if (!slots || slots.length === 0) {
-    return 'none';
-  }
-  return 'default';
-};
-
-const createMetaElement = (declaration) => ({
-  ...defaults[declaration.name],
-  attributes: {
-    ...defaults[declaration.name]?.attributes,
-    ...createAttributes(declaration),
-  },
-  textContent: createTextContent(declaration),
-});
-
-export const createMetaData = () => {
-  const elements = metadata
-    .modules
-    .filter(module => module.declarations.filter(kind => kind === 'class'))
-    .map(module => module.declarations)
-    .flatMap(declaration => declaration)
-    .map(declaration => {
-      const name = declaration.tagName;
-      // if (typeof defaults[declaration.name] === 'undefined') {
-      //   console.error('Not found:', declaration.name);
-      // }
-      return [name, createMetaElement(declaration)];
-    });
-
-  const output = Object.fromEntries(elements);
-  // console.log(JSON.stringify(output, null, 2));
-  return output;
-};
-
-// Enable for debugging
-// console.log(createMetaData());

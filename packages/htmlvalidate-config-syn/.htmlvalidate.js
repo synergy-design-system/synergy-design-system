@@ -10,5 +10,6 @@ export default defineConfig({
   root: true,
   rules: {
     'wcag/h32': 'off',
+    'no-deprecated-attr': 'warn',
   },
 });

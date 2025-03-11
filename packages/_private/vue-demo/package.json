@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "_build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint:html": "html-validate index.html src/**/*.txt",
+    "lint:js": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint --fix",
     "format": "prettier --write src/"
   },
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.5",
+    "@synergy-design-system/html-validate-config-syn": "workspace:^",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^22.13.1",
     "@vitejs/plugin-vue": "^5.2.1",
@@ -32,6 +35,7 @@
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^9.32.0",
+    "html-validate": "^9.2.1",
     "prettier": "^3.4.2",
     "typescript": "~5.7.3",
     "vite": "^6.1.0",

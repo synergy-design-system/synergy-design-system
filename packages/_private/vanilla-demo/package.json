@@ -10,14 +10,17 @@
     "createsprites": "syn-create-spritesheet --icons=contact_emergency,contact_mail,home,weekend,density_small,density_medium,density_large > public/synergy-icon-sprites.svg",
     "preview": "vite preview",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:html": "html-validate index.html src/**/*.txt",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },
   "devDependencies": {
     "@synergy-design-system/assets": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/html-validate-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",
+    "html-validate": "^9.2.1",
     "stylelint": "^16.14.1",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",

@@ -111,6 +111,7 @@ const SynCard = {
  * @type {import('html-validate').MetaElement}
  */
 const SynCheckbox = {
+  flow: true,
   focusable: true,
   formAssociated,
   interactive: true,
@@ -121,6 +122,7 @@ const SynCheckbox = {
  * @type {import('html-validate').MetaElement}
  */
 const SynCombobox = {
+  flow: true,
   focusable: true,
   formAssociated,
   interactive: true,
@@ -170,6 +172,7 @@ const SynDropdown = {
  * @type {import('html-validate').MetaElement}
  */
 const SynFile = {
+  flow: true,
   focusable: true,
   formAssociated,
   interactive: true,
@@ -291,9 +294,9 @@ const SynProgressRing = {
  * @type {import('html-validate').MetaElement}
  */
 const SynRadioGroup = {
+  flow: true,
   focusable: true,
   formAssociated,
-  phrasing: true,
 };
 
 /**
@@ -317,6 +320,7 @@ const SynRangeTick = {
  * @type {import('html-validate').MetaElement}
  */
 const SynRange = {
+  flow: true,
   focusable: true,
   formAssociated,
 };
@@ -325,6 +329,7 @@ const SynRange = {
  * @type {import('html-validate').MetaElement}
  */
 const SynSelect = {
+  flow: true,
   focusable: true,
   formAssociated,
 };
@@ -349,6 +354,7 @@ const SynSpinner = {
  * @type {import('html-validate').MetaElement}
  */
 const SynSwitch = {
+  flow: true,
   focusable: true,
   formAssociated,
 };
@@ -384,6 +390,7 @@ const SynTag = {};
  * @type {import('html-validate').MetaElement}
  */
 const SynTextarea = {
+  flow: true,
   focusable: true,
   formAssociated,
 };

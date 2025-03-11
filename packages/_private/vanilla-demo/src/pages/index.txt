@@ -7,6 +7,6 @@
   <p class="syn-body--medium">
     In this demo some use cases and our components are tested in the Vanilla ecosystem,
     like navigation handling, forms and theme switching.
-  </p>          
+  </p>
 </div>
 <!-- /index -->

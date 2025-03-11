@@ -5,7 +5,7 @@
     <!-- PersonalInformation -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Personal Information</legend>
-      
+
       <syn-validate variant="inline">
         <syn-radio-group
           id="radiogroup-gender"
@@ -89,7 +89,7 @@
     <!-- Security -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Security</legend>
-      
+
       <syn-validate variant="inline" on="input blur">
         <syn-input
           id="input-password"
@@ -147,7 +147,7 @@
               max="10"
             ></syn-input>
           </div>
-  
+
         </syn-range>
       </syn-validate>
     </fieldset>

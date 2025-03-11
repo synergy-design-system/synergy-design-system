@@ -6,7 +6,9 @@
     "start": "ng serve --port 5176",
     "_build": "ng build",
     "_watch": "ng build --watch --configuration development",
-    "_test": "ng test"
+    "_test": "ng test",
+    "lint:html": "html-validate src/index.html",
+    "lint": "pnpm run /^lint:.*/"
   },
   "private": true,
   "dependencies": {
@@ -31,7 +33,9 @@
     "@angular-devkit/build-angular": "^19.1.6",
     "@angular/cli": "^19.1.6",
     "@angular/compiler-cli": "^19.1.5",
+    "@synergy-design-system/html-validate-config-syn": "workspace:^",
     "@types/jasmine": "~5.1.5",
+    "html-validate": "^9.2.1",
     "jasmine-core": "~5.3.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",

@@ -80,9 +80,15 @@ importers:
       '@angular/compiler-cli':
         specifier: ^19.1.5
         version: 19.1.5(@angular/compiler@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.6.3)
+      '@synergy-design-system/html-validate-config-syn':
+        specifier: workspace:^
+        version: link:../../htmlvalidate-config-syn
       '@types/jasmine':
         specifier: ~5.1.5
         version: 5.1.5
+      html-validate:
+        specifier: ^9.2.1
+        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       jasmine-core:
         specifier: ~5.3.0
         version: 5.3.0
@@ -185,6 +191,9 @@ importers:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../eslint-config-syn
+      '@synergy-design-system/html-validate-config-syn':
+        specifier: workspace:^
+        version: link:../../htmlvalidate-config-syn
       '@types/react':
         specifier: ^19.0.8
         version: 19.0.8
@@ -224,6 +233,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.4.18
         version: 0.4.18(eslint@8.57.1)
+      html-validate:
+        specifier: ^9.2.1
+        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -266,7 +278,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -301,12 +313,18 @@ importers:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn
+      '@synergy-design-system/html-validate-config-syn':
+        specifier: workspace:^
+        version: link:../../htmlvalidate-config-syn
       '@synergy-design-system/stylelint-config-syn':
         specifier: workspace:^
         version: link:../stylelint-config-syn
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
+      html-validate:
+        specifier: ^9.2.1
+        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       stylelint:
         specifier: ^16.14.1
         version: 16.14.1(typescript@5.7.3)
@@ -350,6 +368,9 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.10.5
         version: 1.10.5
+      '@synergy-design-system/html-validate-config-syn':
+        specifier: workspace:^
+        version: link:../../htmlvalidate-config-syn
       '@tsconfig/node18':
         specifier: ^18.2.4
         version: 18.2.4
@@ -374,6 +395,9 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.32.0
         version: 9.32.0(eslint@8.57.1)
+      html-validate:
+        specifier: ^9.2.1
+        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -444,7 +468,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)
       figma-export-assets:
         specifier: ^1.0.4
         version: 1.0.4
@@ -725,7 +749,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)
       eslint-plugin-storybook:
         specifier: ^0.11.2
         version: 0.11.2(eslint@8.57.1)(typescript@5.7.3)
@@ -17259,6 +17283,7 @@ snapshots:
       eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   eslint-plugin-compat@6.0.2(eslint@8.57.1):
     dependencies:
@@ -17356,6 +17381,7 @@ snapshots:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
+    optional: true
 
   eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4):
     dependencies:
@@ -18257,6 +18283,19 @@ snapshots:
       semver: 7.7.1
     optionalDependencies:
       vitest: 3.0.5(@types/node@20.17.17)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3)
+
+  html-validate@9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3)):
+    dependencies:
+      '@html-validate/stylish': 4.2.0
+      '@sidvind/better-ajv-errors': 3.0.1(ajv@8.17.1)
+      ajv: 8.17.1
+      glob: 10.4.5
+      kleur: 4.1.5
+      minimist: 1.2.8
+      prompts: 2.4.2
+      semver: 7.7.1
+    optionalDependencies:
+      vitest: 3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3)
 
   htmlparser2@9.1.0:
     dependencies:

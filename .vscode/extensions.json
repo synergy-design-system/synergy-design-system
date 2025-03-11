@@ -9,6 +9,7 @@
     "dbaeumer.vscode-eslint",
     "angular.ng-template",
     "esbenp.prettier-vscode",
-    "vue.volar"
+    "vue.volar",
+    "html-validate.vscode-html-validate"
   ]
 }

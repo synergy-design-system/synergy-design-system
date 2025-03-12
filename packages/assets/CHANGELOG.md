@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.12.0...assets/1.13.0) (2025-03-11)
+
+
+### Features
+
+* ✨ Add new material icons ([#802](https://github.com/synergy-design-system/synergy-design-system/issues/802)) ([eb7c044](https://github.com/synergy-design-system/synergy-design-system/commit/eb7c044e1d4175b273663ea2c3f406067b828c33))
+
 # [@synergy-design-system/assets-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.11.2...assets/1.12.0) (2025-02-10)
 
 

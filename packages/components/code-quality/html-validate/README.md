@@ -2,12 +2,12 @@
 
 The components package also comes with its own set of linting rules that make it possible to automatically check for invalid, deprecated or removed properties. This feature uses [html-validate](https://html-validate.org/) underneath. Rule updates are always shipped with the component release of Synergy to make sure rules are always running against your current Synergy version.
 
-> Linting is currently only available for static HTML assets. When running `html-validate` via command line, it will only check files with an ending of `.htm` and `.html`.
-> It is currently not planned to support custom framework languages like `JSX` or `VUE` from our side!
+> Linting is only available for static HTML assets. When running `html-validate` via command line, it will only check files with an ending of `.htm` and `.html`.
+> It is currently not planned to support custom framework languages like `JSX` or `VUE`!
 
 ## 1. Features
 
-The rules currently include various rules that make it easier to use Synergy in context of static HTML:
+The Synergy ruleset include various rules that make it more secure to use Synergy Web-Components in context of static HTML:
 
 ### Property type checking
 
@@ -17,11 +17,11 @@ Also, if the attribute only allows a list of predefined values, it will also sho
 ### Future deprecations
 
 Future deprecations are flagged as warnings via the [`no-deprecated-attr rule`](https://html-validate.org/rules/no-deprecated-attr.html).
-This will make it easier to spot future deprecations for future major releases of Synergy.
+This will make it easier to spot deprecations for future major releases of Synergy.
 
 ### Deprecated attributes
 
-Flags attributes that where removed in major versions as removed via the [`attribute-misuse rule`](https://html-validate.org/rules/attribute-misuse.html). With this, you should be able to spot removed attributes after a major update of Synergy.
+Flags attributes that where removed in major versions as removed via the [`attribute-misuse rule`](https://html-validate.org/rules/attribute-misuse.html). This will help you identify any attributes that have been removed following a major update of Synergy.
 
 ## 2. Installation
 

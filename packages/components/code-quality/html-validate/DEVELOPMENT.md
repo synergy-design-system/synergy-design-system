@@ -1,6 +1,6 @@
 ## About html-validate
 
-Provided rules are created dynamically with some static overrides that cannot be obtained from the provided components manifest.
+Provided rules are created dynamically with some static overrides that cannot be obtained from the components manifest.
 Each element has its own custom configuration that overrides all dynamically created settings.
 Custom rules for each element can be found in `scripts/synergy-element-rules.js`.
 Most of those rules adjust the [Content category](https://html-validate.org/usage/elements.html#content-categories) used for the element. It also keeps track for various other actions like flagging a custom element as [`formAssociated`](https://html-validate.org/usage/elements.html#formassociated).

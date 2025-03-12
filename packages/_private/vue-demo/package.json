@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "_build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "lint:html": "html-validate index.html src/**/*.txt",
+    "lint:html": "html-validate index.html",
     "lint:js": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint --fix",

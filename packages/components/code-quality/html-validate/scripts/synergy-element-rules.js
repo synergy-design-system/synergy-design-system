@@ -282,6 +282,7 @@ const SynRadioGroup = {
 const SynRadio = {
   focusable: true,
   formAssociated,
+  interactive: true,
   phrasing: true,
 };
 
@@ -300,6 +301,7 @@ const SynRange = {
   flow: true,
   focusable: true,
   formAssociated,
+  interactive: true,
 };
 
 /**
@@ -309,6 +311,7 @@ const SynSelect = {
   flow: true,
   focusable: true,
   formAssociated,
+  interactive: true,
 };
 
 /**
@@ -324,7 +327,6 @@ const SynSideNav = {
  * @type {import('html-validate').MetaElement}
  */
 const SynSpinner = {
-  formAssociated,
 };
 
 /**
@@ -334,6 +336,7 @@ const SynSwitch = {
   flow: true,
   focusable: true,
   formAssociated,
+  interactive: true,
 };
 
 /**
@@ -370,6 +373,7 @@ const SynTextarea = {
   flow: true,
   focusable: true,
   formAssociated,
+  interactive: true,
 };
 
 /**

@@ -13,7 +13,7 @@ const metadata = JSON.parse(readFileSync(fileURLToPath(fileSystemDestinationOfCu
 
 /**
  * Creates the attributes for a given declaration
- * @returns {import('html-validate').MetaElement}
+ * @returns {Record<string, import('html-validate').MetaAttribute>}
  */
 const createAttributes = (declaration) => {
   const attributes = (declaration.attributes || [])

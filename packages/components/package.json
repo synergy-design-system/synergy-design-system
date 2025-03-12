@@ -30,8 +30,8 @@
     "./themes/*": "./dist/themes/*",
     "./translations/*": "./dist/translations/*",
     "./index.css": "./dist/styles/index.css",
-    "./html-validate.js": "./code-quality/htmlvalidate-config-syn/.htmlvalidate.js",
-    "./html-validate/*": "./code-quality/htmlvalidate-config-syn/*"
+    "./html-validate.js": "./code-quality/html-validate/.htmlvalidate.js",
+    "./html-validate/*": "./code-quality/html-validate/*"
   },
   "files": [
     "code-quality",

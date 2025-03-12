@@ -1,3 +1,4 @@
+import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -21,6 +22,19 @@ const transformComponent = (path, originalContent) => {
 
   // Replace filled with readonly
   content = content.replaceAll('filled', 'readonly');
+
+  // #800: Add documentation for the new css variable tokens
+  content = addSectionBefore(
+    content,
+    ` */
+export`,
+    ` *
+ * @cssproperty --syn-input-autofill-shadow - The shadow to apply when the input is autofilled.
+ * @cssproperty --syn-input-autofill-readonly-shadow - The shadow to apply when the input is readonly and autofilled.
+ * @cssproperty --syn-input-autofill-text-fill-color - The text fill color to apply when the input is autofilled.
+ * @cssproperty --syn-input-autofill-caret-color - The caret color to apply when the input is autofilled.
+    `.trimEnd(),
+  );
 
   // We need to add classes depending on prefix and suffix slots to use them in CSS
   content = content.replace(
@@ -213,6 +227,38 @@ const transformStyles = (path, originalContent) => {
 
   // Always hide browser built-in spin buttons
   content = content.replaceAll('.input--no-spin-buttons ', '');
+
+  // #800: Make sure we allow to override autofill vis css variables
+  content = replaceSections([
+    [
+      'box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset !important;',
+      'box-shadow: var(--syn-input-autofill-shadow) !important;',
+    ],
+    [
+      '-webkit-text-fill-color: var(--syn-color-primary-500);',
+      '-webkit-text-fill-color: var(--syn-input-autofill-text-fill-color);',
+    ],
+    [
+      'caret-color: var(--syn-input-color);',
+      'caret-color: var(--syn-input-autofill-caret-color);',
+    ],
+    [
+      'box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset !important;',
+      'box-shadow: var(--syn-input-autofill-readonly-shadow) !important;',
+    ],
+  ], content);
+
+  content = addSectionAfter(
+    content,
+    `:host {
+    display: block;`,
+    `
+    --syn-input-autofill-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset;
+    --syn-input-autofill-readonly-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset;
+    --syn-input-autofill-text-fill-color: var(--syn-color-primary-500);
+    --syn-input-autofill-caret-color: var(--syn-input-color);
+    `,
+  );
 
   return {
     content,

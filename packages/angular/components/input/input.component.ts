@@ -61,6 +61,11 @@ import '@synergy-design-system/components/components/input/input.js';
  * @csspart decrement-number-stepper - The decrement number stepper button.
  * @csspart increment-number-stepper - The increment number stepper button.
  * @csspart divider - The divider between the increment and decrement number stepper buttons.
+ *
+ * @cssproperty --syn-input-autofill-shadow - The shadow to apply when the input is autofilled.
+ * @cssproperty --syn-input-autofill-readonly-shadow - The shadow to apply when the input is readonly and autofilled.
+ * @cssproperty --syn-input-autofill-text-fill-color - The text fill color to apply when the input is autofilled.
+ * @cssproperty --syn-input-autofill-caret-color - The caret color to apply when the input is autofilled.
  */
 @Component({
   selector: 'syn-input',

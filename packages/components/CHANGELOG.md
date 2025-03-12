@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.23.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.6...components/2.23.0) (2025-03-12)
+
+
+### Features
+
+* ✨ Allow to override autofill styles for syn-input ([#803](https://github.com/synergy-design-system/synergy-design-system/issues/803)) ([d2f66f9](https://github.com/synergy-design-system/synergy-design-system/commit/d2f66f9eb3d10222a4d157c627f9f4a2ab860820))
+
 # [@synergy-design-system/components-v2.22.6](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.5...components/2.22.6) (2025-03-11)
 
 

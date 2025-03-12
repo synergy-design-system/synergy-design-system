@@ -1,59 +1,64 @@
-## About html-validate
+# Linting HTML
 
-Provided rules are created dynamically with some static overrides that cannot be obtained from the provided components manifest.
-Each element has its own custom configuration that overrides all dynamically created settings.
-Custom rules for each element can be found in `scripts/synergy-element-rules.js`.
-Most of those rules adjust the [Content category](https://html-validate.org/usage/elements.html#content-categories) used for the element. It also keeps track for various other actions like flagging a custom element as [`formAssociated`](https://html-validate.org/usage/elements.html#formassociated).
+The components package also comes with its own set of linting rules that make it possible to automatically check for invalid, deprecated or removed properties. This feature uses [html-validate](https://html-validate.org/) underneath. Rule updates are always shipped with the component release of Synergy to make sure rules are always running against your current Synergy version.
 
-> The configuration is created on the fly via a function.
-> This may have to reload your IDEs plugin for the change to take effect.
-> For development purposes, it is advised to rely on the command line interface instead!
+> Linting is currently only available for static HTML assets. When running `html-validate` via command line, it will only check files with an ending of `.htm` and `.html`.
+> It is currently not planned to support custom framework languages like `JSX` or `VUE` from our side!
 
-### Deprecating properties for future releases
+## 1. Features
 
-For future releases where an attribute is phased out, it is desirable to flag the attribute as [`deprecated`](https://html-validate.org/usage/elements.html#deprecated). This can be done in the custom configuration like this:
+The rules currently include various rules that make it easier to use Synergy in context of static HTML:
 
-```javascript
-// Example: <syn-header>
-// Synergy@1.x still has the attribute show-burger-menu for syn-header,
-// but we know we want to remove it in version 2.0
-/**
- * @type {import('html-validate').MetaElement}
- */
-const SynHeader = {
-  attributes: {
-    "show-burger-menu": {
-      boolean: true,
-      deprecated: willDeprecateInRelease(
-        "2.0",
-        "Will be replaced with `burger-menu`",
-      ),
-    },
-  },
-  flow: true,
-  heading: true,
-  sectioning: true,
-};
+### Property type checking
+
+All attributes are checked for their type (e.g. `Boolean`).
+Also, if the attribute only allows a list of predefined values, it will also show errors via the [`attribute-allowed-values rule`](https://html-validate.org/rules/attribute-allowed-values.html) when providing an unknown value.
+
+### Future deprecations
+
+Future deprecations are flagged as warnings via the [`no-deprecated-attr rule`](https://html-validate.org/rules/no-deprecated-attr.html).
+This will make it easier to spot future deprecations for future major releases of Synergy.
+
+### Deprecated attributes
+
+Flags attributes that where removed in major versions as removed via the [`attribute-misuse rule`](https://html-validate.org/rules/attribute-misuse.html). With this, you should be able to spot removed attributes after a major update of Synergy.
+
+## 2. Installation
+
+Please issue one of the following commands to install the linting toolchain (assuming `@synergy-design-system/components` is already installed):
+
+```bash
+npm install --save-dev html-validate
+yarn add --dev html-validate
+pnpm i -D html-validate
 ```
 
-When the new Synergy major version is released, you can finally deprecate the property:
+## 3. Configuration
+
+### Using the Synergy Default Configuration
+
+The default configuration that may be used as a drop-in setting for getting started. It is based on the [html-validate recommended settings](https://html-validate.org/rules/presets.html#html-validate-recommended). You may use it in the following way:
+
+1. Make sure you have `type="module"` set in your projects `package.json`.
+2. Create a new file `.htmlvalidate.js`
+3. Open the new file and load the synergy configuration: `import synConfig from '@synergy-design-system/html-validate-config-syn'; export default synConfig;`
+
+### Adjusting an existing configuration
+
+If you already have a configuration for `html-validate` in place, just add the missing elements to your configuration:
 
 ```javascript
-// Example: <syn-header>
-// Synergy@2.x removed the attribute show-burger-menu for syn-header,
-// so we replace the warning with a hard error
-const SynHeader = {
-  attributes: {
-    "show-burger-menu": {
-      allowed: deprecatedForRelease(
-        "2.0",
-        "Please use the `burger-menu` attribute instead.",
-      ),
-      boolean: true,
-    },
-  },
-  flow: true,
-  heading: true,
-  sectioning: true,
-};
+// .htmlvalidate.js
+import { defineConfig } from "html-validate";
+import { createElements } from "@synergy-design-system/components/html-validate/scripts/createElements.js";
+
+export default defineConfig({
+  extends: ["html-validate:recommended"],
+  elements: [
+    "html5",
+    // 👇 Add this statement to make synergy elements work
+    createElements(),
+  ],
+  root: true,
+});
 ```

@@ -14,9 +14,18 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
+  let content = removeSections([
+    ['/** Draws a filled', 'filled = false;'],
+    ['/** Draws a pill-style', 'pill = false;'],
+    ["'input--pill':", ','],
+  ], originalContent);
+
+  // Replace filled with readonly
+  content = content.replaceAll('filled', 'readonly');
+
   // #800: Add documentation for the new css variable tokens
-  let content = addSectionBefore(
-    originalContent,
+  content = addSectionBefore(
+    content,
     ` */
 export`,
     ` *
@@ -26,15 +35,6 @@ export`,
  * @cssproperty --syn-input-autofill-caret-color - The caret color to apply when the input is autofilled.
     `.trimEnd(),
   );
-
-  content = removeSections([
-    ['/** Draws a filled', 'filled = false;'],
-    ['/** Draws a pill-style', 'pill = false;'],
-    ["'input--pill':", ','],
-  ], content);
-
-  // Replace filled with readonly
-  content = content.replaceAll('filled', 'readonly');
 
   // We need to add classes depending on prefix and suffix slots to use them in CSS
   content = content.replace(

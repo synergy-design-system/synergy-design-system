@@ -16,7 +16,7 @@ export default css`
     --syn-input-autofill-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset;
     --syn-input-autofill-readonly-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset;
     --syn-input-autofill-text-fill-color: var(--syn-color-primary-500);
-    --syn-input-autofill-caret-color: var(--syn-input-color);
+    --syn-input-autofill-caret-color: var(--syn-input-autofill-caret-color);
   }
 
   .input {

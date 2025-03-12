@@ -3956,16 +3956,6 @@
         }  
       }
     },
-    "templates": {
-      "title": {
-        "value": "Templates",
-        "type": "text"
-      },
-      "description": {
-        "value": "Contact Form",
-        "type": "text"
-      }
-    },
     "table": {
       "default": {
         "title": {

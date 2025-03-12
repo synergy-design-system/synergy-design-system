@@ -30,7 +30,7 @@ When you already have a configuration for `html-validate` in place, just add the
 ```javascript
 // .htmlvalidate.js
 import { defineConfig } from "html-validate";
-import { createElements } from "@synergy-design-system/html-validate-config-syn/scripts/createElements";
+import { createElements } from "@synergy-design-system/html-validate-config-syn/scripts/createElements.js";
 
 export default defineConfig({
   extends: ["html-validate:recommended"],

@@ -12,6 +12,11 @@ export default css`
 	/* stylelint-disable */
   :host {
     display: block;
+
+    --syn-input-autofill-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset;
+    --syn-input-autofill-readonly-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset;
+    --syn-input-autofill-text-fill-color: var(--syn-color-primary-500);
+    --syn-input-autofill-caret-color: var(--syn-input-color);
   }
 
   .input {
@@ -121,16 +126,16 @@ export default css`
   .input__control:-webkit-autofill:hover,
   .input__control:-webkit-autofill:focus,
   .input__control:-webkit-autofill:active {
-    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-background-color-hover) inset !important;
-    -webkit-text-fill-color: var(--syn-color-primary-500);
-    caret-color: var(--syn-input-color);
+    box-shadow: var(--syn-input-autofill-shadow) !important;
+    -webkit-text-fill-color: var(--syn-input-autofill-text-fill-color);
+    caret-color: var(--syn-input-autofill-caret-color);
   }
 
   .input--readonly .input__control:-webkit-autofill,
   .input--readonly .input__control:-webkit-autofill:hover,
   .input--readonly .input__control:-webkit-autofill:focus,
   .input--readonly .input__control:-webkit-autofill:active {
-    box-shadow: 0 0 0 var(--syn-input-height-large) var(--syn-input-readonly-background-color) inset !important;
+    box-shadow: var(--syn-input-autofill-readonly-shadow) !important;
   }
 
   .input__control::placeholder {

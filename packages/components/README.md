@@ -224,7 +224,56 @@ This package ships with a [custom-elements-manifest](https://github.com/webcompo
 
 ---
 
-### 7. Breaking changes between major versions
+### 7. Enable linting for Synergy Elements in HTML (optional)
+
+The components package also comes with its own set of linting rules that make it possible automatically check for invalid, deprecated or removed properties. This feature uses [html-validate](https://html-validate.org/) underneath. Rule updates are always shipped with the component release of Synergy to make sure rules are always running against your current Synergy version.
+
+> Linting is currently only available for static HTML assets. When running `html-validate` via command line, it will only check files with an ending of `.htm` and `.html`.
+> It is currently not planned to support custom framework languages like `JSX` or `VUE` from our side!
+
+#### 1. Installation
+
+Please issue one of the following commands to install the linting toolchain:
+
+```bash
+npm install --save-dev html-validate
+yarn add --dev html-validate
+pnpm i -D html-validate
+```
+
+#### 2. Configuration
+
+##### Using the Synergy Default Configuration
+
+This module exports a default configuration that may be used as a drop-in setting. You may use it in the following way:
+
+1. Make sure you have `type="module"` set in your projects `package.json`.
+2. Create a new file `.htmlvalidate.js`
+3. Open the new file and load the synergy configuration: `import synConfig from '@synergy-design-system/html-validate-config-syn'; export default synConfig;`
+
+##### Adjusting an existing configuration
+
+When you already have a configuration for `html-validate` in place, just add the missing elements to your configuration:
+
+```javascript
+// .htmlvalidate.js
+import { defineConfig } from "html-validate";
+import { createElements } from "@synergy-design-system/components/html-validate/scripts/createElements.js";
+
+export default defineConfig({
+  extends: ["html-validate:recommended"],
+  elements: [
+    "html5",
+    // 👇 Add this statement to make synergy elements work
+    createElements(),
+  ],
+  root: true,
+});
+```
+
+---
+
+### 8. Breaking changes between major versions
 
 Please have a look at the official [breaking changes list](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs) for information how to update to new major versions of Synergy.
 

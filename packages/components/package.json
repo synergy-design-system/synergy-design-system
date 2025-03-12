@@ -29,9 +29,12 @@
     "./themes/utility.css": "./dist/styles/utility.css",
     "./themes/*": "./dist/themes/*",
     "./translations/*": "./dist/translations/*",
-    "./index.css": "./dist/styles/index.css"
+    "./index.css": "./dist/styles/index.css",
+    "./html-validate.js": "./code-quality/htmlvalidate-config-syn/.htmlvalidate.js",
+    "./html-validate/*": "./code-quality/htmlvalidate-config-syn/*"
   },
   "files": [
+    "code-quality",
     "dist"
   ],
   "scripts": {
@@ -101,6 +104,7 @@
     "eslint-plugin-playwright": "^1.8.3",
     "eslint-plugin-wc": "^2.2.0",
     "globby": "^14.0.2",
+    "html-validate": "^9.2.1",
     "jsdom": "^26.0.0",
     "ora": "^8.2.0",
     "postcss": "^8.5.1",

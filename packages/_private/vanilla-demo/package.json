@@ -17,7 +17,6 @@
   "devDependencies": {
     "@synergy-design-system/assets": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@synergy-design-system/html-validate-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",
     "html-validate": "^9.2.1",

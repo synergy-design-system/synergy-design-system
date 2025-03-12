@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { defineMetadata } from 'html-validate';
@@ -7,7 +8,7 @@ import { rules } from './synergy-element-rules.js';
 // Get the destination of the custom elements file
 // Note we need to use relative module imports here
 // as we don´t know the location of the file when it is imported
-const fileSystemDestinationOfCustomElements = import.meta.resolve('@synergy-design-system/components/custom-elements.json');
+const fileSystemDestinationOfCustomElements = import.meta.resolve('../../../dist/custom-elements.json');
 const metadata = JSON.parse(readFileSync(fileURLToPath(fileSystemDestinationOfCustomElements), 'utf-8'));
 
 /**

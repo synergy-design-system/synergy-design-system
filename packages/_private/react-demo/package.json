@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@synergy-design-system/html-validate-config-syn": "workspace:^",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",

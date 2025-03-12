@@ -493,10 +493,6 @@ importers:
       lit:
         specifier: ^3.2.1
         version: 3.2.1
-    optionalDependencies:
-      html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -603,6 +599,9 @@ importers:
       globby:
         specifier: ^14.0.2
         version: 14.0.2
+      html-validate:
+        specifier: ^9.2.1
+        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       jsdom:
         specifier: ^26.0.0
         version: 26.0.0

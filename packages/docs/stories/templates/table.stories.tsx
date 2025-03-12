@@ -155,7 +155,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('19923-55456'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'table'),
+        component: generateStoryDescription('table', 'default', 'templates'),
       },
       page: () => (
         <>

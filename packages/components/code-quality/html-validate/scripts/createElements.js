@@ -47,7 +47,7 @@ const createAttributes = (declaration) => {
         return {
           [attr.name]: {
             enum: values,
-            omit: true,
+            omit: false,
           },
         };
       }

@@ -27,6 +27,7 @@ const SynAlert = {
  * @type {import('html-validate').MetaElement}
  */
 const SynBadge = {
+  flow: true,
   phrasing: true,
 };
 
@@ -327,6 +328,7 @@ const SynSideNav = {
  * @type {import('html-validate').MetaElement}
  */
 const SynSpinner = {
+  flow: true,
 };
 
 /**

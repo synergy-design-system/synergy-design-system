@@ -2914,88 +2914,6 @@
         }
       }
     },
-    "templates": {
-      "application-shell": {
-        "title": {
-          "value": "Application Shell",
-          "type": "text"
-        },
-        "description": {
-          "value": "Description for application shell",
-          "type": "text"
-        }
-      },
-      "contact-form": {
-        "title": {
-          "value": "Forms",
-          "type": "text"
-        },
-        "description": {
-          "value": "Forms usually contain form components such as checkboxes, selects, input fields, radio buttons, toggle switches and more. \nClear and simple forms help prevent user confusion and incorrect data submission. \n\nForms should be designed in columns as this improves scanability. One-column layout is preferred, but use two or more column layouts when there are too many components to fit in an area of the page.\n\nForms can be simple or complex, and may be presented as dedicated pages, side panels, or dialogs depending on the use case and the situation.",
-          "type": "text"
-        }
-      },
-      "templates": {
-        "title": {
-          "value": "Templates",
-          "type": "text"
-        },
-        "description": {
-          "value": "Contact Form",
-          "type": "text"
-        }
-      },
-      "table": {
-        "title": {
-          "value": "Table",
-          "type": "text"
-        },
-        "description": {
-          "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
-          "type": "text"
-        }
-      },
-      "footer": {
-        "title": {
-          "value": "Footer",
-          "type": "text"
-        },
-        "description": {
-          "value": "The footer is the area located at the bottom of the application window, below the content area.\n\nThe footer may contain one or more links pointing to legal information items as well as a copyright symbol and current year. The standard links can include things like:\n- Imprint (e.g. https://www.sick.com/imprint)\n- Terms and conditions (e.g. https://www.sick.com/tac)\n- Terms of use (e.g. https://www.sick.com/terms-of-use)\n- Data protection (e.g. https://www.sick.com/dataprotection)\n\nIf a footer is not required or desired, ensure that all legally required links are placed elsewhere in your application, depending on legal requirements.\n\nFor example, you can: add an info icon (or similar element) to your header and display the necessary information in a dropdown menu. Alternatively, create a dedicated navigation entry to house the required legal links.\n\nThe footer links can be placed on any background color. If you need a more compact version of the footer, adjust the top and bottom margins from spacing.large (24px) to spacing.medium (16px).",
-          "type": "text"
-        }
-      },
-      "link-list": {
-        "title": {
-          "value": "Link list",
-          "type": "text"
-        },
-        "description": {
-          "value": "These examples demonstrate the usage of syn-link in simple grouping contexts: Horizontal and Vertical alignment.",
-          "type": "text"
-        }
-      },
-      "tag": {
-        "title": {
-          "value": "Tag",
-          "type": "text"
-        },
-        "description": {
-          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
-          "type": "text"
-        }
-      },
-      "breadcrumb": {
-        "title": {
-          "value": "Breadcrumb",
-          "type": "text"
-        },
-        "description": {
-          "value": "These examples demonstrate the use of syn-breadcrumb in desktop and mobile views. \n\nOn desktop, if there's room, always show the full breadcrumb trail.\n\nIf the viewport has not enough space for all breadcrumb items, it is possible to display a truncated version of the breadcrumb and move the items between Home and the parent page into a dropdown menu. \n\nAlternatively, an even shorter version can display only the name/link of the parent page and the prefix icon with the back arrow to navigate one level up.\n\nFor more information on breadcrumbs, visit Nielsen Norman Group:  https://www.nngroup.com/articles/breadcrumbs/",
-          "type": "text"
-        }
-      }
-    },
     "nav-item": {
       "default": {
         "title": {
@@ -3950,6 +3868,152 @@
       "title": {
         "value": "Integrating with Rails",
         "type": "text"
+      }
+    }
+  },
+  "templates": {
+    "application-shell": {
+      "default": {
+        "title": {
+          "value": "Application Shell",
+          "type": "text"
+        },
+        "description": {
+          "value": "The App Shell is the basic structure for building applications. \n\nIt provides consistent layout examples that include different combinations of header, navigation, and a flexible content area.",
+          "type": "text"
+        }
+      },
+      "side-navigation": {
+        "title": {
+          "value": "Side Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "The side navigation opens when the user clicks on the burger menu. As the side navigation opens, a transparent mask fades in and the navigation overlaps the content area. To close the navigation, the user must either click on the close icon or anywhere on the content area to the right of the side navigation.",
+          "type": "text"
+        }
+      },
+      "side-navigation-shrinking": {
+        "title": {
+          "value": "Side Navigation Shrinking Content",
+          "type": "text"
+        },
+        "description": {
+          "value": "The side navigation opens when the user clicks on the burger menu. As the side navigation opens, the content area shrinks. To close the navigation, the user must click on the close icon.",
+          "type": "text"
+        }
+      },
+      "rail-navigation-desktop": {
+        "title": {
+          "value": "Rail Navigation (Desktop)",
+          "type": "text"
+        },
+        "description": {
+          "value": "The navigation opens when the user hovers over it. As the navigation opens, it overlaps the content area. To close the navigation, the user simply hovers outside of it.",
+          "type": "text"
+        }
+      },
+      "rail-navigation-mobile": {
+        "title": {
+          "value": "Rail Navigation (Mobile)",
+          "type": "text"
+        },
+        "description": {
+          "value": "The navigation opens when the user touches it. As the side navigation opens, a transparent mask fades in and the navigation overlaps the content area. To close the navigation, the user must touch anywhere on the content area to the right of the side navigation.",
+          "type": "text"
+        }
+      },
+      "top-navigation": {
+        "title": {
+          "value": "Top Navigation",
+          "type": "text"
+        },
+        "description": {
+          "value": "The top navigation can be combined with a light grey background.\n\nThis variant is suitable, for example, in combination with cards to achieve a dashboard look and feel.",
+          "type": "text"
+        }
+      },
+      "white-background": {
+        "title": {
+          "value": "White Background",
+          "type": "text"
+        },
+        "description": {
+          "value": "Additionally the top navigation can be combined with a white background.",
+          "type": "text"
+        }
+      }
+    },
+    "contact-form": {
+      "default": {
+        "title": {
+          "value": "Forms",
+          "type": "text"
+        },
+        "description": {
+          "value": "Forms usually contain form components such as checkboxes, selects, input fields, radio buttons, toggle switches and more. \nClear and simple forms help prevent user confusion and incorrect data submission. \n\nForms should be designed in columns as this improves scanability. One-column layout is preferred, but use two or more column layouts when there are too many components to fit in an area of the page.\n\nForms can be simple or complex, and may be presented as dedicated pages, side panels, or dialogs depending on the use case and the situation.",
+          "type": "text"
+        }  
+      }
+    },
+    "table": {
+      "default": {
+        "title": {
+          "value": "Table",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
+      }
+    },
+    "footer": {
+      "default": {
+        "title": {
+          "value": "Footer",
+          "type": "text"
+        },
+        "description": {
+          "value": "The footer is the area located at the bottom of the application window, below the content area.\n\nThe footer may contain one or more links pointing to legal information items as well as a copyright symbol and current year. The standard links can include things like:\n- Imprint (e.g. https://www.sick.com/imprint)\n- Terms and conditions (e.g. https://www.sick.com/tac)\n- Terms of use (e.g. https://www.sick.com/terms-of-use)\n- Data protection (e.g. https://www.sick.com/dataprotection)\n\nIf a footer is not required or desired, ensure that all legally required links are placed elsewhere in your application, depending on legal requirements.\n\nFor example, you can: add an info icon (or similar element) to your header and display the necessary information in a dropdown menu. Alternatively, create a dedicated navigation entry to house the required legal links.\n\nThe footer links can be placed on any background color. If you need a more compact version of the footer, adjust the top and bottom margins from spacing.large (24px) to spacing.medium (16px).",
+          "type": "text"
+        }
+      }
+    },
+    "link-list": {
+      "default": {
+        "title": {
+          "value": "Link list",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-link in simple grouping contexts: Horizontal and Vertical alignment.",
+          "type": "text"
+        }
+      }
+    },
+    "tag": {
+      "default": {
+        "title": {
+          "value": "Tag",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
+          "type": "text"
+        }
+      }
+    },
+    "breadcrumb": {
+      "default": {
+        "title": {
+          "value": "Breadcrumb",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the use of syn-breadcrumb in desktop and mobile views. \n\nOn desktop, if there's room, always show the full breadcrumb trail.\n\nIf the viewport has not enough space for all breadcrumb items, it is possible to display a truncated version of the breadcrumb and move the items between Home and the parent page into a dropdown menu. \n\nAlternatively, an even shorter version can display only the name/link of the parent page and the prefix icon with the back arrow to navigate one level up.\n\nFor more information on breadcrumbs, visit Nielsen Norman Group: https://www.nngroup.com/articles/breadcrumbs/",
+          "type": "text"
+        }
       }
     }
   }

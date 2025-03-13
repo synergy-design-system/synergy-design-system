@@ -48,7 +48,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('23524-12912'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'breadcrumb'),
+        component: generateStoryDescription('breadcrumb', 'default', 'templates'),
       },
       page: () => (
         <>

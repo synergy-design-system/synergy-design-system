@@ -26,7 +26,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'application-shell'),
+        component: generateStoryDescription('application-shell', 'default', 'templates'),
       },
       page: () => (
         <>
@@ -46,6 +46,13 @@ const meta: Meta = {
 export default meta;
 
 export const SideNavigation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('application-shell', 'side-navigation', 'templates'),
+      },
+    },
+  },
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-side-navigation">
@@ -67,6 +74,13 @@ export const SideNavigation: Story = {
 };
 
 export const SideNavigationShrinkingContent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('application-shell', 'side-navigation-shrinking', 'templates'),
+      },
+    },
+  },
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-shrink">
@@ -137,6 +151,11 @@ export const SideNavigationShrinkingContent: Story = {
 export const RailNavigationDesktop: Story = {
   name: 'Rail Navigation (Desktop)',
   parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('application-shell', 'rail-navigation-desktop', 'templates'),
+      },
+    },
   },
   render: () => html`
     <!-- .synergy-demo-application -->
@@ -181,7 +200,10 @@ export const RailNavigationMobile: Story = {
       exclude: ['default'],
     },
     docs: {
-      disable: true,
+      description: {
+        story: generateStoryDescription('application-shell', 'rail-navigation-mobile', 'templates'),
+      },
+      // disable: true,
     },
     viewport: {
       defaultViewport: 'mobile2',
@@ -190,6 +212,13 @@ export const RailNavigationMobile: Story = {
 };
 
 export const TopNavigation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('application-shell', 'top-navigation', 'templates'),
+      },
+    },
+  },
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-top-navigation">
@@ -211,6 +240,13 @@ export const TopNavigation: Story = {
 };
 
 export const WhiteBackground: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('application-shell', 'white-background', 'templates'),
+      },
+    },
+  },
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-white-background">

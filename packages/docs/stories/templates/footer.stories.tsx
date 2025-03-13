@@ -21,7 +21,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('25171-45729'),
     docs: {
       description: {
-        component: generateStoryDescription('templates', 'footer'),
+        component: generateStoryDescription('footer', 'default', 'templates'),
       },
       page: () => (
         <>

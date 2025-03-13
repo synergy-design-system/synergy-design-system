@@ -584,8 +584,8 @@ export const storybookUtilities = {
 
 
 
-type Component = keyof typeof docsTokens.components;
-type Attribute<T extends Component> = keyof typeof docsTokens.components[T];
+type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
+type Attribute<T extends Component> = T extends keyof typeof docsTokens.components ? keyof typeof docsTokens.components[T] : T extends keyof typeof docsTokens.templates ? keyof typeof docsTokens.templates[T] : never;
 type AttributeDescription = {
   description: {
     value: string;
@@ -604,21 +604,18 @@ type AttributeDescription = {
  * @param {Attribute<T>} attribute - The attribute name
  * @returns {string} The story description
  */
-export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>) => {
- // Exchange all \n with <br/>, because single line breaks with \n are not working in storybook
- const description = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.description?.value ?? 'No Description';
- const hint = (docsTokens?.components?.[component]?.[attribute] as AttributeDescription)?.note?.value ?? '';
+export const generateStoryDescription = <T extends Component>(component: T, attribute: Attribute<T>, path: 'components' | 'templates' = 'components') => {
+  const objectToUse = (docsTokens[path] as Record<string, any>)[component] ?? {};
+  const description = objectToUse[attribute]?.description?.value ?? 'No Description';
+  const hint = objectToUse[attribute]?.note?.value ?? '';
 
-const finalDescription = description.replace(/\n/g, '<br/>');
-const finalHint = hint.length > 0 
-  ? `
+  const formatText = (text: string) => text.replace(/\n/g, '<br/>');
 
-  > **👨‍💻 Additional developer Information**:<br>
-  > ${hint.replace(/\n/g, '<br/>')}`
-  : hint;
+  const finalDescription = formatText(description);
+  const finalHint = hint ? `<br/><br/><strong>👨‍💻 Additional developer Information:</strong><br>${formatText(hint)}` : '';
 
- return `${finalDescription}${finalHint}`;
-}
+  return `${finalDescription}${finalHint}`;
+};
 
 
 /**

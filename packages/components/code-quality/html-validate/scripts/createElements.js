@@ -52,6 +52,15 @@ const createAttributes = (declaration) => {
         };
       }
 
+      // Value is a number
+      if (attr.type.text === 'number') {
+        return {
+          [attr.name]: {
+            enum: [/^[+-]?(\d+(\.\d*)?|\.\d+)$/],
+          },
+        };
+      }
+
       // Default case, just return the attribute
       return {
         [attr.name]: {},

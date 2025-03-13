@@ -3,12 +3,23 @@
  * @param  {...any} objects The objects to merge
  * @returns {object} The new object
  */
-export const mergeDeep = (...objects) => Array
-  .from(objects)
-  .reduce((acc, obj) => {
+export const mergeDeep = (...objects) => {
+  const isObject = obj => obj && typeof obj === 'object';
+
+  return objects.reduce((acc, obj) => {
     Object.keys(obj).forEach(key => {
-      const value = obj[key];
-      acc[key] = Array.isArray(value) ? value : { ...acc[key], ...value };
+      const accValue = acc[key];
+      const objValue = obj[key];
+
+      if (Array.isArray(objValue)) {
+        acc[key] = Array.isArray(accValue) ? [...accValue, ...objValue] : [...objValue];
+      } else if (isObject(objValue)) {
+        acc[key] = isObject(accValue) ? mergeDeep(accValue, objValue) : { ...objValue };
+      } else {
+        acc[key] = objValue;
+      }
     });
+
     return acc;
   }, {});
+};

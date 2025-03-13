@@ -11,5 +11,6 @@ export default defineConfig({
   rules: {
     'wcag/h32': 'off',
     'no-deprecated-attr': 'warn',
+    'no-inline-style': 'off'
   },
 });

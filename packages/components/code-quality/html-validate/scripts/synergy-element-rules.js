@@ -10,6 +10,7 @@ const formAssociated = {
  * @type {import('html-validate').MetaElement}
  */
 const SynAccordion = {
+  flow: true,
   focusable: true,
   interactive: true,
   sectioning: true,
@@ -19,6 +20,7 @@ const SynAccordion = {
  * @type {import('html-validate').MetaElement}
  */
 const SynAlert = {
+  flow: true,
   focusable: true,
   sectioning: true,
 };
@@ -43,6 +45,7 @@ const SynBreadcrumbItem = {
  * @type {import('html-validate').MetaElement}
  */
 const SynBreadcrumb = {
+  flow: true,
   sectioning: true,
 };
 
@@ -111,6 +114,7 @@ const SynCombobox = {
  * @type {import('html-validate').MetaElement}
  */
 const SynDetails = {
+  flow: true,
   focusable: true,
   interactive: true,
 };
@@ -176,8 +180,16 @@ const SynHeader = {
  * @type {import('html-validate').MetaElement}
  */
 const SynIconButton = {
+  attributes: {
+    color: {
+      // Special case: We define currentColor on this element with mixed case,
+      // even using it only in CSS which supports lowercase only.
+      // This should be fixed in syn-icon-button.
+      enum: ['/^currentColor$/i'],
+    },
+  },
+  flow: true,
   focusable: true,
-  formAssociated,
   interactive: true,
   phrasing: true,
 };
@@ -187,6 +199,7 @@ const SynIconButton = {
  */
 const SynIcon = {
   embedded: true,
+  flow: true,
   phrasing: true,
 };
 
@@ -219,6 +232,7 @@ const SynMenuLabel = {
  * @type {import('html-validate').MetaElement}
  */
 const SynMenu = {
+  flow: true,
   focusable: true,
   sectioning: true,
 };
@@ -227,6 +241,7 @@ const SynMenu = {
  * @type {import('html-validate').MetaElement}
  */
 const SynNavItem = {
+  flow: true,
   focusable: true,
   interactive: true,
   phrasing: true,
@@ -248,6 +263,7 @@ const SynOption = {
  * @type {import('html-validate').MetaElement}
  */
 const SynPrioNav = {
+  flow: true,
   focusable: true,
   sectioning: true,
 };
@@ -256,6 +272,7 @@ const SynPrioNav = {
  * @type {import('html-validate').MetaElement}
  */
 const SynProgressBar = {
+  flow: true,
   formAssociated,
   phrasing: true,
 };
@@ -264,6 +281,7 @@ const SynProgressBar = {
  * @type {import('html-validate').MetaElement}
  */
 const SynProgressRing = {
+  flow: true,
   formAssociated,
   phrasing: true,
 };
@@ -345,6 +363,7 @@ const SynSwitch = {
  * @type {import('html-validate').MetaElement}
  */
 const SynTabGroup = {
+  flow: true,
   focusable: true,
   sectioning: true,
 };
@@ -366,7 +385,10 @@ const SynTab = {
 /**
  * @type {import('html-validate').MetaElement}
  */
-const SynTag = {};
+const SynTag = {
+  flow: true,
+  phrasing: true,
+};
 
 /**
  * @type {import('html-validate').MetaElement}
@@ -381,7 +403,10 @@ const SynTextarea = {
 /**
  * @type {import('html-validate').MetaElement}
  */
-const SynTooltip = {};
+const SynTooltip = {
+  flow: true,
+  interactive: true,
+};
 
 /**
  * @type {import('html-validate').MetaElement}

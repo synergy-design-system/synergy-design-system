@@ -16,7 +16,7 @@ const routeTo = (route: string) => {
 
 <template>
   <SynVueHeader label="@synergy-design-system/vue Components Demo">
-    <RouterLink class="custom-logo" tabindex="0" to="/" slot="logo">
+    <RouterLink aria-label="Back to homepage" class="custom-logo" tabindex="0" to="/" slot="logo">
       <SynVueIcon name="logo-color" library="system" />
     </RouterLink>
     <div class="meta-navigation" slot="meta-navigation">

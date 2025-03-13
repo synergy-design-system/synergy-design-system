@@ -26,6 +26,7 @@ export const Layout: FC = () => {
     <>
       <SynHeader label="@synergy-design-system/react Components Demo">
         <Link
+          aria-label="Back to homepage"
           className="custom-logo"
           slot="logo"
           tabIndex={0}

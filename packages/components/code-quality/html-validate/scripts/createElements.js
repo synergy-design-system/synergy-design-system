@@ -61,9 +61,12 @@ const createAttributes = (declaration) => {
         };
       }
 
-      // Default case, just return the attribute
+      // Default case, just flag all empty values as invalid,
+      // e.g. <syn-input value=""> is invalid, as is <syn-input value>
       return {
-        [attr.name]: {},
+        [attr.name]: {
+          enum: [/.+/],
+        },
       };
     })
     .filter(Boolean)

@@ -26,6 +26,7 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.18",
+    "html-validate": "^9.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
@@ -55,7 +56,9 @@
   },
   "scripts": {
     "format.eslint": "pnpm lint --fix",
-    "lint": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:html": "html-validate index.html",
+    "lint:js": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "pnpm run /^lint:.*/",
     "start": "vite",
     "_build": "vite build"
   },

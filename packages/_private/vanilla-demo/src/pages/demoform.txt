@@ -5,7 +5,7 @@
     <!-- PersonalInformation -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Personal Information</legend>
-      
+
       <syn-radio-group
         id="radiogroup-gender"
         name="gender"
@@ -84,7 +84,7 @@
     <!-- Security -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Security</legend>
-      
+
       <syn-input
         id="input-password"
         label="Provide a secure password"
@@ -150,7 +150,7 @@
         value="5"
         name="happiness"
       >
-        <nav slot="ticks">
+        <nav aria-label="Ticks for Happiness" slot="ticks">
           <syn-range-tick>🤮</syn-range-tick>
           <syn-range-tick>🥱</syn-range-tick>
           <syn-range-tick>😍</syn-range-tick>
@@ -166,7 +166,7 @@
         value="2000 4000"
         name="donations"
       >
-        <nav slot="ticks">
+        <nav aria-label="Ticks for Donations" slot="ticks">
           <syn-range-tick>0 €</syn-range-tick>
           <syn-range-tick>6.000 €</syn-range-tick>
         </nav>

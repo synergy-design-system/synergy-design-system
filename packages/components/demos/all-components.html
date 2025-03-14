@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@synergy-design-system/htm-validate</title>
+  </head>
+  <body>
+    <!-- root -->
+    <div id="root">
+      <syn-header
+        label="@synergy-design-system/components Components Demo"
+        burger-menu="hidden"
+      >
+        <a class="custom-logo" href="/" slot="logo" tabindex="0" aria-label="Back to homepage">
+          <syn-icon name="logo-color" library="system" >
+          </syn-icon
+        ></a>
+
+        <div class="meta-navigation" slot="meta-navigation">
+          <syn-button-group>
+            <syn-tooltip content="Set element size to small">
+              <syn-icon-button
+                color="currentColor"
+                data-size="small"
+                name="density_small"
+                label="Set element size to small"
+                size="small"
+              >
+              </syn-icon-button
+            ></syn-tooltip>
+            <syn-tooltip content="Set element size to medium">
+              <syn-icon-button
+                color="primary"
+                data-size="medium"
+                name="density_medium"
+                label="Set element size to medium"
+                size="small"
+              >
+              </syn-icon-button
+            ></syn-tooltip>
+            <syn-tooltip content="Set element size to large">
+              <syn-icon-button
+                color="currentColor"
+                data-size="large"
+                name="density_large"
+                label="Set element size to large"
+                size="small"
+              >
+              </syn-icon-button
+            ></syn-tooltip>
+          </syn-button-group>
+
+          <syn-switch
+            data-theme-light="☀️"
+            data-theme-dark="🌙"
+            id="theme-switch"
+            size="small"
+            >🌙</syn-switch
+          >
+        </div>
+      </syn-header>
+
+      <!-- main -->
+      <div class="main">
+        <!-- side-nav -->
+        <syn-side-nav rail>
+          <syn-nav-item href="/">
+            Home
+            <syn-icon
+              name="home"
+              slot="prefix"
+              
+              library="default"
+            ></syn-icon>
+          </syn-nav-item>
+          <syn-nav-item divider href="/contact-form">
+            Contact Form
+            <syn-icon
+              name="contact_mail"
+              slot="prefix"
+              
+              library="default"
+            ></syn-icon>
+          </syn-nav-item>
+          <syn-nav-item divider href="/contact-form-validate">
+            Contact Form (Validation)
+            <syn-icon
+              name="contact_emergency"
+              slot="prefix"
+              
+              library="default"
+            ></syn-icon>
+          </syn-nav-item>
+          <syn-nav-item divider href="/all-components" current>
+            All Components
+            <syn-icon
+              name="grid_view"
+              slot="prefix"
+              
+              library="default"
+            ></syn-icon>
+          </syn-nav-item>
+        </syn-side-nav>
+        <!-- /side-nav -->
+
+        <!-- main.content -->
+        <main class="content">
+          <syn-tab-group>
+            <syn-tab
+              slot="nav"
+              active
+              id="tab-Accordion"
+              panel="Accordion"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="true"
+              tabindex="0"
+              aria-controls="syn-tab-panel-1"
+            >
+              Accordion
+            </syn-tab>
+            <syn-tab-panel
+              active
+              name="Accordion"
+              id="syn-tab-panel-1"
+              role="tabpanel"
+              aria-hidden="false"
+              aria-labelledby="tab-Accordion"
+            >
+              <div style="display: contents" id="tab-content-Accordion">
+                <syn-accordion size="medium">
+                  <syn-details summary="First" open size="medium">
+                    <h3>Subheadline</h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum.
+                  </syn-details>
+                  <syn-details summary="Second" size="medium">
+                    <h3>Subheadline</h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum.
+                  </syn-details>
+                  <syn-details summary="Third" size="medium">
+                    <h3>Subheadline</h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum.
+                  </syn-details>
+                </syn-accordion>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Alert"
+              panel="Alert"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-2"
+            >
+              Alert
+            </syn-tab>
+            <syn-tab-panel
+              name="Alert"
+              id="syn-tab-panel-2"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Alert"
+            >
+              <div style="display: contents" id="tab-content-Alert">
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--syn-spacing-medium);
+                  "
+                >
+                  <syn-alert variant="primary" open>
+                    <syn-icon
+                      slot="icon"
+                      name="info"
+                      
+                      library="default"
+                    ></syn-icon>
+                    <strong>This is super informative</strong>
+                    <br>
+                    You can tell by how pretty the alert is.
+                  </syn-alert>
+
+                  <syn-alert variant="success" open>
+                    <syn-icon
+                      slot="icon"
+                      name="check_circle"
+                      
+                      library="default"
+                    ></syn-icon>
+                    <strong>Your changes have been saved</strong>
+                    <br>
+                    You can safely exit the app now.
+                  </syn-alert>
+
+                  <syn-alert variant="neutral" open>
+                    <syn-icon
+                      slot="icon"
+                      name="settings"
+                      
+                      library="default"
+                    ></syn-icon>
+                    <strong>Your settings have been updated</strong>
+                    <br>
+                    Settings will take effect on next login.
+                  </syn-alert>
+
+                  <syn-alert variant="warning" open>
+                    <syn-icon
+                      slot="icon"
+                      name="warning"
+                      
+                      library="default"
+                    ></syn-icon>
+                    <strong>Your session has ended</strong>
+                    <br>
+                    Please login again to continue.
+                  </syn-alert>
+
+                  <syn-alert variant="danger" open>
+                    <syn-icon
+                      slot="icon"
+                      name="error"
+                      
+                      library="default"
+                    ></syn-icon>
+                    <strong>Your account has been deleted</strong>
+                    <br>
+                    We're very sorry to see you go!
+                  </syn-alert>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Badge"
+              panel="Badge"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-3"
+            >
+              Badge
+            </syn-tab>
+            <syn-tab-panel
+              name="Badge"
+              id="syn-tab-panel-3"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Badge"
+            >
+              <div style="display: contents" id="tab-content-Badge">
+                <div style="display: flex; gap: var(--syn-spacing-large)">
+                  <syn-badge variant="primary">primary</syn-badge>
+                  <syn-badge variant="success">success</syn-badge>
+                  <syn-badge variant="neutral">neutral</syn-badge>
+                  <syn-badge variant="warning">warning</syn-badge>
+                  <syn-badge variant="danger">danger</syn-badge>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Breadbrumb"
+              panel="Breadbrumb"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-4"
+            >
+              Breadbrumb
+            </syn-tab>
+            <syn-tab-panel
+              name="Breadbrumb"
+              id="syn-tab-panel-4"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Breadbrumb"
+            >
+              <div style="display: contents" id="tab-content-Breadbrumb">
+                <syn-breadcrumb>
+                  <syn-breadcrumb-item
+                    >Breadcrumb Item<syn-icon
+                      name="chevron-down"
+                      library="system"
+                      class="ltr"
+                      data-default=""
+                      slot="separator"
+                      
+                    ></syn-icon
+                  ></syn-breadcrumb-item>
+                  <syn-breadcrumb-item
+                    >Breadcrumb Item<syn-icon
+                      name="chevron-down"
+                      library="system"
+                      class="ltr"
+                      data-default=""
+                      slot="separator"
+                      
+                    ></syn-icon
+                  ></syn-breadcrumb-item>
+                  <syn-breadcrumb-item
+                    >Breadcrumb Item<syn-icon
+                      name="chevron-down"
+                      library="system"
+                      class="ltr"
+                      data-default=""
+                      slot="separator"
+                      
+                    ></syn-icon
+                  ></syn-breadcrumb-item>
+                  <syn-breadcrumb-item aria-current="page"
+                    >Breadcrumb Item<syn-icon
+                      name="chevron-down"
+                      library="system"
+                      class="ltr"
+                      data-default=""
+                      slot="separator"
+                      
+                    ></syn-icon
+                  ></syn-breadcrumb-item>
+                </syn-breadcrumb>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Button"
+              panel="Button"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-5"
+            >
+              Button
+            </syn-tab>
+            <syn-tab-panel
+              name="Button"
+              id="syn-tab-panel-5"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Button"
+            >
+              <div style="display: contents" id="tab-content-Button">
+                <div style="display: 'flex'; gap: 'var(--syn-spacing-medium)">
+                  <syn-button
+                    variant="filled"
+                    size="medium"
+                    data-optional=""
+                    data-valid=""
+                    >Filled</syn-button
+                  >
+                  <syn-button
+                    variant="outline"
+                    size="medium"
+                    data-optional=""
+                    data-valid=""
+                    >Outline</syn-button
+                  >
+                  <syn-button
+                    variant="text"
+                    size="medium"
+                    data-optional=""
+                    data-valid=""
+                    >Text</syn-button
+                  >
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Card"
+              panel="Card"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-6"
+            >
+              Card
+            </syn-tab>
+            <syn-tab-panel
+              name="Card"
+              id="syn-tab-panel-6"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Card"
+            >
+              <div style="display: contents;" id="tab-content-Card">
+                <syn-card style="max-width: 400px">
+                  <h3>Headline</h3>
+                  This are some happy employees, but not just any employees.
+                  These are SICK employees.
+
+                  <footer slot="footer">
+                    <small>Optional information</small>
+                    <nav aria-label="Card Footer">
+                      <syn-button
+                        variant="filled"
+                        size="small"
+                        data-optional=""
+                        data-valid=""
+                        >More Info</syn-button
+                      >
+                    </nav>
+                  </footer>
+                  <img
+                    slot="image"
+                    src="/card-example.jpg"
+                    alt="Multiple persons having lunch in SICK Academy"
+                  >
+                </syn-card>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Checkbox"
+              panel="Checkbox"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-7"
+            >
+              Checkbox
+            </syn-tab>
+            <syn-tab-panel
+              name="Checkbox"
+              id="syn-tab-panel-7"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Checkbox"
+            >
+              <div style="display: contents" id="tab-content-Checkbox">
+                <syn-checkbox
+                  size="medium"
+                  
+                  >Checkbox</syn-checkbox
+                >
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Combobox"
+              panel="Combobox"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-8"
+            >
+              Combobox
+            </syn-tab>
+            <syn-tab-panel
+              name="Combobox"
+              id="syn-tab-panel-8"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Combobox"
+            >
+              <div style="display: contents" id="tab-content-Combobox">
+                <syn-combobox
+                  size="medium"
+                  placement="bottom"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-option
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    
+                    id="syn-combobox-option-0"
+                    >Option 1</syn-option
+                  >
+                  <syn-option
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    
+                    id="syn-combobox-option-1"
+                    >Option 2</syn-option
+                  >
+                  <syn-option
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    
+                    id="syn-combobox-option-2"
+                    >Option 3</syn-option
+                  >
+                </syn-combobox>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Details"
+              panel="Details"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-9"
+            >
+              Details
+            </syn-tab>
+            <syn-tab-panel
+              name="Details"
+              id="syn-tab-panel-9"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Details"
+            >
+              <div style="display: contents" id="tab-content-Details">
+                <syn-details summary="Toggle Me" contained size="medium">
+                  <h3>Subheadline</h3>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                  justo duo dolores et ea rebum.
+                </syn-details>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Dialog"
+              panel="Dialog"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-10"
+            >
+              Dialog
+            </syn-tab>
+            <syn-tab-panel
+              name="Dialog"
+              id="syn-tab-panel-10"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Dialog"
+            >
+              <div style="display: contents" id="tab-content-Dialog">
+                <syn-dialog label="Dialog">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  <syn-button
+                    variant="filled"
+                    slot="footer"
+                    size="medium"
+                    data-optional=""
+                    data-valid=""
+                  >
+                    Close
+                  </syn-button>
+                </syn-dialog>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Divider"
+              panel="Divider"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-11"
+            >
+              Divider
+            </syn-tab>
+            <syn-tab-panel
+              name="Divider"
+              id="syn-tab-panel-11"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Divider"
+            >
+              <div style="display: contents" id="tab-content-Divider">
+                <div style="text-align: center">
+                  Above
+                  <syn-divider
+                    style="--spacing: var(--syn-spacing-large)"
+                    role="separator"
+                    aria-orientation="horizontal"
+                  ></syn-divider>
+                  Below
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Dropdown"
+              panel="Dropdown"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-12"
+            >
+              Dropdown
+            </syn-tab>
+            <syn-tab-panel
+              name="Dropdown"
+              id="syn-tab-panel-12"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Dropdown"
+            >
+              <div style="display: contents" id="tab-content-Dropdown">
+                <div style="position: relative">
+                  <syn-dropdown placement="bottom-start">
+                    <syn-button
+                      slot="trigger"
+                      caret
+                      variant="outline"
+                      size="medium"
+                      data-optional=""
+                      data-valid=""
+                      >Dropdown</syn-button
+                    >
+                    <syn-menu style="min-width: 240px" role="menu">
+                      <syn-menu-item
+                        role="menuitem"
+                        aria-disabled="false"
+                        tabindex="0"
+                        >Dropdown Item 1</syn-menu-item
+                      >
+                      <syn-menu-item
+                        role="menuitem"
+                        aria-disabled="false"
+                        tabindex="-1"
+                        >Dropdown Item 2</syn-menu-item
+                      >
+                      <syn-menu-item
+                        role="menuitem"
+                        aria-disabled="false"
+                        tabindex="-1"
+                        >Dropdown Item 3</syn-menu-item
+                      >
+                      <syn-divider
+                        role="separator"
+                        aria-orientation="horizontal"
+                      ></syn-divider>
+                      <syn-menu-item
+                        type="checkbox"
+                        checked
+                        role="menuitemcheckbox"
+                        aria-checked="true"
+                        aria-disabled="false"
+                        tabindex="-1"
+                        >Checkbox</syn-menu-item
+                      >
+                      <syn-menu-item
+                        disabled
+                        role="menuitem"
+                        aria-disabled="true"
+                        tabindex="-1"
+                        >Disabled</syn-menu-item
+                      >
+                      <syn-divider
+                        role="separator"
+                        aria-orientation="horizontal"
+                      ></syn-divider>
+                      <syn-menu-item
+                        role="menuitem"
+                        aria-disabled="false"
+                        tabindex="-1"
+                      >
+                        Prefix
+                        <syn-icon
+                          slot="prefix"
+                          name="wallpaper"
+                          
+                          library="default"
+                        ></syn-icon>
+                      </syn-menu-item>
+                      <syn-menu-item
+                        role="menuitem"
+                        aria-disabled="false"
+                        tabindex="-1"
+                      >
+                        Suffix Icon
+                        <syn-icon
+                          slot="suffix"
+                          name="wallpaper"
+                          
+                          library="default"
+                        ></syn-icon>
+                      </syn-menu-item>
+                    </syn-menu>
+                  </syn-dropdown>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-File"
+              panel="File"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-13"
+            >
+              File
+            </syn-tab>
+            <syn-tab-panel
+              name="File"
+              id="syn-tab-panel-13"
+              role="tabpanel"
+              
+              aria-labelledby="tab-File"
+            >
+              <div style="display: contents" id="tab-content-File">
+                <syn-file
+                  help-text="This is a help text."
+                  label="This is a label"
+                  size="medium"
+                  
+                ></syn-file>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Icon"
+              panel="Icon"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-14"
+            >
+              Icon
+            </syn-tab>
+            <syn-tab-panel
+              name="Icon"
+              id="syn-tab-panel-14"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Icon"
+            >
+              <div style="display: contents" id="tab-content-Icon">
+                <syn-icon
+                  name="wallpaper"
+                  
+                  library="default"
+                ></syn-icon>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-IconButton"
+              panel="IconButton"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-15"
+            >
+              IconButton
+            </syn-tab>
+            <syn-tab-panel
+              name="IconButton"
+              id="syn-tab-panel-15"
+              role="tabpanel"
+              
+              aria-labelledby="tab-IconButton"
+            >
+              <div style="display: contents" id="tab-content-IconButton">
+                <div>
+                  <syn-icon-button
+                    name="wallpaper"
+                    label="Wallpaper"
+                    color="neutral"
+                    size="small"
+                  ></syn-icon-button>
+                  <syn-icon-button
+                    name="wallpaper"
+                    label="Wallpaper"
+                    color="neutral"
+                    size="medium"
+                  ></syn-icon-button>
+                  <syn-icon-button
+                    name="wallpaper"
+                    label="Wallpaper"
+                    color="neutral"
+                    size="large"
+                  ></syn-icon-button>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Input"
+              panel="Input"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-16"
+            >
+              Input
+            </syn-tab>
+            <syn-tab-panel
+              name="Input"
+              id="syn-tab-panel-16"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Input"
+            >
+              <div style="display: contents" id="tab-content-Input">
+                <syn-input
+                  placeholder="Disabled"
+                  help-text="Help Text"
+                  label="Label"
+                  type="text"
+                  size="medium"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-icon
+                    name="house"
+                    slot="prefix"
+                    
+                    library="default"
+                  ></syn-icon>
+                  <syn-icon
+                    name="chat"
+                    slot="suffix"
+                    
+                    library="default"
+                  ></syn-icon>
+                </syn-input>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Menu"
+              panel="Menu"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-17"
+            >
+              Menu
+            </syn-tab>
+            <syn-tab-panel
+              name="Menu"
+              id="syn-tab-panel-17"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Menu"
+            >
+              <div style="display: contents" id="tab-content-Menu">
+                <div style="width: 200px">
+                  <syn-menu role="menu">
+                    <syn-menu-item
+                      value="undo"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="0"
+                      >Undo</syn-menu-item
+                    >
+                    <syn-menu-item
+                      value="redo"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="-1"
+                      >Redo</syn-menu-item
+                    >
+                    <syn-divider
+                      role="separator"
+                      aria-orientation="horizontal"
+                    ></syn-divider>
+                    <syn-menu-item
+                      value="cut"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="-1"
+                      >Cut</syn-menu-item
+                    >
+                    <syn-menu-item
+                      value="copy"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="-1"
+                      >Copy</syn-menu-item
+                    >
+                    <syn-menu-item
+                      value="paste"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="-1"
+                      >Paste</syn-menu-item
+                    >
+                    <syn-menu-item
+                      value="delete"
+                      role="menuitem"
+                      aria-disabled="false"
+                      tabindex="-1"
+                      >Delete</syn-menu-item
+                    >
+                  </syn-menu>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-NavItem"
+              panel="NavItem"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-18"
+            >
+              NavItem
+            </syn-tab>
+            <syn-tab-panel
+              name="NavItem"
+              id="syn-tab-panel-18"
+              role="tabpanel"
+              
+              aria-labelledby="tab-NavItem"
+            >
+              <div style="display: contents" id="tab-content-NavItem">
+                <nav
+                  aria-label="Nav Item Example"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    width: 320px;
+                  "
+                >
+                  <syn-nav-item current>Indentation: none</syn-nav-item>
+                  <syn-nav-item current style="--indentation: 1">
+                    Indentation: 1
+                  </syn-nav-item>
+                  <syn-nav-item current style="--indentation: 2">
+                    Indentation: 2
+                  </syn-nav-item>
+                </nav>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-OptGroup"
+              panel="OptGroup"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-19"
+            >
+              OptGroup
+            </syn-tab>
+            <syn-tab-panel
+              name="OptGroup"
+              id="syn-tab-panel-19"
+              role="tabpanel"
+              
+              aria-labelledby="tab-OptGroup"
+            >
+              <div style="display: contents" id="tab-content-OptGroup">
+                <syn-select
+                  size="medium"
+                  placement="bottom"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-optgroup label="Section 1">
+                    <syn-option
+                      value="1"
+                      role="option"
+                      aria-selected="false"
+                      aria-disabled="false"
+                      >Option 1</syn-option
+                    >
+                    <syn-option
+                      value="2"
+                      role="option"
+                      aria-selected="false"
+                      aria-disabled="false"
+                      >Option 2</syn-option
+                    >
+                    <syn-option
+                      value="3"
+                      role="option"
+                      aria-selected="false"
+                      aria-disabled="false"
+                      >Option 3</syn-option
+                    >
+                  </syn-optgroup>
+
+                  <syn-optgroup label="Section 2">
+                    <syn-option
+                      value="4"
+                      role="option"
+                      aria-selected="false"
+                      aria-disabled="false"
+                      >Option 4</syn-option
+                    >
+                  </syn-optgroup>
+                </syn-select>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Option"
+              panel="Option"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-20"
+            >
+              Option
+            </syn-tab>
+            <syn-tab-panel
+              name="Option"
+              id="syn-tab-panel-20"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Option"
+            >
+              <div style="display: contents" id="tab-content-Option">
+                <syn-select
+                  label="Select one"
+                  size="medium"
+                  placement="bottom"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-option
+                    value="Option_1"
+                    tabindex="0"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Option 1</syn-option
+                  >
+                  <syn-option
+                    value="Option_2"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Option 2</syn-option
+                  >
+                  <syn-option
+                    value="Option_3"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Option 3</syn-option
+                  >
+                </syn-select>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-PrioNav"
+              panel="PrioNav"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-21"
+            >
+              PrioNav
+            </syn-tab>
+            <syn-tab-panel
+              name="PrioNav"
+              id="syn-tab-panel-21"
+              role="tabpanel"
+              
+              aria-labelledby="tab-PrioNav"
+            >
+              <div style="display: contents" id="tab-content-PrioNav">
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--syn-spacing-2x-large);
+                  "
+                >
+                  &gt;
+                  <syn-prio-nav style="width: 220px">
+                    <syn-nav-item
+                      current
+                      horizontal
+                      data-original-role=""
+                      data-right="0"
+                      >Domains</syn-nav-item
+                    >
+                    <syn-nav-item
+                      horizontal
+                      data-original-role=""
+                      data-right="0"
+                      >Projects</syn-nav-item
+                    >
+                    <syn-nav-item
+                      horizontal
+                      href="javascript:void(0)"
+                      data-original-role=""
+                      data-right="0"
+                      >Trainings</syn-nav-item
+                    >
+                  </syn-prio-nav>
+                </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-ProgressBar"
+              panel="ProgressBar"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-22"
+            >
+              ProgressBar
+            </syn-tab>
+            <syn-tab-panel
+              name="ProgressBar"
+              id="syn-tab-panel-22"
+              role="tabpanel"
+              
+              aria-labelledby="tab-ProgressBar"
+            >
+              <div style="display: contents" id="tab-content-ProgressBar">
+                <syn-progress-bar indeterminate value="0"></syn-progress-bar>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-ProgressRing"
+              panel="ProgressRing"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-23"
+            >
+              ProgressRing
+            </syn-tab>
+            <syn-tab-panel
+              name="ProgressRing"
+              id="syn-tab-panel-23"
+              role="tabpanel"
+              
+              aria-labelledby="tab-ProgressRing"
+            >
+              <div style="display: contents" id="tab-content-ProgressRing">
+                <syn-progress-ring value="50"> 50% </syn-progress-ring>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-RadioGroup"
+              panel="RadioGroup"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-24"
+            >
+              RadioGroup
+            </syn-tab>
+            <syn-tab-panel
+              name="RadioGroup"
+              id="syn-tab-panel-24"
+              role="tabpanel"
+              
+              aria-labelledby="tab-RadioGroup"
+            >
+              <div style="display: contents" id="tab-content-RadioGroup">
+                <syn-radio-group
+                  help-text="This is the help-text"
+                  label="This is a label"
+                  
+                  size="medium"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-radio
+                    value="1"
+                    
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-checked="false"
+                    size="medium"
+                    >Option</syn-radio
+                  >
+                  <syn-radio
+                    value="2"
+                    
+                    tabindex="-1"
+                    aria-disabled="false"
+                    aria-checked="false"
+                    size="medium"
+                    >Option</syn-radio
+                  >
+                  <syn-radio
+                    value="3"
+                    
+                    tabindex="-1"
+                    aria-disabled="false"
+                    aria-checked="false"
+                    size="medium"
+                    >Option</syn-radio
+                  >
+                </syn-radio-group>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Range"
+              panel="Range"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-25"
+            >
+              Range
+            </syn-tab>
+            <syn-tab-panel
+              name="Range"
+              id="syn-tab-panel-25"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Range"
+            >
+              <div style="display: contents" id="tab-content-Range">
+                <syn-range
+                  help-text="Controls the volume of the current song"
+                  label="Volume"
+                  max="100"
+                  min="0"
+                  value="50"
+                  size="medium"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <span slot="prefix">0</span>
+                  <span slot="suffix">100</span>
+                </syn-range>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Select"
+              panel="Select"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-26"
+            >
+              Select
+            </syn-tab>
+            <syn-tab-panel
+              name="Select"
+              id="syn-tab-panel-26"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Select"
+            >
+              <div style="display: contents" id="tab-content-Select">
+                <syn-select
+                  label="Experience"
+                  help-text="Please tell us your skill level."
+                  size="medium"
+                  placement="bottom"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  <syn-option
+                    value="1"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Novice</syn-option
+                  >
+                  <syn-option
+                    value="2"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Intermediate</syn-option
+                  >
+                  <syn-option
+                    value="3"
+                    role="option"
+                    aria-selected="false"
+                    aria-disabled="false"
+                    >Advanced</syn-option
+                  >
+                </syn-select>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Spinner"
+              panel="Spinner"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-27"
+            >
+              Spinner
+            </syn-tab>
+            <syn-tab-panel
+              name="Spinner"
+              id="syn-tab-panel-27"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Spinner"
+            >
+              <div style="display: contents" id="tab-content-Spinner">
+                <syn-spinner></syn-spinner>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Switch"
+              panel="Switch"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-28"
+            >
+              Switch
+            </syn-tab>
+            <syn-tab-panel
+              name="Switch"
+              id="syn-tab-panel-28"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Switch"
+            >
+              <div style="display: contents" id="tab-content-Switch">
+                <syn-switch
+                  size="medium"
+                  
+                  data-optional=""
+                  data-valid=""
+                >
+                  Option
+                  <span slot="help-text">Help Text</span>
+                </syn-switch>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-TabGroup"
+              panel="TabGroup"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-29"
+            >
+              TabGroup
+            </syn-tab>
+            <syn-tab-panel
+              name="TabGroup"
+              id="syn-tab-panel-29"
+              role="tabpanel"
+              
+              aria-labelledby="tab-TabGroup"
+            >
+              <div style="display: contents" id="tab-content-TabGroup">
+                <syn-tab-group contained>
+                  <syn-tab-panel
+                    name="example-general"
+                    active
+                    id="syn-tab-panel-30"
+                    role="tabpanel"
+                    aria-hidden="false"
+                  >
+                    This is the general tab panel.
+                  </syn-tab-panel>
+                  <syn-tab-panel
+                    name="example-custom"
+                    id="syn-tab-panel-31"
+                    role="tabpanel"
+                    
+                    >This is the custom tab panel.</syn-tab-panel
+                  >
+                  <syn-tab-panel
+                    name="example-advanced"
+                    id="syn-tab-panel-32"
+                    role="tabpanel"
+                    
+                    >This is the advanced tab panel.</syn-tab-panel
+                  >
+                  <syn-tab-panel
+                    name="example-disabled"
+                    id="syn-tab-panel-33"
+                    role="tabpanel"
+                    
+                    >This is the disabled tab panel.</syn-tab-panel
+                  >
+                  <syn-tab
+                    slot="nav"
+                    panel="example-general"
+                    active
+                    role="tab"
+                    aria-disabled="false"
+                    aria-selected="true"
+                    id="syn-tab-30"
+                    tabindex="0"
+                    >General</syn-tab
+                  >
+                  <syn-tab
+                    slot="nav"
+                    panel="example-custom"
+                    role="tab"
+                    aria-disabled="false"
+                    aria-selected="false"
+                    id="syn-tab-31"
+                    tabindex="0"
+                    >Custom</syn-tab
+                  >
+                  <syn-tab
+                    slot="nav"
+                    panel="example-advanced"
+                    role="tab"
+                    aria-disabled="false"
+                    aria-selected="false"
+                    id="syn-tab-32"
+                    tabindex="0"
+                    >Advanced</syn-tab
+                  >
+                  <syn-tab
+                    slot="nav"
+                    panel="example-disabled"
+                    disabled
+                    role="tab"
+                    aria-disabled="true"
+                    aria-selected="false"
+                    id="syn-tab-33"
+                    tabindex="-1"
+                    >Disabled</syn-tab
+                  >
+                </syn-tab-group>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Tag"
+              panel="Tag"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-34"
+            >
+              Tag
+            </syn-tab>
+            <syn-tab-panel
+              name="Tag"
+              id="syn-tab-panel-34"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Tag"
+            >
+              <div style="display: contents" id="tab-content-Tag">
+                <syn-tag size="medium">
+                  <syn-icon
+                    name="wallpaper"
+                    
+                    library="default"
+                  ></syn-icon>
+                  Option
+                </syn-tag>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-TextArea"
+              panel="TextArea"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-35"
+            >
+              TextArea
+            </syn-tab>
+            <syn-tab-panel
+              name="TextArea"
+              id="syn-tab-panel-35"
+              role="tabpanel"
+              
+              aria-labelledby="tab-TextArea"
+            >
+              <div style="display: contents" id="tab-content-TextArea">
+                <syn-textarea
+                  label="Feedback"
+                  help-text="Please tell us what you think."
+                  size="medium"
+                  
+                  data-optional=""
+                  data-valid=""
+                ></syn-textarea>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Tooltip"
+              panel="Tooltip"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-36"
+            >
+              Tooltip
+            </syn-tab>
+            <syn-tab-panel
+              name="Tooltip"
+              id="syn-tab-panel-36"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Tooltip"
+            >
+              <div style="display: contents" id="tab-content-Tooltip">
+                <syn-tooltip content="This is a tooltip" distance="13" open>
+                  <syn-button
+                    variant="outline"
+                    size="medium"
+                    data-optional=""
+                    data-valid=""
+                    >Hover me</syn-button
+                  >
+                </syn-tooltip>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Validate"
+              panel="Validate"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-37"
+            >
+              Validate
+            </syn-tab>
+            <syn-tab-panel
+              name="Validate"
+              id="syn-tab-panel-37"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Validate"
+            >
+              <div style="display: contents" id="tab-content-Validate">
+                <syn-validate eager variant="inline" on="live">
+                  <syn-input
+                    label="Invalid input"
+                    type="email"
+                    
+                    required
+                    size="medium"
+                    
+                    
+                    
+                    
+                  ></syn-input>
+                </syn-validate>
+              </div>
+            </syn-tab-panel>
+          </syn-tab-group>
+        </main>
+        <!-- /main.content -->
+      </div>
+      <!-- /main -->
+    </div>
+    <!-- root -->
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 export const createLayout = () => `
   <syn-header label="@synergy-design-system/components Components Demo">
     <a
+      aria-label="Back to homepage"
       class="custom-logo"
       href="/"
       routerLink="/"

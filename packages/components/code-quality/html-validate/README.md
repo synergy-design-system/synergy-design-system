@@ -41,7 +41,7 @@ The default configuration that may be used as a drop-in setting for getting star
 
 1. Make sure you have `type="module"` set in your projects `package.json`.
 2. Create a new file `.htmlvalidate.js`
-3. Open the new file and load the synergy configuration: `import synConfig from '@synergy-design-system/html-validate-config-syn'; export default synConfig;`
+3. Open the new file and load the synergy configuration: `import synConfig from '@synergy-design-system/components/html-validate.js'; export default synConfig;`
 
 ### Adjusting an existing configuration
 

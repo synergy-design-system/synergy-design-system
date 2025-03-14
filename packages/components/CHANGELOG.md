@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.23.0...components/2.24.0) (2025-03-14)
+
+
+### Features
+
+* ✨ provide html linting ([#798](https://github.com/synergy-design-system/synergy-design-system/issues/798)) ([c62acd4](https://github.com/synergy-design-system/synergy-design-system/commit/c62acd45d0c6a15932e25ffd0c327462037c4dab))
+
 # [@synergy-design-system/components-v2.23.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.22.6...components/2.23.0) (2025-03-12)
 
 

@@ -67,6 +67,33 @@ describe('<syn-combobox>', () => {
     expect(el.filter).to.be.a('function');
   });
 
+  it('default properties for options without value set', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox>
+        <syn-option>Option 1</syn-option>
+        <syn-option>Option 2</syn-option>
+        <syn-option>Option 3</syn-option>
+      </syn-combobox>
+    `);
+
+    expect(el.name).to.equal('');
+    expect(el.value).to.equal('');
+    expect(el.defaultValue).to.equal('');
+    expect(el.size).to.equal('medium');
+    expect(el.placeholder).to.equal('');
+    expect(el.disabled).to.be.false;
+    expect(el.clearable).to.be.false;
+    expect(el.open).to.be.false;
+    expect(el.hoist).to.be.false;
+    expect(el.label).to.equal('');
+    expect(el.placement).to.equal('bottom');
+    expect(el.helpText).to.equal('');
+    expect(el.form).to.equal('');
+    expect(el.required).to.be.false;
+    expect(el.getOption).to.be.a('function');
+    expect(el.filter).to.be.a('function');
+  });
+
   it('should be disabled with the disabled attribute', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox disabled>
@@ -1090,6 +1117,64 @@ describe('<syn-combobox>', () => {
     await el.updateComplete;
 
     expect(el.value).to.equal('Option 2');
+  });
+
+  describe('when setting value programmatically', () => {
+    it('should show the text content of the value, when value was set initially', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      await el.updateComplete;
+
+      expect(el.displayInput.value).to.equal('Option 2');
+      expect(el.valueInput.value).to.equal('option-2');
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should show the text content of the new value, when value was set afterwards', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      el.value = 'option-3';
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('Option 3');
+      expect(el.valueInput.value).to.equal('option-3');
+      expect(el.value).to.equal('option-3');
+    });
+
+    it('should update the displayed value of the combobox after dynamically added the corresponding option', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-4">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('option-4');
+      expect(el.valueInput.value).to.equal('option-4');
+      expect(el.value).to.equal('option-4');
+
+      const option = document.createElement('syn-option');
+      option.textContent = 'Option 4';
+      option.value = 'option-4';
+      el.appendChild(option);
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('Option 4');
+      expect(el.valueInput.value).to.equal('option-4');
+      expect(el.value).to.equal('option-4');
+    });
   });
 
   describe('when using getOption', () => {

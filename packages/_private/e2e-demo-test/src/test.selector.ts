@@ -9,6 +9,11 @@ const AllComponentSelectors = {
   alertContent: '#tab-content-Alert',
   alertLink: '#tab-Alert',
 
+  // Combobox
+  comboboxComponent: '#tab-content-Combobox syn-combobox',
+  comboboxContent: '#tab-content-Combobox',
+  comboboxLink: '#tab-Combobox',
+
   // Tabgroup
   tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
   tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',

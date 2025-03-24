@@ -1039,6 +1039,24 @@ describe('<syn-combobox>', () => {
     expect(thirdOption).to.be.displayed;
   });
 
+  it('should show the option in the list when its value is set via option value', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="option-2">
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+    const firstOption = el.querySelectorAll('syn-option')[0];
+    const secondOption = el.querySelectorAll('syn-option')[1];
+    const thirdOption = el.querySelectorAll('syn-option')[2];
+
+    await el.show();
+    expect(firstOption).not.to.be.displayed;
+    expect(secondOption).to.be.displayed;
+    expect(thirdOption).not.to.be.displayed;
+  });
+
   it('should update the filtered list when options are added dynamically', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox value="opt">

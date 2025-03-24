@@ -216,7 +216,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
     const normalizedOption = normalizeString(content);
     const normalizedQuery = normalizeString(queryStr);
-    return normalizedOption.includes(normalizedQuery);
+
+    if (normalizedOption.includes(normalizedQuery)) {
+      return true;
+    }
+
+    return option?.value === queryStr;
   };
 
   /** Gets the validity state object */
@@ -591,17 +596,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
-    // check if the value has a corresponding option via value or text content
-    // for empty values use the text content, as then the values of the option are not set
-    const option = this.cachedOptions
-      .find(o => (o.value !== '' && o.value === this.value) || (o.getTextLabel() === this.value));
-
-    if (!option) {
-      this.displayInput.value = this.value;
-    }
-
-    this.setSelectedOption(option);
-    this.createComboboxOptionsFromQuery(this.value);
+    this.updateSelectedOptionFromValue();
     this.setCurrentOption(null);
   }
 
@@ -807,6 +802,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign */
 
+  private updateSelectedOptionFromValue(): void {
+    // check if the value has a corresponding option via value or text content
+    // for empty values use the text content, as then the values of the option are not set
+    const option = this.cachedOptions
+      .find(o => (o.value !== '' && o.value === this.value) || (o.getTextLabel() === this.value));
+
+    if (!option) {
+      this.displayInput.value = this.value;
+    }
+
+    this.setSelectedOption(option);
+    this.createComboboxOptionsFromQuery(this.value);
+  }
+
   /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
@@ -819,18 +828,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       this.cacheSlottedOptionsAndOptgroups();
 
-      this.createComboboxOptionsFromQuery(this.value);
-
-      // check if the value has a corresponding option via value or text content
-      // for empty values use the text content, as then the values of the option are not set
-      const option = this.cachedOptions
-        .find(o => (o.value !== '' && o.value === this.value) || (o.getTextLabel() === this.value));
-
-      if (!option) {
-        this.displayInput.value = this.value;
-      }
-
-      this.setSelectedOption(option);
+      this.updateSelectedOptionFromValue();
 
       if (this.hasFocus && this.value.length > 0 && !this.open) {
         this.show();

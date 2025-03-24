@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property, query } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
-import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynDivider from '../divider/divider.component.js';
@@ -41,21 +40,9 @@ export default class SynOptgroup extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix', 'label');
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  private mutationObserver: MutationObserver;
 
-  /**
-   * Syncs the disabled prop for all slotted syn-options when it is triggered
-   */
-  private handleDisableOptions() {
-    const { disabled } = this;
-    this.defaultSlot
-      .assignedElements()
-      .filter(opt => opt.tagName.toLowerCase() === 'syn-option')
-      .forEach((opt: SynOption) => {
-        // eslint-disable-next-line no-param-reassign
-        opt.disabled = disabled;
-      });
-  }
+  @queryAssignedElements({ selector: 'syn-option' }) assignedOptions: SynOption[];
 
   /**
    * Disables all options in the optgroup.
@@ -67,9 +54,59 @@ export default class SynOptgroup extends SynergyElement {
    */
   @property() label = '';
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    this.handleDisableOptions();
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.mutationObserver = new MutationObserver(entries => {
+      /* eslint-disable no-param-reassign */
+
+      // Check if the mutation is for this optgroup
+      const hasChangesForOptGroup = entries.some(entry => entry.target === this);
+
+      // If the optgroup is disabled, disable all options
+      // If the optgroup is enabled, reenable all options that were enabled before
+      if (hasChangesForOptGroup) {
+        this.mutationObserver.disconnect();
+
+        this.assignedOptions.forEach(option => {
+          if (this.disabled) {
+            option.disabled = true;
+          } else {
+            option.disabled = !!option.dataset?.originallyDisabled;
+          }
+        });
+
+        // We need to disable the mutation observer to make sure
+        // that we don't get the changed from above in this update cycle.
+        // This makes it possible to use just one mutation observer for all optgroups.
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.updateComplete.then(() => {
+          this.mutationObserver.observe(this, {
+            attributeFilter: ['disabled'],
+            subtree: true,
+          });
+        });
+
+        return;
+      }
+
+      entries
+        .filter(entry => (entry.target as HTMLElement).matches('syn-option'))
+        .forEach(entry => {
+          const option = entry.target as SynOption;
+          if (option.disabled) {
+            option.dataset.originallyDisabled = 'true';
+          } else {
+            delete option.dataset.originallyDisabled;
+          }
+        });
+      /* eslint-enable no-param-reassign */
+    });
+
+    this.mutationObserver.observe(this, {
+      attributeFilter: ['disabled'],
+      subtree: true,
+    });
   }
 
   render() {
@@ -99,7 +136,7 @@ export default class SynOptgroup extends SynergyElement {
           <slot name="suffix" part="suffix" class="optgroup__suffix"></slot>
         </div>
         <div class="optgroup__options" role="group" part="options">
-          <slot @slotchange=${this.handleDisableOptions}></slot>
+          <slot></slot>
         </div>
       </div>
     `;

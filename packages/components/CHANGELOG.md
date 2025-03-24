@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.24.0...components/2.24.1) (2025-03-24)
+
+
+### Bug Fixes
+
+* 🐛 Combobox should always show the text content of the option instead of the value ([#816](https://github.com/synergy-design-system/synergy-design-system/issues/816)) ([9999fb8](https://github.com/synergy-design-system/synergy-design-system/commit/9999fb885795019b598bf90fcdbedfe3fa262fcc))
+
 # [@synergy-design-system/components-v2.24.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.23.0...components/2.24.0) (2025-03-14)
 
 

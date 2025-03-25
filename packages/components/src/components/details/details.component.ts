@@ -45,6 +45,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart summary - The container that wraps the summary.
  * @csspart summary-icon - The container that wraps the expand/collapse icons.
  * @csspart content - The details content.
+ * @csspart details-body - The container that wraps the details content.
  *
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
@@ -240,7 +241,7 @@ export default class SynDetails extends SynergyElement {
           </span>
         </summary>
 
-        <div class="details__body" role="region" aria-labelledby="header">
+        <div class="details__body" part="details-body" role="region" aria-labelledby="header">
           <slot part="content" id="content" class="details__content"></slot>
         </div>
       </details>

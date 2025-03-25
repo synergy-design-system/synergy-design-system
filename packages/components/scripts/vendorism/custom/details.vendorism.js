@@ -1,5 +1,5 @@
 import { removeSections } from '../remove-section.js';
-import { addSectionsAfter, replaceSections } from '../replace-section.js';
+import { addSectionsAfter, replaceSection, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'details.component.ts',
@@ -69,6 +69,19 @@ const transformComponent = (path, originalContent) => {
       '\'details--contained\': this.contained,',
       { tabsBeforeInsertion: 5 },
     ],
+  ], content);
+
+  // #811: Add support for the details-body part
+  content = addSectionsAfter([
+    [
+      '@csspart content - The details content.',
+      ' * @csspart details-body - The container that wraps the details content.',
+    ],
+  ], content);
+
+  content = replaceSection([
+    'class="details__body"',
+    'class="details__body" part="details-body"',
   ], content);
 
   return {

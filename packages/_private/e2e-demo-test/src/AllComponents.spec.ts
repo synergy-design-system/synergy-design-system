@@ -1,5 +1,5 @@
 import { type Locator, expect, test } from '@playwright/test';
-import type { SynOptgroup } from '@synergy-design-system/components';
+import type { SynCombobox, SynOptgroup } from '@synergy-design-system/components';
 import { AllComponentsPage } from './PageObjects/index.js';
 import {
   createTestCases,
@@ -53,6 +53,74 @@ createTestCases(({ name, port }) => {
       expect(availableVariants).toEqual(['primary', 'success', 'neutral', 'warning', 'danger']);
     }); // Test accessibility
   }); // </syn-alert>
+
+  test.describe(`${name}: <SynCombobox /> ${port}`, () => {
+    test.describe('Regression#797', () => {
+      test('should show the text content of the option, when value was set initially via value', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('comboboxComponent');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+
+        expect(displayedValue).toEqual('Option 2');
+      });
+
+      test('should show the text content of the new value, when value was set afterwards', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('comboboxComponent');
+        await combobox.evaluate((ele: SynCombobox) => {
+          // eslint-disable-next-line no-param-reassign
+          ele.value = 'option-3';
+        });
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+
+        expect(displayedValue).toEqual('Option 3');
+      });
+
+      test('should update the displayed value of the combobox after dynamically added the corresponding option', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('comboboxComponent');
+        await combobox.evaluate((ele: SynCombobox) => {
+          // eslint-disable-next-line no-param-reassign
+          ele.value = 'option-4';
+        });
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+
+        expect(displayedValue).toEqual('option-4');
+
+        // Add a new option to the combobox
+        await combobox.evaluate((ele: SynCombobox) => {
+          const newOption = document.createElement('syn-option');
+          newOption.value = 'option-4';
+          newOption.textContent = 'Option 4';
+          ele.appendChild(newOption);
+        });
+        // Check if the displayed value is updated
+        const updatedDisplayedValue = await combobox.evaluate(
+          (ele: SynCombobox) => ele.displayLabel,
+        );
+
+        expect(updatedDisplayedValue).toEqual('Option 4');
+      });
+    }); // regression#797
+  }); // </syn-combobox>
 
   test.describe(`${name}: <SynOptgroup /> ${port}`, () => {
     /**

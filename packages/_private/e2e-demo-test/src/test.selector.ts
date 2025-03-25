@@ -9,6 +9,11 @@ const AllComponentSelectors = {
   alertContent: '#tab-content-Alert',
   alertLink: '#tab-Alert',
 
+  // Combobox
+  comboboxComponent: '#tab-content-Combobox syn-combobox',
+  comboboxContent: '#tab-content-Combobox',
+  comboboxLink: '#tab-Combobox',
+
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
   optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',

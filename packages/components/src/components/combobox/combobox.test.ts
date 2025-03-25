@@ -847,6 +847,30 @@ describe('<syn-combobox>', () => {
       await combobox.updateComplete;
       expect(combobox.value).to.equal('option-1');
     });
+
+    it('#813: should reset the element to its initial value, which was set over property binding', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox .value=${'option-1'}>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+          </syn-combobox>
+          <syn-button type="reset">Reset</syn-button>
+        </form>
+      `);
+
+      const resetButton = form.querySelector('syn-button')!;
+      const combobox = form.querySelector('syn-combobox')!;
+      combobox.value = 'option-2';
+      await combobox.updateComplete;
+
+      await expect(combobox.value).to.equal('option-2');
+
+      setTimeout(() => resetButton.click());
+      await oneEvent(form, 'reset');
+      await combobox.updateComplete;
+      await expect(combobox.value).to.equal('option-1');
+    });
   });
 
   describe('when calling HTMLFormElement.reportValidity()', () => {
@@ -1295,6 +1319,31 @@ describe('<syn-combobox>', () => {
       });
       expect(getOptionHandler).to.have.been.calledThrice;
     });
+  });
+
+  it('#813: should show the value of the dynamically added option if value was set via property binding', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox .value=${'option-1'}>
+      </syn-combobox>
+    `);
+
+    await el.updateComplete;
+
+    await expect(el.value).to.equal('option-1');
+    await expect(el.displayLabel).to.equal('option-1');
+
+    // wait a short time until adding options dynamically
+    await aTimeout(10);
+    const option = document.createElement('syn-option');
+    option.value = 'option-1';
+    option.textContent = 'Option 1';
+    el.appendChild(option);
+    await el.updateComplete;
+    // we need to wait a short time until everything is set correctly
+    await aTimeout(0);
+
+    await expect(el.value).to.equal('option-1');
+    await expect(el.displayLabel).to.equal('Option 1');
   });
 
   runFormControlBaseTests('syn-combobox');

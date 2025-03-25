@@ -27,7 +27,7 @@ import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
 import customStyles from './select.custom.styles.js';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
@@ -681,13 +681,25 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {
     super.attributeChangedCallback(name, oldVal, newVal);
 
-    /** This is a backwards compatibility call. In a new major version we should make a clean separation between "value" the attribute mapping to "defaultValue" property and "value" the property not reflecting. */
+    /** This is a backwards compatibility call needed for setting a new value via attribute (e.g. .setAttribute('value',...)). In a new major version we should make a clean separation between "value" the attribute mapping to "defaultValue" property and "value" the property not reflecting. */
     if (name === 'value') {
       const cachedValueHasChanged = this.valueHasChanged;
       this.value = this.defaultValue;
 
       // Set it back to false since this isn't an interaction.
       this.valueHasChanged = cachedValueHasChanged;
+    }
+  }
+
+
+  protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if(!this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
+      // to be able to reset forms and the dynamic loading of options are working correctly.
+      this.defaultValue = this.value
+      this.valueHasChanged = false;
     }
   }
 

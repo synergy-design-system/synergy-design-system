@@ -69,6 +69,13 @@ export default class SynOptgroup extends SynergyElement {
         this.mutationObserver.disconnect();
 
         this.assignedOptions.forEach(option => {
+          // Special case for the first render cycle:
+          // If the optgroup is initially disabled,
+          // make sure to store the original disabled state of its children.
+          if (this.disabled && option.disabled && !option.dataset?.originallyDisabled) {
+            option.dataset.originallyDisabled = 'true';
+          }
+
           if (this.disabled) {
             option.disabled = true;
           } else {

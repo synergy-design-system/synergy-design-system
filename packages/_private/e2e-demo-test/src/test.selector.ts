@@ -9,6 +9,15 @@ const AllComponentSelectors = {
   alertContent: '#tab-content-Alert',
   alertLink: '#tab-Alert',
 
+  // Optgroup
+  optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
+  optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',
+  optgroupLink: '#tab-OptGroup',
+  optgroupSecondEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2) syn-option:not([disabled])',
+  optgroupSecondItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2)',
+  optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
+  optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
+
   // Tabgroup
   tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
   tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',

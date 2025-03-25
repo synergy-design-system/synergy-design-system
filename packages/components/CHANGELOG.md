@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.24.1...components/2.25.0) (2025-03-25)
+
+
+### Features
+
+* ✨ syn-details exports content_wrapper as CSS part ([#821](https://github.com/synergy-design-system/synergy-design-system/issues/821)) ([d343f4b](https://github.com/synergy-design-system/synergy-design-system/commit/d343f4b07a70d263824a166e6793d164313bfc22))
+
 # [@synergy-design-system/components-v2.24.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.24.0...components/2.24.1) (2025-03-24)
 
 

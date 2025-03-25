@@ -75,13 +75,13 @@ const transformComponent = (path, originalContent) => {
   content = addSectionsAfter([
     [
       '@csspart content - The details content.',
-      ' * @csspart details-body - The container that wraps the details content.',
+      ' * @csspart body - The container that wraps the details content.',
     ],
   ], content);
 
   content = replaceSection([
     'class="details__body"',
-    'class="details__body" part="details-body"',
+    'class="details__body" part="body"',
   ], content);
 
   return {

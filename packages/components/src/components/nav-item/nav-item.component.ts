@@ -107,6 +107,21 @@ export default class SynNavItem extends SynergyElement {
    */
   @property({ reflect: true, type: String }) href: string;
 
+  /** Tells the browser where to open the link. Only used when `href` is present. */
+  @property() target: '_blank' | '_parent' | '_self' | '_top';
+
+  /**
+   * When using `href`, this attribute will map to the underlying link's `rel` attribute.
+   * Unlike regular links, the default is `noreferrer noopener` to prevent security exploits.
+   *
+   * However, if you're using `target` to point to a specific tab/window,
+   * this will prevent that from working correctly.
+   *
+   * You can remove or change the default value by setting the attribute
+   * to an empty string or a value of your choice, respectively.
+   */
+  @property() rel = 'noreferrer noopener';
+
   /*
    * Indicates that the navigation item is currently selected.
    * The aria-current attribute is set to "page" on the host if true.
@@ -398,7 +413,9 @@ export default class SynNavItem extends SynergyElement {
         href=${ifDefined(isLink ? this.href : undefined)}
         part="base"
         role=${isLink ? 'link' : 'button'}
+        rel=${ifDefined(isLink ? this.rel : undefined)}
         tabindex=${this.disabled ? '-1' : '0'}
+        target=${ifDefined(isLink ? this.target : undefined)}
       >
 
         ${this.divider && !this.horizontal

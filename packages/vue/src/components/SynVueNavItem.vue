@@ -77,6 +77,24 @@ accordion behavior.
  */
   href?: SynNavItem['href'];
 
+  /**
+   * Tells the browser where to open the link.
+   * Only used when `href` is present.
+   */
+  target?: SynNavItem['target'];
+
+  /**
+* When using `href`, this attribute will map to the underlying link's `rel` attribute.
+Unlike regular links, the default is `noreferrer noopener` to prevent security exploits.
+
+However, if you're using `target` to point to a specific tab/window,
+this will prevent that from working correctly.
+
+You can remove or change the default value by setting the attribute
+to an empty string or a value of your choice, respectively.
+ */
+  rel?: SynNavItem['rel'];
+
   current?: SynNavItem['current'];
 
   /**

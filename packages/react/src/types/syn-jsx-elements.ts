@@ -381,6 +381,7 @@ export type SynCustomElement<
  * @csspart summary - The container that wraps the summary.
  * @csspart summary-icon - The container that wraps the expand/collapse icons.
  * @csspart content - The details content.
+ * @csspart body - The container that wraps the details content.
  *
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
@@ -1718,6 +1719,7 @@ declare module 'react' {
        * @csspart summary - The container that wraps the summary.
        * @csspart summary-icon - The container that wraps the expand/collapse icons.
        * @csspart content - The details content.
+       * @csspart body - The container that wraps the details content.
        *
        * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
        * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.

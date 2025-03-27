@@ -1,5 +1,5 @@
 import { removeSections } from '../remove-section.js';
-import { replaceSections } from '../replace-section.js';
+import { addSectionsBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',
@@ -14,7 +14,7 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  const contentWithRemovedStyles = removeSections([
+  let content = removeSections([
     ['/** Draws a filled', 'filled = false;'],
     ["'select--filled", ','],
     ['/** Draws a pill-style', ';'],
@@ -22,14 +22,36 @@ const transformComponent = (path, originalContent) => {
     ["'select--pill'", ','],
   ], originalContent);
 
-  const content = replaceSections([
+  content = replaceSections([
     [
       "val = Array.isArray(val) ? val : val.split(' ');",
       `if (!Array.isArray(val)) {
         val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
       }`,
     ],
-  ], contentWithRemovedStyles);
+    [
+      "import type { CSSResultGroup, TemplateResult } from 'lit';",
+      "import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';",
+    ],
+  ], content);
+
+  content = addSectionsBefore([
+    // Add the defaultValue handling if value was initially set via property
+    [
+      'attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null)',
+       `protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if(!this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
+      // to be able to reset forms and the dynamic loading of options are working correctly.
+      this.defaultValue = this.value
+      this.valueHasChanged = false;
+    }
+  }`,
+       { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+  ], content);
 
   return {
     content,

@@ -678,20 +678,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
-  attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {
-    super.attributeChangedCallback(name, oldVal, newVal);
-
-    /** This is a backwards compatibility call needed for setting a new value via attribute (e.g. .setAttribute('value',...)). In a new major version we should make a clean separation between "value" the attribute mapping to "defaultValue" property and "value" the property not reflecting. */
-    if (name === 'value') {
-      const cachedValueHasChanged = this.valueHasChanged;
-      this.value = this.defaultValue;
-
-      // Set it back to false since this isn't an interaction.
-      this.valueHasChanged = cachedValueHasChanged;
-    }
-  }
-
-
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
@@ -700,6 +686,19 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       // to be able to reset forms and the dynamic loading of options are working correctly.
       this.defaultValue = this.value
       this.valueHasChanged = false;
+    }
+  }
+
+  attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {
+    super.attributeChangedCallback(name, oldVal, newVal);
+
+    /** This is a backwards compatibility call. In a new major version we should make a clean separation between "value" the attribute mapping to "defaultValue" property and "value" the property not reflecting. */
+    if (name === 'value') {
+      const cachedValueHasChanged = this.valueHasChanged;
+      this.value = this.defaultValue;
+
+      // Set it back to false since this isn't an interaction.
+      this.valueHasChanged = cachedValueHasChanged;
     }
   }
 

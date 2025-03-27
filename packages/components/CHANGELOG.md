@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.25.0...components/2.26.0) (2025-03-27)
+
+
+### Features
+
+* ✨ syn-nav-item: Allow opening links in new windows ([#820](https://github.com/synergy-design-system/synergy-design-system/issues/820)) ([7aa93c0](https://github.com/synergy-design-system/synergy-design-system/commit/7aa93c02ebc127aac35aaca7e7ede1e26f637394))
+
 # [@synergy-design-system/components-v2.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.24.1...components/2.25.0) (2025-03-25)
 
 

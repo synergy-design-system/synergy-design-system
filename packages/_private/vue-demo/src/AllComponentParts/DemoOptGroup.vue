@@ -12,6 +12,14 @@ import { SynVueSelect, SynVueOptgroup, SynVueOption } from '@synergy-design-syst
 
     <SynVueOptgroup label="Section 2">
       <SynVueOption value="4">Option 4</SynVueOption>
+      <SynVueOption value="5" disabled>Option 5</SynVueOption>
+      <SynVueOption value="6">Option 6</SynVueOption>
+    </SynVueOptgroup>
+
+    <SynVueOptgroup disabled label="Section 3">
+      <SynVueOption value="4">Option 7</SynVueOption>
+      <SynVueOption disabled value="5">Option 8</SynVueOption>
+      <SynVueOption value="6">Option 9</SynVueOption>
     </SynVueOptgroup>
   </SynVueSelect>
 </template>

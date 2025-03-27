@@ -36,13 +36,25 @@ const transformComponent = (path, originalContent) => {
   ], content);
 
   content = addSectionsBefore([
+    // Define the isInitialized variable
+    [
+      "private typeToSelectString = '';",
+      'private isInitialized: boolean = false;',
+      { tabsAfterInsertion: 1 },
+    ],
+    // Set isInitialized variable to true after first render call
+    [
+      "const hasLabelSlot = this.hasSlotController.test('label');",
+      'this.isInitialized = true;',
+      { tabsAfterInsertion: 2 },
+    ],
     // Add the defaultValue handling if value was initially set via property
     [
       'attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null)',
        `protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if(!this.defaultValue && this.value) {
+    if(!this.isInitialized && !this.defaultValue && this.value) {
       // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
       // to be able to reset forms and the dynamic loading of options are working correctly.
       this.defaultValue = this.value

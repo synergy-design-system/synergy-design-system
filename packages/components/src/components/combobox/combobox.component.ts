@@ -109,6 +109,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private isOptionRendererTriggered = false;
 
+  private isInitialized: boolean = false;
+
   @query('.combobox') popup: SynPopup;
 
   @query('.combobox__inputs') combobox: HTMLSlotElement;
@@ -248,7 +250,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if (!this.defaultValue && this.value) {
+    if (!this.isInitialized && !this.defaultValue && this.value) {
       // If the value was set initially via property binding instead of attribute, we need to set
       // the defaultValue manually to be able to reset forms and the dynamic loading of options
       // are working correctly.
@@ -857,6 +859,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity
   render() {
+    this.isInitialized = true;
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

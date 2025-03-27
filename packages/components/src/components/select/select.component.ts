@@ -94,6 +94,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
+  private isInitialized: boolean = false;
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
@@ -681,7 +682,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if(!this.defaultValue && this.value) {
+    if(!this.isInitialized && !this.defaultValue && this.value) {
       // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
       // to be able to reset forms and the dynamic loading of options are working correctly.
       this.defaultValue = this.value
@@ -816,6 +817,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   render() {
+    this.isInitialized = true;
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

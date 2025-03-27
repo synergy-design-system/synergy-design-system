@@ -43,6 +43,8 @@ describe('<syn-nav-item>', () => {
       expect(el.href).to.be.undefined;
       expect(el.open).to.equal(false);
       expect(el.horizontal).to.equal(false);
+      expect(el.rel).to.equal('noreferrer noopener');
+      expect(el.target).to.be.undefined;
     });
 
     it('should render as a button', async () => {
@@ -72,10 +74,21 @@ describe('<syn-nav-item>', () => {
   describe('when the href parameter is provided', () => {
     it('should render as a link', async () => {
       const el = await fixture<SynNavItem>(html`<syn-nav-item href="#">Label</syn-nav-item>`);
+      expect(el.rel).to.equal('noreferrer noopener');
       expect(el.shadowRoot!.querySelector('a')).to.exist;
       expect(el.shadowRoot!.querySelector('a')).to.have.attribute('href', '#');
       expect(el.shadowRoot!.querySelector('button')).not.to.exist;
       expect(el.shadowRoot!.querySelector('summary')).not.to.exist;
+    });
+
+    it('should allow to set an external target for the link', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item href="#" target="_blank">Label</syn-nav-item>`);
+      expect(el.shadowRoot!.querySelector('a')).to.have.attribute('target', '_blank');
+    });
+
+    it('should allow to set a custom rel for the link', async () => {
+      const el = await fixture<SynNavItem>(html`<syn-nav-item href="#" rel="something">Label</syn-nav-item>`);
+      expect(el.shadowRoot!.querySelector('a')).to.have.attribute('rel', 'something');
     });
 
     it('should disable the link if disabled is set to true', async () => {

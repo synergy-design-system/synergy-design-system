@@ -105,6 +105,36 @@ accordion behavior.
     return this.nativeElement.href;
   }
 
+  /**
+   * Tells the browser where to open the link.
+   * Only used when `href` is present.
+   */
+  @Input()
+  set target(v: SynNavItem['target']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.target = v));
+  }
+  get target(): SynNavItem['target'] {
+    return this.nativeElement.target;
+  }
+
+  /**
+* When using `href`, this attribute will map to the underlying link's `rel` attribute.
+Unlike regular links, the default is `noreferrer noopener` to prevent security exploits.
+
+However, if you're using `target` to point to a specific tab/window,
+this will prevent that from working correctly.
+
+You can remove or change the default value by setting the attribute
+to an empty string or a value of your choice, respectively.
+ */
+  @Input()
+  set rel(v: SynNavItem['rel']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.rel = v));
+  }
+  get rel(): SynNavItem['rel'] {
+    return this.nativeElement.rel;
+  }
+
   @Input()
   set current(v: '' | SynNavItem['current']) {
     this._ngZone.runOutsideAngular(

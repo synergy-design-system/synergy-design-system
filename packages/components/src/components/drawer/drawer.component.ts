@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -25,7 +26,6 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './drawer.styles.js';
 import customStyles from './drawer.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.

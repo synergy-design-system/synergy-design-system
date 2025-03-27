@@ -14,8 +14,6 @@ import {
   vendorCard,
   vendorCombobox,
   vendorDetails,
-  vendorDialog,
-  vendorDrawer,
   vendorEvents,
   vendorForm,
   vendorIcon,
@@ -129,7 +127,7 @@ const otherIncludes = [
 
 const libraryPrefix = 'syn';
 const libraryName = 'synergy';
-const shoelaceVersion = '2.20.0';
+const shoelaceVersion = '2.20.1';
 
 // Command line options
 const optionDefinitions = [
@@ -298,9 +296,7 @@ const config = {
       vendorButton,
       vendorCard,
       vendorDetails,
-      vendorDialog,
       vendorEvents,
-      vendorDrawer,
       vendorForm,
       vendorIconButton,
       vendorIcon,

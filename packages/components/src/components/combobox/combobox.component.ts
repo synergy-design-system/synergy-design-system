@@ -1,4 +1,4 @@
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
@@ -108,6 +108,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private lastOptionValue = '';
 
   private isOptionRendererTriggered = false;
+
+  private isInitialized: boolean = false;
 
   @query('.combobox') popup: SynPopup;
 
@@ -242,7 +244,19 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   firstUpdated() {
+    this.isInitialized = true;
     this.formControlController.updateValidity();
+  }
+
+  protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if (!this.isInitialized && !this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set
+      // the defaultValue manually to be able to reset forms and the dynamic loading of options
+      // are working correctly.
+      this.defaultValue = this.value;
+    }
   }
 
   private addOpenListeners() {
@@ -819,7 +833,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
-    if (!this.isOptionRendererTriggered) {
+    // We need to check if the slotChange is triggered by our own changes we do to the already
+    // slotted options or because new options were slotted into the combobox
+    const slottedOptions = this.getSlottedOptions();
+    const optionsLength = slottedOptions.length;
+    const cachedOptionsLength = this.cachedOptions.length;
+
+    if (!this.isOptionRendererTriggered || cachedOptionsLength !== optionsLength) {
       // Rerun this handler when <syn-option> is registered
       if (!customElements.get('syn-option')) {
         customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());

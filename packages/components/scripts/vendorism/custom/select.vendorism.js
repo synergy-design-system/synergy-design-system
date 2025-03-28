@@ -42,16 +42,14 @@ const transformComponent = (path, originalContent) => {
       'private isInitialized: boolean = false;',
       { tabsAfterInsertion: 1 },
     ],
-    // Set isInitialized variable to true after first render call
-    [
-      "const hasLabelSlot = this.hasSlotController.test('label');",
-      'this.isInitialized = true;',
-      { tabsAfterInsertion: 2 },
-    ],
     // Add the defaultValue handling if value was initially set via property
     [
       'attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null)',
-       `protected override willUpdate(changedProperties: PropertyValues) {
+       `firstUpdated() {
+    this.isInitialized = true;
+  }
+
+  protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
     if(!this.isInitialized && !this.defaultValue && this.value) {

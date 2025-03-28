@@ -13,7 +13,7 @@ export const Select = () => {
   }, []);
   return (
     <>
-      <syn-select id="level" label="Experience" help-text="Please tell us your skill level." value="2">
+      <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." value="2">
         {levels.map((level) => (
           <syn-option key={level.value} value={level.value}>
             {level.label}
@@ -22,7 +22,7 @@ export const Select = () => {
       </syn-select>
 
       <form>
-        <syn-select id="form" value="option-1">
+        <syn-select data-testid="select-form-813" value="option-1">
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>

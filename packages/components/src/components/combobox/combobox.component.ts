@@ -244,6 +244,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   firstUpdated() {
+    this.isInitialized = true;
     this.formControlController.updateValidity();
   }
 
@@ -859,7 +860,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /* eslint-disable @typescript-eslint/unbound-method */
   // eslint-disable-next-line complexity
   render() {
-    this.isInitialized = true;
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

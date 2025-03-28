@@ -12,7 +12,7 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
     SynButtonComponent
   ],
   template: `
-    <syn-select id="level" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
+    <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
       @for (level of levels; track $index; let index = $index) {
         <syn-option [value]="level.value"> {{level.label}}</syn-option
         >
@@ -20,7 +20,7 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
     </syn-select>
 
     <form>
-      <syn-select id="form" [value]="'option-1'">
+      <syn-select data-testid="select-form-813" [value]="'option-1'">
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>

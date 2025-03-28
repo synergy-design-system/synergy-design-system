@@ -10,20 +10,20 @@ const AllComponentSelectors = {
   alertLink: '#tab-Alert',
 
   // Combobox
-  combobox797: '#tab-content-Combobox syn-combobox#combobox-797',
-  combobox813Form: '#tab-content-Combobox syn-combobox#form-813',
-  combobox813FormOptions: '#tab-content-Combobox syn-combobox#form-813 syn-option',
-  combobox813Level: '#tab-content-Combobox syn-combobox#level-813',
+  combobox797: '#tab-content-Combobox syn-combobox[data-testid="combobox-797"]',
+  combobox813Form: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"]',
+  combobox813FormOptions: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"] syn-option',
+  combobox813Level: '#tab-content-Combobox syn-combobox[data-testid="combobox-level-813"]',
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
-  // Combobox
+  // Select
   selectContent: '#tab-content-Select',
-  selectForm: '#tab-content-Select syn-select#form',
-  selectFormOptions: '#tab-content-Select syn-select#form syn-option',
+  selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
+  selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',
   selectFormReset: '#tab-content-Select form syn-button',
-  selectLevel: '#tab-content-Select syn-select#level',
+  selectLevel: '#tab-content-Select syn-select[data-testid="select-level-813"]',
   selectLink: '#tab-Select',
 
   // Tabgroup

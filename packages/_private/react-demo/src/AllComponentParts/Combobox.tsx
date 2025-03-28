@@ -13,13 +13,13 @@ export const Combobox = () => {
   }, []);
   return (
     <>
-      <syn-combobox id="combobox-797" value="option-2">
+      <syn-combobox data-testid="combobox-797" value="option-2">
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>
       </syn-combobox>
 
-      <syn-combobox id="level-813" label="Experience" help-text="Please tell us your skill level." value="2">
+      <syn-combobox data-testid="combobox-level-813" label="Experience" help-text="Please tell us your skill level." value="2">
         {levels.map((level) => (
           <syn-option key={level.value} value={level.value}>
             {level.label}
@@ -28,7 +28,7 @@ export const Combobox = () => {
       </syn-combobox>
 
       <form>
-        <syn-combobox id="form-813" value="option-1">
+        <syn-combobox data-testid="combobox-form-813" value="option-1">
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>

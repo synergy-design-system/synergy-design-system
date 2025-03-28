@@ -1,16 +1,11 @@
-import { html } from 'lit';
-import type { SynCombobox, SynTabShowEvent } from '@synergy-design-system/components';
+import { type LitElement, html } from 'lit';
+import type { SynCombobox } from '@synergy-design-system/components';
 
 export const Combobox = () => {
-  document.addEventListener('syn-tab-show', (event: SynTabShowEvent) => {
-    if (event.detail.name !== 'Combobox') return;
-
-    const target = event.target as HTMLElement;
-    const combobox = target.shadowRoot?.querySelector('syn-combobox#level-813') as SynCombobox;
-
-    if (combobox.dataset.initialized) return;
-
-    combobox.dataset.initialized = 'true';
+  const allComponents = document.querySelector('demo-all-components') as LitElement;
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  allComponents.updateComplete.then(() => {
+    const combobox = allComponents?.shadowRoot?.querySelector('syn-combobox[data-testid="combobox-level-813"]') as SynCombobox;
 
     setTimeout(() => {
       const option1 = document.createElement('syn-option');
@@ -29,17 +24,17 @@ export const Combobox = () => {
   });
 
   return html`
-    <syn-combobox id="combobox-797" value="option-2">
+    <syn-combobox data-testid="combobox-797" value="option-2">
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-combobox>
 
-    <syn-combobox id="level-813" label="Experience" help-text="Please tell us your skill level." .value=${'2'}>
+    <syn-combobox data-testid="combobox-level-813" label="Experience" help-text="Please tell us your skill level." .value=${'2'}>
     </syn-combobox>
 
     <form>
-      <syn-combobox id="form-813" .value=${'option-1'}>
+      <syn-combobox data-testid="combobox-form-813" .value=${'option-1'}>
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>

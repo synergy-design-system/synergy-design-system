@@ -1,16 +1,11 @@
-import type { SynSelect, SynTabShowEvent } from '@synergy-design-system/components';
-import { html } from 'lit';
+import type { SynSelect } from '@synergy-design-system/components';
+import { type LitElement, html } from 'lit';
 
 export const Select = () => {
-  document.addEventListener('syn-tab-show', (event: SynTabShowEvent) => {
-    if (event.detail.name !== 'Select') return;
-
-    const target = event.target as HTMLElement;
-    const select = target.shadowRoot?.querySelector('syn-select#level') as SynSelect;
-
-    if (select.dataset.initialized) return;
-
-    select.dataset.initialized = 'true';
+  const allComponents = document.querySelector('demo-all-components') as LitElement;
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  allComponents.updateComplete.then(() => {
+    const select = allComponents?.shadowRoot?.querySelector('syn-select[data-testid="select-level-813"]') as SynSelect;
 
     setTimeout(() => {
       const option1 = document.createElement('syn-option');
@@ -29,11 +24,11 @@ export const Select = () => {
   });
 
   return html`
-   <syn-select id="level" label="Experience" help-text="Please tell us your skill level." .value=${'2'}>
+   <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." .value=${'2'}>
     </syn-select>
 
     <form>
-      <syn-select id="form" .value=${'option-1'}>
+      <syn-select data-testid="select-form-813" .value=${'option-1'}>
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>

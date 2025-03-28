@@ -12,13 +12,13 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
     SynButtonComponent
   ],
   template: `
-    <syn-combobox id="combobox-797" value="option-2">
+    <syn-combobox data-testid="combobox-797" value="option-2">
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-combobox>
 
-    <syn-combobox id="level-813" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
+    <syn-combobox data-testid="combobox-level-813" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
       @for (level of levels; track $index; let index = $index) {
         <syn-option [value]="level.value"> {{level.label}}</syn-option
         >
@@ -26,7 +26,7 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
     </syn-combobox>
 
     <form>
-      <syn-combobox id="form-813" [value]="'option-1'">
+      <syn-combobox data-testid="combobox-form-813" [value]="'option-1'">
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>

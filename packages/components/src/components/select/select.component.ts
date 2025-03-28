@@ -679,6 +679,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
+  firstUpdated() {
+    this.isInitialized = true;
+  }
+
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
@@ -817,7 +821,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   render() {
-    this.isInitialized = true;
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;

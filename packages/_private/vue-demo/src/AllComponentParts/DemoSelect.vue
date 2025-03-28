@@ -13,11 +13,11 @@ setTimeout(() => {
 </script>
 
 <template>
-  <SynVueSelect :value="'2'" id="level">
+  <SynVueSelect :value="'2'" data-testid="select-level-813">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueSelect>
   <form>
-    <SynVueSelect value="option-1" id="form">
+    <SynVueSelect value="option-1" data-testid="select-form-813">
       <SynVueOption value="option-1">Option 1</SynVueOption>
       <SynVueOption value="option-2">Option 2</SynVueOption>
       <SynVueOption value="option-3">Option 3</SynVueOption>

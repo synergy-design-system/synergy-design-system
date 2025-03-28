@@ -55,7 +55,7 @@
     "directory": "packages/_private/react-demo"
   },
   "scripts": {
-    "format.eslint": "pnpm lint --fix",
+    "format.eslint": "pnpm lint:js --fix",
     "lint:html": "html-validate index.html",
     "lint:js": "eslint \"src/**/*.{js,ts,tsx}\" --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint": "pnpm run /^lint:.*/",

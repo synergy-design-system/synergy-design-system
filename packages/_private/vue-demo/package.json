@@ -11,7 +11,7 @@
     "lint:html": "html-validate index.html",
     "lint:js": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint": "pnpm run /^lint:.*/",
-    "format.eslint": "pnpm lint --fix",
+    "format.eslint": "pnpm lint:js --fix",
     "format": "prettier --write src/"
   },
   "dependencies": {

@@ -17,8 +17,8 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
+        specifier: ^3.5.3
+        version: 3.5.3
 
   packages/_private/angular-demo:
     dependencies:

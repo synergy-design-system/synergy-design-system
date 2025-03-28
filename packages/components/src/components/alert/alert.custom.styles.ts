@@ -63,7 +63,6 @@ export default css`
     color: var(--syn-typography-color-text);
     margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
     margin-inline-end: var(--syn-spacing-x-small);
-    padding-inline-end: 0;
   }
 
   /**

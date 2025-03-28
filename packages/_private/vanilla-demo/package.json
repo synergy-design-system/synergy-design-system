@@ -21,12 +21,12 @@
     "eslint": "^8.57.1",
     "html-validate": "^9.5.2",
     "stylelint": "^16.17.0",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.0",
-    "vite-plugin-static-copy": "^2.2.0"
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3",
+    "vite-plugin-static-copy": "^2.3.0"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.1.1",
+    "@fontsource/open-sans": "^5.2.5",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",

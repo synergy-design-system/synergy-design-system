@@ -283,8 +283,8 @@ importers:
   packages/_private/vanilla-demo:
     dependencies:
       '@fontsource/open-sans':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.2.5
+        version: 5.2.5
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
@@ -318,16 +318,16 @@ importers:
         version: 9.5.2(vitest@3.0.5(@types/node@22.13.14)(jiti@1.21.7)(jsdom@26.0.0)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3))
       stylelint:
         specifier: ^16.17.0
-        version: 16.17.0(typescript@5.7.3)
+        version: 16.17.0(typescript@5.8.2)
       typescript:
-        specifier: ^5.7.3
-        version: 5.7.3
+        specifier: ^5.8.2
+        version: 5.8.2
       vite:
-        specifier: ^6.1.0
-        version: 6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)
+        specifier: ^6.2.3
+        version: 6.2.3(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)
       vite-plugin-static-copy:
-        specifier: ^2.2.0
-        version: 2.2.0(vite@6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3))
+        specifier: ^2.3.0
+        version: 2.3.0(vite@6.2.3(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3))
 
   packages/_private/vue-demo:
     dependencies:
@@ -1655,10 +1655,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0 || ^8.0.0-0 <8.0.0
 
-  '@babel/runtime@7.24.4':
-    resolution: {integrity: sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.26.10':
     resolution: {integrity: sha512-2WJMeRQPHKSPemqk/awGrAiuFfzBmOIPXKizAsVhWH9YJqLZ0H+HS4c8loHGgW6utJ3E/ejXQUsiGaQy2NZ9Fw==}
     engines: {node: '>=6.9.0'}
@@ -2112,9 +2108,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@fontsource/open-sans@5.1.1':
-    resolution: {integrity: sha512-Wfio5om0XH24ZUu6FfW4r50e4xLdoLzvd8midtqUFT2unniyWQj6GJ05RW1YQsHp4Sug3i+agFBIxEmYQzUHSg==}
 
   '@fontsource/open-sans@5.2.5':
     resolution: {integrity: sha512-f0Ww6H+LB6GXA8UCgqs90h4djVttu3quH/1+wkfUY8b09mG1ESn4ACRBHYY78bsoeDXpaCyZh7eoGROBWplvAQ==}
@@ -10364,12 +10357,6 @@ packages:
     peerDependencies:
       vite: ^2
 
-  vite-plugin-static-copy@2.2.0:
-    resolution: {integrity: sha512-ytMrKdR9iWEYHbUxs6x53m+MRl4SJsOSoMu1U1+Pfg0DjPeMlsRVx3RR5jvoonineDquIue83Oq69JvNsFSU5w==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    peerDependencies:
-      vite: ^5.0.0 || ^6.0.0
-
   vite-plugin-static-copy@2.3.0:
     resolution: {integrity: sha512-LLKwhhHetGaCnWz4mas4qqjjguDka6/6b4+SeIohRroj8aCE7QTfiZECfPecslFQkWZ3HdQuq5kOPmWZjNYlKA==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -11829,10 +11816,6 @@ snapshots:
       '@babel/types': 7.27.0
       esutils: 2.0.3
 
-  '@babel/runtime@7.24.4':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.26.10':
     dependencies:
       regenerator-runtime: 0.14.1
@@ -12182,8 +12165,6 @@ snapshots:
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@fontsource/open-sans@5.1.1': {}
 
   '@fontsource/open-sans@5.2.5': {}
 
@@ -17695,7 +17676,7 @@ snapshots:
 
   history@5.3.0:
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.27.0
 
   hook-std@2.0.0: {}
 
@@ -22185,14 +22166,6 @@ snapshots:
 
   vite-plugin-replace@0.1.1(vite@6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)):
     dependencies:
-      vite: 6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)
-
-  vite-plugin-static-copy@2.2.0(vite@6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)):
-    dependencies:
-      chokidar: 3.6.0
-      fast-glob: 3.3.3
-      fs-extra: 11.3.0
-      picocolors: 1.1.1
       vite: 6.1.0(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)
 
   vite-plugin-static-copy@2.3.0(vite@6.2.3(@types/node@22.13.14)(jiti@1.21.7)(less@4.2.2)(sass@1.86.0)(terser@5.39.0)(yaml@2.4.3)):

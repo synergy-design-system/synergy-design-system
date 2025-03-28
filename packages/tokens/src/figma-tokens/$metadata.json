@@ -1,9 +1,9 @@
 {
   "tokenSetOrder": [
-    "globals/default",
-    "theme/dark",
-    "theme/light",
-    "brand/default",
+    "globals",
+    "color/dark",
+    "color/light",
+    "color/primitives",
     "semantic/focus-ring",
     "semantic/input",
     "semantic/button",

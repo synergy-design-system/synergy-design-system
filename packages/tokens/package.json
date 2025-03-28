@@ -15,7 +15,7 @@
     "chalk": "^5.4.1",
     "change-case": "^5.4.4",
     "eslint": "^8.57.1",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-import-resolver-typescript": "^3.10.0",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",

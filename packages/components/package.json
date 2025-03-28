@@ -103,7 +103,7 @@
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-playwright": "^1.8.3",
-    "eslint-plugin-wc": "^2.2.0",
+    "eslint-plugin-wc": "^2.2.1",
     "globby": "^14.0.2",
     "html-validate": "^9.2.1",
     "jsdom": "^26.0.0",

@@ -19,7 +19,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",
-    "html-validate": "^9.2.1",
+    "html-validate": "^9.5.2",
     "stylelint": "^16.17.0",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",

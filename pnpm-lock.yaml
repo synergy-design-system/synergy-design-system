@@ -84,8 +84,8 @@ importers:
         specifier: ~5.1.5
         version: 5.1.5
       html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
+        specifier: ^9.5.2
+        version: 9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       jasmine-core:
         specifier: ~5.3.0
         version: 5.3.0
@@ -228,8 +228,8 @@ importers:
         specifier: ^0.4.19
         version: 0.4.19(eslint@8.57.1)
       html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
+        specifier: ^9.5.2
+        version: 9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -314,8 +314,8 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
+        specifier: ^9.5.2
+        version: 9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       stylelint:
         specifier: ^16.17.0
         version: 16.17.0(typescript@5.7.3)
@@ -384,8 +384,8 @@ importers:
         specifier: ^9.33.0
         version: 9.33.0(eslint@8.57.1)
       html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
+        specifier: ^9.5.2
+        version: 9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -600,8 +600,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       html-validate:
-        specifier: ^9.2.1
-        version: 9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
+        specifier: ^9.5.2
+        version: 9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3))
       jsdom:
         specifier: ^26.0.0
         version: 26.0.0
@@ -3269,11 +3269,11 @@ packages:
   '@shoelace-style/localize@3.2.1':
     resolution: {integrity: sha512-r4C9C/5kSfMBIr0D9imvpRdCNXtUNgyYThc4YlS6K5Hchv1UyxNQ9mxwj+BTRH2i1Neits260sR3OjKMnplsFA==}
 
-  '@sidvind/better-ajv-errors@3.0.1':
-    resolution: {integrity: sha512-++1mEYIeozfnwWI9P1ECvOPoacy+CgDASrmGvXPMCcqgx0YUzB01vZ78uHdQ443V6sTY+e9MzHqmN9DOls02aw==}
-    engines: {node: '>= 16.14'}
+  '@sidvind/better-ajv-errors@4.0.0':
+    resolution: {integrity: sha512-rLZQkN6IfNwG6iqZZwqFMcs7DvQX3ZrLVhsHmSO1LUA4EZAz+VZLpTBCIOFsC5Qu3xuwzVfRMZ+1rtk/mCRRZw==}
+    engines: {node: '>= 18'}
     peerDependencies:
-      ajv: ^6.12.3 || ^7.0.0 || ^8.0.0
+      ajv: ^7.0.0 || ^8.0.0
 
   '@sigstore/bundle@3.0.0':
     resolution: {integrity: sha512-XDUYX56iMPAn/cdgh/DTJxz5RWmqKV4pwvUAEKEWJl+HzKdCd/24wUa9JYNMlDSCb7SUHAdtksxYX779Nne/Zg==}
@@ -6751,8 +6751,8 @@ packages:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
     engines: {node: '>=8'}
 
-  html-validate@9.2.1:
-    resolution: {integrity: sha512-nHvvMyvErYP8BbuaxyRJ2ZOqwzo0SrTGii5YZaTZUHcgQ7HKw5vrvjig86DUhCwjX0URHYY30+zmV/AkszdC5g==}
+  html-validate@9.5.2:
+    resolution: {integrity: sha512-YXJfMprAZYiA6Nc09REC/4wURTCc8sd2MF59U0dto3ZSKqzkUoTGcy/3Tu7kJrLFdiYoKwoOvqQVL/N+sN5MMQ==}
     engines: {node: ^18.19.0 || >= 20.6.0}
     hasBin: true
     peerDependencies:
@@ -13711,7 +13711,7 @@ snapshots:
 
   '@shoelace-style/localize@3.2.1': {}
 
-  '@sidvind/better-ajv-errors@3.0.1(ajv@8.17.1)':
+  '@sidvind/better-ajv-errors@4.0.0(ajv@8.17.1)':
     dependencies:
       ajv: 8.17.1
       kleur: 4.1.5
@@ -18392,10 +18392,10 @@ snapshots:
 
   html-tags@3.3.1: {}
 
-  html-validate@9.2.1(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3)):
+  html-validate@9.5.2(vitest@3.0.5(@types/node@22.13.1)(jiti@1.21.6)(jsdom@26.0.0)(less@4.2.1)(sass@1.83.1)(terser@5.37.0)(yaml@2.4.3)):
     dependencies:
       '@html-validate/stylish': 4.2.0
-      '@sidvind/better-ajv-errors': 3.0.1(ajv@8.17.1)
+      '@sidvind/better-ajv-errors': 4.0.0(ajv@8.17.1)
       ajv: 8.17.1
       glob: 10.4.5
       kleur: 4.1.5

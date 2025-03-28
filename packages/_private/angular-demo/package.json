@@ -34,7 +34,7 @@
     "@angular/cli": "^19.1.6",
     "@angular/compiler-cli": "^19.1.5",
     "@types/jasmine": "~5.1.5",
-    "html-validate": "^9.2.1",
+    "html-validate": "^9.5.2",
     "jasmine-core": "~5.3.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",

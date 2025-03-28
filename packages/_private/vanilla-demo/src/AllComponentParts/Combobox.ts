@@ -1,26 +1,8 @@
-import { type LitElement, html } from 'lit';
-import type { SynCombobox } from '@synergy-design-system/components';
+import { html } from 'lit';
 
-export const Combobox = () => {
-  const allComponents = document.querySelector('demo-all-components') as LitElement;
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  allComponents.updateComplete.then(() => {
-    const combobox = allComponents?.shadowRoot?.querySelector('syn-combobox[data-testid="combobox-level-813"]') as SynCombobox;
-
-    setTimeout(() => {
-      const option1 = document.createElement('syn-option');
-      option1.value = '1';
-      option1.textContent = 'Novice';
-      const option2 = document.createElement('syn-option');
-      option2.value = '2';
-      option2.textContent = 'Intermediate';
-      const option3 = document.createElement('syn-option');
-      option3.value = '3';
-      option3.textContent = 'Advanced';
-      combobox.appendChild(option1);
-      combobox.appendChild(option2);
-      combobox.appendChild(option3);
-    }, 0);
+export const Combobox = (regressions: Array< () => void> = []) => {
+  regressions.forEach((regression) => {
+    regression();
   });
 
   return html`

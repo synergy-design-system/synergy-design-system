@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.1.1",
+    "@fontsource/open-sans": "^5.2.5",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/react": "workspace:*",
@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -24,15 +24,15 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "html-validate": "^9.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.5",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.0",
-    "vite-plugin-static-copy": "^2.2.0"
+    "react-router-dom": "^7.4.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3",
+    "vite-plugin-static-copy": "^2.3.0"
   },
   "description": "Sample Demo Project for using the Synergy Design System React Wrappers",
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo",

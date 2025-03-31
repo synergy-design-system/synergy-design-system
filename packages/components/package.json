@@ -102,7 +102,7 @@
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
-    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-playwright": "^1.8.3",
     "eslint-plugin-wc": "^2.2.1",
     "globby": "^14.1.0",
     "html-validate": "^9.5.2",

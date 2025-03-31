@@ -39,7 +39,11 @@ export default {
     // @see https://github.com/modernweb-dev/web/issues/2374
     playwrightLauncher({ product: 'firefox', concurrency: 1 }),
 
-    playwrightLauncher({ product: 'webkit' })
+    
+    // Use concurrency of 1 for webkit. It seems to happen the same problem like with firefox in the CI
+    // @see https://github.com/modernweb-dev/web/issues/2374
+    playwrightLauncher({ product: 'webkit', concurrency: 1 }),
+
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">

@@ -56,6 +56,17 @@ export const vendorWebTestRunnerConfig = (path, content) => {
     playwrightLauncher({ product: 'firefox', concurrency: 1 }),
 `,
     ],
+
+    // It seems that the webkit test are also flaky like the firefox ones in out CI right now
+    // TODO: We add concurrency: 1 to prevent the issue at https://github.com/modernweb-dev/web/issues/2374
+    [
+      `playwrightLauncher({ product: 'webkit' })`,
+      `
+    // Use concurrency of 1 for webkit. It seems to happen the same problem like with firefox in the CI
+    // @see https://github.com/modernweb-dev/web/issues/2374
+    playwrightLauncher({ product: 'webkit', concurrency: 1 }),
+`,
+    ],
   ], nextContent);
 
   // add mocha config to fail if somewhere is `.only` used in a test

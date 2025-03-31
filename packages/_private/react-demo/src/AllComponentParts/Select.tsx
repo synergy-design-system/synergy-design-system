@@ -1,7 +1,34 @@
-export const Select = () => (
-  <syn-select label="Experience" help-text="Please tell us your skill level.">
-    <syn-option value="1">Novice</syn-option>
-    <syn-option value="2">Intermediate</syn-option>
-    <syn-option value="3">Advanced</syn-option>
-  </syn-select>
-);
+import { useEffect, useState } from 'react';
+
+export const Select = () => {
+  const [levels, setLevels] = useState<Array<{ value: string, label: string }>>([]);
+  useEffect(() => {
+    setTimeout(() => {
+      setLevels([
+        { label: 'Novice', value: '1' },
+        { label: 'Intermediate', value: '2' },
+        { label: 'Advanced', value: '3' },
+      ]);
+    }, 0);
+  }, []);
+  return (
+    <>
+      <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." value="2">
+        {levels.map((level) => (
+          <syn-option key={level.value} value={level.value}>
+            {level.label}
+          </syn-option>
+        ))}
+      </syn-select>
+
+      <form>
+        <syn-select data-testid="select-form-813" value="option-1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-select>
+        <syn-button type="reset">Reset</syn-button>
+      </form>
+    </>
+  );
+};

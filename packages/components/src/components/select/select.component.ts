@@ -27,7 +27,7 @@ import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
 import customStyles from './select.custom.styles.js';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
@@ -94,6 +94,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
+  private isInitialized: boolean = false;
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
@@ -675,6 +676,21 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     if (this.disabled) {
       this.open = false;
       this.handleOpenChange();
+    }
+  }
+
+  firstUpdated() {
+    this.isInitialized = true;
+  }
+
+  protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if(!this.isInitialized && !this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
+      // to be able to reset forms and the dynamic loading of options are working correctly.
+      this.defaultValue = this.value
+      this.valueHasChanged = false;
     }
   }
 

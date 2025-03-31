@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.7.0...styles/1.7.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* 🐛  Upgrade packages to latest versions ([#830](https://github.com/synergy-design-system/synergy-design-system/issues/830)) ([f5fe54f](https://github.com/synergy-design-system/synergy-design-system/commit/f5fe54fb55732b1e3efdf3062d55ee517aef4e81))
+
 # [@synergy-design-system/styles-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.6.0...styles/1.7.0) (2025-02-10)
 
 

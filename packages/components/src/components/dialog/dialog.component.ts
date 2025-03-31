@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -24,7 +25,6 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './dialog.styles.js';
 import customStyles from './dialog.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.

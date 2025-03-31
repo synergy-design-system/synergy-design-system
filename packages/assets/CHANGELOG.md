@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.13.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.13.0...assets/1.13.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* 🐛  Upgrade packages to latest versions ([#830](https://github.com/synergy-design-system/synergy-design-system/issues/830)) ([f5fe54f](https://github.com/synergy-design-system/synergy-design-system/commit/f5fe54fb55732b1e3efdf3062d55ee517aef4e81))
+
 # [@synergy-design-system/assets-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.12.0...assets/1.13.0) (2025-03-11)
 
 

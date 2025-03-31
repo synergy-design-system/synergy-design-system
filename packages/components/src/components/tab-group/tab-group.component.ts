@@ -111,7 +111,7 @@ export default class SynTabGroup extends SynergyElement {
     this.mutationObserver = new MutationObserver(mutations => {
       // Make sure to only observe the direct children of the tab group
       // instead of other sub elements that might be slotted in.
-      // @see https://github.com/shoelace-style/shoelace/issues/2320
+      // @see https://github.com/synergy-design-system/synergy/issues/2320
       const instanceMutations = mutations.filter(({ target }) => {
         if (target === this) return true; // Allow self updates
         if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
@@ -149,17 +149,14 @@ export default class SynTabGroup extends SynergyElement {
     // After the first update...
     this.updateComplete.then(() => {
       this.syncTabsAndPanels();
+
       this.mutationObserver.observe(this, {
         attributes: true,
-        attributeFilter: [
-          'active',
-          'disabled',
-          'name',
-          'panel',
-        ],
+        attributeFilter: ['active', 'disabled', 'name', 'panel'],
         childList: true,
         subtree: true
       });
+
       this.resizeObserver.observe(this.nav);
 
       // Wait for tabs and tab panels to be registered

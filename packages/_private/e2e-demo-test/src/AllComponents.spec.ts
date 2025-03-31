@@ -5,9 +5,9 @@ import {
   createTestCases,
 } from './helpers.js';
 
-createTestCases(({ name, port }) => {
-  test.describe(`${name}: <SynAccordion /> ${port}`, () => {
-    test('show be visible with three <syn-details>', async ({ page }) => {
+test.describe(`<SynAccordion />`, () => {
+  createTestCases(({ name, port }) => {
+    test(`${name}: show be visible with three <syn-details>`, async ({ page }) => {
       const AllComponents = new AllComponentsPage(page, port);
       await AllComponents.loadInitialPage();
 
@@ -31,10 +31,12 @@ createTestCases(({ name, port }) => {
       await accordions.last().click();
       await expect(lastAccordion).toHaveAttribute('open');
     }); // End open
-  }); // </syn-accordion>
+  }); // End frameworks
+}); // </syn-accordion>
 
-  test.describe(`${name}: <SynAlert /> ${port}`, () => {
-    test('should support 5 different variants', async ({ page }) => {
+test.describe(`<SynAlert />`, () => {
+  createTestCases(({ name, port }) => {
+    test(`${name}: should support 5 different variants`, async ({ page }) => {
       const AllComponents = new AllComponentsPage(page, port);
       await AllComponents.loadInitialPage();
 
@@ -52,10 +54,12 @@ createTestCases(({ name, port }) => {
       });
       expect(availableVariants).toEqual(['primary', 'success', 'neutral', 'warning', 'danger']);
     }); // Test accessibility
-  }); // </syn-alert>
+  }); // End frameworks
+}); // </syn-alert>
 
-  test.describe(`${name}: <SynCombobox /> ${port}`, () => {
-    test.describe('Regression#797', () => {
+test.describe('<SynCombobox />', () => {
+  createTestCases(({ name, port }) => {
+    test.describe(`Regression#797: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via value', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -121,7 +125,7 @@ createTestCases(({ name, port }) => {
       });
     }); // regression#797
 
-    test.describe('Regression#813', () => {
+    test.describe(`Regression#813: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via property binding and options added dynamically', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -170,21 +174,41 @@ createTestCases(({ name, port }) => {
         expect(resetDisplayedValue).toEqual('Option 1');
       });
     }); // regression#813
-  }); // </syn-combobox>
+  }); // End frameworks  
+}); // </syn-combobox>
 
-  test.describe(`${name}: <SynOptgroup /> ${port}`, () => {
-    /**
-     * Set the disabled prop of a given locator
-     * @param locator The locator to set disabled for
-     * @param disabled The value of the disabled prop
-     */
-    const setDisabled = async (locator: Locator, disabled: boolean) => {
-      await locator.evaluateHandle((el: SynOptgroup, locatorDisabled) => {
-        el.disabled = locatorDisabled;
-      }, disabled);
-    };
+test.describe('<SynOptgroup />', () => {
+  /**
+   * Creates an option for the given locator
+   */
+  const appendOption = async (
+    optgroup: Locator,
+    disabled: boolean = false,
+    textContent: string = 'Option',
+  ) => {
+    const option = await optgroup.evaluateHandle((el: SynOptgroup, [locatorDisabled, locatorTextContent]) => {
+      const newOption = document.createElement('syn-option');
+      newOption.value = 'option-1';
+      newOption.textContent = locatorTextContent as string;
+      newOption.disabled = locatorDisabled as boolean;
+      el.appendChild(newOption);
+      return newOption;
+    }, [disabled, textContent]);
+    return option;
+  };
+  /**
+   * Set the disabled prop of a given locator
+   * @param locator The locator to set disabled for
+   * @param disabled The value of the disabled prop
+   */
+  const setDisabled = async (locator: Locator, disabled: boolean) => {
+    await locator.evaluateHandle((el: SynOptgroup, locatorDisabled) => {
+      el.disabled = locatorDisabled;
+    }, disabled);
+  };
 
-    test.describe('Regression#815', () => {
+  createTestCases(({ name, port }) => { 
+    test.describe(`Regression#815: ${name}`, () => {
       test('should reenable <syn-option> elements that where enabled before disabling the <syn-optgroup>', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
 
@@ -192,31 +216,56 @@ createTestCases(({ name, port }) => {
         await AllComponents.activateItem('optgroupLink');
 
         // Tests for section 1: Each item is disabled
-        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First opt-group should have 3 enabled options').toHaveCount(3);
+        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First optgroup should have 3 enabled options as it is not disabled').toHaveCount(3);
         await setDisabled(AllComponents.getLocator('optgroupFirstItem'), true);
-        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First opt-group should have 0 enabled options').toHaveCount(0);
+        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First optgroup should have 0 enabled options after disabling it').toHaveCount(0);
         await setDisabled(AllComponents.getLocator('optgroupFirstItem'), false);
-        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First opt-group should have 3 enabled options').toHaveCount(3);
+        await expect(AllComponents.getLocator('optgroupFirstEnabledItems'), 'First optgroup should have 3 enabled options after reenabling it').toHaveCount(3);
 
         // Tests for section 2: We have a mix of enabled and disabled items
-        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second opt-group should have 2 enabled options as the opt-group is enabled one of the children is disabled').toHaveCount(2);
+        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second optgroup should have 2 enabled options as the optgroup is enabled and one of the children is disabled').toHaveCount(2);
         await setDisabled(AllComponents.getLocator('optgroupSecondItem'), true);
-        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second opt-group should have 0 enabled options').toHaveCount(0);
+        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second optgroup should have 0 enabled options after disabling it').toHaveCount(0);
         await setDisabled(AllComponents.getLocator('optgroupSecondItem'), false);
-        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second opt-group should have 2 enabled options').toHaveCount(2);
+        await expect(AllComponents.getLocator('optgroupSecondEnabledItems'), 'Second optgroup should have 2 enabled options after reenabling it').toHaveCount(2);
 
         // Tests for section 3: We have a mix of enabled and disabled items
-        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third opt-group should have 0 enabled options as the opt-group is disabled').toHaveCount(0);
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should have 0 enabled options as the optgroup is disabled').toHaveCount(0);
         await setDisabled(AllComponents.getLocator('optgroupThirdItem'), false);
-        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third opt-group should have 2 enabled options after enabling it').toHaveCount(2);
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should have 2 enabled options after enabling it').toHaveCount(2);
         await setDisabled(AllComponents.getLocator('optgroupThirdItem'), true);
-        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third opt-group should have 0 enabled options after disabling again').toHaveCount(0);
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should have 0 enabled options after disabling again').toHaveCount(0);
+      });
+
+      test('should add a disabled checkbox to the <syn-optgroup> when its disabled prop is set', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('optgroupLink');
+
+        // Baseline tests
+        await expect(AllComponents.getLocator('optgroupThirdItem'), 'First optgroup should be disabled').toHaveJSProperty('disabled', true);
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should have 3 disabled options initially').toHaveCount(0);
+
+        // Add a new disabled option and see if the count adds up
+        await appendOption(AllComponents.getLocator('optgroupThirdItem'), true, 'Disabled option');
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should include 4 disabled option after adding an option that is also disabled').toHaveCount(0);
+
+        // Add a new enabled option and see if the count adds up
+        await appendOption(AllComponents.getLocator('optgroupThirdItem'), false, 'Enabled option');
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should include 5 disabled option after adding an option that is not disabled').toHaveCount(0);
+
+        // When enabling the optgroup, only the last option should count as enabled item
+        await setDisabled(AllComponents.getLocator('optgroupThirdItem'), false);
+        await expect(AllComponents.getLocator('optgroupThirdEnabledItems'), 'Third optgroup should have 3 enabled options after enabling the optgroup as one dynamic option was added with disabled state and one item has its disabled state set to true on mount').toHaveCount(3);
       });
     }); // regression#815
-  }); // </syn-optgroup>
+  }); // End frameworks
+}); // </syn-optgroup>
 
-  test.describe(`${name}: <SynSelect /> ${port}`, () => {
-    test.describe('Regression#813', () => {
+test.describe('<SynSelect />', () => {
+  createTestCases(({ name, port }) => {
+    test.describe(`Regression#813: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via property binding and options added dynamically', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -259,10 +308,12 @@ createTestCases(({ name, port }) => {
         expect(resetDisplayedValue).toEqual('Option 1');
       });
     }); // regression#813
-  }); // </syn-select>
+  }); // End frameworks
+}); // </syn-select>
 
-  test.describe(`${name}: <SynTabGroup /> ${port}`, () => {
-    test.describe('Regression#757', () => {
+test.describe('<SynTabGroup />', () => {
+  createTestCases(({ name, port }) => {
+    test.describe(`Regression#757: ${name}`, () => {
       test('should not trigger the parent tab navigation when activating a subtab', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -290,5 +341,5 @@ createTestCases(({ name, port }) => {
         await expect(tabGroupLink).toHaveJSProperty('active', true);
       });
     }); // regression#757
-  }); // </syn-tabgroup>
-}); // End createTestCases
+  }); // End frameworks
+});

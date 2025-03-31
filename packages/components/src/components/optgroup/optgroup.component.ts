@@ -10,6 +10,23 @@ import type SynOption from '../option/option.component.js';
 import styles from './optgroup.styles.js';
 
 /**
+ * Handle the dataset value of the option when the disabled state changes.
+ * @param option The option to set the value for
+ * @param isDisabled The original disabled, usually from the parent optgroup
+ */
+const handleInitialDisabledForOption = (option: SynOption, isDisabled: boolean) => {
+  if (option.disabled) {
+    option.dataset.originallyDisabled = 'true';
+  } else {
+    delete option.dataset.originallyDisabled;
+  }
+
+  if (isDisabled) {
+    option.disabled = true;
+  }
+};
+
+/**
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
@@ -42,6 +59,14 @@ export default class SynOptgroup extends SynergyElement {
 
   private mutationObserver: MutationObserver;
 
+  private _enableObserver() {
+    this.mutationObserver.observe(this, {
+      attributeFilter: ['disabled'],
+      childList: true,
+      subtree: true,
+    });
+  }
+
   @queryAssignedElements({ selector: 'syn-option' }) assignedOptions: SynOption[];
 
   /**
@@ -57,63 +82,60 @@ export default class SynOptgroup extends SynergyElement {
   connectedCallback() {
     super.connectedCallback();
 
+    /* eslint-disable no-param-reassign */
     this.mutationObserver = new MutationObserver(entries => {
-      /* eslint-disable no-param-reassign */
-
       // Check if the mutation is for this optgroup
-      const hasChangesForOptGroup = entries.some(entry => entry.target === this);
+      const optgroupChanges = entries.filter(entry => entry.target === this);
+      const optionChanges = entries.filter(entry => (entry.target as HTMLElement).matches('syn-option'));
+
+      const stopObserver = optgroupChanges.length > 0 || optionChanges.length > 0;
+
+      if (stopObserver) {
+        this.mutationObserver.disconnect();
+      }
+
+      // If options disabled state are changed dynamically,
+      // we need to store the new "originallyDisabled" state
+      if (optionChanges.length > 0) {
+        optionChanges.forEach(optionMutation => {
+          handleInitialDisabledForOption(optionMutation.target as SynOption, this.disabled);
+        });
+      }
 
       // If the optgroup is disabled, disable all options
       // If the optgroup is enabled, reenable all options that were enabled before
-      if (hasChangesForOptGroup) {
-        this.mutationObserver.disconnect();
-
-        this.assignedOptions.forEach(option => {
-          // Special case for the first render cycle:
-          // If the optgroup is initially disabled,
-          // make sure to store the original disabled state of its children.
-          if (this.disabled && option.disabled && !option.dataset?.originallyDisabled) {
-            option.dataset.originallyDisabled = 'true';
+      if (optgroupChanges.length > 0) {
+        optgroupChanges.forEach(optgroupMutation => {
+          if (optgroupMutation.type === 'attributes') {
+            this.assignedOptions.forEach(option => {
+              option.disabled = this.disabled
+                ? true
+                : !!option.dataset?.originallyDisabled;
+            });
           }
 
-          if (this.disabled) {
-            option.disabled = true;
-          } else {
-            option.disabled = !!option.dataset?.originallyDisabled;
+          if (optgroupMutation.type === 'childList') {
+            optgroupMutation.addedNodes.forEach((node) => {
+              if (node instanceof HTMLElement && node.matches('syn-option')) {
+                handleInitialDisabledForOption(node as SynOption, this.disabled);
+              }
+            });
           }
         });
-
-        // We need to disable the mutation observer to make sure
-        // that we don't get the changed from above in this update cycle.
-        // This makes it possible to use just one mutation observer for all optgroups.
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        this.updateComplete.then(() => {
-          this.mutationObserver.observe(this, {
-            attributeFilter: ['disabled'],
-            subtree: true,
-          });
-        });
-
-        return;
       }
 
-      entries
-        .filter(entry => (entry.target as HTMLElement).matches('syn-option'))
-        .forEach(entry => {
-          const option = entry.target as SynOption;
-          if (option.disabled) {
-            option.dataset.originallyDisabled = 'true';
-          } else {
-            delete option.dataset.originallyDisabled;
-          }
+      // Reenable the mutation observer when it was stopped.
+      // This is needed to make sure that we get future changes again
+      if (stopObserver) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.updateComplete.then(() => {
+          this._enableObserver();
         });
-      /* eslint-enable no-param-reassign */
+      }
     });
+    /* eslint-enable no-param-reassign */
 
-    this.mutationObserver.observe(this, {
-      attributeFilter: ['disabled'],
-      subtree: true,
-    });
+    this._enableObserver();
   }
 
   render() {

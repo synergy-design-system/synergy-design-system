@@ -33,7 +33,11 @@ export default {
     })
   ],
   browsers: [
-    playwrightLauncher({ product: 'chromium' }),
+    
+    // Use concurrency of 1 for webkit. It seems to happen the same problem like with firefox in the CI
+    // @see https://github.com/modernweb-dev/web/issues/2374
+    playwrightLauncher({ product: 'chromium', concurrency: 1 }),
+
     
     // Enable firefox, but use concurrency of 1
     // @see https://github.com/modernweb-dev/web/issues/2374

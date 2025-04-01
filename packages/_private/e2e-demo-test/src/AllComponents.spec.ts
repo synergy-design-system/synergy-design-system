@@ -5,7 +5,7 @@ import {
   createTestCases,
 } from './helpers.js';
 
-test.describe(`<SynAccordion />`, () => {
+test.describe('<SynAccordion />', () => {
   createTestCases(({ name, port }) => {
     test(`${name}: show be visible with three <syn-details>`, async ({ page }) => {
       const AllComponents = new AllComponentsPage(page, port);
@@ -34,7 +34,7 @@ test.describe(`<SynAccordion />`, () => {
   }); // End frameworks
 }); // </syn-accordion>
 
-test.describe(`<SynAlert />`, () => {
+test.describe('<SynAlert />', () => {
   createTestCases(({ name, port }) => {
     test(`${name}: should support 5 different variants`, async ({ page }) => {
       const AllComponents = new AllComponentsPage(page, port);
@@ -174,7 +174,7 @@ test.describe('<SynCombobox />', () => {
         expect(resetDisplayedValue).toEqual('Option 1');
       });
     }); // regression#813
-  }); // End frameworks  
+  }); // End frameworks
 }); // </syn-combobox>
 
 test.describe('<SynOptgroup />', () => {
@@ -186,7 +186,10 @@ test.describe('<SynOptgroup />', () => {
     disabled: boolean = false,
     textContent: string = 'Option',
   ) => {
-    const option = await optgroup.evaluateHandle((el: SynOptgroup, [locatorDisabled, locatorTextContent]) => {
+    const option = await optgroup.evaluateHandle((
+      el: SynOptgroup,
+      [locatorDisabled, locatorTextContent],
+    ) => {
       const newOption = document.createElement('syn-option');
       newOption.value = 'option-1';
       newOption.textContent = locatorTextContent as string;
@@ -207,7 +210,7 @@ test.describe('<SynOptgroup />', () => {
     }, disabled);
   };
 
-  createTestCases(({ name, port }) => { 
+  createTestCases(({ name, port }) => {
     test.describe(`Regression#815: ${name}`, () => {
       test('should reenable <syn-option> elements that where enabled before disabling the <syn-optgroup>', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

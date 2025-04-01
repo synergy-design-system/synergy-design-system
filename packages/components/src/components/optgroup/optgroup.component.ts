@@ -15,6 +15,7 @@ import styles from './optgroup.styles.js';
  * @param isDisabled The original disabled, usually from the parent optgroup
  */
 const handleInitialDisabledForOption = (option: SynOption, isDisabled: boolean) => {
+  /* eslint-disable no-param-reassign */
   if (option.disabled) {
     option.dataset.originallyDisabled = 'true';
   } else {
@@ -24,6 +25,7 @@ const handleInitialDisabledForOption = (option: SynOption, isDisabled: boolean) 
   if (isDisabled) {
     option.disabled = true;
   }
+  /* eslint-enable no-param-reassign */
 };
 
 /**
@@ -59,7 +61,7 @@ export default class SynOptgroup extends SynergyElement {
 
   private mutationObserver: MutationObserver;
 
-  private _enableObserver() {
+  private enableObserver() {
     this.mutationObserver.observe(this, {
       attributeFilter: ['disabled'],
       childList: true,
@@ -83,6 +85,7 @@ export default class SynOptgroup extends SynergyElement {
     super.connectedCallback();
 
     /* eslint-disable no-param-reassign */
+    // eslint-disable-next-line complexity
     this.mutationObserver = new MutationObserver(entries => {
       // Check if the mutation is for this optgroup
       const optgroupChanges = entries.filter(entry => entry.target === this);
@@ -129,13 +132,13 @@ export default class SynOptgroup extends SynergyElement {
       if (stopObserver) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.updateComplete.then(() => {
-          this._enableObserver();
+          this.enableObserver();
         });
       }
     });
     /* eslint-enable no-param-reassign */
 
-    this._enableObserver();
+    this.enableObserver();
   }
 
   render() {

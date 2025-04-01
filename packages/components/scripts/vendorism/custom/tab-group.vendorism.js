@@ -146,6 +146,46 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
+  // #814: Fix problem for angular that new added active tab is not shown correctly
+  content = replaceSections([
+    [
+      "import { eventOptions, property, query, state } from 'lit/decorators.js';",
+      "import { eventOptions, property, query, queryAssignedElements, state } from 'lit/decorators.js';",
+    ],
+    [
+      'private tabs: SynTab[] = []',
+      "@queryAssignedElements({ slot: 'nav', selector: 'syn-tab' }) tabs: SynTab[];",
+    ],
+    [
+      'private panels: SynTabPanel[] = []',
+      "@queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];",
+    ],
+    [
+      'const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));',
+      'const precedingTabs = this.tabs.slice(0, this.tabs.indexOf(currentTab));',
+    ],
+  ], content);
+  // #814: remove all occurrences of getAllTabs and getAllPanels
+  content = removeSections([
+    [
+      'private getAllTabs() {',
+      'private getActiveTab()',
+      { preserveEnd: true, removePrecedingWhitespace: false },
+    ],
+    [
+      'const allTabs = this.getAllTabs()',
+      ';',
+    ],
+    [
+      'this.tabs = this.getAllTabs()',
+      ';',
+    ],
+    [
+      'this.panels = this.getAllPanels()',
+      ';',
+    ],
+  ], content);
+
   return {
     content,
     path,

@@ -36,7 +36,12 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
 
   // Tabgroup
-  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
+  tabGroupAdded: '#tab-content-TabGroup syn-tab:nth-of-type(5)',
+  tabGroupAddedPanel: '#tab-content-TabGroup syn-tab-panel:nth-of-type(5)',
+  tabGroupAddTabButton: '#tab-content-TabGroup syn-button',
+  tabGroupAdvanced: '#tab-content-TabGroup syn-tab:nth-of-type(4)',
+  tabGroupAdvancedPanel: '#tab-content-TabGroup syn-tab-panel:nth-of-type(4)',
+  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(3)',
   tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',
   tabGroupLink: '#tab-TabGroup',
 };

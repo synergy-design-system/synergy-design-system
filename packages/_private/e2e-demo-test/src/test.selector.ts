@@ -18,6 +18,15 @@ const AllComponentSelectors = {
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
+  // Optgroup
+  optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
+  optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',
+  optgroupLink: '#tab-OptGroup',
+  optgroupSecondEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2) syn-option:not([disabled])',
+  optgroupSecondItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2)',
+  optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
+  optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
+
   // Select
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',

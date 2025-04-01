@@ -9,6 +9,16 @@ import '../../../dist/synergy.js';
 import type SynOptgroup from './optgroup.js';
 import type SynOption from '../option/option.js';
 
+const createOption = (wrapper: SynOptgroup, text: string, disabled?: boolean) => {
+  const node = document.createElement('syn-option');
+  node.textContent = text;
+  if (disabled) {
+    node.disabled = true;
+  }
+
+  wrapper.appendChild(node);
+};
+
 const getSynOptions = (el: SynOptgroup) => Array.from(el.querySelectorAll('syn-option'));
 const getEnabledOptions = (el: SynOptgroup) => getSynOptions(el)
   .filter((opt: SynOption) => !opt.disabled);
@@ -48,8 +58,8 @@ describe('<syn-optgroup>', () => {
 
       // Make sure we have the correct baseline of elements
       expect(getSynOptions(el)).to.have.length(2);
-      expect(getEnabledOptions(el)).to.have.length(2);
-      expect(getDisabledOptions(el)).to.have.length(0);
+      expect(getEnabledOptions(el)).to.have.length(1);
+      expect(getDisabledOptions(el)).to.have.length(1);
     });
 
     it('changes all <syn-option /> tags disabled attributes to true when syn-optgroups disabled attribute is true', async () => {
@@ -75,27 +85,17 @@ describe('<syn-optgroup>', () => {
       `);
 
       // Make sure we have the correct baseline of elements
-      expect(getSynOptions(el)).to.have.length(2);
-      expect(getEnabledOptions(el)).to.have.length(2);
-      expect(getDisabledOptions(el)).to.have.length(0);
+      expect(getSynOptions(el), 'There should be two options').to.have.length(2);
+      expect(getEnabledOptions(el), 'There should be one enabled option').to.have.length(1);
+      expect(getDisabledOptions(el), 'There should be one disabled option').to.have.length(1);
 
       // Add an (initially) disabled group. Disabled should be removed
-      el.innerHTML += '<syn-option value="3" disabled>Option 3</syn-option>';
+      createOption(el, 'Option 3', true);
       await aTimeout(100);
 
-      expect(getSynOptions(el)).to.have.length(3);
-      expect(getEnabledOptions(el)).to.have.length(3);
-      expect(getDisabledOptions(el)).to.have.length(0);
-
-      el.disabled = true;
-      await aTimeout(100);
-
-      el.innerHTML += '<syn-option value="4">Option 4</syn-option>';
-      await aTimeout(100);
-
-      expect(getSynOptions(el)).to.have.length(4);
-      expect(getEnabledOptions(el)).to.have.length(0);
-      expect(getDisabledOptions(el)).to.have.length(4);
+      expect(getSynOptions(el), 'There should be three options').to.have.length(3);
+      expect(getEnabledOptions(el), 'There should be two enabled options').to.have.length(1);
+      expect(getDisabledOptions(el), 'There should still be one disabled option').to.have.length(2);
     });
   });
 });

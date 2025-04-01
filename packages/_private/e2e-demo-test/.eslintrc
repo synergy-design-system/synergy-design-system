@@ -12,7 +12,9 @@
   ],
   "rules": {
     "@typescript-eslint/await-thenable": "off",
-    "import/no-relative-packages": "off"
+    "import/no-relative-packages": "off",
+    // Used everywhere in locators
+    "no-param-reassign": "off",
   },
   "parserOptions": {
     "project": "./tsconfig.json"

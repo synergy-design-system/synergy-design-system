@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.26.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.2...components/2.26.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* 🐛 disabling syn-option does not work when nested in syn-optgroup ([#819](https://github.com/synergy-design-system/synergy-design-system/issues/819)) ([507797e](https://github.com/synergy-design-system/synergy-design-system/commit/507797ec54cc9514e11bc32528ea5fd70d93d2b0))
+
 # [@synergy-design-system/components-v2.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.1...components/2.26.2) (2025-03-31)
 
 

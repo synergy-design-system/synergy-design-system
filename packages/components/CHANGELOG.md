@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.26.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.3...components/2.26.4) (2025-04-02)
+
+
+### Bug Fixes
+
+* 🐛 dynamically added active tab in angular does not show any panel content ([#832](https://github.com/synergy-design-system/synergy-design-system/issues/832)) ([bb9c1c0](https://github.com/synergy-design-system/synergy-design-system/commit/bb9c1c00333b38f2db2d1a788aff7e42434ae89d))
+
 # [@synergy-design-system/components-v2.26.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.2...components/2.26.3) (2025-04-01)
 
 

@@ -1,4 +1,6 @@
-import { SynDialog, SynTabShowEvent } from '@synergy-design-system/components';
+import type {
+  SynButton, SynDialog, SynTabGroup, SynTabShowEvent,
+} from '@synergy-design-system/components';
 import type { LitElement } from 'lit';
 
 const getAllComponentsElement = async () => {
@@ -49,5 +51,29 @@ export const allComponentsRegressions = new Map(Object.entries({
   Select: [
     // #813
     () => appendOptions813('syn-select[data-testid="select-level-813"]'),
+  ],
+  TabGroup: [
+    // #814
+    async () => {
+      const allComponents = (await getAllComponentsElement()).shadowRoot;
+      const tabGroup = allComponents?.querySelector('#tab-content-TabGroup syn-tab-group') as SynTabGroup;
+      const addTabButton = allComponents?.querySelector('#tab-content-TabGroup syn-button') as SynButton;
+      addTabButton.addEventListener('click', () => {
+        const tabs = tabGroup?.querySelectorAll('syn-tab');
+        const id = `new-tab-${tabs.length + 1}`;
+
+        const newTab = document.createElement('syn-tab');
+        newTab.slot = 'nav';
+        newTab.panel = id;
+        newTab.active = true;
+        newTab.textContent = `New Tab ${tabs.length + 1}`;
+
+        const newTabPanel = document.createElement('syn-tab-panel');
+        newTabPanel.name = id;
+        newTabPanel.textContent = `This is the new tab panel ${tabs.length + 1}.`;
+        tabGroup.appendChild(newTab);
+        tabGroup.appendChild(newTabPanel);
+      });
+    },
   ],
 }));

@@ -8,7 +8,7 @@
 /* eslint-disable */
 import '../../internal/scrollend-polyfill.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { eventOptions, property, query, state } from 'lit/decorators.js';
+import { eventOptions, property, query, queryAssignedElements, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { scrollIntoView } from '../../internal/scroll.js';
@@ -59,9 +59,9 @@ export default class SynTabGroup extends SynergyElement {
   private activeTab?: SynTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
-  private tabs: SynTab[] = [];
+  @queryAssignedElements({ slot: 'nav', selector: 'syn-tab' }) tabs: SynTab[];;
   private focusableTabs: SynTab[] = [];
-  private panels: SynTabPanel[] = [];
+  @queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];;
   private readonly localize = new LocalizeController(this);
 
   @query('.tab-group') tabGroup: HTMLElement;
@@ -181,16 +181,6 @@ export default class SynTabGroup extends SynergyElement {
     if (this.nav) {
       this.resizeObserver?.unobserve(this.nav);
     }
-  }
-
-  private getAllTabs() {
-    const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
-
-    return slot.assignedElements() as SynTab[];
-  }
-
-  private getAllPanels() {
-    return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'syn-tab-panel') as [SynTabPanel];
   }
 
   private getActiveTab() {
@@ -357,8 +347,7 @@ export default class SynTabGroup extends SynergyElement {
 
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
-    const allTabs = this.getAllTabs();
-    const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
+    const precedingTabs = this.tabs.slice(0, this.tabs.indexOf(currentTab));
     const offset = precedingTabs.reduce(
       (previous, current) => ({
         left: previous.left + current.clientWidth,
@@ -385,10 +374,7 @@ export default class SynTabGroup extends SynergyElement {
 
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs();
     this.focusableTabs = this.tabs.filter(el => !el.disabled);
-
-    this.panels = this.getAllPanels();
     this.syncIndicator();
 
     // After updating, show or hide scroll controls as needed

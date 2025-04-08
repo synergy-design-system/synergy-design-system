@@ -568,7 +568,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Check if the selected option has a value,
     // if not take the text content of the option otherwise the input text
-    const optionValue = this.selectedOption?.value || this.selectedOption?.getTextLabel();
+    const optionValue = String(this.selectedOption?.value) || this.selectedOption?.getTextLabel();
 
     if (option) {
       this.lastOptionValue = optionValue || '';

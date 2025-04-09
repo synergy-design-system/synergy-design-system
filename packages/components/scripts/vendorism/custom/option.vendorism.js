@@ -1,3 +1,4 @@
+import { removeSection } from '../remove-section.js';
 import { addSectionsBefore, replaceSection } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -5,6 +6,28 @@ const FILES_TO_TRANSFORM = [
   'option.styles.ts',
   'option.test.ts',
 ];
+
+/**
+ * Transform the components tests
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformTests = (path, originalContent) => {
+  // #805: Allow numeric value property for syn-option
+  const content = removeSection(
+    originalContent,
+    "it('should convert non-string values to string",
+    `expect(el.value).to.equal('10');
+  });
+`,
+    { additionalNewlines: 1 },
+  );
+  return {
+    content,
+    path,
+  };
+};
 
 /**
  * Transform the component code
@@ -61,6 +84,10 @@ export const vendorOption = (path, content) => {
 
   if (path.endsWith('option.component.ts')) {
     return transformComponent(path, content);
+  }
+
+  if (path.endsWith('option.test.ts')) {
+    return transformTests(path, content);
   }
 
   return output;

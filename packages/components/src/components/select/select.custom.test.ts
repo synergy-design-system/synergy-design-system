@@ -5,6 +5,42 @@ import {
 import type SynSelect from './select.js';
 
 describe('<syn-select>', () => {
+  describe('#805: should allow setting numeric values', () => {
+    describe('when set initially', () => {
+      it('should allow to use numbers as value for syn-select and syn-option', async () => {
+        const el = await fixture<SynSelect>(html`
+          <syn-select .value="${1}">
+            <syn-option .value="${1}">Option 1 (number)</syn-option>
+            <syn-option .value="${'2'}">Option 2 (text)</syn-option>
+          </syn-select>
+        `);
+
+        await el.updateComplete;
+        await expect(el.value).to.equal(1);
+
+        el.value = '2';
+        await el.updateComplete;
+        await expect(el.value).to.equal('2');
+      });
+
+      it('should allow to use numbers as value for syn-select and syn-option when using multiple', async () => {
+        const el = await fixture<SynSelect>(html`
+          <syn-select .value="${[1, '2']}" multiple>
+            <syn-option .value="${1}">Option 1 (number)</syn-option>
+            <syn-option .value="${'2'}">Option 2 (text)</syn-option>
+          </syn-select>
+        `);
+
+        await el.updateComplete;
+        await expect(el.value).to.eql([1, '2']);
+
+        el.value = ['2'];
+        await el.updateComplete;
+        await expect(el.value).to.eql(['2']);
+      });
+    });
+  });
+
   describe('regression tests', () => {
     describe('#780: should not break on invalid values of the "value" prop when "multiple" is set', () => {
       it('should support an empty string', async () => {
@@ -21,7 +57,6 @@ describe('<syn-select>', () => {
 
       it('should support none falsy values', async () => {
         const el = await fixture<SynSelect>('<syn-select multiple></syn-select>');
-        // @ts-expect-error Testing for invalid values
         el.value = 1;
         await expect(el.value).to.eql([1]);
       });

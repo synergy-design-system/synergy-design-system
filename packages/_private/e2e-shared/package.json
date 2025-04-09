@@ -1,0 +1,24 @@
+{
+  "name": "@synergy-design-system/e2e-shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "eslint": "^8.57.1",
+    "stylelint": "^16.17.0",
+    "typescript": "^5.8.3"
+  }
+}

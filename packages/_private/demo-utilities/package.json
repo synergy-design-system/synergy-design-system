@@ -1,5 +1,5 @@
 {
-  "name": "@synergy-design-system/e2e-shared",
+  "name": "@synergy-design-system/demo-utilities",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     }
   },
   "scripts": {
+    "build": "rimraf dist && tsc",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
@@ -18,6 +19,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",
+    "rimraf": "^6.0.1",
     "stylelint": "^16.17.0",
     "typescript": "^5.8.3"
   }

@@ -111,6 +111,27 @@ importers:
         specifier: ~0.15.0
         version: 0.15.0
 
+  packages/_private/demo-utilities:
+    devDependencies:
+      '@synergy-design-system/eslint-config-syn':
+        specifier: workspace:^
+        version: link:../eslint-config-syn
+      '@synergy-design-system/stylelint-config-syn':
+        specifier: workspace:^
+        version: link:../stylelint-config-syn
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+      stylelint:
+        specifier: ^16.17.0
+        version: 16.17.0(typescript@5.8.3)
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
   packages/_private/e2e-demo-test:
     dependencies:
       '@playwright/test':
@@ -138,24 +159,6 @@ importers:
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
-
-  packages/_private/e2e-shared:
-    devDependencies:
-      '@synergy-design-system/eslint-config-syn':
-        specifier: workspace:^
-        version: link:../eslint-config-syn
-      '@synergy-design-system/stylelint-config-syn':
-        specifier: workspace:^
-        version: link:../stylelint-config-syn
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      stylelint:
-        specifier: ^16.17.0
-        version: 16.17.0(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
 
   packages/_private/eslint-config-syn:
     dependencies:
@@ -13288,7 +13291,7 @@ snapshots:
 
   '@typescript-eslint/types@8.28.0': {}
 
-  '@typescript-eslint/typescript-estree@5.62.0(typescript@5.8.2)':
+  '@typescript-eslint/typescript-estree@5.62.0(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
@@ -13296,9 +13299,9 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.7.1
-      tsutils: 3.21.0(typescript@5.8.2)
+      tsutils: 3.21.0(typescript@5.8.3)
     optionalDependencies:
-      typescript: 5.8.2
+      typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
 
@@ -15157,7 +15160,7 @@ snapshots:
       commander: 10.0.1
       filing-cabinet: 4.2.0
       precinct: 11.0.5
-      typescript: 5.8.2
+      typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
 
@@ -15211,10 +15214,10 @@ snapshots:
 
   detective-typescript@11.2.0:
     dependencies:
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.8.2)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.8.3)
       ast-module-types: 5.0.0
       node-source-walk: 6.0.2
-      typescript: 5.8.2
+      typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
 
@@ -16146,7 +16149,7 @@ snapshots:
       sass-lookup: 5.0.1
       stylus-lookup: 5.0.1
       tsconfig-paths: 4.2.0
-      typescript: 5.8.2
+      typescript: 5.8.3
 
   fill-range@7.1.1:
     dependencies:
@@ -20484,10 +20487,10 @@ snapshots:
 
   tsscmp@1.0.6: {}
 
-  tsutils@3.21.0(typescript@5.8.2):
+  tsutils@3.21.0(typescript@5.8.3):
     dependencies:
       tslib: 1.14.1
-      typescript: 5.8.2
+      typescript: 5.8.3
 
   tuf-js@3.0.1:
     dependencies:

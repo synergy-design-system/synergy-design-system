@@ -1,4 +1,4 @@
-import { addSectionsBefore } from '../replace-section.js';
+import { addSectionsBefore, replaceSection } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'option.component.ts',
@@ -13,7 +13,7 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  const content = addSectionsBefore([
+  let content = addSectionsBefore([
     // Add "handleDefaultSlotChange" trigger for syn-combobox
     [
       "customElements.whenDefined('syn-select').then(() => {",
@@ -26,6 +26,22 @@ const transformComponent = (path, originalContent) => {
       { tabsAfterInsertion: 3 },
     ],
   ], originalContent);
+
+  // #805: Allow numeric value property for syn-option
+  content = replaceSection([
+    "value = '';",
+    "value: string | number = '';",
+  ], content);
+
+  content = addSectionsBefore([
+    [
+      '// Ensure the value is a string.',
+      `if (typeof this.value === 'number') {
+      return;
+    }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 2 },
+    ],
+  ], content);
 
   return {
     content,

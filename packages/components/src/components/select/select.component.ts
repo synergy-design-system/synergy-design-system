@@ -540,7 +540,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     allOptions.forEach(option => values.push(option.value));
 
     // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   private handleTagRemove(event: SynRemoveEvent, option: SynOption) {
@@ -720,13 +725,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     const allOptions = this.getAllOptions();
     const value = Array.isArray(this.value) ? this.value : [this.value];
-    const valueString = value.map(String);
 
     // Select only the options that match the new value
+    const valueString = value.map(String);
     const allSelectedOptions = allOptions.filter(
       el => valueString.includes(String(el.value)),
     );
     this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   @watch('open', { waitUntilFirstUpdate: true })

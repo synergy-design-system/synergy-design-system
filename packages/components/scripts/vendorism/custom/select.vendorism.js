@@ -1,5 +1,5 @@
 import { removeSections } from '../remove-section.js';
-import { addSectionsBefore, replaceSections } from '../replace-section.js';
+import { addSectionsAfter, addSectionsBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',
@@ -21,6 +21,64 @@ const transformComponent = (path, originalContent) => {
     ['?pill', 'pill}'],
     ["'select--pill'", ','],
   ], originalContent);
+
+  // #805: Allow numeric value property for syn-select
+  content = replaceSections([
+    [
+      "private _value: string | string[] = '';",
+      "private _value: string | number | Array<string | number> = '';",
+    ],
+    [
+      'set value(val: string | string[]) {',
+      'set value(val: string | number | Array<string | number>) {',
+    ],
+    [
+      "@property({ attribute: 'value' }) defaultValue: string | string[] = '';",
+      "@property({ attribute: 'value' }) defaultValue: string | number | Array<string | number> = '';",
+    ],
+    [
+      'const values: string[] = [];',
+      'const values: Array<string | number> = [];',
+    ],
+    [
+      'this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));',
+      `const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      `,
+    ],
+    [
+      'render() {',
+      `render() {
+    const hasValue = isAllowedValue(this.value);`,
+    ],
+    [
+      'const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;',
+      'const hasClearIcon = this.clearable && !this.disabled && hasValue;',
+    ],
+    [
+      'const isPlaceholderVisible = this.placeholder && this.value && this.value.length <= 0;',
+      'const isPlaceholderVisible = this.placeholder && this.value && !hasValue;',
+    ],
+    [
+      "this.value.join(', ') : this.value",
+      "this.value.join(', ') : this.value.toString()",
+    ],
+    // [
+    //   'this.value.join(', ') : this.value}',
+    //   'this.value.join(', ') : this.value.toString()}',
+    // ],
+  ], content);
+
+  content = addSectionsAfter([
+    [
+      "import type SynOption from '../option/option.component.js';",
+      "import { isAllowedValue } from './utility.js';",
+    ],
+  ], content);
+  // End#805
 
   content = replaceSections([
     [

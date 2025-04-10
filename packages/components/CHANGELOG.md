@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.4...components/2.27.0) (2025-04-10)
+
+
+### Features
+
+* ✨ syn-range should align vertically with other input elements ([#836](https://github.com/synergy-design-system/synergy-design-system/issues/836)) ([680962a](https://github.com/synergy-design-system/synergy-design-system/commit/680962ab95ab95efc36392021480992de8f33352))
+
 # [@synergy-design-system/components-v2.26.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.3...components/2.26.4) (2025-04-02)
 
 

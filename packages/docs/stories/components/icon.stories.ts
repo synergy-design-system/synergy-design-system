@@ -19,6 +19,9 @@ const iconDocumentation = `
 Icons are small standard symbols that are primarily used in screen design.
 Due to their intended use, the icons must be recognizable min size of 16 x 16 pixels.
 
+> 👩‍💻 **Looking for a specific icon?**<br />
+> Use our [icon search](https://synergy-design-system.github.io/?path=/docs/icon-search--docs) to find a matching icon for your need!
+
 ## Package installation
 In order for the \`syn-icon\` component to work, the \`@synergy-design-system/assets\` package has to be installed.
 

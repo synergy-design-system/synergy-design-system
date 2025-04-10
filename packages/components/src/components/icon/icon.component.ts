@@ -58,11 +58,26 @@ export default class SynIcon extends SynergyElement {
       return this.svg;
     }
 
-    try {
-      fileData = await fetch(url, { mode: 'cors' });
-      if (!fileData.ok) return fileData.status === 410 ? CACHEABLE_ERROR : RETRYABLE_ERROR;
-    } catch {
-      return RETRYABLE_ERROR;
+    // #806: Make sure to not fetch system icons
+    // as they are part of the bundle anyways.
+    // This speeds up the loading of the icon.
+    if (this.library === 'system') {
+      // Skip the icon if the URL is empty
+      if (!url) {
+        return CACHEABLE_ERROR;
+      }
+
+      // If the URL is a system icon, we can just return it
+      fileData = new Response(url, {
+        status: 200,
+      });
+    } else {
+      try {
+        fileData = await fetch(url, { mode: 'cors' });
+        if (!fileData.ok) return fileData.status === 410 ? CACHEABLE_ERROR : RETRYABLE_ERROR;
+      } catch {
+        return RETRYABLE_ERROR;
+      }
     }
 
     try {

@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.27.0...components/2.28.0) (2025-04-10)
+
+
+### Features
+
+* ✨ improve delayed loading of system icons ([#837](https://github.com/synergy-design-system/synergy-design-system/issues/837)) ([ab0fab2](https://github.com/synergy-design-system/synergy-design-system/commit/ab0fab2b66402b383c4d974cf16f94b43b8b987b))
+
+# [@synergy-design-system/components-v2.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.4...components/2.27.0) (2025-04-10)
+
+
+### Features
+
+* ✨ syn-range should align vertically with other input elements ([#836](https://github.com/synergy-design-system/synergy-design-system/issues/836)) ([680962a](https://github.com/synergy-design-system/synergy-design-system/commit/680962ab95ab95efc36392021480992de8f33352))
+
 # [@synergy-design-system/components-v2.26.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.3...components/2.26.4) (2025-04-02)
 
 

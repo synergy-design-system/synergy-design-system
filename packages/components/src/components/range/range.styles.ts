@@ -16,6 +16,13 @@ export default css`
 
     /* This is needed to get the full with of the element, including the border */
     --full-thumb-size: calc(var(--thumb-size) + (var(--syn-focus-ring-width) * 2));
+
+    /*
+     * There are multiple places where we need the half width of the thumb
+     * This is needed for example to position the knob on the track or
+     * provide the spacing to the left and right for the track to make it stand "over"
+     */
+    --half-thumb-size: calc(var(--full-thumb-size) / 2);
   }
 
   /* Sizes */
@@ -46,7 +53,8 @@ export default css`
     justify-content: start;
     letter-spacing: var(--syn-input-letter-spacing);
     position: relative;
-    touch-action: none; /* Prevent misbehaviour in mobile by disabling native touch */
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+    touch-action: none; /* Prevent misbehavior in mobile by disabling native touch */
     -webkit-touch-callout: none;
     transition: var(--syn-transition-fast) color, var(--syn-transition-fast) border, var(--syn-transition-fast) box-shadow, var(--syn-transition-fast) background-color;
     /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -57,6 +65,7 @@ export default css`
 
   .input__wrapper {
     flex: 1 0 auto;
+    margin: 0 var(--half-thumb-size);
     position: relative;
   }
 
@@ -124,7 +133,7 @@ export default css`
 
   /* Internal helper for a better click surface on tracks */
   .track__click-helper {
-    inset: calc(var(--track-hit-area-size) * -1) calc(var(--full-thumb-size) / 2 * -1);
+    inset: calc(var(--track-hit-area-size) * -1) calc(var(--half-thumb-size) * -1);
     position: absolute;
   }
 
@@ -132,13 +141,14 @@ export default css`
     background-color: var(--track-color-inactive);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
-    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) 0;
+    margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--half-thumb-size) * -1);
   }
 
   .active-track {
     background-color: var(--track-color-active);
     border-radius: var(--syn-border-radius-small);
     height: var(--track-height);
+    margin: 0 calc(var(--half-thumb-size) * -1);
     position: absolute;
     top: 0;
     z-index: 2;
@@ -177,11 +187,13 @@ export default css`
   }
 
   .thumb:hover {
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     cursor: grab;
   }
 
   .thumb.grabbed {
     background: var(--syn-color-primary-950);
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     cursor: grabbing;
   }
 

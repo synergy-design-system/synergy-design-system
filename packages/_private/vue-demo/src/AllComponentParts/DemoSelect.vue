@@ -1,15 +1,13 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import { SynVueButton, SynVueSelect, SynVueOption } from '@synergy-design-system/vue';
-import { ref } from 'vue';
-const levels = ref<Array<{ value: string, label: string }>>([]);
+import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
+const levels = ref<SelectItem[]>([]);
 
-setTimeout(() => {
-  levels.value = [
-    { label: 'Novice', value: '1' },
-    { label: 'Intermediate', value: '2' },
-    { label: 'Advanced', value: '3' },
-  ];
-}, 0);
+onMounted(async () => {
+  const items = await mockAsyncData('selectItems');
+  levels.value = items;
+});
 </script>
 
 <template>

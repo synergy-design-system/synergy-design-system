@@ -1,7 +1,11 @@
-import type {
-  SynButton, SynDialog, SynTabGroup, SynTabShowEvent,
-} from '@synergy-design-system/components';
 import type { LitElement } from 'lit';
+import type {
+  SynButton,
+  SynDialog,
+  SynTabGroup,
+  SynTabShowEvent,
+} from '@synergy-design-system/components';
+import { mockAsyncData } from '@synergy-design-system/demo-utilities';
 
 const getAllComponentsElement = async () => {
   const allComponents = document.querySelector('demo-all-components') as LitElement;
@@ -14,20 +18,14 @@ const appendOptions813 = async (querySelector: string) => {
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
 
-  setTimeout(() => {
-    const option1 = document.createElement('syn-option');
-    option1.value = '1';
-    option1.textContent = 'Novice';
-    const option2 = document.createElement('syn-option');
-    option2.value = '2';
-    option2.textContent = 'Intermediate';
-    const option3 = document.createElement('syn-option');
-    option3.value = '3';
-    option3.textContent = 'Advanced';
-    element.appendChild(option1);
-    element.appendChild(option2);
-    element.appendChild(option3);
-  }, 0);
+  const items = await mockAsyncData('selectItems');
+  items
+    .forEach(item => {
+      const option = document.createElement('syn-option');
+      option.value = item.value;
+      option.textContent = item.label;
+      element.appendChild(option);
+    });
 };
 
 export const allComponentsRegressions = new Map(Object.entries({

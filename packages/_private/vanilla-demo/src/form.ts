@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
 import type { SynChangeEvent, SynCombobox, SynRange } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
-
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+import { mockData } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
   const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
   nationalitiesEl.getOption = highlightOptionRenderer;
-  nationalities.forEach((nationality) => {
+  mockData('nationalities').forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;
     nationalitiesEl.appendChild(option);

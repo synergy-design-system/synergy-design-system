@@ -80,6 +80,9 @@ importers:
       '@angular/compiler-cli':
         specifier: ^19.2.4
         version: 19.2.4(@angular/compiler@19.2.4)(typescript@5.8.2)
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@types/jasmine':
         specifier: ~5.1.7
         version: 5.1.7
@@ -206,6 +209,9 @@ importers:
         specifier: workspace:*
         version: link:../../tokens
     devDependencies:
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../eslint-config-syn
@@ -325,6 +331,9 @@ importers:
       '@synergy-design-system/assets':
         specifier: workspace:^
         version: link:../../assets
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn
@@ -380,6 +389,9 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.11.0
         version: 1.11.0
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@tsconfig/node18':
         specifier: ^18.2.4
         version: 18.2.4

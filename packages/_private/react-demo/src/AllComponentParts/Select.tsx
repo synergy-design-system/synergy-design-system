@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
 
 export const Select = () => {
-  const [levels, setLevels] = useState<Array<{ value: string, label: string }>>([]);
+  const [levels, setLevels] = useState<SelectItem[]>([]);
   useEffect(() => {
-    setTimeout(() => {
-      setLevels([
-        { label: 'Novice', value: '1' },
-        { label: 'Intermediate', value: '2' },
-        { label: 'Advanced', value: '3' },
-      ]);
-    }, 0);
+    const fetchLevels = async () => {
+      const items = await mockAsyncData('selectItems');
+      setLevels(items);
+    };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fetchLevels();
   }, []);
   return (
     <>

@@ -1,6 +1,7 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { serialize } from '@synergy-design-system/components/utilities/form.js';
 import { highlightOptionRenderer } from '@synergy-design-system/components/components/combobox/option-renderer.js';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -44,7 +45,7 @@ export class DemoFormValidate {
 
   formData!: FormGroup;
 
-  nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+  nationalities = mockData('nationalities');
 
   highlightOptionRenderer = highlightOptionRenderer;
 

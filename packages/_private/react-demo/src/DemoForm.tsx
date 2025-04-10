@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import type {
   SynChangeEvent,
   SynCheckbox,
@@ -36,8 +37,6 @@ const initialFormData = {
   role: '',
   topics: [],
 };
-
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
 
 const formatter = new Intl.NumberFormat('de-DE', {
   currency: 'EUR',
@@ -192,7 +191,7 @@ export const DemoForm = () => {
           placeholder='Please choose your nationality'
           getOption={highlightOptionRenderer}
         >
-          {nationalities.map(n => (
+          {mockData('nationalities').map(n => (
             <syn-option key={n}>
               {n}
             </syn-option>

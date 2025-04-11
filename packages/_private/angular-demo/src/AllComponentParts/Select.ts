@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
-import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-select',
@@ -28,10 +28,36 @@ import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-util
       </syn-select>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <div>
+      <syn-select
+        data-testid="select-805-single-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Select)"
+        [value]=1
+      >
+        @for (item of numericItems; track $index; let index = $index) {
+          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+        }
+      </syn-select>
+
+      <syn-select
+        data-testid="select-805-multi-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Select)"
+        multiple
+        [value]="[1, 'three']"
+      >
+        @for (item of numericItems; track $index; let index = $index) {
+          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+        }
+      </syn-select>
+    </div>
   `
 })
 export class Select implements OnInit {
   levels: SelectItem[] = [];
+  numericItems = mockData('selectItemsMixedId');
 
   ngOnInit(): void {
     mockAsyncData('selectItems').then((items) => {

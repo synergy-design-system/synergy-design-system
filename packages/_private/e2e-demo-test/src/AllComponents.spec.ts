@@ -268,6 +268,36 @@ test.describe('<SynOptgroup />', () => {
 
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
+    test.describe(`Feature#805: ${name}`, () => {
+      test.describe('Single Select', () => {
+        test('should have an initial value of numeric 1', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('selectLink');
+          await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+          const select = await AllComponents.getLocator('selectMixedIdSingleSelect');
+
+          const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+          expect(initialValue).toEqual(1);
+        }); // end initial value check
+      }); // end single select
+
+      test.describe('multi select', () => {
+        test('should have an initial value of numeric 1', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('selectLink');
+          await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+          const select = await AllComponents.getLocator('selectMixedIdMultiSelect');
+
+          const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+          expect(initialValue).toEqual([1, 'three']);
+        }); // end initial value check
+      }); // end single select
+    }); // feature#805
+
     test.describe(`Regression#813: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via property binding and options added dynamically', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

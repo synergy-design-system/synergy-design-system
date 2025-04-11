@@ -5,12 +5,25 @@ import type {
   SynTabGroup,
   SynTabShowEvent,
 } from '@synergy-design-system/components';
-import { mockAsyncData } from '@synergy-design-system/demo-utilities';
+import { mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const getAllComponentsElement = async () => {
   const allComponents = document.querySelector('demo-all-components') as LitElement;
   await allComponents.updateComplete;
   return allComponents;
+};
+
+const appendOptions805 = async (querySelector: string) => {
+  const allComponents = await getAllComponentsElement();
+  const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
+
+  const items = mockData('selectItemsMixedId');
+  items.forEach(item => {
+    const option = document.createElement('syn-option');
+    option.value = item.id;
+    option.textContent = item.label;
+    element.appendChild(option);
+  });
 };
 
 const appendOptions813 = async (querySelector: string) => {
@@ -19,13 +32,12 @@ const appendOptions813 = async (querySelector: string) => {
   const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
 
   const items = await mockAsyncData('selectItems');
-  items
-    .forEach(item => {
-      const option = document.createElement('syn-option');
-      option.value = item.value;
-      option.textContent = item.label;
-      element.appendChild(option);
-    });
+  items.forEach(item => {
+    const option = document.createElement('syn-option');
+    option.value = item.value;
+    option.textContent = item.label;
+    element.appendChild(option);
+  });
 };
 
 export const allComponentsRegressions = new Map(Object.entries({
@@ -47,6 +59,8 @@ export const allComponentsRegressions = new Map(Object.entries({
     },
   ],
   Select: [
+    () => appendOptions805('syn-select[data-testid="select-805-single-select"]'),
+    () => appendOptions805('syn-select[data-testid="select-805-multi-select"]'),
     // #813
     () => appendOptions813('syn-select[data-testid="select-level-813"]'),
   ],

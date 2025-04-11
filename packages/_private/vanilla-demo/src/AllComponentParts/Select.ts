@@ -21,5 +21,22 @@ export const Select = (regressions: Array<() => void> = []) => {
       </syn-select>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <div>
+      <syn-select
+        data-testid="select-805-single-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Select)"
+        .value=${Number(1)}
+      ></syn-select>
+
+      <syn-select
+        data-testid="select-805-multi-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Select)"
+        multiple
+        .value=${[1, 'three']}
+      ></syn-select>
+    </div>
   `;
 };

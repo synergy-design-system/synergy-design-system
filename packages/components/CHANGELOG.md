@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.29.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.28.0...components/2.29.0) (2025-04-11)
+
+
+### Features
+
+* ✨ syn-select should allow numeric types as value ([#842](https://github.com/synergy-design-system/synergy-design-system/issues/842)) ([29156b2](https://github.com/synergy-design-system/synergy-design-system/commit/29156b239a1192ae6bbf0c805543a9e5b286658e))
+
 # [@synergy-design-system/components-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.27.0...components/2.28.0) (2025-04-10)
 
 

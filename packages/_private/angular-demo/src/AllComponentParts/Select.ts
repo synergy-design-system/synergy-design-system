@@ -15,8 +15,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
   template: `
     <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
       @for (level of levels; track $index; let index = $index) {
-        <syn-option [value]="level.value"> {{level.label}}</syn-option
-        >
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
       }
     </syn-select>
 
@@ -53,6 +52,19 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
         }
       </syn-select>
     </div>
+
+    <syn-select
+      data-testid="select-540-delimeter"
+      delimeter="|"
+      help-text="This select uses a custom delimeter"
+      label="Multiple with custom delimeter"
+      multiple
+      value="1|2"
+    >
+      @for (level of levels; track $index; let index = $index) {
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
+      }
+    </syn-select>
   `
 })
 export class Select implements OnInit {

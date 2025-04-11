@@ -268,6 +268,37 @@ test.describe('<SynOptgroup />', () => {
 
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
+    test.describe(`Feature#540: ${name}`, () => {
+      test('should select the given elements when the delimeter is set', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('selectWithDelimeter');
+        const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+        const initialDelimeter = await select.evaluate((ele: SynSelect) => ele.delimeter);
+
+        // Note when providing a delimeter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(initialValue).toEqual(['1', '2']);
+        expect(initialDelimeter).toEqual('|');
+
+        // Check that a change in the delimeter is reflected in the value
+        await select.evaluate(async (ele: SynSelect) => {
+          ele.delimeter = ' ';
+          ele.value = '2 3';
+          await ele.updateComplete;
+        });
+
+        const newValue = await select.evaluate((ele: SynSelect) => ele.value);
+
+        // Note when providing a delimeter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(newValue).toEqual(['2', '3']);
+      }); // end delimeter check
+    }); // feature#540
+
     test.describe(`Feature#805: ${name}`, () => {
       test.describe('Single Select', () => {
         test('should have an initial value of numeric 1', async ({ page }) => {

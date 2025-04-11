@@ -38,5 +38,14 @@ export const Select = (regressions: Array<() => void> = []) => {
         .value=${[1, 'three']}
       ></syn-select>
     </div>
+
+    <syn-select
+      data-testid="select-540-delimeter"
+      delimeter="|"
+      help-text="This select uses a custom delimeter"
+      label="Multiple with custom delimeter"
+      multiple
+      value="1|2"
+    ></syn-select>
   `;
 };

@@ -59,6 +59,8 @@ export const allComponentsRegressions = new Map(Object.entries({
     },
   ],
   Select: [
+    // #540
+    () => appendOptions813('syn-select[data-testid="select-540-delimeter"]'),
     () => appendOptions805('syn-select[data-testid="select-805-single-select"]'),
     () => appendOptions805('syn-select[data-testid="select-805-multi-select"]'),
     // #813

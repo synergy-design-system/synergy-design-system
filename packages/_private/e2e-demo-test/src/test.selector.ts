@@ -36,6 +36,7 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
   selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
   selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
+  selectWithDelimeter: '#tab-content-Select syn-select[data-testid="select-540-delimeter"]',
 
   // Tabgroup
   tabGroupAdded: '#tab-content-TabGroup syn-tab:nth-of-type(5)',

@@ -46,4 +46,16 @@ onMounted(async () => {
       <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
     </SynVueSelect>
   </div>
+
+  <syn-select
+    data-testid="select-540-delimeter"
+    delimeter="|"
+    help-text="This select uses a custom delimeter"
+    label="Multiple with custom delimeter"
+    multiple
+    value="1|2"
+  >
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </syn-select>
+
 </template>

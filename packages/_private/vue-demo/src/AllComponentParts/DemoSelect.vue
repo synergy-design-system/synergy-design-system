@@ -1,21 +1,22 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import { SynVueButton, SynVueSelect, SynVueOption } from '@synergy-design-system/vue';
-import { ref } from 'vue';
-const levels = ref<Array<{ value: string, label: string }>>([]);
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
-setTimeout(() => {
-  levels.value = [
-    { label: 'Novice', value: '1' },
-    { label: 'Intermediate', value: '2' },
-    { label: 'Advanced', value: '3' },
-  ];
-}, 0);
+const levels = ref<SelectItem[]>([]);
+const numericItems = mockData('selectItemsMixedId');
+
+onMounted(async () => {
+  const items = await mockAsyncData('selectItems');
+  levels.value = items;
+});
 </script>
 
 <template>
   <SynVueSelect :value="'2'" data-testid="select-level-813">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueSelect>
+  
   <form>
     <SynVueSelect value="option-1" data-testid="select-form-813">
       <SynVueOption value="option-1">Option 1</SynVueOption>
@@ -24,4 +25,25 @@ setTimeout(() => {
     </SynVueSelect>
     <SynVueButton type="reset">reset</SynVueButton>
   </form>
+
+  <div>
+    <SynVueSelect
+      data-testid="select-805-single-select"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (Single Select)"
+      :value=1
+    >
+      <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
+    </SynVueSelect>
+
+    <SynVueSelect
+      data-testid="select-805-multi-select"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (multi Select)"
+      multiple
+      :value="[1, 'three']"
+    >
+      <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
+    </SynVueSelect>
+  </div>
 </template>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 export const TabGroup = () => {
   const initialItems = [
@@ -18,22 +18,19 @@ export const TabGroup = () => {
   const [items, setItems] = useState(initialItems);
 
   const createNewActiveTab = () => {
-    setItems((prevItems) => [
-      ...prevItems,
-      {
-        description: `This is the new tab panel ${prevItems.length + 1}.`,
-        disabled: false,
-        id: `new-tab-${prevItems.length + 1}`,
-        name: `New Tab ${prevItems.length + 1}`,
-      },
-    ]);
+    setItems((prevItems) => [...prevItems, {
+      description: `This is the new tab panel ${prevItems.length + 1}.`,
+      disabled: false,
+      id: `new-tab-${prevItems.length + 1}`,
+      name: `New Tab ${prevItems.length + 1}`,
+    }]);
   };
   return (
     <>
       <syn-tab-group contained>
         {items.map((item, index) => (
-          <>
-            <syn-tab-panel key={item.id} name={item.id}>
+          <Fragment key={item.id}>
+            <syn-tab-panel name={item.id}>
               {item.description}
             </syn-tab-panel>
             <syn-tab
@@ -44,7 +41,7 @@ export const TabGroup = () => {
             >
               {item.name}
             </syn-tab>
-          </>
+          </Fragment>
         ))}
       </syn-tab-group>
       <syn-button onClick={createNewActiveTab}>Add Tab</syn-button>

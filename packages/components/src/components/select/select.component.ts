@@ -31,6 +31,7 @@ import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
+import { isAllowedValue } from './utility.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -114,7 +115,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  private _value: string | string[] = '';
+  private _value: string | number | Array<string | number> = '';
 
   get value() {
     return this._value;
@@ -126,7 +127,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
    * be an array. **For this reason, values must not contain spaces.**
    */
   @state()
-  set value(val: string | string[]) {
+  set value(val: string | number | Array<string | number>) {
     if (this.multiple) {
       if (!Array.isArray(val)) {
         val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
@@ -144,7 +145,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value' }) defaultValue: string | string[] = '';
+  @property({ attribute: 'value' }) defaultValue: string | number | Array<string | number> = '';
 
   /** The select's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -533,13 +534,18 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const allOptions = this.getAllOptions();
     const val = this.valueHasChanged ? this.value : this.defaultValue;
     const value = Array.isArray(val) ? val : [val];
-    const values: string[] = [];
+    const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items
     allOptions.forEach(option => values.push(option.value));
 
     // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   private handleTagRemove(event: SynRemoveEvent, option: SynOption) {
@@ -721,7 +727,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const value = Array.isArray(this.value) ? this.value : [this.value];
 
     // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -821,12 +832,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   render() {
+    const hasValue = isAllowedValue(this.value);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
-    const isPlaceholderVisible = this.placeholder && this.value && this.value.length <= 0;
+    const hasClearIcon = this.clearable && !this.disabled && hasValue;
+    const isPlaceholderVisible = this.placeholder && this.value && !hasValue;
 
     return html`
       <div
@@ -913,7 +925,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
-                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value}
+                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value.toString()}
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}

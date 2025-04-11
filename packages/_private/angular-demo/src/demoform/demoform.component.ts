@@ -1,5 +1,6 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -38,7 +39,7 @@ export class DemoForm {
 
   formData!: FormGroup;
 
-  nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+  nationalities = mockData('nationalities');
 
   highlightOptionRenderer = highlightOptionRenderer;
 

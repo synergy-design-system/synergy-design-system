@@ -56,7 +56,7 @@ export default class SynOption extends SynergyElement {
    * from other options in the same group. Values may not contain spaces, as spaces are used as delimiters when listing
    * multiple values.
    */
-  @property({ reflect: true }) value = '';
+  @property({ reflect: true }) value: string | number = '';
 
   /** Draws the option in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -107,6 +107,10 @@ export default class SynOption extends SynergyElement {
 
   @watch('value')
   handleValueChange() {
+    if (typeof this.value === 'number') {
+      return;
+    }
+
     // Ensure the value is a string. This ensures the next line doesn't error and allows framework users to pass numbers
     // instead of requiring them to cast the value to a string.
     if (typeof this.value !== 'string') {

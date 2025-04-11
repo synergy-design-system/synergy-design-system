@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@synergy-design-system/assets": "workspace:^",
+    "@synergy-design-system/demo-utilities": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^8.57.1",

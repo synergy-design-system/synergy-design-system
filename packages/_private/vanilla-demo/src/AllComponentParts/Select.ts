@@ -1,13 +1,17 @@
 import { html } from 'lit';
 
-export const Select = (regressions: Array< () => void> = []) => {
+export const Select = (regressions: Array<() => void> = []) => {
   regressions.forEach((regression) => {
     regression();
   });
 
   return html`
-   <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." .value=${'2'}>
-    </syn-select>
+    <syn-select
+      data-testid="select-level-813"
+      help-text="Please tell us your skill level."
+      label="Experience"
+      .value=${'2'}
+    ></syn-select>
 
     <form>
       <syn-select data-testid="select-form-813" .value=${'option-1'}>
@@ -17,5 +21,22 @@ export const Select = (regressions: Array< () => void> = []) => {
       </syn-select>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <div>
+      <syn-select
+        data-testid="select-805-single-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Select)"
+        .value=${Number(1)}
+      ></syn-select>
+
+      <syn-select
+        data-testid="select-805-multi-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Select)"
+        multiple
+        .value=${[1, 'three']}
+      ></syn-select>
+    </div>
   `;
 };

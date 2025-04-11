@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-select',
@@ -9,7 +10,7 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
   imports: [
     SynSelectComponent,
     SynOptionComponent,
-    SynButtonComponent
+    SynButtonComponent,
   ],
   template: `
     <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." [value]="'2'">
@@ -27,18 +28,40 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
       </syn-select>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <div>
+      <syn-select
+        data-testid="select-805-single-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Select)"
+        [value]=1
+      >
+        @for (item of numericItems; track $index; let index = $index) {
+          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+        }
+      </syn-select>
+
+      <syn-select
+        data-testid="select-805-multi-select"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Select)"
+        multiple
+        [value]="[1, 'three']"
+      >
+        @for (item of numericItems; track $index; let index = $index) {
+          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+        }
+      </syn-select>
+    </div>
   `
 })
 export class Select implements OnInit {
-  levels!: Array<{value: string, label: string }>
+  levels: SelectItem[] = [];
+  numericItems = mockData('selectItemsMixedId');
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.levels = [
-          { value: '1', label: 'Novice' },
-          { value: '2', label: 'Intermediate' },
-          { value: '3', label: 'Advanced' },
-        ];
-    }, 0);
+    mockAsyncData('selectItems').then((items) => {
+      this.levels = items;
+    });
   }
 }

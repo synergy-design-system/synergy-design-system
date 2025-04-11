@@ -34,6 +34,8 @@ const AllComponentSelectors = {
   selectFormReset: '#tab-content-Select form syn-button',
   selectLevel: '#tab-content-Select syn-select[data-testid="select-level-813"]',
   selectLink: '#tab-Select',
+  selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
+  selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
 
   // Tabgroup
   tabGroupAdded: '#tab-content-TabGroup syn-tab:nth-of-type(5)',

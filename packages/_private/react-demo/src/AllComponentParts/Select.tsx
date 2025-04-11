@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+
+const numericItems = mockData('selectItemsMixedId');
 
 export const Select = () => {
-  const [levels, setLevels] = useState<Array<{ value: string, label: string }>>([]);
+  const [levels, setLevels] = useState<SelectItem[]>([]);
   useEffect(() => {
-    setTimeout(() => {
-      setLevels([
-        { label: 'Novice', value: '1' },
-        { label: 'Intermediate', value: '2' },
-        { label: 'Advanced', value: '3' },
-      ]);
-    }, 0);
+    const fetchLevels = async () => {
+      const items = await mockAsyncData('selectItems');
+      setLevels(items);
+    };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fetchLevels();
   }, []);
   return (
     <>
@@ -29,6 +31,35 @@ export const Select = () => {
         </syn-select>
         <syn-button type="reset">Reset</syn-button>
       </form>
+
+      <div>
+        <syn-select
+          data-testid="select-805-single-select"
+          help-text="Please tell us your skill level."
+          label="Mixed integer and string values (Single Select)"
+          value={1}
+        >
+          {numericItems.map((item) => (
+            <syn-option key={item.id} value={item.id} disabled={item.disabled}>
+              {item.label}
+            </syn-option>
+          ))}
+        </syn-select>
+
+        <syn-select
+          data-testid="select-805-multi-select"
+          help-text="Please tell us your skill level."
+          label="Mixed integer and string values (multi Select)"
+          multiple
+          value={[1, 'three']}
+        >
+          {numericItems.map((item) => (
+            <syn-option key={item.id} value={item.id} disabled={item.disabled}>
+              {item.label}
+            </syn-option>
+          ))}
+        </syn-select>
+      </div>
     </>
   );
 };

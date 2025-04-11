@@ -47,6 +47,10 @@ export default class SynOption extends SynergyElement {
 
   @query('.option__label') defaultSlot: HTMLSlotElement;
 
+  // the delimiter used to separate multiple values in a select
+  // This is provided by the wrapping syn-select
+  @state() delimeter = ' ';
+
   @state() current = false; // the user has keyed into the option, but hasn't selected it yet (shows a highlight)
   @state() selected = false; // the option is selected and has aria-selected="true"
   @state() hasHover = false; // we need this because Safari doesn't honor :hover styles while dragging
@@ -117,9 +121,12 @@ export default class SynOption extends SynergyElement {
       this.value = String(this.value);
     }
 
-    if (this.value.includes(' ')) {
-      console.error(`Option values cannot include a space. All spaces have been replaced with underscores.`, this);
-      this.value = this.value.replace(/ /g, '_');
+    const { delimeter } = this;
+
+    if (this.value.includes(delimeter)) {
+      console.error(`Option values cannot include "${delimeter}". All occurrences of "${delimeter}" have been replaced with "_".`, this);
+      const regex = new RegExp(delimeter, 'g');
+      this.value = this.value.replace(regex, '_');
     }
   }
 

@@ -112,6 +112,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @state() selectedOptions: SynOption[] = [];
   @state() private valueHasChanged: boolean = false;
 
+  /**
+   * The delimiter to use when setting the value when `multiple` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimeter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimeter = ' ';
+
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
 
@@ -130,10 +137,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   set value(val: string | number | Array<string | number>) {
     if (this.multiple) {
       if (!Array.isArray(val)) {
-        val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
+        val = typeof val === 'string' ? val.split(this.delimeter) : [val].filter(Boolean);
       }
     } else {
-      val = Array.isArray(val) ? val.join(' ') : val;
+      val = Array.isArray(val) ? val.join(this.delimeter) : val;
     }
 
     if (this._value === val) {
@@ -674,6 +681,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private handleInvalid(event: Event) {
     this.formControlController.setValidity(false);
     this.formControlController.emitInvalidEvent(event);
+  }
+
+  @watch('delimeter')
+  handleDelimeterChange() {
+    this.getAllOptions().forEach(option => {
+      option.delimeter = this.delimeter;
+    });
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })

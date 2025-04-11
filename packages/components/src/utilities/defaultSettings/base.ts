@@ -94,6 +94,9 @@ export type ExtractSettingsForElement<C extends SynergyElement> = {
  * Default settings map for all component values that have defaults set
  */
 export type SynDefaultSettings = {
+  delimeter: {
+    SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimeter">;
+  };
   size: {
     SynAccordion?: AllowedValueForDefaultSetting<SynAccordion, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
@@ -126,6 +129,9 @@ export type SynDefaultSettings = {
  * Default settings for all components
  */
 export const defaultSettings: SynDefaultSettings = {
+  delimeter: {
+    SynSelect: " ",
+  },
   size: {
     SynAccordion: "medium",
     SynButton: "medium",
@@ -156,6 +162,9 @@ export const defaultSettings: SynDefaultSettings = {
  * Initial default settings for all components
  */
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
+  delimeter: {
+    SynSelect: " ",
+  },
   size: {
     SynAccordion: "medium",
     SynButton: "medium",

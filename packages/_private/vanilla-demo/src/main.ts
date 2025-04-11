@@ -7,6 +7,7 @@ import {
   enableExperimentalSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
+import { capitalize } from '@synergy-design-system/demo-utilities';
 
 // Load webfonts
 import '@fontsource/open-sans/400.css';
@@ -26,7 +27,6 @@ import { createLayout } from './layout.js';
 import { initRouting } from './routing.js';
 import {
   type AvailableSizes,
-  capitalize,
   setGlobalSize,
 } from './utils.js';
 

@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { createBrowserHistory } from 'history';
 import type { SynNavItem } from '@synergy-design-system/components';
-import { noop } from './utils.js';
+import { noop } from '@synergy-design-system/demo-utilities'
 import {
   afterRenderDefaultForm,
   afterRenderValidateForm,

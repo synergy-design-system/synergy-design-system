@@ -1,5 +1,11 @@
 import { removeSections } from '../remove-section.js';
-import { addSectionsAfter, addSectionsBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionAfter,
+  addSectionBefore,
+  addSectionsAfter,
+  addSectionsBefore,
+  replaceSections,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',
@@ -120,6 +126,46 @@ const transformComponent = (path, originalContent) => {
        { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
     ],
   ], content);
+
+  // #540: Support a custom delimiter
+  content = addSectionAfter(
+    content,
+    'valueHasChanged: boolean = false;',
+    `
+  /**
+   * The delimiter to use when setting the value when \`multiple\` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimiter = ' ';
+    `,
+  );
+
+  content = replaceSections([
+    [
+      "val.split(' ')",
+      'val.split(this.delimiter)',
+    ],
+    [
+      "val.join(' ')",
+      'val.join(this.delimiter)',
+    ],
+  ], content);
+
+  content = addSectionBefore(
+    content,
+    "@watch('disabled'",
+    `@watch('delimiter')
+  handleDelimiterChange() {
+    this.getAllOptions().forEach(option => {
+      option.delimiter = this.delimiter;
+    });
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
 
   return {
     content,

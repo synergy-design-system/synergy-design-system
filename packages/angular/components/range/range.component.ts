@@ -216,11 +216,11 @@ export class SynRangeComponent {
 The default is a space, but you can set it to a comma or other character.
  */
   @Input()
-  set delimeter(v: SynRange['delimeter']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimeter = v));
+  set delimiter(v: SynRange['delimiter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
   }
-  get delimeter(): SynRange['delimeter'] {
-    return this.nativeElement.delimeter;
+  get delimiter(): SynRange['delimiter'] {
+    return this.nativeElement.delimiter;
   }
 
   /**

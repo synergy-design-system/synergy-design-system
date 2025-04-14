@@ -128,11 +128,11 @@ export class SynSelectComponent {
 The default is a space, but you can set it to a comma or other character.
  */
   @Input()
-  set delimeter(v: SynSelect['delimeter']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimeter = v));
+  set delimiter(v: SynSelect['delimiter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
   }
-  get delimeter(): SynSelect['delimeter'] {
-    return this.nativeElement.delimeter;
+  get delimiter(): SynSelect['delimiter'] {
+    return this.nativeElement.delimiter;
   }
 
   /**

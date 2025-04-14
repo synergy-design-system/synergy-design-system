@@ -12,7 +12,7 @@ import {
  * List of attributes we want to allow an override for
  */
 export const ALLOWED_ATTRIBUTES = [
-  'delimeter',
+  'delimiter',
   'size',
   'variant',
 ];

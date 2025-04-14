@@ -117,20 +117,20 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
    * The default is a space, but you can set it to a comma or other character.
-   * @example <syn-select delimeter="|" value="option-1|option-2"></syn-select>
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
    */
-  @property() delimeter = ' ';
+  @property() delimiter = ' ';
 
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
   set value(value: string | null) {
     this.#value = value
-      ? value.split(this.delimeter).map(Number).sort(numericSort)
+      ? value.split(this.delimiter).map(Number).sort(numericSort)
       : [];
   }
 
   get value() {
-    return this.#value.slice().sort(numericSort).join(this.delimeter);
+    return this.#value.slice().sort(numericSort).join(this.delimiter);
   }
 
   /**
@@ -144,7 +144,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const oldValue = this.#value;
     this.#value = Array.isArray(value) ? value.slice().sort(numericSort) : value || [];
     if (arraysDiffer(oldValue, this.#value)) {
-      this.requestUpdate('value', oldValue.join(this.delimeter));
+      this.requestUpdate('value', oldValue.join(this.delimiter));
     }
   }
 
@@ -360,9 +360,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     return this.#validationError;
   }
 
-  @watch('delimeter')
-  handleDelimeterChange() {
-    this.value = this.#value.join(this.delimeter);
+  @watch('delimiter')
+  handleDelimiterChange() {
+    this.value = this.#value.join(this.delimiter);
   }
 
   #onClickTrack(event: PointerEvent, focusThumb = true) {

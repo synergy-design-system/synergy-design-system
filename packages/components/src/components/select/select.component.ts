@@ -115,9 +115,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
    * The default is a space, but you can set it to a comma or other character.
-   * @example <syn-select delimeter="|" value="option-1|option-2"></syn-select>
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
    */
-  @property() delimeter = ' ';
+  @property() delimiter = ' ';
 
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -137,10 +137,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   set value(val: string | number | Array<string | number>) {
     if (this.multiple) {
       if (!Array.isArray(val)) {
-        val = typeof val === 'string' ? val.split(this.delimeter) : [val].filter(Boolean);
+        val = typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
       }
     } else {
-      val = Array.isArray(val) ? val.join(this.delimeter) : val;
+      val = Array.isArray(val) ? val.join(this.delimiter) : val;
     }
 
     if (this._value === val) {
@@ -683,10 +683,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.formControlController.emitInvalidEvent(event);
   }
 
-  @watch('delimeter')
-  handleDelimeterChange() {
+  @watch('delimiter')
+  handleDelimiterChange() {
     this.getAllOptions().forEach(option => {
-      option.delimeter = this.delimeter;
+      option.delimiter = this.delimiter;
     });
   }
 

@@ -317,16 +317,6 @@ test.describe('<SynSelect />', () => {
 
         const select = await AllComponents.getLocator('selectWithDelimiter');
 
-        // Special for angular: Angular does for whatever reason not
-        // eat the delimiter, so we need to set the value in the test directly
-        if (name === 'angular') {
-          await select.evaluate(async (ele: SynSelect) => {
-            ele.delimiter = '|';
-            ele.value = '1|2';
-            await ele.updateComplete;
-          });
-        }
-
         const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
         const initialDelimiter = await select.evaluate((ele: SynSelect) => ele.delimiter);
 

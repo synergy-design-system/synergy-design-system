@@ -4,6 +4,7 @@ import {
   addSectionBefore,
   addSectionsAfter,
   addSectionsBefore,
+  replaceSection,
   replaceSections,
 } from '../replace-section.js';
 
@@ -72,10 +73,6 @@ const transformComponent = (path, originalContent) => {
       "this.value.join(', ') : this.value",
       "this.value.join(', ') : this.value.toString()",
     ],
-    // [
-    //   'this.value.join(', ') : this.value}',
-    //   'this.value.join(', ') : this.value.toString()}',
-    // ],
   ], content);
 
   content = addSectionsAfter([
@@ -166,6 +163,27 @@ const transformComponent = (path, originalContent) => {
       tabsAfterInsertion: 1,
     },
   );
+
+  // This fix allows the select to be used in a form with a value set via property binding
+  // and the dynamic loading of options to work correctly.
+  content = addSectionAfter(
+    content,
+    'const val = this.valueHasChanged ? this.value : this.defaultValue;',
+    `
+    let newValue = val;
+    if (this.multiple) {
+      if (!Array.isArray(this.defaultValue)) {
+        newValue = typeof this.defaultValue === 'string' ? this.defaultValue.split(this.delimiter) : [this.defaultValue].filter(Boolean);
+      }
+    } else {
+      newValue = Array.isArray(this.defaultValue) ? this.defaultValue.join(this.delimiter) : this.defaultValue;
+    }
+    `,
+  );
+  content = replaceSection([
+    'const value = Array.isArray(val) ? val : [val];',
+    'const value = Array.isArray(newValue) ? newValue : [newValue];',
+  ], content);
 
   return {
     content,

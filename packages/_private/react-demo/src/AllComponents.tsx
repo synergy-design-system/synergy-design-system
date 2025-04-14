@@ -30,7 +30,7 @@ export const AllComponents = () => (
           active={name === activeDemo}
           name={name}
         >
-          <div id={`tab-content-${name}`} style={{ display: 'contents' }}>
+          <div id={`tab-content-${name}`}>
             <Component />
           </div>
         </syn-tab-panel>

@@ -27,7 +27,7 @@ class AllComponents extends LitElement {
             ?active=${name === activeDemo}
             name=${name}
           >
-            <div id="tab-content-${name}" style="display: contents">
+            <div id="tab-content-${name}">
               ${html`${Component(allComponentsRegressions.has(name) ? allComponentsRegressions.get(name) : [])}`}
             </div>
           </syn-tab-panel>

@@ -5,6 +5,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, queryAll } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import { watch } from '../../internal/watch.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController, customErrorValidityState, validValidityState } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -113,14 +114,23 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** The preferred placement of the range's tooltip. Use "none" to disable the tooltip */
   @property({ attribute: 'tooltip-placement', type: String }) tooltipPlacement: 'top' | 'bottom' | 'none' = 'top';
 
+  /**
+   * The delimiter to use when setting the value when `multiple` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimeter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimeter = ' ';
+
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
   set value(value: string | null) {
-    this.#value = value ? value.split(' ').map(n => +n).sort(numericSort) : [];
+    this.#value = value
+      ? value.split(this.delimeter).map(Number).sort(numericSort)
+      : [];
   }
 
   get value() {
-    return this.#value.slice().sort(numericSort).join(' ');
+    return this.#value.slice().sort(numericSort).join(this.delimeter);
   }
 
   /**
@@ -134,7 +144,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const oldValue = this.#value;
     this.#value = Array.isArray(value) ? value.slice().sort(numericSort) : value || [];
     if (arraysDiffer(oldValue, this.#value)) {
-      this.requestUpdate('value', oldValue.join(' '));
+      this.requestUpdate('value', oldValue.join(this.delimeter));
     }
   }
 
@@ -348,6 +358,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** Gets the validation message */
   public get validationMessage() {
     return this.#validationError;
+  }
+
+  @watch('delimeter')
+  handleDelimeterChange() {
+    this.value = this.#value.join(this.delimeter);
   }
 
   #onClickTrack(event: PointerEvent, focusThumb = true) {

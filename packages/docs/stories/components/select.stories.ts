@@ -195,7 +195,7 @@ export const Multiple: Story = {
 
     <syn-divider></syn-divider>
 
-    <syn-select delimeter="---" label="Custom Delimeter" value="Option_1---Option_2---Option_3" multiple clearable>
+    <syn-select delimiter="---" label="Custom Delimiter" value="Option_1---Option_2---Option_3" multiple clearable>
       <syn-option value="Option_1">Option 1</syn-option>
       <syn-option value="Option_2">Option 2</syn-option>
       <syn-option value="Option_3">Option 3</syn-option>
@@ -204,7 +204,7 @@ export const Multiple: Story = {
       <syn-option value="Option_6">Option 6</syn-option>
     </syn-select>
 
-    <syn-select delimeter="---" label="Custom Delimeter" value="Option_1---Option_2---Option_3" multiple clearable>
+    <syn-select delimiter="---" label="Custom Delimiter" value="Option_1---Option_2---Option_3" multiple clearable>
       <syn-option value="Option 1">Option 1</syn-option>
       <syn-option value="Option 2">Option 2</syn-option>
       <syn-option value="Option 3">Option 3</syn-option>
@@ -213,7 +213,7 @@ export const Multiple: Story = {
       <syn-option value="Option 6">Option 6</syn-option>
     </syn-select>
 
-    <syn-select delimeter="---" label="Custom Delimeter" value="Option_1---Option_2---Option_3" multiple clearable>
+    <syn-select delimiter="---" label="Custom Delimiter" value="Option_1---Option_2---Option_3" multiple clearable>
       <syn-option value="Option--1">Option 1</syn-option>
       <syn-option value="Option-------2">Option 2</syn-option>
       <syn-option value="Option---3">Option 3</syn-option>

@@ -274,26 +274,26 @@ test.describe('<SynOptgroup />', () => {
 test.describe('<SynRange />', () => {
   createTestCases(({ name, port }) => {
     test.describe(`Feature#540: ${name}`, () => {
-      test('should select the given elements when the delimeter is set', async ({ page }) => {
+      test('should select the given elements when the delimiter is set', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
         await AllComponents.activateItem('rangeLink');
         await expect(AllComponents.getLocator('rangeContent')).toBeVisible();
 
-        const range = await AllComponents.getLocator('rangeWithDelimeter');
+        const range = await AllComponents.getLocator('rangeWithDelimiter');
         const initialValue = await range.evaluate((ele: SynRange) => ele.value);
         const initialValueAsArray = await range.evaluate((ele: SynRange) => ele.valueAsArray);
-        const initialDelimeter = await range.evaluate((ele: SynRange) => ele.delimeter);
+        const initialDelimiter = await range.evaluate((ele: SynRange) => ele.delimiter);
 
-        // Note when providing a delimeter, the value is a string,
+        // Note when providing a delimiter, the value is a string,
         // so we need to check if the value is a string, too
         expect(initialValue).toEqual('20|80');
         expect(initialValueAsArray).toEqual([20, 80]);
-        expect(initialDelimeter).toEqual('|');
+        expect(initialDelimiter).toEqual('|');
 
-        // Check that a change in the delimeter is reflected in the value
+        // Check that a change in the delimiter is reflected in the value
         await range.evaluate(async (ele: SynSelect) => {
-          ele.delimeter = ' ';
+          ele.delimiter = ' ';
           ele.value = '30 70';
           await ele.updateComplete;
         });
@@ -301,7 +301,7 @@ test.describe('<SynRange />', () => {
         const newValue = await range.evaluate((ele: SynSelect) => ele.value);
 
         expect(newValue).toEqual('30 70');
-      }); // end delimeter check
+      }); // end delimiter check
     }); // feature#540
   }); // End frameworks
 }); // </syn-range>
@@ -309,45 +309,45 @@ test.describe('<SynRange />', () => {
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
     test.describe(`Feature#540: ${name}`, () => {
-      test('should select the given elements when the delimeter is set', async ({ page }) => {
+      test('should select the given elements when the delimiter is set', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
         await AllComponents.activateItem('selectLink');
         await expect(AllComponents.getLocator('selectContent')).toBeVisible();
 
-        const select = await AllComponents.getLocator('selectWithDelimeter');
+        const select = await AllComponents.getLocator('selectWithDelimiter');
 
         // Special for angular: Angular does for whatever reason not
-        // eat the delimeter, so we need to set the value in the test directly
+        // eat the delimiter, so we need to set the value in the test directly
         if (name === 'angular') {
           await select.evaluate(async (ele: SynSelect) => {
-            ele.delimeter = '|';
+            ele.delimiter = '|';
             ele.value = '1|2';
             await ele.updateComplete;
           });
         }
 
         const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
-        const initialDelimeter = await select.evaluate((ele: SynSelect) => ele.delimeter);
+        const initialDelimiter = await select.evaluate((ele: SynSelect) => ele.delimiter);
 
-        // Note when providing a delimeter, the value is a string,
+        // Note when providing a delimiter, the value is a string,
         // so we need to check if the value is a string, too
         expect(initialValue).toEqual(['1', '2']);
-        expect(initialDelimeter).toEqual('|');
+        expect(initialDelimiter).toEqual('|');
 
-        // Check that a change in the delimeter is reflected in the value
+        // Check that a change in the delimiter is reflected in the value
         await select.evaluate(async (ele: SynSelect) => {
-          ele.delimeter = ' ';
+          ele.delimiter = ' ';
           ele.value = '2 3';
           await ele.updateComplete;
         });
 
         const newValue = await select.evaluate((ele: SynSelect) => ele.value);
 
-        // Note when providing a delimeter, the value is a string,
+        // Note when providing a delimiter, the value is a string,
         // so we need to check if the value is a string, too
         expect(newValue).toEqual(['2', '3']);
-      }); // end delimeter check
+      }); // end delimiter check
     }); // feature#540
 
     test.describe(`Feature#805: ${name}`, () => {

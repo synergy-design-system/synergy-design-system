@@ -62,10 +62,10 @@ export const Select = () => {
       </div>
 
       <syn-select
-        data-testid="select-540-delimeter"
-        delimeter="|"
-        help-text="This select uses a custom delimeter"
-        label="Multiple with custom delimeter"
+        data-testid="select-540-delimiter"
+        delimiter="|"
+        help-text="This select uses a custom delimiter"
+        label="Multiple with custom delimiter"
         multiple
         value="1|2"
       >

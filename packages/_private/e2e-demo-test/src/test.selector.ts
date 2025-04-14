@@ -30,7 +30,7 @@ const AllComponentSelectors = {
   // Range
   rangeContent: '#tab-content-Range',
   rangeLink: '#tab-Range',
-  rangeWithDelimeter: '#tab-content-Range syn-range[data-testid="range-540-delimeter"]',
+  rangeWithDelimiter: '#tab-content-Range syn-range[data-testid="range-540-delimiter"]',
 
   // Select
   selectContent: '#tab-content-Select',
@@ -41,7 +41,7 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
   selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
   selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
-  selectWithDelimeter: '#tab-content-Select syn-select[data-testid="select-540-delimeter"]',
+  selectWithDelimiter: '#tab-content-Select syn-select[data-testid="select-540-delimiter"]',
 
   // Tabgroup
   tabGroupAdded: '#tab-content-TabGroup syn-tab:nth-of-type(5)',

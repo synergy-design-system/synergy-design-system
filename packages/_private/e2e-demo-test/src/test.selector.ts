@@ -27,6 +27,11 @@ const AllComponentSelectors = {
   optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
   optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
 
+  // Range
+  rangeContent: '#tab-content-Range',
+  rangeLink: '#tab-Range',
+  rangeWithDelimeter: '#tab-content-Range syn-range[data-testid="range-540-delimeter"]',
+
   // Select
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',

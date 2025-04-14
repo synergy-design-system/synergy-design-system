@@ -22,6 +22,7 @@ describe('<syn-range>', () => {
   it('should have default values', async () => {
     const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
 
+    expect(el.delimeter).to.equal(' ');
     expect(el.disabled).to.equal(false);
     expect(el.helpText).to.equal('');
     expect(el.label).to.equal('');
@@ -420,6 +421,25 @@ describe('<syn-range>', () => {
 
       expect(el.value).to.equal('25 85');
       expect(changeHandler.called).to.be.true;
+    });
+
+    it('should allow to define the delimeter that is used to separate the values', async () => {
+      await resetMouse();
+      const el = await fixture<SynRange>(html`<syn-range delimeter="," value="20,80"></syn-range>`);
+
+      expect(el.value).to.equal('20,80');
+      expect(el.valueAsArray).to.deep.equal([20, 80]);
+
+      el.value = '30,70';
+      await el.updateComplete;
+      expect(el.value).to.equal('30,70');
+      expect(el.valueAsArray).to.deep.equal([30, 70]);
+
+      el.delimeter = '|';
+      el.value = '40|60';
+      await el.updateComplete;
+      expect(el.value).to.equal('40|60');
+      expect(el.valueAsArray).to.deep.equal([40, 60]);
     });
 
     it('should emit a syn-input event while the user is dragging the thumb', async () => {

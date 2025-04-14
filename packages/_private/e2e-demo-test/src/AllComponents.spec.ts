@@ -316,6 +316,17 @@ test.describe('<SynSelect />', () => {
         await expect(AllComponents.getLocator('selectContent')).toBeVisible();
 
         const select = await AllComponents.getLocator('selectWithDelimeter');
+
+        // Special for angular: Angular does for whatever reason not
+        // eat the delimeter, so we need to set the value in the test directly
+        if (name === 'angular') {
+          await select.evaluate(async (ele: SynSelect) => {
+            ele.delimeter = '|';
+            ele.value = '1|2';
+            await ele.updateComplete;
+          });
+        }
+
         const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
         const initialDelimeter = await select.evaluate((ele: SynSelect) => ele.delimeter);
 

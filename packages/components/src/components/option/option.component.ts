@@ -49,7 +49,7 @@ export default class SynOption extends SynergyElement {
 
   // the delimiter used to separate multiple values in a select
   // This is provided by the wrapping syn-select
-  @state() delimeter = ' ';
+  @state() delimiter = ' ';
 
   @state() current = false; // the user has keyed into the option, but hasn't selected it yet (shows a highlight)
   @state() selected = false; // the option is selected and has aria-selected="true"
@@ -121,11 +121,11 @@ export default class SynOption extends SynergyElement {
       this.value = String(this.value);
     }
 
-    const { delimeter } = this;
+    const { delimiter } = this;
 
-    if (this.value.includes(delimeter)) {
-      console.error(`Option values cannot include "${delimeter}". All occurrences of "${delimeter}" have been replaced with "_".`, this);
-      const regex = new RegExp(delimeter, 'g');
+    if (this.value.includes(delimiter)) {
+      console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);
+      const regex = new RegExp(delimiter, 'g');
       this.value = this.value.replace(regex, '_');
     }
   }

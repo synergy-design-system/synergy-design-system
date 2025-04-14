@@ -64,7 +64,7 @@ const transformComponent = (path, originalContent) => {
     ],
     [
       "this.value.join(', ') : this.value",
-      "this.value.join(', ') : this.value.toString()",
+      "this.value.join(', ') : this.value?.toString()",
     ],
     // [
     //   'this.value.join(', ') : this.value}',

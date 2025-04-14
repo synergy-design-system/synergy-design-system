@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.29.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.0...components/2.29.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* 🐛 Make the syn-select more robust to allow undefined as value ([#846](https://github.com/synergy-design-system/synergy-design-system/issues/846)) ([87fc921](https://github.com/synergy-design-system/synergy-design-system/commit/87fc921b8ce2f50fc609d6827b7923e1ab27a86e))
+
 # [@synergy-design-system/components-v2.29.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.28.0...components/2.29.0) (2025-04-11)
 
 

@@ -948,7 +948,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
-                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value.toString()}
+                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value?.toString()}
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}

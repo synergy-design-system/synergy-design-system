@@ -95,7 +95,6 @@ export type ExtractSettingsForElement<C extends SynergyElement> = {
  */
 export type SynDefaultSettings = {
   delimiter: {
-    SynRange?: AllowedValueForDefaultSetting<SynRange, "delimiter">;
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
   size: {
@@ -131,7 +130,6 @@ export type SynDefaultSettings = {
  */
 export const defaultSettings: SynDefaultSettings = {
   delimiter: {
-    SynRange: " ",
     SynSelect: " ",
   },
   size: {
@@ -165,7 +163,6 @@ export const defaultSettings: SynDefaultSettings = {
  */
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
-    SynRange: " ",
     SynSelect: " ",
   },
   size: {

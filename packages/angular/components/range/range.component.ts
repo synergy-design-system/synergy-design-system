@@ -212,18 +212,6 @@ export class SynRangeComponent {
   }
 
   /**
-* The delimiter to use when setting the value when `multiple` is enabled.
-The default is a space, but you can set it to a comma or other character.
- */
-  @Input()
-  set delimiter(v: SynRange['delimiter']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
-  }
-  get delimiter(): SynRange['delimiter'] {
-    return this.nativeElement.delimiter;
-  }
-
-  /**
    * The current values of the input (in ascending order) as a string of space separated values
    */
   @Input()

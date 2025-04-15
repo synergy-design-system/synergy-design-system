@@ -2,7 +2,6 @@ import { type Locator, expect, test } from '@playwright/test';
 import type {
   SynCombobox,
   SynOptgroup,
-  SynRange,
   SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from './PageObjects/index.js';
@@ -270,41 +269,6 @@ test.describe('<SynOptgroup />', () => {
     }); // regression#815
   }); // End frameworks
 }); // </syn-optgroup>
-
-test.describe('<SynRange />', () => {
-  createTestCases(({ name, port }) => {
-    test.describe(`Feature#540: ${name}`, () => {
-      test('should select the given elements when the delimiter is set', async ({ page }) => {
-        const AllComponents = new AllComponentsPage(page, port);
-        await AllComponents.loadInitialPage();
-        await AllComponents.activateItem('rangeLink');
-        await expect(AllComponents.getLocator('rangeContent')).toBeVisible();
-
-        const range = await AllComponents.getLocator('rangeWithDelimiter');
-        const initialValue = await range.evaluate((ele: SynRange) => ele.value);
-        const initialValueAsArray = await range.evaluate((ele: SynRange) => ele.valueAsArray);
-        const initialDelimiter = await range.evaluate((ele: SynRange) => ele.delimiter);
-
-        // Note when providing a delimiter, the value is a string,
-        // so we need to check if the value is a string, too
-        expect(initialValue).toEqual('20|80');
-        expect(initialValueAsArray).toEqual([20, 80]);
-        expect(initialDelimiter).toEqual('|');
-
-        // Check that a change in the delimiter is reflected in the value
-        await range.evaluate(async (ele: SynSelect) => {
-          ele.delimiter = ' ';
-          ele.value = '30 70';
-          await ele.updateComplete;
-        });
-
-        const newValue = await range.evaluate((ele: SynSelect) => ele.value);
-
-        expect(newValue).toEqual('30 70');
-      }); // end delimiter check
-    }); // feature#540
-  }); // End frameworks
-}); // </syn-range>
 
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {

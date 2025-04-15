@@ -1,9 +1,9 @@
 {
   "tokenSetOrder": [
     "globals",
-    "mode/dark",
-    "mode/light",
-    "theme/synergy24",
+    "theme/dark",
+    "theme/light",
+    "brand/synergy24",
     "semantic/focus-ring",
     "semantic/input",
     "semantic/button",

@@ -1,12 +1,10 @@
 [
   {
     "id": "30eaeb034a2c0a58ba5a3f529b201a5a4a615948",
-    "name": "synergy24",
+    "name": "Synergy24",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/synergy24": "enabled",
-      "theme/dark": "disabled",
-      "theme/light": "disabled"
+      "brand/synergy24": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
@@ -86,8 +84,6 @@
     "id": "eda1d35f1a28a0d1fce620eca524dde48d6b5817",
     "name": "Light",
     "selectedTokenSets": {
-      "brand/synergy24": "disabled",
-      "theme/dark": "disabled",
       "theme/light": "enabled"
     },
     "$figmaStyleReferences": {},
@@ -169,9 +165,7 @@
     "id": "f39c786993e4942a7c329538c246ec8fa5e56c30",
     "name": "Dark",
     "selectedTokenSets": {
-      "brand/synergy24": "disabled",
-      "theme/dark": "enabled",
-      "theme/light": "disabled"
+      "theme/dark": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -252,10 +246,7 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled",
-      "brand/synergy24": "disabled",
-      "theme/dark": "disabled",
-      "theme/light": "disabled"
+      "globals": "enabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -349,9 +340,7 @@
       "semantic/overlays": "enabled",
       "semantic/panels": "enabled",
       "semantic/tooltip": "enabled",
-      "brand/synergy24": "source",
-      "theme/dark": "disabled",
-      "theme/light": "disabled"
+      "brand/synergy24": "source"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

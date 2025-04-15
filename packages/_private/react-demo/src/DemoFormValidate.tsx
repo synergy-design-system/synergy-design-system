@@ -33,21 +33,7 @@ type FormEnabledElements = HTMLElement & {
   value?: string;
 };
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
-};
+const initialFormData = mockData('initialValidateFormData');
 
 export const DemoFormValidate = () => {
   const formRef = useRef<HTMLFormElement>(null);

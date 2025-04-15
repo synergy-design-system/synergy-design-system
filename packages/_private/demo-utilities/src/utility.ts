@@ -6,3 +6,9 @@
 export const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
 
 export const noop = () => null;
+
+export const currencyNumberFormatter = new Intl.NumberFormat('de-DE', {
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+  style: 'currency',
+});

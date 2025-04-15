@@ -18,33 +18,12 @@ import {
   SynVueTextarea,
 } from '@synergy-design-system/vue';
 import { serialize, highlightOptionRenderer } from '@synergy-design-system/components';
-import { mockData } from '@synergy-design-system/demo-utilities';
+import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  donations: '2000 4000',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterAngular: false,
-  newsletterBeta: false,
-  newsletterReact: false,
-  newsletterStandard: false,
-  newsletterVanilla: false,
-  newsletterVue: false,
-  password: 'invalid',
-  phone: '',
-  role: '',
-  topics: [],
-};
+const initialFormData = mockData('initialFullFormData');
 
 const formData = ref({
   ...initialFormData,
@@ -53,11 +32,7 @@ const formData = ref({
 const formRef = ref<HTMLFormElement>();
 
 // Custom formatter for donations
-const formatter = new Intl.NumberFormat('de-DE', {
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-  style: 'currency',
-});
+const formatter = currencyNumberFormatter;
 
 const reset = () => {
   formData.value = {

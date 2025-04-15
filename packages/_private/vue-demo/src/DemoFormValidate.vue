@@ -24,21 +24,7 @@ import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
-};
+const initialFormData = mockData('initialValidateFormData');
 
 const formData = ref({
   ...initialFormData,

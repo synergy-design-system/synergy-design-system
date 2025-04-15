@@ -541,6 +541,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const allOptions = this.getAllOptions();
     const val = this.valueHasChanged ? this.value : this.defaultValue;
 
+    this.handleDelimiterChange();
+
     let newValue = val;
     if (this.multiple) {
       if (!Array.isArray(this.defaultValue)) {

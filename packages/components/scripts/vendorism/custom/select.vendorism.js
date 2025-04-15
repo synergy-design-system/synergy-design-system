@@ -170,6 +170,8 @@ const transformComponent = (path, originalContent) => {
     content,
     'const val = this.valueHasChanged ? this.value : this.defaultValue;',
     `
+    this.handleDelimiterChange();
+
     let newValue = val;
     if (this.multiple) {
       if (!Array.isArray(this.defaultValue)) {

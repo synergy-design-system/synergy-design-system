@@ -147,6 +147,10 @@ const transformComponent = (path, originalContent) => {
       "val.join(' ')",
       'val.join(this.delimiter)',
     ],
+    [
+      "@watch(['defaultValue', 'value'], { waitUntilFirstUpdate: true })",
+      "@watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })",
+    ],
   ], content);
 
   content = addSectionBefore(

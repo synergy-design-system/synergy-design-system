@@ -738,7 +738,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
-  @watch(['defaultValue', 'value'], { waitUntilFirstUpdate: true })
+  @watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })
   handleValueChange() {
     if (!this.valueHasChanged) {
       const cachedValueHasChanged = this.valueHasChanged;

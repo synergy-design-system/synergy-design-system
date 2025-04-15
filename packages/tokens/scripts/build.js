@@ -59,7 +59,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
         buildPath: `${config.buildPath}themes/`,
         files: [{
           destination: `${theme}.css`,
-          filter(token) { return !token.filePath.includes('theme'); },
+          filter(token) { return !token.filePath.includes('brand'); },
           format: 'syn/css-variable-formatter',
           options: {
             fileHeader: 'syn/header',

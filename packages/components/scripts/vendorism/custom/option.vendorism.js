@@ -1,6 +1,5 @@
 import { removeSection } from '../remove-section.js';
 import {
-  addSectionBefore,
   addSectionsBefore,
   replaceSection,
   replaceSections,
@@ -72,6 +71,23 @@ const transformComponent = (path, originalContent) => {
   ], content);
 
   // #540: Support a custom delimiter
+  content = addSectionsBefore([
+    [
+      'import type { CSSResultGroup }',
+      "import { delimiterToWhiteSpace } from './utility.js';",
+    ],
+    [
+      '@state() current',
+      `// the delimiter used to separate multiple values in a select
+  // This is provided by the wrapping syn-select
+  @state() delimiter = ' ';`,
+      {
+        newlinesAfterInsertion: 2,
+        tabsAfterInsertion: 1,
+      },
+    ],
+  ], content);
+
   content = replaceSections([
     [
       "if (this.value.includes(' ')) {",
@@ -86,22 +102,9 @@ const transformComponent = (path, originalContent) => {
     ],
     [
       "this.value = this.value.replace(/ /g, '_');",
-      `const regex = new RegExp(delimiter, 'g');
-      this.value = this.value.replace(regex, '_');`,
+      'this.value = delimiterToWhiteSpace(this.value, this.delimiter);',
     ],
   ], content);
-
-  content = addSectionBefore(
-    content,
-    '@state() current',
-    `// the delimiter used to separate multiple values in a select
-  // This is provided by the wrapping syn-select
-  @state() delimiter = ' ';`,
-    {
-      newlinesAfterInsertion: 2,
-      tabsAfterInsertion: 1,
-    },
-  );
 
   return {
     content,

@@ -117,7 +117,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
    * The default is a space, but you can set it to a comma or other character.
-   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
+   * @example <syn-range delimiter="|" value="1|2|3"></syn-range>
    */
   @property() delimiter = ' ';
 

@@ -16,6 +16,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './option.styles.js';
 import customStyles from './option.custom.styles.js';
+import { delimiterToWhiteSpace } from './utility.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -125,8 +126,7 @@ export default class SynOption extends SynergyElement {
 
     if (this.value.includes(delimiter)) {
       console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);
-      const regex = new RegExp(delimiter, 'g');
-      this.value = this.value.replace(regex, '_');
+      this.value = delimiterToWhiteSpace(this.value, this.delimiter);
     }
   }
 

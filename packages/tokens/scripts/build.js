@@ -26,7 +26,7 @@ const config = {
   buildPath: './dist/',
   prefix: 'syn-',
   source: [
-    './src/figma-tokens/theme/synergy24.json',
+    './src/figma-tokens/brand/synergy24.json',
     './src/figma-tokens/globals.json',
     './src/figma-tokens/semantic/*.json',
   ],
@@ -92,7 +92,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
       },
     },
     preprocessors: ['tokens-studio'],
-    source: config.source.concat(`./src/figma-tokens/mode/${theme}.json`),
+    source: config.source.concat(`./src/figma-tokens/theme/${theme}.json`),
   });
 
   return themeInstance.buildAllPlatforms();

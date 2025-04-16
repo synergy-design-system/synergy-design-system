@@ -53,23 +53,23 @@
   },
   "line-height": {
     "denser": {
-      "value": "100%",
+      "value": "{line-height.brand.denser}",
       "type": "lineHeights"
     },
     "dense": {
-      "value": "120%",
+      "value": "{line-height.brand.dense}",
       "type": "lineHeights"
     },
     "normal": {
-      "value": "140%",
+      "value": "{line-height.brand.normal}",
       "type": "lineHeights"
     },
     "loose": {
-      "value": "180%",
+      "value": "{line-height.brand.loose}",
       "type": "lineHeights"
     },
     "looser": {
-      "value": "220%",
+      "value": "{line-height.brand.looser}",
       "type": "lineHeights"
     }
   },
@@ -298,12 +298,12 @@
   },
   "font": {
     "sans": {
-      "value": "Open Sans",
+      "value": "{font.brand.sans}",
       "type": "fontFamilies",
-      "description": "Open Sans"
+      "description": "Main Font"
     },
     "mono": {
-      "value": "Roboto Mono",
+      "value": "{font.brand.mono}",
       "type": "fontFamilies"
     }
   },

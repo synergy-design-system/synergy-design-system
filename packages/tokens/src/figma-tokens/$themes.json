@@ -4,12 +4,16 @@
     "name": "Synergy24",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/synergy24/primitives": "enabled",
-      "brand/synergy24/globals": "enabled"
+      "brand/synergy24": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
     "$figmaVariableReferences": {
+      "font.brand.sans": "3c309e5552d72bae5f0afed8f30da7e1e72d5f53",
+      "font.brand.mono": "61763c0bc89bae22f6822ef4074fe3add3d5896b",
+      "font-weight.brand.normal": "e5592960b57540b68f9e7df47c0a4576be981689",
+      "font-weight.brand.semibold": "d4bad4d28f2a4fb672235d04799b91d5694e9cf3",
+      "font-weight.brand.bold": "17ccfc6a3b1d84e0d7a286948635e7b96ea60193",
       "gray.50": "9e25df19fb759d366fb1a4a6815dcef16d1e44cf",
       "gray.100": "fb37808697512e1cd808ebb6744be9269d08fee1",
       "gray.200": "4c2c449447c3254cff01207907b891c1b26aab92",
@@ -77,12 +81,7 @@
       "Orange.900": "9e798dfff4f5a19e1b078cc4102f056776e3e43f",
       "Orange.950": "2c788b82eb095308cc4732b20310c43d9192443c",
       "black": "bafcb93aa9c2c7d5962ae1f708c5fe9df2a01c63",
-      "white": "59831283e335dadc50c9b259071fc562d6c66809",
-      "font.brand.sans": "3c309e5552d72bae5f0afed8f30da7e1e72d5f53",
-      "font.brand.mono": "61763c0bc89bae22f6822ef4074fe3add3d5896b",
-      "font-weight.brand.normal": "e5592960b57540b68f9e7df47c0a4576be981689",
-      "font-weight.brand.semibold": "d4bad4d28f2a4fb672235d04799b91d5694e9cf3",
-      "font-weight.brand.bold": "17ccfc6a3b1d84e0d7a286948635e7b96ea60193"
+      "white": "59831283e335dadc50c9b259071fc562d6c66809"
     },
     "group": "Brand"
   },
@@ -91,8 +90,7 @@
     "name": "Light",
     "selectedTokenSets": {
       "theme/light": "enabled",
-      "brand/synergy24/primitives": "disabled",
-      "brand/synergy24/globals": "disabled"
+      "brand/synergy24": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -174,8 +172,7 @@
     "name": "Dark",
     "selectedTokenSets": {
       "theme/dark": "enabled",
-      "brand/synergy24/primitives": "disabled",
-      "brand/synergy24/globals": "disabled"
+      "brand/synergy24": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -257,8 +254,7 @@
     "name": "Default",
     "selectedTokenSets": {
       "globals": "enabled",
-      "brand/synergy24/primitives": "disabled",
-      "brand/synergy24/globals": "disabled"
+      "brand/synergy24": "disabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -352,8 +348,7 @@
       "semantic/overlays": "enabled",
       "semantic/panels": "enabled",
       "semantic/tooltip": "enabled",
-      "brand/synergy24/primitives": "source",
-      "brand/synergy24/globals": "source"
+      "brand/synergy24": "source"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

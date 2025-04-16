@@ -241,6 +241,13 @@ Includes the following configuration options:
 * noStepAlign: If true, the input will not align the value to the step attribute.
 3.
 * noStepValidation: If true, the input will not validate the value against the step attribute.
+
+You may provide this as one of the following values:
+- 'native': Uses the native browser implementation.
+- 'modern': Uses the modern implementation.
+- A custom parsable string, e.g.
+* { "autoClamp": true }
+- An object that matches the NumericStrategy type
  */
   numericStrategy?: SynInput['numericStrategy'];
 

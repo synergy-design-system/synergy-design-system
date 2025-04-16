@@ -231,27 +231,49 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    * 1. autoClamp: If true, the input will clamp the value to the min and max attributes.
    * 2. noStepAlign: If true, the input will not align the value to the step attribute.
    * 3. noStepValidation: If true, the input will not validate the value against the step attribute.
+   * 
+   * You may provide this as one of the following values:
+   * - 'native': Uses the native browser implementation.
+   * - 'modern': Uses the modern implementation.
+   * - A custom parsable string, e.g. { "autoClamp": true }
+   * - An object that matches the NumericStrategy type
    */
   @property({
     attribute: 'numeric-strategy',
     converter: {
       fromAttribute: (value) => {
+        // Default, user has not supplied anything or the value is "native"
         if (!value || value === 'native') {
           return nativeNumericStrategy;
-        } else if (value === 'modern') {
+        }
+        
+        // User wants to use the modern variant
+        if (value === 'modern') {
           return modernNumericStrategy;
         }
-        // If the value is a string, try to parse it as JSON
-        try {
-          return createNumericStrategy(JSON.parse(value));
-        } catch (e) {
-          // If parsing fails, return the default value
-          return nativeNumericStrategy;
+        
+        // User supplied an object. Try to parse it as a numeric strategy
+        if (typeof value === 'object') {
+          return createNumericStrategy(value);
         }
+        
+        // User supplied a string. Try to parse it as JSON
+        if (typeof value === 'string') {
+          // If the value is a string, try to parse it as JSON
+          try {
+            return createNumericStrategy(JSON.parse(value));
+          } catch (e) {
+            // If parsing fails, return the default value
+            return nativeNumericStrategy;
+          }
+        }
+
+        // User supplied an unknown value. Return the default value
+        return nativeNumericStrategy;
       },
     },
     type: Object,
-  }) numericStrategy: 'native' | 'modern' | Partial<NumericStrategy> = nativeNumericStrategy;
+  }) numericStrategy: 'native' | 'modern' | string | Partial<NumericStrategy> = nativeNumericStrategy;
 
   //
   // NOTE: We use an in-memory input for these getters/setters instead of the one in the template because the properties
@@ -508,6 +530,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   render() {
+    console.log(this, this.numericStrategy);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasPrefixSlot = this.hasSlotController.test('prefix');

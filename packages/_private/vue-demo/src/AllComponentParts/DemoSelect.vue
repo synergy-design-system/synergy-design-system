@@ -47,7 +47,7 @@ onMounted(async () => {
     </SynVueSelect>
   </div>
 
-  <syn-select
+  <SynVueSelect
     data-testid="select-540-delimiter"
     delimiter="|"
     help-text="This select uses a custom delimiter"
@@ -56,6 +56,6 @@ onMounted(async () => {
     value="1|2"
   >
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
-  </syn-select>
+  </SynVueSelect>
 
 </template>

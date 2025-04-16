@@ -173,23 +173,12 @@ const transformComponent = (path, originalContent) => {
   content = addSectionAfter(
     content,
     'const val = this.valueHasChanged ? this.value : this.defaultValue;',
-    `
-    this.handleDelimiterChange();
-
-    let newValue = val;
-    if (this.multiple) {
-      if (!Array.isArray(this.defaultValue)) {
-        newValue = typeof this.defaultValue === 'string' ? this.defaultValue.split(this.delimiter) : [this.defaultValue].filter(Boolean);
-      }
-    } else {
-      newValue = Array.isArray(this.defaultValue) ? this.defaultValue.join(this.delimiter) : this.defaultValue;
-    }
-    `,
+    'this.handleDelimiterChange();\n',
+    {
+      newlinesBeforeInsertion: 2,
+      tabsBeforeInsertion: 2,
+    },
   );
-  content = replaceSection([
-    'const value = Array.isArray(val) ? val : [val];',
-    'const value = Array.isArray(newValue) ? newValue : [newValue];',
-  ], content);
 
   return {
     content,

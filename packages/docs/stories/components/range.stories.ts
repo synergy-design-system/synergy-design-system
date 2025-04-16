@@ -363,7 +363,6 @@ export const MultiThumb: Story = {
   },
   render: () => html`
     <syn-range max="100" min="0" value="30 70"></syn-range>
-    <syn-range max="100" min="0" value="20|40" delimiter="|"></syn-range>
   `,
 };
 

@@ -274,6 +274,10 @@ test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
     test.describe(`Feature#540: ${name}`, () => {
       test('should select the given elements when the delimiter is set', async ({ page }) => {
+        // Angular currently has problems with selection.
+        // @todo: Remove this after #847 is fixed!
+        test.skip(name === 'angular', 'Angular currently has problems with selection. Please see #847');
+
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
         await AllComponents.activateItem('selectLink');

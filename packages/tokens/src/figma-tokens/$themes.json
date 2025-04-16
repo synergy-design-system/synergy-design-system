@@ -9,6 +9,11 @@
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
     "$figmaVariableReferences": {
+      "font.brand.sans": "3c309e5552d72bae5f0afed8f30da7e1e72d5f53",
+      "font.brand.mono": "61763c0bc89bae22f6822ef4074fe3add3d5896b",
+      "font-weight.brand.normal": "e5592960b57540b68f9e7df47c0a4576be981689",
+      "font-weight.brand.semibold": "d4bad4d28f2a4fb672235d04799b91d5694e9cf3",
+      "font-weight.brand.bold": "17ccfc6a3b1d84e0d7a286948635e7b96ea60193",
       "gray.50": "9e25df19fb759d366fb1a4a6815dcef16d1e44cf",
       "gray.100": "fb37808697512e1cd808ebb6744be9269d08fee1",
       "gray.200": "4c2c449447c3254cff01207907b891c1b26aab92",
@@ -76,9 +81,7 @@
       "Orange.900": "9e798dfff4f5a19e1b078cc4102f056776e3e43f",
       "Orange.950": "2c788b82eb095308cc4732b20310c43d9192443c",
       "black": "bafcb93aa9c2c7d5962ae1f708c5fe9df2a01c63",
-      "white": "59831283e335dadc50c9b259071fc562d6c66809",
-      "font.sans": "d1b6d971dd2f96170e164d859daa886973cfd53f",
-      "font.mono": "0c0d98e1b644f030aeb397bb13d45be7ded04c75"
+      "white": "59831283e335dadc50c9b259071fc562d6c66809"
     },
     "group": "Brand"
   },
@@ -270,6 +273,8 @@
       "font-weight.normal": "31fa7719763aa5982cd25c1ed016ed10d63b4a47",
       "font-weight.semibold": "66168d85d077768f3601c902a467fc72b6c7fa31",
       "font-weight.bold": "d5e25a9686b1b903a84f2b6dd4bca7d005a7cd3c",
+      "font.sans": "4f4ee2135ba4bace3030f4cae9a589c15fdc1644",
+      "font.mono": "2fe083a4e994e9934c03bbdf4ebb3225f7c8f978",
       "spacing.4x-small": "0c5c205948f7b7c63e5e91f6f3dc3e9054b274ae",
       "spacing.3x-small": "6c0727ac33a9bca72e018122c4f210109c5dec53",
       "spacing.2x-small": "9bf6492e474bbfb3def963187640214c9c235fa8",
@@ -294,9 +299,7 @@
       "border-width.medium": "df4f35c8f0fad6bc109ece2bd2268cd834e32731",
       "border-width.large": "7e3b8fa4f836ae55bafdae9c287ca6779f97e302",
       "border-width.x-large": "0a08f8b5ba55322e50a8496415c2e803b083a0dc",
-      "opacity.50": "1ca9a188f0fef6506addb37972c42a4c16d3e360",
-      "font.sans": "4f4ee2135ba4bace3030f4cae9a589c15fdc1644",
-      "font.mono": "2fe083a4e994e9934c03bbdf4ebb3225f7c8f978"
+      "opacity.50": "1ca9a188f0fef6506addb37972c42a4c16d3e360"
     },
     "$figmaCollectionId": "VariableCollectionId:28:527",
     "$figmaModeId": "28:3",

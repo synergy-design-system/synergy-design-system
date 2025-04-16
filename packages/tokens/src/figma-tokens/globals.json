@@ -75,15 +75,15 @@
   },
   "font-weight": {
     "normal": {
-      "value": "400",
+      "value": "{font-weight.brand.normal}",
       "type": "fontWeights"
     },
     "semibold": {
-      "value": "600",
+      "value": "{font-weight.brand.semibold}",
       "type": "fontWeights"
     },
     "bold": {
-      "value": "700",
+      "value": "{font-weight.brand.bold}",
       "type": "fontWeights"
     }
   },

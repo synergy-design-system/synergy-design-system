@@ -455,6 +455,27 @@ keyboard on supportive devices.
   }
 
   /**
+* Defines the strategy for numeric inputs.
+This is used to determine how the input behaves when the user interacts with it.
+Includes the following configuration options:
+1.
+* autoClamp: If true, the input will clamp the value to the min and max attributes.
+2.
+* noStepAlign: If true, the input will not align the value to the step attribute.
+3.
+* noStepValidation: If true, the input will not validate the value against the step attribute.
+ */
+  @Input()
+  set numericStrategy(v: SynInput['numericStrategy']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.numericStrategy = v),
+    );
+  }
+  get numericStrategy(): SynInput['numericStrategy'] {
+    return this.nativeElement.numericStrategy;
+  }
+
+  /**
    * Emitted when the control loses focus.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

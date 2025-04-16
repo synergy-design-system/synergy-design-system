@@ -27,6 +27,12 @@ import styles from './input.styles.js';
 import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import {
+  type NumericStrategy,
+  createNumericStrategy,
+  nativeNumericStrategy,
+  modernNumericStrategy,
+} from './strategies.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -217,6 +223,35 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    * keyboard on supportive devices.
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+
+  /**
+   * Defines the strategy for numeric inputs.
+   * This is used to determine how the input behaves when the user interacts with it.
+   * Includes the following configuration options:
+   * 1. autoClamp: If true, the input will clamp the value to the min and max attributes.
+   * 2. noStepAlign: If true, the input will not align the value to the step attribute.
+   * 3. noStepValidation: If true, the input will not validate the value against the step attribute.
+   */
+  @property({
+    attribute: 'numeric-strategy',
+    converter: {
+      fromAttribute: (value) => {
+        if (!value || value === 'native') {
+          return nativeNumericStrategy;
+        } else if (value === 'modern') {
+          return modernNumericStrategy;
+        }
+        // If the value is a string, try to parse it as JSON
+        try {
+          return createNumericStrategy(JSON.parse(value));
+        } catch (e) {
+          // If parsing fails, return the default value
+          return nativeNumericStrategy;
+        }
+      },
+    },
+    type: Object,
+  }) numericStrategy: 'native' | 'modern' | Partial<NumericStrategy> = nativeNumericStrategy;
 
   //
   // NOTE: We use an in-memory input for these getters/setters instead of the one in the template because the properties

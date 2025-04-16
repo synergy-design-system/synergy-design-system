@@ -5,6 +5,37 @@ import {
 import type SynSelect from './select.js';
 
 describe('<syn-select>', () => {
+  describe('#540: should allow to use a custom delimiter for multiple values', () => {
+    it('should allow to define the delimiter that is used to separate the values', async () => {
+      const getActiveItems = (elm: SynSelect) => Array.from(
+        elm.querySelectorAll('syn-option'),
+      ).filter(option => option.selected);
+
+      const el = await fixture<SynSelect>(html`
+        <syn-select delimiter="|" multiple value="option1|option2">
+          <syn-option value="option1">Option 1</syn-option>
+          <syn-option value="option2">Option 2</syn-option>
+          <syn-option value="option3">Option 3</syn-option>
+        </syn-select>
+      `);
+
+      expect(el.value).to.deep.equal(['option1', 'option2']);
+
+      const selectedItems = getActiveItems(el);
+      expect(selectedItems.length).to.equal(2);
+
+      el.delimiter = ',';
+      el.value = 'option2,option3';
+      await el.updateComplete;
+      expect(el.value).to.deep.equal(['option2', 'option3']);
+
+      el.delimiter = '|';
+      el.value = 'option1|option3';
+      await el.updateComplete;
+      expect(el.value).to.deep.equal(['option1', 'option3']);
+    });
+  });
+
   describe('#805: should allow setting numeric values', () => {
     describe('when set initially', () => {
       it('should allow to use numbers as value for syn-select and syn-option', async () => {

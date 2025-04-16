@@ -9,22 +9,12 @@ import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
 import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
 const initialData = {
-  code: '',
-  comment: '',
-  date: '',
+  ...mockData('initialValidateFormData'),
+  // Custom test for angular validators
   email: ['', [
     Validators.required,
     Validators.email,
   ]],
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
 };
 
 @Component({

@@ -14,7 +14,7 @@
       [active]="demo[0] === activeDemo"
       [name]="demo[0]"
     >
-      <div [id]="'tab-content-' + demo[0]" style="display: contents;">
+      <div [id]="'tab-content-' + demo[0]">
         <ng-container *ngComponentOutlet="demo[1]"></ng-container>
       </div>
     </syn-tab-panel>

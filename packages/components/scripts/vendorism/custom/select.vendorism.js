@@ -1,5 +1,12 @@
 import { removeSections } from '../remove-section.js';
-import { addSectionsAfter, addSectionsBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionAfter,
+  addSectionBefore,
+  addSectionsAfter,
+  addSectionsBefore,
+  replaceSection,
+  replaceSections,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'select.component.ts',
@@ -66,10 +73,6 @@ const transformComponent = (path, originalContent) => {
       "this.value.join(', ') : this.value",
       "this.value.join(', ') : this.value?.toString()",
     ],
-    // [
-    //   'this.value.join(', ') : this.value}',
-    //   'this.value.join(', ') : this.value.toString()}',
-    // ],
   ], content);
 
   content = addSectionsAfter([
@@ -120,6 +123,62 @@ const transformComponent = (path, originalContent) => {
        { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
     ],
   ], content);
+
+  // #540: Support a custom delimiter
+  content = addSectionAfter(
+    content,
+    'valueHasChanged: boolean = false;',
+    `
+  /**
+   * The delimiter to use when setting the value when \`multiple\` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimiter = ' ';
+    `,
+  );
+
+  content = replaceSections([
+    [
+      "val.split(' ')",
+      'val.split(this.delimiter)',
+    ],
+    [
+      "val.join(' ')",
+      'val.join(this.delimiter)',
+    ],
+    [
+      "@watch(['defaultValue', 'value'], { waitUntilFirstUpdate: true })",
+      "@watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })",
+    ],
+  ], content);
+
+  content = addSectionBefore(
+    content,
+    "@watch('disabled'",
+    `@watch('delimiter')
+  handleDelimiterChange() {
+    this.getAllOptions().forEach(option => {
+      option.delimiter = this.delimiter;
+    });
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
+
+  // This fix allows the select to be used in a form with a value set via property binding
+  // and the dynamic loading of options to work correctly.
+  content = addSectionAfter(
+    content,
+    'const val = this.valueHasChanged ? this.value : this.defaultValue;',
+    'this.handleDelimiterChange();\n',
+    {
+      newlinesBeforeInsertion: 2,
+      tabsBeforeInsertion: 2,
+    },
+  );
 
   return {
     content,

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import type { SynChangeEvent, SynCombobox, SynRange } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
-import { mockData } from '@synergy-design-system/demo-utilities';
+import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
   const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
@@ -46,16 +46,10 @@ export const afterRenderDefaultForm = async () => {
     customElements.whenDefined('syn-range'),
   ]);
 
-  const formatter = new Intl.NumberFormat('de-DE', {
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    style: 'currency',
-  });
-
   // Add a custom formatter for the donation field
   document
     .querySelector<SynRange>('#donations')!
-    .tooltipFormatter = value => formatter.format(value);
+    .tooltipFormatter = value => currencyNumberFormatter.format(value);
 
   // Add custom highlighter for the combobox
   initCombobox();

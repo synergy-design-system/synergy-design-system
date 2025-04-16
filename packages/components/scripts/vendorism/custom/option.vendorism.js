@@ -1,5 +1,9 @@
 import { removeSection } from '../remove-section.js';
-import { addSectionsBefore, replaceSection } from '../replace-section.js';
+import {
+  addSectionsBefore,
+  replaceSection,
+  replaceSections,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'option.component.ts',
@@ -63,6 +67,42 @@ const transformComponent = (path, originalContent) => {
       return;
     }`,
       { newlinesAfterInsertion: 2, tabsAfterInsertion: 2 },
+    ],
+  ], content);
+
+  // #540: Support a custom delimiter
+  content = addSectionsBefore([
+    [
+      'import type { CSSResultGroup }',
+      "import { delimiterToWhiteSpace } from './utility.js';",
+    ],
+    [
+      '@state() current',
+      `// the delimiter used to separate multiple values in a select
+  // This is provided by the wrapping syn-select
+  @state() delimiter = ' ';`,
+      {
+        newlinesAfterInsertion: 2,
+        tabsAfterInsertion: 1,
+      },
+    ],
+  ], content);
+
+  content = replaceSections([
+    [
+      "if (this.value.includes(' ')) {",
+      `const { delimiter } = this;
+
+    if (this.value.includes(delimiter)) {`,
+    ],
+    [
+      'console.error(`Option values cannot include a space. All spaces have been replaced with underscores.`, this);',
+      // eslint-disable-next-line no-template-curly-in-string
+      'console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);',
+    ],
+    [
+      "this.value = this.value.replace(/ /g, '_');",
+      'this.value = delimiterToWhiteSpace(this.value, this.delimiter);',
     ],
   ], content);
 

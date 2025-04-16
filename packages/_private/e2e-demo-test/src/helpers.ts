@@ -6,9 +6,9 @@ import type {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/components';
-import { frameworks } from '../frameworks.config.js';
+import { type AvailableFrameworks, frameworks } from '../frameworks.config.js';
 
-type FrameworkCallback = (framework: { name: string, port: number }) => void;
+type FrameworkCallback = (framework: { name: AvailableFrameworks, port: number }) => void;
 
 export const getInputValue = async (locator: Locator) => locator
   .evaluate((el: SynInput | SynTextarea | SynSelect) => el.value);

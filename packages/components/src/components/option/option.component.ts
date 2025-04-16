@@ -16,6 +16,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './option.styles.js';
 import customStyles from './option.custom.styles.js';
+import { delimiterToWhiteSpace } from './utility.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -46,6 +47,10 @@ export default class SynOption extends SynergyElement {
   private isInitialized = false;
 
   @query('.option__label') defaultSlot: HTMLSlotElement;
+
+  // the delimiter used to separate multiple values in a select
+  // This is provided by the wrapping syn-select
+  @state() delimiter = ' ';
 
   @state() current = false; // the user has keyed into the option, but hasn't selected it yet (shows a highlight)
   @state() selected = false; // the option is selected and has aria-selected="true"
@@ -117,9 +122,11 @@ export default class SynOption extends SynergyElement {
       this.value = String(this.value);
     }
 
-    if (this.value.includes(' ')) {
-      console.error(`Option values cannot include a space. All spaces have been replaced with underscores.`, this);
-      this.value = this.value.replace(/ /g, '_');
+    const { delimiter } = this;
+
+    if (this.value.includes(delimiter)) {
+      console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);
+      this.value = delimiterToWhiteSpace(this.value, this.delimiter);
     }
   }
 

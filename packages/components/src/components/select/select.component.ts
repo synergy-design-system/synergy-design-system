@@ -112,6 +112,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @state() selectedOptions: SynOption[] = [];
   @state() private valueHasChanged: boolean = false;
 
+  /**
+   * The delimiter to use when setting the value when `multiple` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimiter = ' ';
+
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
 
@@ -130,10 +137,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   set value(val: string | number | Array<string | number>) {
     if (this.multiple) {
       if (!Array.isArray(val)) {
-        val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
+        val = typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
       }
     } else {
-      val = Array.isArray(val) ? val.join(' ') : val;
+      val = Array.isArray(val) ? val.join(this.delimiter) : val;
     }
 
     if (this._value === val) {
@@ -533,6 +540,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     const allOptions = this.getAllOptions();
     const val = this.valueHasChanged ? this.value : this.defaultValue;
+
+    this.handleDelimiterChange();
     const value = Array.isArray(val) ? val : [val];
     const values: Array<string | number> = [];
 
@@ -676,6 +685,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.formControlController.emitInvalidEvent(event);
   }
 
+  @watch('delimiter')
+  handleDelimiterChange() {
+    this.getAllOptions().forEach(option => {
+      option.delimiter = this.delimiter;
+    });
+  }
+
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Close the listbox when the control is disabled
@@ -713,7 +729,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
-  @watch(['defaultValue', 'value'], { waitUntilFirstUpdate: true })
+  @watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })
   handleValueChange() {
     if (!this.valueHasChanged) {
       const cachedValueHasChanged = this.valueHasChanged;

@@ -15,3 +15,26 @@ export type SelectItemMixedId = {
   id: string | number,
   label: string,
 };
+
+export type DemoFormData = {
+  code: string;
+  comment: string;
+  date: string;
+  donations: string;
+  email: string;
+  files: FileList | undefined;
+  gender: string;
+  happiness: string;
+  name: string;
+  nationality: string;
+  newsletterAngular: boolean;
+  newsletterBeta: boolean;
+  newsletterReact: boolean;
+  newsletterStandard: boolean;
+  newsletterVanilla: boolean;
+  newsletterVue: boolean;
+  password: string;
+  phone: string;
+  role: string;
+  topics: string[];
+};

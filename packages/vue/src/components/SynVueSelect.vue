@@ -77,6 +77,12 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
+ */
+  delimiter?: SynSelect['delimiter'];
+
+  /**
    * The name of the select, submitted as a name/value pair with form data.
    */
   name?: SynSelect['name'];

@@ -116,7 +116,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** The current values of the input (in ascending order) as a string of space separated values */
   @property({ type: String })
   set value(value: string | null) {
-    this.#value = value ? value.split(' ').map(n => +n).sort(numericSort) : [];
+    this.#value = value
+      ? value.split(' ').map(Number).sort(numericSort)
+      : [];
   }
 
   get value() {

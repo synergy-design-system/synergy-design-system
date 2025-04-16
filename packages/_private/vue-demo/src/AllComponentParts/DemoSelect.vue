@@ -46,4 +46,16 @@ onMounted(async () => {
       <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
     </SynVueSelect>
   </div>
+
+  <SynVueSelect
+    data-testid="select-540-delimiter"
+    delimiter="|"
+    help-text="This select uses a custom delimiter"
+    label="Multiple with custom delimiter"
+    multiple
+    value="1|2"
+  >
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </SynVueSelect>
+
 </template>

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.30.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.1...components/2.30.0) (2025-04-16)
+
+
+### Features
+
+* ✨ Let users configure delimiter for syn-select ([#844](https://github.com/synergy-design-system/synergy-design-system/issues/844)) ([b19fe82](https://github.com/synergy-design-system/synergy-design-system/commit/b19fe82ac6e19ad5daf7b776f3bae40044bbe389))
+
 # [@synergy-design-system/components-v2.29.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.0...components/2.29.1) (2025-04-14)
 
 

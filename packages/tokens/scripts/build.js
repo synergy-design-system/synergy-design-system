@@ -26,7 +26,7 @@ const config = {
   buildPath: './dist/',
   prefix: 'syn-',
   source: [
-    './src/figma-tokens/brand/synergy24.json',
+    './src/figma-tokens/brand/*.json',
     './src/figma-tokens/globals.json',
     './src/figma-tokens/semantic/*.json',
   ],

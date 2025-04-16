@@ -11,7 +11,11 @@ import {
 /**
  * List of attributes we want to allow an override for
  */
-export const ALLOWED_ATTRIBUTES = ['size', 'variant'];
+export const ALLOWED_ATTRIBUTES = [
+  'delimiter',
+  'size',
+  'variant',
+];
 
 const getDefaultAttributes = attributes => attributes.filter(
   attr => attr.default !== undefined && !!attr.default && attr.default !== "''",
@@ -57,6 +61,7 @@ const createSynDefaultSettingsStructure = (components, whiteListedAttributes = [
 const createSynDefaultSettingsType = (components, whiteListedAttributes = []) => {
   const structure = Object
     .entries(createSynDefaultSettingsStructure(components, whiteListedAttributes))
+    .toSorted() // Make sure the order is always the same
     .reduce((acc, [attr, comp]) => {
       const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attr}'>;`);
       return `${acc}${attr}: {
@@ -75,6 +80,7 @@ const createSynDefaultSettingsType = (components, whiteListedAttributes = []) =>
 const createDefaultSettingsExport = (components, whiteListedAttributes = []) => {
   const structure = Object
     .entries(createSynDefaultSettingsStructure(components, whiteListedAttributes))
+    .toSorted() // Make sure the order is always the same
     // 1. Create a new array that includes
     // the attribute as key and a tuple of component names and default values as value
     .map(([attr, cList]) => {

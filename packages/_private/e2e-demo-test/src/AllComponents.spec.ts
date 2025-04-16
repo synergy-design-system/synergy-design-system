@@ -1,5 +1,9 @@
 import { type Locator, expect, test } from '@playwright/test';
-import type { SynCombobox, SynOptgroup, SynSelect } from '@synergy-design-system/components';
+import type {
+  SynCombobox,
+  SynOptgroup,
+  SynSelect,
+} from '@synergy-design-system/components';
 import { AllComponentsPage } from './PageObjects/index.js';
 import {
   createTestCases,
@@ -268,6 +272,42 @@ test.describe('<SynOptgroup />', () => {
 
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
+    test.describe(`Feature#540: ${name}`, () => {
+      test('should select the given elements when the delimiter is set', async ({ page }) => {
+        // Angular currently has problems with selection.
+        // @todo: Remove this after #847 is fixed!
+        test.skip(name === 'angular', 'Angular currently has problems with selection. Please see #847');
+
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('selectWithDelimiter');
+
+        const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+        const initialDelimiter = await select.evaluate((ele: SynSelect) => ele.delimiter);
+
+        // Note when providing a delimiter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(initialValue).toEqual(['1', '2']);
+        expect(initialDelimiter).toEqual('|');
+
+        // Check that a change in the delimiter is reflected in the value
+        await select.evaluate(async (ele: SynSelect) => {
+          ele.delimiter = ' ';
+          ele.value = '2 3';
+          await ele.updateComplete;
+        });
+
+        const newValue = await select.evaluate((ele: SynSelect) => ele.value);
+
+        // Note when providing a delimiter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(newValue).toEqual(['2', '3']);
+      }); // end delimiter check
+    }); // feature#540
+
     test.describe(`Feature#805: ${name}`, () => {
       test.describe('Single Select', () => {
         test('should have an initial value of numeric 1', async ({ page }) => {

@@ -16,7 +16,7 @@ export const Select = () => {
   return (
     <>
       <syn-select data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level." value="2">
-        {levels.map((level) => (
+        {levels.map(level => (
           <syn-option key={level.value} value={level.value}>
             {level.label}
           </syn-option>
@@ -39,7 +39,7 @@ export const Select = () => {
           label="Mixed integer and string values (Single Select)"
           value={1}
         >
-          {numericItems.map((item) => (
+          {numericItems.map(item => (
             <syn-option key={item.id} value={item.id} disabled={item.disabled}>
               {item.label}
             </syn-option>
@@ -53,13 +53,28 @@ export const Select = () => {
           multiple
           value={[1, 'three']}
         >
-          {numericItems.map((item) => (
+          {numericItems.map(item => (
             <syn-option key={item.id} value={item.id} disabled={item.disabled}>
               {item.label}
             </syn-option>
           ))}
         </syn-select>
       </div>
+
+      <syn-select
+        data-testid="select-540-delimiter"
+        delimiter="|"
+        help-text="This select uses a custom delimiter"
+        label="Multiple with custom delimiter"
+        multiple
+        value="1|2"
+      >
+        {levels.map(level => (
+          <syn-option key={level.value} value={level.value}>
+            {level.label}
+          </syn-option>
+        ))}
+      </syn-select>
     </>
   );
 };

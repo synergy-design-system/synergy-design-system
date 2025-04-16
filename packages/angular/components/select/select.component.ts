@@ -124,6 +124,18 @@ export class SynSelectComponent {
   }
 
   /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
+ */
+  @Input()
+  set delimiter(v: SynSelect['delimiter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
+  }
+  get delimiter(): SynSelect['delimiter'] {
+    return this.nativeElement.delimiter;
+  }
+
+  /**
    * The name of the select, submitted as a name/value pair with form data.
    */
   @Input()

@@ -1,7 +1,9 @@
+export type AvailableFrameworks = 'angular' | 'react' | 'vanilla' | 'vue';
+
 export type Framework = {
   customCommand?: string;
   distDir: string;
-  name: string;
+  name: AvailableFrameworks;
   port: number,
 };
 

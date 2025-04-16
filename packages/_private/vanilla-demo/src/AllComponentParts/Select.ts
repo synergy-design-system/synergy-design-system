@@ -38,5 +38,14 @@ export const Select = (regressions: Array<() => void> = []) => {
         .value=${[1, 'three']}
       ></syn-select>
     </div>
+
+    <syn-select
+      data-testid="select-540-delimiter"
+      delimiter="|"
+      help-text="This select uses a custom delimiter"
+      label="Multiple with custom delimiter"
+      multiple
+      value="1|2"
+    ></syn-select>
   `;
 };

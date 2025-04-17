@@ -19,6 +19,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynClampedEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 
 /**
@@ -46,6 +47,7 @@ import '@synergy-design-system/components/components/input/input.js';
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamped - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -97,6 +99,9 @@ export class SynInputComponent {
     });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-clamped', (e: SynClampedEvent) => {
+      this.synClampedEvent.emit(e);
     });
   }
 
@@ -513,6 +518,11 @@ You may provide this as one of the following values:
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
+   * Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+   */
+  @Output() synClampedEvent = new EventEmitter<SynClampedEvent>();
+
+  /**
    * Support for two way data binding
    */
   @Output() valueChange = new EventEmitter<SynInput['value']>();
@@ -524,3 +534,4 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynClampedEvent } from '@synergy-design-system/components';

@@ -61,6 +61,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamped - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -227,6 +228,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
+  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+
   /**
    * Defines the strategy for numeric inputs.
    * This is used to determine how the input behaves when the user interacts with it.
@@ -276,7 +279,23 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       },
     },
     type: Object,
-  }) numericStrategy: 'native' | 'modern' | string | Partial<NumericStrategy> = nativeNumericStrategy;
+  })
+  set numericStrategy(value: 'native' | 'modern' | string | Partial<NumericStrategy>) {
+    if (typeof value === 'string') {
+      this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy;
+    } else if (typeof value === 'object') {
+      this.#numericStrategy = createNumericStrategy(value);
+    } else {
+      this.#numericStrategy = nativeNumericStrategy;
+    }
+  }
+
+  /**
+   * @default 'native'
+   */
+  get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
+    return this.#numericStrategy;
+  }
 
   //
   // NOTE: We use an in-memory input for these getters/setters instead of the one in the template because the properties
@@ -370,6 +389,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleNumericStrategyAutoClamp() {
+    // @todo: What if no min or max is set?
     const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     const { valueAsNumber } = this;
@@ -397,7 +417,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleChange() {
-    if (this.type === 'number' && (this.numericStrategy as NumericStrategy).autoClamp) {
+    console.log(this.numericStrategy, this.#numericStrategy.autoClamp);
+    if (this.type === 'number' && this.#numericStrategy.autoClamp) {
       this.handleNumericStrategyAutoClamp();
       return;
     }
@@ -564,7 +585,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   render() {
-    console.log(this, this.numericStrategy);
+    // console.log(this, this.numericStrategy);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasPrefixSlot = this.hasSlotController.test('prefix');

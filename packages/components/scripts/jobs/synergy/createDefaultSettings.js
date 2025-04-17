@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { camelCase } from 'change-case';
 import {
   createHeader,
   formatFile,
@@ -14,8 +15,9 @@ import {
 export const ALLOWED_ATTRIBUTES = [
   'delimiter',
   'size',
+  'numeric-strategy',
   'variant',
-];
+].sort();
 
 const getDefaultAttributes = attributes => attributes.filter(
   attr => attr.default !== undefined && !!attr.default && attr.default !== "''",
@@ -63,8 +65,9 @@ const createSynDefaultSettingsType = (components, whiteListedAttributes = []) =>
     .entries(createSynDefaultSettingsStructure(components, whiteListedAttributes))
     .toSorted() // Make sure the order is always the same
     .reduce((acc, [attr, comp]) => {
-      const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attr}'>;`);
-      return `${acc}${attr}: {
+      const attributeName = camelCase(attr);
+      const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attributeName}'>;`);
+      return `${acc}'${attr}': {
         ${componentTypes.join('\n')}
       },`;
     }, '');
@@ -93,7 +96,7 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
     })
     // 2. Create the string representation of the object
     .reduce((acc, [attr, cList]) => `
-      ${acc}${attr}: {
+      ${acc}'${attr}': {
         ${cList.map(([c, d]) => `${c}: ${d},`).join('\n')}
       },
     `, '');

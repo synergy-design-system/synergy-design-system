@@ -30,6 +30,7 @@
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamped - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -60,6 +61,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynClampedEvent } from '@synergy-design-system/components';
 import type { SynInput } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -300,6 +302,11 @@ defineEmits<{
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
+   * Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+   */
+  'syn-clamped': [e: SynClampedEvent];
+
+  /**
    * Support for two way data binding
    */
   'update:modelValue': [newValue: SynInput['value']];
@@ -313,6 +320,7 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynClampedEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -326,6 +334,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
       $emit('syn-input', $event);
     "
     @syn-invalid="$emit('syn-invalid', $event)"
+    @syn-clamped="$emit('syn-clamped', $event)"
     :value="
       typeof props.modelValue !== 'undefined'
         ? props.modelValue

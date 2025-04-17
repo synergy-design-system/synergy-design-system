@@ -97,6 +97,9 @@ export type SynDefaultSettings = {
   delimiter: {
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
+  "numeric-strategy": {
+    SynInput?: AllowedValueForDefaultSetting<SynInput, "numericStrategy">;
+  };
   size: {
     SynAccordion?: AllowedValueForDefaultSetting<SynAccordion, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
@@ -132,6 +135,9 @@ export const defaultSettings: SynDefaultSettings = {
   delimiter: {
     SynSelect: " ",
   },
+  "numeric-strategy": {
+    SynInput: "native",
+  },
   size: {
     SynAccordion: "medium",
     SynButton: "medium",
@@ -164,6 +170,9 @@ export const defaultSettings: SynDefaultSettings = {
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
     SynSelect: " ",
+  },
+  "numeric-strategy": {
+    SynInput: "native",
   },
   size: {
     SynAccordion: "medium",

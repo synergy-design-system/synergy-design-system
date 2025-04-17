@@ -327,7 +327,8 @@ export const Strategies: Story = {
       <syn-input type="number" min="20" max="80" value="40" label="No set"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" numeric-strategy="native" label="Set to native"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" numeric-strategy="modern" label="Set to modern"></syn-input>
-      <syn-input type="number" min="20" max="80" value="40" numeric-strategy='{ "autoClamp": true, "unknown": true }' label="Set to custom"></syn-input>
+      <syn-input type="number" min="20" max="80" value="40" numeric-strategy='{ "autoClamp": true, "viaAttr": true }' label="Set to custom (attribute)"></syn-input>
+      <syn-input type="number" min="20" max="80" value="40" .numeric-strategy=${{ autoClamp: true, viaProp: true }} label="Set to custom (prop binding)"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" label="Set via JavaScript" id="set-js"></syn-input>
       <script>
         document.querySelector('#set-js').numericStrategy = {

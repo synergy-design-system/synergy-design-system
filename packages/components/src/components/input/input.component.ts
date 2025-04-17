@@ -248,34 +248,9 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     attribute: 'numeric-strategy',
     converter: {
       fromAttribute: (value) => {
-        // Default, user has not supplied anything or the value is "native"
-        if (!value || value === 'native') {
-          return nativeNumericStrategy;
-        }
-        
-        // User wants to use the modern variant
-        if (value === 'modern') {
-          return modernNumericStrategy;
-        }
-        
-        // User supplied an object. Try to parse it as a numeric strategy
-        if (typeof value === 'object') {
-          return createNumericStrategy(value);
-        }
-        
-        // User supplied a string. Try to parse it as JSON
-        if (typeof value === 'string') {
-          // If the value is a string, try to parse it as JSON
-          try {
-            return createNumericStrategy(JSON.parse(value));
-          } catch (e) {
-            // If parsing fails, return the default value
-            return nativeNumericStrategy;
-          }
-        }
-
-        // User supplied an unknown value. Return the default value
-        return nativeNumericStrategy;
+        return value === 'modern'
+          ? modernNumericStrategy
+          : nativeNumericStrategy;
       },
     },
     type: Object,
@@ -417,7 +392,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleChange() {
-    console.log(this.numericStrategy, this.#numericStrategy.autoClamp);
     if (this.type === 'number' && this.#numericStrategy.autoClamp) {
       this.handleNumericStrategyAutoClamp();
       return;
@@ -585,7 +559,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   render() {
-    // console.log(this, this.numericStrategy);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasPrefixSlot = this.hasSlotController.test('prefix');

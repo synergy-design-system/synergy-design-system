@@ -121,7 +121,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-input') as SynInput;
+    const input = canvasElement.querySelector('syn-input') as unknown as SynInput;
     if (input) {
       input.focus();
     }
@@ -176,8 +176,8 @@ export const Invalid: Story = {
   play: async ({ canvasElement }) => {
     try {
       const form = canvasElement.querySelector('form')!;
-      const input = form.querySelector('syn-input') as SynInput;
-      const button = form.querySelector('syn-button') as SynButton;
+      const input = form.querySelector('syn-input') as unknown as SynInput;
+      const button = form.querySelector('syn-button') as unknown as SynButton;
 
       if (button && input) {
         // make sure to always fire both events:
@@ -188,6 +188,7 @@ export const Invalid: Story = {
         button.click();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error in play function:', error);
     }
   },
@@ -327,8 +328,7 @@ export const Strategies: Story = {
       <syn-input type="number" min="20" max="80" value="40" label="No set"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" numeric-strategy="native" label="Set to native"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" numeric-strategy="modern" label="Set to modern"></syn-input>
-      <syn-input type="number" min="20" max="80" value="40" numeric-strategy='{ "autoClamp": true, "viaAttr": true }' label="Set to custom (attribute)"></syn-input>
-      <syn-input type="number" min="20" max="80" value="40" .numeric-strategy=${{ autoClamp: true, viaProp: true }} label="Set to custom (prop binding)"></syn-input>
+      <syn-input type="number" min="20" max="80" value="40" .numericStrategy=${{ autoClamp: true, viaProp: true }} label="Set to custom (prop binding)"></syn-input>
       <syn-input type="number" min="20" max="80" value="40" label="Set via JavaScript" id="set-js"></syn-input>
       <script>
         document.querySelector('#set-js').numericStrategy = {
@@ -341,6 +341,7 @@ export const Strategies: Story = {
 };
 
 // Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
@@ -356,3 +357,4 @@ export const Screenshot: Story = generateScreenshotStory({
   CustomizingLabelPosition,
   Stepper,
 }, 500);
+/* eslint-enable sort-keys */

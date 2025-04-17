@@ -1,4 +1,4 @@
-import { Locator } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import type {
   SynCheckbox,
   SynInput,
@@ -47,3 +47,16 @@ export const createTestCases = (callback: FrameworkCallback) => {
     });
   });
 };
+
+/**
+ * Wait for an event to be fired on the page
+ * @param page The page the event should be bound to
+ * @param event The event to use
+ * @returns The page evaluation object for playwright
+ */
+export const waitForEvent = (
+  page: Page,
+  event: string,
+) => page.evaluate((playwrightEvent) => new Promise<Event>((resolve) => {
+  document.addEventListener(playwrightEvent, e => resolve(e));
+}), event);

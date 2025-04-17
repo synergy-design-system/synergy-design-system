@@ -1,12 +1,19 @@
 import { type Locator, expect, test } from '@playwright/test';
 import type {
   SynCombobox,
+  SynInput,
   SynOptgroup,
   SynSelect,
 } from '@synergy-design-system/components';
+import {
+  modernNumericStrategy,
+  nativeNumericStrategy,
+} from '@synergy-design-system/components/components/input/strategies.js';
 import { AllComponentsPage } from './PageObjects/index.js';
 import {
   createTestCases,
+  fillInput,
+  waitForEvent,
 } from './helpers.js';
 
 test.describe('<SynAccordion />', () => {
@@ -180,6 +187,56 @@ test.describe('<SynCombobox />', () => {
     }); // regression#813
   }); // End frameworks
 }); // </syn-combobox>
+
+test.describe('<SynInput />', () => {
+  createTestCases(({ name, port }) => {
+    test.describe(`Feature#417: ${name}`, () => {
+      test.skip(name !== 'react', 'only implemented in react currently!');
+      test('should set the correct numeric strategy when it is passed', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('inputLink');
+
+        const inputNoValue = await AllComponents.getLocator('input417NoValue');
+        const inputNative = await AllComponents.getLocator('input417NumericNative');
+        const inputModern = await AllComponents.getLocator('input417NumericModern');
+
+        await expect(inputNoValue, 'uses the native number strategy per default').toHaveJSProperty('numericStrategy', nativeNumericStrategy);
+        await expect(inputNative, 'uses the native number strategy when the attribute is set to "native"').toHaveJSProperty('numericStrategy', nativeNumericStrategy);
+        await expect(inputModern, 'uses the modern number strategy when the attribute is set to "modern"').toHaveJSProperty('numericStrategy', modernNumericStrategy);
+      }); // end check for initial values
+
+      test.describe('when using the native numeric strategy', () => {
+        test('should allow to set the value lower than min', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const eventPromise = waitForEvent(page, 'syn-change');
+
+          const inputNative = await AllComponents.getLocator('input417NumericNative');
+
+          await fillInput(inputNative, '-5');
+          await eventPromise;
+
+          const data = await inputNative.evaluate((el: SynInput) => {
+            const { validity, value, valueAsNumber } = el;
+            const isValid = validity.valid;
+            return {
+              isValid,
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(data.value, 'Value should be set to a string of "-5"').toEqual('-5');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float -5').toEqual(-5);
+          expect(data.isValid, 'The field should be flagged as invalid').toBeFalsy();
+        }); // end set value lower than min
+      }); // end native numeric strategy
+    }); // feature#540
+  }); // End frameworks
+}); // </syn-input>
 
 test.describe('<SynOptgroup />', () => {
   /**

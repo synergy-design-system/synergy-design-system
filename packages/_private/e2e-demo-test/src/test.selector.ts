@@ -18,6 +18,13 @@ const AllComponentSelectors = {
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
+  // Input
+  input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
+  input417NumericModern: '#tab-content-Input syn-input[data-testid="input-417-numeric-modern"]',
+  input417NumericNative: '#tab-content-Input syn-input[data-testid="input-417-numeric-native"]',
+  inputContent: '#tab-content-Input',
+  inputLink: '#tab-Input',
+
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
   optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',

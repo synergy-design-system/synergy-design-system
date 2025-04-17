@@ -266,7 +266,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   /**
-   * @default 'native'
+   * @default nativeNumericStrategy
    */
   get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
     return this.#numericStrategy;

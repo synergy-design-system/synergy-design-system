@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { camelCase } from 'change-case';
 import {
   createHeader,
   formatFile,
@@ -15,7 +14,7 @@ import {
 export const ALLOWED_ATTRIBUTES = [
   'delimiter',
   'size',
-  'numeric-strategy',
+  'numericStrategy',
   'variant',
 ].sort();
 
@@ -38,7 +37,7 @@ const createSynDefaultSettingsStructure = (components, whiteListedAttributes = [
     name,
   }))
   // 3. Create an array that includes the component name and default attribute names
-  .map(({ attributes, name }) => [name, attributes.map(attr => attr.name)])
+  .map(({ attributes, name }) => [name, attributes.map(attr => attr.fieldName)])
   // 4: Reverse the map, create an object that has the attributes as key and components as values
   // Also make sure to only include whitelisted attributes!
   .reduce((acc, [name, attributes]) => {
@@ -65,9 +64,8 @@ const createSynDefaultSettingsType = (components, whiteListedAttributes = []) =>
     .entries(createSynDefaultSettingsStructure(components, whiteListedAttributes))
     .toSorted() // Make sure the order is always the same
     .reduce((acc, [attr, comp]) => {
-      const attributeName = camelCase(attr);
-      const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attributeName}'>;`);
-      return `${acc}'${attr}': {
+      const componentTypes = comp.map(c => `${c}?: AllowedValueForDefaultSetting<${c}, '${attr}'>;`);
+      return `${acc}${attr}: {
         ${componentTypes.join('\n')}
       },`;
     }, '');
@@ -89,14 +87,14 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
     .map(([attr, cList]) => {
       const componentListWithDefaults = cList.map(c => {
         const foundComponent = components.find(({ name }) => name === c);
-        const defaultValue = foundComponent?.attributes.find(({ name }) => name === attr);
+        const defaultValue = foundComponent?.attributes.find(({ fieldName }) => fieldName === attr);
         return [c, defaultValue?.default];
       });
       return [attr, componentListWithDefaults];
     })
     // 2. Create the string representation of the object
     .reduce((acc, [attr, cList]) => `
-      ${acc}'${attr}': {
+      ${acc}${attr}: {
         ${cList.map(([c, d]) => `${c}: ${d},`).join('\n')}
       },
     `, '');
@@ -150,6 +148,11 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
 
   const typeImports = await createTypeImports(componentsHavingDefaults);
 
+  const globalImports = [
+    // #417: Add the nativeNumericStrategy to the default settings
+    ['{ nativeNumericStrategy }', '../../components/input/strategies.js'],
+  ].map(([importPath, importFrom]) => `import ${importPath} from '${importFrom}';`);
+
   // Create the needed types
   const coreTypes = [
     `
@@ -200,6 +203,9 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   const outFile = `
     /* eslint-disable @typescript-eslint/quotes */
     ${createHeader()}
+
+    // Global imports
+    ${globalImports.join('\n')}
 
     // Type imports
     ${typeImports.join('\n')}

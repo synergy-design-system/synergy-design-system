@@ -5,6 +5,9 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 
+// Global imports
+import { nativeNumericStrategy } from "../../components/input/strategies.js";
+
 // Type imports
 import type SynAccordion from "../../components/accordion/accordion.js";
 import type SynAlert from "../../components/alert/alert.js";
@@ -97,7 +100,7 @@ export type SynDefaultSettings = {
   delimiter: {
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
-  "numeric-strategy": {
+  numericStrategy: {
     SynInput?: AllowedValueForDefaultSetting<SynInput, "numericStrategy">;
   };
   size: {
@@ -135,8 +138,8 @@ export const defaultSettings: SynDefaultSettings = {
   delimiter: {
     SynSelect: " ",
   },
-  "numeric-strategy": {
-    SynInput: "native",
+  numericStrategy: {
+    SynInput: nativeNumericStrategy,
   },
   size: {
     SynAccordion: "medium",
@@ -171,8 +174,8 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
     SynSelect: " ",
   },
-  "numeric-strategy": {
-    SynInput: "native",
+  numericStrategy: {
+    SynInput: nativeNumericStrategy,
   },
   size: {
     SynAccordion: "medium",

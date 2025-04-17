@@ -96,6 +96,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
+  @query('[part=decrement-number-stepper]') decrementButton: HTMLButtonElement;
+  @query('[part=increment-number-stepper]') incrementButton: HTMLButtonElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -530,7 +532,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   render() {
-    console.log(this, this.numericStrategy);
+    console.log(this, this.numericStrategy, this.decrementButton, this.incrementButton);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasPrefixSlot = this.hasSlotController.test('prefix');

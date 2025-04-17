@@ -33,6 +33,7 @@ import {
   nativeNumericStrategy,
   modernNumericStrategy,
 } from './strategies.js';
+import type { SynClampedDetails } from '../../events/syn-clamped.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -347,11 +348,11 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       return true;
     }
 
-    if (this.min === undefined || this.min === null || this.disabled) {
+    if (this.min === undefined || this.min === null) {
       return false;
     }
 
-    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     return this.valueAsNumber <= min;
   }
 
@@ -364,11 +365,42 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       return false;
     }
 
-    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     return this.valueAsNumber >= max;
   }
 
+  private handleNumericStrategyAutoClamp() {
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
+    const { valueAsNumber } = this;
+
+    let nextValue = valueAsNumber;
+    let clampEvent = '';
+    if (nextValue < min) {
+      nextValue = min;
+      clampEvent = 'min';
+    }
+    if (nextValue > max) {
+      nextValue = max;
+      clampEvent = 'max';
+    }
+
+    this.value = nextValue.toString();
+    this.emit('syn-clamped', {
+      detail: {
+        clampedTo: clampEvent as SynClampedDetails['clampedTo'],
+        lastUserValue: valueAsNumber,
+      }
+    });
+    this.formControlController.updateValidity();
+    this.emit('syn-change');
+  }
+
   private handleChange() {
+    if (this.type === 'number' && (this.numericStrategy as NumericStrategy).autoClamp) {
+      this.handleNumericStrategyAutoClamp();
+      return;
+    }
     this.value = this.input.value;
     this.emit('syn-change');
   }
@@ -532,7 +564,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   render() {
-    console.log(this, this.numericStrategy, this.decrementButton, this.incrementButton);
+    console.log(this, this.numericStrategy);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasPrefixSlot = this.hasSlotController.test('prefix');

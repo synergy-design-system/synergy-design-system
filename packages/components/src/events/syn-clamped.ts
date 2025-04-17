@@ -1,4 +1,4 @@
-export type SynClampedEvent = CustomEvent<{
+export type SynClampedDetails = {
   /**
    * The "direction" the value was clamped to
    */
@@ -11,7 +11,9 @@ export type SynClampedEvent = CustomEvent<{
    * as the value prop will be changed AFTER the clamping is done!
    */
   lastUserValue: number;
-}>;
+};
+
+export type SynClampedEvent = CustomEvent<SynClampedDetails>;
 
 declare global {
   interface GlobalEventHandlersEventMap {

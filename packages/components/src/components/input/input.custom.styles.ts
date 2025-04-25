@@ -143,6 +143,16 @@ export default css`
     padding-right: var(--syn-spacing-small);
   }
 
+  .form-control--has-prefix .input__control {
+    padding-left: 0;
+  }
+
+  .form-control--has-suffix .input__control,
+  .input:has(.input__clear) .input__control,
+  .input:has(.input__password-toggle) .input__control {
+    padding-right: 0;
+  }
+
   :host([type='number']) .input--large:not(.input--no-spin-buttons) .input__clear,
   :host([type='number']) .input--large:not(.input--no-spin-buttons) .input__password-toggle {
     padding-right: var(--syn-spacing-medium);

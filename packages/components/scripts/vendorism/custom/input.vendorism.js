@@ -1,4 +1,9 @@
-import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionAfter,
+  addSectionBefore,
+  addSectionsAfter,
+  replaceSections,
+} from '../replace-section.js';
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -103,11 +108,11 @@ export`,
       return true;
     }
 
-    if (this.min === undefined || this.min === null || this.disabled) {
+    if (this.min === undefined || this.min === null) {
       return false;
     }
 
-    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     return this.valueAsNumber <= min;
   }
 
@@ -120,7 +125,7 @@ export`,
       return false;
     }
 
-    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     return this.valueAsNumber >= max;
   }`,
   );
@@ -181,6 +186,128 @@ export`,
  * @csspart increment-number-stepper - The increment number stepper button.
  * @csspart divider - The divider between the increment and decrement number stepper buttons.`,
   );
+
+  // #417: Numeric Strategies
+  content = addSectionsAfter([
+    // Needed imports
+    [
+      "import type { SynergyFormControl } from '../../internal/synergy-element.js';",
+      `import {
+  type NumericStrategy,
+  createNumericStrategy,
+  nativeNumericStrategy,
+  modernNumericStrategy,
+} from './strategies.js';
+import type { SynClampDetails } from '../../events/syn-clamp.js';`,
+    ],
+    // Event documentation
+    [
+      "@event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      ' * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.',
+    ],
+    // Add dom references to decrement and increment
+    [
+      "@query('.input__control') input: HTMLInputElement;",
+      `  @query('[part=decrement-number-stepper]') decrementButton: HTMLButtonElement;
+  @query('[part=increment-number-stepper]') incrementButton: HTMLButtonElement;`,
+    ],
+    // Add the numeric strategy property
+    [
+      "@property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';",
+      `
+  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+
+  /**
+   * Defines the strategy for numeric inputs.
+   * This is used to determine how the input behaves when the user interacts with it.
+   * Includes the following configuration options:
+   * 1. autoClamp: If true, the input will clamp the value to the min and max attributes.
+   * 
+   * You may provide this as one of the following values:
+   * - 'native': Uses the native browser implementation.
+   * - 'modern': Uses the modern implementation.
+   * - An object that matches the NumericStrategy type
+   */
+  @property({
+    attribute: 'numeric-strategy',
+    converter: {
+      fromAttribute: (value) => {
+        return value === 'modern'
+          ? modernNumericStrategy
+          : nativeNumericStrategy;
+      },
+    },
+    type: Object,
+  })
+  set numericStrategy(value: 'native' | 'modern' | Partial<NumericStrategy>) {
+    if (typeof value === 'string') {
+      this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy;
+    } else if (typeof value === 'object') {
+      this.#numericStrategy = createNumericStrategy(value);
+    } else {
+      this.#numericStrategy = nativeNumericStrategy;
+    }
+  }
+
+  /**
+   * @default nativeNumericStrategy
+   */
+  get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
+    return this.#numericStrategy;
+  }
+      `,
+    ],
+    // Add the numeric strategy switch to handleChange
+    [
+      'private handleChange() {',
+      `    if (this.type === 'number' && this.#numericStrategy.autoClamp) {
+      this.handleNumericStrategyAutoClamp();
+      return;
+    }`,
+    ],
+  ], content);
+
+  // Add the modern numeric strategy for autoclamp
+  content = addSectionBefore(
+    content,
+    'private handleChange() {',
+    `
+  private handleNumericStrategyAutoClamp() {
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
+    const { valueAsNumber } = this;
+
+    let nextValue = valueAsNumber;
+    let clampEvent = '';
+    if (nextValue < min) {
+      nextValue = min;
+      clampEvent = 'min';
+    }
+    if (nextValue > max) {
+      nextValue = max;
+      clampEvent = 'max';
+    }
+
+    this.value = nextValue.toString();
+
+    // Fire the event if the value was clamped
+    if (clampEvent) {
+      this.emit('syn-clamp', {
+        detail: {
+          clampedTo: clampEvent as SynClampDetails['clampedTo'],
+          lastUserValue: valueAsNumber,
+        }
+      });
+    }
+    this.formControlController.updateValidity();
+    this.emit('syn-change');
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
+  // /#417
 
   return {
     content,

@@ -360,8 +360,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     return this.valueAsNumber >= max;
   }
 
+  
   private handleNumericStrategyAutoClamp() {
-    // @todo: What if no min or max is set?
     const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     const { valueAsNumber } = this;

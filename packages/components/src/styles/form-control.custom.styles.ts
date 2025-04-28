@@ -24,18 +24,6 @@ export default css`
     margin-top: var(--syn-spacing-x-small);
   }
 
-  .form-control--small.form-control--has-prefix .input__control  {
-    padding: var(--syn-spacing-3x-small) 0;
-  }
-
-  .form-control--has-prefix.form-control--medium .input__control {
-    padding: var(--syn-spacing-x-small) 0;
-  }
-
-  .form-control--large.form-control--has-prefix .input__control {
-   padding: var(--syn-input-spacing-small) 0;
-  }
-
     /* ERROR */
   :host([data-user-invalid]:not([disabled])) .form-control__help-text {
     color: var(--syn-input-help-text-color-error);

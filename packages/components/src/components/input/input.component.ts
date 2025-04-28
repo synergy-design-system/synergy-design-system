@@ -378,12 +378,16 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     }
 
     this.value = nextValue.toString();
-    this.emit('syn-clamp', {
-      detail: {
-        clampedTo: clampEvent as SynClampDetails['clampedTo'],
-        lastUserValue: valueAsNumber,
-      }
-    });
+
+    // Fire the event if the value was clamped
+    if (clampEvent) {
+      this.emit('syn-clamp', {
+        detail: {
+          clampedTo: clampEvent as SynClampDetails['clampedTo'],
+          lastUserValue: valueAsNumber,
+        }
+      });
+    }
     this.formControlController.updateValidity();
     this.emit('syn-change');
   }

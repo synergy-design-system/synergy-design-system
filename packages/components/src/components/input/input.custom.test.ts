@@ -3,8 +3,11 @@ import '../../../dist/synergy.js';
 import { aTimeout, expect, fixture, html, waitUntil,  } from '@open-wc/testing';
 import sinon from 'sinon';
 import { sendKeys } from '@web/test-runner-commands'; // must come from the same module
-import { type SynClampEvent } from '../../../dist/synergy.js';
-import { nativeNumericStrategy } from './strategies.js';
+import {
+  createNumericStrategy,
+  modernNumericStrategy,
+  nativeNumericStrategy,
+} from './strategies.js';
 import type SynInput from './input.js';
 
 describe('<syn-input>', () => {
@@ -231,6 +234,30 @@ describe('<syn-input>', () => {
       it('should use a default value of "native" if no strategy is provided', async () => {
         const el = await fixture<SynInput>(html` <syn-input type="number"></syn-input> `);
         expect(el.numericStrategy).to.deep.equal(nativeNumericStrategy);
+      });
+
+      describe('numeric strategy utils', () => {
+        it('should export a default native numeric strategy', () => {
+          expect(nativeNumericStrategy).to.deep.equal({
+            autoClamp: false,
+          });
+        });
+
+        it('should export a default modern numeric strategy', () => {
+          expect(modernNumericStrategy).to.deep.equal({
+            autoClamp: true,
+          });
+        });
+
+        it('should export a function that creates a numeric strategy', () => {
+          // @ts-expect-error customItem is added to still be able to check the defaults of autoClamp
+          expect(createNumericStrategy({ customItem: true })).to.deep.equal({
+            autoClamp: false,
+            customItem: true,
+          });
+
+          expect(createNumericStrategy()).to.deep.equal(nativeNumericStrategy);
+        });
       });
 
       describe('when using the "native" strategy', () => {

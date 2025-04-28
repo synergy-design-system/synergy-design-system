@@ -194,7 +194,6 @@ test.describe('<SynCombobox />', () => {
 test.describe('<SynInput />', () => {
   createTestCases(({ name, port }) => {
     test.describe(`Feature#417: ${name}`, () => {
-      test.skip(name !== 'react', 'only implemented in react currently!');
       test('should set the correct numeric strategy when it is passed', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();

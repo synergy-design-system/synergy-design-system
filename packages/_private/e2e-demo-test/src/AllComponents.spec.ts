@@ -242,6 +242,39 @@ test.describe('<SynInput />', () => {
           expect(data.valueAsNumber, 'valueAsNumber should be set to float -5').toEqual(-5);
           expect(data.isValid, 'The field should be flagged as invalid').toBeFalsy();
         }); // end set value lower than min
+
+        test('should allow to set the value bigger than max', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const inputNative = await AllComponents.getLocator('input417NumericNative');
+
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
+
+          await fillInput(inputNative, '105');
+
+          const hasChangeEvent = await waitForChange;
+          const hasClampEvent = await waitForClamp;
+
+          const data = await inputNative.evaluate((el: SynInput) => {
+            const { validity, value, valueAsNumber } = el;
+            const isValid = validity.valid;
+            return {
+              isValid,
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(hasClampEvent, 'The syn-clamp event should not be fired').toBeTruthy();
+
+          expect(data.value, 'Value should be set to a string of "105"').toEqual('105');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 105').toEqual(105);
+          expect(data.isValid, 'The field should be flagged as invalid').toBeFalsy();
+        }); // end set value higher than max
       }); // end native numeric strategy
     }); // feature#417
   }); // End frameworks

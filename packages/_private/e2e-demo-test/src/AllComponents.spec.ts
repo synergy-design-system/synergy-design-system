@@ -234,7 +234,7 @@ test.describe('<SynInput />', () => {
           expect(data.isValid, 'The field should be flagged as invalid').toBeFalsy();
         }); // end set value lower than min
       }); // end native numeric strategy
-    }); // feature#540
+    }); // feature#417
   }); // End frameworks
 }); // </syn-input>
 

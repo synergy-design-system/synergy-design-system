@@ -33,7 +33,7 @@ import {
   nativeNumericStrategy,
   modernNumericStrategy,
 } from './strategies.js';
-import type { SynClampedDetails } from '../../events/syn-clamped.js';
+import type { SynClampDetails } from '../../events/syn-clamp.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -61,7 +61,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- * @event syn-clamped - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -235,13 +235,10 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    * This is used to determine how the input behaves when the user interacts with it.
    * Includes the following configuration options:
    * 1. autoClamp: If true, the input will clamp the value to the min and max attributes.
-   * 2. noStepAlign: If true, the input will not align the value to the step attribute.
-   * 3. noStepValidation: If true, the input will not validate the value against the step attribute.
    * 
    * You may provide this as one of the following values:
    * - 'native': Uses the native browser implementation.
    * - 'modern': Uses the modern implementation.
-   * - A custom parsable string, e.g. { "autoClamp": true }
    * - An object that matches the NumericStrategy type
    */
   @property({
@@ -255,7 +252,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     },
     type: Object,
   })
-  set numericStrategy(value: 'native' | 'modern' | string | Partial<NumericStrategy>) {
+  set numericStrategy(value: 'native' | 'modern' | Partial<NumericStrategy>) {
     if (typeof value === 'string') {
       this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy;
     } else if (typeof value === 'object') {
@@ -381,9 +378,9 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     }
 
     this.value = nextValue.toString();
-    this.emit('syn-clamped', {
+    this.emit('syn-clamp', {
       detail: {
-        clampedTo: clampEvent as SynClampedDetails['clampedTo'],
+        clampedTo: clampEvent as SynClampDetails['clampedTo'],
         lastUserValue: valueAsNumber,
       }
     });

@@ -19,7 +19,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynClampedEvent } from '@synergy-design-system/components';
+import type { SynClampEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 
 /**
@@ -47,7 +47,7 @@ import '@synergy-design-system/components/components/input/input.js';
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- * @event syn-clamped - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -100,8 +100,8 @@ export class SynInputComponent {
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
-    this.nativeElement.addEventListener('syn-clamped', (e: SynClampedEvent) => {
-      this.synClampedEvent.emit(e);
+    this.nativeElement.addEventListener('syn-clamp', (e: SynClampEvent) => {
+      this.synClampEvent.emit(e);
     });
   }
 
@@ -465,16 +465,10 @@ This is used to determine how the input behaves when the user interacts with it.
 Includes the following configuration options:
 1.
 * autoClamp: If true, the input will clamp the value to the min and max attributes.
-2.
-* noStepAlign: If true, the input will not align the value to the step attribute.
-3.
-* noStepValidation: If true, the input will not validate the value against the step attribute.
 
 You may provide this as one of the following values:
 - 'native': Uses the native browser implementation.
 - 'modern': Uses the modern implementation.
-- A custom parsable string, e.g.
-* { "autoClamp": true }
 - An object that matches the NumericStrategy type
  */
   @Input()
@@ -520,7 +514,7 @@ You may provide this as one of the following values:
   /**
    * Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
    */
-  @Output() synClampedEvent = new EventEmitter<SynClampedEvent>();
+  @Output() synClampEvent = new EventEmitter<SynClampEvent>();
 
   /**
    * Support for two way data binding
@@ -534,4 +528,4 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
-export type { SynClampedEvent } from '@synergy-design-system/components';
+export type { SynClampEvent } from '@synergy-design-system/components';

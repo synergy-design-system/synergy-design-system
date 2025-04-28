@@ -11,7 +11,7 @@ export type * from './syn-burger-menu-closed.ts';
 export type * from './syn-burger-menu-hidden.ts';
 export type * from './syn-burger-menu-open.ts';
 export type * from './syn-change.ts';
-export type * from './syn-clamped.ts';
+export type * from './syn-clamp.ts';
 export type * from './syn-clear.ts';
 export type * from './syn-close.ts';
 export type * from './syn-default-settings-changed.ts';

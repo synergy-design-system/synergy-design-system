@@ -6,7 +6,7 @@ export type NumericStrategy = {
    * Clamp the inputs value to its min and max values when reaching it.
    *
    * When set to false, this will follow the HTML5 spec:
-   * - Allows overflow of min and max via user input or spinners
+   * - Allows overflow of min and max via user input, but not spinners
    * - Will emit an invalid event
    * - Will emit an input event
    * - Will emit a change event
@@ -14,9 +14,9 @@ export type NumericStrategy = {
    * When set to true, this will follow synergy specs:
    * - Do not allow overflow of min and max via user input or spinners
    * - Will not emit an invalid event
-   * - Will not emit an input event
-   * - Will not emit a change event
-   * - Will emit a syn-clamped custom event
+   * - Will emit an input event
+   * - Will emit a syn-clamp custom event
+   * - Will emit a change event
    */
   autoClamp: boolean;
 

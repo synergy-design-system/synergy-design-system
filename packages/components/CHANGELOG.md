@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.30.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.0...components/2.30.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* 🐛 syn-input has some paddings which are not aligned with design ([#852](https://github.com/synergy-design-system/synergy-design-system/issues/852)) ([15f110a](https://github.com/synergy-design-system/synergy-design-system/commit/15f110aca5b3e81d1860cf930942a3d1555d6d9b))
+
 # [@synergy-design-system/components-v2.30.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.1...components/2.30.0) (2025-04-16)
 
 

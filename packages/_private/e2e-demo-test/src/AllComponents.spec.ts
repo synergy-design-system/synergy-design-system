@@ -215,17 +215,17 @@ test.describe('<SynInput />', () => {
           await AllComponents.loadInitialPage();
           await AllComponents.activateItem('inputLink');
 
-          const inputNative = await AllComponents.getLocator('input417NumericNative');
+          const input = await AllComponents.getLocator('input417NumericNative');
 
           const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
           const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
 
-          await fillInput(inputNative, '-5');
+          await fillInput(input, '-5');
 
           const hasChangeEvent = await waitForChange;
           const hasClampEvent = await waitForClamp;
 
-          const data = await inputNative.evaluate((el: SynInput) => {
+          const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
             const isValid = validity.valid;
             return {
@@ -248,17 +248,17 @@ test.describe('<SynInput />', () => {
           await AllComponents.loadInitialPage();
           await AllComponents.activateItem('inputLink');
 
-          const inputNative = await AllComponents.getLocator('input417NumericNative');
+          const input = await AllComponents.getLocator('input417NumericNative');
 
           const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
           const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
 
-          await fillInput(inputNative, '105');
+          await fillInput(input, '105');
 
           const hasChangeEvent = await waitForChange;
           const hasClampEvent = await waitForClamp;
 
-          const data = await inputNative.evaluate((el: SynInput) => {
+          const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
             const isValid = validity.valid;
             return {
@@ -276,6 +276,74 @@ test.describe('<SynInput />', () => {
           expect(data.isValid, 'The field should be flagged as invalid').toBeFalsy();
         }); // end set value higher than max
       }); // end native numeric strategy
+
+      test.describe('when using the modern numeric strategy', () => {
+        test('should not allow to set the value lower than min', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input417NumericModern');
+
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const waitForClamp = hasEvent<SynClampEvent>(page, 'syn-clamp');
+
+          await fillInput(input, '-5');
+
+          const hasChangeEvent = await waitForChange;
+          const hasClampEvent = await waitForClamp;
+
+          const data = await input.evaluate((el: SynInput) => {
+            const { validity, value, valueAsNumber } = el;
+            const isValid = validity.valid;
+            return {
+              isValid,
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(hasClampEvent, 'The syn-clamp event should be fired').toBeTruthy();
+
+          expect(data.value, 'Value should be set to a string of "0"').toEqual('0');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 0').toEqual(0);
+          expect(data.isValid, 'The field should not be flagged as invalid').toBeTruthy();
+        }); // end set value lower than min
+
+        test('should not allow to set the value bigger than max', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input417NumericModern');
+
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const waitForClamp = hasEvent<SynClampEvent>(page, 'syn-clamp');
+
+          await fillInput(input, '105');
+
+          const hasChangeEvent = await waitForChange;
+          const hasClampEvent = await waitForClamp;
+
+          const data = await input.evaluate((el: SynInput) => {
+            const { validity, value, valueAsNumber } = el;
+            const isValid = validity.valid;
+            return {
+              isValid,
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(hasClampEvent, 'The syn-clamp event should be fired').toBeTruthy();
+
+          expect(data.value, 'Value should be set to a string of "100"').toEqual('100');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 100').toEqual(100);
+          expect(data.isValid, 'The field should not be flagged as invalid').toBeTruthy();
+        }); // end set value higher than max
+      }); // end modern numeric strategy
     }); // feature#417
   }); // End frameworks
 }); // </syn-input>

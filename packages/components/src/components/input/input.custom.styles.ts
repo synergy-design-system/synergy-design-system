@@ -143,10 +143,12 @@ export default css`
     padding-right: var(--syn-spacing-small);
   }
 
+  /* Fixes wrong paddings on some suffix special cases: https://github.com/synergy-design-system/synergy-design-system/issues/817  */
   .form-control--has-prefix .input__control {
     padding-left: 0;
   }
 
+  /* Fixes wrong paddings on some suffix special cases: https://github.com/synergy-design-system/synergy-design-system/issues/817  */
   .form-control--has-suffix .input__control,
   .input:has(.input__clear) .input__control,
   .input:has(.input__password-toggle) .input__control {

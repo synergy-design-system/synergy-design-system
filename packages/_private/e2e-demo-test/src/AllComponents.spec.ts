@@ -1,9 +1,11 @@
 import { type Locator, expect, test } from '@playwright/test';
-import type {
-  SynCombobox,
-  SynInput,
-  SynOptgroup,
-  SynSelect,
+import {
+  type SynChangeEvent,
+  type SynClampEvent,
+  type SynCombobox,
+  type SynInput,
+  type SynOptgroup,
+  type SynSelect,
 } from '@synergy-design-system/components';
 import {
   modernNumericStrategy,
@@ -13,7 +15,8 @@ import { AllComponentsPage } from './PageObjects/index.js';
 import {
   createTestCases,
   fillInput,
-  waitForEvent,
+  hasEvent,
+  hasNoEvent,
 } from './helpers.js';
 
 test.describe('<SynAccordion />', () => {
@@ -212,12 +215,15 @@ test.describe('<SynInput />', () => {
           await AllComponents.loadInitialPage();
           await AllComponents.activateItem('inputLink');
 
-          const eventPromise = waitForEvent(page, 'syn-change');
-
           const inputNative = await AllComponents.getLocator('input417NumericNative');
 
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
+
           await fillInput(inputNative, '-5');
-          await eventPromise;
+
+          const hasChangeEvent = await waitForChange;
+          const hasClampEvent = await waitForClamp;
 
           const data = await inputNative.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
@@ -228,6 +234,9 @@ test.describe('<SynInput />', () => {
               valueAsNumber,
             };
           });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(hasClampEvent, 'The syn-clamp event should not be fired').toBeTruthy();
 
           expect(data.value, 'Value should be set to a string of "-5"').toEqual('-5');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float -5').toEqual(-5);

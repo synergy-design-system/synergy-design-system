@@ -1,5 +1,5 @@
 /**
- * Internal type of all strategies.
+ * Defines the strategy that should be used for a numeric input.
  */
 export type NumericStrategy = {
   /**

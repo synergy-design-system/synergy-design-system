@@ -68,7 +68,8 @@ export default class SynHeader extends SynergyElement {
 
   /**
    * Defines the current visibility and icon of the burger-menu icon.
-   * The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
+   * The menu button is added automatically if the component finds a syn-side-nav in
+   * variant="fixed".
    * The following values can be used:
    * - hidden: The burger menu is not visible
    * - open: The burger menu is visible and shows the close icon
@@ -90,8 +91,8 @@ export default class SynHeader extends SynergyElement {
   }
 
   private handleBurgerMenuToggle() {
-    // If there is a side-nav in non-rail mode, toggle the open state!
-    if (this.sideNav && !this.sideNav.rail) {
+    // If there is a side-nav in variant="fixed", toggle the open state!
+    if (this.sideNav && this.sideNav.variant === 'fixed') {
       this.sideNav.open = !this.sideNav.open;
     }
     this.toggleBurgerMenu();
@@ -103,8 +104,8 @@ export default class SynHeader extends SynergyElement {
    */
   private updateBurgerMenuBasedOnSideNav() {
     if (this.sideNav) {
-      // Hide the burger menu icon if the side-nav is in rail mode
-      if (this.sideNav.rail) {
+      // Hide the burger menu icon if the side-nav is in variant="rail"
+      if (this.sideNav.variant === 'rail') {
         this.burgerMenu = 'hidden';
       } else {
         this.burgerMenu = this.sideNav.open ? 'open' : 'closed';
@@ -158,7 +159,7 @@ export default class SynHeader extends SynergyElement {
       // Need to call the method initially, if the side-nav is not open on connect time.
       // Otherwise the mutation observer won`t trigger the method.
       this.updateBurgerMenuBasedOnSideNav();
-      this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'rail'], attributes: true });
+      this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'variant'], attributes: true });
     }
   }
 

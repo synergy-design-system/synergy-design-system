@@ -193,7 +193,7 @@ export default class SynNavItem extends SynergyElement {
   private handleCurrentMarkedChild() {
     const sideNav = this.closest('syn-side-nav');
 
-    if (!this.open || !!sideNav?.rail) {
+    if (!this.open || !!(sideNav?.variant === 'rail')) {
       this.currentMarkedChild = this
         .getAllNestedNavItems(this.childrenSlot)
         .some(item => item.current);
@@ -364,7 +364,7 @@ export default class SynNavItem extends SynergyElement {
     const sideNav = this.closest('syn-side-nav');
 
     const showCurrentIndicatorForNested = (this.currentMarkedChild && !this.open)
-      || (this.currentMarkedChild && this.open && !!sideNav?.rail && !sideNav?.open);
+      || (this.currentMarkedChild && this.open && !!(sideNav?.variant === 'rail') && !sideNav?.open);
 
     // Defines the initial tag to use for the root component
     let tag = literal`button`;

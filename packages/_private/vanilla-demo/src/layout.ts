@@ -55,7 +55,7 @@ export const createLayout = () => `
   <div class="main">
 
     <!-- side-nav -->
-    <syn-side-nav rail>
+    <syn-side-nav variant="rail">
       <syn-nav-item href="/">
         Home
         <syn-icon name="home" slot="prefix"></syn-icon>

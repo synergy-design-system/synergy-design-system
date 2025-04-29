@@ -1248,10 +1248,12 @@ export type SynCustomElement<
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
- * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
- * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
- * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
- * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail".
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
  * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */ export type SynSideNavJSXElement = SynCustomElement<
@@ -2464,10 +2466,12 @@ declare module 'react' {
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
- * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
- * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
- * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
- * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail".
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
  * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */ 'syn-side-nav': SynSideNavJSXElement;

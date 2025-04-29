@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { pascalCase } from 'change-case';
 import {
+  createAttributeComment,
   createComment,
   createFrameworkIndex,
   createHeader,
@@ -102,7 +103,7 @@ const getEmitAttributes = (componentName, componentClass, events = []) => {
 const getDefinedProps = (componentName, componentClass, attributes = []) => {
   const vueAttributeMap = attributes
     .map(attr => `
-      ${createComment(attr.description || '')}
+      ${createAttributeComment(attr)}
       '${attr.fieldName}'?: ${componentClass}['${attr.fieldName}'];
     `.trim());
 

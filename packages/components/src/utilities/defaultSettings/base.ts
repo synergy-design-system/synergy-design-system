@@ -21,6 +21,7 @@ import type SynRadioGroup from "../../components/radio-group/radio-group.js";
 import type SynRadio from "../../components/radio/radio.js";
 import type SynRange from "../../components/range/range.js";
 import type SynSelect from "../../components/select/select.js";
+import type SynSideNav from "../../components/side-nav/side-nav.js";
 import type SynSwitch from "../../components/switch/switch.js";
 import type SynTag from "../../components/tag/tag.js";
 import type SynTextarea from "../../components/textarea/textarea.js";
@@ -76,6 +77,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynRadioGroup"
   | "SynRange"
   | "SynSelect"
+  | "SynSideNav"
   | "SynSwitch"
   | "SynTag"
   | "SynTextarea"
@@ -119,6 +121,7 @@ export type SynDefaultSettings = {
     SynAlert?: AllowedValueForDefaultSetting<SynAlert, "variant">;
     SynBadge?: AllowedValueForDefaultSetting<SynBadge, "variant">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "variant">;
+    SynSideNav?: AllowedValueForDefaultSetting<SynSideNav, "variant">;
     SynValidate?: AllowedValueForDefaultSetting<SynValidate, "variant">;
   };
 };
@@ -154,6 +157,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
+    SynSideNav: "fixed",
     SynValidate: "native",
   },
 };
@@ -187,6 +191,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
+    SynSideNav: "fixed",
     SynValidate: "native",
   },
 };

@@ -27,7 +27,7 @@ const routeTo = (route: string) => {
   </SynVueHeader>
 
   <div class="main">
-    <SynVueSideNav rail ref="sideNavRef">
+    <SynVueSideNav variant="rail" ref="sideNavRef">
       <SynVueNavItem :current="currentRoute === '/'" @click="() => routeTo('/')">
         Home
         <SynVueIcon name="home" slot="prefix"/>

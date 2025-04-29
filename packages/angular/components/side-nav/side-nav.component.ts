@@ -60,10 +60,12 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
- * @animation sideNav.showNonRail - The animation to use when showing the side-nav in non-rail mode.
- * @animation sideNav.showRail - The animation to use when showing the side-nav in rail mode.
- * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav in non-rail mode.
- * @animation sideNav.hideRail - The animation to use when hiding the side-nav in rail mode.
+ * @animation sideNav.showNonRail - The animation to use when showing the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail".
+ * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
+ *  in variant="fixed".
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
  * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */
@@ -104,9 +106,9 @@ export class SynSideNavComponent {
 You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
 `hide()` methods and this attribute will reflect the side-nav's open state.
 
-Depending if the rail attribute is set or not, the behavior will differ.
+Depending on the "variant" attribute, the behavior will differ.
 
-__Non rail__:
+__Fixed__:
 With `open` will show the side-nav.
 Without `open`, the side-nav will be hidden.
 
@@ -132,6 +134,9 @@ On touch devices the navigation opens on click and shows an overlay.
 
 Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
 If this is not the case you should use a burger navigation.
+
+@deprecated Use the `variant` attribute with `rail` instead.
+Will be removed in synergy version 3.0
  */
   @Input()
   set rail(v: '' | SynSideNav['rail']) {
@@ -144,7 +149,34 @@ If this is not the case you should use a burger navigation.
   }
 
   /**
-* By default, the side-nav traps the focus if in non-rail mode and open.
+* The variant that should be used to show the side navigation.
+
+The following variants are supported:
+- **fixed** (default): Always shows the whole content and additionally an overlay.
+This makes especially sense for applications, where you navigate to a place and stay
+there for a longer time.
+- **rail**: Only show the prefix of navigation items in closed state.
+This will open on hover on the rail navigation.
+On touch devices the navigation opens on click and shows an overlay.
+Note: The rail variant is only an option if all Navigation Items on the first level
+have an Icon.
+If this is not the case you should use a burger navigation.
+- **sticky**: The side-nav has a pin button to show the side-nav in small (icon only)
+and full width.
+* This variant is only possible for non-nested navigation items.
+Note: The sticky variant is only an option if all Navigation Items on the first level
+have an Icon and if there are only "first level" items.
+ */
+  @Input()
+  set variant(v: SynSideNav['variant']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
+  }
+  get variant(): SynSideNav['variant'] {
+    return this.nativeElement.variant;
+  }
+
+  /**
+* By default, the side-nav traps the focus if in variant="fixed" and open.
 To disable the focus trapping, set this attribute.
  */
   @Input()

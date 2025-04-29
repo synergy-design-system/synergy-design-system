@@ -141,7 +141,7 @@ export const Rail: Story = {
   render: () => html`
     <syn-header class="header-rail" label="Side Navigation"></syn-header>
     <main class="main-rail">
-      <syn-side-nav class="side-nav-rail" rail>
+      <syn-side-nav class="side-nav-rail" variant="rail">
         ${createNavItems()}
       </syn-side-nav>
       <div class="content-rail">

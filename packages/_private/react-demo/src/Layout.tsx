@@ -42,7 +42,7 @@ export const Layout: FC = () => {
         </div>
       </SynHeader>
       <div className="main">
-        <SynSideNav rail>
+        <SynSideNav variant='rail'>
           <RouterLink href="/" current={currentNavigationPath === '/'}>
             Home
             <SynIcon name="home" slot="prefix" />

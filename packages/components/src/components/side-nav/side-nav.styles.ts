@@ -15,7 +15,7 @@ export default css`
   
   /**
    * Side nav should have a width, so it behave correct in an e.g. display flex context.
-   * In rail mode the width is always the small rail width, because there should be no shrinking possible of the main content area.
+   * In variant="rail" the width is always the small rail width, because there should be no shrinking possible of the main content area.
    */
   .side-nav.side-nav--rail {
     width: var(--side-nav-rail-width);
@@ -54,7 +54,7 @@ export default css`
   }
 
   /**
-   * Rail mode
+   * variant="rail"
    */
   :not(.side-nav--open).side-nav--rail .side-nav__drawer {
     --size: var(--side-nav-rail-width);
@@ -72,7 +72,7 @@ export default css`
   }
 
   /**
-   * Hide the scrollbars in closed rail mode
+   * Hide the scrollbars in closed variant="rail"
    */ 
   :not(.side-nav--open).side-nav--rail .side-nav__drawer::part(body){
     overflow: hidden;

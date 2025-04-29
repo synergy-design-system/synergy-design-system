@@ -164,7 +164,7 @@ export const RailNavigationDesktop: Story = {
       
       <!-- .synergy-demo-content -->
       <div class="synergy-demo-content">
-        ${createSideNav({ rail: true })}
+        ${createSideNav({ variant: 'rail' })}
         <div class="synergy-demo-content-inner">
           ${createMainContent()}
           ${createFooter()}

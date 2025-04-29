@@ -185,18 +185,18 @@ export const createHeader = ({
 `;
 
 /**
- * Create a side navigation with an optional rail mode
+ * Create a side navigation with an optional "variant" attribute
  */
 export const createSideNav = ({
   noFocusTrapping = false,
   open = false,
-  rail = false,
-} = {}) => html`
+  variant = 'fixed',
+}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'fixed' | 'rail' } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
     ?no-focus-trapping=${noFocusTrapping}
     ?open=${open}
-    ?rail=${rail}
+    variant=${variant}
   >
     <syn-nav-item current>
       <syn-icon name="home" slot="prefix"></syn-icon>

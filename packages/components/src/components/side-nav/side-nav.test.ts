@@ -27,6 +27,7 @@ describe('<syn-side-nav>', () => {
 
       expect(sideNav.open).to.equal(false);
       expect(sideNav.rail).to.equal(false);
+      expect(sideNav.variant).to.equal('fixed');
       expect(sideNav.noFocusTrapping).to.equal(false);
     });
   });
@@ -115,7 +116,7 @@ describe('<syn-side-nav>', () => {
     });
   });
 
-  describe('when using non-rail mode', () => {
+  describe('when using variant="fixed"', () => {
     it('should be visible and expanded with open attribute', async () => {
       const expectedDrawerOpenSize = '320px';
       const expectedSideNavOpenSize = '320px';
@@ -167,6 +168,7 @@ describe('<syn-side-nav>', () => {
     });
   });
 
+  // TODO: this can be removed in synergy version 3.0
   describe('when using rail mode', () => {
     it('should be visible and expanded with open attribute', async () => {
       const expectedDrawerOpenSize = '320px';
@@ -293,9 +295,137 @@ describe('<syn-side-nav>', () => {
     });
   });
 
+  describe('when using variant="rail"', () => {
+    it('should be visible and expanded with open attribute', async () => {
+      const expectedDrawerOpenSize = '320px';
+      const expectedSideNavOpenSize = '72px';
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+
+      await sideNav.updateComplete;
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      const size = getComputedStyle(drawer).getPropertyValue('--size');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
+
+      expect(size).to.equal(expectedDrawerOpenSize);
+      expect(sideNavSize).to.equal(expectedSideNavOpenSize);
+    });
+
+    it('should be visible and shrunk without the open attribute', async () => {
+      const expectedDrawerCloseSize = '72px';
+      const expectedSideNavCloseSize = '72px';
+
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      const size = getComputedStyle(drawer).getPropertyValue('--size');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
+
+      expect(size).to.equal(expectedDrawerCloseSize);
+      expect(sideNavSize).to.equal(expectedSideNavCloseSize);
+    });
+
+    it('should show no overlay on open state', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const overlay = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="overlay"]')!;
+      const { display } = getComputedStyle(overlay);
+
+      expect(display).to.equal('none');
+    });
+
+    it('should show an overlay on touch devices in open state', async () => {
+      // Mock touch device
+      sinon.stub(window.navigator, 'maxTouchPoints').value(1);
+
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const overlay = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="overlay"]')!;
+      const { display } = getComputedStyle(overlay);
+
+      expect(display).to.equal('block');
+    });
+
+    it('should not show nested open nav-item`s without the open attribute', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail">
+          <syn-nav-item class="root" open>nav 1
+            <syn-nav-item slot="children">nav 1</syn-nav-item> 
+          </syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const rootNavItem = sideNav.querySelector('.root')!;
+      const nestedNavItems = rootNavItem.shadowRoot!.querySelector('[part~="children"]')!;
+
+      const { display } = getComputedStyle(nestedNavItems);
+      expect(display).to.equal('none');
+    });
+
+    it('should remove the forcing of drawer visibility if variant changed to `fixed` and open = false', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      sideNav.variant = 'fixed';
+
+      await sideNav.updateComplete;
+
+      expect(baseDrawer.hidden).to.be.true;
+    });
+
+    it('should open the side-nav if nav-item is focused and close it if it looses focus', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="rail">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const navItem = sideNav.querySelector('syn-nav-item')!;
+
+      expect(sideNav.open).to.be.false;
+
+      navItem.focus();
+
+      expect(sideNav.open).to.be.true;
+
+      navItem.blur();
+
+      expect(sideNav.open).to.be.false;
+    });
+  });
+
   it('should show an indentation for nested nav-items (#708)', async () => {
     const sideNav = await fixture<SynSideNav>(html`
-      <syn-side-nav rail>
+      <syn-side-nav>
         <syn-nav-item id="first">
           first level
           <syn-nav-item slot="children" id="second">

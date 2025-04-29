@@ -42,7 +42,7 @@ export type NumericStrategy = {
   /**
    * Determines if an invalid event should be emitted when the stepping is invalid.
    * This is the default behavior of a native input.
-   * Set to false to disable this behavior.
+   * Set to true to disable this behavior.
    */
   noStepValidation: boolean;
 };

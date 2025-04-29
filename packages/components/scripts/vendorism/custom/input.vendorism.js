@@ -264,6 +264,72 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     }`,
     ],
   ], content);
+  // /#417
+
+  // #818
+  content = addSectionsAfter([
+    // Handle keydown
+    [
+      'private handleKeyDown(event: KeyboardEvent) {',
+      `    if (this.#numericStrategy.noStepAlign) {
+      const { key } = event;
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
+        this.handleStepUp();
+      } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
+        this.handleStepDown();
+      }
+      return;
+    }`,
+    ],
+    // Handle step up
+    [
+      'stepUp() {',
+      `    if (this.#numericStrategy.noStepAlign) {
+      const { max, step, valueAsNumber } = this;
+
+      const stepToUse = step === 'any' ? 1 : typeof step === 'number' ? step : parseFloat(step);
+      const maxToUse = max === undefined || max === null ? Number.POSITIVE_INFINITY : typeof max === 'string' ? parseFloat(max) : max;
+      const nextValue = Math.min(valueAsNumber + stepToUse, maxToUse);
+
+      // If the input is empty, nextValue will be NaN.
+      // The following check will ensure that the input is set to the max value instead.
+      this.input.value = Number.isNaN(nextValue) ? maxToUse.toString() : nextValue.toString();
+      this.value = this.input.value;
+      return;
+    }
+`,
+    ],
+    // Handle step down
+    [
+      'stepDown() {',
+      `    if (this.#numericStrategy.noStepAlign) {
+      const { min, step, valueAsNumber } = this;
+
+      const stepToUse = step === 'any' ? 1 : typeof step === 'number' ? step : parseFloat(step);
+      const minToUse = min === undefined || min === null ? Number.NEGATIVE_INFINITY : typeof min === 'string' ? parseFloat(min) : min;
+      const nextValue = Math.max(valueAsNumber - stepToUse, minToUse);
+
+      // If the input is empty, nextValue will be NaN.
+      // The following check will ensure that the input is set to the min value instead.
+      this.input.value = Number.isNaN(nextValue) ? minToUse.toString() : nextValue.toString();
+      this.value = this.input.value;
+      return;
+    }
+`,
+    ],
+  ], content);
+
+  // Disable the stepper if the input uses noStepValidation
+  content = content.replace(
+    'ifDefined(this.step as number)',
+    'ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : undefined)'
+  );
+  // /#818
 
   // Add the modern numeric strategy for autoclamp
   content = addSectionBefore(

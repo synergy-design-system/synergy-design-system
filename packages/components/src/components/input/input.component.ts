@@ -447,7 +447,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       }
       return;
     }
-
     const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
 
     // Pressing enter when focused on an input should submit the form like a native input, but we wait a tick before
@@ -554,7 +553,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       this.value = this.input.value;
       return;
     }
-
     this.input.stepUp();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
@@ -576,7 +574,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       this.value = this.input.value;
       return;
     }
-
     this.input.stepDown();
     if (this.value !== this.input.value) {
       this.value = this.input.value;

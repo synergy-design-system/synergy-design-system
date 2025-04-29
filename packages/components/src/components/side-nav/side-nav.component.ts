@@ -9,6 +9,8 @@ import componentStyles from '../../styles/component.styles.js';
 import styles from './side-nav.styles.js';
 import SynDrawer from '../drawer/drawer.component.js';
 import SynDivider from '../divider/divider.component.js';
+import SynIcon from '../icon/icon.js';
+import SynNavItem from '../nav-item/nav-item.component.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
@@ -60,10 +62,12 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
  *  in variant="fixed".
- * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail".
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail"
+ *  and variant="sticky".
  * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
  *  in variant="fixed".
- * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail".
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail"
+ *  and variant="sticky".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
  * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */
@@ -74,6 +78,8 @@ export default class SynSideNav extends SynergyElement {
   static dependencies = {
     'syn-divider': SynDivider,
     'syn-drawer': SynDrawer,
+    'syn-icon': SynIcon,
+    'syn-nav-item': SynNavItem,
   };
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'footer');
@@ -142,7 +148,7 @@ export default class SynSideNav extends SynergyElement {
    * Note: The sticky variant is only an option if all Navigation Items on the first level
    * have an Icon and if there are only "first level" items.
    */
-  @property({ reflect: true }) variant: 'fixed' | 'rail' = 'fixed';
+  @property({ reflect: true }) variant: 'fixed' | 'rail' | 'sticky' = 'fixed';
 
   /**
    * By default, the side-nav traps the focus if in variant="fixed" and open.
@@ -198,8 +204,8 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private setDrawerAnimations() {
-    const showAnimation = getAnimation(this, `sideNav.show${this.variant === 'rail' ? 'Rail' : 'NonRail'}`, { dir: this.localize.dir() });
-    const hideAnimation = getAnimation(this, `sideNav.hide${this.variant === 'rail' ? 'Rail' : 'NonRail'}`, { dir: this.localize.dir() });
+    const showAnimation = getAnimation(this, `sideNav.show${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
+    const hideAnimation = getAnimation(this, `sideNav.hide${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
     const hideOverlay = getAnimation(this, 'sideNav.overlay.hide', { dir: this.localize.dir() });
     const showOverlay = getAnimation(this, 'sideNav.overlay.show', { dir: this.localize.dir() });
 
@@ -213,13 +219,22 @@ export default class SynSideNav extends SynergyElement {
   handleVariantChange() {
     this.setDrawerAnimations();
 
-    if (this.variant === 'rail') {
+    switch (this.variant) {
+    case 'rail':
+      // For hover handling
       this.addMouseListener();
-      // Force drawer visibility for variant="rail"
+      // Force drawer visibility
       this.setDrawerVisibility(true);
-    } else {
+      break;
+    case 'sticky':
       this.removeMouseListener();
-      // Remove forcing of drawer visibility for variant="rail" if not open
+      // Force drawer visibility
+      this.setDrawerVisibility(true);
+      break;
+    case 'fixed':
+    default:
+      this.removeMouseListener();
+      // Remove forcing of drawer visibility for variant="fixed" if not open
       if (!this.open) {
         this.setDrawerVisibility(false);
       }
@@ -318,7 +333,8 @@ export default class SynSideNav extends SynergyElement {
   }
 
   /**
-   * Initial setup for first render like special variant="rail" handling and drawer animations.
+   * Initial setup for first render like special variant="rail" and variant="sticky" handling
+   * and drawer animations.
    * */
   firstUpdated() {
     this.setDrawerAnimations();
@@ -329,18 +345,30 @@ export default class SynSideNav extends SynergyElement {
       (this.drawer.shadowRoot!.querySelector('.drawer__panel') as HTMLElement).tabIndex = -1;
     });
 
-    if (this.variant === 'rail') {
+    switch (this.variant) {
+    case 'rail':
       // Wait for the drawer`s update to be completed
-
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.drawer.updateComplete.then(() => {
         this.addMouseListener();
         // set initial visibility of drawer for variant="rail"
         this.setDrawerVisibility(true);
       });
-    } else if (this.noFocusTrapping) {
-      // Disable the focus trapping of the modal
-      this.drawer.modal.activateExternal();
+      break;
+    case 'sticky':
+      // Wait for the drawer`s update to be completed
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.drawer.updateComplete.then(() => {
+        // set initial visibility of drawer for variant="rail"
+        this.setDrawerVisibility(true);
+      });
+      break;
+    case 'fixed':
+    default:
+      if (this.noFocusTrapping) {
+        // Disable the focus trapping of the modal
+        this.drawer.modal.activateExternal();
+      }
     }
   }
 
@@ -380,29 +408,37 @@ export default class SynSideNav extends SynergyElement {
     }
   }
 
+  private toggleOpenState() {
+    // TODO: do we need to stopPropagation so it won't bubble?
+    this.open = !this.open;
+  }
+
+  // eslint-disable-next-line complexity
   render() {
     const isTouch = window.navigator.maxTouchPoints > 0 || !!('ontouchstart' in window);
     const hasFooter = this.hasSlotController.test('footer');
+    const showFooterDivider = hasFooter || this.variant === 'sticky';
 
     /* eslint-disable lit/no-invalid-html */
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <nav
         class=${classMap({
-          'side-nav': true,
-          'side-nav--animation': this.isAnimationActive,
-          'side-nav--fix': this.variant === 'fixed',
-          'side-nav--has-footer': hasFooter,
-          'side-nav--open': this.open,
-          'side-nav--rail': this.variant === 'rail',
-          'side-nav--touch': isTouch,
-        })}
+      'side-nav': true,
+      'side-nav--animation': this.isAnimationActive,
+      'side-nav--fix': this.variant === 'fixed',
+      'side-nav--has-footer': hasFooter,
+      'side-nav--open': this.open,
+      'side-nav--rail': this.variant === 'rail',
+      'side-nav--sticky': this.variant === 'sticky',
+      'side-nav--touch': isTouch,
+    })}
         part="base"
       >
         
         <syn-drawer
           class="side-nav__drawer"
-          ?contained=${this.variant === 'rail'}
+          ?contained=${this.variant !== 'fixed'}
           exportparts="overlay,panel,body,base:drawer__base"
           label=${this.localize.term('sideNav')}
           no-header
@@ -417,8 +453,16 @@ export default class SynSideNav extends SynergyElement {
           
           <footer class="side-nav__footer" part="footer-container" slot="footer">  
 
-            ${hasFooter ? html`<syn-divider part="footer-divider" class="side-nav__footer-divider"></syn-divider>` : ''}
-            <slot name="footer" part="footer" ></slot> 
+            ${showFooterDivider ? html`<syn-divider part="footer-divider" class="side-nav__footer-divider"></syn-divider>` : ''}
+            <slot name="footer" part="footer" ></slot>
+            <!-- TODO: use the correct system icon -->
+            ${this.variant === 'sticky'
+              ? html`<syn-nav-item @click=${this.toggleOpenState} ?divider=${hasFooter}>
+                  <syn-icon slot="prefix" library="system" name="menu"></syn-icon>
+                  ${this.open ? this.localize.term('sideNavHide') : this.localize.term('sideNavShow')}
+                </syn-nav-item>`
+              : ''
+            }
           
           </footer>
 

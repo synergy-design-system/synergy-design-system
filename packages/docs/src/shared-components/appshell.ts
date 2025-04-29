@@ -191,7 +191,7 @@ export const createSideNav = ({
   noFocusTrapping = false,
   open = false,
   variant = 'fixed',
-}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'fixed' | 'rail' } = {}) => html`
+}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'fixed' | 'rail' | 'sticky' } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
     ?no-focus-trapping=${noFocusTrapping}

@@ -104,8 +104,8 @@ export default class SynHeader extends SynergyElement {
    */
   private updateBurgerMenuBasedOnSideNav() {
     if (this.sideNav) {
-      // Hide the burger menu icon if the side-nav is in variant="rail"
-      if (this.sideNav.variant === 'rail') {
+      // Hide the burger menu icon if the side-nav is not variant="fixed"
+      if (this.sideNav.variant !== 'fixed') {
         this.burgerMenu = 'hidden';
       } else {
         this.burgerMenu = this.sideNav.open ? 'open' : 'closed';

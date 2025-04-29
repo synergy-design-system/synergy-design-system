@@ -62,10 +62,12 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
  *  in variant="fixed".
- * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail".
+ * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail"
+ *  and variant="sticky".
  * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
  *  in variant="fixed".
- * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail".
+ * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail"
+ *  and variant="sticky".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
  * @animation sideNav.overlay.hide - The animation to use when hiding the side-nav's overlay.
  */

@@ -65,6 +65,18 @@ const translations = {
     de: 'Seitennavigation',
     en: 'Side navigation',
   },
+  sideNavHide: {
+    // TODO: check for correct text
+    de: 'Seitennavigation ausblenden',
+    // TODO: check for correct text
+    en: 'Hide side navigation',
+  },
+  sideNavShow: {
+    // TODO: check for correct text
+    de: 'Seitennavigation einblenden',
+    // TODO: check for correct text
+    en: 'Show side navigation',
+  },
   success: {
     de: 'Erfolg',
     en: 'Success',

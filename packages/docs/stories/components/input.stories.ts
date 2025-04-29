@@ -322,6 +322,23 @@ export const Stepper: Story = {
   <syn-input type="number" min="0" max="10" value="10"></syn-input>`,
 };
 
+export const NumericStrategy: Story = {
+  render: () => html`
+    <form>
+      <syn-input label="Native" type="number" min="0" max="10" value="0" step="3"></syn-input>
+      <br />
+      <syn-input label="modern" type="number" min="0" max="10" value="0" step="3" numeric-strategy="modern"></syn-input>
+      <button type="submit">hello</button>
+    </form>
+    <script>
+      document.addEventListener('syn-clamp', console.log);
+      document.addEventListener('syn-input', console.log);
+      document.addEventListener('syn-change', console.log);
+      document.querySelector('form').addEventListener('syn-invalid', console.log, { capture: true });
+    </script>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

@@ -240,12 +240,16 @@ describe('<syn-input>', () => {
         it('should export a default native numeric strategy', () => {
           expect(nativeNumericStrategy).to.deep.equal({
             autoClamp: false,
+            noStepAlign: false,
+            noStepValidation: false,
           });
         });
 
         it('should export a default modern numeric strategy', () => {
           expect(modernNumericStrategy).to.deep.equal({
             autoClamp: true,
+            noStepAlign: true,
+            noStepValidation: true,
           });
         });
 
@@ -254,6 +258,8 @@ describe('<syn-input>', () => {
           expect(createNumericStrategy({ customItem: true })).to.deep.equal({
             autoClamp: false,
             customItem: true,
+            noStepAlign: false,
+            noStepValidation: false,
           });
 
           expect(createNumericStrategy()).to.deep.equal(nativeNumericStrategy);
@@ -292,12 +298,24 @@ describe('<syn-input>', () => {
           el.blur();
           await el.updateComplete;
 
-          await el.updateComplete;
           expect(el.value).to.equal('30');
           expect(el.validity.rangeOverflow).to.be.true;
           expect(el.validity.valid).to.be.false;
           expect(clampSpy.callCount).to.equal(0);
         }); // max test
+
+        it('should emit an invalid event when step and value are not aligned', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="native" step="2"></syn-input>`);
+
+          el.focus();
+          await sendKeys({ type: '1' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.validity.valid).to.be.false;
+          expect(el.validity.stepMismatch).to.be.true;
+        }); // invalid test
       }); // /native strategy
 
       describe('when using the "modern" strategy', () => {
@@ -344,6 +362,19 @@ describe('<syn-input>', () => {
             lastUserValue: 30,
           });
         }); // max test
+
+        it('should not emit an invalid event when step and value are not aligned', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" step="2"></syn-input>`);
+
+          el.focus();
+          await sendKeys({ type: '1' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.validity.valid).to.be.true;
+          expect(el.validity.stepMismatch).to.be.false;
+        }); // invalid test
       }); // /modern strategy
     }); // /feat#417
   });    

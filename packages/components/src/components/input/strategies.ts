@@ -21,29 +21,30 @@ export type NumericStrategy = {
   autoClamp: boolean;
 
   /**
-   * Handles stepper so it uses current value as base always
-   * (e.g. min = 1, 1.2 + step 0.3 = 1.5 instead of 1.6).
-   * @todo #818
-   * noStepAlign: boolean;
+   * Controls if the stepper should use the **current value** as base.
+   * This is useful when the -/+ step buttons are used to change a value.
+   * Also includes handling of keyboard interactions.
+   *
+   * This works in the following way:
+   * - **value**: 1.2
+   * - **min**: 1
+   * - **step**: 0.3
+   *
+   * 1. noStepAlign = true -> **1.5**
+   * 2. noStepAlign = false -> **1.6**
+   *
+   * Note that this does not alter validation of the input!
+   * A native html input will flag all values that are not aligned to the step as invalid!
+   * See noStepValidation for more information.
    */
+  noStepAlign: boolean;
 
   /**
-   * If stepping is invalid, do not fire invalid event at all
-   * @todo #818
-   * noStepValidation: boolean;
+   * Determines if an invalid event should be emitted when the stepping is invalid.
+   * This is the default behavior of a native input.
+   * Set to false to disable this behavior.
    */
-
-  /**
-   * Minimal amount of digits to show
-   * @todo #838
-   * minFractionDigits?: number;
-   */
-
-  /**
-   * Maximal amount of digits to show
-   * @todo #838
-   * maxFractionDigits?: number;
-   */
+  noStepValidation: boolean;
 };
 
 /**
@@ -52,6 +53,8 @@ export type NumericStrategy = {
  */
 export const nativeNumericStrategy: NumericStrategy = {
   autoClamp: false,
+  noStepAlign: false,
+  noStepValidation: false,
 };
 
 /**
@@ -60,6 +63,8 @@ export const nativeNumericStrategy: NumericStrategy = {
  */
 export const modernNumericStrategy: NumericStrategy = {
   autoClamp: true,
+  noStepAlign: true,
+  noStepValidation: true,
 };
 
 /**

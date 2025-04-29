@@ -98,8 +98,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   private readonly localize = new LocalizeController(this);
 
   @query('.input__control') input: HTMLInputElement;
-  @query('[part=decrement-number-stepper]') decrementButton: HTMLButtonElement;
-  @query('[part=increment-number-stepper]') incrementButton: HTMLButtonElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -231,15 +229,18 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   #numericStrategy: NumericStrategy = nativeNumericStrategy;
 
   /**
-   * Defines the strategy for numeric inputs.
+   * Defines the strategy for handling numbers in the numeric input.
    * This is used to determine how the input behaves when the user interacts with it.
+   *
    * Includes the following configuration options:
-   * 1. autoClamp: If true, the input will clamp the value to the min and max attributes.
+   *
+   * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
    * 
    * You may provide this as one of the following values:
+   *
    * - 'native': Uses the native browser implementation.
-   * - 'modern': Uses the modern implementation.
-   * - An object that matches the NumericStrategy type
+   * - 'modern': Uses a more intuitive implementation: Values are clamped to the nearest min or max value.
+   * - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
    */
   @property({
     attribute: 'numeric-strategy',

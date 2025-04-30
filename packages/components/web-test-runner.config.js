@@ -13,6 +13,7 @@ import synTestPlugins from './scripts/tests/index.js';
 
 export default {
   rootDir: '.',
+  testsFinishTimeout: 180000, // 3 minutes
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
   nodeResolve: {

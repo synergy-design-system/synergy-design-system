@@ -325,9 +325,16 @@ export const Stepper: Story = {
 export const NumericStrategy: Story = {
   render: () => html`
     <form>
+      <syn-input label="Native" min="0" max="10" value="0" step="3" numeric-strategy="modern"></syn-input>
       <syn-input label="Native" type="number" min="0" max="10" value="0" step="3"></syn-input>
       <br />
       <syn-input label="modern" type="number" min="0" max="10" value="0" step="3" numeric-strategy="modern"></syn-input>
+      <syn-input label="Native" type="number" min="0" max="10" value="0" step="0.1"></syn-input>
+      <br />
+      <syn-input label="modern" type="number" min="0" max="10" value="0" step="0.1" numeric-strategy="modern"></syn-input>
+      <syn-input label="Native" type="number" max="10" value="0" ></syn-input>
+      <br />
+      <syn-input label="modern" type="number" max="10" value="0" numeric-strategy="modern"></syn-input>
       <button type="submit">hello</button>
     </form>
     <script>

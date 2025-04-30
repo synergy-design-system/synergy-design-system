@@ -433,19 +433,19 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    if (this.#numericStrategy.noStepAlign) {
+    if (this.#numericStrategy.noStepAlign && this.type === 'number') {
       const { key } = event;
       if (key === 'ArrowUp' || key === 'ArrowDown') {
         event.preventDefault();
         event.stopPropagation();
-      }
 
-      if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
-        this.handleStepUp();
-      } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
-        this.handleStepDown();
+        if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
+          this.handleStepUp();
+        } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
+          this.handleStepDown();
+        }
+        return;
       }
-      return;
     }
     const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
 
@@ -673,7 +673,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               maxlength=${ifDefined(this.maxlength)}
               min=${ifDefined(this.min)}
               max=${ifDefined(this.max)}
-              step=${ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : undefined)}
+              step=${ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : 'any')}
               .value=${live(this.value)}
               autocapitalize=${ifDefined(this.autocapitalize)}
               autocomplete=${ifDefined(this.autocomplete)}

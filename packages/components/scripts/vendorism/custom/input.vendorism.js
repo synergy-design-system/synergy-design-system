@@ -271,19 +271,19 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     // Handle keydown
     [
       'private handleKeyDown(event: KeyboardEvent) {',
-      `    if (this.#numericStrategy.noStepAlign) {
+      `    if (this.#numericStrategy.noStepAlign && this.type === 'number') {
       const { key } = event;
       if (key === 'ArrowUp' || key === 'ArrowDown') {
         event.preventDefault();
         event.stopPropagation();
-      }
 
-      if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
-        this.handleStepUp();
-      } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
-        this.handleStepDown();
+        if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
+          this.handleStepUp();
+        } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
+          this.handleStepDown();
+        }
+        return;
       }
-      return;
     }`,
     ],
     // Handle step up
@@ -327,7 +327,7 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
   // Disable the stepper if the input uses noStepValidation
   content = content.replace(
     'ifDefined(this.step as number)',
-    'ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : undefined)'
+    "ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : 'any')",
   );
   // /#818
 

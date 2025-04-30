@@ -324,17 +324,25 @@ export const Stepper: Story = {
 
 export const NumericStrategy: Story = {
   render: () => html`
-    <form>
-      <syn-input label="Native" min="0" max="10" value="0" step="3" numeric-strategy="modern"></syn-input>
-      <syn-input label="Native" type="number" min="0" max="10" value="0" step="3"></syn-input>
-      <br />
-      <syn-input label="modern" type="number" min="0" max="10" value="0" step="3" numeric-strategy="modern"></syn-input>
-      <syn-input label="Native" type="number" min="0" max="10" value="0" step="0.1"></syn-input>
-      <br />
-      <syn-input label="modern" type="number" min="0" max="10" value="0" step="0.1" numeric-strategy="modern"></syn-input>
-      <syn-input label="Native" type="number" max="10" value="0" ></syn-input>
-      <br />
-      <syn-input label="modern" type="number" max="10" value="0" numeric-strategy="modern"></syn-input>
+    <form style="display: flex; flex-direction: column; row-gap: 1rem;">
+      <syn-input type="number" min="0" max="10" value="0" label="Classic (min and max)"></syn-input>
+      <syn-input type="number" min="0" max="10" value="0" label="Modern (min and max)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+      
+      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Classic (min and max, step 0.1)"></syn-input>
+      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Modern (min and max, step 0.1)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+
+      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Classic (min and max, step 0.1)"></syn-input>
+      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Modern (min and max, step 0.1)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+
+      <syn-input type="number" min="0" max="10" value="0" step="3" label="Classic (min and max, step 3)"></syn-input>
+      <syn-input type="number" min="0" max="10" value="0" step="3" label="Modern (min and max, step 3)" numeric-strategy="modern"></syn-input>
+
       <button type="submit">hello</button>
     </form>
     <script>

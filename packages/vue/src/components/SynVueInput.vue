@@ -244,7 +244,10 @@ Includes the following configuration options:
 You may provide this as one of the following values:
 
 - 'native': Uses the native browser implementation.
-- 'modern': Uses a more intuitive implementation: Values are clamped to the nearest min or max value.
+- 'modern': Uses a more intuitive implementation:
+  - Values are clamped to the nearest min or max value.
+  - Stepping is inclusive to the provided min and max values.
+  - Provided stepping is no longer used in validation.
 - An object that matches the `NumericStrategy` type.
 * Note this can only be set via `property`, not as an `attribute`!
  */

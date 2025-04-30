@@ -15,12 +15,14 @@ describe('<syn-side-nav>', () => {
   afterEach(() => {
     sinon.restore();
   });
+
   describe('accessibility tests', () => {
     it('should be accessible', async () => {
       const sideNav = await fixture<SynSideNav>(html`<syn-side-nav open></syn-side-nav>`);
       await expect(sideNav).to.be.accessible();
     });
   });
+
   describe('when provided no parameters', () => {
     it('should have default values', async () => {
       const sideNav = await fixture<SynSideNav>(html`<syn-side-nav></syn-side-nav>`);
@@ -420,6 +422,145 @@ describe('<syn-side-nav>', () => {
       navItem.blur();
 
       expect(sideNav.open).to.be.false;
+    });
+  });
+
+  describe('when using variant="sticky"', () => {
+    it('should be visible and expanded with open attribute', async () => {
+      const expectedOpenSize = '320px';
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+
+      await sideNav.updateComplete;
+
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      const size = getComputedStyle(drawer).getPropertyValue('--size');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
+
+      expect(size).to.equal(expectedOpenSize);
+      expect(sideNavSize).to.equal(expectedOpenSize);
+    });
+
+    it('should be visible and shrunk without the open attribute', async () => {
+      const expectedCloseSize = '72px';
+
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+
+      await sideNav.updateComplete;
+
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const baseSideNav = sideNav.shadowRoot!.querySelector('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      const size = getComputedStyle(drawer).getPropertyValue('--size');
+      const sideNavSize = getComputedStyle(baseSideNav).width;
+
+      expect(size).to.equal(expectedCloseSize);
+      expect(sideNavSize).to.equal(expectedCloseSize);
+    });
+
+    it('should show no overlay on open state', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const overlay = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="overlay"]')!;
+      const { display } = getComputedStyle(overlay);
+
+      expect(display).to.equal('none');
+    });
+
+    it('should show an overlay on touch devices in open state', async () => {
+      // Mock touch device
+      sinon.stub(window.navigator, 'maxTouchPoints').value(1);
+
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky" open>
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const overlay = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="overlay"]')!;
+      const { display } = getComputedStyle(overlay);
+
+      expect(display).to.equal('block');
+    });
+
+    // TODO: remove this test, if we don't want this behaviour and remove the corresponding styling
+    it('should not grow for touch devices in open state', async () => {
+      // Mock touch device
+      sinon.stub(window.navigator, 'maxTouchPoints').value(1);
+
+      const expectedWidth = '72px';
+
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+
+      const base = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+      const { width: closeWidth } = getComputedStyle(base);
+
+      expect(closeWidth).to.equal(expectedWidth);
+
+      sideNav.open = true;
+      await sideNav.updateComplete;
+
+      const { width: openWidth } = getComputedStyle(base);
+
+      expect(openWidth).to.equal(expectedWidth);
+    });
+
+    // TODO: clarify what should happen,
+    // if someone uses nested nav-items although we do not support it?
+    // it('should not show nested open nav-item`s without the open attribute', async () => {
+    //   const sideNav = await fixture<SynSideNav>(html`
+    //     <syn-side-nav variant="sticky">
+    //       <syn-nav-item class="root" open>nav 1
+    //         <syn-nav-item slot="children">nav 1</syn-nav-item>
+    //       </syn-nav-item>
+    //     </syn-side-nav>
+    //   `);
+    //   const rootNavItem = sideNav.querySelector('.root')!;
+    //   const nestedNavItems = rootNavItem.shadowRoot!.querySelector('[part~="children"]')!;
+
+    //   const { display } = getComputedStyle(nestedNavItems);
+    //   expect(display).to.equal('none');
+    // });
+
+    it('should remove the forcing of drawer visibility if variant changed to `fixed` and open = false', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+      const drawer = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="drawer"]')!;
+      const baseDrawer = drawer.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+
+      expect(baseDrawer.hidden).to.be.false;
+
+      sideNav.variant = 'fixed';
+
+      await sideNav.updateComplete;
+
+      expect(baseDrawer.hidden).to.be.true;
     });
   });
 

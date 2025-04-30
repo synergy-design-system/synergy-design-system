@@ -211,6 +211,71 @@ export const RailNavigationMobile: Story = {
   },
 };
 
+export const StickyNavigationDesktop: Story = {
+  name: 'Sticky Navigation (Desktop)',
+  parameters: {
+    docs: {
+      description: {
+        // TODO: add new sticky description as soon as doc token is available
+        story: generateStoryDescription('application-shell', 'rail-navigation-desktop', 'templates'),
+      },
+    },
+  },
+  render: () => html`
+    <!-- .synergy-demo-application -->
+    <div class="synergy-demo-application" id="appshell-sticky-desktop">
+      ${createHeader()}
+      
+      <!-- .synergy-demo-content -->
+      <div class="synergy-demo-content">
+        ${createSideNav({ variant: 'sticky' })}
+        <div class="synergy-demo-content-inner">
+          ${createMainContent()}
+          ${createFooter()}
+        </div>
+      </div>
+      <!-- /.synergy-demo-content -->
+
+    </div>
+    <!-- /.synergy-demo-application -->
+    ${createSharedStyles()}
+    ${createSidebarConnector('appshell-sticky-desktop')}
+    ${createDemoNavigation('appshell-sticky-desktop')}
+
+    <style>
+      #appshell-sticky-desktop .synergy-demo-content {
+        flex-direction: row;
+      }
+
+      @media(max-width: 420px) {
+        #appshell-sticky-desktop syn-side-nav {
+          --side-nav-open-width: 306px;
+        }
+      }
+    </style>
+  `,
+};
+
+export const StickyNavigationMobile: Story = {
+  ...StickyNavigationDesktop,
+  name: '↳ Tablet',
+  parameters: {
+    controls: {
+      exclude: ['default'],
+    },
+    docs: {
+      description: {
+        // TODO: add new sticky description as soon as doc token is available
+        story: generateStoryDescription('application-shell', 'rail-navigation-mobile', 'templates'),
+      },
+      // disable: true,
+    },
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+};
+
 export const TopNavigation: Story = {
   parameters: {
     docs: {

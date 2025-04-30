@@ -279,18 +279,25 @@ export default class SynNavItem extends SynergyElement {
 
   private handleWidth(entries: ResizeObserverEntry[]) {
     entries.forEach(entry => {
-      if (entry.contentRect.width < 100) {
-        const hasPrefix = this.hasSlotController.test('prefix');
-        this.showPrefixOnly = hasPrefix;
-      } else {
-        this.showPrefixOnly = false;
-      }
+      // The "requestAnimationFrame" seems necessary for being able to test
+      // <syn-side-nav variant="sticky"/> without errors. Otherwise we get an "ResizeObserver loop
+      // completed with undelivered notifications." error in the test.
+      // The resize observer callback retriggers a new nav-item render cycle, because of the
+      //  "this.showPrefixOnly". Via "requestAnimationFrame" we get rid of it. See also: https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver#observation_errors
+      requestAnimationFrame(() => {
+        if (entry.contentRect.width < 100) {
+          const hasPrefix = this.hasSlotController.test('prefix');
+          this.showPrefixOnly = hasPrefix;
+        } else {
+          this.showPrefixOnly = false;
+        }
 
-      if (entry.contentRect.height > 48) {
-        this.isMultiLine = true;
-      } else {
-        this.isMultiLine = false;
-      }
+        if (entry.contentRect.height > 48) {
+          this.isMultiLine = true;
+        } else {
+          this.isMultiLine = false;
+        }
+      });
     });
   }
 

@@ -119,6 +119,12 @@ export default css`
     white-space: nowrap;
   }
 
+  /* Show the overlay of the drawer on touch devices */
+   .side-nav--open.side-nav--sticky.side-nav--touch .side-nav__drawer::part(overlay){
+    display: block;
+  }
+
+
   /* Hide the scrollbars in closed variant="sticky" */ 
   :not(.side-nav--open).side-nav--sticky .side-nav__drawer::part(body){
     overflow: hidden;

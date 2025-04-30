@@ -335,13 +335,28 @@ export const NumericStrategy: Story = {
 
       <syn-divider></syn-divider>
 
-      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Classic (min and max, step 0.1)"></syn-input>
-      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Modern (min and max, step 0.1)" numeric-strategy="modern"></syn-input>
+      <syn-input type="number" min="0" max="10" step="0.1" label="Classic (min and max, step 0.1, no value)"></syn-input>
+      <syn-input type="number" min="0" max="10" step="0.1" label="Modern (min and max, step 0.1, no value)" numeric-strategy="modern"></syn-input>
 
       <syn-divider></syn-divider>
 
       <syn-input type="number" min="0" max="10" value="0" step="3" label="Classic (min and max, step 3)"></syn-input>
       <syn-input type="number" min="0" max="10" value="0" step="3" label="Modern (min and max, step 3)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+
+      <syn-input type="number" min="0" value="0" step="3" label="Classic (min, step 3)"></syn-input>
+      <syn-input type="number" min="0" value="0" step="3" label="Modern (min, step 3)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+
+      <syn-input type="number" max="10" value="0" step="3" label="Classic (max, step 3)"></syn-input>
+      <syn-input type="number" max="10" value="0" step="3" label="Modern (max, step 3)" numeric-strategy="modern"></syn-input>
+
+      <syn-divider></syn-divider>
+
+      <syn-input type="number" value="0" step="3" label="Classic (step 3)"></syn-input>
+      <syn-input type="number" value="0" step="3" label="Modern (step 3)" numeric-strategy="modern"></syn-input>
 
       <button type="submit">hello</button>
     </form>

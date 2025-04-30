@@ -257,12 +257,10 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     type: Object,
   })
   set numericStrategy(value: 'native' | 'modern' | Partial<NumericStrategy>) {
-    if (typeof value === 'string') {
-      this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy;
-    } else if (typeof value === 'object') {
-      this.#numericStrategy = createNumericStrategy(value);
-    } else {
-      this.#numericStrategy = nativeNumericStrategy;
+    switch (typeof value) {
+      case 'string': this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy; break;
+      case 'object': this.#numericStrategy = createNumericStrategy(value); break;
+      default: this.#numericStrategy = nativeNumericStrategy;
     }
   }
 
@@ -376,8 +374,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     if (nextValue < min) {
       nextValue = min;
       clampEvent = 'min';
-    }
-    if (nextValue > max) {
+    } else if (nextValue > max) {
       nextValue = max;
       clampEvent = 'max';
     }
@@ -447,6 +444,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         } else if (key === 'ArrowDown') {
           this.handleStepDown();
         }
+        this.handleChange();
         return;
       }
     }
@@ -558,26 +556,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
       if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
-
-        if (this.#numericStrategy.autoClamp) {
-          this.emit('syn-clamp', {
-            detail: {
-              clampedTo: 'max' as SynClampDetails['clampedTo'],
-              lastUserValue: valueAsNumber,
-            }
-          });
-        }
       } else if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
         wantedNextValue = usedMin;
-
-        if (this.#numericStrategy.autoClamp) {
-          this.emit('syn-clamp', {
-            detail: {
-              clampedTo: 'min' as SynClampDetails['clampedTo'],
-              lastUserValue: valueAsNumber,
-            }
-          });
-        }
       }
 
       this.input.value = wantedNextValue.toString();
@@ -610,26 +590,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       
       if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
         wantedNextValue = usedMin;
-
-        if (this.#numericStrategy.autoClamp) {
-          this.emit('syn-clamp', {
-            detail: {
-              clampedTo: 'min' as SynClampDetails['clampedTo'],
-              lastUserValue: valueAsNumber,
-            }
-          });
-        }
       } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
-
-        if (this.#numericStrategy.autoClamp) {
-          this.emit('syn-clamp', {
-            detail: {
-              clampedTo: 'max' as SynClampDetails['clampedTo'],
-              lastUserValue: valueAsNumber,
-            }
-          });
-        }
       }
       
       this.input.value = wantedNextValue.toString();

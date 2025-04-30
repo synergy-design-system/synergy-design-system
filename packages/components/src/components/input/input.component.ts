@@ -442,9 +442,9 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         event.preventDefault();
         event.stopPropagation();
 
-        if (key === 'ArrowUp' && !this.isIncrementDisabled()) {
+        if (key === 'ArrowUp') {
           this.handleStepUp();
-        } else if (key === 'ArrowDown' && !this.isDecrementDisabled()) {
+        } else if (key === 'ArrowDown') {
           this.handleStepDown();
         }
         return;
@@ -546,14 +546,45 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     if (this.#numericStrategy.noStepAlign) {
       const { max, step, valueAsNumber } = this;
 
-      const stepToUse = step === 'any' ? 1 : typeof step === 'number' ? step : parseFloat(step);
-      const maxToUse = max === undefined || max === null ? Number.POSITIVE_INFINITY : typeof max === 'string' ? parseFloat(max) : max;
-      const nextValue = Math.min(valueAsNumber + stepToUse, maxToUse);
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
-      // If the input is empty, nextValue will be NaN.
-      // The following check will ensure that the input is set to the max value instead.
-      this.input.value = Number.isNaN(nextValue) ? maxToUse.toString() : nextValue.toString();
-      this.value = this.input.value;
+      let wantedNextValue = usedInitialValue + usedStep;
+      // Floating point issues...
+      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
+
+      if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+
+        if (this.#numericStrategy.autoClamp) {
+          this.emit('syn-clamp', {
+            detail: {
+              clampedTo: 'max' as SynClampDetails['clampedTo'],
+              lastUserValue: valueAsNumber,
+            }
+          });
+        }
+      } else if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+
+        if (this.#numericStrategy.autoClamp) {
+          this.emit('syn-clamp', {
+            detail: {
+              clampedTo: 'min' as SynClampDetails['clampedTo'],
+              lastUserValue: valueAsNumber,
+            }
+          });
+        }
+      }
+
+      this.input.value = wantedNextValue.toString();
+
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
       return;
     }
     this.input.stepUp();
@@ -565,16 +596,46 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   /** Decrements the value of a numeric input type by the value of the step attribute. */
   stepDown() {
     if (this.#numericStrategy.noStepAlign) {
-      const { min, step, valueAsNumber } = this;
+      const { min, max, step, valueAsNumber } = this;
 
-      const stepToUse = step === 'any' ? 1 : typeof step === 'number' ? step : parseFloat(step);
-      const minToUse = min === undefined || min === null ? Number.NEGATIVE_INFINITY : typeof min === 'string' ? parseFloat(min) : min;
-      const nextValue = Math.max(valueAsNumber - stepToUse, minToUse);
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof min === 'string' ? parseFloat(min) : min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
-      // If the input is empty, nextValue will be NaN.
-      // The following check will ensure that the input is set to the min value instead.
-      this.input.value = Number.isNaN(nextValue) ? minToUse.toString() : nextValue.toString();
-      this.value = this.input.value;
+      let wantedNextValue = usedInitialValue - usedStep;
+      // Floating point issues...
+      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
+      
+      if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+
+        if (this.#numericStrategy.autoClamp) {
+          this.emit('syn-clamp', {
+            detail: {
+              clampedTo: 'min' as SynClampDetails['clampedTo'],
+              lastUserValue: valueAsNumber,
+            }
+          });
+        }
+      } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+
+        if (this.#numericStrategy.autoClamp) {
+          this.emit('syn-clamp', {
+            detail: {
+              clampedTo: 'max' as SynClampDetails['clampedTo'],
+              lastUserValue: valueAsNumber,
+            }
+          });
+        }
+      }
+      
+      this.input.value = wantedNextValue.toString();
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
       return;
     }
     this.input.stepDown();

@@ -12,7 +12,39 @@ export const createLayout = () => `
     </a>
 
     <div class="meta-navigation" slot="meta-navigation">
-      <syn-button-group>
+
+      <syn-button-group class="sidenav-switch">
+        <syn-tooltip content="Set sidenav to fixed">
+          <syn-icon-button
+            color="currentColor"
+            data-type="fixed"
+            label="Set navigation to fixed"
+            name="lunch_dining"
+            size="small"
+          ></syn-icon-button>
+        </syn-tooltip>
+        <syn-tooltip content="Set sidenav to rail">
+          <syn-icon-button
+            color="primary"
+            data-type="rail"
+            label="Set navigation to rail"
+            name="space_dashboard"
+            size="small"
+          ></syn-icon-button>
+        </syn-tooltip>
+        <syn-tooltip content="Set sidenav to sticky">
+          <syn-icon-button
+            color="currentColor"
+            data-type="sticky"
+            label="Set navigation to sticky"
+            name="preview"
+            size="small"
+          ></syn-icon-button>
+        </syn-tooltip>
+
+      <syn-divider vertical></syn-divider>
+
+      <syn-button-group class="size-switch">
         <syn-tooltip content="Set element size to small">
           <syn-icon-button
             color="currentColor"
@@ -41,6 +73,8 @@ export const createLayout = () => `
           />
         </syn-tooltip>
       </syn-button-group>
+
+      <syn-divider vertical></syn-divider>
 
       <syn-switch
         data-theme-light="☀️"

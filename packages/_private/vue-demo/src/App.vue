@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SizeSwitch from './SizeSwitch.vue';
+import SideNavSwitch from './SideNavSwitch.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 import { SynVueDivider, SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
 import { computed } from 'vue';
@@ -20,6 +21,8 @@ const routeTo = (route: string) => {
       <SynVueIcon name="logo-color" library="system" />
     </RouterLink>
     <div class="meta-navigation" slot="meta-navigation">
+      <SideNavSwitch />
+      <SynVueDivider vertical />
       <SizeSwitch />
       <SynVueDivider vertical />
       <ThemeSwitch />

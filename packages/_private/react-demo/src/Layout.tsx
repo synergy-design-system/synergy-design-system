@@ -11,6 +11,7 @@ import {
 } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RouterLink } from './RouterLink';
+import { SidenavSwitch } from './SidenavSwitch';
 import { SizeSwitch } from './SizeSwitch';
 import { ThemeSwitch } from './ThemeSwitch';
 
@@ -36,11 +37,14 @@ export const Layout: FC = () => {
         </Link>
 
         <div className="meta-navigation" slot="meta-navigation">
+          <SidenavSwitch />
+          <syn-divider vertical />
           <SizeSwitch />
           <SynDivider vertical />
           <ThemeSwitch />
         </div>
       </SynHeader>
+
       <div className="main">
         <SynSideNav variant='rail'>
           <RouterLink href="/" current={currentNavigationPath === '/'}>

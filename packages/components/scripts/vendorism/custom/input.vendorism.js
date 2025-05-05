@@ -218,6 +218,8 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
    * Includes the following configuration options:
    *
    * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+   * - **noStepAlign**: If true, the input will not align the value to the step attribute.
+   * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
    * 
    * You may provide this as one of the following values:
    *

@@ -322,50 +322,33 @@ export const Stepper: Story = {
   <syn-input type="number" min="0" max="10" value="10"></syn-input>`,
 };
 
-export const NumericStrategy: Story = {
+export const StepperInputHandling: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('input', 'stepper-input-handling'),
+      },
+    },
+  },
   render: () => html`
-    <form style="display: flex; flex-direction: column; row-gap: 1rem;">
-      <syn-input type="number" min="0" max="10" value="0" label="Classic (min and max)"></syn-input>
-      <syn-input type="number" min="0" max="10" value="0" label="Modern (min and max)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-      
-      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Classic (min and max, step 0.1)"></syn-input>
-      <syn-input type="number" min="0" max="10" value="0" step="0.1" label="Modern (min and max, step 0.1)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-
-      <syn-input type="number" min="0" max="10" step="0.1" label="Classic (min and max, step 0.1, no value)"></syn-input>
-      <syn-input type="number" min="0" max="10" step="0.1" label="Modern (min and max, step 0.1, no value)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-
-      <syn-input type="number" min="0" max="10" value="0" step="3" label="Classic (min and max, step 3)"></syn-input>
-      <syn-input type="number" min="0" max="10" value="0" step="3" label="Modern (min and max, step 3)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-
-      <syn-input type="number" min="0" value="0" step="3" label="Classic (min, step 3)"></syn-input>
-      <syn-input type="number" min="0" value="0" step="3" label="Modern (min, step 3)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-
-      <syn-input type="number" max="10" value="0" step="3" label="Classic (max, step 3)"></syn-input>
-      <syn-input type="number" max="10" value="0" step="3" label="Modern (max, step 3)" numeric-strategy="modern"></syn-input>
-
-      <syn-divider></syn-divider>
-
-      <syn-input type="number" value="0" step="3" label="Classic (step 3)"></syn-input>
-      <syn-input type="number" value="0" step="3" label="Modern (step 3)" numeric-strategy="modern"></syn-input>
-
-      <button type="submit">hello</button>
-    </form>
-    <script>
-      document.addEventListener('syn-clamp', console.log);
-      document.addEventListener('syn-input', console.log);
-      document.addEventListener('syn-change', console.log);
-      document.querySelector('form').addEventListener('syn-invalid', console.log, { capture: true });
-    </script>
+    <syn-input
+      label="Native (min and max)"
+      max="10"
+      min="0"
+      numeric-strategy="native"
+      step="0.3"
+      type="number"
+      value="0"
+    ></syn-input>
+    <syn-input 
+      label="Modern (min and max)"
+      max="10"
+      min="0"
+      numeric-strategy="modern"
+      step="0.3"
+      type="number"
+      value="0"
+    ></syn-input>
   `,
 };
 
@@ -385,5 +368,6 @@ export const Screenshot: Story = generateScreenshotStory({
   PrefixSuffixTextAndIcons,
   CustomizingLabelPosition,
   Stepper,
+  StepperInputHandling,
 }, 500);
 /* eslint-enable sort-keys */

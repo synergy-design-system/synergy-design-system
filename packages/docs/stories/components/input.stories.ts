@@ -331,11 +331,20 @@ export const StepperInputHandling: Story = {
     },
   },
   render: () => html`
+  <syn-input type="number" numeric-strategy="modern" min-fraction-digits="4" step="0.3"></syn-input>
     <syn-input
       label="Native (min and max)"
       max="10"
       min="0"
       numeric-strategy="native"
+      step="0.3"
+      type="number"
+      value="0"
+    ></syn-input>
+    <syn-input
+      label="Native (min and max)"
+      max="10"
+      min="0"
       step="0.3"
       type="number"
       value="0"
@@ -400,6 +409,14 @@ export const StepperInputHandling: Story = {
       type="number"
       value="120.38"
     ></syn-input>
+    <script>
+      const elms = document.querySelectorAll('syn-input');
+      elms.forEach((elm) => {
+        elm.addEventListener('syn-change', console.log);
+        elm.addEventListener('syn-input', console.log);
+        elm.addEventListener('syn-clamp', console.log);
+      });
+    </script>
 `,
 };
 

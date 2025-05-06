@@ -8,6 +8,7 @@ import {
   modernNumericStrategy,
   nativeNumericStrategy,
 } from './strategies.js';
+import { formatNumber } from './formatter.js';
 import type SynInput from './input.js';
 
 describe('<syn-input>', () => {
@@ -46,7 +47,7 @@ describe('<syn-input>', () => {
         await waitUntil(() => focusHandler.calledOnce);
     
         expect(focusHandler).to.have.been.calledOnce;
-      }); 
+      });
 
       it('should disable the stepper buttons if element is disabled', async () => {
         const el = await fixture<SynInput>(html` <syn-input type="number" disabled></syn-input> `);
@@ -73,7 +74,7 @@ describe('<syn-input>', () => {
         el.stepDown();
         await el.updateComplete;
         expect(decrementButton.disabled).to.be.true;
-      }); 
+      });
 
       it('should disable increment button if max value is reached', async () => {
         const el = await fixture<SynInput>(html` <syn-input type="number" value="1" max="2"></syn-input>`);
@@ -82,7 +83,7 @@ describe('<syn-input>', () => {
         el.stepUp();
         await el.updateComplete;
         expect(incrementButton.disabled).to.be.true;
-      }); 
+      });
 
       it('should enable increment button if max attribute is removed after reaching it', async () => {
         const el = await fixture<SynInput>(html` <syn-input type="number" value="2" max="2"></syn-input>`);
@@ -101,7 +102,6 @@ describe('<syn-input>', () => {
         await el.updateComplete;
         expect(decrementButton.disabled).to.be.false;
       });
-
 
       describe('when the value changes', () => {
         it('should increment by step when increment button is clicked', async () => {
@@ -236,10 +236,20 @@ describe('<syn-input>', () => {
         expect(el.numericStrategy).to.deep.equal(nativeNumericStrategy);
       });
 
+      describe('number formatter', () => {
+        it('should format the number using the Intl.NumberFormat API', () => {
+          expect(formatNumber(1234.567, 0.1), 'should use the step if no min or max fraction digits are given').to.equal('1,234.6');
+          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 2 }), 'should ignore the step if no min fraction digit is given').to.equal('1,234.57');
+          expect(formatNumber(1234.567, 0.1, { maximumFractionDigits: 3 }), 'should ignore the step if no max fraction digit is given').to.equal('1,234.567');
+          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 4, maximumFractionDigits: 5 }), 'should use the min and max fraction digits').to.equal('1,234.5670');
+        });
+      });
+
       describe('numeric strategy utils', () => {
         it('should export a default native numeric strategy', () => {
           expect(nativeNumericStrategy).to.deep.equal({
             autoClamp: false,
+            enableNumberFormat: false,
             noStepAlign: false,
             noStepValidation: false,
           });
@@ -248,6 +258,7 @@ describe('<syn-input>', () => {
         it('should export a default modern numeric strategy', () => {
           expect(modernNumericStrategy).to.deep.equal({
             autoClamp: true,
+            enableNumberFormat: true,
             noStepAlign: true,
             noStepValidation: true,
           });
@@ -257,6 +268,7 @@ describe('<syn-input>', () => {
           // @ts-expect-error customItem is added to still be able to check the defaults of autoClamp
           expect(createNumericStrategy({ customItem: true })).to.deep.equal({
             autoClamp: false,
+            enableNumberFormat: false,
             customItem: true,
             noStepAlign: false,
             noStepValidation: false,
@@ -316,6 +328,17 @@ describe('<syn-input>', () => {
           expect(el.validity.valid).to.be.false;
           expect(el.validity.stepMismatch).to.be.true;
         }); // invalid test
+
+        it('should not format the input value in any way', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="native" step="1.0"></syn-input>`);
+          el.focus();
+          await sendKeys({ type: '1.000' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.value).to.equal('1.000');
+        }); // Test number formatting
       }); // /native strategy
 
       describe('when using the "modern" strategy', () => {
@@ -375,7 +398,40 @@ describe('<syn-input>', () => {
           expect(el.validity.valid).to.be.true;
           expect(el.validity.stepMismatch).to.be.false;
         }); // invalid test
+
+        it('should format to the minimal possible decimals when the min-fraction-digits prop is provided', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="4"></syn-input>`);
+          el.focus();
+          await sendKeys({ type: '1' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.value).to.equal('1.0000');
+        }); // Test number formatting with min-fraction-digits
+
+        it('should format to the maximal amount of possible decimals when the max-fraction-digits prop is provided', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="2" max-fraction-digits="6"></syn-input>`);
+          el.focus();
+          await sendKeys({ type: '1.9999991111' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.value).to.equal('1.999999');
+        }); // Test number formatting with max-fraction-digits
+
+        it('should format with step only if no fraction is provided', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" step="0.0003"></syn-input>`);
+          el.focus();
+          await sendKeys({ type: '1.234567' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.value).to.equal('1.2346');
+        }); // Test number formatting with step only
       }); // /modern strategy
     }); // /feat#417
-  });    
+  }); // /number-tests
 });

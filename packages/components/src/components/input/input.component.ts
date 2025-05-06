@@ -230,6 +230,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   /**
    * Optional options that should be passed to the `NumberFormatter` when formatting the value.
    * This is used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   * Note this can only be set via `property`, not as an `attribute`!
    */
   @property({
     attribute: false,
@@ -264,6 +265,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    * Includes the following configuration options:
    *
    * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+   * - **enableNumberFormat**: If true, the input will format the value using a `NumberFormatter`.
    * - **noStepAlign**: If true, the input will not align the value to the step attribute.
    * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
    * 
@@ -274,6 +276,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    *   - Values are clamped to the nearest min or max value.
    *   - Stepping is inclusive to the provided min and max values.
    *   - Provided stepping is no longer used in validation.
+   *   - Advanced number formatting is enabled.
    * - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
    */
   @property({
@@ -410,8 +413,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       clampEvent = 'max';
     }
 
-    this.value = nextValue.toString();
-
     // Fire the event if the value was clamped
     if (clampEvent) {
       this.emit('syn-clamp', {
@@ -421,20 +422,23 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         }
       });
     }
-    this.formControlController.updateValidity();
-    this.emit('syn-change');
+
+    return nextValue;
   }
 
   private handleChange() {
-    if (this.type === 'number') {
-      if (this.#numericStrategy.autoClamp) {
-        this.handleNumericStrategyAutoClamp();
-      }
+    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {
+      const initialNextValue = this.#numericStrategy.autoClamp
+        ? this.handleNumericStrategyAutoClamp()
+        : this.valueAsNumber;
 
-      if (this.#numericStrategy.enableNumberFormat) {
-        this.value = this.#format(this.valueAsNumber);
-      }
-      return;
+      this.value = this.#numericStrategy.enableNumberFormat
+        ? this.#format(initialNextValue)
+        : initialNextValue.toString();
+
+      this.formControlController.updateValidity();
+      this.emit('syn-change');
+      return;    
     }
 
     this.value = this.input.value;

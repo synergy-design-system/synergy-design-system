@@ -12,7 +12,7 @@ export const formatNumber = (
 ) => {
   const {
     maximumFractionDigits,
-    minimumFractionDigits,
+    minimumFractionDigits = 0,
     ...otherOptions
   } = numberFormatterOptions;
 
@@ -22,11 +22,11 @@ export const formatNumber = (
   // to use for the formatter.
   const stepToUse = step === 'any' ? 1 : +step;
   const stepFractionDigits = stepToUse.toString().split('.')[1]?.length || 0;
-  const usedMinFractionDigitsToUse = Math.max(minimumFractionDigits!, stepFractionDigits);
+  const usedMinFractionDigitsToUse = Math.max(minimumFractionDigits, stepFractionDigits);
   const usedMinimumFractionDigits = Math.max(usedMinFractionDigitsToUse, 0);
 
   const formatter = new Intl.NumberFormat('en-US', {
-    maximumFractionDigits,
+    maximumFractionDigits: maximumFractionDigits || usedMinimumFractionDigits,
     minimumFractionDigits: usedMinimumFractionDigits,
     ...otherOptions,
   });

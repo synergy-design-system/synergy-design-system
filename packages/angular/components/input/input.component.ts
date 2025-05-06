@@ -460,12 +460,41 @@ keyboard on supportive devices.
   }
 
   /**
+* The minimal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+ */
+  @Input()
+  set minFractionDigits(v: SynInput['minFractionDigits']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.minFractionDigits = v),
+    );
+  }
+  get minFractionDigits(): SynInput['minFractionDigits'] {
+    return this.nativeElement.minFractionDigits;
+  }
+
+  /**
+* The maximal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+ */
+  @Input()
+  set maxFractionDigits(v: SynInput['maxFractionDigits']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.maxFractionDigits = v),
+    );
+  }
+  get maxFractionDigits(): SynInput['maxFractionDigits'] {
+    return this.nativeElement.maxFractionDigits;
+  }
+
+  /**
 * Defines the strategy for handling numbers in the numeric input.
 This is used to determine how the input behaves when the user interacts with it.
 
 Includes the following configuration options:
 
 - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+- **enableNumberFormat**: If true, the input will format the value using a `NumberFormatter`.
 - **noStepAlign**: If true, the input will not align the value to the step attribute.
 - **noStepValidation**: If true, the input will not validate the value against the step attribute.
 
@@ -476,6 +505,7 @@ You may provide this as one of the following values:
   - Values are clamped to the nearest min or max value.
   - Stepping is inclusive to the provided min and max values.
   - Provided stepping is no longer used in validation.
+  - Advanced number formatting is enabled.
 - An object that matches the `NumericStrategy` type.
 * Note this can only be set via `property`, not as an `attribute`!
  */
@@ -487,6 +517,21 @@ You may provide this as one of the following values:
   }
   get numericStrategy(): SynInput['numericStrategy'] {
     return this.nativeElement.numericStrategy;
+  }
+
+  /**
+* Optional options that should be passed to the `NumberFormatter` when formatting the value.
+This is used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+Note this can only be set via `property`, not as an `attribute`!
+ */
+  @Input()
+  set numberFormatterOptions(v: SynInput['numberFormatterOptions']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.numberFormatterOptions = v),
+    );
+  }
+  get numberFormatterOptions(): SynInput['numberFormatterOptions'] {
+    return this.nativeElement.numberFormatterOptions;
   }
 
   /**

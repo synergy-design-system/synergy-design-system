@@ -198,6 +198,7 @@ export`,
   nativeNumericStrategy,
   modernNumericStrategy,
 } from './strategies.js';
+import { formatNumber } from './formatter.js';
 import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     ],
     // Event documentation
@@ -209,6 +210,35 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     [
       "@property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';",
       `
+  /**
+   * Optional options that should be passed to the \`NumberFormatter\` when formatting the value.
+   * This is used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   * Note this can only be set via \`property\`, not as an \`attribute\`!
+   */
+  @property({
+    attribute: false,
+    reflect: false,
+    type: Object,
+  }) numberFormatterOptions: Intl.NumberFormatOptions;
+
+  /**
+   * The minimal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   */
+  @property({
+    attribute: 'min-fraction-digits',
+    type: Number,
+  }) minFractionDigits = 0;
+
+  /**
+   * The maximal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   */
+  @property({
+    attribute: 'max-fraction-digits',
+    type: Number,
+  }) maxFractionDigits: number;
+
   #numericStrategy: NumericStrategy = nativeNumericStrategy;
 
   /**
@@ -218,6 +248,7 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
    * Includes the following configuration options:
    *
    * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+   * - **enableNumberFormat**: If true, the input will format the value using a \`NumberFormatter\`.
    * - **noStepAlign**: If true, the input will not align the value to the step attribute.
    * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
    * 
@@ -228,6 +259,7 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
    *   - Values are clamped to the nearest min or max value.
    *   - Stepping is inclusive to the provided min and max values.
    *   - Provided stepping is no longer used in validation.
+   *   - Advanced number formatting is enabled.
    * - An object that matches the \`NumericStrategy\` type. Note this can only be set via \`property\`, not as an \`attribute\`!
    */
   @property({
@@ -261,8 +293,17 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     // Add the numeric strategy switch to handleChange
     [
       'private handleChange() {',
-      `    if (this.type === 'number' && this.#numericStrategy.autoClamp) {
-      this.handleNumericStrategyAutoClamp();
+      `    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {
+      const initialNextValue = this.#numericStrategy.autoClamp
+        ? this.handleNumericStrategyAutoClamp()
+        : this.valueAsNumber;
+
+      this.value = this.#numericStrategy.enableNumberFormat
+        ? this.#format(initialNextValue)
+        : initialNextValue.toString();
+
+      this.formControlController.updateValidity();
+      this.emit('syn-change');
       return;
     }`,
     ],
@@ -303,8 +344,6 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
       const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
       let wantedNextValue = usedInitialValue + usedStep;
-      // Floating point issues...
-      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
 
       if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
@@ -312,7 +351,11 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
         wantedNextValue = usedMin;
       }
 
-      this.input.value = wantedNextValue.toString();
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
 
       if (this.value !== this.input.value) {
         this.value = this.input.value;
@@ -334,16 +377,19 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
       const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
       let wantedNextValue = usedInitialValue - usedStep;
-      // Floating point issues...
-      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
       
       if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
         wantedNextValue = usedMin;
       } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
       }
-      
-      this.input.value = wantedNextValue.toString();
+
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
+
       if (this.value !== this.input.value) {
         this.value = this.input.value;
       }
@@ -380,8 +426,6 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
       clampEvent = 'max';
     }
 
-    this.value = nextValue.toString();
-
     // Fire the event if the value was clamped
     if (clampEvent) {
       this.emit('syn-clamp', {
@@ -391,8 +435,8 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
         }
       });
     }
-    this.formControlController.updateValidity();
-    this.emit('syn-change');
+
+    return nextValue;
   }`,
     {
       newlinesAfterInsertion: 2,
@@ -400,6 +444,24 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     },
   );
   // /#417
+
+  // #838: Add formatter
+  content = addSectionBefore(
+    content,
+    'render() {',
+    `#format(value: number) {
+    return formatNumber(value, this.step, {
+      maximumFractionDigits: this.maxFractionDigits,
+      minimumFractionDigits: this.minFractionDigits,
+      ...this.numberFormatterOptions,
+    });
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
+  // /#838
 
   return {
     content,

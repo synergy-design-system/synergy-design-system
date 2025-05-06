@@ -438,9 +438,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
       this.formControlController.updateValidity();
       this.emit('syn-change');
-      return;    
+      return;
     }
-
     this.value = this.input.value;
     this.emit('syn-change');
   }
@@ -641,6 +640,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         : wantedNextValue.toString();
 
       this.input.value = finalStringValue;
+
       if (this.value !== this.input.value) {
         this.value = this.input.value;
       }

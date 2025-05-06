@@ -33,6 +33,7 @@ import {
   nativeNumericStrategy,
   modernNumericStrategy,
 } from './strategies.js';
+import { formatNumber } from './formatter.js';
 import type { SynClampDetails } from '../../events/syn-clamp.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -226,6 +227,34 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
+  /**
+   * Optional options that should be passed to the `NumberFormatter` when formatting the value.
+   * This is used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   */
+  @property({
+    attribute: false,
+    reflect: false,
+    type: Object,
+  }) numberFormatterOptions: Intl.NumberFormatOptions;
+
+  /**
+   * The minimal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   */
+  @property({
+    attribute: 'min-fraction-digits',
+    type: Number,
+  }) minFractionDigits = 0;
+
+  /**
+   * The maximal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   */
+  @property({
+    attribute: 'max-fraction-digits',
+    type: Number,
+  }) maxFractionDigits: number;
+
   #numericStrategy: NumericStrategy = nativeNumericStrategy;
 
   /**
@@ -397,10 +426,17 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleChange() {
-    if (this.type === 'number' && this.#numericStrategy.autoClamp) {
-      this.handleNumericStrategyAutoClamp();
+    if (this.type === 'number') {
+      if (this.#numericStrategy.autoClamp) {
+        this.handleNumericStrategyAutoClamp();
+      }
+
+      if (this.#numericStrategy.enableNumberFormat) {
+        this.value = this.#format(this.valueAsNumber);
+      }
       return;
     }
+
     this.value = this.input.value;
     this.emit('syn-change');
   }
@@ -553,8 +589,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
       let wantedNextValue = usedInitialValue + usedStep;
-      // Floating point issues...
-      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
 
       if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
@@ -562,7 +596,11 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         wantedNextValue = usedMin;
       }
 
-      this.input.value = wantedNextValue.toString();
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
 
       if (this.value !== this.input.value) {
         this.value = this.input.value;
@@ -587,16 +625,18 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
 
       let wantedNextValue = usedInitialValue - usedStep;
-      // Floating point issues...
-      wantedNextValue = Math.abs(wantedNextValue) < Number.EPSILON ? 0 : wantedNextValue;
       
       if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
         wantedNextValue = usedMin;
       } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
         wantedNextValue = usedMax;
       }
-      
-      this.input.value = wantedNextValue.toString();
+
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
       if (this.value !== this.input.value) {
         this.value = this.input.value;
       }
@@ -627,6 +667,14 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   setCustomValidity(message: string) {
     this.input.setCustomValidity(message);
     this.formControlController.updateValidity();
+  }
+
+  #format(value: number) {
+    return formatNumber(value, this.step, {
+      maximumFractionDigits: this.maxFractionDigits,
+      minimumFractionDigits: this.minFractionDigits,
+      ...this.numberFormatterOptions,
+    });
   }
 
   render() {

@@ -21,6 +21,13 @@ export type NumericStrategy = {
   autoClamp: boolean;
 
   /**
+   * Controls if the control should automatically format the value via a `NumberFormatter`.
+   * May be combined with either the `min-fraction-digits` and `max-fraction-digits` attributes or
+   * the `number-format` attribute.
+   */
+  enableNumberFormat: boolean;
+
+  /**
    * Controls if the stepper should use the **current value** as base.
    * This is useful when the -/+ step buttons are used to change a value.
    * Also includes handling of keyboard interactions.
@@ -53,6 +60,7 @@ export type NumericStrategy = {
  */
 export const nativeNumericStrategy: NumericStrategy = {
   autoClamp: false,
+  enableNumberFormat: false,
   noStepAlign: false,
   noStepValidation: false,
 };
@@ -63,6 +71,7 @@ export const nativeNumericStrategy: NumericStrategy = {
  */
 export const modernNumericStrategy: NumericStrategy = {
   autoClamp: true,
+  enableNumberFormat: true,
   noStepAlign: true,
   noStepValidation: true,
 };

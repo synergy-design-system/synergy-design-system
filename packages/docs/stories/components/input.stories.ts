@@ -341,15 +341,66 @@ export const StepperInputHandling: Story = {
       value="0"
     ></syn-input>
     <syn-input 
-      label="Modern (min and max)"
-      max="10"
+      label="Modern (min and max, 2, 5, 0.3, 0-100)"
+      min-fraction-digits="2"
+      max-fraction-digits="5"
+      max="100"
       min="0"
       numeric-strategy="modern"
       step="0.3"
       type="number"
       value="0"
     ></syn-input>
-  `,
+    <syn-input 
+      label="Modern (min and max, 10, -, 0.84, 0-100)"
+      min-fraction-digits="10"
+      max="100"
+      min="0"
+      numeric-strategy="modern"
+      step="0.85"
+      type="number"
+      value="0"
+    ></syn-input>
+    <syn-input 
+      label="Modern (min and max, 0, -, 0.3, 0-100)"
+      min-fraction-digits="0"
+      max="100"
+      min="0"
+      numeric-strategy="modern"
+      step="0.3"
+      type="number"
+      value="0"
+    ></syn-input>
+    <syn-input 
+      label="Modern (min and max, -, -, -, 0-100)"
+      max="100"
+      min="0"
+      numeric-strategy="modern"
+      type="number"
+      value="0"
+    ></syn-input>
+    <syn-input 
+      label="Modern (min and max, 5, -, 20.35899943939300038, 0-100)"
+      max="100"
+      min="0"
+      step="20.35899943939300038"
+      min-fraction-digits="5"
+      numeric-strategy="modern"
+      type="number"
+      value="120.38"
+    ></syn-input>
+    <syn-input 
+      label="Modern (min and max, 5, 30, 20.35899943939300038887, 0-100)"
+      max="100"
+      min="0"
+      step="20.35899943939300038887"
+      max-fraction-digits="30"
+      min-fraction-digits="5"
+      numeric-strategy="modern"
+      type="number"
+      value="120.38"
+    ></syn-input>
+`,
 };
 
 // Bundled screenshot story

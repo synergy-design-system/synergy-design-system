@@ -345,6 +345,68 @@ test.describe('<SynInput />', () => {
       }); // end modern numeric strategy
     }); // feature#417
   }); // End frameworks
+
+  createTestCases(({ name, port }) => {
+    test.describe(`Feature#838: ${name}`, () => {
+      test.describe('when using the native numeric strategy', () => {
+        test('should not round the value to the provided min-fraction-digit value', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input417NumericMinFractionDigitsNative');
+
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+          await fillInput(input, '1');
+
+          const hasChangeEvent = await waitForChange;
+
+          const data = await input.evaluate((el: SynInput) => {
+            const { value, valueAsNumber } = el;
+            return {
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+
+          expect(data.value, 'Value should be set to a string of "1"').toEqual('1');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 1').toEqual(1);
+        }); // end test for min-fraction-digits
+      }); // end native numeric strategy
+
+      test.describe('when using the modern numeric strategy', () => {
+        test('should round the value to the provided min-fraction-digit value', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input417NumericMinFractionDigitsModern');
+
+          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+          await fillInput(input, '1');
+
+          const hasChangeEvent = await waitForChange;
+
+          const data = await input.evaluate((el: SynInput) => {
+            const { value, valueAsNumber } = el;
+            return {
+              value,
+              valueAsNumber,
+            };
+          });
+
+          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+
+          expect(data.value, 'Value should be set to a string of "1.0000"').toEqual('1.0000');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 1.0000').toEqual(1.0000);
+        }); // end test for min-fraction-digits
+      }); // end modern numeric strategy
+    }); // feature#838
+  }); // End frameworks
 }); // </syn-input>
 
 test.describe('<SynOptgroup />', () => {

@@ -43,4 +43,30 @@ export const Input = () => html`
     value="50"
   ></syn-input>
   <!-- /#417 -->
+
+  <!-- #838: Numeric Strategy (min-fraction-digits) -->
+  <syn-input
+    data-testid="input-838-numeric-native-min-fraction-digits"
+    label="Numeric Strategy (native, using min-fraction-digits)"
+    numeric-strategy="native"
+    max="100"
+    min="0"
+    min-fraction-digits="4"
+    placeholder="Enter a numeric value between 0 and 100"
+    type="number"
+    value="50"
+  ></syn-input>
+
+  <syn-input
+    data-testid="input-838-numeric-modern-min-fraction-digits"
+    label="Numeric Strategy (modern, using min-fraction-digits)"
+    numeric-strategy="modern"
+    max="100"
+    min="0"
+    min-fraction-digits="4"
+    placeholder="Enter a numeric value between 0 and 100"
+    type="number"
+    value="50"
+  ></syn-input>
+  <!-- /#838 -->
 `;

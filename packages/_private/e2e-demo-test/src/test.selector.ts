@@ -20,6 +20,8 @@ const AllComponentSelectors = {
 
   // Input
   input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
+  input417NumericMinFractionDigitsModern: '#tab-content-Input syn-input[data-testid="input-838-numeric-modern-min-fraction-digits"]',
+  input417NumericMinFractionDigitsNative: '#tab-content-Input syn-input[data-testid="input-838-numeric-native-min-fraction-digits"]',
   input417NumericModern: '#tab-content-Input syn-input[data-testid="input-417-numeric-modern"]',
   input417NumericNative: '#tab-content-Input syn-input[data-testid="input-417-numeric-native"]',
   inputContent: '#tab-content-Input',

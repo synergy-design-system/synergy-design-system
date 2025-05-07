@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SizeSwitch from './SizeSwitch.vue';
-import SideNavSwitch from './SideNavSwitch.vue';
+import SideNavSwitch from './SidenavSwitch.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 import { SynVueDivider, SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
 import { computed } from 'vue';

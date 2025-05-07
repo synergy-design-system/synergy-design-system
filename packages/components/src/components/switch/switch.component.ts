@@ -245,7 +245,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             @keydown=${this.handleKeyDown}
           />
 
-          <span part="control" class="switch__control">
+          <span part="control" class="switch__control" title=${this.title}>
             <span part="thumb" class="switch__thumb"></span>
           </span>
 

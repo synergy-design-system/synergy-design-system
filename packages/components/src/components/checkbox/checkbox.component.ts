@@ -254,6 +254,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
               ? ' control--indeterminate'
               : ''}"
             class="checkbox__control"
+            title=${this.title}
           >
             ${this.checked
               ? html`

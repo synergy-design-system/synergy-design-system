@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.30.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.1...components/2.30.2) (2025-05-07)
+
+
+### Bug Fixes
+
+* 🐛 Form fields: Allow to set title attribute for the whole component ([#858](https://github.com/synergy-design-system/synergy-design-system/issues/858)) ([affa56b](https://github.com/synergy-design-system/synergy-design-system/commit/affa56bd5d22d93aaf615a1293ff8b4b9f541d22))
+
 # [@synergy-design-system/components-v2.30.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.0...components/2.30.1) (2025-04-28)
 
 

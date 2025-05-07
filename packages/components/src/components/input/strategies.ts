@@ -11,7 +11,7 @@ export type NumericStrategy = {
    * - Will emit an input event
    * - Will emit a change event
    *
-   * When set to true, this will follow synergy specs:
+   * When set to true, this will follow Synergy specs:
    * - Do not allow overflow of min and max via user input or spinners
    * - Will not emit an invalid event
    * - Will emit an input event

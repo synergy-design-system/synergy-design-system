@@ -5,7 +5,7 @@ export type SynClampDetails = {
   clampedTo: 'min' | 'max';
 
   /**
-   * The last value that the user has input before clamping.
+   * The last value the user has input before clamping.
    */
   lastUserValue: number;
 };

@@ -61,7 +61,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   @query('.textarea__size-adjuster') sizeAdjuster: HTMLTextAreaElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the textarea, submitted as a name/value pair with form data. */
   @property() name = '';

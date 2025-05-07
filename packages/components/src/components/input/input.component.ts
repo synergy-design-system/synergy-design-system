@@ -101,7 +101,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   @query('.input__control') input: HTMLInputElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
   private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });

@@ -70,7 +70,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
 
   @state() private hasFocus = false;
   @state() invalid = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
   @property({ reflect: true }) variant: 'filled' | 'outline' | 'text' = 'outline';

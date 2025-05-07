@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { addSectionAfter } from "../replace-section.js";
+import { replaceSection } from "../replace-section.js";
 
 const FILES_TO_TRANSFORM = [
   'checkbox.component.ts',
@@ -13,12 +13,10 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   // #783 Allow to see the title attribute in the checkbox
-  const content = addSectionAfter(
-    originalContent,
-    `class="checkbox__control"`,
-    // eslint-disable-next-line no-template-curly-in-string
-    '            title=${this.title}',
-  );
+  const content = replaceSection([
+    "@property() title = '';",
+    "@property({ reflect: true }) title = '';",
+  ], originalContent);
 
   return {
     content,

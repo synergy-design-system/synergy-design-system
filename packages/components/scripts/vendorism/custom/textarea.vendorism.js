@@ -18,6 +18,11 @@ const transformComponent = (path, originalContent) => {
 
   content = replaceSections([
     ['filled', 'readonly'],
+    // #783 Allow to see the title attribute in the checkbox
+    [
+      "@property() title = '';",
+      "@property({ reflect: true }) title = '';",
+    ],
   ], content);
 
   return {

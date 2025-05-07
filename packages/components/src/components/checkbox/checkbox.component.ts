@@ -68,7 +68,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
 
   @state() private hasFocus = false;
 
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the checkbox, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -254,7 +254,6 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
               ? ' control--indeterminate'
               : ''}"
             class="checkbox__control"
-            title=${this.title}
           >
             ${this.checked
               ? html`

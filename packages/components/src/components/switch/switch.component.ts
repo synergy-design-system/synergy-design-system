@@ -64,7 +64,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the switch, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -245,7 +245,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             @keydown=${this.handleKeyDown}
           />
 
-          <span part="control" class="switch__control" title=${this.title}>
+          <span part="control" class="switch__control">
             <span part="thumb" class="switch__thumb"></span>
           </span>
 

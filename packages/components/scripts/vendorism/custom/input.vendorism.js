@@ -182,6 +182,12 @@ export`,
  * @csspart divider - The divider between the increment and decrement number stepper buttons.`,
   );
 
+  // #783 Allow to see the title attribute in the checkbox
+  content = content.replace(
+    "@property() title = '';",
+    "@property({ reflect: true }) title = '';",
+  );
+
   return {
     content,
     path,

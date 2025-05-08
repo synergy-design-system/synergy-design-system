@@ -180,14 +180,65 @@ const transformComponent = (path, originalContent) => {
   );
 
   // #850: Add documentation for tag max width props
-  content = addSectionAfter(
-    content,
-    '@csspart expand-icon - The container that wraps the expand icon.',
-    ` *
- * @cssproperty --syn-select-tag-max-width-default - The default max width tags use when multiple is set. Defaults to \`none\` to make them grow as far as they can.
- * @cssproperty --syn-select-tag-max-width-small - Condensed width for tags when multiple is set and available size is smaller than 400 pixels. Defaults to \`7ch\`.
-    `,
-  );
+  content = addSectionsAfter([
+    [
+      'private closeWatcher: CloseWatcher | null;',
+      '  private resizeObserver: ResizeObserver;',
+    ],
+    [
+      "@query('.select__listbox') listbox: HTMLSlotElement;",
+      "  @query('.select__tags') tagContainer: HTMLDivElement;"
+    ],
+    [
+      'this.isInitialized = true;',
+      `
+    if (this.multiple) {
+      this.enableResizeObserver();
+    }
+      `,
+    ],
+  ], content);
+
+  content = addSectionsBefore([
+    [
+      'private addOpenListeners() {',
+      `
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      'connectedCallback() {',
+      `
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        const nextWidth = Math.max(entry.contentRect.width, 100);
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', \`$\{nextWidth}px\`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      "@watch('delimiter')",
+      `
+  @watch('multiple')
+  handleMultipleChange() {
+    if (this.multiple) {
+      this.enableResizeObserver();
+    } else {
+      this.resizeObserver?.disconnect();
+      this.tagContainer.style.setProperty('--syn-select-tag-max-width', 'none');
+    }
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+  ], content);
 
   return {
     content,

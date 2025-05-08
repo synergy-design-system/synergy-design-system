@@ -12,7 +12,7 @@ Component.define('syn-divider');
 
 /**
  * @summary Dividers are used to visually separate or group elements.
- * @documentation https://synergy.style/components/divider
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs
  * @status stable
  * @since 2.0
  *

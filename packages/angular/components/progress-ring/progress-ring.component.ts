@@ -18,7 +18,7 @@ import '@synergy-design-system/components/components/progress-ring/progress-ring
 
 /**
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
- * @documentation https://synergy.style/components/progress-ring
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs
  * @status stable
  * @since 2.0
  *

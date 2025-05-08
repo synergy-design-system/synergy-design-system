@@ -19,7 +19,7 @@ Component.define('syn-checkbox');
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
- * @documentation https://synergy.style/components/checkbox
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
  * @status stable
  * @since 2.0
  *

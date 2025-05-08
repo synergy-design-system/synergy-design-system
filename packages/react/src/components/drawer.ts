@@ -20,7 +20,7 @@ Component.define('syn-drawer');
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
- * @documentation https://synergy.style/components/drawer
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
  * @since 2.0
  *

@@ -22,6 +22,7 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
  * together. It will automatically group all items not visible in the viewport into a custom
  * priority menu.
  *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @example
  * <syn-prio-nav>
  *  <syn-nav-item current horizontal>Item 1</syn-nav-item>

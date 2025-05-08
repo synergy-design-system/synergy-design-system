@@ -19,7 +19,7 @@ import '@synergy-design-system/components/components/radio-button/radio-button.j
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
- * @documentation https://synergy.style/components/radio-button
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
  * @status stable
  * @since 2.0
  *

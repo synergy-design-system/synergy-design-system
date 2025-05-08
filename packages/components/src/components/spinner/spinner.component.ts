@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Spinners are used to show the progress of an indeterminate operation.
- * @documentation https://synergy.style/components/spinner
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs
  * @status stable
  * @since 2.0
  *

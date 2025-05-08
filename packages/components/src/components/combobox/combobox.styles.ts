@@ -250,6 +250,44 @@ export default css`
   }
 
 
+  :host {
+    --syn-combobox-tag-max-width-default: none;
+    --syn-combobox-tag-max-width-small: 7ch;
+    --syn-combobox-tag-max-width: var(--syn-combobox-tag-max-width-default);
+  }
+
+  /**
+   * #850: Allow to measure the size of the combobox.
+   * This is needed so we can automatically size and truncate the tags in the <syn-combobox multiple> component.
+   * Scoped to multiple to not break the single combobox per accident.
+   */
+  :host([multiple]) {
+    /* stylelint-disable plugin/no-unsupported-browser-features */
+    .combobox__inputs {
+      container-name: combobox-combobox;
+      container-type: inline-size;
+    }
+
+    .combobox__tags > div {
+      display: contents;
+    }
+  
+    .combobox__tags > div > syn-tag::part(content) {
+      display: initial;
+      max-width: var(--syn-combobox-tag-max-width);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @container combobox-combobox (max-width: 400px) {
+      .combobox__tags {
+        --syn-combobox-tag-max-width: var(--syn-combobox-tag-max-width-small);
+      }
+    }
+    /* stylelint-enable plugin/no-unsupported-browser-features */
+  }
+
   /**
    * Invalid user data
    */

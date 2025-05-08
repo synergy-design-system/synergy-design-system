@@ -80,6 +80,9 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ *
+ * @cssproperty --syn-select-tag-max-width-default - The default max width tags use when multiple is set. Defaults to `none` to make them grow as far as they can.
+ * @cssproperty --syn-select-tag-max-width-small - Condensed width for tags when multiple is set and available size is smaller than 400 pixels. Defaults to `7ch`.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -100,11 +103,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
 
+  private resizeObserver: ResizeObserver;
+
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
   @query('.select__display-input') displayInput: HTMLInputElement;
   @query('.select__value-input') valueInput: HTMLInputElement;
   @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.select__tags') tagContainer: HTMLDivElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -252,6 +258,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
   }
 
   private addOpenListeners() {
@@ -703,6 +714,15 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
   firstUpdated() {
     this.isInitialized = true;
+
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        const nextWidth = Math.max(entry.contentRect.width, 100);
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${nextWidth}px`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
   }
 
   protected override willUpdate(changedProperties: PropertyValues) {

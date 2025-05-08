@@ -71,6 +71,9 @@ import '@synergy-design-system/components/components/select/select.js';
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ *
+ * @cssproperty --syn-select-tag-max-width-default - The default max width tags use when multiple is set. Defaults to `none` to make them grow as far as they can.
+ * @cssproperty --syn-select-tag-max-width-small - Condensed width for tags when multiple is set and available size is smaller than 400 pixels. Defaults to `7ch`.
  */
 @Component({
   selector: 'syn-select',

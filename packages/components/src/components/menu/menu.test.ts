@@ -110,7 +110,7 @@ describe('<syn-menu>', () => {
     expect(selectHandler).to.not.have.been.called;
   });
 
-  // @see https://github.com/synergy-design-system/synergy/issues/1596
+  // @see https://github.com/shoelace-style/shoelace/issues/1596
   it('Should fire "syn-select" when clicking an element within a menu-item', async () => {
     // eslint-disable-next-line
     const selectHandler = sinon.spy(() => {});
@@ -130,7 +130,7 @@ describe('<syn-menu>', () => {
     expect(selectHandler).to.have.been.calledOnce;
   });
 
-  // @see https://github.com/synergy-design-system/synergy/issues/2115
+  // @see https://github.com/shoelace-style/shoelace/issues/2115
   it('Should be able to check a checkbox menu item in a submenu', async () => {
     const menu: SynMenu = await fixture(html`
       <syn-menu style="max-width: 200px;">

@@ -111,7 +111,7 @@ export default class SynTabGroup extends SynergyElement {
     this.mutationObserver = new MutationObserver(mutations => {
       // Make sure to only observe the direct children of the tab group
       // instead of other sub elements that might be slotted in.
-      // @see https://github.com/synergy-design-system/synergy/issues/2320
+      // @see https://github.com/shoelace-style/shoelace/issues/2320
       const instanceMutations = mutations.filter(({ target }) => {
         if (target === this) return true; // Allow self updates
         if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
@@ -440,7 +440,7 @@ export default class SynTabGroup extends SynergyElement {
       // Safari appears to calculate this incorrectly when zoomed at 110%, causing the controls to toggle indefinitely.
       // Adding a single pixel to the comparison seems to resolve it.
       //
-      // See https://github.com/synergy-design-system/synergy/issues/1839
+      // See https://github.com/shoelace-style/shoelace/issues/1839
       this.hasScrollControls =
         ['top'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
     }

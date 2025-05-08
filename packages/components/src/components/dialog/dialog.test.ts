@@ -156,7 +156,7 @@ describe('<syn-dialog>', () => {
     expect(el.open).to.be.false;
   });
 
-  // https://github.com/synergy-design-system/synergy/issues/1382
+  // https://github.com/shoelace-style/shoelace/issues/1382
   it('should properly cycle through tabbable elements when syn-dialog is used in a shadowRoot', async () => {
     class AContainer extends LitElement {
       get dialog() {

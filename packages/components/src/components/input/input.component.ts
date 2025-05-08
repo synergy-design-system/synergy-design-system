@@ -354,7 +354,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         // When using an Input Method Editor (IME), pressing enter will cause the form to submit unexpectedly. One way
         // to check for this is to look at event.isComposing, which will be true when the IME is open.
         //
-        // See https://github.com/synergy-design-system/synergy/pull/988
+        // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
           this.formControlController.submit();

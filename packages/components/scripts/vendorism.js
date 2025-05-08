@@ -216,7 +216,12 @@ const config = {
           .replace(/(?<!https:\/\/)Shoelace/g, capitalizedLibraryName)
           .replace(/(?<!https:\/\/)shoelace/g, lowerLibraryName)
           .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
-          .replace(regexPattern, '@shoelace-style/');
+          .replace(regexPattern, '@shoelace-style/')
+          // #471: Make sure to set a correct issue urls
+          .replaceAll(
+            'https://github.com/synergy-design-system/synergy/',
+            'https://github.com/shoelace-style/shoelace/',
+          );
 
         return {
           content: replace(content),

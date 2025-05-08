@@ -382,7 +382,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
               @focus=${this.handleFocus}
               @blur=${this.handleBlur}
             ></textarea>
-            <!-- This "adjuster" exists to prevent layout shifting. https://github.com/synergy-design-system/synergy/issues/2180 -->
+            <!-- This "adjuster" exists to prevent layout shifting. https://github.com/shoelace-style/shoelace/issues/2180 -->
             <div part="textarea-adjuster" class="textarea__size-adjuster" ?hidden=${this.resize !== 'auto'}></div>
           </div>
         </div>

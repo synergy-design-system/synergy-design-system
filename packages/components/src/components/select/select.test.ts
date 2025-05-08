@@ -216,7 +216,7 @@ describe('<syn-select>', () => {
     });
 
     // this can happen in on ms-edge autofilling an associated input element in the same form
-    // https://github.com/synergy-design-system/synergy/issues/2117
+    // https://github.com/shoelace-style/shoelace/issues/2117
     it('should not throw on incomplete events', async () => {
       const el = await fixture<SynSelect>(html`
         <syn-select required>
@@ -737,7 +737,7 @@ describe('<syn-select>', () => {
     });
 
     /**
-     * @see {https://github.com/synergy-design-system/synergy/issues/2254}
+     * @see {https://github.com/shoelace-style/shoelace/issues/2254}
      */
     it('Should account for if `value` changed before connecting', async () => {
       const select = await fixture<SynSelect>(html`
@@ -754,7 +754,7 @@ describe('<syn-select>', () => {
     });
 
     /**
-     * @see {https://github.com/synergy-design-system/synergy/issues/2254}
+     * @see {https://github.com/shoelace-style/shoelace/issues/2254}
      */
     it('Should still work if using the value attribute', async () => {
       const select = await fixture<SynSelect>(html`

@@ -258,7 +258,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     //
     // Listen on the root node instead of the document in case the elements are inside a shadow root
     //
-    // https://github.com/synergy-design-system/synergy/issues/1763
+    // https://github.com/shoelace-style/shoelace/issues/1763
     //
     document.addEventListener('focusin', this.handleDocumentFocusIn);
     document.addEventListener('keydown', this.handleDocumentKeyDown);

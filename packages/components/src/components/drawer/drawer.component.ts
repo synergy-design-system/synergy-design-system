@@ -206,7 +206,7 @@ export default class SynDrawer extends SynergyElement {
       // drawer's animation to jitter, so we'll temporarily remove the attribute, call `focus({ preventScroll: true })`
       // ourselves, and add the attribute back afterwards.
       //
-      // Related: https://github.com/synergy-design-system/synergy/issues/693
+      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {

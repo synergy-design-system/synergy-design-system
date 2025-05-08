@@ -16,7 +16,7 @@ Component.define('syn-icon-button');
 
 /**
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
- * @documentation https://synergy.style/components/icon-button
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs
  * @status stable
  * @since 2.0
  *

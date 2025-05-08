@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import fs from 'fs';
+import { basename } from 'path';
 import { execSync } from 'child_process';
 import commandLineArgs from 'command-line-args';
 import { eject, get, set } from 'vendorism';
@@ -209,15 +210,53 @@ const config = {
         const replace = c => c
           .replace(/Sl(?=[A-Z])/g, capitalizedPrefix)
           .replace(/(?<![A-Za-z])sl-/g, `${libraryPrefix}-`)
-          .replace(/shoelace-style/g, libraryDesignName)
-          .replace(/Shoelace/g, capitalizedLibraryName)
-          .replace(/shoelace/g, lowerLibraryName)
+          // #471: Make sure to preserve issue urls
+          // The https replace is needed to not replace the shoelace url!
+          .replace(/(?<!https:\/\/)shoelace-style/g, libraryDesignName)
+          .replace(/(?<!https:\/\/)Shoelace/g, capitalizedLibraryName)
+          .replace(/(?<!https:\/\/)shoelace/g, lowerLibraryName)
           .replace('__SHOELACE_VERSION__', '__PACKAGE_VERSION__')
           .replace(regexPattern, '@shoelace-style/');
 
         return {
           content: replace(content),
           path: replace(path),
+        };
+      },
+      // #471: Make sure to set a correct documentation url
+      (path, content) => {
+        // We are only interested in the component.ts files
+        if (!path.endsWith('component.ts')) {
+          return {
+            content,
+            path,
+          };
+        }
+
+        const componentName = `syn-${basename(path).replace('.component.ts', '')}`;
+
+        // Skip if we have error finding the component name
+        if (componentName.length < 5) {
+          return {
+            content,
+            path,
+          };
+        }
+
+        const documentationUrl = `https://synergy-design-system.github.io/?path=/docs/components-${componentName}--docs`;
+
+        // Original: * @documentation https://shoelace.style/components/alert
+        // New: * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
+        // Replace everything after the @documentation tag
+        // with the new documentation url
+        const newContent = content.replace(
+          /(\* @documentation )(.+)/,
+          `* @documentation ${documentationUrl}`,
+        );
+
+        return {
+          content: newContent,
+          path,
         };
       },
       // Move stories into `temp` directory

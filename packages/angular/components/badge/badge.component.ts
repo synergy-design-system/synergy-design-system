@@ -18,7 +18,7 @@ import '@synergy-design-system/components/components/badge/badge.js';
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.
- * @documentation https://synergy.style/components/badge
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs
  * @status stable
  * @since 2.0
  *

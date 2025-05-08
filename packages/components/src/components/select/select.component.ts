@@ -36,7 +36,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *

@@ -7,7 +7,7 @@
 
 /**
  * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
- * @documentation https://synergy.style/components/tab
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs
  * @status stable
  * @since 2.0
  *

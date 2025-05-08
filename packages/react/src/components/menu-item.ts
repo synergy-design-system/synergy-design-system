@@ -12,7 +12,7 @@ Component.define('syn-menu-item');
 
 /**
  * @summary Menu items provide options for the user to pick from in a menu.
- * @documentation https://synergy.style/components/menu-item
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs
  * @status stable
  * @since 2.0
  *

@@ -187,15 +187,7 @@ const transformComponent = (path, originalContent) => {
     ],
     [
       "@query('.select__listbox') listbox: HTMLSlotElement;",
-      "  @query('.select__tags') tagContainer: HTMLDivElement;"
-    ],
-    [
-      'this.isInitialized = true;',
-      `
-    if (this.multiple) {
-      this.enableResizeObserver();
-    }
-      `,
+      "  @query('.select__tags') tagContainer: HTMLDivElement;",
     ],
   ], content);
 
@@ -225,18 +217,20 @@ const transformComponent = (path, originalContent) => {
       { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
     ],
     [
-      "@watch('delimiter')",
+      'protected override willUpdate',
       `
-  @watch('multiple')
-  handleMultipleChange() {
-    if (this.multiple) {
-      this.enableResizeObserver();
-    } else {
-      this.resizeObserver?.disconnect();
-      this.tagContainer.style.setProperty('--syn-select-tag-max-width', 'none');
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
     }
-  }`,
-      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+  }
+      `,
+      { newlinesAfterInsertion: 2 },
     ],
   ], content);
 

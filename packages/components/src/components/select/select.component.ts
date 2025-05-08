@@ -725,7 +725,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.isInitialized = true;
   }
 
-  updated(changedProperties: PropertyValues<this>) {
+  
+  protected updated(changedProperties: PropertyValues<this>) {
     super.updated(changedProperties);
     if (changedProperties.has('multiple')) {
       if (!this.multiple) {
@@ -735,8 +736,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       }
     }
   }
+      
 
-  protected override willUpdate(changedProperties: PropertyValues) {
+protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
     if(!this.isInitialized && !this.defaultValue && this.value) {

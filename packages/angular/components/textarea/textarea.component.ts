@@ -22,7 +22,7 @@ import '@synergy-design-system/components/components/textarea/textarea.js';
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
- * @documentation https://synergy.style/components/textarea
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
  * @status stable
  * @since 2.0
  *

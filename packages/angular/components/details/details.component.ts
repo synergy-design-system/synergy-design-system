@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/details/details.js';
 
 /**
  * @summary Details show a brief summary and expand to show additional content.
- * @documentation https://synergy.style/components/details
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
  * @status stable
  * @since 2.0
  *

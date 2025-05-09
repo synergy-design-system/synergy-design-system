@@ -12,7 +12,7 @@ Component.define('syn-card');
 
 /**
  * @summary Cards can be used to group related subjects in a container.
- * @documentation https://synergy.style/components/card
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
  * @status stable
  * @since 2.0
  *

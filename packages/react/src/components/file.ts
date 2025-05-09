@@ -19,6 +19,7 @@ Component.define('syn-file');
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
  * @status stable
  *
  * @dependency syn-button

@@ -26,7 +26,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Alerts are used to display important messages inline or as toast notifications.
- * @documentation https://synergy.style/components/alert
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
  * @status stable
  * @since 2.0
  *

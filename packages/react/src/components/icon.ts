@@ -16,7 +16,7 @@ Component.define('syn-icon');
 
 /**
  * @summary Icons are symbols that can be used to represent various options within an application.
- * @documentation https://synergy.style/components/icon
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs
  * @status stable
  * @since 2.0
  *

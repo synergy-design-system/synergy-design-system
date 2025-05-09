@@ -158,7 +158,7 @@ The following list shows the default settings for all synergy components.
           .entries(settings)
           .map(([key, value]) => `
   ${key}: {
-    ${c}: '${value}'
+    ${c}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : `'${value}'`},
   }
           `.trim())
         const example = `setGlobalDefaultSettings({
@@ -175,7 +175,9 @@ The following list shows the default settings for all synergy components.
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([key, value]) => (
                   <>
-                    <strong key={`${c}--${key}--key`}>{key}</strong>: {value}<br />
+                    <strong key={`${c}--${key}--key`}>{key}</strong>:
+                    {' '}{typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
+                    <br />
                   </>
                 ))
               }

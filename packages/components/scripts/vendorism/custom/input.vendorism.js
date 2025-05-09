@@ -1,4 +1,9 @@
-import { addSectionAfter, addSectionBefore, replaceSections } from '../replace-section.js';
+import {
+  addSectionAfter,
+  addSectionBefore,
+  addSectionsAfter,
+  replaceSections,
+} from '../replace-section.js';
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
@@ -103,11 +108,11 @@ export`,
       return true;
     }
 
-    if (this.min === undefined || this.min === null || this.disabled) {
+    if (this.min === undefined || this.min === null) {
       return false;
     }
 
-    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     return this.valueAsNumber <= min;
   }
 
@@ -120,7 +125,7 @@ export`,
       return false;
     }
 
-    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     return this.valueAsNumber >= max;
   }`,
   );
@@ -187,6 +192,282 @@ export`,
     "@property() title = '';",
     "@property({ reflect: true }) title = '';",
   );
+
+  // #417: Numeric Strategies
+  content = addSectionsAfter([
+    // Needed imports
+    [
+      "import type { SynergyFormControl } from '../../internal/synergy-element.js';",
+      `import {
+  type NumericStrategy,
+  createNumericStrategy,
+  nativeNumericStrategy,
+  modernNumericStrategy,
+} from './strategies.js';
+import { formatNumber } from './formatter.js';
+import type { SynClampDetails } from '../../events/syn-clamp.js';`,
+    ],
+    // Event documentation
+    [
+      "@event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      ' * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.',
+    ],
+    // Add the numeric strategy property
+    [
+      "@property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';",
+      `
+  /**
+   * Optional options that should be passed to the \`NumberFormatter\` when formatting the value.
+   * This is used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   * Note this can only be set via \`property\`, not as an \`attribute\`!
+   */
+  @property({
+    attribute: false,
+    reflect: false,
+    type: Object,
+  }) numberFormatterOptions: Intl.NumberFormatOptions;
+
+  /**
+   * The minimal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   */
+  @property({
+    attribute: 'min-fraction-digits',
+    type: Number,
+  }) minFractionDigits = 0;
+
+  /**
+   * The maximal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is \`number\` and \`NumericStrategy.enableNumberFormat\` is set to \`true\`.
+   */
+  @property({
+    attribute: 'max-fraction-digits',
+    type: Number,
+  }) maxFractionDigits: number;
+
+  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+
+  /**
+   * Defines the strategy for handling numbers in the numeric input.
+   * This is used to determine how the input behaves when the user interacts with it.
+   *
+   * Includes the following configuration options:
+   *
+   * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+   * - **enableNumberFormat**: If true, the input will format the value using a \`NumberFormatter\`.
+   * - **noStepAlign**: If true, the input will not align the value to the step attribute.
+   * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
+   * 
+   * You may provide this as one of the following values:
+   *
+   * - 'native': Uses the native browser implementation.
+   * - 'modern': Uses a more intuitive implementation:
+   *   - Values are clamped to the nearest min or max value.
+   *   - Stepping is inclusive to the provided min and max values.
+   *   - Provided stepping is no longer used in validation.
+   *   - Advanced number formatting is enabled.
+   * - An object that matches the \`NumericStrategy\` type. Note this can only be set via \`property\`, not as an \`attribute\`!
+   */
+  @property({
+    attribute: 'numeric-strategy',
+    converter: {
+      fromAttribute: (value) => {
+        return value === 'modern'
+          ? modernNumericStrategy
+          : nativeNumericStrategy;
+      },
+    },
+    type: Object,
+  })
+  set numericStrategy(value: 'native' | 'modern' | Partial<NumericStrategy>) {
+    switch (typeof value) {
+      case 'string': this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy; break;
+      case 'object': this.#numericStrategy = createNumericStrategy(value); break;
+      default: this.#numericStrategy = nativeNumericStrategy;
+    }
+  }
+
+  /**
+   * @default nativeNumericStrategy
+   * @todo: This must be changed to "modern" in Synergy@3
+   */
+  get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
+    return this.#numericStrategy;
+  }
+      `,
+    ],
+    // Add the numeric strategy switch to handleChange
+    [
+      'private handleChange() {',
+      `    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {
+      const initialNextValue = this.#numericStrategy.autoClamp
+        ? this.handleNumericStrategyAutoClamp()
+        : this.valueAsNumber;
+
+      this.value = this.#numericStrategy.enableNumberFormat
+        ? this.#format(initialNextValue)
+        : initialNextValue.toString();
+
+      this.formControlController.updateValidity();
+      this.emit('syn-change');
+      return;
+    }`,
+    ],
+  ], content);
+  // /#417
+
+  // #818
+  content = addSectionsAfter([
+    // Handle keydown
+    [
+      'private handleKeyDown(event: KeyboardEvent) {',
+      `    if (this.#numericStrategy.noStepAlign && this.type === 'number') {
+      const { key } = event;
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (key === 'ArrowUp') {
+          this.handleStepUp();
+        } else if (key === 'ArrowDown') {
+          this.handleStepDown();
+        }
+        this.handleChange();
+        return;
+      }
+    }`,
+    ],
+    // Handle step up
+    [
+      'stepUp() {',
+      `    if (this.#numericStrategy.noStepAlign) {
+      const { max, step, valueAsNumber } = this;
+
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
+
+      let wantedNextValue = usedInitialValue + usedStep;
+
+      if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+      } else if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+      }
+
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
+
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
+      return;
+    }
+`,
+    ],
+    // Handle step down
+    [
+      'stepDown() {',
+      `    if (this.#numericStrategy.noStepAlign) {
+      const { min, max, step, valueAsNumber } = this;
+
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof min === 'string' ? parseFloat(min) : min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
+
+      let wantedNextValue = usedInitialValue - usedStep;
+      
+      if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+      } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+      }
+
+      const finalStringValue = this.#numericStrategy.enableNumberFormat
+        ? this.#format(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
+
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
+      return;
+    }
+`,
+    ],
+  ], content);
+
+  // Disable the stepper if the input uses noStepValidation
+  content = content.replace(
+    'ifDefined(this.step as number)',
+    "ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : 'any')",
+  );
+  // /#818
+
+  // Add the modern numeric strategy for autoclamp
+  content = addSectionBefore(
+    content,
+    'private handleChange() {',
+    `
+  private handleNumericStrategyAutoClamp() {
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
+    const { valueAsNumber } = this;
+
+    let nextValue = valueAsNumber;
+    let clampEvent = '';
+    if (nextValue < min) {
+      nextValue = min;
+      clampEvent = 'min';
+    } else if (nextValue > max) {
+      nextValue = max;
+      clampEvent = 'max';
+    }
+
+    // Fire the event if the value was clamped
+    if (clampEvent) {
+      this.emit('syn-clamp', {
+        detail: {
+          clampedTo: clampEvent as SynClampDetails['clampedTo'],
+          lastUserValue: valueAsNumber,
+        }
+      });
+    }
+
+    return nextValue;
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
+  // /#417
+
+  // #838: Add formatter
+  content = addSectionBefore(
+    content,
+    'render() {',
+    `#format(value: number) {
+    return formatNumber(value, this.step, {
+      maximumFractionDigits: this.maxFractionDigits,
+      minimumFractionDigits: this.minFractionDigits,
+      ...this.numberFormatterOptions,
+    });
+  }`,
+    {
+      newlinesAfterInsertion: 2,
+      tabsAfterInsertion: 1,
+    },
+  );
+  // /#838
 
   return {
     content,

@@ -111,7 +111,7 @@ describe('<syn-select>', () => {
         el.value = ['a', 'b', 'c'];
         await expect(el.value).to.eql(['a', 'b', 'c']);
       });
-    });
+    }); // #780
 
     // TODO: could be removed if shoelace accepts the PR and the tests are added there
     describe('#813: should work correctly if `value` was set via property binding', () => {
@@ -160,6 +160,44 @@ describe('<syn-select>', () => {
         await select.updateComplete;
         await expect(select.value).to.equal('option-1');
       });
-    });
-  });
+    }); // #813
+
+    describe('#850: should clamp syn-tag size to the size of the select', () => {
+      it('should set the max-width used for tags to the available size of the tag wrapper', async () => {
+        const el = await fixture<SynSelect>(html`
+          <syn-select multiple style="width: 250px" value="option-1 option-2">
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
+          </syn-select>
+        `);
+
+        await el.updateComplete;
+        // A longer timeout may be needed for webkit, chrome and ff don´t take only 10ms
+        await aTimeout(100);
+
+        const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.select__tags')!;
+        const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
+
+        expect(currentWidth, 'It should have max tag width of 180 pixels').to.equal('180px');
+      });
+
+      it('should use a minimum width of 100 pixels when the syn-select is too small', async () => {
+        const el = await fixture<SynSelect>(html`
+          <syn-select multiple style="width: 50px" value="option-1 option-2">
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
+          </syn-select>
+        `);
+
+        await el.updateComplete;
+        // A longer timeout may be needed for webkit, chrome and ff don´t take only 10ms
+        await aTimeout(100);
+
+        const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.select__tags')!;
+        const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
+
+        expect(currentWidth, 'It should have max tag width of 180 pixels').to.equal('100px');
+      });
+    }); // #850
+  }); // regression tests
 });

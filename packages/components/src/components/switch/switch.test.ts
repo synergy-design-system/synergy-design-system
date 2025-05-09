@@ -126,7 +126,7 @@ describe('<syn-switch>', () => {
 
   it('should hide the native input with the correct positioning to scroll correctly when contained in an overflow', async () => {
     //
-    // See: https://github.com/synergy-design-system/synergy/issues/1169
+    // See: https://github.com/shoelace-style/shoelace/issues/1169
     //
     const el = await fixture<SynSwitch>(html` <syn-switch></syn-switch> `);
     const label = el.shadowRoot!.querySelector('.switch')!;
@@ -273,7 +273,7 @@ describe('<syn-switch>', () => {
   });
 
   it('should not jump the page to the bottom when focusing a switch at the bottom of an element with overflow: auto;', async () => {
-    // https://github.com/synergy-design-system/synergy/issues/1169
+    // https://github.com/shoelace-style/shoelace/issues/1169
     const el = await fixture<HTMLDivElement>(html`
       <div style="display: flex; flex-direction: column; overflow: auto; max-height: 400px;">
         <syn-switch>Switch</syn-switch>

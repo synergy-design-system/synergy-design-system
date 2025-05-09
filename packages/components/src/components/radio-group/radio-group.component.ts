@@ -32,7 +32,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
- * @documentation https://synergy.style/components/radio-group
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs
  * @status stable
  * @since 2.0
  *

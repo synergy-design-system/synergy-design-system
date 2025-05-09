@@ -7,7 +7,7 @@
 
 /**
  * @summary Inputs collect data from the user.
- * @documentation https://synergy.style/components/input
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
  * @status stable
  * @since 2.0
  *

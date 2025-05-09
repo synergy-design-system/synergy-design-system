@@ -20,7 +20,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Progress bars are used to show the status of an ongoing operation.
- * @documentation https://synergy.style/components/progress-bar
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs
  * @status stable
  * @since 2.0
  *

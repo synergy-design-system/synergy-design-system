@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.30.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.2...components/2.30.3) (2025-05-08)
+
+
+### Bug Fixes
+
+* 🤔 Vendorism rewrites inline comment tickets to github to synergy account ([#860](https://github.com/synergy-design-system/synergy-design-system/issues/860)) ([99c9b43](https://github.com/synergy-design-system/synergy-design-system/commit/99c9b438e0485550215a810c2d33833140ac941e))
+
 # [@synergy-design-system/components-v2.30.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.1...components/2.30.2) (2025-05-07)
 
 

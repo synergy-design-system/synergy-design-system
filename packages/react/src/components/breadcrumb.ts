@@ -12,7 +12,7 @@ Component.define('syn-breadcrumb');
 
 /**
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
- * @documentation https://synergy.style/components/breadcrumb
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs
  * @status stable
  * @since 2.0
  *

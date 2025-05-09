@@ -16,7 +16,7 @@ Component.define('syn-tab-group');
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
- * @documentation https://synergy.style/components/tab-group
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
  * @status stable
  * @since 2.0
  *

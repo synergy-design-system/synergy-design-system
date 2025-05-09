@@ -28,7 +28,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
- * @documentation https://synergy.style/components/dialog
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs
  * @status stable
  * @since 2.0
  *
@@ -179,7 +179,7 @@ export default class SynDialog extends SynergyElement {
       // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
       // `focus({ preventScroll: true })` ourselves, and add the attribute back afterwards.
       //
-      // Related: https://github.com/synergy-design-system/synergy/issues/693
+      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {
@@ -321,7 +321,7 @@ export default class SynDialog extends SynergyElement {
               `
             : ''}
           ${
-            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/synergy-design-system/synergy/issues/1753#issuecomment-1836803277 */
+            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
           }
           <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
 

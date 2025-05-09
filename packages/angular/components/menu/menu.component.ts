@@ -18,7 +18,7 @@ import '@synergy-design-system/components/components/menu/menu.js';
 
 /**
  * @summary Menus provide a list of options for the user to choose from.
- * @documentation https://synergy.style/components/menu
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
  * @status stable
  * @since 2.0
  *

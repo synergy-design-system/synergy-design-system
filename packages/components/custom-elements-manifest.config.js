@@ -251,12 +251,15 @@ export default {
     customElementVsCodePlugin({
       outdir,
       cssFileName: null,
-      referencesTemplate: (_, tag) => [
-        {
-          name: 'Documentation',
-          url: `https://synergy.style/components/${tag.replace('syn-', '')}`
-        }
-      ]
+      referencesTemplate: (_, tag) => {
+        const documentationUrl = `https://synergy-design-system.github.io/?path=/docs/components-${tag}--docs`;
+        return [
+          {
+            name: 'Documentation',
+            url: documentationUrl,
+          }
+        ];
+      }
     })
   ]
 };

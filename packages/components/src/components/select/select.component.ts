@@ -895,7 +895,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               'select--medium': this.size === 'medium',
               'select--large': this.size === 'large'
             })}
-            exportparts="popup"
             placement=${this.placement + '-start'}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
@@ -903,6 +902,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import {
+  createAttributeComment,
   createComment,
   createFrameworkIndex,
   createHeader,
@@ -77,7 +78,7 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
     }
 
     return `
-      ${createComment(attr.description || '')}
+      ${createAttributeComment(attr)}
       @Input()
       set ${attr.fieldName}(v: ${usedTypeForSetter}) {
         this._ngZone.runOutsideAngular(() => (${calledMethod}));

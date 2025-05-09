@@ -395,6 +395,25 @@ ${lines}
 };
 
 /**
+ * Creates a comment based on the attribute's description
+ * and optionally includes a deprecation notice if the attribute is marked
+ * as deprecated.
+ *
+ * @param {Object} attribute - The attribute object containing metadata.
+ * @param {string} [attribute.description] - The description of the attribute.
+ * @param {string} [attribute.deprecated] - The deprecation message, if applicable.
+ * @returns {string} A formatted comment string or an empty string if no description is provided.
+ */
+export const createAttributeComment = (attribute) => {
+  const description = attribute.description || '';
+  if (!description) return '';
+
+  const deprecated = attribute.deprecated ? `\n\n@deprecated ${attribute.deprecated}` : '';
+
+  return createComment(`${description}${deprecated}`);
+};
+
+/**
  * Enriches the attributes of a component by preparing its attributes and adding
  * property-only attributes to the list.
  *

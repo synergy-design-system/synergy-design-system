@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Markdown, Meta } from "@storybook/blocks";
 import { camelCase } from 'change-case';
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue , CopyRawValue} from '../../src/shared-components/RawColorValue.tsx';
@@ -28,7 +28,7 @@ import {
     ['line-height', 'Line Height', getLineHeight(true)],
   ].map(([prop, title, category]) => (
     <>
-      <h2>{title}</h2>
+      <Markdown>{`## ${title}`}</Markdown>
       <p>
         {docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}
         {prop === 'font-family' && (

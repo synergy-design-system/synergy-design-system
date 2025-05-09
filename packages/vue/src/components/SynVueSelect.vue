@@ -51,6 +51,7 @@
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/select/select.js';

@@ -208,8 +208,7 @@ const transformComponent = (path, originalContent) => {
     if (this.multiple) {
       this.resizeObserver = new ResizeObserver(entries => {
         const entry = entries.at(0)!;
-        const nextWidth = Math.max(entry.contentRect.width, 100);
-        this.tagContainer.style.setProperty('--syn-select-tag-max-width', \`$\{nextWidth}px\`);
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', \`$\{entry.contentRect.width}px\`);
       });
       this.resizeObserver.observe(this.tagContainer);
     }

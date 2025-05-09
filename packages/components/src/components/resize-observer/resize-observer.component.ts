@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver).
- * @documentation https://synergy.style/components/resize-observer
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-resize-observer--docs
  * @status stable
  * @since 2.0
  *

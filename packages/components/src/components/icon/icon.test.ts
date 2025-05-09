@@ -193,7 +193,7 @@ describe('<syn-icon>', () => {
       expect(rect?.width).to.be.greaterThan(0);
     });
 
-    // https://github.com/synergy-design-system/synergy/issues/2161
+    // https://github.com/shoelace-style/shoelace/issues/2161
     it('Should apply mutator to multiple identical spritesheet icons', async () => {
       registerIconLibrary('sprite', {
         resolver: name => `/public/sprite.svg#${name}`,
@@ -242,7 +242,7 @@ describe('<syn-icon>', () => {
       expect(rect?.width).to.equal(0);
 
       // Make sure the mutator is applied.
-      // https://github.com/synergy-design-system/synergy/issues/1925
+      // https://github.com/shoelace-style/shoelace/issues/1925
       expect(svg?.getAttribute('fill')).to.equal('currentColor');
     });
 

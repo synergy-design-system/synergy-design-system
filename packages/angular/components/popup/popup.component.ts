@@ -18,7 +18,7 @@ import '@synergy-design-system/components/components/popup/popup.js';
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
- * @documentation https://synergy.style/components/popup
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
  * @status stable
  * @since 2.0
  *

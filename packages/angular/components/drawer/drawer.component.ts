@@ -23,7 +23,7 @@ import '@synergy-design-system/components/components/drawer/drawer.js';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
- * @documentation https://synergy.style/components/drawer
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
  * @since 2.0
  *

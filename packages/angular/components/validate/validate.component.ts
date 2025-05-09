@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/validate/validate.js';
  * @summary Validate provides form field validation messages in a unified way.
  * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
  * and showing the validation message in a consistent, user defined way.
- *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
  * @dependency syn-alert
  *
  * @slot - The form field that should be validated.

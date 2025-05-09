@@ -18,6 +18,7 @@ Component.define('syn-nav-item');
 
 /**
  * @summary Flexible button / link component that can be used to quickly build navigations.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs
  * Takes one of 3 forms:
  * - button (default),
  * - link (overrides button if a 'href' is provided),

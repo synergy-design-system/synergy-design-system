@@ -18,7 +18,7 @@ import '@synergy-design-system/components/components/tag/tag.js';
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.
- * @documentation https://synergy.style/components/tag
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
  * @status stable
  * @since 2.0
  *

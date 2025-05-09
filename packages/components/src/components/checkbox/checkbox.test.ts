@@ -107,7 +107,7 @@ describe('<syn-checkbox>', () => {
 
   it('should hide the native input with the correct positioning to scroll correctly when contained in an overflow', async () => {
     //
-    // See: https://github.com/synergy-design-system/synergy/issues/1169
+    // See: https://github.com/shoelace-style/shoelace/issues/1169
     //
     const el = await fixture<SynCheckbox>(html` <syn-checkbox></syn-checkbox> `);
     const label = el.shadowRoot!.querySelector('.checkbox')!;
@@ -286,7 +286,7 @@ describe('<syn-checkbox>', () => {
     });
 
     it('should not jump the page to the bottom when focusing a checkbox at the bottom of an element with overflow: auto;', async () => {
-      // https://github.com/synergy-design-system/synergy/issues/1169
+      // https://github.com/shoelace-style/shoelace/issues/1169
       const el = await fixture<HTMLDivElement>(html`
         <div style="display: flex; flex-direction: column; overflow: auto; max-height: 400px; gap: 8px;">
           <syn-checkbox>Checkbox</syn-checkbox>

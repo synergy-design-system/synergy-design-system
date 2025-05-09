@@ -7,7 +7,7 @@
 
 /**
  * @summary Button groups can be used to group related buttons into sections.
- * @documentation https://synergy.style/components/button-group
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
  * @status stable
  * @since 2.0
  *

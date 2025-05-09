@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/dropdown/dropdown.js';
 
 /**
  * @summary Dropdowns expose additional content that "drops down" in a panel.
- * @documentation https://synergy.style/components/dropdown
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs
  * @status stable
  * @since 2.0
  *

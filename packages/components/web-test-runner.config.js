@@ -51,7 +51,7 @@ export default {
 
   ],
   testRunnerHtml: testFramework => `
-    <html lang="en-US">
+    <!DOCTYPE html><html lang="en-US">
       <head></head>
       <body>
         <link rel="stylesheet" href="dist/styles/index.css">

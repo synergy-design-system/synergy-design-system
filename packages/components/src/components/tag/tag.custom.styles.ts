@@ -1,6 +1,14 @@
 import { css } from 'lit';
 
 export default css`
+  :host {
+    /*
+     * #850: This is needed for position adjustments when using the tags in syn-select[multiple].
+     * It will get adjusted in the syn-select component.
+     */
+    --syn-tag-position-adjustment: 0px;
+  }
+
   .tag {
     background-color: var(--syn-color-neutral-0);
     border-color: var(--syn-color-neutral-400);
@@ -17,6 +25,7 @@ export default css`
   .tag--small {
     font-size: var(--syn-font-size-x-small);
     height: var(--syn-font-size-x-large);
+    line-height: calc(var(--syn-font-size-x-large) - var(--syn-input-border-width) * 2);
   }
 
   .tag--small.tag--removable {
@@ -28,6 +37,7 @@ export default css`
   .tag--medium {
     font-size: var(--syn-font-size-small);
     height: var(--syn-font-size-2x-large);
+    line-height: calc(var(--syn-font-size-2x-large) - var(--syn-input-border-width) * 2);
   }
 
   .tag--medium.tag--removable {
@@ -43,6 +53,7 @@ export default css`
   .tag--large {
     font-size: var(--syn-font-size-medium);
     height: var(--syn-font-size-3x-large);
+    line-height: calc(var(--syn-font-size-3x-large) - var(--syn-input-border-width) * 2);
   }
 
   .tag--large .tag__remove {
@@ -73,6 +84,11 @@ export default css`
 
 
   /* Slotted icon style */
+  .tag ::slotted(syn-icon) {
+    position: relative;
+    top: var(--syn-tag-position-adjustment);
+  }
+
   .tag--small ::slotted(syn-icon) {
     font-size: var(--syn-font-size-small);
     margin-inline-end: var(--syn-spacing-2x-small);

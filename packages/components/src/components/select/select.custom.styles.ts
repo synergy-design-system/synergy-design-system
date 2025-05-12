@@ -140,5 +140,32 @@ export default css`
     --display-divider: none;
   }
 
+  /**
+   * #850: Allow to measure the size of the combobox.
+   * This is needed so we can automatically size and truncate the tags in the <syn-select multiple> component.
+   * Scoped to multiple to not break the single select per accident.
+   */
+  :host([multiple]) .select__tags {
+    min-width: 100px;
+    overflow: hidden;
+  }
+
+  :host([multiple]) .select__tags > div {
+    display: contents;
+  }
+
+  :host([multiple]) .select__tags > div > syn-tag {
+    --syn-tag-position-adjustment: var(--syn-spacing-3x-small);
+
+    max-width: var(--syn-select-tag-max-width);
+  }
+
+  :host([multiple]) .select__tags > div > syn-tag::part(content) {
+    display: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   ${sharedOptionSize}
 `;

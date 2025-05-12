@@ -299,17 +299,25 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     // Add the numeric strategy switch to handleChange
     [
       'private handleChange() {',
-      `    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {
-      const initialNextValue = this.#numericStrategy.autoClamp
-        ? this.handleNumericStrategyAutoClamp()
-        : this.valueAsNumber;
+      `    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {     
+      const { eventObj, shouldClamp, nextValue } = this.handleNumericStrategyAutoClamp();
+      const initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
 
       this.value = this.#numericStrategy.enableNumberFormat
         ? this.#format(initialNextValue)
         : initialNextValue.toString();
 
-      this.formControlController.updateValidity();
-      this.emit('syn-change');
+      // Make sure to wait for the updateComplete to be done before updating the validity
+      // and firing events. This is needed because valueAsNumber is not updated yet when the event is fired
+      this.updateComplete.then(() => {
+
+        if (shouldClamp && eventObj) {
+          this.emit('syn-clamp', eventObj);
+        }
+
+        this.formControlController.updateValidity();
+        this.emit('syn-change');
+      });
       return;
     }`,
     ],
@@ -432,17 +440,18 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
       clampEvent = 'max';
     }
 
-    // Fire the event if the value was clamped
-    if (clampEvent) {
-      this.emit('syn-clamp', {
-        detail: {
-          clampedTo: clampEvent as SynClampDetails['clampedTo'],
-          lastUserValue: valueAsNumber,
-        }
-      });
-    }
+    const eventObj = clampEvent ? {
+      detail: {
+        clampedTo: clampEvent as SynClampDetails['clampedTo'],
+        lastUserValue: valueAsNumber,
+      },
+    } : null;
 
-    return nextValue;
+    return {
+      eventObj,
+      shouldClamp: !!eventObj,
+      nextValue,
+    };
   }`,
     {
       newlinesAfterInsertion: 2,

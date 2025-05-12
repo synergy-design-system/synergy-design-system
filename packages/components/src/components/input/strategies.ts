@@ -71,7 +71,7 @@ export const nativeNumericStrategy: NumericStrategy = {
  */
 export const modernNumericStrategy: NumericStrategy = {
   autoClamp: true,
-  enableNumberFormat: true,
+  enableNumberFormat: false,
   noStepAlign: true,
   noStepValidation: true,
 };

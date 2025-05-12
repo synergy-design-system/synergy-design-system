@@ -245,7 +245,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   @property({
     attribute: 'min-fraction-digits',
     type: Number,
-  }) minFractionDigits = 0;
+  }) minFractionDigits: number;
 
   /**
    * The maximal amount of fraction digits to use for numeric values.

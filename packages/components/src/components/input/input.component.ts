@@ -529,6 +529,10 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   @watch('step', { waitUntilFirstUpdate: true })
   handleStepChange() {
+    // If the numericStrategy has noStepValidation set, skip this as the inputs step will always set to "any".
+    if (this.#numericStrategy.noStepValidation) {
+      return;
+    }
     // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);

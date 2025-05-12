@@ -397,6 +397,20 @@ describe('<syn-input>', () => {
 
           expect(el.validity.valid).to.be.true;
           expect(el.validity.stepMismatch).to.be.false;
+
+          // Retest again after setting the step attribute.
+          // Use to test the handleStepChange() method.
+          el.step = 0.3;
+          await el.updateComplete;
+
+          el.focus();
+          await sendKeys({ type: '1' });
+          await el.updateComplete;
+          el.blur();
+          await el.updateComplete;
+
+          expect(el.validity.valid).to.be.true;
+          expect(el.validity.stepMismatch).to.be.false;
         }); // invalid test
 
         it('should format to the minimal possible decimals when the min-fraction-digits prop is provided', async () => {

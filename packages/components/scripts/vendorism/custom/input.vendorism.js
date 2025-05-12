@@ -321,6 +321,15 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
       return;
     }`,
     ],
+    // Make sure to disable the sync of the step property if noStepValidation is used
+    [
+      'handleStepChange() {',
+      `    // If the numericStrategy has noStepValidation set, skip this as the inputs step will always set to "any".
+    if (this.#numericStrategy.noStepValidation) {
+      return;
+    }
+      `,
+    ],
   ], content);
   // /#417
 

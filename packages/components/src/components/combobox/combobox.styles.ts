@@ -387,6 +387,8 @@ export default css`
   }
 
   :host([multiple]) .combobox__tags > div > syn-tag {
+    --syn-tag-position-adjustment: var(--syn-spacing-3x-small);
+
     max-width: var(--syn-combobox-tag-max-width);
   }
 

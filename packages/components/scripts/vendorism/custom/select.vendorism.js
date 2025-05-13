@@ -4,6 +4,7 @@ import {
   addSectionBefore,
   addSectionsAfter,
   addSectionsBefore,
+  replaceSection,
   replaceSections,
 } from '../replace-section.js';
 
@@ -178,6 +179,23 @@ const transformComponent = (path, originalContent) => {
       tabsBeforeInsertion: 2,
     },
   );
+
+  // #781: Export the popup so users can choose their own listbox size
+  content = addSectionsAfter([
+    [
+      '@csspart expand-icon - The container that wraps the expand icon.',
+      " * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+    ],
+    [
+      'auto-size-padding="10"',
+      '            exportparts="popup"',
+    ],
+  ], content);
+
+  content = replaceSection([
+    '{this.placement}',
+    "{this.placement + '-start'}",
+  ], content);
 
   // #850: Add documentation for tag max width props
   content = addSectionsAfter([

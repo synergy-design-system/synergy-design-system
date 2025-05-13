@@ -340,6 +340,8 @@ export type SynCustomElement<
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part.
+ * Use this to target the tooltip's popup container.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -1198,6 +1200,7 @@ export type SynCustomElement<
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */ export type SynSelectJSXElement = SynCustomElement<
   SynSelect,
   [
@@ -1698,6 +1701,8 @@ declare module 'react' {
        * @csspart filtered-listbox - The container that wraps the filtered options.
        * @csspart clear-button - The clear button.
        * @csspart expand-icon - The container that wraps the expand icon.
+       * @csspart popup - The popup's exported `popup` part.
+       * Use this to target the tooltip's popup container.
        *
        * @animation combobox.show - The animation to use when showing the combobox.
        * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -2432,6 +2437,7 @@ declare module 'react' {
        * @csspart tag__remove-button__base - The tag's remove button base part.
        * @csspart clear-button - The clear button.
        * @csspart expand-icon - The container that wraps the expand icon.
+       * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
        */ 'syn-select': SynSelectJSXElement;
       /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.31.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.5...components/2.31.0) (2025-05-13)
+
+
+### Features
+
+* ✨ syn-combobox, syn-select: Allow listbox of syn-select to exceed the input width ([#861](https://github.com/synergy-design-system/synergy-design-system/issues/861)) ([0759a8f](https://github.com/synergy-design-system/synergy-design-system/commit/0759a8f3545200dc9fb93d51ccd4c1e6b503c0b8))
+
 # [@synergy-design-system/components-v2.30.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.4...components/2.30.5) (2025-05-13)
 
 

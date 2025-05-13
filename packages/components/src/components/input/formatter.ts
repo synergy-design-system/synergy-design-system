@@ -27,15 +27,18 @@ export const formatNumber = (
   let minimumFractionDigits;
   let maximumFractionDigits;
 
-  if (providedMinFractionDigits && !providedMaxFractionDigits) {
+  const minFractionIsNumber = typeof providedMinFractionDigits === 'number';
+  const maxFractionIsNumber = typeof providedMaxFractionDigits === 'number';
+
+  if (minFractionIsNumber && !maxFractionIsNumber) {
     // If only min is set, use the min both min and max
     minimumFractionDigits = providedMinFractionDigits;
     maximumFractionDigits = providedMinFractionDigits;
-  } else if (providedMaxFractionDigits && !providedMinFractionDigits) {
+  } else if (maxFractionIsNumber && !minFractionIsNumber) {
     // If only max is set, use the max both min and max
     minimumFractionDigits = providedMaxFractionDigits;
     maximumFractionDigits = providedMaxFractionDigits;
-  } else if (providedMaxFractionDigits && providedMinFractionDigits) {
+  } else if (minFractionIsNumber && maxFractionIsNumber) {
     // If both are set, use the provided values, but make sure to sort them first
     minimumFractionDigits = Math.min(providedMinFractionDigits, providedMaxFractionDigits);
     maximumFractionDigits = Math.max(providedMinFractionDigits, providedMaxFractionDigits);
@@ -64,6 +67,7 @@ export const formatNumber = (
   const formatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits,
     minimumFractionDigits,
+    useGrouping: false,
     ...otherOptions,
   });
 

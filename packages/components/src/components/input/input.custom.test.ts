@@ -237,22 +237,29 @@ describe('<syn-input>', () => {
       });
 
       describe('number formatter', () => {
-        it('should format the number using the Intl.NumberFormat API', () => {
-          expect(formatNumber(1234, undefined), 'should be able to format integer values').to.equal('1,234');
-          expect(formatNumber(1234, 1), 'should be able to format integer values with integer steps').to.equal('1,234');
-          expect(formatNumber(1234, 1.25), 'should be able to format integer values with float steps').to.equal('1,234.00');
-          expect(formatNumber(1234, undefined, { minimumFractionDigits: 2 }), 'should be able to format integer values with only min fraction digits').to.equal('1,234.00');
-          expect(formatNumber(1234, undefined, { maximumFractionDigits: 2 }), 'should be able to format integer values with only max fraction digits').to.equal('1,234.00');
-          expect(formatNumber(1234.567, undefined), 'should not apply a format if no option is provided').to.equal('1,234.567');
-          expect(formatNumber(1234.567, 0.1), 'should use the step if no min or max fraction digits are given').to.equal('1,234.6');
-          expect(formatNumber(1234.567, undefined, { minimumFractionDigits: 2 }), 'should allow to ignore the step attribute').to.equal('1,234.57');
-          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 2 }), 'should ignore the step if no min fraction digit is given').to.equal('1,234.57');
-          expect(formatNumber(1234.567, 0.1, { maximumFractionDigits: 3 }), 'should ignore the step if no max fraction digit is given').to.equal('1,234.567');
-          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 4, maximumFractionDigits: 5 }), 'should use the min and max fraction digits').to.equal('1,234.5670');
-          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 5, maximumFractionDigits: 4 }), 'should swap min and max if the min is bigger than max').to.equal('1,234.5670');
+        it('should format the number using the Intl.NumberFormat API', () => {        
+          expect(formatNumber(1234, undefined), 'should not alter the original value if no step or friction is defined').to.equal('1234');
+          expect(formatNumber(1234, 0), 'should be able to format integer values with an integer of 0').to.equal('1234');
+          expect(formatNumber(1234, undefined, { minimumFractionDigits: undefined, maximumFractionDigits: undefined }), 'should not alter the original value if no step or friction is defined').to.equal('1234');
+          expect(formatNumber(1234.123, 0), 'should be able to format float values with an integer of 0').to.equal('1234.123');
+
+          expect(formatNumber(1234, 1), 'should be able to format integer values with integer steps').to.equal('1234');
+          expect(formatNumber(1234.123, 1), 'should be able to format integer values with integer steps').to.equal('1234.123');
+          expect(formatNumber(1234, 1.25), 'should be able to format integer values with float steps').to.equal('1234.00');
+          expect(formatNumber(1234.123, 1.25), 'should be able to format float values with float steps').to.equal('1234.12');
+
+          expect(formatNumber(1234, undefined, { minimumFractionDigits: 2 }), 'should be able to format integer values with only min fraction digits').to.equal('1234.00');
+          expect(formatNumber(1234, undefined, { maximumFractionDigits: 2 }), 'should be able to format integer values with only max fraction digits').to.equal('1234.00');
+          expect(formatNumber(1234.567, undefined), 'should not apply a format if no option is provided').to.equal('1234.567');
+          expect(formatNumber(1234.567, 0.1), 'should use the step if no min or max fraction digits are given').to.equal('1234.6');
+          expect(formatNumber(1234.567, undefined, { minimumFractionDigits: 2 }), 'should allow to ignore the step attribute').to.equal('1234.57');
+          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 2 }), 'should ignore the step if no min fraction digit is given').to.equal('1234.57');
+          expect(formatNumber(1234.567, 0.1, { maximumFractionDigits: 3 }), 'should ignore the step if no max fraction digit is given').to.equal('1234.567');
+          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 4, maximumFractionDigits: 5 }), 'should use the min and max fraction digits').to.equal('1234.5670');
+          expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 5, maximumFractionDigits: 4 }), 'should swap min and max if the min is bigger than max').to.equal('1234.5670');
           
-          expect(formatNumber(1234.567, undefined, { minimumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for min fraction digits').to.equal('1,234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
-          expect(formatNumber(1234.567, undefined, { maximumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for max fraction digits').to.equal('1,234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
+          expect(formatNumber(1234.567, undefined, { minimumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for min fraction digits').to.equal('1234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
+          expect(formatNumber(1234.567, undefined, { maximumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for max fraction digits').to.equal('1234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
         });
       });
 

@@ -275,7 +275,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    *   - Values are clamped to the nearest min or max value.
    *   - Stepping is inclusive to the provided min and max values.
    *   - Provided stepping is no longer used in validation.
-   *   - Advanced number formatting is enabled.
    * - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
    */
   @property({

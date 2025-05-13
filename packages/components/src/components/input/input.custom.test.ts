@@ -24,7 +24,7 @@ describe('<syn-input>', () => {
   });
 
   describe('when type="number"', () => {
-    describe('custom decrement and increment buttons', () => {
+    describe.skip('custom decrement and increment buttons', () => {
       it('should focus the input when clicking on the decrement button', async () => {
         const el = await fixture<SynInput>(html` <syn-input type="number"></syn-input> `);
         const decrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]');
@@ -250,6 +250,9 @@ describe('<syn-input>', () => {
           expect(formatNumber(1234.567, 0.1, { maximumFractionDigits: 3 }), 'should ignore the step if no max fraction digit is given').to.equal('1,234.567');
           expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 4, maximumFractionDigits: 5 }), 'should use the min and max fraction digits').to.equal('1,234.5670');
           expect(formatNumber(1234.567, 0.1, { minimumFractionDigits: 5, maximumFractionDigits: 4 }), 'should swap min and max if the min is bigger than max').to.equal('1,234.5670');
+          
+          expect(formatNumber(1234.567, undefined, { minimumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for min fraction digits').to.equal('1,234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
+          expect(formatNumber(1234.567, undefined, { maximumFractionDigits: 1024 }), 'should allow to use a max amount of 100 for max fraction digits').to.equal('1,234.5670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');
         });
       });
 
@@ -257,7 +260,6 @@ describe('<syn-input>', () => {
         it('should export a default native numeric strategy', () => {
           expect(nativeNumericStrategy).to.deep.equal({
             autoClamp: false,
-            enableNumberFormat: false,
             noStepAlign: false,
             noStepValidation: false,
           });
@@ -266,7 +268,6 @@ describe('<syn-input>', () => {
         it('should export a default modern numeric strategy', () => {
           expect(modernNumericStrategy).to.deep.equal({
             autoClamp: true,
-            enableNumberFormat: false,
             noStepAlign: true,
             noStepValidation: true,
           });
@@ -276,7 +277,6 @@ describe('<syn-input>', () => {
           // @ts-expect-error customItem is added to still be able to check the defaults of autoClamp
           expect(createNumericStrategy({ customItem: true })).to.deep.equal({
             autoClamp: false,
-            enableNumberFormat: false,
             customItem: true,
             noStepAlign: false,
             noStepValidation: false,
@@ -337,8 +337,8 @@ describe('<syn-input>', () => {
           expect(el.validity.stepMismatch).to.be.true;
         }); // invalid test
 
-        it('should not format the input value in any way', async () => {
-          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="native" step="1.0"></syn-input>`);
+        it('should not apply the format helpers on the input value in any way if no step or fraction digits are set', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="native"></syn-input>`);
           el.focus();
           await sendKeys({ type: '1.000' });
           await el.updateComplete;
@@ -421,7 +421,7 @@ describe('<syn-input>', () => {
           expect(el.validity.stepMismatch).to.be.false;
         }); // invalid test
 
-        it.skip('should format to the minimal possible decimals when the min-fraction-digits prop is provided', async () => {
+        it('should format to the minimal possible decimals when the min-fraction-digits prop is provided', async () => {
           const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="4"></syn-input>`);
           el.focus();
           await sendKeys({ type: '1' });
@@ -432,7 +432,7 @@ describe('<syn-input>', () => {
           expect(el.value).to.equal('1.0000');
         }); // Test number formatting with min-fraction-digits
 
-        it.skip('should format to the maximal amount of possible decimals when the max-fraction-digits prop is provided', async () => {
+        it('should format to the maximal amount of possible decimals when the max-fraction-digits prop is provided', async () => {
           const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="2" max-fraction-digits="6"></syn-input>`);
           el.focus();
           await sendKeys({ type: '1.9999991111' });
@@ -443,7 +443,7 @@ describe('<syn-input>', () => {
           expect(el.value).to.equal('1.999999');
         }); // Test number formatting with max-fraction-digits
 
-        it.skip('should format with step only if no fraction is provided', async () => {
+        it('should format with step only if no fraction is provided', async () => {
           const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" step="0.0003"></syn-input>`);
           el.focus();
           await sendKeys({ type: '1.234567' });

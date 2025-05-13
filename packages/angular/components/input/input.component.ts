@@ -461,7 +461,7 @@ keyboard on supportive devices.
 
   /**
 * The minimal amount of fraction digits to use for numeric values.
-Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+Used to format the number when the input type is `number`.
  */
   @Input()
   set minFractionDigits(v: SynInput['minFractionDigits']) {
@@ -475,7 +475,7 @@ Used to format the number when the input type is `number` and `NumericStrategy.e
 
   /**
 * The maximal amount of fraction digits to use for numeric values.
-Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+Used to format the number when the input type is `number`.
  */
   @Input()
   set maxFractionDigits(v: SynInput['maxFractionDigits']) {
@@ -494,7 +494,6 @@ This is used to determine how the input behaves when the user interacts with it.
 Includes the following configuration options:
 
 - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
-- **enableNumberFormat**: If true, the input will format the value using a `NumberFormatter`.
 - **noStepAlign**: If true, the input will not align the value to the step attribute.
 - **noStepValidation**: If true, the input will not validate the value against the step attribute.
 
@@ -521,7 +520,7 @@ You may provide this as one of the following values:
 
   /**
 * Optional options that should be passed to the `NumberFormatter` when formatting the value.
-This is used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+This is used to format the number when the input type is `number`.
 Note this can only be set via `property`, not as an `attribute`!
  */
   @Input()

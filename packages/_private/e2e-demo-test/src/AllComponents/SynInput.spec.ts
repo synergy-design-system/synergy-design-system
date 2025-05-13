@@ -174,7 +174,7 @@ test.describe('<SynInput />', () => {
   createTestCases(({ name, port }) => {
     test.describe(`Feature#838: ${name}`, () => {
       test.describe('when using the native numeric strategy', () => {
-        test('should not round the value to the provided min-fraction-digit value', async ({ page }) => {
+        test('should round the value to the provided min-fraction-digit value', async ({ page }) => {
           const AllComponents = new AllComponentsPage(page, port);
           await AllComponents.loadInitialPage();
           await AllComponents.activateItem('inputLink');
@@ -197,8 +197,8 @@ test.describe('<SynInput />', () => {
 
           expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
 
-          expect(data.value, 'Value should be set to a string of "1"').toEqual('1');
-          expect(data.valueAsNumber, 'valueAsNumber should be set to float 1').toEqual(1);
+          expect(data.value, 'Value should be set to a string of "1.0000"').toEqual('1.0000');
+          expect(data.valueAsNumber, 'valueAsNumber should be set to float 1.0000').toEqual(1.0000);
         }); // end test for min-fraction-digits
       }); // end native numeric strategy
 

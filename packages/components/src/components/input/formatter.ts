@@ -50,6 +50,17 @@ export const formatNumber = (
     maximumFractionDigits = stepFractionDigits;
   }
 
+  // min and max fraction digits have a hard cap of 100 decimal places
+  // If provided a bigger value, the numberformat will throw an error.
+  // Therefore, we make sure to cap the values to 100.
+  // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#minimumfractiondigits
+  if (typeof minimumFractionDigits !== 'undefined' && minimumFractionDigits > 100) {
+    minimumFractionDigits = 100;
+  }
+  if (typeof maximumFractionDigits !== 'undefined' && maximumFractionDigits > 100) {
+    maximumFractionDigits = 100;
+  }
+
   const formatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits,
     minimumFractionDigits,

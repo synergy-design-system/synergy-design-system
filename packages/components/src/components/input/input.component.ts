@@ -229,7 +229,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /**
    * Optional options that should be passed to the `NumberFormatter` when formatting the value.
-   * This is used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   * This is used to format the number when the input type is `number`.
    * Note this can only be set via `property`, not as an `attribute`!
    */
   @property({
@@ -240,7 +240,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /**
    * The minimal amount of fraction digits to use for numeric values.
-   * Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   * Used to format the number when the input type is `number`.
    */
   @property({
     attribute: 'min-fraction-digits',
@@ -249,7 +249,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /**
    * The maximal amount of fraction digits to use for numeric values.
-   * Used to format the number when the input type is `number` and `NumericStrategy.enableNumberFormat` is set to `true`.
+   * Used to format the number when the input type is `number`.
    */
   @property({
     attribute: 'max-fraction-digits',
@@ -265,7 +265,6 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    * Includes the following configuration options:
    *
    * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
-   * - **enableNumberFormat**: If true, the input will format the value using a `NumberFormatter`.
    * - **noStepAlign**: If true, the input will not align the value to the step attribute.
    * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
    * 
@@ -428,12 +427,12 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleChange() {
-    if (this.type === 'number' && (this.#numericStrategy.enableNumberFormat || this.#numericStrategy.autoClamp)) {     
+    if (this.type === 'number' && (this.#isNumberFormattingEnabled() || this.#numericStrategy.autoClamp)) {
       const { eventObj, shouldClamp, nextValue } = this.handleNumericStrategyAutoClamp();
       const initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
 
-      this.value = this.#numericStrategy.enableNumberFormat
-        ? this.#format(initialNextValue)
+      this.value = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(initialNextValue)
         : initialNextValue.toString();
 
       // Make sure to wait for the updateComplete to be done before updating the validity
@@ -612,8 +611,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         wantedNextValue = usedMin;
       }
 
-      const finalStringValue = this.#numericStrategy.enableNumberFormat
-        ? this.#format(wantedNextValue)
+      const finalStringValue = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(wantedNextValue)
         : wantedNextValue.toString();
 
       this.input.value = finalStringValue;
@@ -648,8 +647,8 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         wantedNextValue = usedMax;
       }
 
-      const finalStringValue = this.#numericStrategy.enableNumberFormat
-        ? this.#format(wantedNextValue)
+      const finalStringValue = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(wantedNextValue)
         : wantedNextValue.toString();
 
       this.input.value = finalStringValue;
@@ -686,12 +685,41 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     this.formControlController.updateValidity();
   }
 
-  #format(value: number) {
+  #formatNumber(value: number) {
     return formatNumber(value, this.step, {
       maximumFractionDigits: this.maxFractionDigits,
       minimumFractionDigits: this.minFractionDigits,
       ...this.numberFormatterOptions,
     });
+  }
+
+  #isNumberFormattingEnabled() {
+    const {
+      numberFormatterOptions,
+      maxFractionDigits,
+      minFractionDigits,
+      step,
+    } = this;
+
+    const hasMaxFractionDigits = typeof maxFractionDigits !== 'undefined' && !Number.isNaN(maxFractionDigits);
+    const hasMinFractionDigits = typeof minFractionDigits !== 'undefined' && !Number.isNaN(minFractionDigits);
+
+    // Easy checks first: If we have a min or max fraction digit, proceed
+    if (hasMaxFractionDigits || hasMinFractionDigits) {
+      return true;
+    }
+    
+    // Check if there are any options that where provided via formatter options
+    if (typeof numberFormatterOptions === 'object') {
+      return true;
+    }
+
+    // As a last fallback, see if the step has a decimal value
+    // If it has, we should format according to the steps amount of fraction digits
+    const stepToUse = step === 'any' || !step ? 1 : +step;
+    const stepFractionDigits = stepToUse.toString().split('.')[1]?.length || 0;
+
+    return stepFractionDigits > 0;
   }
 
   render() {

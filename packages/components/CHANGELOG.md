@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.30.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.4...components/2.30.5) (2025-05-13)
+
+
+### Bug Fixes
+
+* 🐛 syn-tooltip - box-shadow bleeds into tooltip arrow ([#863](https://github.com/synergy-design-system/synergy-design-system/issues/863)) ([853ed25](https://github.com/synergy-design-system/synergy-design-system/commit/853ed2534f9cc470959501f66453d0e17ec5839f))
+
+# [@synergy-design-system/components-v2.30.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.3...components/2.30.4) (2025-05-12)
+
+
+### Bug Fixes
+
+* 🐛 Tags expand and push out UI elements in syn-select with multiple enabled and fixed width ([#859](https://github.com/synergy-design-system/synergy-design-system/issues/859)) ([74a33f4](https://github.com/synergy-design-system/synergy-design-system/commit/74a33f423735a1a125582eb868da052809200fe6))
+
 # [@synergy-design-system/components-v2.30.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.2...components/2.30.3) (2025-05-08)
 
 

@@ -197,6 +197,60 @@ const transformComponent = (path, originalContent) => {
     "{this.placement + '-start'}",
   ], content);
 
+  // #850: Add documentation for tag max width props
+  content = addSectionsAfter([
+    [
+      'private closeWatcher: CloseWatcher | null;',
+      '  private resizeObserver: ResizeObserver;',
+    ],
+    [
+      "@query('.select__listbox') listbox: HTMLSlotElement;",
+      "  @query('.select__tags') tagContainer: HTMLDivElement;",
+    ],
+  ], content);
+
+  content = addSectionsBefore([
+    [
+      'private addOpenListeners() {',
+      `
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      'connectedCallback() {',
+      `
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', \`$\{entry.contentRect.width}px\`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      'protected override willUpdate',
+      `
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
+  }
+      `,
+      { newlinesAfterInsertion: 2 },
+    ],
+  ], content);
+
   return {
     content,
     path,

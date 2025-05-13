@@ -72,6 +72,8 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part.
+ * Use this to target the tooltip's popup container.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.

@@ -80,6 +80,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -99,12 +100,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
+  private resizeObserver: ResizeObserver;
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
   @query('.select__display-input') displayInput: HTMLInputElement;
   @query('.select__value-input') valueInput: HTMLInputElement;
   @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.select__tags') tagContainer: HTMLDivElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -243,6 +246,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     return this.valueInput.validationMessage;
   }
 
+  
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${entry.contentRect.width}px`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -252,6 +266,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
+  }
+
+  
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
   }
 
   private addOpenListeners() {
@@ -705,7 +725,20 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.isInitialized = true;
   }
 
-  protected override willUpdate(changedProperties: PropertyValues) {
+  
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
+  }
+      
+
+protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
     if(!this.isInitialized && !this.defaultValue && this.value) {
@@ -894,13 +927,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               'select--medium': this.size === 'medium',
               'select--large': this.size === 'large'
             })}
-            placement=${this.placement}
+            placement=${this.placement + '-start'}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

@@ -75,6 +75,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part.
+ * Use this to target the tooltip's popup container.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -909,13 +911,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               'combobox--standard': true,
               'combobox--top': this.placement === 'top',
             })}
-            placement=${this.placement}
+            placement=${`${this.placement}-start`}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

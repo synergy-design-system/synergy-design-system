@@ -80,6 +80,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -926,13 +927,14 @@ protected override willUpdate(changedProperties: PropertyValues) {
               'select--medium': this.size === 'medium',
               'select--large': this.size === 'large'
             })}
-            placement=${this.placement}
+            placement=${this.placement + '-start'}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

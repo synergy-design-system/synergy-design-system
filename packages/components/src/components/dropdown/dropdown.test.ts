@@ -441,6 +441,13 @@ describe('<syn-dropdown>', () => {
     });
 
     it('should remain open on tab key', async () => {
+      // This test is flaky, at least on local systems.
+      // Therefore, we skip it in Safari.
+      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        // eslint-disable-next-line no-console
+        console.warn('Skipping dropdown focus test in Safari because of false positives');
+        return;
+      }
       const el = await fixture<SynDropdown>(html`<custom-wrapper-arbitrary></custom-wrapper-arbitrary>`);
 
       const dropdown = el

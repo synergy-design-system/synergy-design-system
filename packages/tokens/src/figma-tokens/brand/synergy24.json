@@ -28,30 +28,6 @@
       }
     }
   },
-  "line-height": {
-    "brand": {
-      "denser": {
-        "value": "100%",
-        "type": "lineHeights"
-      },
-      "dense": {
-        "value": "120%",
-        "type": "lineHeights"
-      },
-      "normal": {
-        "value": "140%",
-        "type": "lineHeights"
-      },
-      "loose": {
-        "value": "180%",
-        "type": "lineHeights"
-      },
-      "looser": {
-        "value": "220%",
-        "type": "lineHeights"
-      }
-    }
-  },
   "gray": {
     "50": {
       "value": "#f9fafb",

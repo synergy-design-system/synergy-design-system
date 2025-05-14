@@ -52,24 +52,44 @@
     }
   },
   "line-height": {
+    "110": {
+      "value": "110%",
+      "type": "lineHeights"
+    },
+    "115": {
+      "value": "115%",
+      "type": "lineHeights"
+    },
+    "130": {
+      "value": "130%",
+      "type": "lineHeights"
+    },
+    "150": {
+      "value": "150%",
+      "type": "lineHeights"
+    },
+    "160": {
+      "value": "160%",
+      "type": "lineHeights"
+    },
     "denser": {
-      "value": "{line-height.brand.denser}",
+      "value": "100%",
       "type": "lineHeights"
     },
     "dense": {
-      "value": "{line-height.brand.dense}",
+      "value": "120%",
       "type": "lineHeights"
     },
     "normal": {
-      "value": "{line-height.brand.normal}",
+      "value": "140%",
       "type": "lineHeights"
     },
     "loose": {
-      "value": "{line-height.brand.loose}",
+      "value": "180%",
       "type": "lineHeights"
     },
     "looser": {
-      "value": "{line-height.brand.looser}",
+      "value": "220%",
       "type": "lineHeights"
     }
   },

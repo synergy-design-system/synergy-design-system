@@ -418,10 +418,9 @@ export default class SynSideNav extends SynergyElement {
 
             ${showFooterDivider ? html`<syn-divider part="footer-divider" class="side-nav__footer-divider"></syn-divider>` : ''}
             <slot name="footer" part="footer" ></slot>
-            <!-- TODO: use the correct system icon -->
             ${this.variant === 'sticky'
               ? html`<syn-nav-item part="toggle-nav-item" class="side-nav__toggle-nav-item" @click=${this.toggleOpenState} ?divider=${hasFooter}>
-                      <syn-icon slot="prefix" library="system" name="menu" part="toggle-icon"></syn-icon>
+                      <syn-icon slot="prefix" library="system" name="sticky_sidebar" part="toggle-icon"></syn-icon>
                       ${this.open ? this.localize.term('sideNavHide') : this.localize.term('sideNavShow')}
                     </syn-nav-item>`
               : ''

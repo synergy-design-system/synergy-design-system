@@ -57,6 +57,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart panel - The side-nav's panel (where the whole content is rendered).
  * @csspart body - The side-nav's body (where the default slot content is rendered)
  * @csspart drawer__base - The drawer's base wrapper
+ * @csspart toggle-nav-item - The nav-item to toggle open state for variant="sticky"
+ * @csspart toggle-icon - The icon of the toggle nav-item for variant="sticky"
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
@@ -97,6 +99,11 @@ export default class SynSideNav extends SynergyElement {
    * Reference to the drawer
    */
   @query('.side-nav__drawer') private drawer: SynDrawer;
+
+  /**
+   * Reference to the sticky toggle nav-item
+   */
+  @query('.side-nav__toggle-nav-item') private toggleNavItem: SynNavItem;
 
   /**
    * Indicates whether or not the side-nav is open.
@@ -301,7 +308,7 @@ export default class SynSideNav extends SynergyElement {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.addEventListener('syn-initial-focus', (event) => {
-      if (this.variant === 'rail') {
+      if (this.variant !== 'fixed') {
         // We need to do this, to stop the drawer from giving focus to the panel
         event.preventDefault();
 
@@ -409,7 +416,15 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private toggleOpenState() {
-    // TODO: do we need to stopPropagation so it won't bubble?
+    if (this.open) {
+      // We need to blur the active element on close (`blurActiveElement`) as otherwise we get an
+      // console warning with aria-hidden=true is not possible if a child has still focus.
+      // To get the focus on the nav-item again, we need to set the originalTrigger of the drawer
+      // to the nav-item
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      this.drawer['originalTrigger'] = this.toggleNavItem;
+    }
+
     this.open = !this.open;
   }
 
@@ -457,10 +472,10 @@ export default class SynSideNav extends SynergyElement {
             <slot name="footer" part="footer" ></slot>
             <!-- TODO: use the correct system icon -->
             ${this.variant === 'sticky'
-              ? html`<syn-nav-item @click=${this.toggleOpenState} ?divider=${hasFooter}>
-                  <syn-icon slot="prefix" library="system" name="menu"></syn-icon>
-                  ${this.open ? this.localize.term('sideNavHide') : this.localize.term('sideNavShow')}
-                </syn-nav-item>`
+              ? html`<syn-nav-item part="toggle-nav-item" class="side-nav__toggle-nav-item" @click=${this.toggleOpenState} ?divider=${hasFooter}>
+                      <syn-icon slot="prefix" library="system" name="menu" part="toggle-icon"></syn-icon>
+                      ${this.open ? this.localize.term('sideNavHide') : this.localize.term('sideNavShow')}
+                    </syn-nav-item>`
               : ''
             }
           

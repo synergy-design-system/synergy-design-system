@@ -94,7 +94,7 @@ export default class SynDrawer extends SynergyElement {
   public modal = new Modal(this);
   private closeWatcher: CloseWatcher | null;
 
-  @state() private isVisible = false; 
+  @state() private isVisible = false; // force visibility even with open set to false
 
   @query('.drawer') drawer: HTMLElement;
   @query('.drawer__panel') panel: HTMLElement;

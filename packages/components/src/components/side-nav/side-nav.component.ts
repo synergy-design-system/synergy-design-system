@@ -16,7 +16,6 @@ import { watch } from '../../internal/watch.js';
 import { getAnimation, setAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { unlockBodyScrolling } from '../../internal/scroll.js';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -99,11 +98,6 @@ export default class SynSideNav extends SynergyElement {
    * Reference to the drawer
    */
   @query('.side-nav__drawer') private drawer: SynDrawer;
-
-  /**
-   * Reference to the sticky toggle nav-item
-   */
-  @query('.side-nav__toggle-nav-item') private toggleNavItem: SynNavItem;
 
   /**
    * Indicates whether or not the side-nav is open.
@@ -198,18 +192,6 @@ export default class SynSideNav extends SynergyElement {
     this.drawer.shadowRoot!.querySelector('.drawer__panel')?.removeEventListener('mouseleave', this.handleMouseLeave);
   }
 
-  private setDrawerVisibility(isVisible: boolean) {
-    (this.drawer.shadowRoot!.querySelector('.drawer') as HTMLElement).hidden = !isVisible;
-    this.drawer.shadowRoot!.querySelector('.drawer__panel')?.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
-  }
-
-  private forceDrawerVisibilityForRailMode() {
-    return waitForEvent(this.drawer, 'syn-after-hide').then(() => {
-      this.setDrawerVisibility(true);
-      this.isAnimationActive = false;
-    });
-  }
-
   private setDrawerAnimations() {
     const showAnimation = getAnimation(this, `sideNav.show${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
     const hideAnimation = getAnimation(this, `sideNav.hide${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
@@ -225,50 +207,32 @@ export default class SynSideNav extends SynergyElement {
   @watch('variant', { waitUntilFirstUpdate: true })
   handleVariantChange() {
     this.setDrawerAnimations();
+    this.drawer.forceVisibility(this.variant !== 'fixed');
 
     switch (this.variant) {
     case 'rail':
       // For hover handling
       this.addMouseListener();
-      // Force drawer visibility
-      this.setDrawerVisibility(true);
       break;
     case 'sticky':
-      this.removeMouseListener();
-      // Force drawer visibility
-      this.setDrawerVisibility(true);
-      break;
     case 'fixed':
     default:
       this.removeMouseListener();
-      // Remove forcing of drawer visibility for variant="fixed" if not open
-      if (!this.open) {
-        this.setDrawerVisibility(false);
-      }
     }
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (!this.open) {
-      blurActiveElement(this);
-    }
-
     if (this.variant === 'fixed') {
       return;
     }
 
     this.isAnimationActive = true;
 
-    if (!this.open) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.forceDrawerVisibilityForRailMode();
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      waitForEvent(this.drawer, 'syn-after-show').then(() => {
-        this.isAnimationActive = false;
-      });
-    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    waitForEvent(this.drawer, `syn-after-${this.open ? 'show' : 'hide'}`).then(() => {
+      this.isAnimationActive = false;
+    });
   }
 
   @watch('noFocusTrapping', { waitUntilFirstUpdate: true })
@@ -348,6 +312,7 @@ export default class SynSideNav extends SynergyElement {
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.drawer.updateComplete.then(() => {
+      this.drawer.forceVisibility(this.variant !== 'fixed');
       // change tabindex of drawer to make only nav-items focusable and not the panel of the drawer
       (this.drawer.shadowRoot!.querySelector('.drawer__panel') as HTMLElement).tabIndex = -1;
     });
@@ -358,18 +323,9 @@ export default class SynSideNav extends SynergyElement {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.drawer.updateComplete.then(() => {
         this.addMouseListener();
-        // set initial visibility of drawer for variant="rail"
-        this.setDrawerVisibility(true);
       });
       break;
-    case 'sticky':
-      // Wait for the drawer`s update to be completed
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.drawer.updateComplete.then(() => {
-        // set initial visibility of drawer for variant="rail"
-        this.setDrawerVisibility(true);
-      });
-      break;
+    case 'sticky': break;
     case 'fixed':
     default:
       if (this.noFocusTrapping) {
@@ -416,15 +372,7 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private toggleOpenState() {
-    if (this.open) {
-      // We need to blur the active element on close (`blurActiveElement`) as otherwise we get an
-      // console warning with aria-hidden=true is not possible if a child has still focus.
-      // To get the focus on the nav-item again, we need to set the originalTrigger of the drawer
-      // to the nav-item
-      // eslint-disable-next-line @typescript-eslint/dot-notation
-      this.drawer['originalTrigger'] = this.toggleNavItem;
-    }
-
+    // TODO: do we need to stopPropagation?
     this.open = !this.open;
   }
 

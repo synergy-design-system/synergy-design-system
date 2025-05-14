@@ -15,7 +15,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { uppercaseFirstLetter } from '../../internal/string.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
@@ -94,6 +94,8 @@ export default class SynDrawer extends SynergyElement {
   public modal = new Modal(this);
   private closeWatcher: CloseWatcher | null;
 
+  @state() private isVisible = false; 
+
   @query('.drawer') drawer: HTMLElement;
   @query('.drawer__panel') panel: HTMLElement;
   @query('.drawer__overlay') overlay: HTMLElement;
@@ -126,7 +128,7 @@ export default class SynDrawer extends SynergyElement {
   @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
 
   firstUpdated() {
-    this.drawer.hidden = !this.open;
+    this.drawer.hidden = this.isVisible ? false : !this.open;
 
     if (this.open) {
       this.addOpenListeners();
@@ -274,7 +276,7 @@ export default class SynDrawer extends SynergyElement {
         })
       ]);
 
-      this.drawer.hidden = true;
+      this.drawer.hidden = !this.isVisible;
 
       // Now that the dialog is hidden, restore the overlay and panel for next time
       this.overlay.hidden = false;
@@ -323,6 +325,12 @@ export default class SynDrawer extends SynergyElement {
     return waitForEvent(this, 'syn-after-hide');
   }
 
+  // Forces the visibility of the drawer even with `open` set to false. This is needed for the `rail` and `sticky` variant of the syn-side-nav
+  forceVisibility(isVisible: boolean) {
+    this.isVisible = isVisible;
+    this.drawer.hidden = isVisible ? false : !this.open;
+  }
+
   render() {
     return html`
       <div
@@ -347,7 +355,7 @@ export default class SynDrawer extends SynergyElement {
           class="drawer__panel"
           role="dialog"
           aria-modal="true"
-          aria-hidden=${this.open ? 'false' : 'true'}
+          aria-hidden=${this.isVisible ? 'false' : this.open ? 'false' : 'true'}
           aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
           aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
           tabindex="0"

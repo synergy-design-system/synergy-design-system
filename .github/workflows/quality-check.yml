@@ -75,8 +75,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # #854: We are only building the components and tokens packages
+      # This is done to speed up the build time
       - name: Build
-        run: pnpm build
+        run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
 
       - name: Run component tests
         run: pnpm test -r --filter 'components'

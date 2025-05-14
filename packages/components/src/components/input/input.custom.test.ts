@@ -439,6 +439,16 @@ describe('<syn-input>', () => {
           expect(el.value).to.equal('1.0000');
         }); // Test number formatting with min-fraction-digits
 
+        it('should format to the minimal possible decimals when the min-fraction-digits prop is provided and the user changed the value attribute', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="4"></syn-input>`);
+          expect(el.value).to.equal('');
+
+          el.setAttribute('value', '1');
+          await el.updateComplete;
+
+          expect(el.value).to.equal('1.0000');
+        }); // Test number formatting via setAttribute with min-fraction-digits
+
         it('should format to the maximal amount of possible decimals when the max-fraction-digits prop is provided', async () => {
           const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="2" max-fraction-digits="6"></syn-input>`);
           el.focus();

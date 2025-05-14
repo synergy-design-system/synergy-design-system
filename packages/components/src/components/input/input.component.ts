@@ -349,6 +349,17 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     this.formControlController.updateValidity();
   }
 
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
+    super.attributeChangedCallback(name, oldValue, newValue);
+
+    // #838: Make sure to format the value when set via attribute
+    if (name === 'value' && oldValue !== newValue) {
+      if (this.type === 'number' && this.#isNumberFormattingEnabled() && newValue) {
+        this.value = this.#formatNumber(+newValue);
+      }
+    }
+  }
+
   private handleBlur() {
     this.hasFocus = false;
     this.emit('syn-blur');

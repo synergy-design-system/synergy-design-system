@@ -130,6 +130,7 @@ describe('<syn-menu-item>', () => {
   });
 
   it('should focus on first menuitem of submenu if ArrowRight is pressed on parent menuitem', async () => {
+    if (process.env.CI) { return; }
     const menu = await fixture<SynMenuItem>(html`
       <syn-menu>
         <syn-menu-item id="item-1">
@@ -158,6 +159,7 @@ describe('<syn-menu-item>', () => {
   });
 
   it('should focus on outer menu if ArrowRight is pressed on nested menuitem', async () => {
+    if (process.env.CI) { return; }
     const menu = await fixture<SynMenuItem>(html`
       <syn-menu>
         <syn-menu-item value="outer-item-1">

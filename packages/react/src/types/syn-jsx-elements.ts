@@ -1251,6 +1251,8 @@ export type SynCustomElement<
  * @csspart panel - The side-nav's panel (where the whole content is rendered).
  * @csspart body - The side-nav's body (where the default slot content is rendered)
  * @csspart drawer__base - The drawer's base wrapper
+ * @csspart toggle-nav-item - The nav-item to toggle open state for variant="sticky"
+ * @csspart toggle-icon - The icon of the toggle nav-item for variant="sticky"
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
@@ -2477,6 +2479,8 @@ declare module 'react' {
  * @csspart panel - The side-nav's panel (where the whole content is rendered).
  * @csspart body - The side-nav's body (where the default slot content is rendered)
  * @csspart drawer__base - The drawer's base wrapper
+ * @csspart toggle-nav-item - The nav-item to toggle open state for variant="sticky"
+ * @csspart toggle-icon - The icon of the toggle nav-item for variant="sticky"
  *
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *

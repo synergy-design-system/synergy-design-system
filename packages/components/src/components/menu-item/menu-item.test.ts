@@ -77,7 +77,7 @@ describe('<syn-menu-item>', () => {
     el.textContent = 'New Text';
     await waitUntil(() => slotChangeHandler.calledOnce);
 
-    expect(slotChangeHandler).to.have.been.calledOnce;
+    expect(slotChangeHandler.callCount).to.equal(1);
   });
 
   it('should render a hidden menu item when the inert attribute is used', async () => {

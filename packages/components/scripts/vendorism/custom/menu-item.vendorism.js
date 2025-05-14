@@ -1,8 +1,25 @@
-import { addSectionsBefore } from '../replace-section.js';
+import { addSectionsBefore, replaceSection } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
+  'menu-item.test.ts',
   'menu-item.component.ts',
 ];
+
+const transformTests = (path, originalContent) => {
+  // #854 calledOnce is flaky in Chrome on CI
+  const content = replaceSection(
+    [
+      'expect(slotChangeHandler).to.have.been.calledOnce;',
+      'expect(slotChangeHandler.callCount).to.equal(1);',
+    ],
+    originalContent,
+  );
+
+  return {
+    content,
+    path,
+  };
+};
 
 /**
  * Transform the component code
@@ -51,6 +68,10 @@ export const vendorMenuItem = (path, content) => {
 
   if (!isValidFile) {
     return output;
+  }
+
+  if (path.endsWith('menu-item.test.ts')) {
+    return transformTests(path, content);
   }
 
   if (path.endsWith('menu-item.component.ts')) {

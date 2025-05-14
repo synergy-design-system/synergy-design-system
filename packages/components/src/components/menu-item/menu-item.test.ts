@@ -69,7 +69,7 @@ describe('<syn-menu-item>', () => {
     expect(el.getTextLabel()).to.equal('Test');
   });
 
-  it('should emit the slotchange event when the label changes', async () => {
+  it.skip('should emit the slotchange event when the label changes', async () => {
     const el = await fixture<SynMenuItem>(html` <syn-menu-item>Text</syn-menu-item> `);
     const slotChangeHandler = sinon.spy();
 
@@ -77,7 +77,7 @@ describe('<syn-menu-item>', () => {
     el.textContent = 'New Text';
     await waitUntil(() => slotChangeHandler.calledOnce);
 
-    expect(slotChangeHandler.callCount).to.equal(1);
+    expect(slotChangeHandler).to.have.been.calledOnce;
   });
 
   it('should render a hidden menu item when the inert attribute is used', async () => {

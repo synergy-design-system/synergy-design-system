@@ -1,4 +1,4 @@
-import { addSectionsBefore, replaceSection } from '../replace-section.js';
+import { addSectionsBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'menu-item.test.ts',
@@ -7,13 +7,24 @@ const FILES_TO_TRANSFORM = [
 
 const transformTests = (path, originalContent) => {
   // #854 calledOnce is flaky in Chrome on CI
-  const content = replaceSection(
+  const content = replaceSections([
     [
       "it('should emit the slotchange event when the label changes'",
       "it.skip('should emit the slotchange event when the label changes'",
     ],
-    originalContent,
-  );
+    [
+      'expect(slotChangeHandler).to.have.been.calledOnce;',
+      'expect(slotChangeHandler.callCount).to.equal(1);',
+    ],
+    [
+      'expect(selectHandler).to.have.been.calledOnce;',
+      'expect(selectHandler.callCount).to.equal(1);',
+    ],
+    [
+      'expect(focusHandler).to.have.been.calledOnce;',
+      'expect(focusHandler.callCount).to.equal(1);',
+    ],
+  ], originalContent);
 
   return {
     content,

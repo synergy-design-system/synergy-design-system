@@ -69,7 +69,7 @@ describe('<syn-menu-item>', () => {
     expect(el.getTextLabel()).to.equal('Test');
   });
 
-  it.skip('should emit the slotchange event when the label changes', async () => {
+  it('should emit the slotchange event when the label changes', async () => {
     const el = await fixture<SynMenuItem>(html` <syn-menu-item>Text</syn-menu-item> `);
     const slotChangeHandler = sinon.spy();
 

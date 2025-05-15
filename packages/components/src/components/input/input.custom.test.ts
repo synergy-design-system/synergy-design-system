@@ -428,6 +428,56 @@ describe('<syn-input>', () => {
           expect(el.validity.stepMismatch).to.be.false;
         }); // invalid test
 
+        it('should set the value property to a valid value if a non numeric value is provided', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" step="0.1234" numeric-strategy="modern" value="5"></syn-input>`);
+          expect(el.value).to.equal('5.0000');
+
+          // Test setting a non numeric value without min or max
+          el.focus();
+          await sendKeys({ type: '+-100' });
+          el.blur();
+          await el.updateComplete;
+          expect(el.value, 'should default to number "0" when no min or max is provided').to.equal('0.0000');
+
+          // Test setting with min provided
+          const elWithMin = await fixture<SynInput>(html`<syn-input min="10" type="number" step="0.1234" numeric-strategy="modern" value="5"></syn-input>`);
+          expect(elWithMin.value).to.equal('5.0000');
+
+          elWithMin.focus();
+          await sendKeys({ type: '+-100' });
+          elWithMin.blur();
+          await elWithMin.updateComplete;
+          expect(elWithMin.value, 'should default to the provided min if the min property is provided').to.equal('10.0000');
+
+          // Test setting with max provided
+          const elWithMax = await fixture<SynInput>(html`<syn-input max="50" type="number" step="0.1234" numeric-strategy="modern" value="5"></syn-input>`);
+          expect(elWithMax.value).to.equal('5.0000');
+
+          elWithMax.focus();
+          await sendKeys({ type: '+-100' });
+          elWithMax.blur();
+          await elWithMax.updateComplete;
+          expect(elWithMax.value, 'should default to the provided max if the max property is provided').to.equal('50.0000');
+
+          // Make sure to prefer max
+          const elWithBoth = await fixture<SynInput>(html`<syn-input min="10" max="50" type="number" step="0.1234" numeric-strategy="modern" value="5"></syn-input>`);
+          expect(elWithBoth.value).to.equal('5.0000');
+
+          elWithBoth.focus();
+          await sendKeys({ type: '+-100' });
+          elWithBoth.blur();
+          await elWithBoth.updateComplete;
+          expect(elWithBoth.value, 'should default to the provided max if both min and max property are provided').to.equal('50.0000');
+        });
+
+        it('should reset the value to an empty string if the value is set to a non numeric value via setAttribute', async () => {
+          const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="4" value="1"></syn-input>`);
+          expect(el.value).to.equal('1.0000');
+          el.setAttribute('value', 'abc');
+          await el.updateComplete;
+          expect(el.value).to.equal('');
+        }); // Test number formatting via setAttribute with invalid values
+        
         it('should format to the minimal possible decimals when the min-fraction-digits prop is provided', async () => {
           const el = await fixture<SynInput>(html`<syn-input type="number" numeric-strategy="modern" min-fraction-digits="4"></syn-input>`);
           el.focus();

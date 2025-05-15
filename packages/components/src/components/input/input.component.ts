@@ -449,15 +449,21 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   private handleChange() {
     if (this.type === 'number' && (this.#isNumberFormattingEnabled() || this.#numericStrategy.autoClamp)) {
       const { eventObj, shouldClamp, nextValue } = this.handleNumericStrategyAutoClamp();
-      const initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
+      let initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
 
       // Make sure to flag non numeric values as invalid
       if (isNaN(initialNextValue)) {
-        this.value = '';
-        this.input.value = '';
-        this.formControlController.setValidity(false);
-        this.emit('syn-invalid');
-        return;
+        // Make sure to set the value to the min or max value if the input is empty
+        // If neither min nor max are set, we set the value to 0
+        const { max, min } = this;
+
+        if (max !== undefined && max !== null) {
+          initialNextValue = typeof max === 'string' ? parseFloat(max) : +max;
+        } else if (min !== undefined && min !== null) {
+          initialNextValue = typeof min === 'string' ? parseFloat(min) : +min;
+        } else {
+          initialNextValue = 0;
+        }
       }
 
       this.value = this.#isNumberFormattingEnabled()

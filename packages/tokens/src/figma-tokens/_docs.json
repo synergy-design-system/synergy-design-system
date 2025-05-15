@@ -3105,7 +3105,17 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the rail attribute to only show the prefix of navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
+          "value": "Set the variant attribute to rail to only show a small navigation stripe at the left side using only the prefix-icons of the navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
+          "type": "text"
+        }
+      },
+      "sticky": {
+        "title": {
+          "value": "Sticky",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the sticky variant when you need a persistent, toggleable side navigation that alternates between a compact “rail” (icon‐only) state and a full‐width state. \n\nNote: This pattern is only possible for flat navigation structures (no nesting) where every first‐level item has an icon.",
           "type": "text"
         }
       },

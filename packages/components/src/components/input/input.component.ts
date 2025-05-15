@@ -350,14 +350,24 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
-    super.attributeChangedCallback(name, oldValue, newValue);
-
     // #838: Make sure to format the value when set via attribute
+    // Note that we have to wait for the updateComplete to be done before we can reset the value
+    // This is because some properties might not been set in attributeCHangedCallback when the
+    // value change here is triggered. This depends on the ORDER in which the props have been provided
+    // in the DOM, so we have to wait until the render cycle is over to trigger a new one.
     if (name === 'value' && oldValue !== newValue) {
-      if (this.type === 'number' && this.#isNumberFormattingEnabled() && newValue) {
-        this.value = this.#formatNumber(+newValue);
-      }
+      this.updateComplete.then(() => {
+        if (this.type === 'number' && this.#isNumberFormattingEnabled() && typeof newValue === 'string') {
+          if (isNaN(+newValue)) {
+            this.value = '';
+          } else {
+            this.value = this.#formatNumber(+newValue);
+          }
+        }
+      });
     }
+
+    super.attributeChangedCallback(name, oldValue, newValue);
   }
 
   private handleBlur() {
@@ -440,6 +450,15 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     if (this.type === 'number' && (this.#isNumberFormattingEnabled() || this.#numericStrategy.autoClamp)) {
       const { eventObj, shouldClamp, nextValue } = this.handleNumericStrategyAutoClamp();
       const initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
+
+      // Make sure to flag non numeric values as invalid
+      if (isNaN(initialNextValue)) {
+        this.value = '';
+        this.input.value = '';
+        this.formControlController.setValidity(false);
+        this.emit('syn-invalid');
+        return;
+      }
 
       this.value = this.#isNumberFormattingEnabled()
         ? this.#formatNumber(initialNextValue)

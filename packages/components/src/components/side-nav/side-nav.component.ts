@@ -428,7 +428,7 @@ export default class SynSideNav extends SynergyElement {
             ${this.variant === 'sticky'
               ? html`<syn-nav-item part="toggle-nav-item" class="side-nav__toggle-nav-item" @click=${this.toggleOpenState} ?divider=${hasFooter}>
                       <syn-icon slot="prefix" library="system" name="sticky_sidebar" part="toggle-icon"></syn-icon>
-                      ${this.open ? this.localize.term('sideNavHide') : this.localize.term('sideNavShow')}
+                      ${(!this.open && !this.isAnimationActive) ? this.localize.term('sideNavShow') : this.localize.term('sideNavHide')}
                     </syn-nav-item>`
               : ''
             }

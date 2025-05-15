@@ -14,14 +14,14 @@ export const SidenavSwitch = () => {
 
   return (
     <syn-button-group>
-      <syn-tooltip content="Set sidenav to fixed">
+      <syn-tooltip content="Set sidenav to default">
         <syn-icon-button
-          color={type === 'fixed' ? 'primary' : 'currentColor'}
-          data-type="fixed"
-          label="Set navigation to fixed"
+          color={type === 'default' ? 'primary' : 'currentColor'}
+          data-type="default"
+          label="Set navigation to default"
           name="lunch_dining"
           size="small"
-          onClick={() => setType('fixed')}
+          onClick={() => setType('default')}
         />
       </syn-tooltip>
       <syn-tooltip content="Set sidenav to rail">

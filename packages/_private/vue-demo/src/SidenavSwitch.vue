@@ -20,14 +20,14 @@ const setType = (newType: SideNavTypes) => {
 
 <template>
   <SynVueButtonGroup>
-    <SynVueTooltip content="Set sidenav to fixed">
+    <SynVueTooltip content="Set sidenav to default">
       <SynVueIconButton
-        :color="type === 'fixed' ? 'primary' : 'currentColor'"
-        data-type="fixed"
-        label="Set navigation to fixed"
+        :color="type === 'default' ? 'primary' : 'currentColor'"
+        data-type="default"
+        label="Set navigation to default"
         name="lunch_dining"
         size="small"
-        @click="() => setType('fixed')"
+        @click="() => setType('default')"
       />
     </SynVueTooltip>
     <SynVueTooltip content="Set sidenav to rail">

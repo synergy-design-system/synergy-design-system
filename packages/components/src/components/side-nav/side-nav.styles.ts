@@ -37,7 +37,7 @@ export default css`
 
   /****
    *
-   * variant="fixed"
+   * variant="default"
    *
    ****/
   
@@ -115,7 +115,7 @@ export default css`
   }
 
 
-  /* TODO: is this correct? If not remove this styling:
+  /*
    * For touch devices the content should not shrink in a flex container
    */ 
   .side-nav--sticky.side-nav--touch {

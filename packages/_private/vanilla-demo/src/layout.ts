@@ -14,11 +14,11 @@ export const createLayout = () => `
     <div class="meta-navigation" slot="meta-navigation">
 
       <syn-button-group class="sidenav-switch">
-        <syn-tooltip content="Set sidenav to fixed">
+        <syn-tooltip content="Set sidenav to default">
           <syn-icon-button
             color="currentColor"
-            data-type="fixed"
-            label="Set navigation to fixed"
+            data-type="default"
+            label="Set navigation to default"
             name="lunch_dining"
             size="small"
           ></syn-icon-button>

@@ -23,7 +23,7 @@ export const currencyNumberFormatter = new Intl.NumberFormat('de-DE', {
 export const setNextSidenavLayout = (layout: SideNavTypes): SideNavTypes => {
   switch (layout) {
   case 'rail': return 'sticky';
-  case 'sticky': return 'fixed';
+  case 'sticky': return 'default';
   default: return 'rail';
   }
 };

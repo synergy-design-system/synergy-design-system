@@ -190,8 +190,8 @@ export const createHeader = ({
 export const createSideNav = ({
   noFocusTrapping = false,
   open = false,
-  variant = 'fixed',
-}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'fixed' | 'rail' | 'sticky' } = {}) => html`
+  variant = 'default',
+}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'default' | 'rail' | 'sticky' } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
     ?no-focus-trapping=${noFocusTrapping}

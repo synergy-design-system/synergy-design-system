@@ -29,7 +29,7 @@ describe('<syn-side-nav>', () => {
 
       expect(sideNav.open).to.equal(false);
       expect(sideNav.rail).to.equal(false);
-      expect(sideNav.variant).to.equal('fixed');
+      expect(sideNav.variant).to.equal('default');
       expect(sideNav.noFocusTrapping).to.equal(false);
     });
   });
@@ -118,7 +118,7 @@ describe('<syn-side-nav>', () => {
     });
   });
 
-  describe('when using variant="fixed"', () => {
+  describe('when using variant="default"', () => {
     it('should be visible and expanded with open attribute', async () => {
       const expectedDrawerOpenSize = '320px';
       const expectedSideNavOpenSize = '320px';
@@ -387,7 +387,7 @@ describe('<syn-side-nav>', () => {
       expect(display).to.equal('none');
     });
 
-    it('should remove the forcing of drawer visibility if variant changed to `fixed` and open = false', async () => {
+    it('should remove the forcing of drawer visibility if variant changed to `default` and open = false', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav variant="rail">
           <syn-nav-item>nav 1</syn-nav-item> 
@@ -398,7 +398,7 @@ describe('<syn-side-nav>', () => {
 
       expect(baseDrawer.hidden).to.be.false;
 
-      sideNav.variant = 'fixed';
+      sideNav.variant = 'default';
 
       await sideNav.updateComplete;
 
@@ -545,7 +545,7 @@ describe('<syn-side-nav>', () => {
     //   expect(display).to.equal('none');
     // });
 
-    it('should remove the forcing of drawer visibility if variant changed to `fixed` and open = false', async () => {
+    it('should remove the forcing of drawer visibility if variant changed to `default` and open = false', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav variant="sticky">
           <syn-nav-item>nav 1</syn-nav-item> 
@@ -556,7 +556,7 @@ describe('<syn-side-nav>', () => {
 
       expect(baseDrawer.hidden).to.be.false;
 
-      sideNav.variant = 'fixed';
+      sideNav.variant = 'default';
 
       await sideNav.updateComplete;
 

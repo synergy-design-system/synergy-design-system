@@ -32,6 +32,8 @@ Component.define('syn-side-nav');
  *
  * @dependency syn-divider
  * @dependency syn-drawer
+ * @dependency syn-icon
+ * @dependency syn-nav-item
  *
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
@@ -60,11 +62,11 @@ Component.define('syn-side-nav');
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.

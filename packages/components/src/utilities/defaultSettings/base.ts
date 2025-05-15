@@ -157,7 +157,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
-    SynSideNav: "fixed",
+    SynSideNav: "default",
     SynValidate: "native",
   },
 };
@@ -191,7 +191,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
-    SynSideNav: "fixed",
+    SynSideNav: "default",
     SynValidate: "native",
   },
 };

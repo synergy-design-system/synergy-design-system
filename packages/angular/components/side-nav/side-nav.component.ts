@@ -35,6 +35,8 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  *
  * @dependency syn-divider
  * @dependency syn-drawer
+ * @dependency syn-icon
+ * @dependency syn-nav-item
  *
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
@@ -63,11 +65,11 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
@@ -112,11 +114,16 @@ You can toggle this attribute to show and hide the side-nav, or you can use the 
 
 Depending on the "variant" attribute, the behavior will differ.
 
-__Fixed__:
-With `open` will show the side-nav.
+__Default__:
+With `open` will show the side-nav with an overlay.
 Without `open`, the side-nav will be hidden.
 
 __Rail__:
+With `open` will show the whole side-nav with an overlay for touch devices
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
+
+__Sticky__:
 With `open` will show the whole side-nav with an overlay for touch devices
 or without an overlay for non-touch devices.
 Without `open`, the side-nav will only show the prefix of nav-item's.
@@ -156,7 +163,7 @@ Will be removed in synergy version 3.0
 * The variant that should be used to show the side navigation.
 
 The following variants are supported:
-- **fixed** (default): Always shows the whole content and additionally an overlay.
+- **default** (default): Always shows the whole content and additionally an overlay.
 This makes especially sense for applications, where you navigate to a place and stay
 there for a longer time.
 - **rail**: Only show the prefix of navigation items in closed state.
@@ -180,7 +187,7 @@ have an Icon and if there are only "first level" items.
   }
 
   /**
-* By default, the side-nav traps the focus if in variant="fixed" and open.
+* By default, the side-nav traps the focus if in variant="default" and open.
 To disable the focus trapping, set this attribute.
  */
   @Input()

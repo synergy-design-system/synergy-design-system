@@ -69,7 +69,7 @@ export default class SynHeader extends SynergyElement {
   /**
    * Defines the current visibility and icon of the burger-menu icon.
    * The menu button is added automatically if the component finds a syn-side-nav in
-   * variant="fixed".
+   * variant="default".
    * The following values can be used:
    * - hidden: The burger menu is not visible
    * - open: The burger menu is visible and shows the close icon
@@ -91,8 +91,8 @@ export default class SynHeader extends SynergyElement {
   }
 
   private handleBurgerMenuToggle() {
-    // If there is a side-nav in variant="fixed", toggle the open state!
-    if (this.sideNav && this.sideNav.variant === 'fixed') {
+    // If there is a side-nav in variant="default", toggle the open state!
+    if (this.sideNav && this.sideNav.variant === 'default') {
       this.sideNav.open = !this.sideNav.open;
     }
     this.toggleBurgerMenu();
@@ -104,8 +104,8 @@ export default class SynHeader extends SynergyElement {
    */
   private updateBurgerMenuBasedOnSideNav() {
     if (this.sideNav) {
-      // Hide the burger menu icon if the side-nav is not variant="fixed"
-      if (this.sideNav.variant !== 'fixed') {
+      // Hide the burger menu icon if the side-nav is not variant="default"
+      if (this.sideNav.variant !== 'default') {
         this.burgerMenu = 'hidden';
       } else {
         this.burgerMenu = this.sideNav.open ? 'open' : 'closed';

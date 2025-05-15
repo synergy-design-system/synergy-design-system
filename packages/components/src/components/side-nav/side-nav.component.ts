@@ -34,6 +34,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @dependency syn-divider
  * @dependency syn-drawer
+ * @dependency syn-icon
+ * @dependency syn-nav-item
  *
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
@@ -62,11 +64,11 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.showRail - The animation to use when showing the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.hideNonRail - The animation to use when hiding the side-nav
- *  in variant="fixed".
+ *  in variant="default".
  * @animation sideNav.hideRail - The animation to use when hiding the side-nav in variant="rail"
  *  and variant="sticky".
  * @animation sideNav.overlay.show - The animation to use when showing the side-nav's overlay.
@@ -106,11 +108,16 @@ export default class SynSideNav extends SynergyElement {
    *
    * Depending on the "variant" attribute, the behavior will differ.
    *
-   * __Fixed__:
-   * With `open` will show the side-nav.
+   * __Default__:
+   * With `open` will show the side-nav with an overlay.
    * Without `open`, the side-nav will be hidden.
    *
    * __Rail__:
+   * With `open` will show the whole side-nav with an overlay for touch devices
+   * or without an overlay for non-touch devices.
+   * Without `open`, the side-nav will only show the prefix of nav-item's.
+   *
+   * __Sticky__:
    * With `open` will show the whole side-nav with an overlay for touch devices
    * or without an overlay for non-touch devices.
    * Without `open`, the side-nav will only show the prefix of nav-item's.
@@ -135,7 +142,7 @@ export default class SynSideNav extends SynergyElement {
    * The variant that should be used to show the side navigation.
    *
    * The following variants are supported:
-   * - **fixed** (default): Always shows the whole content and additionally an overlay.
+   * - **default** (default): Always shows the whole content and additionally an overlay.
    * This makes especially sense for applications, where you navigate to a place and stay
    * there for a longer time.
    * - **rail**: Only show the prefix of navigation items in closed state.
@@ -149,10 +156,10 @@ export default class SynSideNav extends SynergyElement {
    * Note: The sticky variant is only an option if all Navigation Items on the first level
    * have an Icon and if there are only "first level" items.
    */
-  @property({ reflect: true }) variant: 'fixed' | 'rail' | 'sticky' = 'fixed';
+  @property({ reflect: true }) variant: 'default' | 'rail' | 'sticky' = 'default';
 
   /**
-   * By default, the side-nav traps the focus if in variant="fixed" and open.
+   * By default, the side-nav traps the focus if in variant="default" and open.
    * To disable the focus trapping, set this attribute.
    */
   @property({ attribute: 'no-focus-trapping', reflect: true, type: Boolean }) noFocusTrapping = false;
@@ -193,8 +200,8 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private setDrawerAnimations() {
-    const showAnimation = getAnimation(this, `sideNav.show${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
-    const hideAnimation = getAnimation(this, `sideNav.hide${this.variant === 'fixed' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
+    const showAnimation = getAnimation(this, `sideNav.show${this.variant === 'default' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
+    const hideAnimation = getAnimation(this, `sideNav.hide${this.variant === 'default' ? 'NonRail' : 'Rail'}`, { dir: this.localize.dir() });
     const hideOverlay = getAnimation(this, 'sideNav.overlay.hide', { dir: this.localize.dir() });
     const showOverlay = getAnimation(this, 'sideNav.overlay.show', { dir: this.localize.dir() });
 
@@ -207,7 +214,7 @@ export default class SynSideNav extends SynergyElement {
   @watch('variant', { waitUntilFirstUpdate: true })
   handleVariantChange() {
     this.setDrawerAnimations();
-    this.drawer.forceVisibility(this.variant !== 'fixed');
+    this.drawer.forceVisibility(this.variant !== 'default');
 
     switch (this.variant) {
     case 'rail':
@@ -215,7 +222,7 @@ export default class SynSideNav extends SynergyElement {
       this.addMouseListener();
       break;
     case 'sticky':
-    case 'fixed':
+    case 'default':
     default:
       this.removeMouseListener();
     }
@@ -223,7 +230,7 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('open', { waitUntilFirstUpdate: true })
   handleOpenChange() {
-    if (this.variant === 'fixed') {
+    if (this.variant === 'default') {
       return;
     }
 
@@ -237,7 +244,7 @@ export default class SynSideNav extends SynergyElement {
 
   @watch('noFocusTrapping', { waitUntilFirstUpdate: true })
   handleFocusTrapping() {
-    if (this.variant === 'fixed') {
+    if (this.variant === 'default') {
       if (this.noFocusTrapping) {
         this.drawer.modal.activateExternal();
       } else {
@@ -272,7 +279,7 @@ export default class SynSideNav extends SynergyElement {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.addEventListener('syn-initial-focus', (event) => {
-      if (this.variant !== 'fixed') {
+      if (this.variant !== 'default') {
         // We need to do this, to stop the drawer from giving focus to the panel
         event.preventDefault();
 
@@ -312,7 +319,7 @@ export default class SynSideNav extends SynergyElement {
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.drawer.updateComplete.then(() => {
-      this.drawer.forceVisibility(this.variant !== 'fixed');
+      this.drawer.forceVisibility(this.variant !== 'default');
       // change tabindex of drawer to make only nav-items focusable and not the panel of the drawer
       (this.drawer.shadowRoot!.querySelector('.drawer__panel') as HTMLElement).tabIndex = -1;
     });
@@ -326,7 +333,7 @@ export default class SynSideNav extends SynergyElement {
       });
       break;
     case 'sticky': break;
-    case 'fixed':
+    case 'default':
     default:
       if (this.noFocusTrapping) {
         // Disable the focus trapping of the modal
@@ -361,7 +368,7 @@ export default class SynSideNav extends SynergyElement {
       // if it was explicitly set or unset by the user.
       // This is needed to be backwards compatible with the `rail` attribute
       if (!changedProperties.has('variant')) {
-        this.variant = this.rail ? 'rail' : 'fixed';
+        this.variant = this.rail ? 'rail' : 'default';
         return;
       }
 
@@ -389,7 +396,7 @@ export default class SynSideNav extends SynergyElement {
         class=${classMap({
       'side-nav': true,
       'side-nav--animation': this.isAnimationActive,
-      'side-nav--fix': this.variant === 'fixed',
+      'side-nav--fix': this.variant === 'default',
       'side-nav--has-footer': hasFooter,
       'side-nav--open': this.open,
       'side-nav--rail': this.variant === 'rail',
@@ -401,7 +408,7 @@ export default class SynSideNav extends SynergyElement {
         
         <syn-drawer
           class="side-nav__drawer"
-          ?contained=${this.variant !== 'fixed'}
+          ?contained=${this.variant !== 'default'}
           exportparts="overlay,panel,body,base:drawer__base"
           label=${this.localize.term('sideNav')}
           no-header

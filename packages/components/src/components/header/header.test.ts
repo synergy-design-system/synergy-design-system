@@ -105,7 +105,7 @@ describe('<syn-header>', () => {
       expect(el.burgerMenu).to.equal('closed');
     });
 
-    it('should show burger menu toggle if a syn-side-nav in variant="fixed" is available', async () => {
+    it('should show burger menu toggle if a syn-side-nav in variant="default" is available', async () => {
       const el = await fixture<SynHeader>(html`
         <syn-header></syn-header>
         <syn-side-nav></syn-side-nav>
@@ -117,7 +117,7 @@ describe('<syn-header>', () => {
       expect(el.burgerMenu).to.equal('closed');
     });
 
-    it('should toggle the open state of a syn-side-nav in variant="fixed"', async () => {
+    it('should toggle the open state of a syn-side-nav in variant="default"', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>
           <syn-header></syn-header>

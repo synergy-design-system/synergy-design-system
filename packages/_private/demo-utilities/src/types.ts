@@ -42,4 +42,4 @@ export type DemoFormData = {
 /**
  * A type representing the different types of side navigation.
  */
-export type SideNavTypes = 'fixed' | 'rail' | 'sticky';
+export type SideNavTypes = 'default' | 'rail' | 'sticky';

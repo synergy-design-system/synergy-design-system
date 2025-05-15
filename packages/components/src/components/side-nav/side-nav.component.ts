@@ -351,7 +351,7 @@ export default class SynSideNav extends SynergyElement {
 
     // TODO: this can be removed in synergy version 3.0
     if (changedProperties.has('rail')) {
-      if (this.rail && process.env.NODE_ENV !== 'production') {
+      if (this.rail) {
         // Add deprecation console warning for stakeholder, which do not use linting
         // to get their attention
         console.warn('<syn-side-nav/>: The `rail` attribute is deprecated. Please use the `variant` attribute with `rail` instead. It will be removed in synergy version 3.0');

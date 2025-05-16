@@ -448,9 +448,23 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     'private handleChange() {',
     `
   private handleNumericStrategyAutoClamp() {
-    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
-    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
-    const { valueAsNumber } = this;
+    const {
+      valueAsNumber,
+      max: initialMax,
+      min: initialMin,
+    } = this;
+
+    // Exit early if there should be no clamping
+    if (!this.#numericStrategy.autoClamp) {
+      return {
+        eventObj: null,
+        shouldClamp: false,
+        nextValue: valueAsNumber,
+      }
+    }
+
+    const min = typeof initialMin === 'string' ? parseFloat(initialMin) : initialMin;
+    const max = typeof initialMax === 'string' ? parseFloat(initialMax) : initialMax;
 
     let nextValue = valueAsNumber;
     let clampEvent = '';

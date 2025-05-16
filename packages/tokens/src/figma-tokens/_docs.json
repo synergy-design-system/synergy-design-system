@@ -1357,6 +1357,16 @@
           "type": "text"
         }
       },
+      "stepper-input-handling": {
+        "title": {
+          "value": "Stepper Input Handling",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation.",
+          "type": "text"
+        }
+      },
       "types": {
         "title": {
           "value": "Input Types",

@@ -35,6 +35,12 @@ export const vendorWebTestRunnerConfig = (path, content) => {
       'forbidOnly: !!process.env.CI,',
       { tabsBeforeInsertion: 3 },
     ],
+    // Adjust the timeout
+    [
+      "rootDir: '.',",
+      'testsFinishTimeout: 180000, // 3 minutes',
+      { tabsBeforeInsertion: 1 },
+    ],
   ], content);
 
   nextContent = replaceSections([

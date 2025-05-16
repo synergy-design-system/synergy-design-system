@@ -550,37 +550,6 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     },
   );
 
-  // Auto format when a new value is provided via attribute
-  content = addSectionBefore(
-    content,
-    'private handleBlur() {',
-    `attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
-    // #838: Make sure to format the value when set via attribute
-    // Note that we have to wait for the updateComplete to be done before we can reset the value
-    // This is because some properties might not been set in attributeCHangedCallback when the
-    // value change here is triggered. This depends on the ORDER in which the props have been provided
-    // in the DOM, so we have to wait until the render cycle is over to trigger a new one.
-    if (name === 'value' && oldValue !== newValue) {
-      this.updateComplete.then(() => {
-        if (this.type === 'number' && this.#isNumberFormattingEnabled() && typeof newValue === 'string') {
-          if (isNaN(+newValue)) {
-            this.value = '';
-          } else {
-            this.value = this.#formatNumber(+newValue);
-          }
-        }
-      });
-    }
-
-    super.attributeChangedCallback(name, oldValue, newValue);
-  }`,
-    {
-      newlinesAfterInsertion: 2,
-      tabsAfterInsertion: 1,
-    },
-  );
-  // /#838
-
   return {
     content,
     path,

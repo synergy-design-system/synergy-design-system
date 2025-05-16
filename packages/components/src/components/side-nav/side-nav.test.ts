@@ -502,7 +502,6 @@ describe('<syn-side-nav>', () => {
       expect(display).to.equal('block');
     });
 
-    // TODO: remove this test, if we don't want this behaviour and remove the corresponding styling
     it('should not grow for touch devices in open state', async () => {
       // Mock touch device
       sinon.stub(window.navigator, 'maxTouchPoints').value(1);
@@ -528,23 +527,6 @@ describe('<syn-side-nav>', () => {
       expect(openWidth).to.equal(expectedWidth);
     });
 
-    // TODO: clarify what should happen,
-    // if someone uses nested nav-items although we do not support it?
-    // it('should not show nested open nav-item`s without the open attribute', async () => {
-    //   const sideNav = await fixture<SynSideNav>(html`
-    //     <syn-side-nav variant="sticky">
-    //       <syn-nav-item class="root" open>nav 1
-    //         <syn-nav-item slot="children">nav 1</syn-nav-item>
-    //       </syn-nav-item>
-    //     </syn-side-nav>
-    //   `);
-    //   const rootNavItem = sideNav.querySelector('.root')!;
-    //   const nestedNavItems = rootNavItem.shadowRoot!.querySelector('[part~="children"]')!;
-
-    //   const { display } = getComputedStyle(nestedNavItems);
-    //   expect(display).to.equal('none');
-    // });
-
     it('should remove the forcing of drawer visibility if variant changed to `default` and open = false', async () => {
       const sideNav = await fixture<SynSideNav>(html`
         <syn-side-nav variant="sticky">
@@ -561,6 +543,28 @@ describe('<syn-side-nav>', () => {
       await sideNav.updateComplete;
 
       expect(baseDrawer.hidden).to.be.true;
+    });
+
+    it('should open / close the side-nav on toggle click', async () => {
+      const sideNav = await fixture<SynSideNav>(html`
+        <syn-side-nav variant="sticky">
+          <syn-nav-item>nav 1</syn-nav-item> 
+        </syn-side-nav>
+      `);
+
+      const toggle = sideNav.shadowRoot!.querySelector<HTMLElement>('[part~="toggle-nav-item"]')!;
+
+      expect(sideNav.open).to.be.false;
+
+      toggle.click();
+      await sideNav.updateComplete;
+
+      expect(sideNav.open).to.be.true;
+
+      toggle.click();
+      await sideNav.updateComplete;
+
+      expect(sideNav.open).to.be.false;
     });
   });
 

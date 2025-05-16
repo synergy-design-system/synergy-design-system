@@ -383,7 +383,6 @@ export default class SynSideNav extends SynergyElement {
   }
 
   private toggleOpenState() {
-    // TODO: do we need to stopPropagation?
     this.open = !this.open;
   }
 
@@ -398,15 +397,15 @@ export default class SynSideNav extends SynergyElement {
     return html`
       <nav
         class=${classMap({
-      'side-nav': true,
-      'side-nav--animation': this.isAnimationActive,
-      'side-nav--fix': this.variant === 'default',
-      'side-nav--has-footer': hasFooter,
-      'side-nav--open': this.open,
-      'side-nav--rail': this.variant === 'rail',
-      'side-nav--sticky': this.variant === 'sticky',
-      'side-nav--touch': isTouch,
-    })}
+          'side-nav': true,
+          'side-nav--animation': this.isAnimationActive,
+          'side-nav--fix': this.variant === 'default',
+          'side-nav--has-footer': hasFooter,
+          'side-nav--open': this.open,
+          'side-nav--rail': this.variant === 'rail',
+          'side-nav--sticky': this.variant === 'sticky',
+          'side-nav--touch': isTouch,
+        })}
         part="base"
       >
         

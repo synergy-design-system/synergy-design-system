@@ -126,7 +126,7 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
 
 <script type="module">
   // Suppress the bubbling of the syn-hide event of the details element
-  document.querySelector('syn-details').addEventListener('syn-hide', e => {
+  document.querySelector("syn-details").addEventListener("syn-hide", e => {
     e.stopPropagation();
   });
 

@@ -42,26 +42,26 @@ Rendering is a crucial task of current frontend frameworks. Most frameworks will
 
 ---
 
-## Event listener `syn-hide` for `<syn-dialog>` gets called when closing a `<syn-details>`
+## `<syn-dialog>` closes itself when interacting with certain elements
 
 ### Meta Information
 
 - Framework version: ALL
 - Synergy version: ALL
-- Issues: [#530](https://github.com/synergy-design-system/synergy-design-system/issues/530), [sl#2020](https://github.com/shoelace-style/shoelace/issues/2020), [sl#1956](https://github.com/shoelace-style/shoelace/issues/1956)
+- Issues: [#530](https://github.com/synergy-design-system/synergy-design-system/issues/530), [#572](https://github.com/synergy-design-system/synergy-design-system/issues/572), [sl#2020](https://github.com/shoelace-style/shoelace/issues/2020), [sl#1956](https://github.com/shoelace-style/shoelace/issues/1956)
 
 ### Description
 
-When trying to use the `syn-hide` event of a `<syn-dialog>`, the event is also triggered when closing a slotted `<syn-details>`.
+A `<syn-dialog>` element may close itself unexpectedly when interacting with elements like `<syn-select>`, `<syn-accordion>` or `<dyn-details>` and having a listener attached on the `syn-close` event.
 
 ### Cause
 
-Synergy uses shared `CustomEvents` for all of its components. Per default, all of those events are bubbling. When the `<syn-details>` element is closed, it fires its `syn-hide` event. This event bubbles to `<syn-dialog>` and closes it.
+Synergy uses shared `CustomEvents` for all of its components. Per default, all of those events are bubbling. When a `<syn-select>`, `<syn-accordion>` or `<dyn-details>` element is closed, it fires its own `syn-hide` event. This event bubbles to `<syn-dialog>` and closes it.
 
 ### Proposed Solution
 
-If the dialog should only be closed, listen to the `syn-request-close` event instead of `syn-hide`.
-In other cases, make sure to suppress the other elements emitted `syn-hide` events.
+If you want to close the dialog only, listen to its `syn-request-close` event instead of `syn-hide`.
+In other cases, make sure to suppress the other elements emitted `syn-hide` events or filter the events target to just listen for the wanted instance of the `<syn-dialog>`.
 
 #### Problem
 
@@ -88,7 +88,7 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
 </syn-dialog>
 
 <script type="module">
-  // This listener is only available on syn-dialog!
+  // This listener is will only work on syn-dialog!
   document
     .querySelector("syn-dialog")
     .addEventListener("syn-request-close", e => {
@@ -112,6 +112,26 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
     if (target.tagName !== "SYN-DIALOG") {
       return;
     }
+    target.close();
+  });
+</script>
+```
+
+#### Solution 3:
+
+```html
+<syn-dialog open>
+  <syn-details open summary="Example"></syn-details>
+</syn-dialog>
+
+<script type="module">
+  // Suppress the bubbling of the syn-hide event of the details element
+  document.querySelector('syn-details').addEventListener('syn-hide', e => {
+    e.stopPropagation();
+  });
+
+  document.querySelector("syn-dialog").addEventListener("syn-hide", e => {
+    const { target } = e;
     target.close();
   });
 </script>

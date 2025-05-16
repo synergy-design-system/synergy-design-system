@@ -38,3 +38,8 @@ export type DemoFormData = {
   role: string;
   topics: string[];
 };
+
+/**
+ * A type representing the different types of side navigation.
+ */
+export type SideNavTypes = 'default' | 'rail' | 'sticky';

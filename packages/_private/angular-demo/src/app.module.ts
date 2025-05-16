@@ -9,8 +9,9 @@ import { AppComponent } from './app.component';
 import { Home } from './home/home.component';
 import { DemoForm } from './demoform/demoform.component';
 import { DemoFormValidate } from './demoformvalidate/demoformvalidate.component';
-import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
+import { SidenavSwitchComponent } from './sidenavswitch/sidenavswitch.component';
 import { SizeSwitchComponent } from './sizeswitch/sizeswitch.component';
+import { ThemeSwitchComponent } from './themeswitch/themeswitch.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
   SynNavItemRouterLinkDirective,
@@ -33,10 +34,11 @@ import { DemoFieldSetModule } from './modules/demofieldset.module';
     SynergyFormsModule,
     SynNavItemRouterLinkDirective,
     SynNavItemRouterLinkActiveDirective,
+    SidenavSwitchComponent,
     SizeSwitchComponent,
     DemoFormValidate,
     DemoFieldSetModule,
-  ],
+],
   providers: [],
   bootstrap: [AppComponent],
 })

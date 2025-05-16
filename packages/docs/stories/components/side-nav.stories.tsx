@@ -182,8 +182,7 @@ export const Sticky: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: add correct doc token
-        story: generateStoryDescription('side-nav', 'rail'),
+        story: generateStoryDescription('side-nav', 'sticky'),
       },
     },
   },

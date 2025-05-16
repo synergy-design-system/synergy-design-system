@@ -40,6 +40,9 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
+ * @slot toggle-label - The label of the toggle nav-item for variant="sticky".
+ * @slot toggle-icon - An icon to use in lieu of the default icon for the toggle nav-item
+ * for variant="sticky".
  *
  * @event syn-show - Emitted when the side-nav opens.
  * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
@@ -60,7 +63,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart drawer__base - The drawer's base wrapper
  * @csspart toggle-nav-item - The nav-item to toggle open state for variant="sticky"
  * @csspart toggle-icon - The icon of the toggle nav-item for variant="sticky"
- *
+ * @csspart toggle-label - The label of the toggle nav-item for variant="sticky".
+
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav
@@ -427,8 +431,12 @@ export default class SynSideNav extends SynergyElement {
             <slot name="footer" part="footer" ></slot>
             ${this.variant === 'sticky'
               ? html`<syn-nav-item part="toggle-nav-item" class="side-nav__toggle-nav-item" @click=${this.toggleOpenState} ?divider=${hasFooter}>
-                      <syn-icon slot="prefix" library="system" name="sticky_sidebar" part="toggle-icon"></syn-icon>
-                      ${(!this.open && !this.isAnimationActive) ? this.localize.term('sideNavShow') : this.localize.term('sideNavHide')}
+                      <slot name="toggle-icon" slot="prefix" class="side-nav__toggle-icon">
+                        <syn-icon library="system" name="sticky_sidebar" part="toggle-icon"></syn-icon>
+                      </slot>
+                      <slot name="toggle-label" part="toggle-label">
+                        ${(!this.open && !this.isAnimationActive) ? this.localize.term('sideNavShow') : this.localize.term('sideNavHide')}
+                      </slot>
                     </syn-nav-item>`
               : ''
             }

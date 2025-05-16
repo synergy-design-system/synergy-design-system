@@ -139,6 +139,11 @@ export default css`
   }
 
 
+  .side-nav__toggle-icon > syn-icon {
+    font-size: var(--syn-font-size-x-large);
+    min-width: var(--syn-font-size-x-large);
+  }
+
   /****
    *
    * Footer divider

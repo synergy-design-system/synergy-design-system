@@ -3933,6 +3933,26 @@
           "type": "text"
         }
       },
+      "sticky-navigation-desktop": {
+        "title": {
+          "value": "Sticky Navigation (Desktop)",
+          "type": "text"
+        },
+        "description": {
+          "value": "General Behaviour\n\nThe navigation maintains its compact width until the user clicks the “show sidebar” icon at the bottom. When the navigation expands, it shifts the content area. To reduce the navigation's width, the user simply clicks “Hide sidebar” again.",
+          "type": "text"
+        }
+      },
+      "sticky-navigation-mobile": {
+        "title": {
+          "value": "Sticky Navigation (Mobile)",
+          "type": "text"
+        },
+        "description": {
+          "value": "General Behaviour\n\nThe navigation maintains its compact width until the user clicks the “show sidebar” icon at the bottom. When the navigation expands, it shifts the content area. To reduce the navigation's width, the user simply clicks “Hide sidebar” again.",
+          "type": "text"
+        }
+      },
       "top-navigation": {
         "title": {
           "value": "Top Navigation",

@@ -41,6 +41,9 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @slot - The main content of the side-nav. Used for <syn-nav-item /> elements.
  * @slot footer - The footer content of the side-nav. Used for <syn-nav-item /> elements.
  *    Please avoid having to many nav-items as it can massively influence the user experience.
+ * @slot toggle-label - The label of the toggle nav-item for variant="sticky".
+ * @slot toggle-icon - An icon to use in lieu of the default icon for the toggle nav-item
+ * for variant="sticky".
  *
  * @event syn-show - Emitted when the side-nav opens.
  * @event syn-after-show - Emitted after the side-nav opens and all animations are complete.
@@ -61,7 +64,8 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  * @csspart drawer__base - The drawer's base wrapper
  * @csspart toggle-nav-item - The nav-item to toggle open state for variant="sticky"
  * @csspart toggle-icon - The icon of the toggle nav-item for variant="sticky"
- *
+ * @csspart toggle-label - The label of the toggle nav-item for variant="sticky".
+
  * @cssproperty  --side-nav-open-width - The width of the side-nav if in open state
  *
  * @animation sideNav.showNonRail - The animation to use when showing the side-nav

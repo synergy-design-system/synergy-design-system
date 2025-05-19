@@ -40,8 +40,10 @@
               "@fontsource/open-sans/600-italic.css",
               "@fontsource/open-sans/700.css",
               "@fontsource/open-sans/700-italic.css",
-              "@synergy-design-system/tokens/themes/dark.css",
-              "@synergy-design-system/tokens/themes/light.css",
+              "@synergy-design-system/tokens/themes/brand25-dark.css",
+              "@synergy-design-system/tokens/themes/brand25-light.css",
+              "@synergy-design-system/tokens/default-dark.css",
+              "@synergy-design-system/tokens/default.css",
               "@synergy-design-system/components/index.css",
               "@synergy-design-system/styles/index.css",
               "src/app.css"

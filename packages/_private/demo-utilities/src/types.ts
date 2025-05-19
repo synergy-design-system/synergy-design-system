@@ -38,3 +38,13 @@ export type DemoFormData = {
   role: string;
   topics: string[];
 };
+
+/**
+ * A type representing the allowed themes for an application.
+ */
+export type AllowedThemes = 'brand25' | 'synergy';
+
+/**
+ * A type representing the allowed modes for the theme.
+ */
+export type AllowedModes = 'light' | 'dark';

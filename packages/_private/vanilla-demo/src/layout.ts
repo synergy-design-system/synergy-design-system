@@ -42,10 +42,19 @@ export const createLayout = () => `
         </syn-tooltip>
       </syn-button-group>
 
+      <syn-divider vertical></syn-divider>
+
+      <syn-icon-button
+        label="Experimental Theme? ✗"
+        name="visibility"
+        id="theme-switch"
+        size="small"
+      ></syn-icon-button>
+
       <syn-switch
         data-theme-light="☀️"
         data-theme-dark="🌙"
-        id="theme-switch"
+        id="mode-switch"
         size="small"
       >🌙</syn-switch>
     </div>

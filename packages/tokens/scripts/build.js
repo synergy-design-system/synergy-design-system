@@ -55,7 +55,10 @@ const cssRuns = ['brand25', 'synergy24'].map(brand => ['dark', 'light']
     // Make sure to save the original synergy themes as "light" and "dark"
     // and the new ones as "brand25-light" and "brand25-dark".
     // For the next major release, we will remove the old theme names for a unified file name.
-    const destination = brand === 'synergy24' ? `${theme}.css` : `${brand}-${theme}.css`;
+    const initialName = brand === 'synergy24' ? theme : `${brand}-${theme}`;
+    const destination = `${initialName}.css`;
+    const selector = `.syn-theme-${initialName}`;
+
     const themeInstance = await dictionary.extend({
       platforms: {
         css: {
@@ -67,6 +70,7 @@ const cssRuns = ['brand25', 'synergy24'].map(brand => ['dark', 'light']
             options: {
               fileHeader: 'syn/header',
               prefix: config.prefix,
+              selector,
               theme,
             },
           }],

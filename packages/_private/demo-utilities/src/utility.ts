@@ -1,3 +1,8 @@
+import type {
+  AllowedModes,
+  AllowedThemes,
+} from './types.js';
+
 /**
  * Capitalizes the first letter of a string
  * @param s string to be capitalized
@@ -12,3 +17,24 @@ export const currencyNumberFormatter = new Intl.NumberFormat('de-DE', {
   maximumFractionDigits: 0,
   style: 'currency',
 });
+
+/**
+ * Sets the body class to the given theme and mode
+ * @param theme The theme to use. Either brand25 or synergy
+ * @param mode The mode for the theme. Either light or dark
+ */
+export const setTheme = (theme: AllowedThemes, mode: AllowedModes) => {
+  const nextClassName = theme === 'brand25'
+    ? `syn-theme-brand25-${mode}`
+    : `syn-theme-${mode}`;
+
+  const { body } = document;
+
+  // Skip, there is nothing to do as its the same theme and mode
+  if (body.classList.contains(nextClassName)) {
+    return;
+  }
+
+  body.classList.remove('syn-theme-light', 'syn-theme-dark', 'syn-theme-brand25-light', 'syn-theme-brand25-dark');
+  body.classList.add(nextClassName);
+};

@@ -1,3 +1,10 @@
-<syn-switch (synChangeEvent)="switchTheme($event)" size="small">
-  {{ currentTheme }}
+<syn-icon-button
+  [label]="`Experimental Theme? ${currentTheme === 'brand25' ? '✓' : '✗'}`"
+  [name]="currentTheme === 'brand25' ? 'visibility_off' : 'visibility'"
+  size="small"
+  (click)="setCurrentTheme()"
+/>
+
+<syn-switch (synChangeEvent)="setCurrentMode($event)" size="small">
+  {{ currentMode === 'dark' ? '🌙' : '🌞' }}
 </syn-switch>

@@ -1,8 +1,10 @@
 import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/brand25-dark.css';
+import '@synergy-design-system/tokens/themes/brand25-light.css';
+import '@synergy-design-system/tokens/default-dark.css';
+import '@synergy-design-system/tokens/default.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../../components/src/synergy';
@@ -18,17 +20,24 @@ import '../../components/src/synergy';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME } from './modes.js';
+import {
+  SICK_DARK_THEME,
+  SICK_LIGHT_THEME,
+  SYNERGY_DARK_THEME,
+  SYNERGY_LIGHT_THEME,
+} from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { storybookUtilities } from '../src/helpers/component.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: LIGHT_THEME,
+  defaultTheme: SYNERGY_LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [LIGHT_THEME]: 'syn-theme-light',
-    [DARK_THEME]: 'syn-theme-dark',
+    [SICK_DARK_THEME]: 'syn-theme-brand25-dark',
+    [SICK_LIGHT_THEME]: 'syn-theme-brand25-light',
+    [SYNERGY_LIGHT_THEME]: 'syn-theme-light',
+    [SYNERGY_DARK_THEME]: 'syn-theme-dark',
   },
 });
 
@@ -60,11 +69,11 @@ const preview: Preview = {
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
       modes: {
-        [LIGHT_THEME]: {
-          theme: LIGHT_THEME,
+        [SYNERGY_LIGHT_THEME]: {
+          theme: SYNERGY_LIGHT_THEME,
         },
-        [DARK_THEME]: {
-          theme: DARK_THEME,
+        [SYNERGY_DARK_THEME]: {
+          theme: SYNERGY_DARK_THEME,
         },
       },
     },

@@ -82,6 +82,8 @@ export const withSpriteSheetGenerator = {
         'settings',
         'warning',
         'error',
+        'visibility_off',
+        'visibility',
       ],
     }),
     viteStaticCopy({

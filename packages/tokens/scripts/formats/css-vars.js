@@ -17,10 +17,10 @@ export const cssVariableFormatter = {
   }) => {
     const {
       prefix,
+      selector,
       theme,
     } = options;
 
-    const bodySelector = `.${prefix}theme-${theme}`;
     const header = await fileHeader({ file });
 
     /**
@@ -88,7 +88,7 @@ export const cssVariableFormatter = {
     convertOriginalToCssVarRecursive(dictionary);
 
     return `
-${header}:root, ${bodySelector} {
+${header}:root, ${selector} {
   color-scheme: ${theme};
 
 ${formattedVariables({

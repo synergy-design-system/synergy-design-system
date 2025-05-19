@@ -51,12 +51,12 @@ The tokens package ships two themes (Synergy and Brand25), providing two modes e
 
 You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
 
-| Theme   | Mode  | Stylesheet to use                 | Body className    |
-| :------ | :---- | :-------------------------------- | :---------------- |
-| Synergy | light | `tokens/themes/light.css`         | `syn-theme-light` |
-| Synergy | dark  | `tokens/themes/dark.css`          | `syn-theme-dark`  |
-| Brand25 | light | `tokens/themes/brand25-light.css` | `syn-theme-light` |
-| Brand25 | dark  | `tokens/themes/brand25-dark.css`  | `syn-theme-dark`  |
+| Theme   | Mode  | Stylesheet to use                 | Body className            |
+| :------ | :---- | :-------------------------------- | :------------------------ |
+| Synergy | light | `tokens/themes/light.css`         | `syn-theme-light`         |
+| Synergy | dark  | `tokens/themes/dark.css`          | `syn-theme-dark`          |
+| Brand25 | light | `tokens/themes/brand25-light.css` | `syn-theme-brand25-light` |
+| Brand25 | dark  | `tokens/themes/brand25-dark.css`  | `syn-theme-brand25-dark`  |
 
 To switch the theme, proceed in the following way:
 

@@ -7,7 +7,12 @@ import {
   enableExperimentalSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
-import { capitalize } from '@synergy-design-system/demo-utilities';
+import {
+  type AllowedModes,
+  type AllowedThemes,
+  capitalize,
+  setTheme,
+} from '@synergy-design-system/demo-utilities';
 
 // Load webfonts
 import '@fontsource/open-sans/400.css';
@@ -17,8 +22,10 @@ import '@fontsource/open-sans/600-italic.css';
 import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/700-italic.css';
 
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/brand25-dark.css';
+import '@synergy-design-system/tokens/themes/brand25-light.css';
+import '@synergy-design-system/tokens/default-dark.css';
+import '@synergy-design-system/tokens/default.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
@@ -30,17 +37,28 @@ import {
   setGlobalSize,
 } from './utils.js';
 
+let currentTheme: AllowedThemes = 'synergy';
+let currentMode: AllowedModes = 'light';
+
 const initThemeSwitch = async () => {
+  await customElements.whenDefined('syn-icon-button');
   await customElements.whenDefined('syn-switch');
 
-  const { body } = document;
-  const elm = document.querySelector<SynSwitch>('#theme-switch');
-  elm?.addEventListener('syn-change', (e: SynChangeEvent) => {
+  const themeButton = document.querySelector<SynIconButton>('#theme-switch');
+  const modeSwitch = document.querySelector<SynSwitch>('#mode-switch');
+
+  themeButton?.addEventListener('click', () => {
+    currentTheme = currentTheme === 'brand25' ? 'synergy' : 'brand25';
+    themeButton.label = `Experimental Theme? ${currentTheme === 'brand25' ? '✓' : '✗'}`;
+    themeButton.name = currentTheme === 'brand25' ? 'visibility_off' : 'visibility';
+    setTheme(currentTheme, currentMode);
+  });
+
+  modeSwitch?.addEventListener('syn-change', (e: SynChangeEvent) => {
     const { checked } = e.target as SynSwitch;
-    const theme = checked ? 'dark' : 'light';
-    body.classList.remove('syn-theme-light', 'syn-theme-dark');
-    body.classList.add(`syn-theme-${theme}`);
-    elm.innerHTML = elm.dataset[`theme${capitalize(theme)}`] ?? '';
+    currentMode = checked ? 'dark' : 'light';
+    setTheme(currentTheme, currentMode);
+    modeSwitch.innerHTML = modeSwitch.dataset[`theme${capitalize(currentMode)}`] ?? '';
   });
 };
 

@@ -371,13 +371,8 @@ export default class SynSideNav extends SynergyElement {
       // The `variant` should be adapted to the `rail` attribute,
       // if it was explicitly set or unset by the user.
       // This is needed to be backwards compatible with the `rail` attribute
-      if (!changedProperties.has('variant')) {
+      if (!changedProperties.has('variant') || this.rail) {
         this.variant = this.rail ? 'rail' : 'default';
-        return;
-      }
-
-      if (this.rail) {
-        this.variant = 'rail';
       }
     }
   }

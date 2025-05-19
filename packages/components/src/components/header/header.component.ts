@@ -61,6 +61,11 @@ export default class SynHeader extends SynergyElement {
    */
   private mutationObserver: MutationObserver;
 
+  /*
+   * #587: If the side nav is animating, we should not allow to trigger the burger menu
+   */
+  private isSideNavAnimating = false;
+
   /**
    * The headers label. If you need to display HTML, use the `label` slot instead.
    */
@@ -91,10 +96,12 @@ export default class SynHeader extends SynergyElement {
 
   private handleBurgerMenuToggle() {
     // If there is a side-nav in non-rail mode, toggle the open state!
-    if (this.sideNav && !this.sideNav.rail) {
+    if (this.sideNav && !this.sideNav.rail && !this.isSideNavAnimating) {
       this.sideNav.open = !this.sideNav.open;
     }
-    this.toggleBurgerMenu();
+    if (!this.isSideNavAnimating) {
+      this.toggleBurgerMenu();
+    }
   }
 
   /**
@@ -159,6 +166,21 @@ export default class SynHeader extends SynergyElement {
       // Otherwise the mutation observer won`t trigger the method.
       this.updateBurgerMenuBasedOnSideNav();
       this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'rail'], attributes: true });
+
+      // #587: Make sure to not trigger the burger menu if the side nav is currently
+      // animating and the user clicks on the burger menu button.
+      const isAnimating = () => {
+        this.isSideNavAnimating = true;
+      };
+
+      const isNotAnimating = () => {
+        this.isSideNavAnimating = false;
+      };
+
+      this.sideNav.addEventListener('syn-show', isAnimating);
+      this.sideNav.addEventListener('syn-hide', isAnimating);
+      this.sideNav.addEventListener('syn-after-show', isNotAnimating);
+      this.sideNav.addEventListener('syn-after-hide', isNotAnimating);
     }
   }
 

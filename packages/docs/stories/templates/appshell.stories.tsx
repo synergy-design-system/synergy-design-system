@@ -216,8 +216,7 @@ export const StickyNavigationDesktop: Story = {
   parameters: {
     docs: {
       description: {
-        // TODO: add new sticky description as soon as doc token is available
-        story: generateStoryDescription('application-shell', 'rail-navigation-desktop', 'templates'),
+        story: generateStoryDescription('application-shell', 'sticky-navigation-desktop', 'templates'),
       },
     },
   },
@@ -265,8 +264,7 @@ export const StickyNavigationMobile: Story = {
     },
     docs: {
       description: {
-        // TODO: add new sticky description as soon as doc token is available
-        story: generateStoryDescription('application-shell', 'rail-navigation-mobile', 'templates'),
+        story: generateStoryDescription('application-shell', 'sticky-navigation-mobile', 'templates'),
       },
       // disable: true,
     },

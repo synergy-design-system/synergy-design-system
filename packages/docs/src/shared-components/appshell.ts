@@ -62,7 +62,7 @@ export const createFooter = () => html`
           </a>
         </li>
       </ul>
-      <p class="copyright">&copy; 2024 SICK AG</p>
+      <p class="copyright">&copy; 2025 SICK AG</p>
     </nav>
   </footer>
   <!-- /footer -->

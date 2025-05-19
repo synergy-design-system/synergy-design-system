@@ -48,7 +48,7 @@ export const appShell = {
   appName: 'Synergy',
   footer: {
     conditions: 'Terms and conditions',
-    copyright: '© 2024 SICK AG',
+    copyright: '© 2025 SICK AG',
     imprint: 'Imprint',
     privacy: 'Privacy Policy',
     terms: 'Terms of use',
@@ -129,7 +129,7 @@ export const footer = {
     termsOfUse: 'https://www.sick.com/terms-of-use',
     privacyPolicy: 'https://www.sick.com/dataprotection',
   },
-  copyRight: '© 2024 SICK AG',
+  copyRight: '© 2025 SICK AG',
 };
 
 export const translations = {

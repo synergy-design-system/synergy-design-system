@@ -88,7 +88,7 @@ In other cases, make sure to suppress the other elements emitted `syn-hide` even
 </syn-dialog>
 
 <script type="module">
-  // This listener is will only work on syn-dialog!
+  // This listener will only work on syn-dialog!
   document
     .querySelector("syn-dialog")
     .addEventListener("syn-request-close", e => {

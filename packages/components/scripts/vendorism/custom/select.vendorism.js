@@ -251,6 +251,34 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
+  // #851: Fix angular problem with multiple and initial attribute
+  // value ( `<syn-select multiple value="1 2">` )
+  content = addSectionsBefore([
+    [
+      "isAllowedValue } from './utility.js';",
+      'compareValues, ',
+      { newlinesAfterInsertion: 0 },
+    ],
+  ], content);
+
+  content = replaceSections([
+    [
+      `if (this._value === val) {
+      return;
+    }`,
+      `if (compareValues(this._value, val)) {
+      return;
+    }`,
+    ],
+    [
+      `this.handleDelimiterChange();
+    const value = Array.isArray(val) ? val : [val];`,
+      `this.handleDelimiterChange();
+    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);`,
+    ],
+  ], content);
+  // End#851
+
   return {
     content,
     path,

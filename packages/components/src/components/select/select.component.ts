@@ -562,7 +562,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const val = this.valueHasChanged ? this.value : this.defaultValue;
 
     this.handleDelimiterChange();
-    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);;
+    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
     const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items

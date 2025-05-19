@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.31.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.0...components/2.31.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* 🐛 syn-side-nav does not correctly reappear after double-click on burger menu ([#865](https://github.com/synergy-design-system/synergy-design-system/issues/865)) ([fde5c13](https://github.com/synergy-design-system/synergy-design-system/commit/fde5c13426b410fc98a31d21432ab191cdb57392))
+
 # [@synergy-design-system/components-v2.31.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.5...components/2.31.0) (2025-05-13)
 
 

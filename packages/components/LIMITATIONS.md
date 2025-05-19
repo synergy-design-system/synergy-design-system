@@ -52,7 +52,7 @@ Rendering is a crucial task of current frontend frameworks. Most frameworks will
 
 ### Description
 
-A `<syn-dialog>` element may close itself unexpectedly when interacting with elements like `<syn-select>`, `<syn-accordion>` or `<dyn-details>` and having a listener attached on the `syn-close` event.
+A `<syn-dialog>` element may close itself unexpectedly when interacting with elements like `<syn-select>`, `<syn-accordion>` or `<syn-details>` and having a listener attached on the `syn-hide` event.
 
 ### Cause
 

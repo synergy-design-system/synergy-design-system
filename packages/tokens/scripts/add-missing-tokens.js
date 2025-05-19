@@ -91,8 +91,6 @@ export const addMissingTokens = (prefix, targetDir) => {
         const sourceFilePath = path.join(sourceDir, `${theme}.css`);
         const targetFilePath = path.join(targetDir, targetFile);
 
-        console.log(sourceFilePath, targetFilePath);
-
         if (existsSync(sourceFilePath)) {
           compareAndAppendVariables(sourceFilePath, targetFilePath, prefix);
         }

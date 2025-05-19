@@ -31,6 +31,7 @@ export const cssVariableFormatter = {
      */
     const isValidTokenName = (name = '') => (![
       'color',
+      'font',
       'spacing',
     ]
       .map(p => `${prefix}${p}`)

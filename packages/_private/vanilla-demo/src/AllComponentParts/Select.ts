@@ -47,5 +47,13 @@ export const Select = (regressions: Array<() => void> = []) => {
       multiple
       value="1|2"
     ></syn-select>
+
+    <syn-select
+      data-testid="select-851-multiple"
+      help-text="Normal value binding and async options"
+      label="Multiple with async options"
+      multiple
+      value="1 2"
+    ></syn-select>
   `;
 };

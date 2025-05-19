@@ -275,8 +275,6 @@ test.describe('<SynSelect />', () => {
     test.describe(`Feature#540: ${name}`, () => {
       test('should select the given elements when the delimiter is set', async ({ page }) => {
         // Angular currently has problems with selection.
-        // @todo: Remove this after #847 is fixed!
-        test.skip(name === 'angular', 'Angular currently has problems with selection. Please see #847');
 
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -381,6 +379,24 @@ test.describe('<SynSelect />', () => {
         expect(resetDisplayedValue).toEqual('Option 1');
       });
     }); // regression#813
+
+    test.describe(`Regression#851: ${name}`, () => {
+      test('should show the text content of the options, when value was set initially via normal binding and options added dynamically with multiple', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select851Multiple');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
+        const value = await select.evaluate((ele: SynSelect) => ele.value);
+
+        expect(value).toEqual(['1', '2']);
+        expect(displayedValue).toEqual('2 options selected');
+      });
+    }); // regression#851
   }); // End frameworks
 }); // </syn-select>
 

@@ -27,7 +27,7 @@ import '@synergy-design-system/components/components/select/select.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *
@@ -71,6 +71,7 @@ import '@synergy-design-system/components/components/select/select.js';
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @Component({
   selector: 'syn-select',
@@ -121,6 +122,18 @@ export class SynSelectComponent {
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
+  }
+
+  /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
+ */
+  @Input()
+  set delimiter(v: SynSelect['delimiter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
+  }
+  get delimiter(): SynSelect['delimiter'] {
+    return this.nativeElement.delimiter;
   }
 
   /**

@@ -1,3 +1,108 @@
+# [@synergy-design-system/components-v2.31.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.5...components/2.31.0) (2025-05-13)
+
+
+### Features
+
+* ✨ syn-combobox, syn-select: Allow listbox of syn-select to exceed the input width ([#861](https://github.com/synergy-design-system/synergy-design-system/issues/861)) ([0759a8f](https://github.com/synergy-design-system/synergy-design-system/commit/0759a8f3545200dc9fb93d51ccd4c1e6b503c0b8))
+
+# [@synergy-design-system/components-v2.30.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.4...components/2.30.5) (2025-05-13)
+
+
+### Bug Fixes
+
+* 🐛 syn-tooltip - box-shadow bleeds into tooltip arrow ([#863](https://github.com/synergy-design-system/synergy-design-system/issues/863)) ([853ed25](https://github.com/synergy-design-system/synergy-design-system/commit/853ed2534f9cc470959501f66453d0e17ec5839f))
+
+# [@synergy-design-system/components-v2.30.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.3...components/2.30.4) (2025-05-12)
+
+
+### Bug Fixes
+
+* 🐛 Tags expand and push out UI elements in syn-select with multiple enabled and fixed width ([#859](https://github.com/synergy-design-system/synergy-design-system/issues/859)) ([74a33f4](https://github.com/synergy-design-system/synergy-design-system/commit/74a33f423735a1a125582eb868da052809200fe6))
+
+# [@synergy-design-system/components-v2.30.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.2...components/2.30.3) (2025-05-08)
+
+
+### Bug Fixes
+
+* 🤔 Vendorism rewrites inline comment tickets to github to synergy account ([#860](https://github.com/synergy-design-system/synergy-design-system/issues/860)) ([99c9b43](https://github.com/synergy-design-system/synergy-design-system/commit/99c9b438e0485550215a810c2d33833140ac941e))
+
+# [@synergy-design-system/components-v2.30.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.1...components/2.30.2) (2025-05-07)
+
+
+### Bug Fixes
+
+* 🐛 Form fields: Allow to set title attribute for the whole component ([#858](https://github.com/synergy-design-system/synergy-design-system/issues/858)) ([affa56b](https://github.com/synergy-design-system/synergy-design-system/commit/affa56bd5d22d93aaf615a1293ff8b4b9f541d22))
+
+# [@synergy-design-system/components-v2.30.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.0...components/2.30.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* 🐛 syn-input has some paddings which are not aligned with design ([#852](https://github.com/synergy-design-system/synergy-design-system/issues/852)) ([15f110a](https://github.com/synergy-design-system/synergy-design-system/commit/15f110aca5b3e81d1860cf930942a3d1555d6d9b))
+
+# [@synergy-design-system/components-v2.30.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.1...components/2.30.0) (2025-04-16)
+
+
+### Features
+
+* ✨ Let users configure delimiter for syn-select ([#844](https://github.com/synergy-design-system/synergy-design-system/issues/844)) ([b19fe82](https://github.com/synergy-design-system/synergy-design-system/commit/b19fe82ac6e19ad5daf7b776f3bae40044bbe389))
+
+# [@synergy-design-system/components-v2.29.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.29.0...components/2.29.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* 🐛 Make the syn-select more robust to allow undefined as value ([#846](https://github.com/synergy-design-system/synergy-design-system/issues/846)) ([87fc921](https://github.com/synergy-design-system/synergy-design-system/commit/87fc921b8ce2f50fc609d6827b7923e1ab27a86e))
+
+# [@synergy-design-system/components-v2.29.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.28.0...components/2.29.0) (2025-04-11)
+
+
+### Features
+
+* ✨ syn-select should allow numeric types as value ([#842](https://github.com/synergy-design-system/synergy-design-system/issues/842)) ([29156b2](https://github.com/synergy-design-system/synergy-design-system/commit/29156b239a1192ae6bbf0c805543a9e5b286658e))
+
+# [@synergy-design-system/components-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.27.0...components/2.28.0) (2025-04-10)
+
+
+### Features
+
+* ✨ improve delayed loading of system icons ([#837](https://github.com/synergy-design-system/synergy-design-system/issues/837)) ([ab0fab2](https://github.com/synergy-design-system/synergy-design-system/commit/ab0fab2b66402b383c4d974cf16f94b43b8b987b))
+
+# [@synergy-design-system/components-v2.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.4...components/2.27.0) (2025-04-10)
+
+
+### Features
+
+* ✨ syn-range should align vertically with other input elements ([#836](https://github.com/synergy-design-system/synergy-design-system/issues/836)) ([680962a](https://github.com/synergy-design-system/synergy-design-system/commit/680962ab95ab95efc36392021480992de8f33352))
+
+# [@synergy-design-system/components-v2.26.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.3...components/2.26.4) (2025-04-02)
+
+
+### Bug Fixes
+
+* 🐛 dynamically added active tab in angular does not show any panel content ([#832](https://github.com/synergy-design-system/synergy-design-system/issues/832)) ([bb9c1c0](https://github.com/synergy-design-system/synergy-design-system/commit/bb9c1c00333b38f2db2d1a788aff7e42434ae89d))
+
+# [@synergy-design-system/components-v2.26.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.2...components/2.26.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* 🐛 disabling syn-option does not work when nested in syn-optgroup ([#819](https://github.com/synergy-design-system/synergy-design-system/issues/819)) ([507797e](https://github.com/synergy-design-system/synergy-design-system/commit/507797ec54cc9514e11bc32528ea5fd70d93d2b0))
+
+# [@synergy-design-system/components-v2.26.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.1...components/2.26.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* 🐛  Upgrade packages to latest versions ([#830](https://github.com/synergy-design-system/synergy-design-system/issues/830)) ([f5fe54f](https://github.com/synergy-design-system/synergy-design-system/commit/f5fe54fb55732b1e3efdf3062d55ee517aef4e81))
+
+# [@synergy-design-system/components-v2.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.26.0...components/2.26.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* 🐛 Combobox and select not showing selected value if value was initially set via property binding ([#822](https://github.com/synergy-design-system/synergy-design-system/issues/822)) ([bb06d87](https://github.com/synergy-design-system/synergy-design-system/commit/bb06d87e64467d3710acf74868a69372be1225aa))
+
 # [@synergy-design-system/components-v2.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.25.0...components/2.26.0) (2025-03-27)
 
 

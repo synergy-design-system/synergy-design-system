@@ -8,7 +8,7 @@
 /* eslint-disable */
 import '../../internal/scrollend-polyfill.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { eventOptions, property, query, state } from 'lit/decorators.js';
+import { eventOptions, property, query, queryAssignedElements, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { scrollIntoView } from '../../internal/scroll.js';
@@ -25,7 +25,7 @@ import type SynTabPanel from '../tab-panel/tab-panel.js';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
- * @documentation https://synergy.style/components/tab-group
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
  * @status stable
  * @since 2.0
  *
@@ -59,9 +59,9 @@ export default class SynTabGroup extends SynergyElement {
   private activeTab?: SynTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
-  private tabs: SynTab[] = [];
+  @queryAssignedElements({ slot: 'nav', selector: 'syn-tab' }) tabs: SynTab[];;
   private focusableTabs: SynTab[] = [];
-  private panels: SynTabPanel[] = [];
+  @queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];;
   private readonly localize = new LocalizeController(this);
 
   @query('.tab-group') tabGroup: HTMLElement;
@@ -149,17 +149,14 @@ export default class SynTabGroup extends SynergyElement {
     // After the first update...
     this.updateComplete.then(() => {
       this.syncTabsAndPanels();
+
       this.mutationObserver.observe(this, {
         attributes: true,
-        attributeFilter: [
-          'active',
-          'disabled',
-          'name',
-          'panel',
-        ],
+        attributeFilter: ['active', 'disabled', 'name', 'panel'],
         childList: true,
         subtree: true
       });
+
       this.resizeObserver.observe(this.nav);
 
       // Wait for tabs and tab panels to be registered
@@ -184,16 +181,6 @@ export default class SynTabGroup extends SynergyElement {
     if (this.nav) {
       this.resizeObserver?.unobserve(this.nav);
     }
-  }
-
-  private getAllTabs() {
-    const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
-
-    return slot.assignedElements() as SynTab[];
-  }
-
-  private getAllPanels() {
-    return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'syn-tab-panel') as [SynTabPanel];
   }
 
   private getActiveTab() {
@@ -360,8 +347,7 @@ export default class SynTabGroup extends SynergyElement {
 
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
-    const allTabs = this.getAllTabs();
-    const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
+    const precedingTabs = this.tabs.slice(0, this.tabs.indexOf(currentTab));
     const offset = precedingTabs.reduce(
       (previous, current) => ({
         left: previous.left + current.clientWidth,
@@ -388,10 +374,7 @@ export default class SynTabGroup extends SynergyElement {
 
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   private syncTabsAndPanels() {
-    this.tabs = this.getAllTabs();
     this.focusableTabs = this.tabs.filter(el => !el.disabled);
-
-    this.panels = this.getAllPanels();
     this.syncIndicator();
 
     // After updating, show or hide scroll controls as needed
@@ -457,7 +440,7 @@ export default class SynTabGroup extends SynergyElement {
       // Safari appears to calculate this incorrectly when zoomed at 110%, causing the controls to toggle indefinitely.
       // Adding a single pixel to the comparison seems to resolve it.
       //
-      // See https://github.com/synergy-design-system/synergy/issues/1839
+      // See https://github.com/shoelace-style/shoelace/issues/1839
       this.hasScrollControls =
         ['top'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
     }

@@ -61,7 +61,8 @@ export default css`
     display: flex;
     align-items: center;
     font-size: var(--syn-font-size-medium);
-    padding-inline-end: var(--syn-spacing-medium);
+    margin-inline-end: var(--syn-spacing-medium);
+    align-self: center;
   }
 
   .alert__countdown {

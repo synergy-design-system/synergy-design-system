@@ -7,7 +7,7 @@
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *
@@ -51,6 +51,7 @@
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/select/select.js';
@@ -76,6 +77,12 @@ defineExpose({
 
 // Map attributes
 const props = defineProps<{
+  /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
+ */
+  delimiter?: SynSelect['delimiter'];
+
   /**
    * The name of the select, submitted as a name/value pair with form data.
    */

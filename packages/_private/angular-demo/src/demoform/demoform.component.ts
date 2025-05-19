@@ -1,30 +1,10 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-const initialData = {
-  code: '',
-  comment: '',
-  date: '',
-  donations: '2000 4000',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterAngular: false,
-  newsletterBeta: false,
-  newsletterReact: false,
-  newsletterStandard: false,
-  newsletterVanilla: false,
-  newsletterVue: false,
-  password: 'invalid',
-  phone: '',
-  role: '',
-  topics: [],
-};
+const initialData = mockData('initialFullFormData');
 
 @Component({
   selector: 'demo-form',
@@ -38,15 +18,11 @@ export class DemoForm {
 
   formData!: FormGroup;
 
-  nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+  nationalities = mockData('nationalities');
 
   highlightOptionRenderer = highlightOptionRenderer;
 
-  formatter = new Intl.NumberFormat('de-DE', {
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    style: 'currency',
-  });
+  formatter = currencyNumberFormatter;
 
   private _initFormData() {
     this.formData = this.fb.group({

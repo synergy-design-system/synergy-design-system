@@ -16,11 +16,12 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './option.styles.js';
 import customStyles from './option.custom.styles.js';
+import { delimiterToWhiteSpace } from './utility.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
- * @documentation https://synergy.style/components/option
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs
  * @status stable
  * @since 2.0
  *
@@ -47,6 +48,10 @@ export default class SynOption extends SynergyElement {
 
   @query('.option__label') defaultSlot: HTMLSlotElement;
 
+  // the delimiter used to separate multiple values in a select
+  // This is provided by the wrapping syn-select
+  @state() delimiter = ' ';
+
   @state() current = false; // the user has keyed into the option, but hasn't selected it yet (shows a highlight)
   @state() selected = false; // the option is selected and has aria-selected="true"
   @state() hasHover = false; // we need this because Safari doesn't honor :hover styles while dragging
@@ -56,7 +61,7 @@ export default class SynOption extends SynergyElement {
    * from other options in the same group. Values may not contain spaces, as spaces are used as delimiters when listing
    * multiple values.
    */
-  @property({ reflect: true }) value = '';
+  @property({ reflect: true }) value: string | number = '';
 
   /** Draws the option in a disabled state, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -107,15 +112,21 @@ export default class SynOption extends SynergyElement {
 
   @watch('value')
   handleValueChange() {
+    if (typeof this.value === 'number') {
+      return;
+    }
+
     // Ensure the value is a string. This ensures the next line doesn't error and allows framework users to pass numbers
     // instead of requiring them to cast the value to a string.
     if (typeof this.value !== 'string') {
       this.value = String(this.value);
     }
 
-    if (this.value.includes(' ')) {
-      console.error(`Option values cannot include a space. All spaces have been replaced with underscores.`, this);
-      this.value = this.value.replace(/ /g, '_');
+    const { delimiter } = this;
+
+    if (this.value.includes(delimiter)) {
+      console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);
+      this.value = delimiterToWhiteSpace(this.value, this.delimiter);
     }
   }
 

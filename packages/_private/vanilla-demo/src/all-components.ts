@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
-import { type SynTabShowEvent } from '@synergy-design-system/components';
 import * as DemoImports from './AllComponentParts/index.js';
+import { allComponentsRegressions } from './all-components-regressions.js';
 
 const Demos = Object.entries(DemoImports);
 const activeDemo = Demos.at(0)?.at(0);
@@ -13,17 +13,7 @@ class AllComponents extends LitElement {
   // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
-      <syn-tab-group
-        @syn-tab-show=${(e: SynTabShowEvent) => {
-          const { name } = e.detail;
-          (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
-
-          const dialog = this.shadowRoot?.querySelector('syn-dialog');
-          if (dialog) {
-            dialog.open = name === 'Dialog';
-          }
-        }}
-      >
+      <syn-tab-group>
         ${Demos.map(([name, Component]) => html`
           <syn-tab
             ?active=${name === activeDemo}
@@ -37,8 +27,8 @@ class AllComponents extends LitElement {
             ?active=${name === activeDemo}
             name=${name}
           >
-            <div id="tab-content-${name}" style="display: contents">
-              ${html`${Component()}`}
+            <div id="tab-content-${name}">
+              ${html`${Component(allComponentsRegressions.has(name) ? allComponentsRegressions.get(name) : [])}`}
             </div>
           </syn-tab-panel>
         `)}

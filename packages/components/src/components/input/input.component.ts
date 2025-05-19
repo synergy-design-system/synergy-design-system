@@ -31,7 +31,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Inputs collect data from the user.
- * @documentation https://synergy.style/components/input
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
  * @status stable
  * @since 2.0
  *
@@ -92,7 +92,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   @query('.input__control') input: HTMLInputElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   private __numberInput = Object.assign(document.createElement('input'), { type: 'number' });
   private __dateInput = Object.assign(document.createElement('input'), { type: 'date' });
@@ -354,7 +354,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
         // When using an Input Method Editor (IME), pressing enter will cause the form to submit unexpectedly. One way
         // to check for this is to look at event.isComposing, which will be true when the IME is open.
         //
-        // See https://github.com/synergy-design-system/synergy/pull/988
+        // See https://github.com/shoelace-style/shoelace/pull/988
         //
         if (!event.defaultPrevented && !event.isComposing) {
           this.formControlController.submit();

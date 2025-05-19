@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -25,11 +26,10 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './drawer.styles.js';
 import customStyles from './drawer.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.
- * @documentation https://synergy.style/components/drawer
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
  * @since 2.0
  *
@@ -206,7 +206,7 @@ export default class SynDrawer extends SynergyElement {
       // drawer's animation to jitter, so we'll temporarily remove the attribute, call `focus({ preventScroll: true })`
       // ourselves, and add the attribute back afterwards.
       //
-      // Related: https://github.com/synergy-design-system/synergy/issues/693
+      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {

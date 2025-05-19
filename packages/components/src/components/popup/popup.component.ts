@@ -27,13 +27,13 @@ function isVirtualElement(e: unknown): e is VirtualElement {
     e !== null &&
     typeof e === 'object' &&
     'getBoundingClientRect' in e &&
-    ('contextElement' in e ? e instanceof Element : true)
+    ('contextElement' in e ? e.contextElement instanceof Element : true)
   );
 }
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
- * @documentation https://synergy.style/components/popup
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
  * @status stable
  * @since 2.0
  *
@@ -401,7 +401,7 @@ export default class SynPopup extends SynergyElement {
     //
     // Use custom positioning logic if the strategy is absolute. Otherwise, fall back to the default logic.
     //
-    // More info: https://github.com/synergy-design-system/synergy/issues/1135
+    // More info: https://github.com/shoelace-style/shoelace/issues/1135
     //
     const getOffsetParent =
       this.strategy === 'absolute'

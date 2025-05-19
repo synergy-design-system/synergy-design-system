@@ -56,7 +56,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.41.2-jammy
+      image: mcr.microsoft.com/playwright:v1.51.1-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -75,8 +75,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # #854: We are only building the components and tokens packages
+      # This is done to speed up the build time
       - name: Build
-        run: pnpm build
+        run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
 
       - name: Run component tests
         run: pnpm test -r --filter 'components'
@@ -89,7 +91,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.50.0-jammy
+      image: mcr.microsoft.com/playwright:v1.51.1-noble
     steps:
       - uses: actions/checkout@v4
 

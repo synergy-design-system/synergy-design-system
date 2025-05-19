@@ -27,7 +27,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
- * @documentation https://synergy.style/components/textarea
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
  * @status stable
  * @since 2.0
  *
@@ -61,7 +61,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
   @query('.textarea__size-adjuster') sizeAdjuster: HTMLTextAreaElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the textarea, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -382,7 +382,7 @@ export default class SynTextarea extends SynergyElement implements SynergyFormCo
               @focus=${this.handleFocus}
               @blur=${this.handleBlur}
             ></textarea>
-            <!-- This "adjuster" exists to prevent layout shifting. https://github.com/synergy-design-system/synergy/issues/2180 -->
+            <!-- This "adjuster" exists to prevent layout shifting. https://github.com/shoelace-style/shoelace/issues/2180 -->
             <div part="textarea-adjuster" class="textarea__size-adjuster" ?hidden=${this.resize !== 'auto'}></div>
           </div>
         </div>

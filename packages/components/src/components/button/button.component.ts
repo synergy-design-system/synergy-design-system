@@ -26,7 +26,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Buttons represent actions that are available to the user.
- * @documentation https://synergy.style/components/button
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs
  * @status stable
  * @since 2.0
  *
@@ -70,7 +70,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
 
   @state() private hasFocus = false;
   @state() invalid = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
   @property({ reflect: true }) variant: 'filled' | 'outline' | 'text' = 'outline';

@@ -19,25 +19,12 @@ import {
   SynVueValidate,
 } from '@synergy-design-system/vue';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import DemoFieldset from './DemoFieldset.vue';
 
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+const nationalities = mockData('nationalities');
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
-};
+const initialFormData = mockData('initialValidateFormData');
 
 const formData = ref({
   ...initialFormData,

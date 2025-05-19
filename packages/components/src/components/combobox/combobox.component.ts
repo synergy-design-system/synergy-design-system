@@ -1,4 +1,4 @@
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, PropertyValues } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
@@ -75,6 +75,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part.
+ * Use this to target the tooltip's popup container.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -108,6 +110,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private lastOptionValue = '';
 
   private isOptionRendererTriggered = false;
+
+  private isInitialized: boolean = false;
 
   @query('.combobox') popup: SynPopup;
 
@@ -242,7 +246,19 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   firstUpdated() {
+    this.isInitialized = true;
     this.formControlController.updateValidity();
+  }
+
+  protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if (!this.isInitialized && !this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set
+      // the defaultValue manually to be able to reset forms and the dynamic loading of options
+      // are working correctly.
+      this.defaultValue = this.value;
+    }
   }
 
   private addOpenListeners() {
@@ -554,7 +570,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Check if the selected option has a value,
     // if not take the text content of the option otherwise the input text
-    const optionValue = this.selectedOption?.value || this.selectedOption?.getTextLabel();
+    let optionValue;
+    if (this.selectedOption?.value) {
+      optionValue = String(this.selectedOption.value);
+    } else {
+      optionValue = this.selectedOption?.getTextLabel();
+    }
 
     if (option) {
       this.lastOptionValue = optionValue || '';
@@ -819,7 +840,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
-    if (!this.isOptionRendererTriggered) {
+    // We need to check if the slotChange is triggered by our own changes we do to the already
+    // slotted options or because new options were slotted into the combobox
+    const slottedOptions = this.getSlottedOptions();
+    const optionsLength = slottedOptions.length;
+    const cachedOptionsLength = this.cachedOptions.length;
+
+    if (!this.isOptionRendererTriggered || cachedOptionsLength !== optionsLength) {
       // Rerun this handler when <syn-option> is registered
       if (!customElements.get('syn-option')) {
         customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
@@ -884,13 +911,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               'combobox--standard': true,
               'combobox--top': this.placement === 'top',
             })}
-            placement=${this.placement}
+            placement=${`${this.placement}-start`}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

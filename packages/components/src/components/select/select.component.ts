@@ -27,15 +27,16 @@ import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
 import customStyles from './select.custom.styles.js';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
+import { isAllowedValue } from './utility.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *
@@ -79,6 +80,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -94,15 +96,18 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
+  private isInitialized: boolean = false;
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
+  private resizeObserver: ResizeObserver;
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
   @query('.select__display-input') displayInput: HTMLInputElement;
   @query('.select__value-input') valueInput: HTMLInputElement;
   @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.select__tags') tagContainer: HTMLDivElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -110,10 +115,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @state() selectedOptions: SynOption[] = [];
   @state() private valueHasChanged: boolean = false;
 
+  /**
+   * The delimiter to use when setting the value when `multiple` is enabled.
+   * The default is a space, but you can set it to a comma or other character.
+   * @example <syn-select delimiter="|" value="option-1|option-2"></syn-select>
+   */
+  @property() delimiter = ' ';
+
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  private _value: string | string[] = '';
+  private _value: string | number | Array<string | number> = '';
 
   get value() {
     return this._value;
@@ -125,13 +137,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
    * be an array. **For this reason, values must not contain spaces.**
    */
   @state()
-  set value(val: string | string[]) {
+  set value(val: string | number | Array<string | number>) {
     if (this.multiple) {
       if (!Array.isArray(val)) {
-        val = typeof val === 'string' ? val.split(' ') : [val].filter(Boolean);
+        val = typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
       }
     } else {
-      val = Array.isArray(val) ? val.join(' ') : val;
+      val = Array.isArray(val) ? val.join(this.delimiter) : val;
     }
 
     if (this._value === val) {
@@ -143,7 +155,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @property({ attribute: 'value' }) defaultValue: string | string[] = '';
+  @property({ attribute: 'value' }) defaultValue: string | number | Array<string | number> = '';
 
   /** The select's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -234,6 +246,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     return this.valueInput.validationMessage;
   }
 
+  
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${entry.contentRect.width}px`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -245,11 +268,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.open = false;
   }
 
+  
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }
+
   private addOpenListeners() {
     //
     // Listen on the root node instead of the document in case the elements are inside a shadow root
     //
-    // https://github.com/synergy-design-system/synergy/issues/1763
+    // https://github.com/shoelace-style/shoelace/issues/1763
     //
     document.addEventListener('focusin', this.handleDocumentFocusIn);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
@@ -531,14 +560,21 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     const allOptions = this.getAllOptions();
     const val = this.valueHasChanged ? this.value : this.defaultValue;
+
+    this.handleDelimiterChange();
     const value = Array.isArray(val) ? val : [val];
-    const values: string[] = [];
+    const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items
     allOptions.forEach(option => values.push(option.value));
 
     // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   private handleTagRemove(event: SynRemoveEvent, option: SynOption) {
@@ -669,12 +705,47 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.formControlController.emitInvalidEvent(event);
   }
 
+  @watch('delimiter')
+  handleDelimiterChange() {
+    this.getAllOptions().forEach(option => {
+      option.delimiter = this.delimiter;
+    });
+  }
+
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Close the listbox when the control is disabled
     if (this.disabled) {
       this.open = false;
       this.handleOpenChange();
+    }
+  }
+
+  firstUpdated() {
+    this.isInitialized = true;
+  }
+
+  
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
+  }
+      
+
+protected override willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    if(!this.isInitialized && !this.defaultValue && this.value) {
+      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
+      // to be able to reset forms and the dynamic loading of options are working correctly.
+      this.defaultValue = this.value
+      this.valueHasChanged = false;
     }
   }
 
@@ -691,7 +762,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
-  @watch(['defaultValue', 'value'], { waitUntilFirstUpdate: true })
+  @watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })
   handleValueChange() {
     if (!this.valueHasChanged) {
       const cachedValueHasChanged = this.valueHasChanged;
@@ -705,7 +776,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const value = Array.isArray(this.value) ? this.value : [this.value];
 
     // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    const valueString = value.map(String);
+    const allSelectedOptions = allOptions.filter(
+      el => valueString.includes(String(el.value)),
+    );
+    this.setSelectedOptions(allSelectedOptions);
+      
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -805,12 +881,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   }
 
   render() {
+    const hasValue = isAllowedValue(this.value);
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
-    const isPlaceholderVisible = this.placeholder && this.value && this.value.length <= 0;
+    const hasClearIcon = this.clearable && !this.disabled && hasValue;
+    const isPlaceholderVisible = this.placeholder && this.value && !hasValue;
 
     return html`
       <div
@@ -850,13 +927,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               'select--medium': this.size === 'medium',
               'select--large': this.size === 'large'
             })}
-            placement=${this.placement}
+            placement=${this.placement + '-start'}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"
@@ -897,7 +975,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
-                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value}
+                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value?.toString()}
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}

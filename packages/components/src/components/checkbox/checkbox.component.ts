@@ -28,7 +28,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
- * @documentation https://synergy.style/components/checkbox
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
  * @status stable
  * @since 2.0
  *
@@ -68,7 +68,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
 
   @state() private hasFocus = false;
 
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the checkbox, submitted as a name/value pair with form data. */
   @property() name = '';

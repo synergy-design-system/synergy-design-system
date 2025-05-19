@@ -16,7 +16,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Menu labels are used to describe a group of menu items.
- * @documentation https://synergy.style/components/menu-label
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs
  * @status stable
  * @since 2.0
  *

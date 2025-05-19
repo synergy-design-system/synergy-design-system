@@ -146,50 +146,43 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // Fix for #757: Make sure the mutation observer is scoped correctly
-  // for slotted syn-tab-groups not bleeding out
+  // #814: Fix problem for angular that new added active tab is not shown correctly
   content = replaceSections([
     [
-      'this.mutationObserver = new MutationObserver(mutations => {',
-      `this.mutationObserver = new MutationObserver(mutations => {
-      // Make sure to only observe the direct children of the tab group
-      // instead of other sub elements that might be slotted in.
-      // @see https://github.com/shoelace-style/shoelace/issues/2320
-      const instanceMutations = mutations.filter(({ target }) => {
-        if (target === this) return true; // Allow self updates
-        if ((target as HTMLElement).closest('syn-tab-group') !== this) return false; // We are not direct children
-
-        // We should only care about changes to the tab or tab panel
-        const tagName = (target as HTMLElement).tagName.toLowerCase();
-        return tagName === 'syn-tab' || tagName === 'syn-tab-panel';
-      });
-
-      if (instanceMutations.length === 0) {
-        return;
-      }
-`,
+      "import { eventOptions, property, query, state } from 'lit/decorators.js';",
+      "import { eventOptions, property, query, queryAssignedElements, state } from 'lit/decorators.js';",
     ],
     [
-      'mutations.some',
-      'instanceMutations.some',
+      'private tabs: SynTab[] = []',
+      "@queryAssignedElements({ slot: 'nav', selector: 'syn-tab' }) tabs: SynTab[];",
     ],
     [
-      'this.mutationObserver.observe(this, { attributes: true, childList: true, subtree: true });',
-      `this.mutationObserver.observe(this, {
-        attributes: true,
-        attributeFilter: [
-          'active',
-          'disabled',
-          'name',
-          'panel',
-        ],
-        childList: true,
-        subtree: true
-      });`,
+      'private panels: SynTabPanel[] = []',
+      "@queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];",
     ],
     [
-      'const tabs = mutations',
-      'const tabs = instanceMutations',
+      'const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));',
+      'const precedingTabs = this.tabs.slice(0, this.tabs.indexOf(currentTab));',
+    ],
+  ], content);
+  // #814: remove all occurrences of getAllTabs and getAllPanels
+  content = removeSections([
+    [
+      'private getAllTabs() {',
+      'private getActiveTab()',
+      { preserveEnd: true, removePrecedingWhitespace: false },
+    ],
+    [
+      'const allTabs = this.getAllTabs()',
+      ';',
+    ],
+    [
+      'this.tabs = this.getAllTabs()',
+      ';',
+    ],
+    [
+      'this.panels = this.getAllPanels()',
+      ';',
     ],
   ], content);
 

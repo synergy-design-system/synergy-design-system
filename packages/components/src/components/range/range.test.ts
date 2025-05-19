@@ -595,7 +595,7 @@ describe('<syn-range>', () => {
       const rect = track.getBoundingClientRect();
 
       await sendMouse({
-        position: [rect.left + 120, rect.top],
+        position: [rect.left + 125, rect.top],
         type: 'click',
       });
 

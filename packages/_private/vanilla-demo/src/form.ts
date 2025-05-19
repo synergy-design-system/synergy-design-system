@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
 import type { SynChangeEvent, SynCombobox, SynRange } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
-
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
   const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
   nationalitiesEl.getOption = highlightOptionRenderer;
-  nationalities.forEach((nationality) => {
+  mockData('nationalities').forEach((nationality) => {
     const option = document.createElement('syn-option');
     option.innerText = nationality;
     nationalitiesEl.appendChild(option);
@@ -47,16 +46,10 @@ export const afterRenderDefaultForm = async () => {
     customElements.whenDefined('syn-range'),
   ]);
 
-  const formatter = new Intl.NumberFormat('de-DE', {
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    style: 'currency',
-  });
-
   // Add a custom formatter for the donation field
   document
     .querySelector<SynRange>('#donations')!
-    .tooltipFormatter = value => formatter.format(value);
+    .tooltipFormatter = value => currencyNumberFormatter.format(value);
 
   // Add custom highlighter for the combobox
   initCombobox();

@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -21,12 +22,11 @@ import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
 import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Alerts are used to display important messages inline or as toast notifications.
- * @documentation https://synergy.style/components/alert
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
  * @status stable
  * @since 2.0
  *

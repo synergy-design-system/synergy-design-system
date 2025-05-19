@@ -1,6 +1,7 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { serialize } from '@synergy-design-system/components/utilities/form.js';
 import { highlightOptionRenderer } from '@synergy-design-system/components/components/combobox/option-renderer.js';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,22 +9,12 @@ import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
 import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
 const initialData = {
-  code: '',
-  comment: '',
-  date: '',
+  ...mockData('initialValidateFormData'),
+  // Custom test for angular validators
   email: ['', [
     Validators.required,
     Validators.email,
   ]],
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
 };
 
 @Component({
@@ -44,7 +35,7 @@ export class DemoFormValidate {
 
   formData!: FormGroup;
 
-  nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+  nationalities = mockData('nationalities');
 
   highlightOptionRenderer = highlightOptionRenderer;
 

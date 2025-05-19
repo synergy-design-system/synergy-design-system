@@ -1,14 +1,32 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property, query } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
-import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { HasSlotController } from '../../internal/slot.js';
 import SynDivider from '../divider/divider.component.js';
 import type SynOption from '../option/option.component.js';
 import styles from './optgroup.styles.js';
+
+/**
+ * Handle the dataset value of the option when the disabled state changes.
+ * @param option The option to set the value for
+ * @param isDisabled The original disabled, usually from the parent optgroup
+ */
+const handleInitialDisabledForOption = (option: SynOption, isDisabled: boolean) => {
+  /* eslint-disable no-param-reassign */
+  if (option.disabled) {
+    option.dataset.originallyDisabled = 'true';
+  } else {
+    delete option.dataset.originallyDisabled;
+  }
+
+  if (isDisabled) {
+    option.disabled = true;
+  }
+  /* eslint-enable no-param-reassign */
+};
 
 /**
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
@@ -41,21 +59,17 @@ export default class SynOptgroup extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix', 'label');
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  private mutationObserver: MutationObserver;
 
-  /**
-   * Syncs the disabled prop for all slotted syn-options when it is triggered
-   */
-  private handleDisableOptions() {
-    const { disabled } = this;
-    this.defaultSlot
-      .assignedElements()
-      .filter(opt => opt.tagName.toLowerCase() === 'syn-option')
-      .forEach((opt: SynOption) => {
-        // eslint-disable-next-line no-param-reassign
-        opt.disabled = disabled;
-      });
+  private enableObserver() {
+    this.mutationObserver.observe(this, {
+      attributeFilter: ['disabled'],
+      childList: true,
+      subtree: true,
+    });
   }
+
+  @queryAssignedElements({ selector: 'syn-option' }) assignedOptions: SynOption[];
 
   /**
    * Disables all options in the optgroup.
@@ -67,9 +81,64 @@ export default class SynOptgroup extends SynergyElement {
    */
   @property() label = '';
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    this.handleDisableOptions();
+  connectedCallback() {
+    super.connectedCallback();
+
+    /* eslint-disable no-param-reassign */
+    // eslint-disable-next-line complexity
+    this.mutationObserver = new MutationObserver(entries => {
+      // Check if the mutation is for this optgroup
+      const optgroupChanges = entries.filter(entry => entry.target === this);
+      const optionChanges = entries.filter(entry => (entry.target as HTMLElement).matches('syn-option'));
+
+      const stopObserver = optgroupChanges.length > 0 || optionChanges.length > 0;
+
+      if (stopObserver) {
+        this.mutationObserver.disconnect();
+      }
+
+      // If options disabled state are changed dynamically,
+      // we need to store the new "originallyDisabled" state
+      if (optionChanges.length > 0) {
+        optionChanges.forEach(optionMutation => {
+          handleInitialDisabledForOption(optionMutation.target as SynOption, this.disabled);
+        });
+      }
+
+      // If the optgroup is disabled, disable all options
+      // If the optgroup is enabled, reenable all options that were enabled before
+      if (optgroupChanges.length > 0) {
+        optgroupChanges.forEach(optgroupMutation => {
+          if (optgroupMutation.type === 'attributes') {
+            this.assignedOptions.forEach(option => {
+              option.disabled = this.disabled
+                ? true
+                : !!option.dataset?.originallyDisabled;
+            });
+          }
+
+          if (optgroupMutation.type === 'childList') {
+            optgroupMutation.addedNodes.forEach((node) => {
+              if (node instanceof HTMLElement && node.matches('syn-option')) {
+                handleInitialDisabledForOption(node as SynOption, this.disabled);
+              }
+            });
+          }
+        });
+      }
+
+      // Reenable the mutation observer when it was stopped.
+      // This is needed to make sure that we get future changes again
+      if (stopObserver) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.updateComplete.then(() => {
+          this.enableObserver();
+        });
+      }
+    });
+    /* eslint-enable no-param-reassign */
+
+    this.enableObserver();
   }
 
   render() {
@@ -99,7 +168,7 @@ export default class SynOptgroup extends SynergyElement {
           <slot name="suffix" part="suffix" class="optgroup__suffix"></slot>
         </div>
         <div class="optgroup__options" role="group" part="options">
-          <slot @slotchange=${this.handleDisableOptions}></slot>
+          <slot></slot>
         </div>
       </div>
     `;

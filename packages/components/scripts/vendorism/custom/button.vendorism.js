@@ -45,6 +45,11 @@ const transformComponent = (path, originalContent) => {
       // eslint-disable-next-line no-template-curly-in-string
       '<slot part="label" class=${classMap({ \'button__label\': true, \'button__icon-only\': this.iconOnly })} @slotchange=${this.handleSlotChange}></slot>',
     ],
+    // #738: Fix title attribute
+    [
+      "@property() title = '';",
+      "@property({ reflect: true }) title = '';",
+    ],
   ], content);
 
   // Add default slot handling for icon-only buttons

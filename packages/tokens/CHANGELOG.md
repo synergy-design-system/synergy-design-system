@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.18.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.18.0...tokens/2.18.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* 🐛  Upgrade packages to latest versions ([#830](https://github.com/synergy-design-system/synergy-design-system/issues/830)) ([f5fe54f](https://github.com/synergy-design-system/synergy-design-system/commit/f5fe54fb55732b1e3efdf3062d55ee517aef4e81))
+
 # [@synergy-design-system/tokens-v2.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.17.0...tokens/2.18.0) (2025-02-10)
 
 

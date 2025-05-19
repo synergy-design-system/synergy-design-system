@@ -23,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
- * @documentation https://synergy.style/components/tooltip
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs
  * @status stable
  * @since 2.0
  *

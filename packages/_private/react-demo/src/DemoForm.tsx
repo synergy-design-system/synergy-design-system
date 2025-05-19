@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 import type {
   SynChangeEvent,
   SynCheckbox,
@@ -14,36 +15,7 @@ type FormEnabledElements = HTMLElement & {
   value?: string;
 };
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  donations: '2000 4000',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterAngular: false,
-  newsletterBeta: false,
-  newsletterReact: false,
-  newsletterStandard: false,
-  newsletterVanilla: false,
-  newsletterVue: false,
-  password: 'invalid',
-  phone: '',
-  role: '',
-  topics: [],
-};
-
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
-
-const formatter = new Intl.NumberFormat('de-DE', {
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-  style: 'currency',
-});
+const initialFormData = mockData('initialFullFormData');
 
 export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -192,7 +164,7 @@ export const DemoForm = () => {
           placeholder='Please choose your nationality'
           getOption={highlightOptionRenderer}
         >
-          {nationalities.map(n => (
+          {mockData('nationalities').map(n => (
             <syn-option key={n}>
               {n}
             </syn-option>
@@ -283,7 +255,7 @@ export const DemoForm = () => {
           min={0}
           name="donations"
           restrict-movement
-          tooltipFormatter={value => formatter.format(value)}
+          tooltipFormatter={value => currencyNumberFormatter.format(value)}
           value={formData.donations}
         >
           <nav slot="ticks">

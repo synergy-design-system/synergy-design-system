@@ -27,7 +27,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
- * @documentation https://synergy.style/components/switch
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
  * @since 2.0
  *
@@ -64,7 +64,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
   @state() private hasFocus = false;
-  @property() title = ''; // make reactive to pass through
+  @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the switch, submitted as a name/value pair with form data. */
   @property() name = '';

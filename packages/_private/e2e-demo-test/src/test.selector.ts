@@ -10,12 +10,41 @@ const AllComponentSelectors = {
   alertLink: '#tab-Alert',
 
   // Combobox
-  comboboxComponent: '#tab-content-Combobox syn-combobox',
+  combobox797: '#tab-content-Combobox syn-combobox[data-testid="combobox-797"]',
+  combobox813Form: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"]',
+  combobox813FormOptions: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"] syn-option',
+  combobox813Level: '#tab-content-Combobox syn-combobox[data-testid="combobox-level-813"]',
   comboboxContent: '#tab-content-Combobox',
+  comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
+  // Optgroup
+  optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
+  optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',
+  optgroupLink: '#tab-OptGroup',
+  optgroupSecondEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2) syn-option:not([disabled])',
+  optgroupSecondItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(2)',
+  optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
+  optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
+
+  // Select
+  selectContent: '#tab-content-Select',
+  selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
+  selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',
+  selectFormReset: '#tab-content-Select form syn-button',
+  selectLevel: '#tab-content-Select syn-select[data-testid="select-level-813"]',
+  selectLink: '#tab-Select',
+  selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
+  selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
+  selectWithDelimiter: '#tab-content-Select syn-select[data-testid="select-540-delimiter"]',
+
   // Tabgroup
-  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(2)',
+  tabGroupAdded: '#tab-content-TabGroup syn-tab:nth-of-type(5)',
+  tabGroupAddedPanel: '#tab-content-TabGroup syn-tab-panel:nth-of-type(5)',
+  tabGroupAddTabButton: '#tab-content-TabGroup syn-button',
+  tabGroupAdvanced: '#tab-content-TabGroup syn-tab:nth-of-type(4)',
+  tabGroupAdvancedPanel: '#tab-content-TabGroup syn-tab-panel:nth-of-type(4)',
+  tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(3)',
   tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',
   tabGroupLink: '#tab-TabGroup',
 };

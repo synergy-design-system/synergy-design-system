@@ -39,16 +39,6 @@ describe('<syn-option>', () => {
     expect(el.getAttribute('aria-disabled')).to.equal('true');
   });
 
-  it('should convert non-string values to string', async () => {
-    const el = await fixture<SynOption>(html` <syn-option>Text</syn-option> `);
-
-    // @ts-expect-error - intentional
-    el.value = 10;
-    await el.updateComplete;
-
-    expect(el.value).to.equal('10');
-  });
-
   it('should escape HTML when calling getTextLabel()', async () => {
     const el = await fixture<SynOption>(html` <syn-option><strong>Option</strong></syn-option> `);
     expect(el.getTextLabel()).to.equal('Option');

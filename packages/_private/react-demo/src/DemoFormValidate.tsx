@@ -24,6 +24,7 @@ import {
   SynTextarea,
   SynValidate,
 } from '@synergy-design-system/react';
+import { mockData } from '@synergy-design-system/demo-utilities';
 import { DemoFieldset } from './DemoFieldset';
 
 type FormEnabledElements = HTMLElement & {
@@ -32,23 +33,7 @@ type FormEnabledElements = HTMLElement & {
   value?: string;
 };
 
-const initialFormData = {
-  code: '',
-  comment: '',
-  date: '',
-  email: '',
-  files: undefined,
-  gender: '',
-  happiness: '5',
-  name: '',
-  nationality: '',
-  newsletterBeta: false,
-  newsletterStandard: false,
-  password: 'invalid',
-  role: '',
-};
-
-const nationalities: string[] = ['American', 'Australian', 'Brazilian', 'British', 'Canadian', 'Chinese', 'Dutch', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Russian', 'Spanish', 'Swedish', 'Turkish'];
+const initialFormData = mockData('initialValidateFormData');
 
 export const DemoFormValidate = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -200,7 +185,7 @@ export const DemoFormValidate = () => {
             placeholder='Please choose your nationality'
             getOption={highlightOptionRenderer}
           >
-            {nationalities.map(n => (
+            {(mockData('nationalities')).map(n => (
               <SynOption key={n}>
                 {n}
               </SynOption>

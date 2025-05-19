@@ -85,18 +85,18 @@ export const addMissingTokens = (prefix, targetDir) => {
   try {
     const targetFiles = readdirSync(targetDir);
 
-    /**
-     * @type {void[]}
-     */
-    const results = [];
+    ['dark', 'light'].forEach(theme => {
+      const applyToTargetFiles = targetFiles.filter(file => file.endsWith(`${theme}.css`));
+      applyToTargetFiles.forEach((targetFile) => {
+        const sourceFilePath = path.join(sourceDir, `${theme}.css`);
+        const targetFilePath = path.join(targetDir, targetFile);
 
-    targetFiles.forEach((targetFile) => {
-      const sourceFilePath = path.join(sourceDir, targetFile);
-      const targetFilePath = path.join(targetDir, targetFile);
+        console.log(sourceFilePath, targetFilePath);
 
-      if (existsSync(sourceFilePath)) {
-        results.push(compareAndAppendVariables(sourceFilePath, targetFilePath, prefix));
-      }
+        if (existsSync(sourceFilePath)) {
+          compareAndAppendVariables(sourceFilePath, targetFilePath, prefix);
+        }
+      });
     });
 
     console.log(chalk.green('✔︎ Missing tokens added'));

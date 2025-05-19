@@ -50,15 +50,18 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-const cssRuns = ['brand25', 'synergy24'].map(async brand => ['dark', 'light']
+const cssRuns = ['brand25', 'synergy24'].map(brand => ['dark', 'light']
   .map(async theme => {
+    // Make sure to save the original synergy themes as "light" and "dark"
+    // and the new ones as "brand25-light" and "brand25-dark".
+    // For the next major release, we will remove the old theme names for a unified file name.
+    const destination = brand === 'synergy24' ? `${theme}.css` : `${brand}-${theme}.css`;
     const themeInstance = await dictionary.extend({
       platforms: {
         css: {
           buildPath: `${config.buildPath}themes/`,
           files: [{
-            destination: `${brand}-${theme}.css`,
+            destination,
             filter(token) { return !token.filePath.includes('brand'); },
             format: 'syn/css-variable-formatter',
             options: {
@@ -68,7 +71,6 @@ const cssRuns = ['brand25', 'synergy24'].map(async brand => ['dark', 'light']
             },
           }],
           prefix: config.prefix,
-          // transformGroup: 'tokens-studio',
           transforms: [
             'name/kebab',
             'ts/descriptionToComment',
@@ -92,7 +94,6 @@ const cssRuns = ['brand25', 'synergy24'].map(async brand => ['dark', 'light']
         },
       },
       preprocessors: ['tokens-studio'],
-      // source: config.source.concat(`./src/figma-tokens/theme/${theme}.json`),
       source: [
         `./src/figma-tokens/brand/${brand}.json`,
         './src/figma-tokens/globals.json',
@@ -104,51 +105,6 @@ const cssRuns = ['brand25', 'synergy24'].map(async brand => ['dark', 'light']
     return themeInstance.buildAllPlatforms();
   }))
   .flat();
-// const cssRuns = ['dark', 'light'].map(async theme => {
-//   const themeInstance = await dictionary.extend({
-//     platforms: {
-//       css: {
-//         buildPath: `${config.buildPath}themes/`,
-//         files: [{
-//           destination: `${theme}.css`,
-//           filter(token) { return !token.filePath.includes('brand'); },
-//           format: 'syn/css-variable-formatter',
-//           options: {
-//             fileHeader: 'syn/header',
-//             prefix: config.prefix,
-//             theme,
-//           },
-//         }],
-//         prefix: config.prefix,
-//         // transformGroup: 'tokens-studio',
-//         transforms: [
-//           'name/kebab',
-//           'ts/descriptionToComment',
-//           'ts/size/px',
-//           'ts/opacity',
-//           'ts/size/lineheight',
-//           'ts/typography/fontWeight',
-//           'ts/size/css/letterspacing',
-//           'typography/css/shorthand',
-//           'fontFamily/css',
-//           'border/css/shorthand',
-//           'ts/color/css/hexrgba',
-//           'ts/color/modifiers',
-//           'shadow/css/shorthand',
-//           'syn/add-color-prefix',
-//           'syn/add-fallback-fonts',
-//           'syn/use-css-calc',
-//           'syn/add-missing-quotes-for-strings',
-//           'syn/adjust-shadow',
-//         ],
-//       },
-//     },
-//     preprocessors: ['tokens-studio'],
-//     source: config.source.concat(`./src/figma-tokens/theme/${theme}.json`),
-//   });
-
-//   return themeInstance.buildAllPlatforms();
-// });
 
 await Promise.all(cssRuns);
 
@@ -157,15 +113,15 @@ addMissingTokens(
   join(config.buildPath, 'themes'),
 );
 
-// const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
-// createJS(
-//   fileHeader,
-//   join(config.buildPath, 'themes', 'light.css'),
-//   join(config.buildPath, 'js', 'index.js'),
-// );
+const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
+createJS(
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'js', 'index.js'),
+);
 
-// createSCSS(
-//   fileHeader,
-//   join(config.buildPath, 'themes', 'light.css'),
-//   join(config.buildPath, 'scss', '_tokens.scss'),
-// );
+createSCSS(
+  fileHeader,
+  join(config.buildPath, 'themes', 'light.css'),
+  join(config.buildPath, 'scss', '_tokens.scss'),
+);

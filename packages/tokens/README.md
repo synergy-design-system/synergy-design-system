@@ -24,7 +24,7 @@ As projects may use various forms of applying styles, we provide different ways 
 ### Using CSS themes
 
 Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or a derived package like `@synergy-design-system/react`.
-The tokens package ships with two themes: 🌞 light and 🌛 dark.
+The tokens package ships two themes (Synergy and Brand25), providing two modes each: 🌞 light and 🌛 dark.
 
 > The css styles are used as a single source of truth, also when working with the provided JavaScript or SASS exports!
 > Always make sure to load one of the css themes!
@@ -51,10 +51,12 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 
 You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
 
-| Theme | Stylesheet to use         | Body className    |
-| :---- | :------------------------ | :---------------- |
-| light | `tokens/themes/light.css` | `syn-theme-light` |
-| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`  |
+| Theme   | Mode  | Stylesheet to use                 | Body className    |
+| :------ | :---- | :-------------------------------- | :---------------- |
+| Synergy | light | `tokens/themes/light.css`         | `syn-theme-light` |
+| Synergy | dark  | `tokens/themes/dark.css`          | `syn-theme-dark`  |
+| Brand25 | light | `tokens/themes/brand25-light.css` | `syn-theme-light` |
+| Brand25 | dark  | `tokens/themes/brand25-dark.css`  | `syn-theme-dark`  |
 
 To switch the theme, proceed in the following way:
 
@@ -103,7 +105,12 @@ To switch the theme, proceed in the following way:
 // Use this way when you already use a build system like webpack or vite
 // to make it part of your bundle.
 // Note this import should happen BEFORE you render any components!
-import "@synergy-design-system/tokens/themes/light.css";
+
+// Light theme
+import "@synergy-design-system/tokens/default.css";
+
+// Dark theme
+import "@synergy-design-system/tokens/default-dark.css";
 ```
 
 ---
@@ -117,7 +124,7 @@ All tokens map to the corresponding css variables to make sure we have a single 
 // Using variables in JavaScript
 
 // Import the css variables first as they are our single source of truth
-import "@synergy-design-system/tokens/themes/light.css";
+import "@synergy-design-system/tokens/default.css";
 
 // Imports all tokens
 import * as tokens from "@synergy-design-system/tokens";

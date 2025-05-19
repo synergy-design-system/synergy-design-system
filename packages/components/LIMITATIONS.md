@@ -56,7 +56,7 @@ A `<syn-dialog>` element may close itself unexpectedly when interacting with ele
 
 ### Cause
 
-Synergy uses shared `CustomEvents` for all of its components. Per default, all of those events are bubbling. When a `<syn-select>`, `<syn-accordion>` or `<dyn-details>` element is closed, it fires its own `syn-hide` event. This event bubbles to `<syn-dialog>` and closes it.
+Synergy uses shared `CustomEvents` for all of its components. Per default, all of those events are bubbling. When a `<syn-select>`, `<syn-accordion>` or `<syn-details>` element is closed, it fires its own `syn-hide` event. This event bubbles to `<syn-dialog>` and closes it.
 
 ### Proposed Solution
 

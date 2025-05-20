@@ -8,5 +8,24 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete border radius tokens
  */
-export const getBorderRadius = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('borderradius', useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, { orderArray: ['none', 'small', 'medium', 'circle', 'pill'], replaceString: 'synborderradius', sortType: 'order' })));
+export const getBorderRadius = (useFullTokenName = false) => Object.fromEntries(
+  getTokensByCategory('borderradius', useFullTokenName).sort(
+    (a, b) => sortTokens(
+      a,
+      b,
+      {
+        orderArray: [
+          'none',
+          'small',
+          'medium',
+          'large',
+          'xlarge',
+          'circle',
+          'pill',
+        ],
+        replaceString: 'synborderradius',
+        sortType: 'order',
+      },
+    ),
+  ),
+);

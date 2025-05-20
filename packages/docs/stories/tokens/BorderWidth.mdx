@@ -1,8 +1,8 @@
-import { Meta } from "@storybook/blocks";
+import { Markdown, Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-import { BorderWidth } from '../../src/shared-components/TokenHelpers.tsx';
+import { BorderWidth, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
 
 import {
   getBorderWidth,
@@ -14,45 +14,49 @@ import {
 
 # {docsTokens?.tokens?.['border-width']?.title.value}
 
-<p>
-  {docsTokens?.tokens?.['border-width']?.description?.value}
-</p>
+<MultiLineDescription value={docsTokens?.tokens?.['border-width']?.description?.value} />
 
-<table>
-  <tbody>
-    <>
-      <tr>
-        <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
-        <th>Raw Value</th>
-        <th>CSS Token</th>
-        <th>SCSS Token</th>
-        <th>JS Token</th>
-      </tr>
-      {Object.entries(getBorderWidth(true)).map(([token, value]) => (
-        <tr key={`${token}-row`}>
-          <td>
-            <BorderWidth className={token.toLowerCase()} value={value}  />
-          </td>
-          <td>
-            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
-          </td>
-          <td>
-            <CopyToClipBoard value={getCSSToken(token)}>
-              {getCSSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={getSASSToken(token)}>
-              {getSASSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={token}>
-              {token}
-            </CopyToClipBoard>
-          </td>
-        </tr>
-      ))}
-    </>
-  </tbody>
-</table>
+{['synergy', 'brand25'].map(theme => (
+  <div key={theme}>
+    <Markdown>{`## Border width (${theme})`}</Markdown>
+    <table className={theme === 'synergy' ? `syn-theme-light` : `syn-theme-brand25-light`}>
+      <tbody>
+        <>
+          <tr>
+            <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
+            <th>Raw Value</th>
+            <th>CSS Token</th>
+            <th>SCSS Token</th>
+            <th>JS Token</th>
+          </tr>
+          {Object.entries(getBorderWidth(true)).map(([token, value]) => (
+            <tr key={`${token}-row`}>
+              <td>
+                <BorderWidth className={token.toLowerCase()} value={value}  />
+              </td>
+              <td>
+                <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
+              </td>
+              <td>
+                <CopyToClipBoard value={getCSSToken(token)}>
+                  {getCSSToken(token)}
+                </CopyToClipBoard>
+              </td>
+              <td>
+                <CopyToClipBoard value={getSASSToken(token)}>
+                  {getSASSToken(token)}
+                </CopyToClipBoard>
+              </td>
+              <td>
+                <CopyToClipBoard value={token}>
+                  {token}
+                </CopyToClipBoard>
+              </td>
+            </tr>
+          ))}
+        </>
+      </tbody>
+    </table>
+  </div>
+))}
+

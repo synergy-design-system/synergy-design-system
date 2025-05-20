@@ -65,6 +65,18 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
         <syn-option [value]="level.value">{{level.label}}</syn-option>
       }
     </syn-select>
+
+    <syn-select
+      data-testid="select-851-multiple"
+      help-text="Normal value binding and async options"
+      label="Multiple with async options"
+      multiple
+      value="1 2"
+    >
+      @for (level of levels; track $index; let index = $index) {
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
+      }
+    </syn-select>
   `
 })
 export class Select implements OnInit {

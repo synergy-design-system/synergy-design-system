@@ -65,6 +65,8 @@ export const allComponentsRegressions = new Map(Object.entries({
     () => appendOptions805('syn-select[data-testid="select-805-multi-select"]'),
     // #813
     () => appendOptions813('syn-select[data-testid="select-level-813"]'),
+    // #851
+    () => appendOptions813('syn-select[data-testid="select-851-multiple"]'),
   ],
   TabGroup: [
     // #814

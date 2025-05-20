@@ -31,7 +31,7 @@ import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
-import { isAllowedValue } from './utility.js';
+import { compareValues, isAllowedValue } from './utility.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -146,7 +146,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       val = Array.isArray(val) ? val.join(this.delimiter) : val;
     }
 
-    if (this._value === val) {
+    if (compareValues(this._value, val)) {
       return;
     }
 
@@ -562,7 +562,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const val = this.valueHasChanged ? this.value : this.defaultValue;
 
     this.handleDelimiterChange();
-    const value = Array.isArray(val) ? val : [val];
+    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
     const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items

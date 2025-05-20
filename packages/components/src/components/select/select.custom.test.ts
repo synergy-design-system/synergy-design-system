@@ -3,6 +3,7 @@ import {
   aTimeout, expect, fixture, html, oneEvent,
 } from '@open-wc/testing';
 import type SynSelect from './select.js';
+import { compareValues } from './utility.js';
 
 describe('<syn-select>', () => {
   describe('#540: should allow to use a custom delimiter for multiple values', () => {
@@ -200,4 +201,38 @@ describe('<syn-select>', () => {
       });
     }); // #850
   }); // regression tests
+
+  describe('utility functions', () => {
+    describe('compareValues', () => {
+      it('should return true for equal values', () => {
+        expect(compareValues('123', '123')).to.be.true;
+        expect(compareValues(123, 123)).to.be.true;
+        expect(compareValues(['1', '2'], ['1', '2'])).to.be.true;
+      });
+
+      it('should return false for different values', () => {
+        expect(compareValues('123', '321')).to.be.false;
+        expect(compareValues(123, 321)).to.be.false;
+      });
+
+      // TODO: do we want to support ordered or unordered arrays?
+      it('should return false for arrays with different order', () => {
+        expect(compareValues([1, 2], [2, 1])).to.be.false;
+      });
+
+      it('should return false for arrays with different length', () => {
+        expect(compareValues([1, 2], [1, 2, 3])).to.be.false;
+      });
+
+      it('should return false for array and non-array', () => {
+        expect(compareValues([1], 1)).to.be.false;
+        expect(compareValues(1, [1])).to.be.false;
+      });
+
+      // TODO: or should we do a string conversion of numbers in the function?
+      it('should return false for different types', () => {
+        expect(compareValues(1, '1')).to.be.false;
+      });
+    });
+  });
 });

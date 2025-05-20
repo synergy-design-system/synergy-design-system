@@ -28,6 +28,7 @@ const AllComponentSelectors = {
   optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
 
   // Select
+  select851Multiple: '#tab-content-Select syn-select[data-testid="select-851-multiple"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',

@@ -9,7 +9,7 @@ import componentStyles from '../../styles/component.styles.js';
 import styles from './side-nav.styles.js';
 import SynDrawer from '../drawer/drawer.component.js';
 import SynDivider from '../divider/divider.component.js';
-import SynIcon from '../icon/icon.js';
+import SynIcon from '../icon/icon.component.js';
 import SynNavItem from '../nav-item/nav-item.component.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';

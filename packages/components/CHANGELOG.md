@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.31.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.1...components/2.31.2) (2025-05-20)
+
+
+### Bug Fixes
+
+* 🐛  Angular problem with multiple select and async options ([#867](https://github.com/synergy-design-system/synergy-design-system/issues/867)) ([3508710](https://github.com/synergy-design-system/synergy-design-system/commit/350871007772fd7a5a5ed4cc4239c33b403f7291))
+
 # [@synergy-design-system/components-v2.31.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.0...components/2.31.1) (2025-05-19)
 
 

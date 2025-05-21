@@ -94,7 +94,8 @@ export class SynHeaderComponent {
 
   /**
 * Defines the current visibility and icon of the burger-menu icon.
-The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
+The menu button is added automatically if the component finds a syn-side-nav in
+variant="default".
 The following values can be used:
 - hidden: The burger menu is not visible
 - open: The burger menu is visible and shows the close icon

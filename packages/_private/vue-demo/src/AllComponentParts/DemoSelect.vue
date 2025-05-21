@@ -59,7 +59,7 @@ onMounted(async () => {
   </SynVueSelect>
 
   <SynVueSelect
-    data-testid="select-851-multiple"
+    data-testid="select-847-multiple"
     help-text="Normal value binding and async options"
     label="Multiple with async options"
     multiple

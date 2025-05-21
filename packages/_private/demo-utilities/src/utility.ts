@@ -1,6 +1,7 @@
 import type {
   AllowedModes,
   AllowedThemes,
+  SideNavTypes
 } from './types.js';
 
 /**
@@ -17,6 +18,19 @@ export const currencyNumberFormatter = new Intl.NumberFormat('de-DE', {
   maximumFractionDigits: 0,
   style: 'currency',
 });
+
+/**
+ * Set the sidenav to one of the three possible layouts
+ * @param layout The layout to use
+ * @returns The next layout
+ */
+export const setNextSidenavLayout = (layout: SideNavTypes): SideNavTypes => {
+  switch (layout) {
+  case 'rail': return 'sticky';
+  case 'sticky': return 'default';
+  default: return 'rail';
+  }
+};
 
 /**
  * Sets the body class to the given theme and mode
@@ -38,3 +52,5 @@ export const setTheme = (theme: AllowedThemes, mode: AllowedModes) => {
   body.classList.remove('syn-theme-light', 'syn-theme-dark', 'syn-theme-brand25-light', 'syn-theme-brand25-dark');
   body.classList.add(nextClassName);
 };
+
+

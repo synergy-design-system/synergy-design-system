@@ -40,6 +40,11 @@ export type DemoFormData = {
 };
 
 /**
+ * A type representing the different types of side navigation.
+ */
+export type SideNavTypes = 'default' | 'rail' | 'sticky';
+
+/**
  * A type representing the allowed themes for an application.
  */
 export type AllowedThemes = 'brand25' | 'synergy';

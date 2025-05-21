@@ -39,6 +39,8 @@ export interface Translation extends DefaultTranslation {
   rangeMax: string;
   rangeMin: string;
   sideNav: string;
+  sideNavHide: string;
+  sideNavShow: string;
   success: string;
   warning: string;
 

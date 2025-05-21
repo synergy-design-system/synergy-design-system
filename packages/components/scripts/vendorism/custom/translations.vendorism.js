@@ -65,6 +65,14 @@ const translations = {
     de: 'Seitennavigation',
     en: 'Side navigation',
   },
+  sideNavHide: {
+    de: 'Navigation ausblenden',
+    en: 'Hide navigation',
+  },
+  sideNavShow: {
+    de: 'Navigation einblenden',
+    en: 'Show navigation',
+  },
   success: {
     de: 'Erfolg',
     en: 'Success',

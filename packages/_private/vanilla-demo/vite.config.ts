@@ -82,6 +82,9 @@ export const withSpriteSheetGenerator = {
         'settings',
         'warning',
         'error',
+        'lunch_dining',
+        'space_dashboard',
+        'preview',
       ],
     }),
     viteStaticCopy({

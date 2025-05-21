@@ -73,7 +73,8 @@ export default class SynHeader extends SynergyElement {
 
   /**
    * Defines the current visibility and icon of the burger-menu icon.
-   * The menu button is added automatically if the component finds a syn-side-nav in non-rail mode.
+   * The menu button is added automatically if the component finds a syn-side-nav in
+   * variant="default".
    * The following values can be used:
    * - hidden: The burger menu is not visible
    * - open: The burger menu is visible and shows the close icon
@@ -95,8 +96,8 @@ export default class SynHeader extends SynergyElement {
   }
 
   private handleBurgerMenuToggle() {
-    // If there is a side-nav in non-rail mode, toggle the open state!
-    if (this.sideNav && !this.sideNav.rail && !this.isSideNavAnimating) {
+    // If there is a side-nav in variant="default", toggle the open state!
+    if (this.sideNav && this.sideNav.variant === 'default' && !this.isSideNavAnimating) {
       this.sideNav.open = !this.sideNav.open;
     }
     if (!this.isSideNavAnimating) {
@@ -110,8 +111,8 @@ export default class SynHeader extends SynergyElement {
    */
   private updateBurgerMenuBasedOnSideNav() {
     if (this.sideNav) {
-      // Hide the burger menu icon if the side-nav is in rail mode
-      if (this.sideNav.rail) {
+      // Hide the burger menu icon if the side-nav is not variant="default"
+      if (this.sideNav.variant !== 'default') {
         this.burgerMenu = 'hidden';
       } else {
         this.burgerMenu = this.sideNav.open ? 'open' : 'closed';
@@ -165,7 +166,7 @@ export default class SynHeader extends SynergyElement {
       // Need to call the method initially, if the side-nav is not open on connect time.
       // Otherwise the mutation observer won`t trigger the method.
       this.updateBurgerMenuBasedOnSideNav();
-      this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'rail'], attributes: true });
+      this.mutationObserver.observe(this.sideNav, { attributeFilter: ['open', 'variant'], attributes: true });
 
       // #587: Make sure to not trigger the burger menu if the side nav is currently
       // animating and the user clicks on the burger menu button.

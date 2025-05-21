@@ -141,7 +141,7 @@ export const Rail: Story = {
   render: () => html`
     <syn-header class="header-rail" label="Side Navigation"></syn-header>
     <main class="main-rail">
-      <syn-side-nav class="side-nav-rail" rail>
+      <syn-side-nav class="side-nav-rail" variant="rail">
         ${createNavItems()}
       </syn-side-nav>
       <div class="content-rail">
@@ -168,6 +168,54 @@ export const Rail: Story = {
       }
 
       .content-rail {
+        padding: var(--syn-spacing-large);
+        margin: var(--syn-spacing-large);
+        border-radius: var(--syn-border-radius-medium);
+        background-color: var(--syn-color-neutral-0);
+        overflow-y: auto;
+      }
+    </style>
+  `,
+};
+
+export const Sticky: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('side-nav', 'sticky'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header class="header-sticky" label="Side Navigation"></syn-header>
+    <main class="main-sticky">
+      <syn-side-nav class="side-nav-sticky" variant="sticky">
+        ${createNavItems()}
+      </syn-side-nav>
+      <div class="content-sticky">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.    
+      </div>
+    </main>
+    <script type="module">
+      // Only needed to have correct behavior in our documentation "Docs" page
+      const header = document.querySelector('#storybook-docs .header-sticky') || document.querySelector('.header-sticky');
+      const sideNav = document.querySelector('#storybook-docs .side-nav-sticky') || document.querySelector('.side-nav-sticky');
+      if(sideNav && header){
+        header.connectSideNavigation(sideNav);
+      }
+    </script>
+    ${createDummyActiveNavItemListener('.side-nav-sticky')}
+    <style>
+      .main-sticky {
+        position: relative;
+        height: 500px;
+        display: flex;
+        overflow: hidden;
+        background-color: var(--syn-color-neutral-200);
+      }
+
+      .content-sticky {
         padding: var(--syn-spacing-large);
         margin: var(--syn-spacing-large);
         border-radius: var(--syn-border-radius-medium);
@@ -385,6 +433,7 @@ export const Indentation: Story = {
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Rail,
+  Sticky,
   Footer,
   Fixed,
   Shrink,

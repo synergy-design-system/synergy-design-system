@@ -105,7 +105,7 @@ describe('<syn-header>', () => {
       expect(el.burgerMenu).to.equal('closed');
     });
 
-    it('should show burger menu toggle if a syn-side-nav in non-rail mode is available', async () => {
+    it('should show burger menu toggle if a syn-side-nav in variant="default" is available', async () => {
       const el = await fixture<SynHeader>(html`
         <syn-header></syn-header>
         <syn-side-nav></syn-side-nav>
@@ -117,7 +117,7 @@ describe('<syn-header>', () => {
       expect(el.burgerMenu).to.equal('closed');
     });
 
-    it('should toggle the open state of a syn-side-nav in non-rail mode', async () => {
+    it('should toggle the open state of a syn-side-nav in variant="default"', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>
           <syn-header></syn-header>
@@ -166,7 +166,8 @@ describe('<syn-header>', () => {
       expect(burgerMenuPart?.querySelector('syn-icon[name="menu"]')).to.be.null;
     });
 
-    it('should toggle the showBurgerMenu state in case of side-vna mode was changed to rail = true', async () => {
+    // TODO: this should be removed in synergy version 3.0
+    it('should toggle the showBurgerMenu state in case of side-nav mode was changed to rail = true', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>
           <syn-header></syn-header>
@@ -180,6 +181,25 @@ describe('<syn-header>', () => {
       expect(header.burgerMenu).to.equal('closed');
 
       sideNav.rail = true;
+      await sideNav.updateComplete;
+
+      expect(header.burgerMenu).to.equal('hidden');
+    });
+
+    it('should toggle the showBurgerMenu state in case of side-nav mode was changed to variant="rail"', async () => {
+      const el = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-header></syn-header>
+          <syn-side-nav></syn-side-nav>
+        </div>
+      `);
+
+      const header = el.querySelector('syn-header')!;
+      const sideNav = el.querySelector('syn-side-nav')!;
+
+      expect(header.burgerMenu).to.equal('closed');
+
+      sideNav.variant = 'rail';
       await sideNav.updateComplete;
 
       expect(header.burgerMenu).to.equal('hidden');

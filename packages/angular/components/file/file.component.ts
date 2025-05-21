@@ -98,6 +98,10 @@ export class SynFileComponent {
     this.ngModelUpdateOn = 'syn-input';
   }
 
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
   @Input()
   set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
     this.modelSignal.abort();

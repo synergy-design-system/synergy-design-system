@@ -98,7 +98,12 @@ const getNgModelUpdateOnInput = (componentName) => {
   const control = getControlAttributeForTwoWayBinding(componentName);
   const changeEmitter = `this.${control}Change.emit(this.${control});`;
   const defaultEvent = getEventAttributeForTwoWayBinding(componentName);
-  return `@Input()
+  return `
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "${defaultEvent}".
+   */
+  @Input()
   set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
     this.modelSignal.abort();
     this.modelSignal = new AbortController();

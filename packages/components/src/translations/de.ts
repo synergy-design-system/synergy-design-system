@@ -60,8 +60,8 @@ const translation: Translation = {
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',
   sideNav: 'Seitennavigation',
-  sideNavHide: 'Seitennavigation ausblenden',
-  sideNavShow: 'Seitennavigation einblenden',
+  sideNavHide: 'Navigation ausblenden',
+  sideNavShow: 'Navigation einblenden',
   success: 'Erfolg',
   warning: 'Warnung',
 };

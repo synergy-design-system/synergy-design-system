@@ -227,7 +227,7 @@ export const StickyNavigationDesktop: Story = {
       
       <!-- .synergy-demo-content -->
       <div class="synergy-demo-content">
-        ${createSideNav({ variant: 'sticky' })}
+        ${createSideNav({ hasFooter: false, variant: 'sticky' })}
         <div class="synergy-demo-content-inner">
           ${createMainContent()}
           ${createFooter()}

@@ -191,7 +191,8 @@ export const createSideNav = ({
   noFocusTrapping = false,
   open = false,
   variant = 'default',
-}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'default' | 'rail' | 'sticky' } = {}) => html`
+  hasFooter = true,
+}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'default' | 'rail' | 'sticky'; hasFooter?: boolean } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
     ?no-focus-trapping=${noFocusTrapping}
@@ -219,14 +220,15 @@ export const createSideNav = ({
       ${getTranslation('appShell.navigation.feedback')}
     </syn-nav-item>
 
-    <syn-nav-item slot="footer">
+    ${hasFooter ? html`<syn-nav-item slot="footer">
       <syn-icon name="settings" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.settings')}
     </syn-nav-item>
     <syn-nav-item slot="footer" divider>
       <syn-icon name="logout" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.logout')}
-    </syn-nav-item>
+    </syn-nav-item>` : ''
+    }
   </syn-side-nav>
   <!-- /side-navigation -->
 `;

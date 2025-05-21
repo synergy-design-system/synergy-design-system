@@ -1,41 +1,43 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { SynVueIconButton, SynVueSwitch } from '@synergy-design-system/vue';
-import type {
-  SynChangeEvent,
-  SynSwitch as SynSwitchElement,
-} from '@synergy-design-system/components';
 import {
-  type AllowedModes,
-  type AllowedThemes,
-  setTheme,
+  SynVueSelect,
+  SynVueOptgroup,
+  SynVueOption,
+} from '@synergy-design-system/vue';
+import {
+  getAvailableThemes,
+  setThemeFromOptionString,
 } from '@synergy-design-system/demo-utilities';
+import type { SynChangeEvent, SynSelect } from '@synergy-design-system/components';
 
-const currentTheme = ref<AllowedThemes>('2018');
-const currentMode = ref<AllowedModes>('light');
+const availableThemes = getAvailableThemes();
 
-const setCurrentTheme = () => {
-  currentTheme.value = currentTheme.value === '2025' ? '2018' : '2025';
+const setTheme = (e: SynChangeEvent) => {
+  const value = (e.target as SynSelect).value as string;
+  console.log(value);
+  setThemeFromOptionString(value);
 }
-
-const setCurrentMode = (e: SynChangeEvent) => {
-  const { checked } = e.target as SynSwitchElement;
-  currentMode.value = checked ? 'dark' : 'light';
-}
-
-watchEffect(() => {
-  setTheme(currentTheme.value, currentMode.value);
-});
 </script>
 
 <template>
-  <SynVueIconButton
-    :label="`Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`"
-    :name="currentTheme === '2025' ? 'visibility_off' : 'visibility'"
+  <SynVueSelect
+    placeholder="Select theme to use"
     size="small"
-    @click="setCurrentTheme"
-  />
-  <SynVueSwitch @syn-change="setCurrentMode" size="small">
-    {{ currentMode === 'dark' ? '🌙' : '🌞' }}
-  </SynVueSwitch>
+    @synChange="setTheme"
+    value="2018-light"
+  >
+    <SynVueOptgroup
+      v-for="(theme, key) in availableThemes"
+      :key="key"
+      :label="theme.title"
+    >
+      <SynVueOption
+        v-for="(mode, index) in theme.modes"
+        :value="`${theme.name}-${mode}`"
+        :key="index"
+      >
+        {{theme.title}} - {{ mode }}
+      </SynVueOption>
+    </SynVueOptGroup>
+  </SynVueSelect>
 </template>

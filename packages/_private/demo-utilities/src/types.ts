@@ -53,3 +53,12 @@ export type AllowedThemes = '2018' | '2025';
  * A type representing the allowed modes for the theme.
  */
 export type AllowedModes = 'light' | 'dark';
+
+/**
+ * Represents a theme, including the theme information
+ */
+export type Theme = {
+  modes: AllowedModes[];
+  name: AllowedThemes;
+  title: string;
+};

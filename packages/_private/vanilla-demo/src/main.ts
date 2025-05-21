@@ -3,16 +3,14 @@
 import {
   type SynChangeEvent,
   type SynIconButton,
+  type SynSelect,
   type SynSideNav,
-  type SynSwitch,
   enableExperimentalSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
 import {
-  type AllowedModes,
-  type AllowedThemes,
-  capitalize,
-  setTheme,
+  getAvailableThemes,
+  setThemeFromOptionString,
 } from '@synergy-design-system/demo-utilities';
 
 // Load webfonts
@@ -38,9 +36,6 @@ import {
   setGlobalSize,
 } from './utils.js';
 
-let currentTheme: AllowedThemes = '2018';
-let currentMode: AllowedModes = 'light';
-
 const initLayoutSwitch = async () => {
   await customElements.whenDefined('syn-button-group');
 
@@ -64,24 +59,33 @@ const initLayoutSwitch = async () => {
 };
 
 const initThemeSwitch = async () => {
-  await customElements.whenDefined('syn-icon-button');
-  await customElements.whenDefined('syn-switch');
+  await customElements.whenDefined('syn-select');
 
-  const themeButton = document.querySelector<SynIconButton>('#theme-switch');
-  const modeSwitch = document.querySelector<SynSwitch>('#mode-switch');
+  const select = document.querySelector<SynSelect>('#theme-switch');
 
-  themeButton?.addEventListener('click', () => {
-    currentTheme = currentTheme === '2025' ? '2018' : '2025';
-    themeButton.label = `Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`;
-    themeButton.name = currentTheme === '2025' ? 'visibility_off' : 'visibility';
-    setTheme(currentTheme, currentMode);
+  if (!select) {
+    return;
+  }
+
+  // Create theme contents in the DOM
+  Object.values(getAvailableThemes()).forEach(theme => {
+    const optgroup = document.createElement('syn-optgroup');
+    optgroup.label = theme.title;
+
+    theme.modes.forEach(mode => {
+      const option = document.createElement('syn-option');
+      option.value = `${theme.name}-${mode}`;
+      option.innerText = `${theme.title} - ${mode}`;
+      optgroup.appendChild(option);
+    });
+
+    select.appendChild(optgroup);
   });
 
-  modeSwitch?.addEventListener('syn-change', (e: SynChangeEvent) => {
-    const { checked } = e.target as SynSwitch;
-    currentMode = checked ? 'dark' : 'light';
-    setTheme(currentTheme, currentMode);
-    modeSwitch.innerHTML = modeSwitch.dataset[`theme${capitalize(currentMode)}`] ?? '';
+  // Switch themes
+  select.addEventListener('syn-change', (e: SynChangeEvent) => {
+    const value = (e.target as SynSelect).value as string;
+    setThemeFromOptionString(value);
   });
 };
 

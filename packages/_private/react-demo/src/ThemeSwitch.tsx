@@ -1,41 +1,31 @@
-import { useEffect, useState } from 'react';
-import { SynSwitch } from '@synergy-design-system/react';
-import type {
-  SynChangeEvent,
-  SynSwitch as SynSwitchElement,
-} from '@synergy-design-system/components';
 import {
-  type AllowedModes,
-  type AllowedThemes,
-  setTheme,
+  getAvailableThemes,
+  setThemeFromOptionString,
 } from '@synergy-design-system/demo-utilities';
+import type { SynSelect } from '@synergy-design-system/components';
 
-export const ThemeSwitch = () => {
-  const [currentTheme, setCurrentTheme] = useState<AllowedThemes>('2018');
-  const [currentMode, setCurrentMode] = useState<AllowedModes>('light');
-
-  useEffect(() => {
-    setTheme(currentTheme, currentMode);
-  }, [currentTheme, currentMode]);
-  return (
-    <>
-      <syn-icon-button
-        label={`Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`}
-        name={currentTheme === '2018' ? 'visibility_off' : 'visibility'}
-        size="small"
-        onClick={() => {
-          setCurrentTheme(currentTheme === '2018' ? '2025' : '2018');
-        }}
-      />
-      <SynSwitch
-        size="small"
-        onSynChange={(e: SynChangeEvent) => {
-          const { checked } = e.target as SynSwitchElement;
-          setCurrentMode(checked ? 'dark' : 'light');
-        }}
-      >
-        {currentMode === 'dark' ? '🌙' : '🌞'}
-      </SynSwitch>
-    </>
-  );
-};
+export const ThemeSwitch = () => (
+  <syn-select
+    onsyn-change={e => {
+      const value = (e.target as SynSelect).value as string;
+      setThemeFromOptionString(value);
+    }}
+    placeholder="Select theme to use"
+    size="small"
+    value="2018-light"
+  >
+    {Object
+      .entries(getAvailableThemes())
+      .map(([key, theme]) => (
+        <syn-optgroup label={`${theme.title}`} key={key}>
+          {theme.modes.map(mode => (
+            <syn-option value={`${theme.name}-${mode}`} key={mode}>
+              {theme.title}
+              -
+              {mode}
+            </syn-option>
+          ))}
+        </syn-optgroup>
+      ))}
+  </syn-select>
+);

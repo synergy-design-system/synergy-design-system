@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import type { SynChangeEvent, SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynSelect } from '@synergy-design-system/components';
 import {
-  type AllowedModes,
-  type AllowedThemes,
-  setTheme,
+  getAvailableThemes,
+  setThemeFromOptionString,
 } from '@synergy-design-system/demo-utilities';
 
 @Component({
@@ -14,21 +13,9 @@ import {
 })
 export class ThemeSwitchComponent {
 
-  currentTheme: AllowedThemes = '2018';
-  currentMode: AllowedModes = 'light';
+  availableThemes = getAvailableThemes();
 
-  constructor() {
-    setTheme(this.currentTheme, this.currentMode);
-  }
-
-  setCurrentTheme() {
-    this.currentTheme = this.currentTheme === '2025' ? '2018' : '2025';
-    setTheme(this.currentTheme, this.currentMode);
-  }
-
-  setCurrentMode(e: SynChangeEvent) {
-    const { checked } = e.target as SynSwitchElement;
-    this.currentMode = checked ? 'dark' : 'light';
-    setTheme(this.currentTheme, this.currentMode);
+  setCurrentTheme(e: SynChangeEvent) {
+    setThemeFromOptionString((e.target as SynSelect).value as string);
   }
 }

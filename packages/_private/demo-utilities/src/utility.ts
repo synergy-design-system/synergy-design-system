@@ -1,7 +1,8 @@
 import type {
   AllowedModes,
   AllowedThemes,
-  SideNavTypes
+  SideNavTypes,
+  Theme,
 } from './types.js';
 
 /**
@@ -33,6 +34,23 @@ export const setNextSidenavLayout = (layout: SideNavTypes): SideNavTypes => {
 };
 
 /**
+ * Get the list of available themes
+ * @returns List of available themes
+ */
+export const getAvailableThemes = (): Record<AllowedThemes, Theme> => ({
+  2018: {
+    modes: ['light', 'dark'],
+    name: '2018',
+    title: 'SICK 2018',
+  },
+  2025: {
+    modes: ['light', 'dark'],
+    name: '2025',
+    title: 'SICK 2025',
+  },
+});
+
+/**
  * Sets the body class to the given theme and mode
  * @param theme The theme to use. Either brand25 or synergy
  * @param mode The mode for the theme. Either light or dark
@@ -49,4 +67,20 @@ export const setTheme = (theme: AllowedThemes, mode: AllowedModes) => {
 
   body.classList.remove('syn-sick-2018-light', 'syn-sick-2018-dark', 'syn-sick-2025-light', 'syn-sick-2025-dark');
   body.classList.add(nextClassName);
+};
+
+/**
+ * Set the theme based on the given option string.
+ * Usually called from a syn-select that holds the templates
+ * @param optionString The option string to parse. It should be in the format of "theme-mode"
+ * @throws Error if the option string is invalid
+ */
+export const setThemeFromOptionString = (optionString: string) => {
+  const [theme, mode] = optionString.split('-') as [AllowedThemes, AllowedModes];
+
+  if (!theme || !mode) {
+    throw new Error(`Invalid theme or mode: ${optionString}`);
+  }
+
+  setTheme(theme, mode);
 };

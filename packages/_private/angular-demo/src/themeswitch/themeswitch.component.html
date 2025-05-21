@@ -1,10 +1,16 @@
-<syn-icon-button
-  [label]="`Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`"
-  [name]="currentTheme === '2025' ? 'visibility_off' : 'visibility'"
+<syn-select
+  (synChangeEvent)="setCurrentTheme($event)"
+  placeholder="Select a theme to use"
   size="small"
-  (click)="setCurrentTheme()"
-/>
-
-<syn-switch (synChangeEvent)="setCurrentMode($event)" size="small">
-  {{ currentMode === 'dark' ? '🌙' : '🌞' }}
-</syn-switch>
+  value="2018-light"
+>
+  @for (theme of availableThemes | keyvalue; track theme.key) {
+    <syn-optgroup [label]="theme.value.title">
+      @for (mode of theme.value.modes; track mode) {
+        <syn-option [value]="theme.value.name + '-' + mode">
+          {{ theme.value.title }} - {{ mode }}
+        </syn-option>
+      }
+    </syn-optgroup>
+  }
+</syn-select>

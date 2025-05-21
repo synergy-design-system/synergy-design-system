@@ -77,19 +77,11 @@ export const createLayout = () => `
 
       <syn-divider vertical></syn-divider>
 
-      <syn-icon-button
-        label="Experimental Theme? ✗"
-        name="visibility"
+      <syn-select
+        placeholder="Select theme to use"
         id="theme-switch"
         size="small"
-      ></syn-icon-button>
-
-      <syn-switch
-        data-theme-light="🌞"
-        data-theme-dark="🌙"
-        id="mode-switch"
-        size="small"
-      >🌞</syn-switch>
+      ></syn-select>
     </div>
   </syn-header>
 

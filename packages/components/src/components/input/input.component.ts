@@ -27,6 +27,14 @@ import styles from './input.styles.js';
 import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
+import {
+  type NumericStrategy,
+  createNumericStrategy,
+  nativeNumericStrategy,
+  modernNumericStrategy,
+} from './strategies.js';
+import { formatNumber } from './formatter.js';
+import type { SynClampDetails } from '../../events/syn-clamp.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -54,6 +62,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -218,6 +227,83 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
    */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
+  /**
+   * Optional options that should be passed to the `NumberFormatter` when formatting the value.
+   * This is used to format the number when the input type is `number`.
+   * Note this can only be set via `property`, not as an `attribute`!
+   */
+  @property({
+    attribute: false,
+    reflect: false,
+    type: Object,
+  }) numberFormatterOptions: Intl.NumberFormatOptions;
+
+  /**
+   * The minimal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is `number`.
+   */
+  @property({
+    attribute: 'min-fraction-digits',
+    type: Number,
+  }) minFractionDigits: number;
+
+  /**
+   * The maximal amount of fraction digits to use for numeric values.
+   * Used to format the number when the input type is `number`.
+   */
+  @property({
+    attribute: 'max-fraction-digits',
+    type: Number,
+  }) maxFractionDigits: number;
+
+  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+
+  /**
+   * Defines the strategy for handling numbers in the numeric input.
+   * This is used to determine how the input behaves when the user interacts with it.
+   *
+   * Includes the following configuration options:
+   *
+   * - **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+   * - **noStepAlign**: If true, the input will not align the value to the step attribute.
+   * - **noStepValidation**: If true, the input will not validate the value against the step attribute.
+   * 
+   * You may provide this as one of the following values:
+   *
+   * - 'native': Uses the native browser implementation.
+   * - 'modern': Uses a more intuitive implementation:
+   *   - Values are clamped to the nearest min or max value.
+   *   - Stepping is inclusive to the provided min and max values.
+   *   - Provided stepping is no longer used in validation.
+   * - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
+   */
+  @property({
+    attribute: 'numeric-strategy',
+    converter: {
+      fromAttribute: (value) => {
+        return value === 'modern'
+          ? modernNumericStrategy
+          : nativeNumericStrategy;
+      },
+    },
+    type: Object,
+  })
+  set numericStrategy(value: 'native' | 'modern' | Partial<NumericStrategy>) {
+    switch (typeof value) {
+      case 'string': this.#numericStrategy = value === 'modern' ? modernNumericStrategy : nativeNumericStrategy; break;
+      case 'object': this.#numericStrategy = createNumericStrategy(value); break;
+      default: this.#numericStrategy = nativeNumericStrategy;
+    }
+  }
+
+  /**
+   * @default nativeNumericStrategy
+   * @todo: This must be changed to "modern" in Synergy@3
+   */
+  get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
+    return this.#numericStrategy;
+  }
+
   //
   // NOTE: We use an in-memory input for these getters/setters instead of the one in the template because the properties
   // can be set before the component is rendered.
@@ -288,11 +374,11 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       return true;
     }
 
-    if (this.min === undefined || this.min === null || this.disabled) {
+    if (this.min === undefined || this.min === null) {
       return false;
     }
 
-    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min
+    const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
     return this.valueAsNumber <= min;
   }
 
@@ -305,11 +391,91 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
       return false;
     }
 
-    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max
+    const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
     return this.valueAsNumber >= max;
   }
 
+  
+  private handleNumericStrategyAutoClamp() {
+    const {
+      valueAsNumber,
+      max: initialMax,
+      min: initialMin,
+    } = this;
+
+    // Exit early if there should be no clamping
+    if (!this.#numericStrategy.autoClamp) {
+      return {
+        eventObj: null,
+        shouldClamp: false,
+        nextValue: valueAsNumber,
+      }
+    }
+
+    const min = typeof initialMin === 'string' ? parseFloat(initialMin) : initialMin;
+    const max = typeof initialMax === 'string' ? parseFloat(initialMax) : initialMax;
+
+    let nextValue = valueAsNumber;
+    let clampEvent = '';
+    if (nextValue < min) {
+      nextValue = min;
+      clampEvent = 'min';
+    } else if (nextValue > max) {
+      nextValue = max;
+      clampEvent = 'max';
+    }
+
+    const eventObj = clampEvent ? {
+      detail: {
+        clampedTo: clampEvent as SynClampDetails['clampedTo'],
+        lastUserValue: valueAsNumber,
+      },
+    } : null;
+
+    return {
+      eventObj,
+      shouldClamp: !!eventObj,
+      nextValue,
+    };
+  }
+
   private handleChange() {
+    if (this.type === 'number' && (this.#isNumberFormattingEnabled() || this.#numericStrategy.autoClamp)) {
+      const { eventObj, shouldClamp, nextValue } = this.handleNumericStrategyAutoClamp();
+      let initialNextValue = this.#numericStrategy.autoClamp ? nextValue : this.valueAsNumber;
+
+      // Make sure to flag non numeric values as invalid
+      if (isNaN(initialNextValue)) {
+        // Make sure to set the value to the min or max value if the input is empty
+        // If neither min nor max are set, we set the value to 0
+        const { max, min } = this;
+
+        if (max !== undefined && max !== null) {
+          initialNextValue = typeof max === 'string' ? parseFloat(max) : +max;
+        } else if (min !== undefined && min !== null) {
+          initialNextValue = typeof min === 'string' ? parseFloat(min) : +min;
+        } else {
+          initialNextValue = 0;
+        }
+      }
+
+      this.value = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(initialNextValue)
+        : initialNextValue.toString();
+
+      // Make sure to wait for the updateComplete to be done before updating the validity
+      // and firing events. This is needed because valueAsNumber is not updated yet when the event is fired
+      this.updateComplete.then(() => {
+
+        if (shouldClamp && eventObj) {
+          this.emit('syn-clamp', eventObj);
+        }
+
+        this.formControlController.updateValidity();
+        this.emit('syn-change');
+      });
+      return;
+    }
     this.value = this.input.value;
     this.emit('syn-change');
   }
@@ -344,6 +510,21 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   }
 
   private handleKeyDown(event: KeyboardEvent) {
+    if (this.#numericStrategy.noStepAlign && this.type === 'number') {
+      const { key } = event;
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (key === 'ArrowUp') {
+          this.handleStepUp();
+        } else if (key === 'ArrowDown') {
+          this.handleStepDown();
+        }
+        this.handleChange();
+        return;
+      }
+    }
     const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
 
     // Pressing enter when focused on an input should submit the form like a native input, but we wait a tick before
@@ -375,6 +556,10 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   @watch('step', { waitUntilFirstUpdate: true })
   handleStepChange() {
+    // If the numericStrategy has noStepValidation set, skip this as the inputs step will always set to "any".
+    if (this.#numericStrategy.noStepValidation) {
+      return;
+    }
     // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);
@@ -437,6 +622,34 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /** Increments the value of a numeric input type by the value of the step attribute. */
   stepUp() {
+    if (this.#numericStrategy.noStepAlign) {
+      const { max, step, valueAsNumber } = this;
+
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
+
+      let wantedNextValue = usedInitialValue + usedStep;
+
+      if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+      } else if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+      }
+
+      const finalStringValue = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
+
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
+      return;
+    }
     this.input.stepUp();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
@@ -445,6 +658,34 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
 
   /** Decrements the value of a numeric input type by the value of the step attribute. */
   stepDown() {
+    if (this.#numericStrategy.noStepAlign) {
+      const { min, max, step, valueAsNumber } = this;
+
+      // Needed because the input could be empty. In this case, valueAsNumber is NaN
+      const usedInitialValue = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber;
+      const usedMin = typeof min === 'string' ? parseFloat(min) : min;
+      const usedMax = typeof max === 'string' ? parseFloat(max) : max;
+      const usedStep = (typeof step === 'undefined' || step === null || step === 'any') ? 1 : typeof step === 'number' ? step : parseFloat(step);
+
+      let wantedNextValue = usedInitialValue - usedStep;
+      
+      if (typeof usedMin === 'number' && usedMin > wantedNextValue) {
+        wantedNextValue = usedMin;
+      } else if (typeof usedMax === 'number' && usedMax < wantedNextValue) {
+        wantedNextValue = usedMax;
+      }
+
+      const finalStringValue = this.#isNumberFormattingEnabled()
+        ? this.#formatNumber(wantedNextValue)
+        : wantedNextValue.toString();
+
+      this.input.value = finalStringValue;
+
+      if (this.value !== this.input.value) {
+        this.value = this.input.value;
+      }
+      return;
+    }
     this.input.stepDown();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
@@ -470,6 +711,43 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   setCustomValidity(message: string) {
     this.input.setCustomValidity(message);
     this.formControlController.updateValidity();
+  }
+
+  #formatNumber(value: number) {
+    return formatNumber(value, this.step, {
+      maximumFractionDigits: this.maxFractionDigits,
+      minimumFractionDigits: this.minFractionDigits,
+      ...this.numberFormatterOptions,
+    });
+  }
+
+  #isNumberFormattingEnabled() {
+    const {
+      numberFormatterOptions,
+      maxFractionDigits,
+      minFractionDigits,
+      step,
+    } = this;
+
+    const hasMaxFractionDigits = typeof maxFractionDigits !== 'undefined' && !Number.isNaN(maxFractionDigits);
+    const hasMinFractionDigits = typeof minFractionDigits !== 'undefined' && !Number.isNaN(minFractionDigits);
+
+    // Easy checks first: If we have a min or max fraction digit, proceed
+    if (hasMaxFractionDigits || hasMinFractionDigits) {
+      return true;
+    }
+    
+    // Check if there are any options that where provided via formatter options
+    if (typeof numberFormatterOptions === 'object') {
+      return true;
+    }
+
+    // As a last fallback, see if the step has a decimal value
+    // If it has, we should format according to the steps amount of fraction digits
+    const stepToUse = step === 'any' || !step ? 1 : +step;
+    const stepFractionDigits = stepToUse.toString().split('.')[1]?.length || 0;
+
+    return stepFractionDigits > 0;
   }
 
   render() {
@@ -544,7 +822,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
               maxlength=${ifDefined(this.maxlength)}
               min=${ifDefined(this.min)}
               max=${ifDefined(this.max)}
-              step=${ifDefined(this.step as number)}
+              step=${ifDefined(!this.#numericStrategy.noStepValidation ? this.step as number : 'any')}
               .value=${live(this.value)}
               autocapitalize=${ifDefined(this.autocapitalize)}
               autocomplete=${ifDefined(this.autocomplete)}

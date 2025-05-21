@@ -24,7 +24,7 @@ As projects may use various forms of applying styles, we provide different ways 
 ### Using CSS themes
 
 Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or a derived package like `@synergy-design-system/react`.
-The tokens package ships two themes (Synergy and Brand25), providing two modes each: 🌞 light and 🌛 dark.
+The tokens package ships two **themes** (sick2018 and sick2025), with each providing two **modes**: 🌞 light and 🌛 dark.
 
 > The css styles are used as a single source of truth, also when working with the provided JavaScript or SASS exports!
 > Always make sure to load one of the css themes!
@@ -34,9 +34,11 @@ The tokens package ships two themes (Synergy and Brand25), providing two modes e
   <head>
     <!-- Example 1: Referencing directly in a HTML document -->
     <!-- Make sure to add the stylesheet before using any components -->
+    <!-- Note that "light.css" will point to the default theme of the tokens package. See table below for defaults -->
     <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
 
     <!-- Alternative: Use the dark theme -->
+    <!-- Note that "dark.css" will point to the default theme of the tokens package. See table below for defaults -->
     <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
   </head>
   <body>
@@ -51,12 +53,12 @@ The tokens package ships two themes (Synergy and Brand25), providing two modes e
 
 You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
 
-| Theme   | Mode  | Stylesheet to use                 | Body className            |
-| :------ | :---- | :-------------------------------- | :------------------------ |
-| Synergy | light | `tokens/themes/light.css`         | `syn-theme-light`         |
-| Synergy | dark  | `tokens/themes/dark.css`          | `syn-theme-dark`          |
-| Brand25 | light | `tokens/themes/brand25-light.css` | `syn-theme-brand25-light` |
-| Brand25 | dark  | `tokens/themes/brand25-dark.css`  | `syn-theme-brand25-dark`  |
+| Theme    | Mode  | Stylesheet to use                  | Corresponding classNames                 | Default for Version |
+| :------- | :---- | :--------------------------------- | :--------------------------------------- | :-----------------: |
+| sick2018 | light | `tokens/themes/sick2018_light.css` | `syn-theme-light`, `syn-sick-2018-light` |       `2.0.0`       |
+| sick2018 | dark  | `tokens/themes/sick2018_dark.css`  | `syn-theme-dark`, `syn-sick-2018-dark`   |                     |
+| sick2025 | light | `tokens/themes/sick2025_light.css` | `syn-sick-2025-light`                    |       `3.0.0`       |
+| sick2025 | dark  | `tokens/themes/sick2025_light.css` | `syn-sick-2025-dark`                     |                     |
 
 To switch the theme, proceed in the following way:
 

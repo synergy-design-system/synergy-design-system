@@ -62,7 +62,7 @@ export const createFooter = () => html`
           </a>
         </li>
       </ul>
-      <p class="copyright">&copy; 2024 SICK AG</p>
+      <p class="copyright">&copy; 2025 SICK AG</p>
     </nav>
   </footer>
   <!-- /footer -->
@@ -185,18 +185,19 @@ export const createHeader = ({
 `;
 
 /**
- * Create a side navigation with an optional rail mode
+ * Create a side navigation with an optional "variant" attribute
  */
 export const createSideNav = ({
   noFocusTrapping = false,
   open = false,
-  rail = false,
-} = {}) => html`
+  variant = 'default',
+  hasFooter = true,
+}: { noFocusTrapping?: boolean; open?: boolean; variant?: 'default' | 'rail' | 'sticky'; hasFooter?: boolean } = {}) => html`
   <!-- side-navigation -->
   <syn-side-nav
     ?no-focus-trapping=${noFocusTrapping}
     ?open=${open}
-    ?rail=${rail}
+    variant=${variant}
   >
     <syn-nav-item current>
       <syn-icon name="home" slot="prefix"></syn-icon>
@@ -219,14 +220,15 @@ export const createSideNav = ({
       ${getTranslation('appShell.navigation.feedback')}
     </syn-nav-item>
 
-    <syn-nav-item slot="footer">
+    ${hasFooter ? html`<syn-nav-item slot="footer">
       <syn-icon name="settings" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.settings')}
     </syn-nav-item>
     <syn-nav-item slot="footer" divider>
       <syn-icon name="logout" slot="prefix"></syn-icon>
       ${getTranslation('appShell.navigation.logout')}
-    </syn-nav-item>
+    </syn-nav-item>` : ''
+    }
   </syn-side-nav>
   <!-- /side-navigation -->
 `;

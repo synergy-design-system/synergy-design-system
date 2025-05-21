@@ -68,19 +68,25 @@ test.describe('<Angular /> on port 5176', () => {
       // Check directly for the input result as doing an action with another element,
       // will result in a blur of the syn-input and therefore a syn-change event
       await expect(inputResult, 'NgModel value of syn-input should NOT have changed on syn-input event').toHaveText('Hello');
-      await input.blur();
+      // We need to blur the inner input, otherwise firefox will not trigger
+      // the syn-blur / syn-change events
+      await input.locator('input').blur();
       await expect(inputResult, 'NgModel value of syn-input should have changed on syn-change event').toHaveText('World');
 
       await checkbox.click();
       await expect(checkboxResult, 'NgModel value of syn-checkbox should NOT have changed on syn-change event').toHaveText('false');
-      await checkbox.blur();
+      // We need to blur the inner input, otherwise firefox and webkit will not trigger the
+      // the syn-blur event
+      await checkbox.locator('input').dispatchEvent('blur');
       await expect(checkboxResult, 'NgModel value of syn-checkbox should have changed on syn-blur event').toHaveText('true');
 
       await range.dragTo(range, {
         targetPosition: { x: 0, y: 18 },
       });
       await expect(rangeResult, 'NgModel value of syn-range should NOT have changed on syn-change event').toHaveText('50');
-      await range.blur();
+      // We need to do a focusout on the inner range div, otherwise firefox will not trigger
+      // the syn-blur event
+      await range.locator('.form-control').dispatchEvent('focusout');
       await expect(rangeResult, 'NgModel value of syn-range should have changed on syn-blur event').toHaveText('0');
     });
   });

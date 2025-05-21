@@ -18,6 +18,19 @@ const AllComponentSelectors = {
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
+  // NgModelUpdateOn
+  ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="ng-model-checkbox"]',
+  ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="ng-model-checkbox-changed"]',
+  ngModelUpdateOnCheckboxResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-checkbox"]',
+  ngModelUpdateOnContent: '#tab-content-NgModelUpdateOn',
+  ngModelUpdateOnInput: '#tab-content-NgModelUpdateOn syn-input[data-testid="ng-model-input"]',
+  ngModelUpdateOnInputChanged: '#tab-content-NgModelUpdateOn syn-input[data-testid="ng-model-input-changed"]',
+  ngModelUpdateOnInputResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-input"]',
+  ngModelUpdateOnLink: '#tab-NgModelUpdateOn',
+  ngModelUpdateOnRange: '#tab-content-NgModelUpdateOn syn-range[data-testid="ng-model-range"]',
+  ngModelUpdateOnRangeChanged: '#tab-content-NgModelUpdateOn syn-range[data-testid="ng-model-range-changed"]',
+  ngModelUpdateOnRangeResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-range"]',
+
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
   optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',

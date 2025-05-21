@@ -17,7 +17,8 @@ export const getCheckedValue = async (locator: Locator) => locator
   .evaluate((el: SynCheckbox | SynSwitch) => el.checked);
 
 /**
- * Set the locators inner inputs value
+ * Set the locators inner inputs value.
+ * The elements is blurred after the value is set, so the syn-change event is triggered.
  *
  * @param locator The original form locator
  * @param value The value to set
@@ -30,6 +31,21 @@ export const fillField = async (locator: Locator, value: string, selector = 'inp
 };
 
 export const fillInput = async (locator: Locator, value: string) => fillField(locator, value, 'input');
+
+/**
+ * Set the locators inner inputs value.
+ * The elements is NOT blurred after the value is set, so only a syn-input is triggered.
+ *
+ * @param locator The original form locator
+ * @param value The value to set
+ * @param selector The selector to use in the shadow root
+ */
+export const fillFieldWithoutBlur = async (locator: Locator, value: string, selector = 'input') => {
+  await locator.focus();
+  await locator.locator(selector).fill(value);
+};
+
+export const fillInputWithoutBlur = async (locator: Locator, value: string) => fillFieldWithoutBlur(locator, value, 'input');
 
 /**
  * Set the locators inner inputs value
@@ -46,4 +62,12 @@ export const createTestCases = (callback: FrameworkCallback) => {
       port,
     });
   });
+};
+
+export const getFrameworkPort = (frameworkName: AvailableFrameworks) => {
+  const framework = frameworks.find(fw => fw.name === frameworkName);
+  if (!framework) {
+    throw new Error(`Framework ${frameworkName} not found`);
+  }
+  return framework.port;
 };

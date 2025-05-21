@@ -47,7 +47,7 @@ export type SideNavTypes = 'default' | 'rail' | 'sticky';
 /**
  * A type representing the allowed themes for an application.
  */
-export type AllowedThemes = 'brand25' | 'synergy';
+export type AllowedThemes = '2018' | '2025';
 
 /**
  * A type representing the allowed modes for the theme.

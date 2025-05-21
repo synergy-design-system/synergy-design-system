@@ -1,7 +1,7 @@
 // Make sure chromatic supports dark mode
 // @see https://www.chromatic.com/docs/themes/
-export const SYNERGY_LIGHT_THEME = '🌞 Synergy (v2)';
-export const SYNERGY_DARK_THEME = '🌙 Synergy (v2)';
+export const SICK_2025_LIGHT = 'SICK 2025 Light (v3)';
+export const SICK_2025_DARK = 'SICK 2025 Dark (v3)';
 
-export const SICK_LIGHT_THEME = '🌞 SICK 2025 (v3)';
-export const SICK_DARK_THEME = '🌙 SICK 2025 (v3)';
+export const SICK_2018_LIGHT = 'SICK 2018 Light (v2)';
+export const SICK_2018_DARK = 'SICK 2018 Dark (v2)';

@@ -1,7 +1,10 @@
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
+import {
+  getInformationForTheme,
+  getPackageInformation,
+} from './helpers.js';
 import { cssVariableFormatter } from './formats/index.js';
 import { createJS, createSCSS } from './outputs/index.js';
 import {
@@ -12,6 +15,7 @@ import {
   useCssCalc,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
+import { copyToDefaultLocation } from './copyToDefault.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
@@ -27,12 +31,7 @@ const config = {
   prefix: 'syn-',
 };
 
-/**
- * @type {{ author: Record<string, string>, name: string, version: string }} data
- */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const data = JSON.parse(readFileSync('./package.json', 'utf-8'));
-const { author, name, version } = data;
+const { author, name, version } = getPackageInformation();
 
 const dictionary = new StyleDictionary({
   log: {
@@ -50,28 +49,21 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-const cssRuns = ['brand25', 'synergy24'].map(brand => ['dark', 'light']
-  .map(async theme => {
-    // Make sure to save the original synergy themes as "light" and "dark"
-    // and the new ones as "brand25-light" and "brand25-dark".
-    // For the next major release, we will remove the old theme names for a unified file name.
-    const initialName = brand === 'synergy24' ? theme : `${brand}-${theme}`;
-    const destination = `${initialName}.css`;
-    const selector = `.syn-theme-${initialName}`;
-
+const cssRuns = ['brand25', 'synergy24'].map(theme => ['dark', 'light']
+  .map(async mode => {
+    const themeInformation = getInformationForTheme(theme, mode);
     const themeInstance = await dictionary.extend({
       platforms: {
         css: {
           buildPath: `${config.buildPath}themes/`,
           files: [{
-            destination,
+            destination: themeInformation.cssFileName,
             filter(token) { return !token.filePath.includes('brand'); },
             format: 'syn/css-variable-formatter',
             options: {
               fileHeader: 'syn/header',
               prefix: config.prefix,
-              selector,
-              theme,
+              themeInformation,
             },
           }],
           prefix: config.prefix,
@@ -99,10 +91,10 @@ const cssRuns = ['brand25', 'synergy24'].map(brand => ['dark', 'light']
       },
       preprocessors: ['tokens-studio'],
       source: [
-        `./src/figma-tokens/brand/${brand}.json`,
+        `./src/figma-tokens/brand/${theme}.json`,
         './src/figma-tokens/globals.json',
         './src/figma-tokens/semantic/*.json',
-        `./src/figma-tokens/theme/${theme}.json`,
+        `./src/figma-tokens/theme/${mode}.json`,
       ],
     });
 
@@ -116,6 +108,8 @@ addMissingTokens(
   'syn',
   join(config.buildPath, 'themes'),
 );
+
+copyToDefaultLocation(join(config.buildPath, 'themes'));
 
 const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
 createJS(

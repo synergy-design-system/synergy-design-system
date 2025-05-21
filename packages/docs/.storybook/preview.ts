@@ -1,43 +1,35 @@
 import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
-import '@synergy-design-system/tokens/themes/brand25-dark.css';
-import '@synergy-design-system/tokens/themes/brand25-light.css';
-import '@synergy-design-system/tokens/default-dark.css';
-import '@synergy-design-system/tokens/default.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../../components/src/synergy';
-
-// Enable this to set default settings for all components
-// import { setDefaultSettingsForElement, enableExperimentalSettingEmitEvents } from '../../components/src/synergy';
-// enableExperimentalSettingEmitEvents();
-// window.addEventListener('syn-default-settings-changed', console.log);
-// setDefaultSettingsForElement('SynAccordion', {
-//   size: 'small',
-// });
 
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import {
-  SICK_DARK_THEME,
-  SICK_LIGHT_THEME,
-  SYNERGY_DARK_THEME,
-  SYNERGY_LIGHT_THEME,
+  SICK_2018_DARK,
+  SICK_2018_LIGHT,
+  SICK_2025_DARK,
+  SICK_2025_LIGHT,
 } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { storybookUtilities } from '../src/helpers/component.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: SYNERGY_LIGHT_THEME,
+  defaultTheme: SICK_2018_LIGHT,
   parentSelector: 'body',
   themes: {
-    [SICK_DARK_THEME]: 'syn-theme-brand25-dark',
-    [SICK_LIGHT_THEME]: 'syn-theme-brand25-light',
-    [SYNERGY_LIGHT_THEME]: 'syn-theme-light',
-    [SYNERGY_DARK_THEME]: 'syn-theme-dark',
+    [SICK_2018_DARK]: 'syn-sick-2018-dark',
+    [SICK_2018_LIGHT]: 'syn-sick-2018-light',
+    [SICK_2025_DARK]: 'syn-sick-2025-dark',
+    [SICK_2025_LIGHT]: 'syn-sick-2025-light',
   },
 });
 
@@ -69,11 +61,11 @@ const preview: Preview = {
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
       modes: {
-        [SYNERGY_LIGHT_THEME]: {
-          theme: SYNERGY_LIGHT_THEME,
+        [SICK_2018_LIGHT]: {
+          theme: SICK_2018_LIGHT,
         },
-        [SYNERGY_DARK_THEME]: {
-          theme: SYNERGY_DARK_THEME,
+        [SICK_2018_DARK]: {
+          theme: SICK_2018_DARK,
         },
       },
     },

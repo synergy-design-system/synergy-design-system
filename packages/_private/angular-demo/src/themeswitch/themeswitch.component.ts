@@ -14,7 +14,7 @@ import {
 })
 export class ThemeSwitchComponent {
 
-  currentTheme: AllowedThemes = 'synergy';
+  currentTheme: AllowedThemes = '2018';
   currentMode: AllowedModes = 'light';
 
   constructor() {
@@ -22,7 +22,7 @@ export class ThemeSwitchComponent {
   }
 
   setCurrentTheme() {
-    this.currentTheme = this.currentTheme === 'brand25' ? 'synergy' : 'brand25';
+    this.currentTheme = this.currentTheme === '2025' ? '2018' : '2025';
     setTheme(this.currentTheme, this.currentMode);
   }
 

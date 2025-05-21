@@ -23,10 +23,10 @@ import '@fontsource/open-sans/600-italic.css';
 import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/700-italic.css';
 
-import '@synergy-design-system/tokens/themes/brand25-dark.css';
-import '@synergy-design-system/tokens/themes/brand25-light.css';
-import '@synergy-design-system/tokens/default-dark.css';
-import '@synergy-design-system/tokens/default.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
@@ -38,7 +38,7 @@ import {
   setGlobalSize,
 } from './utils.js';
 
-let currentTheme: AllowedThemes = 'synergy';
+let currentTheme: AllowedThemes = '2018';
 let currentMode: AllowedModes = 'light';
 
 const initLayoutSwitch = async () => {
@@ -71,9 +71,9 @@ const initThemeSwitch = async () => {
   const modeSwitch = document.querySelector<SynSwitch>('#mode-switch');
 
   themeButton?.addEventListener('click', () => {
-    currentTheme = currentTheme === 'brand25' ? 'synergy' : 'brand25';
-    themeButton.label = `Experimental Theme? ${currentTheme === 'brand25' ? '✓' : '✗'}`;
-    themeButton.name = currentTheme === 'brand25' ? 'visibility_off' : 'visibility';
+    currentTheme = currentTheme === '2025' ? '2018' : '2025';
+    themeButton.label = `Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`;
+    themeButton.name = currentTheme === '2025' ? 'visibility_off' : 'visibility';
     setTheme(currentTheme, currentMode);
   });
 

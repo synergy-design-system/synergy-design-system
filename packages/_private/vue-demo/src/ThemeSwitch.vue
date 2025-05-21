@@ -11,11 +11,11 @@ import {
   setTheme,
 } from '@synergy-design-system/demo-utilities';
 
-const currentTheme = ref<AllowedThemes>('synergy');
+const currentTheme = ref<AllowedThemes>('2018');
 const currentMode = ref<AllowedModes>('light');
 
 const setCurrentTheme = () => {
-  currentTheme.value = currentTheme.value === 'brand25' ? 'synergy' : 'brand25';
+  currentTheme.value = currentTheme.value === '2025' ? '2018' : '2025';
 }
 
 const setCurrentMode = (e: SynChangeEvent) => {
@@ -30,8 +30,8 @@ watchEffect(() => {
 
 <template>
   <SynVueIconButton
-    :label="`Experimental Theme? ${currentTheme === 'brand25' ? '✓' : '✗'}`"
-    :name="currentTheme === 'brand25' ? 'visibility_off' : 'visibility'"
+    :label="`Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`"
+    :name="currentTheme === '2025' ? 'visibility_off' : 'visibility'"
     size="small"
     @click="setCurrentTheme"
   />

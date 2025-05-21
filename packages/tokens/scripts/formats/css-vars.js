@@ -17,9 +17,13 @@ export const cssVariableFormatter = {
   }) => {
     const {
       prefix,
-      selector,
-      theme,
+      themeInformation,
     } = options;
+
+    const {
+      cssSelectors,
+      mode,
+    } = themeInformation;
 
     const header = await fileHeader({ file });
 
@@ -88,8 +92,8 @@ export const cssVariableFormatter = {
     convertOriginalToCssVarRecursive(dictionary);
 
     return `
-${header}:root, ${selector} {
-  color-scheme: ${theme};
+${header}${cssSelectors.join(', ')} {
+  color-scheme: ${mode};
 
 ${formattedVariables({
   dictionary,

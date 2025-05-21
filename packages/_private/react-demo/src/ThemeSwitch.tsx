@@ -11,7 +11,7 @@ import {
 } from '@synergy-design-system/demo-utilities';
 
 export const ThemeSwitch = () => {
-  const [currentTheme, setCurrentTheme] = useState<AllowedThemes>('synergy');
+  const [currentTheme, setCurrentTheme] = useState<AllowedThemes>('2018');
   const [currentMode, setCurrentMode] = useState<AllowedModes>('light');
 
   useEffect(() => {
@@ -20,11 +20,11 @@ export const ThemeSwitch = () => {
   return (
     <>
       <syn-icon-button
-        label={`Experimental Theme? ${currentTheme === 'brand25' ? '✓' : '✗'}`}
-        name={currentTheme === 'brand25' ? 'visibility_off' : 'visibility'}
+        label={`Experimental Theme? ${currentTheme === '2025' ? '✓' : '✗'}`}
+        name={currentTheme === '2018' ? 'visibility_off' : 'visibility'}
         size="small"
         onClick={() => {
-          setCurrentTheme(currentTheme === 'brand25' ? 'synergy' : 'brand25');
+          setCurrentTheme(currentTheme === '2018' ? '2025' : '2018');
         }}
       />
       <SynSwitch

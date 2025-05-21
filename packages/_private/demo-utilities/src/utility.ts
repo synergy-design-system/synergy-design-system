@@ -38,9 +38,7 @@ export const setNextSidenavLayout = (layout: SideNavTypes): SideNavTypes => {
  * @param mode The mode for the theme. Either light or dark
  */
 export const setTheme = (theme: AllowedThemes, mode: AllowedModes) => {
-  const nextClassName = theme === 'brand25'
-    ? `syn-theme-brand25-${mode}`
-    : `syn-theme-${mode}`;
+  const nextClassName = `syn-sick-${theme}-${mode}`;
 
   const { body } = document;
 
@@ -49,8 +47,6 @@ export const setTheme = (theme: AllowedThemes, mode: AllowedModes) => {
     return;
   }
 
-  body.classList.remove('syn-theme-light', 'syn-theme-dark', 'syn-theme-brand25-light', 'syn-theme-brand25-dark');
+  body.classList.remove('syn-sick-2018-light', 'syn-sick-2018-dark', 'syn-sick-2025-light', 'syn-sick-2025-dark');
   body.classList.add(nextClassName);
 };
-
-

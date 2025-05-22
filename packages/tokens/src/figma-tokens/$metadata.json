@@ -1,10 +1,10 @@
 {
   "tokenSetOrder": [
     "globals",
-    "theme/dark",
-    "theme/light",
-    "brand/synergy24",
-    "brand/brand25",
+    "mode/dark",
+    "mode/light",
+    "theme/sick2018",
+    "theme/sick2025",
     "semantic/focus-ring",
     "semantic/input",
     "semantic/button",

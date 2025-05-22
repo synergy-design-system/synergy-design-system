@@ -13,6 +13,10 @@ import {
   getSASSToken,
   exampleText,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Typography" />
 
@@ -20,17 +24,18 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.typography?.description?.value} />
 
-{
-  [
-    ['font-family', docsTokens?.tokens?.typography?.['font-family']?.title.value, getFontFamily(true)],
-    ['font-size', 'Font Size', getFontSize(true)],
-    ['font-weight', 'Font Weight', getFontWeight(true)],
-    ['line-height', 'Line Height', getLineHeight(true)],
-  ].map(([prop, title, category]) => (
-    <>
-      <Markdown>{`## ${title}`}</Markdown>
-      <p>
-        {docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], () => [
+      ['font-family', docsTokens?.tokens?.typography?.['font-family']?.title.value, getFontFamily(true)],
+      ['font-size', 'Font Size', getFontSize(true)],
+      ['font-weight', 'Font Weight', getFontWeight(true)],
+      ['line-height', 'Line Height', getLineHeight(true)],
+    ].map(([prop, title, category]) => (
+      <>
+        <Markdown>{`## ${title}`}</Markdown>
+        <p>
+          {docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}
+        </p>
         {prop === 'font-family' && (
           <blockquote>
             <strong>⚠️ Note</strong>:
@@ -40,52 +45,51 @@ import {
             Examples for this can be seen at our <a href="?path=/docs/prerequisites--docs">Prerequisites Documentation section</a>.
           </blockquote>
         )}
-      </p>
-      <table key={`syn-${prop}`}>
-        <tbody>
-          <>
-            <tr>
-              <th>{title}</th>
-              <th>Raw Value</th>
-              <th>CSS Token</th>
-              <th>SCSS Token</th>
-              <th>JS Token</th>
-            </tr>
-            {Object.entries(category).map(([token, value]) => (
-              <tr key={`${token}-row`}>
-                <td className={prop}>
-                  <span className={ token.toLowerCase() } style={{ [camelCase(prop)]: value }}>{exampleText}</span>
-                </td>
-                <td>
-                  <CopyRawCssPropValue value={token.toLowerCase()} cssProperty={prop} />
-                </td>
-                <td>
-                  <CopyToClipBoard value={getCSSToken(token)}>
-                    {getCSSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-                <td>
-                  <CopyToClipBoard value={getSASSToken(token)}>
-                    {getSASSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-                <td>
-                  <CopyToClipBoard value={token}>
-                    {token}
-                  </CopyToClipBoard>
-                </td>
+        <table key={`syn-${prop}`}>
+          <tbody>
+            <>
+              <tr>
+                <th>{title}</th>
+                <th>Raw Value</th>
+                <th>CSS Token</th>
+                <th>SCSS Token</th>
+                <th>JS Token</th>
               </tr>
-            ))}
-          </>
-        </tbody>
-      </table>
-    </>
-  ))
-}
+              {Object.entries(category).map(([token, value]) => (
+                <tr key={`${token}-row`}>
+                  <td className={prop}>
+                    <span className={ token.toLowerCase() } style={{ [camelCase(prop)]: value }}>{exampleText}</span>
+                  </td>
+                  <td>
+                    <CopyRawCssPropValue value={token.toLowerCase()} cssProperty={prop} />
+                  </td>
+                  <td>
+                    <CopyToClipBoard value={getCSSToken(token)}>
+                      {getCSSToken(token)}
+                    </CopyToClipBoard>
+                  </td>
+                  <td>
+                    <CopyToClipBoard value={getSASSToken(token)}>
+                      {getSASSToken(token)}
+                    </CopyToClipBoard>
+                  </td>
+                  <td>
+                    <CopyToClipBoard value={token}>
+                      {token}
+                    </CopyToClipBoard>
+                  </td>
+                </tr>
+              ))}
+            </>
+          </tbody>
+        </table>
+      </>
+    ))
+  )}
+/>
 
 <style>{`
   .line-height {
     width: 200px;
   }
 `}</style>
-

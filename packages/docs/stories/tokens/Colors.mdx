@@ -3,7 +3,6 @@ import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawHexValue } from '../../src/shared-components/RawColorValue.tsx';
 import { ColorSwatch, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-
 import {
   getAccentColorPalette,
   getCSSToken,
@@ -12,6 +11,10 @@ import {
   getPrimaryColorPalette,
   getSASSToken,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Colors" />
 
@@ -19,63 +22,57 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
-{['synergy', 'brand25'].map(theme => (
-  <div key={theme}>
-    <Markdown>{`## Colors (${theme})`}</Markdown>
-    {['light', 'dark'].map(mode => (
-      <div key={mode}>
-        <Markdown>{`### Mode - ${mode}`}</Markdown>
-        <table className={theme === 'synergy' ? `syn-theme-${mode}` : `syn-theme-brand25-${mode}`}>
-          <tbody>
-            {[
-              ['Neutral', getNeutralColorPalette(true)],
-              ['Primary', getPrimaryColorPalette(true)],
-              ['Accent', getAccentColorPalette(true)],
-              ['Error', getColorAsPalette('error', true)],
-              ['Warning', getColorAsPalette('warning', true)],
-              ['Success', getColorAsPalette('success', true)],
-            ].map(([title, palette]) => (
-              <>
-                <tr key={`${title}-header`}>
-                  <th colSpan="5">{title}</th>
-                </tr>
-                <tr key={`${title}-others`}>
-                  <th>Color</th>
-                  <th>Raw Value</th>
-                  <th>CSS Token</th>
-                  <th>SCSS Token</th>
-                  <th>JS Token</th>
-                </tr>
-                {Object.entries(palette).map(([token, value]) => (
-                  <tr key={`${title}-row-${token}`}>
-                    <td>
-                      <ColorSwatch value={value} />
-                    </td>
-                    <td>
-                      <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
-                    </td>
-                    <td>
-                      <CopyToClipBoard value={getCSSToken(token)}>
-                        {getCSSToken(token)}
-                      </CopyToClipBoard>
-                    </td>
-                    <td>
-                      <CopyToClipBoard value={getSASSToken(token)}>
-                        {getSASSToken(token)}
-                      </CopyToClipBoard>
-                    </td>
-                    <td>
-                      <CopyToClipBoard value={token}>
-                        {token}
-                      </CopyToClipBoard>
-                    </td>
-                  </tr>
-                ))}
-              </>
+<TokensForThemes
+  themes={getThemesForComponent(['2018-light', '2018-dark', '2025-light', '2025-dark'], () => (
+    <table>
+      <tbody>
+        {[
+          ['Neutral', getNeutralColorPalette(true)],
+          ['Primary', getPrimaryColorPalette(true)],
+          ['Accent', getAccentColorPalette(true)],
+          ['Error', getColorAsPalette('error', true)],
+          ['Warning', getColorAsPalette('warning', true)],
+          ['Success', getColorAsPalette('success', true)],
+        ].map(([title, palette]) => (
+          <>
+            <tr key={`${title}-header`}>
+              <th colSpan="5">{title}</th>
+            </tr>
+            <tr key={`${title}-others`}>
+              <th>Color</th>
+              <th>Raw Value</th>
+              <th>CSS Token</th>
+              <th>SCSS Token</th>
+              <th>JS Token</th>
+            </tr>
+            {Object.entries(palette).map(([token, value]) => (
+              <tr key={`${title}-row-${token}`}>
+                <td>
+                  <ColorSwatch value={value} />
+                </td>
+                <td>
+                  <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getCSSToken(token)}>
+                    {getCSSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+                <td>
+                  <CopyToClipBoard value={getSASSToken(token)}>
+                    {getSASSToken(token)}
+                  </CopyToClipBoard>
+                </td>
+                <td>
+                  <CopyToClipBoard value={token}>
+                    {token}
+                  </CopyToClipBoard>
+                </td>
+              </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-    ))}
-  </div>
-))}
+          </>
+        ))}
+      </tbody>
+    </table>
+  ))}
+/>

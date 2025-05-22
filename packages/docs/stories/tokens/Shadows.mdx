@@ -1,8 +1,12 @@
-import { Markdown, Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { Shadow, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 import {
   getCSSToken,
@@ -15,10 +19,9 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.shadow?.description?.value} />
 
-{['synergy', 'brand25'].map(theme => (
-  <div key={theme}>
-    <Markdown>{`## Shadow and elevation (${theme})`}</Markdown>
-    <table className={theme === 'synergy' ? `syn-theme-light` : `syn-theme-brand25-light`}>
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], () => (
+    <table>
       <tbody>
         <>
           <tr>
@@ -44,6 +47,5 @@ import {
         </>
       </tbody>
     </table>
-  </div>
-))}
-
+  ))}
+/>

@@ -50,7 +50,6 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-// @todo: Draw from file system!
 const cssRuns = getAvailableThemes().map(async ({ theme, mode }) => {
   const themeInformation = getInformationForTheme(theme, mode);
   const themeInstance = await dictionary.extend({

@@ -20,15 +20,13 @@ export const getAvailableThemes = () => {
   const themes = readdirSync('./src/figma-tokens/theme');
   const modes = readdirSync('./src/figma-tokens/mode');
 
-  return themes
-    .map(theme => modes.map(mode => ({
-      mode: mode.replace('.json', ''),
-      theme: snakeCase(theme.replace('.json', ''), {
-        delimiter: '-',
-        split: splitSeparateNumbers,
-      }),
-    })))
-    .flat();
+  return themes.flatMap(theme => modes.flatMap(mode => ({
+    mode: mode.replace('.json', ''),
+    theme: snakeCase(theme.replace('.json', ''), {
+      delimiter: '-',
+      split: splitSeparateNumbers,
+    }),
+  })));
 };
 
 /**

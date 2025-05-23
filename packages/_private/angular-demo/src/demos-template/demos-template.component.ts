@@ -5,7 +5,7 @@ import { type SynTabShowEvent } from '@synergy-design-system/components';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'demos-component',
+  selector: 'demos-template',
   standalone: true,
   imports: [
     CommonModule,
@@ -13,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
     SynTabComponent,
     SynTabPanelComponent,
   ],
-  templateUrl: './demos.component.html',
+  templateUrl: './demos-template.component.html',
 })
-export class DemosComponent {
+export class DemosTemplateComponent {
   activeDemo = '';
 
   demos: Array<[string, typeof NgComponentOutlet]> = [];

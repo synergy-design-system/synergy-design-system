@@ -15,17 +15,28 @@ import './app.css';
 
 import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router'
-import AllComponents from './AllComponents.vue';
 import App from './App.vue';
 import DemoForm from './DemoForm.vue';
 import DemoFormValidate from './DemoFormValidate.vue';
 import HomeView from './HomeView.vue';
+import DemosTemplate from './DemosTemplate.vue';
+import * as AllComponents from './AllComponentParts/index.js';
+import * as FrameworkSpecificImports from './FrameworkSpecificParts/index.js';
+
+const allComponentsDemo = Object
+  .entries(AllComponents)
+  .map(([name, Component]) => [name.replace('Demo', ''), Component]);
+
+const frameworkSpecificDemo = Object
+  .entries(FrameworkSpecificImports)
+  .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/all-components', component: AllComponents },
+  { path: '/all-components', component: DemosTemplate, props: { demos: allComponentsDemo } },
   { path: '/contact-form', component: DemoForm },
   { path: '/contact-form-validate', component: DemoFormValidate },
+  { path: '/framework-specific', component: DemosTemplate, props: { demos: frameworkSpecificDemo } },
 ];
 
 const router = createRouter({

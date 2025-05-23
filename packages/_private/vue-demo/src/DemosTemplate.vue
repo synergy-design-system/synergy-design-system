@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@synergy-design-system/vue';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
-import * as DemoImports from './AllComponentParts/index.js';
+import { defineProps, type Component } from 'vue';
 
-const Demos = Object
-  .entries(DemoImports)
-  .map(([name, Component]) => [name.replace('Demo', ''), Component]);
-const activeDemo = Demos.at(0)?.at(0);
+import { computed } from 'vue';
+const props = defineProps<{ demos: [string, Component][] }>();
+const demos = computed(() => props.demos);
+
+const activeDemo = computed( () => demos.value.at(0)?.at(0) || '');
 
 const showTab = (e: SynTabShowEvent) => {
   const { name } = e.detail;
@@ -20,9 +21,13 @@ const showTab = (e: SynTabShowEvent) => {
 </script>
 
 <template>
-  <SynVueTabGroup @syn-tab-show="showTab">
+  <div v-if="demos.length === 0">
+    <p>There are no demos available.</p>
+  </div>
+
+  <SynVueTabGroup @syn-tab-show="showTab" v-else>
     <template
-      v-for="([name, Component]) in Demos"
+      v-for="([name, Component]) in demos"
       :key="name"
     >
       <SynVueTab

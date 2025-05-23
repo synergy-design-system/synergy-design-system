@@ -7,7 +7,21 @@ import {
   afterRenderDefaultForm,
   afterRenderValidateForm,
 } from './form.js';
-import { afterRenderAllComponents } from './all-components.js';
+import { afterRenderDemoTemplate } from './demo-template.js';
+import * as AllComponents from './AllComponentParts/index.js';
+import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
+import { allComponentsRegressions } from './all-components-regressions.js';
+
+const allComponents = {
+  demos: Object.entries(AllComponents),
+  id: 'all-components',
+  regressions: allComponentsRegressions,
+};
+
+const frameworkSpecific = {
+  demos: Object.entries(FrameworkSpecifics),
+  id: 'framework-specific',
+};
 
 const history = createBrowserHistory();
 
@@ -28,9 +42,14 @@ const routes = [
     page: 'demoform-validate',
   },
   {
-    afterLoad: afterRenderAllComponents,
-    href: '/all-components',
-    page: 'all-components',
+    afterLoad: () => afterRenderDemoTemplate(allComponents),
+    href: `/${allComponents.id}`,
+    page: allComponents.id,
+  },
+  {
+    afterLoad: () => afterRenderDemoTemplate(frameworkSpecific),
+    href: `/${frameworkSpecific.id}`,
+    page: frameworkSpecific.id,
   },
 ];
 

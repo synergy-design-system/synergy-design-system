@@ -12,6 +12,7 @@ export class PageObject {
     allComponents: '/all-components',
     form: '/contact-form',
     formValidate: '/contact-form-validate',
+    frameworkSpecifics: '/framework-specific',
     index: '/',
   };
 

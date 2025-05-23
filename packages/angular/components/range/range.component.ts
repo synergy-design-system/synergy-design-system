@@ -80,6 +80,7 @@ import '@synergy-design-system/components/components/range/range.js';
 export class SynRangeComponent {
   public nativeElement: SynRange;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -89,7 +90,6 @@ export class SynRangeComponent {
     });
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
       this.synChangeEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
       this.synFocusEvent.emit(e);
@@ -103,6 +103,30 @@ export class SynRangeComponent {
     this.nativeElement.addEventListener('syn-move', (e: SynMoveEvent) => {
       this.synMoveEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-change';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-change".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-change';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   /**

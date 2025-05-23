@@ -1,7 +1,9 @@
 import { html } from 'lit';
+import type { RegressionFns } from '../all-components-regressions';
 
-export const Select = (regressions: Array<() => void> = []) => {
+export const Select = (regressions: RegressionFns = []) => {
   regressions.forEach((regression) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     regression();
   });
 

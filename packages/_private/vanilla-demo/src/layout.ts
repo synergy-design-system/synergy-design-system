@@ -106,6 +106,10 @@ export const createLayout = () => `
         All Components
         <syn-icon name="grid_view" slot="prefix"></syn-icon>
       </syn-nav-item>
+      <syn-nav-item divider href="/framework-specific">
+        Framework specific issues
+        <syn-icon name="bug_report" slot="prefix"></syn-icon>
+      </syn-nav-item>
     </syn-side-nav>
     <!-- /side-nav -->
 

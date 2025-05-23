@@ -1,7 +1,8 @@
+
 <syn-tab-group
   (syn-tab-show)="handleTabShow($event)"
 >
-  @for (demo of Demos; track demo[0]) {
+  @for (demo of demos; track demo[0]) {
     <syn-tab
       [active]="demo[0] === activeDemo"
       [id]="'tab-' + demo[0]"

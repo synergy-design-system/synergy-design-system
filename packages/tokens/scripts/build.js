@@ -2,6 +2,7 @@ import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
 import {
+  getAvailableThemes,
   getInformationForTheme,
   getPackageInformation,
 } from './helpers.js';
@@ -50,58 +51,56 @@ StyleDictionary.registerFileHeader({
 });
 
 // @todo: Draw from file system!
-const cssRuns = ['sick-2018', 'sick-2025'].map(theme => ['dark', 'light']
-  .map(async mode => {
-    const themeInformation = getInformationForTheme(theme, mode);
-    const themeInstance = await dictionary.extend({
-      platforms: {
-        css: {
-          buildPath: `${config.buildPath}themes/`,
-          files: [{
-            destination: themeInformation.cssFileName,
-            filter(token) { return !token.filePath.includes('brand'); },
-            format: 'syn/css-variable-formatter',
-            options: {
-              fileHeader: 'syn/header',
-              prefix: config.prefix,
-              themeInformation,
-            },
-          }],
-          prefix: config.prefix,
-          transforms: [
-            'name/kebab',
-            'ts/descriptionToComment',
-            'ts/size/px',
-            'ts/opacity',
-            'ts/size/lineheight',
-            'ts/typography/fontWeight',
-            'ts/size/css/letterspacing',
-            'typography/css/shorthand',
-            'fontFamily/css',
-            'border/css/shorthand',
-            'ts/color/css/hexrgba',
-            'ts/color/modifiers',
-            'shadow/css/shorthand',
-            'syn/add-color-prefix',
-            'syn/add-fallback-fonts',
-            'syn/use-css-calc',
-            'syn/add-missing-quotes-for-strings',
-            'syn/adjust-shadow',
-          ],
-        },
+const cssRuns = getAvailableThemes().map(async ({ theme, mode }) => {
+  const themeInformation = getInformationForTheme(theme, mode);
+  const themeInstance = await dictionary.extend({
+    platforms: {
+      css: {
+        buildPath: `${config.buildPath}themes/`,
+        files: [{
+          destination: themeInformation.cssFileName,
+          filter(token) { return !token.filePath.includes('brand'); },
+          format: 'syn/css-variable-formatter',
+          options: {
+            fileHeader: 'syn/header',
+            prefix: config.prefix,
+            themeInformation,
+          },
+        }],
+        prefix: config.prefix,
+        transforms: [
+          'name/kebab',
+          'ts/descriptionToComment',
+          'ts/size/px',
+          'ts/opacity',
+          'ts/size/lineheight',
+          'ts/typography/fontWeight',
+          'ts/size/css/letterspacing',
+          'typography/css/shorthand',
+          'fontFamily/css',
+          'border/css/shorthand',
+          'ts/color/css/hexrgba',
+          'ts/color/modifiers',
+          'shadow/css/shorthand',
+          'syn/add-color-prefix',
+          'syn/add-fallback-fonts',
+          'syn/use-css-calc',
+          'syn/add-missing-quotes-for-strings',
+          'syn/adjust-shadow',
+        ],
       },
-      preprocessors: ['tokens-studio'],
-      source: [
-        `./src/figma-tokens/theme/${themeInformation.theme}.json`,
-        './src/figma-tokens/globals.json',
-        './src/figma-tokens/semantic/*.json',
-        `./src/figma-tokens/mode/${mode}.json`,
-      ],
-    });
+    },
+    preprocessors: ['tokens-studio'],
+    source: [
+      `./src/figma-tokens/theme/${themeInformation.theme}.json`,
+      './src/figma-tokens/globals.json',
+      './src/figma-tokens/semantic/*.json',
+      `./src/figma-tokens/mode/${mode}.json`,
+    ],
+  });
 
-    return themeInstance.buildAllPlatforms();
-  }))
-  .flat();
+  return themeInstance.buildAllPlatforms();
+});
 
 await Promise.all(cssRuns);
 

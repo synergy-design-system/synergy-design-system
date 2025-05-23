@@ -1,6 +1,35 @@
 /* eslint-disable no-console */
-import { existsSync, mkdirSync, readFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+} from 'node:fs';
 import { dirname } from 'node:path';
+import { snakeCase, splitSeparateNumbers } from 'change-case';
+
+/**
+ * Get the list of available themes and modes
+ * from the src/figma/tokens folder.
+ * To make this work, make sure to have the following folder structure:
+ * src/figma-tokens/theme (The themes to use, e.g. sick2018, sick2025)
+ * src/figma-tokens/mode (The modes to use, e.g. dark, light)
+ * @returns {Array<{mode: string, theme: string}>} The list of available themes and modes
+ */
+export const getAvailableThemes = () => {
+  const themes = readdirSync('./src/figma-tokens/theme');
+  const modes = readdirSync('./src/figma-tokens/mode');
+
+  return themes
+    .map(theme => modes.map(mode => ({
+      mode: mode.replace('.json', ''),
+      theme: snakeCase(theme.replace('.json', ''), {
+        delimiter: '-',
+        split: splitSeparateNumbers,
+      }),
+    })))
+    .flat();
+};
 
 /**
  * Create a folder at provided path

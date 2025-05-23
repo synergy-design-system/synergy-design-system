@@ -49,7 +49,8 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-const cssRuns = ['brand25', 'synergy24'].map(theme => ['dark', 'light']
+// @todo: Draw from file system!
+const cssRuns = ['sick-2018', 'sick-2025'].map(theme => ['dark', 'light']
   .map(async mode => {
     const themeInformation = getInformationForTheme(theme, mode);
     const themeInstance = await dictionary.extend({
@@ -91,10 +92,10 @@ const cssRuns = ['brand25', 'synergy24'].map(theme => ['dark', 'light']
       },
       preprocessors: ['tokens-studio'],
       source: [
-        `./src/figma-tokens/brand/${theme}.json`,
+        `./src/figma-tokens/theme/${themeInformation.theme}.json`,
         './src/figma-tokens/globals.json',
         './src/figma-tokens/semantic/*.json',
-        `./src/figma-tokens/theme/${mode}.json`,
+        `./src/figma-tokens/mode/${mode}.json`,
       ],
     });
 

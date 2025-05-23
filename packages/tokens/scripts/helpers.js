@@ -3,11 +3,6 @@ import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 
 /**
- * The default theme that will be used if no theme is provided
- */
-export const DEFAULT_THEME = 'synergy24';
-
-/**
  * Create a folder at provided path
  * @param {string} path The path to create
  * @returns {boolean} True if the folder was created or exists, false otherwise
@@ -58,21 +53,24 @@ export const getPackageInformation = () => {
 };
 
 /**
- * Get the mapped theme name for a specific theme
- * @param {string} theme The theme to get the mapped name for
- * @returns {string} The mapped theme name
+ * Get the default theme that should be used,
+ * depending on the package.json major version
  */
-const getMappedThemeName = theme => {
-  // Temporary matcher from brand to theme
-  // This can be removed when the json files and references are updated
-  switch (theme) {
-  case 'brand25':
-    return 'sick-2025';
-  case 'synergy24':
-    return 'sick-2018';
-  default:
-    return theme;
+export const getDefaultTheme = () => {
+  const { version } = getPackageInformation();
+  const majorVersion = parseInt(version.split('.')[0], 10);
+
+  let defaultTheme = 'sick2018';
+
+  if (!majorVersion || Number.isNaN(majorVersion)) {
+    console.error('Could not parse version number');
+    return defaultTheme;
   }
+
+  if (majorVersion >= 3) {
+    defaultTheme = 'sick2025';
+  }
+  return defaultTheme;
 };
 
 /**
@@ -93,18 +91,15 @@ export const getInformationForTheme = (theme, mode) => {
     throw new Error('Theme and mode are required');
   }
 
-  // Temporary matcher from brand to theme
-  // This can be removed when the json files and references are updated
-  const usedTheme = getMappedThemeName(theme);
-
-  const cssFileName = `${usedTheme.replaceAll('-', '')}_${mode}.css`;
+  const usedTheme = theme.replaceAll('-', '');
+  const cssFileName = `${usedTheme}_${mode}.css`;
   const cssSelectors = [
     ':root',
-    `.syn-${usedTheme}-${mode}`,
+    `.syn-${theme}-${mode}`,
   ];
 
   // The default theme will also use the default synergy selector
-  if (theme === 'synergy24') {
+  if (usedTheme === getDefaultTheme()) {
     cssSelectors.push(`.syn-theme-${mode}`);
   }
 

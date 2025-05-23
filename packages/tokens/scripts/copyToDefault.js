@@ -1,7 +1,7 @@
 import { copyFileSync } from 'node:fs';
 import chalk from 'chalk';
 import {
-  DEFAULT_THEME,
+  getDefaultTheme,
   getInformationForTheme,
 } from './helpers.js';
 
@@ -10,9 +10,10 @@ import {
  * @param {string} targetDir The target directory where the files are located
  */
 export const copyToDefaultLocation = (targetDir) => {
+  const defaultTheme = getDefaultTheme();
   const copyInfo = [
-    getInformationForTheme(DEFAULT_THEME, 'light'),
-    getInformationForTheme(DEFAULT_THEME, 'dark'),
+    getInformationForTheme(defaultTheme, 'light'),
+    getInformationForTheme(defaultTheme, 'dark'),
   ];
 
   const result = copyInfo.map(themeInfo => {
@@ -28,8 +29,8 @@ export const copyToDefaultLocation = (targetDir) => {
   });
 
   if (result.filter(Boolean).length === result.length) {
-    console.log(chalk.green(`✔︎ Successfully copied ${DEFAULT_THEME} theme to default location`));
+    console.log(chalk.green(`✔︎ Successfully copied ${defaultTheme} theme to default location`));
   } else {
-    console.log(chalk.red(`✘ Failed to copy ${DEFAULT_THEME} theme to default location`));
+    console.log(chalk.red(`✘ Failed to copy ${defaultTheme} theme to default location`));
   }
 };

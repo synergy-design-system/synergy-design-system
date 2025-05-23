@@ -119,5 +119,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "2.18.1"
+  "version": "2.19.0"
 }

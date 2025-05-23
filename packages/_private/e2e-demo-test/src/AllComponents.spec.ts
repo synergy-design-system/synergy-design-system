@@ -380,7 +380,7 @@ test.describe('<SynSelect />', () => {
       });
     }); // regression#813
 
-    test.describe(`Regression#851: ${name}`, () => {
+    test.describe(`Regression#847: ${name}`, () => {
       test('should show the text content of the options, when value was set initially via normal binding and options added dynamically with multiple', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
@@ -388,7 +388,7 @@ test.describe('<SynSelect />', () => {
 
         await expect(AllComponents.getLocator('selectContent')).toBeVisible();
 
-        const select = await AllComponents.getLocator('select851Multiple');
+        const select = await AllComponents.getLocator('select847Multiple');
         // Check that the displayed value is the text content of the option
         const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
         const value = await select.evaluate((ele: SynSelect) => ele.value);
@@ -396,7 +396,7 @@ test.describe('<SynSelect />', () => {
         expect(value).toEqual(['1', '2']);
         expect(displayedValue).toEqual('2 options selected');
       });
-    }); // regression#851
+    }); // regression#847
   }); // End frameworks
 }); // </syn-select>
 

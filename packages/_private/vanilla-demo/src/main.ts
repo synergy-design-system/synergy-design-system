@@ -3,6 +3,7 @@
 import {
   type SynChangeEvent,
   type SynIconButton,
+  type SynSideNav,
   type SynSwitch,
   enableExperimentalSettingEmitEvents,
   registerIconLibrary,
@@ -30,6 +31,28 @@ import {
   setGlobalSize,
 } from './utils.js';
 
+const initLayoutSwitch = async () => {
+  await customElements.whenDefined('syn-button-group');
+
+  const buttons = document.querySelectorAll<SynIconButton>('.meta-navigation syn-button-group syn-icon-button');
+  document
+    .querySelector('.meta-navigation syn-button-group.sidenav-switch')!
+    .addEventListener('click', e => {
+      const target = e.target as HTMLElement;
+      const clickedButton = target.closest('syn-icon-button') as SynIconButton;
+      const type = clickedButton.dataset.type!;
+
+      const sidenav = document.querySelector<SynSideNav>('syn-side-nav');
+      if (sidenav) {
+        sidenav.variant = type as SynSideNav['variant'];
+      }
+
+      buttons.forEach(btn => {
+        btn.color = btn.dataset.type === type ? 'primary' : 'currentColor';
+      });
+    });
+};
+
 const initThemeSwitch = async () => {
   await customElements.whenDefined('syn-switch');
 
@@ -49,7 +72,7 @@ const initSizeSwitch = async () => {
 
   const buttons = document.querySelectorAll<SynIconButton>('.meta-navigation syn-button-group syn-icon-button');
   document
-    .querySelector('.meta-navigation syn-button-group')!
+    .querySelector('.meta-navigation syn-button-group.size-switch')!
     .addEventListener('click', e => {
       const target = e.target as HTMLElement;
       const clickedButton = target.closest('syn-icon-button') as SynIconButton;
@@ -77,6 +100,7 @@ const bootstrap = async () => {
   document.querySelector('#root')!.innerHTML = createLayout();
 
   await initRouting();
+  await initLayoutSwitch();
   await initThemeSwitch();
   await initSizeSwitch();
 };

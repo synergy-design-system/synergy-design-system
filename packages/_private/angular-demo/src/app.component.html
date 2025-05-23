@@ -11,13 +11,16 @@
   </a>
 
   <div class="meta-navigation" slot="meta-navigation">
+    <sidenav-switch />
+    <syn-divider vertical />
     <size-switch />
+    <syn-divider vertical />
     <theme-switch />
   </div>
 </syn-header>
 
 <div class="main">
-  <syn-side-nav rail>
+  <syn-side-nav variant="rail">
     <syn-nav-item routerLink="/" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Home
       <syn-icon name="home" slot="prefix"></syn-icon>

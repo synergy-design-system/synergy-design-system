@@ -26,3 +26,4 @@ Further information can be found at https://github.com/synergy-design-system/syn
 // Also note that you have to return a function that calls
 // deprecateIn, otherwise the message will not be displayed.
 export const deprecatedForV2 = (reason = '') => () => deprecatedForRelease('2.0', reason);
+export const deprecatedForV3 = (reason = '') => () => deprecatedForRelease('3.0', reason);

@@ -63,6 +63,10 @@ export const Layout: FC = () => {
             All Components
             <SynIcon name="grid_view" slot="prefix" />
           </RouterLink>
+          <RouterLink divider href="/framework-specific" current={currentNavigationPath === '/framework-specific'}>
+            Framework specific issues
+            <SynIcon name="bug_report" slot="prefix" />
+          </RouterLink>
         </SynSideNav>
         <main className="content">
           <Outlet />

@@ -21,14 +21,14 @@ import DemoFormValidate from './DemoFormValidate.vue';
 import HomeView from './HomeView.vue';
 import DemosTemplate from './DemosTemplate.vue';
 import * as AllComponents from './AllComponentParts/index.js';
-import * as FrameworkSpecificImports from './FrameworkSpecificParts/index.js';
+import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
 
 const allComponentsDemo = Object
   .entries(AllComponents)
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 
 const frameworkSpecificDemo = Object
-  .entries(FrameworkSpecificImports)
+  .entries(FrameworkSpecifics)
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 
 const routes = [

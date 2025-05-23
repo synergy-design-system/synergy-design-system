@@ -7,7 +7,7 @@ import { computed } from 'vue';
 const props = defineProps<{ demos: [string, Component][] }>();
 const demos = computed(() => props.demos);
 
-const activeDemo = computed( () => demos.value.at(0)?.at(0) || '');
+const activeDemo = computed( () => demos.value[0]?.[0] || '');
 
 const showTab = (e: SynTabShowEvent) => {
   const { name } = e.detail;
@@ -21,9 +21,9 @@ const showTab = (e: SynTabShowEvent) => {
 </script>
 
 <template>
-  <div v-if="demos.length === 0">
-    <p>There are no demos available.</p>
-  </div>
+  <span v-if="demos.length === 0">
+    There are no demos available.
+  </span>
 
   <SynVueTabGroup @syn-tab-show="showTab" v-else>
     <template

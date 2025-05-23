@@ -16,7 +16,6 @@ export * from './IconButton';
 export * from './Input';
 export * from './Menu';
 export * from './NavItem';
-export * from './NgModelUpdateOn';
 export * from './OptGroup';
 export * from './Option';
 export * from './PrioNav';

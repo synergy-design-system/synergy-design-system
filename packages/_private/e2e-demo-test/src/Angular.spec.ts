@@ -1,17 +1,17 @@
 import { expect, test } from '@playwright/test';
-import { AllComponentsPage } from './PageObjects/index.js';
 import {
-  fillInputWithoutBlur,
+  fillInput,
   getFrameworkPort,
 } from './helpers.js';
+import { FrameworkSpecificsPage } from './PageObjects/FrameworkSpecifics.js';
 
 const angularPort = getFrameworkPort('angular');
 
-test.describe('<Angular /> on port 5176', () => {
+test.describe(`<Angular /> on port ${angularPort}`, () => {
   // #808 feature ngModelUpdateOn
-  test.describe('ngModelUpdateOn feature', () => {
+  test.describe('Feature#808: ngModelUpdateOn', () => {
     test('Default values for ngModelUpdateOn', async ({ page }) => {
-      const AllComponents = new AllComponentsPage(page, angularPort);
+      const AllComponents = new FrameworkSpecificsPage(page, angularPort);
       await AllComponents.loadInitialPage();
 
       await AllComponents.activateItem('ngModelUpdateOnLink');
@@ -30,7 +30,7 @@ test.describe('<Angular /> on port 5176', () => {
 
       // Fill the input without triggering the syn-change event.
       // Only the syn-input event is triggered
-      await fillInputWithoutBlur(input, 'World');
+      await fillInput(input, 'World', false);
       // Check directly for the input result as doing an action with another element,
       // will result in a blur of the syn-input and therefore a syn-change event
       await expect(inputResult, 'NgModel value of syn-input should have changed on syn-input event').toHaveText('World');
@@ -45,7 +45,7 @@ test.describe('<Angular /> on port 5176', () => {
     });
 
     test('Non-Default values for ngModelUpdateOn', async ({ page }) => {
-      const AllComponents = new AllComponentsPage(page, angularPort);
+      const AllComponents = new FrameworkSpecificsPage(page, angularPort);
       await AllComponents.loadInitialPage();
 
       await AllComponents.activateItem('ngModelUpdateOnLink');
@@ -64,7 +64,7 @@ test.describe('<Angular /> on port 5176', () => {
 
       // Fill the input without triggering the syn-change event.
       // Only the syn-input event is triggered
-      await fillInputWithoutBlur(input, 'World');
+      await fillInput(input, 'World', false);
       // Check directly for the input result as doing an action with another element,
       // will result in a blur of the syn-input and therefore a syn-change event
       await expect(inputResult, 'NgModel value of syn-input should NOT have changed on syn-input event').toHaveText('Hello');

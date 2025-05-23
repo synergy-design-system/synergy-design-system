@@ -117,7 +117,21 @@ const getNgModelUpdateOnInput = (componentName) => {
   get ngModelUpdateOn(): keyof HTMLElementEventMap {
     return this.ngModelUpdateOn;
   }`;
-}
+};
+
+const getTwoWayBindingDataForNgModel = (component) => {
+  if (!getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix)) {
+    return { controller: '', method: '', propertyInitializer: '' };
+  }
+
+  const twoWayBindingEvent = getEventAttributeForTwoWayBinding(component.tagNameWithoutPrefix);
+
+  return {
+    controller: 'private modelSignal = new AbortController();',
+    method: getNgModelUpdateOnInput(component.tagNameWithoutPrefix),
+    propertyInitializer: `this.ngModelUpdateOn = '${twoWayBindingEvent}';`,
+  };
+};
 
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
@@ -146,7 +160,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
 
     const ngAfterContentInit = componentsCustomization[component.name]?.ngAfterContentInit || '';
 
-    const twoWayBindingEvent = getEventAttributeForTwoWayBinding(component.tagNameWithoutPrefix);
+    const { controller, method, propertyInitializer } = getTwoWayBindingDataForNgModel(component);
 
     const source = `
       ${headerComment}
@@ -173,20 +187,20 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         
       public nativeElement: ${component.name};
       private _ngZone: NgZone;
-      ${getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix) ? 'private modelSignal = new AbortController();' : ''}
+      ${controller}
 
         constructor(e: ElementRef, ngZone: NgZone) {
           this.nativeElement = e.nativeElement;
           this._ngZone = ngZone;
           ${eventListeners}
-          ${getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix) ? `this.ngModelUpdateOn = '${twoWayBindingEvent}'` : ''}
+          ${propertyInitializer}
         }
 
         ${ngAfterContentInit ? `ngAfterContentInit(): void {
             ${ngAfterContentInit}
           }` : ''}
 
-        ${getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix) ? getNgModelUpdateOnInput(component.tagNameWithoutPrefix) : ''}
+        ${method}
  
         ${attributeInputs}
 

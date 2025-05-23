@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { SynTabGroupComponent, SynTabComponent, SynTabPanelComponent } from '@synergy-design-system/angular';
-import * as DemoImports from '../AllComponentParts/index.js';
-import { CommonModule } from '@angular/common';
+import { CommonModule, type NgComponentOutlet } from '@angular/common';
 import { type SynTabShowEvent } from '@synergy-design-system/components';
-
-const Demos = Object.entries(DemoImports);
-const activeDemo = Demos.at(0)?.at(0);
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'all-components',
+  selector: 'demos-component',
   standalone: true,
   imports: [
     CommonModule,
@@ -16,11 +13,21 @@ const activeDemo = Demos.at(0)?.at(0);
     SynTabComponent,
     SynTabPanelComponent,
   ],
-  templateUrl: './allcomponents.component.html',
+  templateUrl: './demos.component.html',
 })
-export class AllComponents {
-  activeDemo: typeof activeDemo = activeDemo;
-  Demos: typeof Demos = Demos;
+export class DemosComponent {
+  activeDemo = '';
+
+  demos: Array<[string, typeof NgComponentOutlet]> = [];
+
+
+  constructor(private route: ActivatedRoute) {
+    const routeDemos = this.route.snapshot.data['demos'];
+    if (routeDemos) {
+      this.demos = routeDemos;
+    }
+    this.activeDemo = this.demos[0]?.[0] || '';
+  }
 
   handleTabShow = (e: SynTabShowEvent) => {
     const { name } = e.detail;

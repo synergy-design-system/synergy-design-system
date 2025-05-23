@@ -19,17 +19,17 @@ const AllComponentSelectors = {
   comboboxLink: '#tab-Combobox',
 
   // NgModelUpdateOn
-  ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="ng-model-checkbox"]',
-  ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="ng-model-checkbox-changed"]',
-  ngModelUpdateOnCheckboxResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-checkbox"]',
+  ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-808"]',
+  ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-changed-808"]',
+  ngModelUpdateOnCheckboxResult: '#tab-content-NgModelUpdateOn [data-testid="result-checkbox-808"]',
   ngModelUpdateOnContent: '#tab-content-NgModelUpdateOn',
-  ngModelUpdateOnInput: '#tab-content-NgModelUpdateOn syn-input[data-testid="ng-model-input"]',
-  ngModelUpdateOnInputChanged: '#tab-content-NgModelUpdateOn syn-input[data-testid="ng-model-input-changed"]',
-  ngModelUpdateOnInputResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-input"]',
+  ngModelUpdateOnInput: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-808"]',
+  ngModelUpdateOnInputChanged: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-changed-808"]',
+  ngModelUpdateOnInputResult: '#tab-content-NgModelUpdateOn [data-testid="result-input-808"]',
   ngModelUpdateOnLink: '#tab-NgModelUpdateOn',
-  ngModelUpdateOnRange: '#tab-content-NgModelUpdateOn syn-range[data-testid="ng-model-range"]',
-  ngModelUpdateOnRangeChanged: '#tab-content-NgModelUpdateOn syn-range[data-testid="ng-model-range-changed"]',
-  ngModelUpdateOnRangeResult: '#tab-content-NgModelUpdateOn [data-testid="ng-model-result-range"]',
+  ngModelUpdateOnRange: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-808"]',
+  ngModelUpdateOnRangeChanged: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-changed-808"]',
+  ngModelUpdateOnRangeResult: '#tab-content-NgModelUpdateOn [data-testid="result-range-808"]',
 
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',

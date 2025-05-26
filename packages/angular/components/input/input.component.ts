@@ -19,6 +19,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynClampEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 
 /**
@@ -46,6 +47,7 @@ import '@synergy-design-system/components/components/input/input.js';
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -97,6 +99,9 @@ export class SynInputComponent {
     });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
+    });
+    this.nativeElement.addEventListener('syn-clamp', (e: SynClampEvent) => {
+      this.synClampEvent.emit(e);
     });
     this.ngModelUpdateOn = 'syn-input';
   }
@@ -479,6 +484,79 @@ keyboard on supportive devices.
   }
 
   /**
+* The minimal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
+ */
+  @Input()
+  set minFractionDigits(v: SynInput['minFractionDigits']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.minFractionDigits = v),
+    );
+  }
+  get minFractionDigits(): SynInput['minFractionDigits'] {
+    return this.nativeElement.minFractionDigits;
+  }
+
+  /**
+* The maximal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
+ */
+  @Input()
+  set maxFractionDigits(v: SynInput['maxFractionDigits']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.maxFractionDigits = v),
+    );
+  }
+  get maxFractionDigits(): SynInput['maxFractionDigits'] {
+    return this.nativeElement.maxFractionDigits;
+  }
+
+  /**
+* Defines the strategy for handling numbers in the numeric input.
+This is used to determine how the input behaves when the user interacts with it.
+
+Includes the following configuration options:
+
+- **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+- **noStepAlign**: If true, the input will not align the value to the step attribute.
+- **noStepValidation**: If true, the input will not validate the value against the step attribute.
+
+You may provide this as one of the following values:
+
+- 'native': Uses the native browser implementation.
+- 'modern': Uses a more intuitive implementation:
+  - Values are clamped to the nearest min or max value.
+  - Stepping is inclusive to the provided min and max values.
+  - Provided stepping is no longer used in validation.
+- An object that matches the `NumericStrategy` type.
+* Note this can only be set via `property`, not as an `attribute`!
+ */
+  @Input()
+  set numericStrategy(v: SynInput['numericStrategy']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.numericStrategy = v),
+    );
+  }
+  get numericStrategy(): SynInput['numericStrategy'] {
+    return this.nativeElement.numericStrategy;
+  }
+
+  /**
+* Optional options that should be passed to the `NumberFormatter` when formatting the value.
+This is used to format the number when the input type is `number`.
+Note this can only be set via `property`, not as an `attribute`!
+ */
+  @Input()
+  set numberFormatterOptions(v: SynInput['numberFormatterOptions']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.numberFormatterOptions = v),
+    );
+  }
+  get numberFormatterOptions(): SynInput['numberFormatterOptions'] {
+    return this.nativeElement.numberFormatterOptions;
+  }
+
+  /**
    * Emitted when the control loses focus.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
@@ -509,6 +587,11 @@ keyboard on supportive devices.
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
+   * Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+   */
+  @Output() synClampEvent = new EventEmitter<SynClampEvent>();
+
+  /**
    * Support for two way data binding
    */
   @Output() valueChange = new EventEmitter<SynInput['value']>();
@@ -520,3 +603,4 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynClampEvent } from '@synergy-design-system/components';

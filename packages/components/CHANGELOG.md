@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.33.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.32.0...components/2.33.0) (2025-05-26)
+
+
+### Features
+
+* ✨ number-input - allow clamping via property ([#853](https://github.com/synergy-design-system/synergy-design-system/issues/853)) ([674f310](https://github.com/synergy-design-system/synergy-design-system/commit/674f310b19aad7e02e8b6d0e6346c8cff1a89d94))
+
 # [@synergy-design-system/components-v2.32.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.2...components/2.32.0) (2025-05-21)
 
 

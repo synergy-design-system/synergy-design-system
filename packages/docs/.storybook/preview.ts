@@ -13,8 +13,8 @@ import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import {
-  SICK_2018_DARK,
-  SICK_2018_LIGHT,
+  DARK_THEME,
+  LIGHT_THEME,
   SICK_2025_DARK,
   SICK_2025_LIGHT,
 } from './modes.js';
@@ -23,11 +23,11 @@ import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { storybookUtilities } from '../src/helpers/component.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: SICK_2018_LIGHT,
+  defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [SICK_2018_DARK]: 'syn-sick-2018-dark',
-    [SICK_2018_LIGHT]: 'syn-sick-2018-light',
+    [DARK_THEME]: 'syn-sick-2018-dark',
+    [LIGHT_THEME]: 'syn-sick-2018-light',
     [SICK_2025_DARK]: 'syn-sick-2025-dark',
     [SICK_2025_LIGHT]: 'syn-sick-2025-light',
   },
@@ -61,11 +61,11 @@ const preview: Preview = {
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
       modes: {
-        [SICK_2018_LIGHT]: {
-          theme: SICK_2018_LIGHT,
+        [LIGHT_THEME]: {
+          theme: LIGHT_THEME,
         },
-        [SICK_2018_DARK]: {
-          theme: SICK_2018_DARK,
+        [DARK_THEME]: {
+          theme: DARK_THEME,
         },
       },
     },

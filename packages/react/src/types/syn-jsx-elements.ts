@@ -24,6 +24,7 @@ import type {
   SynBurgerMenuHiddenEvent,
   SynBurgerMenuOpenEvent,
   SynLoadEvent,
+  SynClampEvent,
   SynSelectEvent,
   SynRepositionEvent,
   SynMoveEvent,
@@ -714,6 +715,7 @@ export type SynCustomElement<
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -743,6 +745,7 @@ export type SynCustomElement<
     ['syn-focus', SynFocusEvent],
     ['syn-input', SynInputEvent],
     ['syn-invalid', SynInvalidEvent],
+    ['syn-clamp', SynClampEvent],
   ]
 >;
 /**
@@ -2012,6 +2015,7 @@ declare module 'react' {
        * @event syn-focus - Emitted when the control gains focus.
        * @event syn-input - Emitted when the control receives input.
        * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+       * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
        *
        * @csspart form-control - The form control that wraps the label, input, and help text.
        * @csspart form-control-label - The label's wrapper.

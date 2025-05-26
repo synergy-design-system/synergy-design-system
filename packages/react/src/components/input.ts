@@ -14,6 +14,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynClampEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-input';
 Component.define('syn-input');
@@ -43,6 +44,7 @@ Component.define('syn-input');
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -74,6 +76,7 @@ export const SynInput = createComponent({
     onSynFocus: 'syn-focus' as EventName<SynFocusEvent>,
     onSynInput: 'syn-input' as EventName<SynInputEvent>,
     onSynInvalid: 'syn-invalid' as EventName<SynInvalidEvent>,
+    onSynClamp: 'syn-clamp' as EventName<SynClampEvent>,
   },
   react: React,
   tagName,
@@ -85,3 +88,4 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynClampEvent } from '@synergy-design-system/components';

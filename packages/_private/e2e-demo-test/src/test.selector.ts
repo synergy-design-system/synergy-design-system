@@ -27,6 +27,19 @@ const AllComponentSelectors = {
   inputContent: '#tab-content-Input',
   inputLink: '#tab-Input',
 
+  // NgModelUpdateOn
+  ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-808"]',
+  ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-changed-808"]',
+  ngModelUpdateOnCheckboxResult: '#tab-content-NgModelUpdateOn [data-testid="result-checkbox-808"]',
+  ngModelUpdateOnContent: '#tab-content-NgModelUpdateOn',
+  ngModelUpdateOnInput: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-808"]',
+  ngModelUpdateOnInputChanged: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-changed-808"]',
+  ngModelUpdateOnInputResult: '#tab-content-NgModelUpdateOn [data-testid="result-input-808"]',
+  ngModelUpdateOnLink: '#tab-NgModelUpdateOn',
+  ngModelUpdateOnRange: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-808"]',
+  ngModelUpdateOnRangeChanged: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-changed-808"]',
+  ngModelUpdateOnRangeResult: '#tab-content-NgModelUpdateOn [data-testid="result-range-808"]',
+
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
   optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',

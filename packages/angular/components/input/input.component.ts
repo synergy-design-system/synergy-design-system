@@ -77,6 +77,7 @@ import '@synergy-design-system/components/components/input/input.js';
 export class SynInputComponent {
   public nativeElement: SynInput;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -95,7 +96,6 @@ export class SynInputComponent {
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
@@ -103,6 +103,30 @@ export class SynInputComponent {
     this.nativeElement.addEventListener('syn-clamp', (e: SynClampEvent) => {
       this.synClampEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   @Input()

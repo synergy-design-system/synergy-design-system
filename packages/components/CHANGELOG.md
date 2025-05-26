@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.34.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.33.0...components/2.34.0) (2025-05-26)
+
+
+### Features
+
+* ✨ Make angular ngModel event changeable ([#870](https://github.com/synergy-design-system/synergy-design-system/issues/870)) ([4692c69](https://github.com/synergy-design-system/synergy-design-system/commit/4692c69e919e69d078365f51f9a793330c9da353))
+
 # [@synergy-design-system/components-v2.33.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.32.0...components/2.33.0) (2025-05-26)
 
 

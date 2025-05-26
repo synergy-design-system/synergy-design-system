@@ -30,6 +30,7 @@
  * @event syn-focus - Emitted when the control gains focus.
  * @event syn-input - Emitted when the control receives input.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-clamp - Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -60,6 +61,7 @@ import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynClampEvent } from '@synergy-design-system/components';
 import type { SynInput } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -232,6 +234,47 @@ keyboard on supportive devices.
   inputmode?: SynInput['inputmode'];
 
   /**
+* The minimal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
+ */
+  minFractionDigits?: SynInput['minFractionDigits'];
+
+  /**
+* The maximal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
+ */
+  maxFractionDigits?: SynInput['maxFractionDigits'];
+
+  /**
+* Defines the strategy for handling numbers in the numeric input.
+This is used to determine how the input behaves when the user interacts with it.
+
+Includes the following configuration options:
+
+- **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+- **noStepAlign**: If true, the input will not align the value to the step attribute.
+- **noStepValidation**: If true, the input will not validate the value against the step attribute.
+
+You may provide this as one of the following values:
+
+- 'native': Uses the native browser implementation.
+- 'modern': Uses a more intuitive implementation:
+  - Values are clamped to the nearest min or max value.
+  - Stepping is inclusive to the provided min and max values.
+  - Provided stepping is no longer used in validation.
+- An object that matches the `NumericStrategy` type.
+* Note this can only be set via `property`, not as an `attribute`!
+ */
+  numericStrategy?: SynInput['numericStrategy'];
+
+  /**
+* Optional options that should be passed to the `NumberFormatter` when formatting the value.
+This is used to format the number when the input type is `number`.
+Note this can only be set via `property`, not as an `attribute`!
+ */
+  numberFormatterOptions?: SynInput['numberFormatterOptions'];
+
+  /**
    * Support for two way data binding
    */
   modelValue?: SynInput['value'];
@@ -280,6 +323,11 @@ defineEmits<{
   'syn-invalid': [e: SynInvalidEvent];
 
   /**
+   * Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.
+   */
+  'syn-clamp': [e: SynClampEvent];
+
+  /**
    * Support for two way data binding
    */
   'update:modelValue': [newValue: SynInput['value']];
@@ -293,6 +341,7 @@ export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';
 export type { SynInputEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynClampEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -306,6 +355,7 @@ export type { SynInvalidEvent } from '@synergy-design-system/components';
       $emit('syn-input', $event);
     "
     @syn-invalid="$emit('syn-invalid', $event)"
+    @syn-clamp="$emit('syn-clamp', $event)"
     :value="
       typeof props.modelValue !== 'undefined'
         ? props.modelValue

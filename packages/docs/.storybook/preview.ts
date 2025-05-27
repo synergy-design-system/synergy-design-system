@@ -26,8 +26,8 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [DARK_THEME]: 'syn-sick-2018-dark',
-    [LIGHT_THEME]: 'syn-sick-2018-light',
+    [LIGHT_THEME]: 'syn-theme-light',
+    [DARK_THEME]: 'syn-theme-dark',
     [SICK_2025_DARK]: 'syn-sick-2025-dark',
     [SICK_2025_LIGHT]: 'syn-sick-2025-light',
   },

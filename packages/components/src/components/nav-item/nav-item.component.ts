@@ -4,6 +4,7 @@ import { html, literal } from 'lit/static-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import SynDivider from '../divider/divider.component.js';
+import SynIcon from '../icon/icon.component.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { watch } from '../../internal/watch.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -22,6 +23,7 @@ import styles from './nav-item.styles.js';
  * @since 1.14.0
  *
  * @dependency syn-divider
+ * @dependency syn-icon
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,
@@ -61,6 +63,7 @@ export default class SynNavItem extends SynergyElement {
 
   static dependencies = {
     'syn-divider': SynDivider,
+    'syn-icon': SynIcon,
   };
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'children', 'prefix', 'suffix');

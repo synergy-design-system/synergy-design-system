@@ -72,7 +72,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
   <!-- /#838 -->
 
   <!-- #872: Spin buttons out of sync with value -->
-  <syn-input
+  <SynVueInput
     data-testid="input-872-spin-buttons"
     label="Issue #872 - Spin Buttons out of sync with value"
     :max=100

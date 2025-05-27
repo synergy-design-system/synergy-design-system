@@ -180,6 +180,105 @@ const transformComponent = (path, originalContent) => {
     },
   );
 
+  // #781: Export the popup so users can choose their own listbox size
+  content = addSectionsAfter([
+    [
+      '@csspart expand-icon - The container that wraps the expand icon.',
+      " * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+    ],
+    [
+      'auto-size-padding="10"',
+      '            exportparts="popup"',
+    ],
+  ], content);
+
+  content = replaceSection([
+    '{this.placement}',
+    "{this.placement + '-start'}",
+  ], content);
+
+  // #850: Add documentation for tag max width props
+  content = addSectionsAfter([
+    [
+      'private closeWatcher: CloseWatcher | null;',
+      '  private resizeObserver: ResizeObserver;',
+    ],
+    [
+      "@query('.select__listbox') listbox: HTMLSlotElement;",
+      "  @query('.select__tags') tagContainer: HTMLDivElement;",
+    ],
+  ], content);
+
+  content = addSectionsBefore([
+    [
+      'private addOpenListeners() {',
+      `
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      'connectedCallback() {',
+      `
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', \`$\{entry.contentRect.width}px\`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }`,
+      { newlinesAfterInsertion: 2, tabsAfterInsertion: 1 },
+    ],
+    [
+      'protected override willUpdate',
+      `
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
+  }
+      `,
+      { newlinesAfterInsertion: 2 },
+    ],
+  ], content);
+
+  // #847: Fix angular problem with multiple and initial attribute
+  // value ( `<syn-select multiple value="1 2">` )
+  content = addSectionsBefore([
+    [
+      "isAllowedValue } from './utility.js';",
+      'compareValues, ',
+      { newlinesAfterInsertion: 0 },
+    ],
+  ], content);
+
+  content = replaceSections([
+    [
+      `if (this._value === val) {
+      return;
+    }`,
+      `if (compareValues(this._value, val)) {
+      return;
+    }`,
+    ],
+    [
+      `this.handleDelimiterChange();
+    const value = Array.isArray(val) ? val : [val];`,
+      `this.handleDelimiterChange();
+    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);`,
+    ],
+  ], content);
+  // End#847
+
   return {
     content,
     path,

@@ -58,4 +58,14 @@ onMounted(async () => {
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueSelect>
 
+  <SynVueSelect
+    data-testid="select-847-multiple"
+    help-text="Normal value binding and async options"
+    label="Multiple with async options"
+    multiple
+    value="1 2"
+  >
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </SynVueSelect>
+
 </template>

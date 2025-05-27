@@ -8,7 +8,7 @@ import type {
 import { mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const getAllComponentsElement = async () => {
-  const allComponents = document.querySelector('demo-all-components') as LitElement;
+  const allComponents = document.querySelector('demo-template') as LitElement;
   await allComponents.updateComplete;
   return allComponents;
 };
@@ -40,7 +40,11 @@ const appendOptions813 = async (querySelector: string) => {
   });
 };
 
-export const allComponentsRegressions = new Map(Object.entries({
+export type RegressionFn = () => Promise<void> | void;
+export type RegressionFns = RegressionFn[];
+export type Regressions = Map<string, RegressionFns>;
+
+export const allComponentsRegressions: Regressions = new Map(Object.entries({
   Combobox: [
     // #813
     () => appendOptions813('syn-combobox[data-testid="combobox-level-813"]'),
@@ -65,6 +69,8 @@ export const allComponentsRegressions = new Map(Object.entries({
     () => appendOptions805('syn-select[data-testid="select-805-multi-select"]'),
     // #813
     () => appendOptions813('syn-select[data-testid="select-level-813"]'),
+    // #847
+    () => appendOptions813('syn-select[data-testid="select-847-multiple"]'),
   ],
   TabGroup: [
     // #814

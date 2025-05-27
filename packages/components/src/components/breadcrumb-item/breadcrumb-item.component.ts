@@ -20,7 +20,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
- * @documentation https://synergy.style/components/breadcrumb-item
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs
  * @status stable
  * @since 2.0
  *

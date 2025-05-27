@@ -11,13 +11,16 @@
   </a>
 
   <div class="meta-navigation" slot="meta-navigation">
+    <sidenav-switch />
+    <syn-divider vertical />
     <size-switch />
+    <syn-divider vertical />
     <theme-switch />
   </div>
 </syn-header>
 
 <div class="main">
-  <syn-side-nav rail>
+  <syn-side-nav variant="rail">
     <syn-nav-item routerLink="/" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       Home
       <syn-icon name="home" slot="prefix"></syn-icon>
@@ -33,6 +36,10 @@
     <syn-nav-item divider routerLink="/all-components" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
       All Components
       <syn-icon name="grid_view" slot="prefix"></syn-icon>
+    </syn-nav-item>
+    <syn-nav-item divider routerLink="/framework-specific" routerLinkActive [routerLinkActiveOptions]="{exact: true}">
+      Framework specific issues
+      <syn-icon name="bug_report" slot="prefix"></syn-icon>
     </syn-nav-item>
   </syn-side-nav>
   <main class="content">

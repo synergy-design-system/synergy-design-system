@@ -27,7 +27,7 @@ import '@synergy-design-system/components/components/select/select.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *
@@ -71,6 +71,7 @@ import '@synergy-design-system/components/components/select/select.js';
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @Component({
   selector: 'syn-select',
@@ -80,6 +81,7 @@ import '@synergy-design-system/components/components/select/select.js';
 export class SynSelectComponent {
   public nativeElement: SynSelect;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -92,7 +94,6 @@ export class SynSelectComponent {
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
       this.synFocusEvent.emit(e);
@@ -121,6 +122,30 @@ export class SynSelectComponent {
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   /**

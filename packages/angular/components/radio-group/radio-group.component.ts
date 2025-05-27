@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
- * @documentation https://synergy.style/components/radio-group
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs
  * @status stable
  * @since 2.0
  *
@@ -50,6 +50,7 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
 export class SynRadioGroupComponent {
   public nativeElement: SynRadioGroup;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -59,11 +60,34 @@ export class SynRadioGroupComponent {
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   /**

@@ -1,7 +1,9 @@
 import { html } from 'lit';
+import type { RegressionFns } from '../all-components-regressions';
 
-export const Select = (regressions: Array<() => void> = []) => {
+export const Select = (regressions: RegressionFns = []) => {
   regressions.forEach((regression) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     regression();
   });
 
@@ -46,6 +48,14 @@ export const Select = (regressions: Array<() => void> = []) => {
       label="Multiple with custom delimiter"
       multiple
       value="1|2"
+    ></syn-select>
+
+    <syn-select
+      data-testid="select-847-multiple"
+      help-text="Normal value binding and async options"
+      label="Multiple with async options"
+      multiple
+      value="1 2"
     ></syn-select>
   `;
 };

@@ -7,7 +7,7 @@
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
- * @documentation https://synergy.style/components/switch
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
  * @since 2.0
  *

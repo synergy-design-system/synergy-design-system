@@ -13,6 +13,7 @@ import synTestPlugins from './scripts/tests/index.js';
 
 export default {
   rootDir: '.',
+  testsFinishTimeout: 180000, // 3 minutes
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
   nodeResolve: {
@@ -50,7 +51,7 @@ export default {
 
   ],
   testRunnerHtml: testFramework => `
-    <html lang="en-US">
+    <!DOCTYPE html><html lang="en-US">
       <head></head>
       <body>
         <link rel="stylesheet" href="dist/styles/index.css">

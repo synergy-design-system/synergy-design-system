@@ -1,3 +1,67 @@
+# [@synergy-design-system/components-v2.34.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.33.0...components/2.34.0) (2025-05-26)
+
+
+### Features
+
+* ✨ Make angular ngModel event changeable ([#870](https://github.com/synergy-design-system/synergy-design-system/issues/870)) ([4692c69](https://github.com/synergy-design-system/synergy-design-system/commit/4692c69e919e69d078365f51f9a793330c9da353))
+
+# [@synergy-design-system/components-v2.33.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.32.0...components/2.33.0) (2025-05-26)
+
+
+### Features
+
+* ✨ number-input - allow clamping via property ([#853](https://github.com/synergy-design-system/synergy-design-system/issues/853)) ([674f310](https://github.com/synergy-design-system/synergy-design-system/commit/674f310b19aad7e02e8b6d0e6346c8cff1a89d94))
+
+# [@synergy-design-system/components-v2.32.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.2...components/2.32.0) (2025-05-21)
+
+
+### Features
+
+* ✨ Add variant="sticky" to syn-side-nav ([#855](https://github.com/synergy-design-system/synergy-design-system/issues/855)) ([0004497](https://github.com/synergy-design-system/synergy-design-system/commit/0004497ff3c35fab1de65fdd70730f5962ffd748))
+ > `rail` attribute received a deprecation warning as it will be removed in the next major synergy version (3.0). Please use `variant="rail"` instead.
+
+# [@synergy-design-system/components-v2.31.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.1...components/2.31.2) (2025-05-20)
+
+
+### Bug Fixes
+
+* 🐛  Angular problem with multiple select and async options ([#867](https://github.com/synergy-design-system/synergy-design-system/issues/867)) ([3508710](https://github.com/synergy-design-system/synergy-design-system/commit/350871007772fd7a5a5ed4cc4239c33b403f7291))
+
+# [@synergy-design-system/components-v2.31.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.31.0...components/2.31.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* 🐛 syn-side-nav does not correctly reappear after double-click on burger menu ([#865](https://github.com/synergy-design-system/synergy-design-system/issues/865)) ([fde5c13](https://github.com/synergy-design-system/synergy-design-system/commit/fde5c13426b410fc98a31d21432ab191cdb57392))
+
+# [@synergy-design-system/components-v2.31.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.5...components/2.31.0) (2025-05-13)
+
+
+### Features
+
+* ✨ syn-combobox, syn-select: Allow listbox of syn-select to exceed the input width ([#861](https://github.com/synergy-design-system/synergy-design-system/issues/861)) ([0759a8f](https://github.com/synergy-design-system/synergy-design-system/commit/0759a8f3545200dc9fb93d51ccd4c1e6b503c0b8))
+
+# [@synergy-design-system/components-v2.30.5](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.4...components/2.30.5) (2025-05-13)
+
+
+### Bug Fixes
+
+* 🐛 syn-tooltip - box-shadow bleeds into tooltip arrow ([#863](https://github.com/synergy-design-system/synergy-design-system/issues/863)) ([853ed25](https://github.com/synergy-design-system/synergy-design-system/commit/853ed2534f9cc470959501f66453d0e17ec5839f))
+
+# [@synergy-design-system/components-v2.30.4](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.3...components/2.30.4) (2025-05-12)
+
+
+### Bug Fixes
+
+* 🐛 Tags expand and push out UI elements in syn-select with multiple enabled and fixed width ([#859](https://github.com/synergy-design-system/synergy-design-system/issues/859)) ([74a33f4](https://github.com/synergy-design-system/synergy-design-system/commit/74a33f423735a1a125582eb868da052809200fe6))
+
+# [@synergy-design-system/components-v2.30.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.2...components/2.30.3) (2025-05-08)
+
+
+### Bug Fixes
+
+* 🤔 Vendorism rewrites inline comment tickets to github to synergy account ([#860](https://github.com/synergy-design-system/synergy-design-system/issues/860)) ([99c9b43](https://github.com/synergy-design-system/synergy-design-system/commit/99c9b438e0485550215a810c2d33833140ac941e))
+
 # [@synergy-design-system/components-v2.30.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.30.1...components/2.30.2) (2025-05-07)
 
 

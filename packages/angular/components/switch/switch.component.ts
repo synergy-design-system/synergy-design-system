@@ -22,7 +22,7 @@ import '@synergy-design-system/components/components/switch/switch.js';
 
 /**
  * @summary Switches allow the user to toggle an option on or off.
- * @documentation https://synergy.style/components/switch
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
  * @since 2.0
  *
@@ -53,6 +53,7 @@ import '@synergy-design-system/components/components/switch/switch.js';
 export class SynSwitchComponent {
   public nativeElement: SynSwitch;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -65,7 +66,6 @@ export class SynSwitchComponent {
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.checkedChange.emit(this.checked);
     });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
       this.synFocusEvent.emit(e);
@@ -73,6 +73,30 @@ export class SynSwitchComponent {
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.checkedChange.emit(this.checked);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   @Input()

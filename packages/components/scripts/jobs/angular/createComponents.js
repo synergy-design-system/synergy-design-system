@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import {
+  createAttributeComment,
   createComment,
   createFrameworkIndex,
   createHeader,
@@ -26,19 +27,8 @@ const getEventExports = (events = []) => events
 
 const getEventListeners = ({
   events = [],
-  tagNameWithoutPrefix,
 }) => events
-  .map(event => {
-    let additionalCodeToRun = '';
-    if (
-      getIsTwoWayBindingEnabledFor(tagNameWithoutPrefix)
-      && event.name === getEventAttributeForTwoWayBinding(tagNameWithoutPrefix)
-    ) {
-      const control = getControlAttributeForTwoWayBinding(tagNameWithoutPrefix);
-      additionalCodeToRun = `this.${control}Change.emit(this.${control})`;
-    }
-    return `this.nativeElement.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); ${additionalCodeToRun} });`;
-  })
+  .map(event => `this.nativeElement.addEventListener('${event.name}', (e: ${event.eventName}) => { this.${lcFirstLetter(event.eventName)}.emit(e); });`)
   .join('\n');
 
 const getEventOutputs = ({
@@ -77,7 +67,7 @@ const getAttributeInputs = (componentName, attributes = []) => attributes
     }
 
     return `
-      ${createComment(attr.description || '')}
+      ${createAttributeComment(attr)}
       @Input()
       set ${attr.fieldName}(v: ${usedTypeForSetter}) {
         this._ngZone.runOutsideAngular(() => (${calledMethod}));
@@ -105,12 +95,52 @@ const componentsCustomization = {
   },
 };
 
+const getNgModelUpdateOnInput = (componentName) => {
+  const control = getControlAttributeForTwoWayBinding(componentName);
+  const changeEmitter = `this.${control}Change.emit(this.${control});`;
+  const defaultEvent = getEventAttributeForTwoWayBinding(componentName);
+  return `
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "${defaultEvent}".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || '${defaultEvent}';
+    this.nativeElement.addEventListener(option, () => {
+      ${changeEmitter}
+    }, {
+      signal: this.modelSignal.signal,
+    });
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
+  }`;
+};
+
+const getTwoWayBindingDataForNgModel = (component) => {
+  if (!getIsTwoWayBindingEnabledFor(component.tagNameWithoutPrefix)) {
+    return { controller: '', method: '', propertyInitializer: '' };
+  }
+
+  const twoWayBindingEvent = getEventAttributeForTwoWayBinding(component.tagNameWithoutPrefix);
+
+  return {
+    controller: 'private modelSignal = new AbortController();',
+    method: getNgModelUpdateOnInput(component.tagNameWithoutPrefix),
+    propertyInitializer: `this.ngModelUpdateOn = '${twoWayBindingEvent}';`,
+  };
+};
+
 export const runCreateComponents = job('Angular: Creating components', async (metadata, outDir) => {
   // List of components
   const components = await getAllComponents(metadata);
 
   const index = [];
 
+  // eslint-disable-next-line complexity
   components.forEach(component => {
     const componentDir = path.join(outDir, component.tagNameWithoutPrefix);
     const componentFileName = `${component.tagNameWithoutPrefix}.component.ts`;
@@ -130,6 +160,8 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const attributeInputs = getAttributeInputs(component.name, attributes);
 
     const ngAfterContentInit = componentsCustomization[component.name]?.ngAfterContentInit || '';
+
+    const { controller, method, propertyInitializer } = getTwoWayBindingDataForNgModel(component);
 
     const source = `
       ${headerComment}
@@ -156,17 +188,21 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         
       public nativeElement: ${component.name};
       private _ngZone: NgZone;
+      ${controller}
 
         constructor(e: ElementRef, ngZone: NgZone) {
           this.nativeElement = e.nativeElement;
           this._ngZone = ngZone;
           ${eventListeners}
+          ${propertyInitializer}
         }
 
         ${ngAfterContentInit ? `ngAfterContentInit(): void {
             ${ngAfterContentInit}
           }` : ''}
 
+        ${method}
+ 
         ${attributeInputs}
 
         ${eventOutputs}

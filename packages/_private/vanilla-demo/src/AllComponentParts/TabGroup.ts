@@ -1,7 +1,9 @@
 import { html } from 'lit';
+import type { RegressionFns } from '../all-components-regressions';
 
-export const TabGroup = (regressions: Array< () => void> = []) => {
+export const TabGroup = (regressions: RegressionFns = []) => {
   regressions.forEach((regression) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     regression();
   });
 

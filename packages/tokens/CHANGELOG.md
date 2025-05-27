@@ -1,3 +1,17 @@
+# [@synergy-design-system/tokens-v2.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.19.0...tokens/2.20.0) (2025-05-26)
+
+
+### Features
+
+* ✨ number-input - allow clamping via property ([#853](https://github.com/synergy-design-system/synergy-design-system/issues/853)) ([674f310](https://github.com/synergy-design-system/synergy-design-system/commit/674f310b19aad7e02e8b6d0e6346c8cff1a89d94))
+
+# [@synergy-design-system/tokens-v2.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.18.1...tokens/2.19.0) (2025-05-21)
+
+
+### Features
+
+* ✨ Add variant="sticky" to syn-side-nav ([#855](https://github.com/synergy-design-system/synergy-design-system/issues/855)) ([0004497](https://github.com/synergy-design-system/synergy-design-system/commit/0004497ff3c35fab1de65fdd70730f5962ffd748))
+
 # [@synergy-design-system/tokens-v2.18.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.18.0...tokens/2.18.1) (2025-03-31)
 
 

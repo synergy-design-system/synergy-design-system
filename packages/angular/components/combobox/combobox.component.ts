@@ -72,6 +72,8 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part.
+ * Use this to target the tooltip's popup container.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -84,6 +86,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
 export class SynComboboxComponent {
   public nativeElement: SynCombobox;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -96,7 +99,6 @@ export class SynComboboxComponent {
     });
     this.nativeElement.addEventListener('syn-input', (e: SynInputEvent) => {
       this.synInputEvent.emit(e);
-      this.valueChange.emit(this.value);
     });
     this.nativeElement.addEventListener('syn-focus', (e: SynFocusEvent) => {
       this.synFocusEvent.emit(e);
@@ -128,6 +130,30 @@ export class SynComboboxComponent {
     this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => {
       this.synErrorEvent.emit(e);
     });
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   /**

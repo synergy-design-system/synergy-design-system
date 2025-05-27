@@ -31,12 +31,12 @@ import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
-import { isAllowedValue } from './utility.js';
+import { compareValues, isAllowedValue } from './utility.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- * @documentation https://synergy.style/components/select
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
  * @since 2.0
  *
@@ -80,6 +80,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -99,12 +100,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
+  private resizeObserver: ResizeObserver;
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
   @query('.select__display-input') displayInput: HTMLInputElement;
   @query('.select__value-input') valueInput: HTMLInputElement;
   @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.select__tags') tagContainer: HTMLDivElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -143,7 +146,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       val = Array.isArray(val) ? val.join(this.delimiter) : val;
     }
 
-    if (this._value === val) {
+    if (compareValues(this._value, val)) {
       return;
     }
 
@@ -243,6 +246,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     return this.valueInput.validationMessage;
   }
 
+  
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(entries => {
+        const entry = entries.at(0)!;
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${entry.contentRect.width}px`);
+      });
+      this.resizeObserver.observe(this.tagContainer);
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -254,11 +268,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.open = false;
   }
 
+  
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }
+
   private addOpenListeners() {
     //
     // Listen on the root node instead of the document in case the elements are inside a shadow root
     //
-    // https://github.com/synergy-design-system/synergy/issues/1763
+    // https://github.com/shoelace-style/shoelace/issues/1763
     //
     document.addEventListener('focusin', this.handleDocumentFocusIn);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
@@ -542,7 +562,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const val = this.valueHasChanged ? this.value : this.defaultValue;
 
     this.handleDelimiterChange();
-    const value = Array.isArray(val) ? val : [val];
+    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(Boolean);
     const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items
@@ -705,7 +725,20 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.isInitialized = true;
   }
 
-  protected override willUpdate(changedProperties: PropertyValues) {
+  
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
+  }
+      
+
+protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
     if(!this.isInitialized && !this.defaultValue && this.value) {
@@ -894,13 +927,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               'select--medium': this.size === 'medium',
               'select--large': this.size === 'large'
             })}
-            placement=${this.placement}
+            placement=${this.placement + '-start'}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
             sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            exportparts="popup"
           >
             <div
               part="combobox"

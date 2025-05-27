@@ -18,6 +18,28 @@ const AllComponentSelectors = {
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
 
+  // Input
+  input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
+  input417NumericMinFractionDigitsModern: '#tab-content-Input syn-input[data-testid="input-838-numeric-modern-min-fraction-digits"]',
+  input417NumericMinFractionDigitsNative: '#tab-content-Input syn-input[data-testid="input-838-numeric-native-min-fraction-digits"]',
+  input417NumericModern: '#tab-content-Input syn-input[data-testid="input-417-numeric-modern"]',
+  input417NumericNative: '#tab-content-Input syn-input[data-testid="input-417-numeric-native"]',
+  inputContent: '#tab-content-Input',
+  inputLink: '#tab-Input',
+
+  // NgModelUpdateOn
+  ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-808"]',
+  ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-changed-808"]',
+  ngModelUpdateOnCheckboxResult: '#tab-content-NgModelUpdateOn [data-testid="result-checkbox-808"]',
+  ngModelUpdateOnContent: '#tab-content-NgModelUpdateOn',
+  ngModelUpdateOnInput: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-808"]',
+  ngModelUpdateOnInputChanged: '#tab-content-NgModelUpdateOn syn-input[data-testid="input-changed-808"]',
+  ngModelUpdateOnInputResult: '#tab-content-NgModelUpdateOn [data-testid="result-input-808"]',
+  ngModelUpdateOnLink: '#tab-NgModelUpdateOn',
+  ngModelUpdateOnRange: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-808"]',
+  ngModelUpdateOnRangeChanged: '#tab-content-NgModelUpdateOn syn-range[data-testid="range-changed-808"]',
+  ngModelUpdateOnRangeResult: '#tab-content-NgModelUpdateOn [data-testid="result-range-808"]',
+
   // Optgroup
   optgroupFirstEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1) syn-option:not([disabled])',
   optgroupFirstItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(1)',
@@ -28,6 +50,7 @@ const AllComponentSelectors = {
   optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
 
   // Select
+  select847Multiple: '#tab-content-Select syn-select[data-testid="select-847-multiple"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',

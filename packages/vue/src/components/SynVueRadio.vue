@@ -7,7 +7,7 @@
 
 /**
  * @summary Radios allow the user to select a single option from a group.
- * @documentation https://synergy.style/components/radio
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
  * @status stable
  * @since 2.0
  *

@@ -472,7 +472,7 @@ describe('when the value changes', () => {
 
   it('should relatively position content to prevent visually hidden scroll bugs', async () => {
     //
-    // See https://github.com/synergy-design-system/synergy/issues/1380
+    // See https://github.com/shoelace-style/shoelace/issues/1380
     //
     const radioGroup = await fixture<SynRadioGroup>(html`
       <syn-radio-group value="1">
@@ -488,7 +488,7 @@ describe('when the value changes', () => {
   });
 
   /**
-   * @see https://github.com/synergy-design-system/synergy/issues/1361
+   * @see https://github.com/shoelace-style/shoelace/issues/1361
    * This isn't really possible to test right now due to importing "synergy.js" which
    * auto-defines all of our components up front. This should be tested if we ever split
    * to non-auto-defining components and not auto-defining for tests.

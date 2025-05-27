@@ -35,9 +35,20 @@ export const vendorWebTestRunnerConfig = (path, content) => {
       'forbidOnly: !!process.env.CI,',
       { tabsBeforeInsertion: 3 },
     ],
+    // Adjust the timeout
+    [
+      "rootDir: '.',",
+      'testsFinishTimeout: 180000, // 3 minutes',
+      { tabsBeforeInsertion: 1 },
+    ],
   ], content);
 
   nextContent = replaceSections([
+    // Add a doctype to make sure the tests don´t run in quirks mode
+    [
+      '<html lang="en-US">',
+      '<!DOCTYPE html><html lang="en-US">',
+    ],
     // Adjust the path to the theme to make sure we always fetch the latest version from the package
     [
       '<link rel="stylesheet" href="dist/themes/light.css">',

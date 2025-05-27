@@ -14,8 +14,9 @@ import {
 export const ALLOWED_ATTRIBUTES = [
   'delimiter',
   'size',
+  'numericStrategy',
   'variant',
-];
+].sort();
 
 const getDefaultAttributes = attributes => attributes.filter(
   attr => attr.default !== undefined && !!attr.default && attr.default !== "''",
@@ -36,7 +37,7 @@ const createSynDefaultSettingsStructure = (components, whiteListedAttributes = [
     name,
   }))
   // 3. Create an array that includes the component name and default attribute names
-  .map(({ attributes, name }) => [name, attributes.map(attr => attr.name)])
+  .map(({ attributes, name }) => [name, attributes.map(attr => attr.fieldName)])
   // 4: Reverse the map, create an object that has the attributes as key and components as values
   // Also make sure to only include whitelisted attributes!
   .reduce((acc, [name, attributes]) => {
@@ -86,7 +87,7 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
     .map(([attr, cList]) => {
       const componentListWithDefaults = cList.map(c => {
         const foundComponent = components.find(({ name }) => name === c);
-        const defaultValue = foundComponent?.attributes.find(({ name }) => name === attr);
+        const defaultValue = foundComponent?.attributes.find(({ fieldName }) => fieldName === attr);
         return [c, defaultValue?.default];
       });
       return [attr, componentListWithDefaults];
@@ -147,6 +148,11 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
 
   const typeImports = await createTypeImports(componentsHavingDefaults);
 
+  const globalImports = [
+    // #417: Add the nativeNumericStrategy to the default settings
+    ['{ nativeNumericStrategy }', '../../components/input/strategies.js'],
+  ].map(([importPath, importFrom]) => `import ${importPath} from '${importFrom}';`);
+
   // Create the needed types
   const coreTypes = [
     `
@@ -197,6 +203,9 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   const outFile = `
     /* eslint-disable @typescript-eslint/quotes */
     ${createHeader()}
+
+    // Global imports
+    ${globalImports.join('\n')}
 
     // Type imports
     ${typeImports.join('\n')}

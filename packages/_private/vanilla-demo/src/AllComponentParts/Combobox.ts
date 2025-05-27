@@ -1,7 +1,9 @@
 import { html } from 'lit';
+import type { RegressionFns } from '../all-components-regressions';
 
-export const Combobox = (regressions: Array< () => void> = []) => {
+export const Combobox = (regressions: RegressionFns = []) => {
   regressions.forEach((regression) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     regression();
   });
 

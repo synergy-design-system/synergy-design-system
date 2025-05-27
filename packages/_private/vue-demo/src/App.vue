@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SizeSwitch from './SizeSwitch.vue';
+import SideNavSwitch from './SidenavSwitch.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 import { SynVueDivider, SynVueHeader, SynVueIcon, SynVueNavItem, SynVueSideNav } from '@synergy-design-system/vue';
 import { computed } from 'vue';
@@ -20,6 +21,8 @@ const routeTo = (route: string) => {
       <SynVueIcon name="logo-color" library="system" />
     </RouterLink>
     <div class="meta-navigation" slot="meta-navigation">
+      <SideNavSwitch />
+      <SynVueDivider vertical />
       <SizeSwitch />
       <SynVueDivider vertical />
       <ThemeSwitch />
@@ -27,7 +30,7 @@ const routeTo = (route: string) => {
   </SynVueHeader>
 
   <div class="main">
-    <SynVueSideNav rail ref="sideNavRef">
+    <SynVueSideNav variant="rail" ref="sideNavRef">
       <SynVueNavItem :current="currentRoute === '/'" @click="() => routeTo('/')">
         Home
         <SynVueIcon name="home" slot="prefix"/>
@@ -43,6 +46,10 @@ const routeTo = (route: string) => {
       <SynVueNavItem :current="currentRoute === '/all-components'" divider @click="() => routeTo('/all-components')">
         All Components
         <SynVueIcon name="grid_view" slot="prefix"/>
+      </SynVueNavItem>
+      <SynVueNavItem :current="currentRoute === '/framework-specific'" divider @click="() => routeTo('/framework-specific')">
+        Framework specific issues
+        <SynVueIcon name="bug_report" slot="prefix"/>
       </SynVueNavItem>
     </SynVueSideNav>
     <main class="content">

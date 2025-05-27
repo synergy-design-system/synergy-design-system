@@ -43,7 +43,7 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "2.34.0",
+  "version": "2.34.1",
   "devDependencies": {
     "@types/react": "^19.0.12",
     "react": "^19.0.0"

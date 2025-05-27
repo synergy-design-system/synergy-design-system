@@ -28,6 +28,7 @@ Component.define('syn-nav-item');
  * @since 1.14.0
  *
  * @dependency syn-divider
+ * @dependency syn-icon
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,

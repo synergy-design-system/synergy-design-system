@@ -10,10 +10,12 @@ import {
 } from '@synergy-design-system/components/components/input/strategies.js';
 import { AllComponentsPage } from '../PageObjects/index.js';
 import {
+  type SetterType,
   createTestCases,
   fillInput,
   hasEvent,
   hasNoEvent,
+  setPropertyForLocator,
 } from '../helpers.js';
 
 test.describe('<SynInput />', () => {
@@ -231,5 +233,45 @@ test.describe('<SynInput />', () => {
         }); // end test for min-fraction-digits
       }); // end modern numeric strategy
     }); // feature#838
+  }); // End frameworks
+
+  createTestCases(({ name, port }) => {
+    test.describe(`Regression#872: ${name}`, () => {
+      (['attribute', 'property'] as SetterType[]).forEach((type) => {
+        test(`should disable the decrement button if the value was set lower than min by setting via ${type}`, async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input872SpinButtons');
+          const decrementButton = await input.locator('[part="decrement-number-stepper"]');
+
+          await expect(input, 'Initial value should be "50"').toHaveJSProperty('value', '50');
+          await expect(decrementButton, 'decrement-button should be enabled as value is not below min').toBeEnabled();
+
+          await setPropertyForLocator<SynInput>(input, 'value', '-1', type);
+
+          await expect(input, 'Value should be set to -1 after setting the attribute dynamically').toHaveJSProperty('value', '-1');
+          await expect(decrementButton, 'decrement-button should be disabled as value is now on min').toBeDisabled();
+        }); // test for min
+
+        test(`should disable the increment button if the value was set higher than max by setting via ${type}`, async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('inputLink');
+
+          const input = await AllComponents.getLocator('input872SpinButtons');
+          const incrementButton = await input.locator('[part="increment-number-stepper"]');
+
+          await expect(input, 'Initial value should be "50"').toHaveJSProperty('value', '50');
+          await expect(incrementButton, 'increment-button should be enabled as value is not above max').toBeEnabled();
+
+          await setPropertyForLocator<SynInput>(input, 'value', '101', type);
+
+          await expect(input, 'Value should be set to 101 after setting the attribute dynamically').toHaveJSProperty('value', '101');
+          await expect(incrementButton, 'increment-button should be disabled as value is now above max').toBeDisabled();
+        }); // test for max
+      });
+    }); // regression#872
   }); // End frameworks
 }); // </syn-input>

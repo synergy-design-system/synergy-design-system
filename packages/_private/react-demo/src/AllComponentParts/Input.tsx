@@ -67,5 +67,14 @@ export const Input = () => (
         valueAsNumber={50}
       />
     </>
+
+    <syn-input
+      data-testid="input-872-spin-buttons"
+      label="Issue #872 - Spin Buttons out of sync with value"
+      max={100}
+      min={0}
+      type="number"
+      value="50"
+    />
   </>
 );

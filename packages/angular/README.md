@@ -358,7 +358,7 @@ export class Home {
 }
 ```
 
-The default update of the ngModel values is done on the `syn-input` event. If you want to change the event, which triggers the update, you can use the `ngModelUpdateOn` property. 
+The default update of the ngModel values is done on the `syn-input` event. If you want to change the event, which triggers the update, you can use the `ngModelUpdateOn` property.
 
 ```typescript
 // Changed ngModel update event. NgModel value change is triggered on the `syn-change` event, instead of the `syn-input` event

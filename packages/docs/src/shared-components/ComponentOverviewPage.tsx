@@ -17,43 +17,35 @@ export const ComponentOverviewPage = () => (
   <div
     style={{
       display: 'grid',
+      gap: 'var(--syn-spacing-medium)',
       gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-      gap: '20px',
     }}
   >
     {Object.entries(imageMap).map(([name, url]) => {
       const [isHovered, setIsHovered] = useState(false);
 
       return (
-        <div
+        <a
           key={name}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            border: `2px solid ${isHovered ? 'var(--syn-color-primary-300)' : 'var(--syn-color-neutral-100)'}`,
-            borderRadius: '8px',
-            padding: '12px',
-            boxSizing: 'border-box',
+            border: `var(--syn-border-width-medium) solid ${isHovered ? 'var(--syn-color-primary-300)' : 'var(--syn-color-neutral-100)'}`,
+            borderRadius: 'var(--syn-border-radius-medium)',
             cursor: 'pointer',
           }}
+          tabIndex={0}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onClick={(event)=> {
-            window.top.location.href = `/?path=/docs/components-syn-${name}--docs`;
-          }}
+          href={`/?path=/docs/components-syn-${name}--docs`}
         >
-        <h3 style={{
-          flexShrink: 0,
-          margin: 0,
-          fontSize: '1rem',
-          textAlign: 'center'
-        }}>{name}</h3>
-          <div >
+          <figure style={{
+            margin: 0,
+            textAlign: 'center',
+          }}>
+            <figcaption style={{ padding: 'var(--syn-spacing-small) 0' }}>{name}</figcaption>
             <img src={url} className="component"></img>
-          </div>
-        </div>
+          </figure>
+        </a>
       );
     })}
   </div>
 );
-

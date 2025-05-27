@@ -9,7 +9,7 @@ export default { title: 'Component Overview' };
 
 const imageMap = Object.entries(images).reduce((acc, [filePath, module]) => {
   const fileName = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.svg'));
-  acc[fileName] = module.default || module;
+  acc[fileName] = ((module as { default?: string }).default || module) as string;
   return acc;
 }, {} as Record<string, string>);
 

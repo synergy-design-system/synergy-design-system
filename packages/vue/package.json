@@ -43,7 +43,7 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "2.34.0",
+  "version": "2.34.1",
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",

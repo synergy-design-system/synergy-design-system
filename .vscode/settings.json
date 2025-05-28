@@ -14,6 +14,7 @@
     "packages/_private/e2e-demo-test",
     "packages/_private/demo-utilities",
     "packages/assets",
+    "packages/assets-new",
     "packages/components",
     "packages/docs",
     "packages/angular",

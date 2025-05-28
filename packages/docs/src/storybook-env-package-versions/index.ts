@@ -17,6 +17,7 @@ function StorybookEnvPackageVersions(options: PackageVersionsPluginOptions): Sto
         ) as { name: string, version: string; };
         acc[packageJson.name] = packageJson.version;
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(`Failed to read package.json from ${packagePath}:`, error);
       }
       return acc;

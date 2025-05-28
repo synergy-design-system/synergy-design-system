@@ -1,4 +1,33 @@
 {
+  "font": {
+    "brand": {
+      "sans": {
+        "value": "Open Sans",
+        "type": "fontFamilies",
+        "description": "Open Sans"
+      },
+      "mono": {
+        "value": "Roboto Mono",
+        "type": "fontFamilies"
+      }
+    }
+  },
+  "font-weight": {
+    "brand": {
+      "normal": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeights"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeights"
+      }
+    }
+  },
   "gray": {
     "50": {
       "value": "#f9fafb",

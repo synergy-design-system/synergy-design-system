@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf dist src",
+    "clean": "node ./scripts/clean.js",
     "fetch-assets": "pnpm clean && dotenvx -q run -- pnpm exec figma-export use-config",
     "lint": "eslint .",
     "format.eslint": "pnpm lint --fix"

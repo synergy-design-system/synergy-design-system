@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import fs from 'fs';
 import path from 'path';
+import { rimraf } from 'rimraf';
 
 // fetch images and save to disk
 async function fetchComponentThumbnails() {
@@ -25,23 +26,27 @@ async function fetchComponentThumbnails() {
     const response = await fetch(requestUrl, { headers });
     const imgData = await response.json();
 
-    return imgData.images[id];
+    return Object.values(imgData.images)[0];
   }
+
+  // Remove everything icon related
+  await rimraf([
+    './src/component-thumbnails',
+  ]);
 
   // path definitions to traverse the Figma document structure
   const pathToParentElement = ['Component overview', 'Jumppoint', 'jump to=components', 'Frame 3155'];
   const pathToImage = ['content', 'helper/image', 'cover', 'Fixed-aspect-ratio-spacer'];
-  const pathToName = ['content', 'Component-name', '[1]'];
 
   // Read and parse the JSON file
   const headers = { 'X-Figma-Token': process.env.FIGMA_PERSONAL_ACCESS_TOKEN };
-  const fileData = await fetch('https://api.figma.com/v1/files/3cQ9BFSSaoVfhizV0AJ9GP', { headers });
+  const fileData = await fetch('https://api.figma.com/v1/files/3cQ9BFSSaoVfhizV0AJ9GP?deep=1', { headers });
   const jsonData = await fileData.json();
 
   // Get the parent element from the Figma document
   const elements = getElement(jsonData.document, pathToParentElement).children;
   // Get all the element names
-  const elementNames = elements.map((element) => getElement(element, pathToName).name);
+  const elementNames = elements.map((element) => element.name);
   // Get the image URLs for each element
   const imagesAwaits = elements.map((element) => getImageUrl(getElement(element, pathToImage).id));
   const imageURLs = await Promise.all(imagesAwaits);

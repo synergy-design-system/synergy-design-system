@@ -1,11 +1,39 @@
 /* eslint-disable max-len */
+import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest';
+import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
+
 import React, {
   useState,
 } from 'react';
 
-const images = import.meta.glob('../../../assets/src/component-thumbnails/*.svg', { eager: true });
+import { kebabCase, pascalCase } from 'change-case';
+
+const images = import.meta.glob('../../../assets/src/component-thumbnails/*', { eager: true });
 
 export default { title: 'Component Overview' };
+
+type MANIFEST = Array<Record<string, Array<Record<string, unknown>>>>;
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+const componentNames = (componentsManifest.modules as MANIFEST).map((module) => module.declarations[0].name);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+const styleNames = (stylesManifest!.modules as MANIFEST).map((module) => module.declarations[0].name);
+
+function getUrl(name: string): string {
+  const component = componentNames.find((componentName) => componentName === `Syn${pascalCase(name)}`);
+  if (component) {
+    return `/?path=/docs/components-syn-${name.replace(' ', '-').toLowerCase()}--docs`;
+  }
+  const styles = styleNames.find((componentName) => componentName === `syn-${kebabCase(name)}`);
+  if (styles) {
+    return `/?path=/docs/styles-syn-${name.replace(' ', '-').toLowerCase()}--docs`;
+  }
+
+  // eslint-disable-next-line no-console
+  console.warn(`No URL found for component or style: ${name}`);
+
+  return '#';
+}
 
 const imageMap = Object.entries(images).reduce((acc, [filePath, module]) => {
   const fileName = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.svg'));
@@ -35,7 +63,7 @@ export const ComponentOverviewPage = () => (
           tabIndex={0}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          href={`/?path=/docs/components-syn-${name}--docs`}
+          href={getUrl(name)}
         >
           <figure style={{
             margin: 0,

@@ -8,7 +8,6 @@ import type { SynDetails } from '@synergy-design-system/components';
 import { html } from 'lit';
 import '../../../components/src/components/details/details.js';
 import '../../../components/src/components/icon/icon.js';
-
 import {
   generateScreenshotStory,
   generateStoryDescription,

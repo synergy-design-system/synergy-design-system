@@ -17,7 +17,6 @@ import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
-
 import {
   generateStoryDescription,
   storybookDefaults,

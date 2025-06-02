@@ -8,7 +8,6 @@ import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
-
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';

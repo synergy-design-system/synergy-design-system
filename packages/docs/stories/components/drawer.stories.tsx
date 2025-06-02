@@ -5,7 +5,6 @@ import '../../../components/src/components/drawer/drawer.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon-button/icon-button.js';
 import '../../../components/src/components/input/input.js';
-
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { userEvent } from '@storybook/test';
 import { html } from 'lit';

@@ -2,7 +2,6 @@
 import type { SynButton, SynCheckbox } from '@synergy-design-system/components';
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/button/button.js';
-
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';

@@ -8,7 +8,6 @@ import '../../../components/src/components/dialog/dialog.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon-button/icon-button.js';
 import '../../../components/src/components/input/input.js';
-
 import {
   generateStoryDescription,
   storybookDefaults,

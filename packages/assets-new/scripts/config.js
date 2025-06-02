@@ -16,6 +16,8 @@ export const PATH_SYSTEM_ICONS_V2 = 'src/system-icons';
 
 export const PATH_ICONS_V3 = 'src/brand2025';
 
+export const PATH_DEFAULT_ICONS = 'src/default-icons.ts';
+
 /**
  * List of paths that have dynamic output that is created via Typescript or Figma configuration.
  * They are not static and can change based on the configuration or the files being processed.
@@ -25,4 +27,5 @@ export const DYNAMIC_OUTPUT_PATHS = [
   PATH_LOGOS_V2,
   PATH_SYSTEM_ICONS_V2,
   PATH_ICONS_V3,
+  PATH_DEFAULT_ICONS,
 ];

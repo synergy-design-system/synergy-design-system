@@ -1,14 +1,16 @@
+/**
+ * @typedef {import('@figma-export/types').ComponentsCommandOptions} ComponentsCommandOptions
+ * @typedef {import('@figma-export/types').ComponentOutputter} ComponentOutputter
+ */
 import outputComponentsAsSvg from '@figma-export/output-components-as-svg';
 import transformSvgWithSvgo from '@figma-export/transform-svg-with-svgo';
 import * as FIGMA_CONFIG from './config.js';
-
-/**
- * @typedef {import('@figma-export/types').ComponentsCommandOptions} ComponentsCommandOptions
- */
+import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
 
 /**
  * Create a configuration object for the figma export
  * @param {Object} options - Configuration options for the Figma export.
+ * @param {ComponentOutputter[]} [options.additionalOutputters=[]] - Additional outputters to use.
  * @param {string} [options.fileId=''] - The Figma file ID to export from.
  * @param {string[]} [options.ids=[]] - The IDs of the components to export.
  * @param {string[]} [options.includeTypes=[]] - Types of components to include in the export.
@@ -18,6 +20,7 @@ import * as FIGMA_CONFIG from './config.js';
  * @returns {ComponentsCommandOptions} - The configuration object for the Figma export.
  */
 export const createFigmaExportConfig = ({
+  additionalOutputters = [],
   fileId = '',
   ids = [],
   includeTypes = ['COMPONENT', 'VARIANT'],
@@ -35,6 +38,7 @@ export const createFigmaExportConfig = ({
       getDirname: () => path,
       output: './src',
     }),
+    ...additionalOutputters,
   ],
   transformers: [
     transformSvgWithSvgo({
@@ -65,6 +69,13 @@ export const v2SystemIconConfig = createFigmaExportConfig({
 
 // v2 all icons configuration
 export const v2AllIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToBundle({
+      exportName: 'defaultIcons',
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: './src/default-icons.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
   ids: [FIGMA_CONFIG.FIGMA_ID_ALL_ICONS_V2],
   onlyFromPages: ['Assets'],

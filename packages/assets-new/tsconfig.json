@@ -2,13 +2,15 @@
   "compilerOptions": {
     "declaration": true,
     "target": "es2020",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "lib": ["ES2020", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["es2020"],
     "strict": true,
-    "outDir": "dist",
     "isolatedModules": true,
+    "esModuleInterop": true,
     "types": ["node"],
+    "outDir": "dist",
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
-  "include": ["src", "scripts"],
+  "include": ["src", "scripts"]
 }

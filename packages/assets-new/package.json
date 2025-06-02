@@ -4,7 +4,7 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf dist src",
-    "gogogo": "pnpm clean && dotenvx -q run -- pnpm exec figma-export use-config",
+    "fetch-assets": "pnpm clean && dotenvx -q run -- pnpm exec figma-export use-config",
     "lint": "eslint .",
     "format.eslint": "pnpm lint --fix"
   },
@@ -15,12 +15,15 @@
     "@figma/rest-api-spec": "^0.30.0",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@types/node": "^22.13.14",
+    "chalk": "^5.4.1",
+    "ora": "^8.2.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.44.1",
     "@figma-export/output-components-as-svg": "^6.2.0",
-    "@figma-export/transform-svg-with-svgo": "^6.2.1"
+    "@figma-export/transform-svg-with-svgo": "^6.2.1",
+    "@figma-export/types": "^6.2.0"
   }
 }

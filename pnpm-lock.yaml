@@ -520,6 +520,9 @@ importers:
       '@figma-export/transform-svg-with-svgo':
         specifier: ^6.2.1
         version: 6.2.1
+      '@figma-export/types':
+        specifier: ^6.2.0
+        version: 6.2.0
     devDependencies:
       '@figma-export/cli':
         specifier: ^6.2.0
@@ -536,6 +539,12 @@ importers:
       '@types/node':
         specifier: ^22.13.14
         version: 22.13.14
+      chalk:
+        specifier: ^5.4.1
+        version: 5.4.1
+      ora:
+        specifier: ^8.2.0
+        version: 8.2.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -14583,7 +14592,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.0.1
+      chalk: 5.4.1
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0

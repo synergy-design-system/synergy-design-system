@@ -1,284 +1,68 @@
-# Todos:
+# @synergy-design-system/assets
 
-- [ ] Check scripts for adoption
-- [ ] Create substitute for fetch-assets.js
-- [ ] Create substitute for update-system-icons.js
-- [ ] Remove figma-validator.js
-- [ ] Create substitute for bundle-icons.js
-- [ ] Check if optimize-svg is still needed
+This package provides assets like:
+
+- **logos:** a collection of various logos (such as the variants of the SICK brand logo)
+- **icons:** the standard icons based on [Material Icons](https://fonts.google.com/icons)
+- **system-icons:** a small subset of icons, that are internally used by the Synergy components
+
+The source of the assets can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-233&mode=design&t=GPu4VVd9yffLLAaS-0)
+
+### Installation
+
+Please make sure to install the assets package as a dependency:
+
+```bash
+npm install --save @synergy-design-system/assets
+```
+
+### Usage
+
+All assets are provided as svg's.
+
+The recommended way of using the icons is using the [<syn-icon> Synergy component](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs). Here you will also get more information about how setting up the assets package on bundlers like vite.
+
+```html
+<syn-icon name="warning"></syn-icon>
+```
+
+But the assets could also be used like following:
+
+```html
+<img src="assets/icons/warning.svg" />
+```
 
 ---
 
-**Icons only available in current synergy:**
+## Development
 
-- [ ] access_alarm.svg
-- [ ] access_alarms.svg
-- [ ] access_time_fill.svg
-- [ ] access_time.svg
-- [ ] account_tree_outline.svg
-- [ ] add_alarm.svg
-- [ ] add_circle_outline.svg
-- [ ] add_ic_call.svg
-- [ ] addchart.svg
-- [ ] announcement.svg
-- [ ] app_settings_alt.svg
-- [ ] approval.svg
-- [ ] arrow_range_outline.svg
-- [ ] art_track.svg
-- [ ] assessment.svg
-- [ ] assistant_photo.svg
-- [ ] audiotrack.svg
-- [ ] auto_stories.svg
-- [ ] auto_fix_high.svg
-- [ ] auto_fix_normal.svg
-- [ ] auto_fix_off.svg
-- [ ] auto_graph.svg
-- [ ] auto_mode.svg
-- [ ] auto_awesome_mosaic.svg
-- [ ] auto_awesome_motion.svg
-- [ ] auto_awesome.svg
-- [ ] battery_std.svg
-- [ ] bike_scooter.svg
-- [ ] bluetooth_audio.svg
-- [ ] bookmark_border.svg
-- [ ] box_outline.svg
-- [ ] broadcast_on_personal.svg
-- [ ] browser_not_supported.svg
-- [ ] build_circle_outline.svg
-- [ ] business.svg
-- [ ] catching_pokemon.svg
-- [ ] center_focus_strong_outline.svg
-- [ ] circle_outline.svg
-- [ ] class.svg
-- [ ] clear.svg
-- [ ] closed_caption_off.svg
-- [ ] collections.svg
-- [ ] color_lens.svg
-- [ ] content_paste_go.svg
-- [ ] content_paste_off.svg
-- [ ] content_paste_search.svg
-- [ ] contrast.svg
-- [ ] control_point.svg
-- [ ] conveyor_belt_outline.svg
-- [ ] create.svg
-- [ ] crop_din.svg
-- [ ] crop_original.svg
-- [ ] crop_square.svg
-- [ ] crop.svg
-- [ ] data_saver_off.svg
-- [ ] delete_outline.svg
-- [ ] delivery_dining.svg
-- [ ] directions_boat_fill.svg
-- [ ] directions_bus_fill.svg
-- [ ] directions_car_fill.svg
-- [ ] directions_railway_fill.svg
-- [ ] directions_subway_fill.svg
-- [ ] directions_transit_fill.svg
-- [ ] discount.svg
-- [ ] do_disturb_alt.svg
-- [ ] do_disturb_off.svg
-- [ ] do_disturb_on.svg
-- [ ] do_disturb.svg
-- [ ] do_not_disturb_alt.svg
-- [ ] do_not_disturb.svg
-- [ ] drive_eta.svg
-- [ ] feedback_outline.svg
-- [ ] favorite_border.svg
-- [ ] file_copy.svg
-- [ ] file_download_off.svg
-- [ ] file_download.svg
-- [ ] file_json.svg
-- [ ] file_open.svg
-- [ ] file_present.svg
-- [ ] file_upload.svg
-- [ ] filter_alt_outline.svg
-- [ ] fitbit.svg
-- [ ] folder_copy.svg
-- [ ] folder_delete.svg
-- [ ] folder_zip.svg
-- [ ] format_list_bulleted.svg
-- [ ] format_list_numbered_rtl.svg
-- [ ] format_list_numbered.svg
-- [ ] free_breakfast.svg
-- [ ] games.svg
-- [ ] get_app.svg
-- [ ] gpp_good.svg
-- [ ] gps_fixed.svg
-- [ ] gps_not_fixed.svg
-- [ ] gps_off.svg
-- [ ] help_outline.svg
-- [ ] highlight_alt.svg
-- [ ] highlight_off.svg
-- [ ] home_hotel.svg
-- [ ] home_max.svg
-- [ ] home_mini.svg
-- [ ] home.svg
-- [ ] hotel.svg
-- [ ] image_aspect_ratio.svg
-- [ ] image_not_supported.svg
-- [ ] image_search.svg
-- [ ] imagesearch_roller.svg
-- [ ] import_export.svg
-- [ ] insert_chart_outlined.svg
-- [ ] insert_comment.svg
-- [ ] insert_drive_file.svg
-- [ ] insert_emoticon.svg
-- [ ] insert_invitation.svg
-- [ ] insert_link.svg
-- [ ] insert_photo.svg
-- [ ] invert_colors_off.svg
-- [ ] invert_colors.svg
-- [ ] iso.svg
-- [ ] keyboard_capslock.svg
-- [ ] keyboard_hide.svg
-- [ ] keyboard.svg
-- [ ] label_important.svg
-- [ ] label_off.svg
-- [ ] label.svg
-- [ ] landscape.svg
-- [ ] layers_clear.svg
-- [ ] layers.svg
-- [ ] library_add_check.svg
-- [ ] library_add.svg
-- [ ] library_books.svg
-- [ ] library_music.svg
-- [ ] lightbulb_circle.svg
-- [ ] lightbulb.svg
-- [ ] link_off.svg
-- [ ] link.svg
-- [ ] list_alt.svg
-- [ ] list.svg
-- [ ] local_airport.svg
-- [ ] local_grocery_store.svg
-- [ ] local_hotel.svg
-- [ ] local_movies.svg
-- [ ] local_offer.svg
-- [ ] local_phone.svg
-- [ ] local_play.svg
-- [ ] local_printshop.svg
-- [ ] mail_outline.svg
-- [ ] markunread.svg
-- [ ] message.svg
-- [ ] mic_none.svg
-- [ ] mode_edit_outline.svg
-- [ ] mode_edit.svg
-- [ ] money_off_csred.svg
-- [ ] more_horiz.svg
-- [ ] motion_photos_pause.svg
-- [ ] move_group_outline.svg
-- [ ] movie_creation.svg
-- [ ] nature_people.svg
-- [ ] nightlight_round.svg
-- [ ] no_cell.svg
-- [ ] no_encryption_gmailerrorred.svg
-- [ ] notifications_none.svg
-- [ ] outlined_flag.svg
-- [ ] package_2_outline.svg
-- [ ] package_outline.svg
-- [ ] pallet_outline.svg
-- [ ] pan_tool_outline.svg
-- [ ] panorama_horizontal_select.svg
-- [ ] panorama_photosphere_select.svg
-- [ ] panorama_vertical_select.svg
-- [ ] panorama_wide_angle_select.svg
-- [ ] people_alt.svg
-- [ ] people_outline.svg
-- [ ] perm_identity.svg
-- [ ] person_add_alt_1.svg
-- [ ] person_add_alt.svg
-- [ ] person_outline.svg
-- [ ] person_remove_alt_1.svg
-- [ ] phone.svg
-- [ ] photo_size_select_actual.svg
-- [ ] pie_chart_outline.svg
-- [ ] pie_chart.svg
-- [ ] pix.svg
-- [ ] place.svg
-- [ ] plus_one.svg
-- [ ] poll.svg
-- [ ] portrait.svg
-- [ ] power_input.svg
-- [ ] print.svg
-- [ ] progress_activity_outline.svg
-- [ ] query_builder.svg
-- [ ] question_answer.svg
-- [ ] queue.svg
-- [ ] receipt_long.svg
-- [ ] remove_circle_outline.svg
-- [ ] remove_circle.svg
-- [ ] remove_red_eye.svg
-- [ ] replay_circle_fill.svg
-- [ ] report_gmailerrorred.svg
-- [ ] report_problem.svg
-- [ ] sd_card.svg
-- [ ] sd_storage.svg
-- [ ] settings_input_composite.svg
-- [ ] settings_outline.svg
-- [ ] shop_2.svg
-- [ ] shortcut.svg
-- [ ] signal_cellular_4_bar_lock.svg
-- [ ] signal_wifi_4_bar_lock.svg
-- [ ] signal_wifi_connected_no_internet_4.svg
-- [ ] signal_wifi_statusbar_4_bar.svg
-- [ ] signal_wifi_statusbar_connected_no_internet_4.svg
-- [ ] sms_outline.svg
-- [ ] spatial_audio_off.svg
-- [ ] spatial_audio.svg
-- [ ] spatial_tracking.svg
-- [ ] star_border_purple500.svg
-- [ ] star_border.svg
-- [ ] star_outline.svg
-- [ ] star_purple500.svg
-- [ ] stay_current_landscape.svg
-- [ ] stay_current_portrait.svg
-- [ ] stay_primary_landscape.svg
-- [ ] stay_primary_portrait.svg
-- [ ] stop_circle_outline.svg
-- [ ] store_mall_directory.svg
-- [ ] style.svg
-- [ ] subscriptions.svg
-- [ ] subtitles_off.svg
-- [ ] support_agent.svg
-- [ ] support.svg
-- [ ] switch_access_shortcut_add.svg
-- [ ] switch_access_shortcut.svg
-- [ ] switch_account.svg
-- [ ] switch_camera.svg
-- [ ] switch_left.svg
-- [ ] switch_right.svg
-- [ ] switch_video.svg
-- [ ] system_security_update_good.svg
-- [ ] system_security_update_warning.svg
-- [ ] system_security_update.svg
-- [ ] tab_unselected.svg
-- [ ] tablet.svg
-- [ ] tag_faces.svg
-- [ ] terrain.svg
-- [ ] textsms.svg
-- [ ] theater_comedy.svg
-- [ ] theaters.svg
-- [ ] thumb_down_alt.svg
-- [ ] thumb_down_off_alt.svg
-- [ ] thumb_up_alt.svg
-- [ ] thumb_up_off_alt.svg
-- [ ] time_to_leave.svg
-- [ ] timer_outline.svg
-- [ ] try.svg
-- [ ] tungsten.svg
-- [ ] turned_in_not.svg
-- [ ] turned_in.svg
-- [ ] view_in_ar.svg
-- [ ] view_sidebar.svg
-- [ ] visibility_off_outline.svg
-- [ ] visibility_outline.svg
-- [ ] voice_over_off.svg
-- [ ] voicemail.svg
-- [ ] volume_down.svg
-- [ ] volume_mute.svg
-- [ ] volume_off.svg
-- [ ] volume_up.svg
-- [ ] vpn_lock.svg
-- [ ] window_outline.svg
-- [ ] work_off.svg
-- [ ] work_outline.svg
-- [ ] youtube_searched_for.svg
+This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
+The folder structure of the assets corresponds to the structure of the Figma page.
+
+- **src/logos:** contains the variants of the SICK brand logo
+- **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
+- **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components
+
+> **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
+
+### Setup
+
+To update the assets from Figma, first of all a personal access token in Figma needs to be created.
+The documentation how this can be achieved can be found [here](https://www.figma.com/developers/api#access-tokens).
+The only needed scope is "File content" set to readonly.
+
+After the creation of the personal access token, it needs to be saved in a **_.env_** file with the variable **_"FIGMA_TOKEN"_**.
+It should look like following:
+
+```bash
+FIGMA_TOKEN = "my-personal-access-token"
+```
+
+### Update assets from Figma
+
+If something in the Figma assets got changed, the assets of this package also needs to be updated.
+To update the assets run following in the terminal of the assets package folder:
+
+```bash
+pnpm fetch-assets
+```

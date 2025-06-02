@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable sort-keys */
 export const defaultIcons = {
   "123": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" fill='currentColor'><g id=\"123\"><path id=\"Vector\" d=\"M7.25 15H5.75V10.5H4.25V9H7.25V15ZM13.75 13.5H10.75V12.5H12.75C13.3 12.5 13.75 12.05 13.75 11.5V10C13.75 9.45 13.3 9 12.75 9H9.25V10.5H12.25V11.5H10.25C9.7 11.5 9.25 11.95 9.25 12.5V15H13.75V13.5ZM19.75 14V10C19.75 9.45 19.3 9 18.75 9H15.25V10.5H18.25V11.5H16.25V12.5H18.25V13.5H15.25V15H18.75C19.3 15 19.75 14.55 19.75 14Z\"/></g></svg>",
   "360": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" fill='currentColor'><g id=\"360\"><path id=\"Vector\" d=\"M12 5.5C6.48 5.5 2 7.74 2 10.5C2 12.74 4.94 14.63 9 15.27V18.5L13 14.5L9 10.5V13.23C5.85 12.67 4 11.33 4 10.5C4 9.44 7.04 7.5 12 7.5C16.96 7.5 20 9.44 20 10.5C20 11.23 18.54 12.39 16 13.03V15.08C19.53 14.31 22 12.55 22 10.5C22 7.74 17.52 5.5 12 5.5Z\"/></g></svg>",

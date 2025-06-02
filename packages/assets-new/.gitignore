@@ -1,7 +1,3 @@
 dist
 .env
 .tsbuildinfo
-src/icons
-src/logos
-src/system-icons
-src/brand2025

@@ -18,6 +18,7 @@ const writeToFileSystem = async (filePath, content) => {
     await writeFile(filePath, content);
     return true;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Error writing file ${filePath}:`, error);
     return false;
   }
@@ -59,6 +60,7 @@ export const outputComponentsToBundle = ({
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable sort-keys */
 export const ${exportName || pageName} = ${contentString};
 `.trimStart();
 

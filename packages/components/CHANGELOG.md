@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.34.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.34.1...components/2.34.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* 🐛 syn-input: Numeric inputs having wrong min/max state when setting the value prop externally ([#881](https://github.com/synergy-design-system/synergy-design-system/issues/881)) ([01a3169](https://github.com/synergy-design-system/synergy-design-system/commit/01a31693a6490fb944391dd85b668619607d643f))
+
+# [@synergy-design-system/components-v2.34.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.34.0...components/2.34.1) (2025-05-27)
+
+
+### Bug Fixes
+
+* 🐛 syn-nav-item: syn-icon not in dependencies list ([#879](https://github.com/synergy-design-system/synergy-design-system/issues/879)) ([61c1075](https://github.com/synergy-design-system/synergy-design-system/commit/61c107557e3f0b58aa88a57edaf3b25932a1df59))
+
 # [@synergy-design-system/components-v2.34.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.33.0...components/2.34.0) (2025-05-26)
 
 

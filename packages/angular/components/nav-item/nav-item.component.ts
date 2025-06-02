@@ -31,6 +31,7 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  * @since 1.14.0
  *
  * @dependency syn-divider
+ * @dependency syn-icon
  *
  * @event syn-show - Emitted when the navigation item:
  * - has children,

@@ -10,6 +10,45 @@ import { type AvailableFrameworks, frameworks } from '../frameworks.config.js';
 
 type FrameworkCallback = (framework: { name: AvailableFrameworks, port: number }) => void;
 
+export type SetterType = 'property' | 'attribute';
+
+/**
+ * Set a value for a given component via property or attribute.
+ * @param locator The locator to set the property for
+ * @param attribute The property to set
+ * @param value The value to set the property to
+ * @param via The type of setter to use. Can be either property or attribute.
+ */
+export const setPropertyForLocator = async <T extends HTMLElement>(
+  locator: Locator,
+  attribute: keyof T,
+  value: unknown,
+  via: SetterType = 'property',
+) => locator.evaluate(
+  (el: T, options) => {
+    const {
+      attribute: attr,
+      value: val,
+      via: setterVia,
+    } = options;
+
+    // Set the property directly on the element
+    if (setterVia === 'property') {
+      (el as Record<string, unknown>)[attr as string] = val;
+      return el;
+    }
+
+    // Set the attribute on the element
+    el.setAttribute(attr as string, String(val));
+    return el;
+  },
+  {
+    attribute,
+    value,
+    via,
+  },
+);
+
 export const getInputValue = async (locator: Locator) => locator
   .evaluate((el: SynInput | SynTextarea | SynSelect) => el.value);
 

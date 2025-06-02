@@ -113,7 +113,10 @@ export`,
     }
 
     const min = typeof this.min === 'string' ? parseFloat(this.min) : this.min;
-    return this.valueAsNumber <= min;
+
+    // #872: Use value instead of valueAsNumber as valueAsNumber is drawn from the hidden input
+    // that is not yet updated in the current render cycle.
+    return parseFloat(this.value) <= min;
   }
 
   private isIncrementDisabled() {
@@ -126,7 +129,10 @@ export`,
     }
 
     const max = typeof this.max === 'string' ? parseFloat(this.max) : this.max;
-    return this.valueAsNumber >= max;
+
+    // #872: Use value instead of valueAsNumber as valueAsNumber is drawn from the hidden input
+    // that is not yet updated in the current render cycle.
+    return parseFloat(this.value) >= max;
   }`,
   );
 

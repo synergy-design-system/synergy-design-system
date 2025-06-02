@@ -29,7 +29,7 @@ const writeToFileSystem = async (filePath, content) => {
  */
 export const outputComponentsToBundle = ({
   exportName = 'defaultIcons',
-  getBaseName = ({ basename = '' }) => basename,
+  getBasename = ({ basename = '' }) => basename,
   output = './svg-bundle.ts',
 }) => async (pages) => {
   const outputFiles = pages.map(page => {
@@ -39,7 +39,7 @@ export const outputComponentsToBundle = ({
       .filter(c => c?.svg.length > 0)
       // Map to an array of [name, svg] pairs
       .map(c => [
-        getBaseName({
+        getBasename({
           componentName: c.name,
           pageName,
           ...c.figmaExport,

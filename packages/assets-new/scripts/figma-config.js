@@ -6,6 +6,7 @@ import outputComponentsAsSvg from '@figma-export/output-components-as-svg';
 import transformSvgWithSvgo from '@figma-export/transform-svg-with-svgo';
 import * as FIGMA_CONFIG from './config.js';
 import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
+import { outputSystemIcons } from './figma-output-system-icons.js';
 
 /**
  * Create a configuration object for the figma export
@@ -61,6 +62,12 @@ export const createFigmaExportConfig = ({
 
 // v2 system icons configuration
 export const v2SystemIconConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputSystemIcons({
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/src/components/icon/library.system.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
   ids: [FIGMA_CONFIG.FIGMA_ID_SYSTEM_ICONS_V2],
   onlyFromPages: ['Assets'],

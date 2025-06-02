@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { SynButton, SynTextarea } from '@synergy-design-system/components';
-import '../../../components/src/components/textarea/textarea';
+import '../../../components/src/components/textarea/textarea.js';
+import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';

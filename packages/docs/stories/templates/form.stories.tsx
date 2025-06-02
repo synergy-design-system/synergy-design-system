@@ -11,6 +11,13 @@ import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import '../../../components/src/components/checkbox/checkbox.js';
+import '../../../components/src/components/textarea/textarea.js';
+import '../../../components/src/components/input/input.js';
+import '../../../components/src/components/select/select.js';
+import '../../../components/src/components/option/option.js';
+import '../../../components/src/components/combobox/combobox.js';
+import '../../../components/src/components/button/button.js';
 
 const meta: Meta = {
   parameters: {

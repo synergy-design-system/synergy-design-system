@@ -3,6 +3,10 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/prio-nav/prio-nav.js';
 import '../../../components/src/components/nav-item/nav-item.js';
+import '../../../components/src/components/header/header.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/icon-button/icon-button.js';
+
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import {

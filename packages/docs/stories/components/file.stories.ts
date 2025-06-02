@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/file/file.js';
+import '../../../components/src/components/button/button.js';
+
 import type { SynFile } from '@synergy-design-system/components';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components';
@@ -74,8 +76,8 @@ export const HelpText: Story = {
   render: () => html`
     <syn-file
       help-text="This is a help text."
-      label="This is a label"
-    ></syn-file>
+      label="This is a new label"
+    ><span slot="label">hello</span></syn-file>
   `,
 } as Story;
 

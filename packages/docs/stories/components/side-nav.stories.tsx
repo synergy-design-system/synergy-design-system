@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/side-nav/side-nav.js';
+import '../../../components/src/components/nav-item/nav-item.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/header/header.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {

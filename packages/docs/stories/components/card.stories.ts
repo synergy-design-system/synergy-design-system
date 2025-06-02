@@ -5,6 +5,9 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../../../components/src/components/card/card.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon-button/icon-button.js';
+
 import {
   generateScreenshotStory,
   generateStoryDescription,

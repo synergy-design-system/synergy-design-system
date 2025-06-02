@@ -3,6 +3,12 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/breadcrumb/breadcrumb.js';
+import '../../../components/src/components/breadcrumb-item/breadcrumb-item.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/dropdown/dropdown.js';
+import '../../../components/src/components/menu/menu.js';
+import '../../../components/src/components/menu-item/menu-item.js';
+
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -11,6 +17,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-breadcrumb');
 const { overrideArgs } = storybookHelpers('syn-breadcrumb');

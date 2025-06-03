@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.15.0...assets/1.15.1) (2025-06-03)
+
+
+### Bug Fixes
+
+* 🐛 Fix broken icons ([#891](https://github.com/synergy-design-system/synergy-design-system/issues/891)) ([d734c89](https://github.com/synergy-design-system/synergy-design-system/commit/d734c89ba6e9d0062c8d65b9fac724a07e42398f))
+
 # [@synergy-design-system/assets-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.14.0...assets/1.15.0) (2025-06-03)
 
 

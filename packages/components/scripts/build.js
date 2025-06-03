@@ -17,7 +17,6 @@ const reactPackageDir = getPath('../../react');
 const vuePackageDir = getPath('../../vue');
 
 const args = process.argv.slice(2);
-console.log(`Building Synergy with package version ${packageVersion}...`);
 
 await jobs.runCreateSynergy({
   componentDir,

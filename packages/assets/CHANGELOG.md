@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.14.0...assets/1.15.0) (2025-06-03)
+
+
+### Features
+
+*  ✨added Overview page ([#880](https://github.com/synergy-design-system/synergy-design-system/issues/880)) ([5527ad5](https://github.com/synergy-design-system/synergy-design-system/commit/5527ad535c4f801a1f7083b68e29996b17e7f4bc))
+
 # [@synergy-design-system/assets-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.13.1...assets/1.14.0) (2025-05-21)
 
 

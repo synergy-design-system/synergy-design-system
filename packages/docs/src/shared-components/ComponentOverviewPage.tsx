@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
+// @ts-expect-error virtual is valid
 import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest';
+// @ts-expect-error virtual is valid
 import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
-
+import type { Module } from 'custom-elements-manifest/schema.d.ts';
 import React, {
   useState,
 } from 'react';
@@ -12,12 +14,10 @@ const images = import.meta.glob('../../../assets/src/component-thumbnails/*', { 
 
 export default { title: 'Component Overview' };
 
-type MANIFEST = Array<Record<string, Array<Record<string, unknown>>>>;
-
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const componentNames = (componentsManifest.modules as MANIFEST).map((module) => module.declarations[0].name);
+const componentNames = (componentsManifest.modules as Module[]).map((module) => module.declarations![0].name);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const styleNames = (stylesManifest!.modules as MANIFEST).map((module) => module.declarations[0].name);
+const styleNames = (stylesManifest!.modules as Module[]).map((module) => module.declarations![0].name);
 
 function getUrl(name: string): string {
   const component = componentNames.find((componentName) => componentName === `Syn${pascalCase(name)}`);
@@ -56,7 +56,7 @@ export const ComponentOverviewPage = () => (
         <a
           key={name}
           style={{
-            border: `var(--syn-border-width-medium) solid ${isHovered ? 'var(--syn-color-primary-300)' : 'var(--syn-color-neutral-100)'}`,
+            border: `var(--syn-border-width-medium) solid ${isHovered ? 'var(--syn-link-color-hover)' : 'var(--syn-color-neutral-100)'}`,
             borderRadius: 'var(--syn-border-radius-medium)',
             cursor: 'pointer',
           }}
@@ -70,7 +70,7 @@ export const ComponentOverviewPage = () => (
             textAlign: 'center',
           }}>
             <figcaption style={{ padding: 'var(--syn-spacing-small) 0' }}>{name}</figcaption>
-            <img src={url} className="component"></img>
+            <img src={url} alt={name} className="component"></img>
           </figure>
         </a>
       );

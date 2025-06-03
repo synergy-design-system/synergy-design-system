@@ -2,9 +2,25 @@
 import fs from 'fs';
 import path from 'path';
 import { rimraf } from 'rimraf';
+import { config as dotenvConfig } from 'dotenv';
+
+function loadEnvironmentVariables() {
+  // Load environment variables from .env file
+  if (fs.existsSync('.env')) {
+    dotenvConfig();
+  } else {
+    throw new Error('Missing .env file.');
+  }
+
+  if (!process.env.FIGMA_PERSONAL_ACCESS_TOKEN) {
+    throw new Error('Missing FIGMA_PERSONAL_ACCESS_TOKEN in .env file.');
+  }
+}
 
 // fetch images and save to disk
 async function fetchComponentThumbnails() {
+  loadEnvironmentVariables();
+
   // traverses the Figma document structure to find the element by given path
   function getElement(element, pathNames) {
     if (pathNames.length === 0) return element;

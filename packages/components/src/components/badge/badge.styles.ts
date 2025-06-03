@@ -34,7 +34,7 @@ export default css`
   /* Variant modifiers */
   .badge--primary {
     background-color: var(--syn-color-primary-600);
-    color: deeppink !important;
+    color: var(--syn-color-neutral-0);
   }
 
   .badge--success {

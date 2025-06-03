@@ -60,7 +60,7 @@ export const Variants: Story = {
     },
   },
   render: () => html`
-  <syn-button variant="filled">Filled</syn-button>
+  <syn-button variant="filled">Fillede</syn-button>
   <syn-button variant="outline">Outline</syn-button>
   <syn-button variant="text">Text</syn-button>
   <style>

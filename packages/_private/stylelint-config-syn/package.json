@@ -32,7 +32,8 @@
     "SDS",
     "Synergy Design System",
     "SICK",
-    "SICK Design System"
+    "SICK Design System",
+    "Turbosnap"
   ],
   "license": "MIT",
   "name": "@synergy-design-system/stylelint-config-syn",

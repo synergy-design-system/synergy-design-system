@@ -166,6 +166,6 @@ const ScreenshotStory: Story = {
 export const Screenshot: Story = generateScreenshotStory({
   ScreenshotStory,
 }, {
-  afterRender: openSelect('syn-select'),
+  afterRender: openSelect('syn-select', false),
   heightPx: 400,
 });

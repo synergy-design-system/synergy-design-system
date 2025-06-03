@@ -521,7 +521,7 @@ const ScreenshotStoryMultiple: Story = {
 export const ScreenshotDefault: Story = generateScreenshotStory({
   ScreenshotStoryDefault,
 }, {
-  afterRender: openSelect('syn-select'),
+  afterRender: openSelect('syn-select', false),
   heightPx: 400,
 });
 

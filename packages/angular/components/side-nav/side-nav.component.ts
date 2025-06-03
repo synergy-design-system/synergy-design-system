@@ -18,6 +18,7 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/side-nav/side-nav.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.

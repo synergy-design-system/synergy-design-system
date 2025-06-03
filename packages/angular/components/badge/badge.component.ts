@@ -15,6 +15,7 @@ import {
 import type { SynBadge } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/badge/badge.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Badges are used to draw attention and display statuses or counts.

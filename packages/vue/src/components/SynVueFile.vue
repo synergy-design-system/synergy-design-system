@@ -62,6 +62,8 @@ import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynFile } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynFile>();
 

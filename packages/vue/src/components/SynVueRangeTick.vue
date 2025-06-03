@@ -24,6 +24,8 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
 
 import type { SynRangeTick } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynRangeTick>();
 

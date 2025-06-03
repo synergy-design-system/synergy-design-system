@@ -7,6 +7,8 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/tab-group/tab-group.component.js';
 
+// This is some random comment for react wrapper
+
 import { type EventName } from '@lit/react';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import type { SynTabHideEvent } from '@synergy-design-system/components';

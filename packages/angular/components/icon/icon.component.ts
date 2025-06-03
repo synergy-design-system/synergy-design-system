@@ -16,6 +16,7 @@ import type { SynIcon } from '@synergy-design-system/components';
 import type { SynLoadEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/icon/icon.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Icons are symbols that can be used to represent various options within an application.

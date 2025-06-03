@@ -25,6 +25,8 @@ import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynIconButton } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynIconButton>();
 

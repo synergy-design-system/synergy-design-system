@@ -15,6 +15,7 @@ import {
 import type { SynMenu } from '@synergy-design-system/components';
 import type { SynSelectEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/menu/menu.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Menus provide a list of options for the user to choose from.

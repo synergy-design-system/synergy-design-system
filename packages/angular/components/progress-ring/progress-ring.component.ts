@@ -15,6 +15,7 @@ import {
 import type { SynProgressRing } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/progress-ring/progress-ring.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.

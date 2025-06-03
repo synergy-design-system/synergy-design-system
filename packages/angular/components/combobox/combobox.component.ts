@@ -25,6 +25,7 @@ import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.

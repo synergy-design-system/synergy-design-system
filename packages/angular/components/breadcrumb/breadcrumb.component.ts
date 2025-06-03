@@ -15,6 +15,7 @@ import {
 import type { SynBreadcrumb } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/breadcrumb/breadcrumb.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.

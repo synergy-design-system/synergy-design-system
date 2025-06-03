@@ -15,6 +15,7 @@ import {
 import type { SynCard } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/card/card.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Cards can be used to group related subjects in a container.

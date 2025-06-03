@@ -15,6 +15,7 @@ import {
 import type { SynDivider } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/divider/divider.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Dividers are used to visually separate or group elements.

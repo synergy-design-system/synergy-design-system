@@ -15,6 +15,7 @@ import {
 import type { SynMenuLabel } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/menu-label/menu-label.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Menu labels are used to describe a group of menu items.

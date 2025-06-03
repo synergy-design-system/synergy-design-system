@@ -21,6 +21,7 @@ import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynClampEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Inputs collect data from the user.

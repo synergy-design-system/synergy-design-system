@@ -19,6 +19,7 @@ import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/textarea/textarea.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.

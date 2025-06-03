@@ -26,6 +26,8 @@ import '@synergy-design-system/components/components/menu-label/menu-label.js';
 
 import type { SynMenuLabel } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynMenuLabel>();
 

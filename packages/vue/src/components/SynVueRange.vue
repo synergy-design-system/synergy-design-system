@@ -67,6 +67,8 @@ import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynMoveEvent } from '@synergy-design-system/components';
 import type { SynRange } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynRange>();
 

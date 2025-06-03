@@ -15,6 +15,7 @@ import {
 import type { SynTabPanel } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.

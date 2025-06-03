@@ -20,6 +20,8 @@ import '@synergy-design-system/components/components/divider/divider.js';
 
 import type { SynDivider } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynDivider>();
 

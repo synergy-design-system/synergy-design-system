@@ -43,6 +43,8 @@ import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components
 import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 import type { SynHeader } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynHeader>();
 

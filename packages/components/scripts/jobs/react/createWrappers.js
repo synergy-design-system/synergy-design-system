@@ -45,6 +45,8 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
       import { createComponent } from '@lit/react';
       import Component from '${importPath}';
 
+      // This is some random comment for react wrapper
+
       ${eventNameImport}
       ${eventImports}
 

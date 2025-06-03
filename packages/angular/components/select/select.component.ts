@@ -24,6 +24,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/select/select.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.

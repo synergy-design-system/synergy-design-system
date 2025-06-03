@@ -18,6 +18,7 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tooltip/tooltip.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Tooltips display additional information based on a specific action.

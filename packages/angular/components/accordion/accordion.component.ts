@@ -15,6 +15,7 @@ import {
 import type { SynAccordion } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/accordion/accordion.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Accordions provide the ability to group a list of `<syn-details>`.

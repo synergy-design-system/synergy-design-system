@@ -15,6 +15,7 @@ import {
 import type { SynTag } from '@synergy-design-system/components';
 import type { SynRemoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tag/tag.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Tags are used as labels to organize things or to indicate a selection.

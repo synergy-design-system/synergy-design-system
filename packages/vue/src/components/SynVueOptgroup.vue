@@ -32,6 +32,8 @@ import '@synergy-design-system/components/components/optgroup/optgroup.js';
 
 import type { SynOptgroup } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynOptgroup>();
 

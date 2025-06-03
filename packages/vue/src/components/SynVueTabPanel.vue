@@ -22,6 +22,8 @@ import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 
 import type { SynTabPanel } from '@synergy-design-system/components';
 
+// This is some random comment for vue wrapper
+
 // DOM Reference to the element
 const nativeElement = ref<SynTabPanel>();
 

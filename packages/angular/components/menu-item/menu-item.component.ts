@@ -15,6 +15,7 @@ import {
 import type { SynMenuItem } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/menu-item/menu-item.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Menu items provide options for the user to pick from in a menu.

@@ -15,6 +15,7 @@ import {
 import type { SynButtonGroup } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/button-group/button-group.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Button groups can be used to group related buttons into sections.

@@ -20,6 +20,7 @@ import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynMoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/range/range.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.

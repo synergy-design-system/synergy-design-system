@@ -19,6 +19,7 @@ import type { SynErrorEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/file/file.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.

@@ -7,6 +7,8 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.component.js';
 
+// This is some random comment for react wrapper
+
 const tagName = 'syn-breadcrumb-item';
 Component.define('syn-breadcrumb-item');
 

@@ -7,6 +7,8 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/range/range.component.js';
 
+// This is some random comment for react wrapper
+
 import { type EventName } from '@lit/react';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';

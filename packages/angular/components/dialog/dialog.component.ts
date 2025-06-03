@@ -20,6 +20,7 @@ import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInitialFocusEvent } from '@synergy-design-system/components';
 import type { SynRequestCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/dialog/dialog.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.

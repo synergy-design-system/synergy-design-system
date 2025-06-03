@@ -15,6 +15,7 @@ import {
 import type { SynPrioNav } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
+// This is some random comment for angular wrapper
 
 /**
  * @summary The `<syn-prio-nav />` element provides a generic navigation bar

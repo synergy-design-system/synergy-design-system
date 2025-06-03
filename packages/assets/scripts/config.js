@@ -9,10 +9,15 @@ export const FIGMA_FILE_ID_ICONS_V3 = 'ltRW0fLoFIuHyuh73DsjrZ';
 export const FIGMA_ID_FILLED_ICONS_V3 = '4-713';
 export const FIGMA_ID_OUTLINE_ICONS_V3 = '4-731';
 
+// Library Figma paths
+export const FIGMA_FILE_ID_LIBRARY = '3cQ9BFSSaoVfhizV0AJ9GP';
+export const FIGMA_ID_COMPONENT_OVERVIEW = '1234:20961';
+
 // Paths
 export const PATH_ICONS_V2 = 'src/icons';
 export const PATH_LOGOS_V2 = 'src/logos';
 export const PATH_SYSTEM_ICONS_V2 = 'src/system-icons';
+export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
 export const PATH_ICONS_V3 = 'src/brand2025';
 
@@ -28,4 +33,5 @@ export const DYNAMIC_OUTPUT_PATHS = [
   PATH_SYSTEM_ICONS_V2,
   PATH_ICONS_V3,
   PATH_DEFAULT_ICONS,
+  PATH_COMPONENT_OVERVIEW,
 ];

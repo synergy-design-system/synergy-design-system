@@ -50,6 +50,7 @@ export default class SynBadge extends SynergyElement {
         })}
         role="status"
       >
+      test
         <slot>
           <span class="visually-hidden">
             ${this.localize.term(

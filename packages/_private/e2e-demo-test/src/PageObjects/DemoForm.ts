@@ -10,8 +10,6 @@ import {
   getInputValue,
 } from '../helpers.js';
 
-// <span>Turbosnap test</span>
-
 /**
  * Page object for the demo form
  */

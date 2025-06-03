@@ -82,7 +82,6 @@ export const DemoForm = () => {
       }}
       ref={formRef}
     >
-      <span>Turbosnap test</span>
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">
 

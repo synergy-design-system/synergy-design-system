@@ -70,7 +70,6 @@ const synChange = () => {
   >
     <!-- PersonalInformation -->
     <DemoFieldset legend="Personal Information">
-      <span>Turbosnap test</span>
       <SynVueRadioGroup
         id="radiogroup-gender"
         name="gender"

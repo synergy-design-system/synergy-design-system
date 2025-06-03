@@ -21,7 +21,7 @@ export default css`
   /* Label */
   .form-control--has-label .form-control__label {
     display: inline-block;
-    color: green;
+    color: var(--syn-input-label-color);
     margin-bottom: var(--syn-spacing-3x-small);
   }
 

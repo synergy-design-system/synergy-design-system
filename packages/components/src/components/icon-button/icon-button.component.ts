@@ -140,7 +140,7 @@ export default class SynIconButton extends SynergyElement {
         @blur=${this.handleBlur}
         @focus=${this.handleFocus}
         @click=${this.handleClick}
-      >
+      >a
         <syn-icon
           class="icon-button__icon"
           name=${ifDefined(this.name)}

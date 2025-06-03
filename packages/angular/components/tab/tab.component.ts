@@ -15,7 +15,6 @@ import {
 import type { SynTab } from '@synergy-design-system/components';
 import type { SynCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab/tab.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).

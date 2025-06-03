@@ -16,7 +16,6 @@ import type { SynRadioButton } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/radio-button/radio-button.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.

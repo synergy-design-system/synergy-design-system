@@ -45,8 +45,6 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 
 import type { SynPrioNav } from '@synergy-design-system/components';
 
-// This is some random comment for vue wrapper
-
 // DOM Reference to the element
 const nativeElement = ref<SynPrioNav>();
 

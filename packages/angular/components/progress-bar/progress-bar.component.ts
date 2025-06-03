@@ -15,7 +15,6 @@ import {
 import type { SynProgressBar } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/progress-bar/progress-bar.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Progress bars are used to show the status of an ongoing operation.

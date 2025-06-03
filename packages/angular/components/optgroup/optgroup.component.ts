@@ -15,7 +15,6 @@ import {
 import type { SynOptgroup } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/optgroup/optgroup.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.

@@ -40,8 +40,6 @@ import '@synergy-design-system/components/components/popup/popup.js';
 import type { SynRepositionEvent } from '@synergy-design-system/components';
 import type { SynPopup } from '@synergy-design-system/components';
 
-// This is some random comment for vue wrapper
-
 // DOM Reference to the element
 const nativeElement = ref<SynPopup>();
 

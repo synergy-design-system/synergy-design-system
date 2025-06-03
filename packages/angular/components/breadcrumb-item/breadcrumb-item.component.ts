@@ -15,7 +15,6 @@ import {
 import type { SynBreadcrumbItem } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.

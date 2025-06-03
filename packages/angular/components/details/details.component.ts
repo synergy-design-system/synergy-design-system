@@ -18,7 +18,6 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/details/details.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Details show a brief summary and expand to show additional content.

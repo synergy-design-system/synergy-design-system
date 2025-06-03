@@ -64,8 +64,6 @@ import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynClampEvent } from '@synergy-design-system/components';
 import type { SynInput } from '@synergy-design-system/components';
 
-// This is some random comment for vue wrapper
-
 // DOM Reference to the element
 const nativeElement = ref<SynInput>();
 

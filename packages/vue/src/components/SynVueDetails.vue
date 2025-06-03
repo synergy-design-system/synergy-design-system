@@ -42,8 +42,6 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynDetails } from '@synergy-design-system/components';
 
-// This is some random comment for vue wrapper
-
 // DOM Reference to the element
 const nativeElement = ref<SynDetails>();
 

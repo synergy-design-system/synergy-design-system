@@ -15,7 +15,6 @@ import {
 import type { SynRangeTick } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/range-tick/range-tick.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Ticks visually improve positioning on range sliders.

@@ -16,7 +16,6 @@ import type { SynTabGroup } from '@synergy-design-system/components';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import type { SynTabHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.

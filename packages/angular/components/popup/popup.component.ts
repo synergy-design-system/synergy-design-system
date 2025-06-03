@@ -15,7 +15,6 @@ import {
 import type { SynPopup } from '@synergy-design-system/components';
 import type { SynRepositionEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/popup/popup.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.

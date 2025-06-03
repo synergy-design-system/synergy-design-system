@@ -15,7 +15,6 @@ import {
 import type { SynValidate } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/validate/validate.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Validate provides form field validation messages in a unified way.

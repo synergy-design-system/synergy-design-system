@@ -7,8 +7,6 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/menu-label/menu-label.component.js';
 
-// This is some random comment for react wrapper
-
 const tagName = 'syn-menu-label';
 Component.define('syn-menu-label');
 

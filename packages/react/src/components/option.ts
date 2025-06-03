@@ -7,8 +7,6 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/option/option.component.js';
 
-// This is some random comment for react wrapper
-
 const tagName = 'syn-option';
 Component.define('syn-option');
 

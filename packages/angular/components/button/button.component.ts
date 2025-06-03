@@ -17,7 +17,6 @@ import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/button/button.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Buttons represent actions that are available to the user.

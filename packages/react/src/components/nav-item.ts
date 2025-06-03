@@ -7,8 +7,6 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 
-// This is some random comment for react wrapper
-
 import { type EventName } from '@lit/react';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';

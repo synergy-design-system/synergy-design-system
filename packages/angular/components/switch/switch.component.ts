@@ -19,7 +19,6 @@ import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/switch/switch.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Switches allow the user to toggle an option on or off.

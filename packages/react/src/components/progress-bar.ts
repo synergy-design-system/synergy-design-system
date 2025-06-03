@@ -7,8 +7,6 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/progress-bar/progress-bar.component.js';
 
-// This is some random comment for react wrapper
-
 const tagName = 'syn-progress-bar';
 Component.define('syn-progress-bar');
 

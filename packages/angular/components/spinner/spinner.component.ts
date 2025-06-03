@@ -15,7 +15,6 @@ import {
 import type { SynSpinner } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/spinner/spinner.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Spinners are used to show the progress of an indeterminate operation.

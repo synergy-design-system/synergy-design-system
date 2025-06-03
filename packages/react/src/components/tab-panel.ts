@@ -7,8 +7,6 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/tab-panel/tab-panel.component.js';
 
-// This is some random comment for react wrapper
-
 const tagName = 'syn-tab-panel';
 Component.define('syn-tab-panel');
 

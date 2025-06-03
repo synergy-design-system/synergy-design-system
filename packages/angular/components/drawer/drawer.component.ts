@@ -20,7 +20,6 @@ import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInitialFocusEvent } from '@synergy-design-system/components';
 import type { SynRequestCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/drawer/drawer.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Drawers slide in from a container to expose additional options and information.

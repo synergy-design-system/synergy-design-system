@@ -177,7 +177,6 @@ export const runCreateComponents = job('Angular: Creating components', async (me
       import type { ${component.name} } from '@synergy-design-system/components';
       ${eventImports}
       import '${importPath}';
-      // This is some random comment for angular wrapper
 
       ${jsDoc}
       @Component({

@@ -15,7 +15,6 @@ import {
 import type { SynOption } from '@synergy-design-system/components';
 
 import '@synergy-design-system/components/components/option/option.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary Options define the selectable items within various form controls such as [select](/components/select).

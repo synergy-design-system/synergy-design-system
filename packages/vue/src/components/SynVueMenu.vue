@@ -21,8 +21,6 @@ import '@synergy-design-system/components/components/menu/menu.js';
 import type { SynSelectEvent } from '@synergy-design-system/components';
 import type { SynMenu } from '@synergy-design-system/components';
 
-// This is some random comment for vue wrapper
-
 // DOM Reference to the element
 const nativeElement = ref<SynMenu>();
 

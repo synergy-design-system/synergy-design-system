@@ -17,7 +17,6 @@ import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components
 import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
 import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/header/header.js';
-// This is some random comment for angular wrapper
 
 /**
  * @summary The <syn-header /> element provides a generic application header

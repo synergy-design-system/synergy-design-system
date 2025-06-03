@@ -4,6 +4,5 @@ export default css`
   /* Write custom CSS here */
   :host {
     --color: var(--syn-color-neutral-400);
-    --width: 3px;
   }
 `;

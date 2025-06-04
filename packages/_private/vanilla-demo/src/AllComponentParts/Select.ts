@@ -57,5 +57,21 @@ export const Select = (regressions: RegressionFns = []) => {
       multiple
       value="1 2"
     ></syn-select>
+
+    <syn-select
+      data-testid="select-885-value-zero-string"
+      label="Select should allow to select value of string(zero)"
+      value="0"
+    >
+      <syn-option value="0">Zero (string)</syn-option>
+    </syn-select>
+
+    <syn-select
+      data-testid="select-885-value-zero-number"
+      label="Select should allow to select value of number(zero)"
+      .value=${0}
+    >
+      <syn-option .value=${0}>Zero (numeric)</syn-option>
+    </syn-select>
   `;
 };

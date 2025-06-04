@@ -279,6 +279,15 @@ const transformComponent = (path, originalContent) => {
   ], content);
   // End#847
 
+  // #885: Add support for custom option values
+  content = replaceSections([
+    [
+      '[val].filter(Boolean);',
+      '[val].filter(isAllowedValue);',
+    ],
+  ], content);
+  // End#885
+
   return {
     content,
     path,

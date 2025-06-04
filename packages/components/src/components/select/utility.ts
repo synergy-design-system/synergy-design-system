@@ -39,3 +39,10 @@ export const compareValues = (a: AllowedValueTypes, b: AllowedValueTypes) => {
   }
   return a === b;
 };
+
+/**
+ * Check if a value is truthy
+ * @param value The value to check
+ * @returns True if the value is truthy, false otherwise
+ */
+export const isTruthy = (value: unknown) => typeof value !== 'undefined' && value !== null && value !== false && value !== '';

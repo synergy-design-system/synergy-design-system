@@ -24,6 +24,7 @@ const AllComponentSelectors = {
   input417NumericMinFractionDigitsNative: '#tab-content-Input syn-input[data-testid="input-838-numeric-native-min-fraction-digits"]',
   input417NumericModern: '#tab-content-Input syn-input[data-testid="input-417-numeric-modern"]',
   input417NumericNative: '#tab-content-Input syn-input[data-testid="input-417-numeric-native"]',
+  input872SpinButtons: '#tab-content-Input syn-input[data-testid="input-872-spin-buttons"]',
   inputContent: '#tab-content-Input',
   inputLink: '#tab-Input',
 

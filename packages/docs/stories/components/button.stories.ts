@@ -118,7 +118,7 @@ export const LinkButtons: Story = {
     },
   },
   render: () => html`
-  <syn-button href="https://example.com/">Linka</syn-button>
+  <syn-button href="https://example.com/">Link</syn-button>
   <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
   <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
   <syn-button href="https://example.com/" disabled>Disabled</syn-button>

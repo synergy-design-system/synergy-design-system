@@ -116,15 +116,6 @@ export const v2LogosConfig = createFigmaExportConfig({
   path: 'logos',
 });
 
-// component overview
-export const v2ComponentOverviewConfig = createFigmaExportConfig({
-  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_LIBRARY,
-  ids: [FIGMA_CONFIG.FIGMA_ID_COMPONENT_OVERVIEW],
-  includeTypes: ['FRAME'],
-  optimizeSVG: false,
-  path: 'component-thumbnails',
-});
-
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -148,7 +139,6 @@ export const CONFIG_FOR_V2 = [
   v2SystemIconConfig,
   v2AllIconsConfig,
   v2LogosConfig,
-  v2ComponentOverviewConfig,
 ];
 
 /**

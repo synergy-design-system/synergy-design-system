@@ -39,8 +39,9 @@ But the assets could also be used like following:
 This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
 The folder structure of the assets corresponds to the structure of the Figma page.
 
-- **src/logos:** contains the variants of the SICK brand logo
+- **src/component-thumbnails** contains thumbnails from figma components used in Storybook
 - **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
+- **src/logos:** contains the variants of the SICK brand logo
 - **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components
 
 > **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
@@ -64,5 +65,12 @@ If something in the Figma assets got changed, the assets of this package also ne
 To update the assets run following in the terminal of the assets package folder:
 
 ```bash
-pnpm fetch-assets
+pnpm build:all
 ```
+
+This will:
+
+- Clean up the `src` directory
+- download all icons from figma
+- download all thumbnails for docs
+- Recreate all default icons

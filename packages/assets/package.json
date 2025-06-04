@@ -119,8 +119,10 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -b",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build",
     "clean": "node ./scripts/clean.js",
-    "fetch-assets": "pnpm clean && dotenvx -q run -- pnpm exec figma-export use-config",
+    "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
+    "fetch-components-thumbnails": "dotenvx -q run -- node scripts/fetch-component-thumbnails.js",
     "lint": "eslint .",
     "format.eslint": "pnpm lint --fix"
   },

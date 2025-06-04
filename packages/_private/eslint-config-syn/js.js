@@ -9,7 +9,7 @@ module.exports = {
     'plugin:compat/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2022,
+    ecmaVersion: 2023,
   },
   plugins: [
     'compat',

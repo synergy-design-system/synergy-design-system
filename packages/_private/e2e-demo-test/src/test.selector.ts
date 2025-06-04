@@ -52,6 +52,8 @@ const AllComponentSelectors = {
 
   // Select
   select847Multiple: '#tab-content-Select syn-select[data-testid="select-847-multiple"]',
+  select885ValueZeroNumber: '#tab-content-Select syn-select[data-testid="select-885-value-zero-number"]',
+  select885ValueZeroString: '#tab-content-Select syn-select[data-testid="select-885-value-zero-string"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',

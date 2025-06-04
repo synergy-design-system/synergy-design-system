@@ -68,4 +68,20 @@ onMounted(async () => {
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueSelect>
 
+  <SynVueSelect
+    data-testid="select-885-value-zero-string"
+    label="Select should allow to select value of string(zero)"
+    value="0"
+  >
+    <SynVueOption value="0">Zero (string)</SynVueOption>
+  </SynVueSelect>
+
+  <SynVueSelect
+    data-testid="select-885-value-zero-number"
+    label="Select should allow to select value of number(zero)"
+    :value="0"
+  >
+    <SynVueOption :value="0">Zero (numeric)</SynVueOption>
+  </SynVueSelect>
+
 </template>

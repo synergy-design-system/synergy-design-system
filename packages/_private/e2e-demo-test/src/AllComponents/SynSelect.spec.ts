@@ -130,5 +130,39 @@ test.describe('<SynSelect />', () => {
         expect(displayedValue).toEqual('2 options selected');
       });
     }); // regression#847
+
+    test.describe(`Regression#885: ${name}`, () => {
+      test('should allow to select zero as string', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select885ValueZeroString');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
+        const value = await select.evaluate((ele: SynSelect) => ele.value);
+
+        expect(value).toEqual('0');
+        expect(displayedValue).toEqual('Zero (string)');
+      });
+
+      test('should allow to select zero as number', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select885ValueZeroNumber');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
+        const value = await select.evaluate((ele: SynSelect) => ele.value);
+
+        expect(value).toEqual(0);
+        expect(displayedValue).toEqual('Zero (numeric)');
+      });
+    }); // regression#885
   }); // End frameworks
 }); // </syn-select>

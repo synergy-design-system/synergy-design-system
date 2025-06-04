@@ -1,9 +1,10 @@
 {
   "tokenSetOrder": [
     "globals",
-    "color/dark",
-    "color/light",
-    "color/primitives",
+    "mode/dark",
+    "mode/light",
+    "theme/sick2018",
+    "theme/sick2025",
     "semantic/focus-ring",
     "semantic/input",
     "semantic/button",

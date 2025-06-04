@@ -36,6 +36,7 @@ export const getFontSize = (useFullTokenName = false) => Object.fromEntries(getT
       'xlarge',
       '2xlarge',
       '3xlarge',
+      '4xlarge',
     ],
     replaceString: 'synfontsize',
     sortType: 'order',

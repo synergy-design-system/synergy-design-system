@@ -3,7 +3,6 @@ import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawHexValue } from '../../src/shared-components/RawColorValue.tsx';
 import { ColorSwatch, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
-
 import {
   getAccentColorPalette,
   getCSSToken,
@@ -12,6 +11,10 @@ import {
   getPrimaryColorPalette,
   getSASSToken,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Colors" />
 
@@ -19,10 +22,9 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
-{['light', 'dark'].map(theme => (
-  <div key={theme}>
-    <Markdown>{`## Colors - ${theme}`}</Markdown>
-    <table className={`syn-theme-${theme}`}>
+<TokensForThemes
+  themes={getThemesForComponent(['2018-light', '2018-dark', '2025-light', '2025-dark'], () => (
+    <table>
       <tbody>
         {[
           ['Neutral', getNeutralColorPalette(true)],
@@ -72,5 +74,5 @@ import {
         ))}
       </tbody>
     </table>
-  </div>
-))}
+  ))}
+/>

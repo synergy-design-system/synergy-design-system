@@ -67,7 +67,7 @@
       "type": "color"
     },
     "500": {
-      "value": "{Orange.600}",
+      "value": "{green.500}",
       "type": "color"
     },
     "600": {

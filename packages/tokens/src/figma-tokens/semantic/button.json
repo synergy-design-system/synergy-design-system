@@ -2,7 +2,7 @@
   "button": {
     "font-size": {
       "small": {
-        "value": "{font-size.medium}",
+        "value": "{font-size.small}",
         "type": "fontSizes"
       },
       "medium": {

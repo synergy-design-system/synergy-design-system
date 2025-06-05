@@ -143,6 +143,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
+          # 👇 Tells the checkout which commit hash to reference
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: pnpm/action-setup@v4
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -165,6 +167,21 @@ jobs:
           # Speedup the build by not waiting until everything is sent to Chromatic
           exitOnceUploaded: true
           # TurboSnap is an advanced Chromatic feature that speeds up builds for faster UI testing and review using Git and Webpack’s dependency graph
-          onlyChanged: false
+          onlyChanged: true
           # We need to manually build storybook with pnpm
           storybookBuildDir: packages/docs/dist
+          # As we have a monorepo specify the storybook base directory
+          storybookBaseDir: packages/docs
+          # Add explicit paths / glob pattern to force TurboSnap to do a full rebuild
+          externals: |
+            packages/tokens/src/figma-tokens/semantic/**
+            packages/tokens/src/figma-tokens/globals.json 
+            packages/tokens/src/figma-tokens/color/**
+            packages/assets/src/**/*.svg
+            packages/styles/src/**/*.css
+          # Add explicit paths / glob pattern to force TurboSnap to ignore them
+          untraced: |
+            packages/_private/**
+            packages/angular/**
+            packages/react/**
+            packages/vue/**

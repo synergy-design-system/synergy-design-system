@@ -3,5 +3,18 @@
   "projectId": "Project:64f819d70a69cb8728e06daf",
   "onlyChanged": true,
   "storybookBaseDir": "packages/docs",
-  "zip": true
+  "zip": true,
+  "untraced": [
+    "packages/_private/**",
+    "packages/angular/**",
+    "packages/react/**",
+    "packages/vue/**"
+  ],
+  "externals": [
+    "packages/tokens/src/figma-tokens/semantic/**",
+    "packages/tokens/src/figma-tokens/globals.json", 
+    "packages/tokens/src/figma-tokens/color/**",
+    "packages/assets/src/**/*.svg",
+    "packages/styles/src/**/*.css"
+  ]
 }

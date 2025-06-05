@@ -74,3 +74,4 @@ This will:
 - download all icons from figma
 - download all thumbnails for docs
 - Recreate all default icons
+- Recreate the license files in the different folders

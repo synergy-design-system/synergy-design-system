@@ -45,7 +45,8 @@
     "src/logos",
     "src/icons",
     "src/default-icons.js",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "NOTICE"
   ],
   "homepage": "https://synergy-design-system.github.io",
   "keywords": [
@@ -57,7 +58,7 @@
     "SICK Icons",
     "SICK Logos"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "name": "@synergy-design-system/assets",
   "release": {
     "branches": [
@@ -117,7 +118,8 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -b",
-    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build && pnpm create-licenses",
+    "create-licenses": "node ./scripts/createLicenses.js",
     "clean": "node ./scripts/clean.js",
     "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
     "fetch-components-thumbnails": "dotenvx -q run -- node scripts/fetch-component-thumbnails.js",

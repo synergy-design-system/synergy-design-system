@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.34.3](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.34.2...components/2.34.3) (2025-06-04)
+
+
+### Bug Fixes
+
+* 🐛 syn-select with numeric value does not work with 0 ([#892](https://github.com/synergy-design-system/synergy-design-system/issues/892)) ([9e09a8f](https://github.com/synergy-design-system/synergy-design-system/commit/9e09a8f4aad6bbc8de9c855f4cabbaa0e22fc706))
+
 # [@synergy-design-system/components-v2.34.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.34.1...components/2.34.2) (2025-05-27)
 
 

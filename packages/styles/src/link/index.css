@@ -14,7 +14,7 @@
   /* The font size used for the link */
   --syn-link-font-size: 1em;
 
-  color: red !important;
+  color: green !important;
   display: inline;
   font-family: var(--syn-font-sans);
   font-size: var(--syn-link-font-size);

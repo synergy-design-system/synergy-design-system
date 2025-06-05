@@ -62,7 +62,7 @@ async function fetchComponentThumbnails() {
 
   // Read and parse the JSON file
   const headers = { 'X-Figma-Token': process.env.FIGMA_TOKEN };
-  const fileData = await fetch(`https://api.figma.com/v1/files/${FIGMA_FILE_ID_LIBRARY}?deep=1`, { headers });
+  const fileData = await fetch(`https://api.figma.com/v1/files/${FIGMA_FILE_ID_LIBRARY}`, { headers });
 
   /**
    * @type {GetFileResponse}

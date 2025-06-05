@@ -12,7 +12,7 @@
   ],
   "externals": [
     "packages/tokens/src/figma-tokens/semantic/**",
-    "packages/tokens/src/figma-tokens/globals.json", 
+    "packages/tokens/src/figma-tokens/globals.json",
     "packages/tokens/src/figma-tokens/color/**",
     "packages/assets/src/**/*.svg",
     "packages/styles/src/**/*.css"

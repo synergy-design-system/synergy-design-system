@@ -299,7 +299,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)
+        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -462,10 +462,16 @@ importers:
     publishDirectory: dist
 
   packages/assets:
-    dependencies:
+    devDependencies:
       '@dotenvx/dotenvx':
         specifier: ^1.44.1
         version: 1.44.1
+      '@figma-export/cli':
+        specifier: ^6.2.0
+        version: 6.2.0
+      '@figma-export/core':
+        specifier: ^6.2.0
+        version: 6.2.0
       '@figma-export/output-components-as-svg':
         specifier: ^6.2.0
         version: 6.2.0
@@ -473,13 +479,6 @@ importers:
         specifier: ^6.2.1
         version: 6.2.1
       '@figma-export/types':
-        specifier: ^6.2.0
-        version: 6.2.0
-    devDependencies:
-      '@figma-export/cli':
-        specifier: ^6.2.0
-        version: 6.2.0
-      '@figma-export/core':
         specifier: ^6.2.0
         version: 6.2.0
       '@figma/rest-api-spec':
@@ -492,7 +491,7 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@19.0.5(encoding@0.1.13))
       '@synergy-design-system/eslint-config-syn':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../_private/eslint-config-syn
       '@types/node':
         specifier: ^22.13.14
@@ -774,7 +773,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint@8.57.1)
+        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
       eslint-plugin-storybook:
         specifier: ^0.12.0
         version: 0.12.0(eslint@8.57.1)(typescript@5.8.2)
@@ -5307,8 +5306,8 @@ packages:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
 
-  dotenv@16.4.7:
-    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -11373,7 +11372,7 @@ snapshots:
   '@dotenvx/dotenvx@1.44.1':
     dependencies:
       commander: 11.1.0
-      dotenv: 16.4.7
+      dotenv: 16.5.0
       eciesjs: 0.4.15
       execa: 5.1.1
       fdir: 6.4.3(picomatch@4.0.2)
@@ -15425,7 +15424,7 @@ snapshots:
     dependencies:
       is-obj: 2.0.0
 
-  dotenv@16.4.7: {}
+  dotenv@16.5.0: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -15796,16 +15795,6 @@ snapshots:
       eslint-import-resolver-typescript: 4.2.5(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
-    optional: true
-
-  eslint-module-utils@2.12.0(eslint-import-resolver-node@0.3.9)(eslint@8.57.1):
-    dependencies:
-      debug: 3.2.7
-    optionalDependencies:
-      eslint: 8.57.1
-      eslint-import-resolver-node: 0.3.9
-    transitivePeerDependencies:
-      - supports-color
 
   eslint-plugin-compat@6.0.2(eslint@8.57.1):
     dependencies:
@@ -15889,34 +15878,6 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-module-utils: 2.12.0(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
-      hasown: 2.0.2
-      is-core-module: 2.16.1
-      is-glob: 4.0.3
-      minimatch: 3.1.2
-      object.fromentries: 2.0.8
-      object.groupby: 1.0.3
-      object.values: 1.2.1
-      semver: 6.3.1
-      string.prototype.trimend: 1.0.9
-      tsconfig-paths: 3.15.0
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-    optional: true
-
-  eslint-plugin-import@2.31.0(eslint@8.57.1):
-    dependencies:
-      '@rtsao/scc': 1.1.0
-      array-includes: 3.1.8
-      array.prototype.findlastindex: 1.2.6
-      array.prototype.flat: 1.3.3
-      array.prototype.flatmap: 1.3.3
-      debug: 3.2.7
-      doctrine: 2.1.0
-      eslint: 8.57.1
-      eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(eslint-import-resolver-node@0.3.9)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3

@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import '../../../components/src/components/tab-group/tab-group';
+import '../../../components/src/components/tab-group/tab-group.js';
+import '../../../components/src/components/tab/tab.js';
+import '../../../components/src/components/tab-panel/tab-panel.js';
+import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { pascalCase } from 'change-case';

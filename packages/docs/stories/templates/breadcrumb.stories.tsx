@@ -8,6 +8,14 @@ import {
 } from '@storybook/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
+import '../../../components/src/components/header/header.js';
+import '../../../components/src/components/breadcrumb/breadcrumb.js';
+import '../../../components/src/components/breadcrumb-item/breadcrumb-item.js';
+import '../../../components/src/components/dropdown/dropdown.js';
+import '../../../components/src/components/icon-button/icon-button.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/menu/menu.js';
+import '../../../components/src/components/menu-item/menu-item.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 

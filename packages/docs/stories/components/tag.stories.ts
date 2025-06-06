@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 
-import '../../../components/src/components/tag/tag';
+import '../../../components/src/components/tag/tag.js';
+import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {

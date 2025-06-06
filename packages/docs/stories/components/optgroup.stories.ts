@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/optgroup/optgroup';
+import '../../../components/src/components/optgroup/optgroup.js';
+import '../../../components/src/components/select/select.js';
+import '../../../components/src/components/option/option.js';
+import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';

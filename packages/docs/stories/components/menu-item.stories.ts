@@ -6,6 +6,7 @@ import { html } from 'lit';
 import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
+import '../../../components/src/components/icon/icon.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,

@@ -3,6 +3,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/tooltip/tooltip.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon-button/icon-button.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,

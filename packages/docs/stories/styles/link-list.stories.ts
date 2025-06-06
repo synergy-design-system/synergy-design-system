@@ -11,6 +11,7 @@ import {
 } from '../../src/helpers/component.js';
 import { renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import '../../../components/src/components/icon/icon.js';
 
 const {
   args: defaultArgs,

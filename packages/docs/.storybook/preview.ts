@@ -5,7 +5,6 @@ import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-import '../../components/src/synergy';
 
 // Enable this to set default settings for all components
 // import { setDefaultSettingsForElement, enableExperimentalSettingEmitEvents } from '../../components/src/synergy';

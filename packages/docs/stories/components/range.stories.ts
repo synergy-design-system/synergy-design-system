@@ -6,6 +6,9 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { userEvent } from '@storybook/test';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/input/input.js';
+import '../../../components/src/components/range-tick/range-tick.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,

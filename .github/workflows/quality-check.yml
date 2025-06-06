@@ -169,5 +169,3 @@ jobs:
           # We need to manually build storybook with pnpm
           storybookBuildDir: packages/docs/dist
           configFile: packages/docs/chromatic.config.js
-
-

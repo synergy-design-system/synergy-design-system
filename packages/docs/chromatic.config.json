@@ -3,7 +3,6 @@
   "projectId": "Project:64f819d70a69cb8728e06daf",
   "onlyChanged": true,
   "storybookBaseDir": "packages/docs",
-  "zip": true,
   "untraced": [
     "packages/_private/**",
     "packages/angular/**",

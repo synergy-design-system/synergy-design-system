@@ -166,22 +166,8 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # Speedup the build by not waiting until everything is sent to Chromatic
           exitOnceUploaded: true
-          # TurboSnap is an advanced Chromatic feature that speeds up builds for faster UI testing and review using Git and Webpack’s dependency graph
-          onlyChanged: true
           # We need to manually build storybook with pnpm
           storybookBuildDir: packages/docs/dist
-          # As we have a monorepo specify the storybook base directory
-          storybookBaseDir: packages/docs
-          # Add explicit paths / glob pattern to force TurboSnap to do a full rebuild
-          externals: |
-            packages/tokens/src/figma-tokens/semantic/**
-            packages/tokens/src/figma-tokens/globals.json 
-            packages/tokens/src/figma-tokens/color/**
-            packages/assets/src/**/*.svg
-            packages/styles/src/**/*.css
-          # Add explicit paths / glob pattern to force TurboSnap to ignore them
-          untraced: |
-            packages/_private/**
-            packages/angular/**
-            packages/react/**
-            packages/vue/**
+          configFile: packages/docs/chromatic.config.js
+
+

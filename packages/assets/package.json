@@ -44,7 +44,6 @@
     "dist",
     "src/logos",
     "src/icons",
-    "src/default-icons.js",
     "CHANGELOG.md",
     "NOTICE"
   ],

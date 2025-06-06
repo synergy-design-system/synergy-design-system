@@ -24,6 +24,11 @@ export default css`
     color: var(--syn-color-neutral-950);
   }
 
+  /** #429: Use token for opacity */
+  .option--disabled { 
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   .option__label {
     line-height: var(--syn-line-height-normal);
   }

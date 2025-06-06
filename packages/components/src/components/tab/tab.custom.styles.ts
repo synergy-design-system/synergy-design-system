@@ -25,6 +25,11 @@ export default css`
   }
 
 
+  /** #429: Use token for opacity */
+  .tab.tab--disabled {
+    opacity: var(--syn-opacity-50);
+  }
+
   /**
    * Focus
    */

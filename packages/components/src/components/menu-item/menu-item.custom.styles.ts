@@ -12,6 +12,11 @@ export default css`
     padding: var(--syn-spacing-small) var(--syn-spacing-medium);
   }
 
+  /** #429: Use token for opacity */
+  .menu-item.menu-item--disabled {
+    opacity: var(--syn-opacity-50);
+  }
+
   /**
    * Handling for slotted prefix and suffix
    */

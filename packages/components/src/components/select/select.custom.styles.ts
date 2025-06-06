@@ -2,6 +2,11 @@ import { css } from 'lit';
 import sharedOptionSize from '../option/option-size.styles.js';
 
 export default css`
+  /** #429: Use token for opacity */
+  .select--standard.select--disabled .select__combobox {
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   /**
    * Invalid user data
    */

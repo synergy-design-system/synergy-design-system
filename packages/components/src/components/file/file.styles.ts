@@ -155,7 +155,7 @@ export default css`
   :host([disabled]) .droparea,
   :host([disabled]) .input__value {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--syn-input-disabled-opacity);
   }
 
   :host(:not([disabled])) .form-control--user-dragging .droparea {

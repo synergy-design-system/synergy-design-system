@@ -9,6 +9,9 @@ export default css`
 
   .icon-button--disabled {
     color: var(--syn-color-neutral-400);
+
+    /** #429: Use token for opacity */
+    opacity: var(--syn-input-disabled-opacity);
   }
 
   /* Remove round borders */

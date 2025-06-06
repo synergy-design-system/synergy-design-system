@@ -184,6 +184,11 @@ export default css`
     font-size: var(--syn-font-size-2x-large);
   }
 
+  /** #429: Use token for opacity */
+  .button--disabled { 
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   /*
    * Caret modifier
    */

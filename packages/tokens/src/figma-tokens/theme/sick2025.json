@@ -402,35 +402,36 @@
   },
   "sick-green": {
     "50": {
-      "value": "#f8f7f6",
+      "value": "#F0FAF3",
       "type": "color"
     },
     "100": {
-      "value": "#f2f0ed",
+      "value": "#E9F8ED",
       "type": "color"
     },
     "200": {
-      "value": "#f000ff",
+      "value": "#D2F0DC",
       "type": "color"
     },
     "300": {
-      "value": "#ece8e5",
+      "value": "#C2EBCF",
       "type": "color"
     },
     "400": {
-      "value": "#e6e1dc",
+      "value": "#BBE8CA",
       "type": "color"
     },
     "500": {
-      "value": "#f000ff",
-      "type": "color"
+      "value": "#A5E1B9",
+      "type": "color",
+      "description": "SICK Green"
     },
     "600": {
       "value": "#f000ff",
       "type": "color"
     },
     "700": {
-      "value": "#b0a492",
+      "value": "#f000ff",
       "type": "color"
     },
     "800": {

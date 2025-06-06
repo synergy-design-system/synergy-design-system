@@ -10,8 +10,7 @@
     "@synergy-design-system/react": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "change-case": "^5.4.4",
-    "html2canvas": "^1.4.1"
+    "change-case": "^5.4.4"
   },
   "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {

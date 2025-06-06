@@ -39,9 +39,10 @@ But the assets could also be used like following:
 This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
 The folder structure of the assets corresponds to the structure of the Figma page.
 
-- **logos:** contains the variants of the SICK brand logo
-- **icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
-- **system-icons:** contains a small subset of icons, that are internally used by the Synergy components
+- **src/component-thumbnails** contains thumbnails from figma components used in Storybook
+- **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
+- **src/logos:** contains the variants of the SICK brand logo
+- **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components
 
 > **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
 
@@ -51,11 +52,11 @@ To update the assets from Figma, first of all a personal access token in Figma n
 The documentation how this can be achieved can be found [here](https://www.figma.com/developers/api#access-tokens).
 The only needed scope is "File content" set to readonly.
 
-After the creation of the personal access token, it needs to be saved in a **_.env_** file with the variable **_"FIGMA_PERSONAL_ACCESS_TOKEN"_**.
+After the creation of the personal access token, it needs to be saved in a **_.env_** file with the variable **_"FIGMA_TOKEN"_**.
 It should look like following:
 
-```
-FIGMA_PERSONAL_ACCESS_TOKEN = "my-personal-access-token"
+```bash
+FIGMA_TOKEN = "my-personal-access-token"
 ```
 
 ### Update assets from Figma
@@ -63,6 +64,14 @@ FIGMA_PERSONAL_ACCESS_TOKEN = "my-personal-access-token"
 If something in the Figma assets got changed, the assets of this package also needs to be updated.
 To update the assets run following in the terminal of the assets package folder:
 
+```bash
+pnpm build:all
 ```
-pnpm fetch-assets
-```
+
+This will:
+
+- Clean up the `src` directory
+- download all icons from figma
+- download all thumbnails for docs
+- Recreate all default icons
+- Recreate the license files in the different folders

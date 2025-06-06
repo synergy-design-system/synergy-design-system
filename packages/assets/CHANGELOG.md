@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.15.1...assets/1.16.0) (2025-06-06)
+
+
+### Features
+
+* ✨ assets: Provide infrastructure for fetching new icon sets ([#888](https://github.com/synergy-design-system/synergy-design-system/issues/888)) ([f051b6f](https://github.com/synergy-design-system/synergy-design-system/commit/f051b6f5ed256dcdb5e39ae653c22fc602a7fe5f))
+
 # [@synergy-design-system/assets-v1.15.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.15.0...assets/1.15.1) (2025-06-03)
 
 

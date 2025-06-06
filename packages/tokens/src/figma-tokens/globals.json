@@ -1,4 +1,96 @@
 {
+  "border-radius": {
+    "none": {
+      "value": "0px",
+      "type": "borderRadius"
+    },
+    "pill": {
+      "value": "9999px",
+      "type": "borderRadius"
+    },
+    "circle": {
+      "value": "9999px",
+      "type": "borderRadius"
+    },
+    "small": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "medium": {
+      "value": "8px",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "none": {
+      "value": "0px",
+      "type": "borderWidth",
+      "description": "None"
+    },
+    "small": {
+      "value": "1px",
+      "type": "borderWidth",
+      "description": "Small"
+    },
+    "medium": {
+      "value": "2px",
+      "type": "borderWidth",
+      "description": "Medium"
+    },
+    "large": {
+      "value": "3px",
+      "type": "borderWidth",
+      "description": "Large"
+    },
+    "x-large": {
+      "value": "4px",
+      "type": "borderWidth",
+      "description": "X Large"
+    }
+  },
+  "dimension": {
+    "base": {
+      "value": "4px",
+      "type": "dimension"
+    }
+  },
+  "duration": {
+    "extra-fast": {
+      "value": "90ms",
+      "type": "duration"
+    },
+    "fast": {
+      "value": "150ms",
+      "type": "duration"
+    },
+    "normal": {
+      "value": "250ms",
+      "type": "duration"
+    },
+    "slow": {
+      "value": "350ms",
+      "type": "duration"
+    },
+    "extra-slow": {
+      "value": "500ms",
+      "type": "duration"
+    }
+  },
+  "font": {
+    "sans": {
+      "value": "{font.brand.sans}",
+      "type": "fontFamilies",
+      "description": "Main Font"
+    },
+    "mono": {
+      "value": "{font.brand.mono}",
+      "type": "fontFamilies"
+    }
+  },
+  "font-sans-fallback": {
+    "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
+    "type": "other"
+  },
   "font-size": {
     "x-small": {
       "value": "12px",
@@ -29,26 +121,18 @@
       "type": "fontSizes"
     }
   },
-  "duration": {
-    "extra-fast": {
-      "value": "90ms",
-      "type": "duration"
-    },
-    "fast": {
-      "value": "150ms",
-      "type": "duration"
-    },
+  "font-weight": {
     "normal": {
-      "value": "250ms",
-      "type": "duration"
+      "value": "{font-weight.brand.normal}",
+      "type": "fontWeights"
     },
-    "slow": {
-      "value": "350ms",
-      "type": "duration"
+    "semibold": {
+      "value": "{font-weight.brand.semibold}",
+      "type": "fontWeights"
     },
-    "extra-slow": {
-      "value": "500ms",
-      "type": "duration"
+    "bold": {
+      "value": "{font-weight.brand.bold}",
+      "type": "fontWeights"
     }
   },
   "line-height": {
@@ -93,18 +177,11 @@
       "type": "lineHeights"
     }
   },
-  "font-weight": {
-    "normal": {
-      "value": "{font-weight.brand.normal}",
-      "type": "fontWeights"
-    },
-    "semibold": {
-      "value": "{font-weight.brand.semibold}",
-      "type": "fontWeights"
-    },
-    "bold": {
-      "value": "{font-weight.brand.bold}",
-      "type": "fontWeights"
+  "opacity": {
+    "50": {
+      "value": "0.5",
+      "type": "opacity",
+      "description": "50%"
     }
   },
   "shadow": {
@@ -316,17 +393,6 @@
       "description": "Overflow Right"
     }
   },
-  "font": {
-    "sans": {
-      "value": "{font.brand.sans}",
-      "type": "fontFamilies",
-      "description": "Main Font"
-    },
-    "mono": {
-      "value": "{font.brand.mono}",
-      "type": "fontFamilies"
-    }
-  },
   "spacing": {
     "4x-small": {
       "value": "{dimension.base}/4",
@@ -379,72 +445,6 @@
     "5x-large": {
       "value": "{dimension.base}*32",
       "type": "spacing"
-    }
-  },
-  "border-radius": {
-    "none": {
-      "value": "0px",
-      "type": "borderRadius"
-    },
-    "pill": {
-      "value": "9999px",
-      "type": "borderRadius"
-    },
-    "circle": {
-      "value": "9999px",
-      "type": "borderRadius"
-    },
-    "small": {
-      "value": "4px",
-      "type": "borderRadius"
-    },
-    "medium": {
-      "value": "8px",
-      "type": "borderRadius"
-    }
-  },
-  "dimension": {
-    "base": {
-      "value": "4px",
-      "type": "dimension"
-    }
-  },
-  "border-width": {
-    "none": {
-      "value": "0px",
-      "type": "borderWidth",
-      "description": "None"
-    },
-    "small": {
-      "value": "1px",
-      "type": "borderWidth",
-      "description": "Small"
-    },
-    "medium": {
-      "value": "2px",
-      "type": "borderWidth",
-      "description": "Medium"
-    },
-    "large": {
-      "value": "3px",
-      "type": "borderWidth",
-      "description": "Large"
-    },
-    "x-large": {
-      "value": "4px",
-      "type": "borderWidth",
-      "description": "X Large"
-    }
-  },
-  "font-sans-fallback": {
-    "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
-    "type": "other"
-  },
-  "opacity": {
-    "50": {
-      "value": "0.5",
-      "type": "opacity",
-      "description": "50%"
     }
   },
   "text-decoration": {

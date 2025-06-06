@@ -5,15 +5,15 @@
     "mode/light",
     "theme/sick2018",
     "theme/sick2025",
+    "semantic/button",
     "semantic/focus-ring",
     "semantic/input",
-    "semantic/button",
-    "semantic/toggle",
-    "semantic/typography",
     "semantic/link",
     "semantic/overlays",
     "semantic/panels",
+    "semantic/toggle",
     "semantic/tooltip",
+    "semantic/typography",
     "_docs"
   ]
 }

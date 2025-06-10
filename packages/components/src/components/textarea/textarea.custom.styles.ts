@@ -1,7 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-
   :host([data-user-invalid]) .textarea--standard {
     border-color: var(--syn-input-border-color-focus-error);
   }
@@ -11,4 +10,9 @@ export default css`
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
   }
 
+  /** #429: Use token for opacity */
+  .textarea--readonly.textarea--disabled,
+  .textarea--standard.textarea--disabled {
+    opacity: var(--syn-input-disabled-opacity);
+  }
 `;

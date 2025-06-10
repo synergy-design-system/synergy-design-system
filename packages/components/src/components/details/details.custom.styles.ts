@@ -8,6 +8,7 @@ export default css`
     border-width: 0 0 var(--syn-border-width-small);
   }
 
+  /** #429: Use token for opacity */
   .details--disabled {
     opacity: var(--syn-opacity-50);
   }

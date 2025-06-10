@@ -4,6 +4,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/alert/alert.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon/icon.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,

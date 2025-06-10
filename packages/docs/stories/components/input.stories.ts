@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { SynButton, SynInput } from '@synergy-design-system/components';
-import '../../../components/src/components/input/input';
+import '../../../components/src/components/input/input.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/textarea/textarea.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { userEvent } from '@storybook/test';

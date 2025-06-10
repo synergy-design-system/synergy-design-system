@@ -1,5 +1,14 @@
 import { html } from 'lit';
 import { getTranslation } from '../translations.js';
+import '../../../components/src/components/nav-item/nav-item.js';
+import '../../../components/src/components/prio-nav/prio-nav.js';
+import '../../../components/src/components/header/header.js';
+import '../../../components/src/components/dropdown/dropdown.js';
+import '../../../components/src/components/icon-button/icon-button.js';
+import '../../../components/src/components/menu/menu.js';
+import '../../../components/src/components/menu-item/menu-item.js';
+import '../../../components/src/components/side-nav/side-nav.js';
+import '../../../components/src/components/icon/icon.js';
 
 /**
  * Create a footer for all stories

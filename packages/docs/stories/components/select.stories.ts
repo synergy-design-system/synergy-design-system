@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import '../../../components/src/components/select/select';
+import '../../../components/src/components/select/select.js';
+import '../../../components/src/components/option/option.js';
+import '../../../components/src/components/optgroup/optgroup.js';
+import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
@@ -517,7 +521,7 @@ const ScreenshotStoryMultiple: Story = {
 export const ScreenshotDefault: Story = generateScreenshotStory({
   ScreenshotStoryDefault,
 }, {
-  afterRender: openSelect('syn-select'),
+  afterRender: openSelect('syn-select', false),
   heightPx: 400,
 });
 

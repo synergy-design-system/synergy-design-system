@@ -4,6 +4,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../components/src/components/accordion/accordion.js';
+import '../../../components/src/components/details/details.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,

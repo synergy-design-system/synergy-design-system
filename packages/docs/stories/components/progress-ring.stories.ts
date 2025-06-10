@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import '../../../components/src/components/progress-ring/progress-ring';
+import '../../../components/src/components/progress-ring/progress-ring.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import {

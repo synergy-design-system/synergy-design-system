@@ -20,6 +20,7 @@
   "scripts": {
     "build": "pnpm --recursive --if-present build",
     "build.release": "pnpm --recursive --filter '!docs' --if-present build",
+    "build.size-check": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true && cd packages/components && pnpm run build --synergy",
     "clean": "rm -rf node_modules && find . -name dist -type d | xargs rm -rf && find . -name node_modules -type d | xargs rm -rf && pnpm install && pnpm build",
     "lint": "pnpm --recursive --if-present lint",
     "release": "pnpm --recursive --if-present --workspace-concurrency=1 release",

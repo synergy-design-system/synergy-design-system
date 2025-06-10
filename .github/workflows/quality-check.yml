@@ -153,7 +153,7 @@ jobs:
 
       - uses: preactjs/compressed-size-action@v2
         with:
-          build-script: "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true && cd packages/components && pnpm run build --synergy"
+          build-script: "build.size-check"
           comment-key: components
           pattern: "packages/components/dist/**/*.{js,css}"
           strip-hash: "\\b\\w{8}\\."

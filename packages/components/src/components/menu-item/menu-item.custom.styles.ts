@@ -93,6 +93,10 @@ export default css`
     transform: rotate(90deg);
   }
 
+  .menu-item.menu-item--loading *:not(syn-spinner) {
+    opacity: var(--syn-opacity-50);
+  }
+
   /**
    * Make sure to show the chevron if there are children
    */
@@ -104,14 +108,10 @@ export default css`
    * Adjustments for the spinner in loading state
    */
   .menu-item--loading syn-spinner {
-    --indicator-color: currentColor;
     --track-width: 2px;
 
     font-size: var(--syn-font-size-medium);
     left: var(--syn-spacing-medium);
-    opacity: 1;
-    position: absolute;
-    top: calc(50% - 0.5em);
   }
 
   /**

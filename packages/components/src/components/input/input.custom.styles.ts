@@ -255,10 +255,8 @@ export default css`
   .input__number-stepper-button[disabled] {
     color: var(--syn-color-neutral-400);
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--syn-input-disabled-opacity);
   }
-
-
 
   /**
   * Number stepper divider

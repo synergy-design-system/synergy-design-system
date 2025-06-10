@@ -33,6 +33,6 @@ export default css`
   :host([disabled]) .form-control--has-label .form-control__label,
   :host([disabled]) .form-control--has-help-text .form-control__help-text {
     cursor: not-allowed;
-    opacity: var(--syn-opacity-50);
+    opacity: var(--syn-input-disabled-opacity);
   }
 `;

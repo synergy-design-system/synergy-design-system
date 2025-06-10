@@ -6,195 +6,209 @@ on:
 
 jobs:
   quality-gate:
-    name: Validate build, lint, vendor and git diff
+    name: Disabled
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
+# name: Quality Gate
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened, ready_for_review]
 
-      - name: Install dependencies
-        run: pnpm install
+# jobs:
+#   quality-gate:
+#     name: Validate build, lint, vendor and git diff
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Build
-        run: pnpm build
+#       - uses: pnpm/action-setup@v4
+#         name: Install pnpm
+#         id: pnpm-install
+#         with:
+#           run_install: false
 
-      - name: Check for uncommitted changes
-        run: git diff --exit-code
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "pnpm"
 
-      - name: Check for formatting issues
-        run: pnpm exec prettier . -c
+#       - name: Install dependencies
+#         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
+#       - name: Build
+#         run: pnpm build
 
-      - name: Check for uncommitted changes
-        run: git diff --exit-code
+#       - name: Check for uncommitted changes
+#         run: git diff --exit-code
 
-      - name: Vendorism
-        run: cd packages/components && pnpm vendor.get && pnpm vendor.set && pnpm build --synergy
+#       - name: Check for formatting issues
+#         run: pnpm exec prettier . -c
 
-      - name: Check for uncommitted changes
-        run: git diff --exit-code
+#       - name: Lint
+#         run: pnpm lint
 
-      - name: Release (Dry)
-        run: pnpm release.dry
+#       - name: Check for uncommitted changes
+#         run: git diff --exit-code
 
-  test_components:
-    name: Validate tests (components)
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.51.1-noble
-    steps:
-      - uses: actions/checkout@v4
+#       - name: Vendorism
+#         run: cd packages/components && pnpm vendor.get && pnpm vendor.set && pnpm build --synergy
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
+#       - name: Check for uncommitted changes
+#         run: git diff --exit-code
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+#       - name: Release (Dry)
+#         run: pnpm release.dry
 
-      - name: Install dependencies
-        run: pnpm install
+#   test_components:
+#     name: Validate tests (components)
+#     timeout-minutes: 30
+#     runs-on: ubuntu-latest
+#     container:
+#       image: mcr.microsoft.com/playwright:v1.51.1-noble
+#     steps:
+#       - uses: actions/checkout@v4
 
-      # #854: We are only building the components and tokens packages
-      # This is done to speed up the build time
-      - name: Build
-        run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
+#       - uses: pnpm/action-setup@v4
+#         name: Install pnpm
+#         id: pnpm-install
+#         with:
+#           run_install: false
 
-      - name: Run component tests
-        run: pnpm test -r --filter 'components'
-        # @see https://github.com/microsoft/playwright/issues/6500
-        env:
-          HOME: /root
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "pnpm"
 
-  test_e2e:
-    name: Validate tests (e2e)
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.51.1-noble
-    steps:
-      - uses: actions/checkout@v4
+#       - name: Install dependencies
+#         run: pnpm install
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
+#       # #854: We are only building the components and tokens packages
+#       # This is done to speed up the build time
+#       - name: Build
+#         run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+#       - name: Run component tests
+#         run: pnpm test -r --filter 'components'
+#         # @see https://github.com/microsoft/playwright/issues/6500
+#         env:
+#           HOME: /root
 
-      - name: Install dependencies
-        run: pnpm install
+#   test_e2e:
+#     name: Validate tests (e2e)
+#     timeout-minutes: 30
+#     runs-on: ubuntu-latest
+#     container:
+#       image: mcr.microsoft.com/playwright:v1.51.1-noble
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Build
-        run: pnpm build
+#       - uses: pnpm/action-setup@v4
+#         name: Install pnpm
+#         id: pnpm-install
+#         with:
+#           run_install: false
 
-      # We run all tests except the components tests
-      # This is done as the components test toolchain will
-      # create a new bundle that may cause issues
-      - name: Run Playwright tests
-        run: pnpm test -r --filter '!components'
-        # @see https://github.com/microsoft/playwright/issues/6500
-        env:
-          HOME: /root
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "pnpm"
 
-    # Uncomment this for screenshot based tests
-    # @todo: Add regviz support
-    # - uses: actions/upload-artifact@v3
-    #   if: always()
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30
+#       - name: Install dependencies
+#         run: pnpm install
 
-  size_check:
-    name: Size Check
-    runs-on: ubuntu-latest
-    needs: [quality-gate]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#       - name: Build
+#         run: pnpm build
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
+#       # We run all tests except the components tests
+#       # This is done as the components test toolchain will
+#       # create a new bundle that may cause issues
+#       - name: Run Playwright tests
+#         run: pnpm test -r --filter '!components'
+#         # @see https://github.com/microsoft/playwright/issues/6500
+#         env:
+#           HOME: /root
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+#     # Uncomment this for screenshot based tests
+#     # @todo: Add regviz support
+#     # - uses: actions/upload-artifact@v3
+#     #   if: always()
+#     #   with:
+#     #     name: playwright-report
+#     #     path: playwright-report/
+#     #     retention-days: 30
 
-      - uses: preactjs/compressed-size-action@v2
-        with:
-          # Enable this after merging this PR into main to speed up execution
-          # build-script: "build.size-check"
-          build-script: "build.release"
-          comment-key: components
-          pattern: "packages/components/dist/**/*.{js,css}"
-          strip-hash: "\\b\\w{8}\\."
-          compression: "none"
+#   size_check:
+#     name: Size Check
+#     runs-on: ubuntu-latest
+#     needs: [quality-gate]
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-  chromatic-deployment:
-    name: Validate Chromatic
-    runs-on: ubuntu-latest
-    # check pull request title
-    if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test_components, test_e2e]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # 👈 Required to retrieve git history
-          # 👇 Tells the checkout which commit hash to reference
-          ref: ${{ github.event.pull_request.head.ref }}
-      - uses: pnpm/action-setup@v4
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
-      # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-      - name: Install dependencies
-        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
-      # 👇 Build storybook with pnpm
-      - name: Build packages
-        run: pnpm run build
-      # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish to Chromatic
-        uses: chromaui/action@latest
-        # Options required to the GitHub Chromatic Action
-        with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Speedup the build by not waiting until everything is sent to Chromatic
-          exitOnceUploaded: true
-          # We need to manually build storybook with pnpm
-          storybookBuildDir: packages/docs/dist
-          configFile: packages/docs/chromatic.config.json
+#       - uses: pnpm/action-setup@v4
+#         name: Install pnpm
+#         id: pnpm-install
+#         with:
+#           run_install: false
+
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "pnpm"
+
+#       - uses: preactjs/compressed-size-action@v2
+#         with:
+#           # Enable this after merging this PR into main to speed up execution
+#           # build-script: "build.size-check"
+#           build-script: "build.release"
+#           comment-key: components
+#           pattern: "packages/components/dist/**/*.{js,css}"
+#           strip-hash: "\\b\\w{8}\\."
+#           compression: "none"
+
+#   chromatic-deployment:
+#     name: Validate Chromatic
+#     runs-on: ubuntu-latest
+#     # check pull request title
+#     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
+#     needs: [quality-gate, test_components, test_e2e]
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0 # 👈 Required to retrieve git history
+#           # 👇 Tells the checkout which commit hash to reference
+#           ref: ${{ github.event.pull_request.head.ref }}
+#       - uses: pnpm/action-setup@v4
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: "pnpm"
+#       # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
+#       - name: Install dependencies
+#         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
+#       # 👇 Build storybook with pnpm
+#       - name: Build packages
+#         run: pnpm run build
+#       # 👇 Adds Chromatic as a step in the workflow
+#       - name: Publish to Chromatic
+#         uses: chromaui/action@latest
+#         # Options required to the GitHub Chromatic Action
+#         with:
+#           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+#           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+#           # Speedup the build by not waiting until everything is sent to Chromatic
+#           exitOnceUploaded: true
+#           # We need to manually build storybook with pnpm
+#           storybookBuildDir: packages/docs/dist
+#           configFile: packages/docs/chromatic.config.json

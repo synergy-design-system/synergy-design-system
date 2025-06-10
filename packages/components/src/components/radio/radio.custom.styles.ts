@@ -6,6 +6,11 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
+  /** #429: Use token for opacity */
+  .radio--disabled { 
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   /* Checked + hover */
   .radio.radio--checked:not(.radio--disabled):hover  .radio__control {
     background-color: var(--syn-color-primary-950);

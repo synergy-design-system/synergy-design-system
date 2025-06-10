@@ -148,7 +148,7 @@ export default css`
   }
 
   .nav-item--disabled .nav-item__content {
-    opacity: 0.5;
+    opacity: var(--syn-opacity-50);
   }
 
   /**

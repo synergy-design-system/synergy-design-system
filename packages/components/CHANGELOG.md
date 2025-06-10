@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.37.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.36.0...components/2.37.0) (2025-06-10)
+
+
+### Features
+
+* ✨ Add support for Angular 20 ([#895](https://github.com/synergy-design-system/synergy-design-system/issues/895)) ([b4f575e](https://github.com/synergy-design-system/synergy-design-system/commit/b4f575ed64088969acc49d7db876101eb735c858))
+
 # [@synergy-design-system/components-v2.36.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.35.0...components/2.36.0) (2025-06-10)
 
 

@@ -14,7 +14,6 @@ const availableThemes = getAvailableThemes();
 
 const setTheme = (e: SynChangeEvent) => {
   const value = (e.target as SynSelect).value as string;
-  console.log(value);
   setThemeFromOptionString(value);
 }
 </script>

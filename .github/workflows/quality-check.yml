@@ -155,6 +155,7 @@ jobs:
         with:
           # Enable this after merging this PR into main to speed up execution
           # build-script: "build.size-check"
+          build-script: "build.release"
           comment-key: components
           pattern: "packages/components/dist/**/*.{js,css}"
           strip-hash: "\\b\\w{8}\\."

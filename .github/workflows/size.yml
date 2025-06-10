@@ -30,5 +30,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           build_script: build.release
-          script: output=$(pnpm run --filter components --if-present report-bundle-size); if [ -z "$output" ]; then echo "[]"; else echo "$output"; fi; echo $output
+          script: sh output=$(pnpm run --filter components --if-present report-bundle-size); if [ -z "$output" ]; then echo "[]"; else echo "$output"; fi; echo $output
           package_manager: pnpm

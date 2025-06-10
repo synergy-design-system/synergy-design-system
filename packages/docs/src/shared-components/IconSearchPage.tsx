@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { SynIcon, SynInput } from '@synergy-design-system/react';
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
-import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
+import { registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/default-icons.js';
 // If an update is done to the icons, the metadata file of material icons need to be updated. This file can be found here: https://fonts.google.com/metadata/icons
 import materialIconsMetatdata from '../materialIconsMetadata.json';

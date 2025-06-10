@@ -3,6 +3,8 @@
 /* eslint-disable complexity */
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/radio-group/radio-group.js';
+import '../../../components/src/components/radio/radio.js';
+import '../../../components/src/components/button/button.js';
 import type { SynRadioGroup } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';

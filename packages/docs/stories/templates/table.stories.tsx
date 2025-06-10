@@ -11,6 +11,8 @@ import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon/icon.js';
 
 /**
  * Repeats a given iterator function a specified number of times.

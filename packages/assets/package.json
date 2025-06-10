@@ -8,21 +8,21 @@
   },
   "description": "Assets for the Synergy Design System",
   "devDependencies": {
-    "@clack/prompts": "^0.10.0",
+    "@dotenvx/dotenvx": "^1.44.1",
+    "@figma-export/cli": "^6.2.0",
+    "@figma-export/core": "^6.2.0",
+    "@figma-export/output-components-as-svg": "^6.2.0",
+    "@figma-export/transform-svg-with-svgo": "^6.2.1",
+    "@figma-export/types": "^6.2.0",
+    "@figma/rest-api-spec": "^0.30.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@types/node": "^22.13.14",
-    "chalk": "^5.4.1",
-    "dotenv": "^16.4.7",
-    "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.31.0",
-    "figma-export-assets": "^1.0.4",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
-    "svgo": "^3.3.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "exports": {
     ".": {
@@ -40,7 +40,13 @@
       "import": "./dist/createSpritesheet.js"
     }
   },
-  "types": "./src/default-icons.d.ts",
+  "files": [
+    "dist",
+    "src/logos",
+    "src/icons",
+    "CHANGELOG.md",
+    "NOTICE"
+  ],
   "homepage": "https://synergy-design-system.github.io",
   "keywords": [
     "Static Assets",
@@ -51,21 +57,8 @@
     "SICK Icons",
     "SICK Logos"
   ],
-  "files": [
-    "dist",
-    "src/logos",
-    "src/icons",
-    "src/default-icons.d.ts",
-    "src/default-icons.js",
-    "CHANGELOG.md"
-  ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "name": "@synergy-design-system/assets",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
-    "directory": "packages/assets"
-  },
   "release": {
     "branches": [
       "main",
@@ -117,15 +110,24 @@
       ]
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/assets"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -b",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build && pnpm create-licenses",
+    "create-licenses": "node ./scripts/createLicenses.js",
+    "clean": "node ./scripts/clean.js",
+    "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
+    "fetch-components-thumbnails": "dotenvx -q run -- node scripts/fetch-component-thumbnails.js",
     "lint": "eslint .",
     "format.eslint": "pnpm lint --fix",
-    "fetch-assets": "node scripts/fetch-assets.js && pnpm fetch-components-thumbnails",
-    "fetch-components-thumbnails": "node scripts/fetch-component-thumbnails.js",
     "release": "semantic-release  --tagFormat 'assets/${version}' -e semantic-release-monorepo",
     "release.dry": "semantic-release --dry-run --tagFormat 'assets/${version}' -e semantic-release-monorepo"
   },
   "type": "module",
-  "version": "1.15.1"
+  "types": "./dist/index.d.ts",
+  "version": "1.16.0"
 }

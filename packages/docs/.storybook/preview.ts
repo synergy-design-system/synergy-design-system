@@ -7,7 +7,6 @@ import '@synergy-design-system/tokens/themes/sick2018_dark.css';
 import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-import '../../components/src/synergy';
 
 import '../src/docs.css';
 

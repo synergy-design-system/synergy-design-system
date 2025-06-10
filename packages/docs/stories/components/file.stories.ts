@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/file/file.js';
+import '../../../components/src/components/button/button.js';
 import type { SynFile } from '@synergy-design-system/components';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components';

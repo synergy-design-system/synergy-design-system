@@ -10,8 +10,7 @@
     "@synergy-design-system/react": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "change-case": "^5.4.4",
-    "html2canvas": "^1.4.1"
+    "change-case": "^5.4.4"
   },
   "description": "Storybook demo for static assets and components of the Synergy Design System",
   "devDependencies": {
@@ -69,7 +68,7 @@
     "directory": "packages/docs"
   },
   "scripts": {
-    "build": "storybook build --output-dir dist",
+    "build": "storybook build --output-dir dist --stats-json",
     "build-storybook": "pnpm build",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
     "lint:js": "eslint src",

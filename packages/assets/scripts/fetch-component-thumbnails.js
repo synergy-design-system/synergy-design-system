@@ -1,27 +1,26 @@
 /* eslint-disable complexity */
-import fs from 'fs';
-import path from 'path';
-import { rimraf } from 'rimraf';
-import { config as dotenvConfig } from 'dotenv';
-
-function loadEnvironmentVariables() {
-  // Load environment variables from .env file
-  if (fs.existsSync('.env')) {
-    dotenvConfig();
-  } else {
-    throw new Error('Missing .env file.');
-  }
-
-  if (!process.env.FIGMA_PERSONAL_ACCESS_TOKEN) {
-    throw new Error('Missing FIGMA_PERSONAL_ACCESS_TOKEN in .env file.');
-  }
-}
+/**
+ * @typedef {import('@figma/rest-api-spec').ComponentNode} ComponentNode
+ * @typedef {import('@figma/rest-api-spec').GetImagesResponse} GetImagesResponse
+ * @typedef {import('@figma/rest-api-spec').GetFileResponse} GetFileResponse
+ */
+import fs from 'node:fs';
+import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { exit } from 'process';
+import {
+  FIGMA_FILE_ID_LIBRARY,
+  PATH_COMPONENT_OVERVIEW,
+} from './config.js';
 
 // fetch images and save to disk
 async function fetchComponentThumbnails() {
-  loadEnvironmentVariables();
-
-  // traverses the Figma document structure to find the element by given path
+  /**
+   * Traverses the Figma document structure to find the element by given path
+   * @param {ComponentNode} element The element to search within
+   * @param {string[]} pathNames The path to traverse
+   * @returns {ComponentNode|undefined}
+   */
   function getElement(element, pathNames) {
     if (pathNames.length === 0) return element;
     const [name, ...remaining] = pathNames;
@@ -35,45 +34,58 @@ async function fetchComponentThumbnails() {
     return childElement ? getElement(childElement, remaining) : undefined;
   }
 
-  // fetch the image from Figma API using the provided element ID
+  /**
+   * Fetch the image from Figma API using the provided element ID
+   * @param {string} id The id to search for
+   * @returns {Promise<string>} The URL of the image
+   */
   async function getImageUrl(id) {
-    const requestUrl = `https://api.figma.com/v1/images/3cQ9BFSSaoVfhizV0AJ9GP?ids=${id}&format=svg`;
-    const headers = { 'X-Figma-Token': process.env.FIGMA_PERSONAL_ACCESS_TOKEN };
+    const requestUrl = `https://api.figma.com/v1/images/${FIGMA_FILE_ID_LIBRARY}?ids=${id}&format=svg`;
+    const headers = { 'X-Figma-Token': process.env.FIGMA_TOKEN };
     const response = await fetch(requestUrl, { headers });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
+    }
+
+    /**
+     * @type {GetImagesResponse}
+     */
     const imgData = await response.json();
 
     return Object.values(imgData.images)[0];
   }
-
-  // Remove everything icon related
-  await rimraf([
-    './src/component-thumbnails',
-  ]);
 
   // path definitions to traverse the Figma document structure
   const pathToParentElement = ['Component overview', 'Jumppoint', 'jump to=components', 'Frame 3155'];
   const pathToImage = ['content', 'helper/image', 'cover', 'Fixed-aspect-ratio-spacer'];
 
   // Read and parse the JSON file
-  const headers = { 'X-Figma-Token': process.env.FIGMA_PERSONAL_ACCESS_TOKEN };
-  const fileData = await fetch('https://api.figma.com/v1/files/3cQ9BFSSaoVfhizV0AJ9GP?deep=1', { headers });
+  const headers = { 'X-Figma-Token': process.env.FIGMA_TOKEN };
+  const fileData = await fetch(`https://api.figma.com/v1/files/${FIGMA_FILE_ID_LIBRARY}`, { headers });
+
+  /**
+   * @type {GetFileResponse}
+   */
   const jsonData = await fileData.json();
 
   // Get the parent element from the Figma document
   const elements = getElement(jsonData.document, pathToParentElement).children;
   // Get all the element names
-  const elementNames = elements.map((element) => element.name);
+  const elementNames = elements.map(element => element.name);
   // Get the image URLs for each element
-  const imagesAwaits = elements.map((element) => getImageUrl(getElement(element, pathToImage).id));
+  const imagesAwaits = elements.map(element => getImageUrl(getElement(element, pathToImage).id));
   const imageURLs = await Promise.all(imagesAwaits);
 
   // make sure the target directory exists
-  const targetDir = path.join('src', 'component-thumbnails');
+  const targetDir = PATH_COMPONENT_OVERVIEW;
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
   }
+
   // Write each image to the target directory
-  imageURLs.forEach(async (url, i) => {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  const calls = imageURLs.map(async (url, i) => {
     const imagePath = path.join(targetDir, `${elementNames[i]}.svg`);
     const res = await fetch(url);
     if (!res.ok) {
@@ -82,12 +94,35 @@ async function fetchComponentThumbnails() {
     const arrayBuffer = await res.arrayBuffer();
     const image = Buffer.from(arrayBuffer);
 
-    fs.writeFile(imagePath, image, (err) => {
-      if (err) {
-        console.error('Error writing file:', err);
-      }
-    });
+    try {
+      await writeFile(imagePath, image);
+      return {
+        error: null,
+        success: true,
+        url,
+      };
+    } catch (e) {
+      return {
+        error: e,
+        success: false,
+        url,
+      };
+    }
   });
+
+  const result = await Promise.allSettled(calls);
+  return result;
 }
 
-(fetchComponentThumbnails)();
+fetchComponentThumbnails()
+  .then((r) => {
+    const success = r.filter((res) => res.status === 'fulfilled' && res.value.success);
+    // eslint-disable-next-line no-console
+    console.log(`Component thumbnails fetched and saved successfully (${success.length} out of ${r.length} written).`);
+    exit(0);
+  })
+  .catch(error => {
+    // eslint-disable-next-line no-console
+    console.error('Error fetching component thumbnails:', error);
+    exit(1);
+  });

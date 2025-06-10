@@ -151,16 +151,11 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      - name: Install dependencies
-        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install
-
-      - name: Build
-        run: pnpm build
-
       - uses: preactjs/compressed-size-action@v2
         with:
+          build-script: "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true && cd packages/components && pnpm run build --synergy"
           comment-key: components
-          pattern: "packages/components/dist/*.{js,css}"
+          pattern: "packages/components/dist/**/*.{js,css}"
           strip-hash: "\\b\\w{8}\\."
           compression: "none"
 

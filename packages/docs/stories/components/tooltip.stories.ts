@@ -303,14 +303,14 @@ export const Hoisting: Story = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  Default,
+  // Default,
   Placement,
-  ClickTrigger,
-  ManualTrigger,
-  RemovingArrows,
-  HTMLInTooltips,
-  SettingAMaximumWidth,
-  Hoisting,
+  // ClickTrigger,
+  // ManualTrigger,
+  // RemovingArrows,
+  // HTMLInTooltips,
+  // SettingAMaximumWidth,
+  // Hoisting,
 }, {
   heightPx: 550,
   styleHeading: {

@@ -14,6 +14,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon-button');
 const { overrideArgs } = storybookHelpers('syn-icon-button');
@@ -114,6 +115,7 @@ export const Disabled: Story = {
 };
 
 export const Focus: Story = {
+  decorators: [paddingDecorator()],
   parameters: {
     chromatic: {
       disableSnapshot: false,

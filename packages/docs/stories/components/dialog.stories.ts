@@ -253,6 +253,12 @@ export const CustomizingInitialFocus: Story = {
       },
     },
   },
+  play: ({ canvasElement }) => {
+    const dialog = canvasElement.querySelector('syn-dialog');
+    if (dialog) {
+      dialog.open = true;
+    }
+  },
   render: () => html`
     <syn-dialog label="Dialog">
       <syn-input autofocus placeholder="I will have focus when the dialog is opened"></syn-input>

@@ -115,6 +115,9 @@ export const Disabled: Story = {
 
 export const Focus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('icon-button', 'focus'),

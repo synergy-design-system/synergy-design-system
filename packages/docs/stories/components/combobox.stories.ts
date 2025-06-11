@@ -157,9 +157,12 @@ export const Focus: Story = {
       },
     },
   },
-  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynCombobox>('syn-combobox');
-    elm?.focus();
+    if (elm) {
+      await elm.updateComplete;
+      elm.focus();
+    }
   },
   render: () => html`
     <syn-combobox>
@@ -470,9 +473,6 @@ export const SuggestionContainerHeight: Story = {
 
 export const AsyncOptions: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
         story: generateStoryDescription('combobox', 'async-options'),
@@ -506,9 +506,6 @@ export const AsyncOptions: Story = {
 
 export const CustomFilter: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
         story: generateStoryDescription('combobox', 'custom-filter'),

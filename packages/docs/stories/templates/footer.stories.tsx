@@ -18,6 +18,11 @@ import {
 
 const meta: Meta = {
   parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    chromatic: {
+      ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
+    },
     design: generateFigmaPluginObject('25171-45729'),
     docs: {
       description: {
@@ -41,13 +46,6 @@ const meta: Meta = {
 export default meta;
 
 export const Footer = {
-  parameters: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    chromatic: {
-      ...storyBookPreviewConfig?.parameters?.chromatic,
-      disableSnapshot: false,
-    },
-  },
   render: () => createFooter(),
 };
 
@@ -68,13 +66,6 @@ export const FooterTablet = {
 };
 
 export const FooterWithinAppshell = {
-  parameters: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    chromatic: {
-      ...storyBookPreviewConfig?.parameters?.chromatic,
-      disableSnapshot: false,
-    },
-  },
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-side-navigation">

@@ -21,6 +21,11 @@ import '../../../components/src/components/button/button.js';
 
 const meta: Meta = {
   parameters: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    chromatic: {
+      ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
+    },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
       description: {
@@ -45,13 +50,6 @@ const meta: Meta = {
 export default meta;
 
 export const ContactForm = {
-  parameters: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    chromatic: {
-      ...storyBookPreviewConfig?.parameters?.chromatic,
-      disableSnapshot: false,
-    },
-  },
   render: () => html`
     <style>
     .synergy-form-demo {

@@ -10,6 +10,7 @@ const AllComponentSelectors = {
   alertLink: '#tab-Alert',
 
   // Combobox
+  combobox632: '#tab-content-Combobox syn-combobox[data-testid="combobox-632"]',
   combobox797: '#tab-content-Combobox syn-combobox[data-testid="combobox-797"]',
   combobox813Form: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"]',
   combobox813FormOptions: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"] syn-option',

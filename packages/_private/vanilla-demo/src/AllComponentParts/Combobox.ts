@@ -25,5 +25,14 @@ export const Combobox = (regressions: RegressionFns = []) => {
       </syn-combobox>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <syn-combobox
+      data-testid="combobox-632"
+      label="Keyboard Interaction test #632"
+    >
+      <syn-option value="option-1">Lorem</syn-option>
+      <syn-option value="option-2">ipsum</syn-option>
+      <syn-option value="option-3">dolor</syn-option>
+    </syn-combobox>
   `;
 };

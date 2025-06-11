@@ -4,6 +4,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { globbySync } from 'globby';
 
 // Get the dependency list so we can exclude all deps
 const packageJSON = import.meta.resolve('./package.json');
@@ -33,10 +34,9 @@ const defaultSizeOptions = {
   ignore: Object.keys(dependencies),
 };
 
-// Get a list of all custom elements and create outputs for them
 /**
  * @type {Check[]}
- * This will create a list of checks for each custom element
+ * List of checks for each custom element
  */
 const elements = metadata?.modules
   // Only allow modules that have custom elements declared
@@ -51,8 +51,34 @@ const elements = metadata?.modules
   // Finally map the paths to the expected output format
   .map(p => ({
     ...defaultSizeOptions,
-    name: `syn-${p.split('/').at(-2)}`,
+    name: `components/syn-${p.split('/').at(-2)}`,
     path: `dist/${p}`,
+  }));
+
+/**
+ * @type {Check[]}
+ * Dynamic list of checks for each regular export in the dist folder
+ */
+const otherExports = globbySync('dist/**/*.js', {
+  ignore: [
+    // Already included via dist/synergy.js
+    'dist/chunks',
+    'dist/synergy.js',
+
+    // Already handled via custom elements
+    'dist/components',
+  ],
+})
+  // Get all the file contents
+  .map(file => ({
+    content: readFileSync(file, 'utf-8'),
+    path: file,
+  }))
+  // Finally, create the checks for each file
+  .map(file => ({
+    ...defaultSizeOptions,
+    name: file.path.replace('.js', '').replace('dist/', ''),
+    path: file.path,
   }));
 
 /**
@@ -65,4 +91,5 @@ export default [
     path: 'dist/synergy.js',
   },
   ...elements,
+  ...otherExports,
 ];

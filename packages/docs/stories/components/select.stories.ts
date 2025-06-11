@@ -6,10 +6,10 @@ import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/button/button.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import { openSelect } from '../../src/helpers/select.js';
 import {
   generateScreenshotStory,

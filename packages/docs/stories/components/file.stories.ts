@@ -5,8 +5,8 @@ import '../../../components/src/components/file/file.js';
 import '../../../components/src/components/button/button.js';
 import type { SynFile } from '@synergy-design-system/components';
 import { html } from 'lit';
-import type { Meta, StoryObj as Story } from '@storybook/web-components';
-import { userEvent } from '@storybook/test';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
+import { userEvent } from 'storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription,

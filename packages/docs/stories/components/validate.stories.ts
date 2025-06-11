@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj as Story } from '@storybook/web-components';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/validate/validate.js';
 import '../../../components/src/components/input/input.js';

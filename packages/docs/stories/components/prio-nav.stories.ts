@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/prio-nav/prio-nav.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,

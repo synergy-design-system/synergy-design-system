@@ -3,7 +3,7 @@
 import '../../../components/src/components/progress-bar/progress-bar.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,

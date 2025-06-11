@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { DocsContainer, DocsContainerProps } from '@storybook/blocks';
+import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs/blocks';
 
 type DisableFocusTrapProps = DocsContainerProps & {
   children: ReactNode;

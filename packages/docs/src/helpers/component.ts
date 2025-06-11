@@ -7,7 +7,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getWcStorybookHelpers, setWcStorybookHelpersConfig } from "wc-storybook-helpers";
 import { getComponentByTagName } from 'wc-storybook-helpers/dist/cem-utilities.js';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components';
+import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components-vite';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { sentenceCase } from 'change-case';

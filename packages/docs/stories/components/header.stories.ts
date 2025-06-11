@@ -7,7 +7,7 @@ import '../../../components/src/components/header/header.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/icon-button/icon-button.js';
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import {
   generateScreenshotStory,
   generateStoryDescription,

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import '../../../components/src/components/icon-button/icon-button.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import type { SynIconButton } from '@synergy-design-system/components';
 import { html } from 'lit';
 import {

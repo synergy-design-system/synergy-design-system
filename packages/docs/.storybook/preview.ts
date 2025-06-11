@@ -1,6 +1,6 @@
-import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
+import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
@@ -102,6 +102,7 @@ const preview: Preview = {
       },
     },
   },
+  tags: ['autodocs']
 };
 
 export default preview;

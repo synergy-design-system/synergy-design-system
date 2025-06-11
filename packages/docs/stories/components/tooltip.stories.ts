@@ -23,7 +23,7 @@ const meta: Meta = {
     {
       name: 'content',
       type: 'attribute',
-      value: 'This is a tooltip',
+      value: 'This is a tooltip!!',
     },
     {
       name: 'open',

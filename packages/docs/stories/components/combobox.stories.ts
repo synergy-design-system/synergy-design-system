@@ -159,10 +159,9 @@ export const Focus: Story = {
       },
     },
   },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynCombobox>('syn-combobox');
     if (elm) {
-      await elm.updateComplete;
       elm.focus();
     }
   },

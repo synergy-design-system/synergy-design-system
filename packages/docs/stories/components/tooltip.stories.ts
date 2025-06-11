@@ -313,7 +313,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Hoisting,
 }, {
   additionalChromaticOptions: {
-    delay: 700,
+    delay: 1000,
   },
   heightPx: 550,
   styleHeading: {

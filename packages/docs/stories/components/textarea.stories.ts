@@ -121,14 +121,14 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const textarea = canvasElement.querySelector('syn-textarea')!;
+    const textarea = canvasElement.querySelector('syn-textarea') as SynTextarea;
     if (textarea) {
       textarea.focus();
     }
   },
   render: () => html`
       <form>
-        <syn-textarea placeholder="This is in focus!"></syn-textarea>
+        <syn-textarea placeholder="This is in focus"></syn-textarea>
       </form>
     `,
 };

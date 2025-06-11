@@ -88,9 +88,7 @@ export const Focus: Story = {
   play: ({ canvasElement }) => {
     const synSwitch = canvasElement.querySelector('syn-switch') as SynSwitch;
     if (synSwitch) {
-      if (synSwitch) {
-        synSwitch.focus();
-      }
+      synSwitch.focus();
     }
   },
   render: () => html`<syn-switch>Focused</syn-switch>`,

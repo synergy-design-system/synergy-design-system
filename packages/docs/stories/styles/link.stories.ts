@@ -12,6 +12,7 @@ import {
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import '../../../components/src/components/icon/icon.js';
+import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-link');
 const { overrideArgs } = storybookHelpers('syn-link');
@@ -138,6 +139,7 @@ export const Disabled: StoryObj = {
 };
 
 export const Focus: StoryObj = {
+  decorators: [paddingDecorator()],
   parameters: {
     chromatic: {
       disableSnapshot: false,

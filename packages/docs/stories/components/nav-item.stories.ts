@@ -13,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-nav-item');
 const { overrideArgs } = storybookHelpers('syn-nav-item');
@@ -96,6 +97,7 @@ export const HorizontalNavigation: Story = {
 };
 
 export const Focus: Story = {
+  decorators: [paddingDecorator()],
   parameters: {
     chromatic: {
       disableSnapshot: false,

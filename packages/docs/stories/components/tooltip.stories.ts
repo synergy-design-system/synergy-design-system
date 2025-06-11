@@ -303,7 +303,7 @@ export const Hoisting: Story = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  // Default,
+  Default,
   Placement,
   // ClickTrigger,
   // ManualTrigger,

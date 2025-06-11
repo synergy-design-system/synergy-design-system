@@ -118,15 +118,22 @@ export const Focus: Story = {
       },
     },
   },
-  play: ({ canvasElement }) => {
+  play: async ({ canvasElement }) => {
     const textarea = canvasElement.querySelector('syn-textarea')!;
     if (textarea) {
+      const promiseCallback = new Promise<void>((resolve) => {
+        textarea.addEventListener('syn-focus', () => {
+          console.log('Textarea is focused');
+          resolve();
+        }, { once: true });
+      });
       textarea.focus();
+      await promiseCallback;
     }
   },
   render: () => html`
       <form>
-        <syn-textarea placeholder="This is in focus"></syn-textarea>
+        <syn-textarea placeholder="This is in focus!"></syn-textarea>
       </form>
     `,
 };

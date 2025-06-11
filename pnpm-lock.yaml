@@ -296,7 +296,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -758,7 +758,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)
       eslint-plugin-storybook:
         specifier: ^9.0.8
         version: 9.0.8(eslint@8.57.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.2)
@@ -768,6 +768,9 @@ importers:
       lit:
         specifier: ^3.2.1
         version: 3.2.1
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -8493,6 +8496,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
@@ -15830,6 +15834,7 @@ snapshots:
       eslint-import-resolver-typescript: 4.2.5(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   eslint-plugin-compat@6.0.2(eslint@8.57.1):
     dependencies:
@@ -15927,6 +15932,7 @@ snapshots:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
+    optional: true
 
   eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2):
     dependencies:

@@ -31,6 +31,7 @@
     "eslint-plugin-storybook": "^9.0.8",
     "globby": "^14.1.0",
     "lit": "^3.2.1",
+    "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "storybook": "^9.0.8",

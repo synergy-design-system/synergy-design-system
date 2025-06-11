@@ -108,6 +108,7 @@ export const ReadonlyTextareas: Story = {
 };
 
 export const Focus: Story = {
+  decorators: [(story) => html`<div style="padding: 10px">${story()}</div>`],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -118,17 +119,10 @@ export const Focus: Story = {
       },
     },
   },
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const textarea = canvasElement.querySelector('syn-textarea')!;
     if (textarea) {
-      const promiseCallback = new Promise<void>((resolve) => {
-        textarea.addEventListener('syn-focus', () => {
-          console.log('Textarea is focused');
-          resolve();
-        }, { once: true });
-      });
       textarea.focus();
-      await promiseCallback;
     }
   },
   render: () => html`

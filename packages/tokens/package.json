@@ -33,7 +33,9 @@
       "default": "./package.json"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss/*": "./dist/scss/*"
+    "./scss/*": "./dist/scss/*",
+    "./default.css": "./dist/themes/light.css",
+    "./default-dark.css": "./dist/themes/dark.css"
   },
   "files": [
     "dist",
@@ -107,7 +109,7 @@
   },
   "scripts": {
     "build": "pnpm clean && node scripts/build.js",
-    "clean": "rimraf build",
+    "clean": "rimraf dist",
     "lint:css": "stylelint \"dist/**/*.css\"",
     "lint:js": "eslint scripts dist/js",
     "lint:types": "tsc --noEmit",

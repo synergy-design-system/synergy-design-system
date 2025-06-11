@@ -1,23 +1,22 @@
 import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-
-// Enable this to set default settings for all components
-// import { setDefaultSettingsForElement, enableExperimentalSettingEmitEvents } from '../../components/src/synergy';
-// enableExperimentalSettingEmitEvents();
-// window.addEventListener('syn-default-settings-changed', console.log);
-// setDefaultSettingsForElement('SynAccordion', {
-//   size: 'small',
-// });
 
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME } from './modes.js';
+import {
+  DARK_THEME,
+  LIGHT_THEME,
+  SICK_2025_DARK,
+  SICK_2025_LIGHT,
+} from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { storybookUtilities } from '../src/helpers/component.js';
@@ -26,8 +25,10 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [LIGHT_THEME]: 'syn-theme-light',
-    [DARK_THEME]: 'syn-theme-dark',
+    [DARK_THEME]: 'syn-sick-2018-dark',
+    [LIGHT_THEME]: 'syn-sick-2018-light',
+    [SICK_2025_DARK]: 'syn-sick-2025-dark',
+    [SICK_2025_LIGHT]: 'syn-sick-2025-light',
   },
 });
 

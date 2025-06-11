@@ -312,9 +312,6 @@ export const Screenshot: Story = generateScreenshotStory({
   SettingAMaximumWidth,
   Hoisting,
 }, {
-  additionalChromaticOptions: {
-    delay: 1000,
-  },
   heightPx: 550,
   styleHeading: {
     'margin-bottom': '180px',

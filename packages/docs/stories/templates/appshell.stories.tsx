@@ -22,7 +22,8 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
-      diffThreshold: 0.01,
+      diffThreshold: 0.001,
+      diffIncludeAntiAliasing: true,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
@@ -57,7 +58,6 @@ export const SideNavigation: Story = {
   render: () => html`
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-side-navigation">
-      a
       ${createHeader()}
       
       <!-- .synergy-demo-content -->
@@ -217,7 +217,7 @@ export const StickyNavigationDesktop: Story = {
   name: 'Sticky Navigation (Desktop)',
   parameters: {
     chromatic: {
-      diffThreshold: 0.01,
+      diffThreshold: 0.001,
     },
     docs: {
       description: {

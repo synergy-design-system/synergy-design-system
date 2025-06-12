@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .button {
-    /* font-weight: var(--syn-font-weight-bold); */
+    font-weight: var(--syn-font-weight-bold);
   }
 
   .button:focus-visible {

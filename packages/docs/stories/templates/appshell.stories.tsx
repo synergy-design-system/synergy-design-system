@@ -22,6 +22,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
+      diffThreshold: 0.03,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
@@ -214,6 +215,9 @@ export const RailNavigationMobile: Story = {
 export const StickyNavigationDesktop: Story = {
   name: 'Sticky Navigation (Desktop)',
   parameters: {
+    chromatic: {
+      diffThreshold: 0.02,
+    },
     docs: {
       description: {
         story: generateStoryDescription('application-shell', 'sticky-navigation-desktop', 'templates'),

@@ -12,6 +12,7 @@ export default css`
 	/* stylelint-disable */
   :host {
     display: inline-block;
+    --syn-input-border-width: 2px;
   }
 
   .checkbox {

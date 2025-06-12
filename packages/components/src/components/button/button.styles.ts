@@ -108,7 +108,7 @@ export default css`
 
   .button--outline {
     background: none;
-    border: solid var(--syn-input-border-width);
+    border: solid 1px;
   }
 
   /* Primary */

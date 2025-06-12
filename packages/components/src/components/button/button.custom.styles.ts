@@ -1,12 +1,8 @@
 import { css } from 'lit';
 
 export default css`
-  :host {
-    --syn-input-border-width: 2px;
-  }
-
   .button {
-    font-weight: var(--syn-font-weight-bold);
+    /* font-weight: var(--syn-font-weight-bold); */
   }
 
   .button:focus-visible {

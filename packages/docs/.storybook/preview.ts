@@ -56,6 +56,7 @@ const preview: Preview = {
       },
     },
     controls: {
+      expanded: true,
       disable: true,
       matchers: {
         color: /(background|color)$/i,

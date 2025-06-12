@@ -1,8 +1,7 @@
 import type { TemplateResult } from 'lit';
 import type { ClassDeclaration, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
 import type { InputType } from 'storybook/internal/csf';
-import { getWcStorybookHelpers, setWcStorybookHelpersConfig } from 'wc-storybook-helpers';
-import { getComponentByTagName } from 'wc-storybook-helpers/dist/cem-utilities.js';
+import { getStorybookHelpers, setStorybookHelpersConfig } from '@wc-toolkit/storybook-helpers';
 import { html } from 'lit/static-html.js';
 import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components-vite';
 import { sentenceCase } from 'change-case';
@@ -15,20 +14,39 @@ import docsTokens from '../../../tokens/src/figma-tokens/_docs.json' with { type
 
 declare global {
   interface Window {
-    __STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__?: unknown;
+    __STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__?: Package;
   }
 }
 
-setWcStorybookHelpersConfig({ hideArgRef: true, hideScriptTag: true });
+// Filter out all private members and readonly properties from the manifest
+const filteredManifest = (manifest: Package): Package => ({
+  ...manifest,
+  modules: manifest.modules.map((module) => ({
+    ...module,
+    declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => ({
+      ...declaration,
+      members: (declaration.members as ClassMember[]).filter(
+        (member: ClassMember) => member.description && member.privacy !== 'private',
+      ),
+    })),
+  })),
+});
+const componentsManifestFiltered = filteredManifest(componentsManifest as Package);
+const stylesManifestFiltered = filteredManifest(stylesManifest as Package);
+
+setStorybookHelpersConfig({
+  hideArgRef: true,
+  renderDefaultValues: false,
+});
 
 // Copy the styles manifest into the components manifest
 const manifest = {
-  ...componentsManifest,
+  ...componentsManifestFiltered,
   modules: [
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    ...(componentsManifest as Package).modules,
+    ...componentsManifestFiltered.modules,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    ...(stylesManifest as Package).modules,
+    ...stylesManifestFiltered.modules,
   ],
 } as Package;
 
@@ -48,12 +66,11 @@ export interface ConstantDefinition {
  *
  * @param {string} customElementTag - Custom element tag for which the defaults are to be fetched.
  */
-export const storybookDefaults: typeof getWcStorybookHelpers = (customElementTag: string) => {
-  const manifestData = getComponentByTagName(
-    customElementTag,
-    // eslint-disable-next-line no-underscore-dangle
-    window.__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__,
-  ) as ClassDeclaration;
+export const storybookDefaults = (customElementTag: string) => {
+  // eslint-disable-next-line no-underscore-dangle
+  const manifestData = window.__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__!.modules
+    .flatMap(module => module.declarations)
+    .find(declaration => declaration.tagName === customElementTag) as ClassDeclaration;
 
   // Add the methods that are currently still missing
   const methods = (manifestData?.members as ClassMember[])
@@ -70,13 +87,13 @@ export const storybookDefaults: typeof getWcStorybookHelpers = (customElementTag
       [method.name]: method,
     }), {});
 
-  const output = getWcStorybookHelpers(customElementTag);
+  const output = getStorybookHelpers(customElementTag);
   const finalOutput = {
     ...output,
     argTypes: {
       ...output.argTypes,
       ...methods,
-    } as ArgTypesDefinition,
+    },
   };
   return finalOutput;
 };
@@ -89,11 +106,11 @@ export const storybookDefaults: typeof getWcStorybookHelpers = (customElementTag
  */
 export const storybookHelpers = (customElementTag: string) => ({
   /**
-     * Returns a suffix string based on the type of argument.
-     *
-     * @param {ArgTypesDefinition} type - The type of the argument.
-     * @returns {string} - The suffix string.
-     */
+   * Returns a suffix string based on the type of argument.
+   *
+   * @param {ArgTypesDefinition} type - The type of the argument.
+   * @returns {string} - The suffix string.
+   */
   getSuffixFromType: (type: ArgTypesDefinition): string => ({
     attribute: '',
     cssPart: '-part',
@@ -118,11 +135,11 @@ export const storybookHelpers = (customElementTag: string) => ({
   },
 
   /**
-     * Returns the possible values for a list of attributes for a given custom element tag.
-     *
-     * @param {string[]} attributes - The attributes for which the values are to be fetched.
-     * @returns {any} - The possible values for the attributes.
-     */
+   * Returns the possible values for a list of attributes for a given custom element tag.
+   *
+   * @param {string[]} attributes - The attributes for which the values are to be fetched.
+   * @returns {any} - The possible values for the attributes.
+   */
   getValuesFromAttributes: (attributes: string[]) => attributes?.map((attribute: string) => {
     let usedAttribute = attribute;
     if (!attribute.endsWith('-attr')) {
@@ -135,12 +152,12 @@ export const storybookHelpers = (customElementTag: string) => ({
   }),
 
   /**
-     * Returns an arguments object that has been overridden with the specified overrides.
-     *
-     * @param {ConstantDefinition | ConstantDefinition[]} overrides - Overrides for the arguments.
-     * @param {Object} original - The original arguments object that is to be overridden.
-     * @returns {Object} - The arguments object with the overrides applied.
-     */
+   * Returns an arguments object that has been overridden with the specified overrides.
+   *
+   * @param {ConstantDefinition | ConstantDefinition[]} overrides - Overrides for the arguments.
+   * @param {Object} original - The original arguments object that is to be overridden.
+   * @returns {Object} - The arguments object with the overrides applied.
+   */
   overrideArgs: (
     overrides: ConstantDefinition | ConstantDefinition[],
     original?: { [k: string]: unknown; },
@@ -166,64 +183,16 @@ export const storybookHelpers = (customElementTag: string) => ({
  * @returns {Object} - An object containing a function that generates a story template.
  */
 export const storybookTemplate = (customElementTag: string) => {
-  const { template: theTemplate } = getWcStorybookHelpers(customElementTag);
-
+  const { template: theTemplate } = getStorybookHelpers(customElementTag);
   const { args: defaultArgs } = storybookDefaults(customElementTag);
-
-  /**
-   * Returns a Lit template function that creates a story based on provided configuration.
-   * This function takes a configuration object
-   * that specifies the constants and arguments to be used in the story.
-   *
-   * The `constants` array defines the constant arguments to be used in the story.
-   * Each constant is a `ConstantDefinition` object which consists of
-   * a type, name, value, and title.
-   *
-   * Type is the argument type which can be 'attribute',
-   * 'property', 'slot', 'cssPart', or 'cssProperty'.
-   *
-   * Name is the argument name.
-   * Value is the constant value of the argument. Title is the label of the constant in the story.
-   *
-   * The `args` object is the default arguments for the story.
-   * If specified, these arguments will be used as defaults
-   * for the story. If a constant or an axis with the same
-   * argument name is specified, the value from the constant
-   * or axis will override the default value from `args`.
-   *
-   * The template function returned by `generateTemplate`
-   * generates a Lit template for the story based on
-   * the provided configuration. The template displays a table showing all possible combinations of
-   * argument values, with one row for each y-axis value and one column for each x-axis value.
-   * Each cell in the table is filled with the custom element in the corresponding state.
-   */
-  const generateTemplate = ({
-    args = defaultArgs,
-    constants = [],
-  }: {
-    /**
-     * The constant argument(s) for the story. Those will be applied to every cell in the table.
-     */
-    args: unknown;
-    constants?: ConstantDefinition | ConstantDefinition[];
-  }) => {
-    const template = (templateArgs: unknown) => theTemplate(templateArgs);
-
-    const constantDefinitions = (Array.isArray(constants) ? constants : [constants]).reduce(
-      (acc, curr) => ({
-        ...acc,
-        [`${curr.name}${storybookHelpers(customElementTag).getSuffixFromType(curr.type as ArgTypesDefinition)}`]: curr.value,
-      }),
-      {},
-    );
-
-    return html`${template({
-      ...((typeof args === 'object' && args !== null) ? args : {}),
-      ...constantDefinitions,
-    })}`;
+  return {
+    generateTemplate: (data = {
+      args: {},
+    }) => theTemplate({
+      ...defaultArgs,
+      ...data.args,
+    }),
   };
-
-  return { generateTemplate };
 };
 
 type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;

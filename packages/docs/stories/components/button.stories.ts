@@ -48,7 +48,7 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: (args) => generateTemplate({ args }),
 } as Story;
 
 export const Variants: Story = {

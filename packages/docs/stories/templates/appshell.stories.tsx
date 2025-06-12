@@ -56,6 +56,7 @@ export const SideNavigation: Story = {
     },
   },
   render: () => html`
+  <style> syn-nav-item::part(divider) { --color: red;}</style>
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-side-navigation">
       ${createHeader()}
@@ -84,6 +85,8 @@ export const SideNavigationShrinkingContent: Story = {
     },
   },
   render: () => html`
+    <style> syn-nav-item::part(divider) { --color: red;}</style>
+
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-shrink">
       ${createHeader()}
@@ -160,6 +163,8 @@ export const RailNavigationDesktop: Story = {
     },
   },
   render: () => html`
+    <style> syn-nav-item::part(divider) { --color: red;}</style>
+
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-rail-desktop">
       ${createHeader()}
@@ -226,6 +231,8 @@ export const StickyNavigationDesktop: Story = {
     },
   },
   render: () => html`
+    <style> syn-nav-item::part(divider) { --color: red;}</style>
+
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-sticky-desktop">
       ${createHeader()}
@@ -288,6 +295,8 @@ export const TopNavigation: Story = {
     },
   },
   render: () => html`
+    <style> syn-nav-item::part(divider) { --color: red;}</style>
+
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-top-navigation">
       ${createHeader({ withMetaNavigation: true })}
@@ -316,6 +325,8 @@ export const WhiteBackground: Story = {
     },
   },
   render: () => html`
+    <style> syn-nav-item::part(divider) { --color: red;}</style>
+
     <!-- .synergy-demo-application -->
     <div class="synergy-demo-application" id="appshell-white-background">
       ${createHeader({ withMetaNavigation: true })}

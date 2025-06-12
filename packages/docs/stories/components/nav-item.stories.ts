@@ -312,5 +312,5 @@ export const Screenshot: Story = generateScreenshotStory({
   ChildrenClosedOrOpenVerticalOnly,
   Divider,
   Disabled,
-}, 300);
+}, { heightPx: 300, additionalChromaticOptions: { diffThreshold: 0.01, diffIncludeAntiAliasing: true}});
 /* eslint-enable sort-keys */

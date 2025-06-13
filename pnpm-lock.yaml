@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@wc-toolkit/storybook-helpers@1.1.4':
+    hash: z7o3dxfhekkzg72zfp7km33vve
+    path: patches/@wc-toolkit__storybook-helpers@1.1.4.patch
   semantic-release-monorepo@7.0.5:
     hash: truyw3zny6xwfgnwjmnt4lw47m
     path: patches/semantic-release-monorepo@7.0.5.patch
@@ -296,7 +299,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)
+        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -746,7 +749,7 @@ importers:
         version: 19.1.8
       '@wc-toolkit/storybook-helpers':
         specifier: ^1.1.4
-        version: 1.1.4(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
+        version: 1.1.4(patch_hash=z7o3dxfhekkzg72zfp7km33vve)(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       chromatic:
         specifier: ^11.29.0
         version: 11.29.0
@@ -761,7 +764,7 @@ importers:
         version: 8.57.1
       eslint-plugin-import:
         specifier: ^2.31.0
-        version: 2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)
+        version: 2.31.0(eslint-import-resolver-typescript@4.2.5)(eslint@8.57.1)
       eslint-plugin-storybook:
         specifier: ^9.0.8
         version: 9.0.8(eslint@8.57.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
@@ -13890,7 +13893,7 @@ snapshots:
       typescript: 5.8.3
       vue: 3.5.13(typescript@5.8.3)
 
-  '@wc-toolkit/storybook-helpers@1.1.4(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@wc-toolkit/storybook-helpers@1.1.4(patch_hash=z7o3dxfhekkzg72zfp7km33vve)(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
       '@storybook/preview-api': 8.6.14(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       lit: 3.3.0
@@ -15917,7 +15920,6 @@ snapshots:
       eslint-import-resolver-typescript: 4.2.5(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   eslint-plugin-compat@6.0.2(eslint@8.57.1):
     dependencies:
@@ -16015,7 +16017,6 @@ snapshots:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
-    optional: true
 
   eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2):
     dependencies:

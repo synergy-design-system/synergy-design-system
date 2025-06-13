@@ -31,7 +31,8 @@
   "private": true,
   "pnpm": {
     "patchedDependencies": {
-      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
+      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch",
+      "@wc-toolkit/storybook-helpers@1.1.4": "patches/@wc-toolkit__storybook-helpers@1.1.4.patch"
     }
   },
   "devDependencies": {

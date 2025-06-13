@@ -1,4 +1,5 @@
 import { Markdown, Meta } from "@storybook/addon-docs/blocks";
+import React from 'react';
 import { camelCase } from 'change-case';
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue , CopyRawValue} from '../../src/shared-components/RawColorValue.tsx';
@@ -27,9 +28,9 @@ import {
     ['font-weight', 'Font Weight', getFontWeight(true)],
     ['line-height', 'Line Height', getLineHeight(true)],
   ].map(([prop, title, category]) => (
-    <>
+    <React.Fragment key={prop}>
       <Markdown>{`## ${title}`}</Markdown>
-      <p>
+      <span>
         {docsTokens?.tokens?.typography?.[prop]?.description?.value ?? ''}
         {prop === 'font-family' && (
           <blockquote>
@@ -40,7 +41,7 @@ import {
             Examples for this can be seen at our <a href="?path=/docs/prerequisites--docs">Prerequisites Documentation section</a>.
           </blockquote>
         )}
-      </p>
+      </span>
       <table key={`syn-${prop}`}>
         <tbody>
           <>
@@ -79,7 +80,7 @@ import {
           </>
         </tbody>
       </table>
-    </>
+    </React.Fragment>
   ))
 }
 

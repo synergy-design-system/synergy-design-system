@@ -67,7 +67,27 @@ export interface ConstantDefinition {
  * @param {string} customElementTag - Custom element tag for which the defaults are to be fetched.
  */
 // eslint-disable-next-line max-len
-export const storybookDefaults = (customElementTag: string) => getStorybookHelpers(customElementTag);
+export const storybookDefaults = (customElementTag: string) => {
+  const output = getStorybookHelpers(customElementTag);
+  const { argTypes, args } = output;
+
+  // Hide controls for all properties
+  Object.keys(argTypes).forEach((key) => {
+    if (argTypes[key].table && argTypes[key].table.category === 'properties') {
+      // Remove the value of properties and disabled them as otherwise it can result in
+      // unexpected behavior ( e.g. `modal` property of dialog)
+      argTypes[key].control = false;
+      args[key] = undefined;
+    }
+  });
+
+  return {
+    ...output,
+    argTypes: {
+      ...argTypes,
+    },
+  };
+};
 
 /**
  * Returns helper functions for working with the stories of a given custom element tag.

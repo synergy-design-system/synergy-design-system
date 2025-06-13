@@ -257,6 +257,9 @@ export const ContactForm = {
 
 export const ContactFormTablet = {
   ...ContactForm,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -264,9 +267,6 @@ export const ContactFormTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };

@@ -53,6 +53,9 @@ export const Footer = {
 
 export const FooterTablet = {
   ...Footer,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -60,9 +63,6 @@ export const FooterTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };
@@ -97,6 +97,9 @@ export const FooterWithinAppshell = {
 
 export const FooterWithinAppshellTablet = {
   ...FooterWithinAppshell,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -104,9 +107,6 @@ export const FooterWithinAppshellTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };

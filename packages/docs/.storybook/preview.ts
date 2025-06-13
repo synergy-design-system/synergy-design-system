@@ -27,7 +27,8 @@ const preview: Preview = {
   initialGlobals: {
     background: {
       value: 'neutral-50',
-    }
+    },
+    viewport: { value: 'defaultViewPort', isRotated: false },
   },
   parameters: {
     backgrounds: {
@@ -66,14 +67,14 @@ const preview: Preview = {
       },
       source: {
         format: 'html',
-        transform: async (source: string, storyContext: StoryContext) => {         
+        transform: async (source: string, storyContext: StoryContext) => {
           const prettier = await import('prettier/standalone');
           const htmlParser = await import('prettier/parser-html');
           const resultWithCodepen = docsCodepenEnhancer(source, storyContext);
           try {
             return prettier.format(resultWithCodepen, {
               parser: 'html',
-              plugins: [htmlParser],             
+              plugins: [htmlParser],
             });
           } catch (e) {
             console.error(e);
@@ -86,8 +87,7 @@ const preview: Preview = {
     // that we have a valid default viewport.
     // When not setting this, the last active viewport will be used, which we do not want
     viewport: {
-      defaultViewport: 'defaultViewPort',
-      viewports: {
+      options: {
         ...MINIMAL_VIEWPORTS,
         defaultViewPort: {
           name: 'Default',
@@ -97,7 +97,7 @@ const preview: Preview = {
           },
           type: 'desktop',
         },
-      },
+      }
     },
   },
   tags: ['autodocs']

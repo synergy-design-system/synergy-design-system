@@ -193,10 +193,8 @@ export const BreadcrumbTruncated = {
 };
 
 export const BreadcrumbShort = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
+  globals: {
+    viewport: { value: 'mobile1' },
   },
   render: () => html`
     <div id="breadcrumb-short" class="synergy-demo-application">

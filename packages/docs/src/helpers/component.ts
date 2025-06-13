@@ -66,37 +66,8 @@ export interface ConstantDefinition {
  *
  * @param {string} customElementTag - Custom element tag for which the defaults are to be fetched.
  */
-export const storybookDefaults = (customElementTag: string) => {
-  // eslint-disable-next-line no-underscore-dangle
-  const manifestData = window.__STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__!.modules
-    .flatMap(module => module.declarations)
-    .find(declaration => declaration.tagName === customElementTag) as ClassDeclaration;
-
-  // Add the methods that are currently still missing
-  const methods = (manifestData?.members as ClassMember[])
-    .filter((member: ClassMember) => member.kind === 'method' && member.privacy !== 'private' && member.description)
-    .map((method: ClassMember) => ({
-      ...method,
-      control: false,
-      table: {
-        category: 'Methods',
-      },
-    }))
-    .reduce((acc: Record<string, Partial<ClassMember>>, method: ClassMember) => ({
-      ...acc,
-      [method.name]: method,
-    }), {});
-
-  const output = getStorybookHelpers(customElementTag);
-  const finalOutput = {
-    ...output,
-    argTypes: {
-      ...output.argTypes,
-      ...methods,
-    },
-  };
-  return finalOutput;
-};
+// eslint-disable-next-line max-len
+export const storybookDefaults = (customElementTag: string) => getStorybookHelpers(customElementTag);
 
 /**
  * Returns helper functions for working with the stories of a given custom element tag.

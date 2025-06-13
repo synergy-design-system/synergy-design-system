@@ -24,23 +24,18 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 
 const preview: Preview = {
   decorators: [stopAnimation, themeByClassName],
+  initialGlobals: {
+    background: {
+      value: 'neutral-50',
+    }
+  },
   parameters: {
     backgrounds: {
-      default: 'neutral-1000',
-      values: [
-        {
-          name: 'neutral-1000',
-          value: 'var(--syn-color-neutral-0)',
-        },
-        {
-          name: 'neutral-50',
-          value: 'var(--syn-color-neutral-50)',
-        },
-        {
-          name: 'primary-100',
-          value: 'var(--syn-color-primary-50)',
-        },
-      ],
+      options: {
+        'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
+        'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },
+        'primary-50': { name: 'primary-50', value: 'var(--syn-color-primary-50)' },
+      },
     },
     chromatic: {
       diffThreshold: 0.50, // Original value is set to 0.63

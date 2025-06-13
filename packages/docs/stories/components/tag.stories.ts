@@ -4,7 +4,7 @@
 
 import '../../../components/src/components/tag/tag.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,

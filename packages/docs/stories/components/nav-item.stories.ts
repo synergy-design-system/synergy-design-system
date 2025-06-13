@@ -3,7 +3,7 @@
 import type { SynNavItem } from '@synergy-design-system/components';
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,

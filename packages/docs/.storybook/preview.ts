@@ -1,26 +1,17 @@
-import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components';
+import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
+
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-
-// Enable this to set default settings for all components
-// import { setDefaultSettingsForElement, enableExperimentalSettingEmitEvents } from '../../components/src/synergy';
-// enableExperimentalSettingEmitEvents();
-// window.addEventListener('syn-default-settings-changed', console.log);
-// setDefaultSettingsForElement('SynAccordion', {
-//   size: 'small',
-// });
-
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import { LIGHT_THEME, DARK_THEME } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
-import { storybookUtilities } from '../src/helpers/component.js';
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
@@ -33,26 +24,19 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 
 const preview: Preview = {
   decorators: [stopAnimation, themeByClassName],
+  initialGlobals: {
+    background: {
+      value: 'neutral-50',
+    },
+    viewport: { value: 'defaultViewPort', isRotated: false },
+  },
   parameters: {
-    // Incompatible with storybook@8
-    // actions: { argTypesRegex: "^on[A-Z].*" },
-    // Make sure we are able to check background colors when in our different themes
     backgrounds: {
-      default: 'neutral-1000',
-      values: [
-        {
-          name: 'neutral-1000',
-          value: 'var(--syn-color-neutral-0)',
-        },
-        {
-          name: 'neutral-50',
-          value: 'var(--syn-color-neutral-50)',
-        },
-        {
-          name: 'primary-100',
-          value: 'var(--syn-color-primary-50)',
-        },
-      ],
+      options: {
+        'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
+        'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },
+        'primary-50': { name: 'primary-50', value: 'var(--syn-color-primary-50)' },
+      },
     },
     chromatic: {
       diffThreshold: 0.50, // Original value is set to 0.63
@@ -68,6 +52,7 @@ const preview: Preview = {
       },
     },
     controls: {
+      expanded: true,
       disable: true,
       matchers: {
         color: /(background|color)$/i,
@@ -81,15 +66,28 @@ const preview: Preview = {
         headingSelector: 'h2, h3',
       },
       source: {
-        format: 'html', transform: (code: string, storyContext: StoryContext) => storybookUtilities.codeOptimizer(docsCodepenEnhancer(code, storyContext)),
+        format: 'html',
+        transform: async (source: string, storyContext: StoryContext) => {
+          const prettier = await import('prettier/standalone');
+          const htmlParser = await import('prettier/parser-html');
+          const resultWithCodepen = docsCodepenEnhancer(source, storyContext);
+          try {
+            return prettier.format(resultWithCodepen, {
+              parser: 'html',
+              plugins: [htmlParser],
+            });
+          } catch (e) {
+            console.error(e);
+            return resultWithCodepen;
+          }
+        }
       }
     },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.
     // When not setting this, the last active viewport will be used, which we do not want
     viewport: {
-      defaultViewport: 'defaultViewPort',
-      viewports: {
+      options: {
         ...MINIMAL_VIEWPORTS,
         defaultViewPort: {
           name: 'Default',
@@ -99,9 +97,10 @@ const preview: Preview = {
           },
           type: 'desktop',
         },
-      },
+      }
     },
   },
+  tags: ['autodocs']
 };
 
 export default preview;

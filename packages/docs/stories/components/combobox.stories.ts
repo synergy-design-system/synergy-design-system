@@ -8,11 +8,11 @@ import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import { highlightOptionRenderer } from '../../../components/src/components/combobox/option-renderer.js';
 import {
   generateScreenshotStory,

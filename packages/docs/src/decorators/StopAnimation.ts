@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
-import type { StoryFn } from '@storybook/web-components';
+import type { StoryFn } from '@storybook/web-components-vite';
 import isChromatic from 'chromatic/isChromatic';
 
 /**

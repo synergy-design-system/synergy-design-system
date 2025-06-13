@@ -1,11 +1,11 @@
 import React from 'react';
-import type { Meta } from '@storybook/web-components';
+import type { Meta } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
   Subtitle,
   Title,
-} from '@storybook/blocks';
+} from '@storybook/addon-docs/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
@@ -257,6 +257,9 @@ export const ContactForm = {
 
 export const ContactFormTablet = {
   ...ContactForm,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -264,9 +267,6 @@ export const ContactFormTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };

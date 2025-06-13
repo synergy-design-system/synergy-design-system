@@ -4,9 +4,9 @@ import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/textarea/textarea.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';

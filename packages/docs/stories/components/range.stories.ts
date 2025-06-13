@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { SynRange } from '@synergy-design-system/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { userEvent } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { userEvent } from 'storybook/test';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
 import '../../../components/src/components/button/button.js';

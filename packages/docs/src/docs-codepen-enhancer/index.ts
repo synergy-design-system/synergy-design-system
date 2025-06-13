@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { StoryContext } from '@storybook/web-components';
+import { StoryContext } from '@storybook/web-components-vite';
 
 export default function docsCodepenEnhancer(code: string, storyContext: StoryContext) {
   // We hijack the formatter to keep track of every story's code change

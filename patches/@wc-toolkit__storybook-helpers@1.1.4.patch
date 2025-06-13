@@ -1,0 +1,64 @@
+diff --git a/dist/index.js b/dist/index.js
+index 0748ac03fdca25367545353ac273a7e334817634..1e9d8248811888390f3c7992450156ca4146b9da 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -178,7 +178,7 @@ function safeSetProperty(element, name, value) {
+ var spread = directive(SpreadDirective);
+ 
+ // src/html-templates.ts
+-import { useArgs } from "@storybook/preview-api";
++import { useArgs } from "storybook/preview-api";
+ import { html, unsafeStatic } from "lit/static-html.js";
+ import { unsafeHTML } from "lit/directives/unsafe-html.js";
+ 
+@@ -692,7 +692,8 @@ function getSlotsTemplate(component, args, excludeCategories) {
+     for (const child of container.childNodes) {
+       if (child.textContent?.trim() === "" || child.textContent === "\n") {
+         slotContent += child.textContent;
+-        continue;
++        // TODO: can be removed as soon as the bug is fixed https://github.com/wc-toolkit/storybook-helpers/issues/40
++        //continue;
+       }
+       if (child instanceof Text) {
+         slotContent += `  <span slot=${slotName}>${child.textContent}</span>`;
+diff --git a/package.json b/package.json
+index 200dc8488f853fb3db1b55827c846d60ee6fda2b..34e2496d540b0501489e43819785d9ec7043b1c9 100644
+--- a/package.json
++++ b/package.json
+@@ -33,11 +33,8 @@
+     "@chromatic-com/storybook": "^3.2.4",
+     "@custom-elements-manifest/analyzer": "^0.10.4",
+     "@eslint/js": "^9.19.0",
+-    "@storybook/addon-essentials": "^8.5.8",
+-    "@storybook/blocks": "^8.5.8",
+-    "@storybook/test": "^8.5.8",
+-    "@storybook/web-components": "^8.5.8",
+-    "@storybook/web-components-vite": "^8.5.8",
++    "@storybook/addon-docs": "9.0.4",
++    "@storybook/web-components-vite": "9.0.4",
+     "@types/node": "^22.13.2",
+     "@wc-toolkit/cem-utilities": "^1.0.2",
+     "@wc-toolkit/type-parser": "^1.0.1",
+@@ -50,7 +47,7 @@
+     "husky": "^9.1.7",
+     "lit": "^3.2.1",
+     "prettier": "3.4.2",
+-    "storybook": "^8.5.8",
++    "storybook": ">=9.0.0-0 <10.0.0-0",
+     "tsup": "^8.3.6",
+     "typescript": "^5.7.3",
+     "typescript-eslint": "^8.21.0",
+@@ -75,11 +72,9 @@
+     "provenance": true,
+     "access": "public"
+   },
+-  "dependencies": {
+-    "@storybook/preview-api": "^7.0.0 || ^8.0.0"
+-  },
+   "peerDependencies": {
+-    "lit": "^2.0.0 || ^3.0.0"
++    "lit": "^2.0.0 || ^3.0.0",
++    "storybook": "^8.0.0 || ^9.0.0"
+   },
+   "eslintConfig": {
+     "extends": [

@@ -3,7 +3,7 @@
 import '../../../components/src/components/tab-panel/tab-panel.js';
 import '../../../components/src/components/tab-group/tab-group.js';
 import '../../../components/src/components/tab/tab.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,

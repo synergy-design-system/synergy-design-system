@@ -1,6 +1,14 @@
+import type { ClassDeclaration, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
 import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
+import { setCustomElementsManifest } from '@storybook/web-components-vite';
+import { setStorybookHelpersConfig } from '@wc-toolkit/storybook-helpers';
+
+// @ts-expect-error This is a virtual import, which is not recognized by TypeScript
+import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest';
+// @ts-expect-error This is a virtual import, which is not recognized by TypeScript
+import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 
 import '@synergy-design-system/tokens/themes/dark.css';
 import '@synergy-design-system/tokens/themes/light.css';
@@ -12,6 +20,40 @@ import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import { LIGHT_THEME, DARK_THEME } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
+
+// Filter out all private members and readonly properties from the manifest
+const filteredManifest = (manifest: Package): Package => ({
+  ...manifest,
+  modules: manifest.modules.map((module) => ({
+    ...module,
+    declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => ({
+      ...declaration,
+      members: (declaration.members as ClassMember[]).filter(
+        (member: ClassMember) => member.description && member.privacy !== 'private',
+      ),
+    })),
+  })),
+});
+const componentsManifestFiltered = filteredManifest(componentsManifest as Package);
+const stylesManifestFiltered = filteredManifest(stylesManifest as Package);
+
+// Copy the styles manifest into the components manifest
+const manifest = {
+  ...componentsManifestFiltered,
+  modules: [
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    ...componentsManifestFiltered.modules,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    ...stylesManifestFiltered.modules,
+  ],
+} as Package;
+
+setCustomElementsManifest(manifest);
+
+setStorybookHelpersConfig({
+  hideArgRef: true,
+  renderDefaultValues: false,
+});
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,

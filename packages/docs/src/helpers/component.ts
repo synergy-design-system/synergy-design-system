@@ -1,56 +1,11 @@
 import type { TemplateResult } from 'lit';
-import type { ClassDeclaration, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
 import type { InputType } from 'storybook/internal/csf';
-import { getStorybookHelpers, setStorybookHelpersConfig } from '@wc-toolkit/storybook-helpers';
+import type { Parameters, StoryObj } from '@storybook/web-components-vite';
+import { getStorybookHelpers } from '@wc-toolkit/storybook-helpers';
 import { html } from 'lit/static-html.js';
-import { Parameters, StoryObj, setCustomElementsManifest } from '@storybook/web-components-vite';
 import { sentenceCase } from 'change-case';
-// @ts-expect-error This is a virtual import, which is not recognized by TypeScript
-import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest';
-// @ts-expect-error This is a virtual import, which is not recognized by TypeScript
-import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json' with { type: 'json' };
-
-declare global {
-  interface Window {
-    __STORYBOOK_CUSTOM_ELEMENTS_MANIFEST__?: Package;
-  }
-}
-
-// Filter out all private members and readonly properties from the manifest
-const filteredManifest = (manifest: Package): Package => ({
-  ...manifest,
-  modules: manifest.modules.map((module) => ({
-    ...module,
-    declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => ({
-      ...declaration,
-      members: (declaration.members as ClassMember[]).filter(
-        (member: ClassMember) => member.description && member.privacy !== 'private',
-      ),
-    })),
-  })),
-});
-const componentsManifestFiltered = filteredManifest(componentsManifest as Package);
-const stylesManifestFiltered = filteredManifest(stylesManifest as Package);
-
-setStorybookHelpersConfig({
-  hideArgRef: true,
-  renderDefaultValues: false,
-});
-
-// Copy the styles manifest into the components manifest
-const manifest = {
-  ...componentsManifestFiltered,
-  modules: [
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    ...componentsManifestFiltered.modules,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    ...stylesManifestFiltered.modules,
-  ],
-} as Package;
-
-setCustomElementsManifest(manifest);
 
 type ArgTypesDefinition = 'attribute' | 'property' | 'slot' | 'cssPart' | 'cssProperty';
 
@@ -173,18 +128,11 @@ export const storybookHelpers = (customElementTag: string) => ({
  * @param {string} customElementTag - Custom element tag for the story template is to be generated.
  * @returns {Object} - An object containing a function that generates a story template.
  */
-export const storybookTemplate = (customElementTag: string) => {
-  const { template: theTemplate } = getStorybookHelpers(customElementTag);
-  const { args: defaultArgs } = storybookDefaults(customElementTag);
-  return {
-    generateTemplate: (data = {
-      args: {},
-    }) => theTemplate({
-      ...defaultArgs,
-      ...data.args,
-    }),
-  };
-};
+export const storybookTemplate = (customElementTag: string) => ({
+  generateTemplate: (data = {
+    args: {},
+  }) => getStorybookHelpers(customElementTag).template(data.args),
+});
 
 type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
 type Attribute<T extends Component> = T extends keyof typeof docsTokens.components

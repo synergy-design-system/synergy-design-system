@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   /* Write custom CSS here */
   :host {
-    --color: var(--syn-color-neutral-600);
+    --color: var(--syn-color-neutral-900);
     --width: 2px;
   }
 `;

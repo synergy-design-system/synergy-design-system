@@ -76,7 +76,7 @@ export const SideNavigation: Story = {
 export const SideNavigationShrinkingContent: Story = {
   parameters: {
     chromatic: {
-      diffThreshold: 0.03,
+      diffThreshold: 0.01,
     },
     docs: {
       description: {

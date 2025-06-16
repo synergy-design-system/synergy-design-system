@@ -21,6 +21,7 @@ const meta: Meta = {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
+      disableSnapshot: false,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
@@ -74,6 +75,9 @@ export const SideNavigation: Story = {
 
 export const SideNavigationShrinkingContent: Story = {
   parameters: {
+    chromatic: {
+      diffThreshold: 0.03,
+    },
     docs: {
       description: {
         story: generateStoryDescription('application-shell', 'side-navigation-shrinking', 'templates'),

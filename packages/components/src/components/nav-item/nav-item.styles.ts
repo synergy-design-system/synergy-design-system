@@ -295,7 +295,7 @@ export default css`
    * Dividers are optionally displayed in horizontal nav items
    */
   .divider {
-    --color: var(--syn-color-neutral-900);
+    --color: var(--syn-color-neutral-200);
 
     left: var(--syn-spacing-medium);
     margin: 0;

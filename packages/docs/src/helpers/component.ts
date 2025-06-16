@@ -26,9 +26,9 @@ export const storybookDefaults = (customElementTag: string) => {
   const output = getStorybookHelpers(customElementTag);
   const { argTypes, args } = output;
 
-  // Hide controls for all properties
+  // Hide controls for all properties that don´t have a valid summary
   Object.keys(argTypes).forEach((key) => {
-    if (argTypes[key].table && argTypes[key].table.category === 'properties') {
+    if (argTypes[key].table && argTypes[key].table.category === 'properties' && !argTypes[key].table.type?.summary) {
       // Remove the value of properties and disabled them as otherwise it can result in
       // unexpected behavior ( e.g. `modal` property of dialog)
       argTypes[key].control = false;

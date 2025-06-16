@@ -26,9 +26,23 @@ export const storybookDefaults = (customElementTag: string) => {
   const output = getStorybookHelpers(customElementTag);
   const { argTypes, args } = output;
 
+  // List of summary types that are considered valid per default
+  // This makes it work for our custom styles package manifest
+  const validSummaryTypes = ['boolean', 'string', 'number'];
+
+  const checkValidTableSummary = (arg: typeof argTypes[string]) => arg.table?.type?.summary
+    && validSummaryTypes.includes(arg.table.type?.summary);
+
+  const checkMatchesDefaultValue = (arg: typeof argTypes[string]) => arg.table?.type?.summary
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    && arg.table.type?.summary?.includes(arg.defaultValue);
+
   // Hide controls for all properties that don´t have a valid summary
-  Object.keys(argTypes).forEach((key) => {
-    if (argTypes[key].table && argTypes[key].table.category === 'properties' && !argTypes[key].table.type?.summary) {
+  Object.keys(argTypes).forEach(key => {
+    const hasValidTableSummary = checkValidTableSummary(argTypes[key]);
+    const matchesDefaultValue = checkMatchesDefaultValue(argTypes[key]);
+
+    if (argTypes[key].table && argTypes[key].table.category === 'properties' && !hasValidTableSummary && !matchesDefaultValue) {
       // Remove the value of properties and disabled them as otherwise it can result in
       // unexpected behavior ( e.g. `modal` property of dialog)
       argTypes[key].control = false;

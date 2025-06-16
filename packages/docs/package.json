@@ -31,7 +31,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@types/react": "^18.3.20",
-    "chromatic": "^11.27.0",
+    "chromatic": "^12.2.0",
     "comment-parser": "^1.4.1",
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^8.57.1",

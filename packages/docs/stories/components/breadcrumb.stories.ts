@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/breadcrumb/breadcrumb.js';
 import '../../../components/src/components/breadcrumb-item/breadcrumb-item.js';
@@ -44,6 +44,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-breadcrumb',
 };
 export default meta;
@@ -61,8 +62,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const BreadcrumbLinks: Story = {
   parameters: {

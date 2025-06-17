@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/tab/tab.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -31,13 +31,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-tab',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -48,13 +49,13 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => html`
-  ${generateTemplate({ args })}
-  <syn-tab active>Active</syn-tab>
-  <syn-tab closable>Closable</syn-tab>
-  <syn-tab disabled>Disabled</syn-tab>
+  render: args => html`
+    ${generateTemplate({ args })}
+    <syn-tab active>Active</syn-tab>
+    <syn-tab closable>Closable</syn-tab>
+    <syn-tab disabled>Disabled</syn-tab>
   `,
-} as Story;
+};
 
 export const Screenshot: Story = generateScreenshotStory({
   Default,

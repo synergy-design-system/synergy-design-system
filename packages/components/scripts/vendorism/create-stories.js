@@ -48,7 +48,7 @@ export async function generateStorybookFile(inputFilePath, outputFilePath, compo
 /* eslint-disable import/no-relative-packages */
 
 import '../../../components/src/components/${componentName}/${componentName}';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { storybookDefaults, storybookHelpers, storybookTemplate, generateStoryDescription } from '../../src/helpers/component.js';
 const { args, argTypes } = storybookDefaults('${prefix}-${componentName}');

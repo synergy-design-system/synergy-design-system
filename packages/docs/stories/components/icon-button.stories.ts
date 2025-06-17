@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-
 import '../../../components/src/components/icon-button/icon-button.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynIconButton } from '@synergy-design-system/components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -36,13 +34,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form', 'Navigation', 'Icons'],
   title: 'Components/syn-icon-button',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -53,8 +52,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Sizes: Story = {
   parameters: {
@@ -64,9 +63,11 @@ export const Sizes: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
+  render: () => html`
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
     <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>`,
+    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>
+  `,
 };
 
 export const Colors: Story = {
@@ -122,7 +123,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement; }) => {
-    const iconButton = canvasElement.querySelector('syn-icon-button') as SynIconButton;
+    const iconButton = canvasElement.querySelector('syn-icon-button');
     if (iconButton) {
       iconButton.focus();
     }
@@ -156,7 +157,7 @@ export const Label: Story = {
   </style>`,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Sizes,
@@ -165,3 +166,4 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Label,
 });
+/* eslint-enable sort-keys */

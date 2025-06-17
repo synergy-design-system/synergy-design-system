@@ -4,7 +4,7 @@ import '../../../components/src/components/side-nav/side-nav.js';
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/header/header.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -33,6 +33,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Application Shell'],
   title: 'Components/syn-side-nav',
 };
 
@@ -111,7 +112,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-header label="Side Navigation"></syn-header>
     <main style="position: relative; height: 500px; background-color: var(--syn-color-neutral-200);" class="side-nav-default">
       ${generateTemplate({ args })}

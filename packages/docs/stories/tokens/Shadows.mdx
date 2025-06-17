@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
@@ -13,7 +13,7 @@ import {
   getShadows,
 } from '../../src/helpers';
 
-<Meta title="Tokens/Shadows" />
+<Meta title="Tokens/Shadows" tags={['Design Tokens']} />
 
 # {docsTokens?.tokens?.shadow?.title.value}
 

@@ -3,8 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj } from '@storybook/web-components';
-import type { SynDetails } from '@synergy-design-system/components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/details/details.js';
 import '../../../components/src/components/icon/icon.js';
@@ -51,6 +50,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-details',
 };
 export default meta;
@@ -68,8 +68,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Open: Story = {
   parameters: {
@@ -123,9 +123,9 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const details = canvasElement.querySelector('syn-details') as SynDetails;
+    const details = canvasElement.querySelector('syn-details');
     if (details) {
-      details.shadowRoot!.querySelector('summary')!.focus()
+      details.shadowRoot!.querySelector('summary')!.focus();
     }
   },
   render: () => html`

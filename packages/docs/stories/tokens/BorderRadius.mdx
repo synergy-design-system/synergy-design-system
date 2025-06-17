@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
@@ -14,7 +14,7 @@ import {
   getSASSToken,
 } from '../../src/helpers';
 
-<Meta title="Tokens/Border Radius" />
+<Meta title="Tokens/Border Radius" tags={['Design Tokens']} />
 
 # {docsTokens?.tokens?.['border-radius']?.title.value}
 

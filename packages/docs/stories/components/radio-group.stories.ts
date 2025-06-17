@@ -6,9 +6,9 @@ import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio/radio.js';
 import '../../../components/src/components/button/button.js';
 import type { SynRadioGroup } from '@synergy-design-system/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -31,13 +31,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-radio-group',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   args: overrideArgs([
     { name: 'label', type: 'attribute', value: 'This is a label' },
     {
@@ -55,8 +56,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Labels: Story = {
   parameters: {

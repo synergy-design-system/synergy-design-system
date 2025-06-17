@@ -110,6 +110,9 @@ export const Disabled: Story = {
 
 export const Invalid: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('range', 'invalid'),
@@ -539,7 +542,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Labels,
   HelpText,
   Disabled,
-  Invalid,
   Sizes,
   PrefixSuffixText,
   CustomTrackColors,

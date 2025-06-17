@@ -1,7 +1,7 @@
 import { css } from 'lit';
 
 export default css`
-:host([size='small']) {
+  :host([size='small']) {
     --height: calc(var(--syn-font-size-medium) + 2px);
     --thumb-size: var(--syn-font-size-small);
     --width: calc((var(--height) * 2) - 6px);
@@ -17,6 +17,11 @@ export default css`
     --height: calc(var(--syn-toggle-size-large) + 4px);
     --thumb-size: var(--syn-toggle-size-large);
     --width: calc((var(--height) * 2) - 6px);
+  }
+
+  /** #429: Use token for opacity */
+  .switch--disabled { 
+    opacity: var(--syn-input-disabled-opacity);
   }
 
   .switch.switch--small {

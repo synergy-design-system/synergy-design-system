@@ -4,10 +4,60 @@ import {
   type SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
-import { createTestCases } from '../helpers.js';
+import { createTestCases, fillField } from '../helpers.js';
 
 test.describe('<SynCombobox />', () => {
   createTestCases(({ name, port }) => {
+    test.describe(`Regression#632: ${name}`, () => {
+      test('should have a valid DOM tree after interaction', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox632');
+
+        await expect(combobox).toBeVisible();
+
+        // Fill the field, but don´t blur. We want to use keyboard navigation!
+        await fillField(combobox, 'lo', '.combobox__display-input', false);
+
+        await page.keyboard.down('ArrowDown');
+        await page.keyboard.down('ArrowDown');
+        await page.keyboard.press('Enter');
+
+        // Check that the displayed value is the text content of the option
+        const domData = await combobox.evaluate((ele: SynCombobox) => ({
+          label: ele.displayLabel,
+          value: ele.value,
+        }));
+
+        expect(domData.label).toEqual('dolor');
+        expect(domData.value).toEqual('option-3');
+
+        // Clear the combobox, check values again.
+        await Promise.allSettled(
+          'dolor'
+            .split('')
+            .map(async () => page.keyboard.press('Backspace')),
+        );
+
+        await page.keyboard.down('ArrowDown');
+        await page.keyboard.down('ArrowDown');
+        await page.keyboard.press('Enter');
+
+        // Check that the displayed value is the text content of the option
+        const domData2 = await combobox.evaluate((ele: SynCombobox) => ({
+          label: ele.displayLabel,
+          value: ele.value,
+        }));
+
+        expect(domData2.label).toEqual('ipsum');
+        expect(domData2.value).toEqual('option-2');
+      });
+    }); // regression#632
+
     test.describe(`Regression#797: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via value', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

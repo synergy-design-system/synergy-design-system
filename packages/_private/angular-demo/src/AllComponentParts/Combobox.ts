@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import type { SynChangeEvent, SynCombobox } from '@synergy-design-system/components';
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
@@ -33,18 +34,36 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
       </syn-combobox>
       <syn-button type="reset">Reset</syn-button>
     </form>
+
+    <syn-combobox
+      data-testid="combobox-632"
+      label="Keyboard Interaction test #632"
+      [value]="cb632Value"
+      (synChangeEvent)="setcb632Value($event)"
+    >
+      <syn-option value="option-1">Lorem</syn-option>
+      <syn-option value="option-2">ipsum</syn-option>
+      <syn-option value="option-3">dolor</syn-option>
+    </syn-combobox>
+
   `,
 })
 export class Combobox implements OnInit {
   levels!: Array<{value: string, label: string }>
 
+  cb632Value: string = '';
+
+  setcb632Value(e: SynChangeEvent) {
+    this.cb632Value = (e.target as SynCombobox).value;
+  };
+
   ngOnInit(): void {
     setTimeout(() => {
       this.levels = [
-          { value: '1', label: 'Novice' },
-          { value: '2', label: 'Intermediate' },
-          { value: '3', label: 'Advanced' },
-        ];
+        { value: '1', label: 'Novice' },
+        { value: '2', label: 'Intermediate' },
+        { value: '3', label: 'Advanced' },
+      ];
     }, 0);
   }
 }

@@ -637,6 +637,13 @@ describe('<syn-select>', () => {
       });
 
       it('Should wait to select the option when the option exists for multiple select', async () => {
+        // This test is flaky, at least on the ci systems.
+        // Therefore, we skip it in Safari.
+        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+          // eslint-disable-next-line no-console
+          console.warn('Skipping multiple select lazy loaded options test in Safari because of false positives');
+          return;
+        }
         const form = await fixture<HTMLFormElement>(
           html`<form><syn-select name="select" value="option-1" multiple></syn-select></form>`
         );

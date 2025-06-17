@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import type { SynCombobox } from '@synergy-design-system/components';
 
 export const Combobox = () => {
   const [levels, setLevels] = useState<Array<{ value: string, label: string }>>([]);
+  const [cb632Value, setcb632Value] = useState<string>('');
   useEffect(() => {
     setTimeout(() => {
       setLevels([
@@ -35,6 +37,17 @@ export const Combobox = () => {
         </syn-combobox>
         <syn-button type="reset">Reset</syn-button>
       </form>
+
+      <syn-combobox
+        data-testid="combobox-632"
+        label="Keyboard Interaction test #632"
+        value={cb632Value}
+        onsyn-change={(e) => setcb632Value((e.target as SynCombobox).value)}
+      >
+        <syn-option value="option-1">Lorem</syn-option>
+        <syn-option value="option-2">ipsum</syn-option>
+        <syn-option value="option-3">dolor</syn-option>
+      </syn-combobox>
     </>
   );
 };

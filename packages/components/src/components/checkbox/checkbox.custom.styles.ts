@@ -9,6 +9,11 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error);
   }
 
+  /** #429: Use token for opacity */
+  .checkbox--disabled {
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   /**
    * Hover
    * Applies the hover state to the whole component

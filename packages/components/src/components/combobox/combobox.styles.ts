@@ -250,6 +250,11 @@ export default css`
   }
 
 
+  /** #429: Use token for opacity */
+  .combobox--standard.combobox--disabled .combobox__inputs {
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   /**
    * Invalid user data
    */

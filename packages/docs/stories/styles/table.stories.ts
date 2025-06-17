@@ -116,7 +116,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'Styles'],
   title: 'Styles/syn-table',
 };
 export default meta;

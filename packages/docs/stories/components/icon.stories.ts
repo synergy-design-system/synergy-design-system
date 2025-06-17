@@ -264,7 +264,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Images'],
+  tags: ['Icons'],
   title: 'Components/syn-icon',
 };
 export default meta;

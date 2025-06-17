@@ -50,7 +50,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'Structure'],
+  tags: ['Navigation', 'Structure', 'Styles'],
   title: 'Styles/syn-link-list',
 };
 export default meta;

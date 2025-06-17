@@ -39,7 +39,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation'],
+  tags: ['Navigation', 'Styles'],
   title: 'Styles/syn-link',
 };
 export default meta;

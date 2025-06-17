@@ -33,7 +33,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Typography'],
+  tags: ['Typography', 'Styles'],
   title: 'Styles/syn-weight',
 };
 export default meta;

@@ -177,6 +177,25 @@
 
     <syn-divider></syn-divider>
 
+    <!-- Experience --> 
+    <fieldset class="syn-fieldset">
+      <legend class="syn-legend">Experience</legend>
+      <syn-radio-group
+        id="experience"
+        label="How experienced are you with the Synergy Design System?"
+        name="experience"
+      >
+        <syn-radio>I have never used it</syn-radio>
+        <syn-radio id="experience-little">I have used it a little</syn-radio>
+        <syn-radio>I have used it a lot</syn-radio>
+        <syn-radio>I am a Synergy Design System expert</syn-radio>
+        <syn-radio>I am the creator of the Synergy Design System</syn-radio>
+      </syn-radio-group>
+    </fieldset>
+    <!-- /Experience -->
+
+    <syn-divider></syn-divider>
+
     <!-- Marketing -->
     <fieldset class="syn-fieldset">
       <!-- We will never do this, I promise! -->

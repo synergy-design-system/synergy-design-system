@@ -1,11 +1,11 @@
 import React from 'react';
-import type { Meta, StoryObj as Story } from '@storybook/web-components';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
   Subtitle,
   Title,
-} from '@storybook/blocks';
+} from '@storybook/addon-docs/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
@@ -172,6 +172,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Templates/Table',
 };
 export default meta;

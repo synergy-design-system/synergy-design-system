@@ -1,7 +1,7 @@
 import React, {
   type FC,
 } from 'react';
-import { Markdown } from '@storybook/blocks';
+import { Markdown } from '@storybook/addon-docs/blocks';
 
 type Props = {
   children: string;

@@ -6,10 +6,10 @@ import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/button/button.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import type { SynSelect } from '@synergy-design-system/components';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import { openSelect } from '../../src/helpers/select.js';
 import {
   generateScreenshotStory,
@@ -39,13 +39,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-select',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     args: overrideArgs({
       name: 'default',
@@ -65,8 +66,8 @@ export const Default = {
       },
     },
   },
-  render: (renderArgs: unknown) => generateTemplate({ args: renderArgs }),
-} as Story;
+  render: renderArgs => generateTemplate({ args: renderArgs }),
+};
 
 export const Labels: Story = {
   parameters: {

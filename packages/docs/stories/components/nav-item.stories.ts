@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { SynNavItem } from '@synergy-design-system/components';
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -36,6 +35,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-nav-item',
 };
 export default meta;
@@ -53,7 +53,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
+  render: args => generateTemplate({ args }),
 };
 
 export const Labels: Story = {
@@ -107,7 +107,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const item = canvasElement.querySelector('syn-nav-item') as SynNavItem;
+    const item = canvasElement.querySelector('syn-nav-item');
     if (item) {
       item.focus();
     }

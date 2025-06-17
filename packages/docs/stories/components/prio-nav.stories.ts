@@ -3,7 +3,7 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/prio-nav/prio-nav.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -43,6 +43,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-prio-nav',
 };
 export default meta;
@@ -60,8 +61,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const PriorityMenu = {
   parameters: {

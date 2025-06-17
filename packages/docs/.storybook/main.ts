@@ -4,31 +4,31 @@ import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/i
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
-    "@storybook/addon-mdx-gfm",
     '@chromatic-com/storybook',
     { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
+    "@storybook/addon-docs"
   ],
+
   core: {
     disableTelemetry: true,
   },
-  docs: {
-    autodocs: true,
-  },
+
   env: StorybookEnvPackageVersions({
     packagePaths: ['../components', '../assets', '../styles', '../tokens'],
   }),
+
   framework: {
     name: "@storybook/web-components-vite",
     options: {},
   },
+
   staticDirs: ['../public', {
     from: '../../assets/src',
     to: '/assets'
   }],
+
   stories: [
     "../stories/Welcome.mdx",
     "../stories/Prerequisites.mdx",
@@ -47,6 +47,7 @@ const config: StorybookConfig = {
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
+
   viteFinal: async (config) => {
     return {
       ...config,

@@ -5,8 +5,8 @@ import '../../../components/src/components/drawer/drawer.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon-button/icon-button.js';
 import '../../../components/src/components/input/input.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { userEvent } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { userEvent } from 'storybook/test';
 import { html } from 'lit';
 import {
   generateStoryDescription,
@@ -37,13 +37,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-drawer',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   args: overrideArgs([
     {
       name: 'open',
@@ -91,7 +92,7 @@ export const Default = {
       },
     },
   },
-  render: (args) => html`
+  render: args => html`
     ${generateTemplate({ args })}
     <syn-button class="drawer-default-story-opener">Open Drawer</syn-button>
     <script type="module">
@@ -111,7 +112,7 @@ export const Default = {
     });
     </script>
   `,
-} as Story;
+};
 
 export const SlideInFromStart: Story = {
   parameters: {

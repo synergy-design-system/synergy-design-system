@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { SynRange } from '@synergy-design-system/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { userEvent } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { userEvent } from 'storybook/test';
 import { html } from 'lit';
 import '../../../components/src/components/range/range.js';
 import '../../../components/src/components/button/button.js';
@@ -40,6 +39,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-range',
 };
 export default meta;
@@ -60,8 +60,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Labels: Story = {
   parameters: {
@@ -182,7 +182,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-range') as SynRange;
+    const input = canvasElement.querySelector('syn-range');
     if (input) {
       input.focus();
     }

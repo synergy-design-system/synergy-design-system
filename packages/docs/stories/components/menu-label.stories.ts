@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-label/menu-label.js';
@@ -37,6 +37,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-menu-label',
 };
 export default meta;
@@ -54,7 +55,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-menu style="width: 200px;">
       ${generateTemplate({ args })}
       <syn-menu-item>Apple</syn-menu-item>
@@ -66,7 +67,7 @@ export const Default: Story = {
       <syn-menu-item>Zucchini</syn-menu-item>
     </syn-menu>
   `,
-} as Story;
+};
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

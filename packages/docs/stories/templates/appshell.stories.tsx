@@ -76,9 +76,6 @@ export const SideNavigation: Story = {
 
 export const SideNavigationShrinkingContent: Story = {
   parameters: {
-    chromatic: {
-      diffThreshold: 0.01,
-    },
     docs: {
       description: {
         story: generateStoryDescription('application-shell', 'side-navigation-shrinking', 'templates'),
@@ -155,10 +152,6 @@ export const SideNavigationShrinkingContent: Story = {
 export const RailNavigationDesktop: Story = {
   name: 'Rail Navigation (Desktop)',
   parameters: {
-    chromatic: {
-      diffThreshold: 0,
-      diffIncludeAntiAliasing: false,
-    },
     docs: {
       description: {
         story: generateStoryDescription('application-shell', 'rail-navigation-desktop', 'templates'),
@@ -222,10 +215,6 @@ export const RailNavigationMobile: Story = {
 export const StickyNavigationDesktop: Story = {
   name: 'Sticky Navigation (Desktop)',
   parameters: {
-    chromatic: {
-      diffThreshold: 0,
-      diffIncludeAntiAliasing: true,
-    },
     docs: {
       description: {
         story: generateStoryDescription('application-shell', 'sticky-navigation-desktop', 'templates'),

@@ -16,13 +16,13 @@
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.15.32",
     "eslint": "^8.57.1",
     "serve": "^14.2.4",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@playwright/test": "^1.51.1",
+    "@playwright/test": "^1.53.0",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^"
   }

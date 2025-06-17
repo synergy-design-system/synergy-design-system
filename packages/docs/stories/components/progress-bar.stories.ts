@@ -3,7 +3,7 @@
 import '../../../components/src/components/progress-bar/progress-bar.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory,
@@ -34,13 +34,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Feedback'],
   title: 'Components/syn-progress-bar',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -48,8 +49,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Labels: Story = {
   parameters: {

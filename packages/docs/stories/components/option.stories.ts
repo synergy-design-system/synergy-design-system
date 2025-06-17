@@ -3,11 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { openSelect } from '../../src/helpers/select.js';
 import {
@@ -41,13 +40,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-option',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -55,14 +55,14 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => html`
+  render: args => html`
     <syn-select label="Select one">
       ${generateTemplate({ args })}
       <syn-option value="Option_2">Option 2</syn-option>
       <syn-option value="Option_3">Option 3</syn-option>
     </syn-select>
   `,
-} as Story;
+};
 
 export const Disabled: Story = {
   parameters: {

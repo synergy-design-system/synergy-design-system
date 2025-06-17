@@ -3,7 +3,7 @@
 
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import type { SynButton } from '@synergy-design-system/components';
 import {
@@ -32,13 +32,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form', 'Navigation'],
   title: 'Components/syn-button',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -49,8 +50,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Variants: Story = {
   parameters: {
@@ -103,7 +104,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const button = canvasElement.querySelector('syn-button') as SynButton;
+    const button = canvasElement.querySelector<SynButton>('syn-button');
     if (button) {
       button.focus();
     }
@@ -314,7 +315,7 @@ export const Disabled: Story = {
   <syn-button variant="text" disabled>Text</syn-button>`,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Variants,
@@ -327,3 +328,4 @@ export const Screenshot: Story = generateScreenshotStory({
   Loading,
   Disabled,
 }, 280);
+/* eslint-enable sort-keys */

@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { SynButton, SynTextarea } from '@synergy-design-system/components';
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/button/button.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -25,13 +24,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-textarea',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -42,8 +42,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Labels: Story = {
   parameters: {
@@ -121,7 +121,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const textarea = canvasElement.querySelector('syn-textarea') as SynTextarea;
+    const textarea = canvasElement.querySelector('syn-textarea');
     if (textarea) {
       textarea.focus();
     }
@@ -172,8 +172,8 @@ export const Invalid: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form')!;
-      const textarea = form.querySelector('syn-textarea') as SynTextarea;
-      const button = form.querySelector('syn-button') as SynButton;
+      const textarea = form.querySelector('syn-textarea');
+      const button = form.querySelector('syn-button');
 
       if (button && textarea) {
         // make sure to always fire both events:
@@ -227,7 +227,7 @@ export const ExpandWithContent: Story = {
   render: () => html`<syn-textarea resize="auto" placeholder="Type something"></syn-textarea>`,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
@@ -240,3 +240,4 @@ export const Screenshot: Story = generateScreenshotStory({
   PreventResizing,
   ExpandWithContent,
 }, 500);
+/* eslint-enable sort-keys */

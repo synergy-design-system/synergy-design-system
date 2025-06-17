@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import '../../../components/src/components/icon/icon.js';
-import { type Meta, type StoryObj } from '@storybook/web-components';
+import { type Meta, type StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
   generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -264,6 +264,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Icons'],
   title: 'Components/syn-icon',
 };
 export default meta;
@@ -273,14 +274,14 @@ type Story = StoryObj;
 /**
  * This shows the syn-icon in its default state
  */
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 /**
  * Icons inherit their color from the current text color.
@@ -525,7 +526,7 @@ export const SpriteSheetUsage: Story = {
   },
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Colors,
@@ -536,3 +537,4 @@ export const Screenshot: Story = generateScreenshotStory({
   BundledIconLibrary,
   SpriteSheetUsage,
 });
+/* eslint-enable sort-keys */

@@ -1,11 +1,11 @@
 import React from 'react';
-import type { Meta } from '@storybook/web-components';
+import type { Meta } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
   Subtitle,
   Title,
-} from '@storybook/blocks';
+} from '@storybook/addon-docs/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
@@ -41,6 +41,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation', 'Structure'],
   title: 'Templates/Footer',
 };
 export default meta;
@@ -51,6 +52,9 @@ export const Footer = {
 
 export const FooterTablet = {
   ...Footer,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -58,9 +62,6 @@ export const FooterTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };
@@ -88,6 +89,9 @@ export const FooterWithinAppshell = {
 
 export const FooterWithinAppshellTablet = {
   ...FooterWithinAppshell,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -95,9 +99,6 @@ export const FooterWithinAppshellTablet = {
     },
     docs: {
       disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };

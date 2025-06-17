@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj as Story } from '@storybook/web-components';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/validate/validate.js';
 import '../../../components/src/components/input/input.js';
@@ -65,6 +65,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-validate',
 };
 export default meta;
@@ -80,8 +81,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const InlineVariant: Story = {
   parameters: {

@@ -32,7 +32,7 @@
   "pnpm": {
     "patchedDependencies": {
       "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch",
-      "wc-storybook-helpers@1.5.3": "patches/wc-storybook-helpers@1.5.3.patch"
+      "@wc-toolkit/storybook-helpers@1.1.4": "patches/@wc-toolkit__storybook-helpers@1.1.4.patch"
     }
   },
   "devDependencies": {

@@ -1,11 +1,11 @@
 import React from 'react';
-import type { Meta, StoryObj as Story } from '@storybook/web-components';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
   Subtitle,
   Title,
-} from '@storybook/blocks';
+} from '@storybook/addon-docs/blocks';
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
@@ -41,6 +41,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Application Shell'],
   title: 'Templates/AppShell',
 };
 export default meta;
@@ -201,6 +202,9 @@ export const RailNavigationDesktop: Story = {
 
 export const RailNavigationMobile: Story = {
   ...RailNavigationDesktop,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -211,9 +215,6 @@ export const RailNavigationMobile: Story = {
         story: generateStoryDescription('application-shell', 'rail-navigation-mobile', 'templates'),
       },
       // disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };
@@ -268,6 +269,9 @@ export const StickyNavigationDesktop: Story = {
 
 export const StickyNavigationMobile: Story = {
   ...StickyNavigationDesktop,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
   name: '↳ Tablet',
   parameters: {
     controls: {
@@ -278,9 +282,6 @@ export const StickyNavigationMobile: Story = {
         story: generateStoryDescription('application-shell', 'sticky-navigation-mobile', 'templates'),
       },
       // disable: true,
-    },
-    viewport: {
-      defaultViewport: 'mobile2',
     },
   },
 };

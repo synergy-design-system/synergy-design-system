@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
@@ -47,13 +47,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-menu',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -64,12 +65,12 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <div style="width: 200px;">
       ${generateTemplate({ args })}
     </div>
   `,
-} as Story;
+};
 
 export const InDropdowns: Story = {
   parameters: {

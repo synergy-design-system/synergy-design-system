@@ -4,9 +4,9 @@ import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/textarea/textarea.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { userEvent } from '@storybook/test';
+import { userEvent } from 'storybook/test';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -27,13 +27,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-input',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -44,8 +45,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Labels: Story = {
   parameters: {

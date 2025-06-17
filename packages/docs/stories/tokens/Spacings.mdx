@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
@@ -10,7 +10,7 @@ import {
   getSpacings,
 } from '../../src/helpers';
 
-<Meta title="Tokens/Spacings" />
+<Meta title="Tokens/Spacings" tags={['Design Tokens']} />
 
 # {docsTokens?.tokens?.spacing?.title.value}
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../../../components/src/components/card/card.js';
@@ -92,6 +92,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-card',
 };
 export default meta;
@@ -109,8 +110,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const BasicCard: Story = {
   parameters: {

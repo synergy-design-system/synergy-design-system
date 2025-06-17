@@ -172,6 +172,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Templates/Table',
 };
 export default meta;

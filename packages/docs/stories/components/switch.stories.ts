@@ -4,7 +4,6 @@
 import '../../../components/src/components/switch/switch.js';
 import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import type { SynButton, SynSwitch } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
 import {
@@ -32,13 +31,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-switch',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -49,8 +49,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Checked: Story = {
   parameters: {
@@ -86,7 +86,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const synSwitch = canvasElement.querySelector('syn-switch') as SynSwitch;
+    const synSwitch = canvasElement.querySelector('syn-switch');
     if (synSwitch) {
       if (synSwitch) {
         synSwitch.focus();
@@ -110,8 +110,8 @@ export const Invalid: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-      const synSwitch = form?.querySelector('syn-switch') as SynSwitch;
-      const button = form?.querySelector('syn-button') as SynButton;
+      const synSwitch = form?.querySelector('syn-switch');
+      const button = form?.querySelector('syn-button');
 
       if (button && synSwitch) {
         await userEvent.click(button);
@@ -153,10 +153,11 @@ export const Sizes: Story = {
   <syn-switch size="large">Large</syn-switch>`,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Checked,
   Disabled,
   Sizes,
 });
+/* eslint-enable sort-keys */

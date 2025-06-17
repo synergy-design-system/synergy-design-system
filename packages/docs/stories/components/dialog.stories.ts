@@ -99,13 +99,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-dialog',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -119,7 +120,7 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     ${generateTemplate({ args })}
     ${createOpener('dialog-default-story-opener')}
   `,

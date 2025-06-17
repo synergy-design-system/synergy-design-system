@@ -49,6 +49,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-accordion',
 };
 export default meta;
@@ -66,8 +67,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Contained: Story = {
   parameters: {
@@ -183,7 +184,6 @@ const createDisabledStory = (contained: boolean): Story => ({
       </syn-details>
     </syn-accordion>
   `,
-
 });
 
 export const Disabled = createDisabledStory(false);

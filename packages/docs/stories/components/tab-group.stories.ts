@@ -93,13 +93,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-tab-group',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -107,8 +108,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const TabsOnStart: Story = {
   parameters: {

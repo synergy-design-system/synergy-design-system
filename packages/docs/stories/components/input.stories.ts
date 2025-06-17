@@ -26,13 +26,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-input',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -43,8 +44,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Labels: Story = {
   parameters: {

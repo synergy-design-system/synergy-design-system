@@ -74,6 +74,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-dropdown',
 };
 export default meta;
@@ -94,12 +95,12 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <div style="position: relative">
       ${generateTemplate({ args })}
     </div>
   `,
-} as Story;
+};
 
 export const GettingTheSelectedItem: Story = {
   parameters: {

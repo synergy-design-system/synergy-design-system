@@ -92,6 +92,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-card',
 };
 export default meta;
@@ -109,8 +110,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const BasicCard: Story = {
   parameters: {

@@ -36,6 +36,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation', 'Structure'],
   title: 'Templates/Footer',
 };
 export default meta;

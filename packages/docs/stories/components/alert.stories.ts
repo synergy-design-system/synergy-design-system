@@ -47,6 +47,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Feedback'],
   title: 'Components/syn-alert',
 };
 export default meta;
@@ -64,8 +65,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Variants: Story = {
   parameters: {

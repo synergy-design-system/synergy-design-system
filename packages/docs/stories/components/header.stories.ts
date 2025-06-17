@@ -35,6 +35,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Application Shell'],
   title: 'Components/syn-header',
 };
 export default meta;
@@ -52,8 +53,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Label: Story = {
   parameters: {
@@ -66,7 +67,7 @@ export const Label: Story = {
   render: () => html`
     <syn-header label="A new label"></syn-header>
   `,
-} as Story;
+};
 
 export const Logo: Story = {
   parameters: {
@@ -84,7 +85,7 @@ export const Logo: Story = {
       ></span>
     </syn-header>
   `,
-} as Story;
+};
 
 export const Focus: Story = {
   parameters: {
@@ -123,7 +124,7 @@ export const Focus: Story = {
       </a>
     </syn-header>
   `,
-} as Story;
+};
 
 export const MetaNavigation: Story = {
   parameters: {
@@ -142,7 +143,7 @@ export const MetaNavigation: Story = {
       </nav>
     </syn-header>
   `,
-} as Story;
+};
 
 export const Navigation = {
   parameters: {

@@ -68,6 +68,7 @@ const meta: Meta = {
       ),
     },
   },
+  tags: ['Navigation'],
   title: 'Templates/Breadcrumb',
 };
 export default meta;

@@ -26,13 +26,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Feedback'],
   title: 'Components/syn-spinner',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -40,8 +41,8 @@ export const Default = {
       },
     },
   },
-  render: (storyArgs: unknown) => generateTemplate({ args: storyArgs }),
-} as Story;
+  render: storyArgs => generateTemplate({ args: storyArgs }),
+};
 
 export const Size: Story = {
   parameters: {

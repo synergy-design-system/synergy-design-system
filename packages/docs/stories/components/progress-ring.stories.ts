@@ -41,13 +41,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Feedback'],
   title: 'Components/syn-progress-ring',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -55,8 +56,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Size: Story = {
   parameters: {

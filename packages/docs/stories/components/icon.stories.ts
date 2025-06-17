@@ -264,6 +264,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Images'],
   title: 'Components/syn-icon',
 };
 export default meta;
@@ -273,14 +274,14 @@ type Story = StoryObj;
 /**
  * This shows the syn-icon in its default state
  */
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 /**
  * Icons inherit their color from the current text color.
@@ -525,7 +526,7 @@ export const SpriteSheetUsage: Story = {
   },
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Colors,
@@ -536,3 +537,4 @@ export const Screenshot: Story = generateScreenshotStory({
   BundledIconLibrary,
   SpriteSheetUsage,
 });
+/* eslint-enable sort-keys */

@@ -44,6 +44,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-breadcrumb',
 };
 export default meta;
@@ -61,8 +62,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const BreadcrumbLinks: Story = {
   parameters: {

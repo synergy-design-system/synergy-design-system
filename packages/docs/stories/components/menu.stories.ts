@@ -47,13 +47,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-menu',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -64,12 +65,12 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <div style="width: 200px;">
       ${generateTemplate({ args })}
     </div>
   `,
-} as Story;
+};
 
 export const InDropdowns: Story = {
   parameters: {

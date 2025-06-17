@@ -33,6 +33,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Application Shell'],
   title: 'Components/syn-side-nav',
 };
 
@@ -111,7 +112,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-header label="Side Navigation"></syn-header>
     <main style="position: relative; height: 500px; background-color: var(--syn-color-neutral-200);" class="side-nav-default">
       ${generateTemplate({ args })}

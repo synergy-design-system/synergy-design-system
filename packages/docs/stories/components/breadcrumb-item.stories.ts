@@ -47,6 +47,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-breadcrumb-item',
 };
 export default meta;
@@ -64,14 +65,14 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-breadcrumb>
       ${generateTemplate({ args })}
       <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
       <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
     </syn-breadcrumb>
   `,
-} as Story;
+};
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

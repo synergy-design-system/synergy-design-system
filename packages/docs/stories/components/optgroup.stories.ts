@@ -51,6 +51,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-optgroup',
 };
 export default meta;
@@ -68,7 +69,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-select>
       ${generateTemplate({ args })}
       <syn-optgroup label="Section 2">
@@ -76,7 +77,7 @@ export const Default: Story = {
       </syn-optgroup>
     </syn-select>
   `,
-} as Story;
+};
 
 export const Disabled = {
   parameters: {

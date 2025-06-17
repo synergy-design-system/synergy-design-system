@@ -39,13 +39,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-select',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     args: overrideArgs({
       name: 'default',
@@ -65,8 +66,8 @@ export const Default = {
       },
     },
   },
-  render: (renderArgs: unknown) => generateTemplate({ args: renderArgs }),
-} as Story;
+  render: renderArgs => generateTemplate({ args: renderArgs }),
+};
 
 export const Labels: Story = {
   parameters: {

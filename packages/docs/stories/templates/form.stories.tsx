@@ -40,6 +40,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Templates/Forms',
 };
 export default meta;

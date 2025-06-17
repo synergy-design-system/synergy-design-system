@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
-
 import '../../../components/src/components/tag/tag.js';
 import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -33,13 +32,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Feedback'],
   title: 'Components/syn-tag',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -50,10 +50,10 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
-// TODO: Currently focus is not working because shoelace does not allow tabbing the icon button. 
+// TODO: Currently focus is not working because shoelace does not allow tabbing the icon button.
 // As soon as it`s possible, uncomment this story
 // export const Focus: Story = {
 //   parameters: {
@@ -120,15 +120,17 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-  <syn-tag size="small">Small</syn-tag>
-  <syn-tag size="medium">Medium</syn-tag>
-  <syn-tag size="large">Large</syn-tag>`,
+    <syn-tag size="small">Small</syn-tag>
+    <syn-tag size="medium">Medium</syn-tag>
+    <syn-tag size="large">Large</syn-tag>
+  `,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   WithIcon,
   Removable,
   Sizes,
 });
+/* eslint-enable sort-keys */

@@ -38,6 +38,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-menu-item',
 };
 export default meta;
@@ -55,12 +56,12 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-menu>
       ${generateTemplate({ args })}
     </syn-menu>
   `,
-} as Story;
+};
 
 export const PrefixAndSuffix: Story = {
   parameters: {

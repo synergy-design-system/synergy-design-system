@@ -33,6 +33,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Typography'],
   title: 'Styles/syn-body',
 };
 export default meta;

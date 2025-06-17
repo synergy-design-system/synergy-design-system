@@ -37,13 +37,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-drawer',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   args: overrideArgs([
     {
       name: 'open',
@@ -91,7 +92,7 @@ export const Default = {
       },
     },
   },
-  render: (args) => html`
+  render: args => html`
     ${generateTemplate({ args })}
     <syn-button class="drawer-default-story-opener">Open Drawer</syn-button>
     <script type="module">
@@ -111,7 +112,7 @@ export const Default = {
     });
     </script>
   `,
-} as Story;
+};
 
 export const SlideInFromStart: Story = {
   parameters: {

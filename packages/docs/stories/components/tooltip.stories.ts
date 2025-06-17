@@ -52,6 +52,7 @@ const meta: Meta = {
     },
     layout: 'centered',
   },
+  tags: ['Feedback'],
   title: 'Components/syn-tooltip',
 };
 export default meta;
@@ -69,8 +70,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Placement: Story = {
   parameters: {
@@ -320,3 +321,4 @@ export const Screenshot: Story = generateScreenshotStory({
     'margin-bottom': '180px',
   },
 });
+/* eslint-enable sort-keys */

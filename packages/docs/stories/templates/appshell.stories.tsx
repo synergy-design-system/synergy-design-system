@@ -41,6 +41,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Application Shell'],
   title: 'Templates/AppShell',
 };
 export default meta;

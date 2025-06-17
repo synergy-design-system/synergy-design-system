@@ -23,13 +23,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-divider',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     docs: {
       description: {
@@ -37,8 +38,8 @@ export const Default = {
       },
     },
   },
-  render: (args: any) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Width: Story = {
   parameters: {
@@ -114,7 +115,7 @@ export const Vertical: Story = {
 // </syn-menu>`,
 // };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Width,
@@ -122,3 +123,4 @@ export const Screenshot: Story = generateScreenshotStory({
   Spacing,
   Vertical,
 }, 180);
+/* eslint-enable sort-keys */

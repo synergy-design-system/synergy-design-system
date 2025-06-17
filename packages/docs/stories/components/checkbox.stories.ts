@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { SynButton, SynCheckbox } from '@synergy-design-system/components';
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -32,13 +31,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-checkbox',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -49,8 +49,8 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: (args) => generateTemplate({ args }),
+};
 
 export const Checked: Story = {
   parameters: {
@@ -116,8 +116,8 @@ export const CustomValidity: Story = {
   play: async ({ canvasElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-      const button = canvasElement.querySelector('syn-button') as SynButton;
-      const checkbox = canvasElement.querySelector('syn-checkbox') as SynCheckbox;
+      const button = canvasElement.querySelector('syn-button');
+      const checkbox = canvasElement.querySelector('syn-checkbox');
       const errorMessage = "Don't forget to check me!";
 
       if (form && button && checkbox) {
@@ -166,7 +166,7 @@ export const CustomValidity: Story = {
   `,
 };
 
-// Bundled screenshot story
+/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Checked,
@@ -174,3 +174,4 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
 });
+/* eslint-enable sort-keys */

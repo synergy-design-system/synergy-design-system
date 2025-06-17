@@ -3,7 +3,6 @@
 /* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/file/file.js';
 import '../../../components/src/components/button/button.js';
-import type { SynFile } from '@synergy-design-system/components';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import { userEvent } from 'storybook/test';
@@ -33,6 +32,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Form'],
   title: 'Components/syn-file',
 };
 export default meta;
@@ -48,8 +48,8 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => generateTemplate({ args }),
-} as Story;
+  render: args => generateTemplate({ args }),
+};
 
 export const Label: Story = {
   parameters: {
@@ -62,7 +62,7 @@ export const Label: Story = {
   render: () => html`
     <syn-file label="This is a label"></syn-file>
   `,
-} as Story;
+};
 
 export const HelpText: Story = {
   parameters: {
@@ -78,7 +78,7 @@ export const HelpText: Story = {
       label="This is a label"
     ></syn-file>
   `,
-} as Story;
+};
 
 export const Multiple: Story = {
   parameters: {
@@ -94,7 +94,7 @@ export const Multiple: Story = {
       multiple
     ></syn-file>
   `,
-} as Story;
+};
 
 export const HideValue: Story = {
   parameters: {
@@ -110,7 +110,7 @@ export const HideValue: Story = {
       label="This is a label"
     ></syn-file>
   `,
-} as Story;
+};
 
 export const Focus: Story = {
   parameters: {
@@ -124,7 +124,7 @@ export const Focus: Story = {
     },
   },
   play: ({ canvasElement }) => {
-    const input = canvasElement.querySelector('syn-file') as SynFile;
+    const input = canvasElement.querySelector('syn-file');
     if (input) {
       input.focus();
     }
@@ -132,7 +132,7 @@ export const Focus: Story = {
   render: () => html`
     <syn-file label="This is a label" help-text="This is a help text" droparea></syn-file>
   `,
-} as Story;
+};
 
 export const Disabled: Story = {
   parameters: {
@@ -172,7 +172,7 @@ export const Sizes: Story = {
       <syn-file size="large" label="Large"></syn-file>
     </div>
   `,
-} as Story;
+};
 
 export const Invalid: Story = {
   parameters: {
@@ -231,7 +231,7 @@ export const Invalid: Story = {
       }
     </style>
   `,
-} as Story;
+};
 
 export const Droparea: Story = {
   parameters: {
@@ -269,7 +269,7 @@ export const Droparea: Story = {
       ></syn-file>
     </div>
   `,
-} as Story;
+};
 
 export const Directory: Story = {
   parameters: {
@@ -292,7 +292,7 @@ export const Directory: Story = {
       ></syn-file>
     </div>
   `,
-} as Story;
+};
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

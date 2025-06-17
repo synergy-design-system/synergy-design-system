@@ -33,6 +33,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Styles/syn-table-cell',
 };
 export default meta;

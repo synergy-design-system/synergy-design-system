@@ -31,13 +31,14 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-tab',
 };
 export default meta;
 
 type Story = StoryObj;
 
-export const Default = {
+export const Default: Story = {
   parameters: {
     controls: {
       disable: false,
@@ -48,13 +49,13 @@ export const Default = {
       },
     },
   },
-  render: (args: unknown) => html`
-  ${generateTemplate({ args })}
-  <syn-tab active>Active</syn-tab>
-  <syn-tab closable>Closable</syn-tab>
-  <syn-tab disabled>Disabled</syn-tab>
+  render: args => html`
+    ${generateTemplate({ args })}
+    <syn-tab active>Active</syn-tab>
+    <syn-tab closable>Closable</syn-tab>
+    <syn-tab disabled>Disabled</syn-tab>
   `,
-} as Story;
+};
 
 export const Screenshot: Story = generateScreenshotStory({
   Default,

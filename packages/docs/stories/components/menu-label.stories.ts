@@ -37,6 +37,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Navigation'],
   title: 'Components/syn-menu-label',
 };
 export default meta;
@@ -54,7 +55,7 @@ export const Default: Story = {
       },
     },
   },
-  render: (args: unknown) => html`
+  render: args => html`
     <syn-menu style="width: 200px;">
       ${generateTemplate({ args })}
       <syn-menu-item>Apple</syn-menu-item>
@@ -66,7 +67,7 @@ export const Default: Story = {
       <syn-menu-item>Zucchini</syn-menu-item>
     </syn-menu>
   `,
-} as Story;
+};
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

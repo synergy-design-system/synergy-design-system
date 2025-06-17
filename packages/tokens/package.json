@@ -33,9 +33,7 @@
       "default": "./package.json"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss/*": "./dist/scss/*",
-    "./default.css": "./dist/themes/light.css",
-    "./default-dark.css": "./dist/themes/dark.css"
+    "./scss/*": "./dist/scss/*"
   },
   "files": [
     "dist",

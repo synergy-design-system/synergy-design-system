@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import type { StoryFn } from '@storybook/web-components';
+import type { StoryFn } from '@storybook/web-components-vite';
 
 /**
  * Wrap stories with custom padding

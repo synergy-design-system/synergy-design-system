@@ -81,7 +81,7 @@ const preview: Preview = {
       },
     },
     chromatic: {
-      diffThreshold: 0.01, // Original value is set to 0.63
+      diffThreshold: 0, // Original value is set to 0.63
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
       modes: {

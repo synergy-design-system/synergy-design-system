@@ -107,7 +107,7 @@
     "prettier": "^3.5.3",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "^7.0.8",
-    "stylelint": "^16.17.0"
+    "stylelint": "^16.20.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

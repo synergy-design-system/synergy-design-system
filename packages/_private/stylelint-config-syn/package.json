@@ -5,9 +5,9 @@
   },
   "dependencies": {
     "postcss-lit": "^1.2.0",
-    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard": "^38.0.0",
     "stylelint-no-unsupported-browser-features": "^8.0.4",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^7.0.0"
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
@@ -15,7 +15,7 @@
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.31.0",
     "lit": "^3.2.1",
-    "stylelint": "^16.17.0"
+    "stylelint": "^16.20.0"
   },
   "exports": {
     ".": "./index.js"

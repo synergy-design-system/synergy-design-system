@@ -250,6 +250,25 @@ const synChange = () => {
 
     <SynVueDivider />
 
+    <!-- Experience -->
+    <DemoFieldset legend="Experience">
+      <SynVueRadioGroup
+        id="experience"
+        label="How experienced are you with the Synergy Design System?"
+        name="experience"
+        v-model="formData.experience"
+      >
+        <SynVueRadio :value=0>I have never used it</SynVueRadio>
+        <SynVueRadio :value=1 id="experience-little">I have used it a little</SynVueRadio>
+        <SynVueRadio :value=2>I have used it a lot</SynVueRadio>
+        <SynVueRadio :value=3>I am a Synergy Design System expert</SynVueRadio>
+        <SynVueRadio :value=4>I am the creator of the Synergy Design System</SynVueRadio>
+      </SynVueRadioGroup>
+    </DemoFieldset>
+    <!-- /Experience -->
+
+    <SynVueDivider />
+
     <!-- Marketing -->
     <DemoFieldset legend="Please inform me about the following technologies">
       <SynVueCheckbox

@@ -34,6 +34,14 @@ export class BaseFormObject extends PageObject {
     return this.page.locator(selectors.emailLoc);
   }
 
+  get experience() {
+    return this.page.locator(selectors.experienceLoc);
+  }
+
+  get experienceLittle() {
+    return this.page.locator(selectors.experienceLittle);
+  }
+
   get password() {
     return this.page.locator(selectors.passLoc);
   }

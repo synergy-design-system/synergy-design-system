@@ -46,7 +46,7 @@ export default class SynRadio extends SynergyElement {
   @state() protected hasFocus = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property() value: string | number;
 
   /**
    * The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this

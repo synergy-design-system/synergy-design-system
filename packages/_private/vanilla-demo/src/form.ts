@@ -1,6 +1,12 @@
 /* eslint-disable no-console */
-import type { SynChangeEvent, SynCombobox, SynRange } from '@synergy-design-system/components';
-import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
+import {
+  type SynChangeEvent,
+  type SynCombobox,
+  type SynRadioGroup,
+  type SynRange,
+  highlightOptionRenderer,
+  serialize,
+} from '@synergy-design-system/components';
 import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
@@ -41,6 +47,8 @@ const setupForm = (formSelector: string) => {
 };
 
 export const afterRenderDefaultForm = async () => {
+  const mockedInitialData = mockData('initialFullFormData');
+
   await Promise.allSettled([
     customElements.whenDefined('syn-button'),
     customElements.whenDefined('syn-range'),
@@ -50,6 +58,19 @@ export const afterRenderDefaultForm = async () => {
   document
     .querySelector<SynRange>('#donations')!
     .tooltipFormatter = value => currencyNumberFormatter.format(value);
+
+  // Prepare the value properties of all experience fields
+  const experienceRadioGroup = document.querySelector<SynRadioGroup>('#experience')!;
+  experienceRadioGroup
+    .querySelectorAll('syn-radio')
+    .forEach((radio, index) => {
+      // eslint-disable-next-line no-param-reassign
+      radio.value = index;
+    });
+  // Fake the defaultValue. As this is typed as string, we need to fake cast it.
+  // Without this line, the defaultValue would be set nothing and form reset will fail :(.
+  experienceRadioGroup.defaultValue = (mockedInitialData.experience as unknown as string);
+  experienceRadioGroup.value = mockedInitialData.experience;
 
   // Add custom highlighter for the combobox
   initCombobox();

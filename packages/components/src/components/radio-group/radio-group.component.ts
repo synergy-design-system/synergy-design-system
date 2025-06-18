@@ -84,7 +84,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   @property() name = 'option';
 
   /** The current value of the radio group, submitted as a name/value pair with form data. */
-  @property({ reflect: true }) value = '';
+  @property({ reflect: true }) value: string | number = '';
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -129,7 +129,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
   connectedCallback() {
     super.connectedCallback();
-    this.defaultValue = this.value;
+    this.defaultValue = typeof this.value === 'number' ? this.value.toString() : this.value;
   }
 
   firstUpdated() {

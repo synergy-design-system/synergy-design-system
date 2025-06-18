@@ -22,6 +22,7 @@ export type DemoFormData = {
   date: string;
   donations: string;
   email: string;
+  experience: number;
   files: FileList | undefined;
   gender: string;
   happiness: string;

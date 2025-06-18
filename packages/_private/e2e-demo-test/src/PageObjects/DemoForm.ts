@@ -109,6 +109,10 @@ export class DemoForm extends BaseFormObject {
     const lastTick = '#donations syn-range-tick:last-of-type';
 
     await this.page.dragAndDrop(lastKnob, lastTick);
+
+    // Set experience to a little
+    await this.experience.click();
+    await this.experienceLittle.click();
   }
 
   async checkInitialState(expect: Expect) {
@@ -116,6 +120,7 @@ export class DemoForm extends BaseFormObject {
     expect(await getInputValue(this.role)).toBe('');
     expect(await getInputValue(this.name)).toBe('');
     expect(await getInputValue(this.email)).toBe('');
+    expect(await getInputValue(this.experience)).toBe(2);
     expect(await getInputValue(this.phone)).toBe('');
     expect(await getInputValue(this.birth)).toBe('');
     expect(await getInputValue(this.password)).toBe('invalid');

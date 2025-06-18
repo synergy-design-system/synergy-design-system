@@ -269,6 +269,25 @@ export const DemoForm = () => {
 
       <syn-divider />
 
+      {/* Experience */}
+      <DemoFieldset legend="Experience">
+        <syn-radio-group
+          id="experience"
+          label="How experienced are you with the Synergy Design System?"
+          name="experience"
+          value={formData.experience}
+        >
+          <syn-radio value={0}>I have never used it</syn-radio>
+          <syn-radio value={1} id="experience-little">I have used it a little</syn-radio>
+          <syn-radio value={2}>I have used it a lot</syn-radio>
+          <syn-radio value={3}>I am a Synergy Design System expert</syn-radio>
+          <syn-radio value={4}>I am the creator of the Synergy Design System</syn-radio>
+        </syn-radio-group>
+      </DemoFieldset>
+      {/* /Experience */}
+
+      <syn-divider />
+
       {/* Marketing */}
       <DemoFieldset legend="Please inform me about the following technologies">
         <syn-checkbox

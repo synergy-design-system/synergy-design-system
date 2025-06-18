@@ -177,7 +177,7 @@
 
     <syn-divider></syn-divider>
 
-    <!-- Experience --> 
+    <!-- Experience -->
     <fieldset class="syn-fieldset">
       <legend class="syn-legend">Experience</legend>
       <syn-radio-group

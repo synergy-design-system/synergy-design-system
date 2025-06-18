@@ -22,7 +22,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@playwright/test": "^1.53.0",
+    "@playwright/test": "^1.52.0",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^"
   }

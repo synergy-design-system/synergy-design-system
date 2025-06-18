@@ -27,7 +27,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.11.0",
     "@synergy-design-system/demo-utilities": "workspace:^",
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/eslint-config-prettier": "^9.0.0",

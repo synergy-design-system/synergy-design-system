@@ -19,6 +19,7 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@types/node": "^22.15.32",
+    "eslint": "^8.57.1",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",

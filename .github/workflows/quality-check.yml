@@ -81,7 +81,7 @@ jobs:
         run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
 
       - name: Run component tests
-        run: pnpm test -r --filter 'components'
+        run: pnpm -r --filter 'components' test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root
@@ -117,7 +117,7 @@ jobs:
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm test -r --filter '!components'
+        run: pnpm -r --filter '!components' test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root

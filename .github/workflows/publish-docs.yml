@@ -18,12 +18,13 @@ jobs:
     steps:
       - name: Log the current time with milliseconds
         run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"
-
+      - name: Checkout
+        uses: actions/checkout@v4
       # This waits until releases in `release.yml` are done to get the latest version
       - name: Wait for releases to be done
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.sha }}
           check-name: "test-docs"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10

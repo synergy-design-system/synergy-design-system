@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log the current time with milliseconds
-        run: echo "Current time start: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+        run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Node.js
@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: pnpm build
       - name: Log the current time with milliseconds
-        run: echo "Current time end: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+        run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
 
   quality-gate:
     name: Validate build, lint, vendor and git diff

@@ -24,8 +24,8 @@ jobs:
       - name: Wait for releases to be done
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
-          ref: ${{ github.sha }}
-          check-name: "test-docs"
+          ref: ${{ github.ref }}
+          check-name: "bla"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 

@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  test-docs:
+  bla:
     runs-on: ubuntu-latest
     steps:
       - name: Log the current time with milliseconds

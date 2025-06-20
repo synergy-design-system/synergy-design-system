@@ -32,50 +32,50 @@ jobs:
       - name: Log the current time with milliseconds
         run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          ref: "main"
-          path: "synergy-design-system"
+      # - name: Checkout Repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     ref: "main"
+      #     path: "synergy-design-system"
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      # - name: Set up Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 22
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      # - name: Install pnpm
+      #   uses: pnpm/action-setup@v4
+      #   with:
+      #     version: 10
 
-      - name: Install dependencies
-        working-directory: ./synergy-design-system
-        run: pnpm install && pnpm build
+      # - name: Install dependencies
+      #   working-directory: ./synergy-design-system
+      #   run: pnpm install && pnpm build
 
-      # Clone the other repository
-      - name: Checkout documentation Repository
-        uses: actions/checkout@v4
-        with:
-          repository: "synergy-design-system/synergy-design-system.github.io"
-          token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
-          path: "synergy-design-system.github.io"
+      # # Clone the other repository
+      # - name: Checkout documentation Repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: "synergy-design-system/synergy-design-system.github.io"
+      #     token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+      #     path: "synergy-design-system.github.io"
 
-      # Clean up the other repo
-      - name: Cleanup documentation repository
-        working-directory: ./synergy-design-system.github.io
-        run: rm -rf ./synergy-design-system.github.io/www/*
+      # # Clean up the other repo
+      # - name: Cleanup documentation repository
+      #   working-directory: ./synergy-design-system.github.io
+      #   run: rm -rf ./synergy-design-system.github.io/www/*
 
-      # Copy built docs to the other repo
-      - name: Copy Built Docs to documentation Repo
-        working-directory: ./synergy-design-system
-        run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
+      # # Copy built docs to the other repo
+      # - name: Copy Built Docs to documentation Repo
+      #   working-directory: ./synergy-design-system
+      #   run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
 
-      # Commit and Push Changes
-      - name: Commit and Push to documentation Repo
-        working-directory: ./synergy-design-system.github.io
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Update docs"
-          git push
+      # # Commit and Push Changes
+      # - name: Commit and Push to documentation Repo
+      #   working-directory: ./synergy-design-system.github.io
+      #   run: |
+      #     git config user.name github-actions
+      #     git config user.email github-actions@github.com
+      #     git add .
+      #     git commit -m "Update docs"
+      #     git push

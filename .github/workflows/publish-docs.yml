@@ -28,7 +28,6 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-
       - name: Log the current time with milliseconds
         run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
 

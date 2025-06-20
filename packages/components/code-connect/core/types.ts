@@ -7,9 +7,9 @@ import type SynergyElement from '../../src/internal/synergy-element.js';
  */
 export type ValidProperties<
   Component extends SynergyElement,
-  AdditionalProps extends readonly string[] = ['default'],
+  AdditionalSlots extends readonly string[] = ['default'],
 > = {
   [K in keyof Component]?: unknown;
 } & {
-  [K in `${AdditionalProps[number]}Slot`]?: unknown;
+  [K in `${AdditionalSlots[number]}Slot`]?: unknown;
 };

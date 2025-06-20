@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import figma, { html } from '@figma/code-connect/html';
 
 // Synergy Web Component Connection

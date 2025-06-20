@@ -11,3 +11,4 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 
 - [ ] As our figma library has no `<syn-icon>` component, we are not able to directly render instances of `<syn-icon>` and must rely on icon instances. This can be seen in `button.figma.ts` where we are unable to conditionally show prefix or suffix slots.
 - [ ] Dynamic Child instances with the same name cannot be distinguished when toggled with various boolean values. Examples for this are `accordion.figma.ts`.
+- [ ] We will have to add all helper sub component instances and map their own props down via `figma.nestedProps`. This means adding the helper instance and defining the props twice.

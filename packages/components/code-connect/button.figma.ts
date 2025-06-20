@@ -1,14 +1,16 @@
 import figma, { html } from '@figma/code-connect/html';
+import type SynButton from '../src/components/button/button.js';
+import type { ValidProperties } from './core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1080-6566&t=QM5ExbII4BRhqFoo-4', {
   example: ({
+    defaultSlot,
     disabled,
-    size,
-    label,
     loading,
-    slotPrefix,
-    slotSuffix,
+    prefixSlot,
+    size,
+    suffixSlot,
     variant,
   }) => html`
     <syn-button
@@ -17,9 +19,9 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       loading=${loading}
       variant=${variant}
     >
-      ${label}
-      <span slot="prefix">${slotPrefix}</span>
-      <span slot="suffix">${slotSuffix}</span>
+      ${defaultSlot}
+      <span slot="prefix">${prefixSlot}</span>
+      <span slot="suffix">${suffixSlot}</span>
     </syn-button>
   `,
   imports: [
@@ -32,20 +34,20 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
-    disabled: figma.boolean('disabled'),
-    label: figma.boolean('<slot label>', {
+    defaultSlot: figma.boolean('<slot label>', {
       true: figma.string('↳ label'),
     }),
+    disabled: figma.boolean('disabled'),
     loading: figma.boolean('loading'),
+    prefixSlot: figma.boolean('<slot-prefix>', {
+      true: figma.instance('↳ <slot-prefix>'),
+    }),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
     }),
-    slotPrefix: figma.boolean('<slot-prefix>', {
-      true: figma.instance('↳ <slot-prefix>'),
-    }),
-    slotSuffix: figma.boolean('<slot suffix>', {
+    suffixSlot: figma.boolean('<slot suffix>', {
       true: figma.instance('↳ <slot suffix>'),
     }),
     variant: figma.enum('variant', {
@@ -53,5 +55,5 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       outline: 'outline',
       text: 'text',
     }),
-  },
+  } satisfies ValidProperties<SynButton, ['default', 'prefix', 'suffix']>,
 });

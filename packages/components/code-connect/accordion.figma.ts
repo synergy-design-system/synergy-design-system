@@ -1,17 +1,19 @@
 import figma, { html } from '@figma/code-connect/html';
+import type SynAccordion from '../src/components/accordion/accordion.js';
+import type { ValidProperties } from './core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=20877-88547', {
   example: ({
     contained,
-    detail1,
+    defaultSlot,
     size,
   }) => html`
     <syn-accordion
       contained=${contained}
       size=${size}
     >
-      ${detail1}
+      ${defaultSlot}
     </syn-accordion>
   `,
   imports: [
@@ -25,12 +27,12 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   ],
   props: {
     contained: figma.boolean('contained'),
-    detail1: figma.boolean('detail-1', {
+    defaultSlot: figma.boolean('detail-1', {
       true: figma.children('syn-details'),
     }),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
     }),
-  },
+  } satisfies ValidProperties<SynAccordion>,
 });

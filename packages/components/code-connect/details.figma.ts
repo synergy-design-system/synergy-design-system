@@ -1,4 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
+import type SynDetails from '../src/components/details/details.js';
+import type { ValidProperties } from './core/types';
 
 // Needed helper
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=20877-88538', {
@@ -61,5 +63,5 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       medium: 'medium',
     }),
     summary: figma.string('summary'),
-  },
+  } satisfies ValidProperties<SynDetails>,
 });

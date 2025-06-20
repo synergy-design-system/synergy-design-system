@@ -5,6 +5,27 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
+  test-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log the current time with milliseconds
+        run: echo "Current time start: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+      - name: Log the current time with milliseconds
+        run: echo "Current time end: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+
   quality-gate:
     name: Validate build, lint, vendor and git diff
     runs-on: ubuntu-latest

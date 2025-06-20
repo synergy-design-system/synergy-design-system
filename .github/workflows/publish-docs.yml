@@ -1,10 +1,13 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Initiate Docs Deployment
 
+# on:
+#   # Runs on pushes targeting the default branch
+#   push:
+#     branches: ["main"]
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -13,14 +16,21 @@ jobs:
   deploy-docs:
     runs-on: ubuntu-latest
     steps:
+      - name: Log the current time with milliseconds
+        run: echo "Current time start: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+
       # This waits until releases in `release.yml` are done to get the latest version
       - name: Wait for releases to be done
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          check-name: "release"
+          check-name: "test-docs"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
+
+
+      - name: Log the current time with milliseconds
+        run: echo "Current time end: $(date +%Y-%m-%dT%H:%M:%S.%3N)"
 
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -43,19 +53,25 @@ jobs:
         run: pnpm install && pnpm build
 
       # Clone the other repository
-      - name: Checkout Other Repository
+      - name: Checkout documentation Repository
         uses: actions/checkout@v4
         with:
           repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           path: "synergy-design-system.github.io"
 
+      # Clean up the other repo
+      - name: Cleanup documentation repository
+        working-directory: ./synergy-design-system.github.io
+        run: rm -rf ./synergy-design-system.github.io/www/*
+
       # Copy built docs to the other repo
-      - name: Copy Built Docs to Other Repo
+      - name: Copy Built Docs to documentation Repo
+        working-directory: ./synergy-design-system
         run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
 
       # Commit and Push Changes
-      - name: Commit and Push to Other Repo
+      - name: Commit and Push to documentation Repo
         working-directory: ./synergy-design-system.github.io
         run: |
           git config user.name github-actions

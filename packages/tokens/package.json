@@ -10,18 +10,18 @@
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
-    "@tokens-studio/sd-transforms": "^1.2.12",
-    "@types/node": "^22.13.14",
+    "@tokens-studio/sd-transforms": "^2.0.0",
+    "@types/node": "^22.15.32",
     "chalk": "^5.4.1",
     "change-case": "^5.4.4",
     "eslint": "^8.57.1",
-    "eslint-import-resolver-typescript": "^4.2.5",
+    "eslint-import-resolver-typescript": "^4.4.3",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
-    "style-dictionary": "^4.3.3",
-    "stylelint": "^16.17.0",
-    "typescript": "^5.8.2"
+    "style-dictionary": "^5.0.0",
+    "stylelint": "^16.20.0",
+    "typescript": "^5.8.3"
   },
   "exports": {
     ".": {

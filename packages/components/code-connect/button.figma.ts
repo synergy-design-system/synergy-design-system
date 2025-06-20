@@ -2,6 +2,11 @@ import figma, { html } from '@figma/code-connect/html';
 import type SynButton from '../src/components/button/button.js';
 import type { ValidProperties } from './core/types';
 
+/**
+ * @todos
+ * - prefix and suffix slots should allow to set instances with slot="prefix" and slot="suffix"
+ */
+
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1080-6566&t=QM5ExbII4BRhqFoo-4', {
   example: ({

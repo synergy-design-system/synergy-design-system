@@ -2,6 +2,12 @@ import figma, { html } from '@figma/code-connect/html';
 import type SynAlert from '../src/components/alert/alert.js';
 import type { ValidProperties } from './core/types';
 
+/**
+ * @todos
+ * - variant prop should be sharable with the color helper
+ * - icon slot should allow to set instance with slot="icon"
+ */
+
 // Variant helper
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=16231-21245&t=uiGCtkXQsyEo930h-4', {
   example: ({
@@ -44,6 +50,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   example: ({
     closable,
     defaultSlot,
+    iconSlot,
     variant,
   }) => html`
     <syn-alert
@@ -51,6 +58,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       variant=${variant.variant}
     >
       ${defaultSlot}
+      ${iconSlot}
     </syn-alert>
   `,
   imports: [
@@ -65,6 +73,12 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   props: {
     closable: figma.boolean('closable'),
     defaultSlot: figma.children('_helper/syn-alert/content'),
+    iconSlot: figma.boolean('icon', {
+      false: html`<span slot="icon"></span>`,
+      true: html`<syn-icon slot="icon" name="info"></syn-icon>`,
+      // @todo: Replace with actual icon instance when available via code connect api
+      // true: figma.instance('↳ <icon slot>'),
+    }),
     variant: figma.nestedProps('_helper/color/syn-alert', {
       variant: figma.enum('variant', {
         danger: 'danger',
@@ -74,5 +88,5 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
         warning: 'warning',
       }),
     }),
-  } satisfies ValidProperties<SynAlert>,
+  } satisfies ValidProperties<SynAlert, ['default', 'icon']>,
 });

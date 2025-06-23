@@ -30,6 +30,8 @@ jobs:
         run: pnpm install
 
       - name: Log the current time with milliseconds
+        run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+
     # steps:
     #   - name: Checkout
     #     uses: actions/checkout@v4

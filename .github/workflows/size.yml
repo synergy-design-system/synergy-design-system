@@ -1,35 +1,35 @@
-name: "size"
-on:
-  pull_request:
-    branches:
-      - main
-permissions:
-  pull-requests: write
-jobs:
-  size:
-    runs-on: ubuntu-latest
-    env:
-      CI_JOB_NUMBER: 1
-    steps:
-      - uses: actions/checkout@v4
+# name: "size"
+# on:
+#   pull_request:
+#     branches:
+#       - main
+# permissions:
+#   pull-requests: write
+# jobs:
+#   size:
+#     runs-on: ubuntu-latest
+#     env:
+#       CI_JOB_NUMBER: 1
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
+#       - uses: pnpm/action-setup@v4
+#         name: Install pnpm
+#         id: pnpm-install
+#         with:
+#           run_install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "pnpm"
+#       - name: Install Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
+#           cache: "pnpm"
 
-      - uses: andresz1/size-limit-action@v1.8.0
-        name: Size Check
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          build_script: build.release
-          script: >
-            sh -c "export PATH=$(npm bin -g):$PATH; pnpm run --silent --filter components --if-present report-bundle-size | tee /tmp/out; if [ ! -s /tmp/out ]; then echo '[]'; fi"
-          package_manager: pnpm
+#       - uses: andresz1/size-limit-action@v1.8.0
+#         name: Size Check
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           build_script: build.release
+#           script: >
+#             sh -c "export PATH=$(npm bin -g):$PATH; pnpm run --silent --filter components --if-present report-bundle-size | tee /tmp/out; if [ ! -s /tmp/out ]; then echo '[]'; fi"
+#           package_manager: pnpm

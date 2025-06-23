@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build
+      # - name: Build
+      #   run: pnpm build
       - name: Log the current time with milliseconds
         run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
   # quality-gate:

@@ -1,62 +1,27 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Initiate Docs Deployment
 
-# on:
-#   # Runs on pushes targeting the default branch
-#   push:
-#     branches: ["main"]
+
+
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_run:
+    workflows: ["Quality Gate"]
+    types:
+      - completed
+    # branches:
+    #   - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  bla:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Log the current time with milliseconds
-        run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
-      - name: Log the current time with milliseconds
-        run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
   deploy-docs:
     runs-on: ubuntu-latest
-    needs: [bla]
     steps:
       - name: Log the current time with milliseconds
         run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"
       - name: Checkout
         uses: actions/checkout@v4
-      # This waits until releases in `release.yml` are done to get the latest version
-      - name: Wait for releases to be done
-        uses: lewagon/wait-on-check-action@v1.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          check-name: "bla"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-
       - name: Log the current time with milliseconds
         run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
 

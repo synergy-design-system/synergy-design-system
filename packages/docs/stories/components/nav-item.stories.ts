@@ -31,7 +31,7 @@ const meta: Meta = {
   parameters: {
     chromatic: {
       diffThreshold: 0.01,
-    }
+    },
     design: generateFigmaPluginObject('12362-10775'),
     docs: {
       description: {

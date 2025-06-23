@@ -6,16 +6,43 @@ name: Initiate Docs Deployment
 #   push:
 #     branches: ["main"]
 on:
-  workflow_run:
-    workflows: [Quality Gate]
-    types: [completed]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
+  bla:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log the current time with milliseconds
+        run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+      - name: Log the current time with milliseconds
+        run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
   deploy-docs:
     runs-on: ubuntu-latest
+    needs: [bla]
     steps:
       - name: Log the current time with milliseconds
         run: echo "Current time start $(date +%Y-%m-%dT%H:%M:%S.%3N)"

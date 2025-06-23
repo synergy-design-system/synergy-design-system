@@ -5,7 +5,8 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  bla:
+  quality-gate:
+    name: Validate build, lint, vendor and git diff
     runs-on: ubuntu-latest
     steps:
       - name: Log the current time with milliseconds
@@ -28,55 +29,49 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Build
-      #   run: pnpm build
       - name: Log the current time with milliseconds
-        run: echo "Current time end $(date +%Y-%m-%dT%H:%M:%S.%3N)"
-  # quality-gate:
-  #   name: Validate build, lint, vendor and git diff
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v4
 
-  #     - uses: pnpm/action-setup@v4
-  #       name: Install pnpm
-  #       id: pnpm-install
-  #       with:
-  #         run_install: false
+    #   - uses: pnpm/action-setup@v4
+    #     name: Install pnpm
+    #     id: pnpm-install
+    #     with:
+    #       run_install: false
 
-  #     - name: Install Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-  #         cache: "pnpm"
+    #   - name: Install Node.js
+    #     uses: actions/setup-node@v4
+    #     with:
+    #       node-version: 22
+    #       cache: "pnpm"
 
-  #     - name: Install dependencies
-  #       run: pnpm install
+    #   - name: Install dependencies
+    #     run: pnpm install
 
-  #     - name: Build
-  #       run: pnpm build
+    #   - name: Build
+    #     run: pnpm build
 
-  #     - name: Check for uncommitted changes
-  #       run: git diff --exit-code
+    #   - name: Check for uncommitted changes
+    #     run: git diff --exit-code
 
-  #     - name: Check for formatting issues
-  #       run: pnpm exec prettier . -c
+    #   - name: Check for formatting issues
+    #     run: pnpm exec prettier . -c
 
-  #     - name: Lint
-  #       run: pnpm lint
+    #   - name: Lint
+    #     run: pnpm lint
 
-  #     - name: Check for uncommitted changes
-  #       run: git diff --exit-code
+    #   - name: Check for uncommitted changes
+    #     run: git diff --exit-code
 
-  #     - name: Vendorism
-  #       run: cd packages/components && pnpm vendor.get && pnpm vendor.set && pnpm build --synergy
+    #   - name: Vendorism
+    #     run: cd packages/components && pnpm vendor.get && pnpm vendor.set && pnpm build --synergy
 
-  #     - name: Check for uncommitted changes
-  #       run: git diff --exit-code
+    #   - name: Check for uncommitted changes
+    #     run: git diff --exit-code
 
-  #     - name: Release (Dry)
-  #       run: pnpm release.dry
+    #   - name: Release (Dry)
+    #     run: pnpm release.dry
 
   # test_components:
   #   name: Validate tests (components)

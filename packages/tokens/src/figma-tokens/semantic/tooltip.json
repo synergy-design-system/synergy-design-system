@@ -15,7 +15,7 @@
       "type": "color"
     },
     "font-family": {
-      "value": "{font.sans}",
+      "value": "{font.brand.sans}",
       "type": "fontFamilies"
     },
     "font-weight": {

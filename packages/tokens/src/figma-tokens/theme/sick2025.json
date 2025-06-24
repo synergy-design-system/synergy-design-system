@@ -12,6 +12,36 @@
       }
     }
   },
+  "font-size": {
+    "brand": {
+      "heading": {
+        "medium": {
+          "value": "{font-size.medium-large}",
+          "type": "fontSizes"
+        },
+        "large": {
+          "value": "{font-size.0x-large}",
+          "type": "fontSizes"
+        },
+        "x-large": {
+          "value": "{font-size.1x-large}",
+          "type": "fontSizes"
+        },
+        "2x-large": {
+          "value": "{font-size.2-5x-large}",
+          "type": "fontSizes"
+        },
+        "3x-large": {
+          "value": "{font-size.3x-large}",
+          "type": "fontSizes"
+        },
+        "4x-large": {
+          "value": "{font-size.4x-large}",
+          "type": "fontSizes"
+        }
+      }
+    }
+  },
   "font-weight": {
     "brand": {
       "normal": {
@@ -52,6 +82,32 @@
           "value": "{line-height.160}",
           "type": "lineHeights"
         }
+      },
+      "heading": {
+        "medium": {
+          "value": "{line-height.150}",
+          "type": "lineHeights"
+        },
+        "large": {
+          "value": "{line-height.130}",
+          "type": "lineHeights"
+        },
+        "x-large": {
+          "value": "{line-height.120}",
+          "type": "lineHeights"
+        },
+        "2x-large": {
+          "value": "{line-height.120}",
+          "type": "lineHeights"
+        },
+        "3x-large": {
+          "value": "{line-height.120}",
+          "type": "lineHeights"
+        },
+        "4x-large": {
+          "value": "{line-height.120}",
+          "type": "lineHeights"
+        }
       }
     }
   },
@@ -76,6 +132,32 @@
         },
         "large": {
           "value": "{letter-spacing.p-2}",
+          "type": "letterSpacing"
+        }
+      },
+      "heading": {
+        "medium": {
+          "value": "{letter-spacing.p-2}",
+          "type": "letterSpacing"
+        },
+        "large": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "x-large": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "2x-large": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "3x-large": {
+          "value": "{letter-spacing.n-05}",
+          "type": "letterSpacing"
+        },
+        "4x-large": {
+          "value": "{letter-spacing.default}",
           "type": "letterSpacing"
         }
       }

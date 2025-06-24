@@ -29,6 +29,58 @@
       }
     }
   },
+  "line-height": {
+    "brand": {
+      "body": {
+        "2x-small": {
+          "value": "{line-height.120}",
+          "type": "lineHeights"
+        },
+        "x-small": {
+          "value": "{line-height.160}",
+          "type": "lineHeights"
+        },
+        "small": {
+          "value": "{line-height.160}",
+          "type": "lineHeights"
+        },
+        "medium": {
+          "value": "{line-height.160}",
+          "type": "lineHeights"
+        },
+        "large": {
+          "value": "{line-height.160}",
+          "type": "lineHeights"
+        }
+      }
+    }
+  },
+  "letter-spacing": {
+    "brand": {
+      "body": {
+        "2x-small": {
+          "value": "{letter-spacing.p-05}",
+          "type": "letterSpacing"
+        },
+        "x-small": {
+          "value": "{letter-spacing.p-05}",
+          "type": "letterSpacing"
+        },
+        "small": {
+          "value": "{letter-spacing.p-2}",
+          "type": "letterSpacing"
+        },
+        "medium": {
+          "value": "{letter-spacing.p-2}",
+          "type": "letterSpacing"
+        },
+        "large": {
+          "value": "{letter-spacing.p-2}",
+          "type": "letterSpacing"
+        }
+      }
+    }
+  },
   "gray": {
     "50": {
       "value": "#FE00F6",

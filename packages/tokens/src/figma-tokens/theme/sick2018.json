@@ -28,6 +28,58 @@
       }
     }
   },
+  "line-height": {
+    "brand": {
+      "body": {
+        "2x-small": {
+          "value": "{line-height.140}",
+          "type": "lineHeights"
+        },
+        "x-small": {
+          "value": "{line-height.140}",
+          "type": "lineHeights"
+        },
+        "small": {
+          "value": "{line-height.140}",
+          "type": "lineHeights"
+        },
+        "medium": {
+          "value": "{line-height.140}",
+          "type": "lineHeights"
+        },
+        "large": {
+          "value": "{line-height.140}",
+          "type": "lineHeights"
+        }
+      }
+    }
+  },
+  "letter-spacing": {
+    "brand": {
+      "body": {
+        "2x-small": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "x-small": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "small": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "medium": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        },
+        "large": {
+          "value": "{letter-spacing.default}",
+          "type": "letterSpacing"
+        }
+      }
+    }
+  },
   "gray": {
     "50": {
       "value": "#f9fafb",

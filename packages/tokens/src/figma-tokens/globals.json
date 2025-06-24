@@ -92,10 +92,6 @@
     "type": "other"
   },
   "font-size": {
-    "3x-small": {
-      "value": "10px",
-      "type": "fontSizes"
-    },
     "2x-small": {
       "value": "11px",
       "type": "fontSizes"
@@ -172,11 +168,11 @@
       "value": "0%",
       "type": "letterSpacing"
     },
-    "n-0-5": {
+    "n-05": {
       "value": "-0.5%",
       "type": "letterSpacing"
     },
-    "p-0-5": {
+    "p-05": {
       "value": "0.5%",
       "type": "letterSpacing"
     },

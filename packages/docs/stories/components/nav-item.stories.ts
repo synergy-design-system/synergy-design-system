@@ -29,9 +29,6 @@ const meta: Meta = {
   argTypes,
   component: 'syn-nav-item',
   parameters: {
-    chromatic: {
-      diffThreshold: 0.01,
-    },
     design: generateFigmaPluginObject('12362-10775'),
     docs: {
       description: {
@@ -315,5 +312,5 @@ export const Screenshot: Story = generateScreenshotStory({
   ChildrenClosedOrOpenVerticalOnly,
   Divider,
   Disabled,
-}, { heightPx: 300, additionalChromaticOptions: { diffThreshold: 0.01, diffIncludeAntiAliasing: true}});
+}, 300);
 /* eslint-enable sort-keys */

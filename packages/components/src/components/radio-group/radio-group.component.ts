@@ -69,7 +69,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
   @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
-  @state() defaultValue = '';
+  @state() defaultValue: string | number = '';
 
   /**
    * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
@@ -129,7 +129,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
   connectedCallback() {
     super.connectedCallback();
-    this.defaultValue = typeof this.value === 'number' ? this.value.toString() : this.value;
+    this.defaultValue = this.value;
   }
 
   firstUpdated() {

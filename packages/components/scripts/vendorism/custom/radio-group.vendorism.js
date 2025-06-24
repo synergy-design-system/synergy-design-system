@@ -20,8 +20,8 @@ const transformComponent = (path, originalContent) => {
       "@property({ reflect: true }) value: string | number = '';",
     ],
     [
-      'this.defaultValue = this.value;',
-      "this.defaultValue = typeof this.value === 'number' ? this.value.toString() : this.value;",
+      "@state() defaultValue = '';",
+      "@state() defaultValue: string | number = '';",
     ],
   ], originalContent);
 

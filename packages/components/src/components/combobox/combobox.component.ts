@@ -22,8 +22,8 @@ import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
 import customStyles from './combobox.custom.styles.js';
 import {
-  createOptionFromDifferentTypes,
-  filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot, normalizeString,
+  createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
+  getValueFromOption, normalizeString,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
@@ -106,8 +106,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private closeWatcher: CloseWatcher | null;
 
-  /** The last value of a syn-option, that was selected by click or via keyboard navigation */
-  private lastOptionValue = '';
+  /** The last syn-option, that was selected by click or via keyboard navigation */
+  private lastOption: SynOption | undefined;
 
   private isOptionRendererTriggered = false;
 
@@ -126,6 +126,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   @state() private hasFocus = false;
+
+  @state() private isUserInput = false;
 
   @state() displayLabel = '';
 
@@ -194,6 +196,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /** The combobox's required attribute. */
   @property({ reflect: true, type: Boolean }) required = false;
+
+  /** Defines if the combobox is restricted to the options list */
+  @property({ reflect: true, type: Boolean }) restricted = false;
 
   /**
    * A function that customizes the rendered option. The first argument is the option, the second
@@ -365,7 +370,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // Update the value based on the current selection and close it
       if (currentOption) {
-        const oldValue = this.lastOptionValue;
+        const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
         this.setSelectedOption(currentOption);
 
         if (this.value !== oldValue) {
@@ -457,7 +462,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (this.value !== '') {
       this.value = '';
       this.displayInput.value = '';
-      this.lastOptionValue = '';
+      this.lastOption = undefined;
       this.setSelectedOption(undefined);
       this.displayInput.focus({ preventScroll: true });
 
@@ -482,7 +487,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private handleOptionClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const option = target.closest('syn-option');
-    const oldValue = this.lastOptionValue;
+    const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
     if (option && !option.disabled) {
       this.setSelectedOption(option);
 
@@ -565,20 +570,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /**
    * Updates the selected options cache, the current value, and the display value
    */
+  // eslint-disable-next-line complexity
   private setSelectedOption(option: SynOption | undefined) {
     this.selectedOption = option;
 
-    // Check if the selected option has a value,
-    // if not take the text content of the option otherwise the input text
     let optionValue;
-    if (this.selectedOption?.value) {
-      optionValue = String(this.selectedOption.value);
-    } else {
-      optionValue = this.selectedOption?.getTextLabel();
-    }
 
     if (option) {
-      this.lastOptionValue = optionValue || '';
+      this.lastOption = option;
+      optionValue = String(getValueFromOption(option));
+    } else if (this.restricted && !this.isValidValue() && this.value !== '' && !this.isUserInput) {
+      // if an invalid value was set via property binding for `restricted`comboboxes,
+      // reset to last valid value
+      this.resetToLastValidValue();
+      return;
     }
 
     // Update the value
@@ -774,27 +779,79 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private async handleInput() {
     const inputValue = this.displayInput.value;
+    const cachedLastOption = this.lastOption;
+    this.isUserInput = true;
+
     this.value = inputValue;
     await this.updateComplete;
+    this.isUserInput = false;
+    this.lastOption = cachedLastOption;
     this.open = this.numberFilteredOptions > 0;
-    this.setSelectedOption(undefined);
 
     this.formControlController.updateValidity();
     this.emit('syn-input');
   }
 
+  /**
+   * Checks if the current value is available in the options list.
+   * This is used to determine if the value is valid when the combobox is restricted.
+   *
+   * @returns `true` if the current value is available in the options list,
+   * otherwise `false`.
+   */
+  private isValidValue(): boolean {
+    const isValid = this.cachedOptions.some(
+      option => getValueFromOption(option) === this.value,
+    );
+    return isValid;
+  }
+
+  private getOptionFromValue(): SynOption | undefined {
+    return this.cachedOptions.find(option => getValueFromOption(option) === this.value);
+  }
+
+  /**
+   * Resets the value to the last valid value or to an empty string.
+   */
+  private resetToLastValidValue() {
+    let label = '';
+    let value = '';
+
+    if (this.lastOption) {
+      value = String(getValueFromOption(this.lastOption));
+      label = this.lastOption.getTextLabel();
+    }
+
+    this.value = value;
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.updateComplete.then(() => {
+      this.displayInput.value = label;
+      this.formControlController.updateValidity();
+    });
+  }
+
   private handleChange() {
     // Only update the value and emit the event, if the change event occurred by
     // the user typing something in and removing focus of the combobox
-    if (!this.selectedOption) {
-      this.value = this.displayInput.value;
-      // Update validity
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.updateComplete.then(() => {
-        this.formControlController.updateValidity();
-      });
-      this.emit('syn-change');
+    if (this.selectedOption) {
+      return;
     }
+
+    // If the value is not valid, we need to reset the value to the last valid value
+    if (this.restricted && !this.isValidValue() && this.value !== '') {
+      this.resetToLastValidValue();
+      return;
+    }
+
+    // Otherwise, update value from input and emit change
+    this.value = this.displayInput.value;
+    this.lastOption = this.getOptionFromValue();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.updateComplete.then(() => {
+      this.formControlController.updateValidity();
+    });
+    this.emit('syn-change');
   }
 
   private getSlottedOptions() {
@@ -826,8 +883,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private updateSelectedOptionFromValue(): void {
     // check if the value has a corresponding option via value or text content
     // for empty values use the text content, as then the values of the option are not set
-    const option = this.cachedOptions
-      .find(o => (o.value !== '' && o.value === this.value) || (o.getTextLabel() === this.value));
+    const option = this.getOptionFromValue();
 
     if (!option) {
       this.displayInput.value = this.value;

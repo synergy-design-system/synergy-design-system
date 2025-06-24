@@ -1346,5 +1346,73 @@ describe('<syn-combobox>', () => {
     await expect(el.displayLabel).to.equal('Option 1');
   });
 
+  describe('#626: when using `restricted` feature ', () => {
+    it('should reset the input to empty string for invalid user input', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(el.value).to.equal('');
+    });
+
+    it('should reset the input to last selected option for invalid user input', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2" restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should reset to last selected option when setting invalid value programmatically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2" restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      el.value = 'invalid';
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('Option 2');
+      expect(el.valueInput.value).to.equal('option-2');
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should reset to empty value when setting invalid value programmatically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      el.value = 'invalid';
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('');
+      expect(el.valueInput.value).to.equal('');
+      expect(el.value).to.equal('');
+    });
+  });
+
   runFormControlBaseTests('syn-combobox');
 });

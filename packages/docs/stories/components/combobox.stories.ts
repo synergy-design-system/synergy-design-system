@@ -535,6 +535,24 @@ export const CustomFilter: Story = {
   `,
 };
 
+export const Restricted: Story = {
+  parameters: {
+    docs: {
+      description: {
+        // TODO: add correct docs description asap
+        story: generateStoryDescription('combobox', 'label'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="State" restricted>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
+    </syn-combobox>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -548,5 +566,6 @@ export const Screenshot: Story = generateScreenshotStory({
   PrefixSuffixTextAndIcons,
   AsyncOptions,
   CustomFilter,
+  Restricted,
 }, 500);
 /* eslint-enable sort-keys */

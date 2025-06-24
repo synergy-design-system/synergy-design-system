@@ -22,6 +22,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 
 const { args, argTypes } = storybookDefaults('syn-combobox');
 const { overrideArgs } = storybookHelpers('syn-combobox');
@@ -147,6 +148,7 @@ export const Placeholder: Story = {
 };
 
 export const Focus: Story = {
+  decorators: [paddingDecorator()],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -159,7 +161,9 @@ export const Focus: Story = {
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynCombobox>('syn-combobox');
-    elm?.focus();
+    if (elm) {
+      elm.focus();
+    }
   },
   render: () => html`
     <syn-combobox>
@@ -470,9 +474,6 @@ export const SuggestionContainerHeight: Story = {
 
 export const AsyncOptions: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
         story: generateStoryDescription('combobox', 'async-options'),
@@ -506,9 +507,6 @@ export const AsyncOptions: Story = {
 
 export const CustomFilter: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
         story: generateStoryDescription('combobox', 'custom-filter'),

@@ -23,8 +23,9 @@
         "type": "fontWeights"
       },
       "bold": {
-        "value": "{font-weight.brand.semibold}",
-        "type": "fontWeights"
+        "value": "600",
+        "type": "fontWeights",
+        "description": "there is no bold available -> use semibold weight"
       }
     }
   },

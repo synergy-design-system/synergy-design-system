@@ -402,7 +402,7 @@
   },
   "sick-green": {
     "50": {
-      "value": "#F0FAF3",
+      "value": "#f000ff",
       "type": "color"
     },
     "100": {
@@ -414,7 +414,7 @@
       "type": "color"
     },
     "300": {
-      "value": "#C2EBCF",
+      "value": "#f000ff",
       "type": "color"
     },
     "400": {
@@ -490,7 +490,7 @@
       "type": "color"
     },
     "950": {
-      "value": "#b0a492",
+      "value": "#f000ff",
       "type": "color"
     }
   },

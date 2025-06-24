@@ -8,6 +8,7 @@ export const initialFullFormData: DemoFormData = {
   date: '',
   donations: '2000 4000',
   email: '',
+  experience: 2,
   files: undefined,
   gender: '',
   happiness: '5',

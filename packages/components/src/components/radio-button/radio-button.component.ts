@@ -56,7 +56,7 @@ export default class SynRadioButton extends SynergyElement {
   @property({ type: Boolean, reflect: true }) checked = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
-  @property() value: string;
+  @property() value: string | number;
 
   /** Disables the radio button. */
   @property({ type: Boolean, reflect: true }) disabled = false;

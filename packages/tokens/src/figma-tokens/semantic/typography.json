@@ -1,5 +1,34 @@
 {
   "body": {
+    "2x-small": {
+      "regular": {
+        "value": {
+          "fontFamily": "{font.sans}",
+          "fontWeight": "{font-weight.normal}",
+          "fontSize": "{font-size.2x-small}",
+          "lineHeight": "{line-height.normal}"
+        },
+        "type": "typography"
+      },
+      "semibold": {
+        "value": {
+          "fontFamily": "{font.sans}",
+          "fontWeight": "{font-weight.semibold}",
+          "fontSize": "{font-size.2x-small}",
+          "lineHeight": "{line-height.normal}"
+        },
+        "type": "typography"
+      },
+      "bold": {
+        "value": {
+          "fontFamily": "{font.sans}",
+          "fontWeight": "{font-weight.bold}",
+          "fontSize": "{font-size.2x-small}",
+          "lineHeight": "{line-height.normal}"
+        },
+        "type": "typography"
+      }
+    },
     "x-small": {
       "regular": {
         "value": {

@@ -13,3 +13,64 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 - [ ] Dynamic Child instances with the same name cannot be distinguished when toggled with various boolean values. Examples for this are `accordion.figma.ts`.
 - [ ] We will have to add all helper sub component instances and map their own props down via `figma.nestedProps`. This means adding the helper instance and defining the props twice.
 - [ ] All component code **must** be placed in the `figma.connect` call. It is **not** possible to create factories as even the values of sub-properties **most** be defined in the same file. External code is forbidden. Even statements like `import { html as output } from '@figma/code-connect/html';` are invalid.
+- [ ] You currently cannot use `figma.nestedProps` in `figma.className`, see syn-link. It is also not possible to join classNames or destructure them.
+- [ ] `figma.enum` will always remove the default property. This makes it hard to use with `figma.className` as for example sizes have to be explicitly added for `syn-link`.
+
+
+
+Skipped:
+
+- syn-combobox (needs: syn-menu, syn-menu-item, syn-optgroup, syn-option)
+- syn-header (needs: syn-prio-nav, syn-nav-item)
+- syn-menu (needs: syn-menu-item, syn-menu-label)
+- syn-prio-nav (needs: syn-nav-item)
+
+---
+
+## Progress
+
+- [x] syn-accordion
+- [x] syn-alert
+- [x] syn-badge
+- [x] syn-breadcrumb
+- [x] syn-breadcrumb-item
+- [x] syn-button
+- [x] syn-card
+- [x] syn-checkbox
+- [ ] syn-combobox
+- [x] syn-details
+- [x] syn-dialog
+- [x] syn-divider
+- [x] syn-drawer
+- [ ] syn-dropdown
+- [x] syn-file
+- [ ] syn-header
+- [x] syn-icon-button
+- [x] syn-input
+- [x] syn-link
+- [x] syn-link-list
+- [ ] syn-menu
+- [ ] syn-menu-item
+- [ ] syn-menu-label
+- [ ] syn-nav-item
+- [ ] syn-optgroup
+- [ ] syn-option
+- [ ] syn-prio-nav
+- [ ] syn-progress-bar
+- [ ] syn-progress-ring
+- [ ] syn-radio
+- [ ] syn-radio-group
+- [ ] syn-range
+- [ ] syn-range-tick
+- [ ] syn-select
+- [ ] syn-side-nav
+- [ ] syn-spinner
+- [ ] syn-switch
+- [ ] syn-tab
+- [ ] syn-tab-group
+- [ ] syn-tab-panel
+- [ ] syn-table-cell
+- [ ] syn-tag
+- [ ] syn-textarea
+- [ ] syn-tooltip
+- [ ] syn-validate

@@ -78,12 +78,12 @@
   },
   "font": {
     "sans": {
-      "value": "{font.brand.sans}",
+      "value": "{font.theme.sans}",
       "type": "fontFamilies",
       "description": "Main Font"
     },
     "mono": {
-      "value": "{font.brand.mono}",
+      "value": "{font.theme.mono}",
       "type": "fontFamilies"
     }
   },
@@ -151,15 +151,15 @@
   },
   "font-weight": {
     "normal": {
-      "value": "{font-weight.brand.normal}",
+      "value": "{font-weight.theme.normal}",
       "type": "fontWeights"
     },
     "semibold": {
-      "value": "{font-weight.brand.semibold}",
+      "value": "{font-weight.theme.semibold}",
       "type": "fontWeights"
     },
     "bold": {
-      "value": "{font-weight.brand.bold}",
+      "value": "{font-weight.theme.bold}",
       "type": "fontWeights"
     }
   },

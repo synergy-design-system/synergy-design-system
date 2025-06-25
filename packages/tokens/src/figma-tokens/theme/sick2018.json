@@ -1,6 +1,6 @@
 {
   "font": {
-    "brand": {
+    "theme": {
       "sans": {
         "value": "Open Sans",
         "type": "fontFamilies",
@@ -13,7 +13,7 @@
     }
   },
   "font-size": {
-    "brand": {
+    "theme": {
       "heading": {
         "medium": {
           "value": "{font-size.medium-large}",
@@ -43,7 +43,7 @@
     }
   },
   "font-weight": {
-    "brand": {
+    "theme": {
       "normal": {
         "value": "400",
         "type": "fontWeights"
@@ -59,7 +59,7 @@
     }
   },
   "line-height": {
-    "brand": {
+    "theme": {
       "body": {
         "2x-small": {
           "value": "{line-height.140}",
@@ -111,7 +111,7 @@
     }
   },
   "letter-spacing": {
-    "brand": {
+    "theme": {
       "body": {
         "2x-small": {
           "value": "{letter-spacing.default}",

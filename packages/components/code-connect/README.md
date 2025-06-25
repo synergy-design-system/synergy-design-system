@@ -15,6 +15,7 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 - [ ] All component code **must** be placed in the `figma.connect` call. It is **not** possible to create factories as even the values of sub-properties **most** be defined in the same file. External code is forbidden. Even statements like `import { html as output } from '@figma/code-connect/html';` are invalid.
 - [ ] You currently cannot use `figma.nestedProps` in `figma.className`, see syn-link. It is also not possible to join classNames or destructure them.
 - [ ] `figma.enum` will always remove the default property. This makes it hard to use with `figma.className` as for example sizes have to be explicitly added for `syn-link`.
+- [ ] Its not possible to map multiple values to a single enum type. In case of `syn-tooltip` with 4 boolean position sliders there is no way to map this to the property `position="top|bottom|left|right".
 
 
 
@@ -65,12 +66,12 @@ Skipped:
 - [ ] syn-select
 - [ ] syn-side-nav
 - [x] syn-spinner
-- [ ] syn-switch
+- [x] syn-switch
 - [ ] syn-tab
 - [ ] syn-tab-group
 - [ ] syn-tab-panel
 - [ ] syn-table-cell
 - [ ] syn-tag
-- [ ] syn-textarea
-- [ ] syn-tooltip
+- [x] syn-textarea
+- [x] syn-tooltip
 - [x] syn-validate

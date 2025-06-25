@@ -56,15 +56,15 @@ Skipped:
 - [ ] syn-optgroup
 - [ ] syn-option
 - [ ] syn-prio-nav
-- [ ] syn-progress-bar
-- [ ] syn-progress-ring
+- [x] syn-progress-bar
+- [x] syn-progress-ring
 - [ ] syn-radio
 - [ ] syn-radio-group
 - [ ] syn-range
 - [ ] syn-range-tick
 - [ ] syn-select
 - [ ] syn-side-nav
-- [ ] syn-spinner
+- [x] syn-spinner
 - [ ] syn-switch
 - [ ] syn-tab
 - [ ] syn-tab-group
@@ -73,4 +73,4 @@ Skipped:
 - [ ] syn-tag
 - [ ] syn-textarea
 - [ ] syn-tooltip
-- [ ] syn-validate
+- [x] syn-validate

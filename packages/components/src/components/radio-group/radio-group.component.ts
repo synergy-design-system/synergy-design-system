@@ -69,7 +69,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
   @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
-  @state() defaultValue = '';
+  @state() defaultValue: string | number = '';
 
   /**
    * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
@@ -84,7 +84,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   @property() name = 'option';
 
   /** The current value of the radio group, submitted as a name/value pair with form data. */
-  @property({ reflect: true }) value = '';
+  @property({ reflect: true }) value: string | number = '';
 
   /** The radio group's size. This size will be applied to all child radios and radio buttons. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

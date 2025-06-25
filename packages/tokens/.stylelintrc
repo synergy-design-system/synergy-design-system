@@ -10,6 +10,7 @@
     ],
     "order/order": ["declarations", "custom-properties"],
     "color-function-notation": "legacy",
+    "color-function-alias-notation": "with-alpha",
     "custom-property-empty-line-before": null,
     "alpha-value-notation": "number",
     "color-hex-length": null

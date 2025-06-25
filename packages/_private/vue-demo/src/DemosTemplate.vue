@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@synergy-design-system/vue';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
-import { defineProps, type Component } from 'vue';
+import { type Component } from 'vue';
 
 import { computed } from 'vue';
 const props = defineProps<{ demos: [string, Component][] }>();

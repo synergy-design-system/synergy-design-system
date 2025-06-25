@@ -83,6 +83,8 @@ export default {
   birth: '#input-date',
   donations: '#donations',
   emailLoc: '#input-email',
+  experienceLittle: '#experience-little',
+  experienceLoc: '#experience',
   formLoc: 'form',
   frontend: 'syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',

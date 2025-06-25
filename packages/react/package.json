@@ -43,10 +43,10 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "2.37.0",
+  "version": "2.38.0",
   "devDependencies": {
-    "@types/react": "^19.0.12",
-    "react": "^19.0.0"
+    "@types/react": "^19.1.8",
+    "react": "^19.1.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

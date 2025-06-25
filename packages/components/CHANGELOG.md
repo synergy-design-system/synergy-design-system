@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.38.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.37.1...components/2.38.0) (2025-06-24)
+
+
+### Features
+
+* ✨ syn-radio-group: Allow numbers as valid value ([#904](https://github.com/synergy-design-system/synergy-design-system/issues/904)) ([e8bb39c](https://github.com/synergy-design-system/synergy-design-system/commit/e8bb39cb4eab164d537338974cc604bc1d028504))
+
+# [@synergy-design-system/components-v2.37.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.37.0...components/2.37.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* 🐛 Upgrade packages to latest versions ([#905](https://github.com/synergy-design-system/synergy-design-system/issues/905)) ([64de3cd](https://github.com/synergy-design-system/synergy-design-system/commit/64de3cd72f7ab3c7eeb727a9de85d9d980b27055))
+
 # [@synergy-design-system/components-v2.37.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.36.0...components/2.37.0) (2025-06-10)
 
 

@@ -2,26 +2,21 @@
 name: Initiate Docs Deployment
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Trigger workflow after release.yml completed on main branch
+  workflow_run:
+    workflows: [Release new version]
+    types: [completed]
+    branches:
+      - main
+  # Trigger workflow manually
   workflow_dispatch:
 
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
+    # Only run this job if the "Release new version" workflow run was successful or if manually triggered
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     steps:
-      # This waits until releases in `release.yml` are done to get the latest version
-      - name: Wait for releases to be done
-        uses: lewagon/wait-on-check-action@v1.3.1
-        with:
-          ref: ${{ github.ref }}
-          check-name: "release"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
@@ -31,31 +26,35 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Install dependencies
         working-directory: ./synergy-design-system
         run: pnpm install && pnpm build
 
       # Clone the other repository
-      - name: Checkout Other Repository
+      - name: Checkout documentation Repository
         uses: actions/checkout@v4
         with:
           repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           path: "synergy-design-system.github.io"
 
+      # Clean up the other repo
+      - name: Cleanup documentation repository
+        run: rm -rf ./synergy-design-system.github.io/www/*
+
       # Copy built docs to the other repo
-      - name: Copy Built Docs to Other Repo
+      - name: Copy Built Docs to documentation Repo
         run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
 
       # Commit and Push Changes
-      - name: Commit and Push to Other Repo
+      - name: Commit and Push to documentation Repo
         working-directory: ./synergy-design-system.github.io
         run: |
           git config user.name github-actions

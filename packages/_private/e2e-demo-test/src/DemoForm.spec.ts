@@ -69,6 +69,9 @@ createTestCases(({ name, port }) => {
       // Not part of validation, but happiness should always be tested :)
       expect(await getInputValue(form.happiness)).toBe('9');
 
+      // Same goes for experience, which should be set to "a little"
+      expect(await getInputValue(form.experience)).toBe(1);
+
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
   });

@@ -50,17 +50,17 @@ Skipped:
 - [x] syn-input
 - [x] syn-link
 - [x] syn-link-list
-- [ ] syn-menu
-- [ ] syn-menu-item
-- [ ] syn-menu-label
-- [ ] syn-nav-item
+- [x] syn-menu
+- [x] syn-menu-item
+- [x] syn-menu-label
+- [x] syn-nav-item
 - [ ] syn-optgroup
 - [ ] syn-option
 - [ ] syn-prio-nav
 - [x] syn-progress-bar
 - [x] syn-progress-ring
 - [x] syn-radio
-- [ ] syn-radio-group
+- [x] syn-radio-group
 - [ ] syn-range
 - [ ] syn-range-tick
 - [ ] syn-select

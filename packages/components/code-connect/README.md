@@ -16,6 +16,7 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 - [ ] You currently cannot use `figma.nestedProps` in `figma.className`, see syn-link. It is also not possible to join classNames or destructure them.
 - [ ] `figma.enum` will always remove the default property. This makes it hard to use with `figma.className` as for example sizes have to be explicitly added for `syn-link`.
 - [ ] Its not possible to map multiple values to a single enum type. In case of `syn-tooltip` with 4 boolean position sliders there is no way to map this to the property `position="top|bottom|left|right".
+- [ ] We are not able to distinguish between multiple children with the same name, e.g. `figma.children(['child-name'])` and `figma.children('child-name')` are doing the same thing. If you have two layers with the same name (e.g. in `syn-side-nav`), you are not able to fetch the header items for the `defaultSlot` and the second list for the `footer` slot.
 
 Skipped:
 
@@ -59,7 +60,7 @@ Skipped:
 - [ ] syn-range
 - [ ] syn-range-tick
 - [ ] syn-select
-- [ ] syn-side-nav
+- [x] syn-side-nav
 - [x] syn-spinner
 - [x] syn-switch
 - [x] syn-tab

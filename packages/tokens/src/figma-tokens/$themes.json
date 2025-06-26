@@ -393,7 +393,6 @@
       "input.border.color": "adf10ba5c2480b2bb7f053c751f9b42f0938f01f",
       "input.border.color-hover": "1cc56ba06f6b13759b7f75944a643b00405224fe",
       "input.border.color-focus": "b42c56cf0e505f5430f1b5bbe91d32413dcd9b91",
-      "input.border.color-disables": "5a26ce120ce201221c9215e031262f1dc0ee8778",
       "input.border.radius-small": "87345f9338038632e1d943f159b73e50cc8d528e",
       "input.border.radius-medium": "f3f6890292e00d684ae9cb10c35a7d663d6ed539",
       "input.border.radius-large": "cd7030024183d34c991d483a7e465e296e796982",
@@ -462,7 +461,8 @@
       "tooltip.padding": "54f91632e7d8939dcf7b7138462e46885e47da3f",
       "tooltip.arrow-size": "fd64b50bfc4fb4137153d26a47a4806fec5c84d9",
       "typography.color.text": "5ec65d3455f0e99ac3bfab776a47564fd3128a13",
-      "typography.color.text-inverted": "77a4e3e48f6f5b4519eca72c77b2b38d5ac0067d"
+      "typography.color.text-inverted": "77a4e3e48f6f5b4519eca72c77b2b38d5ac0067d",
+      "input.border.color-disables": "5a26ce120ce201221c9215e031262f1dc0ee8778"
     },
     "group": "Semantic"
   },

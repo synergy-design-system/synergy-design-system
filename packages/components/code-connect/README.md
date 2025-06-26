@@ -18,6 +18,7 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 - [ ] Its not possible to map multiple values to a single enum type. In case of `syn-tooltip` with 4 boolean position sliders there is no way to map this to the property `position="top|bottom|left|right".
 - [ ] We are not able to distinguish between multiple children with the same name, e.g. `figma.children(['child-name'])` and `figma.children('child-name')` are doing the same thing. If you have two layers with the same name (e.g. in `syn-side-nav`), you are not able to fetch the header items for the `defaultSlot` and the second list for the `footer` slot.
 - [ ] Nesting is not possible like in html. For instance, syn-select has a flat list of children. This means instead of `<syn-optgroup><syn-option></syn-optgroup>` you will receive `<syn-optgroup></syn-optgroup><syn-option></syn-option>`.
+- [ ] It is not possible to just get text nodes of a component, for example `syn-range-tick` will have a value of `0` always as there is no way to retrieve the `Text` node.
 
 Skipped:
 
@@ -58,8 +59,8 @@ Skipped:
 - [x] syn-progress-ring
 - [x] syn-radio
 - [x] syn-radio-group
-- [ ] syn-range
-- [ ] syn-range-tick
+- [x] syn-range
+- [x] syn-range-tick
 - [x] syn-select
 - [x] syn-side-nav
 - [x] syn-spinner

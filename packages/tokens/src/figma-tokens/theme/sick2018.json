@@ -55,6 +55,32 @@
       "bold": {
         "value": "700",
         "type": "fontWeights"
+      },
+      "heading": {
+        "medium": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        },
+        "large": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        },
+        "x-large": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        },
+        "2x-large": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        },
+        "3x-large": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        },
+        "4x-large": {
+          "value": "{font-weight.bold}",
+          "type": "fontWeights"
+        }
       }
     }
   },

@@ -56,6 +56,32 @@
         "value": "600",
         "type": "fontWeights",
         "description": "there is no bold available -> use semibold weight"
+      },
+      "heading": {
+        "medium": {
+          "value": "{font-weight.semibold}",
+          "type": "fontWeights"
+        },
+        "large": {
+          "value": "{font-weight.normal}",
+          "type": "fontWeights"
+        },
+        "x-large": {
+          "value": "{font-weight.normal}",
+          "type": "fontWeights"
+        },
+        "2x-large": {
+          "value": "{font-weight.normal}",
+          "type": "fontWeights"
+        },
+        "3x-large": {
+          "value": "{font-weight.normal}",
+          "type": "fontWeights"
+        },
+        "4x-large": {
+          "value": "{font-weight.normal}",
+          "type": "fontWeights"
+        }
       }
     }
   },

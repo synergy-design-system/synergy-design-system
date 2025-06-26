@@ -62,9 +62,9 @@ Skipped:
 - [ ] syn-side-nav
 - [x] syn-spinner
 - [x] syn-switch
-- [ ] syn-tab
-- [ ] syn-tab-group
-- [ ] syn-tab-panel
+- [x] syn-tab
+- [x] syn-tab-group
+- [x] syn-tab-panel
 - [ ] syn-table-cell
 - [x] syn-tag
 - [x] syn-textarea

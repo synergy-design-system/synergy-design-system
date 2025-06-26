@@ -68,7 +68,7 @@ Skipped:
 - [x] syn-tab
 - [x] syn-tab-group
 - [x] syn-tab-panel
-- [ ] syn-table-cell
+- [x] syn-table-cell
 - [x] syn-tag
 - [x] syn-textarea
 - [x] syn-tooltip

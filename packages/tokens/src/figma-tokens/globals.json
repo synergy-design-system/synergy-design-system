@@ -56,24 +56,29 @@
   },
   "duration": {
     "extra-fast": {
-      "value": "90ms",
-      "type": "dimension"
+      "value": "{transition.x-fast}",
+      "type": "duration",
+      "description": "to be deprecated"
     },
     "fast": {
-      "value": "150ms",
-      "type": "dimension"
+      "value": "{transition.fast}",
+      "type": "duration",
+      "description": "to be deprecated"
     },
     "normal": {
-      "value": "250ms",
-      "type": "dimension"
+      "value": "{transition.medium}",
+      "type": "duration",
+      "description": "to be deprecated"
     },
     "slow": {
-      "value": "350ms",
-      "type": "dimension"
+      "value": "{transition.slow}",
+      "type": "duration",
+      "description": "to be deprecated"
     },
     "extra-slow": {
-      "value": "500ms",
-      "type": "dimension"
+      "value": "{transition.x-slow}",
+      "type": "duration",
+      "description": "to be deprecated"
     }
   },
   "font": {
@@ -558,6 +563,28 @@
     "uppercase": {
       "value": "uppercase",
       "type": "textCase"
+    }
+  },
+  "transition": {
+    "x-fast": {
+      "value": "50ms",
+      "type": "duration"
+    },
+    "fast": {
+      "value": "150ms",
+      "type": "duration"
+    },
+    "medium": {
+      "value": "250ms",
+      "type": "duration"
+    },
+    "slow": {
+      "value": "500ms",
+      "type": "duration"
+    },
+    "x-slow": {
+      "value": "1000ms",
+      "type": "duration"
     }
   }
 }

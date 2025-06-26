@@ -3618,7 +3618,7 @@
     },
     "transition": {
       "description": {
-        "value": "Transition tokens are used to provide consistent transitions throughout our applications.",
+        "value": "Transition tokens are used to provide consistent transitions throughout our applications.\nThe duration of an animation is determined by factors such as its style and magnitude. Productive animations, being more utilitarian, tend to be shorter compared to expressive ones. The size of the animation also influences its duration; larger changes in distance or scale require longer animation periods. \nTransitions entering or persisting on the screen have a longer duration. This helps direct users' attention to the news on the screen.",
         "type": "text"
       },
       "title": {

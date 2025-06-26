@@ -477,5 +477,11 @@
   "white": {
     "value": "white",
     "type": "color"
+  },
+  "theme": {
+    "name": {
+      "value": "sick2018",
+      "type": "text"
+    }
   }
 }

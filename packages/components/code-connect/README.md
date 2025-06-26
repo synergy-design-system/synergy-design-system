@@ -59,7 +59,7 @@ Skipped:
 - [ ] syn-prio-nav
 - [x] syn-progress-bar
 - [x] syn-progress-ring
-- [ ] syn-radio
+- [x] syn-radio
 - [ ] syn-radio-group
 - [ ] syn-range
 - [ ] syn-range-tick
@@ -71,7 +71,7 @@ Skipped:
 - [ ] syn-tab-group
 - [ ] syn-tab-panel
 - [ ] syn-table-cell
-- [ ] syn-tag
+- [x] syn-tag
 - [x] syn-textarea
 - [x] syn-tooltip
 - [x] syn-validate

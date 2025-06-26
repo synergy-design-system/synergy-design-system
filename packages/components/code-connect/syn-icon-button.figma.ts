@@ -4,6 +4,8 @@ import type { ValidProperties } from './core/types';
 
 /**
  * @todos
+ * - Name is static because it is a slot in figma, but a text prop in the component.
+ * - Problem with this is that is is seen as an instance locally, so we cannot use it as a string
  */
 
 // Color helper
@@ -34,7 +36,6 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       name=${name}
       size=${size}
     >
-      C?, ${color.color}
     </syn-icon-button>
   `,
   imports: [

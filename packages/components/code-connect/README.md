@@ -22,7 +22,6 @@ This folder holds all figma code connect files used to connect Synergy to Figma.
 Skipped:
 
 - syn-combobox (needs: syn-menu, syn-menu-item, syn-optgroup, syn-option)
-- syn-header (needs: syn-prio-nav, syn-nav-item)
 - syn-menu (needs: syn-menu-item, syn-menu-label)
 - syn-prio-nav (needs: syn-nav-item)
 
@@ -45,7 +44,7 @@ Skipped:
 - [x] syn-drawer
 - [ ] syn-dropdown
 - [x] syn-file
-- [ ] syn-header
+- [x] syn-header
 - [x] syn-icon-button
 - [x] syn-input
 - [x] syn-link

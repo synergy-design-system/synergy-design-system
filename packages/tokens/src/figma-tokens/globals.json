@@ -1,5 +1,121 @@
 {
+  "border-radius": {
+    "none": {
+      "value": "0px",
+      "type": "borderRadius"
+    },
+    "pill": {
+      "value": "9999px",
+      "type": "borderRadius"
+    },
+    "circle": {
+      "value": "9999px",
+      "type": "borderRadius"
+    },
+    "small": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "medium": {
+      "value": "8px",
+      "type": "borderRadius"
+    },
+    "large": {
+      "value": "8px",
+      "type": "borderRadius",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "x-large": {
+      "value": "16px",
+      "type": "borderRadius",
+      "description": "Shoelace compatibility DO NOT USE"
+    }
+  },
+  "border-width": {
+    "none": {
+      "value": "0px",
+      "type": "borderWidth",
+      "description": "None"
+    },
+    "small": {
+      "value": "1px",
+      "type": "borderWidth",
+      "description": "Small"
+    },
+    "medium": {
+      "value": "2px",
+      "type": "borderWidth",
+      "description": "Medium"
+    },
+    "large": {
+      "value": "3px",
+      "type": "borderWidth",
+      "description": "Large"
+    },
+    "x-large": {
+      "value": "4px",
+      "type": "borderWidth",
+      "description": "X Large"
+    }
+  },
+  "dimension": {
+    "base": {
+      "value": "4px",
+      "type": "dimension"
+    }
+  },
+  "duration": {
+    "extra-fast": {
+      "value": "{transition.x-fast}",
+      "type": "duration",
+      "description": "to be deprecated"
+    },
+    "fast": {
+      "value": "{transition.fast}",
+      "type": "duration",
+      "description": "to be deprecated"
+    },
+    "normal": {
+      "value": "{transition.medium}",
+      "type": "duration",
+      "description": "to be deprecated"
+    },
+    "slow": {
+      "value": "{transition.slow}",
+      "type": "duration",
+      "description": "to be deprecated"
+    },
+    "extra-slow": {
+      "value": "{transition.x-slow}",
+      "type": "duration",
+      "description": "to be deprecated"
+    }
+  },
+  "font": {
+    "sans": {
+      "value": "{font.theme.sans}",
+      "type": "fontFamilies",
+      "description": "Main Font"
+    },
+    "mono": {
+      "value": "{font.theme.mono}",
+      "type": "fontFamilies"
+    },
+    "sans-fallback": {
+      "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
+      "type": "fontFamilies"
+    },
+    "serif": {
+      "value": "Georgia, \"Times New Roman\", serif",
+      "type": "fontFamilies",
+      "description": "Shoelace compatibility DO NOT USE"
+    }
+  },
   "font-size": {
+    "2x-small": {
+      "value": "11px",
+      "type": "fontSizes"
+    },
     "x-small": {
       "value": "12px",
       "type": "fontSizes"
@@ -12,82 +128,258 @@
       "value": "16px",
       "type": "fontSizes"
     },
+    "medium-large": {
+      "value": "18px",
+      "type": "fontSizes"
+    },
     "large": {
       "value": "20px",
+      "type": "fontSizes"
+    },
+    "0x-large": {
+      "value": "22px",
       "type": "fontSizes"
     },
     "x-large": {
       "value": "24px",
       "type": "fontSizes"
     },
+    "1x-large": {
+      "value": "28px",
+      "type": "fontSizes"
+    },
+    "1-5x-large": {
+      "value": "30px",
+      "type": "fontSizes"
+    },
     "2x-large": {
       "value": "32px",
+      "type": "fontSizes"
+    },
+    "2-5x-large": {
+      "value": "34px",
       "type": "fontSizes"
     },
     "3x-large": {
       "value": "40px",
       "type": "fontSizes"
-    }
-  },
-  "duration": {
-    "extra-fast": {
-      "value": "90ms",
-      "type": "duration"
     },
-    "fast": {
-      "value": "150ms",
-      "type": "duration"
-    },
-    "normal": {
-      "value": "250ms",
-      "type": "duration"
-    },
-    "slow": {
-      "value": "350ms",
-      "type": "duration"
-    },
-    "extra-slow": {
-      "value": "500ms",
-      "type": "duration"
-    }
-  },
-  "line-height": {
-    "denser": {
-      "value": "100%",
-      "type": "lineHeights"
-    },
-    "dense": {
-      "value": "120%",
-      "type": "lineHeights"
-    },
-    "normal": {
-      "value": "140%",
-      "type": "lineHeights"
-    },
-    "loose": {
-      "value": "180%",
-      "type": "lineHeights"
-    },
-    "looser": {
-      "value": "220%",
-      "type": "lineHeights"
+    "4x-large": {
+      "value": "52px",
+      "type": "fontSizes"
     }
   },
   "font-weight": {
+    "light": {
+      "value": "{font-weight.theme.normal}",
+      "type": "fontWeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
     "normal": {
-      "value": "400",
+      "value": "{font-weight.theme.normal}",
       "type": "fontWeights"
     },
     "semibold": {
-      "value": "600",
+      "value": "{font-weight.theme.semibold}",
       "type": "fontWeights"
     },
     "bold": {
-      "value": "700",
+      "value": "{font-weight.theme.bold}",
       "type": "fontWeights"
     }
   },
+  "letter-spacing": {
+    "default": {
+      "value": "0%",
+      "type": "letterSpacing"
+    },
+    "n-05": {
+      "value": "-0.5%",
+      "type": "letterSpacing"
+    },
+    "p-05": {
+      "value": "0.5%",
+      "type": "letterSpacing"
+    },
+    "p-2": {
+      "value": "2%",
+      "type": "letterSpacing"
+    },
+    "p-5": {
+      "value": "5%",
+      "type": "letterSpacing"
+    },
+    "denser": {
+      "value": "{letter-spacing.default}",
+      "type": "letterSpacing",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "dense": {
+      "value": "{letter-spacing.default}",
+      "type": "letterSpacing",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "normal": {
+      "value": "{letter-spacing.default}",
+      "type": "letterSpacing",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "loose": {
+      "value": "{letter-spacing.default}",
+      "type": "letterSpacing",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "looser": {
+      "value": "{letter-spacing.p-2}",
+      "type": "letterSpacing",
+      "description": "Shoelace compatibility DO NOT USE"
+    }
+  },
+  "line-height": {
+    "100": {
+      "value": "100%",
+      "type": "lineHeights"
+    },
+    "110": {
+      "value": "110%",
+      "type": "lineHeights"
+    },
+    "115": {
+      "value": "115%",
+      "type": "lineHeights"
+    },
+    "120": {
+      "value": "120%",
+      "type": "lineHeights"
+    },
+    "130": {
+      "value": "130%",
+      "type": "lineHeights"
+    },
+    "140": {
+      "value": "140%",
+      "type": "lineHeights"
+    },
+    "150": {
+      "value": "150%",
+      "type": "lineHeights"
+    },
+    "160": {
+      "value": "160%",
+      "type": "lineHeights"
+    },
+    "180": {
+      "value": "180%",
+      "type": "lineHeights"
+    },
+    "220": {
+      "value": "220%",
+      "type": "lineHeights"
+    },
+    "denser": {
+      "value": "{line-height.100}",
+      "type": "lineHeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "dense": {
+      "value": "{line-height.120}",
+      "type": "lineHeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "normal": {
+      "value": "{line-height.140}",
+      "type": "lineHeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "loose": {
+      "value": "{line-height.180}",
+      "type": "lineHeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "looser": {
+      "value": "{line-height.220}",
+      "type": "lineHeights",
+      "description": "Shoelace compatibility DO NOT USE"
+    }
+  },
+  "opacity": {
+    "30": {
+      "value": "0.3",
+      "type": "opacity",
+      "description": "30%"
+    },
+    "50": {
+      "value": "0.5",
+      "type": "opacity",
+      "description": "50%"
+    },
+    "70": {
+      "value": "0.7",
+      "type": "opacity",
+      "description": "70%"
+    }
+  },
   "shadow": {
+    "x-small": {
+      "value": [
+        {
+          "x": "0",
+          "y": "1",
+          "blur": "2",
+          "spread": "0",
+          "color": "rgba( {neutral.950} , 0.04)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "1",
+          "blur": "4",
+          "spread": "0",
+          "color": "rgba( {neutral.950} , 0.04)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "8",
+          "spread": "0",
+          "color": "rgba( {neutral.950}, 0.04)",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "small": {
+      "value": [
+        {
+          "x": "0",
+          "y": "1",
+          "blur": "2",
+          "spread": "0",
+          "color": "rgba( {neutral.950} , 0.06)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "1",
+          "blur": "4",
+          "spread": "0",
+          "color": "rgba( {neutral.950} , 0.06)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "8",
+          "spread": "0",
+          "color": "rgba( {neutral.950}, 0.06)",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
     "medium": {
       "value": [
         {
@@ -296,17 +588,6 @@
       "description": "Overflow Right"
     }
   },
-  "font": {
-    "sans": {
-      "value": "Open Sans",
-      "type": "fontFamilies",
-      "description": "Open Sans"
-    },
-    "mono": {
-      "value": "Roboto Mono",
-      "type": "fontFamilies"
-    }
-  },
   "spacing": {
     "4x-small": {
       "value": "{dimension.base}/4",
@@ -344,12 +625,20 @@
       "value": "{dimension.base}*8",
       "type": "spacing"
     },
+    "1-5x-large": {
+      "value": "{dimension.base}*10",
+      "type": "spacing"
+    },
     "2x-large": {
       "value": "{dimension.base}*12",
       "type": "spacing"
     },
     "3x-large": {
       "value": "{dimension.base}*16",
+      "type": "spacing"
+    },
+    "3-5x-large": {
+      "value": "{dimension.base}*20",
       "type": "spacing"
     },
     "4x-large": {
@@ -361,72 +650,6 @@
       "type": "spacing"
     }
   },
-  "border-radius": {
-    "none": {
-      "value": "0px",
-      "type": "borderRadius"
-    },
-    "pill": {
-      "value": "9999px",
-      "type": "borderRadius"
-    },
-    "circle": {
-      "value": "9999px",
-      "type": "borderRadius"
-    },
-    "small": {
-      "value": "4px",
-      "type": "borderRadius"
-    },
-    "medium": {
-      "value": "8px",
-      "type": "borderRadius"
-    }
-  },
-  "dimension": {
-    "base": {
-      "value": "4px",
-      "type": "dimension"
-    }
-  },
-  "border-width": {
-    "none": {
-      "value": "0px",
-      "type": "borderWidth",
-      "description": "None"
-    },
-    "small": {
-      "value": "1px",
-      "type": "borderWidth",
-      "description": "Small"
-    },
-    "medium": {
-      "value": "2px",
-      "type": "borderWidth",
-      "description": "Medium"
-    },
-    "large": {
-      "value": "3px",
-      "type": "borderWidth",
-      "description": "Large"
-    },
-    "x-large": {
-      "value": "4px",
-      "type": "borderWidth",
-      "description": "X Large"
-    }
-  },
-  "font-sans-fallback": {
-    "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
-    "type": "other"
-  },
-  "opacity": {
-    "50": {
-      "value": "0.5",
-      "type": "opacity",
-      "description": "50%"
-    }
-  },
   "text-decoration": {
     "default": {
       "value": "none",
@@ -435,6 +658,65 @@
     "underline": {
       "value": "underline",
       "type": "textDecoration"
+    }
+  },
+  "text-transform": {
+    "default": {
+      "value": "none",
+      "type": "textCase"
+    },
+    "uppercase": {
+      "value": "uppercase",
+      "type": "textCase"
+    }
+  },
+  "transition": {
+    "x-fast": {
+      "value": "50ms",
+      "type": "duration"
+    },
+    "fast": {
+      "value": "150ms",
+      "type": "duration"
+    },
+    "medium": {
+      "value": "250ms",
+      "type": "duration"
+    },
+    "slow": {
+      "value": "500ms",
+      "type": "duration"
+    },
+    "x-slow": {
+      "value": "1000ms",
+      "type": "duration"
+    }
+  },
+  "z-index": {
+    "drawer": {
+      "value": "700",
+      "type": "number",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "dialog": {
+      "value": "800",
+      "type": "number",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "dropdown": {
+      "value": "900",
+      "type": "number",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "toast": {
+      "value": "950",
+      "type": "number",
+      "description": "Shoelace compatibility DO NOT USE"
+    },
+    "tooltip": {
+      "value": "1000",
+      "type": "number",
+      "description": "Shoelace compatibility DO NOT USE"
     }
   }
 }

@@ -86,6 +86,8 @@ export const withSpriteSheetGenerator = {
         'space_dashboard',
         'preview',
         'bug_report',
+        'visibility_off',
+        'visibility',
       ],
     }),
     viteStaticCopy({

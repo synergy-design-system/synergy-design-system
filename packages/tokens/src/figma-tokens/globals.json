@@ -85,11 +85,11 @@
     "mono": {
       "value": "{font.theme.mono}",
       "type": "fontFamilies"
+    },
+    "sans-fallback": {
+      "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
+      "type": "fontFamilies"
     }
-  },
-  "font-sans-fallback": {
-    "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif",
-    "type": "other"
   },
   "font-size": {
     "2x-small": {

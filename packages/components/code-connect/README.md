@@ -56,7 +56,7 @@ Skipped:
 - [x] syn-nav-item
 - [ ] syn-optgroup
 - [ ] syn-option
-- [ ] syn-prio-nav
+- [x] syn-prio-nav
 - [x] syn-progress-bar
 - [x] syn-progress-ring
 - [x] syn-radio

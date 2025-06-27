@@ -36,7 +36,7 @@ Skipped:
 - [x] syn-button
 - [x] syn-card
 - [x] syn-checkbox
-- [ ] syn-combobox
+- [x] syn-combobox
 - [x] syn-details
 - [x] syn-dialog
 - [x] syn-divider

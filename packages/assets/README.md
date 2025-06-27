@@ -75,3 +75,4 @@ This will:
 - download all thumbnails for docs
 - Recreate all default icons
 - Recreate the license files in the different folders
+- Create [code connect files](https://www.figma.com/code-connect-docs/html) for all icons. Please be aware you have to call `pnpm figma-export:icons` in the components package to publish the icons!

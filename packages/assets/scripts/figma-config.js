@@ -9,7 +9,7 @@ import * as FIGMA_CONFIG from './config.js';
 import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
 import { figmaOutputSvg } from './figma-output-svg.js';
 import { outputSystemIcons } from './figma-output-system-icons.js';
-import { outputComponentsToJsonList } from './figma-output-export-json-list.js';
+import { outputComponentsToCodeConnect } from './figma-output-export-code-connect.js';
 
 /**
  * Create a configuration object for the figma export
@@ -96,11 +96,10 @@ export const v2SystemIconConfig = createFigmaExportConfig({
 // v2 all icons configuration
 export const v2AllIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
-    outputComponentsToJsonList({
-      exportName: 'sick2018',
+    outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/core/icons/sick2018.js',
+      output: '../components/code-connect/icons/sick2018.figma.ts',
     }),
     outputComponentsToBundle({
       exportName: 'defaultIcons',
@@ -126,11 +125,10 @@ export const v2LogosConfig = createFigmaExportConfig({
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
-    outputComponentsToJsonList({
-      exportName: 'sick2025Outline',
+    outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/core/icons/sick2025-outline.js',
+      output: '../components/code-connect/icons/sick2025-outline.figma.ts',
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -142,11 +140,10 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
 // v3 filled icons configuration
 export const v3FilledIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
-    outputComponentsToJsonList({
-      exportName: 'sick2025Filled',
+    outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/core/icons/sick2025-filled.js',
+      output: '../components/code-connect/icons/sick2025-filled.figma.ts',
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,

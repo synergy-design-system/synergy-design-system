@@ -9,6 +9,7 @@ import * as FIGMA_CONFIG from './config.js';
 import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
 import { figmaOutputSvg } from './figma-output-svg.js';
 import { outputSystemIcons } from './figma-output-system-icons.js';
+import { outputComponentsToJsonList } from './figma-output-export-json-list.js';
 
 /**
  * Create a configuration object for the figma export
@@ -95,6 +96,12 @@ export const v2SystemIconConfig = createFigmaExportConfig({
 // v2 all icons configuration
 export const v2AllIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
+    outputComponentsToJsonList({
+      exportName: 'sick2018',
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/core/icons/sick2018.js',
+    }),
     outputComponentsToBundle({
       exportName: 'defaultIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
@@ -118,6 +125,14 @@ export const v2LogosConfig = createFigmaExportConfig({
 
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToJsonList({
+      exportName: 'sick2025Outline',
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/core/icons/sick2025-outline.js',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
@@ -126,6 +141,14 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
 
 // v3 filled icons configuration
 export const v3FilledIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToJsonList({
+      exportName: 'sick2025Filled',
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/core/icons/sick2025-filled.js',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],

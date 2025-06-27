@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynValidate from '../src/components/validate/validate.js';
-import type { ValidProperties } from './core/types';
+import type SynValidate from '../../src/components/validate/validate.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25638-40480', {
@@ -30,9 +30,9 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     customValidationMessage: figma.string('validation-message'),
     hideIcon: figma.boolean('hide-icon'),
     variant: figma.enum('variant', {
+      inline: 'inline',
       'native (Edge/default)': 'native',
       'native (Safari)': 'native',
-      inline: 'inline',
     }),
   } satisfies ValidProperties<SynValidate>,
 });

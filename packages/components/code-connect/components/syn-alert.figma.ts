@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynAlert from '../src/components/alert/alert.js';
-import type { ValidProperties } from './core/types';
+import type SynAlert from '../../src/components/alert/alert.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

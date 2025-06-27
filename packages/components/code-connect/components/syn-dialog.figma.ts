@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynDialog from '../src/components/dialog/dialog.js';
-import type { ValidProperties } from './core/types';
+import type SynDialog from '../../src/components/dialog/dialog.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos
@@ -15,7 +15,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   `,
   props: {
     defaultSlot: figma.children('*'),
-  }
+  },
 });
 
 // Footer content helper
@@ -34,15 +34,15 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     textButton: figma.boolean('text button', {
       true: html`<syn-button variant="text" slot="footer">Cancel</syn-button>`,
     }),
-  }
+  },
 });
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=17938-28299', {
   example: ({
-    headerSlot,
-    footerSlot,
     defaultSlot,
+    footerSlot,
+    headerSlot,
     noHeader,
   }) => html`
     <syn-dialog
@@ -64,18 +64,18 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
-    headerSlot: figma.boolean('*header', {
-      true: figma.children('_helper/syn-drawer/header'),
+    defaultSlot: figma.boolean('*content', {
+      true: figma.children('_helper/syn-drawer/content'),
     }),
     footerSlot: figma.boolean('footer', {
       true: figma.children('_helper/syn-dialog/footer'),
     }),
-    defaultSlot: figma.boolean('*content', {
-      true: figma.children('_helper/syn-drawer/content'),
+    headerSlot: figma.boolean('*header', {
+      true: figma.children('_helper/syn-drawer/header'),
     }),
     noHeader: figma.boolean('*header', {
-      true: false,
       false: true,
+      true: false,
     }),
   } satisfies ValidProperties<SynDialog, ['default', 'header', 'footer']>,
 });

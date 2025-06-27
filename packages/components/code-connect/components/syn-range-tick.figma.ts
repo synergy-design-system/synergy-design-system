@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynRangeTick from '../src/components/range-tick/range-tick.js';
-import type { ValidProperties } from './core/types';
+import type SynRangeTick from '../../src/components/range-tick/range-tick.js';
+import type { ValidProperties } from '../core/types';
 
 // Ticks helper
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25215-36003', {
@@ -13,7 +13,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   `,
   props: {
     defaultSlot: figma.children('*'),
-  }
+  },
 });
 
 // Slot helper

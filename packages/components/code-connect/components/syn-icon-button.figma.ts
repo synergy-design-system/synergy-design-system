@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynIconButton from '../src/components/icon-button/icon-button.js';
-import type { ValidProperties } from './core/types';
+import type SynIconButton from '../../src/components/icon-button/icon-button.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

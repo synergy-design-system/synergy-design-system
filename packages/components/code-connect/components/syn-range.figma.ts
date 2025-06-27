@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynRange from '../src/components/range/range.js';
-import type { ValidProperties } from './core/types';
+import type SynRange from '../../src/components/range/range.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25215-36015', {
@@ -52,13 +52,13 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('↳ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
+    }),
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('↳ <slot suffix>'),
     }),
     ticksSlot: figma.boolean('ticks', {
       true: figma.children('_helper/syn-range/ticks'),

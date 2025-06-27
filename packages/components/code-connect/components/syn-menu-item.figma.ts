@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynMenuItem from '../src/components/menu-item/menu-item.js';
-import type { ValidProperties } from './core/types';
+import type SynMenuItem from '../../src/components/menu-item/menu-item.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=10514-9627', {

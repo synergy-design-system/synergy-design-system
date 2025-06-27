@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynCard from '../src/components/card/card.js';
-import type { ValidProperties } from './core/types';
+import type SynCard from '../../src/components/card/card.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos
@@ -21,7 +21,6 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   links: [],
 });
 
-
 // Slot option
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15368-59024', {
   example: ({
@@ -34,7 +33,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   props: {
     defaultSlot: figma.boolean('label', {
       true: figma.string('↳ content/label'),
-    })
+    }),
   },
 });
 
@@ -134,10 +133,10 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15409-80280', {
   example: ({
     defaultSlot,
-    headerSlot,
     footerSlot,
+    headerSlot,
     imageSlot,
-    sharp
+    sharp,
   }) => html`
     <syn-card
       sharp=${sharp}
@@ -159,8 +158,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   ],
   props: {
     defaultSlot: figma.children('_helper/syn-card/base'),
-    headerSlot: figma.children('_helper/syn-cards/header'),
     footerSlot: figma.children('_helper/syn-card/footer'),
+    headerSlot: figma.children('_helper/syn-cards/header'),
     imageSlot: figma.boolean('image', {
       true: figma.instance('<image slot>'),
     }),

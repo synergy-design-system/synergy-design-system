@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynAccordion from '../src/components/accordion/accordion.js';
-import type { ValidProperties } from './core/types';
+import type SynAccordion from '../../src/components/accordion/accordion.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynCheckbox from '../src/components/checkbox/checkbox.js';
-import type { ValidProperties } from './core/types';
+import type SynCheckbox from '../../src/components/checkbox/checkbox.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

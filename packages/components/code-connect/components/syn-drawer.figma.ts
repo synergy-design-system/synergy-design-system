@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynDrawer from '../src/components/drawer/drawer.js';
-import type { ValidProperties } from './core/types';
+import type SynDrawer from '../../src/components/drawer/drawer.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos
@@ -51,10 +51,10 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=9983-7953', {
   example: ({
-    headerSlot,
-    headerActionsSlot,
     defaultSlot,
     footerSlot,
+    headerActionsSlot,
+    headerSlot,
   }) => html`
     <syn-drawer>
       ${headerSlot}
@@ -73,19 +73,19 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
-    headerSlot: figma.boolean('header', {
-      true: figma.instance('↳ <slot-header>'),
+    defaultSlot: figma.boolean('*content', {
+      true: figma.instance('↳ *<slot-content>'),
+    }),
+    footerSlot: figma.boolean('footer', {
+      true: figma.instance('↳ slot-footer'),
     }),
     headerActionsSlot: figma.boolean('header-actions', {
       true: html`
         <syn-icon-button name="wallpaper" label="Action" slot="header-actions"></syn-icon-button>
       `,
     }),
-    defaultSlot: figma.boolean('*content', {
-      true: figma.instance('↳ *<slot-content>'),
-    }),
-    footerSlot: figma.boolean('footer', {
-      true: figma.instance('↳ slot-footer'),
+    headerSlot: figma.boolean('header', {
+      true: figma.instance('↳ <slot-header>'),
     }),
   } satisfies ValidProperties<SynDrawer, ['default', 'header', 'headerActions', 'footer']>,
 });

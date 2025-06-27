@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynInput from '../src/components/input/input.js';
-import type { ValidProperties } from './core/types';
+import type SynInput from '../../src/components/input/input.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=661-61526', {
@@ -46,8 +46,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
-    disabled: figma.boolean('disabled'),
     clearable: figma.boolean('clearable'),
+    disabled: figma.boolean('disabled'),
     helpText: figma.boolean('help-text', {
       true: figma.string('↳ content/help-text'),
     }),
@@ -60,19 +60,19 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('↳ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
     readonly: figma.boolean('readonly'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
     }),
-    value: figma.string('*value'),
-    type: figma.boolean('stepper', {
-      true: 'number',
-      false: 'text',
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('↳ <slot suffix>'),
     }),
+    type: figma.boolean('stepper', {
+      false: 'text',
+      true: 'number',
+    }),
+    value: figma.string('*value'),
   } satisfies ValidProperties<SynInput, ['prefix', 'suffix', 'suffix']>,
 });

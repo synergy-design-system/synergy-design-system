@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynTooltip from '../src/components/tooltip/tooltip.js';
-import type { ValidProperties } from './core/types';
+import type SynTooltip from '../../src/components/tooltip/tooltip.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=16910-25970', {

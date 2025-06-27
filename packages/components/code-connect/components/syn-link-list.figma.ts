@@ -25,9 +25,9 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     className: figma.className([
       'syn-link-list',
       figma.enum('size', {
-        small: 'syn-link-list--small',
-        medium: 'syn-link-list--medium',
         large: 'syn-link-list--large',
+        medium: 'syn-link-list--medium',
+        small: 'syn-link-list--small',
       }),
       figma.boolean('horizontal', {
         true: 'syn-link-list--horizontal',

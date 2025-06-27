@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynTag from '../src/components/tag/tag.js';
-import type { ValidProperties } from './core/types';
+import type SynTag from '../../src/components/tag/tag.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=2842-16750', {
@@ -28,15 +28,15 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
+    defaultSlot: figma.instance('<slot (default)>'),
     iconSlot: figma.boolean('*icon', {
       true: figma.instance('↳ icon'),
     }),
-    defaultSlot: figma.instance('<slot (default)>'),
+    removable: figma.boolean('removable'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
     }),
-    removable: figma.boolean('removable'),
   } satisfies ValidProperties<SynTag, ['default', 'icon']>,
 });

@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynCombobox from '../src/components/combobox/combobox.js';
-import type { ValidProperties } from './core/types';
+import type SynCombobox from '../../src/components/combobox/combobox.js';
+import type { ValidProperties } from '../core/types';
 
 // Combobox helper
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=26894-38223', {
@@ -72,13 +72,13 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('└─ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('└─ <slot suffix>'),
-    }),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
+    }),
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('└─ <slot suffix>'),
     }),
     value: figma.string('*value'),
   } satisfies ValidProperties<SynCombobox, ['default', 'prefix', 'suffix', 'suffix']>,

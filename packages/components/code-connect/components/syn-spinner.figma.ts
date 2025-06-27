@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynSpinner from '../src/components/spinner/spinner.js';
-import type { ValidProperties } from './core/types';
+import type SynSpinner from '../../src/components/spinner/spinner.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=17016-71772', {

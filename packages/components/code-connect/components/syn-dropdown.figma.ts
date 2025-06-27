@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynDropdown from '../src/components/dropdown/dropdown.js';
-import type { ValidProperties } from './core/types';
+import type SynDropdown from '../../src/components/dropdown/dropdown.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

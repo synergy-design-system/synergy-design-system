@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynRadio from '../src/components/radio/radio.js';
-import type { ValidProperties } from './core/types';
+import type SynRadio from '../../src/components/radio/radio.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1345-21578', {
@@ -26,8 +26,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     },
   ],
   props: {
-    disabled: figma.boolean('disabled'),
     defaultSlot: figma.instance('↳ <slot (default)>'),
+    disabled: figma.boolean('disabled'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',

@@ -41,10 +41,10 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
         true: 'syn-link--disabled',
       }),
       figma.enum('size', {
-        small: 'syn-link--small',
-        medium: 'syn-link--medium',
         large: 'syn-link--large',
-      }),      
+        medium: 'syn-link--medium',
+        small: 'syn-link--small',
+      }),
     ]),
     // @todo: Not possible currently to map nested props in Figma Connect
     // figma.nestedProps('_helper/color/syn-link', {

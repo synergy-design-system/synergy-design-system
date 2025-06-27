@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynBreadcrumb from '../src/components/breadcrumb/breadcrumb.js';
-import type { ValidProperties } from './core/types';
+import type SynBreadcrumb from '../../src/components/breadcrumb/breadcrumb.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

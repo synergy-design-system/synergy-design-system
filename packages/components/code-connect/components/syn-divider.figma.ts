@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynDivider from '../src/components/divider/divider.js';
-import type { ValidProperties } from './core/types';
+import type SynDivider from '../../src/components/divider/divider.js';
+import type { ValidProperties } from '../core/types';
 
 /**
  * @todos

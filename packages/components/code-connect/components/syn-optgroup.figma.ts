@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynOptgroup from '../src/components/optgroup/optgroup.js';
-import type { ValidProperties } from './core/types';
+import type SynOptgroup from '../../src/components/optgroup/optgroup.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=30344-112405', {
@@ -8,8 +8,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     defaultSlot,
     disabled,
     prefixSlot,
-    suffixSlot,
     style,
+    suffixSlot,
   }) => html`
     <syn-optgroup
       disabled=${disabled}
@@ -35,11 +35,11 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('↳ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
     style: figma.boolean('*divider', {
       false: html`--display-divider: none;`,
+    }),
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('↳ <slot suffix>'),
     }),
   } satisfies ValidProperties<SynOptgroup, ['default', 'prefix', 'suffix']>,
 });

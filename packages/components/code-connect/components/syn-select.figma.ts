@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynSelect from '../src/components/select/select';
-import type { ValidProperties } from './core/types';
+import type SynSelect from '../../src/components/select/select';
+import type { ValidProperties } from '../core/types';
 
 // Dropdown helper
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=4910-22093&m=dev', {
@@ -75,13 +75,13 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('└─ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('└─ <slot suffix>'),
-    }),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',
       small: 'small',
+    }),
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('└─ <slot suffix>'),
     }),
     value: figma.string('*value'),
   } satisfies ValidProperties<SynSelect, ['default', 'prefix', 'suffix', 'suffix']>,

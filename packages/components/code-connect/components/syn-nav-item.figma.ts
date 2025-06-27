@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynNavItem from '../src/components/nav-item/nav-item.js';
-import type { ValidProperties } from './core/types';
+import type SynNavItem from '../../src/components/nav-item/nav-item.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=12362-10922', {
@@ -10,8 +10,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     disabled,
     horizontal,
     prefixSlot,
-    suffixSlot,
     style,
+    suffixSlot,
   }) => html`
     <syn-nav-item
       current=${current}
@@ -43,14 +43,14 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     prefixSlot: figma.boolean('prefix', {
       true: figma.instance('↳ <slot prefix>'),
     }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
     style: figma.boolean('nest', {
       true: figma.boolean('↳ nest', {
         false: html`--indentation: 1`,
         true: html`--indentation: 2`,
       }),
+    }),
+    suffixSlot: figma.boolean('suffix', {
+      true: figma.instance('↳ <slot suffix>'),
     }),
   } satisfies ValidProperties<SynNavItem, ['default', 'prefix', 'suffix']>,
 });

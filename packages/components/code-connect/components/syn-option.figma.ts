@@ -1,6 +1,6 @@
 import figma, { html } from '@figma/code-connect/html';
-import type SynOption from '../src/components/option/option.js';
-import type { ValidProperties } from './core/types';
+import type SynOption from '../../src/components/option/option.js';
+import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=30345-113913', {

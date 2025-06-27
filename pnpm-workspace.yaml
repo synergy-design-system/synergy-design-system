@@ -6,4 +6,4 @@ packages:
 # which causes issues with the VSCode ESLint extension.
 # @see https://github.com/microsoft/vscode-eslint/issues/1986#issuecomment-2799868163
 publicHoistPattern:
-  - '*eslint*'
+  - "*eslint*"

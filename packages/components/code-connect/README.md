@@ -1,11 +1,20 @@
+# Synergy Code Connect (Alpha!)
+
+> Be aware that anything here may change at any time as we restructure the code connect folder.
+> This functionality is beta and may be adjusted anytime during development.
+
 # About this folder
 
-This folder holds all figma code connect files used to connect Synergy to Figma.
+This folder holds all figma code connect files and some utilities used to connect Synergy to Figma.
 
-## Setting up code connect
+## Setting up and publishing code connect
 
 1. Create a new Figma API token that has read permissions for boards and write permissions for `Code Connect`.
-2. Run the following command in the root of the components package: `pnpm exec figma connect publish -t YOUR_FIGMA_TOKEN`.
+2. Export your figma access token in the shell (e.g. `export FIGMA_ACCESS_TOKEN=figd_MY_TOKEN`).
+3. Run one of the following command in the components package: `pnpm figma-export`.
+
+> ! As the icons export takes a long time to complete, we have opted to make the export available for parts.
+> For faster iteration, you may just use `pnpm figma-export:components` when working on connected components.
 
 ## Current problems
 

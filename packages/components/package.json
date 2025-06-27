@@ -38,6 +38,8 @@
     "dist"
   ],
   "scripts": {
+    "figma-export:components": "pnpm exec figma connect publish -c ./code-connect/figma.config.components.json",
+    "figma-export:icons": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.json --batch-size 100",
     "report-bundle-size": "pnpm exec size-limit --json",
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",

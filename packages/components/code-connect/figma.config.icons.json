@@ -1,0 +1,9 @@
+{
+  "codeConnect": {
+    "include": [
+      "./code-connect/icons/**/*.figma.ts"
+    ],
+    "parser": "html",
+    "label": "Synergy (Web Components)"
+  }
+}

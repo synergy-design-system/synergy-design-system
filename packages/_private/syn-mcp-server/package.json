@@ -4,15 +4,17 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.13.2",
+    "zod": "^3.25.67"
   },
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@types/node": "^22.15.32",
     "eslint": "^8.57.1",
     "typescript": "^5.8.3"
   },
-  "exports": {
-  },
+  "exports": {},
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/synergy-mcp-server",
   "keywords": [
     "SDS",
@@ -25,8 +27,6 @@
   ],
   "license": "MIT",
   "name": "@synergy-design-system/syn-mcp-server",
-  "peerDependencies": {
-  },
   "private": true,
   "repository": {
     "type": "git",
@@ -34,8 +34,11 @@
     "directory": "packages/syn-mcp-server"
   },
   "scripts": {
+    "build": "tsc",
+    "start": "pnpm build && node dist/server.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },
+  "type": "module",
   "version": "0.1.0"
 }

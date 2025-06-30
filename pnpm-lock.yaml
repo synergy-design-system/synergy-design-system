@@ -307,6 +307,8 @@ importers:
         specifier: ^16.20.0
         version: 16.20.0(typescript@5.8.3)
 
+  packages/_private/syn-mcp-server: {}
+
   packages/_private/vanilla-demo:
     dependencies:
       '@fontsource/open-sans':

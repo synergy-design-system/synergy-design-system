@@ -655,6 +655,53 @@
       "type": "color"
     }
   },
+  "sick-yellow": {
+    "50": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "100": {
+      "value": "#fffabf",
+      "type": "color"
+    },
+    "200": {
+      "value": "#fff580",
+      "type": "color"
+    },
+    "300": {
+      "value": "#fff040",
+      "type": "color"
+    },
+    "400": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "500": {
+      "value": "#ffeb00",
+      "type": "color",
+      "description": "SICK Yellow"
+    },
+    "600": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "700": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "800": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "900": {
+      "value": "#f000ff",
+      "type": "color"
+    },
+    "950": {
+      "value": "#f000ff",
+      "type": "color"
+    }
+  },
   "black": {
     "value": "#000000",
     "type": "color"

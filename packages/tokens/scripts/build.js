@@ -1,7 +1,11 @@
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
+import {
+  getAvailableThemes,
+  getInformationForTheme,
+  getPackageInformation,
+} from './helpers.js';
 import { cssVariableFormatter } from './formats/index.js';
 import { createJS, createSCSS } from './outputs/index.js';
 import {
@@ -12,6 +16,7 @@ import {
   useCssCalc,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
+import { copyToDefaultLocation } from './copyToDefault.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addColorPrefix);
@@ -25,21 +30,15 @@ StyleDictionary.registerFormat(cssVariableFormatter);
 const config = {
   buildPath: './dist/',
   prefix: 'syn-',
-  source: [
-    './src/figma-tokens/color/primitives.json',
-    './src/figma-tokens/globals.json',
-    './src/figma-tokens/semantic/*.json',
-  ],
 };
 
-/**
- * @type {{ author: Record<string, string>, name: string, version: string }} data
- */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const data = JSON.parse(readFileSync('./package.json', 'utf-8'));
-const { author, name, version } = data;
+const { author, name, version } = getPackageInformation();
 
-const dictionary = new StyleDictionary();
+const dictionary = new StyleDictionary({
+  log: {
+    verbosity: 'verbose',
+  },
+});
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
@@ -51,24 +50,23 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-const cssRuns = ['dark', 'light'].map(async theme => {
+const cssRuns = getAvailableThemes().map(async ({ theme, mode }) => {
+  const themeInformation = getInformationForTheme(theme, mode);
   const themeInstance = await dictionary.extend({
     platforms: {
       css: {
         buildPath: `${config.buildPath}themes/`,
         files: [{
-          destination: `${theme}.css`,
-          filter(token) { return !token.filePath.includes('primitive'); },
+          destination: themeInformation.cssFileName,
+          filter(token) { return !token.filePath.includes('brand'); },
           format: 'syn/css-variable-formatter',
           options: {
             fileHeader: 'syn/header',
             prefix: config.prefix,
-            theme,
+            themeInformation,
           },
         }],
         prefix: config.prefix,
-        // transformGroup: 'tokens-studio',
         transforms: [
           'name/kebab',
           'ts/descriptionToComment',
@@ -92,7 +90,12 @@ const cssRuns = ['dark', 'light'].map(async theme => {
       },
     },
     preprocessors: ['tokens-studio'],
-    source: config.source.concat(`./src/figma-tokens/color/${theme}.json`),
+    source: [
+      `./src/figma-tokens/theme/${themeInformation.theme}.json`,
+      './src/figma-tokens/globals.json',
+      './src/figma-tokens/semantic/*.json',
+      `./src/figma-tokens/mode/${mode}.json`,
+    ],
   });
 
   return themeInstance.buildAllPlatforms();
@@ -104,6 +107,8 @@ addMissingTokens(
   'syn',
   join(config.buildPath, 'themes'),
 );
+
+copyToDefaultLocation(join(config.buildPath, 'themes'));
 
 const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
 createJS(

@@ -12,7 +12,8 @@
   "externals": [
     "packages/tokens/src/figma-tokens/semantic/**",
     "packages/tokens/src/figma-tokens/globals.json",
-    "packages/tokens/src/figma-tokens/color/**",
+    "packages/tokens/src/figma-tokens/mode/**",
+    "packages/tokens/src/figma-tokens/theme/**",
     "packages/assets/src/**/*.svg",
     "packages/styles/src/**/*.css"
   ]

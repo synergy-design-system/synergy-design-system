@@ -5,11 +5,14 @@ import * as tools from './tools/index.js';
 
 // Create an MCP server
 const server = new McpServer({
-  name: 'demo-server',
-  version: '1.0.0',
+  description: 'A server for the Synergy Design System that provides tools to interact with components and resources.',
+  name: 'synergy design system',
+  title: 'Synergy Design System MCP Server',
+  version: '0.1.0',
 });
 
 tools.componentListTool(server);
+tools.componentInfoTool(server);
 
 // Add an addition tool
 server.registerTool(

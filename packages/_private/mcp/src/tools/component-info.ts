@@ -1,10 +1,7 @@
 /* eslint-disable complexity */
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import {
-  getPackageData,
-  getStructuredMetaDataForComponent,
-} from '../utilities/index.js';
+import { getStructuredMetaDataForComponent } from '../utilities/index.js';
 
 /**
  * Simple tool to list all available components in the Synergy Design System.
@@ -26,9 +23,6 @@ export const componentInfoTool = (server: McpServer) => {
       component,
       framework,
     }) => {
-      // Split the component name to ensure it is valid
-      const fsComponentName = component.split('syn-').at(-1);
-
       // Filter function to select specific files based on the framework
       const namePatterns = ['README.md', 'component.ts'];
 
@@ -45,29 +39,20 @@ export const componentInfoTool = (server: McpServer) => {
       default:
       }
 
+      const finalPattern = namePatterns.map(pattern => pattern.toLowerCase());
       const data = await getStructuredMetaDataForComponent(
         component,
-        fileName => !namePatterns.includes(fileName),
+        fileName => finalPattern.some(pattern => fileName.toLowerCase().includes(pattern)),
       );
 
-      // Old logic: Works :)
-      const packageData = await getPackageData('components');
-      const componentInfo = Object
-        .values(packageData?.components ?? {})
-        .find(c => c.filename.endsWith(`${fsComponentName}.component.ts`));
-
-      if (!componentInfo) {
-        throw new Error(`Component "${component}" not found. Please ensure it is a valid component name starting with "syn-".`);
-      }
+      const text = data && data.length > 0
+        ? JSON.stringify(data, null, 2)
+        : `No metadata found for component ${component}`;
 
       return {
         content: [
           {
-            text: JSON.stringify(componentInfo.content, null, 2),
-            type: 'text',
-          },
-          {
-            text: `Metadata for components: ${JSON.stringify(data, null, 2)}`,
+            text,
             type: 'text',
           },
         ],

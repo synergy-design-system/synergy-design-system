@@ -188,6 +188,31 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
 
+  packages/_private/mcp:
+    dependencies:
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.13.2
+        version: 1.13.2
+      globby:
+        specifier: ^14.1.0
+        version: 14.1.0
+      zod:
+        specifier: ^3.25.67
+        version: 3.25.67
+    devDependencies:
+      '@synergy-design-system/eslint-config-syn':
+        specifier: workspace:^
+        version: link:../eslint-config-syn
+      '@types/node':
+        specifier: ^22.15.32
+        version: 22.15.32
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
   packages/_private/react-demo:
     dependencies:
       '@fontsource/open-sans':
@@ -306,31 +331,6 @@ importers:
       stylelint:
         specifier: ^16.20.0
         version: 16.20.0(typescript@5.8.3)
-
-  packages/_private/syn-mcp-server:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.13.2
-        version: 1.13.2
-      globby:
-        specifier: ^14.1.0
-        version: 14.1.0
-      zod:
-        specifier: ^3.25.67
-        version: 3.25.67
-    devDependencies:
-      '@synergy-design-system/eslint-config-syn':
-        specifier: workspace:^
-        version: link:../eslint-config-syn
-      '@types/node':
-        specifier: ^22.15.32
-        version: 22.15.32
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
 
   packages/_private/vanilla-demo:
     dependencies:

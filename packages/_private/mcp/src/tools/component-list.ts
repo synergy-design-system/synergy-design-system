@@ -25,16 +25,17 @@ export const componentListTool = (server: McpServer) => {
           .filter(filename => filename.endsWith('.component.ts'))
           .sort()
           .map(filename => dirname(filename))
-          .map(filename => `- syn-${filename}`);
+          .map(filename => `- [syn-${filename}](component-info://syn-${filename})`);
+
         return {
           content: [
             {
-              text: `Available components: ${componentNames.join('\n')}`,
+              text: componentNames.join('\n'),
               type: 'text',
             },
           ],
         };
-      } catch (error: unknown) {
+      } catch (error) {
         return {
           content: [
             {

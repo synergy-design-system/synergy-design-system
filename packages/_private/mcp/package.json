@@ -27,12 +27,12 @@
     "Synergy MCP Server"
   ],
   "license": "MIT",
-  "name": "@synergy-design-system/syn-mcp-server",
+  "name": "@synergy-design-system/mcp",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",
-    "directory": "packages/syn-mcp-server"
+    "directory": "packages/_private/mcp"
   },
   "scripts": {
     "build": "tsc",

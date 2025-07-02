@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { metaDataPath } from './config.js';
+import { componentPath } from './config.js';
 import { getAbsolutePath } from './file.js';
 
 /**
@@ -18,7 +18,7 @@ export const getStructuredMetaDataForComponent = async (
   componentName: string,
   filter: Filter = () => true,
 ) => {
-  const absolutePath = getAbsolutePath(`${metaDataPath}/${componentName}`);
+  const absolutePath = getAbsolutePath(`${componentPath}/${componentName}`);
 
   const files = await fs.readdir(absolutePath);
   const metadata = await Promise.all(

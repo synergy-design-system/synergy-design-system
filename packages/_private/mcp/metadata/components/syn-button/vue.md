@@ -12,7 +12,7 @@ import { SynVueButton } from '@synergy-design-system/vue';
 <template>
   <form>
     <input />
-    <syn-button type="submit">Submit me!</syn-button>
+    <SynVueButton type="submit">Submit me!</SynVueButton>
   </form>
 </template>
 ```

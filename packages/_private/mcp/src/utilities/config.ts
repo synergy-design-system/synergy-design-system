@@ -1,4 +1,9 @@
 /**
+ * List of supported frameworks.
+ */
+export type Framework = 'react' | 'vue' | 'angular' | 'vanilla';
+
+/**
  * List of projects and their configurations.
  * Used to define the structure of the resources available in the MCP server.
  */

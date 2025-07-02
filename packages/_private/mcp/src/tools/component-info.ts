@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getStructuredMetaDataForComponent } from '../utilities/index.js';
+import { getInfoForComponent } from '../utilities/index.js';
 
 /**
  * Simple tool to list all available components in the Synergy Design System.
@@ -23,28 +23,7 @@ export const componentInfoTool = (server: McpServer) => {
       component,
       framework,
     }) => {
-      // Filter function to select specific files based on the framework
-      const namePatterns = ['README.md', 'component.ts'];
-
-      switch (framework) {
-      case 'react':
-        namePatterns.push('react');
-        break;
-      case 'vue':
-        namePatterns.push('vue');
-        break;
-      case 'angular':
-        namePatterns.push('angular');
-        break;
-      default:
-      }
-
-      const finalPattern = namePatterns.map(pattern => pattern.toLowerCase());
-      const data = await getStructuredMetaDataForComponent(
-        component,
-        fileName => finalPattern.some(pattern => fileName.toLowerCase().includes(pattern)),
-      );
-
+      const data = await getInfoForComponent(component, framework);
       const text = data && data.length > 0
         ? JSON.stringify(data, null, 2)
         : `No metadata found for component ${component}`;

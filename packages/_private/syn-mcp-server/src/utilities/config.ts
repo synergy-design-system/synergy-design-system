@@ -8,3 +8,8 @@ export const Projects = {
     path: '../../data/components',
   },
 };
+
+/**
+ * Path where metadata is stored, relative to the project root.
+ */
+export const metaDataPath = '../../metadata';

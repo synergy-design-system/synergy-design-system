@@ -12,4 +12,4 @@ export const Projects = {
 /**
  * Path where metadata is stored, relative to the project root.
  */
-export const metaDataPath = '../../metadata';
+export const metaDataPath = '../../metadata/components';

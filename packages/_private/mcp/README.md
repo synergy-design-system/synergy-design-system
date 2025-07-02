@@ -1,10 +1,10 @@
-# @synergy-design-system/syn-mcp-server
+# @synergy-design-system/mcp
 
 Synergy MCP Server – Multi-Framework Component Metadata & Tooling
 
 ---
 
-The `@synergy-design-system/syn-mcp-server` package provides a server-side interface for Synergy Design System components. It enables integration and documentation of component metadata, code samples, and tooling for Angular, React, Vue, and Web Components. The MCP tools deliver structured information and code samples for using Synergy components across frameworks.
+The `@synergy-design-system/mcp` package provides a server-side interface for Synergy Design System components. It enables integration and documentation of component metadata, code samples, and tooling for Angular, React, Vue, and Web Components. The MCP tools deliver structured information and code samples for using Synergy components across frameworks.
 
 ## Features
 - Unified API for component metadata and code samples

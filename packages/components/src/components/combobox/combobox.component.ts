@@ -823,10 +823,21 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       label = this.lastOption.getTextLabel();
     }
 
-    this.value = value;
+    // Wait for the popup close animation to be finished before updating the value.
+    // This is to prevent flickering of the listbox, as the value is potentially reset to empty
+    // string and the whole options would be shown again.
+    const popupAnimations = this.popup?.popup?.getAnimations?.() ?? [];
+    const waitForAnimations = popupAnimations.length
+      ? Promise.all(
+        popupAnimations.map(animation => (animation.playState === 'finished'
+          ? Promise.resolve()
+          : new Promise<void>(resolve => { animation.addEventListener('finish', () => resolve(), { once: true }); }))),
+      )
+      : Promise.resolve();
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    this.updateComplete.then(() => {
+    waitForAnimations.then(() => {
+      this.value = value;
       this.displayInput.value = label;
       this.formControlController.updateValidity();
     });

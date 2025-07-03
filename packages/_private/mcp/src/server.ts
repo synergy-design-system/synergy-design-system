@@ -13,6 +13,7 @@ const server = new McpServer({
 // Register tools with the server
 tools.componentListTool(server);
 tools.componentInfoTool(server);
+tools.davinciMigrationTool(server);
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();

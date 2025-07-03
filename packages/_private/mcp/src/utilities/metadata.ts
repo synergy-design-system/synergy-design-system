@@ -7,19 +7,20 @@ import { getAbsolutePath } from './file.js';
  */
 export type Filter = (fileName: string) => boolean;
 
+const defaultFilter: Filter = () => true;
+
 /**
- * Get structured metadata for a specific component.
- * Will NOT crawl recursively, but will return all files in the component's metadata directory.
- * @param componentName - The name of the component to get metadata for.
+ * Get structured metadata for a specific metadata folder.
+ * Will NOT crawl recursively, but will return all files in the metadata directory.
+ * @param folder - The name of the folder to get metadata for.
  * @param filter - Optional filter function to apply to the filenames.
  *                 If provided, only files that pass the filter will be included in the result.
  */
-export const getStructuredMetaDataForComponent = async (
-  componentName: string,
-  filter: Filter = () => true,
+export const getStructuredMetaData = async (
+  folder: string,
+  filter: Filter = defaultFilter,
 ) => {
-  const absolutePath = getAbsolutePath(`${componentPath}/${componentName}`);
-
+  const absolutePath = getAbsolutePath(folder);
   const files = await fs.readdir(absolutePath);
   const metadata = await Promise.all(
     files
@@ -35,4 +36,22 @@ export const getStructuredMetaDataForComponent = async (
   );
 
   return metadata;
+};
+
+/**
+ * Get structured metadata for a specific component.
+ * Will NOT crawl recursively, but will return all files in the component's metadata directory.
+ * @param componentName - The name of the component to get metadata for.
+ * @param filter - Optional filter function to apply to the filenames.
+ *                 If provided, only files that pass the filter will be included in the result.
+ */
+export const getStructuredMetaDataForComponent = (
+  componentName: string,
+  filter: Filter = defaultFilter,
+) => {
+  const absolutePath = getAbsolutePath(`${componentPath}/${componentName}`);
+  return getStructuredMetaData(
+    absolutePath,
+    filter,
+  );
 };

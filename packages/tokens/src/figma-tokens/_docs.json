@@ -3333,6 +3333,36 @@
           "type": "text"
         }
       },
+      "multiple": {
+        "title": {
+          "value": "Multiple",
+          "type": "text"
+        },
+        "description": {
+          "value": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values. \n\nUse the max-options-visible attribute to define the maximum number of selected options that will be visible. After the maximum, \"+n\" will be shown to indicate the number of additional items that are selected.",
+          "type": "text"
+        }
+      },
+      "initial-values": {
+        "title": {
+          "value": "Setting Initial Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
+          "type": "text"
+        }
+      },
+      "no-results": {
+        "title": {
+          "value": "No results found",
+          "type": "text"
+        },
+        "description": {
+          "value": "A “No results found” message is displayed, when the search term doesn’t match the options.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizes",

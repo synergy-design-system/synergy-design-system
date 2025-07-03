@@ -3345,11 +3345,21 @@
       },
       "initial-values": {
         "title": {
-          "value": "Setting Initial Values",
+          "value": "Setting initial values",
           "type": "text"
         },
         "description": {
           "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
+          "type": "text"
+        }
+      },
+      "restrict-options": {
+        "title": {
+          "value": "Restrict options",
+          "type": "text"
+        },
+        "description": {
+          "value": "This restricts the combobox to only allow selections from the available options. Users cannot enter custom values that are not in the list.",
           "type": "text"
         }
       },

@@ -198,7 +198,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /** The combobox's required attribute. */
   @property({ reflect: true, type: Boolean }) required = false;
 
-  /** Defines if the combobox is restricted to the options list */
+  /**
+   * When set to `true`, restricts the combobox to only allow selection from the available options.
+   * Users will not be able to enter custom values that are not present in the list.
+   */
   @property({ reflect: true, type: Boolean }) restricted = false;
 
   /**

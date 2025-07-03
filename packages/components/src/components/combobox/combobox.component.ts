@@ -77,6 +77,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
+ * @csspart no-results - The container that wraps the "no results" message.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -629,8 +630,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
-      if (this.numberFilteredOptions === 0) {
-        // Don't open the listbox if there are no options
+      if (this.numberFilteredOptions === 0 && !this.restricted) {
+        // Don't open the listbox if there are no options and it is not restricted
         this.open = false;
         this.emit('syn-error');
         return;
@@ -786,7 +787,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     await this.updateComplete;
     this.isUserInput = false;
     this.lastOption = cachedLastOption;
-    this.open = this.numberFilteredOptions > 0;
+    this.open = this.restricted || this.numberFilteredOptions > 0;
 
     this.formControlController.updateValidity();
     this.emit('syn-input');
@@ -1061,6 +1062,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mouseup=${this.handleOptionClick}
             >
               <div class="listbox__options" part="filtered-listbox">
+                ${this.numberFilteredOptions === 0
+                  ? html`<span
+                      class="listbox__no-results"
+                      aria-hidden="true"
+                      part="no-results"
+                      >${this.localize.term('noResults')}</span
+                    >`
+                  : ''}
                 <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
               </div>
             </div>

@@ -1412,6 +1412,26 @@ describe('<syn-combobox>', () => {
       expect(el.valueInput.value).to.equal('');
       expect(el.value).to.equal('');
     });
+
+    it('should open the listbox and show a message when a letter key is pressed with syn-combobox is on focus with no appropriate options', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part="display-input"]')!;
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'f' });
+      await el.updateComplete;
+      const filteredListbox = el.shadowRoot!.querySelector('[part="filtered-listbox"]')!;
+      const noResults = filteredListbox.querySelector('[part="no-results"]');
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+      expect(noResults).to.exist;
+      expect(noResults!.textContent).to.equal('No results found');
+    });
   });
 
   runFormControlBaseTests('syn-combobox');

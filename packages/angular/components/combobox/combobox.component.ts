@@ -74,6 +74,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
+ * @csspart no-results - The container that wraps the "no results" message.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -317,6 +318,19 @@ The form must be in the same document or shadow root for this to work.
   }
   get required(): SynCombobox['required'] {
     return this.nativeElement.required;
+  }
+
+  /**
+   * Defines if the combobox is restricted to the options list
+   */
+  @Input()
+  set restricted(v: '' | SynCombobox['restricted']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.restricted = v === '' || v),
+    );
+  }
+  get restricted(): SynCombobox['restricted'] {
+    return this.nativeElement.restricted;
   }
 
   /**

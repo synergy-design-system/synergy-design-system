@@ -159,8 +159,9 @@ The form must be in the same document or shadow root for this to work.
   required?: SynCombobox['required'];
 
   /**
-   * Defines if the combobox is restricted to the options list
-   */
+* When set to `true`, restricts the combobox to only allow selection from the available options.
+Users will not be able to enter custom values that are not present in the list.
+ */
   restricted?: SynCombobox['restricted'];
 
   /**

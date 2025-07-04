@@ -15,6 +15,7 @@ tools.componentListTool(server);
 tools.componentInfoTool(server);
 tools.davinciMigrateComponentList(server);
 tools.davinciMigrateComponentTool(server);
+tools.frameworkInfoTool(server);
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();

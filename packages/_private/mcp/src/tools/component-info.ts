@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getInfoForComponent } from '../utilities/index.js';
+import { getInfoForComponent, getStaticMetaDataForFramework } from '../utilities/index.js';
 
 /**
  * Simple tool to list all available components in the Synergy Design System.
@@ -28,10 +28,16 @@ export const componentInfoTool = (server: McpServer) => {
         ? JSON.stringify(data, null, 2)
         : `No metadata found for component ${component}`;
 
+      const staticInformation = await getStaticMetaDataForFramework(framework);
+
       return {
         content: [
           {
             text,
+            type: 'text',
+          },
+          {
+            text: `Additional Information about the ${framework} framework can be found in the static metadata: ${JSON.stringify(staticInformation, null, 2)}`,
             type: 'text',
           },
         ],

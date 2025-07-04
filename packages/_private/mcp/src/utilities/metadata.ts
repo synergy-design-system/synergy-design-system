@@ -7,6 +7,14 @@ import { getAbsolutePath } from './file.js';
  */
 export type Filter = (fileName: string) => boolean;
 
+/**
+ * MetadataFile type representing a structured metadata file.
+ */
+export type MetadataFile = {
+  content: string;
+  filename: string;
+};
+
 const defaultFilter: Filter = () => true;
 
 /**
@@ -31,7 +39,7 @@ export const getStructuredMetaData = async (
         return {
           content,
           filename,
-        };
+        } as MetadataFile;
       }),
   );
 

@@ -1,5 +1,21 @@
-import type { Framework } from './config.js';
-import { getStructuredMetaDataForComponent } from './metadata.js';
+import { type Framework, staticPath } from './config.js';
+import { getAbsolutePath } from './file.js';
+import {
+  getStructuredMetaData,
+  getStructuredMetaDataForComponent,
+} from './metadata.js';
+
+/**
+ * Get additional information about the usage of a specific framework in the Synergy Design System.
+ * @param framework The framework to get information about
+ * @returns List of structured metadata for the specified framework.
+ */
+export const getStaticMetaDataForFramework = async (
+  framework: Framework = 'vanilla',
+) => {
+  const frameworkPath = framework === 'vanilla' ? 'components' : framework;
+  return getStructuredMetaData(getAbsolutePath(`${staticPath}/${frameworkPath}`));
+};
 
 /**
  * Get information about the usage of a specific component in the Synergy Design System.

@@ -17,3 +17,8 @@ export const componentPath = `${metaDataPath}/components`;
  * Path to the davinci migration directory, relative to the metadata path.
  */
 export const davinciMigrationPath = `${metaDataPath}/davinci-migration`;
+
+/**
+ * Path to the static files directory, relative to the metadata path.
+ */
+export const staticPath = `${metaDataPath}/static`;

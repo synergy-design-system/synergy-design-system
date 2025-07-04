@@ -1,2 +1,3 @@
 export * from './cleanup.js';
-export * from './copyStatic.js';
+export * from './copyComponents.js';
+export * from './copyStaticFiles.js';

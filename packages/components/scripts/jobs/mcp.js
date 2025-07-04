@@ -12,7 +12,7 @@ export const runCreateMCPServer = async ({
   const metadata = await getManifestData(componentDistDir);
 
   await jobs.runCleanup(metadata, mcpDir);
-  await jobs.runCopyStatic(metadata, {
+  await jobs.runCopyComponents(metadata, {
     angularPackageDir,
     componentDir,
     componentDistDir,
@@ -20,4 +20,11 @@ export const runCreateMCPServer = async ({
     reactPackageDir,
     vuePackageDir,
   });
+
+  await jobs.runCopyStaticFiles(mcpDir, [
+    angularPackageDir,
+    componentDir,
+    reactPackageDir,
+    vuePackageDir,
+  ]);
 };

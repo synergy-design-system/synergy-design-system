@@ -2,6 +2,8 @@ import { getAllComponents } from '../shared.js';
 
 export const getMetadataPathForComponent = (component, rootDir) => `${rootDir}/metadata/components/${component.tagName}/`;
 
+export const getMetadataPathForStaticFiles = rootDir => `${rootDir}/metadata/static/`;
+
 /**
  * Get the metadata paths for all components in the given metadata.
  * @param metadata The metadata object containing component information

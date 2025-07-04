@@ -48,7 +48,7 @@ const getComponentStaticFilePaths = async (componentName, directories) => {
     .filter(([fileName]) => existsSync(fileName));
 };
 
-export const runCopyStatic = job('Synergy MVP: Copying static code samples...', async (metadata, directories) => {
+export const runCopyComponents = job('Synergy MVP: Copying component code...', async (metadata, directories) => {
   const components = await getAllComponents(metadata);
 
   // Create an array of absolute paths of all files that have to be copied for each component.

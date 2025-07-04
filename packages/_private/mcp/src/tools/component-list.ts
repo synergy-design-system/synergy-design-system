@@ -1,6 +1,5 @@
-import { dirname } from 'path';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getPackageData } from '../utilities/index.js';
+import { getAvailableComponents } from '../utilities/index.js';
 
 /**
  * Simple tool to list all available components in the Synergy Design System.
@@ -18,14 +17,10 @@ export const componentListTool = (server: McpServer) => {
     async () => {
       // Get the package data for components
       try {
-        const packages = await getPackageData('components');
-        const componentNames = Object
-          .values(packages?.components ?? {})
-          .map(component => component.filename)
-          .filter(filename => filename.endsWith('.component.ts'))
-          .sort()
-          .map(filename => dirname(filename))
-          .map(filename => `- [syn-${filename}](component-info://syn-${filename})`);
+        const components = await getAvailableComponents();
+        const componentNames = components.map(
+          filename => `- [syn-${filename}](component-info://syn-${filename})`,
+        );
 
         return {
           content: [

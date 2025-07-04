@@ -15,7 +15,16 @@
     "eslint": "^8.57.1",
     "typescript": "^5.8.3"
   },
-  "exports": {},
+  "exports": {
+    ".": {
+      "import": "./dist/server.js",
+      "types": "./dist/server.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "metadata"
+  ],
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/synergy-mcp-server",
   "keywords": [
     "SDS",

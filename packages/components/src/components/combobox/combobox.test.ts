@@ -297,6 +297,80 @@ describe('<syn-combobox>', () => {
 
       expect(handler).to.be.calledTwice;
     });
+
+    it('should set the selected option to selected when the user types option value in the combobox', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await sendKeys({ type: 'option-2' });
+      el.blur();
+      await el.updateComplete;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the user types option text content in the combobox', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await sendKeys({ type: 'Option 2' });
+      el.blur();
+      await el.updateComplete;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the value is changed with the mouse', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the value is changed with the keyboard', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+
+      expect(secondOption.selected).to.be.true;
+    });
   });
 
   describe('keyboard handling', () => {
@@ -1361,6 +1435,15 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
+      // Unfortunately we need to wait for the popup animation to be finished,
+      // before the value is reset, as this was needed to not have a flickering listbox
+      const { popup } = el.popup;
+      await new Promise<void>((resolve) => {
+        popup.getAnimations()[0].onfinish = () => {
+          resolve();
+        };
+      });
+
       expect(el.value).to.equal('');
     });
 
@@ -1377,6 +1460,15 @@ describe('<syn-combobox>', () => {
       await sendKeys({ type: 'abc' });
       el.blur();
       await el.updateComplete;
+
+      // Unfortunately we need to wait for the popup animation to be finished,
+      // before the value is reset, as this was needed to not have a flickering listbox
+      const { popup } = el.popup;
+      await new Promise<void>((resolve) => {
+        popup.getAnimations()[0].onfinish = () => {
+          resolve();
+        };
+      });
 
       expect(el.value).to.equal('option-2');
     });

@@ -22,6 +22,7 @@ import type SynOptGroup from '../optgroup/optgroup.js';
 import styles from './combobox.styles.js';
 import customStyles from './combobox.custom.styles.js';
 import {
+  checkValueBelongsToOption,
   createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
   getValueFromOption, normalizeString,
 } from './utils.js';
@@ -375,9 +376,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       // Update the value based on the current selection and close it
       if (currentOption) {
         const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
-        this.setSelectedOption(currentOption);
+        this.updateSelectedOptionsCacheAndValue(currentOption);
 
         if (this.value !== oldValue) {
+          this.setSelectedOptionToSelected();
           // Emit after updating
           this.updateComplete.then(() => {
             this.emit('syn-input');
@@ -467,8 +469,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.value = '';
       this.displayInput.value = '';
       this.lastOption = undefined;
-      this.setSelectedOption(undefined);
+      this.updateSelectedOptionsCacheAndValue(undefined);
       this.displayInput.focus({ preventScroll: true });
+      this.setSelectedOptionToSelected();
 
       // Emit after update
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -493,12 +496,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const option = target.closest('syn-option');
     const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
     if (option && !option.disabled) {
-      this.setSelectedOption(option);
+      this.updateSelectedOptionsCacheAndValue(option);
 
       // Set focus after updating so the value is announced by screen readers
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
+        this.setSelectedOptionToSelected();
         // Emit after updating
         this.updateComplete.then(() => {
           this.emit('syn-input');
@@ -575,7 +579,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * Updates the selected options cache, the current value, and the display value
    */
   // eslint-disable-next-line complexity
-  private setSelectedOption(option: SynOption | undefined) {
+  private updateSelectedOptionsCacheAndValue(option: SynOption | undefined) {
     this.selectedOption = option;
 
     let optionValue;
@@ -599,6 +603,18 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.displayLabel = this.selectedOption?.getTextLabel() ?? this.displayInput.value;
       this.formControlController.updateValidity();
     });
+  }
+
+  private setSelectedOptionToSelected() {
+    const slottedOptions = this.getSlottedOptions();
+    slottedOptions.forEach((opt) => {
+      // eslint-disable-next-line no-param-reassign
+      opt.selected = false;
+    });
+
+    if (this.selectedOption) {
+      this.selectedOption.selected = true;
+    }
   }
 
   private handleInvalid(event: Event) {
@@ -791,7 +807,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.isUserInput = false;
     this.lastOption = cachedLastOption;
     this.open = this.restricted || this.numberFilteredOptions > 0;
-
+    this.selectedOption = undefined;
     this.formControlController.updateValidity();
     this.emit('syn-input');
   }
@@ -811,7 +827,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private getOptionFromValue(): SynOption | undefined {
-    return this.cachedOptions.find(option => getValueFromOption(option) === this.value);
+    return this.cachedOptions.find(option => checkValueBelongsToOption(this.value, option));
   }
 
   /**
@@ -862,10 +878,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Otherwise, update value from input and emit change
     this.value = this.displayInput.value;
     this.lastOption = this.getOptionFromValue();
+    this.selectedOption = this.getOptionFromValue();
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
       this.formControlController.updateValidity();
     });
+    this.setSelectedOptionToSelected();
     this.emit('syn-change');
   }
 
@@ -904,7 +922,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.displayInput.value = this.value;
     }
 
-    this.setSelectedOption(option);
+    this.updateSelectedOptionsCacheAndValue(option);
     this.createComboboxOptionsFromQuery(this.value);
   }
 

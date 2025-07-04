@@ -108,3 +108,19 @@ export const getValueFromOption = (option: SynOption) => {
   }
   return value;
 };
+
+/**
+ * Check if a value belongs to the value or text label of an option.
+ * @param value The value to check
+ * @param option The option to check against
+ * @returns True if the value belongs to the option, false otherwise
+ */
+export const checkValueBelongsToOption = (value: string, option: SynOption | undefined) => {
+  if (!option || !value) {
+    return false;
+  }
+
+  const optionValue = option.value;
+  const optionText = option.getTextLabel();
+  return value === optionValue || value === optionText;
+};

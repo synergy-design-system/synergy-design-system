@@ -3,6 +3,9 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
+  "bin": {
+    "syn-mcp": "./dist/bin/start.js"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.13.2",
     "globby": "^14.1.0",
@@ -45,7 +48,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "pnpm build && node dist/server.js",
+    "start": "node dist/server.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },

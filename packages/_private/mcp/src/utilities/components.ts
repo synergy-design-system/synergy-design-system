@@ -16,13 +16,13 @@ export const getInfoForComponent = async (
 
   switch (framework) {
   case 'react':
-    namePatterns.push('react');
+    namePatterns.push('component.react.ts');
     break;
   case 'vue':
-    namePatterns.push('vue');
+    namePatterns.push('component.vue');
     break;
   case 'angular':
-    namePatterns.push('angular');
+    namePatterns.push('component.angular.ts');
     break;
   default:
   }

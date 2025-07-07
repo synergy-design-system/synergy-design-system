@@ -46,6 +46,15 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
       <syn-option value="option-3">dolor</syn-option>
     </syn-combobox>
 
+    <syn-combobox
+      data-testid="combobox-626"
+      label="'Restricted' feature #626"
+      restricted
+    >
+      <syn-option value="option-1">Lorem</syn-option>
+      <syn-option value="option-2">ipsum</syn-option>
+      <syn-option value="option-3">dolor</syn-option>
+    </syn-combobox>
   `,
 })
 export class Combobox implements OnInit {

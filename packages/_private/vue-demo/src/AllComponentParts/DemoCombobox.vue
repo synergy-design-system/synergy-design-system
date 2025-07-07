@@ -47,4 +47,13 @@ setTimeout(() => {
     <SynVueOption value="option-3">dolor</SynVueOption>
   </SynVueCombobox>
 
+  <SynVueCombobox
+    data-testid="combobox-626"
+    label="'Restricted' feature #626"
+    restricted
+  >
+    <SynVueOption value="option-1">Lorem</SynVueOption>
+    <SynVueOption value="option-2">ipsum</SynVueOption>
+    <SynVueOption value="option-3">dolor</SynVueOption>
+  </SynVueCombobox>
 </template>

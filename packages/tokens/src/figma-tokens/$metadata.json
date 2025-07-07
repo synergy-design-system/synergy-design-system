@@ -1,6 +1,7 @@
 {
   "tokenSetOrder": [
     "globals",
+    "global-colors",
     "theme/sick2018",
     "theme/sick2025",
     "mode/dark",

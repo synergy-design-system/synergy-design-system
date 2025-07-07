@@ -3,7 +3,8 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled"
+      "globals": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -85,7 +86,8 @@
     "name": "SICK 2018",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "theme/sick2018": "enabled"
+      "theme/sick2018": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
@@ -107,17 +109,6 @@
       "font-weight.theme.heading.2x-large": "64059b938ad75ea0864e5d456fa12e2b7765d4ad",
       "font-weight.theme.heading.3x-large": "864888d0b3a5db4e90a2bb587a2e0862a5647da7",
       "font-weight.theme.heading.4x-large": "9365296c82f4d63c39c86019add81a4f7ab1d97f",
-      "gray.50": "ce33cf1a76d7e90d32caef341516a01db3c6cd0b",
-      "gray.100": "6b47a37d985d4fee0ac36f2c639f2de91bb72ce8",
-      "gray.200": "f5ccb1b1008a182bc66114b96347d85a48f126e8",
-      "gray.300": "4faedd83bb97b3ecf433f66b88401ee7efb1b6fd",
-      "gray.400": "90d1fa01e5ceed6ef7522c3a516bba9a0fffd2fb",
-      "gray.500": "8df8a41a1441c315c34a91adbd820f4daea28ffc",
-      "gray.600": "4c3ec42d6ce742c37e3ef3df839152316d12d84a",
-      "gray.700": "9ce81e73e3825b808b021a6480568b2f6c554a4d",
-      "gray.800": "58632f3a052e10a050a970268bcbd4e54507c575",
-      "gray.900": "388532c0f6e0bee352fb0c09eb9af3e42d736f1f",
-      "gray.950": "3445008e3e91524aef2e23b88f11780052c3dd28",
       "red.50": "221afbe40ade45a7b19b3ba0f78c987654af1d0b",
       "red.100": "32f3c3591ea76a68b60b86b03a20c222669b53e3",
       "red.200": "10b9b7f88ed175d97ce2a8be4d2878ff8fc68d8c",
@@ -175,7 +166,18 @@
       "Orange.950": "1b9f430749ffecb2a2e7070842d715845894766b",
       "black": "b821a181a046be3468432a036da57c1577a35b5f",
       "white": "5797566c8e09a5f058459b679246486778d0bb54",
-      "theme.name": "9169946c3ec6c4febcb4587e1712eb1b1f1f8b71"
+      "theme.name": "9169946c3ec6c4febcb4587e1712eb1b1f1f8b71",
+      "legacy-gray.50": "ce33cf1a76d7e90d32caef341516a01db3c6cd0b",
+      "legacy-gray.100": "6b47a37d985d4fee0ac36f2c639f2de91bb72ce8",
+      "legacy-gray.200": "f5ccb1b1008a182bc66114b96347d85a48f126e8",
+      "legacy-gray.300": "4faedd83bb97b3ecf433f66b88401ee7efb1b6fd",
+      "legacy-gray.400": "90d1fa01e5ceed6ef7522c3a516bba9a0fffd2fb",
+      "legacy-gray.500": "8df8a41a1441c315c34a91adbd820f4daea28ffc",
+      "legacy-gray.600": "4c3ec42d6ce742c37e3ef3df839152316d12d84a",
+      "legacy-gray.700": "9ce81e73e3825b808b021a6480568b2f6c554a4d",
+      "legacy-gray.800": "58632f3a052e10a050a970268bcbd4e54507c575",
+      "legacy-gray.900": "388532c0f6e0bee352fb0c09eb9af3e42d736f1f",
+      "legacy-gray.950": "3445008e3e91524aef2e23b88f11780052c3dd28"
     },
     "group": "Theme"
   },
@@ -184,7 +186,8 @@
     "name": "SICK 2025",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "theme/sick2025": "enabled"
+      "theme/sick2025": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "34091:0",
@@ -206,17 +209,6 @@
       "font-weight.theme.heading.2x-large": "64059b938ad75ea0864e5d456fa12e2b7765d4ad",
       "font-weight.theme.heading.3x-large": "864888d0b3a5db4e90a2bb587a2e0862a5647da7",
       "font-weight.theme.heading.4x-large": "9365296c82f4d63c39c86019add81a4f7ab1d97f",
-      "gray.50": "ce33cf1a76d7e90d32caef341516a01db3c6cd0b",
-      "gray.100": "6b47a37d985d4fee0ac36f2c639f2de91bb72ce8",
-      "gray.200": "f5ccb1b1008a182bc66114b96347d85a48f126e8",
-      "gray.300": "4faedd83bb97b3ecf433f66b88401ee7efb1b6fd",
-      "gray.400": "90d1fa01e5ceed6ef7522c3a516bba9a0fffd2fb",
-      "gray.500": "8df8a41a1441c315c34a91adbd820f4daea28ffc",
-      "gray.600": "4c3ec42d6ce742c37e3ef3df839152316d12d84a",
-      "gray.700": "9ce81e73e3825b808b021a6480568b2f6c554a4d",
-      "gray.800": "58632f3a052e10a050a970268bcbd4e54507c575",
-      "gray.900": "388532c0f6e0bee352fb0c09eb9af3e42d736f1f",
-      "gray.950": "3445008e3e91524aef2e23b88f11780052c3dd28",
       "red.50": "221afbe40ade45a7b19b3ba0f78c987654af1d0b",
       "red.100": "32f3c3591ea76a68b60b86b03a20c222669b53e3",
       "red.200": "10b9b7f88ed175d97ce2a8be4d2878ff8fc68d8c",
@@ -373,7 +365,18 @@
       "alert-yellow.700": "8b11bc76a1569d6bbe39bba10eecfa53f2860cac",
       "alert-yellow.800": "35230bd3ebbcc723f4ae6178164813631baa83d1",
       "alert-yellow.900": "bacd7b8bb5e5634484ab1ce006ff824938eec06a",
-      "alert-yellow.950": "d917f9485101bc32781f2de6614081e62567d2b5"
+      "alert-yellow.950": "d917f9485101bc32781f2de6614081e62567d2b5",
+      "legacy-gray.50": "ce33cf1a76d7e90d32caef341516a01db3c6cd0b",
+      "legacy-gray.100": "6b47a37d985d4fee0ac36f2c639f2de91bb72ce8",
+      "legacy-gray.200": "f5ccb1b1008a182bc66114b96347d85a48f126e8",
+      "legacy-gray.300": "4faedd83bb97b3ecf433f66b88401ee7efb1b6fd",
+      "legacy-gray.400": "90d1fa01e5ceed6ef7522c3a516bba9a0fffd2fb",
+      "legacy-gray.500": "8df8a41a1441c315c34a91adbd820f4daea28ffc",
+      "legacy-gray.600": "4c3ec42d6ce742c37e3ef3df839152316d12d84a",
+      "legacy-gray.700": "9ce81e73e3825b808b021a6480568b2f6c554a4d",
+      "legacy-gray.800": "58632f3a052e10a050a970268bcbd4e54507c575",
+      "legacy-gray.900": "388532c0f6e0bee352fb0c09eb9af3e42d736f1f",
+      "legacy-gray.950": "3445008e3e91524aef2e23b88f11780052c3dd28"
     },
     "group": "Theme"
   },
@@ -381,7 +384,8 @@
     "id": "eda1d35f1a28a0d1fce620eca524dde48d6b5817",
     "name": "Light",
     "selectedTokenSets": {
-      "mode/light": "enabled"
+      "mode/light": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -462,7 +466,8 @@
     "id": "f39c786993e4942a7c329538c246ec8fa5e56c30",
     "name": "Dark",
     "selectedTokenSets": {
-      "mode/dark": "enabled"
+      "mode/dark": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -583,7 +588,8 @@
       "semantic/link": "enabled",
       "semantic/overlays": "enabled",
       "semantic/panels": "enabled",
-      "semantic/tooltip": "enabled"
+      "semantic/tooltip": "enabled",
+      "global-colors": "disabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

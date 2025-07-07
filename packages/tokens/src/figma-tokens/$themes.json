@@ -3,8 +3,7 @@
     "id": "bc6b869612b2783f5cf45d3783bee47bdf9e2e27",
     "name": "Default",
     "selectedTokenSets": {
-      "globals": "enabled",
-      "global-colors": "disabled"
+      "globals": "enabled"
     },
     "$figmaStyleReferences": {
       "shadow.overflow-down": "S:83a7cfa6ab292f413e064c58b850a3931c575de8,",
@@ -86,8 +85,7 @@
     "name": "SICK 2018",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "theme/sick2018": "enabled",
-      "global-colors": "disabled"
+      "theme/sick2018": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "9166:0",
@@ -186,8 +184,7 @@
     "name": "SICK 2025",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "theme/sick2025": "enabled",
-      "global-colors": "disabled"
+      "theme/sick2025": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:9166:113417",
     "$figmaModeId": "34091:0",
@@ -384,8 +381,7 @@
     "id": "eda1d35f1a28a0d1fce620eca524dde48d6b5817",
     "name": "Light",
     "selectedTokenSets": {
-      "mode/light": "enabled",
-      "global-colors": "disabled"
+      "mode/light": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -466,8 +462,7 @@
     "id": "f39c786993e4942a7c329538c246ec8fa5e56c30",
     "name": "Dark",
     "selectedTokenSets": {
-      "mode/dark": "enabled",
-      "global-colors": "disabled"
+      "mode/dark": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -588,8 +583,7 @@
       "semantic/link": "enabled",
       "semantic/overlays": "enabled",
       "semantic/panels": "enabled",
-      "semantic/tooltip": "enabled",
-      "global-colors": "disabled"
+      "semantic/tooltip": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:790:67393",
     "$figmaModeId": "790:0",

@@ -317,7 +317,7 @@
     "600": {
       "value": "#005AFF",
       "type": "color",
-      "description": "SICK Blue"
+      "description": "SICK Blue 100%"
     },
     "700": {
       "value": "#A808FF",
@@ -380,7 +380,7 @@
     "950": {
       "value": "#000A37",
       "type": "color",
-      "description": "SICK Dark Blue"
+      "description": "SICK Dark Blue 100%"
     }
   },
   "sick-green": {
@@ -390,11 +390,13 @@
     },
     "100": {
       "value": "#E9F8ED",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Green 25%"
     },
     "200": {
       "value": "#D2F0DC",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Green 50%"
     },
     "300": {
       "value": "#f000ff",
@@ -402,12 +404,13 @@
     },
     "400": {
       "value": "#BBE8CA",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Green 75%"
     },
     "500": {
       "value": "#A5E1B9",
       "type": "color",
-      "description": "SICK Green"
+      "description": "SICK Green 100%"
     },
     "600": {
       "value": "#f000ff",
@@ -430,23 +433,26 @@
       "type": "color"
     }
   },
-  "sick-grey": {
+  "sick-gray": {
     "50": {
       "value": "#f8f7f6",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Grey 25%"
     },
     "100": {
       "value": "#f2f0ed",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Grey 50%"
     },
     "200": {
       "value": "#ece8e5",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Grey 75%"
     },
     "300": {
       "value": "#e6e1dc",
       "type": "color",
-      "description": "SICK Grey"
+      "description": "SICK Grey 100%"
     },
     "400": {
       "value": "#f000ff",
@@ -530,15 +536,18 @@
     },
     "100": {
       "value": "#fffabf",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Safety Yellow 25%"
     },
     "200": {
       "value": "#fff580",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Safety Yellow 50%"
     },
     "300": {
       "value": "#fff040",
-      "type": "color"
+      "type": "color",
+      "description": "SICK Safety Yellow 75%"
     },
     "400": {
       "value": "#f000ff",
@@ -547,7 +556,7 @@
     "500": {
       "value": "#ffeb00",
       "type": "color",
-      "description": "SICK Yellow"
+      "description": "SICK Safety Yellow 100%"
     },
     "600": {
       "value": "#f000ff",

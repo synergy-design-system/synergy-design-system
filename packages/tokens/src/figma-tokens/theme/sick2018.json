@@ -478,6 +478,54 @@
     "value": "{sick-white}",
     "type": "color"
   },
+  "surface": {
+    "theme": {
+      "blue-600": {
+        "value": "{legacy-blue.600}",
+        "type": "color"
+      },
+      "blue-950": {
+        "value": "{legacy-blue.950}",
+        "type": "color"
+      },
+      "green-200": {
+        "value": "{legacy-green.200}",
+        "type": "color"
+      },
+      "gray-300": {
+        "value": "{legacy-gray.300}",
+        "type": "color"
+      },
+      "gray-100": {
+        "value": "{legacy-gray.100}",
+        "type": "color"
+      },
+      "gray-50": {
+        "value": "{legacy-gray.50}",
+        "type": "color"
+      },
+      "white": {
+        "value": "{sick-white}",
+        "type": "color"
+      },
+      "error-200": {
+        "value": "{legacy-red.600}",
+        "type": "color"
+      },
+      "warning-300": {
+        "value": "{legacy-yellow.400}",
+        "type": "color"
+      },
+      "success-400": {
+        "value": "{legacy-green.500}",
+        "type": "color"
+      },
+      "info-200": {
+        "value": "{legacy-blue.600}",
+        "type": "color"
+      }
+    }
+  },
   "theme": {
     "name": {
       "value": "sick2018",

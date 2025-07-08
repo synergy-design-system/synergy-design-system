@@ -1,5 +1,8 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getAvailableComponents } from '../utilities/index.js';
+import {
+  getAvailableComponents,
+  getStructuredMetaData,
+} from '../utilities/index.js';
 
 /**
  * Simple tool to list all available components in the Synergy Design System.
@@ -22,8 +25,14 @@ export const componentListTool = (server: McpServer) => {
           filename => `- [syn-${filename}](component-info://syn-${filename})`,
         );
 
+        const aiRules = await getStructuredMetaData('../../metadata/static/component-list');
+
         return {
           content: [
+            {
+              text: `Always follow the rules here: ${JSON.stringify(aiRules, null, 2)}`,
+              type: 'text',
+            },
             {
               text: componentNames.join('\n'),
               type: 'text',

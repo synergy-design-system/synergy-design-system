@@ -27,11 +27,11 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     defaultSlot: figma.string('*value'),
     variant: figma.enum('variant', {
       danger: 'danger',
+      // Omitted primary as this is the default in the component
+      // default: 'primary',
       neutral: 'neutral',
       primary: 'primary',
       success: 'success',
-      text: 'text',
-      'text-inverted': 'text-inverted',
       warning: 'warning',
     }),
   } satisfies ValidProperties<SynBadge>,

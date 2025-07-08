@@ -4,7 +4,6 @@ import type { ValidProperties } from '../core/types';
 
 /**
  * @todos
- * - default slot should be visible whenever one of the details is open, not just the first one
  * - currently no possibility to toggle only the current level
  */
 

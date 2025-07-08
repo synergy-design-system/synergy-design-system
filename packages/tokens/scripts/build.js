@@ -92,6 +92,7 @@ const cssRuns = getAvailableThemes().map(async ({ theme, mode }) => {
     preprocessors: ['tokens-studio'],
     source: [
       `./src/figma-tokens/theme/${themeInformation.theme}.json`,
+      './src/figma-tokens/global-colors.json',
       './src/figma-tokens/globals.json',
       './src/figma-tokens/semantic/*.json',
       `./src/figma-tokens/mode/${mode}.json`,

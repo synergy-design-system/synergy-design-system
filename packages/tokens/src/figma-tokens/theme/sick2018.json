@@ -190,292 +190,292 @@
   },
   "gray": {
     "50": {
-      "value": "#f9fafb",
+      "value": "{legacy-gray.50}",
       "type": "color"
     },
     "100": {
-      "value": "#F2F3F6",
+      "value": "{legacy-gray.100}",
       "type": "color"
     },
     "200": {
-      "value": "#e8ebec",
+      "value": "{legacy-gray.200}",
       "type": "color"
     },
     "300": {
-      "value": "#d5dbdd",
+      "value": "{legacy-gray.300}",
       "type": "color"
     },
     "400": {
-      "value": "#bac2c6",
+      "value": "{legacy-gray.400}",
       "type": "color"
     },
     "500": {
-      "value": "#9ea9ae",
+      "value": "{legacy-gray.500}",
       "type": "color"
     },
     "600": {
-      "value": "#859298",
+      "value": "{legacy-gray.600}",
       "type": "color"
     },
     "700": {
-      "value": "#737f85",
+      "value": "{legacy-gray.700}",
       "type": "color",
       "description": "//Sick Default"
     },
     "800": {
-      "value": "#5e676b",
+      "value": "{legacy-gray.800}",
       "type": "color"
     },
     "900": {
-      "value": "#4c5357",
+      "value": "{legacy-gray.900}",
       "type": "color"
     },
     "950": {
-      "value": "#31373a",
+      "value": "{legacy-gray.950}",
       "type": "color"
     }
   },
   "red": {
     "50": {
-      "value": "#fff0f2",
+      "value": "{legacy-red.50}",
       "type": "color"
     },
     "100": {
-      "value": "#ffdee2",
+      "value": "{legacy-red.100}",
       "type": "color"
     },
     "200": {
-      "value": "#ffc3c9",
+      "value": "{legacy-red.200}",
       "type": "color"
     },
     "300": {
-      "value": "#ff98a4",
+      "value": "{legacy-red.300}",
       "type": "color"
     },
     "400": {
-      "value": "#ff5d70",
+      "value": "{legacy-red.400}",
       "type": "color"
     },
     "500": {
-      "value": "#ff2b44",
+      "value": "{legacy-red.500}",
       "type": "color"
     },
     "600": {
-      "value": "#ea0823",
+      "value": "{legacy-red.600}",
       "type": "color",
       "description": "//Sick Default"
     },
     "700": {
-      "value": "#d0051d",
+      "value": "{legacy-red.700}",
       "type": "color"
     },
     "800": {
-      "value": "#ab091c",
+      "value": "{legacy-red.800}",
       "type": "color"
     },
     "900": {
-      "value": "#8D0f1e",
+      "value": "{legacy-red.900}",
       "type": "color"
     },
     "950": {
-      "value": "#4e010a",
+      "value": "{legacy-red.950}",
       "type": "color"
     }
   },
   "yellow": {
     "50": {
-      "value": "#fefce8",
+      "value": "{legacy-yellow.50}",
       "type": "color"
     },
     "100": {
-      "value": "#fdf7c4",
+      "value": "{legacy-yellow.100}",
       "type": "color"
     },
     "200": {
-      "value": "#FCEC8c",
+      "value": "{legacy-yellow.200}",
       "type": "color"
     },
     "300": {
-      "value": "#f9da4b",
+      "value": "{legacy-yellow.300}",
       "type": "color"
     },
     "400": {
-      "value": "#f5c413",
+      "value": "{legacy-yellow.400}",
       "type": "color",
       "description": "//Sick Default"
     },
     "500": {
-      "value": "#e5ae0d",
+      "value": "{legacy-yellow.500}",
       "type": "color"
     },
     "600": {
-      "value": "#c68608",
+      "value": "{legacy-yellow.600}",
       "type": "color"
     },
     "700": {
-      "value": "#9e5f0a",
+      "value": "{legacy-yellow.700}",
       "type": "color"
     },
     "800": {
-      "value": "#834b10",
+      "value": "{legacy-yellow.800}",
       "type": "color"
     },
     "900": {
-      "value": "#6f3e14",
+      "value": "{legacy-yellow.900}",
       "type": "color"
     },
     "950": {
-      "value": "#411f07",
+      "value": "{legacy-yellow.950}",
       "type": "color"
     }
   },
   "green": {
     "50": {
-      "value": "#f5fde8",
+      "value": "{legacy-green.50}",
       "type": "color"
     },
     "100": {
-      "value": "#e7facd",
+      "value": "{legacy-green.100}",
       "type": "color"
     },
     "200": {
-      "value": "#D1F4A2",
+      "value": "{legacy-green.200}",
       "type": "color"
     },
     "300": {
-      "value": "#B0EB6B",
+      "value": "{legacy-green.300}",
       "type": "color"
     },
     "400": {
-      "value": "#93DD3E",
+      "value": "{legacy-green.400}",
       "type": "color"
     },
     "500": {
-      "value": "#73C31F",
+      "value": "{legacy-green.500}",
       "type": "color"
     },
     "600": {
-      "value": "#63B017",
+      "value": "{legacy-green.600}",
       "type": "color",
       "description": "//Sick Default"
     },
     "700": {
-      "value": "#437714",
+      "value": "{legacy-green.700}",
       "type": "color"
     },
     "800": {
-      "value": "#395E16",
+      "value": "{legacy-green.800}",
       "type": "color"
     },
     "900": {
-      "value": "#315017",
+      "value": "{legacy-green.900}",
       "type": "color"
     },
     "950": {
-      "value": "#172C07",
+      "value": "{legacy-green.950}",
       "type": "color"
     }
   },
   "Blue": {
     "50": {
-      "value": "#f0f9ff",
+      "value": "{legacy-blue.50}",
       "type": "color"
     },
     "100": {
-      "value": "#e0f1FE",
+      "value": "{legacy-blue.100}",
       "type": "color"
     },
     "200": {
-      "value": "#b9e5fe",
+      "value": "{legacy-blue.200}",
       "type": "color"
     },
     "300": {
-      "value": "#7cd1fd",
+      "value": "{legacy-blue.300}",
       "type": "color"
     },
     "400": {
-      "value": "#36bbfa",
+      "value": "{legacy-blue.400}",
       "type": "color"
     },
     "500": {
-      "value": "#0ca2eb",
+      "value": "{legacy-blue.500}",
       "type": "color"
     },
     "600": {
-      "value": "#007cc1",
+      "value": "{legacy-blue.600}",
       "type": "color",
       "description": "//Sick Default"
     },
     "700": {
-      "value": "#0166a3",
+      "value": "{legacy-blue.700}",
       "type": "color"
     },
     "800": {
-      "value": "#065786",
+      "value": "{legacy-blue.800}",
       "type": "color"
     },
     "900": {
-      "value": "#0B486F",
+      "value": "{legacy-blue.900}",
       "type": "color"
     },
     "950": {
-      "value": "#072E4A",
+      "value": "{legacy-blue.950}",
       "type": "color"
     }
   },
   "Orange": {
     "50": {
-      "value": "#FFFBEA",
+      "value": "{legacy-orange.50}",
       "type": "color"
     },
     "100": {
-      "value": "#FFF2C5",
+      "value": "{legacy-orange.100}",
       "type": "color"
     },
     "200": {
-      "value": "#FFE685",
+      "value": "{legacy-orange.200}",
       "type": "color"
     },
     "300": {
-      "value": "#FFD246",
+      "value": "{legacy-orange.300}",
       "type": "color"
     },
     "400": {
-      "value": "#FFBD1B",
+      "value": "{legacy-orange.400}",
       "type": "color"
     },
     "500": {
-      "value": "#F39200",
+      "value": "{legacy-orange.500}",
       "type": "color",
       "description": "//Sick Default"
     },
     "600": {
-      "value": "#E27200",
+      "value": "{legacy-orange.600}",
       "type": "color"
     },
     "700": {
-      "value": "#BB4D02",
+      "value": "{legacy-orange.700}",
       "type": "color"
     },
     "800": {
-      "value": "#983B08",
+      "value": "{legacy-orange.800}",
       "type": "color"
     },
     "900": {
-      "value": "#7C310B",
+      "value": "{legacy-orange.900}",
       "type": "color"
     },
     "950": {
-      "value": "#481700",
+      "value": "{legacy-orange.950}",
       "type": "color"
     }
   },
   "black": {
-    "value": "black",
+    "value": "{sick-black}",
     "type": "color"
   },
   "white": {
-    "value": "white",
+    "value": "{sick-white}",
     "type": "color"
   },
   "theme": {

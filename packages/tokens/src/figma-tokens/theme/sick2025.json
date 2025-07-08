@@ -468,11 +468,11 @@
     }
   },
   "black": {
-    "value": "#000000",
+    "value": "{sick-black}",
     "type": "color"
   },
   "white": {
-    "value": "#FFFFFF",
+    "value": "{sick-white}",
     "type": "color"
   },
   "sick-blue": {

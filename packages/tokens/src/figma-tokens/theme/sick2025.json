@@ -237,139 +237,139 @@
   },
   "red": {
     "50": {
-      "value": "{alert-red.50}",
+      "value": "{status-red.50}",
       "type": "color"
     },
     "100": {
-      "value": "{alert-red.100}",
+      "value": "{status-red.100}",
       "type": "color"
     },
     "200": {
-      "value": "{alert-red.200}",
+      "value": "{status-red.200}",
       "type": "color"
     },
     "300": {
-      "value": "{alert-red.300}",
+      "value": "{status-red.300}",
       "type": "color"
     },
     "400": {
-      "value": "{alert-red.400}",
+      "value": "{status-red.400}",
       "type": "color"
     },
     "500": {
-      "value": "{alert-red.500}",
+      "value": "{status-red.500}",
       "type": "color"
     },
     "600": {
-      "value": "{alert-red.600}",
+      "value": "{status-red.600}",
       "type": "color"
     },
     "700": {
-      "value": "{alert-red.700}",
+      "value": "{status-red.700}",
       "type": "color"
     },
     "800": {
-      "value": "{alert-red.800}",
+      "value": "{status-red.800}",
       "type": "color"
     },
     "900": {
-      "value": "{alert-red.900}",
+      "value": "{status-red.900}",
       "type": "color"
     },
     "950": {
-      "value": "{alert-red.950}",
+      "value": "{status-red.950}",
       "type": "color"
     }
   },
   "yellow": {
     "50": {
-      "value": "{alert-yellow.50}",
+      "value": "{status-yellow.50}",
       "type": "color"
     },
     "100": {
-      "value": "{alert-yellow.100}",
+      "value": "{status-yellow.100}",
       "type": "color"
     },
     "200": {
-      "value": "{alert-yellow.200}",
+      "value": "{status-yellow.200}",
       "type": "color"
     },
     "300": {
-      "value": "{alert-yellow.300}",
+      "value": "{status-yellow.300}",
       "type": "color"
     },
     "400": {
-      "value": "{alert-yellow.400}",
+      "value": "{status-yellow.400}",
       "type": "color"
     },
     "500": {
-      "value": "{alert-yellow.500}",
+      "value": "{status-yellow.500}",
       "type": "color"
     },
     "600": {
-      "value": "{alert-yellow.600}",
+      "value": "{status-yellow.600}",
       "type": "color"
     },
     "700": {
-      "value": "{alert-yellow.700}",
+      "value": "{status-yellow.700}",
       "type": "color"
     },
     "800": {
-      "value": "{alert-yellow.800}",
+      "value": "{status-yellow.800}",
       "type": "color"
     },
     "900": {
-      "value": "{alert-yellow.900}",
+      "value": "{status-yellow.900}",
       "type": "color"
     },
     "950": {
-      "value": "{alert-yellow.950}",
+      "value": "{status-yellow.950}",
       "type": "color"
     }
   },
   "green": {
     "50": {
-      "value": "{alert-green.50}",
+      "value": "{status-green.50}",
       "type": "color"
     },
     "100": {
-      "value": "{alert-green.100}",
+      "value": "{status-green.100}",
       "type": "color"
     },
     "200": {
-      "value": "{alert-green.200}",
+      "value": "{status-green.200}",
       "type": "color"
     },
     "300": {
-      "value": "{alert-green.300}",
+      "value": "{status-green.300}",
       "type": "color"
     },
     "400": {
-      "value": "{alert-green.400}",
+      "value": "{status-green.400}",
       "type": "color"
     },
     "500": {
-      "value": "{alert-green.500}",
+      "value": "{status-green.500}",
       "type": "color"
     },
     "600": {
-      "value": "{alert-green.600}",
+      "value": "{status-green.600}",
       "type": "color"
     },
     "700": {
-      "value": "{alert-green.700}",
+      "value": "{status-green.700}",
       "type": "color"
     },
     "800": {
-      "value": "{alert-green.800}",
+      "value": "{status-green.800}",
       "type": "color"
     },
     "900": {
-      "value": "{alert-green.900}",
+      "value": "{status-green.900}",
       "type": "color"
     },
     "950": {
-      "value": "{alert-green.950}",
+      "value": "{status-green.950}",
       "type": "color"
     }
   },

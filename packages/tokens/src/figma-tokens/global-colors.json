@@ -570,7 +570,7 @@
       "type": "color"
     }
   },
-  "alert-blue": {
+  "status-blue": {
     "50": {
       "value": "#1DFB00",
       "type": "color"
@@ -616,7 +616,7 @@
       "type": "color"
     }
   },
-  "alert-green": {
+  "status-green": {
     "50": {
       "value": "#00FBF7",
       "type": "color"
@@ -662,7 +662,7 @@
       "type": "color"
     }
   },
-  "alert-red": {
+  "status-red": {
     "50": {
       "value": "#00FBF7",
       "type": "color"
@@ -708,7 +708,7 @@
       "type": "color"
     }
   },
-  "alert-yellow": {
+  "status-yellow": {
     "50": {
       "value": "#00FBF7",
       "type": "color"

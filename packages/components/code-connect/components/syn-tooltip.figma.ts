@@ -2,6 +2,11 @@ import figma, { html } from '@figma/code-connect/html';
 import type SynTooltip from '../../src/components/tooltip/tooltip.js';
 import type { ValidProperties } from '../core/types';
 
+/**
+ * @todos:
+ * - The component does not work properly because it does not allow nesting in figma (e.g. it should support the defaultSlot in Figma).
+ */
+
 // Synergy Web Component Connection
 figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=16910-25970', {
   example: ({
@@ -10,7 +15,9 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     <syn-tooltip
       content=${content}
     >
-      Content
+      <syn-button>
+        Replace this component with the content that should activate the tooltip.
+      </syn-button>
     </syn-tooltip>
   `,
   imports: [

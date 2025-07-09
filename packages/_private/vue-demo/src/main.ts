@@ -7,8 +7,10 @@ import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/700-italic.css';
 
 import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';

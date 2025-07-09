@@ -200,6 +200,9 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
     devDependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../../components
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn

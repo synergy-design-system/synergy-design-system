@@ -18,13 +18,13 @@ const translations = {
     de: 'Dateien auswählen',
     en: 'Choose files',
   },
-  folderButtonText: {
-    de: 'Ordner auswählen',
-    en: 'Choose folder',
-  },
   fileDragDrop: {
     de: 'Datei ablegen oder auswählen',
     en: 'Drop or choose file',
+  },
+  folderButtonText: {
+    de: 'Ordner auswählen',
+    en: 'Choose folder',
   },
   folderDragDrop: {
     de: 'Ordner ablegen oder auswählen',
@@ -33,6 +33,10 @@ const translations = {
   menu: {
     de: 'Menü',
     en: 'Menu',
+  },
+  noResults: {
+    de: 'Keine Ergebnisse gefunden',
+    en: 'No results found',
   },
   notification: {
     de: 'Benachrichtigung',

@@ -65,7 +65,7 @@ export const Combobox = () => {
         restricted
         value="3"
       >
-       {levels.map(level => (
+        {levels.map(level => (
           <syn-option key={level.value} value={level.value}>
             {level.label}
           </syn-option>

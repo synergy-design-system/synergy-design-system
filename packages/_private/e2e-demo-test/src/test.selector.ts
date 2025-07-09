@@ -78,9 +78,9 @@ const AllComponentSelectors = {
   tabGroupLink: '#tab-TabGroup',
 
   // Validate
+  validate915: '#tab-content-Validate syn-validate[data-testid="validate-915"]',
   validateContent: '#tab-content-Validate',
   validateLink: '#tab-Validate',
-  validate915: '#tab-content-Validate syn-validate[data-testid="validate-915"]',
 };
 
 export default {

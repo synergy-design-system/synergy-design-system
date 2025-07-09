@@ -50,7 +50,7 @@ const revalidateValidate = async () => {
     validate.customValidationMessage = 'Invalid value';
     input.dispatchEvent(new CustomEvent('revalidate'));
   });
-}
+};
 
 export type RegressionFn = () => Promise<void> | void;
 export type RegressionFns = RegressionFn[];

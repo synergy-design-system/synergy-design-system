@@ -34,5 +34,22 @@ export const Combobox = (regressions: RegressionFns = []) => {
       <syn-option value="option-2">ipsum</syn-option>
       <syn-option value="option-3">dolor</syn-option>
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-626"
+      label="'Restricted' feature #626"
+      restricted
+    >
+      <syn-option value="option-1">Lorem</syn-option>
+      <syn-option value="option-2">ipsum</syn-option>
+      <syn-option value="option-3">dolor</syn-option>
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-626-async"
+      label="'Restricted' feature #626 async"
+      restricted
+      value="3"
+    ></syn-combobox>
   `;
 };

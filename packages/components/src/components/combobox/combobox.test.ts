@@ -297,6 +297,80 @@ describe('<syn-combobox>', () => {
 
       expect(handler).to.be.calledTwice;
     });
+
+    it('should set the selected option to selected when the user types option value in the combobox', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await sendKeys({ type: 'option-2' });
+      el.blur();
+      await el.updateComplete;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the user types option text content in the combobox', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await sendKeys({ type: 'Option 2' });
+      el.blur();
+      await el.updateComplete;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the value is changed with the mouse', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should set the selected option to selected when the value is changed with the keyboard', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+
+      expect(secondOption.selected).to.be.true;
+    });
   });
 
   describe('keyboard handling', () => {
@@ -1344,6 +1418,112 @@ describe('<syn-combobox>', () => {
 
     await expect(el.value).to.equal('option-1');
     await expect(el.displayLabel).to.equal('Option 1');
+  });
+
+  describe('#626: when using `restricted` feature ', () => {
+    it('should reset the input to empty string for invalid user input', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      // Unfortunately we need to wait for the popup animation to be finished,
+      // before the value is reset, as this was needed to not have a flickering listbox
+      const { popup } = el.popup;
+      await new Promise<void>((resolve) => {
+        popup.getAnimations()[0].onfinish = () => {
+          resolve();
+        };
+      });
+
+      expect(el.value).to.equal('');
+    });
+
+    it('should reset the input to last selected option for invalid user input', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2" restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      // Unfortunately we need to wait for the popup animation to be finished,
+      // before the value is reset, as this was needed to not have a flickering listbox
+      const { popup } = el.popup;
+      await new Promise<void>((resolve) => {
+        popup.getAnimations()[0].onfinish = () => {
+          resolve();
+        };
+      });
+
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should reset to last selected option when setting invalid value programmatically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-2" restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      el.value = 'invalid';
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('Option 2');
+      expect(el.valueInput.value).to.equal('option-2');
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should reset to empty value when setting invalid value programmatically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      el.value = 'invalid';
+      await aTimeout(0);
+
+      expect(el.displayInput.value).to.equal('');
+      expect(el.valueInput.value).to.equal('');
+      expect(el.value).to.equal('');
+    });
+
+    it('should open the listbox and show a message when a letter key is pressed with syn-combobox is on focus with no appropriate options', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox restricted>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part="display-input"]')!;
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'f' });
+      await el.updateComplete;
+      const filteredListbox = el.shadowRoot!.querySelector('[part="filtered-listbox"]')!;
+      const noResults = filteredListbox.querySelector('[part="no-results"]');
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+      expect(noResults).to.exist;
+      expect(noResults!.textContent).to.equal('No results found');
+    });
   });
 
   runFormControlBaseTests('syn-combobox');

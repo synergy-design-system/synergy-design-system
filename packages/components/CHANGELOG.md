@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.39.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.38.0...components/2.39.0) (2025-07-09)
+
+
+### Features
+
+* ✨ Add restricted options to syn-combobox ([#914](https://github.com/synergy-design-system/synergy-design-system/issues/914)) ([d1b2e4d](https://github.com/synergy-design-system/synergy-design-system/commit/d1b2e4d0d63bf9f132fa179cc3954e9b21b4ea72))
+
 # [@synergy-design-system/components-v2.38.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.37.1...components/2.38.0) (2025-06-24)
 
 

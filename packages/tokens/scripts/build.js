@@ -25,11 +25,6 @@ StyleDictionary.registerFormat(cssVariableFormatter);
 const config = {
   buildPath: './dist/',
   prefix: 'syn-',
-  source: [
-    './src/figma-tokens/color/primitives.json',
-    './src/figma-tokens/globals.json',
-    './src/figma-tokens/semantic/*.json',
-  ],
 };
 
 /**
@@ -52,7 +47,7 @@ StyleDictionary.registerFileHeader({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-const cssRuns = ['dark', 'light'].map(async theme => {
+const cssRuns = ['2018-dark', '2018-light'].map(async theme => {
   const themeInstance = await dictionary.extend({
     platforms: {
       css: {
@@ -68,7 +63,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
           },
         }],
         prefix: config.prefix,
-        // transformGroup: 'tokens-studio',
+        transformGroup: 'tokens-studio',
         transforms: [
           'name/kebab',
           'ts/descriptionToComment',
@@ -92,7 +87,7 @@ const cssRuns = ['dark', 'light'].map(async theme => {
       },
     },
     preprocessors: ['tokens-studio'],
-    source: config.source.concat(`./src/figma-tokens/color/${theme}.json`),
+    source: [`./src/figma-variables/output/${theme}.json`],
   });
 
   return themeInstance.buildAllPlatforms();

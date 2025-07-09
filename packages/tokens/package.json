@@ -107,7 +107,7 @@
     ]
   },
   "scripts": {
-    "build": "pnpm clean && node scripts/build.js",
+    "build": "pnpm clean && pnpm build:figma && node scripts/build.js",
     "build:figma": "node scripts/transform-figma-tokens.js",
     "clean": "rimraf build",
     "lint:css": "stylelint \"dist/**/*.css\"",

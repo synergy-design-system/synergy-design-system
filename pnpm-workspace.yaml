@@ -1,3 +1,6 @@
 packages:
   - "packages/*"
   - "packages/_private/*"
+# Needed because of following issue: https://github.com/microsoft/vscode-eslint/issues/1986#issuecomment-2799868163
+publicHoistPattern:
+  - "*eslint*" # this seems to be needed as long as we are using eslint v8

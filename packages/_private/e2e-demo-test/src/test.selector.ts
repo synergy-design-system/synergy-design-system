@@ -74,6 +74,11 @@ const AllComponentSelectors = {
   tabGroupCustom: '#tab-content-TabGroup syn-tab:nth-of-type(3)',
   tabGroupGeneral: '#tab-content-TabGroup syn-tab:nth-of-type(1)',
   tabGroupLink: '#tab-TabGroup',
+
+  // Validate
+  validateContent: '#tab-content-Validate',
+  validateLink: '#tab-Validate',
+  validate915: '#tab-content-Validate syn-validate[data-testid="validate-915"]',
 };
 
 export default {

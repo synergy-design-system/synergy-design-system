@@ -556,5 +556,31 @@ describe('<syn-validate>', () => {
         }); // property (disabled or readonly)
       }); // Element type (SynInput or HTMLInputElement)
     }); // End test #717
+
+    describe('#915: should set correct invalid state for custom "on" event', () => {
+      it('Should set the data-user-invalid attribute correctly for syn-input', async () => {
+        const event = 'syn-change';
+
+        const validate = await fixture<SynValidate>(html`
+          <syn-validate on="revalidate">
+            <syn-input></syn-input>
+          </syn-validate>
+        `);
+
+        const input = validate.querySelector('syn-input')!;
+        input.addEventListener(event, () => {
+          validate.customValidationMessage = 'invalid';
+          input.dispatchEvent(new CustomEvent('revalidate', { bubbles: true }));
+        });
+
+        input.value = 'test';
+        input.dispatchEvent(new Event(event));
+        await validate.updateComplete;
+
+        expect(input.validationMessage).to.include('invalid');
+        expect(input.hasAttribute('data-user-invalid'), 'data-user-invalid attribute should be available').to.be.true;
+        expect(validate.getValidity(), 'syn-validate should be invalid').to.be.false;
+      });
+    }); // End test #915
   }); // End regression tests
 });

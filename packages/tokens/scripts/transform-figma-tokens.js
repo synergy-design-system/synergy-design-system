@@ -22,7 +22,7 @@ for (const [, value] of Object.entries(inputVariableCollections)) {
 
 const { tokens } = await useFigmaToDTCG({
   api: "rest",
-  response: { meta: { variableCollections: transformedVariableCollections }, variables: transformedVariables }
+  response: { meta: { variableCollections: transformedVariableCollections, variables: transformedVariables } }
 });
 
 

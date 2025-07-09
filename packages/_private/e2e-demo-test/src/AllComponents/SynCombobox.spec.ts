@@ -218,6 +218,32 @@ test.describe('<SynCombobox />', () => {
 
         expect(displayedValue).toEqual('ipsum');
       });
-    }); // regression#813
+
+      test('should reset the value of a restricted combobox to the last async valid value', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox626Async');
+        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(value).toEqual('3');
+        expect(displayedValue).toEqual('Advanced');
+
+        await fillField(combobox, 'lo', '.combobox__display-input', true);
+        await waitForChange;
+
+        const displayedValueReset = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const valueReset = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(valueReset).toEqual('3');
+        expect(displayedValueReset).toEqual('Advanced');
+      });
+    }); // regression#626
   }); // End frameworks
 }); // </syn-combobox>

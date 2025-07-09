@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import { SynVueButton, SynVueCombobox, SynVueOption } from '@synergy-design-system/vue';
 import type { SynCombobox } from '@synergy-design-system/components';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
 
-const levels = ref<Array<{ value: string, label: string }>>([]);
+const levels = ref<SelectItem[]>([]);
 
 const cb632Value = ref<string>('');
 
-setTimeout(() => {
-  levels.value = [
-    { label: 'Novice', value: '1' },
-    { label: 'Intermediate', value: '2' },
-    { label: 'Advanced', value: '3' },
-  ];
-}, 0);
+onMounted(async () => {
+  const items = await mockAsyncData('selectItems');
+  levels.value = items;
+});
 </script>
 
 <template>
@@ -55,5 +53,14 @@ setTimeout(() => {
     <SynVueOption value="option-1">Lorem</SynVueOption>
     <SynVueOption value="option-2">ipsum</SynVueOption>
     <SynVueOption value="option-3">dolor</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox
+    data-testid="combobox-626-async"
+    label="'Restricted' feature #626 async"
+    restricted
+    value="3"
+  >
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueCombobox>
 </template>

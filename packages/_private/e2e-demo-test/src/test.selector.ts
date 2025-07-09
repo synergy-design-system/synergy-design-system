@@ -11,6 +11,7 @@ const AllComponentSelectors = {
 
   // Combobox
   combobox626: '#tab-content-Combobox syn-combobox[data-testid="combobox-626"]',
+  combobox626Async: '#tab-content-Combobox syn-combobox[data-testid="combobox-626-async"]',
   combobox632: '#tab-content-Combobox syn-combobox[data-testid="combobox-632"]',
   combobox797: '#tab-content-Combobox syn-combobox[data-testid="combobox-797"]',
   combobox813Form: '#tab-content-Combobox syn-combobox[data-testid="combobox-form-813"]',

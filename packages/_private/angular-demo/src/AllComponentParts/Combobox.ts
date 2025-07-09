@@ -3,6 +3,7 @@ import type { SynChangeEvent, SynCombobox } from '@synergy-design-system/compone
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
+import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-combobox',
@@ -55,10 +56,21 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
       <syn-option value="option-2">ipsum</syn-option>
       <syn-option value="option-3">dolor</syn-option>
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-626-async"
+      label="'Restricted' feature #626 async"
+      restricted
+      value="3"
+    >
+      @for (level of levels; track $index; let index = $index) {
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
+      }
+    </syn-combobox>
   `,
 })
 export class Combobox implements OnInit {
-  levels!: Array<{value: string, label: string }>
+  levels: SelectItem[] = [];
 
   cb632Value: string = '';
 
@@ -67,13 +79,9 @@ export class Combobox implements OnInit {
   };
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.levels = [
-        { value: '1', label: 'Novice' },
-        { value: '2', label: 'Intermediate' },
-        { value: '3', label: 'Advanced' },
-      ];
-    }, 0);
+    mockAsyncData('selectItems').then((items) => {
+      this.levels = items;
+    });
   }
 }
 

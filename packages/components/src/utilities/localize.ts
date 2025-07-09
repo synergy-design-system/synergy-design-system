@@ -33,6 +33,7 @@ export interface Translation extends DefaultTranslation {
   folderButtonText: string;
   folderDragDrop: string;
   menu: string;
+  noResults: string;
   notification: string;
   numFilesSelected: (num: number, dir: boolean) => string;
   openMenu: string;

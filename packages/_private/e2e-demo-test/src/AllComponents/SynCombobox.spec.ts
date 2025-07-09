@@ -1,10 +1,11 @@
 import { expect, test } from '@playwright/test';
 import {
+  type SynChangeEvent,
   type SynCombobox,
   type SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
-import { createTestCases, fillField } from '../helpers.js';
+import { createTestCases, fillField, hasEvent } from '../helpers.js';
 
 test.describe('<SynCombobox />', () => {
   createTestCases(({ name, port }) => {
@@ -173,5 +174,76 @@ test.describe('<SynCombobox />', () => {
         expect(resetDisplayedValue).toEqual('Option 1');
       });
     }); // regression#813
+
+    test.describe(`Regression#626: ${name}`, () => {
+      test('should reset the value of a restricted combobox to empty value', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox626');
+        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+        await fillField(combobox, 'lo', '.combobox__display-input', true);
+        await waitForChange;
+
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+
+        expect(displayedValue).toEqual('');
+      });
+
+      test('should reset the value of a restricted combobox to the last valid value', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox626');
+
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        combobox.evaluate((ele: SynCombobox) => {
+          ele.value = 'ipsum';
+        });
+        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+        await fillField(combobox, 'lo', '.combobox__display-input', true);
+        await waitForChange;
+
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+
+        expect(displayedValue).toEqual('ipsum');
+      });
+
+      test('should reset the value of a restricted combobox to the last async valid value', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox626Async');
+        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(value).toEqual('3');
+        expect(displayedValue).toEqual('Advanced');
+
+        await fillField(combobox, 'lo', '.combobox__display-input', true);
+        await waitForChange;
+
+        const displayedValueReset = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const valueReset = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(valueReset).toEqual('3');
+        expect(displayedValueReset).toEqual('Advanced');
+      });
+    }); // regression#626
   }); // End frameworks
 }); // </syn-combobox>

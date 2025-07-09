@@ -48,6 +48,8 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
   Combobox: [
     // #813
     () => appendOptions813('syn-combobox[data-testid="combobox-level-813"]'),
+    // #626
+    () => appendOptions813('syn-combobox[data-testid="combobox-626-async"]'),
   ],
   Dialog: [
     // Open the dialog when dialog tab is clicked

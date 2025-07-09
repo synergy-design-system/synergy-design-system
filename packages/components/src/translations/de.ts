@@ -47,10 +47,11 @@ const translation: Translation = {
   danger: 'Gefahr',
   fileButtonText: 'Datei auswählen',
   fileButtonTextMultiple: 'Dateien auswählen',
-  folderButtonText: 'Ordner auswählen',
   fileDragDrop: 'Datei ablegen oder auswählen',
+  folderButtonText: 'Ordner auswählen',
   folderDragDrop: 'Ordner ablegen oder auswählen',
   menu: 'Menü',
+  noResults: 'Keine Ergebnisse gefunden',
   notification: 'Benachrichtigung',
   numFilesSelected: (num, dir) => {
       if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;

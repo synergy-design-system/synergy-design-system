@@ -71,6 +71,7 @@ Component.define('syn-combobox');
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
+ * @csspart no-results - The container that wraps the "no results" message.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.

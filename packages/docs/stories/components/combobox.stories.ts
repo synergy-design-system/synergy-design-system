@@ -204,6 +204,55 @@ export const Disabled: Story = {
   `,
 };
 
+export const Restricted: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'restrict-options'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox value="Option 1" restricted>
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-combobox>
+  `,
+};
+
+export const NoResultsFound: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'no-results'),
+      },
+      story: {
+        inline: false,
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const combobox = canvasElement.querySelector<SynCombobox>('syn-combobox')!;
+    await combobox.updateComplete;
+    combobox.focus();
+    const input = combobox.shadowRoot?.querySelector('input');
+    if (input) {
+      await userEvent.type(input, 'Search term');
+    }
+  },
+  render: () => html`
+    <syn-combobox id="no-results" value="Search term" open restricted>
+      <syn-option>Option 1</syn-option>
+      <syn-option>Option 2</syn-option>
+      <syn-option>Option 3</syn-option>
+    </syn-combobox>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -542,6 +591,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Placeholder,
   Clearable,
   Disabled,
+  Restricted,
   Sizes,
   PrefixSuffixTextAndIcons,
   AsyncOptions,

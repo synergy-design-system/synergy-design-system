@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import type { SynCombobox } from '@synergy-design-system/components';
+import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
 
 export const Combobox = () => {
-  const [levels, setLevels] = useState<Array<{ value: string, label: string }>>([]);
+  const [levels, setLevels] = useState<SelectItem[]>([]);
   const [cb632Value, setcb632Value] = useState<string>('');
   useEffect(() => {
-    setTimeout(() => {
-      setLevels([
-        { label: 'Novice', value: '1' },
-        { label: 'Intermediate', value: '2' },
-        { label: 'Advanced', value: '3' },
-      ]);
-    }, 0);
+    const fetchLevels = async () => {
+      const items = await mockAsyncData('selectItems');
+      setLevels(items);
+    };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fetchLevels();
   }, []);
   return (
     <>
@@ -47,6 +47,29 @@ export const Combobox = () => {
         <syn-option value="option-1">Lorem</syn-option>
         <syn-option value="option-2">ipsum</syn-option>
         <syn-option value="option-3">dolor</syn-option>
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-626"
+        label="'Restricted' feature #626"
+        restricted
+      >
+        <syn-option value="option-1">Lorem</syn-option>
+        <syn-option value="option-2">ipsum</syn-option>
+        <syn-option value="option-3">dolor</syn-option>
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-626-async"
+        label="'Restricted' feature #626 async"
+        restricted
+        value="3"
+      >
+        {levels.map(level => (
+          <syn-option key={level.value} value={level.value}>
+            {level.label}
+          </syn-option>
+        ))}
       </syn-combobox>
     </>
   );

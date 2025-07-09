@@ -94,3 +94,33 @@ export const createOptionFromDifferentTypes = (option: TemplateResult | string |
 
   return undefined;
 };
+
+/**
+ * Gets the value from an option. If an option has no value, it will use the text label.
+ * @param option The syn-option to get the value from
+ * @returns The value of the option
+ */
+export const getValueFromOption = (option: SynOption) => {
+  const { value } = option;
+  if (value === undefined || value === null || value === '') {
+    // If the option has no value, use the text label
+    return option.getTextLabel();
+  }
+  return value;
+};
+
+/**
+ * Check if a value belongs to the value or text label of an option.
+ * @param value The value to check
+ * @param option The option to check against
+ * @returns True if the value belongs to the option, false otherwise
+ */
+export const checkValueBelongsToOption = (value: string, option: SynOption | undefined) => {
+  if (!option || !value) {
+    return false;
+  }
+
+  const optionValue = option.value;
+  const optionText = option.getTextLabel();
+  return value === optionValue || value === optionText;
+};

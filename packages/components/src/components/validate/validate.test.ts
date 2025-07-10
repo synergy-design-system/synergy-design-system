@@ -130,9 +130,9 @@ describe('<syn-validate>', () => {
 
       // Trigger another validation run to make sure it works
       input.value = 'test';
-      await input.updateComplete;
       input.focus();
       input.blur();
+      await input.updateComplete;
 
       const isValid = el.getValidity();
       await expect(isValid).to.equal(false);
@@ -308,9 +308,9 @@ describe('<syn-validate>', () => {
 
       const input = el.querySelector('syn-input')!;
       input.value = 'test';
-      await input.updateComplete;
       input.focus();
       input.blur();
+      await input.updateComplete;
 
       // email address is the only part that all three browsers have in common.
       // Could also check for non empty values, but it makes it more brittle.
@@ -330,8 +330,8 @@ describe('<syn-validate>', () => {
       await expect(el.validationMessage).to.equal('');
 
       input.value = 'test';
-      await input.updateComplete;
       input.dispatchEvent(new Event('syn-change', { bubbles: true }));
+      await input.updateComplete;
 
       expect(el.validationMessage).to.include('email address');
 
@@ -351,14 +351,14 @@ describe('<syn-validate>', () => {
 
       input.focus();
       input.value = 'test';
-      await input.updateComplete;
       input.blur();
+      await input.updateComplete;
       expect(el.validationMessage).to.include('email address');
 
       input.focus();
       input.value = 'test@example';
-      await input.updateComplete;
       input.blur();
+      await input.updateComplete;
       await expect(el.validationMessage).to.equal('');
     });
 
@@ -398,8 +398,8 @@ describe('<syn-validate>', () => {
 
       input.value = 'test';
       input.dispatchEvent(new Event('syn-input'));
+      await input.updateComplete;
       await el.updateComplete;
-
       expect(reportValiditySpy).to.have.been.calledOnce;
     });
 
@@ -453,6 +453,7 @@ describe('<syn-validate>', () => {
 
       input.value = 'test';
       input.dispatchEvent(new Event('syn-input'));
+      await input.updateComplete;
       await el.updateComplete;
 
       expect(input.hasAttribute('data-user-invalid')).to.be.true;

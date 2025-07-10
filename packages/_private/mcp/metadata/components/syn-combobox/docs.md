@@ -1,0 +1,2502 @@
+
+## Default
+
+The combobox suggests items based on the user input.
+
+```html
+<syn-combobox
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Labels
+
+Use the label attribute to give the combobox an accessible label. For labels that contain HTML, use the label slot instead.
+
+```html
+<syn-combobox
+  label="State"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Help Text
+
+Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
+
+```html
+<syn-combobox
+  label="State"
+  help-text="Select a State"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Placeholder
+
+Use the placeholder attribute to add a placeholder.
+
+```html
+<syn-combobox
+  label="State"
+  help-text="Select a State"
+  placeholder="Select a State"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Focus
+
+The focus attribute provides feedback to the users, informing them that the combobox component is ready for use.
+
+```html
+<div style="padding: 5px">
+  <syn-combobox
+    size="medium"
+    placement="bottom"
+    form=""
+    data-optional=""
+    data-valid=""
+  >
+    <syn-option
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      value=""
+      id="syn-combobox-option-0"
+      >Option 1</syn-option
+    >
+    <syn-option
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      value=""
+      id="syn-combobox-option-1"
+      >Option 2</syn-option
+    >
+    <syn-option
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      value=""
+      id="syn-combobox-option-2"
+      >Option 3</syn-option
+    >
+  </syn-combobox>
+</div>
+
+```
+
+---
+
+## Clearable
+
+Add the clearable attribute to add a clear button when the combobox has content.
+
+```html
+<syn-combobox
+  value="Green"
+  clearable=""
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    hidden=""
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    hidden=""
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    hidden=""
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    hidden=""
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    hidden=""
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    hidden=""
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    hidden=""
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    hidden=""
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    hidden=""
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    hidden=""
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Disabled
+
+Use the disabled attribute to disable a combobox.
+
+```html
+<syn-combobox
+  disabled=""
+  placeholder="Disabled"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Restricted
+
+This restricts the combobox to only allow selections from the available options. Users cannot enter custom values that are not in the list.
+
+```html
+<syn-combobox
+  value="Option 1"
+  restricted=""
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="option-1"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    value="option-2"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    hidden=""
+    >Option 2</syn-option
+  >
+  <syn-option
+    value="option-3"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Sizes
+
+Use the size attribute to change a combobox size.
+
+```html
+<syn-combobox
+  size="small"
+  placeholder="Small"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+<br />
+
+<syn-combobox
+  size="medium"
+  placeholder="Medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+<br />
+
+<syn-combobox
+  size="large"
+  placeholder="Large"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Invalid
+
+The invalid status is used to warn the user that the combobox is invalid. For example, if the entry is mandatory.
+
+```html
+<form class="custom-validity">
+  <syn-combobox
+    required=""
+    placeholder="Type something"
+    help-text="This is required"
+    size="medium"
+    placement="bottom"
+    form=""
+    data-required=""
+    data-invalid=""
+  >
+    <syn-option
+      value="Black"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-0"
+      >Black</syn-option
+    >
+    <syn-option
+      value="Blue"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-1"
+      >Blue</syn-option
+    >
+    <syn-option
+      value="Brown"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-2"
+      >Brown</syn-option
+    >
+    <syn-option
+      value="Green"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-3"
+      >Green</syn-option
+    >
+    <syn-option
+      value="Grey"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-4"
+      >Grey</syn-option
+    >
+    <syn-option
+      value="Light_Green"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-5"
+      >Light Green</syn-option
+    >
+    <syn-option
+      value="Magenta"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-6"
+      >Magenta</syn-option
+    >
+    <syn-option
+      value="Orange"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-7"
+      >Orange</syn-option
+    >
+    <syn-option
+      value="Pink"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-8"
+      >Pink</syn-option
+    >
+    <syn-option
+      value="Purple"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-9"
+      >Purple</syn-option
+    >
+    <syn-option
+      value="Red"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-10"
+      >Red</syn-option
+    >
+    <syn-option
+      value="White"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-11"
+      >White</syn-option
+    >
+    <syn-option
+      value="Yellow"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-12"
+      >Yellow</syn-option
+    >
+  </syn-combobox>
+  <syn-button
+    type="submit"
+    variant="filled"
+    title=""
+    size="medium"
+    data-optional=""
+    data-valid=""
+    >Submit</syn-button
+  >
+</form>
+<style>
+  .custom-validity {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  syn-button {
+    align-self: flex-start;
+  }
+</style>
+
+```
+
+---
+
+## Prefix Suffix Text And Icons
+
+Use the prefix and suffix slots to add text and icons.
+
+```html
+<syn-combobox
+  placeholder="Small"
+  size="small"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <span slot="prefix">prefix</span>
+  <span slot="suffix">suffix</span>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+<br />
+<syn-combobox
+  placeholder="Medium"
+  size="medium"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <span slot="prefix">prefix</span>
+  <span slot="suffix">suffix</span>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+<br />
+<syn-combobox
+  placeholder="Large"
+  size="large"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <span slot="prefix">prefix</span>
+  <span slot="suffix">suffix</span>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+<br />
+
+<syn-combobox
+  placeholder="Small"
+  size="small"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-icon
+    name="wallpaper"
+    slot="prefix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+  <syn-icon
+    name="wallpaper"
+    slot="suffix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+</syn-combobox>
+<br />
+<syn-combobox
+  placeholder="Medium"
+  size="medium"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-icon
+    name="wallpaper"
+    slot="prefix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+  <syn-icon
+    name="wallpaper"
+    slot="suffix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+</syn-combobox>
+<br />
+<syn-combobox
+  placeholder="Large"
+  size="large"
+  clearable=""
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-icon
+    name="wallpaper"
+    slot="prefix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+  <syn-icon
+    name="wallpaper"
+    slot="suffix"
+    aria-hidden="true"
+    library="default"
+  ></syn-icon>
+</syn-combobox>
+
+```
+
+---
+
+## Simple Suggests
+
+A simple suggestions list shows the user a filtered list.
+
+```html
+<syn-combobox
+  label="Preferred Color"
+  value="g"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    hidden=""
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    hidden=""
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    hidden=""
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    hidden=""
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    hidden=""
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    hidden=""
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    hidden=""
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Highlight Query
+
+The filtered options shown in the list can be customized by passing a function to the getOption property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getOption() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.Remember that the options are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector. Note: Be sure you trust the content you are outputting! Passing unsanitized user input to getOption() can result in XSS vulnerabilities.
+
+```html
+<syn-combobox
+  label="Preferred color"
+  class="highlight-combobox"
+  value="g"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    hidden=""
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    hidden=""
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    ><mark class="syn-highlight-style">G</mark>reen</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    ><mark class="syn-highlight-style">G</mark>rey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Li<mark class="syn-highlight-style">g</mark>ht Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Ma<mark class="syn-highlight-style">g</mark>enta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Oran<mark class="syn-highlight-style">g</mark>e</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    hidden=""
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    hidden=""
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    hidden=""
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    hidden=""
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    hidden=""
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Grouping Query
+
+Use <syn-optgroup> to group <syn-option>`s visually.
+
+```html
+<syn-combobox
+  label="Group elements"
+  value="g"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-optgroup label="B" id="syn-combobox-optgroup-0" hidden="">
+    <syn-option
+      value="Black"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-0"
+      hidden=""
+      >Black</syn-option
+    >
+    <syn-option
+      value="Blue"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-1"
+      hidden=""
+      >Blue</syn-option
+    >
+    <syn-option
+      value="Brown"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-2"
+      hidden=""
+      >Brown</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup
+    label="G"
+    id="syn-combobox-optgroup-1"
+    style="--display-divider: none"
+  >
+    <syn-option
+      value="Green"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-3"
+      >Green</syn-option
+    >
+    <syn-option
+      value="Grey"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-4"
+      >Grey</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="L" id="syn-combobox-optgroup-2">
+    <syn-option
+      value="Light_Green"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-5"
+      >Light Green</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="M" id="syn-combobox-optgroup-3">
+    <syn-option
+      value="Magenta"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-6"
+      >Magenta</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="O" id="syn-combobox-optgroup-4">
+    <syn-option
+      value="Orange"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-7"
+      >Orange</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="W" id="syn-combobox-optgroup-5" hidden="">
+    <syn-option
+      value="White"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-8"
+      hidden=""
+      >White</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="P" id="syn-combobox-optgroup-6" hidden="">
+    <syn-option
+      value="Pink"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-9"
+      hidden=""
+      >Pink</syn-option
+    >
+    <syn-option
+      value="Purple"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-10"
+      hidden=""
+      >Purple</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="R" id="syn-combobox-optgroup-7" hidden="">
+    <syn-option
+      value="Red"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-11"
+      hidden=""
+      >Red</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="W" id="syn-combobox-optgroup-8" hidden="">
+    <syn-option
+      value="White"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-12"
+      hidden=""
+      >White</syn-option
+    >
+  </syn-optgroup>
+  <syn-optgroup label="Y" id="syn-combobox-optgroup-9" hidden="">
+    <syn-option
+      value="Yellow"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-13"
+      hidden=""
+      >Yellow</syn-option
+    >
+  </syn-optgroup>
+</syn-combobox>
+
+```
+
+---
+
+## Suggestion Container Height
+
+The height of the filtered options list can be customized by setting the max-height on the listbox part of the combobox.
+
+```html
+<syn-combobox
+  id="max-height"
+  label="Preferred color"
+  value="g"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    hidden=""
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    hidden=""
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    hidden=""
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    hidden=""
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    hidden=""
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    hidden=""
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    hidden=""
+    >Yellow</syn-option
+  >
+</syn-combobox>
+<style>
+  #max-height::part(listbox) {
+    /* if there is not enough space for the desired height, use the available calculated height */
+    max-height: min(var(--auto-size-available-height), 112px);
+  }
+</style>
+
+```
+
+---
+
+## Async Options
+
+It is possible to add options dynamically to the combobox e.g. if the option values need to be fetched asynchronously from a remote server or API.
+
+```html
+<syn-combobox
+  label="Async options"
+  class="async-combobox"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+</syn-combobox>
+
+```
+
+---
+
+## Custom Filter
+
+A custom filter can be applied by passing a filter function to the filter property. This filter() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.
+
+```html
+<syn-combobox
+  label="Custom Filter"
+  class="filter-combobox"
+  size="medium"
+  placement="bottom"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-option
+    value="Black"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Black</syn-option
+  >
+  <syn-option
+    value="Blue"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Blue</syn-option
+  >
+  <syn-option
+    value="Brown"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Brown</syn-option
+  >
+  <syn-option
+    value="Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Green</syn-option
+  >
+  <syn-option
+    value="Grey"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Grey</syn-option
+  >
+  <syn-option
+    value="Light_Green"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Light Green</syn-option
+  >
+  <syn-option
+    value="Magenta"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-6"
+    >Magenta</syn-option
+  >
+  <syn-option
+    value="Orange"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-7"
+    >Orange</syn-option
+  >
+  <syn-option
+    value="Pink"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-8"
+    >Pink</syn-option
+  >
+  <syn-option
+    value="Purple"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-9"
+    >Purple</syn-option
+  >
+  <syn-option
+    value="Red"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-10"
+    >Red</syn-option
+  >
+  <syn-option
+    value="White"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-11"
+    >White</syn-option
+  >
+  <syn-option
+    value="Yellow"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-12"
+    >Yellow</syn-option
+  >
+</syn-combobox>
+
+```

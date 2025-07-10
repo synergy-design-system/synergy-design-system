@@ -28,7 +28,7 @@ export const getInfoForComponent = async (
   framework: Framework = 'vanilla',
 ) => {
   // Filter function to select specific files based on the framework
-  const namePatterns = ['README.md', 'component.ts'];
+  const namePatterns = ['README.md', 'component.ts', 'docs.md'];
 
   switch (framework) {
   case 'react':

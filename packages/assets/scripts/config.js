@@ -21,7 +21,9 @@ export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
 export const PATH_ICONS_V3 = 'src/brand2025';
 
-export const PATH_DEFAULT_ICONS = 'src/default-icons.ts';
+export const PATH_DEFAULT_ICONS_2018 = 'src/default-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/brand2025-filled-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/brand2025-outline-icons.ts';
 
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;
@@ -46,6 +48,7 @@ export const LICENSE_MAP = [
     paths: [
       PATH_ICONS_V2,
       PATH_SYSTEM_ICONS_V2,
+      PATH_ICONS_V3,
     ],
   },
 ];
@@ -59,6 +62,8 @@ export const DYNAMIC_OUTPUT_PATHS = [
   PATH_LOGOS_V2,
   PATH_SYSTEM_ICONS_V2,
   PATH_ICONS_V3,
-  PATH_DEFAULT_ICONS,
+  PATH_DEFAULT_ICONS_2018,
+  PATH_DEFAULT_ICONS_2025_FILLED,
+  PATH_DEFAULT_ICONS_2025_OUTLINE,
   PATH_COMPONENT_OVERVIEW,
 ];

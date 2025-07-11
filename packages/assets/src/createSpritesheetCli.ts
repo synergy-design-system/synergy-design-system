@@ -1,10 +1,18 @@
 #! /usr/bin/env node
 /* eslint-disable no-console */
-import { createSpriteSheet } from './createSpritesheet.js';
-import { defaultIcons } from './default-icons.js';
+import {
+  type AllowedIconsets,
+  type Icon2018Keys,
+  type Icon2025Keys,
+  createSpriteSheet,
+} from './createSpritesheet.js';
+import { defaultIcons as brand2018Icons } from './default-icons.js';
+import { defaultIcons as brand2025Icons } from './default-icons-2025.js';
 
 type Args = {
-  icons?: Partial<keyof typeof defaultIcons>[];
+  icons?: Partial<keyof typeof brand2018Icons>[];
+  iconset?: AllowedIconsets;
+  list?: string;
   [key: string]: unknown;
 };
 
@@ -12,13 +20,22 @@ type Args = {
  * Creates a help message for the CLI.
  * @returns Help message
  */
-const helpMessage = (usageError = '') => `Usage: syn-create-spritesheet --icons=icon1,icon2,icon3
+const helpMessage = (usageError = '') => `Usage:
+
+syn-create-spritesheet --icons=icon1,icon2,icon3 --iconset=brand2018 | brand2025
+syn-create-spritesheet --iconset=brand2018 | brand2025 --list=a
 
 Creates a spritesheet string from a list of icons.
 Each icon identifier is a valid icon name for an icon in the synergy icon library.
 
 Using to save the spritesheet string to a file:
 syn-create-spritesheet --icons=a,b,c > icons.svg
+
+List all available icons starting with the letter 'a' in brand2025:
+syn-create-spritesheet --list=a --iconset=brand2025
+
+List all available icons in brand2025:
+syn-create-spritesheet --list=ALL --iconset=brand2025
 
 Please have a look at https://synergy-design-system.github.io/?path=/docs/icon-search--docs for icon names
 ${usageError && `
@@ -51,10 +68,37 @@ if (args.length === 0) {
   process.exit(1);
 }
 
-// Check if the icons are valid
-const allowedIconNames = Object.keys(defaultIcons);
-const { icons } = argumentsObject;
+const {
+  icons,
+  iconset = 'brand2018',
+  list,
+} = argumentsObject;
 
+const allowedIconNamesFor2018 = Object.keys(brand2018Icons);
+const allowedIconNamesFor2025 = Object.keys(brand2025Icons);
+const allowedIconNames = iconset === 'brand2018' ? allowedIconNamesFor2018 : allowedIconNamesFor2025;
+
+// Check if the iconset is valid
+if (!['brand2018', 'brand2025'].includes(iconset)) {
+  console.log(helpMessage(`The iconset "${iconset}" is not valid. Please use "brand2018" or "brand2025".`));
+  process.exit(3);
+}
+
+// If the list option is provided, we will list the icons
+if (list) {
+  const searchTerm = list === 'ALL' ? '' : list.toLowerCase();
+  const availableIcons = allowedIconNames.filter(
+    icon => icon.toLowerCase().startsWith(searchTerm),
+  );
+  if (availableIcons.length === 0) {
+    console.log(helpMessage(`No icons found starting with "${list}".`));
+    process.exit(4);
+  }
+  console.log(`Available icons starting with "${list}":\n\t- ${availableIcons.join('\n\t- ')}`);
+  process.exit(0);
+}
+
+// Check if there are icons provided
 if (!icons || icons.length === 0) {
   console.log(helpMessage('Please provide at least one icon.'));
   process.exit(2);
@@ -73,5 +117,12 @@ Please remove them and try again, e.g. by using the following command: syn-creat
   process.exit(-3);
 }
 
-console.log(createSpriteSheet(validIcons));
+let sheet;
+if (iconset === 'brand2018') {
+  sheet = createSpriteSheet(icons as Icon2018Keys[], 'brand2018');
+} else {
+  sheet = createSpriteSheet(icons as Icon2025Keys[], 'brand2025');
+}
+
+console.log(sheet);
 process.exit(0);

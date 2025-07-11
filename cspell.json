@@ -29,7 +29,9 @@
     "autofocus",
     "listbox",
     "spritesheet",
-    "checkmark"
+    "checkmark",
+    "iconset",
+    "iconsets"
   ],
   "ignorePaths": ["package.json", "pnpm-lock.yaml"],
   "useGitignore": true

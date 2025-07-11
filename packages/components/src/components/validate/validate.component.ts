@@ -207,6 +207,7 @@ export default class SynValidate extends SynergyElement {
 
     const events = this.getUsedEventNames();
     events.forEach(eventName => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       input.addEventListener(eventName, this.validate, {
         capture: isInvalidEvent(eventName),
         signal: this.controller.signal,
@@ -270,8 +271,24 @@ export default class SynValidate extends SynergyElement {
     input.focus();
   }
 
+
+  /**
+   * Triggers a validation run, showing the validation message if needed.
+   */
   // eslint-disable-next-line complexity
-  private handleValidate = async (e: Event) => {
+  private validate = async (e: Event) => {
+    // Make sure to stop the validate component from going into an endless cycle of triggering
+    if (isInvalidEvent(e.type) && this.variant === 'native' && this.isInternalTriggeredInvalid === true) {
+      this.isInternalTriggeredInvalid = false;
+      return;
+    }
+
+    // Make sure to always prevent the invalid event when not using native validation
+    if (isInvalidEvent(e.type) && this.variant !== 'native') {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const input = e.currentTarget as HTMLInputElement;
     if (input instanceof SynergyElement) {
       // When using a synergy element, we need to wait for it to be ready!
@@ -304,27 +321,6 @@ export default class SynValidate extends SynergyElement {
         input.reportValidity();
       });
     }
-  };
-
-  /**
-   * Triggers a validation run, showing the validation message if needed.
-   */
-  // eslint-disable-next-line complexity
-  private validate = (e: Event) => {
-    // Make sure to stop the validate component from going into an endless cycle of triggering
-    if (isInvalidEvent(e.type) && this.variant === 'native' && this.isInternalTriggeredInvalid === true) {
-      this.isInternalTriggeredInvalid = false;
-      return;
-    }
-
-    // Make sure to always prevent the invalid event when not using native validation
-    if (isInvalidEvent(e.type) && this.variant !== 'native') {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    this.handleValidate(e);
   };
 
   async firstUpdated(changedProperties: PropertyValues) {

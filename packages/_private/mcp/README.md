@@ -6,6 +6,27 @@ Synergy MCP Server – Multi-Framework Component Metadata & Tooling
 
 The `@synergy-design-system/mcp` package provides a server-side interface for Synergy Design System components. It enables integration and documentation of component metadata, code samples, and tooling for Angular, React, Vue, and Web Components. The MCP tools deliver structured information and code samples for using Synergy components across frameworks.
 
+## Local Setup
+
+To run the MCP server locally, install the `@synergy-design-system/mcp` package in your project. You can launch the server using `npx @synergy-design-system/mcp` from your project directory. For integration with VS Code, add a configuration under `mcp.servers` in your `settings.json` to connect via stdio. Example configuration:
+
+```jsonc
+"mcp": {
+  "servers": {
+    "synergy": {
+      "type": "stdio",
+      "cwd": "/path/to/your/project",
+      "command": "npx",
+      "args": [
+        "@synergy-design-system/mcp"
+      ]
+    }
+  }
+}
+```
+
+Replace `/path/to/your/project` with your actual project directory.
+
 ## Features
 
 - Unified API for component metadata and code samples
@@ -20,87 +41,16 @@ The `@synergy-design-system/mcp` package provides a server-side interface for Sy
 **Description:**  
 Outputs a list of all available components in the Synergy Design System.
 
-**Example Response:**
-```
-- syn-accordion
-- syn-alert
-- syn-badge
-- syn-breadcrumb
-- syn-breadcrumb-item
-- syn-button
-- syn-button-group
-- syn-card
-- syn-checkbox
-- syn-combobox
-- syn-details
-- syn-dialog
-- syn-divider
-- syn-drawer
-- syn-dropdown
-- syn-file
-- syn-header
-- syn-icon
-- syn-icon-button
-- syn-input
-- syn-menu
-- syn-menu-item
-- syn-menu-label
-- syn-nav-item
-- syn-optgroup
-- syn-option
-- syn-popup
-- syn-prio-nav
-- syn-progress-bar
-- syn-progress-ring
-- syn-radio
-- syn-radio-button
-- syn-radio-group
-- syn-range
-- syn-range-tick
-- syn-select
-- syn-side-nav
-- syn-spinner
-- syn-switch
-- syn-tab
-- syn-tab-group
-- syn-tab-panel
-- syn-tag
-- syn-textarea
-- syn-tooltip
-- syn-validate
-```
-
 ---
 
 ### 2. `component-info`
 
 **Description:**  
-Returns structured metadata, API information, and code samples for a specific component and framework.
+Get information about the usage of a specific component in the Synergy Design System.
 
 **Parameters:**
-- `component` (string, required): Name of the component, e.g. `syn-button`
-- `framework` (optional, string): e.g. `angular`, `react`, `vue`, `vanilla`
-
-**Example Request:**
-```json
-{
-  "component": "syn-button",
-  "framework": "angular"
-}
-```
-
-**Example Response:**
-```json
-{
-  "name": "syn-button",
-  "framework": "angular",
-  "api": { ... },
-  "usage": "<syn-button ...></syn-button>",
-  "props": [ ... ],
-  "events": [ ... ],
-  "codeSamples": [ ... ]
-}
-```
+- `component` (string, required): The name of the component to get information about (e.g., `syn-button`).
+- `framework` (optional, string): The framework of the component, e.g., `react`, `vue`, `angular`, `vanilla`.
 
 ---
 
@@ -108,11 +58,6 @@ Returns structured metadata, API information, and code samples for a specific co
 
 **Description:**  
 Get a list of all components that have migration information from DaVinci to Synergy.
-
-**Example Response:**
-```
-Migration information was found for the following components: davinci-button, davinci-input, ...
-```
 
 ---
 
@@ -122,31 +67,17 @@ Migration information was found for the following components: davinci-button, da
 Get information about the migration of a specific component from DaVinci to Synergy.
 
 **Parameters:**
-- `component` (string, required): Name of the DaVinci component, e.g. `davinci-button`
+- `component` (string, required): Name of the DaVinci component, e.g., `davinci-button`.
 
-**Example Request:**
-```json
-{
-  "component": "davinci-button"
-}
-```
+---
 
-**Example Response:**
-```
-Migration information for davinci-button: 
-### davinci-button
+### 5. `framework-info`
 
-| davinci-button | syn-button|
-| -- | --|
-<img src="button_davinci.png" style="width: 100px;"> | <img src="button_synergy.png" style="width: 110px;"> |
+**Description:**  
+Get information about a specific framework package that the Synergy Design System supports.
 
-#### Examples
-##### Primary
-<davinci-button type="primary">Click me</davinci-button>
-<!-- will become -->
-<syn-button variant="filled">Click me</syn-button>
-...
-```
+**Parameters:**
+- `framework` (optional, string): The framework you want information for, e.g., `react`, `vue`, `angular`, `vanilla`.
 
 ---
 
@@ -161,34 +92,6 @@ Migration information for davinci-button:
 - Use one Markdown or JSON file per component and framework for metadata and samples.
 - Code samples should be runnable and tailored to the respective framework.
 - Clearly document API information, props, events, and slots.
-
-## VS Code Setup Recommendations
-
-To exclude code sample folders (e.g. `metadata/`, `code-samples/`) from linting, type-checking, and autocompletion, use the following configuration:
-
-### `tsconfig.json`
-```json
-{
-  "exclude": [
-    "metadata",
-    "code-samples"
-  ]
-}
-```
-
-### `.vscode/settings.json`
-```json
-{
-  "files.exclude": {
-    "**/metadata": true,
-    "**/code-samples": true
-  },
-  "search.exclude": {
-    "**/metadata": true,
-    "**/code-samples": true
-  }
-}
-```
 
 ## Extension & Integration
 
@@ -222,10 +125,18 @@ To exclude code sample folders (e.g. `metadata/`, `code-samples/`) from linting,
 }
 ```
 
+### Query framework info
+```json
+{
+  "tool": "framework-info",
+  "framework": "angular"
+}
+```
+
 ## License
 MIT
 
 ---
 
-*Last updated: July 4, 2025*
+*Last updated: July 11, 2025*
 

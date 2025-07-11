@@ -118,6 +118,13 @@ export const v2LogosConfig = createFigmaExportConfig({
 
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToBundle({
+      exportName: 'outlineIcons',
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: './src/brand2025-outline-icons.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
@@ -126,6 +133,13 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
 
 // v3 filled icons configuration
 export const v3FilledIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToBundle({
+      exportName: 'filledIcons',
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: './src/brand2025-filled-icons.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],

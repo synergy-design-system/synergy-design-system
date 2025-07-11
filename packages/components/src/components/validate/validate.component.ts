@@ -271,7 +271,6 @@ export default class SynValidate extends SynergyElement {
     input.focus();
   }
 
-
   /**
    * Triggers a validation run, showing the validation message if needed.
    */

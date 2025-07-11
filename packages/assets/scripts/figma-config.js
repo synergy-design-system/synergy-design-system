@@ -161,4 +161,4 @@ export const CONFIG_FOR_ALL = [
  * Default configuration to use.
  * Set this to CONFIG_FOR_ALL to export all icons
  */
-export const DEFAULT_CONFIG = CONFIG_FOR_V2;
+export const DEFAULT_CONFIG = CONFIG_FOR_ALL;

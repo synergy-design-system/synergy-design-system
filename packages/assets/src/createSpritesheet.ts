@@ -1,9 +1,10 @@
 import { defaultIcons as brand2018Icons } from './default-icons.js';
 import { defaultIcons as brand2025Icons } from './default-icons-2025.js';
 
-type Icon2018Keys = keyof typeof brand2018Icons;
-type Icon2025Keys = keyof typeof brand2025Icons;
-type AllowedIconkeys = Icon2018Keys | Icon2025Keys;
+export type Icon2018Keys = keyof typeof brand2018Icons;
+export type Icon2025Keys = keyof typeof brand2025Icons;
+export type AllowedIconkeys = Icon2018Keys | Icon2025Keys;
+export type AllowedIconsets = 'brand2018' | 'brand2025';
 
 /**
  * Creates a SVG sprite sheet with the given icons.
@@ -21,7 +22,7 @@ export function createSpriteSheet(
 ): string;
 export function createSpriteSheet(
   icons: (Icon2018Keys | Icon2025Keys)[],
-  iconset: 'brand2018' | 'brand2025' = 'brand2018',
+  iconset: AllowedIconsets = 'brand2018',
 ) {
   const setToUse = iconset === 'brand2025' ? brand2025Icons : brand2018Icons;
   const foundIcons = Object

@@ -10,4 +10,6 @@ export {
   brand2018Icons as defaultIcons,
 };
 
+export type * from './createSpritesheet.js';
+
 export default brand2018Icons;

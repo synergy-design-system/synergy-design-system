@@ -46,6 +46,7 @@ export const LICENSE_MAP = [
     paths: [
       PATH_ICONS_V2,
       PATH_SYSTEM_ICONS_V2,
+      PATH_ICONS_V3,
     ],
   },
 ];

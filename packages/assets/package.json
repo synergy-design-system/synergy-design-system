@@ -43,6 +43,7 @@
   },
   "files": [
     "dist",
+    "src/brand2025",
     "src/logos",
     "src/icons",
     "CHANGELOG.md",

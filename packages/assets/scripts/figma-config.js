@@ -76,6 +76,22 @@ export const createFigmaExportConfig = ({
   ],
 });
 
+// Global icons configuration
+export const systemIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    // outputSystemIcons({
+    //   componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+    //   getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+    //   output: '../components/src/components/icon/library.system-new.ts',
+    // }),
+  ],
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS,
+  ids: [FIGMA_CONFIG.FIGMA_ID_ICONS],
+  // includeTypes: ['COMPONENT'],
+  path: 'system-icons-new',
+  // svgComponentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+});
+
 // v2 system icons configuration
 export const v2SystemIconConfig = createFigmaExportConfig({
   additionalOutputters: [
@@ -167,8 +183,9 @@ export const CONFIG_FOR_V3 = [
  * Configuration for all icons, including both V2 and V3.
  */
 export const CONFIG_FOR_ALL = [
-  ...CONFIG_FOR_V2,
-  ...CONFIG_FOR_V3,
+  systemIconsConfig,
+  // ...CONFIG_FOR_V2,
+  // ...CONFIG_FOR_V3,
 ];
 
 /**

@@ -1,3 +1,7 @@
+// icons config
+export const FIGMA_FILE_ID_ICONS = 'NI8BA5KrpO1Y5wPkY7pwJd';
+export const FIGMA_ID_ICONS = '1616-1509';
+
 // V2 Figma paths
 export const FIGMA_FILE_ID_ICONS_V2 = 'bZFqk9urD3NlghGUKrkKCR';
 export const FIGMA_ID_SYSTEM_ICONS_V2 = '1616-1509';

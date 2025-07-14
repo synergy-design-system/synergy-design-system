@@ -2,9 +2,14 @@
 import fs from 'node:fs';
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import { createSpriteSheet } from '@synergy-design-system/assets';
+import {
+  type AllowedIconsets,
+  type Icon2018Keys,
+  type Icon2025Keys,
+  createSpriteSheet,
+} from '@synergy-design-system/assets';
 
-type SynSpriteSheetOptions = {
+type SynSpriteSheetOptions<Icons extends Icon2018Keys | Icon2025Keys> = {
   /**
    * The output file name. Make sure the path exists
    */
@@ -13,15 +18,20 @@ type SynSpriteSheetOptions = {
   /**
    * List of icons to include in the sprite sheet
    */
-  icons: Parameters<typeof createSpriteSheet>[0];
+  icons: Icons[];
+
+  iconset: AllowedIconsets;
 };
 
-const defaultOptions: SynSpriteSheetOptions = {
+const defaultOptions: SynSpriteSheetOptions<Icon2018Keys> = {
   icons: [],
+  iconset: 'brand2018',
   outFileName: './public/synergy-icon-sprites.svg',
 };
 
-const synSpriteSheetCreator = (options: Partial<SynSpriteSheetOptions> = {}) => ({
+const synSpriteSheetCreator = <T extends Icon2018Keys | Icon2025Keys>(
+  options: Partial<SynSpriteSheetOptions<T>> = {},
+) => ({
   buildStart: () => {
     const finalOptions = {
       ...defaultOptions,
@@ -29,10 +39,16 @@ const synSpriteSheetCreator = (options: Partial<SynSpriteSheetOptions> = {}) => 
     };
     const {
       icons,
+      iconset,
       outFileName,
     } = finalOptions;
 
-    const sheet = createSpriteSheet(icons);
+    let sheet;
+    if (iconset === 'brand2018') {
+      sheet = createSpriteSheet(icons as Icon2018Keys[], 'brand2018');
+    } else {
+      sheet = createSpriteSheet(icons as Icon2025Keys[], 'brand2025');
+    }
 
     // Create the output file
     fs.writeFileSync(outFileName, sheet);
@@ -64,7 +80,7 @@ export const defaultConfig = {
 
 export const withSpriteSheetGenerator = {
   plugins: [
-    synSpriteSheetCreator({
+    synSpriteSheetCreator<Icon2018Keys>({
       icons: [
         'weekend',
         'home',
@@ -87,6 +103,33 @@ export const withSpriteSheetGenerator = {
         'preview',
         'bug_report',
       ],
+      iconset: 'brand2018',
+    }),
+    synSpriteSheetCreator<Icon2025Keys>({
+      icons: [
+        'weekend',
+        'home',
+        'contact_mail',
+        'contact_emergency',
+        'density_small',
+        'density_medium',
+        'density_large',
+        'grid_view',
+        'wallpaper',
+        'house',
+        'chat',
+        'info',
+        'check_circle',
+        'settings',
+        'warning',
+        'error',
+        'lunch_dining',
+        'space_dashboard',
+        'preview',
+        'bug_report',
+      ],
+      iconset: 'brand2025',
+      outFileName: './public/synergy-icon-sprites-2025.svg',
     }),
     viteStaticCopy({
       targets: [

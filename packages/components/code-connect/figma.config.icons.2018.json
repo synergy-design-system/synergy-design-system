@@ -1,0 +1,10 @@
+{
+  "codeConnect": {
+    "include": [
+      "./code-connect/icons/**/sick2018*.figma.ts",
+      "./code-connect/icons/logos.figma.ts"
+    ],
+    "parser": "html",
+    "label": "Synergy (Web Components)"
+  }
+}

@@ -35,12 +35,19 @@ export const getStructuredMetaData = async (
       .filter(filter)
       .map(async (file) => {
         const filename = file.split('.').slice(0, -1).join('.');
+        const exists = await fs.stat(`${absolutePath}/${file}`);
+        if (!exists.isFile()) {
+          return null;
+        }
+
         const content = await fs.readFile(`${absolutePath}/${file}`, 'utf-8');
         return {
           content,
           filename,
         } as MetadataFile;
-      }),
+      })
+      // Makes sure we only return valid metadata files
+      .filter(Boolean),
   );
 
   return metadata;

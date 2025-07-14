@@ -14,7 +14,7 @@ const getStaticFileForProject = (dir, packageDir, packageName, filename) => {
   };
 };
 
-export const runCopyStaticFiles = job('Synergy MVP: Copying static files...', async (
+export const runCopyStaticFiles = job('Synergy MCP: Copying static files...', async (
   rootDir,
   directories,
 ) => {

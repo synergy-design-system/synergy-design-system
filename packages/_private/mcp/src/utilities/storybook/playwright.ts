@@ -17,7 +17,7 @@ export async function scrapeStorybookDocs(storyId: string) {
     // Navigate to the Storybook docs page
     console.log('Navigating to Storybook docs for:', storyId);
 
-    await page.goto(`http://localhost:8080/iframe.html?viewMode=docs&id=${storyId}&globals=`);
+    await page.goto(`http://localhost:6006/iframe.html?viewMode=docs&id=${storyId}&globals=`);
 
     // Wait for the content to load
     await page.waitForSelector('.sb-anchor', { timeout: 10000 });

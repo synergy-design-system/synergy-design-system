@@ -24,6 +24,10 @@ const getComponentStaticFilePaths = async (componentName, directories) => {
   const reactFile = `${directories.reactPackageDir}/src/components/${componentName}.ts`;
   const vueFile = `${directories.vuePackageDir}/src/components/${vueComponentName}.vue`;
 
+  // Add support for styles
+  const defaultStyleFile = `${directories.componentDir}/src/components/${componentName}/${componentName}.styles.ts`;
+  const customStyleFile = `${directories.componentDir}/src/components/${componentName}/${componentName}.custom.styles.ts`;
+
   staticFiles.push([
     angularFile,
     'component.angular.ts',
@@ -44,11 +48,21 @@ const getComponentStaticFilePaths = async (componentName, directories) => {
     'component.vue',
   ]);
 
+  staticFiles.push([
+    defaultStyleFile,
+    'component.styles.ts',
+  ]);
+
+  staticFiles.push([
+    customStyleFile,
+    'component.custom.styles.ts',
+  ]);
+
   return staticFiles
     .filter(([fileName]) => existsSync(fileName));
 };
 
-export const runCopyComponents = job('Synergy MVP: Copying component code...', async (metadata, directories) => {
+export const runCopyComponents = job('Synergy MCP: Copying component code...', async (metadata, directories) => {
   const components = await getAllComponents(metadata);
 
   // Create an array of absolute paths of all files that have to be copied for each component.

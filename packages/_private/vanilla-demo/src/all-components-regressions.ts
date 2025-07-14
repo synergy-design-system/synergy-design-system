@@ -2,8 +2,10 @@ import type { LitElement } from 'lit';
 import type {
   SynButton,
   SynDialog,
+  SynInput,
   SynTabGroup,
   SynTabShowEvent,
+  SynValidate,
 } from '@synergy-design-system/components';
 import { mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
@@ -37,6 +39,16 @@ const appendOptions813 = async (querySelector: string) => {
     option.value = item.value;
     option.textContent = item.label;
     element.appendChild(option);
+  });
+};
+
+const revalidateValidate = async () => {
+  const allComponents = await getAllComponentsElement();
+  const validate = allComponents?.shadowRoot?.querySelector('syn-validate[data-testid="validate-915"]') as SynValidate;
+  const input = validate.querySelector('syn-input') as SynInput;
+  input.addEventListener('syn-change', () => {
+    validate.customValidationMessage = 'Invalid value';
+    input.dispatchEvent(new CustomEvent('revalidate'));
   });
 };
 
@@ -97,5 +109,9 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
         tabGroup.appendChild(newTabPanel);
       });
     },
+  ],
+  Validate: [
+    // #915
+    () => revalidateValidate(),
   ],
 }));

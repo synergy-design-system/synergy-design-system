@@ -207,6 +207,7 @@ export default class SynValidate extends SynergyElement {
 
     const events = this.getUsedEventNames();
     events.forEach(eventName => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       input.addEventListener(eventName, this.validate, {
         capture: isInvalidEvent(eventName),
         signal: this.controller.signal,
@@ -274,7 +275,7 @@ export default class SynValidate extends SynergyElement {
    * Triggers a validation run, showing the validation message if needed.
    */
   // eslint-disable-next-line complexity
-  private validate = (e: Event) => {
+  private validate = async (e: Event) => {
     // Make sure to stop the validate component from going into an endless cycle of triggering
     if (isInvalidEvent(e.type) && this.variant === 'native' && this.isInternalTriggeredInvalid === true) {
       this.isInternalTriggeredInvalid = false;
@@ -288,6 +289,11 @@ export default class SynValidate extends SynergyElement {
     }
 
     const input = e.currentTarget as HTMLInputElement;
+    if (input instanceof SynergyElement) {
+      // When using a synergy element, we need to wait for it to be ready!
+      // This is needed as the validity state of the element may not be set yet.
+      await input.updateComplete;
+    }
     this.isValid = input.validity?.valid;
 
     // When we are using eager, make sure to skip focus on the first mount

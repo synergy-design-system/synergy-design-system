@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.16.1...assets/1.17.0) (2025-07-14)
+
+
+### Features
+
+* ✨ export new icons ([#919](https://github.com/synergy-design-system/synergy-design-system/issues/919)) ([ad148f9](https://github.com/synergy-design-system/synergy-design-system/commit/ad148f9681822f18c0959664e55ec72e343afa9b))
+
 # [@synergy-design-system/assets-v1.16.1](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.16.0...assets/1.16.1) (2025-06-20)
 
 

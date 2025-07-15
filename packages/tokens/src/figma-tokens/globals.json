@@ -93,12 +93,12 @@
   },
   "font": {
     "sans": {
-      "value": "{font.theme.sans}",
+      "value": "Open Sans",
       "type": "fontFamilies",
       "description": "Main Font"
     },
     "mono": {
-      "value": "{font.theme.mono}",
+      "value": "Roboto Mono",
       "type": "fontFamilies"
     },
     "sans-fallback": {
@@ -171,20 +171,20 @@
   },
   "font-weight": {
     "light": {
-      "value": "{font-weight.theme.normal}",
+      "value": "300",
       "type": "fontWeights",
       "description": "Shoelace compatibility DO NOT USE"
     },
     "normal": {
-      "value": "{font-weight.theme.normal}",
+      "value": "400",
       "type": "fontWeights"
     },
     "semibold": {
-      "value": "{font-weight.theme.semibold}",
+      "value": "600",
       "type": "fontWeights"
     },
     "bold": {
-      "value": "{font-weight.theme.bold}",
+      "value": "700",
       "type": "fontWeights"
     }
   },

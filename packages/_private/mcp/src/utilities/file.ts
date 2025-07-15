@@ -10,10 +10,10 @@ import { globby } from 'globby';
  */
 export const getAbsolutePath = (fileName: string = '') => {
   const filename = fileURLToPath(import.meta.url);
-  const dirname = filename.substring(0, filename.lastIndexOf('/'));
-  return fileName.startsWith('/')
+  const dirname = path.dirname(filename);
+  return path.isAbsolute(fileName)
     ? fileName
-    : `${dirname}/${fileName}`;
+    : path.resolve(dirname, fileName);
 };
 
 /**

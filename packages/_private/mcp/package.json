@@ -56,7 +56,7 @@
   },
   "scripts": {
     "build": "tsc && node dist/build/build.js",
-    "build-data": "npx tsx src/utilities/storybook/playwright.ts",
+    "build-data": "node ./dist/utilities/storybook/build-docs.js",
     "start": "node dist/server.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"

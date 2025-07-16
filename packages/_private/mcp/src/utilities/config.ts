@@ -16,6 +16,11 @@ export const metaDataPath = join(currentDirname, '../../metadata');
 export const componentPath = join(currentDirname, '../../metadata/components');
 
 /**
+ * Path to the tokens directory, relative to the MCP directory.
+ */
+export const tokensPath = join(currentDirname, '../../metadata/tokens');
+
+/**
  * Path to the davinci migration directory, relative to the MCP directory.
  */
 export const davinciMigrationPath = join(currentDirname, '../../metadata/davinci-migration');

@@ -22,7 +22,7 @@ export const componentListTool = (server: McpServer) => {
       try {
         const components = await getAvailableComponents();
         const componentNames = components.map(
-          filename => `- [syn-${filename}](component-info://syn-${filename})`,
+          filename => `- ${filename}`,
         );
 
         const aiRules = await getStructuredMetaData('../../metadata/static/component-list');

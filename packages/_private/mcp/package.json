@@ -15,10 +15,13 @@
   "devDependencies": {
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/tokens": "workspace:^",
     "@types/node": "^22.15.32",
     "eslint": "^8.57.1",
+    "ora": "^8.2.0",
     "playwright": "1.52.0",
     "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3"
   },
   "exports": {
@@ -50,7 +53,7 @@
     "directory": "packages/_private/mcp"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node dist/build/build.js",
     "build-data": "npx tsx src/utilities/storybook/playwright.ts",
     "start": "node dist/server.js",
     "lint:js": "eslint src",

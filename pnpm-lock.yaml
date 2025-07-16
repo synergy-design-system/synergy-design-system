@@ -206,18 +206,27 @@ importers:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../../tokens
       '@types/node':
         specifier: ^22.15.32
         version: 22.15.32
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
+      ora:
+        specifier: ^8.2.0
+        version: 8.2.0
       playwright:
         specifier: 1.52.0
         version: 1.52.0
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       typescript:
         specifier: ^5.8.3
         version: 5.8.3

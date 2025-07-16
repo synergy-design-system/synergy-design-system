@@ -17,6 +17,21 @@ export const getAbsolutePath = (fileName: string = '') => {
 };
 
 /**
+ * Create a new file or directory.
+ * @param fileName - The name of the file or directory to create, relative to the current file.
+ * @returns The absolute path to the created file or directory.
+ */
+export const createPath = async (fileName: string) => {
+  const absolutePath = getAbsolutePath(fileName);
+  try {
+    await fs.mkdir(absolutePath, { recursive: true });
+  } catch (error) {
+    console.error(`Failed to create directory at ${absolutePath}:`, error);
+  }
+  return absolutePath;
+};
+
+/**
  * Represents the structure of files in a directory.
  */
 export type FileStructure = Record<string, {
@@ -47,7 +62,7 @@ export const folderToStructure = async (baseDir: string) => {
     if (!structure[group]) structure[group] = [];
     structure[group].push({
       content,
-      filename: rest.join('/'),
+      filename: rest.join(path.sep),
     });
   }
 

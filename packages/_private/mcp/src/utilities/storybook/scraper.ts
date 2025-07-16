@@ -57,7 +57,7 @@ export class StorybookScraper {
             heading,
           };
         })
-        .filter(x => x.heading && x.example && x.description));
+        .filter(x => x.heading && x.description));
 
       return await Promise.all(results.map(async story => ({
         description: story.description!,

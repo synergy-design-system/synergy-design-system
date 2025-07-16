@@ -48,7 +48,7 @@ ${story.example}
     return content;
   },
   generateOutputPath: (style: string) => `${stylesPath}/${style}.md`,
-  generateStoryId: (style: string) => `syn-${style}--docs`,
+  generateStoryId: (style: string) => `styles-${style}--docs`,
   getItems: async () => [
     'body',
     'heading',
@@ -59,5 +59,6 @@ ${story.example}
     'weight',
   ],
   outputPath: stylesPath,
-  storyIdPattern: 'styles-{style}--docs',
+  // storyIdPattern: 'styles-{style}--docs',
+  storyIdPattern: 'styles-syn-{style}--default--primary',
 };

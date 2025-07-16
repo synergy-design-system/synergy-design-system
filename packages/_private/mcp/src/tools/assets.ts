@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import * as availableIconsets from '@synergy-design-system/assets';
@@ -22,8 +23,8 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
 };
 
 /**
- * Simple tool to list all available tokens in the Synergy Design System.
- * This tool fetches the token data from the Synergy package and formats it for display.
+ * Simple tool to list all available assets in the Synergy Design System.
+ * This tool fetches the asset data from the Synergy package and formats it for display.
  * @todo: Maybe also include the metadata like in docs and use this to map the new/old sets?
  * @param server - The MCP server instance to register the tool on.
  */
@@ -53,12 +54,18 @@ export const assetsTool = (server: McpServer) => {
           .default('current')
           .optional()
           .describe('The name of the icon set to retrieve icons from.'),
+        limit: z
+          .number()
+          .default(5)
+          .optional()
+          .describe('The maximum number of icons to return. Defaults to 5.'),
       },
       title: 'Available Icons',
     },
     async ({
       filter,
       iconset,
+      limit,
     }) => {
       // Get the iconset that should be used by key/value of iconsetListAliases
       const setToUse: keyof typeof availableIconsets = iconset
@@ -67,25 +74,33 @@ export const assetsTool = (server: McpServer) => {
           .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'brand2018Icons'
         : 'brand2018Icons';
 
-      const finalIconset = typeof availableIconsets[setToUse] !== undefined
+      const foundIconSet = typeof availableIconsets[setToUse] !== undefined
         ? availableIconsets[setToUse]
         : availableIconsets.brand2018Icons;
 
-      const iconoutput = Object
-        .keys(finalIconset)
-        .filter(iconName => iconName.toLowerCase().includes(filter?.toLowerCase() || ''))
-        .map(icon => `- ${icon}`);
+      // Filter the icons if a filter is provided
+      const availableIcons = Object
+        .keys(foundIconSet)
+        .filter(iconName => iconName.toLowerCase().includes(filter?.toLowerCase() || ''));
+
+      // Limit the number of icons returned
+      const limitedIcons = (limit ?? 5) > 0
+        ? availableIcons.slice(0, limit ?? 5)
+        : availableIcons;
+
+      const icons = limitedIcons.map(icon => `- ${icon}`).join('\n');
+      const content = [{
+        text: `Available icons in iconset "${setToUse}":\n${icons}`,
+        type: 'text' as const,
+      }];
 
       return {
         content: [
           {
             text: JSON.stringify(await getAssetsMetaData(), null, 2),
-            type: 'text',
+            type: 'text' as const,
           },
-          {
-            text: `The following icons where found for your search in ${setToUse}: ${iconoutput.join('\n')}`,
-            type: 'text',
-          },
+          ...content,
         ],
       };
     },

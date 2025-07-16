@@ -11,6 +11,11 @@ const currentDirname = dirname(currentFilename);
 export const metaDataPath = join(currentDirname, '../../metadata');
 
 /**
+ * Path to the assets directory, relative to the MCP directory.
+ */
+export const assetsPath = join(currentDirname, '../../metadata/assets');
+
+/**
  * Path to the components directory, relative to the MCP directory.
  */
 export const componentPath = join(currentDirname, '../../metadata/components');

@@ -3,11 +3,6 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   getTokensMetaData,
 } from '../utilities/index.js';
-// import {
-//   getInfoForComponent,
-//   getStaticMetaDataForFramework,
-//   getStructuredMetaData,
-// } from '../utilities/index.js';
 
 /**
  * Simple tool to list all available tokens in the Synergy Design System.

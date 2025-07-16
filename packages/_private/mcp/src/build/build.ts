@@ -1,4 +1,5 @@
 import ora from 'ora';
+import { buildAssets } from './assets.js';
 import { buildTokens } from './tokens.js';
 
 const spinner = ora({
@@ -8,6 +9,7 @@ const spinner = ora({
 
 const build = async () => {
   spinner.start();
+  await buildAssets();
   await buildTokens();
 };
 

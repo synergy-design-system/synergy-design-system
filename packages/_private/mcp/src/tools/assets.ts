@@ -4,6 +4,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import * as availableIconsets from '@synergy-design-system/assets';
 import {
   getAssetsMetaData,
+  getStructuredMetaData,
 } from '../utilities/index.js';
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
@@ -94,11 +95,17 @@ export const assetsTool = (server: McpServer) => {
         type: 'text' as const,
       }];
 
+      const aiRules = await getStructuredMetaData('../../metadata/static/assets');
+
       return {
         content: [
           {
+            text: `Always follow the rules here: ${JSON.stringify(aiRules, null, 2)}`,
+            type: 'text',
+          },
+          {
             text: JSON.stringify(await getAssetsMetaData(), null, 2),
-            type: 'text' as const,
+            type: 'text',
           },
           ...content,
         ],

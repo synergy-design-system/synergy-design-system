@@ -1,3 +1,4 @@
+export * from './assets.js';
 export * from './components.js';
 export * from './config.js';
 export * from './file.js';

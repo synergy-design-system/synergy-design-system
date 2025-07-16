@@ -209,6 +209,9 @@ importers:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn
+      '@synergy-design-system/styles':
+        specifier: workspace:*
+        version: link:../../styles
       '@synergy-design-system/tokens':
         specifier: workspace:^
         version: link:../../tokens

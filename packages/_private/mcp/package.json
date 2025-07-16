@@ -16,6 +16,7 @@
   "devDependencies": {
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
     "@types/node": "^22.15.32",
     "eslint": "^8.57.1",

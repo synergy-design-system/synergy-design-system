@@ -1,0 +1,309 @@
+/**
+ * @synergy-design-system/styles version 1.7.2
+ * SICK Global UX Foundation
+ */
+/**
+ * Link styles
+ * @variant {small | medium | large} syn-link The size of the link
+ * @boolean { false } syn-link--quiet Applies the quiet link styling
+ * @boolean { false } syn-link--disabled Applies the disabled link styling
+ */
+.syn-link {
+  /* The size of the icon */
+  --syn-link-icon-size: 1em;
+
+  /* The gap that is used when there are pre or suffix icons */
+  --syn-link-icon-gap: 0.25em;
+
+  /* The font size used for the link */
+  --syn-link-font-size: 1em;
+
+  color: var(--syn-link-color);
+  display: inline;
+  font-family: var(--syn-font-sans);
+  font-size: var(--syn-link-font-size);
+  text-decoration: underline;
+}
+.syn-link:has(syn-icon) {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--syn-link-icon-gap);
+}
+.syn-link syn-icon {
+  font-size: var(--syn-link-icon-size);
+}
+.syn-link:not(.syn-link--disabled):hover {
+  color: var(--syn-link-color-hover);
+}
+.syn-link:not(.syn-link--disabled):active {
+  color: var(--syn-link-color-active);
+}
+.syn-link:not(.syn-link--disabled):focus-visible {
+  outline: var(--syn-focus-ring);
+  outline-offset: var(--syn-focus-ring-offset);
+}
+/* Overrides for smaller links */
+.syn-link--small {
+  --syn-link-icon-size: var(--syn-spacing-medium);
+  --syn-link-icon-gap: var(--syn-spacing-2x-small);
+  --syn-link-font-size: var(--syn-font-size-small);
+}
+/*
+ * Overrides for medium links.
+ */
+.syn-link--medium {
+  --syn-link-icon-size: var(--syn-spacing-large);
+  --syn-link-icon-gap: var(--syn-spacing-x-small);
+  --syn-link-font-size: var(--syn-font-size-medium);
+}
+.syn-link--large {
+  --syn-link-icon-size: var(--syn-spacing-x-large);
+  --syn-link-icon-gap: var(--syn-spacing-small);
+  --syn-link-font-size: var(--syn-font-size-large);
+}
+/* Quite Variant of links use other colors */
+.syn-link--quiet:not(.syn-link--disabled) {
+  color: var(--syn-link-quiet-color);
+}
+.syn-link--quiet:not(.syn-link--disabled):hover {
+  color: var(--syn-link-quiet-color-hover);
+}
+.syn-link--quiet:not(.syn-link--disabled):active {
+  color: var(--syn-link-quiet-color-active);
+}
+/* Styling for disabled links */
+.syn-link--disabled:not([href]),
+a.syn-link:not([href]) {
+  cursor: not-allowed;
+  opacity: var(--syn-input-disabled-opacity);
+}
+/**
+ * Link list
+ * @variant {medium | small | large} syn-link-list The size of the link list
+ * @boolean { false } syn-link-list--horizontal Applies horizontal styling to the link list
+ */
+.syn-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-spacing-small);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.syn-link-list--horizontal {
+  flex-flow: row wrap;
+  gap: var(--syn-spacing-small) var(--syn-spacing-large);
+}
+/* Reset list item styles, but only for the first level */
+.syn-link-list > li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+/* Size modifiers */
+.syn-link-list--small {
+  gap: var(--syn-spacing-x-small);
+}
+.syn-link-list--medium {
+  gap: var(--syn-spacing-small);
+}
+.syn-link-list--large {
+  gap: var(--syn-spacing-medium);
+}
+/* Size modifiers for horizontal version */
+.syn-link-list--horizontal.syn-link-list--small {
+  gap: var(--syn-spacing-x-small) var(--syn-spacing-medium);
+}
+.syn-link-list--horizontal.syn-link-list--medium {
+  gap: var(--syn-spacing-small) var(--syn-spacing-large);
+}
+.syn-link-list--horizontal.syn-link-list--large {
+  gap: var(--syn-spacing-medium) var(--syn-spacing-x-large);
+}
+/**
+ * Core typographic styles
+ */
+/**
+ * Typographic text classes
+ * @variant {x-small | small | medium | large} syn-body The font size of the body text
+ */
+.syn-body--x-small {
+  font: var(--syn-body-x-small-regular);
+}
+.syn-body--small {
+  font: var(--syn-body-small-regular);
+}
+.syn-body--medium {
+  font: var(--syn-body-medium-regular);
+}
+.syn-body--large {
+  font: var(--syn-body-large-regular);
+}
+/**
+ * Typographic headline classes
+ * @variant {3x-large | 2x-large | x-large | large} syn-heading The size of the headline
+ */
+.syn-heading--large {
+  font: var(--syn-heading-large);
+}
+.syn-heading--x-large {
+  font: var(--syn-heading-x-large);
+}
+.syn-heading--2x-large {
+  font: var(--syn-heading-2x-large);
+}
+.syn-heading--3x-large {
+  font: var(--syn-heading-3x-large);
+}
+/**
+ * Typographic weight classes
+ * @variant {normal | semibold | bold} syn-weight The font weight to apply
+ */
+.syn-weight--normal {
+  font-weight: var(--syn-font-weight-normal);
+}
+.syn-weight--semibold {
+  font-weight: var(--syn-font-weight-semibold);
+}
+.syn-weight--bold {
+  font-weight: var(--syn-font-weight-bold);
+}
+/**
+ * Table / table cell styles
+ */
+/**
+ * Table classes
+ * @boolean { false } syn-table Applies the styling to a table element
+ * @boolean { true } syn-table--default Applies all default table stylings to a table and its children
+ * @boolean { false } syn-table--alternating Applies all alternate table stylings to a table and its children
+ * @boolean { false } syn-table--border Applies all border table stylings to a table and its children
+ */
+.syn-table,
+.syn-table--default,
+.syn-table--alternating,
+.syn-table--border {
+  all: unset;
+  border-collapse: collapse;
+  border-spacing: var(--syn-border-width-none);
+  display: table;
+}
+/**
+ * Table cell classes
+ *
+ * @boolean { true } syn-table-cell Applies the table cell styling
+ * @boolean syn-table-cell--alternating Applies an alternating style to help separate rows visually
+ * @boolean syn-table-cell--border-start Applies a border to the left of the table cell
+ * @boolean syn-table-cell--border-end Applies a border to the right of the table cell
+ * @boolean syn-table-cell--border-top Applies a border to the top of the table cell
+ * @boolean syn-table-cell--border-bottom Applies a border to the bottom of the table cell
+ * @boolean syn-table-cell--header Applies the table cell header styling
+ * @variant { NO_DEFAULT | bottom | top | start | end } syn-table-cell--shadow Applies the selected shadow to the table cell
+ * @boolean syn-table-cell--shadow-active Displays the table shadow
+ */
+.syn-table-cell,
+.syn-table--default td,
+.syn-table--alternating td,
+.syn-table--border td {
+	background-color: var(--syn-color-neutral-0);
+	color: var(--syn-typography-color-text);
+	font: var(--syn-body-small-regular);
+	height: var(--syn-spacing-large);
+	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+	text-align: start;
+	vertical-align: top;
+}
+.syn-table-cell--alternating,
+.syn-table--alternating tr:nth-child(even) > td {
+	background-color: var(--syn-color-neutral-50);
+}
+/* Border */
+.syn-table-cell--border-start {
+	border-inline-start: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+.syn-table-cell--border-end,
+.syn-table--border tr > td:not(:last-child) {
+	border-inline-end: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+.syn-table-cell--border-top {
+	border-top: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+.syn-table-cell--border-bottom,
+.syn-table--border tr:not(:last-child) > td {
+	border-bottom: var(--syn-border-width-small) solid var(--syn-color-neutral-300);
+}
+/* Header */
+.syn-table-cell--header,
+.syn-table--default th,
+.syn-table--alternating th,
+.syn-table--border th {
+	background-color: var(--syn-color-neutral-200);
+	color: var(--syn-typography-color-text);
+	font: var(--syn-body-small-semibold);
+	height: var(--syn-spacing-large);
+	padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+	text-align: start;
+	vertical-align: top;
+}
+/* Shadow */
+.syn-table-cell--shadow-bottom::after,
+.syn-table-cell--shadow-top::after,
+.syn-table-cell--shadow-start::after,
+.syn-table-cell--shadow-end::after {
+	/* Fallback for no color-mix support */
+	--shadow-start: rgb(49 55 58 / 0%) ;
+	--shadow-end: rgb(49 55 58 / 15%);
+
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	transition-duration: 0.25s;
+	transition-property: opacity;
+	transition-timing-function: cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+/* I can not use var(--syn-color-neutral-950) here for some reason and therefore `grey`is used. If doing this, the fallback will not be used */
+@supports (background: color-mix(in srgb, grey 0%, transparent)) {
+	.syn-table-cell--shadow-bottom::after,
+	.syn-table-cell--shadow-top::after,
+	.syn-table-cell--shadow-start::after,
+	.syn-table-cell--shadow-end::after {
+		--shadow-start: color-mix(in srgb, var(--syn-color-neutral-950) 0%, transparent);
+		--shadow-end: color-mix(in srgb, var(--syn-color-neutral-950) 15%, transparent);  
+	}
+}
+.syn-table-cell--shadow-bottom::after,
+.syn-table-cell--shadow-top::after {
+	height: var(--syn-spacing-x-small);
+	left: 0;
+	right: 0;
+}
+.syn-table-cell--shadow-start::after,
+.syn-table-cell--shadow-end::after {
+	bottom: 0;
+	top: 0;
+	width: var(--syn-spacing-x-small);
+}
+.syn-table-cell--shadow-bottom::after {
+	background: linear-gradient(0deg, var(--shadow-start) 0%, var(--shadow-end) 100%);
+	bottom: calc(var(--syn-spacing-x-small) * -1);
+}
+.syn-table-cell--shadow-top::after {
+	background: linear-gradient(180deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	top: calc(var(--syn-spacing-x-small) * -1);
+}
+.syn-table-cell--shadow-start::after,
+:dir(rtl) .syn-table-cell--shadow-end::after {
+	background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	left: calc(var(--syn-spacing-x-small) * -1);
+	right: unset;
+}
+/* stylelint-disable-next-line no-descending-specificity */
+.syn-table-cell--shadow-end::after,
+:dir(rtl) .syn-table-cell--shadow-start::after {
+	background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	left: unset;
+	right: calc(var(--syn-spacing-x-small) * -1);
+}
+.syn-table-cell--shadow-active::after {
+	opacity: 1;
+}

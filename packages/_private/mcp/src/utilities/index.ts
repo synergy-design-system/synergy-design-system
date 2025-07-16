@@ -3,4 +3,5 @@ export * from './components.js';
 export * from './config.js';
 export * from './file.js';
 export * from './metadata.js';
+export * from './styles.js';
 export * from './tokens.js';

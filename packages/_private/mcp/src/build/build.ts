@@ -1,6 +1,7 @@
 import ora from 'ora';
 import { buildAssets } from './assets.js';
 import { buildTokens } from './tokens.js';
+import { buildStyles } from './styles.js';
 
 const spinner = ora({
   prefixText: 'MCP:',
@@ -11,6 +12,7 @@ const build = async () => {
   spinner.start();
   await buildAssets();
   await buildTokens();
+  await buildStyles();
 };
 
 build()

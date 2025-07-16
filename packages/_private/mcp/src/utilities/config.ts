@@ -21,6 +21,11 @@ export const assetsPath = join(currentDirname, '../../metadata/assets');
 export const componentPath = join(currentDirname, '../../metadata/components');
 
 /**
+ * Path to the styles directory, relative to the MCP directory.
+ */
+export const stylesPath = join(currentDirname, '../../metadata/styles');
+
+/**
  * Path to the tokens directory, relative to the MCP directory.
  */
 export const tokensPath = join(currentDirname, '../../metadata/tokens');

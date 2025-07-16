@@ -5,20 +5,16 @@ import { register } from '@tokens-studio/sd-transforms';
 import { cssVariableFormatter } from './formats/index.js';
 import { createJS, createSCSS } from './outputs/index.js';
 import {
-  addColorPrefix,
   addFallbackFonts,
   addMissingQuotesForStrings,
   adjustShadow,
-  useCssCalc,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 await register(StyleDictionary);
-StyleDictionary.registerTransform(addColorPrefix);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
 StyleDictionary.registerTransform(adjustShadow);
-StyleDictionary.registerTransform(useCssCalc);
 
 StyleDictionary.registerFormat(cssVariableFormatter);
 
@@ -34,7 +30,7 @@ const config = {
 const data = JSON.parse(readFileSync('./package.json', 'utf-8'));
 const { author, name, version } = data;
 
-const dictionary = new StyleDictionary();
+const dictionary = new StyleDictionary({});
 
 // Sets up custom file header
 StyleDictionary.registerFileHeader({
@@ -47,14 +43,13 @@ StyleDictionary.registerFileHeader({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-const cssRuns = ['2018-dark', '2018-light'].map(async theme => {
+const cssRuns = ['sick2018-dark', 'sick2018-light'].map(async theme => {
   const themeInstance = await dictionary.extend({
     platforms: {
       css: {
         buildPath: `${config.buildPath}themes/`,
         files: [{
           destination: `${theme}.css`,
-          filter(token) { return !token.filePath.includes('primitive'); },
           format: 'syn/css-variable-formatter',
           options: {
             fileHeader: 'syn/header',
@@ -78,16 +73,14 @@ const cssRuns = ['2018-dark', '2018-light'].map(async theme => {
           'ts/color/css/hexrgba',
           'ts/color/modifiers',
           'shadow/css/shorthand',
-          'syn/add-color-prefix',
           'syn/add-fallback-fonts',
-          'syn/use-css-calc',
           'syn/add-missing-quotes-for-strings',
-          'syn/adjust-shadow',
+          // 'syn/adjust-shadow',
         ],
       },
     },
     preprocessors: ['tokens-studio'],
-    source: [`./src/figma-variables/output/${theme}.json`],
+    source: [`./src/figma-variables/output-api/${theme}.json`],
   });
 
   return themeInstance.buildAllPlatforms();

@@ -5,6 +5,7 @@
   },
   "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
+    "@figma/rest-api-spec": "^0.31.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -109,6 +110,7 @@
   "scripts": {
     "build": "pnpm clean && pnpm build:figma && node scripts/build.js",
     "build:figma": "node scripts/transform-figma-tokens.js",
+    "fetch:figma": "node scripts/fetch-figma-variables.js",
     "clean": "rimraf build",
     "lint:css": "stylelint \"dist/**/*.css\"",
     "lint:js": "eslint scripts dist/js",

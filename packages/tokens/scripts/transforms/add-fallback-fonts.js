@@ -6,7 +6,8 @@
  * @type import('style-dictionary/types').ValueTransform
  */
 export const addFallbackFonts = {
-  filter: token => token.type === 'fontFamily',
+  filter: token => {
+    return token.type === 'fontFamily';},
   name: 'syn/add-fallback-fonts',
   /**
    * @returns {unknown}

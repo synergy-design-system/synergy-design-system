@@ -77,7 +77,7 @@ export class StorybookManager {
 
     console.log(`Starting Storybook on port ${port}...`);
 
-    const docsPath = '../../docs';
+    const docsPath = '../docs';
     this.process = spawn('pnpm', [
       '-C',
       docsPath,

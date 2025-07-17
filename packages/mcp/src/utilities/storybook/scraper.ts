@@ -99,7 +99,6 @@ export class StorybookScraper {
     await Promise.all(
       scrapedPages.map(async ({ item, stories }) => {
         const filePath = this.config.generateOutputPath(item);
-        console.log(stories, item);
         const content = this.config.formatContent(item, stories);
         await writeFile(filePath, content, 'utf-8');
         console.log(`Written documentation for ${item} to ${filePath}`);

@@ -51,7 +51,7 @@ await jobs.runCreateMCPServer({
   angularPackageDir,
   componentDir,
   componentDistDir: outDir,
-  mcpDir: getPath('../../_private/mcp'),
+  mcpDir: getPath('../../mcp'),
   reactPackageDir,
   vuePackageDir,
 });

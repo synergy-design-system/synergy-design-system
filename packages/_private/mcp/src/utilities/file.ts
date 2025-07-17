@@ -26,6 +26,7 @@ export const createPath = async (fileName: string) => {
   try {
     await fs.mkdir(absolutePath, { recursive: true });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Failed to create directory at ${absolutePath}:`, error);
   }
   return absolutePath;

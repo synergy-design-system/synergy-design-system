@@ -65,7 +65,6 @@ const docsScraper = new DocsScraper('/path/to/storybook');
 
 // Scrape with custom configuration
 const customConfig = {
-  storyIdPattern: 'my-{item}--docs',
   outputPath: '/custom/path',
   getItems: async () => ['item1', 'item2'],
   generateStoryId: (item) => `my-${item}--docs`,
@@ -92,7 +91,6 @@ node build-docs.ts             # Scrape everything (default)
 
 ```typescript
 interface ScrapingConfig {
-  storyIdPattern: string;           // Pattern for story IDs
   outputPath: string;               // Base output directory
   getItems: () => Promise<string[]>; // Function to get items to scrape
   generateStoryId: (item: string) => string; // Generate story ID from item
@@ -105,7 +103,6 @@ interface ScrapingConfig {
 
 ```typescript
 const myCustomConfig: ScrapingConfig = {
-  storyIdPattern: 'examples-{example}--docs',
   outputPath: '/path/to/examples',
   getItems: async () => ['example1', 'example2'],
   generateStoryId: (example) => `examples-${example}--docs`,

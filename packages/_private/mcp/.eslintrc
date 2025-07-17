@@ -13,7 +13,10 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["src/build/**/*.ts"]
+      "devDependencies": [
+        "src/build/**/*.ts",
+        "src/utilities/storybook/**/*.ts"
+      ]
     }],
     "no-restricted-syntax": "off"
   }

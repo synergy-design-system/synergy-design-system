@@ -1,10 +1,8 @@
 export interface ScrapingConfig {
-  /** The story ID pattern to scrape (e.g., 'components-{component}--docs') */
-  storyIdPattern: string;
   /** The output directory path */
   outputPath: string;
   /** Function to get the list of items to scrape */
-  getItems: () => Promise<string[]>;
+  getItems: () => Promise<string[]> | string[];
   /** Function to generate the story ID from an item */
   generateStoryId: (item: string) => string;
   /** Function to generate the output file path from an item */

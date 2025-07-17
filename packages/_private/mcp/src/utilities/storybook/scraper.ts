@@ -79,7 +79,7 @@ export class StorybookScraper {
    */
   async scrapeAll(baseUrl: string = 'http://localhost:6006'): Promise<void> {
     console.log('Starting scraping process...');
-    
+
     const items = await this.config.getItems();
     console.log(`Found ${items.length} items to scrape`);
 

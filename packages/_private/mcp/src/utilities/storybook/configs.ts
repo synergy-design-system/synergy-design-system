@@ -25,7 +25,6 @@ ${story.example}
   generateStoryId: (component: string) => `components-${component}--docs`,
   getItems: getAvailableComponents,
   outputPath: componentPath,
-  storyIdPattern: 'components-{component}--docs',
 };
 
 /**
@@ -48,8 +47,8 @@ ${story.example}
     return content;
   },
   generateOutputPath: (style: string) => `${stylesPath}/${style}.md`,
-  generateStoryId: (style: string) => `styles-${style}--docs`,
-  getItems: async () => [
+  generateStoryId: (style: string) => `styles-syn-${style}--docs`,
+  getItems: () => [
     'body',
     'heading',
     'link-list',
@@ -59,6 +58,4 @@ ${story.example}
     'weight',
   ],
   outputPath: stylesPath,
-  // storyIdPattern: 'styles-{style}--docs',
-  storyIdPattern: 'styles-syn-{style}--default--primary',
 };

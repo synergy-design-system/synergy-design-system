@@ -1,0 +1,33 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+  },
+  "description": "MCP Server for the Synergy Design System",
+  "files": [
+    "README.md"
+  ],
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/mcp",
+  "keywords": [
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System",
+    "UI",
+    "UI MCP Server",
+    "Synergy MCP Server"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/mcp"
+  },
+  "scripts": {
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

@@ -37,8 +37,8 @@ const meta: Meta = {
   argTypes,
   component: 'syn-validate',
   decorators: [
-    (story) => {
-      const uniqueId = new Array(16).fill(0).map(() => Math.random().toString(36)[2]).join('');
+    (story, options) => {
+      const uniqueId = `${options.id}-validate-demo-form`;
       return html`
         <form id=${uniqueId}>
           ${story()}

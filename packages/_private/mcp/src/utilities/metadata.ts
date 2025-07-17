@@ -70,16 +70,3 @@ export const getStructuredMetaDataForComponent = (
     filter,
   );
 };
-
-/**
- * Get a list of all available components in the Synergy Design System.
- * @returns A list of all available components in the Synergy Design System.
- */
-export const getAvailableComponents = async () => {
-  const absolutePath = getAbsolutePath(`${componentPath}`);
-  const folders = await fs.readdir(absolutePath, { withFileTypes: true });
-  const components = folders
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
-  return components;
-};

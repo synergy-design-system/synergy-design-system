@@ -83,6 +83,7 @@ export class StorybookManager {
       docsPath,
       'start',
       `--port=${port}`,
+      '--no-open',
     ], {
       cwd: workingDirectory,
       stdio: ['ignore', 'pipe', 'pipe'],

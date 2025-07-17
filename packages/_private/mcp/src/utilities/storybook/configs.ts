@@ -1,6 +1,6 @@
 import { ScrapingConfig } from './types.js';
 import { componentPath, stylesPath } from '../config.js';
-import { getAvailableComponents } from '../metadata.js';
+import { getAvailableComponents } from '../components.js';
 
 /**
  * Configuration for scraping component documentation

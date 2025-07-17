@@ -54,8 +54,10 @@
     "directory": "packages/mcp"
   },
   "scripts": {
-    "build": "tsc && node dist/build/build.js",
-    "build-data": "node ./dist/utilities/storybook/build-docs.js",
+    "build": "tsc",
+    "build:all": "pnpm build && pnpm build:metadata && pnpm build:storybook",
+    "build:metadata": "node dist/build/build.js",
+    "build:storybook": "node ./dist/utilities/storybook/build-docs.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },

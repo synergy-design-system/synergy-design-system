@@ -56,8 +56,8 @@ Outputs a list of all available components in the Synergy Design System.
 Get information about the usage of a specific component in the Synergy Design System.
 
 **Parameters:**
-- `component` (string, required): The name of the component to get information about (e.g., `syn-button`).
-- `framework` (optional, string): The framework of the component, e.g., `react`, `vue`, `angular`, `vanilla`.
+- `component` (string, required): The name of the component to get information about (must start with `syn-`, e.g., `syn-button`).
+- `framework` (optional, string): The framework of the component. Options: `react`, `vue`, `angular`, `vanilla`. Defaults to `vanilla`.
 
 **Example prompts:**
 - "How do I use the syn-button component in React?"
@@ -74,7 +74,7 @@ Get information about available icons in the Synergy Design System. Will return 
 
 **Parameters:**
 - `filter` (optional, string): A filter to apply to the icon names. If provided, only icons matching this filter will be returned.
-- `iconset` (optional, string): The name of the icon set to retrieve icons from. Options: `current`, `legacy`, `brand2018`, `brand2025`, `new`, `next`.
+- `iconset` (optional, string): The name of the icon set to retrieve icons from. Options: `current`, `legacy`, `v2`, `synergy2018`, `brand2018`, `brand2025`, `synergy2025`, `new`, `next`. Defaults to `current`.
 - `limit` (optional, number): The maximum number of icons to return. Defaults to 5.
 
 **Example prompts:**
@@ -91,7 +91,7 @@ Get information about available icons in the Synergy Design System. Will return 
 Get information about design tokens available in the Synergy Design System.
 
 **Parameters:**
-- `type` (optional, string): The type of token to retrieve, e.g., `javascript` for JS tokens or `css` for CSS tokens.
+- `type` (optional, string): The type of token to retrieve. Options: `javascript` for JS tokens or `css` for CSS tokens. Defaults to `css`.
 
 **Example prompts:**
 - "Show me the available CSS design tokens"
@@ -100,7 +100,31 @@ Get information about design tokens available in the Synergy Design System.
 
 ---
 
-### 5. `davinci-migrate-list`
+### 5. `styles-list`
+
+**Description:**  
+Outputs a list of available styles in the Synergy Design System.
+
+**Example prompts:**
+- "What styles are available in Synergy?"
+- "Show me all available CSS utility classes"
+- "List all style modules"
+
+---
+
+### 6. `styles-info`
+
+**Description:**  
+Get information about CSS utilities available in the Synergy Design System.
+
+**Example prompts:**
+- "Show me information about Synergy CSS utilities"
+- "What CSS utilities does Synergy provide?"
+- "Tell me about the styles package"
+
+---
+
+### 7. `davinci-migrate-list`
 
 **Description:**  
 Get a list of all components that have migration information from DaVinci to Synergy.
@@ -112,13 +136,13 @@ Get a list of all components that have migration information from DaVinci to Syn
 
 ---
 
-### 6. `davinci-migrate-component`
+### 8. `davinci-migrate-component`
 
 **Description:**  
 Get information about the migration of a specific component from DaVinci to Synergy.
 
 **Parameters:**
-- `component` (string, required): Name of the DaVinci component, e.g., `davinci-button`.
+- `component` (string, required): Name of the DaVinci component (must start with `davinci-`, e.g., `davinci-button`).
 
 **Example prompts:**
 - "How do I migrate from davinci-button to Synergy?"
@@ -127,13 +151,13 @@ Get information about the migration of a specific component from DaVinci to Syne
 
 ---
 
-### 7. `framework-info`
+### 9. `framework-info`
 
 **Description:**  
 Get information about a specific framework package that the Synergy Design System supports.
 
 **Parameters:**
-- `framework` (optional, string): The framework you want information for, e.g., `react`, `vue`, `angular`, `vanilla`.
+- `framework` (optional, string): The framework you want information for. Options: `react`, `vue`, `angular`, `vanilla`. Defaults to `vanilla`.
 
 **Example prompts:**
 - "How do I set up Synergy with React?"
@@ -181,6 +205,13 @@ Get information about a specific framework package that the Synergy Design Syste
 "List 10 icons from the new iconset"
 ```
 
+### Query styles info
+```bash
+"Show me information about Synergy CSS utilities"
+"What styles are available in Synergy?"
+"List all style modules"
+```
+
 ### Query design tokens
 ```bash
 "Show me the available CSS design tokens"
@@ -225,6 +256,25 @@ Get information about a specific framework package that the Synergy Design Syste
 
 ```json
 {
+  "tool": "styles-info"
+}
+```
+
+```json
+{
+  "tool": "styles-list"
+}
+```
+
+```json
+{
+  "tool": "token-info",
+  "type": "css"
+}
+```
+
+```json
+{
   "tool": "davinci-migrate-component",
   "component": "davinci-button"
 }
@@ -242,5 +292,5 @@ MIT
 
 ---
 
-*Last updated: July 16, 2025*
+*Last updated: July 17, 2025*
 

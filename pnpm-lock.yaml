@@ -233,6 +233,12 @@ importers:
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
+      semantic-release:
+        specifier: ^19.0.5
+        version: 19.0.5(encoding@0.1.13)
+      semantic-release-monorepo:
+        specifier: 7.0.5
+        version: 7.0.5(patch_hash=43b9cb59e71f0b0d7c6690109467586449b9e1d84bba96299aeee6714f1bf26d)(semantic-release@19.0.5(encoding@0.1.13))
       typescript:
         specifier: ^5.8.3
         version: 5.8.3

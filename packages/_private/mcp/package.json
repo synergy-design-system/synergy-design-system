@@ -36,7 +36,7 @@
     "dist",
     "metadata"
   ],
-  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/synergy-mcp-server",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/mcp",
   "keywords": [
     "SDS",
     "Synergy Design System",
@@ -51,7 +51,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",
-    "directory": "packages/_private/mcp"
+    "directory": "packages/mcp"
   },
   "scripts": {
     "build": "tsc && node dist/build/build.js",

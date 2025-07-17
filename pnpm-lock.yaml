@@ -237,8 +237,6 @@ importers:
         specifier: ^5.8.3
         version: 5.8.3
 
-  packages/_private/mcp2: {}
-
   packages/_private/react-demo:
     dependencies:
       '@fontsource/open-sans':

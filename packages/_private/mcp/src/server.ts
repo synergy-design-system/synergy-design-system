@@ -20,6 +20,7 @@ export const createServer = () => {
   tools.davinciMigrateComponentTool(server);
   tools.frameworkInfoTool(server);
   tools.stylesInfoTool(server);
+  tools.stylesList(server);
   tools.tokenInfoTool(server);
   tools.assetsTool(server);
 

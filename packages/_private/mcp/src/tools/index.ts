@@ -3,5 +3,6 @@ export * from './component-info.js';
 export * from './component-list.js';
 export * from './davinci-migration.js';
 export * from './package-info.js';
-export * from './styles.js';
+export * from './styles-info.js';
+export * from './styles-list.js';
 export * from './tokens.js';

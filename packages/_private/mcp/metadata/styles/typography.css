@@ -1,0 +1,52 @@
+/**
+ * @synergy-design-system/styles version 1.7.2
+ * SICK Global UX Foundation
+ */
+/**
+ * Core typographic styles
+ */
+/**
+ * Typographic text classes
+ * @variant {x-small | small | medium | large} syn-body The font size of the body text
+ */
+.syn-body--x-small {
+  font: var(--syn-body-x-small-regular);
+}
+.syn-body--small {
+  font: var(--syn-body-small-regular);
+}
+.syn-body--medium {
+  font: var(--syn-body-medium-regular);
+}
+.syn-body--large {
+  font: var(--syn-body-large-regular);
+}
+/**
+ * Typographic headline classes
+ * @variant {3x-large | 2x-large | x-large | large} syn-heading The size of the headline
+ */
+.syn-heading--large {
+  font: var(--syn-heading-large);
+}
+.syn-heading--x-large {
+  font: var(--syn-heading-x-large);
+}
+.syn-heading--2x-large {
+  font: var(--syn-heading-2x-large);
+}
+.syn-heading--3x-large {
+  font: var(--syn-heading-3x-large);
+}
+/**
+ * Typographic weight classes
+ * @variant {normal | semibold | bold} syn-weight The font weight to apply
+ */
+.syn-weight--normal {
+  font-weight: var(--syn-font-weight-normal);
+}
+.syn-weight--semibold {
+  font-weight: var(--syn-font-weight-semibold);
+}
+.syn-weight--bold {
+  font-weight: var(--syn-font-weight-bold);
+}

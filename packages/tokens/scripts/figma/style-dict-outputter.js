@@ -4,7 +4,7 @@
  */
 import { writeFileSync } from 'node:fs';
 import { setNestedProperty } from '../helpers.js';
-import { figmaVariables, resolveAlias } from './helpers.js';
+import { figmaVariables, isNewBrandOnlyVariableOrStyle, resolveAlias } from './helpers.js';
 
 /**
  * Sanitizes the figma comment
@@ -71,7 +71,10 @@ export const styleDictionaryOutputter = ({output}) => async (styles) => {
   const result = {};
 
   for (const style of styles) {
-    if (style.visible) {
+    // TODO: currently we do not want to export the new brand variables,
+    //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
+    const isNewBrandOnlyStyle = isNewBrandOnlyVariableOrStyle(style.name);
+    if (style.visible && !isNewBrandOnlyStyle) {
       switch (style.styleType) {
         // currently we only have style type EFFECT and TEXT
         case 'EFFECT': {

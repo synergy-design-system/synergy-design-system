@@ -53,3 +53,27 @@ export const resolveAlias = (id) => {
 };
 
 
+
+const BRAND_ONLY_VARIABLES_REGEX = [
+  // figma variables
+  /^primitive\/info/,
+  /^primitive\/font-size\/(?:0x|1_5x|1x|2_5x|medium)-large/,
+  /^primitive\/letter-spacing\/(?:negative-05|default|positive-05|positive-2|positive-5)/,
+  /^primitive\/line-height\/\d+?/,
+  /^primitive\/text-transform\/(?:default|uppercase)/,
+  /^primitive\/spacing\/(?:1_5x|3_5x)-large/,
+
+  // figma styles
+  /^body\/2x-small\//,
+  /^heading\/(?:medium|4x-large)/,
+];
+
+/**
+ * Filter out variables and styles that are only used for the new brand.
+ * 
+ * @param {string} name The name of the variable / style 
+ * @returns true if it is only available in the new brand, false otherwise.
+ */
+export const isNewBrandOnlyVariableOrStyle = (name) => {
+  return BRAND_ONLY_VARIABLES_REGEX.some(regex => regex.test(name));
+};

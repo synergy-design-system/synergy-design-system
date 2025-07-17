@@ -99,20 +99,6 @@
         "value": "{font-weight.bold} {font-size.large}/1.4 {font.sans}",
         "type": "typography"
       }
-    },
-    "2x-small": {
-      "regular": {
-        "value": "{font-weight.normal} {font-size.2x-small}/1.4 {font.sans}",
-        "type": "typography"
-      },
-      "semibold": {
-        "value": "{font-weight.semibold} {font-size.2x-small}/1.4 {font.sans}",
-        "type": "typography"
-      },
-      "bold": {
-        "value": "{font-weight.bold} {font-size.2x-small}/1.4 {font.sans}",
-        "type": "typography"
-      }
     }
   },
   "heading": {
@@ -130,14 +116,6 @@
     },
     "3x-large": {
       "value": "{font-weight.bold} {font-size.3x-large}/1.2 {font.sans}",
-      "type": "typography"
-    },
-    "medium": {
-      "value": "{font-weight.bold} {font-size.medium}/1.4 {font.sans}",
-      "type": "typography"
-    },
-    "4x-large": {
-      "value": "{font-weight.bold} {font-size.4x-large}/1.2 {font.sans}",
       "type": "typography"
     }
   }

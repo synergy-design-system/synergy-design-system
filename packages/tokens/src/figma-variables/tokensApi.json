@@ -4560,7 +4560,7 @@
     },
     "VariableID:35492:17396": {
       "id": "VariableID:35492:17396",
-      "name": "component/input/border/color-disables",
+      "name": "component/input/border/color-disabled",
       "remote": false,
       "key": "3adec9849eab5b13bea8dbbeb72444ecd5784140",
       "variableCollectionId": "VariableCollectionId:28:527",
@@ -5684,7 +5684,7 @@
     },
     "VariableID:35492:17423": {
       "id": "VariableID:35492:17423",
-      "name": "component/link/low-emphasis/color",
+      "name": "component/link/quiet/color",
       "remote": false,
       "key": "04cd6c3bd4280f79506de7bd2499962152697ac7",
       "variableCollectionId": "VariableCollectionId:28:527",
@@ -5708,7 +5708,7 @@
     },
     "VariableID:35492:17428": {
       "id": "VariableID:35492:17428",
-      "name": "component/link/low-emphasis/color-hover",
+      "name": "component/link/quiet/color-hover",
       "remote": false,
       "key": "63e7a6fbf182f71baf5e812845cd9d785df1060f",
       "variableCollectionId": "VariableCollectionId:28:527",
@@ -5732,7 +5732,7 @@
     },
     "VariableID:35492:17431": {
       "id": "VariableID:35492:17431",
-      "name": "component/link/low-emphasis/color-active",
+      "name": "component/link/quiet/color-active",
       "remote": false,
       "key": "33edafa24adf5619083eaeb86e7326fdc8e7bac6",
       "variableCollectionId": "VariableCollectionId:28:527",

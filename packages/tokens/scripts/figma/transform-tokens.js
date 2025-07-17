@@ -1,15 +1,15 @@
 /**
  * @typedef { typeof figmaVariables.variables[keyof typeof figmaVariables.variables]} Variable
+ * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
 import path from 'path';
 import { promises as fs } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
-import { figmaVariables, renameVariable } from './helpers.js';
+import { figmaVariables, isNewBrandOnlyVariableOrStyle, renameVariable } from './helpers.js';
 
 const OUTPUT_DIR = './src/figma-variables/output-api';
-const COLOR_PALETTE_PREFIX = '_color-palette'
-
+const COLOR_PALETTE_PREFIX = '_color-palette';
 
 /**
  * Create a directory if it does not exist.
@@ -77,13 +77,25 @@ const getAliasValue = (aliasId, modeId) => {
 
 
 /**
+ * Check if the alias value should be used.
+ * @param {string} name The name of the variable
+ * @returns {boolean} True if the alias value should be used, false otherwise.
+ */
+const shouldUseAliasValue = (name) => {
+  // Exchange the _color-palette alias with the real values, as they should not show up in the json 
+  // TODO: Exchange the letter-spacing and line-height aliases with the real values, as they are currently only available for the new brand
+  const NO_ALIAS_VALUE_REGEX = new RegExp(`^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`);
+  return !NO_ALIAS_VALUE_REGEX.test(name);
+}
+
+/**
  * Get the value and type of a variable in a specific mode.
  * @param {Variable} variable 
  * @param {string} modeId
  * @returns {{ value: string, type: string } | undefined} The resolved value and type of the variable, if it could not be resolved, returns undefined.
  */
 const resolveValue = (variable, modeId) => {
-  const { name, valuesByMode, resolvedType, scopes } = variable;
+  const { name, valuesByMode, resolvedType, scopes = [] } = variable;
   const cleanName = name.toLowerCase();
   let modeValue = valuesByMode?.[modeId];
   let finalValue;
@@ -96,13 +108,15 @@ const resolveValue = (variable, modeId) => {
       return undefined;
     }
 
-    if (!resolved.value.startsWith(`{${COLOR_PALETTE_PREFIX}`)) {
+    const useAliasValue = shouldUseAliasValue(resolved.value);
+
+    if (useAliasValue) {
       return {
         value: resolved.value,
         type: resolved.type,
       }
     }
-    // Exchange the _color-palette alias with the real values, as they should not show up in the json 
+
     modeValue = getAliasValue(modeValue.id, modeId);
   }
 
@@ -142,10 +156,17 @@ const resolveValue = (variable, modeId) => {
 
 // --- Main Transformation ---
 const transformFigmaVariables = async () => {
-  const transformed = {};
+  const transformed = /** @type {VariablesAndCollections} */ ({});
 
   Object.values(figmaVariables.variables).forEach(variable => {
     const { name, variableCollectionId } = variable;
+
+    // TODO: currently we do not want to export the new brand variables,
+    //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
+    if(isNewBrandOnlyVariableOrStyle(name)) {
+      return;
+    }
+
     const collection = Object.values(figmaVariables.variableCollections)
       .find(c => c.id === variableCollectionId);
 
@@ -163,13 +184,19 @@ const transformFigmaVariables = async () => {
       const { modeId, name: modeName } = mode;
       if (!transformed[modeName]) transformed[modeName] = {};
       
-      const { value, type } = resolveValue(variable, modeId);
+      const variableValue = resolveValue(variable, modeId);
+      
+      if(!variableValue) {
+        return;
+      }
+
+      const { value, type } = variableValue;
 
       const cleanName = name.toLowerCase();
       const renamedToken = renameVariable(cleanName, type);
       const keys = renamedToken.split('/');
       
-      setNestedProperty(transformed[modeName], keys, { value, type });
+      setNestedProperty(transformed[modeName], keys, { value: value, type });
     });
   });
 

@@ -13,22 +13,22 @@ export const metaDataPath = join(currentDirname, '../../metadata');
 /**
  * Path to the assets directory, relative to the MCP directory.
  */
-export const assetsPath = join(currentDirname, '../../metadata/assets');
+export const assetsPath = join(currentDirname, '../../metadata/packages/assets');
 
 /**
  * Path to the components directory, relative to the MCP directory.
  */
-export const componentPath = join(currentDirname, '../../metadata/components');
+export const componentPath = join(currentDirname, '../../metadata/packages/components');
 
 /**
  * Path to the styles directory, relative to the MCP directory.
  */
-export const stylesPath = join(currentDirname, '../../metadata/styles');
+export const stylesPath = join(currentDirname, '../../metadata/packages/styles');
 
 /**
  * Path to the tokens directory, relative to the MCP directory.
  */
-export const tokensPath = join(currentDirname, '../../metadata/tokens');
+export const tokensPath = join(currentDirname, '../../metadata/packages/tokens');
 
 /**
  * Path to the davinci migration directory, relative to the MCP directory.

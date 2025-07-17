@@ -1,6 +1,6 @@
 import { getAllComponents } from '../shared.js';
 
-export const getMetadataPathForComponent = (component, rootDir) => `${rootDir}/metadata/components/${component.tagName}/`;
+export const getMetadataPathForComponent = (component, rootDir) => `${rootDir}/metadata/packages/components/${component.tagName}/`;
 
 export const getMetadataPathForStaticFiles = rootDir => `${rootDir}/metadata/static/`;
 

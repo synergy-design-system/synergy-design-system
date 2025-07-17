@@ -117,3 +117,76 @@ If you're using more than one custom icon, it might make sense to register a cus
 ></syn-icon>
 
 ```
+
+---
+
+## CDN Icon Library
+
+
+
+```html
+<div style="font-size: var(--syn-font-size-x-large)">
+  <syn-icon library="fa" name="far-bell" aria-hidden="true"></syn-icon>
+  <syn-icon library="fa" name="far-comment" aria-hidden="true"></syn-icon>
+  <syn-icon
+    library="fa"
+    name="far-hand-point-right"
+    aria-hidden="true"
+  ></syn-icon>
+  <br />
+  <syn-icon library="fa" name="fas-archive" aria-hidden="true"></syn-icon>
+  <syn-icon library="fa" name="fas-book" aria-hidden="true"></syn-icon>
+  <syn-icon library="fa" name="fas-chess-knight" aria-hidden="true"></syn-icon>
+  <br />
+  <syn-icon library="fa" name="fab-apple" aria-hidden="true"></syn-icon>
+  <syn-icon library="fa" name="fab-chrome" aria-hidden="true"></syn-icon>
+  <syn-icon library="fa" name="fab-edge" aria-hidden="true"></syn-icon>
+</div>
+
+```
+
+---
+
+## Bundled Icon Library
+
+
+
+```html
+<div style="font-size: var(--syn-font-size-x-large)">
+  <syn-icon
+    library="bundled-default"
+    name="warning"
+    aria-hidden="true"
+  ></syn-icon>
+  <syn-icon
+    library="bundled-default"
+    name="inventory"
+    aria-hidden="true"
+  ></syn-icon>
+  <syn-icon
+    library="bundled-default"
+    name="battery_charging_full"
+    aria-hidden="true"
+  ></syn-icon>
+  <syn-icon
+    library="bundled-default"
+    name="notifications"
+    aria-hidden="true"
+  ></syn-icon>
+</div>
+
+```
+
+---
+
+## Sprite Sheet Usage
+
+
+
+```html
+<div style="font-size: var(--syn-font-size-x-large)">
+  <syn-icon library="sprite" name="settings" aria-hidden="true"></syn-icon>
+  <syn-icon library="sprite" name="refresh" aria-hidden="true"></syn-icon>
+</div>
+
+```

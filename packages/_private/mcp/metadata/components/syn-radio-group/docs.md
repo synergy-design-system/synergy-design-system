@@ -236,6 +236,54 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 
 ---
 
+## Checked
+
+
+
+```html
+<syn-radio-group
+  label="This is a label"
+  help-text="This is checked"
+  name="a"
+  value="2"
+  size="medium"
+  form=""
+  data-optional=""
+  data-valid=""
+>
+  <syn-radio
+    value="1"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="2"
+    role="radio"
+    tabindex="0"
+    aria-disabled="false"
+    aria-checked="true"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="3"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+</syn-radio-group>
+
+```
+
+---
+
 ## Invalid
 
 The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.

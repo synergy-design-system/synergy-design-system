@@ -522,16 +522,6 @@ This restricts the combobox to only allow selections from the available options.
 
 ---
 
-## No Results Found
-
-A “No results found” message is displayed, when the search term doesn’t match the options.
-
-```html
-
-```
-
----
-
 ## Sizes
 
 Use the size attribute to change a combobox size.

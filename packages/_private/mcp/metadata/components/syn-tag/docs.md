@@ -10,6 +10,20 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ---
 
+## With Icon
+
+
+
+```html
+<syn-tag size="medium">
+  <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+  Option
+</syn-tag>
+
+```
+
+---
+
 ## Removable
 
 Use the removable attribute to add a remove button to the tag.

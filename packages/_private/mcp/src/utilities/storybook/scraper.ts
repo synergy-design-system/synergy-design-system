@@ -30,14 +30,14 @@ export class StorybookScraper {
       await page.waitForSelector('.sb-anchor', { timeout: 10000 });
 
       // Extract the stories
-      // We skip stories that have no headline, description of example
+      // We skip stories that have no headline or example
       const results = await page.evaluate(() => Array.from(
         document.querySelectorAll('.sb-anchor'),
       )
         .map(story => {
-          const description = story.querySelector(':scope > p')?.textContent;
+          const description = story.querySelector(':scope > p')?.textContent || '';
           const exampleSource = story.querySelector('.sb-story #root-inner')?.innerHTML || '';
-          const heading = story.querySelector('h3')?.textContent;
+          const heading = story.querySelector('h3')?.textContent || '';
 
           // Replace all lit internal comments
           // Lit comments look like this: <!----> or <!--?lit$SOMENUMBER$-->
@@ -57,14 +57,14 @@ export class StorybookScraper {
             heading,
           };
         })
-        .filter(x => x.heading && x.description));
+        .filter(x => x.heading && x.example));
 
       return await Promise.all(results.map(async story => ({
-        description: story.description!,
+        description: story.description,
         example: await prettier.format(story.example, {
           parser: 'html',
         }),
-        heading: story.heading!,
+        heading: story.heading,
       })));
     } catch (error) {
       console.error(`Error scraping Storybook for story ${storyId}:`, error);
@@ -81,7 +81,6 @@ export class StorybookScraper {
     console.log('Starting scraping process...');
 
     const items = await this.config.getItems();
-    console.log(`Found ${items.length} items to scrape`);
 
     const scrapedPages = await Promise.all(
       items.map(async item => {
@@ -100,6 +99,7 @@ export class StorybookScraper {
     await Promise.all(
       scrapedPages.map(async ({ item, stories }) => {
         const filePath = this.config.generateOutputPath(item);
+        console.log(stories, item);
         const content = this.config.formatContent(item, stories);
         await writeFile(filePath, content, 'utf-8');
         console.log(`Written documentation for ${item} to ${filePath}`);

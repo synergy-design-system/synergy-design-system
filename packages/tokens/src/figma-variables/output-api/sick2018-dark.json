@@ -410,6 +410,10 @@
       "type": "string",
       "value": "50ms"
     },
+    "extra-slow": {
+      "type": "string",
+      "value": "1000ms"
+    },
     "fast": {
       "type": "string",
       "value": "150ms"
@@ -421,10 +425,6 @@
     "slow": {
       "type": "string",
       "value": "500ms"
-    },
-    "x-slow": {
-      "type": "string",
-      "value": "1000ms"
     }
   },
   "focus-ring": {
@@ -451,7 +451,7 @@
       "value": "Open Sans"
     },
     "sans-fallback": {
-      "type": "string",
+      "type": "fontFamily",
       "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
     },
     "serif": {
@@ -586,6 +586,10 @@
       "radius-small": {
         "type": "sizing",
         "value": "{border-radius.none}"
+      },
+      "width": {
+        "type": "sizing",
+        "value": "{border-width.small}"
       }
     },
     "color": {
@@ -607,42 +611,6 @@
     "disabled-opacity": {
       "type": "sizing",
       "value": "{opacity.50}"
-    },
-    "filled": {
-      "color": {
-        "type": "color",
-        "value": "{color.neutral.800}"
-      },
-      "color-disabled": {
-        "type": "color",
-        "value": "{color.neutral.800}"
-      },
-      "color-focus": {
-        "type": "color",
-        "value": "{color.neutral.950}"
-      },
-      "color-hover": {
-        "type": "color",
-        "value": "{color.neutral.950}"
-      }
-    },
-    "filled-background": {
-      "color": {
-        "type": "color",
-        "value": "{color.neutral.50}"
-      },
-      "color-disabled": {
-        "type": "color",
-        "value": "{color.neutral.50}"
-      },
-      "color-focus": {
-        "type": "color",
-        "value": "{color.neutral.50}"
-      },
-      "color-hover": {
-        "type": "color",
-        "value": "{color.neutral.50}"
-      }
     },
     "focus-ring": {
       "color": {
@@ -1128,10 +1096,6 @@
     }
   },
   "transition": {
-    "extra-fast": {
-      "type": "string",
-      "value": "{duration.extra-fast}"
-    },
     "fast": {
       "type": "string",
       "value": "{duration.fast}"
@@ -1144,9 +1108,13 @@
       "type": "string",
       "value": "{duration.slow}"
     },
+    "x-fast": {
+      "type": "string",
+      "value": "{duration.extra-fast}"
+    },
     "x-slow": {
       "type": "string",
-      "value": "{duration.x-slow}"
+      "value": "{duration.extra-slow}"
     }
   },
   "typography": {

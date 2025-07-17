@@ -1,61 +1,28 @@
 /**
- * @typedef {import('@figma/rest-api-spec').LocalVariableCollection} LocalVariableCollection
- * @typedef {import('@figma/rest-api-spec').LocalVariable} LocalVariable
  * @typedef { typeof figmaVariables.variables[keyof typeof figmaVariables.variables]} Variable
  */
 import path from 'path';
-import { promises as fs, rename } from 'fs';
-import inputData from '../src/figma-variables/tokensApi.json' with { type: 'json' };
+import { promises as fs } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
-
-const figmaVariables = /** @type {GetLocalVariablesResponse} */ inputData;
+import { setNestedProperty } from '../helpers.js';
+import { figmaVariables, renameVariable } from './helpers.js';
 
 const OUTPUT_DIR = './src/figma-variables/output-api';
-
-/**
- * Prefixes we use in figma for grouping variables
- */
-const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
-
 const COLOR_PALETTE_PREFIX = '_color-palette'
 
 
 /**
- * Renames a variable by removing the prefix or in case of type color with "primitive" prefix exchange it by "color"
- * E.g. instead of "primitive/spacing/4x-small" it becomes "spacing/4x-small"
- * @example renameVariable("primitive/spacing/4x-small", "spacing") // "spacing/4x-small"
- * @example renameVariable("primitive/primary/500", "color") // "color/primary/500"
- * @param {string} name Name of the variable
- * @param {string} type type of the variable
- * @returns {string} The renamed variable
+ * Create a directory if it does not exist.
+ * @param { string } dirPath the directory path
  */
-const renameVariable = (name, type) => {
-  if(name.startsWith('primitive/') && type === "color") {
-    const primitivePattern = new RegExp(`^(primitive)`);
-    return name.replace(primitivePattern, 'color');
-  }
-  const prefixPattern = new RegExp(`^(${TOKENS_PREFIXES.join('/|')}/)`);
-  return name.replace(prefixPattern, '');
-}
-
-
-// --- Utility Functions ---
 const createDirectory = async (dirPath) => {
   try {
     await fs.mkdir(dirPath, { recursive: true });
-  } catch (err) {
-    if (err.code !== 'EEXIST') throw err;
+  } catch ( err ) {
+    if ( err.code !== 'EEXIST') throw err;
   }
 };
 
-const setNestedProperty = (obj, keys, value) => {
-  let current = obj;
-  keys.slice(0, -1).forEach(key => {
-    if (!current[key]) current[key] = {};
-    current = current[key];
-  });
-  current[keys[keys.length - 1]] = value;
-};
 
 /**
  * Formats a color object into a CSS-compatible color string.
@@ -97,9 +64,9 @@ const resolveAlias = (id) => {
 };
 
 /**
- * 
- * @param {*} aliasId Id of the alias variable
- * @param {*} modeId Id of the mode
+ * Gets the value of an alias variable in a specific mode.
+ * @param { string } aliasId Id of the alias variable
+ * @param { string } modeId Id of the mode
  * @returns {string | undefined} The value of the alias variable, or undefined if not found.
  */
 const getAliasValue = (aliasId, modeId) => {
@@ -110,7 +77,7 @@ const getAliasValue = (aliasId, modeId) => {
 
 
 /**
- * 
+ * Get the value and type of a variable in a specific mode.
  * @param {Variable} variable 
  * @param {string} modeId
  * @returns {{ value: string, type: string } | undefined} The resolved value and type of the variable, if it could not be resolved, returns undefined.
@@ -153,12 +120,12 @@ const resolveValue = (variable, modeId) => {
   } else if (modeValue && typeof modeValue === 'object' && modeValue.r !== undefined) {
     finalValue = formatColor(modeValue);
     type = 'color';
-    // Add type to fonts
   } else if (scopes.includes('FONT_FAMILY')) {
+    // Add type to fonts
     finalValue = modeValue;
     type = 'fontFamily';
-    // Add type to text content like "*"
   } else if (scopes.includes('TEXT_CONTENT')) {
+    // Add type to text content like "*"
     finalValue = modeValue;
     type = 'content';
   }
@@ -182,6 +149,11 @@ const transformFigmaVariables = async () => {
     const collection = Object.values(figmaVariables.variableCollections)
       .find(c => c.id === variableCollectionId);
 
+    if(!collection) {
+      console.warn(`Variable collection with id ${variableCollectionId} not found for variable ${name}`);
+      return;
+    }
+
     // The _color-palette tokens should not appear in the generated json file
     if(name.startsWith(COLOR_PALETTE_PREFIX)) {
       return;
@@ -190,7 +162,6 @@ const transformFigmaVariables = async () => {
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
       if (!transformed[modeName]) transformed[modeName] = {};
-
       
       const { value, type } = resolveValue(variable, modeId);
 

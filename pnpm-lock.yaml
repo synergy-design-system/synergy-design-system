@@ -885,6 +885,15 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
     devDependencies:
+      '@figma-export/cli':
+        specifier: ^6.2.2
+        version: 6.2.2
+      '@figma-export/types':
+        specifier: ^6.2.2
+        version: 6.2.2
+      '@figma/rest-api-spec':
+        specifier: ^0.31.0
+        version: 0.31.0
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@19.0.5(encoding@0.1.13))

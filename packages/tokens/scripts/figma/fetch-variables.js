@@ -1,6 +1,4 @@
 /**
- * @typedef {import('@figma/rest-api-spec').LocalVariableCollection} LocalVariableCollection
- * @typedef {import('@figma/rest-api-spec').GetFileResponse} GetFileResponse
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse} GetLocalVariablesResponse
  */
 import path from 'path';

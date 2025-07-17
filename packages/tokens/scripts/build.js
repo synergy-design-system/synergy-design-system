@@ -7,15 +7,12 @@ import { createJS, createSCSS } from './outputs/index.js';
 import {
   addFallbackFonts,
   addMissingQuotesForStrings,
-  adjustShadow,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
-StyleDictionary.registerTransform(adjustShadow);
-
 StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
@@ -75,12 +72,11 @@ const cssRuns = ['sick2018-dark', 'sick2018-light'].map(async theme => {
           'shadow/css/shorthand',
           'syn/add-fallback-fonts',
           'syn/add-missing-quotes-for-strings',
-          // 'syn/adjust-shadow',
         ],
       },
     },
     preprocessors: ['tokens-studio'],
-    source: [`./src/figma-variables/output-api/${theme}.json`],
+    source: [`./src/figma-variables/output-api/${theme}.json`, './src/figma-variables/styles.json'],
   });
 
   return themeInstance.buildAllPlatforms();

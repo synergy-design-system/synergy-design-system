@@ -188,61 +188,6 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
 
-  packages/_private/mcp:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.13.2
-        version: 1.13.2
-      '@synergy-design-system/assets':
-        specifier: workspace:*
-        version: link:../../assets
-      globby:
-        specifier: ^14.1.0
-        version: 14.1.0
-      zod:
-        specifier: ^3.25.67
-        version: 3.25.67
-    devDependencies:
-      '@synergy-design-system/components':
-        specifier: workspace:*
-        version: link:../../components
-      '@synergy-design-system/eslint-config-syn':
-        specifier: workspace:^
-        version: link:../eslint-config-syn
-      '@synergy-design-system/styles':
-        specifier: workspace:*
-        version: link:../../styles
-      '@synergy-design-system/tokens':
-        specifier: workspace:^
-        version: link:../../tokens
-      '@types/node':
-        specifier: ^22.15.32
-        version: 22.15.32
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      ora:
-        specifier: ^8.2.0
-        version: 8.2.0
-      playwright:
-        specifier: 1.52.0
-        version: 1.52.0
-      prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
-      rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
-      semantic-release:
-        specifier: ^19.0.5
-        version: 19.0.5(encoding@0.1.13)
-      semantic-release-monorepo:
-        specifier: 7.0.5
-        version: 7.0.5(patch_hash=43b9cb59e71f0b0d7c6690109467586449b9e1d84bba96299aeee6714f1bf26d)(semantic-release@19.0.5(encoding@0.1.13))
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
   packages/_private/react-demo:
     dependencies:
       '@fontsource/open-sans':
@@ -856,6 +801,61 @@ importers:
       vite-plugin-replace:
         specifier: ^0.1.1
         version: 0.1.1(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
+
+  packages/mcp:
+    dependencies:
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@synergy-design-system/assets':
+        specifier: workspace:*
+        version: link:../assets
+      globby:
+        specifier: ^14.1.0
+        version: 14.1.0
+      zod:
+        specifier: ^3.25.67
+        version: 3.25.67
+    devDependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../components
+      '@synergy-design-system/eslint-config-syn':
+        specifier: workspace:^
+        version: link:../_private/eslint-config-syn
+      '@synergy-design-system/styles':
+        specifier: workspace:*
+        version: link:../styles
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
+      '@types/node':
+        specifier: ^22.15.32
+        version: 22.15.32
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      ora:
+        specifier: ^8.2.0
+        version: 8.2.0
+      playwright:
+        specifier: 1.52.0
+        version: 1.52.0
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+      semantic-release:
+        specifier: ^19.0.5
+        version: 19.0.5(encoding@0.1.13)
+      semantic-release-monorepo:
+        specifier: 7.0.5
+        version: 7.0.5(patch_hash=43b9cb59e71f0b0d7c6690109467586449b9e1d84bba96299aeee6714f1bf26d)(semantic-release@19.0.5(encoding@0.1.13))
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/react:
     dependencies:
@@ -19874,7 +19874,7 @@ snapshots:
       json5: 2.2.3
       patch-package: 8.0.0
       path-unified: 0.2.0
-      prettier: 3.6.0
+      prettier: 3.6.2
       tinycolor2: 1.6.0
 
   stylelint-config-recommended@16.0.0(stylelint@16.20.0(typescript@5.8.3)):

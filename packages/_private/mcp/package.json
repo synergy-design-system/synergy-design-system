@@ -55,13 +55,9 @@
   "release": {
     "branches": [
       {
-        "name": "research/910-synergy-mcp",
-        "channel": "alpha",
-        "prerelease": true
-      },
-      {
         "name": "main",
-        "channel": "alpha"
+        "channel": "alpha",
+        "prerelease": "alpha"
       },
       {
         "name": "beta",

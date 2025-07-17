@@ -87,6 +87,12 @@
         }
       ],
       [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "pnpm build"
+        }
+      ],
+      [
         "@semantic-release/git",
         {
           "message": "chore(release/mcp): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
@@ -110,8 +116,8 @@
     "directory": "packages/mcp"
   },
   "scripts": {
-    "build": "tsc",
-    "build:all": "pnpm run build && pnpm run build:metadata && pnpm run build:storybook",
+    "build": "pnpm run build:types && pnpm run build:metadata && pnpm run build:storybook",
+    "build:types": "tsc",
     "build:metadata": "node dist/build/build.js",
     "build:storybook": "node ./dist/utilities/storybook/build-docs.js",
     "lint:js": "eslint src",

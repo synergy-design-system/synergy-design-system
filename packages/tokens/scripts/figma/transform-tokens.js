@@ -51,10 +51,9 @@ const resolveAlias = (id) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === id);
   if (!aliasVar) return null;
   const aliasName = aliasVar.name.toLowerCase();
-  
   const aliasType = aliasVar.resolvedType === 'FLOAT'
-  ? 'sizing'
-  : aliasVar.resolvedType.toLowerCase();
+    ? 'sizing'
+    : aliasVar.resolvedType.toLowerCase();
 
   const renamedAlias = renameVariable(aliasName, aliasType);
   // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
@@ -86,6 +85,44 @@ const shouldUseAliasValue = (name) => {
   // TODO: Exchange the letter-spacing and line-height aliases with the real values, as they are currently only available for the new brand
   const NO_ALIAS_VALUE_REGEX = new RegExp(`^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`);
   return !NO_ALIAS_VALUE_REGEX.test(name);
+}
+
+/**
+ * Get the correct value and type of a float variable for Style Dictionary.
+ * @param { string } name The name of the variable
+ * @param { string } value The value of the variable
+ * @returns {{ value: string, type: string }} The resolved value and type of the variable.
+ */
+const getFloatValueFromName = (name, value) => {
+  const stringValue = `${parseFloat(value)}`;
+  const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;
+
+  if (name.includes('opacity')) {
+    return {
+      value: valueWithUnit('%'),
+      type: 'opacity'
+    }
+  } else if (name.includes('weight')) {
+    return {
+      value: stringValue,
+      type: 'fontWeights',
+    }
+  } else if (name.includes('line-height')) {
+    return {
+      value: valueWithUnit('%'),
+      type: 'lineHeights'
+    }
+  } else if (name.includes('letter-spacing')) {
+    return {
+      value: valueWithUnit('px'),
+      type: 'letterSpacing'
+    }
+  } else {
+    return {
+      value: valueWithUnit('px'),
+      type: 'sizing',
+    }
+  }
 }
 
 /**
@@ -121,16 +158,9 @@ const resolveValue = (variable, modeId) => {
   }
 
   if (resolvedType === 'FLOAT') {
-    if (cleanName.includes('opacity')) {
-      finalValue = `${parseFloat(modeValue)}%`.replace('NaN', '0');
-      type = 'opacity';
-    } else if (cleanName.includes('weight')) {
-      finalValue = `${parseFloat(modeValue)}`;
-      type = 'fontWeights';
-    } else {
-      finalValue = `${parseFloat(modeValue)}px`.replace('NaN', '0');
-      type = 'sizing';
-    }
+    const floatValue = getFloatValueFromName(cleanName, modeValue);
+    finalValue = floatValue.value;
+    type = floatValue.type;
   } else if (modeValue && typeof modeValue === 'object' && modeValue.r !== undefined) {
     finalValue = formatColor(modeValue);
     type = 'color';
@@ -163,30 +193,30 @@ const transformFigmaVariables = async () => {
 
     // TODO: currently we do not want to export the new brand variables,
     //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
-    if(isNewBrandOnlyVariableOrStyle(name)) {
+    if (isNewBrandOnlyVariableOrStyle(name)) {
       return;
     }
 
     const collection = Object.values(figmaVariables.variableCollections)
       .find(c => c.id === variableCollectionId);
 
-    if(!collection) {
+    if (!collection) {
       console.warn(`Variable collection with id ${variableCollectionId} not found for variable ${name}`);
       return;
     }
 
     // The _color-palette tokens should not appear in the generated json file
-    if(name.startsWith(COLOR_PALETTE_PREFIX)) {
+    if (name.startsWith(COLOR_PALETTE_PREFIX)) {
       return;
     }
 
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
       if (!transformed[modeName]) transformed[modeName] = {};
-      
+
       const variableValue = resolveValue(variable, modeId);
-      
-      if(!variableValue) {
+
+      if (!variableValue) {
         return;
       }
 
@@ -195,8 +225,10 @@ const transformFigmaVariables = async () => {
       const cleanName = name.toLowerCase();
       const renamedToken = renameVariable(cleanName, type);
       const keys = renamedToken.split('/');
-      
-      setNestedProperty(transformed[modeName], keys, { value: value, type });
+
+      const description = variable.description || undefined;
+
+      setNestedProperty(transformed[modeName], keys, { value, type, description });
     });
   });
 

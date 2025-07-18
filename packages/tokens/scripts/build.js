@@ -39,8 +39,19 @@ StyleDictionary.registerFileHeader({
   name: 'syn/header',
 });
 
+const availableThemes = [
+  {
+    theme: 'light',
+    input: 'sick2018-light',
+  },
+  {
+    theme: 'dark',
+    input: 'sick2018-dark',
+  },
+];
+
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-const cssRuns = ['sick2018-dark', 'sick2018-light'].map(async theme => {
+const cssRuns = availableThemes.map(async ({ theme, input }) => {
   const themeInstance = await dictionary.extend({
     platforms: {
       css: {
@@ -76,7 +87,7 @@ const cssRuns = ['sick2018-dark', 'sick2018-light'].map(async theme => {
       },
     },
     preprocessors: ['tokens-studio'],
-    source: [`./src/figma-variables/output-api/${theme}.json`, './src/figma-variables/styles.json'],
+    source: [`./src/figma-variables/output/${input}.json`, './src/figma-variables/output/styles.json'],
   });
 
   return themeInstance.buildAllPlatforms();

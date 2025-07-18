@@ -30,8 +30,13 @@ export const cssVariableFormatter = {
      * @returns {boolean} If the token is valid
      */
     const isValidTokenName = (name = '') => (![
+      'body',
       'color',
+      'heading',
+      'input-border-width',
+      'input-disabled-opacity',
       'spacing',
+      'transition',
     ]
       .map(p => `${prefix}${p}`)
       .some(p => name.startsWith(p))
@@ -45,10 +50,62 @@ export const cssVariableFormatter = {
     const isValidToken = token => {
       // Skip if the prefix is not allowed
       if (!isValidTokenName(token.name)) return false;
-
       // We only allow strings that refer to variables
       return typeof token?.original?.value === 'string' && token.original?.value.includes('{');
     };
+
+    const BACKWARTS_COMPATIBLE_VARIABLES = [
+      {
+        name: 'syn-input-label-font-size-small',
+        value: 'var(--syn-font-size-small)',
+      },
+      {
+        name: 'syn-input-label-font-size-medium',
+        value: 'var(--syn-font-size-medium)',
+      },
+      {
+        name: 'syn-input-label-font-size-large',
+        value: 'var(--syn-font-size-large)',
+      },
+      {
+        name: 'syn-input-help-text-font-size-small',
+        value: 'var(--syn-font-size-x-small)',
+      },
+      {
+        name: 'syn-input-help-text-font-size-medium',
+        value: 'var(--syn-font-size-small)',
+      },
+      {
+        name: 'syn-input-help-text-font-size-large',
+        value: 'var(--syn-font-size-medium)',
+      },
+      {
+        name: 'syn-input-font-size-small',
+        value: 'var(--syn-font-size-small)',
+      },
+      {
+        name: 'syn-input-font-size-medium',
+        value: 'var(--syn-font-size-medium)',
+      },
+      {
+        name: 'syn-input-font-size-large',
+        value: 'var(--syn-font-size-large)',
+      },
+      {
+        name: 'syn-tooltip-line-height',
+        value: 'var(--syn-line-height-normal)',
+      }
+    ];
+
+    /**
+     * Checks if a variable needs to be ported for backwards compatibility.
+     * @param { string } name The name of the variable
+     * @returns { boolean } True if the variable needs to be ported for backwards compatibility, false otherwise.
+     */
+    const isBackwardsCompatibleVariable = (name) => {
+      const backwardsCompatibleVariable = BACKWARTS_COMPATIBLE_VARIABLES.find((variable) => variable.name === name);
+      return !!backwardsCompatibleVariable;
+    }
 
     /**
      * Converts a design tokens value to a css var
@@ -56,13 +113,19 @@ export const cssVariableFormatter = {
      * @returns {token}
      */
     const convertOriginalToCssVar = (token) => {
+      // To be backwards compatible and do not need a major version, we need to convert some tokens to their old value
+      if (isBackwardsCompatibleVariable(token.name)) {
+        token.value = BACKWARTS_COMPATIBLE_VARIABLES.find((variable) => variable.name === token.name)?.value || token.value;
+        return token;
+      }
+
       if (isValidToken(token)) {
         // eslint-disable-next-line max-len
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')
           .replaceAll('.', '-')
-        })`;
+          })`;
       }
       return token;
     };
@@ -91,9 +154,9 @@ ${header}:root, ${bodySelector} {
   color-scheme: ${theme};
 
 ${formattedVariables({
-  dictionary,
-  format: 'css',
-})}
+      dictionary,
+      format: 'css',
+    })}
 }
 `.trimStart();
   },

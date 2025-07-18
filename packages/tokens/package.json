@@ -112,8 +112,9 @@
   "scripts": {
     "build": "pnpm clean && pnpm build:figma && node scripts/build.js",
     "build:figma": "node scripts/figma/transform-tokens.js",
-    "fetch:figma": "node scripts/figma/fetch-variables.js",
+    "fetch:figma": "pnpm run fetch:variables && pnpm run fetch:styles",
     "fetch:styles": "figma-export use-config",
+    "fetch:variables": "node scripts/figma/fetch-variables.js",
     "clean": "rimraf build",
     "lint:css": "stylelint \"dist/**/*.css\"",
     "lint:js": "eslint scripts dist/js",

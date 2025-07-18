@@ -42,7 +42,7 @@ const fetchFigmaVariables = async (branchId = 'bZFqk9urD3NlghGUKrkKCR') => {
     }
   };
 
-  const outputPath = path.join(OUTPUT_DIR, 'tokensApi.json');
+  const outputPath = path.join(OUTPUT_DIR, 'tokens.json');
   const data = {
     variableCollections: variableCollections,
     variables: variables,

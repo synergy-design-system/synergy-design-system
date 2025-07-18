@@ -8,7 +8,7 @@ const styleOptions = {
   ids: ['104-235'],
   outputters: [
     // The style fetching should be done after the variables are fetched, so the variable_alias can be used
-    styleDictionaryOutputter({output: './src/figma-variables/styles.json'}),
+    styleDictionaryOutputter({output: './src/figma-variables/output/styles.json'}),
   ],
 }
 

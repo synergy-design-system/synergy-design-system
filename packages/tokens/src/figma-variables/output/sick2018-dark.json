@@ -403,17 +403,17 @@
   "font": {
     "mono": {
       "description": "Coding font",
-      "type": "fontFamily",
+      "type": "fontFamilies",
       "value": "Roboto Mono"
     },
     "sans": {
       "description": "Main font",
-      "type": "fontFamily",
+      "type": "fontFamilies",
       "value": "Open Sans"
     },
     "sans-fallback": {
       "description": "System font",
-      "type": "fontFamily",
+      "type": "fontFamilies",
       "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
     },
     "serif": {
@@ -553,7 +553,7 @@
       "value": "{color.neutral.950}"
     },
     "disabled-opacity": {
-      "type": "sizing",
+      "type": "opacity",
       "value": "{opacity.50}"
     },
     "focus-ring": {
@@ -975,7 +975,7 @@
       "value": "{font-size.small}"
     },
     "font-weight": {
-      "type": "sizing",
+      "type": "fontWeights",
       "value": "{font-weight.normal}"
     },
     "line-height": {
@@ -1029,28 +1029,28 @@
   "z-index": {
     "dialog": {
       "description": "Shoelace compatibility DO NOT USE",
-      "type": "sizing",
-      "value": "800px"
+      "type": "number",
+      "value": "800"
     },
     "drawer": {
       "description": "Shoelace compatibility DO NOT USE",
-      "type": "sizing",
-      "value": "700px"
+      "type": "number",
+      "value": "700"
     },
     "dropdown": {
       "description": "Shoelace compatibility DO NOT USE",
-      "type": "sizing",
-      "value": "900px"
+      "type": "number",
+      "value": "900"
     },
     "toast": {
       "description": "Shoelace compatibility DO NOT USE",
-      "type": "sizing",
-      "value": "950px"
+      "type": "number",
+      "value": "950"
     },
     "tooltip": {
       "description": "Shoelace compatibility DO NOT USE",
-      "type": "sizing",
-      "value": "1000px"
+      "type": "number",
+      "value": "1000"
     }
   }
 }

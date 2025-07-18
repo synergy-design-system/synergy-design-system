@@ -6,9 +6,9 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
-import { figmaVariables, isNewBrandOnlyVariableOrStyle, renameVariable } from './helpers.js';
+import { figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle, renameVariable, resolveAlias } from './helpers.js';
 
-const OUTPUT_DIR = './src/figma-variables/output-api';
+const OUTPUT_DIR = './src/figma-variables/output';
 const COLOR_PALETTE_PREFIX = '_color-palette';
 
 /**
@@ -18,8 +18,8 @@ const COLOR_PALETTE_PREFIX = '_color-palette';
 const createDirectory = async (dirPath) => {
   try {
     await fs.mkdir(dirPath, { recursive: true });
-  } catch ( err ) {
-    if ( err.code !== 'EEXIST') throw err;
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err;
   }
 };
 
@@ -40,26 +40,6 @@ const formatColor = ({ r, g, b, a }) => {
     return `rgba(${red}, ${green}, ${blue}, ${a.toFixed(2)})`;
   }
   return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
-};
-
-/**
- * Resolves a variable alias by its ID.
- * @param {string} id The ID of the variable
- * @returns {{ value: string, type: string } | null} The resolved value and type of the variable, or null if not found.
- */
-const resolveAlias = (id) => {
-  const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === id);
-  if (!aliasVar) return null;
-  const aliasName = aliasVar.name.toLowerCase();
-  const aliasType = aliasVar.resolvedType === 'FLOAT'
-    ? 'sizing'
-    : aliasVar.resolvedType.toLowerCase();
-
-  const renamedAlias = renameVariable(aliasName, aliasType);
-  // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
-  const replacedSeparator = renamedAlias.replaceAll('/', '.');
-
-  return { value: `{${replacedSeparator}}`, type: aliasType };
 };
 
 /**
@@ -96,32 +76,22 @@ const shouldUseAliasValue = (name) => {
 const getFloatValueFromName = (name, value) => {
   const stringValue = `${parseFloat(value)}`;
   const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;
+  
+  const type = getTypeForFloatVariable(name);
 
-  if (name.includes('opacity')) {
-    return {
-      value: valueWithUnit('%'),
-      type: 'opacity'
-    }
-  } else if (name.includes('weight')) {
-    return {
-      value: stringValue,
-      type: 'fontWeights',
-    }
-  } else if (name.includes('line-height')) {
-    return {
-      value: valueWithUnit('%'),
-      type: 'lineHeights'
-    }
-  } else if (name.includes('letter-spacing')) {
-    return {
-      value: valueWithUnit('px'),
-      type: 'letterSpacing'
-    }
+  let newValue;
+
+  if (name.includes('opacity') || name.includes('line-height')) {
+    newValue = valueWithUnit('%');
+  } else if (name.includes('weight') || name.includes('z-index')) {
+    newValue = stringValue;
   } else {
-    return {
-      value: valueWithUnit('px'),
-      type: 'sizing',
-    }
+    newValue = valueWithUnit('px');
+  }
+
+  return {
+    value: newValue,
+    type,
   }
 }
 
@@ -167,7 +137,7 @@ const resolveValue = (variable, modeId) => {
   } else if (scopes.includes('FONT_FAMILY')) {
     // Add type to fonts
     finalValue = modeValue;
-    type = 'fontFamily';
+    type = 'fontFamilies';
   } else if (scopes.includes('TEXT_CONTENT')) {
     // Add type to text content like "*"
     finalValue = modeValue;
@@ -212,6 +182,11 @@ const transformFigmaVariables = async () => {
 
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
+      // Skip the sick2025 modes, as we currently don't want it
+      if (modeName.startsWith('sick2025')) {
+        return;
+      }
+
       if (!transformed[modeName]) transformed[modeName] = {};
 
       const variableValue = resolveValue(variable, modeId);

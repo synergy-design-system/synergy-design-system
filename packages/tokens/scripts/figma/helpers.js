@@ -1,5 +1,5 @@
 // @ts-ignore-next-line
-import variablesJson from '../../src/figma-variables/tokensApi.json' with { type: 'json' };
+import variablesJson from '../../src/figma-variables/tokens.json' with { type: 'json' };
 
 /**
  * The fetching result of the Figma API for local variables.
@@ -23,7 +23,7 @@ const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
  * @returns {string} The renamed variable
  */
 export const renameVariable = (name, type) => {
-  if(name.startsWith('primitive/') && type === "color") {
+  if (name.startsWith('primitive/') && type === "color") {
     const primitivePattern = new RegExp(`^(primitive)`);
     return name.replace(primitivePattern, 'color');
   }
@@ -40,10 +40,10 @@ export const resolveAlias = (id) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === id);
   if (!aliasVar) return null;
   const aliasName = aliasVar.name.toLowerCase();
-  
+
   const aliasType = aliasVar.resolvedType === 'FLOAT'
-  ? 'sizing'
-  : aliasVar.resolvedType.toLowerCase();
+    ? getTypeForFloatVariable(aliasName)
+    : aliasVar.resolvedType.toLowerCase();
 
   const renamedAlias = renameVariable(aliasName, aliasType);
   // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
@@ -52,20 +52,46 @@ export const resolveAlias = (id) => {
   return { value: `{${replacedSeparator}}`, type: aliasType };
 };
 
+/**
+ * If the variable is from type FLOAT there are more specific types, which it needs to be mapped to.
+ * This function returns the specific type for the float variable based on its name.
+ *
+ * @param { string } name The name of a variable
+ * @returns { string } The specific type for the float variable
+ */
+export const getTypeForFloatVariable = (name) => {
+  if (name.includes('opacity')) {
+    return 'opacity';
+  } else if (name.includes('weight')) {
+    return 'fontWeights';
+  } else if (name.includes('z-index')) {
+    return 'number';
+  } else if (name.includes('line-height')) {
+    return 'lineHeights';
+  } else if (name.includes('letter-spacing')) {
+    return 'letterSpacing';
+  } else {
+    return 'sizing';
+  }
+};
 
 
-const BRAND_ONLY_VARIABLES_REGEX = [
+const OLD_BRAND_VARIABLES_REGEX = [
+  // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
   // figma variables
-  /^primitive\/info/,
-  /^primitive\/font-size\/(?:0x|1_5x|1x|2_5x|medium)-large/,
-  /^primitive\/letter-spacing\/(?:negative-05|default|positive-05|positive-2|positive-5)/,
-  /^primitive\/line-height\/\d+?/,
-  /^primitive\/text-transform\/(?:default|uppercase)/,
-  /^primitive\/spacing\/(?:1_5x|3_5x)-large/,
+  /^component\/button\/font-size/,
+  /^component\/(?:toggle|tooltip|panel|link|input)/,
+  /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|opacity|text-decoration|transition|z-index|font)\//,
+  /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
+  /^primitive\/line-height\/[^\d]/,
+  /^primitive\/font-size\/(?:2x-large|2x-small|3x-large|4x-large|large|medium|small|x-large|x-small)$/,
+  /^primitive\/spacing\/(?:2x-large|2x-small|3x-large|3x-small|4x-large|4x-small|5x-large|large|medium|medium-large|small|x-large|x-small)$/,
+  /^semantic\/(?:focus-ring|overlay|typography)/,
 
   // figma styles
-  /^body\/2x-small\//,
-  /^heading\/(?:medium|4x-large)/,
+  /^body\/(x-small|small|medium|large)\/(regular|semibold|bold)/,
+  /^heading\/(?:large|x-large|2x-large|3x-large)/,
+  /^shadow\//,
 ];
 
 /**
@@ -75,5 +101,5 @@ const BRAND_ONLY_VARIABLES_REGEX = [
  * @returns true if it is only available in the new brand, false otherwise.
  */
 export const isNewBrandOnlyVariableOrStyle = (name) => {
-  return BRAND_ONLY_VARIABLES_REGEX.some(regex => regex.test(name));
+  return !OLD_BRAND_VARIABLES_REGEX.some(regex => regex.test(name));
 };

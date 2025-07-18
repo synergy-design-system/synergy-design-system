@@ -11,6 +11,8 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
 export const getShadows = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('shadow', useFullTokenName)
   .sort((a, b) => sortTokens(a, b, {
     orderArray: [
+      'xsmall',
+      'small',
       'medium',
       'large',
       'xlarge',

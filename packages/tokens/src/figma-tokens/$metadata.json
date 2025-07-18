@@ -13,6 +13,10 @@
     "semantic/toggle",
     "semantic/tooltip",
     "semantic/typography",
-    "_docs"
+    "_docs",
+    "Theme/sick2018-light",
+    "Theme/sick2018-dark",
+    "Theme/sick2025-light",
+    "Theme/sick2025-dark"
   ]
 }

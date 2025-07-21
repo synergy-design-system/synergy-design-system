@@ -9,6 +9,7 @@ import * as FIGMA_CONFIG from './config.js';
 import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
 import { figmaOutputSvg } from './figma-output-svg.js';
 import { outputSystemIcons } from './figma-output-system-icons.js';
+import { outputComponentsToCodeConnect } from './figma-output-export-code-connect.js';
 
 /**
  * Create a configuration object for the figma export
@@ -95,6 +96,11 @@ export const v2SystemIconConfig = createFigmaExportConfig({
 // v2 all icons configuration
 export const v2AllIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
+    outputComponentsToCodeConnect({
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/icons/sick2018.figma.ts',
+    }),
     outputComponentsToBundle({
       exportName: 'defaultIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
@@ -118,6 +124,18 @@ export const v2LogosConfig = createFigmaExportConfig({
 
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToBundle({
+      exportName: 'outlineIcons',
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: './src/brand2025-outline-icons.ts',
+    }),
+    outputComponentsToCodeConnect({
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/icons/sick2025-outline.figma.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
@@ -126,6 +144,18 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
 
 // v3 filled icons configuration
 export const v3FilledIconsConfig = createFigmaExportConfig({
+  additionalOutputters: [
+    outputComponentsToBundle({
+      exportName: 'filledIcons',
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: './src/brand2025-filled-icons.ts',
+    }),
+    outputComponentsToCodeConnect({
+      fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
+      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
+      output: '../components/code-connect/icons/sick2025-filled.figma.ts',
+    }),
+  ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],
@@ -161,4 +191,4 @@ export const CONFIG_FOR_ALL = [
  * Default configuration to use.
  * Set this to CONFIG_FOR_ALL to export all icons
  */
-export const DEFAULT_CONFIG = CONFIG_FOR_V2;
+export const DEFAULT_CONFIG = CONFIG_FOR_ALL;

@@ -43,6 +43,7 @@
   },
   "files": [
     "dist",
+    "src/brand2025",
     "src/logos",
     "src/icons",
     "CHANGELOG.md",
@@ -130,5 +131,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "1.16.1"
+  "version": "1.17.0"
 }

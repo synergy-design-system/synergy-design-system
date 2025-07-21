@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.39.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.39.0...components/2.39.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* 🐛 syn-validate - Incorrect state of form element if setting customValidationMessage via custom event ([#916](https://github.com/synergy-design-system/synergy-design-system/issues/916)) ([679a92f](https://github.com/synergy-design-system/synergy-design-system/commit/679a92f4499d2ff81b8fd83c4f78a45375694e56))
+
 # [@synergy-design-system/components-v2.39.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.38.0...components/2.39.0) (2025-07-09)
 
 

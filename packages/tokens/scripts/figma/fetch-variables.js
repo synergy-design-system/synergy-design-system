@@ -1,5 +1,8 @@
 /**
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse} GetLocalVariablesResponse
+ * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
+ * @typedef {VariablesAndCollections['variables']} Variables
+ * @typedef {VariablesAndCollections['variableCollections']} VariableCollections
  */
 import path from 'path';
 import { promises as fs } from 'fs';
@@ -7,9 +10,9 @@ import { promises as fs } from 'fs';
 const OUTPUT_DIR = './src/figma-variables';
 
 /**
- * Fetches local variables from Figma API and saves them to a JSON file.
+ * Validates environment variables and returns branch ID and headers
  */
-const fetchFigmaVariables = async () => {
+const getApiConfig = () => {
   const branchId = process.env.FIGMA_FILE_ID || 'bZFqk9urD3NlghGUKrkKCR';
   if (!process.env.FIGMA_FILE_ID) {
     console.log('No FIGMA_FILE_ID provided, using default branch ID:', branchId);
@@ -20,38 +23,66 @@ const fetchFigmaVariables = async () => {
   }
 
   const headers = { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN };
+  return { branchId, headers };
+};
 
-  const variablesFetch = await fetch(`https://api.figma.com/v1/files/${branchId}/variables/local`, { headers });
-
-  const variablesResponse = /** @type {GetLocalVariablesResponse} */ (await variablesFetch.json());
-
-  if (variablesResponse.error || !variablesResponse.meta) {
-    const errorMessage = variablesResponse.error ? `Error ${variablesResponse.status} while fetching ` : 'No metadata found in response';
-    throw new Error(`Failed to fetch variables: ${errorMessage}`);
-  }
-
+/**
+ * Filters out hidden variable collections and their associated variables
+ * @param {VariableCollections} variableCollections - Variable collections object
+ * @param {Variables} variables - Variables object
+ */
+const filterHiddenCollections = (variableCollections, variables) => {
   // Filter out variable collections that are hidden from publishing
-  const variableCollections = variablesResponse.meta.variableCollections || {};
-  for (const [collectionId, collection] of Object.entries(variableCollections)) {
+  Object.entries(variableCollections).forEach(([collectionId, collection]) => {
     if (collection.hiddenFromPublishing === true) {
       delete variableCollections[collectionId];
     }
-  }
+  });
 
   // Filter out variables that used collections that are hidden from publishing
-  const variables = variablesResponse.meta.variables || {};
-  for (const [variableId, variable] of Object.entries(variables)) {
+  Object.entries(variables).forEach(([variableId, variable]) => {
     if (variableCollections[variable.variableCollectionId] === undefined) {
       delete variables[variableId];
     }
-  }
+  });
 
-  const outputPath = path.join(OUTPUT_DIR, 'tokens.json');
-  const data = {
-    variableCollections,
-    variables,
-  };
-  await fs.writeFile(outputPath, JSON.stringify(data, null, 2));
+  return { variableCollections, variables };
 };
 
-fetchFigmaVariables();
+/**
+ * Validates the API response
+ * @param {GetLocalVariablesResponse} variablesResponse - The API response
+ */
+const validateApiResponse = (variablesResponse) => {
+  if (variablesResponse.error || !variablesResponse.meta) {
+    const errorMessage = variablesResponse.error
+      ? `Error ${variablesResponse.status} while fetching `
+      : 'No metadata found in response';
+    throw new Error(`Failed to fetch variables: ${errorMessage}`);
+  }
+};
+
+/**
+ * Fetches local variables from Figma API and saves them to a JSON file.
+ */
+const fetchFigmaVariables = async () => {
+  const { branchId, headers } = getApiConfig();
+
+  const variablesFetch = await fetch(
+    `https://api.figma.com/v1/files/${branchId}/variables/local`,
+    { headers },
+  );
+
+  const response = /** @type {GetLocalVariablesResponse} */ (await variablesFetch.json());
+
+  validateApiResponse(response);
+  const variableCollections = response.meta.variableCollections || {};
+  const variables = response.meta.variables || {};
+
+  const filteredData = filterHiddenCollections(variableCollections, variables);
+
+  const outputPath = path.join(OUTPUT_DIR, 'tokens.json');
+  await fs.writeFile(outputPath, JSON.stringify(filteredData, null, 2));
+};
+
+fetchFigmaVariables().catch(console.error);

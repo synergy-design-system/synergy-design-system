@@ -1,10 +1,12 @@
 /**
  * @typedef { import('@figma-export/types').StyleOutputter } StyleOutputter
- * @typedef { typeof figmaVariables.variables[keyof typeof figmaVariables.variables]} Variable
+ * @typedef { import('@figma-export/types').Style } Style
+ * @typedef { import('@figma-export/types').StyleTypeText & Style } StyleTypeText
+ * @typedef { import('@figma-export/types').StyleTypeEffect & Style } StyleTypeEffect
  */
 import { writeFileSync } from 'node:fs';
 import { setNestedProperty } from '../helpers.js';
-import { figmaVariables, isNewBrandOnlyVariableOrStyle, resolveAlias } from './helpers.js';
+import { isNewBrandOnlyVariableOrStyle, resolveAlias } from './helpers.js';
 
 /**
  * Sanitizes the figma comment
@@ -34,8 +36,8 @@ const writeStyle = (obj, comment, name, value, type) => {
     const keys = name.split('/');
     setNestedProperty(obj, keys, {
       comment: sanitizeComment(comment),
-      value,
       type,
+      value,
     });
   }
 };
@@ -44,7 +46,7 @@ const writeStyle = (obj, comment, name, value, type) => {
  * Returns the alias or value for a style property.
  *
  * Note: Currently is is not possible to set the line height in Figma via variable-alias.
- * @param { import('@figma-export/types').Style & import('@figma-export/types').StyleTypeText } style
+ * @param { Style & StyleTypeText } style
  * @param { 'fontWeight' | 'fontFamily' | 'fontSize' | 'lineHeight'} key
  */
 const getAliasOrValueForStyle = (style, key) => {
@@ -61,6 +63,86 @@ const getAliasOrValueForStyle = (style, key) => {
 };
 
 /**
+ * Processes EFFECT style type and writes shadow or blur values
+ * @param {Object} result - The result object to write to
+ * @param {StyleTypeEffect} style - The style object with effects
+ */
+const processEffectStyle = (result, style) => {
+  const visibleEffects = style.effects.filter(
+    (effect) => effect.visible,
+  );
+
+  const boxShadowValue = visibleEffects
+    .filter(
+      (effect) => effect.type === 'INNER_SHADOW'
+          || effect.type === 'DROP_SHADOW',
+    )
+    .map((effect) => effect.value)
+    .join(', ');
+
+  const filterBlurValue = visibleEffects
+    .filter((effect) => effect.type === 'LAYER_BLUR')
+    .map((effect) => effect.value)
+    .join(', ');
+
+  // Shadow and Blur effects cannot be combined together since they use two different CSS properties.
+  writeStyle(
+    result,
+    style.comment,
+    style.name,
+    boxShadowValue || filterBlurValue,
+    'shadow',
+  );
+};
+
+/**
+ * Processes TEXT style type and writes typography values
+ * @param {Object} result - The result object to write to
+ * @param {StyleTypeText} style - The style object with text properties
+ */
+const processTextStyle = (result, style) => {
+  const fontSize = getAliasOrValueForStyle(style, 'fontSize');
+  const fontFamily = getAliasOrValueForStyle(style, 'fontFamily');
+  const fontWeight = getAliasOrValueForStyle(style, 'fontWeight');
+  let lineHeight = getAliasOrValueForStyle(style, 'lineHeight');
+
+  // Round the line height to the nearest integer as figma returns it with several decimal places.
+  lineHeight = Number(lineHeight).toFixed(1);
+
+  const textStyles = `${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
+  writeStyle(
+    result,
+    style.comment,
+    style.name,
+    `${textStyles}`,
+    'typography',
+  );
+};
+
+/**
+ * Processes a single style and adds it to the result object
+ * @param {Object} result - The result object to write to
+ * @param {Style} style - The style object to process
+ */
+const processStyle = (result, style) => {
+  switch (style.styleType) {
+  // currently we only have style type EFFECT and TEXT
+  case 'EFFECT': {
+    processEffectStyle(result, style);
+    break;
+  }
+  case 'TEXT': {
+    processTextStyle(result, style);
+    break;
+  }
+  default:
+    // No processing for unknown style types
+    console.warn(`Unknown style type: ${style.styleType} for style ${style.name}`);
+    break;
+  }
+};
+
+/**
  * This outputter writes the styles to a JSON file, which is compatible with style dictionary in the specified output path.
  *
  * @param { Object } obj
@@ -70,68 +152,20 @@ const getAliasOrValueForStyle = (style, key) => {
 export const styleDictionaryOutputter = ({ output }) => async (styles) => {
   const result = {};
 
-  for (const style of styles) {
-    // TODO: currently we do not want to export the new brand variables,
-    //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
-    const isNewBrandOnlyStyle = isNewBrandOnlyVariableOrStyle(style.name);
-    if (style.visible && !isNewBrandOnlyStyle) {
-      switch (style.styleType) {
-      // currently we only have style type EFFECT and TEXT
-      case 'EFFECT': {
-        const visibleEffects = style.effects.filter(
-          (effect) => effect.visible,
-        );
-
-        const boxShadowValue = visibleEffects
-          .filter(
-            (effect) => effect.type === 'INNER_SHADOW'
-                || effect.type === 'DROP_SHADOW',
-          )
-          .map((effect) => effect.value)
-          .join(', ');
-
-        const filterBlurValue = visibleEffects
-          .filter((effect) => effect.type === 'LAYER_BLUR')
-          .map((effect) => effect.value)
-          .join(', ');
-
-        // Shadow and Blur effects cannot be combined together since they use two different CSS properties.
-        writeStyle(
-          result,
-          style.comment,
-          style.name,
-          boxShadowValue || filterBlurValue,
-          'shadow',
-        );
-
-        break;
-      }
-
-      case 'TEXT': {
-        const fontSize = getAliasOrValueForStyle(style, 'fontSize');
-        const fontFamily = getAliasOrValueForStyle(style, 'fontFamily');
-        const fontWeight = getAliasOrValueForStyle(style, 'fontWeight');
-        let lineHeight = getAliasOrValueForStyle(style, 'lineHeight');
-
-        // Round the line height to the nearest integer as figma returns it with several decimal places.
-        lineHeight = Number(lineHeight).toFixed(1);
-
-        const textStyles = `${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
-        writeStyle(
-          result,
-          style.comment,
-          style.name,
-            `${textStyles}`,
-            'typography',
-        );
-        break;
-      }
-      }
-    }
-  }
+  styles
+    .filter((style) => {
+      // TODO: currently we do not want to export the new brand variables,
+      //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
+      const isNewBrandOnlyStyle = isNewBrandOnlyVariableOrStyle(style.name);
+      return style.visible && !isNewBrandOnlyStyle;
+    })
+    .forEach((style) => {
+      processStyle(result, style);
+    });
 
   writeFileSync(
     output,
     JSON.stringify(result, undefined, 2),
   );
+  return Promise.resolve();
 };

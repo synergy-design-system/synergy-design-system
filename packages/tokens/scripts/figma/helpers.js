@@ -1,4 +1,3 @@
-// @ts-ignore-next-line
 import variablesJson from '../../src/figma-variables/tokens.json' with { type: 'json' };
 
 /**
@@ -22,11 +21,31 @@ const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
  */
 export const renameVariable = (name, type) => {
   if (name.startsWith('primitive/') && type === 'color') {
-    const primitivePattern = new RegExp('^(primitive)');
+    const primitivePattern = /^primitive/;
     return name.replace(primitivePattern, 'color');
   }
   const prefixPattern = new RegExp(`^(${TOKENS_PREFIXES.join('/|')}/)`);
   return name.replace(prefixPattern, '');
+};
+
+/**
+ * If the variable is from type FLOAT there are more specific types, which it needs to be mapped to.
+ * This function returns the specific type for the float variable based on its name.
+ *
+ * @param { string } name The name of a variable
+ * @returns { string } The specific type for the float variable
+ */
+export const getTypeForFloatVariable = (name) => {
+  const typeMap = {
+    'letter-spacing': 'letterSpacing',
+    'line-height': 'lineHeights',
+    opacity: 'opacity',
+    weight: 'fontWeights',
+    'z-index': 'number',
+  };
+
+  const typeEntry = Object.entries(typeMap).find(([key]) => name.includes(key));
+  return typeEntry ? typeEntry[1] : 'sizing';
 };
 
 /**
@@ -47,35 +66,10 @@ export const resolveAlias = (id) => {
   // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
   const replacedSeparator = renamedAlias.replaceAll('/', '.');
 
-  return { value: `{${replacedSeparator}}`, type: aliasType };
+  return { type: aliasType, value: `{${replacedSeparator}}` };
 };
 
-/**
- * If the variable is from type FLOAT there are more specific types, which it needs to be mapped to.
- * This function returns the specific type for the float variable based on its name.
- *
- * @param { string } name The name of a variable
- * @returns { string } The specific type for the float variable
- */
-export const getTypeForFloatVariable = (name) => {
-  if (name.includes('opacity')) {
-    return 'opacity';
-  }
-  if (name.includes('weight')) {
-    return 'fontWeights';
-  }
-  if (name.includes('z-index')) {
-    return 'number';
-  }
-  if (name.includes('line-height')) {
-    return 'lineHeights';
-  }
-  if (name.includes('letter-spacing')) {
-    return 'letterSpacing';
-  }
-  return 'sizing';
-};
-
+/* eslint-disable max-len */
 const OLD_BRAND_VARIABLES_REGEX = [
   // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
   // figma variables
@@ -93,11 +87,12 @@ const OLD_BRAND_VARIABLES_REGEX = [
   /^heading\/(?:large|x-large|2x-large|3x-large)/,
   /^shadow\//,
 ];
+/* eslint-enable max-len */
 
 /**
  * Filter out variables and styles that are only used for the new brand.
- *
  * @param {string} name The name of the variable / style
  * @returns true if it is only available in the new brand, false otherwise.
  */
-export const isNewBrandOnlyVariableOrStyle = (name) => !OLD_BRAND_VARIABLES_REGEX.some(regex => regex.test(name));
+export const isNewBrandOnlyVariableOrStyle = (name) => !OLD_BRAND_VARIABLES_REGEX
+  .some(regex => regex.test(name));

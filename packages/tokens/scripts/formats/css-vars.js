@@ -98,24 +98,15 @@ export const cssVariableFormatter = {
     ];
 
     /**
-     * Checks if a variable needs to be ported for backwards compatibility.
-     * @param { string } name The name of the variable
-     * @returns { boolean } True if the variable needs to be ported for backwards compatibility, false otherwise.
-     */
-    const isBackwardsCompatibleVariable = (name) => {
-      const backwardsCompatibleVariable = BACKWARTS_COMPATIBLE_VARIABLES.find((variable) => variable.name === name);
-      return !!backwardsCompatibleVariable;
-    };
-
-    /**
      * Converts a design tokens value to a css var
      * @param {import ('style-dictionary/types').DesignToken} token
      * @returns {token}
      */
     const convertOriginalToCssVar = (token) => {
       // To be backwards compatible and do not need a major version, we need to convert some tokens to their old value
-      if (isBackwardsCompatibleVariable(token.name)) {
-        token.value = BACKWARTS_COMPATIBLE_VARIABLES.find((variable) => variable.name === token.name)?.value || token.value;
+      const compatibilityVariable = BACKWARTS_COMPATIBLE_VARIABLES.find(v => v.name === token.name);
+      if (compatibilityVariable) {
+        token.value = compatibilityVariable.value;
         return token;
       }
 

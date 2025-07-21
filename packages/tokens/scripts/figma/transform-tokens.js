@@ -1,5 +1,8 @@
 /**
  * @typedef { typeof figmaVariables.variables[keyof typeof figmaVariables.variables]} Variable
+ * @typedef { keyof Variable['valuesByMode'] } ModeId
+ * @typedef { typeof figmaVariables.variableCollections[keyof typeof figmaVariables.variableCollections] } VariableCollection
+ * @typedef { VariableCollection['modes'] } Modes
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
 import path from 'path';
@@ -7,7 +10,8 @@ import { promises as fs } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
 import {
-  figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle, renameVariable, resolveAlias,
+  figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle,
+  renameVariable, resolveAlias,
 } from './helpers.js';
 
 const OUTPUT_DIR = './src/figma-variables/output';
@@ -18,11 +22,7 @@ const COLOR_PALETTE_PREFIX = '_color-palette';
  * @param { string } dirPath the directory path
  */
 const createDirectory = async (dirPath) => {
-  try {
-    await fs.mkdir(dirPath, { recursive: true });
-  } catch (err) {
-    if (err.code !== 'EEXIST') throw err;
-  }
+  await fs.mkdir(dirPath, { recursive: true });
 };
 
 /**
@@ -42,14 +42,16 @@ const formatColor = ({
   if (a !== undefined && a < 1) {
     return `rgba(${red}, ${green}, ${blue}, ${a.toFixed(2)})`;
   }
+
+  // eslint-disable-next-line no-bitwise
   return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
 };
 
 /**
  * Gets the value of an alias variable in a specific mode.
  * @param { string } aliasId Id of the alias variable
- * @param { string } modeId Id of the mode
- * @returns {string | undefined} The value of the alias variable, or undefined if not found.
+ * @param { ModeId } modeId Id of the mode
+ * @returns {any | undefined} The value of the alias variable, or undefined if not found.
  */
 const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
@@ -64,19 +66,21 @@ const getAliasValue = (aliasId, modeId) => {
  */
 const shouldUseAliasValue = (name) => {
   // Exchange the _color-palette alias with the real values, as they should not show up in the json
-  // TODO: Exchange the letter-spacing and line-height aliases with the real values, as they are currently only available for the new brand
-  const NO_ALIAS_VALUE_REGEX = new RegExp(`^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`);
+  // TODO: Exchange the letter-spacing and line-height aliases with the real values. They are currently only available for the new brand
+  const NO_ALIAS_VALUE_REGEX = new RegExp(
+    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`,
+  );
   return !NO_ALIAS_VALUE_REGEX.test(name);
 };
 
 /**
  * Get the correct value and type of a float variable for Style Dictionary.
  * @param { string } name The name of the variable
- * @param { string } value The value of the variable
+ * @param { number } value The value of the variable
  * @returns {{ value: string, type: string }} The resolved value and type of the variable.
  */
 const getFloatValueFromName = (name, value) => {
-  const stringValue = `${parseFloat(value)}`;
+  const stringValue = `${value}`;
   const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;
 
   const type = getTypeForFloatVariable(name);
@@ -92,17 +96,18 @@ const getFloatValueFromName = (name, value) => {
   }
 
   return {
-    value: newValue,
     type,
+    value: newValue,
   };
 };
 
 /**
  * Get the value and type of a variable in a specific mode.
  * @param {Variable} variable
- * @param {string} modeId
+ * @param {ModeId} modeId
  * @returns {{ value: string, type: string } | undefined} The resolved value and type of the variable, if it could not be resolved, returns undefined.
  */
+// eslint-disable-next-line complexity
 const resolveValue = (variable, modeId) => {
   const {
     name, valuesByMode, resolvedType, scopes = [],
@@ -112,7 +117,7 @@ const resolveValue = (variable, modeId) => {
   let finalValue;
   let type;
 
-  if (modeValue?.type === 'VARIABLE_ALIAS') {
+  if (typeof modeValue === 'object' && 'type' in modeValue && modeValue.type === 'VARIABLE_ALIAS') {
     const resolved = resolveAlias(modeValue.id);
     if (!resolved) {
       console.log(`Not able to resolve css variable ${name} in mode ${modeId}`);
@@ -123,8 +128,8 @@ const resolveValue = (variable, modeId) => {
 
     if (useAliasValue) {
       return {
-        value: resolved.value,
         type: resolved.type,
+        value: resolved.value,
       };
     }
 
@@ -132,10 +137,17 @@ const resolveValue = (variable, modeId) => {
   }
 
   if (resolvedType === 'FLOAT') {
-    const floatValue = getFloatValueFromName(cleanName, modeValue);
+    if (typeof modeValue === 'object') {
+      throw new Error(
+        `Expected a number or string for FLOAT variable ${name}, but got an object: `
+        + `${JSON.stringify(modeValue)}`,
+      );
+    }
+    const numberValue = typeof modeValue === 'number' ? modeValue : parseFloat(modeValue);
+    const floatValue = getFloatValueFromName(cleanName, numberValue);
     finalValue = floatValue.value;
     type = floatValue.type;
-  } else if (modeValue && typeof modeValue === 'object' && modeValue.r !== undefined) {
+  } else if (modeValue && typeof modeValue === 'object' && 'r' in modeValue) {
     finalValue = formatColor(modeValue);
     type = 'color';
   } else if (scopes.includes('FONT_FAMILY')) {
@@ -147,18 +159,28 @@ const resolveValue = (variable, modeId) => {
     finalValue = modeValue;
     type = 'content';
   } else {
+    // For all other variables, just return the value as is
     finalValue = modeValue;
     type = resolvedType.toLowerCase();
   }
+
+  if (typeof finalValue === 'object') {
+    throw new Error(
+      `Expected a string for variable ${name}, but got an object: `
+      + `${JSON.stringify(modeValue)}`,
+    );
+  }
+
   return {
-    value: finalValue,
     type,
+    value: typeof finalValue === 'string' ? finalValue : String(finalValue),
   };
 };
 
 // --- Main Transformation ---
 const transformFigmaVariables = async () => {
-  const transformed = /** @type {VariablesAndCollections} */ ({});
+  /** @type {Record <string, any>} */
+  const transformed = {};
 
   Object.values(figmaVariables.variables).forEach(variable => {
     const { name, variableCollectionId } = variable;
@@ -173,7 +195,10 @@ const transformFigmaVariables = async () => {
       .find(c => c.id === variableCollectionId);
 
     if (!collection) {
-      console.warn(`Variable collection with id ${variableCollectionId} not found for variable ${name}`);
+      console.warn(
+        `Variable collection with id ${variableCollectionId} not found for variable `
+        + `${name}`,
+      );
       return;
     }
 
@@ -191,7 +216,7 @@ const transformFigmaVariables = async () => {
 
       if (!transformed[modeName]) transformed[modeName] = {};
 
-      const variableValue = resolveValue(variable, modeId);
+      const variableValue = resolveValue(variable, /** @type {ModeId} */ (modeId));
 
       if (!variableValue) {
         return;
@@ -205,7 +230,7 @@ const transformFigmaVariables = async () => {
 
       const description = variable.description || undefined;
 
-      setNestedProperty(transformed[modeName], keys, { value, type, description });
+      setNestedProperty(transformed[modeName], keys, { description, type, value });
     });
   });
 
@@ -219,4 +244,6 @@ const transformFigmaVariables = async () => {
   );
 };
 
-transformFigmaVariables();
+transformFigmaVariables().catch(error => {
+  console.error('Error transforming Figma variables:', error);
+});

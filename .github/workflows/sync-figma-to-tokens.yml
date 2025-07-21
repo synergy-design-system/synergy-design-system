@@ -1,5 +1,7 @@
 name: Sync Figma variables to tokens
 on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
     inputs:
       figma_file_id:
@@ -44,10 +46,10 @@ jobs:
           FIGMA_FILE_ID: ${{ github.event.inputs.figma_file_id }}
           FIGMA_ACCESS_TOKEN: ${{ github.event.inputs.figma_access_token }}
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: Update variables and styles from Figma
-          title: "feat: ✨ Update tokens from Figma"
-          body: "Update tokens from Figma from figma branch id ${{ github.event.inputs.figma_file_id }}"
-          branch: ${{ github.event.inputs.branch_name }}
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v7
+      #   with:
+      #     commit-message: Update variables and styles from Figma
+      #     title: "feat: ✨ Update tokens from Figma"
+      #     body: "Update tokens from Figma from figma branch id ${{ github.event.inputs.figma_file_id }}"
+      #     branch: ${{ github.event.inputs.branch_name }}

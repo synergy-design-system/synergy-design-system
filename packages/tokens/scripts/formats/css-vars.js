@@ -94,7 +94,7 @@ export const cssVariableFormatter = {
       {
         name: 'syn-tooltip-line-height',
         value: 'var(--syn-line-height-normal)',
-      }
+      },
     ];
 
     /**
@@ -105,7 +105,7 @@ export const cssVariableFormatter = {
     const isBackwardsCompatibleVariable = (name) => {
       const backwardsCompatibleVariable = BACKWARTS_COMPATIBLE_VARIABLES.find((variable) => variable.name === name);
       return !!backwardsCompatibleVariable;
-    }
+    };
 
     /**
      * Converts a design tokens value to a css var

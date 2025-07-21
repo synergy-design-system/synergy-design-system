@@ -6,7 +6,9 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
-import { figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle, renameVariable, resolveAlias } from './helpers.js';
+import {
+  figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle, renameVariable, resolveAlias,
+} from './helpers.js';
 
 const OUTPUT_DIR = './src/figma-variables/output';
 const COLOR_PALETTE_PREFIX = '_color-palette';
@@ -23,7 +25,6 @@ const createDirectory = async (dirPath) => {
   }
 };
 
-
 /**
  * Formats a color object into a CSS-compatible color string.
  * formatColor({ r: 0.5, g: 0.5, b: 0.5, a: 0.8 }) // "rgba(128, 128, 128, 0.80)"
@@ -31,7 +32,9 @@ const createDirectory = async (dirPath) => {
  * @param {{r: number, g: number, b: number, a?: number}} color Color object with r, g, b, and optional a properties.
  * @returns {string} The formatted color string.
  */
-const formatColor = ({ r, g, b, a }) => {
+const formatColor = ({
+  r, g, b, a,
+}) => {
   const red = Math.round(r * 255);
   const green = Math.round(g * 255);
   const blue = Math.round(b * 255);
@@ -52,8 +55,7 @@ const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
   const modeValue = aliasVar?.valuesByMode?.[modeId];
   return modeValue;
-}
-
+};
 
 /**
  * Check if the alias value should be used.
@@ -61,11 +63,11 @@ const getAliasValue = (aliasId, modeId) => {
  * @returns {boolean} True if the alias value should be used, false otherwise.
  */
 const shouldUseAliasValue = (name) => {
-  // Exchange the _color-palette alias with the real values, as they should not show up in the json 
+  // Exchange the _color-palette alias with the real values, as they should not show up in the json
   // TODO: Exchange the letter-spacing and line-height aliases with the real values, as they are currently only available for the new brand
   const NO_ALIAS_VALUE_REGEX = new RegExp(`^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`);
   return !NO_ALIAS_VALUE_REGEX.test(name);
-}
+};
 
 /**
  * Get the correct value and type of a float variable for Style Dictionary.
@@ -76,7 +78,7 @@ const shouldUseAliasValue = (name) => {
 const getFloatValueFromName = (name, value) => {
   const stringValue = `${parseFloat(value)}`;
   const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;
-  
+
   const type = getTypeForFloatVariable(name);
 
   let newValue;
@@ -92,17 +94,19 @@ const getFloatValueFromName = (name, value) => {
   return {
     value: newValue,
     type,
-  }
-}
+  };
+};
 
 /**
  * Get the value and type of a variable in a specific mode.
- * @param {Variable} variable 
+ * @param {Variable} variable
  * @param {string} modeId
  * @returns {{ value: string, type: string } | undefined} The resolved value and type of the variable, if it could not be resolved, returns undefined.
  */
 const resolveValue = (variable, modeId) => {
-  const { name, valuesByMode, resolvedType, scopes = [] } = variable;
+  const {
+    name, valuesByMode, resolvedType, scopes = [],
+  } = variable;
   const cleanName = name.toLowerCase();
   let modeValue = valuesByMode?.[modeId];
   let finalValue;
@@ -121,7 +125,7 @@ const resolveValue = (variable, modeId) => {
       return {
         value: resolved.value,
         type: resolved.type,
-      }
+      };
     }
 
     modeValue = getAliasValue(modeValue.id, modeId);
@@ -142,17 +146,15 @@ const resolveValue = (variable, modeId) => {
     // Add type to text content like "*"
     finalValue = modeValue;
     type = 'content';
-  }
-  else {
+  } else {
     finalValue = modeValue;
     type = resolvedType.toLowerCase();
   }
   return {
     value: finalValue,
-    type: type,
-  }
-
-}
+    type,
+  };
+};
 
 // --- Main Transformation ---
 const transformFigmaVariables = async () => {
@@ -213,7 +215,7 @@ const transformFigmaVariables = async () => {
       const outputPath = path.join(OUTPUT_DIR, `${sanitizedModeName}.json`);
       await createDirectory(OUTPUT_DIR);
       await fs.writeFile(outputPath, JSON.stringify(sort(modeData), null, 2));
-    })
+    }),
   );
 };
 

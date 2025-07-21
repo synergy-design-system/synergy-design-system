@@ -3,7 +3,6 @@ import variablesJson from '../../src/figma-variables/tokens.json' with { type: '
 
 /**
  * The fetching result of the Figma API for local variables.
- * 
  */
 export const figmaVariables = variablesJson;
 
@@ -11,7 +10,6 @@ export const figmaVariables = variablesJson;
  * Prefixes we use in figma for grouping variables
  */
 const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
-
 
 /**
  * Renames a variable by removing the prefix or in case of type color with "primitive" prefix exchange it by "color"
@@ -23,13 +21,13 @@ const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
  * @returns {string} The renamed variable
  */
 export const renameVariable = (name, type) => {
-  if (name.startsWith('primitive/') && type === "color") {
-    const primitivePattern = new RegExp(`^(primitive)`);
+  if (name.startsWith('primitive/') && type === 'color') {
+    const primitivePattern = new RegExp('^(primitive)');
     return name.replace(primitivePattern, 'color');
   }
   const prefixPattern = new RegExp(`^(${TOKENS_PREFIXES.join('/|')}/)`);
   return name.replace(prefixPattern, '');
-}
+};
 
 /**
  * Resolves a variable alias by its ID.
@@ -62,19 +60,21 @@ export const resolveAlias = (id) => {
 export const getTypeForFloatVariable = (name) => {
   if (name.includes('opacity')) {
     return 'opacity';
-  } else if (name.includes('weight')) {
-    return 'fontWeights';
-  } else if (name.includes('z-index')) {
-    return 'number';
-  } else if (name.includes('line-height')) {
-    return 'lineHeights';
-  } else if (name.includes('letter-spacing')) {
-    return 'letterSpacing';
-  } else {
-    return 'sizing';
   }
+  if (name.includes('weight')) {
+    return 'fontWeights';
+  }
+  if (name.includes('z-index')) {
+    return 'number';
+  }
+  if (name.includes('line-height')) {
+    return 'lineHeights';
+  }
+  if (name.includes('letter-spacing')) {
+    return 'letterSpacing';
+  }
+  return 'sizing';
 };
-
 
 const OLD_BRAND_VARIABLES_REGEX = [
   // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
@@ -96,10 +96,8 @@ const OLD_BRAND_VARIABLES_REGEX = [
 
 /**
  * Filter out variables and styles that are only used for the new brand.
- * 
- * @param {string} name The name of the variable / style 
+ *
+ * @param {string} name The name of the variable / style
  * @returns true if it is only available in the new brand, false otherwise.
  */
-export const isNewBrandOnlyVariableOrStyle = (name) => {
-  return !OLD_BRAND_VARIABLES_REGEX.some(regex => regex.test(name));
-};
+export const isNewBrandOnlyVariableOrStyle = (name) => !OLD_BRAND_VARIABLES_REGEX.some(regex => regex.test(name));

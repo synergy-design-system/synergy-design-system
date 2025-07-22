@@ -386,7 +386,7 @@
     "id": "theme-sick2018-light",
     "name": "sick2018-light",
     "selectedTokenSets": {
-      "Theme/sick2018-light": "enabled"
+      "Synergy Themes/sick2018-light": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -786,13 +786,13 @@
     },
     "$figmaModeId": "28:3",
     "$figmaCollectionId": "VariableCollectionId:28:527",
-    "group": "NEW Themes"
+    "group": "Synergy Themes"
   },
   {
     "id": "theme-sick2018-dark",
     "name": "sick2018-dark",
     "selectedTokenSets": {
-      "Theme/sick2018-dark": "enabled"
+      "Synergy Themes/sick2018-dark": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1192,13 +1192,13 @@
     },
     "$figmaModeId": "36102:0",
     "$figmaCollectionId": "VariableCollectionId:28:527",
-    "group": "NEW Themes"
+    "group": "Synergy Themes"
   },
   {
     "id": "theme-sick2025-light",
     "name": "sick2025-light",
     "selectedTokenSets": {
-      "Theme/sick2025-light": "enabled"
+      "Synergy Themes/sick2025-light": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1598,13 +1598,13 @@
     },
     "$figmaModeId": "36102:1",
     "$figmaCollectionId": "VariableCollectionId:28:527",
-    "group": "NEW Themes"
+    "group": "Synergy Themes"
   },
   {
     "id": "theme-sick2025-dark",
     "name": "sick2025-dark",
     "selectedTokenSets": {
-      "Theme/sick2025-dark": "enabled"
+      "Synergy Themes/sick2025-dark": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -2004,7 +2004,7 @@
     },
     "$figmaModeId": "36102:2",
     "$figmaCollectionId": "VariableCollectionId:28:527",
-    "group": "NEW Themes"
+    "group": "Synergy Themes"
   },
   {
     "id": "efd9b30bfb752adb3a995aa1fde00559ceb13372",

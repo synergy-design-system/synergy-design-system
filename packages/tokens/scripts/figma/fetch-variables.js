@@ -18,11 +18,11 @@ const getApiConfig = () => {
     console.log('No FIGMA_FILE_ID provided, using default branch ID:', branchId);
   }
 
-  if (!process.env.FIGMA_ACCESS_TOKEN) {
-    throw new Error('FIGMA_ACCESS_TOKEN environment variable is not set');
+  if (!process.env.FIGMA_TOKEN) {
+    throw new Error('FIGMA_TOKEN environment variable is not set');
   }
 
-  const headers = { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN };
+  const headers = { 'X-Figma-Token': process.env.FIGMA_TOKEN };
   return { branchId, headers };
 };
 

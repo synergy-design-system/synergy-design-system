@@ -1,14 +1,9 @@
 name: Sync Figma variables to tokens
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
     inputs:
       figma_file_id:
         description: "This can either be a branch_id or the id for the main figma file"
-        required: true
-      figma_access_token:
-        description: "Your personal figma access token to use for the action"
         required: true
       branch_name:
         description: "The name for the branch, which should be created for the pull request"
@@ -44,12 +39,13 @@ jobs:
         run: pnpm -C ./packages/tokens fetch:figma && pnpm -C ./packages/tokens build:figma
         env:
           FIGMA_FILE_ID: ${{ github.event.inputs.figma_file_id }}
-          FIGMA_ACCESS_TOKEN: ${{ github.event.inputs.figma_access_token }}
+          # We need this exact naming of the FIGMA_TOKEN environment variable, as the @figma-export/cli dependency needs it
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
 
-      # - name: Create Pull Request
-      #   uses: peter-evans/create-pull-request@v7
-      #   with:
-      #     commit-message: Update variables and styles from Figma
-      #     title: "feat: ✨ Update tokens from Figma"
-      #     body: "Update tokens from Figma from figma branch id ${{ github.event.inputs.figma_file_id }}"
-      #     branch: ${{ github.event.inputs.branch_name }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Update variables and styles from Figma
+          title: "feat: ✨ Update tokens from Figma"
+          body: "Update tokens from Figma from figma branch id ${{ github.event.inputs.figma_file_id }}"
+          branch: ${{ github.event.inputs.branch_name }}

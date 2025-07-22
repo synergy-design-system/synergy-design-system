@@ -35,7 +35,9 @@
     ".": {
       "import": "./dist/server.js",
       "types": "./dist/server.d.ts"
-    }
+    },
+    "./server.js": "./dist/server.js",
+    "./tools/*": "./dist/tools/*"
   },
   "files": [
     "README.md",

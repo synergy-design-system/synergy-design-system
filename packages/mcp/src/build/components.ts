@@ -35,7 +35,10 @@ const directories = {
  * @returns An array of tuples that define file paths related to the component.
  */
 const getComponentFileList = (component: SynCustomElementDeclaration): FileList => {
-  const { tagNameWithoutPrefix } = component;
+  const {
+    tagName,
+    tagNameWithoutPrefix,
+  } = component;
 
   const staticFiles: FileListEntry[] = [];
 
@@ -86,7 +89,7 @@ const getComponentFileList = (component: SynCustomElementDeclaration): FileList 
   ]);
 
   return {
-    componentName: tagNameWithoutPrefix,
+    componentName: tagName!,
     entries: staticFiles
       .filter(([fileName]) => existsSync(fileName)),
   };

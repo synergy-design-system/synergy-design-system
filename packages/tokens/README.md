@@ -187,7 +187,23 @@ Just make sure to add a valid path to the light theme in the `.vscode/settings.j
 ## Documentation
 
 ### Building the tokens
+Tokens are a mix of [Figma Variables](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) and [Figma styles](https://help.figma.com/hc/en-us/articles/360039238753-Styles-in-Figma-Design). They are fetched from Figma via [Figma API](https://www.figma.com/developers/api).
 
+To trigger a new fetching use `pnpm fetch:figma`, to update the tokens.
+This scripts needs the figma access token (e.g. `export FIGMA_TOKEN=figd_MY_TOKEN`) and optionally the figma file id (e.g. `export FIGMA_FILE_ID=my-file-id`), so it knows, where it should fetch the tokens from. If not available, it fetches the tokens from the main (*"bZFqk9urD3NlghGUKrkKCR"*)
+
+#### Figma variables
+The variables are created to support several modes.
+Currently supported modes are: 
+- **sick2018-light**
+- **sick2018-dark**  
+
+For each mode a json file is created, with the corresponding tokens and values.
+
+#### Figma styles
+For the styles a separate `styles.json` is created.
+
+#### Output
 Outputs of the tokens are created using [Style Dictionary](https://amzn.github.io/style-dictionary/).
 You can trigger a build using `pnpm build` in the `tokens` package root. This will create the css themes (located in `dist/themes/light.css` and `dist/themes/dark.css`), as well as the JavaScript exports (located at `dist/js/index.js`) and scss variables (`dist/scss/_tokens.scss`).
 

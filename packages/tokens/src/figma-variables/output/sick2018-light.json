@@ -576,16 +576,16 @@
     },
     "font-size": {
       "large": {
-        "type": "string",
-        "value": "20px"
+        "type": "sizing",
+        "value": "{font-size.large}"
       },
       "medium": {
-        "type": "string",
-        "value": "16px"
+        "type": "sizing",
+        "value": "{font-size.medium}"
       },
       "small": {
-        "type": "string",
-        "value": "14px"
+        "type": "sizing",
+        "value": "{font-size.small}"
       }
     },
     "height": {
@@ -613,16 +613,16 @@
       },
       "font-size": {
         "large": {
-          "type": "string",
-          "value": "16px"
+          "type": "sizing",
+          "value": "{font-size.medium}"
         },
         "medium": {
-          "type": "string",
-          "value": "14px"
+          "type": "sizing",
+          "value": "{font-size.small}"
         },
         "small": {
-          "type": "string",
-          "value": "12px"
+          "type": "sizing",
+          "value": "{font-size.x-small}"
         }
       }
     },
@@ -661,16 +661,16 @@
       },
       "font-size": {
         "large": {
-          "type": "string",
-          "value": "20px"
+          "type": "sizing",
+          "value": "{font-size.large}"
         },
         "medium": {
-          "type": "string",
-          "value": "16px"
+          "type": "sizing",
+          "value": "{font-size.medium}"
         },
         "small": {
-          "type": "string",
-          "value": "14px"
+          "type": "sizing",
+          "value": "{font-size.small}"
         }
       }
     },

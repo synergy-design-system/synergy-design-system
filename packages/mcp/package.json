@@ -15,6 +15,7 @@
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/docs": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",

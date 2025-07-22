@@ -24,6 +24,9 @@ angular/dist
 # Components should exclude tsconfig as this is handeled by vendorism
 packages/components/tsconfig*.*
 
+# assets are already optimized
+packages/assets/src
+
 # Docs
 docs/dist
 docs/storybook-static

@@ -722,7 +722,7 @@
     },
     "required": {
       "content": {
-        "type": "string",
+        "type": "content",
         "value": "*"
       },
       "content-color": {

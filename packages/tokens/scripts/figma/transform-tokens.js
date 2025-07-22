@@ -162,7 +162,8 @@ const resolveValue = (variable, modeId) => {
     // Add type to fonts
     finalValue = sanitizedValue;
     type = 'fontFamilies';
-  } else if (scopes.includes('TEXT_CONTENT')) {
+  } else if (scopes.includes('TEXT_CONTENT') || name.includes('/required/content')) {
+    // TODO: as soon as the TEXT_CONTENT scope is added to the "*" again, we can remove the name.includes check
     // Add type to text content like "*"
     finalValue = modeValue;
     type = 'content';

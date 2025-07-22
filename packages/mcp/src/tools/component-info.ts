@@ -3,7 +3,6 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   getInfoForComponent,
-  getStaticMetaDataForFramework,
   getStructuredMetaData,
 } from '../utilities/index.js';
 
@@ -32,7 +31,6 @@ export const componentInfoTool = (server: McpServer) => {
         ? JSON.stringify(data, null, 2)
         : `No metadata found for component ${component}`;
 
-      const staticInformation = await getStaticMetaDataForFramework(framework);
       const aiRules = await getStructuredMetaData('../../metadata/static/component-info');
 
       return {
@@ -43,10 +41,6 @@ export const componentInfoTool = (server: McpServer) => {
           },
           {
             text,
-            type: 'text',
-          },
-          {
-            text: `Additional Information about the ${framework} framework can be found in the static metadata: ${JSON.stringify(staticInformation, null, 2)}`,
             type: 'text',
           },
         ],

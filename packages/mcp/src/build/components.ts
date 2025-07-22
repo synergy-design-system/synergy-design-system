@@ -122,11 +122,13 @@ export const buildComponents = async () => {
     await createPath(componentPath);
 
     spinner.text = 'Generating components metadata...';
-    
+
     // Create and populate the metadata for each component
     const componentMetadata = customElementsManifest
       .filter(module => module.declarations && module.declarations.length === 1)
-      .filter(module => module.declarations!.some(declaration => (declaration as CustomElementDeclaration).tagName))
+      .filter(module => module
+        .declarations!
+        .some(declaration => (declaration as CustomElementDeclaration).tagName))
       .map(module => (module.declarations![0] as SynCustomElementDeclaration))
       .map(getComponentFileList)
       .flat()
@@ -143,7 +145,6 @@ export const buildComponents = async () => {
           return copyFile(source, targetFileName);
         });
       });
-    ;
 
     await Promise.all(componentMetadata);
     spinner.succeed('Components metadata generated successfully.');
@@ -167,7 +168,7 @@ export const buildComponents = async () => {
         const target = join(rootStaticPath, base);
         return copyFile(staticFile, target);
       });
-    
+
     await Promise.all(staticFiles);
     spinner.succeed('Static metadata generated successfully.');
 

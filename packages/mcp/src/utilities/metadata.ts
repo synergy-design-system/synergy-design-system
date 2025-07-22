@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { basename } from 'node:path';
 import { componentPath } from './config.js';
 import { getAbsolutePath } from './file.js';
 
@@ -34,7 +35,7 @@ export const getStructuredMetaData = async (
     files
       .filter(filter)
       .map(async (file) => {
-        const filename = file.split('.').slice(0, -1).join('.');
+        const filename = basename(file);
         const exists = await fs.stat(`${absolutePath}/${file}`);
         if (!exists.isFile()) {
           return null;

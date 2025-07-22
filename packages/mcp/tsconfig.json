@@ -7,8 +7,10 @@
     "module": "nodenext",
     "moduleResolution": "NodeNext",
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["node", "jest"],
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "metadata"]
 }

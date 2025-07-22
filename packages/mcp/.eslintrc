@@ -1,11 +1,11 @@
 {
   "extends": [
-    "@synergy-design-system/eslint-config-syn/ts",
+    "@synergy-design-system/eslint-config-syn/ts"
   ],
   "overrides": [
     {
       "extends": ["plugin:@typescript-eslint/disable-type-checked"],
-      "files": ["./**/*.js"],
+      "files": ["./**/*.js", "./**/*.ts"],
       "excludedFiles": [
         "./metadata/**/*.js",
         "./metadata/**/*.ts"

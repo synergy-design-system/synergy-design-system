@@ -19,6 +19,8 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
     "@types/node": "^22.15.32",
+    "change-case": "^5.4.4",
+    "custom-elements-manifest": "^2.1.0",
     "eslint": "^8.57.1",
     "ora": "^8.2.0",
     "playwright": "1.52.0",

@@ -13,6 +13,7 @@ const OUTPUT_DIR = './src/figma-variables';
  * Validates environment variables and returns branch ID and headers
  */
 const getApiConfig = () => {
+  // Use FIGMA_FILE_ID from environment variables or default from main branch
   const branchId = process.env.FIGMA_FILE_ID || 'bZFqk9urD3NlghGUKrkKCR';
   if (!process.env.FIGMA_FILE_ID) {
     console.log('No FIGMA_FILE_ID provided, using default branch ID:', branchId);

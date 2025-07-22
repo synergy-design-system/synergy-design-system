@@ -1,9 +1,9 @@
 /**
  * @typedef { typeof figmaVariables.variables[keyof typeof figmaVariables.variables]} Variable
- * @typedef { keyof Variable['valuesByMode'] } ModeId
  * @typedef { typeof figmaVariables.variableCollections[keyof typeof figmaVariables.variableCollections] } VariableCollection
  * @typedef { VariableCollection['modes'] } Modes
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
+ * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
  */
 import path from 'path';
 import { promises as fs } from 'fs';
@@ -29,12 +29,13 @@ const createDirectory = async (dirPath) => {
  * Formats a color object into a CSS-compatible color string.
  * formatColor({ r: 0.5, g: 0.5, b: 0.5, a: 0.8 }) // "rgba(128, 128, 128, 0.80)"
  * formatColor({ r: 0.5, g: 0.5, b: 0.5 }) // "#808080"
- * @param {{r: number, g: number, b: number, a?: number}} color Color object with r, g, b, and optional a properties.
+ * @param { Color } color Color object with r, g, b, and optional a properties.
  * @returns {string} The formatted color string.
  */
-const formatColor = ({
-  r, g, b, a,
-}) => {
+const formatColor = (color) => {
+  const { r, g, b } = color;
+  const a = 'a' in color ? color.a : undefined;
+
   const red = Math.round(r * 255);
   const green = Math.round(g * 255);
   const blue = Math.round(b * 255);
@@ -50,13 +51,14 @@ const formatColor = ({
 /**
  * Gets the value of an alias variable in a specific mode.
  * @param { string } aliasId Id of the alias variable
- * @param { ModeId } modeId Id of the mode
- * @returns {any | undefined} The value of the alias variable, or undefined if not found.
+ * @param { string } modeId Id of the mode
+ * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
 const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
-  const modeValue = aliasVar?.valuesByMode?.[modeId];
-  return modeValue;
+  /** @type {Record<string, unknown> | undefined} */
+  const valuesByMode = aliasVar?.valuesByMode;
+  return valuesByMode?.[modeId];
 };
 
 /**
@@ -104,7 +106,7 @@ const getFloatValueFromName = (name, value) => {
 /**
  * Get the value and type of a variable in a specific mode.
  * @param {Variable} variable
- * @param {ModeId} modeId
+ * @param {string} modeId
  * @returns {{ value: string, type: string } | undefined} The resolved value and type of the variable, if it could not be resolved, returns undefined.
  */
 // eslint-disable-next-line complexity
@@ -113,12 +115,16 @@ const resolveValue = (variable, modeId) => {
     name, valuesByMode, resolvedType, scopes = [],
   } = variable;
   const cleanName = name.toLowerCase();
-  let modeValue = valuesByMode?.[modeId];
+
+  // Access valuesByMode with proper type handling
+  const modeValuesMap = /** @type {Record<string, any>} */ (valuesByMode);
+  let modeValue = modeValuesMap?.[modeId];
   let finalValue;
   let type;
 
   if (typeof modeValue === 'object' && 'type' in modeValue && modeValue.type === 'VARIABLE_ALIAS') {
-    const resolved = resolveAlias(modeValue.id);
+    const aliasObject = /** @type {{ id: string; type: string }} */ (modeValue);
+    const resolved = resolveAlias(aliasObject.id);
     if (!resolved) {
       console.log(`Not able to resolve css variable ${name} in mode ${modeId}`);
       return undefined;
@@ -133,26 +139,28 @@ const resolveValue = (variable, modeId) => {
       };
     }
 
-    modeValue = getAliasValue(modeValue.id, modeId);
+    modeValue = getAliasValue(aliasObject.id, modeId);
   }
 
   if (resolvedType === 'FLOAT') {
-    if (typeof modeValue === 'object') {
-      throw new Error(
-        `Expected a number or string for FLOAT variable ${name}, but got an object: `
-        + `${JSON.stringify(modeValue)}`,
-      );
-    }
-    const numberValue = typeof modeValue === 'number' ? modeValue : parseFloat(modeValue);
+    /** @type { number } FLOAT types have a number as value */
+    const numberValue = modeValue;
     const floatValue = getFloatValueFromName(cleanName, numberValue);
     finalValue = floatValue.value;
     type = floatValue.type;
-  } else if (modeValue && typeof modeValue === 'object' && 'r' in modeValue) {
-    finalValue = formatColor(modeValue);
+  } else if (resolvedType === 'COLOR') {
+    /** @type { Color } COLOR types have an object with rgba as value */
+    const colorValue = modeValue;
+    finalValue = formatColor(colorValue);
     type = 'color';
-  } else if (scopes.includes('FONT_FAMILY')) {
+  } else if (scopes.includes('FONT_FAMILY') || name.includes('/font/')) {
+    // TODO: as soon as the FONT_FAMILY scope is added to all fonts, we can remove the name.includes check
+    // TODO: as soon as the `"` is exchanged with `'` in figma, we can remove the replace
+    const sanitizedValue = typeof modeValue === 'string'
+      ? modeValue.replaceAll('"', '\'')
+      : String(modeValue);
     // Add type to fonts
-    finalValue = modeValue;
+    finalValue = sanitizedValue;
     type = 'fontFamilies';
   } else if (scopes.includes('TEXT_CONTENT')) {
     // Add type to text content like "*"
@@ -216,7 +224,7 @@ const transformFigmaVariables = async () => {
 
       if (!transformed[modeName]) transformed[modeName] = {};
 
-      const variableValue = resolveValue(variable, /** @type {ModeId} */ (modeId));
+      const variableValue = resolveValue(variable, modeId);
 
       if (!variableValue) {
         return;

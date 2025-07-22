@@ -110,7 +110,7 @@
     ]
   },
   "scripts": {
-    "build": "pnpm clean && node scripts/build.js",
+    "build": "pnpm clean && pnpm build:figma && node scripts/build.js",
     "build:figma": "node scripts/figma/transform-tokens.js",
     "fetch:figma": "pnpm run fetch:variables && pnpm run fetch:styles",
     "fetch:styles": "figma-export use-config",

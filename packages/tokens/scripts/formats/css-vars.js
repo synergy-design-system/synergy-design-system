@@ -56,42 +56,6 @@ export const cssVariableFormatter = {
 
     const BACKWARTS_COMPATIBLE_VARIABLES = [
       {
-        name: 'syn-input-label-font-size-small',
-        value: 'var(--syn-font-size-small)',
-      },
-      {
-        name: 'syn-input-label-font-size-medium',
-        value: 'var(--syn-font-size-medium)',
-      },
-      {
-        name: 'syn-input-label-font-size-large',
-        value: 'var(--syn-font-size-large)',
-      },
-      {
-        name: 'syn-input-help-text-font-size-small',
-        value: 'var(--syn-font-size-x-small)',
-      },
-      {
-        name: 'syn-input-help-text-font-size-medium',
-        value: 'var(--syn-font-size-small)',
-      },
-      {
-        name: 'syn-input-help-text-font-size-large',
-        value: 'var(--syn-font-size-medium)',
-      },
-      {
-        name: 'syn-input-font-size-small',
-        value: 'var(--syn-font-size-small)',
-      },
-      {
-        name: 'syn-input-font-size-medium',
-        value: 'var(--syn-font-size-medium)',
-      },
-      {
-        name: 'syn-input-font-size-large',
-        value: 'var(--syn-font-size-large)',
-      },
-      {
         name: 'syn-tooltip-line-height',
         value: 'var(--syn-line-height-normal)',
       },

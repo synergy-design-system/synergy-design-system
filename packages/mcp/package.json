@@ -94,7 +94,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build"
+          "prepareCmd": "pnpm build && git add . && git commit -m \"chore(prerelease/mcp): Added latest data\""
         }
       ],
       [
@@ -113,7 +113,16 @@
           "successComment": false
         }
       ]
-    ]
+    ],
+    "monorepo": {
+      "dependencies": [
+        "packages/assets",
+        "packages/components",
+        "packages/docs",
+        "packages/styles",
+        "packages/tokens"
+      ]
+    }
   },
   "repository": {
     "type": "git",

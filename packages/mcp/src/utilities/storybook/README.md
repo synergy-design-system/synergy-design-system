@@ -11,16 +11,19 @@ The system provides a flexible architecture that can be configured to scrape dif
 ### Core Components
 
 1. **StorybookManager** (`storybook-manager.ts`)
+
    - Manages the Storybook server lifecycle
    - Handles automatic port detection and allocation
    - Provides graceful start/stop functionality
 
 2. **StorybookScraper** (`scraper.ts`)
+
    - Generic scraping functionality
    - Configurable via `ScrapingConfig` interface
    - Handles browser automation and content extraction
 
 3. **DocsScraper** (`docs-scraper.ts`)
+
    - High-level orchestrator that combines manager and scraper
    - Provides convenience methods for common scraping tasks
    - Handles server lifecycle automatically
@@ -43,33 +46,34 @@ The system uses TypeScript interfaces defined in `types.ts`:
 ### Basic Usage
 
 ```typescript
-import { runDocsScraper } from './docs-scraper.js';
+import { runDocsScraper } from "./docs-scraper.js";
 
 // Scrape all documentation
-await runDocsScraper('all');
+await runDocsScraper("all");
 
 // Scrape only components
-await runDocsScraper('components');
+await runDocsScraper("components");
 
 // Scrape only styles
-await runDocsScraper('styles');
+await runDocsScraper("styles");
 ```
 
 ### Advanced Usage
 
 ```typescript
-import { DocsScraper, StorybookScraper } from './index.js';
+import { DocsScraper, StorybookScraper } from "./index.js";
 
 // Create custom scraper
-const docsScraper = new DocsScraper('/path/to/storybook');
+const docsScraper = new DocsScraper("/path/to/storybook");
 
 // Scrape with custom configuration
 const customConfig = {
-  outputPath: '/custom/path',
-  getItems: async () => ['item1', 'item2'],
-  generateStoryId: (item) => `my-${item}--docs`,
-  generateOutputPath: (item) => `/custom/path/${item}.md`,
-  formatContent: (item, stories) => `# ${item}\n\n${stories.map(s => s.description).join('\n')}`,
+  outputPath: "/custom/path",
+  getItems: async () => ["item1", "item2"],
+  generateStoryId: item => `my-${item}--docs`,
+  generateOutputPath: item => `/custom/path/${item}.md`,
+  formatContent: (item, stories) =>
+    `# ${item}\n\n${stories.map(s => s.description).join("\n")}`,
 };
 
 await docsScraper.scrapeWithConfig(customConfig);
@@ -91,7 +95,7 @@ node build-docs.ts             # Scrape everything (default)
 
 ```typescript
 interface ScrapingConfig {
-  outputPath: string;               // Base output directory
+  outputPath: string; // Base output directory
   getItems: () => Promise<string[]>; // Function to get items to scrape
   generateStoryId: (item: string) => string; // Generate story ID from item
   generateOutputPath: (item: string) => string; // Generate output path from item
@@ -103,12 +107,14 @@ interface ScrapingConfig {
 
 ```typescript
 const myCustomConfig: ScrapingConfig = {
-  outputPath: '/path/to/examples',
-  getItems: async () => ['example1', 'example2'],
-  generateStoryId: (example) => `examples-${example}--docs`,
-  generateOutputPath: (example) => `/path/to/examples/${example}/README.md`,
+  outputPath: "/path/to/examples",
+  getItems: async () => ["example1", "example2"],
+  generateStoryId: example => `examples-${example}--docs`,
+  generateOutputPath: example => `/path/to/examples/${example}/README.md`,
   formatContent: (example, stories) => {
-    return stories.map(story => `
+    return stories
+      .map(
+        story => `
 ## ${story.heading}
 
 ${story.description}
@@ -116,7 +122,9 @@ ${story.description}
 \`\`\`html
 ${story.example}
 \`\`\`
-`).join('\n---\n');
+`,
+      )
+      .join("\n---\n");
   },
 };
 ```
@@ -162,11 +170,11 @@ To migrate existing code:
 
 ```typescript
 // Old way
-import { scrapeStorybookDocs } from './playwright.js';
+import { scrapeStorybookDocs } from "./playwright.js";
 
 // New way
-import { runDocsScraper } from './docs-scraper.js';
-await runDocsScraper('components');
+import { runDocsScraper } from "./docs-scraper.js";
+await runDocsScraper("components");
 ```
 
 ## Future Enhancements

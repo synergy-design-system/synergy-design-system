@@ -8,6 +8,10 @@ on:
       branch_name:
         description: "The name for the branch, which should be created for the pull request"
         required: true
+      pull_request_name:
+        description: "The name for the pull request. If not provided, a default name will be used."
+        required: true
+        default: "feat: ✨ Update tokens from Figma"
 
 jobs:
   sync-figma-to-tokens:
@@ -46,6 +50,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: Update variables and styles from Figma
-          title: "feat: ✨ Update tokens from Figma"
+          title: ${{ github.event.inputs.pull_request_name }}
           body: "Update tokens from Figma from figma branch id ${{ github.event.inputs.figma_file_id }}"
           branch: ${{ github.event.inputs.branch_name }}

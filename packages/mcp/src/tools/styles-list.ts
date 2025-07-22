@@ -30,7 +30,7 @@ export const stylesList = (server: McpServer) => {
         return {
           content: [
             {
-              text: `Always follow the rules here: ${JSON.stringify(aiRules, null, 2)}`,
+              text: JSON.stringify(aiRules, null, 2),
               type: 'text',
             },
             {

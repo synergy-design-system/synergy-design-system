@@ -883,10 +883,6 @@ importers:
         version: 16.20.0(typescript@5.8.3)
 
   packages/tokens:
-    dependencies:
-      '@tfk-samf/figma-to-dtcg':
-        specifier: ^0.4.0
-        version: 0.4.0
     devDependencies:
       '@figma-export/cli':
         specifier: ^6.2.2
@@ -3319,9 +3315,6 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
-
-  '@tfk-samf/figma-to-dtcg@0.4.0':
-    resolution: {integrity: sha512-B8PTx1nP0YyWhTavBUEh/+FDJhctoMzBD3WZe2NPaxOCx+eibLc7/a12cMPpAaxTqqdreEnyL5es7JZRdldtlg==}
 
   '@thepassle/axobject-query@4.0.0':
     resolution: {integrity: sha512-/LHo+2jOdxs2WtbGocr3/lDSzsnjgCV6DSoBf4Y1Q0D24Hu67NPWuneoJimfHu5auqqSWi1fAvtln2013VxVqg==}
@@ -12915,8 +12908,6 @@ snapshots:
   '@testing-library/user-event@14.6.1(@testing-library/dom@10.4.0)':
     dependencies:
       '@testing-library/dom': 10.4.0
-
-  '@tfk-samf/figma-to-dtcg@0.4.0': {}
 
   '@thepassle/axobject-query@4.0.0':
     dependencies:

@@ -42,7 +42,8 @@
   "files": [
     "dist",
     "CHANGELOG.md",
-    "src/figma-tokens"
+    "src/figma-tokens",
+    "src/figma-variables/output"
   ],
   "homepage": "https://synergy-design-system.github.io",
   "keywords": [
@@ -127,8 +128,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "2.21.0",
-  "dependencies": {
-    "@tfk-samf/figma-to-dtcg": "^0.4.0"
-  }
+  "version": "2.21.0"
 }

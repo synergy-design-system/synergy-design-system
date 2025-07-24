@@ -1,4 +1,3 @@
-
 ## Default
 
 Buttons represent actions that are available to the user.
@@ -13,7 +12,6 @@ Buttons represent actions that are available to the user.
 >
   Button
 </syn-button>
-
 ```
 
 ---
@@ -47,7 +45,6 @@ Use the variant attribute to set the button’s variant. Variants can be Filled,
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -86,7 +83,6 @@ Use the size attribute to change a button’s size.
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -106,14 +102,13 @@ The focus event gives the user feedback that the Button has been focused by the 
     >Default</syn-button
   >
 </div>
-
 ```
 
 ---
 
 ## Link Buttons
 
-It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an  under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.
+It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.
 
 ```html
 <syn-button
@@ -160,7 +155,6 @@ It’s often helpful to have a button that works like a link. This is possible b
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -197,7 +191,6 @@ As expected, buttons can be given a custom width by setting the width attribute.
   data-valid=""
   >Large</syn-button
 >
-
 ```
 
 ---
@@ -341,7 +334,6 @@ Insert just a single icon to use the same button style.
     margin: 10px 10px 0 0;
   }
 </style>
-
 ```
 
 ---
@@ -521,7 +513,6 @@ Use the prefix and suffix slots to add icons.
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -563,7 +554,6 @@ Use the caret attribute to add a dropdown indicator when a button will trigger a
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -605,7 +595,6 @@ Use the loading attribute to make a button busy. The width will remain the same 
     margin: 0.2rem;
   }
 </style>
-
 ```
 
 ---
@@ -642,5 +631,4 @@ Use the disabled attribute to disable a button.
   data-valid=""
   >Text</syn-button
 >
-
 ```

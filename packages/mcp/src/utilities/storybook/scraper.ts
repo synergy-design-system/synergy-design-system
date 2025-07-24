@@ -104,7 +104,9 @@ export class StorybookScraper {
         // Ensure the directory exists before writing
         const dir = dirname(filePath);
         await mkdir(dir, { recursive: true });
-        const content = this.config.formatContent(item, stories);
+        const content = await prettier.format(this.config.formatContent(item, stories), {
+          parser: 'markdown',
+        });
         await writeFile(filePath, content, 'utf-8');
         console.log(`Written documentation for ${item} to ${filePath}`);
       }),

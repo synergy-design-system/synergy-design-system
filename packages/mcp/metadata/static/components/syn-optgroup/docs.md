@@ -1,4 +1,3 @@
-
 ## Default
 
 Use <syn-optgroup> to group listbox items visually.
@@ -45,7 +44,6 @@ Use <syn-optgroup> to group listbox items visually.
     >
   </syn-optgroup>
 </syn-select>
-
 ```
 
 ---
@@ -90,7 +88,6 @@ Use the disabled attribute in the <syn-optgroup> to disable the Section and prev
     >
   </syn-optgroup>
 </syn-select>
-
 ```
 
 ---
@@ -185,5 +182,4 @@ Add icons to the start and end of menu items using the prefix and suffix slots.
     </syn-option>
   </syn-optgroup>
 </syn-select>
-
 ```

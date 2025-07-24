@@ -1,4 +1,3 @@
-
 ## Default
 
 Tab groups organize content into a container that shows one section at a time. Tab groups make use of tabs and tab panels. Each tab must be slotted into the nav slot and its panel must refer to a tab panel of the same name.
@@ -80,7 +79,6 @@ Tab groups organize content into a container that shows one section at a time. T
     >Disabled</syn-tab
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -163,7 +161,6 @@ Tabs can be shown on the starting side by setting placement to start.
     >This is the disabled tab panel.</syn-tab-panel
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -246,7 +243,6 @@ Tabs can be shown on the ending side by setting placement to end.
     >This is the disabled tab panel.</syn-tab-panel
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -328,7 +324,6 @@ Add the closable attribute to a tab to show a close button. This example shows h
     >This is the third closable tab panel.</syn-tab-panel
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -647,7 +642,6 @@ When there are more tabs than horizontal space allows, the nav will be scrollabl
     >Tab panel 20</syn-tab-panel
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -917,7 +911,6 @@ To structure the Page, you can use different tab styles.
     margin-bottom: var(--syn-spacing-large);
   }
 </style>
-
 ```
 
 ---
@@ -1000,7 +993,6 @@ When focused, keyboard users can press Left or Right to select the desired tab. 
     >This is the disabled tab panel.</syn-tab-panel
   >
 </syn-tab-group>
-
 ```
 
 ---
@@ -1099,5 +1091,4 @@ It is also possible to a Add icon to the Tabs.
     >This is the disabled tab panel.</syn-tab-panel
   >
 </syn-tab-group>
-
 ```

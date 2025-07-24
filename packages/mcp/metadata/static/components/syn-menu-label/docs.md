@@ -1,4 +1,3 @@
-
 ## Default
 
 Menu labels are used to describe a group of menu items.
@@ -27,5 +26,4 @@ Menu labels are used to describe a group of menu items.
     >Zucchini</syn-menu-item
   >
 </syn-menu>
-
 ```

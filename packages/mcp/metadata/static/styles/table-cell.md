@@ -1,4 +1,3 @@
-
 ## Default
 
 The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows. DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.
@@ -16,7 +15,6 @@ The syn-table-cell component offers basic styling for table cells. A table can
     position: sticky;
   }
 </style>
-
 ```
 
 ---
@@ -38,7 +36,6 @@ Use the cell header attribute to help the user identify the top of the table. T
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -64,7 +61,6 @@ The alternating attribute helps the user to visually separate the rows, even whe
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -90,7 +86,6 @@ Use the border attribute to define different borders in a cell. Borders can also
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -127,5 +122,4 @@ If the table contains a scrolling behavior the table cell gets a shadow.
     position: sticky;
   }
 </style>
-
 ```

@@ -1,4 +1,3 @@
-
 ## Default
 
 Dropdowns expose additional content that “drops down” in a panel.Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.Dropdowns are designed to work well with menus to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. color picker). The API gives you complete control over showing, hiding, and positioning the panel.
@@ -65,7 +64,6 @@ Dropdowns expose additional content that “drops down” in a panel.Dropdowns c
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```
 
 ---
@@ -114,7 +112,6 @@ When dropdowns are used with menus, you can listen for the syn-select event t
     </syn-dropdown>
   </div>
 </div>
-
 ```
 
 ---
@@ -156,7 +153,6 @@ The preferred placement of the dropdown can be set with the placement attribut
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```
 
 ---
@@ -198,7 +194,6 @@ The distance from the panel to the trigger can be customized using the distance
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```
 
 ---
@@ -240,7 +235,6 @@ The offset of the panel along the trigger can be customized using the skidding�
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```
 
 ---
@@ -356,5 +350,4 @@ To create a submenu, nest an <syn-menu slot="submenu"> element in a menu item
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```

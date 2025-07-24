@@ -1,4 +1,3 @@
-
 ## Default
 
 Inputs collect data from the user.
@@ -13,7 +12,6 @@ Inputs collect data from the user.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -32,7 +30,6 @@ Use the label attribute to give the input an accessible label. For labels that c
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -52,7 +49,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -71,7 +67,6 @@ Use the placeholder attribute to add a placeholder.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -92,7 +87,6 @@ Add the clearable attribute to add a clear button when the input has content.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -112,7 +106,6 @@ Add the password-toggle attribute to add a toggle button that will show the pass
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -132,7 +125,6 @@ Add the read-only attribute to draw a read-only input.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -157,7 +149,6 @@ The focus attribute provides feedback to the users, informing them that the inpu
     ></syn-input>
   </form>
 </div>
-
 ```
 
 ---
@@ -192,7 +183,6 @@ Use the disabled attribute to disable an input.
     library="default"
   ></syn-icon>
 </syn-input>
-
 ```
 
 ---
@@ -231,7 +221,6 @@ Use the size attribute to change an input's size.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -274,7 +263,6 @@ The invalid status is used to warn the user that the input is invalid. For examp
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -313,7 +301,6 @@ The type attribute controls the type of input the browser renders.
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -430,7 +417,6 @@ Use the prefix and suffix slots to add text and icons.
     library="default"
   ></syn-icon>
 </syn-input>
-
 ```
 
 ---
@@ -498,7 +484,6 @@ Use to customize the way form controls are drawn. This example uses CSS grid to 
     grid-column-start: 2;
   }
 </style>
-
 ```
 
 ---
@@ -543,7 +528,6 @@ The Stepper (Input type number) attribute has additional step buttons at the rig
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```
 
 ---
@@ -581,5 +565,4 @@ The numeric-strategy property defines how numeric input is handled during user i
   data-optional=""
   data-valid=""
 ></syn-input>
-
 ```

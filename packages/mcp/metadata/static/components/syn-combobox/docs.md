@@ -1,4 +1,3 @@
-
 ## Default
 
 The combobox suggests items based on the user input.
@@ -36,7 +35,6 @@ The combobox suggests items based on the user input.
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -79,7 +77,6 @@ Use the label attribute to give the combobox an accessible label. For labels tha
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -123,7 +120,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -168,7 +164,6 @@ Use the placeholder attribute to add a placeholder.
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -212,7 +207,6 @@ The focus attribute provides feedback to the users, informing them that the comb
     >
   </syn-combobox>
 </div>
-
 ```
 
 ---
@@ -347,7 +341,6 @@ Add the clearable attribute to add a clear button when the combobox has content.
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -471,7 +464,6 @@ Use the disabled attribute to disable a combobox.
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -517,7 +509,6 @@ This restricts the combobox to only allow selections from the available options.
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -872,7 +863,6 @@ Use the size attribute to change a combobox size.
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -1018,7 +1008,6 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -1761,7 +1750,6 @@ Use the prefix and suffix slots to add text and icons.
     library="default"
   ></syn-icon>
 </syn-combobox>
-
 ```
 
 ---
@@ -1893,7 +1881,6 @@ A simple suggestions list shows the user a filtered list.
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -2026,7 +2013,6 @@ The filtered options shown in the list can be customized by passing a function t
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -2191,7 +2177,6 @@ Use <syn-optgroup> to group <syn-option>`s visually.
     >
   </syn-optgroup>
 </syn-combobox>
-
 ```
 
 ---
@@ -2330,7 +2315,6 @@ The height of the filtered options list can be customized by setting the max-hei
     max-height: min(var(--auto-size-available-height), 112px);
   }
 </style>
-
 ```
 
 ---
@@ -2374,7 +2358,6 @@ It is possible to add options dynamically to the combobox e.g. if the option val
     >Option 3</syn-option
   >
 </syn-combobox>
-
 ```
 
 ---
@@ -2498,5 +2481,4 @@ A custom filter can be applied by passing a filter function to the filter proper
     >Yellow</syn-option
   >
 </syn-combobox>
-
 ```

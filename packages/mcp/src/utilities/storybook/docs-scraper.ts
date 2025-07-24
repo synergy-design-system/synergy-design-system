@@ -134,7 +134,7 @@ export class DocsScraper {
 
 // CLI usage helper
 export async function runDocsScraper(
-  type: 'components' | 'styles' | 'templates' | 'all' = 'all'
+  type: 'components' | 'styles' | 'templates' | 'all' = 'all',
 ): Promise<void> {
   const scraper = new DocsScraper();
 

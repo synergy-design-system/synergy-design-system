@@ -1,7 +1,4 @@
-
 ## Footer
-
-
 
 ```html
 <!-- footer -->
@@ -77,14 +74,11 @@
   </nav>
 </footer>
 <!-- /footer -->
-
 ```
 
 ---
 
 ## Footer Within Appshell
-
-
 
 ```html
 <!-- .synergy-demo-application -->
@@ -345,5 +339,4 @@
     text-align: center;
   }
 </style>
-
 ```

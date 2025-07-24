@@ -1,4 +1,3 @@
-
 ## Default
 
 Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
@@ -31,7 +30,6 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```
 
 ---
@@ -65,7 +63,6 @@ Use the --width custom property to set the dialog’s width.
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```
 
 ---
@@ -132,7 +129,6 @@ By design, a dialog’s height will never exceed that of the viewport. As such, 
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```
 
 ---
@@ -174,7 +170,6 @@ The header shows a functional close button by default. You can use the header-ac
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```
 
 ---
@@ -208,7 +203,6 @@ By default, dialogs will close when the user clicks the close button, clicks the
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```
 
 ---
@@ -251,5 +245,4 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
   data-valid=""
   >Open Dialog</syn-button
 >
-
 ```

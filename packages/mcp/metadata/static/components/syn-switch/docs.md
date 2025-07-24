@@ -1,4 +1,3 @@
-
 ## Default
 
 Switches allow the user to toggle an option on or off.
@@ -7,7 +6,6 @@ Switches allow the user to toggle an option on or off.
 <syn-switch title="" size="medium" form="" data-optional="" data-valid="">
   Option
 </syn-switch>
-
 ```
 
 ---
@@ -26,7 +24,6 @@ Use the checked attribute to activate the switch.
   data-valid=""
   >Checked</syn-switch
 >
-
 ```
 
 ---
@@ -45,7 +42,6 @@ Use the disabled attribute to disable the switch.
   data-valid=""
   >Disabled</syn-switch
 >
-
 ```
 
 ---
@@ -58,7 +54,6 @@ The focus event gives the user feedback that the Switch has been focused by the 
 <syn-switch title="" size="medium" form="" data-optional="" data-valid=""
   >Focused</syn-switch
 >
-
 ```
 
 ---
@@ -98,7 +93,6 @@ The invalid status is used to warn the user that the Switch is invalid.
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -117,5 +111,4 @@ Use the size attribute to change a switch’s size.
 <syn-switch size="large" title="" form="" data-optional="" data-valid=""
   >Large</syn-switch
 >
-
 ```

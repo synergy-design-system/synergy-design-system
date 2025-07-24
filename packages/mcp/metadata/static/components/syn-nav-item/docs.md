@@ -1,11 +1,9 @@
-
 ## Default
 
 The navigation item is used to trigger page switches.
 
 ```html
 <syn-nav-item> Label </syn-nav-item>
-
 ```
 
 ---
@@ -16,7 +14,6 @@ Use the label attribute to change the content of a navigation item.
 
 ```html
 <syn-nav-item>This is a label</syn-nav-item>
-
 ```
 
 ---
@@ -27,7 +24,6 @@ The current attribute provides the user feedback about which of the navigation e
 
 ```html
 <syn-nav-item current="">Current Navigation item</syn-nav-item>
-
 ```
 
 ---
@@ -38,7 +34,6 @@ Use the horizontal attribute to indicate that an element is used in a horizontal
 
 ```html
 <syn-nav-item current="" horizontal="">Horizontal navigation item</syn-nav-item>
-
 ```
 
 ---
@@ -51,7 +46,6 @@ The focus event gives the user feedback that the Navigation Item has been focuse
 <div style="padding: 5px">
   <syn-nav-item>Current navigation item</syn-nav-item>
 </div>
-
 ```
 
 ---
@@ -95,14 +89,13 @@ Use the prefix and suffix slots to add e. g. icons or tags. If available the pre
   <span class="doc-number-helper" slot="prefix">1</span>
   Step-like item with a number
 </syn-nav-item>
-
 ```
 
 ---
 
 ## Children Closed Or Open Vertical Only
 
-Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.Note:Since there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.
+Use the \*children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.Note:Since there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.
 
 ```html
 <nav style="width: 320px">
@@ -124,7 +117,6 @@ Use the *children attribute to indicate that a chevron should be shown. In devel
     </nav>
   </syn-nav-item>
 </nav>
-
 ```
 
 ---
@@ -138,7 +130,6 @@ Use the divider attribute to add a border at the top. This should be used for fi
   <syn-nav-item>Dividing element</syn-nav-item>
   <syn-nav-item divider="">Dividing element</syn-nav-item>
 </nav>
-
 ```
 
 ---
@@ -157,7 +148,6 @@ Vertical navigation elements can be indented to indicate deeper navigation level
     >Indentation: 2</syn-nav-item
   >
 </nav>
-
 ```
 
 ---
@@ -168,5 +158,4 @@ Use the disabled attribute to disable a navigation-item.
 
 ```html
 <syn-nav-item disabled="">Parent Element</syn-nav-item>
-
 ```

@@ -1,11 +1,9 @@
-
 ## Default
 
 Spinners are used to show the progress of an indeterminate operation.
 
 ```html
 <syn-spinner></syn-spinner>
-
 ```
 
 ---
@@ -22,7 +20,6 @@ Spinners are sized based on the current font size. To change their size, set the
   <syn-spinner style="font-size: var(--syn-font-size-2x-large)"></syn-spinner>
   <syn-spinner style="font-size: 40px"></syn-spinner>
 </div>
-
 ```
 
 ---
@@ -33,7 +30,6 @@ The width of the spinner’s track can be changed by setting the --track-width�
 
 ```html
 <syn-spinner style="font-size: 48px; --track-width: 8px"></syn-spinner>
-
 ```
 
 ---
@@ -46,5 +42,4 @@ The spinner’s colors can be changed by setting the --indicator-color and --
 <syn-spinner
   style="font-size: 48px; --indicator-color: var(--syn-color-error-600)"
 ></syn-spinner>
-
 ```

@@ -1,11 +1,10 @@
-
 ## Default
 
-It is possible to achieve different table stylings (default, with border, alternating, ...) 
-  either via multiple classes on the table, td and th elements or as a convenient alternative
-  as auto styling class, which is applied on a table element. These auto styling classes will
-  style the td and th elements correctly, without the need to apply further classes.
-  Note: The auto styling table classes work for simple table layouts. For more complex ones or advanced use cases, the table cell classes should be used.
+It is possible to achieve different table stylings (default, with border, alternating, ...)
+either via multiple classes on the table, td and th elements or as a convenient alternative
+as auto styling class, which is applied on a table element. These auto styling classes will
+style the td and th elements correctly, without the need to apply further classes.
+Note: The auto styling table classes work for simple table layouts. For more complex ones or advanced use cases, the table cell classes should be used.
 
 ```html
 <table class="syn-table--default">
@@ -39,7 +38,6 @@ It is possible to achieve different table stylings (default, with border, altern
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -80,7 +78,6 @@ Create table styles using multiple classes attached to table, td and th elements
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -121,7 +118,6 @@ Use default table style with the auto styling class syn-table--default.
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -162,7 +158,6 @@ Use alternating table style with the auto styling class syn-table--alternating.
     </tr>
   </tbody>
 </table>
-
 ```
 
 ---
@@ -203,5 +198,4 @@ Use border table style with the auto styling class syn-table--border.
     </tr>
   </tbody>
 </table>
-
 ```

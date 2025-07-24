@@ -1,7 +1,4 @@
-
 ## Subheadline
-
-
 
 ```html
 <syn-details summary="Toggle Me" contained="" size="medium">
@@ -18,7 +15,6 @@
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -42,7 +38,6 @@ Details show a brief summary and expand to show additional content. If you want 
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -66,7 +61,6 @@ Details show a brief summary and expand to show additional content.
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -105,7 +99,6 @@ To give content more structure, you can use the property contained.
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -131,7 +124,6 @@ The focus event gives the user feedback that the detail has been focused by the 
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </div>
-
 ```
 
 ---
@@ -155,7 +147,6 @@ Use the disable attribute to prevent the details from expanding.
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -196,7 +187,6 @@ Use the size attribute to change a detail’s size.
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```
 
 ---
@@ -227,5 +217,4 @@ Use the prefix Icon to prepend an icon to the details.
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
-
 ```

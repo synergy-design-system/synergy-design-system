@@ -1,4 +1,5 @@
 # Default system files
+coverage/
 patches
 pnpm-lock.yaml
 

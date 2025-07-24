@@ -1,4 +1,3 @@
-
 ## Default
 
 Menu items provide options for the user to pick from in a menu.
@@ -9,7 +8,6 @@ Menu items provide options for the user to pick from in a menu.
     Option 1
   </syn-menu-item>
 </syn-menu>
-
 ```
 
 ---
@@ -58,7 +56,6 @@ Add content to the start and end of menu items using the prefix and suffix s
     Settings
   </syn-menu-item>
 </syn-menu>
-
 ```
 
 ---
@@ -79,7 +76,6 @@ Use the disabled attribute to disable an option and prevent it from being select
     >Option 3</syn-menu-item
   >
 </syn-menu>
-
 ```
 
 ---
@@ -100,7 +96,6 @@ Use the loading attribute to indicate that a menu item is busy. Like a disable
     >Option 3</syn-menu-item
   >
 </syn-menu>
-
 ```
 
 ---
@@ -137,7 +132,6 @@ Set the type attribute to checkbox to create a menu item that will toggle on
     >Word Wrap</syn-menu-item
   >
 </syn-menu>
-
 ```
 
 ---
@@ -199,5 +193,4 @@ The value attribute can be used to assign a hidden value, such as a unique ide
     >Checkbox 6</syn-menu-item
   >
 </syn-menu>
-
 ```

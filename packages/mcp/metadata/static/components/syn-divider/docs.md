@@ -1,11 +1,9 @@
-
 ## Default
 
 Dividers are used to visually separate or group elements.
 
 ```html
 <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-
 ```
 
 ---
@@ -20,7 +18,6 @@ Use the --width custom property to change the width of the divider.
   role="separator"
   aria-orientation="horizontal"
 ></syn-divider>
-
 ```
 
 ---
@@ -35,7 +32,6 @@ Use the --color custom property to change the color of the divider.
   role="separator"
   aria-orientation="horizontal"
 ></syn-divider>
-
 ```
 
 ---
@@ -54,7 +50,6 @@ Use the --spacing custom property to change the amount of space between the divi
   ></syn-divider>
   Below
 </div>
-
 ```
 
 ---
@@ -79,5 +74,4 @@ Add the vertical attribute to draw the divider in a vertical orientation. The di
   ></syn-divider>
   Last
 </div>
-
 ```

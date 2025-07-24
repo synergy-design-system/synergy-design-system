@@ -1,4 +1,3 @@
-
 ## Default
 
 Textareas collect data from the user and allow multiple lines of text.
@@ -13,7 +12,6 @@ Textareas collect data from the user and allow multiple lines of text.
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -31,7 +29,6 @@ Use the label attribute to give the textarea an accessible label. For labels tha
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -51,7 +48,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   data-valid=""
 >
 </syn-textarea>
-
 ```
 
 ---
@@ -93,7 +89,6 @@ Use the rows attribute to change the number of text rows that get shown.
     margin-bottom: 1rem;
   }
 </style>
-
 ```
 
 ---
@@ -111,7 +106,6 @@ Use the placeholder attribute to add a placeholder.
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -130,7 +124,6 @@ Add the read-only attribute to draw a read-only textarea.
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -152,7 +145,6 @@ The focus event gives the user feedback that the Textarea has been focused by th
     ></syn-textarea>
   </form>
 </div>
-
 ```
 
 ---
@@ -173,7 +165,6 @@ Use the disabled attribute to disable a textarea.
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -209,7 +200,6 @@ Use the size attribute to change a textarea’s size.
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -250,7 +240,6 @@ The invalid status is used to warn the user that the input is invalid. For examp
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -268,7 +257,6 @@ By default, textareas can be resized vertically by the user. To prevent resizing
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```
 
 ---
@@ -287,5 +275,4 @@ Textareas will automatically resize to expand to fit their content when resize i
   data-optional=""
   data-valid=""
 ></syn-textarea>
-
 ```

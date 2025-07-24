@@ -1,11 +1,9 @@
-
 ## Default
 
 Progress bars are used to show the status of an ongoing operation.
 
 ```html
 <syn-progress-bar value="33.3"></syn-progress-bar>
-
 ```
 
 ---
@@ -16,7 +14,6 @@ Use the label attribute to label the progress bar and tell assistive devices how
 
 ```html
 <syn-progress-bar value="25" label="Upload progress">25%</syn-progress-bar>
-
 ```
 
 ---
@@ -30,7 +27,6 @@ Use the --height custom property to set the progress bar’s height.
   value="50"
   style="--height: var(--syn-spacing-2x-small)"
 ></syn-progress-bar>
-
 ```
 
 ---
@@ -80,7 +76,6 @@ Use the default slot to show a value.
     </syn-button>
   </div>
 </div>
-
 ```
 
 ---
@@ -91,5 +86,4 @@ The indeterminate attribute can be used to inform the user that the operation 
 
 ```html
 <syn-progress-bar indeterminate="" value="0"></syn-progress-bar>
-
 ```

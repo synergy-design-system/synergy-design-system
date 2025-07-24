@@ -1,4 +1,3 @@
-
 ## Default
 
 Radios allow the user to select a single option from a group. \nRadios are designed to be used with radio groups.
@@ -13,7 +12,6 @@ Radios allow the user to select a single option from a group. \nRadios are desig
 >
   Option
 </syn-radio>
-
 ```
 
 ---
@@ -33,7 +31,6 @@ Use the disabled attribute to disable a radio.
   size="medium"
   >Option</syn-radio
 >
-
 ```
 
 ---
@@ -52,7 +49,6 @@ The focus event gives the user feedback that the Radio has been focused by the k
   size="medium"
   >Option</syn-radio
 >
-
 ```
 
 ---
@@ -101,7 +97,6 @@ The invalid status is used to warn the user that the Radio is invalid. For examp
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -138,5 +133,4 @@ Add the size attribute to the Radio Group to change the radios’ size.
   aria-checked="false"
   >Option</syn-radio
 >
-
 ```

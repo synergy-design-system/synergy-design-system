@@ -1,4 +1,3 @@
-
 ## Default
 
 Selects allow you to choose items from a menu of predefined options.
@@ -34,7 +33,6 @@ Selects allow you to choose items from a menu of predefined options.
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -74,7 +72,6 @@ Use the label attribute to give the select an accessible label. For labels that 
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -115,7 +112,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
     >Advanced</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -155,7 +151,6 @@ Use the placeholder attribute to add a placeholder.
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -196,7 +191,6 @@ Use the clearable attribute to make the control clearable. The clear button only
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -238,7 +232,6 @@ The focus event gives the user feedback that the Select has been focused by the 
     >
   </syn-select>
 </div>
-
 ```
 
 ---
@@ -279,7 +272,6 @@ Use the disabled attribute to disable a select.
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -343,7 +335,6 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
     >Option 6</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -393,7 +384,6 @@ Use the value attribute to set the initial selection.When using multiple, the va
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -444,7 +434,6 @@ Use <syn-optgroup> to group listbox items visually.
     >
   </syn-optgroup>
 </syn-select>
-
 ```
 
 ---
@@ -550,7 +539,6 @@ Use the size attribute to change a select’s size. Note that size does not appl
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -612,7 +600,6 @@ The invalid status is used to warn the user that the Select is invalid. For exam
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -753,7 +740,6 @@ Use the prefix and suffix slots to add text and icons.
     library="default"
   ></syn-icon>
 </syn-select>
-
 ```
 
 ---
@@ -818,5 +804,4 @@ When multiple options can be selected, you can provide custom tags by passing a 
     Chat
   </syn-option>
 </syn-select>
-
 ```

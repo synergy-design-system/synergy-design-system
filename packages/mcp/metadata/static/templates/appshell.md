@@ -1,4 +1,3 @@
-
 ## Side Navigation
 
 The side navigation opens when the user clicks on the burger menu. As the side navigation opens, a transparent mask fades in and the navigation overlaps the content area. To close the navigation, the user must either click on the close icon or anywhere on the content area to the right of the side navigation.
@@ -262,7 +261,6 @@ The side navigation opens when the user clicks on the burger menu. As the side n
     text-align: center;
   }
 </style>
-
 ```
 
 ---
@@ -560,7 +558,6 @@ The side navigation opens when the user clicks on the burger menu. As the side n
     }
   }
 </style>
-
 ```
 
 ---
@@ -839,7 +836,6 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
     }
   }
 </style>
-
 ```
 
 ---
@@ -1118,7 +1114,6 @@ The navigation opens when the user touches it. As the side navigation opens, a t
     }
   }
 </style>
-
 ```
 
 ---
@@ -1381,7 +1376,6 @@ General BehaviourThe navigation maintains its compact width until the user click
     }
   }
 </style>
-
 ```
 
 ---
@@ -1644,7 +1638,6 @@ General BehaviourThe navigation maintains its compact width until the user click
     }
   }
 </style>
-
 ```
 
 ---
@@ -1873,7 +1866,6 @@ The top navigation can be combined with a light grey background.This variant is 
     text-align: center;
   }
 </style>
-
 ```
 
 ---
@@ -2108,5 +2100,4 @@ Additionally the top navigation can be combined with a white background.
     background: var(--syn-color-neutral-0);
   }
 </style>
-
 ```

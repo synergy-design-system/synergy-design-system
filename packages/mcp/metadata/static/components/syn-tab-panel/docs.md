@@ -1,4 +1,3 @@
-
 ## Default
 
 Tab panels are used inside tab groups to display tabbed content.
@@ -89,5 +88,4 @@ Tab panels are used inside tab groups to display tabbed content.
     justify-content: center;
   }
 </style>
-
 ```

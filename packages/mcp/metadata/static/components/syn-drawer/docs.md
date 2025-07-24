@@ -1,4 +1,3 @@
-
 ## Default
 
 Drawers slide in from a container to expose additional options and information.
@@ -31,7 +30,6 @@ Drawers slide in from a container to expose additional options and information.
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -67,7 +65,6 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -98,7 +95,6 @@ To make the drawer slide in from the top, set the placement attribute to top.
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -134,7 +130,6 @@ To make the drawer slide in from the bottom, set the placement attribute to b
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -185,7 +180,6 @@ By default, drawers slide out of their containing block, which is usually the v
   data-valid=""
   >Toggle Drawer</syn-button
 >
-
 ```
 
 ---
@@ -222,7 +216,6 @@ Use the --size custom property to set the drawer’s size. This will be applie
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -286,7 +279,6 @@ By design, a drawer’s height will never exceed 100% of its container. As such,
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -330,7 +322,6 @@ The header shows a functional close button by default. You can use the header-a
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -361,7 +352,6 @@ By default, drawers will close when the user clicks the close button, clicks the
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```
 
 ---
@@ -401,5 +391,4 @@ By default, the drawer’s panel will gain focus when opened. This allows a subs
   data-valid=""
   >Open Drawer</syn-button
 >
-
 ```

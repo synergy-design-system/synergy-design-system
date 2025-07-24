@@ -1,4 +1,3 @@
-
 ## Default
 
 Checkboxes allow the user to toggle an option on or off.
@@ -7,7 +6,6 @@ Checkboxes allow the user to toggle an option on or off.
 <syn-checkbox title="" size="medium" form="" data-optional="" data-valid="">
   Checkbox
 </syn-checkbox>
-
 ```
 
 ---
@@ -26,7 +24,6 @@ Use the checked attribute to activate the checkbox.
   data-valid=""
   >Checked</syn-checkbox
 >
-
 ```
 
 ---
@@ -45,7 +42,6 @@ Use the indeterminate attribute to make the checkbox indeterminate.
   data-valid=""
   >Indeterminate</syn-checkbox
 >
-
 ```
 
 ---
@@ -64,7 +60,6 @@ Use the disabled attribute to disable the checkbox.
   data-valid=""
   >Disabled</syn-checkbox
 >
-
 ```
 
 ---
@@ -85,7 +80,6 @@ Use the size attribute to change a checkbox’s size.
     >Large</syn-checkbox
   >
 </div>
-
 ```
 
 ---
@@ -123,5 +117,4 @@ Use the setCustomValidity() method to set a custom validation message. This will
     gap: 1rem;
   }
 </style>
-
 ```

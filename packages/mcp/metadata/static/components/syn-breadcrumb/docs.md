@@ -1,4 +1,3 @@
-
 ## Default
 
 Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy. Breadcrumbs are usually placed before a page’s main content with the current page shown last to indicate the user’s position in the navigation.
@@ -46,7 +45,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
     ></syn-icon
   ></syn-breadcrumb-item>
 </syn-breadcrumb>
-
 ```
 
 ---
@@ -98,7 +96,6 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
     ></syn-icon
   ></syn-breadcrumb-item>
 </syn-breadcrumb>
-
 ```
 
 ---
@@ -147,7 +144,6 @@ Use the prefix slot to add content before any breadcrumb item.
     ></syn-icon
   ></syn-breadcrumb-item>
 </syn-breadcrumb>
-
 ```
 
 ---
@@ -196,7 +192,6 @@ Use the suffix slot to add content after any breadcrumb item.
     ></syn-icon
   ></syn-breadcrumb-item>
 </syn-breadcrumb>
-
 ```
 
 ---
@@ -285,5 +280,4 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
     padding: 0;
   }
 </style>
-
 ```

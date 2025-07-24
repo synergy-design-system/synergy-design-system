@@ -1,7 +1,4 @@
-
 ## Headline
-
-
 
 ```html
 <syn-card>
@@ -60,7 +57,6 @@
     alt="Multiple persons having lunch in SICK Academy"
   />
 </syn-card>
-
 ```
 
 ---
@@ -126,7 +122,6 @@ Cards can be used to group related subjects in a container.
     alt="Multiple persons having lunch in SICK Academy"
   />
 </syn-card>
-
 ```
 
 ---
@@ -145,7 +140,6 @@ Basic cards aren’t very exciting, but they can display any content you want th
     max-width: 400px;
   }
 </style>
-
 ```
 
 ---
@@ -188,7 +182,6 @@ Headers can be used to display titles and more.
     font-size: var(--syn-font-size-x-large);
   }
 </style>
-
 ```
 
 ---
@@ -250,7 +243,6 @@ Footers can be used to display actions, summaries, or other relevant content.
     max-width: 400px;
   }
 </style>
-
 ```
 
 ---
@@ -275,7 +267,6 @@ Cards accept an image slot. The image is displayed atop the card and stretches t
     max-width: 400px;
   }
 </style>
-
 ```
 
 ---
@@ -300,5 +291,4 @@ Use the sharp variant attribute for the Card to Use a different style.
     max-width: 400px;
   }
 </style>
-
 ```

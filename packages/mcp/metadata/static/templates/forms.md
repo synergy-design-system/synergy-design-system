@@ -1,7 +1,4 @@
-
 ## Contact Form
-
-
 
 ```html
 <style>
@@ -418,5 +415,4 @@
     </em>
   </form>
 </div>
-
 ```

@@ -1,7 +1,4 @@
-
 ## Table With Header
-
-
 
 ```html
 <table class="syn-table--default">
@@ -179,14 +176,11 @@
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
 
 ## Table With Alternating Rows
-
-
 
 ```html
 <table class="syn-table--alternating">
@@ -364,14 +358,11 @@
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
 
 ## Table With Borders
-
-
 
 ```html
 <table class="syn-table--border">
@@ -549,7 +540,6 @@
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
@@ -801,7 +791,6 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
@@ -1041,7 +1030,6 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
@@ -1284,14 +1272,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
-
 ```
 
 ---
 
 ## Table Product
-
-
 
 ```html
 <div id="product-table">
@@ -1918,5 +1903,4 @@ property should be set to 'separate'. Otherwise the table will have some strange
     font: var(--syn-body-small-semibold);
   }
 </style>
-
 ```

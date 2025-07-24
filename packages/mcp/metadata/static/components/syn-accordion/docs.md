@@ -1,7 +1,4 @@
-
 ## Subheadline
-
-
 
 ```html
 <syn-accordion size="medium">
@@ -48,7 +45,6 @@
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </syn-accordion>
-
 ```
 
 ---
@@ -102,7 +98,6 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </syn-accordion>
-
 ```
 
 ---
@@ -159,7 +154,6 @@ To give content more structure, you can use the property contained.
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </syn-accordion>
-
 ```
 
 ---
@@ -213,7 +207,6 @@ Set the close-others property to true to ensure only one detail is open at a tim
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </syn-accordion>
-
 ```
 
 ---
@@ -269,7 +262,6 @@ The focus event gives the user feedback that the detail has been focused by the 
     </syn-details>
   </syn-accordion>
 </div>
-
 ```
 
 ---
@@ -323,7 +315,6 @@ Use the disable attribute to prevent the details from expanding.
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
 </syn-accordion>
-
 ```
 
 ---
@@ -434,5 +425,4 @@ Use the size attribute to change a detail’s size. The size attribute should no
     margin-top: var(--syn-spacing-2x-large);
   }
 </style>
-
 ```

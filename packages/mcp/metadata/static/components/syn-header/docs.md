@@ -1,4 +1,3 @@
-
 ## Default
 
 The header is used to indicate the name of the app, provide important actions in a toolbar and a navigation.
@@ -7,7 +6,6 @@ The header is used to indicate the name of the app, provide important actions in
 <syn-header burger-menu="hidden">
   <span slot="label">App Name</span>
 </syn-header>
-
 ```
 
 ---
@@ -18,7 +16,6 @@ Use the label attribute to change the app name.
 
 ```html
 <syn-header label="A new label" burger-menu="hidden"></syn-header>
-
 ```
 
 ---
@@ -40,7 +37,6 @@ Use the logo slot to change the app logo. Usually this is only needed in whitela
     slot="logo"
   ></span>
 </syn-header>
-
 ```
 
 ---
@@ -76,7 +72,6 @@ The focus event gives the user feedback that a link in the logo has been focused
     ></syn-icon>
   </a>
 </syn-header>
-
 ```
 
 ---
@@ -108,7 +103,6 @@ Use the Meta Navigation slot to add additional functionalities to your applicati
     ></syn-icon-button>
   </nav>
 </syn-header>
-
 ```
 
 ---
@@ -150,7 +144,6 @@ Use the top navigation slot to add syn-navigation and horizontal syn-navigation-
     >
   </syn-prio-nav>
 </syn-header>
-
 ```
 
 ---
@@ -161,5 +154,4 @@ Use the Burger Menu as trigger to open and close the Navigation. In the open sta
 
 ```html
 <syn-header burger-menu="closed" label="App Name"> </syn-header>
-
 ```

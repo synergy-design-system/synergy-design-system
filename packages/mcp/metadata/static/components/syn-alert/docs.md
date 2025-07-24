@@ -1,4 +1,3 @@
-
 ## Default
 
 Alerts are used to display important messages inline or as toast notifications.
@@ -13,7 +12,6 @@ Alerts are used to display important messages inline or as toast notifications.
     library="default"
   ></syn-icon>
 </syn-alert>
-
 ```
 
 ---
@@ -86,7 +84,6 @@ Set the variant attribute to change the alert’s variant.
     overflow: hidden;
   }
 </style>
-
 ```
 
 ---
@@ -105,7 +102,6 @@ Add the closable attribute to show a close button that will hide the alert.
   ></syn-icon>
   You can close this alert any time!
 </syn-alert>
-
 ```
 
 ---
@@ -118,7 +114,6 @@ Icons are optional. Simply omit the icon slot if you don’t want them.
 <syn-alert variant="primary" open="">
   Nothing fancy here, just a simple alert.
 </syn-alert>
-
 ```
 
 ---
@@ -155,7 +150,6 @@ Set the duration attribute to automatically hide an alert after a period of time
     margin-top: var(--syn-spacing-small);
   }
 </style>
-
 ```
 
 ---
@@ -269,7 +263,6 @@ To display an alert as a toast notification, or “toast”, create the alert an
     We're very sorry to see you go!
   </syn-alert>
 </div>
-
 ```
 
 ---
@@ -289,5 +282,4 @@ For convenience, you can create a utility that emits toast notifications with a 
     >Create Toast</syn-button
   >
 </div>
-
 ```

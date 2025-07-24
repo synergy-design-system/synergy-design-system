@@ -1,7 +1,4 @@
-
 ## Breadcrumb Responsive
-
-
 
 ```html
 <div id="breadcrumb-responsive" class="synergy-demo-application">
@@ -178,14 +175,11 @@
     }
   }
 </style>
-
 ```
 
 ---
 
 ## Breadcrumb Truncated
-
-
 
 ```html
 <div id="breadcrumb-truncated" class="synergy-demo-application">
@@ -286,14 +280,11 @@
     vertical-align: middle;
   }
 </style>
-
 ```
 
 ---
 
 ## Breadcrumb Short
-
-
 
 ```html
 <div id="breadcrumb-short" class="synergy-demo-application">
@@ -396,5 +387,4 @@
     display: none;
   }
 </style>
-
 ```

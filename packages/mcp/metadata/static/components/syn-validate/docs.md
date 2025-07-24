@@ -1,4 +1,3 @@
-
 ## Default
 
 Validate offers options for convenient error handling in form elements.
@@ -30,7 +29,6 @@ Validate offers options for convenient error handling in form elements.
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -66,7 +64,6 @@ Set the variant attribute to inline to show the invalid message below the select
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -107,7 +104,6 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -143,7 +139,6 @@ Use the live value for the on attribute to validate on every input change (e. g.
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -186,7 +181,6 @@ Use the custom-validation-message attribute to use whichever error you need as t
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -214,7 +208,6 @@ Wrap the element around any other form field, that follows browser standards to 
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -256,7 +249,6 @@ Use the on attribute to listen for one or many custom events. This may be useful
     >
   </p>
 </form>
-
 ```
 
 ---
@@ -293,5 +285,4 @@ Use the eager attribute to validate the field when the component is mounted. Thi
     >
   </p>
 </form>
-
 ```

@@ -1,11 +1,9 @@
-
 ## Default
 
 This shows the syn-icon in its default state
 
 ```html
 <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-
 ```
 
 ---
@@ -42,7 +40,6 @@ Thus, you can set the color property on the <syn-icon> element or an ancestor to
   <syn-icon name="star_border" aria-hidden="true" library="default"></syn-icon>
   <syn-icon name="delete" aria-hidden="true" library="default"></syn-icon>
 </div>
-
 ```
 
 ---
@@ -80,7 +77,6 @@ or on a parent element as shown below.
   <syn-icon name="star_border" aria-hidden="true" library="default"></syn-icon>
   <syn-icon name="delete" aria-hidden="true" library="default"></syn-icon>
 </div>
-
 ```
 
 ---
@@ -97,7 +93,6 @@ For non-decorative icons, use the label attribute to announce it to assistive de
   aria-label="Add to favorites"
   library="default"
 ></syn-icon>
-
 ```
 
 ---
@@ -115,14 +110,11 @@ If you're using more than one custom icon, it might make sense to register a cus
   aria-hidden="true"
   library="default"
 ></syn-icon>
-
 ```
 
 ---
 
 ## CDN Icon Library
-
-
 
 ```html
 <div style="font-size: var(--syn-font-size-x-large)">
@@ -142,14 +134,11 @@ If you're using more than one custom icon, it might make sense to register a cus
   <syn-icon library="fa" name="fab-chrome" aria-hidden="true"></syn-icon>
   <syn-icon library="fa" name="fab-edge" aria-hidden="true"></syn-icon>
 </div>
-
 ```
 
 ---
 
 ## Bundled Icon Library
-
-
 
 ```html
 <div style="font-size: var(--syn-font-size-x-large)">
@@ -174,19 +163,15 @@ If you're using more than one custom icon, it might make sense to register a cus
     aria-hidden="true"
   ></syn-icon>
 </div>
-
 ```
 
 ---
 
 ## Sprite Sheet Usage
 
-
-
 ```html
 <div style="font-size: var(--syn-font-size-x-large)">
   <syn-icon library="sprite" name="settings" aria-hidden="true"></syn-icon>
   <syn-icon library="sprite" name="refresh" aria-hidden="true"></syn-icon>
 </div>
-
 ```

@@ -1,11 +1,9 @@
-
 ## Default
 
 Badges are used to draw attention and display statuses or counts.
 
 ```html
 <syn-badge variant="primary"> Badge </syn-badge>
-
 ```
 
 ---
@@ -22,7 +20,6 @@ Set the variant attribute to change the badge’s variant.
   <syn-badge variant="warning">warning</syn-badge>
   <syn-badge variant="danger">danger</syn-badge>
 </div>
-
 ```
 
 ---
@@ -68,7 +65,6 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
     <syn-badge variant="danger" pill="">6</syn-badge>
   </syn-button>
 </div>
-
 ```
 
 ---
@@ -93,7 +89,6 @@ When including badges in menu items, use the suffix slot to make sure they’r
     ></syn-menu-item
   >
 </syn-menu>
-
 ```
 
 ---
@@ -142,5 +137,4 @@ Badges can be used without content to just show an status indicator.
     <syn-badge variant="primary">12</syn-badge>
   </syn-popup>
 </div>
-
 ```

@@ -1,4 +1,3 @@
-
 ## Default
 
 Menus provide a list of options for the user to choose from.You can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.
@@ -51,7 +50,6 @@ Menus provide a list of options for the user to choose from.You can use menu ite
     >
   </syn-menu>
 </div>
-
 ```
 
 ---
@@ -98,7 +96,6 @@ Menus work really well when used inside dropdowns.
     </syn-menu>
   </syn-dropdown>
 </div>
-
 ```
 
 ---
@@ -169,5 +166,4 @@ To create a submenu, nest an <syn-menu slot="submenu"> in any menu item.
     </syn-menu>
   </syn-menu-item>
 </syn-menu>
-
 ```

@@ -1,11 +1,7 @@
-
 ## Default
-
-
 
 ```html
 <a class="syn-link syn-link--medium" href="javascript:void(0)"> Link label </a>
-
 ```
 
 ---
@@ -22,7 +18,6 @@ If a link is placed within body text, it only breaks if variant without icon is 
   >
   to imply how it works in real life.
 </p>
-
 ```
 
 ---
@@ -70,7 +65,6 @@ Use the prefix and suffix slots to add icons.
     gap: var(--syn-spacing-large);
   }
 </style>
-
 ```
 
 ---
@@ -88,7 +82,6 @@ Use the Quiet attribute to have a low emphasis variant of a Link. This can be us
   ></syn-icon>
   Silence is gold
 </a>
-
 ```
 
 ---
@@ -106,7 +99,6 @@ Use the disabled attribute to disable a Link.
   ></syn-icon>
   Disabled
 </a>
-
 ```
 
 ---
@@ -126,7 +118,6 @@ The focus event gives the user feedback that the Link has been focused by the ke
     Link
   </a>
 </div>
-
 ```
 
 ---
@@ -162,5 +153,4 @@ Use the size attribute to change the Link size.
     Large
   </a>
 </div>
-
 ```

@@ -1,4 +1,3 @@
-
 ## Default
 
 Ranges allow the user to select values within a given range using a thumb.
@@ -13,7 +12,6 @@ Ranges allow the user to select values within a given range using a thumb.
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -33,7 +31,6 @@ Use the label attribute to give the range an accessible label. For labels that
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -54,7 +51,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -74,7 +70,6 @@ Use the disabled attribute to disable a range.
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -118,7 +113,6 @@ The invalid status is used to warn the user that the input is invalid. As range 
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -139,7 +133,6 @@ The focus event gives the user feedback that the Range has been focused by the k
     data-valid=""
   ></syn-range>
 </form>
-
 ```
 
 ---
@@ -188,7 +181,6 @@ Use the size attribute to change a range’s size.
     gap: var(--syn-spacing-medium);
   }
 </style>
-
 ```
 
 ---
@@ -261,7 +253,6 @@ Add any element to the start and end of range items using the prefix and suffix 
     }
   }
 </style>
-
 ```
 
 ---
@@ -286,7 +277,6 @@ You can customize the active and inactive portions of the track using the --trac
     --track-color-active: var(--syn-color-success-700);
   }
 </style>
-
 ```
 
 ---
@@ -311,7 +301,6 @@ You can customize the initial offset of the active track using the --track-activ
     --track-active-offset: 50%;
   }
 </style>
-
 ```
 
 ---
@@ -330,7 +319,6 @@ You can add multiple range-thumbs to your range.
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -352,7 +340,6 @@ Set the restrict-movement attribute to true to prevent the thumbs from overlappi
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -425,7 +412,6 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
     display: flex;
   }
 </style>
-
 ```
 
 ---
@@ -445,7 +431,6 @@ By default, the tooltip is shown on top. Set tooltip-placement to bottom to show
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -465,7 +450,6 @@ To disable the tooltip, set tooltip-placement to none.
   data-optional=""
   data-valid=""
 ></syn-range>
-
 ```
 
 ---
@@ -498,5 +482,4 @@ You can change the tooltip’s content by setting the tooltipFormatter property 
     display: flex;
   }
 </style>
-
 ```

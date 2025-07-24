@@ -1,11 +1,9 @@
-
 ## Default
 
 File control is a component with which a user can select a local file. It shows the value of the selected file.
 
 ```html
 <syn-file size="medium" form=""></syn-file>
-
 ```
 
 ---
@@ -16,7 +14,6 @@ Use the label attribute to give the file selector an accessible label. For label
 
 ```html
 <syn-file label="This is a label" size="medium" form=""></syn-file>
-
 ```
 
 ---
@@ -32,7 +29,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   size="medium"
   form=""
 ></syn-file>
-
 ```
 
 ---
@@ -48,7 +44,6 @@ Use the multiple attribute to allow the selection of multiple files.Figma only: 
   size="medium"
   form=""
 ></syn-file>
-
 ```
 
 ---
@@ -64,7 +59,6 @@ There might be situations, where you don’t want to show the selected value (e.
   size="medium"
   form=""
 ></syn-file>
-
 ```
 
 ---
@@ -83,7 +77,6 @@ The focus event gives the user feedback that the Dropzone has been focused by th
     form=""
   ></syn-file>
 </div>
-
 ```
 
 ---
@@ -108,7 +101,6 @@ Use the disabled attribute to disable a file input.
     form=""
   ></syn-file>
 </div>
-
 ```
 
 ---
@@ -125,7 +117,6 @@ Use the size attribute to change the component's size.
   <syn-file size="medium" label="Medium" form=""></syn-file>
   <syn-file size="large" label="Large" form=""></syn-file>
 </div>
-
 ```
 
 ---
@@ -168,7 +159,6 @@ The invalid status is used to warn the user that the syn-file is invalid. For ex
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -209,7 +199,6 @@ Use the droparea attribute to switch to a full-width button with a drop area.
     form=""
   ></syn-file>
 </div>
-
 ```
 
 ---
@@ -231,5 +220,4 @@ The webkitdirectory setting allows users to select entire directories instead of
     form=""
   ></syn-file>
 </div>
-
 ```

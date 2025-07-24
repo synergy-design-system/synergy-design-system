@@ -1,4 +1,3 @@
-
 ## Default
 
 Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
@@ -40,7 +39,6 @@ Radio groups are used to group multiple radios or radio buttons so they function
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
@@ -86,7 +84,6 @@ Use the label attribute to give the radio-group an accessible label. For labels 
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
@@ -134,7 +131,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
@@ -182,7 +178,6 @@ The focus event gives the user feedback that one of the radio buttons has been f
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
@@ -231,14 +226,11 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
 
 ## Checked
-
-
 
 ```html
 <syn-radio-group
@@ -279,7 +271,6 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
     >Option</syn-radio
   >
 </syn-radio-group>
-
 ```
 
 ---
@@ -349,7 +340,6 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     align-self: flex-start;
   }
 </style>
-
 ```
 
 ---
@@ -408,5 +398,4 @@ Use the setCustomValidity() method to set a custom validation message. This will
     >Submit</syn-button
   >
 </form>
-
 ```

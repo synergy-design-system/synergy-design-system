@@ -1,4 +1,3 @@
-
 ## Default
 
 Breadcrumb Items are used inside breadcrumbs to represent different links.
@@ -50,5 +49,4 @@ Breadcrumb Items are used inside breadcrumbs to represent different links.
     ></syn-icon
   ></syn-breadcrumb-item>
 </syn-breadcrumb>
-
 ```

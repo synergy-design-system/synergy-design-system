@@ -1,4 +1,3 @@
-
 ## Default
 
 Options define the selectable items within various form controls such as select.
@@ -36,7 +35,6 @@ Options define the selectable items within various form controls such as select.
     >Option 3</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -77,7 +75,6 @@ Use the disabled attribute to disable an option and prevent it from being select
     >Chat</syn-option
   >
 </syn-select>
-
 ```
 
 ---
@@ -158,5 +155,4 @@ Add icons to the start and end of menu items using the prefix and suffix slots.
     ></syn-icon>
   </syn-option>
 </syn-select>
-
 ```

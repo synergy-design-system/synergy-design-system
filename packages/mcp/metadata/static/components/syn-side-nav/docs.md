@@ -1,4 +1,3 @@
-
 ## Default
 
 Side navigation lets the user navigate through the entire content of a product. It supports single or nested navigation levels.
@@ -61,7 +60,6 @@ Side navigation lets the user navigate through the entire content of a product. 
     </syn-nav-item>
   </syn-side-nav>
 </main>
-
 ```
 
 ---
@@ -150,7 +148,6 @@ Set the variant attribute to rail to only show a small navigation stripe at the 
     overflow-y: auto;
   }
 </style>
-
 ```
 
 ---
@@ -239,7 +236,6 @@ Use the sticky variant when you need a persistent, toggleable side navigation th
     overflow-y: auto;
   }
 </style>
-
 ```
 
 ---
@@ -330,7 +326,6 @@ The Side navigation can have an optional bottom navigation "slot" to split up th
     background-color: var(--syn-color-neutral-200);
   }
 </style>
-
 ```
 
 ---
@@ -423,7 +418,6 @@ Per default, the side navigation shows an overlay. This should always be the cas
     background-color: var(--syn-color-neutral-0);
   }
 </style>
-
 ```
 
 ---
@@ -521,7 +515,6 @@ For specific cases it might make sense to have the navigation open while still b
     overflow-y: auto;
   }
 </style>
-
 ```
 
 ---
@@ -597,5 +590,4 @@ The different levels of navigation can be organized using the indention. The cur
     background-color: var(--syn-color-neutral-200);
   }
 </style>
-
 ```

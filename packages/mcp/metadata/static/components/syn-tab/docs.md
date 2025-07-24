@@ -1,4 +1,3 @@
-
 ## Default
 
 Tabs are used inside tab groups to represent and activate tab panels.
@@ -45,5 +44,4 @@ Tabs are used inside tab groups to represent and activate tab panels.
   tabindex="-1"
   >Disabled</syn-tab
 >
-
 ```

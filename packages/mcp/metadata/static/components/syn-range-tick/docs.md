@@ -1,11 +1,9 @@
-
 ## Default
 
 Use the ticks slot to insert ticks or groups with ticks to improve positioning.
 
 ```html
 <syn-range-tick></syn-range-tick>
-
 ```
 
 ---
@@ -16,7 +14,6 @@ Use the default slot to give the tick a label.
 
 ```html
 <syn-range-tick>0</syn-range-tick>
-
 ```
 
 ---
@@ -81,7 +78,6 @@ Grouping multiple ticks can be used as a scale. This can be used for uneven dist
     flex-grow: 0;
   }
 </style>
-
 ```
 
 ---
@@ -111,5 +107,4 @@ It is possible to divide the space between major ticks for finer scale readings.
     display: flex;
   }
 </style>
-
 ```

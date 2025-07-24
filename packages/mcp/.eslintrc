@@ -22,6 +22,7 @@
         "src/utilities/storybook/**/*.ts"
       ]
     }],
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "complexity": ["error", 10]
   }
 }

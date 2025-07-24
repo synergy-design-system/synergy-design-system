@@ -1,7 +1,4 @@
-
 ## Default
-
-
 
 ```html
 <ul class="syn-link-list syn-link-list--medium">
@@ -46,7 +43,6 @@
     </a>
   </li>
 </ul>
-
 ```
 
 ---
@@ -98,7 +94,6 @@ Use the horizontal attribute to indicate that it is used as a horizontal link li
     </a>
   </li>
 </ul>
-
 ```
 
 ---
@@ -190,7 +185,6 @@ The horizontal link list automatically wraps into a new line if there is not eno
     </a>
   </li>
 </ul>
-
 ```
 
 ---
@@ -328,5 +322,4 @@ Use the size attribute to change the link list size.
     </li>
   </ul>
 </div>
-
 ```

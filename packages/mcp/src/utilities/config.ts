@@ -36,6 +36,11 @@ export const stylesPath = join(currentDirname, '../../metadata/packages/styles')
 export const staticStylesPath = join(currentDirname, '../../metadata/static/styles');
 
 /**
+ * Path to the templates directory, relative to the MCP directory.
+ */
+export const templatesPath = join(currentDirname, '../../metadata/static/templates');
+
+/**
  * Path to the tokens directory, relative to the MCP directory.
  */
 export const tokensPath = join(currentDirname, '../../metadata/packages/tokens');

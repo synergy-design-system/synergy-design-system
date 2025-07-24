@@ -21,6 +21,7 @@ export const createServer = () => {
   tools.frameworkInfoTool(server);
   tools.stylesInfoTool(server);
   tools.stylesList(server);
+  tools.templateList(server);
   tools.tokenInfoTool(server);
   tools.assetsTool(server);
 

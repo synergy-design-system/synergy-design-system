@@ -4,4 +4,5 @@ export * from './config.js';
 export * from './file.js';
 export * from './metadata.js';
 export * from './styles.js';
+export * from './templates.js';
 export * from './tokens.js';

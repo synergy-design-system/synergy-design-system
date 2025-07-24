@@ -23,6 +23,19 @@ export const getStaticMetaDataForFramework = async (
 };
 
 /**
+ * Get additional information for a specific component from the static metadata.
+ * @param component The name of the component to get information about, e.g., 'syn-button'.
+ * @returns The structured metadata for the specified component, taken from the static metadata.
+ */
+const getAdditionalInformationForComponent = async (
+  component: string,
+) => getStructuredMetaDataForComponent(
+  component,
+  undefined,
+  'static',
+);
+
+/**
  * Get information about the usage of a specific component in the Synergy Design System.
  * @param component The name of the component to get information about, e.g., 'syn-button'.
  * @param framework The framework to filter the component usage information by.
@@ -35,7 +48,6 @@ export const getInfoForComponent = async (
   // Filter function to select specific files based on the framework
   const namePatterns = [
     'component.ts',
-    'docs.md',
     'component.styles.ts',
     'component.custom.styles.ts',
   ];
@@ -59,7 +71,12 @@ export const getInfoForComponent = async (
     fileName => finalPattern.some(pattern => fileName.toLowerCase().includes(pattern)),
   );
 
-  return data;
+  const additionalData = await getAdditionalInformationForComponent(component);
+
+  return [
+    ...data,
+    ...additionalData,
+  ].filter(Boolean);
 };
 
 /**

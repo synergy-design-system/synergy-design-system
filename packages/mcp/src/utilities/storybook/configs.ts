@@ -1,5 +1,5 @@
 import { ScrapingConfig } from './types.js';
-import { componentPath, stylesPath } from '../config.js';
+import { staticComponentPath, staticStylesPath } from '../config.js';
 import { getAvailableComponents } from '../components.js';
 
 /**
@@ -21,10 +21,10 @@ ${story.example}
 
     return content;
   },
-  generateOutputPath: (component: string) => `${componentPath}/${component}/docs.md`,
+  generateOutputPath: (component: string) => `${staticComponentPath}/${component}/docs.md`,
   generateStoryId: (component: string) => `components-${component}--docs`,
   getItems: getAvailableComponents,
-  outputPath: componentPath,
+  outputPath: staticComponentPath,
 };
 
 /**
@@ -46,7 +46,7 @@ ${story.example}
 
     return content;
   },
-  generateOutputPath: (style: string) => `${stylesPath}/${style}.md`,
+  generateOutputPath: (style: string) => `${staticStylesPath}/${style}.md`,
   generateStoryId: (style: string) => `styles-syn-${style}--docs`,
   getItems: () => [
     'body',
@@ -57,5 +57,5 @@ ${story.example}
     'table',
     'weight',
   ],
-  outputPath: stylesPath,
+  outputPath: staticStylesPath,
 };

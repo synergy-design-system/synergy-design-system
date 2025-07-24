@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
-import { basename } from 'node:path';
-import { componentPath } from './config.js';
+import { statSync } from 'node:fs';
+import { basename, join } from 'node:path';
+import { componentPath, staticComponentPath } from './config.js';
 import { getAbsolutePath } from './file.js';
 
 /**
@@ -33,7 +34,13 @@ export const getStructuredMetaData = async (
   const files = await fs.readdir(absolutePath);
   const metadata = await Promise.all(
     files
-      .filter(filter)
+      .filter(file => {
+        // We only allow entries that are
+        // 1. are files
+        // 2. pass the filter function
+        const stats = statSync(join(absolutePath, file));
+        return stats.isFile() && filter(file);
+      })
       .map(async (file) => {
         const filename = basename(file);
         const exists = await fs.stat(`${absolutePath}/${file}`);
@@ -60,12 +67,15 @@ export const getStructuredMetaData = async (
  * @param componentName - The name of the component to get metadata for.
  * @param filter - Optional filter function to apply to the filenames.
  *                 If provided, only files that pass the filter will be included in the result.
+ * @param source - The source of the metadata, either 'package' or 'static'.
  */
 export const getStructuredMetaDataForComponent = (
   componentName: string,
   filter: Filter = defaultFilter,
+  source: 'package' | 'static' = 'package',
 ) => {
-  const absolutePath = getAbsolutePath(`${componentPath}/${componentName}`);
+  const root = source === 'static' ? staticComponentPath : componentPath;
+  const absolutePath = getAbsolutePath(`${root}/${componentName}`);
   return getStructuredMetaData(
     absolutePath,
     filter,

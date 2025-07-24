@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import {
+  staticStylesPath,
   stylesPath,
 } from './config.js';
 import { getAbsolutePath } from './file.js';
@@ -7,9 +8,15 @@ import {
   getStructuredMetaData,
 } from './metadata.js';
 
-export const getStylesMetaData = async () => getStructuredMetaData(
-  stylesPath,
-);
+export const getStylesMetaData = async () => {
+  const data = await getStructuredMetaData(stylesPath);
+  const additionalData = await getStructuredMetaData(staticStylesPath);
+
+  return [
+    ...data,
+    ...additionalData,
+  ];
+};
 
 /**
  * Get a list of all available styles in the Synergy Design System.

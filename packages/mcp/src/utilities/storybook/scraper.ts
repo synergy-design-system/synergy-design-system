@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { writeFile } from 'node:fs/promises';
+import { dirname } from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import prettier from 'prettier';
 import { ScrapedStory, ScrapingConfig } from './types.js';
@@ -99,6 +100,10 @@ export class StorybookScraper {
     await Promise.all(
       scrapedPages.map(async ({ item, stories }) => {
         const filePath = this.config.generateOutputPath(item);
+
+        // Ensure the directory exists before writing
+        const dir = dirname(filePath);
+        await mkdir(dir, { recursive: true });
         const content = this.config.formatContent(item, stories);
         await writeFile(filePath, content, 'utf-8');
         console.log(`Written documentation for ${item} to ${filePath}`);

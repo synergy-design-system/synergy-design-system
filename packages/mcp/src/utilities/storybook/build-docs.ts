@@ -6,7 +6,7 @@ import { runDocsScraper } from './docs-scraper.js';
 
 // Parse command line arguments
 const args = process.argv.slice(2);
-const type = args[0] as 'components' | 'styles' | 'all' || 'all';
+const type = args[0] as 'components' | 'styles' | 'all' | 'templates' || 'all';
 
 console.log(`Starting documentation scraping for: ${type}`);
 

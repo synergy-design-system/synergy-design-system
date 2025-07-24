@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 import { StorybookManager } from './storybook-manager.js';
 import { StorybookScraper } from './scraper.js';
-import { componentScrapingConfig, stylesScrapingConfig } from './configs.js';
+import {
+  componentScrapingConfig,
+  stylesScrapingConfig,
+  templateScrapingConfig,
+} from './configs.js';
 import { ScrapingConfig } from './types.js';
 
 export class DocsScraper {
@@ -63,6 +67,14 @@ export class DocsScraper {
   }
 
   /**
+   * Scrape styles documentation
+   */
+  async scrapeTemplates(): Promise<void> {
+    console.log('Starting templates documentation scraping...');
+    await this.scrapeWithConfig(templateScrapingConfig);
+  }
+
+  /**
    * Scrape all documentation types
    */
   async scrapeAll(): Promise<void> {
@@ -91,6 +103,11 @@ export class DocsScraper {
       const stylesScraper = new StorybookScraper(stylesScrapingConfig);
       await stylesScraper.scrapeAll(server.url);
 
+      // Scrape templates
+      console.log('Scraping templates documentation...');
+      const templatesScraper = new StorybookScraper(templateScrapingConfig);
+      await templatesScraper.scrapeAll(server.url);
+
       console.log('All documentation scraping completed successfully!');
     } catch (error) {
       console.error('Error during comprehensive scraping process:', error);
@@ -116,7 +133,9 @@ export class DocsScraper {
 }
 
 // CLI usage helper
-export async function runDocsScraper(type: 'components' | 'styles' | 'all' = 'all'): Promise<void> {
+export async function runDocsScraper(
+  type: 'components' | 'styles' | 'templates' | 'all' = 'all'
+): Promise<void> {
   const scraper = new DocsScraper();
 
   try {
@@ -126,6 +145,9 @@ export async function runDocsScraper(type: 'components' | 'styles' | 'all' = 'al
       break;
     case 'styles':
       await scraper.scrapeStyles();
+      break;
+    case 'templates':
+      await scraper.scrapeTemplates();
       break;
     case 'all':
       await scraper.scrapeAll();

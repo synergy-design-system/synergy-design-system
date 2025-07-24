@@ -1,5 +1,9 @@
 import { ScrapingConfig } from './types.js';
-import { staticComponentPath, staticStylesPath } from '../config.js';
+import {
+  staticComponentPath,
+  staticStylesPath,
+  templatesPath,
+} from '../config.js';
 import { getAvailableComponents } from '../components.js';
 
 /**
@@ -56,6 +60,37 @@ ${story.example}
     'table-cell',
     'table',
     'weight',
+  ],
+  outputPath: staticStylesPath,
+};
+
+/**
+ * Configuration for scraping template documentation
+ */
+export const templateScrapingConfig: ScrapingConfig = {
+  formatContent: (template: string, stories) => {
+    const content = stories.map(
+      story => `
+## ${story.heading}
+
+${story.description}
+
+\`\`\`html
+${story.example}
+\`\`\`
+`,
+    ).join('\n---\n');
+
+    return content;
+  },
+  generateOutputPath: (template: string) => `${templatesPath}/${template}.md`,
+  generateStoryId: (template: string) => `templates-${template}--docs`,
+  getItems: () => [
+    'appshell',
+    'breadcrumb',
+    'footer',
+    'forms',
+    'table',
   ],
   outputPath: staticStylesPath,
 };

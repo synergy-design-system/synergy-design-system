@@ -13,18 +13,9 @@ export const createServer = () => {
     version: '0.1.0',
   });
 
-  // Register tools with the server
-  tools.componentListTool(server);
-  tools.componentInfoTool(server);
-  tools.davinciMigrateComponentList(server);
-  tools.davinciMigrateComponentTool(server);
-  tools.frameworkInfoTool(server);
-  tools.stylesInfoTool(server);
-  tools.stylesList(server);
-  tools.templateInfoTool(server);
-  tools.templateList(server);
-  tools.tokenInfoTool(server);
-  tools.assetsTool(server);
+  Object.values(tools).forEach(tool => {
+    tool(server);
+  });
 
   return server;
 };

@@ -26,6 +26,11 @@ export const componentPath = join(currentDirname, '../../metadata/packages/compo
 export const staticComponentPath = join(currentDirname, '../../metadata/static/components');
 
 /**
+ * The path where setup related information is stored.
+ */
+export const setupPath = join(currentDirname, '../../metadata/static/setup');
+
+/**
  * Path to the styles directory, relative to the MCP directory.
  */
 export const stylesPath = join(currentDirname, '../../metadata/packages/styles');

@@ -1,6 +1,7 @@
 import ora from 'ora';
 import { buildAssets } from './assets.js';
 import { buildComponents } from './components.js';
+import { buildStaticFiles } from './static.js';
 import { buildTokens } from './tokens.js';
 import { buildStyles } from './styles.js';
 
@@ -15,6 +16,9 @@ const build = async () => {
   await buildComponents();
   await buildTokens();
   await buildStyles();
+
+  // Should be run last as we will copy files where we see fit and paths must exist
+  await buildStaticFiles();
 };
 
 build()

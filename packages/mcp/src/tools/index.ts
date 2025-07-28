@@ -8,3 +8,4 @@ export * from './styles-list.js';
 export * from './template-list.js';
 export * from './template-info.js';
 export * from './tokens.js';
+export * from './version.js';

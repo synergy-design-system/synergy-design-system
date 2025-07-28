@@ -6,3 +6,4 @@ export * from './metadata.js';
 export * from './styles.js';
 export * from './templates.js';
 export * from './tokens.js';
+export * from './version.js';

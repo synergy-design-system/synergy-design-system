@@ -6,7 +6,7 @@
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
  */
 import path from 'path';
-import { promises as fs } from 'fs';
+import { mkdirSync, writeFileSync, existsSync } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
 import {
@@ -21,8 +21,10 @@ const COLOR_PALETTE_PREFIX = '_color-palette';
  * Create a directory if it does not exist.
  * @param { string } dirPath the directory path
  */
-const createDirectory = async (dirPath) => {
-  await fs.mkdir(dirPath, { recursive: true });
+const createDirectory = (dirPath) => {
+  if (!existsSync(dirPath)) {
+    mkdirSync(dirPath, { recursive: true });
+  }
 };
 
 /**
@@ -241,7 +243,7 @@ const transformFigmaVariables = async () => {
       const sanitizedModeName = modeName.toLowerCase().replace(/\s+/g, '-');
       const outputPath = path.join(OUTPUT_DIR, `${sanitizedModeName}.json`);
       await createDirectory(OUTPUT_DIR);
-      await fs.writeFile(outputPath, JSON.stringify(sort(modeData), null, 2));
+      writeFileSync(outputPath, JSON.stringify(sort(modeData), null, 2));
     }),
   );
 };

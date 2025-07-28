@@ -15,7 +15,7 @@ import { isNewBrandOnlyVariableOrStyle, resolveAlias } from './helpers.js';
  * @returns {string | undefined} - Returns the comment string or undefined if the message is empty.
  */
 const sanitizeComment = (message) => {
-  if (message === '') {
+  if (!message || message === '') {
     return undefined;
   }
 

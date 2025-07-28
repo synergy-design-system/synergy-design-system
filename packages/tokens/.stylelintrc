@@ -13,6 +13,6 @@
     "color-function-alias-notation": "with-alpha",
     "custom-property-empty-line-before": null,
     "alpha-value-notation": "number",
-    "color-hex-length": "long"
+    "color-hex-length": null
   }
 }

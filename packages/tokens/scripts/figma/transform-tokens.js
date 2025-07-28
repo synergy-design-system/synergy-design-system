@@ -153,18 +153,11 @@ const resolveValue = (variable, modeId) => {
     const colorValue = modeValue;
     finalValue = formatColor(colorValue);
     type = 'color';
-  } else if (scopes.includes('FONT_FAMILY') || name.includes('/font/')) {
-    // TODO: as soon as the FONT_FAMILY scope is added to all fonts, we can remove the name.includes check
-    // TODO: as soon as the `"` is exchanged with `'` in figma, we can remove the replace
-    const sanitizedValue = typeof modeValue === 'string'
-      ? modeValue.replaceAll('"', '\'')
-      : String(modeValue);
+  } else if (scopes.includes('FONT_FAMILY')) {
     // Add type to fonts
-    finalValue = sanitizedValue;
+    finalValue = modeValue;
     type = 'fontFamilies';
-  } else if (scopes.includes('TEXT_CONTENT') || name.includes('/required/content')) {
-    // TODO: as soon as the TEXT_CONTENT scope is added to the "*" again, we can remove the name.includes check
-    // Add type to text content like "*"
+  } else if (scopes.includes('TEXT_CONTENT')) {
     finalValue = modeValue;
     type = 'content';
   } else {

@@ -6,8 +6,7 @@
  */
 import path from 'path';
 import { promises as fs } from 'fs';
-
-const OUTPUT_DIR = './src/figma-variables';
+import { FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE } from '../config.js';
 
 /**
  * Validates environment variables and returns branch ID and headers
@@ -82,7 +81,7 @@ const fetchFigmaVariables = async () => {
 
   const filteredData = filterHiddenCollections(variableCollections, variables);
 
-  const outputPath = path.join(OUTPUT_DIR, 'tokens.json');
+  const outputPath = path.join(FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE);
   await fs.writeFile(outputPath, JSON.stringify(filteredData, null, 2));
 };
 

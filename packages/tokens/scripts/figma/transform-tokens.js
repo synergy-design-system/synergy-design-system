@@ -6,16 +6,14 @@
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
  */
 import path from 'path';
-import { mkdirSync, writeFileSync, existsSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
 import {
   figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle,
   renameVariable, resolveAlias,
 } from './helpers.js';
-
-const OUTPUT_DIR = './src/figma-variables/output';
-const COLOR_PALETTE_PREFIX = '_color-palette';
+import { COLOR_PALETTE_PREFIX, OUTPUT_DIR } from '../config.js';
 
 /**
  * Create a directory if it does not exist.
@@ -242,7 +240,7 @@ const transformFigmaVariables = async () => {
     Object.entries(transformed).map(async ([modeName, modeData]) => {
       const sanitizedModeName = modeName.toLowerCase().replace(/\s+/g, '-');
       const outputPath = path.join(OUTPUT_DIR, `${sanitizedModeName}.json`);
-      await createDirectory(OUTPUT_DIR);
+      createDirectory(OUTPUT_DIR);
       writeFileSync(outputPath, JSON.stringify(sort(modeData), null, 2));
     }),
   );

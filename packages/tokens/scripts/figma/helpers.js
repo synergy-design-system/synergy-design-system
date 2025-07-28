@@ -1,14 +1,10 @@
 import variablesJson from '../../src/figma-variables/tokens.json' with { type: 'json' };
+import { FIGMA_TOKENS_PREFIXES } from '../config.js';
 
 /**
  * The fetching result of the Figma API for local variables.
  */
 export const figmaVariables = variablesJson;
-
-/**
- * Prefixes we use in figma for grouping variables
- */
-const TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
 
 /**
  * Renames a variable by removing the prefix or in case of type color with "primitive" prefix exchange it by "color"
@@ -24,7 +20,7 @@ export const renameVariable = (name, type) => {
     const primitivePattern = /^primitive/;
     return name.replace(primitivePattern, 'color');
   }
-  const prefixPattern = new RegExp(`^(${TOKENS_PREFIXES.join('/|')}/)`);
+  const prefixPattern = new RegExp(`^(${FIGMA_TOKENS_PREFIXES.join('/|')}/)`);
   return name.replace(prefixPattern, '');
 };
 

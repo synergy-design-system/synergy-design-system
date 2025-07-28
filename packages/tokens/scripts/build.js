@@ -9,6 +9,7 @@ import {
   addMissingQuotesForStrings,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
+import { FIGMA_STYLES_PATH, OUTPUT_DIR } from './config.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
@@ -88,8 +89,8 @@ const cssRuns = availableThemes.map(async ({ input, theme }) => {
     },
     preprocessors: ['tokens-studio'],
     source: [
-      `./src/figma-variables/output/${input}.json`,
-      './src/figma-variables/output/styles.json',
+      `${OUTPUT_DIR}/${input}.json`,
+      FIGMA_STYLES_PATH,
     ],
   });
 

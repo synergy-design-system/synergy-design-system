@@ -1,4 +1,5 @@
 
+import { FIGMA_STYLES_PATH } from './scripts/config.js';
 import { styleDictionaryOutputter } from './scripts/figma/style-dict-outputter.js';
 
 /** @type { import('@figma-export/types').StylesCommandOptions } */
@@ -7,7 +8,7 @@ const styleOptions = {
   fileId: process.env.FIGMA_FILE_ID || 'bZFqk9urD3NlghGUKrkKCR',
   outputters: [
     // The style fetching should be done after the variables are fetched, so the variable_alias can be used
-    styleDictionaryOutputter({output: './src/figma-variables/output/styles.json'}),
+    styleDictionaryOutputter({ output: FIGMA_STYLES_PATH }),
   ],
 }
 

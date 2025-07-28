@@ -168,6 +168,13 @@ div {
 }
 ```
 
+### JSON files
+Currently the raw .json tokens files are exported under `/src/figma-tokens/*/`. 
+
+> Note:
+> These files are deprecated and will be removed in the new major version of Synergy, as the whole tokens structures are getting refactored.
+
+
 ---
 
 ## Optional: Configuring tokens in VSCode
@@ -184,14 +191,52 @@ Just make sure to add a valid path to the light theme in the `.vscode/settings.j
 
 ---
 
-## Documentation
+## Developer Documentation
+
+### Architecture and Data Flow
+
+```
+Figma
+    ↓
+Figma REST API
+    ↓
+Raw JSON Files (src/figma-variables/)
+    ↓
+Transform Scripts (scripts/figma/)
+    ↓
+Style Dictionary compliant JSON Files (src/figma-variables/output)
+    ↓
+Style Dictionary Processing
+    ↓
+Build Output (dist/)
+```
 
 ### Building the tokens
 
 Tokens are a mix of [Figma Variables](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) and [Figma styles](https://help.figma.com/hc/en-us/articles/360039238753-Styles-in-Figma-Design). They are fetched from Figma via [Figma API](https://www.figma.com/developers/api).
 
 To trigger a new fetching use `pnpm fetch:figma`, to update the tokens.
-This scripts needs the figma access token (e.g. `export FIGMA_TOKEN=figd_MY_TOKEN`) and optionally the figma file id (e.g. `export FIGMA_FILE_ID=my-file-id`), so it knows, where it should fetch the tokens from. If not available, it fetches the tokens from the main (_"bZFqk9urD3NlghGUKrkKCR"_)
+This scripts needs the figma access token and optionally the figma file id, so it knows, where it should fetch the tokens from. If not available, it fetches the tokens from the main (_bZFqk9urD3NlghGUKrkKCR_).
+
+```bash
+# Required: Figma Personal Access Token
+export FIGMA_TOKEN="your_figma_token_here"
+
+# Optional: Specific Figma File/Branch ID (Default: Main Branch)
+export FIGMA_FILE_ID="your_figma_file_id"
+```
+
+```bash
+# Fetch all Figma data (Variables + Styles)
+pnpm fetch:figma
+
+# Only fetch variables and transform into Style Dictionary format
+pnpm fetch:variables
+
+# Only fetch styles
+pnpm fetch:styles
+```
+
 
 #### Figma variables
 
@@ -214,7 +259,22 @@ You can trigger a build using `pnpm build` in the `tokens` package root. This wi
 
 ---
 
-### `add-missing-tokens.js`
+### Project structure
+
+#### `/src/figma-variables/`
+- **`tokens.json`**: Raw data of Figma Variables and Collections, directly fetched from the Figma API
+- **`output/`**: Transformed token files in Style Dictionary-compatible formats
+  - `sick2018-light.json`: Light Theme Tokens
+  - `sick2018-dark.json`: Dark Theme Tokens  
+  - `styles.json`: Figma Styles (Typography, Shadows, etc.)
+
+#### `/scripts/figma/`
+- **`fetch-variables.js`**: Downloads Figma Variables via the REST API
+- **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
+- **`style-dict-outputter.js`**: Custom outputter for Figma Styles export
+- **`helpers.js`**: Utility functions
+
+#### `/scripts/add-missing-tokens.js`
 
 **Purpose**:  
 This script is designed to inspect and append missing CSS variables based on a given prefix.

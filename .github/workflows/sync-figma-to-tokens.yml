@@ -40,11 +40,14 @@ jobs:
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
       - name: Sync variables in Figma file to tokens
-        run: pnpm -C ./packages/tokens fetch:figma && pnpm -C ./packages/tokens build:figma
+        run: pnpm -C ./packages/tokens fetch:figma
         env:
           FIGMA_FILE_ID: ${{ github.event.inputs.figma_file_id }}
           # We need this exact naming of the FIGMA_TOKEN environment variable, as the @figma-export/cli dependency needs it
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+
+      - name: Run tests for new tokens
+        run: pnpm -C ./packages/tokens build && pnpm -C ./packages/tokens test
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

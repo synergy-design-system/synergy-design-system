@@ -11,11 +11,11 @@
     "import/resolver": {
       "node": {
         "extensions": [".ts", ".js"],
-        "moduleDirectory": ["node_modules", "scripts", "dist"]
+        "moduleDirectory": ["node_modules", "scripts", "dist", "test"]
       },
       "typescript": {
         "extensions": [".ts", ".js"],
-        "moduleDirectory": ["node_modules", "scripts", "dist"]
+        "moduleDirectory": ["node_modules", "scripts", "dist", "test"]
       }
     }
   }

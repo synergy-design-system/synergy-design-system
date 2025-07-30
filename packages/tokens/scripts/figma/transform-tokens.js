@@ -180,7 +180,7 @@ const resolveValue = (variable, modeId) => {
 };
 
 // --- Main Transformation ---
-const transformFigmaVariables = async () => {
+const transformFigmaVariables = () => {
   /** @type {Record <string, any>} */
   const transformed = {};
 
@@ -236,16 +236,12 @@ const transformFigmaVariables = async () => {
     });
   });
 
-  await Promise.all(
-    Object.entries(transformed).map(async ([modeName, modeData]) => {
-      const sanitizedModeName = modeName.toLowerCase().replace(/\s+/g, '-');
-      const outputPath = path.join(OUTPUT_DIR, `${sanitizedModeName}.json`);
-      createDirectory(OUTPUT_DIR);
-      writeFileSync(outputPath, JSON.stringify(sort(modeData), null, 2));
-    }),
-  );
+  Object.entries(transformed).forEach(([modeName, modeData]) => {
+    const sanitizedModeName = modeName.toLowerCase().replace(/\s+/g, '-');
+    const outputPath = path.join(OUTPUT_DIR, `${sanitizedModeName}.json`);
+    createDirectory(OUTPUT_DIR);
+    writeFileSync(outputPath, JSON.stringify(sort(modeData), null, 2));
+  });
 };
 
-transformFigmaVariables().catch(error => {
-  console.error('Error transforming Figma variables:', error);
-});
+transformFigmaVariables();

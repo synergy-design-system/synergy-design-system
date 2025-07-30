@@ -395,6 +395,10 @@
       "type": "sizing",
       "value": "{spacing.3x-small}"
     },
+    "style": {
+      "type": "string",
+      "value": "solid"
+    },
     "width": {
       "type": "sizing",
       "value": "{border-width.medium}"
@@ -568,11 +572,11 @@
       "offset": {
         "type": "sizing",
         "value": "0px"
-      },
-      "width": {
-        "type": "sizing",
-        "value": "{border-width.medium}"
       }
+    },
+    "font-family": {
+      "type": "string",
+      "value": "{font.sans}"
     },
     "font-size": {
       "large": {
@@ -587,6 +591,10 @@
         "type": "sizing",
         "value": "{font-size.small}"
       }
+    },
+    "font-weight": {
+      "type": "fontWeights",
+      "value": "{font-weight.normal}"
     },
     "height": {
       "large": {
@@ -673,6 +681,10 @@
           "value": "{font-size.small}"
         }
       }
+    },
+    "letter-spacing": {
+      "type": "letterSpacing",
+      "value": "0px"
     },
     "placeholder": {
       "color": {

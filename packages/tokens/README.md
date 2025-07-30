@@ -169,11 +169,11 @@ div {
 ```
 
 ### JSON files
-Currently the raw .json tokens files are exported under `/src/figma-tokens/*/`. 
+
+Currently the raw .json tokens files are exported under `/src/figma-tokens/*/`.
 
 > Note:
 > These files are deprecated and will be removed in the new major version of Synergy, as the whole tokens structures are getting refactored.
-
 
 ---
 
@@ -237,7 +237,6 @@ pnpm fetch:variables
 pnpm fetch:styles
 ```
 
-
 #### Figma variables
 
 The variables are created to support several modes.
@@ -262,13 +261,15 @@ You can trigger a build using `pnpm build` in the `tokens` package root. This wi
 ### Project structure
 
 #### `/src/figma-variables/`
+
 - **`tokens.json`**: Raw data of Figma Variables and Collections, directly fetched from the Figma API
 - **`output/`**: Transformed token files in Style Dictionary-compatible formats
   - `sick2018-light.json`: Light Theme Tokens
-  - `sick2018-dark.json`: Dark Theme Tokens  
+  - `sick2018-dark.json`: Dark Theme Tokens
   - `styles.json`: Figma Styles (Typography, Shadows, etc.)
 
 #### `/scripts/figma/`
+
 - **`fetch-variables.js`**: Downloads Figma Variables via the REST API
 - **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
 - **`style-dict-outputter.js`**: Custom outputter for Figma Styles export

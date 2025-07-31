@@ -87,10 +87,7 @@ const cssRuns = availableThemes.map(async ({ input, theme }) => {
 
 await Promise.all(cssRuns);
 
-addMissingTokens(
-  'syn',
-  join(config.buildPath, 'themes'),
-);
+addMissingTokens(join(config.buildPath, 'themes'));
 
 const fileHeader = await StyleDictionary.hooks.fileHeaders['syn/header']();
 createJS(

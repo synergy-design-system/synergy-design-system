@@ -7,6 +7,7 @@ import { createJS, createSCSS } from './outputs/index.js';
 import {
   addFallbackFonts,
   addMissingQuotesForStrings,
+  convertLetterSpacingValue,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 import { FIGMA_STYLES_PATH, OUTPUT_DIR } from './config.js';
@@ -14,6 +15,7 @@ import { FIGMA_STYLES_PATH, OUTPUT_DIR } from './config.js';
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
+StyleDictionary.registerTransform(convertLetterSpacingValue);
 StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
@@ -70,8 +72,21 @@ const cssRuns = availableThemes.map(async ({ input, theme }) => {
         transformGroup: 'tokens-studio',
         transforms: [
           'name/kebab',
+          'ts/size/px',
+          'ts/opacity',
+          'ts/size/lineheight',
+          'ts/typography/fontWeight',
+          'ts/size/css/letterspacing',
+          'typography/css/shorthand',
+          'fontFamily/css',
+          'border/css/shorthand',
+          'ts/color/css/hexrgba',
+          'ts/color/modifiers',
+          'shadow/css/shorthand',
+
           'syn/add-fallback-fonts',
           'syn/add-missing-quotes-for-strings',
+          'syn/convert-letter-spacing-to-normal',
         ],
       },
     },

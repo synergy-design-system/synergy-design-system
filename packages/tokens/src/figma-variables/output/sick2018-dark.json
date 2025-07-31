@@ -685,7 +685,7 @@
     },
     "letter-spacing": {
       "type": "letterSpacing",
-      "value": "0px"
+      "value": "{letter-spacing.normal}"
     },
     "placeholder": {
       "color": {
@@ -700,7 +700,7 @@
     "readonly": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.700}"
+        "value": "{color.neutral.800}"
       },
       "color-disabled": {
         "type": "color",

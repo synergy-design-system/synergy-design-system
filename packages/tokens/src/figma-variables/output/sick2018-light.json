@@ -685,7 +685,7 @@
     },
     "letter-spacing": {
       "type": "letterSpacing",
-      "value": "0px"
+      "value": "{letter-spacing.normal}"
     },
     "placeholder": {
       "color": {

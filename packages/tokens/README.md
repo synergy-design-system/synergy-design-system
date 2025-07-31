@@ -289,3 +289,52 @@ This script is designed to inspect and append missing CSS variables based on a g
 - `extractVariables(data, prefix)`: Extracts variables from the provided data based on the prefix.
 - `compareAndAppendVariables(sourceFilePath, targetFilePath, prefix)`: Compares source and target files for missing variables and appends them.
 - `addMissingTokens(prefix)`: Main function that loops through target files and checks for missing variables.
+
+
+### Github Action
+
+The **Sync Figma variables to tokens** workflow (`.github/workflows/sync-figma-to-tokens.yml`) provides an automated way to synchronize design tokens from Figma to the codebase via GitHub Actions.
+
+**Purpose**:  
+This workflow fetches the latest Figma variables and styles, transforms them into the appropriate token formats, runs tests to ensure integrity, and creates a pull request with the updated tokens.
+
+**Trigger**:  
+The workflow is manually triggered using `workflow_dispatch` with configurable inputs.
+
+**Input Parameters**:
+
+- **`figma_file_id`** (required): The Figma file or branch ID to sync from
+  - Default: `"bZFqk9urD3NlghGUKrkKCR"` (main Synergy Design System file)
+  - Can be either a branch ID or the main file ID
+- **`branch_name`** (required): Name for the new Git branch
+  - Default: `"feat/update-tokens-from-figma"`
+- **`pull_request_name`** (required): Title for the pull request
+  - Default: `"feat: ✨ Update tokens from Figma"`
+
+**Workflow Steps**:
+
+1. **Repository Setup**: Checks out the repository with full history
+2. **Environment Setup**: Installs pnpm, Node.js 22, and project dependencies
+3. **Token Synchronization**: Runs `pnpm -C ./packages/tokens fetch:figma` to fetch and transform Figma data
+4. **Quality Assurance**: Builds and tests the updated tokens to ensure integrity
+5. **Pull Request Creation**: Creates a new branch and pull request with the changes
+
+**Required Secrets**:
+
+- **`FIGMA_TOKEN`**: Personal Access Token from Figma (required for API access)
+
+**Permissions**:
+
+The workflow requires the following permissions:
+- `contents: write` - To create branches and commits
+- `pull-requests: write` - To create pull requests
+
+**Usage Example**:
+
+1. Navigate to the Actions tab in the GitHub repository
+2. Select "Sync Figma variables to tokens"
+3. Click "Run workflow"
+4. Configure the input parameters as needed
+5. Click "Run workflow" to start the process
+
+The workflow will automatically create a pull request with reviewers assigned (`kirchsuSICKAG`, `schilchSICKAG`) for review and approval.

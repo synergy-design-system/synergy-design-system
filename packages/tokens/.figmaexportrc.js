@@ -6,6 +6,8 @@ import { styleDictionaryOutputter } from './scripts/figma/style-dict-outputter.j
 const styleOptions = {
   // Use FIGMA_FILE_ID from environment variables or default from main branch
   fileId: process.env.FIGMA_FILE_ID || 'bZFqk9urD3NlghGUKrkKCR',
+  // Filter the styles by ID of the Tokens page, as otherwise the fetching errors out because of too large size
+  ids: ['104-235'],
   outputters: [
     // The style fetching should be done after the variables are fetched, so the variable_alias can be used
     styleDictionaryOutputter({ output: FIGMA_STYLES_PATH }),

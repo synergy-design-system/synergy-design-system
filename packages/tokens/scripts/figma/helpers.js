@@ -31,17 +31,25 @@ export const renameVariable = (name, type) => {
  * @param { string } name The name of a variable
  * @returns { string } The specific type for the float variable
  */
+// eslint-disable-next-line complexity
 export const getTypeForFloatVariable = (name) => {
-  const typeMap = {
-    'letter-spacing': 'letterSpacing',
-    'line-height': 'lineHeights',
-    opacity: 'opacity',
-    weight: 'fontWeights',
-    'z-index': 'number',
-  };
+  const type = ['letter-spacing', 'line-height', 'opacity', 'weight', 'z-index']
+    .find((key) => name.includes(key));
 
-  const typeEntry = Object.entries(typeMap).find(([key]) => name.includes(key));
-  return typeEntry ? typeEntry[1] : 'sizing';
+  switch (type) {
+  case 'letter-spacing':
+    return 'letterSpacing';
+  case 'line-height':
+    return 'lineHeights';
+  case 'opacity':
+    return 'opacity';
+  case 'weight':
+    return 'fontWeights';
+  case 'z-index':
+    return 'number';
+  default:
+    return 'sizing';
+  }
 };
 
 /**

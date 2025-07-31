@@ -68,9 +68,9 @@ const getAliasValue = (aliasId, modeId) => {
  */
 const shouldUseAliasValue = (name) => {
   // Exchange the _color-palette alias with the real values, as they should not show up in the json
-  // TODO: Exchange the letter-spacing and line-height aliases with the real values. They are currently only available for the new brand
+  // TODO: Exchange the letter-spacing/default ( for value of input/letter-spacing) and line-height aliases with the real values. They are currently only available for the new brand
   const NO_ALIAS_VALUE_REGEX = new RegExp(
-    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing|line-height)`,
+    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|line-height)`,
   );
   return !NO_ALIAS_VALUE_REGEX.test(name);
 };
@@ -81,6 +81,7 @@ const shouldUseAliasValue = (name) => {
  * @param { number } value The value of the variable
  * @returns {{ value: string, type: string }} The resolved value and type of the variable.
  */
+// eslint-disable-next-line complexity
 const getFloatValueFromName = (name, value) => {
   const stringValue = `${value}`;
   const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;
@@ -93,6 +94,11 @@ const getFloatValueFromName = (name, value) => {
     newValue = valueWithUnit('%');
   } else if (name.includes('weight') || name.includes('z-index')) {
     newValue = stringValue;
+  } else if (name.includes('letter-spacing')) {
+    // Fix value to be only two decimals after the point, e.g. -0.48 instead of -0.47999998927116394
+    // This is needed as Figma returns letter spacing values with many unnecessary decimals
+    const roundedValue = parseFloat(value.toFixed(2));
+    newValue = `${roundedValue}px`;
   } else {
     newValue = valueWithUnit('px');
   }

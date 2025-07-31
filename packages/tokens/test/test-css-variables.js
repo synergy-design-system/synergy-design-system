@@ -10,8 +10,10 @@ const filename = fileURLToPath(import.meta.url);
 const directory = dirname(filename);
 
 // Paths to the files to compare
-const BUILT_CSS_PATH = join(directory, '../dist/themes/light.css');
-const REFERENCE_CSS_PATH = join(directory, '../test/light.css');
+const BUILT_FILE_DIR = join(directory, '../dist/themes/');
+const REFERENCE_FILE_DIR = join(directory, '../test/');
+const LIGHT_MODE_FILE = 'light.css';
+const DARK_MODE_FILE = 'dark.css';
 
 /**
  * Extract CSS variables from a CSS file content
@@ -119,28 +121,46 @@ function logResults(results) {
 function runTest() {
   console.log('🧪 Testing CSS variables consistency...\n');
 
+  const modes = [
+    LIGHT_MODE_FILE,
+    DARK_MODE_FILE,
+  ];
+
   try {
-    console.log(`📖 Reading built CSS: ${BUILT_CSS_PATH}`);
-    const builtCSS = readFileSync(BUILT_CSS_PATH, 'utf8');
-    console.log(`📖 Reading reference CSS: ${REFERENCE_CSS_PATH}`);
-    const referenceCSS = readFileSync(REFERENCE_CSS_PATH, 'utf8');
+    /** @type {{[key: string]: ReturnType<typeof compareVariables>}} */
+    const modesResults = {};
+    modes.forEach(mode => {
+      console.log(`\n🔍 Processing mode: ${mode}`);
+      const BUILT_CSS_PATH = join(BUILT_FILE_DIR, mode);
+      const REFERENCE_CSS_PATH = join(REFERENCE_FILE_DIR, mode);
+      console.log(`📖 Reading built CSS: ${BUILT_CSS_PATH}`);
+      const builtCSS = readFileSync(BUILT_CSS_PATH, 'utf8');
+      console.log(`📖 Reading reference CSS files: ${REFERENCE_CSS_PATH}`);
+      const referenceCSS = readFileSync(REFERENCE_CSS_PATH, 'utf8');
 
-    console.log('\n🔍 Extracting CSS variables...');
-    const builtVars = extractCSSVariables(builtCSS);
-    const refVars = extractCSSVariables(referenceCSS);
+      console.log('\n🔍 Extracting CSS variables...');
+      const builtVars = extractCSSVariables(builtCSS);
+      const refVars = extractCSSVariables(referenceCSS);
 
-    console.log(`   Built: ${builtVars.size} variables`);
-    console.log(`   Reference: ${refVars.size} variables`);
+      console.log(`   Built: ${builtVars.size} variables`);
+      console.log(`   Reference: ${refVars.size} variables`);
 
-    console.log('\n⚖️  Comparing variables...');
-    const results = compareVariables(builtVars, refVars);
+      console.log('\n⚖️  Comparing variables...');
+      const results = compareVariables(builtVars, refVars);
 
-    if (results.success) {
+      modesResults[mode] = results;
+    });
+
+    const success = Object.values(modesResults).every(result => result.success);
+    if (success) {
       console.log('✅ All CSS variables match! Test passed.');
       process.exit(0);
     } else {
       console.log('❌ CSS variables do not match! Test failed.\n');
-      logResults(results);
+      Object.entries(modesResults).forEach(([mode, result]) => {
+        console.log(`\nResults for mode: ${mode}`);
+        logResults(result);
+      });
       process.exit(1);
     }
   } catch (error) {

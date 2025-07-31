@@ -49,7 +49,7 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
 
       - name: Run tests for new tokens
-        run: pnpm -C ./packages/tokens build && pnpm -C ./packages/tokens test
+        run: pnpm -C ./packages/tokens build && pnpm -C ./packages/tokens _test
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

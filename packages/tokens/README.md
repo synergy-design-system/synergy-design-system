@@ -290,7 +290,6 @@ This script is designed to inspect and append missing CSS variables based on a g
 - `compareAndAppendVariables(sourceFilePath, targetFilePath, prefix)`: Compares source and target files for missing variables and appends them.
 - `addMissingTokens(prefix)`: Main function that loops through target files and checks for missing variables.
 
-
 ### Github Action
 
 The **Sync Figma variables to tokens** workflow (`.github/workflows/sync-figma-to-tokens.yml`) provides an automated way to synchronize design tokens from Figma to the codebase via GitHub Actions.
@@ -326,6 +325,7 @@ The workflow is manually triggered using `workflow_dispatch` with configurable i
 **Permissions**:
 
 The workflow requires the following permissions:
+
 - `contents: write` - To create branches and commits
 - `pull-requests: write` - To create pull requests
 

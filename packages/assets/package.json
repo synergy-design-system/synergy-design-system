@@ -36,6 +36,10 @@
       "types": "./dist/default-icons.d.ts",
       "import": "./dist/default-icons.js"
     },
+    "./default-icons-2025.js": {
+      "types": "./dist/default-icons-2025.d.ts",
+      "import": "./dist/default-icons-2025.js"
+    },
     "./createSpritesheet.js": {
       "types": "./dist/createSpritesheet.d.ts",
       "import": "./dist/createSpritesheet.js"

@@ -4,7 +4,7 @@
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode
  */
 import { join } from 'node:path';
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 
 /**
  * Filter the fields of an icon object.
@@ -129,8 +129,16 @@ const writeSvgFiles = async (
   iconSet,
   icons,
 ) => {
-  const pathParts = iconSet === 'sick2018' ? 'system-icons' : iconSet;
+  const pathParts = iconSet === 'sick2018' ? 'system-icons' : `system-icons-${iconSet}`;
   const output = join(outputPath, pathParts);
+
+  // Create the directory if it does not exist
+  try {
+    await mkdir(output, { recursive: true });
+  } catch (error) {
+    console.error(`Error creating directory ${output}:`, error);
+    return false;
+  }
 
   const writeSuccess = Object
     .entries(icons)
@@ -189,12 +197,12 @@ export const outputSystemIcons = ({
     .map(async ([place, icons]) => writeTsFiles(componentExportFolder, place, icons));
 
   // Create the svg files in the file system
-  // const createdSVGFileResults = Object
-  //   .entries(allIcons)
-  //   .map(async ([place, icons]) => writeSvgFiles(svgExportFolder, place, icons));
+  const createdSVGFileResults = Object
+    .entries(allIcons)
+    .map(async ([place, icons]) => writeSvgFiles(svgExportFolder, place, icons));
 
   const resultsTsFiles = await Promise.all(createdTsFileResults);
-  // const resultsSVGFiles = await Promise.all(createdSVGFileResults);
-  // const results = [...resultsTsFiles, ...resultsSVGFiles];
-  return resultsTsFiles.every(Boolean);
+  const resultsSVGFiles = await Promise.all(createdSVGFileResults);
+  const results = [...resultsTsFiles, ...resultsSVGFiles];
+  return results.every(Boolean);
 };

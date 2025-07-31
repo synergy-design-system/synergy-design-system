@@ -83,6 +83,7 @@ export const systemIconsConfig = createFigmaExportConfig({
     outputSystemIcons({
       componentExportFolder: '../components/src/components/icon',
       componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+      svgExportFolder: './src',
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS,
@@ -182,8 +183,8 @@ export const CONFIG_FOR_V3 = [
  */
 export const CONFIG_FOR_ALL = [
   systemIconsConfig,
-  // ...CONFIG_FOR_V2,
-  // ...CONFIG_FOR_V3,
+  ...CONFIG_FOR_V2,
+  ...CONFIG_FOR_V3,
 ];
 
 /**

@@ -80,33 +80,16 @@ export const createFigmaExportConfig = ({
 // Global icons configuration
 export const systemIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
-    // outputSystemIcons({
-    //   componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
-    //   getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-    //   output: '../components/src/components/icon/library.system-new.ts',
-    // }),
+    outputSystemIcons({
+      componentExportFolder: '../components/src/components/icon',
+      componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+    }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS,
   ids: [FIGMA_CONFIG.FIGMA_ID_ICONS],
-  // includeTypes: ['COMPONENT'],
-  path: 'system-icons-new',
-  // svgComponentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
-});
-
-// v2 system icons configuration
-export const v2SystemIconConfig = createFigmaExportConfig({
-  additionalOutputters: [
-    outputSystemIcons({
-      componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
-      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/src/components/icon/library.system.ts',
-    }),
-  ],
-  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
-  ids: [FIGMA_CONFIG.FIGMA_ID_SYSTEM_ICONS_V2],
-  includeTypes: ['COMPONENT'],
-  path: 'system-icons',
-  svgComponentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+  includeTypes: ['INSTANCE'],
+  // Circumvent the figmaOutputSvg filter for system icons, we handle it ourself
+  svgComponentFilter: () => false,
 });
 
 // v2 all icons configuration
@@ -182,7 +165,6 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
  * V2 consists of all icons, system icons and logos.
  */
 export const CONFIG_FOR_V2 = [
-  v2SystemIconConfig,
   v2AllIconsConfig,
   v2LogosConfig,
 ];

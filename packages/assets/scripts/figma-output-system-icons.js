@@ -5,6 +5,7 @@
  */
 import { join } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { optimize } from 'svgo';
 
 /**
  * Filter the fields of an icon object.
@@ -23,8 +24,13 @@ const filterFields = icon => ({
  * @returns {Partial<ComponentNode> & { place: string }} The prepared asset object.
  */
 const prepareAssets = icon => {
-  let { name } = icon;
+  const {
+    name: originalName,
+    svg: originalSvg,
+  } = icon;
   let place = 'both';
+  let name = originalName;
+  let svg = originalSvg;
 
   // Get the name of the component through the export component path
   const path = icon.figmaExport.pathToComponent;
@@ -38,10 +44,35 @@ const prepareAssets = icon => {
     name = path.at(-2).name;
   }
 
+  // Optimize the SVG content
+  if (svg) {
+    svg = optimize(svg, [
+      {
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false,
+          },
+        },
+      },
+      {
+        name: 'removeAttrs',
+        params: { attrs: 'fill' },
+      },
+      {
+        name: 'addAttributesToSVGElement',
+        params: {
+          attributes: ["fill='currentColor'"],
+        },
+      },
+    ]).data;
+  }
+
   return {
     ...icon,
     name,
     place,
+    svg,
   };
 };
 
@@ -136,6 +167,7 @@ const writeSvgFiles = async (
   try {
     await mkdir(output, { recursive: true });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Error creating directory ${output}:`, error);
     return false;
   }

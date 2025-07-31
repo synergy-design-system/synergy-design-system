@@ -508,6 +508,9 @@ importers:
       semantic-release-monorepo:
         specifier: 7.0.5
         version: 7.0.5(patch_hash=43b9cb59e71f0b0d7c6690109467586449b9e1d84bba96299aeee6714f1bf26d)(semantic-release@19.0.5(encoding@0.1.13))
+      svgo:
+        specifier: ^3.3.2
+        version: 3.3.2
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -8477,6 +8480,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:

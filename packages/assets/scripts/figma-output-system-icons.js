@@ -46,26 +46,29 @@ const prepareAssets = icon => {
 
   // Optimize the SVG content
   if (svg) {
-    svg = optimize(svg, [
-      {
-        name: 'preset-default',
-        params: {
-          overrides: {
-            removeViewBox: false,
+    svg = optimize(svg, {
+      multipass: true,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeViewBox: false,
+            },
           },
         },
-      },
-      {
-        name: 'removeAttrs',
-        params: { attrs: 'fill' },
-      },
-      {
-        name: 'addAttributesToSVGElement',
-        params: {
-          attributes: ["fill='currentColor'"],
+        {
+          name: 'removeAttrs',
+          params: { attrs: 'fill' },
         },
-      },
-    ]).data;
+        {
+          name: 'addAttributesToSVGElement',
+          params: {
+            attributes: ["fill='currentColor'"],
+          },
+        },
+      ],
+    }).data;
   }
 
   return {

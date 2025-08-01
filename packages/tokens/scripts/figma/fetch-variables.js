@@ -5,7 +5,9 @@
  * @typedef {VariablesAndCollections['variableCollections']} VariableCollections
  */
 import path from 'path';
-import { promises as fs } from 'fs';
+import {
+  existsSync, mkdirSync, rmSync, writeFileSync,
+} from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE } from '../config.js';
 
@@ -63,10 +65,19 @@ const validateApiResponse = (variablesResponse) => {
   }
 };
 
+// Clean up the output directory if it exists
+const cleanUp = () => {
+  if (existsSync(FIGMA_VARIABLES_DIR)) {
+    rmSync(FIGMA_VARIABLES_DIR, { recursive: true });
+    mkdirSync(FIGMA_VARIABLES_DIR, { recursive: true });
+  }
+};
+
 /**
  * Fetches local variables from Figma API and saves them to a JSON file.
  */
 const fetchFigmaVariables = async () => {
+  cleanUp();
   const { branchId, headers } = getApiConfig();
 
   const variablesFetch = await fetch(
@@ -83,7 +94,7 @@ const fetchFigmaVariables = async () => {
   const filteredData = filterHiddenCollections(variableCollections, variables);
 
   const outputPath = path.join(FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE);
-  await fs.writeFile(outputPath, JSON.stringify(sort(filteredData), null, 2));
+  writeFileSync(outputPath, JSON.stringify(sort(filteredData), null, 2));
 };
 
 fetchFigmaVariables().catch(console.error);

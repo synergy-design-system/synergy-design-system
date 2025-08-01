@@ -31,7 +31,7 @@ export async function createFolderChecksum(
     excludePatterns = ['.*', 'checksum.txt'],
     algorithm = 'md5',
   } = options;
-  
+
   // Use default 'checksum.txt' if outputFile is not specified, but respect explicit undefined
   const outputFile = 'outputFile' in options ? options.outputFile : 'checksum.txt';
 

@@ -17,12 +17,12 @@ export const getAbsolutePath = (fileName: string = '') => {
 };
 
 /**
- * Create a new file or directory.
- * @param fileName - The name of the file or directory to create, relative to the current file.
- * @returns The absolute path to the created file or directory.
+ * Create a new directory.
+ * @param dirName - The name of the directory to create, relative to the current file.
+ * @returns The absolute path to the created directory.
  */
-export const createPath = async (fileName: string) => {
-  const absolutePath = getAbsolutePath(fileName);
+export const createPath = async (dirName: string) => {
+  const absolutePath = getAbsolutePath(dirName);
   try {
     await fs.mkdir(absolutePath, { recursive: true });
   } catch (error) {

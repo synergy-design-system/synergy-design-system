@@ -113,16 +113,7 @@
           "successComment": false
         }
       ]
-    ],
-    "monorepo": {
-      "dependencies": [
-        "packages/assets",
-        "packages/components",
-        "packages/docs",
-        "packages/styles",
-        "packages/tokens"
-      ]
-    }
+    ]
   },
   "repository": {
     "type": "git",
@@ -130,10 +121,11 @@
     "directory": "packages/mcp"
   },
   "scripts": {
-    "build": "pnpm run build:ts && pnpm run build:metadata",
+    "build": "pnpm run build:ts && pnpm run build:metadata && pnpm build:hash",
     "build:ts": "pnpm rimraf dist && tsc",
     "build:metadata": "node dist/build/build.js",
-    "build:storybook": "node ./dist/utilities/storybook/build-docs.js",
+    "build:storybook": "node ./dist/utilities/storybook/build-docs.js && pnpm build:hash",
+    "build:hash": "find ./metadata ! -name '.*' ! -name 'checksum.txt' -type f -print0 | sort -z | xargs -0 cat | md5 > ./metadata/checksum.txt",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "release": "semantic-release  --tagFormat 'mcp/${version}' -e semantic-release-monorepo",

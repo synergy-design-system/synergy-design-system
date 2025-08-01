@@ -14,11 +14,11 @@
   --syn-font-size-x-large: 24px;
   --syn-font-size-2x-large: 32px;
   --syn-font-size-3x-large: 40px;
-  --syn-duration-extra-fast: 90ms;
+  --syn-duration-extra-fast: 50ms;
   --syn-duration-fast: 150ms;
   --syn-duration-normal: 250ms;
-  --syn-duration-slow: 350ms;
-  --syn-duration-extra-slow: 500ms;
+  --syn-duration-slow: 500ms;
+  --syn-duration-extra-slow: 1000ms;
   --syn-line-height-denser: 1;
   --syn-line-height-dense: 1.2;
   --syn-line-height-normal: 1.4;
@@ -36,19 +36,19 @@
   --syn-shadow-overflow-right: 1px 0 4px 0 rgba(249, 250, 251, 0.12), 3px 0 8px 0 rgba(249, 250, 251, 0.12), 4px 0 12px 0 rgba(249, 250, 251, 0.16); /** Overflow Right */
   --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /** Open Sans */
   --syn-font-mono: 'Roboto Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
-  --syn-spacing-4x-small: calc(4px / 4);
-  --syn-spacing-3x-small: calc(4px / 2);
-  --syn-spacing-2x-small: calc(4px * 1);
-  --syn-spacing-x-small: calc(4px * 2);
-  --syn-spacing-small: calc(4px * 3);
-  --syn-spacing-medium: calc(4px * 4);
-  --syn-spacing-medium-large: calc(4px * 5);
-  --syn-spacing-large: calc(4px * 6);
-  --syn-spacing-x-large: calc(4px * 8);
-  --syn-spacing-2x-large: calc(4px * 12);
-  --syn-spacing-3x-large: calc(4px * 16);
-  --syn-spacing-4x-large: calc(4px * 24);
-  --syn-spacing-5x-large: calc(4px * 32);
+  --syn-spacing-4x-small: 1px;
+  --syn-spacing-3x-small: 2px;
+  --syn-spacing-2x-small: 4px;
+  --syn-spacing-x-small: 8px;
+  --syn-spacing-small: 12px;
+  --syn-spacing-medium: 16px;
+  --syn-spacing-medium-large: 20px;
+  --syn-spacing-large: 24px;
+  --syn-spacing-x-large: 32px;
+  --syn-spacing-2x-large: 48px;
+  --syn-spacing-3x-large: 64px;
+  --syn-spacing-4x-large: 96px;
+  --syn-spacing-5x-large: 128px;
   --syn-border-radius-none: 0px;
   --syn-border-radius-pill: 9999px;
   --syn-border-radius-circle: 9999px;
@@ -60,7 +60,7 @@
   --syn-border-width-medium: 2px; /** Medium */
   --syn-border-width-large: 3px; /** Large */
   --syn-border-width-x-large: 4px; /** X Large */
-  --syn-font-sans-fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --syn-font-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol'; /** System font */
   --syn-opacity-50: 0.5; /** 50% */
   --syn-text-decoration-default: none;
   --syn-text-decoration-underline: underline;
@@ -106,7 +106,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-large: var(--syn-spacing-large);
   --syn-input-focus-ring-color: var(--syn-color-primary-400);
-  --syn-input-focus-ring-offset: 0;
+  --syn-input-focus-ring-offset: 0px;
   --syn-input-focus-ring-error: var(--syn-color-error-400);
   --syn-input-disabled-opacity: 0.5;
   --syn-input-readonly-background-color: var(--syn-color-neutral-50);
@@ -146,7 +146,7 @@
   --syn-tooltip-color: var(--syn-typography-color-text-inverted);
   --syn-tooltip-font-family: var(--syn-font-sans);
   --syn-tooltip-font-weight: var(--syn-font-weight-normal);
-  --syn-tooltip-font-size: var(--syn-button-font-size-small);
+  --syn-tooltip-font-size: var(--syn-font-size-small);
   --syn-tooltip-line-height: var(--syn-line-height-normal);
   --syn-tooltip-padding: var(--syn-spacing-small);
   --syn-tooltip-arrow-size: 9px;
@@ -174,7 +174,7 @@
   --syn-color-primary-300: #0166a3;
   --syn-color-primary-400: #007cc1;
   --syn-color-primary-500: #0ca2eb;
-  --syn-color-primary-600: #0ca2eb;
+  --syn-color-primary-600: #36bbfa;
   --syn-color-primary-700: #7cd1fd;
   --syn-color-primary-800: #b9e5fe;
   --syn-color-primary-900: #e0f1FE;
@@ -223,7 +223,7 @@
   --syn-color-accent-800: #FFE685;
   --syn-color-accent-900: #FFF2C5;
   --syn-color-accent-950: #FFFBEA;
-  --syn-color-neutral-0: black;
+  --syn-color-neutral-0: #000000;
   --syn-color-neutral-50: #31373a;
   --syn-color-neutral-100: #4c5357;
   --syn-color-neutral-200: #5e676b;
@@ -235,11 +235,11 @@
   --syn-color-neutral-800: #e8ebec;
   --syn-color-neutral-900: #F2F3F6;
   --syn-color-neutral-950: #f9fafb;
-  --syn-color-neutral-1000: white;
+  --syn-color-neutral-1000: #ffffff;
 
   /* Fallbacks from Shoelace */
-  --syn-border-radius-large: 0.5rem;
-  --syn-border-radius-x-large: 1rem;
+  --syn-border-radius-large: 8px;
+  --syn-border-radius-x-large: 16px;
   --syn-shadow-x-small: 0 1px 2px rgba(0, 0, 0, 0.18);
   --syn-shadow-small: 0 1px 2px rgba(0, 0, 0, 0.24);
   --syn-transition-x-slow: 1000ms;
@@ -247,18 +247,18 @@
   --syn-transition-medium: 250ms;
   --syn-transition-fast: 150ms;
   --syn-transition-x-fast: 50ms;
-  --syn-font-serif: Georgia, "Times New Roman", serif;
-  --syn-font-size-2x-small: 0.625rem;
-  --syn-font-size-4x-large: 4.5rem;
-  --syn-font-weight-light: 300;
-  --syn-letter-spacing-denser: -0.03em;
-  --syn-letter-spacing-dense: -0.015em;
+  --syn-font-serif: Georgia, 'Times New Roman', serif;
+  --syn-font-size-2x-small: 11px;
+  --syn-font-size-4x-large: 52px;
+  --syn-font-weight-light: 400;
+  --syn-letter-spacing-denser:-0.48px;
+  --syn-letter-spacing-dense: -0.24px;
   --syn-letter-spacing-normal: normal;
-  --syn-letter-spacing-loose: 0.075em;
-  --syn-letter-spacing-looser: 0.15em;
+  --syn-letter-spacing-loose: 1.2px;
+  --syn-letter-spacing-looser: 2.4px;
   --syn-focus-ring-style: solid;
   --syn-focus-ring: var(--syn-focus-ring-style) var(--syn-focus-ring-width) var(--syn-focus-ring-color);
-  --syn-input-border-color-disabled: var(--syn-color-neutral-300);
+  --syn-input-border-color-disabled: var(--syn-color-neutral-700);
   --syn-input-border-width: 1px;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-weight: var(--syn-font-weight-normal);

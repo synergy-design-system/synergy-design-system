@@ -229,7 +229,8 @@
     "packages/components/tsconfig.json": true,
     "packages/components/tsconfig.prod.json": true,
     "packages/components/web-test-runner.config.js": true,
-    "packages/react/src/**": true
+    "packages/react/src/**": true,
+    "packages/tokens/test/**": true,
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]
 }

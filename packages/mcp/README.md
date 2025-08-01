@@ -11,7 +11,7 @@ The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP)
 ### Installation
 
 ```bash
-npm install @synergy-design-system/mcp
+npm install --save-dev @synergy-design-system/mcp
 ```
 
 ### Running the Server
@@ -62,7 +62,7 @@ For Claude Desktop, add this to your `claude_desktop_config.json`:
 ## Features
 
 - **Component Information**: Get detailed usage information for Synergy components across frameworks
-- **Icon Assets**: Search and discover available icons from multiple icon sets  
+- **Icon Assets**: Search and discover available icons from multiple icon sets
 - **Design Tokens**: Access CSS and JavaScript design tokens
 - **Style Utilities**: Information about available CSS utility classes
 - **Templates**: Access static templates built with the Synergy Design System
@@ -266,6 +266,8 @@ src/
 │   ├── static.ts         # Static content builder
 │   ├── styles.ts         # Styles metadata builder
 │   └── tokens.ts         # Token metadata builder
+├── scripts/              # Build and utility scripts
+│   └── generate-checksum.ts # TypeScript checksum generator (replaces shell scripts)
 ├── server.ts             # MCP server setup and tool registration
 ├── tools/                # MCP tool implementations
 │   ├── asset-info.ts     # Icon search and information
@@ -283,6 +285,7 @@ src/
 │   └── index.ts          # Tool exports
 └── utilities/            # Helper functions and metadata loaders
     ├── assets.ts         # Asset utilities
+    ├── checksum.ts       # Folder checksum utilities (replaces shell scripts)
     ├── components.ts     # Component utilities
     ├── config.ts         # Configuration management
     ├── file.ts           # File system utilities
@@ -315,6 +318,9 @@ pnpm build:ts
 # Build metadata from source packages
 pnpm build:metadata
 
+# Generate metadata integrity checksum (uses TypeScript instead of shell script)
+pnpm build:hash
+
 # Build Storybook documentation
 pnpm build:storybook
 
@@ -338,12 +344,13 @@ pnpm release
 2. **Build**: Run `pnpm build` to compile TypeScript and generate metadata
    - `pnpm build:ts` compiles TypeScript files
    - `pnpm build:metadata` generates metadata from source packages
-   - `pnpm build:hash` creates integrity checksum for metadata
+   - `pnpm build:hash` creates integrity checksum for metadata using TypeScript utilities
 3. **Test**: Use `pnpm test` to run the test suite with coverage
 4. **Lint**: Run `pnpm lint` to check code quality
 5. **Run**: Start the server with `npx syn-mcp` or `node dist/bin/start.js`
 
 The metadata build process runs multiple specialized builders in sequence:
+
 1. Assets (icons and iconsets)
 2. Components (from package manifests)
 3. Framework information (setup guides)
@@ -409,6 +416,44 @@ The `pnpm build:metadata` script processes source packages and generates structu
 - `build/styles.ts` - Extracts CSS utility information
 - `build/tokens.ts` - Processes design token data
 - `build/build.ts` - Orchestrates the entire build process
+
+### Checksum Utilities
+
+The project includes TypeScript utilities for generating and verifying folder checksums, replacing shell scripts for cross-platform compatibility:
+
+**Key Features:**
+
+- **Cross-platform**: Works on Windows, macOS, and Linux
+- **Configurable**: Support for custom exclude patterns and hash algorithms (MD5, SHA1, SHA256)
+- **TypeScript native**: Full type safety and IDE support
+- **Shell script replacement**: Replaces `find | sort | xargs | md5` commands
+
+**Available Functions:**
+
+- `createFolderChecksum(path, options?)` - Generate checksum and optionally write to file
+- `verifyFolderChecksum(path, options?)` - Verify current contents match stored checksum
+- `getFolderChecksum(path, options?)` - Get checksum without writing to file
+
+**Usage Example:**
+
+```typescript
+import {
+  createFolderChecksum,
+  verifyFolderChecksum,
+} from "./utilities/checksum.js";
+
+// Generate checksum (equivalent to shell script)
+await createFolderChecksum("./metadata", {
+  excludePatterns: [".*", "checksum.txt"],
+  algorithm: "md5",
+  outputFile: "checksum.txt",
+});
+
+// Verify integrity
+const isValid = await verifyFolderChecksum("./metadata");
+```
+
+The build process uses `scripts/generate-checksum.ts` instead of shell commands for better cross-platform support and maintainability.
 
 ### Binary Distribution
 

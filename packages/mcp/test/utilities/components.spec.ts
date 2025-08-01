@@ -12,8 +12,7 @@ describe('when using the components metadata utilities', () => {
       expect(metadata).not.toHaveLength(0);
 
       const filesThatAreRead = metadata.map(file => file!.filename);
-      expect(filesThatAreRead).toContain('README.md');
-      expect(filesThatAreRead).toContain('CHANGELOG.md');
+      expect(filesThatAreRead).toContain('index.md');
     });
 
     ([

@@ -62,11 +62,13 @@ For Claude Desktop, add this to your `claude_desktop_config.json`:
 ## Features
 
 - **Component Information**: Get detailed usage information for Synergy components across frameworks
-- **Icon Assets**: Search and discover available icons from multiple icon sets
+- **Icon Assets**: Search and discover available icons from multiple icon sets  
 - **Design Tokens**: Access CSS and JavaScript design tokens
 - **Style Utilities**: Information about available CSS utility classes
+- **Templates**: Access static templates built with the Synergy Design System
 - **Migration Guides**: DaVinci to Synergy component migration assistance
 - **Framework Support**: Specific documentation for Angular, React, Vue, and vanilla Web Components
+- **Version Information**: Get version and metadata about the MCP server
 - **MCP Protocol**: Standard Model Context Protocol interface for AI assistant integration
 
 ## Available Tools
@@ -101,7 +103,19 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "What props does syn-dialog support in Vue?"
 - "Give me an example of syn-card in Angular"
 
-### 3. `asset-info`
+### 3. `asset-list`
+
+**Description:** Get the available iconsets in the Synergy Design System.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What iconsets are available?"
+- "Show me all available icon libraries"
+- "List all iconsets in Synergy"
+
+### 4. `asset-info`
 
 **Description:** Get information about available icons in the Synergy Design System.
 
@@ -118,7 +132,7 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "List 10 icons from the new iconset"
 - "Find icons related to 'close' in the current iconset"
 
-### 4. `token-info`
+### 5. `token-info`
 
 **Description:** Get information about design tokens available in the Synergy Design System.
 
@@ -132,7 +146,7 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "What JavaScript design tokens are available?"
 - "List all design tokens for styling"
 
-### 5. `styles-list`
+### 6. `styles-list`
 
 **Description:** Outputs a list of available styles in the Synergy Design System.
 
@@ -144,7 +158,7 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me all available CSS utility classes"
 - "List all style modules"
 
-### 6. `styles-info`
+### 7. `styles-info`
 
 **Description:** Get information about CSS utilities available in the Synergy Design System.
 
@@ -156,7 +170,33 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "What CSS utilities does Synergy provide?"
 - "Tell me about the styles package"
 
-### 7. `davinci-migrate-list`
+### 8. `template-list`
+
+**Description:** Outputs a list of available static templates built with the Synergy Design System.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What templates are available in Synergy?"
+- "Show me all available static templates"
+- "List all templates"
+
+### 9. `template-info`
+
+**Description:** Get a specific template in the Synergy Design System.
+
+**Parameters:**
+
+- `template` (string, required): The name of the template to get information about.
+
+**Example prompts:**
+
+- "Show me the form template"
+- "Give me information about the dashboard template"
+- "How do I use the form template?"
+
+### 10. `davinci-migrate-list`
 
 **Description:** Get a list of all components that have migration information from DaVinci to Synergy.
 
@@ -168,7 +208,7 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me all available migration guides"
 - "List components with migration information"
 
-### 8. `davinci-migrate-component`
+### 11. `davinci-migrate-component`
 
 **Description:** Get information about the migration of a specific component from DaVinci to Synergy.
 
@@ -182,13 +222,14 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me the migration guide for davinci-input"
 - "What's the Synergy equivalent of davinci-auto-suggest?"
 
-### 9. `framework-info`
+### 12. `framework-info`
 
 **Description:** Get information about a specific framework package that the Synergy Design System supports.
 
 **Parameters:**
 
 - `framework` (string, optional): Framework name (`react`, `vue`, `angular`, `vanilla`). Defaults to `vanilla`
+- `setupInstructions` (boolean, optional): Adds additional context to include setup instructions for all synergy applications. Defaults to `false`
 
 **Example prompts:**
 
@@ -196,6 +237,18 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me the Angular integration guide"
 - "What's needed to use Synergy with Vue?"
 - "How do I install Synergy for vanilla JavaScript?"
+
+### 13. `version`
+
+**Description:** Get version and basic information about the Synergy Design System MCP Server.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What version of the MCP server is running?"
+- "Show me information about this Synergy MCP server"
+- "What's the current version?"
 
 ## Developer Documentation
 
@@ -205,21 +258,44 @@ The MCP server provides the following tools that can be invoked by AI assistants
 src/
 ├── bin/
 │   └── start.ts          # CLI entry point (syn-mcp command)
-├── build/
-│   └── build.js          # Build script for metadata
+├── build/                # Build scripts for metadata generation
+│   ├── assets.ts         # Asset metadata builder
+│   ├── build.ts          # Main build orchestrator
+│   ├── components.ts     # Component metadata builder
+│   ├── frameworks.ts     # Framework info builder
+│   ├── static.ts         # Static content builder
+│   ├── styles.ts         # Styles metadata builder
+│   └── tokens.ts         # Token metadata builder
 ├── server.ts             # MCP server setup and tool registration
-├── tools/                # Tool implementations
-│   ├── assets.ts         # Icon and asset information
+├── tools/                # MCP tool implementations
+│   ├── asset-info.ts     # Icon search and information
+│   ├── asset-list.ts     # Available iconsets
 │   ├── component-info.ts # Individual component details
 │   ├── component-list.ts # List all components
 │   ├── davinci-migration.ts # Migration guides
-│   ├── package-info.ts   # Framework-specific information
+│   ├── framework-info.ts # Framework-specific information
 │   ├── styles-info.ts    # CSS utilities information
 │   ├── styles-list.ts    # List all styles
+│   ├── template-info.ts  # Template details
+│   ├── template-list.ts  # List all templates
 │   ├── tokens.ts         # Design tokens
+│   ├── version.ts        # MCP server version info
 │   └── index.ts          # Tool exports
 └── utilities/            # Helper functions and metadata loaders
-metadata/                 # Static metadata files
+    ├── assets.ts         # Asset utilities
+    ├── components.ts     # Component utilities
+    ├── config.ts         # Configuration management
+    ├── file.ts           # File system utilities
+    ├── metadata.ts       # Metadata loading utilities
+    ├── stdio.ts          # Standard I/O utilities
+    ├── styles.ts         # Style utilities
+    ├── templates.ts      # Template utilities
+    ├── tokens.ts         # Token utilities
+    ├── version.ts        # Version utilities
+    ├── storybook/        # Storybook documentation utilities
+    └── index.ts          # Utility exports
+metadata/                 # Generated and static metadata files
+├── checksum.txt          # Metadata integrity checksum
 ├── davinci-migration/    # DaVinci to Synergy migration guides
 ├── packages/             # Synergy package specific information
 └── static/               # Static metadata for tools
@@ -260,8 +336,20 @@ pnpm release
 
 1. **Setup**: Install dependencies with `pnpm install`
 2. **Build**: Run `pnpm build` to compile TypeScript and generate metadata
-3. **Test**: Use `pnpm test` to run the test suite
-4. **Run**: Start the server with `npx syn-mcp` or `node dist/bin/start.js`
+   - `pnpm build:ts` compiles TypeScript files
+   - `pnpm build:metadata` generates metadata from source packages
+   - `pnpm build:hash` creates integrity checksum for metadata
+3. **Test**: Use `pnpm test` to run the test suite with coverage
+4. **Lint**: Run `pnpm lint` to check code quality
+5. **Run**: Start the server with `npx syn-mcp` or `node dist/bin/start.js`
+
+The metadata build process runs multiple specialized builders in sequence:
+1. Assets (icons and iconsets)
+2. Components (from package manifests)
+3. Framework information (setup guides)
+4. Design tokens (CSS and JS tokens)
+5. Styles (utility classes)
+6. Static files (hand-written documentation)
 
 ### Adding New Tools
 
@@ -270,7 +358,7 @@ To add a new tool:
 1. Create a new file in `src/tools/` (e.g., `my-tool.ts`)
 2. Implement the tool following the MCP SDK patterns
 3. Export the tool from `src/tools/index.ts`
-4. Register the tool in `src/server.ts`
+4. Your tool will automatically be registered into the server.
 
 Example tool structure:
 
@@ -310,8 +398,17 @@ Metadata is stored in the `metadata/` directory and is built during the build pr
 - **Static metadata**: Hand-written files in `metadata/static/`
 - **Component metadata**: Generated from Synergy packages in `metadata/packages/`
 - **Migration guides**: DaVinci migration information in `metadata/davinci-migration/`
+- **Checksum validation**: `metadata/checksum.txt` ensures metadata integrity
 
-The `pnpm build:metadata` script processes source packages and generates structured metadata files.
+The `pnpm build:metadata` script processes source packages and generates structured metadata files using specialized builders:
+
+- `build/assets.ts` - Processes icon and asset information
+- `build/components.ts` - Extracts component metadata from packages
+- `build/frameworks.ts` - Generates framework-specific documentation
+- `build/static.ts` - Processes static content files
+- `build/styles.ts` - Extracts CSS utility information
+- `build/tokens.ts` - Processes design token data
+- `build/build.ts` - Orchestrates the entire build process
 
 ### Binary Distribution
 
@@ -355,7 +452,7 @@ Once configured with an AI assistant, you can use natural language prompts like:
 ```
 "Show me how to use syn-button in React"
 "What icons are available for navigation?"
-"How do I migrate from davinci-card to Synergy?"
+"How do I migrate from davinci-textarea to Synergy?"
 "List all available Synergy components"
 "What CSS utilities does Synergy provide?"
 ```

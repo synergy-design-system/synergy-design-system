@@ -18,6 +18,6 @@ The following examples are using syn-button and show INVALID usage for creating 
 <!-- Invalid: syn-button does not have the preview property -->
 <syn-button preview type="submit">Submit me with a preview</syn-button>
 
-<!-- Invalid: syn-button has a variant property, but primary option for it -->
+<!-- Invalid: syn-button has a variant property, but no primary option for it -->
 <syn-button type="link" variant="primary">Primary Button</syn-button>
 ```

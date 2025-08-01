@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 import { copyFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import ora from 'ora';
 import {
   createPath,
@@ -15,12 +15,12 @@ const staticFilesToCopy = [
   // The icon usage documentation needs to be copied to the static metadata directory
   [
     getAbsolutePath('../../../../packages/docs/src/static/icon-usage.md'),
-    join(setupPath, 'icon-usage.md'),
+    setupPath,
   ],
   // Copy prerequisites as it includes information about font setup
   [
     getAbsolutePath('../../../../packages/docs/src/static/prerequisites.md'),
-    join(setupPath, 'prerequisites.md'),
+    setupPath,
   ],
 ];
 
@@ -39,7 +39,10 @@ export const buildStaticFiles = async () => {
 
     const staticFiles = staticFilesToCopy
       .filter(file => existsSync(file.at(0)!))
-      .map(([staticFile, target]) => copyFile(staticFile, target));
+      .map(([staticFile, target]) => {
+        const targetFileName = join(target, basename(staticFile));
+        return copyFile(staticFile, targetFileName);
+      });
 
     await Promise.all(staticFiles);
     spinner.succeed('Static metadata generated successfully.');

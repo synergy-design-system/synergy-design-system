@@ -1,6 +1,7 @@
 import ora from 'ora';
 import { buildAssets } from './assets.js';
 import { buildComponents } from './components.js';
+import { buildFrameworkFiles } from './frameworks.js';
 import { buildStaticFiles } from './static.js';
 import { buildTokens } from './tokens.js';
 import { buildStyles } from './styles.js';
@@ -14,6 +15,7 @@ const build = async () => {
   spinner.start();
   await buildAssets();
   await buildComponents();
+  await buildFrameworkFiles();
   await buildTokens();
   await buildStyles();
 

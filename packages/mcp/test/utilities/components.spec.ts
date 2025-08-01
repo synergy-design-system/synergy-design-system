@@ -11,7 +11,6 @@ describe('when using the components metadata utilities', () => {
       const metadata = await getStaticMetaDataForFramework();
       expect(metadata).not.toHaveLength(0);
 
-
       const filesThatAreRead = metadata.map(file => file!.filename);
       expect(filesThatAreRead).toContain('README.md');
       expect(filesThatAreRead).toContain('CHANGELOG.md');
@@ -27,9 +26,10 @@ describe('when using the components metadata utilities', () => {
         expect(metadata).not.toHaveLength(0);
 
         const filesThatAreRead = metadata.map(file => file!.filename);
-        expect(filesThatAreRead).toContain('README.md');
+        expect(filesThatAreRead).toContain('index.md');
+        expect(filesThatAreRead).not.toContain('README.md');
         expect(filesThatAreRead).not.toContain('CHANGELOG.md');
-        expect(filesThatAreRead).toContain('LIMITATIONS.md');
+        expect(filesThatAreRead).not.toContain('LIMITATIONS.md');
       });
     });
   });

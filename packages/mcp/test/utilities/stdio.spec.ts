@@ -1,4 +1,4 @@
-import { parseCommandLineArgs } from '../../src/server.js';
+import { parseCommandLineArgs } from '../../src/utilities/stdio.js';
 
 describe('when using parseCommandLineArgs', () => {
   describe('version handling', () => {
@@ -45,10 +45,10 @@ describe('when using parseCommandLineArgs', () => {
       // Mock process.argv temporarily
       const originalArgv = process.argv;
       process.argv = ['node', 'script.js', '--version'];
-      
+
       const result = parseCommandLineArgs();
       expect(result).toEqual({ action: 'version' });
-      
+
       // Restore original
       process.argv = originalArgv;
     });

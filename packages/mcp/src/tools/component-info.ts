@@ -7,8 +7,7 @@ import {
 } from '../utilities/index.js';
 
 /**
- * Simple tool to list all available components in the Synergy Design System.
- * This tool fetches the component data from the Synergy package and formats it for display.
+ * Simple tool to retrieve information about a given component in the Synergy Design System.
  * @param server - The MCP server instance to register the tool on.
  */
 export const componentInfoTool = (server: McpServer) => {

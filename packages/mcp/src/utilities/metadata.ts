@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { componentPath, staticComponentPath } from './config.js';
 import { getAbsolutePath } from './file.js';
@@ -31,6 +31,12 @@ export const getStructuredMetaData = async (
   filter: Filter = defaultFilter,
 ) => {
   const absolutePath = getAbsolutePath(folder);
+
+  // If the directory does not exist, return an empty array
+  if (!existsSync(absolutePath)) {
+    return [];
+  }
+
   const files = await fs.readdir(absolutePath);
   const metadata = await Promise.all(
     files

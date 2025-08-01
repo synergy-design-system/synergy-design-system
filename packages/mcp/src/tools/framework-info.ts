@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
+  getDynamicMetaDataForFramework,
   getStaticMetaDataForFramework,
   getStructuredMetaData,
   setupPath,
@@ -27,21 +28,30 @@ export const frameworkInfoTool = (server: McpServer) => {
       framework,
       setupInstructions,
     }) => {
+      const dynamicInformation = await getDynamicMetaDataForFramework(framework);
       const staticInformation = await getStaticMetaDataForFramework(framework);
 
       // Needed framework information
       const content: { text: string; type: 'text' }[] = [
         {
-          text: `Common information about the usage of Synergy for framework ${framework}: ${JSON.stringify(staticInformation, null, 2)}`,
+          text: JSON.stringify(staticInformation, null, 2),
+          type: 'text',
+        },
+        {
+          text: JSON.stringify(dynamicInformation, null, 2),
           type: 'text',
         },
       ];
 
       // Provide additional context for the vanilla framework if requested
       if (framework !== 'vanilla') {
-        const vanillaInformation = await getStaticMetaDataForFramework('vanilla');
+        const vanillaInformation = await getDynamicMetaDataForFramework('vanilla');
         content.push({
-          text: `Additional information about the usage of Synergy for the vanilla framework: ${JSON.stringify(vanillaInformation, null, 2)}`,
+          text: 'Additional information about the usage of Synergy for the vanilla framework',
+          type: 'text',
+        });
+        content.push({
+          text: JSON.stringify(vanillaInformation, null, 2),
           type: 'text',
         });
       }

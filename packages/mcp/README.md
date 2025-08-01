@@ -180,7 +180,7 @@ The MCP server provides the following tools that can be invoked by AI assistants
 
 - "How do I migrate from davinci-button to Synergy?"
 - "Show me the migration guide for davinci-input"
-- "What's the Synergy equivalent of davinci-card?"
+- "What's the Synergy equivalent of davinci-auto-suggest?"
 
 ### 9. `framework-info`
 

@@ -1,14 +1,45 @@
 import fs from 'node:fs/promises';
 import {
   type Framework,
+  angularPath,
   componentPath,
+  componentStaticPath,
+  reactPath,
   staticPath,
+  vuePath,
 } from './config.js';
 import { getAbsolutePath } from './file.js';
 import {
   getStructuredMetaData,
   getStructuredMetaDataForComponent,
 } from './metadata.js';
+
+/**
+ * Get dynamic information about the usage of a specific framework in the Synergy Design System.
+ * @param framework The framework to get information about
+ * @returns List of structured metadata for the specified framework.
+ */
+export const getDynamicMetaDataForFramework = async (
+  framework: Framework = 'vanilla',
+) => {
+  let frameworkPath;
+
+  switch (framework) {
+  case 'angular':
+    frameworkPath = angularPath;
+    break;
+  case 'react':
+    frameworkPath = reactPath;
+    break;
+  case 'vue':
+    frameworkPath = vuePath;
+    break;
+  default:
+    frameworkPath = componentStaticPath;
+  }
+
+  return getStructuredMetaData(frameworkPath);
+};
 
 /**
  * Get additional information about the usage of a specific framework in the Synergy Design System.

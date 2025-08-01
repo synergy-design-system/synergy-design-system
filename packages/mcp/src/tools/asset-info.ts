@@ -10,16 +10,20 @@ import {
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
   brand2018Icons: [
     'current',
+    'default',
     'legacy',
     'v2',
     'synergy2018',
     'brand2018',
+    'sick2018',
   ],
   brand2025Icons: [
     'synergy2025',
     'new',
     'next',
     'brand2025',
+    'sick2025',
+    'v3',
   ],
 };
 
@@ -29,7 +33,7 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
  * @todo: Maybe also include the metadata like in docs and use this to map the new/old sets?
  * @param server - The MCP server instance to register the tool on.
  */
-export const assetsTool = (server: McpServer) => {
+export const assetInfoTool = (server: McpServer) => {
   server.registerTool(
     'asset-info',
     {
@@ -42,15 +46,19 @@ export const assetsTool = (server: McpServer) => {
         iconset: z
           .enum([
             'current', // Special key, maps to 2018 currently, should map to 2025 in the next major version
+            'default', // Alias for current
             'legacy', // Fallback to 2018
             'v2', // Fallback to 2018
             'synergy2018', // Fallback name of the set for 2018
-            'brand2018', // Official name of the set for 2018
+            'brand2018', // Alternative name of the set for 2018
+            'sick2018', // Official name for 2018 (Synergy V2)
 
-            'brand2025', // Official name of the set for 2025
-            'synergy2025', // Alias for brand2025
-            'new', // Alias for brand2025
-            'next', // Alias for brand2025
+            'brand2025', // Alternative name of the set for 2025
+            'sick2025', // Official name for 2025 (Synergy V3)
+            'synergy2025', // Alias for sick2025
+            'new', // Alias for sick2025
+            'next', // Alias for sick2025
+            'v3', // Done for completeness, maps to 2025
           ])
           .default('current')
           .optional()
@@ -90,10 +98,16 @@ export const assetsTool = (server: McpServer) => {
         : availableIcons;
 
       const icons = limitedIcons.map(icon => `- ${icon}`).join('\n');
-      const content = [{
-        text: `Available icons in iconset "${setToUse}":\n${icons}`,
-        type: 'text' as const,
-      }];
+      const content = [
+        {
+          text: `Available icons in iconset "${setToUse}":`,
+          type: 'text' as const,
+        },
+        {
+          text: icons,
+          type: 'text' as const,
+        },
+      ];
 
       const aiRules = await getStructuredMetaData('../../metadata/static/assets');
 

@@ -16,9 +16,19 @@ export const metaDataPath = join(currentDirname, '../../metadata');
 export const assetsPath = join(currentDirname, '../../metadata/packages/assets');
 
 /**
- * Path to the components directory, relative to the MCP directory.
+ * Path to the components base directory, relative to the MCP directory.
  */
-export const componentPath = join(currentDirname, '../../metadata/packages/components');
+export const componentBasePath = join(currentDirname, '../../metadata/packages/components');
+
+/**
+ * Path to the components code directory, relative to the MCP directory.
+ */
+export const componentPath = join(componentBasePath, '/components');
+
+/**
+ * Path to the components static directory, relative to the MCP directory.
+ */
+export const componentStaticPath = join(componentBasePath, '/static');
 
 /**
  * The path where static information about components is stored, relative to the MCP directory.
@@ -34,6 +44,21 @@ export const setupPath = join(currentDirname, '../../metadata/static/setup');
  * Path to the styles directory, relative to the MCP directory.
  */
 export const stylesPath = join(currentDirname, '../../metadata/packages/styles');
+
+/**
+ * Path to the angular directory, relative to the MCP directory.
+ */
+export const angularPath = join(currentDirname, '../../metadata/packages/angular');
+
+/**
+ * Path to the react directory, relative to the MCP directory.
+ */
+export const reactPath = join(currentDirname, '../../metadata/packages/react');
+
+/**
+ * Path to the vue directory, relative to the MCP directory.
+ */
+export const vuePath = join(currentDirname, '../../metadata/packages/vue');
 
 /**
  * The path where static information about styles is stored, relative to the MCP directory.

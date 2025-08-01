@@ -7,9 +7,9 @@ import { pascalCase } from 'change-case';
 import type { CustomElementDeclaration, Module } from 'custom-elements-manifest/schema.d.ts';
 import {
   componentPath,
+  componentStaticPath,
   createPath,
   getAbsolutePath,
-  staticPath,
 } from '../utilities/index.js';
 
 type Manifest = Module[];
@@ -151,9 +151,8 @@ export const buildComponents = async () => {
 
     spinner.text = 'Generating static metadata...';
 
-    const rootStaticPath = join(staticPath, 'components');
-    if (!existsSync(rootStaticPath)) {
-      mkdirSync(rootStaticPath, { recursive: true });
+    if (!existsSync(componentStaticPath)) {
+      mkdirSync(componentStaticPath, { recursive: true });
     }
 
     const staticFiles = [
@@ -162,10 +161,10 @@ export const buildComponents = async () => {
       'LIMITATIONS.md',
     ]
       .map(staticFile => join(getAbsolutePath('../../../../packages/components'), staticFile))
-      .filter(file => existsSync(file))
+      .filter(existsSync)
       .map(staticFile => {
         const base = basename(staticFile);
-        const target = join(rootStaticPath, base);
+        const target = join(componentStaticPath, base);
         return copyFile(staticFile, target);
       });
 

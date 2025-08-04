@@ -44,6 +44,31 @@ The default base path of the icon library is set to __assets/icons/__.
 To make the <syn-icon> work out of the box, without configuring anything, the used icons can be copied to this path in you application.
 This can either be done manually or with the help of the bundler.
 
+### Differences in icon usage between Synergy 2.0 and Synergy 3.0
+
+With the upgrade to Synergy 3.0, new icons will be used.
+Those icons are already available as assets in the \`@synergy-design-system/assets\` package.
+When using the new icons, you have to make sure that the icons are available in the \`assets/icons/\` directory of your project as outlined below.
+
+System icons come bundled with the \`@synergy-design-system/components\` package. You may switch to the new icons with the new \`setSystemIconLibrary\` utility provided.
+Please have a look at the following example to see how to switch the icon library.
+Note that if you do not call this function, it will default to the 2018 icon library, which is used in Synergy 2.0 until Synergy 3.0 is released.
+
+\`\`\`javascript
+import { setSystemIconLibrary } from '@synergy-design-system/components';
+
+// Switch to the 2025 icon library
+setDefaultIconLibrary('sick2025');
+
+// Switch back to the 2018 icon library
+setDefaultIconLibrary('sick2018');
+
+// Switch to the default icon library (2018 for Synergy 2.0, 2025 for Synergy 3.0)
+setDefaultIconLibrary();
+\`\`\`
+
+
+
 #### Angular + Webpack
 Including assets from another library can be achieved in angular via configuring the assets configuration in the angular.json file.
 For more information have a look at the [angular documentation](https://angular.io/guide/workspace-config#asset-config).

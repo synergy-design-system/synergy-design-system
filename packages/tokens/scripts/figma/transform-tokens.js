@@ -6,60 +6,15 @@
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
  */
 import path from 'path';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
 import {
-  figmaVariables, getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle,
+  createDirectory, figmaVariables, formatColor, getAliasValue,
+  getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle,
   renameVariable, resolveAlias,
 } from './helpers.js';
 import { COLOR_PALETTE_PREFIX, OUTPUT_DIR } from '../config.js';
-
-/**
- * Create a directory if it does not exist.
- * @param { string } dirPath the directory path
- */
-const createDirectory = (dirPath) => {
-  if (!existsSync(dirPath)) {
-    mkdirSync(dirPath, { recursive: true });
-  }
-};
-
-/**
- * Formats a color object into a CSS-compatible color string.
- * formatColor({ r: 0.5, g: 0.5, b: 0.5, a: 0.8 }) // "rgba(128, 128, 128, 0.80)"
- * formatColor({ r: 0.5, g: 0.5, b: 0.5 }) // "#808080"
- * @param { Color } color Color object with r, g, b, and optional a properties.
- * @returns {string} The formatted color string.
- */
-const formatColor = (color) => {
-  const { r, g, b } = color;
-  const a = 'a' in color ? color.a : undefined;
-
-  const red = Math.round(r * 255);
-  const green = Math.round(g * 255);
-  const blue = Math.round(b * 255);
-
-  if (a !== undefined && a < 1) {
-    return `rgba(${red}, ${green}, ${blue}, ${a.toFixed(2)})`;
-  }
-
-  // eslint-disable-next-line no-bitwise
-  return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
-};
-
-/**
- * Gets the value of an alias variable in a specific mode.
- * @param { string } aliasId Id of the alias variable
- * @param { string } modeId Id of the mode
- * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
- */
-const getAliasValue = (aliasId, modeId) => {
-  const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
-  /** @type {Record<string, unknown> | undefined} */
-  const valuesByMode = aliasVar?.valuesByMode;
-  return valuesByMode?.[modeId];
-};
 
 /**
  * Check if the alias value should be used.

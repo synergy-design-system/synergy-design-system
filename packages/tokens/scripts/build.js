@@ -10,7 +10,7 @@ import {
   convertLetterSpacingValue,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
-import { FIGMA_STYLES_PATH, OUTPUT_DIR } from './config.js';
+import { DARK_2018_THEME, LIGHT_2018_THEME, OUTPUT_DIR } from './config.js';
 
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
@@ -44,11 +44,11 @@ StyleDictionary.registerFileHeader({
 
 const availableThemes = [
   {
-    input: 'sick2018-light',
+    input: LIGHT_2018_THEME,
     theme: 'light',
   },
   {
-    input: 'sick2018-dark',
+    input: DARK_2018_THEME,
     theme: 'dark',
   },
 ];
@@ -92,8 +92,7 @@ const cssRuns = availableThemes.map(async ({ input, theme }) => {
     },
     preprocessors: ['tokens-studio'],
     source: [
-      `${OUTPUT_DIR}/${input}.json`,
-      FIGMA_STYLES_PATH,
+      `${OUTPUT_DIR}/${input}`,
     ],
   });
 

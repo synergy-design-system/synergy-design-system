@@ -4,12 +4,11 @@
  * @typedef {VariablesAndCollections['variables']} Variables
  * @typedef {VariablesAndCollections['variableCollections']} VariableCollections
  */
-import path from 'path';
 import {
   existsSync, mkdirSync, rmSync, writeFileSync,
 } from 'fs';
 import { sort } from '@tamtamchik/json-deep-sort';
-import { FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE } from '../config.js';
+import { FIGMA_FETCHED_VARIABLES_PATH, FIGMA_VARIABLES_DIR } from '../config.js';
 
 /**
  * Validates environment variables and returns branch ID and headers
@@ -93,8 +92,7 @@ const fetchFigmaVariables = async () => {
 
   const filteredData = filterHiddenCollections(variableCollections, variables);
 
-  const outputPath = path.join(FIGMA_VARIABLES_DIR, FIGMA_VARIABLES_FILE);
-  writeFileSync(outputPath, JSON.stringify(sort(filteredData), null, 2));
+  writeFileSync(FIGMA_FETCHED_VARIABLES_PATH, JSON.stringify(sort(filteredData), null, 2));
 };
 
 fetchFigmaVariables().catch(console.error);

@@ -5,7 +5,7 @@ on:
       figma_file_id:
         description: "This can either be a branch_id or the id for the main figma file"
         required: true
-        default: "bZFqk9urD3NlghGUKrkKCR" # This is the main file id for the Synergy Design System
+        default: ${{ vars.FIGMA_FILE_ID }} # This is the main file id for the Synergy Design System
       branch_name:
         description: "The name for the branch, which should be created for the pull request"
         required: true
@@ -49,7 +49,7 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
 
       - name: Run tests for new tokens
-        run: pnpm -C ./packages/tokens build && pnpm -C ./packages/tokens _test
+        run: pnpm -C ./packages/tokens build && pnpm -C ./packages/tokens compare
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

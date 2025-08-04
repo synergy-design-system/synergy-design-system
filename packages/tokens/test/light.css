@@ -28,13 +28,13 @@
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
   --syn-font-weight-bold: 700;
-  --syn-shadow-medium: 0 1px 2px 0 rgba(49, 55, 58, 0.08), 0 1px 4px 0 rgba(49, 55, 58, 0.08), 0 2px 8px 0 rgba(49, 55, 58, 0.08);
-  --syn-shadow-large: 0 0 3px 0 rgba(49, 55, 58, 0.12), 0 2px 6px 0 rgba(49, 55, 58, 0.12), 0 3px 8px 0 rgba(49, 55, 58, 0.16);
-  --syn-shadow-x-large: 0 1px 4px 0 rgba(49, 55, 58, 0.12), 0 8px 24px 0 rgba(49, 55, 58, 0.12), 0 16px 48px 0 rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-down: 0 1px 4px 0 rgba(49, 55, 58, 0.12), 0 3px 8px 0 rgba(49, 55, 58, 0.12), 0 4px 12px 0 rgba(49, 55, 58, 0.16); /** Overflow Down */
-  --syn-shadow-overflow-up: 0 -1px 4px 0 rgba(49, 55, 58, 0.12), 0 -3px 8px 0 rgba(49, 55, 58, 0.12), 0 -4px 12px 0 rgba(49, 55, 58, 0.16); /** Overflow Up */
-  --syn-shadow-overflow-left: -1px 0 4px 0 rgba(49, 55, 58, 0.12), -3px 0 8px 0 rgba(49, 55, 58, 0.12), -4px 0 12px 0 rgba(49, 55, 58, 0.16); /** Overflow Left */
-  --syn-shadow-overflow-right: 1px 0 4px 0 rgba(49, 55, 58, 0.12), 3px 0 8px 0 rgba(49, 55, 58, 0.12), 4px 0 12px 0 rgba(49, 55, 58, 0.16); /** Overflow Right */
+  --syn-shadow-medium: 0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08);
+  --syn-shadow-large: 0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-x-large: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Down */
+  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Up */
+  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Left */
+  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Right */
   --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /** Open Sans */
   --syn-font-mono: 'Roboto Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
   --syn-spacing-4x-small: 1px;
@@ -82,7 +82,6 @@
   --syn-input-border-color: var(--syn-color-neutral-700);
   --syn-input-border-color-hover: var(--syn-color-neutral-950);
   --syn-input-border-color-focus: var(--syn-color-neutral-950);
-  --syn-input-border-color-disables: var(--syn-color-neutral-700);
   --syn-input-border-radius-small: var(--syn-border-radius-none);
   --syn-input-border-radius-medium: var(--syn-border-radius-none);
   --syn-input-border-radius-large: var(--syn-border-radius-none);
@@ -241,8 +240,8 @@
   /* Fallbacks from Shoelace */
   --syn-border-radius-large: 8px;
   --syn-border-radius-x-large: 16px;
-  --syn-shadow-x-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.06);
-  --syn-shadow-small: 0 1px 2px hsla(240, 3.8%, 46.1%, 0.12);
+  --syn-shadow-x-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04);
+  --syn-shadow-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06);
   --syn-transition-x-slow: 1000ms;
   --syn-transition-slow: 500ms;
   --syn-transition-medium: 250ms;

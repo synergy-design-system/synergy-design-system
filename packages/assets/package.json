@@ -31,6 +31,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./brand2025/*": "./src/brand2025/*",
     "./icons/*": "./src/icons/*",
     "./logos/*": "./src/logos/*",
     "./default-icons.js": {
@@ -50,6 +51,8 @@
     "dist",
     "src/brand2025",
     "src/logos",
+    "src/system-icons",
+    "src/system-icons-sick2025",
     "src/icons",
     "CHANGELOG.md",
     "NOTICE"

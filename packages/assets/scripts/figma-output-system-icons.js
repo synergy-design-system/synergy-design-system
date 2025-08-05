@@ -152,7 +152,7 @@ export const icons = ${JSON.stringify(icons, null, 2)};
 };
 
 /**
- * Write TypeScript files for the icons.
+ * Write svg files for the icons.
  * @param {string} outputPath The path to output the TypeScript files.
  * @param {string} iconSet The name of the icon set.
  * @param {Record<string, string>} icons The icons to write to the files.

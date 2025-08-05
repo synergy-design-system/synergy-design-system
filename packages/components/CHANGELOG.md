@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.39.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.39.1...components/2.39.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* 🐛 syn-header with syn-side-nav burger menu stops working ([#976](https://github.com/synergy-design-system/synergy-design-system/issues/976)) ([cdf744c](https://github.com/synergy-design-system/synergy-design-system/commit/cdf744ccb77cd83dc700b2816f53aa6e7d7a7da9))
+
 # [@synergy-design-system/components-v2.39.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.39.0...components/2.39.1) (2025-07-11)
 
 

@@ -11,13 +11,4 @@ export class AllComponentsPage extends PageObject {
     const foundLocator = this.getLocator(locator);
     await foundLocator.click();
   }
-
-  getLocator(locator: keyof typeof selectors) {
-    const locatorFound = selectors[locator];
-
-    if (typeof locatorFound === 'undefined') {
-      throw new Error(`Locator not found: ${locator}`);
-    }
-    return this.page.locator(selectors[locator]);
-  }
 }

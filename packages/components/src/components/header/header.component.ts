@@ -170,11 +170,20 @@ export default class SynHeader extends SynergyElement {
 
       // #587: Make sure to not trigger the burger menu if the side nav is currently
       // animating and the user clicks on the burger menu button.
-      const isAnimating = () => {
+
+      // #921: Make sure to only trigger this if the source of the element is the side nav.
+      // This is because syn-nav-item also triggers show and hide events when opened or closed.
+      const isAnimating = (e: Event) => {
+        if (e.target !== this.sideNav) {
+          return;
+        }
         this.isSideNavAnimating = true;
       };
 
-      const isNotAnimating = () => {
+      const isNotAnimating = (e: Event) => {
+        if (e.target !== this.sideNav) {
+          return;
+        }
         this.isSideNavAnimating = false;
       };
 

@@ -1,3 +1,11 @@
+const AppShellSelectors = {
+  appHeader: 'syn-header',
+  appSideNav: 'syn-side-nav',
+
+  // Regressions for #921
+  header921NavItem: '#header921',
+};
+
 const AllComponentSelectors = {
   // Accordion
   accordionContent: '#tab-content-Accordion',
@@ -85,6 +93,7 @@ const AllComponentSelectors = {
 
 export default {
   ...AllComponentSelectors,
+  ...AppShellSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',

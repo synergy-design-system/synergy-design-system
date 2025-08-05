@@ -51,6 +51,21 @@ const routeTo = (route: string) => {
         Framework specific issues
         <SynVueIcon name="bug_report" slot="prefix"/>
       </SynVueNavItem>
+
+      <!-- e2e tests for issue #921 -->
+      <SynVueNavItem open id="header921" slot="footer">
+        <SynVueIcon name="wallpaper" slot="prefix" />
+        Fix#921 (first level)
+
+        <SynVueNavItem open slot="children">
+          <SynVueIcon name="wallpaper" slot="prefix" />
+          Fix#921 (second level)
+          <SynVueNavItem slot="children">
+            <SynVueIcon name="wallpaper" slot="prefix" />
+            Fix#921 (third level)
+          </SynVueNavItem>
+        </SynVueNavItem>
+      </SynVueNavItem>
     </SynVueSideNav>
     <main class="content">
       <RouterView />

@@ -48,6 +48,28 @@ export class PageObject {
     return this.page.locator(selectors.themeSwitch);
   }
 
+  /**
+   * Returns a locator for the given selector key.
+   * This is useful for accessing elements in the page using the predefined selectors.
+   *
+   * @param locator - The locator to find
+   * @throws Will throw an error if the locator is not found
+   *
+   * @example
+   * const myLocator = pageObject.getLocator('mySelectorKey');
+   * await myLocator.click();
+   *
+   * @returns Locator - The Playwright Locator for the given selector key.
+   */
+  getLocator(locator: keyof typeof selectors) {
+    const locatorFound = selectors[locator];
+
+    if (typeof locatorFound === 'undefined') {
+      throw new Error(`Locator not found: ${locator}`);
+    }
+    return this.page.locator(selectors[locator]);
+  }
+
   public getSizeToggle(size: 'small' | 'medium' | 'large'): Locator {
     switch (size) {
     case 'small':

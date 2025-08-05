@@ -31,6 +31,11 @@ export const componentPath = join(componentBasePath, '/components');
 export const componentStaticPath = join(componentBasePath, '/static');
 
 /**
+ * Path to the components migration directory, relative to the MCP directory.
+ */
+export const componentMigrationPath = join(componentBasePath, '/migration');
+
+/**
  * The path where static information about components is stored, relative to the MCP directory.
  */
 export const staticComponentPath = join(currentDirname, '../../metadata/static/components');
@@ -84,6 +89,11 @@ export const davinciMigrationPath = join(currentDirname, '../../metadata/davinci
  * Path to the static files directory, relative to the MCP directory.
  */
 export const staticPath = join(currentDirname, '../../metadata/static');
+
+/**
+ * Path to the migration directory, relative to the MCP directory.
+ */
+export const staticMigrationPath = join(currentDirname, '../../metadata/static/migration');
 
 /**
  * List of supported frameworks.

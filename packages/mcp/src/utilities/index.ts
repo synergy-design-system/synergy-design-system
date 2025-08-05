@@ -3,6 +3,7 @@ export * from './checksum.js';
 export * from './components.js';
 export * from './config.js';
 export * from './file.js';
+export * from './migration.js';
 export * from './metadata.js';
 export * from './stdio.js';
 export * from './styles.js';

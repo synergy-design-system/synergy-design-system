@@ -66,7 +66,7 @@ For Claude Desktop, add this to your `claude_desktop_config.json`:
 - **Design Tokens**: Access CSS and JavaScript design tokens
 - **Style Utilities**: Information about available CSS utility classes
 - **Templates**: Access static templates built with the Synergy Design System
-- **Migration Guides**: DaVinci to Synergy component migration assistance
+- **Migration Guides**: DaVinci to Synergy component migration assistance and Synergy version migrations
 - **Framework Support**: Specific documentation for Angular, React, Vue, and vanilla Web Components
 - **Version Information**: Get version and metadata about the MCP server
 - **MCP Protocol**: Standard Model Context Protocol interface for AI assistant integration
@@ -238,7 +238,20 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "What's needed to use Synergy with Vue?"
 - "How do I install Synergy for vanilla JavaScript?"
 
-### 13. `version`
+### 13. `migration-info`
+
+**Description:** Get information about migrations available in the Synergy Design System, including breaking changes between major versions.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What migrations are available in Synergy?"
+- "How do I migrate from Synergy v1 to v2?"
+- "Show me breaking changes between versions"
+- "What changed in the latest Synergy version?"
+
+### 14. `version`
 
 **Description:** Get version and basic information about the Synergy Design System MCP Server.
 
@@ -498,6 +511,7 @@ Once configured with an AI assistant, you can use natural language prompts like:
 "Show me how to use syn-button in React"
 "What icons are available for navigation?"
 "How do I migrate from davinci-textarea to Synergy?"
+"How do I migrate from Synergy v1 to v2?"
 "List all available Synergy components"
 "What CSS utilities does Synergy provide?"
 ```

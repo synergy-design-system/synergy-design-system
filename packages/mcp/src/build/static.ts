@@ -3,6 +3,7 @@ import { copyFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import ora from 'ora';
 import {
+  componentMigrationPath,
   createPath,
   getAbsolutePath,
   setupPath,
@@ -22,6 +23,11 @@ const staticFilesToCopy = [
     getAbsolutePath('../../../../packages/docs/src/static/prerequisites.md'),
     setupPath,
   ],
+  // Copy the migration guide
+  [
+    getAbsolutePath('../../../../packages/components/BREAKING_CHANGES.md'),
+    componentMigrationPath,
+  ],
 ];
 
 /**
@@ -34,8 +40,11 @@ export const buildStaticFiles = async () => {
   }).start();
 
   try {
-    // Create the setup directory if it doesn't exist
-    await createPath(setupPath);
+    // Create the wanted directories if they don't exist
+    const createAllPaths = Promise.all(
+      staticFilesToCopy.map(([, target]) => createPath(target)),
+    );
+    await createAllPaths;
 
     const staticFiles = staticFilesToCopy
       .filter(file => existsSync(file.at(0)!))

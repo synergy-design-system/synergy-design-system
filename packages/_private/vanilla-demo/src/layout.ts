@@ -110,6 +110,21 @@ export const createLayout = () => `
         Framework specific issues
         <syn-icon name="bug_report" slot="prefix"></syn-icon>
       </syn-nav-item>
+
+      <!-- e2e tests for issue #921 -->
+      <syn-nav-item open id="header921" slot="footer">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Fix#921 (first level)
+
+        <syn-nav-item open slot="children">
+          <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+          Fix#921 (second level)
+          <syn-nav-item slot="children">
+            <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+            Fix#921 (third level)
+          </syn-nav-item>
+        </syn-nav-item>
+      </syn-nav-item>
     </syn-side-nav>
     <!-- /side-nav -->
 

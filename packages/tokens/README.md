@@ -350,7 +350,7 @@ When adding new tokens or changing existing token values, the test reference fil
 The token package includes a test system that validates the consistency between the built token files and reference files:
 
 - **`test/light.css`**: Reference file containing expected CSS variables for the light theme
-- **`test/dark.css`**: Reference file containing expected CSS variables for the dark theme  
+- **`test/dark.css`**: Reference file containing expected CSS variables for the dark theme
 - **`test/test-css-variables.js`**: Test script that compares built files against reference files
 
 #### When to Update Test Files
@@ -366,17 +366,20 @@ Test files need to be updated in the following scenarios:
 After the new / updated tokens are fetched and build:
 
 1. **Build the tokens**: Ensure the latest tokens are built
+
    ```bash
    cd packages/tokens
    pnpm build
    ```
 
 2. **Run the comparison test**: This will show differences between built and reference files
+
    ```bash
    pnpm compare
    ```
 
 3. **Update reference files**: If the changes are intentional, copy the built files to the test directory or update the files manually with the changes
+
    ```bash
    # Copy the newly built files to serve as new reference files
    cp dist/themes/light.css test/light.css
@@ -391,6 +394,7 @@ After the new / updated tokens are fetched and build:
 #### Test Output
 
 The test script provides detailed feedback:
+
 - ✅ **Success**: When all variables match between built and reference files
 - 🚫 **Missing variables**: Variables present in reference but missing in built files
 - ➕ **Extra variables**: New variables in built files not present in reference

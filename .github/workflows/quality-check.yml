@@ -74,9 +74,6 @@ jobs:
           node-version: 22
           cache: "pnpm"
 
-      - name: List files
-        run: ls -alh && exit -1
-
       - name: Install dependencies
         run: pnpm install
 
@@ -87,7 +84,7 @@ jobs:
         run: pnpm -C packages/mcp build:all
 
       - name: Check for uncommitted changes
-        run: git diff --exit-code
+        run: git diff --exit-code .
 
   test_components:
     name: Validate tests (components)

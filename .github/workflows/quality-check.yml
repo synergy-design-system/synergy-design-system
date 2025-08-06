@@ -80,7 +80,7 @@ jobs:
 
       - name: Reindex storybook stories
         run: pnpm -C packages/mcp build:all
-      
+
       - name: Check for uncommitted changes
         run: git diff --exit-code
 

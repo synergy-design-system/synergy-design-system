@@ -23,12 +23,12 @@ export const PATH_LOGOS_V2 = 'src/logos';
 export const PATH_SYSTEM_ICONS_V2 = 'src/system-icons';
 export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
-export const PATH_ICONS_V3 = 'src/brand2025';
+export const PATH_ICONS_V3 = 'src/sick2025';
 export const PATH_SYSTEM_ICONS_V3 = 'src/system-icons-sick2025';
 
 export const PATH_DEFAULT_ICONS_2018 = 'src/default-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/brand2025-filled-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/brand2025-outline-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/sick2025-filled-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/sick2025-outline-icons.ts';
 
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;

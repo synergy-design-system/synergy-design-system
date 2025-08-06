@@ -128,7 +128,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'outlineIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/brand2025-outline-icons.ts',
+      output: './src/sick2025-outline-icons.ts',
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -139,7 +139,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'brand2025/outline',
+  path: 'sick2025/outline',
 });
 
 // v3 filled icons configuration
@@ -148,7 +148,7 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'filledIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/brand2025-filled-icons.ts',
+      output: './src/sick2025-filled-icons.ts',
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -159,7 +159,7 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'brand2025/fill',
+  path: 'sick2025/fill',
 });
 
 /**

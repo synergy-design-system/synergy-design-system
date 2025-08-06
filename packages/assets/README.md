@@ -40,9 +40,10 @@ This package is taking care about getting assets (like logos, system icons and d
 The folder structure of the assets corresponds to the structure of the Figma page.
 
 - **src/component-thumbnails** contains thumbnails from figma components used in Storybook
-- **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons)
+- **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons) for SICK 2018 brand revision. Use those icons when using Synergy V2
 - **src/logos:** contains the variants of the SICK brand logo
-- **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components
+- **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components. Default for Synergy V2.
+- **src/system-icons-sick2025:** contains a small subset of icons, that are internally used by the Synergy components. Used from Synergy V3 onward.
 
 > **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
 

@@ -31,9 +31,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./brand2025/*": "./src/brand2025/*",
     "./icons/*": "./src/icons/*",
     "./logos/*": "./src/logos/*",
+    "./sick2025/*": "./src/sick2025/*",
     "./default-icons.js": {
       "types": "./dist/default-icons.d.ts",
       "import": "./dist/default-icons.js"
@@ -49,11 +49,11 @@
   },
   "files": [
     "dist",
-    "src/brand2025",
+    "src/icons",
     "src/logos",
+    "src/sick2025",
     "src/system-icons",
     "src/system-icons-sick2025",
-    "src/icons",
     "CHANGELOG.md",
     "NOTICE"
   ],

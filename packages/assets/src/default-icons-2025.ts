@@ -1,5 +1,5 @@
-import { filledIcons } from './brand2025-filled-icons.js';
-import { outlineIcons } from './brand2025-outline-icons.js';
+import { filledIcons } from './sick2025-filled-icons.js';
+import { outlineIcons } from './sick2025-outline-icons.js';
 
 export const defaultIcons = {
   ...filledIcons,

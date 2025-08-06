@@ -4,7 +4,6 @@ export const FIGMA_ID_ICONS = '1616-1509';
 
 // V2 Figma paths
 export const FIGMA_FILE_ID_ICONS_V2 = 'bZFqk9urD3NlghGUKrkKCR';
-export const FIGMA_ID_SYSTEM_ICONS_V2 = '1616-1509';
 export const FIGMA_ID_ALL_ICONS_V2 = '1616-1512';
 export const FIGMA_ID_LOGOS_V2 = '41-4000';
 

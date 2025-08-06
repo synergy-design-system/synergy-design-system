@@ -230,7 +230,8 @@
     "packages/components/tsconfig.prod.json": true,
     "packages/components/web-test-runner.config.js": true,
     "packages/react/src/**": true,
-    "packages/tokens/test/**": true
+    "packages/tokens/test/light.css": true,
+    "packages/tokens/test/dark.css": true
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]
 }

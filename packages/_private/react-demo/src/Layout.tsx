@@ -67,6 +67,21 @@ export const Layout: FC = () => {
             Framework specific issues
             <SynIcon name="bug_report" slot="prefix" />
           </RouterLink>
+
+          { /* e2e tests for issue #921 */}
+          <syn-nav-item open id="header921" slot="footer">
+            <syn-icon name="wallpaper" slot="prefix" />
+            Fix#921 (first level)
+
+            <syn-nav-item open slot="children">
+              <syn-icon name="wallpaper" slot="prefix" />
+              Fix#921 (second level)
+              <syn-nav-item slot="children">
+                <syn-icon name="wallpaper" slot="prefix" />
+                Fix#921 (third level)
+              </syn-nav-item>
+            </syn-nav-item>
+          </syn-nav-item>
         </SynSideNav>
         <main className="content">
           <Outlet />

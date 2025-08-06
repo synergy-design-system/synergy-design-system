@@ -59,9 +59,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install git
-        run: apt-get update && apt-get install -y git
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm

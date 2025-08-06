@@ -25,7 +25,7 @@ export class StorybookScraper {
       // Navigate to the Storybook docs page
       console.log('Navigating to Storybook docs for:', storyId);
 
-      await page.goto(`${baseUrl}/iframe.html?viewMode=docs&id=${storyId}&globals=`);
+      await page.goto(`${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
 
       // Wait for the content to load
       await page.waitForSelector('.sb-anchor', { timeout: 10000 });

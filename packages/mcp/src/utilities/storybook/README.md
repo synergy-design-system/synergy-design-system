@@ -10,9 +10,9 @@ The system provides a flexible architecture that can be configured to scrape dif
 
 ### Core Components
 
-1. **StorybookManager** (`storybook-manager.ts`)
+1. **StaticServerManager** (`storybook-manager.ts`)
 
-   - Manages the Storybook server lifecycle
+   - Manages the static file server lifecycle for serving built Storybook documentation
    - Handles automatic port detection and allocation
    - Provides graceful start/stop functionality
 

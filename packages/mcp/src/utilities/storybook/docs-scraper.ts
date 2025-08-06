@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import { StorybookManager } from './storybook-manager.js';
 import { StorybookScraper } from './scraper.js';
 import {
   componentScrapingConfig,
@@ -9,44 +8,25 @@ import {
 import { ScrapingConfig } from './types.js';
 
 export class DocsScraper {
-  private storybookManager: StorybookManager;
+  private baseUrl: string;
 
-  private workingDirectory: string;
-
-  constructor(workingDirectory: string = process.cwd()) {
-    this.storybookManager = new StorybookManager();
-    this.workingDirectory = workingDirectory;
+  constructor(baseUrl: string = 'http://localhost:6006') {
+    this.baseUrl = baseUrl;
   }
 
   /**
    * Run the scraping process for a specific configuration
    */
   async scrapeWithConfig(config: ScrapingConfig): Promise<void> {
-    let server = this.storybookManager.getServer();
-    let startedStorybook = false;
-
     try {
-      // Start Storybook if not already running
-      if (!server?.isRunning) {
-        console.log('Starting Storybook server...');
-        server = await this.storybookManager.start(this.workingDirectory);
-        startedStorybook = true;
-      } else {
-        console.log(`Using existing Storybook server at ${server.url}`);
-      }
+      console.log(`Using Storybook server at ${this.baseUrl}`);
 
       // Create scraper and run
       const scraper = new StorybookScraper(config);
-      await scraper.scrapeAll(server.url);
+      await scraper.scrapeAll(this.baseUrl);
     } catch (error) {
       console.error('Error during scraping process:', error);
       throw error;
-    } finally {
-      // Stop Storybook if we started it
-      if (startedStorybook) {
-        console.log('Stopping Storybook server...');
-        await this.storybookManager.stop();
-      }
     }
   }
 
@@ -80,54 +60,28 @@ export class DocsScraper {
   async scrapeAll(): Promise<void> {
     console.log('Starting comprehensive documentation scraping...');
 
-    let server = this.storybookManager.getServer();
-    let startedStorybook = false;
-
     try {
-      // Start Storybook if not already running
-      if (!server?.isRunning) {
-        console.log('Starting Storybook server...');
-        server = await this.storybookManager.start(this.workingDirectory);
-        startedStorybook = true;
-      } else {
-        console.log(`Using existing Storybook server at ${server.url}`);
-      }
+      console.log(`Using Storybook server at ${this.baseUrl}`);
 
       // Scrape components
       console.log('Scraping component documentation...');
       const componentScraper = new StorybookScraper(componentScrapingConfig);
-      await componentScraper.scrapeAll(server.url);
+      await componentScraper.scrapeAll(this.baseUrl);
 
       // Scrape styles
       console.log('Scraping styles documentation...');
       const stylesScraper = new StorybookScraper(stylesScrapingConfig);
-      await stylesScraper.scrapeAll(server.url);
+      await stylesScraper.scrapeAll(this.baseUrl);
 
       // Scrape templates
       console.log('Scraping templates documentation...');
       const templatesScraper = new StorybookScraper(templateScrapingConfig);
-      await templatesScraper.scrapeAll(server.url);
+      await templatesScraper.scrapeAll(this.baseUrl);
 
       console.log('All documentation scraping completed successfully!');
     } catch (error) {
       console.error('Error during comprehensive scraping process:', error);
       throw error;
-    } finally {
-      // Stop Storybook if we started it
-      if (startedStorybook) {
-        console.log('Stopping Storybook server...');
-        await this.storybookManager.stop();
-      }
-    }
-  }
-
-  /**
-   * Cleanup - stop Storybook if running
-   */
-  async cleanup(): Promise<void> {
-    if (this.storybookManager.isRunning()) {
-      console.log('Cleaning up - stopping Storybook...');
-      await this.storybookManager.stop();
     }
   }
 }
@@ -135,8 +89,9 @@ export class DocsScraper {
 // CLI usage helper
 export async function runDocsScraper(
   type: 'components' | 'styles' | 'templates' | 'all' = 'all',
+  baseUrl: string = 'http://localhost:6006',
 ): Promise<void> {
-  const scraper = new DocsScraper();
+  const scraper = new DocsScraper(baseUrl);
 
   try {
     switch (type) {
@@ -157,8 +112,6 @@ export async function runDocsScraper(
     }
   } catch (error) {
     console.error('Scraping failed:', error);
-    process.exit(1);
-  } finally {
-    await scraper.cleanup();
+    throw error;
   }
 }

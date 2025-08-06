@@ -1,14 +1,23 @@
 /* eslint-disable no-console */
-import { ChildProcess, exec, spawn } from 'node:child_process';
+import { type Server, createServer } from 'http';
 import { promisify } from 'node:util';
+import { exec } from 'node:child_process';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import handler from 'serve-handler';
 import { StorybookServer } from './types.js';
 
 const execAsync = promisify(exec);
 
-export class StorybookManager {
-  private process: ChildProcess | null = null;
+// Get current directory for resolving the Storybook build path
+const filename = fileURLToPath(import.meta.url);
+const currentDir = dirname(filename);
 
-  private server: StorybookServer | null = null;
+export class StaticServerManager {
+  private server: Server | null = null;
+
+  private serverInfo: StorybookServer | null = null;
 
   /**
    * Check if a port is available
@@ -23,24 +32,24 @@ export class StorybookManager {
   }
 
   /**
-   * Find an available port starting from the default Storybook port
+   * Find an available port starting from the default port
    */
   private static async findAvailablePort(startPort: number = 6006): Promise<number> {
     let port = startPort;
     // eslint-disable-next-line no-await-in-loop
-    while (!(await StorybookManager.isPortAvailable(port))) {
+    while (!(await StaticServerManager.isPortAvailable(port))) {
       port += 1;
       if (port > startPort + 100) {
-        throw new Error('Could not find available port for Storybook');
+        throw new Error('Could not find available port for static server');
       }
     }
     return port;
   }
 
   /**
-   * Wait for Storybook to be ready by checking if the port is responding
+   * Wait for server to be ready by checking if the port is responding
    */
-  private static async waitForStorybook(port: number, timeout: number = 60000): Promise<void> {
+  private static async waitForServer(port: number, timeout: number = 30000): Promise<void> {
     const startTime = Date.now();
 
     while (Date.now() - startTime < timeout) {
@@ -55,108 +64,106 @@ export class StorybookManager {
       }
 
       // eslint-disable-next-line no-await-in-loop
-      await new Promise(resolve => {
-        setTimeout(resolve, 1000);
+      await new Promise(promiseResolve => {
+        setTimeout(promiseResolve, 1000);
       });
     }
 
-    throw new Error(`Storybook did not start within ${timeout}ms`);
+    throw new Error(`Static server did not start within ${timeout}ms`);
   }
 
   /**
-   * Start the Storybook server
+   * Start the static file server for Storybook
    */
-  async start(workingDirectory: string = process.cwd()): Promise<StorybookServer> {
-    if (this.server?.isRunning) {
-      console.log('Storybook is already running');
-      return this.server;
+  async start(port: number = 6006): Promise<StorybookServer> {
+    if (this.serverInfo?.isRunning) {
+      console.log('Static server is already running');
+      return this.serverInfo;
     }
 
-    const port = await StorybookManager.findAvailablePort();
-    const url = `http://localhost:${port}`;
+    const availablePort = await StaticServerManager.findAvailablePort(port);
+    const url = `http://localhost:${availablePort}`;
+    const storybookDistPath = resolve(currentDir, '../../../../docs/dist');
 
-    console.log(`Starting Storybook on port ${port}...`);
+    console.log(`Starting static server on port ${availablePort}...`);
+    console.log(`Serving files from: ${storybookDistPath}`);
 
-    const docsPath = '../docs';
-    this.process = spawn('pnpm', [
-      '-C',
-      docsPath,
-      'start',
-      `--port=${port}`,
-      '--no-open',
-    ], {
-      cwd: workingDirectory,
-      stdio: ['ignore', 'pipe', 'pipe'],
+    this.server = createServer((request, response) => handler(request, response, {
+      // cleanUrls: true,
+      headers: [
+        {
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=3600',
+            },
+          ],
+          source: '**',
+        },
+      ],
+      public: storybookDistPath,
+      rewrites: [
+        // SPA fallback - redirect all non-asset requests to index.html
+        // { destination: '/index.html', source: '**' },
+      ],
+    }));
+
+    // Handle server errors
+    this.server.on('error', (error) => {
+      console.error('Static server error:', error);
     });
 
-    if (!this.process.stdout || !this.process.stderr) {
-      throw new Error('Failed to create Storybook process');
-    }
-
-    // Handle process output
-    this.process.stdout.on('data', (data: Buffer) => {
-      console.log(`Storybook stdout: ${data.toString()}`);
-    });
-
-    this.process.stderr.on('data', (data: Buffer) => {
-      console.error(`Storybook stderr: ${data.toString()}`);
-    });
-
-    this.process.on('error', (error) => {
-      console.error('Storybook process error:', error);
-    });
-
-    this.process.on('exit', (code) => {
-      console.log(`Storybook process exited with code ${code}`);
-      this.server = null;
-    });
-
-    // Wait for Storybook to be ready
-    await StorybookManager.waitForStorybook(port);
-
-    this.server = {
-      isRunning: true,
-      port,
-      url,
-    };
-
-    console.log(`Storybook started successfully at ${url}`);
-    return this.server;
-  }
-
-  /**
-   * Stop the Storybook server
-   */
-  async stop(): Promise<void> {
-    if (!this.process || !this.server) {
-      console.log('No Storybook process to stop');
-      return;
-    }
-
-    console.log('Stopping Storybook...');
-
-    await new Promise<void>((resolve) => {
-      if (!this.process) {
-        resolve();
+    // Start listening
+    await new Promise<void>((resolvePromise, reject) => {
+      if (!this.server) {
+        reject(new Error('Server instance not created'));
         return;
       }
 
-      this.process.on('exit', () => {
-        this.server = null;
-        this.process = null;
-        console.log('Storybook stopped successfully');
-        resolve();
+      this.server.listen(availablePort, () => {
+        console.log(`✓ Static server started successfully at ${url}`);
+        resolvePromise();
       });
 
-      // Try graceful shutdown first
-      this.process.kill('SIGTERM');
+      this.server.on('error', reject);
+    });
 
-      // Force kill after 10 seconds if not stopped
-      setTimeout(() => {
-        if (this.process) {
-          this.process.kill('SIGKILL');
-        }
-      }, 10000);
+    // Wait for server to be ready
+    await StaticServerManager.waitForServer(availablePort);
+
+    this.serverInfo = {
+      isRunning: true,
+      port: availablePort,
+      url,
+    };
+
+    console.log(`Static server ready at ${url}`);
+    return this.serverInfo;
+  }
+
+  /**
+   * Stop the static server
+   */
+  async stop(): Promise<void> {
+    if (!this.server || !this.serverInfo) {
+      console.log('No static server to stop');
+      return;
+    }
+
+    console.log('Stopping static server...');
+
+    await new Promise<void>((resolvePromise) => {
+      if (!this.server) {
+        resolvePromise();
+        return;
+      }
+
+      this.server.close(() => {
+        this.serverInfo = null;
+        this.server = null;
+        console.log('Static server stopped successfully');
+        resolvePromise();
+      });
     });
   }
 
@@ -164,13 +171,13 @@ export class StorybookManager {
    * Get the current server information
    */
   getServer(): StorybookServer | null {
-    return this.server;
+    return this.serverInfo;
   }
 
   /**
-   * Check if Storybook is currently running
+   * Check if static server is currently running
    */
   isRunning(): boolean {
-    return this.server?.isRunning ?? false;
+    return this.serverInfo?.isRunning ?? false;
   }
 }

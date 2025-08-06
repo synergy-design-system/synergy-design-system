@@ -94,7 +94,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && pnpm build:storybook && git add . && git commit -m \"chore(prerelease/mcp): Added latest data\""
+          "prepareCmd": "pnpm build"
         }
       ],
       [
@@ -122,6 +122,7 @@
   },
   "scripts": {
     "build": "pnpm run build:ts && pnpm run build:metadata && pnpm build:hash",
+    "build:all": "pnpm run build && pnpm run build:storybook",
     "build:ts": "pnpm rimraf dist && tsc",
     "build:metadata": "node dist/build/build.js",
     "build:storybook": "node ./dist/utilities/storybook/build-docs.js && pnpm build:hash",

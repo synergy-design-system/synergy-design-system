@@ -28,7 +28,7 @@ export class StorybookScraper {
       await page.goto(`${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
 
       // Wait for the content to load
-      await page.waitForSelector('.sb-anchor', { timeout: 20000 });
+      await page.waitForSelector('.sb-anchor');
 
       // Extract the stories
       // We skip stories that have no headline or example

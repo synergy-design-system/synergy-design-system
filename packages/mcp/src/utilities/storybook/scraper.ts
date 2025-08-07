@@ -83,14 +83,14 @@ export class StorybookScraper {
           const formattedExample = await prettier.format(story.example, {
             parser: 'html',
           });
-          
+
           scrapingReport.storyDetails.push({
             heading: story.heading,
             status: 'success',
           });
-          
+
           scrapingReport.processedStories += 1;
-          
+
           return {
             description: story.description,
             example: formattedExample,
@@ -115,13 +115,13 @@ export class StorybookScraper {
       return [];
     } finally {
       await browser.close();
-      
+
       // Generate final report
       console.log(`📊 Scraping Report for ${storyId}:`);
       console.log(`   Status: ${scrapingReport.status === 'success' ? '✅ Success' : '❌ Error'}`);
       console.log(`   Found Stories: ${scrapingReport.foundStories}`);
       console.log(`   Processed Stories: ${scrapingReport.processedStories}`);
-      
+
       if (scrapingReport.storyDetails.length > 0) {
         console.log('   Story Details:');
         scrapingReport.storyDetails.forEach((detail, index) => {
@@ -132,11 +132,11 @@ export class StorybookScraper {
           }
         });
       }
-      
+
       if (scrapingReport.error) {
         console.log(`   Error Details: ${scrapingReport.error.message}`);
       }
-      
+
       console.log(''); // Empty line for readability
     }
   }

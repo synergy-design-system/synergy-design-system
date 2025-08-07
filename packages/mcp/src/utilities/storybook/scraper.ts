@@ -48,15 +48,45 @@ export class StorybookScraper {
       // Wait for the content to load
       await page.waitForSelector('.sb-anchor');
 
-      // Extract the stories
-      // We skip stories that have no headline or example
-      const results = await page.evaluate(() => Array.from(
+      // Extract the stories metadata first
+      // We get basic info and identify stories that need iframe content
+      const storyMetadata = await page.evaluate(() => Array.from(
         document.querySelectorAll('.sb-anchor'),
       )
-        .map(story => {
+        .map((story, index) => {
           const description = story.querySelector(':scope > p')?.textContent || '';
           const exampleSource = story.querySelector('.sb-story #root-inner')?.innerHTML || '';
           const heading = story.querySelector('h3')?.textContent || '';
+          const hasIframe = !!story.querySelector('.sb-story iframe');
+
+          return {
+            description,
+            exampleSource,
+            hasIframe,
+            heading,
+            index,
+          };
+        })
+        .filter(x => x.heading));
+
+      // Process each story and handle iframe content if needed
+      const results = await Promise.all(
+        storyMetadata.map(async (storyMeta) => {
+          let { exampleSource } = storyMeta;
+
+          // If no inline content and there's an iframe, try to get content from iframe
+          if (!exampleSource && storyMeta.hasIframe) {
+            try {
+              const storySection = page.locator('.sb-anchor').nth(storyMeta.index);
+              const frame = await storySection.frameLocator('iframe');
+
+              const frameContent = await frame.locator('#root-inner').innerHTML();
+              exampleSource = frameContent || '';
+            } catch (error) {
+              // If iframe content extraction fails, continue with empty content
+              console.log(`Failed to extract iframe content for story "${storyMeta.heading}"`);
+            }
+          }
 
           // Replace all lit internal comments
           // Lit comments look like this: <!----> or <!--?lit$SOMENUMBER$-->
@@ -73,20 +103,23 @@ export class StorybookScraper {
             .trim();
 
           return {
-            description,
+            description: storyMeta.description,
             example,
-            heading,
+            heading: storyMeta.heading,
           };
-        })
-        .filter(x => x.heading && x.example));
+        }),
+      );
 
-      scrapingReport.foundStories = results.length;
+      // Filter out stories without examples
+      const validResults = results.filter(x => x.heading && x.example);
 
-      if (results.length === 0) {
+      scrapingReport.foundStories = validResults.length;
+
+      if (validResults.length === 0) {
         throw new Error(`No stories found for ${storyId}`);
       }
 
-      const processedStories = await Promise.all(results.map(async (story, index) => {
+      const processedStories = await Promise.all(validResults.map(async (story, index) => {
         try {
           const formattedExample = await prettier.format(story.example, {
             parser: 'html',
@@ -129,27 +162,29 @@ export class StorybookScraper {
       }
 
       // Generate final report
-      console.log(`📊 Scraping Report for ${storyId}:`);
-      console.log(`   Status: ${scrapingReport.status === 'success' ? '✅ Success' : '❌ Error'}`);
-      console.log(`   Found Stories: ${scrapingReport.foundStories}`);
-      console.log(`   Processed Stories: ${scrapingReport.processedStories}`);
+      if (scrapingReport.status !== 'success') {
+        console.log(`📊 Scraping Report for ${storyId}:`);
+        console.log('   Status: ❌ Error');
+        console.log(`   Found Stories: ${scrapingReport.foundStories}`);
+        console.log(`   Processed Stories: ${scrapingReport.processedStories}`);
 
-      if (scrapingReport.storyDetails.length > 0) {
-        console.log('   Story Details:');
-        scrapingReport.storyDetails.forEach((detail, index) => {
-          const statusIcon = detail.status === 'success' ? '✅' : '❌';
-          console.log(`     ${index + 1}. ${statusIcon} ${detail.heading}`);
-          if (detail.error) {
-            console.log(`        Error: ${detail.error}`);
-          }
-        });
+        if (scrapingReport.storyDetails.length > 0) {
+          console.log('   Story Details:');
+          scrapingReport.storyDetails.forEach((detail, index) => {
+            const statusIcon = detail.status === 'success' ? '✅' : '❌';
+            console.log(`     ${index + 1}. ${statusIcon} ${detail.heading}`);
+            if (detail.error) {
+              console.log(`        Error: ${detail.error}`);
+            }
+          });
+        }
+
+        if (scrapingReport.error) {
+          console.log(`   Error Details: ${scrapingReport.error.message}`);
+        }
+
+        console.log(''); // Empty line for readability
       }
-
-      if (scrapingReport.error) {
-        console.log(`   Error Details: ${scrapingReport.error.message}`);
-      }
-
-      console.log(''); // Empty line for readability
     }
   }
 

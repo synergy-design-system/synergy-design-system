@@ -62,25 +62,31 @@ export class StaticServerManager {
     console.log(`Starting static server on port ${availablePort}...`);
     console.log(`Serving files from: ${storybookDistPath}`);
 
-    this.server = createServer((request, response) => handler(request, response, {
-      // cleanUrls: true,
-      headers: [
-        {
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=3600',
-            },
-          ],
-          source: '**',
-        },
-      ],
-      public: storybookDistPath,
-      rewrites: [
-        // SPA fallback - redirect all non-asset requests to index.html
-        // { destination: '/index.html', source: '**' },
-      ],
-    }));
+    this.server = createServer((request, response) => {
+      // Add custom URL rewriting before serve-handler
+      const originalUrl = request.url || '';
+
+      // Handle iframe.html -> iframe rewrite manually
+      if (originalUrl.startsWith('/iframe.html')) {
+        const rewrittenUrl = originalUrl.replace('/iframe.html', '/iframe');
+        request.url = rewrittenUrl;
+      }
+
+      return handler(request, response, {
+        headers: [
+          {
+            headers: [
+              {
+                key: 'Cache-Control',
+                value: 'public, max-age=3600',
+              },
+            ],
+            source: '**',
+          },
+        ],
+        public: storybookDistPath,
+      });
+    });
 
     // Start listening and wait for the server to be ready
     await new Promise<void>((resolvePromise, reject) => {

@@ -84,7 +84,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Reindex storybook stories
+      - name: Test
+        run: pnpm -r --filter 'mcp' test
+
+      - name: Check for uncommitted storybook changes
         run: pnpm -C packages/mcp build:all
 
       - name: Check for uncommitted changes
@@ -156,7 +159,7 @@ jobs:
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm -r --filter '!components' test
+        run: pnpm -r --filter 'e2e-demo-test' test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root

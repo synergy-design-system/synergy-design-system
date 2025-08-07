@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { dirname } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { chromium } from 'playwright';
+import { Browser, chromium } from 'playwright';
 import prettier from 'prettier';
 import { ScrapedStory, ScrapingConfig } from './types.js';
 
@@ -15,11 +15,17 @@ export class StorybookScraper {
   /**
    * Scrape a single story from Storybook
    */
-  static async scrapeStoryDocs(storyId: string, baseUrl: string = 'http://localhost:6006'): Promise<ScrapedStory[]> {
-    const browser = await chromium.launch({
+  static async scrapeStoryDocs(
+    storyId: string,
+    baseUrl: string = 'http://localhost:6006',
+    browser?: Browser,
+  ): Promise<ScrapedStory[]> {
+    const shouldCloseBrowser = !browser;
+    const browserInstance = browser || await chromium.launch({
       headless: true,
     });
-    const page = await browser.newPage({
+
+    const page = await browserInstance.newPage({
       viewport: {
         height: 768,
         width: 1024,
@@ -114,7 +120,11 @@ export class StorybookScraper {
       scrapingReport.status = 'error';
       return [];
     } finally {
-      await browser.close();
+      await page.close();
+
+      if (shouldCloseBrowser) {
+        await browserInstance.close();
+      }
 
       // Generate final report
       console.log(`📊 Scraping Report for ${storyId}:`);
@@ -149,34 +159,44 @@ export class StorybookScraper {
 
     const items = await this.config.getItems();
 
-    const scrapedPages = await Promise.all(
-      items.map(async item => {
-        const storyId = this.config.generateStoryId(item);
-        const stories = await StorybookScraper.scrapeStoryDocs(storyId, baseUrl);
-        return {
-          item,
-          stories,
-        };
-      }),
-    );
+    // Create a single browser instance for all scraping operations
+    const browser = await chromium.launch({
+      headless: true,
+    });
 
-    console.log('Writing documentation files...');
+    try {
+      const scrapedPages = await Promise.all(
+        items.map(async item => {
+          const storyId = this.config.generateStoryId(item);
+          const stories = await StorybookScraper.scrapeStoryDocs(storyId, baseUrl, browser);
+          return {
+            item,
+            stories,
+          };
+        }),
+      );
 
-    // Write out the results
-    await Promise.all(
-      scrapedPages.map(async ({ item, stories }) => {
-        const filePath = this.config.generateOutputPath(item);
+      console.log('Writing documentation files...');
 
-        // Ensure the directory exists before writing
-        const dir = dirname(filePath);
-        await mkdir(dir, { recursive: true });
-        const content = await prettier.format(this.config.formatContent(item, stories), {
-          parser: 'markdown',
-        });
-        await writeFile(filePath, content, 'utf-8');
-      }),
-    );
+      // Write out the results
+      await Promise.all(
+        scrapedPages.map(async ({ item, stories }) => {
+          const filePath = this.config.generateOutputPath(item);
 
-    console.log('Scraping process completed successfully!');
+          // Ensure the directory exists before writing
+          const dir = dirname(filePath);
+          await mkdir(dir, { recursive: true });
+          const content = await prettier.format(this.config.formatContent(item, stories), {
+            parser: 'markdown',
+          });
+          await writeFile(filePath, content, 'utf-8');
+        }),
+      );
+
+      console.log('Scraping process completed successfully!');
+    } finally {
+      // Always close the browser, even if an error occurs
+      await browser.close();
+    }
   }
 }

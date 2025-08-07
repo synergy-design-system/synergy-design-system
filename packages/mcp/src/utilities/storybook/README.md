@@ -172,20 +172,24 @@ storybook/
 ## Key Features
 
 ### Browser Management
+
 - **Single Browser Instance**: Reuses one browser across all scraping operations for better performance
 - **Automatic Cleanup**: Always closes browser even if errors occur
 
 ### Content Extraction
+
 - **Iframe Support**: Improved handling of iframe-based story content
 - **Lit Framework**: Removes Lit internal comments and data attributes from extracted HTML
 - **HTML Formatting**: Uses Prettier to format extracted HTML consistently
 
 ### Error Handling
+
 - **Comprehensive Reporting**: Detailed scraping reports showing success/failure for each story
 - **Graceful Degradation**: Continues processing even if individual stories fail
 - **Debug Information**: Console output with detailed error messages and processing statistics
 
 ### Template Support
+
 Added support for template documentation scraping with `templateScrapingConfig`.
 
 ## Future Enhancements

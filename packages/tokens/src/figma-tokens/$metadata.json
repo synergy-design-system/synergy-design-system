@@ -4,15 +4,15 @@
     "color/dark",
     "color/light",
     "color/primitives",
+    "semantic/button",
     "semantic/focus-ring",
     "semantic/input",
-    "semantic/button",
-    "semantic/toggle",
-    "semantic/typography",
     "semantic/link",
     "semantic/overlays",
     "semantic/panels",
+    "semantic/toggle",
     "semantic/tooltip",
+    "semantic/typography",
     "_docs"
   ]
 }

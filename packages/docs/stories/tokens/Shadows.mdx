@@ -3,6 +3,10 @@ import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { Shadow, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 import {
   getCSSToken,
@@ -15,29 +19,33 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.shadow?.description?.value} />
 
-<table>
-  <tbody>
-    <>
-      <tr>
-        <th>{docsTokens?.tokens?.shadow?.title.value}</th>
-        <th>Raw Value</th>
-        <th>CSS Token</th>
-      </tr>
-      {Object.entries(getShadows(true)).map(([token, value]) => (
-        <tr key={`${token}-row`}>
-          <td>
-            <Shadow className={token.toLowerCase()} value={value} />
-          </td>
-          <td>
-            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="box-shadow" />
-          </td>
-          <td>
-            <CopyToClipBoard value={getCSSToken(token)}>
-              {getCSSToken(token)}
-            </CopyToClipBoard>
-          </td>
-        </tr>
-      ))}
-    </>
-  </tbody>
-</table>
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], () => (
+    <table>
+      <tbody>
+        <>
+          <tr>
+            <th>{docsTokens?.tokens?.shadow?.title.value}</th>
+            <th>Raw Value</th>
+            <th>CSS Token</th>
+          </tr>
+          {Object.entries(getShadows(true)).map(([token, value]) => (
+            <tr key={`${token}-row`}>
+              <td>
+                <Shadow className={token.toLowerCase()} value={value} />
+              </td>
+              <td>
+                <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="box-shadow" />
+              </td>
+              <td>
+                <CopyToClipBoard value={getCSSToken(token)}>
+                  {getCSSToken(token)}
+                </CopyToClipBoard>
+              </td>
+            </tr>
+          ))}
+        </>
+      </tbody>
+    </table>
+  ))}
+/>

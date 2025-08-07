@@ -41,6 +41,7 @@ export const createLayout = () => `
             size="small"
           ></syn-icon-button>
         </syn-tooltip>
+      </syn-button-group>
 
       <syn-divider vertical></syn-divider>
 
@@ -76,12 +77,11 @@ export const createLayout = () => `
 
       <syn-divider vertical></syn-divider>
 
-      <syn-switch
-        data-theme-light="☀️"
-        data-theme-dark="🌙"
+      <syn-select
+        placeholder="Select theme to use"
         id="theme-switch"
         size="small"
-      >🌙</syn-switch>
+      ></syn-select>
     </div>
   </syn-header>
 

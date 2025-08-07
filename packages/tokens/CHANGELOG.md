@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.21.0...tokens/2.22.0) (2025-08-07)
+
+
+### Features
+
+* ✨ Synchronize tokens via Figma API to github ([#929](https://github.com/synergy-design-system/synergy-design-system/issues/929)) ([51f6aeb](https://github.com/synergy-design-system/synergy-design-system/commit/51f6aeb2e9407c1d808ee0be02d279ada0e3cac7))
+
 # [@synergy-design-system/tokens-v2.21.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.20.1...tokens/2.21.0) (2025-07-09)
 
 

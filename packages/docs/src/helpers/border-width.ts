@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getTokensByCategory, sortTokens } from './tokens.js';
 
 /**
@@ -9,4 +6,4 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
  * @returns Returns the complete border width tokens
  */
 export const getBorderWidth = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('borderwidth', useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, { orderArray: ['none', 'small', 'medium', 'large', 'xlarge'], replaceString: 'synborderwidth', sortType: 'order' })));
+  .sort((a, b) => sortTokens(a, b, { extractSizeFor: 'SynBorderWidth', sortType: 'size' })));

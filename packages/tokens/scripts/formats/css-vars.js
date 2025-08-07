@@ -30,8 +30,13 @@ export const cssVariableFormatter = {
      * @returns {boolean} If the token is valid
      */
     const isValidTokenName = (name = '') => (![
+      'body',
       'color',
+      'heading',
+      'input-border-width',
+      'input-disabled-opacity',
       'spacing',
+      'transition',
     ]
       .map(p => `${prefix}${p}`)
       .some(p => name.startsWith(p))
@@ -45,10 +50,16 @@ export const cssVariableFormatter = {
     const isValidToken = token => {
       // Skip if the prefix is not allowed
       if (!isValidTokenName(token.name)) return false;
-
       // We only allow strings that refer to variables
       return typeof token?.original?.value === 'string' && token.original?.value.includes('{');
     };
+
+    const BACKWARTS_COMPATIBLE_VARIABLES = [
+      {
+        name: 'syn-tooltip-line-height',
+        value: 'var(--syn-line-height-normal)',
+      },
+    ];
 
     /**
      * Converts a design tokens value to a css var
@@ -56,13 +67,20 @@ export const cssVariableFormatter = {
      * @returns {token}
      */
     const convertOriginalToCssVar = (token) => {
+      // To be backwards compatible and do not need a major version, we need to convert some tokens to their old value
+      const compatibilityVariable = BACKWARTS_COMPATIBLE_VARIABLES.find(v => v.name === token.name);
+      if (compatibilityVariable) {
+        token.value = compatibilityVariable.value;
+        return token;
+      }
+
       if (isValidToken(token)) {
         // eslint-disable-next-line max-len
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')
           .replaceAll('.', '-')
-        })`;
+          })`;
       }
       return token;
     };
@@ -91,9 +109,9 @@ ${header}:root, ${bodySelector} {
   color-scheme: ${theme};
 
 ${formattedVariables({
-  dictionary,
-  format: 'css',
-})}
+      dictionary,
+      format: 'css',
+    })}
 }
 `.trimStart();
   },

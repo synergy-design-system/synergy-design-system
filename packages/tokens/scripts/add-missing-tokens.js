@@ -1,9 +1,8 @@
 /**
  * As long as we don't have all tokens coming from Figma Tokens,
- * we will provide some fallback CSS variables from Shoelace.
+ * we will provide some fallback CSS variables.
  */
 import {
-  existsSync,
   readFileSync,
   readdirSync,
   writeFileSync,
@@ -12,13 +11,12 @@ import path from 'path';
 import chalk from 'chalk';
 
 /**
- * Extract variables from the given data with the given prefix
+ * Extract variables from the given data
  * @param {string} data The original data entry
- * @param {string} prefix The prefix to check for
  * @returns {{property: string, value: string}[]}
  */
-const extractVariables = (data, prefix) => {
-  const variablePattern = new RegExp(`(--${prefix}-[^:]+):\\s*([^;]+);`, 'g');
+const extractVariables = (data) => {
+  const variablePattern = /(--syn-[^:]+):\s*([^;]+);/g;
   const variables = [];
   let match;
 
@@ -31,72 +29,65 @@ const extractVariables = (data, prefix) => {
 };
 
 /**
- * Compare the given source and target files and append missing variables to the target file
- * @param {string} sourceFilePath The source file to extract the missing variables from
+ * Append missing variables to the target file
  * @param {string} targetFilePath The target to apply the missing variables to
- * @param {string} prefix The prefix to use for the variables
+ * @param { Array<{name: string, value: string}> } variables The variables to append
  * @returns {void}
  */
-const compareAndAppendVariables = (sourceFilePath, targetFilePath, prefix) => {
+const appendVariables = (targetFilePath, variables) => {
   try {
-    const [sourceData, targetData] = [
-      readFileSync(sourceFilePath, 'utf-8'),
-      readFileSync(targetFilePath, 'utf-8'),
-    ];
-
-    const sourceVariables = extractVariables(sourceData, prefix);
-    const targetVariables = extractVariables(targetData, prefix);
-
+    const targetFile = readFileSync(targetFilePath, 'utf-8');
+    const targetVariables = extractVariables(targetFile);
     const targetVariableProperties = targetVariables.map(v => v.property);
+    const missingData = variables
+      .filter(({ name }) => {
+        const variableExists = targetVariableProperties.includes(name);
+        if (variableExists) {
+          console.log(
+            chalk.red(
+              `Variable ${name} already exists in ${targetFilePath}. `
+              + 'Update the missingVariables array in addMissingTokens function.',
+            ),
+          );
+        }
+        return !variableExists;
+      })
+      .map(({ name, value }) => `  ${name}: ${value};`).join('\n');
 
-    const missingVariables = sourceVariables.filter(
-      variable => !targetVariableProperties.includes(variable.property),
+    // Search for the end of the file and add the tokens underneath them
+    const updatedTargetData = targetFile.replace(
+      /\}\s*$/,
+      `${missingData}\n}`,
     );
 
-    if (missingVariables.length > 0) {
-      const missingVariablesCSS = missingVariables
-        .filter(variable => !variable.property.startsWith(`--${prefix}-color-`))
-        .map(variable => `  ${variable.property}: ${variable.value};`)
-        .join('\n');
-
-      // Search for the end of the file and add the tokens underneath them
-      const updatedTargetData = targetData.replace(
-        /\}\s*$/,
-        `\n  /* Fallbacks from Shoelace */\n${missingVariablesCSS}\n}`,
-      );
-
-      writeFileSync(targetFilePath, updatedTargetData, 'utf-8');
-    }
+    writeFileSync(targetFilePath, updatedTargetData, 'utf-8');
   } catch (error) {
-    console.error(
-      chalk.red(`Error processing files ${sourceFilePath} and ${targetFilePath}:`, error),
-    );
+    console.error(chalk.red(`Error processing file ${targetFilePath}:`, error));
   }
 };
 
 /**
- * Add the missing tokens from the source directory to the target files
- * @param {string} prefix The prefix to use for finding tokens
+ * Add the missing tokens to the target files
  * @param {string} targetDir The target directory where the files are located
  */
-export const addMissingTokens = (prefix, targetDir) => {
-  const sourceDir = './src/shoelace-fallbacks';
+export const addMissingTokens = (targetDir) => {
+  const missingVariables = [
+    // Figma is not able to use multiple variable values in a single variable. We could do a workaround by using text in Figma,
+    // but we would encounter another problem, since we would get an invalid style dict JSON structure, as `focus-ring` has both a value and nested children at the same time.
+    // See https://github.com/style-dictionary/style-dictionary/issues/797
+    // Therefore, we decided to add the missing token manually on the development side.
+    {
+      name: '--syn-focus-ring',
+      value: 'var(--syn-focus-ring-style) var(--syn-focus-ring-width) var(--syn-focus-ring-color)',
+    },
+  ];
 
   try {
     const targetFiles = readdirSync(targetDir);
 
-    /**
-     * @type {void[]}
-     */
-    const results = [];
-
     targetFiles.forEach((targetFile) => {
-      const sourceFilePath = path.join(sourceDir, targetFile);
       const targetFilePath = path.join(targetDir, targetFile);
-
-      if (existsSync(sourceFilePath)) {
-        results.push(compareAndAppendVariables(sourceFilePath, targetFilePath, prefix));
-      }
+      appendVariables(targetFilePath, missingVariables);
     });
 
     console.log(chalk.green('✔︎ Missing tokens added'));

@@ -168,6 +168,13 @@ div {
 }
 ```
 
+### JSON files
+
+Currently the raw .json tokens files are exported under `/src/figma-tokens/*/`.
+
+> Note:
+> These files are deprecated and will be removed in the new major version of Synergy, as the whole tokens structures are getting refactored.
+
 ---
 
 ## Optional: Configuring tokens in VSCode
@@ -184,16 +191,91 @@ Just make sure to add a valid path to the light theme in the `.vscode/settings.j
 
 ---
 
-## Documentation
+## Developer Documentation
+
+### Architecture and Data Flow
+
+```
+Figma
+    ↓
+Figma REST API
+    ↓
+Raw JSON Files (src/figma-variables/)
+    ↓
+Transform Scripts (scripts/figma/)
+    ↓
+Style Dictionary compliant JSON Files (src/figma-variables/output)
+    ↓
+Style Dictionary Processing
+    ↓
+Build Output (dist/)
+```
 
 ### Building the tokens
+
+Tokens are a mix of [Figma Variables](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) and [Figma styles](https://help.figma.com/hc/en-us/articles/360039238753-Styles-in-Figma-Design). They are fetched from Figma via [Figma API](https://www.figma.com/developers/api).
+
+To trigger a new fetching use `pnpm fetch:figma`, to update the tokens.
+This scripts needs the figma access token and optionally the figma file id, so it knows, where it should fetch the tokens from. If not available, it fetches the tokens from the main (_bZFqk9urD3NlghGUKrkKCR_).
+
+```bash
+# Required: Figma Personal Access Token
+export FIGMA_TOKEN="your_figma_token_here"
+
+# Optional: Specific Figma File/Branch ID (Default: Main Branch)
+export FIGMA_FILE_ID="your_figma_file_id"
+```
+
+```bash
+# Fetch all Figma data (Variables + Styles)
+pnpm fetch:figma
+
+# Only fetch variables and transform into Style Dictionary format
+pnpm fetch:variables
+
+# Only fetch styles
+pnpm fetch:styles
+```
+
+#### Figma variables
+
+The variables are created to support several modes.
+Currently supported modes are:
+
+- **sick2018-light**
+- **sick2018-dark**
+
+For each mode a json file is created, with the corresponding tokens and values.
+
+#### Figma styles
+
+For the styles a separate `styles.json` is created.
+
+#### Output
 
 Outputs of the tokens are created using [Style Dictionary](https://amzn.github.io/style-dictionary/).
 You can trigger a build using `pnpm build` in the `tokens` package root. This will create the css themes (located in `dist/themes/light.css` and `dist/themes/dark.css`), as well as the JavaScript exports (located at `dist/js/index.js`) and scss variables (`dist/scss/_tokens.scss`).
 
 ---
 
-### `add-missing-tokens.js`
+### Project structure
+
+#### `/src/figma-variables/`
+
+- **`tokens.json`**: Raw data of Figma Variables and Collections, directly fetched from the Figma API
+- **`output/`**: Transformed token files in Style Dictionary-compatible formats
+  - `sick2018-light.json`: Light Theme Tokens
+  - `sick2018-dark.json`: Dark Theme Tokens
+  - `styles.json`: Figma Styles (Typography, Shadows, etc.)
+
+#### `/scripts/figma/`
+
+- **`fetch-variables.js`**: Downloads Figma Variables via the REST API
+- **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
+- **`style-dict-outputter.js`**: Custom outputter for Figma Styles export
+- **`helpers.js`**: Utility functions
+
+#### `/scripts/add-missing-tokens.js`
 
 **Purpose**:  
 This script is designed to inspect and append missing CSS variables based on a given prefix.
@@ -207,3 +289,120 @@ This script is designed to inspect and append missing CSS variables based on a g
 - `extractVariables(data, prefix)`: Extracts variables from the provided data based on the prefix.
 - `compareAndAppendVariables(sourceFilePath, targetFilePath, prefix)`: Compares source and target files for missing variables and appends them.
 - `addMissingTokens(prefix)`: Main function that loops through target files and checks for missing variables.
+
+### Github Action
+
+The **Sync Figma variables to tokens** workflow (`.github/workflows/sync-figma-to-tokens.yml`) provides an automated way to synchronize design tokens from Figma to the codebase via GitHub Actions.
+
+**Purpose**:  
+This workflow fetches the latest Figma variables and styles, transforms them into the appropriate token formats, runs tests to ensure integrity, and creates a pull request with the updated tokens.
+
+**Trigger**:  
+The workflow is manually triggered using `workflow_dispatch` with configurable inputs.
+
+**Input Parameters**:
+
+- **`figma_file_id`** (required): The Figma file or branch ID to sync from
+  - Default: `"bZFqk9urD3NlghGUKrkKCR"` (main Synergy Design System file)
+  - Can be either a branch ID or the main file ID
+- **`branch_name`** (required): Name for the new Git branch
+  - Default: `"feat/update-tokens-from-figma"`
+- **`pull_request_name`** (required): Title for the pull request
+  - Default: `"feat: ✨ Update tokens from Figma"`
+
+**Workflow Steps**:
+
+1. **Repository Setup**: Checks out the repository with full history
+2. **Environment Setup**: Installs pnpm, Node.js 22, and project dependencies
+3. **Token Synchronization**: Runs `pnpm -C ./packages/tokens fetch:figma` to fetch and transform Figma data
+4. **Quality Assurance**: Builds and tests the updated tokens to ensure integrity
+5. **Pull Request Creation**: Creates a new branch and pull request with the changes
+
+**Required Secrets**:
+
+- **`FIGMA_TOKEN`**: Personal Access Token from Figma (required for API access)
+
+**Permissions**:
+
+The workflow requires the following permissions:
+
+- `contents: write` - To create branches and commits
+- `pull-requests: write` - To create pull requests
+
+**Usage Example**:
+
+1. Navigate to the Actions tab in the GitHub repository
+2. Select "Sync Figma variables to tokens"
+3. Click "Run workflow"
+4. Configure the input parameters as needed
+5. Click "Run workflow" to start the process
+
+The workflow will automatically create a pull request with reviewers assigned (`kirchsuSICKAG`, `schilchSICKAG`) for review and approval.
+
+---
+
+### Updating Test Files
+
+When adding new tokens or changing existing token values, the test reference files in `packages/tokens/test/` must be updated to maintain test integrity.
+
+#### Test System Overview
+
+The token package includes a test system that validates the consistency between the built token files and reference files:
+
+- **`test/light.css`**: Reference file containing expected CSS variables for the light theme
+- **`test/dark.css`**: Reference file containing expected CSS variables for the dark theme
+- **`test/test-css-variables.js`**: Test script that compares built files against reference files
+
+#### When to Update Test Files
+
+Test files need to be updated in the following scenarios:
+
+1. **Adding new tokens**: When new design tokens are added to Figma and fetched
+2. **Changing token values**: When existing token values are modified in Figma
+3. **Removing tokens**: When tokens are deprecated or removed from the design system
+
+#### How to Update Test Files
+
+After the new / updated tokens are fetched and build:
+
+1. **Build the tokens**: Ensure the latest tokens are built
+
+   ```bash
+   cd packages/tokens
+   pnpm build
+   ```
+
+2. **Run the comparison test**: This will show differences between built and reference files
+
+   ```bash
+   pnpm compare
+   ```
+
+3. **Update reference files**: If the changes are intentional, copy the built files to the test directory or update the files manually with the changes
+
+   ```bash
+   # Copy the newly built files to serve as new reference files
+   cp dist/themes/light.css test/light.css
+   cp dist/themes/dark.css test/dark.css
+   ```
+
+4. **Verify the update**: Run the test again to ensure everything matches
+   ```bash
+   pnpm compare
+   ```
+
+#### Test Output
+
+The test script provides detailed feedback:
+
+- ✅ **Success**: When all variables match between built and reference files
+- 🚫 **Missing variables**: Variables present in reference but missing in built files
+- ➕ **Extra variables**: New variables in built files not present in reference
+- 🔄 **Different values**: Variables with changed values between built and reference files
+
+#### Important Notes
+
+- Always review the test output carefully before updating reference files
+- The reference files serve as a safeguard against unintended token changes
+
+---

@@ -9,8 +9,6 @@ Textareas collect data from the user and allow multiple lines of text.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 ```
 
@@ -21,14 +19,7 @@ Textareas collect data from the user and allow multiple lines of text.
 Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-textarea
-  label="Comments"
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-textarea>
+<syn-textarea label="Comments" title="" size="medium" form=""></syn-textarea>
 ```
 
 ---
@@ -44,8 +35,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
 </syn-textarea>
 ```
@@ -63,8 +52,6 @@ Use the rows attribute to change the number of text rows that get shown.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 <syn-textarea
   rows="5"
@@ -72,8 +59,6 @@ Use the rows attribute to change the number of text rows that get shown.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 <syn-textarea
   rows="3"
@@ -81,8 +66,6 @@ Use the rows attribute to change the number of text rows that get shown.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 <style>
   syn-textarea {
@@ -103,8 +86,6 @@ Use the placeholder attribute to add a placeholder.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 ```
 
@@ -121,8 +102,6 @@ Add the read-only attribute to draw a read-only textarea.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 ```
 
@@ -140,8 +119,6 @@ The focus event gives the user feedback that the Textarea has been focused by th
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-valid=""
     ></syn-textarea>
   </form>
 </div>
@@ -162,8 +139,6 @@ Use the disabled attribute to disable a textarea.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 ```
 
@@ -174,32 +149,11 @@ Use the disabled attribute to disable a textarea.
 Use the size attribute to change a textarea’s size.
 
 ```html
-<syn-textarea
-  placeholder="Small"
-  size="small"
-  title=""
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-textarea
+<syn-textarea placeholder="Small" size="small" title="" form=""></syn-textarea
 ><br />
-<syn-textarea
-  placeholder="Medium"
-  size="medium"
-  title=""
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-textarea
+<syn-textarea placeholder="Medium" size="medium" title="" form=""></syn-textarea
 ><br />
-<syn-textarea
-  placeholder="Large"
-  size="large"
-  title=""
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-textarea>
+<syn-textarea placeholder="Large" size="large" title="" form=""></syn-textarea>
 ```
 
 ---
@@ -217,16 +171,8 @@ The invalid status is used to warn the user that the input is invalid. For examp
     title=""
     size="medium"
     form=""
-    data-required=""
-    data-invalid=""
   ></syn-textarea>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -249,14 +195,7 @@ The invalid status is used to warn the user that the input is invalid. For examp
 By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.
 
 ```html
-<syn-textarea
-  resize="none"
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-textarea>
+<syn-textarea resize="none" title="" size="medium" form=""></syn-textarea>
 ```
 
 ---
@@ -272,7 +211,5 @@ Textareas will automatically resize to expand to fit their content when resize i
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 ```

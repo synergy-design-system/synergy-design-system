@@ -3,9 +3,7 @@
 Switches allow the user to toggle an option on or off.
 
 ```html
-<syn-switch title="" size="medium" form="" data-optional="" data-valid="">
-  Option
-</syn-switch>
+<syn-switch title="" size="medium" form=""> Option </syn-switch>
 ```
 
 ---
@@ -15,15 +13,7 @@ Switches allow the user to toggle an option on or off.
 Use the checked attribute to activate the switch.
 
 ```html
-<syn-switch
-  checked=""
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-  >Checked</syn-switch
->
+<syn-switch checked="" title="" size="medium" form="">Checked</syn-switch>
 ```
 
 ---
@@ -33,15 +23,7 @@ Use the checked attribute to activate the switch.
 Use the disabled attribute to disable the switch.
 
 ```html
-<syn-switch
-  disabled=""
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-  >Disabled</syn-switch
->
+<syn-switch disabled="" title="" size="medium" form="">Disabled</syn-switch>
 ```
 
 ---
@@ -51,9 +33,7 @@ Use the disabled attribute to disable the switch.
 The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.
 
 ```html
-<syn-switch title="" size="medium" form="" data-optional="" data-valid=""
-  >Focused</syn-switch
->
+<syn-switch title="" size="medium" form="">Focused</syn-switch>
 ```
 
 ---
@@ -64,22 +44,8 @@ The invalid status is used to warn the user that the Switch is invalid.
 
 ```html
 <form class="custom-validity">
-  <syn-switch
-    required=""
-    title=""
-    size="medium"
-    form=""
-    data-required=""
-    data-invalid=""
-    >Option</syn-switch
-  >
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-switch required="" title="" size="medium" form="">Option</syn-switch>
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -102,13 +68,7 @@ The invalid status is used to warn the user that the Switch is invalid.
 Use the size attribute to change a switch’s size.
 
 ```html
-<syn-switch size="small" title="" form="" data-optional="" data-valid=""
-  >Small</syn-switch
-><br />
-<syn-switch size="medium" title="" form="" data-optional="" data-valid=""
-  >Medium</syn-switch
-><br />
-<syn-switch size="large" title="" form="" data-optional="" data-valid=""
-  >Large</syn-switch
->
+<syn-switch size="small" title="" form="">Small</syn-switch><br />
+<syn-switch size="medium" title="" form="">Medium</syn-switch><br />
+<syn-switch size="large" title="" form="">Large</syn-switch>
 ```

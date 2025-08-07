@@ -3,13 +3,7 @@
 The combobox suggests items based on the user input.
 
 ```html
-<syn-combobox
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-combobox size="medium" placement="bottom" form="">
   <syn-option
     role="option"
     aria-selected="false"
@@ -44,14 +38,7 @@ The combobox suggests items based on the user input.
 Use the label attribute to give the combobox an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-combobox
-  label="State"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-combobox label="State" size="medium" placement="bottom" form="">
   <syn-option
     role="option"
     aria-selected="false"
@@ -92,8 +79,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     role="option"
@@ -136,8 +121,6 @@ Use the placeholder attribute to add a placeholder.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     role="option"
@@ -174,13 +157,7 @@ The focus attribute provides feedback to the users, informing them that the comb
 
 ```html
 <div style="padding: 5px">
-  <syn-combobox
-    size="medium"
-    placement="bottom"
-    form=""
-    data-optional=""
-    data-valid=""
-  >
+  <syn-combobox size="medium" placement="bottom" form="">
     <syn-option
       role="option"
       aria-selected="false"
@@ -222,8 +199,6 @@ Add the clearable attribute to add a clear button when the combobox has content.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"
@@ -356,8 +331,6 @@ Use the disabled attribute to disable a combobox.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"
@@ -479,8 +452,6 @@ This restricts the combobox to only allow selections from the available options.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="option-1"
@@ -518,14 +489,7 @@ This restricts the combobox to only allow selections from the available options.
 Use the size attribute to change a combobox size.
 
 ```html
-<syn-combobox
-  size="small"
-  placeholder="Small"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-combobox size="small" placeholder="Small" placement="bottom" form="">
   <syn-option
     value="Black"
     role="option"
@@ -634,14 +598,7 @@ Use the size attribute to change a combobox size.
 
 <br />
 
-<syn-combobox
-  size="medium"
-  placeholder="Medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-combobox size="medium" placeholder="Medium" placement="bottom" form="">
   <syn-option
     value="Black"
     role="option"
@@ -750,14 +707,7 @@ Use the size attribute to change a combobox size.
 
 <br />
 
-<syn-combobox
-  size="large"
-  placeholder="Large"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-combobox size="large" placeholder="Large" placement="bottom" form="">
   <syn-option
     value="Black"
     role="option"
@@ -880,8 +830,6 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
     size="medium"
     placement="bottom"
     form=""
-    data-required=""
-    data-invalid=""
   >
     <syn-option
       value="Black"
@@ -988,13 +936,7 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
       >Yellow</syn-option
     >
   </syn-combobox>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -1023,8 +965,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
@@ -1140,8 +1080,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
@@ -1257,8 +1195,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
@@ -1376,8 +1312,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -1503,8 +1437,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -1630,8 +1562,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -1765,8 +1695,6 @@ A simple suggestions list shows the user a filtered list.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"
@@ -1897,8 +1825,6 @@ The filtered options shown in the list can be customized by passing a function t
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"
@@ -2028,8 +1954,6 @@ Use <syn-optgroup> to group <syn-option>`s visually.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-optgroup label="B" id="syn-combobox-optgroup-0" hidden="">
     <syn-option
@@ -2193,8 +2117,6 @@ The height of the filtered options list can be customized by setting the max-hei
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"
@@ -2330,8 +2252,6 @@ It is possible to add options dynamically to the combobox e.g. if the option val
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     role="option"
@@ -2373,8 +2293,6 @@ A custom filter can be applied by passing a filter function to the filter proper
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Black"

@@ -5,14 +5,7 @@ Dropdowns expose additional content that “drops down” in a panel.Dropdowns c
 ```html
 <div style="position: relative">
   <syn-dropdown placement="bottom-start">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Dropdown</syn-button
     >
     <syn-menu style="min-width: 240px" role="menu">
@@ -82,8 +75,6 @@ When dropdowns are used with menus, you can listen for the syn-select event t
         title=""
         variant="outline"
         size="medium"
-        data-optional=""
-        data-valid=""
         >Edit</syn-button
       >
       <syn-menu style="min-width: 240px" role="menu">
@@ -123,14 +114,7 @@ The preferred placement of the dropdown can be set with the placement attribut
 ```html
 <div style="position: relative">
   <syn-dropdown placement="right-start">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Edit</syn-button
     >
     <syn-menu style="min-width: 240px" role="menu">
@@ -164,14 +148,7 @@ The distance from the panel to the trigger can be customized using the distance
 ```html
 <div style="position: relative">
   <syn-dropdown distance="30" placement="bottom-start">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Edit</syn-button
     >
     <syn-menu style="min-width: 240px" role="menu">
@@ -205,14 +182,7 @@ The offset of the panel along the trigger can be customized using the skidding�
 ```html
 <div style="position: relative">
   <syn-dropdown skidding="30" placement="bottom-start">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Edit</syn-button
     >
     <syn-menu style="min-width: 240px" role="menu">
@@ -246,14 +216,7 @@ To create a submenu, nest an <syn-menu slot="submenu"> element in a menu item
 ```html
 <div style="position: relative">
   <syn-dropdown placement="bottom-start">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Edit</syn-button
     >
 

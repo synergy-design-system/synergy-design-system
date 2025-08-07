@@ -1656,31 +1656,10 @@ The top navigation can be combined with a light grey background.This variant is 
   <syn-header label="Synergy" burger-menu="hidden">
     <!-- prio-nav -->
     <syn-prio-nav slot="navigation">
-      <syn-nav-item
-        current=""
-        horizontal="true"
-        data-original-role=""
-        data-right="40.515625"
-        >Home</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="143.203125"
-        >Documents</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="253.59375"
-        >Applications</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="322.4375"
-        >Teams</syn-nav-item
-      >
+      <syn-nav-item current="" horizontal="true">Home</syn-nav-item>
+      <syn-nav-item horizontal="true">Documents</syn-nav-item>
+      <syn-nav-item horizontal="true">Applications</syn-nav-item>
+      <syn-nav-item horizontal="true">Teams</syn-nav-item>
     </syn-prio-nav>
     <!-- /prio-nav -->
 
@@ -1884,31 +1863,10 @@ Additionally the top navigation can be combined with a white background.
   <syn-header label="Synergy" burger-menu="hidden">
     <!-- prio-nav -->
     <syn-prio-nav slot="navigation">
-      <syn-nav-item
-        current=""
-        horizontal="true"
-        data-original-role=""
-        data-right="40.515625"
-        >Home</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="143.203125"
-        >Documents</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="253.59375"
-        >Applications</syn-nav-item
-      >
-      <syn-nav-item
-        horizontal="true"
-        data-original-role=""
-        data-right="322.4375"
-        >Teams</syn-nav-item
-      >
+      <syn-nav-item current="" horizontal="true">Home</syn-nav-item>
+      <syn-nav-item horizontal="true">Documents</syn-nav-item>
+      <syn-nav-item horizontal="true">Applications</syn-nav-item>
+      <syn-nav-item horizontal="true">Teams</syn-nav-item>
     </syn-prio-nav>
     <!-- /prio-nav -->
 

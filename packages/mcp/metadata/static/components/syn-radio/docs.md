@@ -59,14 +59,7 @@ The invalid status is used to warn the user that the Radio is invalid. For examp
 
 ```html
 <form class="custom-validity">
-  <syn-radio-group
-    required=""
-    value=""
-    size="medium"
-    form=""
-    data-required=""
-    data-invalid=""
-  >
+  <syn-radio-group required="" value="" size="medium" form="">
     <syn-radio
       value="1"
       role="radio"
@@ -77,13 +70,7 @@ The invalid status is used to warn the user that the Radio is invalid. For examp
       >Option</syn-radio
     >
   </syn-radio-group>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>

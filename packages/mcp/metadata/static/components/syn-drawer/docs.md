@@ -13,8 +13,6 @@ Drawers slide in from a container to expose additional options and information.
     variant="filled"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
   <span slot="footer"> </span>
@@ -26,8 +24,6 @@ Drawers slide in from a container to expose additional options and information.
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Drawer</syn-button
 >
 ```
@@ -46,25 +42,12 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
   class="drawer-placement-start"
 >
   This drawer slides in from the start.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -76,25 +59,12 @@ To make the drawer slide in from the top, set the placement attribute to top.
 ```html
 <syn-drawer label="Drawer" open="" placement="top" class="drawer-placement-top">
   This drawer slides in from the top.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -111,25 +81,12 @@ To make the drawer slide in from the bottom, set the placement attribute to b
   class="drawer-placement-bottom"
 >
   This drawer slides in from the bottom.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -160,26 +117,13 @@ By default, drawers slide out of their containing block, which is usually the v
     placement="end"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <syn-button
-      slot="footer"
-      variant="filled"
-      title=""
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="footer" variant="filled" title="" size="medium"
       >Close</syn-button
     >
   </syn-drawer>
 </div>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Toggle Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Toggle Drawer</syn-button>
 ```
 
 ---
@@ -197,25 +141,12 @@ Use the --size custom property to set the drawer’s size. This will be applie
   style="--size: 50vw"
 >
   This drawer is always 50% of the viewport.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -260,25 +191,12 @@ By design, a drawer’s height will never exceed 100% of its container. As such,
       dolor sit amet.
     </p>
   </div>
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -303,25 +221,12 @@ The header shows a functional close button by default. You can use the header-a
     color="currentColor"
   ></syn-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -333,25 +238,12 @@ By default, drawers will close when the user clicks the close button, clicks the
 ```html
 <syn-drawer label="Drawer" open="" class="drawer-deny-close" placement="end">
   This drawer will not close when you click on the overlay.
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```
 
 ---
@@ -369,26 +261,11 @@ By default, the drawer’s panel will gain focus when opened. This allows a subs
     type="text"
     size="medium"
     form=""
-    data-optional=""
-    data-valid=""
   ></syn-input>
-  <syn-button
-    slot="footer"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button slot="footer" variant="filled" title="" size="medium"
     >Close</syn-button
   >
 </syn-drawer>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Open Drawer</syn-button
->
+<syn-button title="" variant="outline" size="medium">Open Drawer</syn-button>
 ```

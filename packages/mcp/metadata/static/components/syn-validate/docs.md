@@ -12,19 +12,11 @@ Validate offers options for convenient error handling in form elements.
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -47,19 +39,11 @@ Set the variant attribute to inline to show the invalid message below the select
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -87,19 +71,11 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -122,19 +98,11 @@ Use the live value for the on attribute to validate on every input change (e. g.
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -164,19 +132,11 @@ Use the custom-validation-message attribute to use whichever error you need as t
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -197,13 +157,7 @@ Wrap the element around any other form field, that follows browser standards to 
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -232,19 +186,11 @@ Use the on attribute to listen for one or many custom events. This may be useful
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>
@@ -267,20 +213,11 @@ Use the eager attribute to validate the field when the component is mounted. Thi
       title=""
       size="medium"
       form=""
-      data-optional=""
-      data-invalid=""
-      data-user-invalid=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button
-      type="submit"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
     >
   </p>

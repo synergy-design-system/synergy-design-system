@@ -3,15 +3,7 @@
 Ranges allow the user to select values within a given range using a thumb.
 
 ```html
-<syn-range
-  max="100"
-  step="1"
-  value="50"
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-range>
+<syn-range max="100" step="1" value="50" size="medium" form=""></syn-range>
 ```
 
 ---
@@ -28,8 +20,6 @@ Use the label attribute to give the range an accessible label. For labels that
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -48,8 +38,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -67,8 +55,6 @@ Use the disabled attribute to disable a range.
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -88,17 +74,9 @@ The invalid status is used to warn the user that the input is invalid. As range 
     value="50"
     size="medium"
     form=""
-    data-optional=""
-    data-invalid=""
   >
   </syn-range>
-  <syn-button
-    type="submit"
-    title=""
-    variant="outline"
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" title="" variant="outline" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -123,15 +101,7 @@ The focus event gives the user feedback that the Range has been focused by the k
 
 ```html
 <form>
-  <syn-range
-    max="100"
-    min="0"
-    value="50"
-    size="medium"
-    form=""
-    data-optional=""
-    data-valid=""
-  ></syn-range>
+  <syn-range max="100" min="0" value="50" size="medium" form=""></syn-range>
 </form>
 ```
 
@@ -150,8 +120,6 @@ Use the size attribute to change a range’s size.
     size="small"
     value="33"
     form=""
-    data-optional=""
-    data-valid=""
   ></syn-range>
   <syn-range
     label="Medium"
@@ -160,8 +128,6 @@ Use the size attribute to change a range’s size.
     size="medium"
     value="66"
     form=""
-    data-optional=""
-    data-valid=""
   ></syn-range>
   <syn-range
     label="Large"
@@ -170,8 +136,6 @@ Use the size attribute to change a range’s size.
     size="large"
     value="99"
     form=""
-    data-optional=""
-    data-valid=""
   ></syn-range>
 </div>
 <style>
@@ -198,8 +162,6 @@ Add any element to the start and end of range items using the prefix and suffix 
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <span slot="prefix">0</span>
   <span slot="suffix">100</span>
@@ -217,8 +179,6 @@ Add any element to the start and end of range items using the prefix and suffix 
   value="30"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <span slot="prefix">0</span>
   <span slot="suffix">
@@ -233,8 +193,6 @@ Add any element to the start and end of range items using the prefix and suffix 
         title=""
         size="medium"
         form=""
-        data-optional=""
-        data-valid=""
       >
         <span slot="suffix">sec</span>
       </syn-input>
@@ -269,8 +227,6 @@ You can customize the active and inactive portions of the track using the --trac
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 <style>
   .custom-track-color {
@@ -293,8 +249,6 @@ You can customize the initial offset of the active track using the --track-activ
   value="-15"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 <style>
   .custom-track-offset {
@@ -310,15 +264,7 @@ You can customize the initial offset of the active track using the --track-activ
 You can add multiple range-thumbs to your range.
 
 ```html
-<syn-range
-  max="100"
-  min="0"
-  value="30 70"
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-range>
+<syn-range max="100" min="0" value="30 70" size="medium" form=""></syn-range>
 ```
 
 ---
@@ -337,8 +283,6 @@ Set the restrict-movement attribute to true to prevent the thumbs from overlappi
   step="1"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -358,8 +302,6 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
     label="Volume"
     size="medium"
     form=""
-    data-optional=""
-    data-valid=""
   >
     <nav slot="ticks">
       <syn-range-tick>0</syn-range-tick>
@@ -381,8 +323,6 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
     label="Volume"
     size="medium"
     form=""
-    data-optional=""
-    data-valid=""
   >
     <nav slot="ticks">
       <syn-range-tick>0</syn-range-tick>
@@ -428,8 +368,6 @@ By default, the tooltip is shown on top. Set tooltip-placement to bottom to show
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -447,8 +385,6 @@ To disable the tooltip, set tooltip-placement to none.
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-range>
 ```
 
@@ -466,8 +402,6 @@ You can change the tooltip’s content by setting the tooltipFormatter property 
   value="50"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <nav slot="ticks">
     <syn-range-tick>0%</syn-range-tick>

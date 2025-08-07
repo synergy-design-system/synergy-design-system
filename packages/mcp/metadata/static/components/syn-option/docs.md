@@ -3,14 +3,7 @@
 Options define the selectable items within various form controls such as select.
 
 ```html
-<syn-select
-  label="Select one"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select label="Select one" size="medium" placement="bottom" form="">
   <syn-option
     value="Option_1"
     role="option"
@@ -44,14 +37,7 @@ Options define the selectable items within various form controls such as select.
 Use the disabled attribute to disable an option and prevent it from being selected.
 
 ```html
-<syn-select
-  label="Select one"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select label="Select one" size="medium" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -84,14 +70,7 @@ Use the disabled attribute to disable an option and prevent it from being select
 Add icons to the start and end of menu items using the prefix and suffix slots.
 
 ```html
-<syn-select
-  label="Select one"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select label="Select one" size="medium" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"

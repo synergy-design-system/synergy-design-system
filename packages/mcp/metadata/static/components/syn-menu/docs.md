@@ -61,14 +61,7 @@ Menus work really well when used inside dropdowns.
 ```html
 <div style="position: relative">
   <syn-dropdown placement="bottom-start" open="">
-    <syn-button
-      slot="trigger"
-      caret=""
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
       >Edit</syn-button
     >
     <syn-menu style="width: 200px" role="menu">

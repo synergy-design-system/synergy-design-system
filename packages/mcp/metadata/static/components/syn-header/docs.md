@@ -114,34 +114,11 @@ Use the top navigation slot to add syn-navigation and horizontal syn-navigation-
 ```html
 <syn-header label="App Name" burger-menu="hidden">
   <syn-prio-nav slot="navigation">
-    <syn-nav-item
-      current=""
-      horizontal="true"
-      data-original-role=""
-      data-right="60.140625"
-      >Domains</syn-nav-item
-    >
-    <syn-nav-item horizontal="true" data-original-role="" data-right="141.34375"
-      >Projects</syn-nav-item
-    >
-    <syn-nav-item
-      horizontal="true"
-      data-original-role=""
-      data-right="229.234375"
-      >Trainings</syn-nav-item
-    >
-    <syn-nav-item
-      horizontal="true"
-      data-original-role=""
-      data-right="332.828125"
-      >Evaluations</syn-nav-item
-    >
-    <syn-nav-item
-      horizontal="true"
-      data-original-role=""
-      data-right="447.859375"
-      >Deployments</syn-nav-item
-    >
+    <syn-nav-item current="" horizontal="true">Domains</syn-nav-item>
+    <syn-nav-item horizontal="true">Projects</syn-nav-item>
+    <syn-nav-item horizontal="true">Trainings</syn-nav-item>
+    <syn-nav-item horizontal="true">Evaluations</syn-nav-item>
+    <syn-nav-item horizontal="true">Deployments</syn-nav-item>
   </syn-prio-nav>
 </syn-header>
 ```

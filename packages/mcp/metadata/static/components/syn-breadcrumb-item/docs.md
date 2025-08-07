@@ -22,7 +22,6 @@ Breadcrumb Items are used inside breadcrumbs to represent different links.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -33,7 +32,6 @@ Breadcrumb Items are used inside breadcrumbs to represent different links.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -43,7 +41,6 @@ Breadcrumb Items are used inside breadcrumbs to represent different links.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon

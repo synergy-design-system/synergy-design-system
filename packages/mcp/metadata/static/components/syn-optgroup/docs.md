@@ -3,13 +3,7 @@
 Use <syn-optgroup> to group listbox items visually.
 
 ```html
-<syn-select
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select size="medium" placement="bottom" form="">
   <syn-optgroup label="Section 1">
     <syn-option
       value="1"
@@ -53,13 +47,7 @@ Use <syn-optgroup> to group listbox items visually.
 Use the disabled attribute in the <syn-optgroup> to disable the Section and prevent it from being selected.
 
 ```html
-<syn-select
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select size="medium" placement="bottom" form="">
   <syn-optgroup disabled="">
     <span slot="label">Section 1</span>
     <syn-option
@@ -97,13 +85,7 @@ Use the disabled attribute in the <syn-optgroup> to disable the Section and prev
 Add icons to the start and end of menu items using the prefix and suffix slots.
 
 ```html
-<syn-select
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select size="medium" placement="bottom" form="">
   <syn-optgroup label="Contact Support">
     <syn-icon
       name="contact_support"

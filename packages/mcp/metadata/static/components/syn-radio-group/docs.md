@@ -3,14 +3,7 @@
 Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
 
 ```html
-<syn-radio-group
-  label="This is a label"
-  value=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-radio-group label="This is a label" value="" size="medium" form="">
   <syn-radio
     value="1"
     role="radio"
@@ -48,14 +41,7 @@ Radio groups are used to group multiple radios or radio buttons so they function
 Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-radio-group
-  label="This is a label"
-  value=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-radio-group label="This is a label" value="" size="medium" form="">
   <syn-radio
     value="1"
     role="radio"
@@ -100,8 +86,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   value=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-radio
     value="1"
@@ -146,8 +130,6 @@ The focus event gives the user feedback that one of the radio buttons has been f
   value=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-radio
     value="1"
@@ -194,8 +176,6 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
   value=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-radio
     value="1"
@@ -240,8 +220,6 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
   value="2"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-radio
     value="1"
@@ -289,8 +267,6 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     value=""
     size="medium"
     form=""
-    data-required=""
-    data-invalid=""
   >
     <syn-radio
       value="1"
@@ -320,13 +296,7 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
       >Option 3</syn-radio
     >
   </syn-radio-group>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -356,8 +326,6 @@ Use the setCustomValidity() method to set a custom validation message. This will
     value="1"
     size="medium"
     form=""
-    data-optional=""
-    data-valid=""
   >
     <syn-radio
       value="1"
@@ -388,13 +356,7 @@ Use the setCustomValidity() method to set a custom validation message. This will
     >
   </syn-radio-group>
   <br />
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>

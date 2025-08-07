@@ -124,14 +124,7 @@ Set the duration attribute to automatically hide an alert after a period of time
 
 ```html
 <div class="alert-duration">
-  <syn-button
-    variant="outline"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
-    >Show Alert</syn-button
-  >
+  <syn-button variant="outline" title="" size="medium">Show Alert</syn-button>
 
   <syn-alert variant="primary" duration="3000" closable="">
     <syn-icon
@@ -161,51 +154,11 @@ To display an alert as a toast notification, or “toast”, create the alert an
 ```html
 <div class="alert-toast">
   <div style="display: flex; gap: var(--syn-spacing-small)">
-    <syn-button
-      data-variant="primary"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
-      >Primary</syn-button
-    >
-    <syn-button
-      data-variant="success"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
-      >Success</syn-button
-    >
-    <syn-button
-      data-variant="neutral"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
-      >Neutral</syn-button
-    >
-    <syn-button
-      data-variant="warning"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
-      >Warning</syn-button
-    >
-    <syn-button
-      data-variant="danger"
-      title=""
-      variant="outline"
-      size="medium"
-      data-optional=""
-      data-valid=""
-      >Danger</syn-button
-    >
+    <syn-button title="" variant="outline" size="medium">Primary</syn-button>
+    <syn-button title="" variant="outline" size="medium">Success</syn-button>
+    <syn-button title="" variant="outline" size="medium">Neutral</syn-button>
+    <syn-button title="" variant="outline" size="medium">Warning</syn-button>
+    <syn-button title="" variant="outline" size="medium">Danger</syn-button>
   </div>
 
   <syn-alert variant="primary" duration="3000" closable="">
@@ -273,13 +226,6 @@ For convenience, you can create a utility that emits toast notifications with a 
 
 ```html
 <div class="alert-toast-wrapper">
-  <syn-button
-    title=""
-    variant="outline"
-    size="medium"
-    data-optional=""
-    data-valid=""
-    >Create Toast</syn-button
-  >
+  <syn-button title="" variant="outline" size="medium">Create Toast</syn-button>
 </div>
 ```

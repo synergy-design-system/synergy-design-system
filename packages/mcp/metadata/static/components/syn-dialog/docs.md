@@ -13,8 +13,6 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
   <span slot="footer"> </span>
@@ -26,8 +24,6 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```
@@ -48,8 +44,6 @@ Use the --width custom property to set the dialog’s width.
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
 </syn-dialog>
@@ -59,8 +53,6 @@ Use the --width custom property to set the dialog’s width.
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```
@@ -114,8 +106,6 @@ By design, a dialog’s height will never exceed that of the viewport. As such, 
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
 </syn-dialog>
@@ -125,8 +115,6 @@ By design, a dialog’s height will never exceed that of the viewport. As such, 
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```
@@ -155,8 +143,6 @@ The header shows a functional close button by default. You can use the header-ac
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
 </syn-dialog>
@@ -166,8 +152,6 @@ The header shows a functional close button by default. You can use the header-ac
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```
@@ -188,8 +172,6 @@ By default, dialogs will close when the user clicks the close button, clicks the
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
 </syn-dialog>
@@ -199,8 +181,6 @@ By default, dialogs will close when the user clicks the close button, clicks the
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```
@@ -220,8 +200,6 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
     type="text"
     size="medium"
     form=""
-    data-optional=""
-    data-valid=""
   ></syn-input>
 
   <syn-button
@@ -230,8 +208,6 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
     slot="footer"
     title=""
     size="medium"
-    data-optional=""
-    data-valid=""
     >Close</syn-button
   >
 </syn-dialog>
@@ -241,8 +217,6 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Open Dialog</syn-button
 >
 ```

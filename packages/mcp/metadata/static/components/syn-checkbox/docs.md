@@ -3,9 +3,7 @@
 Checkboxes allow the user to toggle an option on or off.
 
 ```html
-<syn-checkbox title="" size="medium" form="" data-optional="" data-valid="">
-  Checkbox
-</syn-checkbox>
+<syn-checkbox title="" size="medium" form=""> Checkbox </syn-checkbox>
 ```
 
 ---
@@ -15,15 +13,7 @@ Checkboxes allow the user to toggle an option on or off.
 Use the checked attribute to activate the checkbox.
 
 ```html
-<syn-checkbox
-  checked=""
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-  >Checked</syn-checkbox
->
+<syn-checkbox checked="" title="" size="medium" form="">Checked</syn-checkbox>
 ```
 
 ---
@@ -33,13 +23,7 @@ Use the checked attribute to activate the checkbox.
 Use the indeterminate attribute to make the checkbox indeterminate.
 
 ```html
-<syn-checkbox
-  indeterminate=""
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
+<syn-checkbox indeterminate="" title="" size="medium" form=""
   >Indeterminate</syn-checkbox
 >
 ```
@@ -51,15 +35,7 @@ Use the indeterminate attribute to make the checkbox indeterminate.
 Use the disabled attribute to disable the checkbox.
 
 ```html
-<syn-checkbox
-  disabled=""
-  title=""
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-  >Disabled</syn-checkbox
->
+<syn-checkbox disabled="" title="" size="medium" form="">Disabled</syn-checkbox>
 ```
 
 ---
@@ -70,15 +46,9 @@ Use the size attribute to change a checkbox’s size.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
-  <syn-checkbox size="small" title="" form="" data-optional="" data-valid=""
-    >Small</syn-checkbox
-  >
-  <syn-checkbox size="medium" title="" form="" data-optional="" data-valid=""
-    >Medium</syn-checkbox
-  >
-  <syn-checkbox size="large" title="" form="" data-optional="" data-valid=""
-    >Large</syn-checkbox
-  >
+  <syn-checkbox size="small" title="" form="">Small</syn-checkbox>
+  <syn-checkbox size="medium" title="" form="">Medium</syn-checkbox>
+  <syn-checkbox size="large" title="" form="">Large</syn-checkbox>
 </div>
 ```
 
@@ -90,23 +60,10 @@ Use the setCustomValidity() method to set a custom validation message. This will
 
 ```html
 <form class="custom-validity">
-  <syn-checkbox
-    name="checked"
-    value="on"
-    title=""
-    size="medium"
-    form=""
-    data-optional=""
-    data-valid=""
+  <syn-checkbox name="checked" value="on" title="" size="medium" form=""
     >Check me</syn-checkbox
   >
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>

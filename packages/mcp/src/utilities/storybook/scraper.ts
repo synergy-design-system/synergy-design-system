@@ -67,6 +67,8 @@ export class StorybookScraper {
             .replace(/<!--\s*-->/g, '')
             // Clean up any resulting multiple consecutive whitespace/newlines
             .replace(/\n\s*\n\s*\n/g, '\n\n')
+            // Remove all data attributes as they may be dynamic data
+            .replace(/ data-[^=]+="[^"]*"/g, '')
             // Trim leading/trailing whitespace
             .trim();
 

@@ -9,7 +9,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -19,7 +18,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -29,7 +27,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -39,7 +36,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -60,7 +56,6 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -70,7 +65,6 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -80,7 +74,6 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -90,7 +83,6 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -118,7 +110,6 @@ Use the prefix slot to add content before any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -128,7 +119,6 @@ Use the prefix slot to add content before any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -138,7 +128,6 @@ Use the prefix slot to add content before any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -159,7 +148,6 @@ Use the suffix slot to add content after any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -169,7 +157,6 @@ Use the suffix slot to add content after any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -186,7 +173,6 @@ Use the suffix slot to add content after any breadcrumb item.
       name="chevron-down"
       library="system"
       class="ltr"
-      data-default=""
       slot="separator"
       aria-hidden="true"
     ></syn-icon
@@ -209,7 +195,6 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
         name="chevron-down"
         library="system"
         class="ltr"
-        data-default=""
         slot="separator"
         aria-hidden="true"
       ></syn-icon
@@ -241,7 +226,6 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
         name="chevron-down"
         library="system"
         class="ltr"
-        data-default=""
         slot="separator"
         aria-hidden="true"
       ></syn-icon
@@ -251,7 +235,6 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
         name="chevron-down"
         library="system"
         class="ltr"
-        data-default=""
         slot="separator"
         aria-hidden="true"
       ></syn-icon
@@ -261,7 +244,6 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
         name="chevron-down"
         library="system"
         class="ltr"
-        data-default=""
         slot="separator"
         aria-hidden="true"
       ></syn-icon

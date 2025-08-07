@@ -10,14 +10,7 @@
   <footer slot="footer">
     <small>Optional information</small>
     <nav>
-      <syn-button
-        variant="filled"
-        size="small"
-        title=""
-        data-optional=""
-        data-valid=""
-        >More Info</syn-button
-      >
+      <syn-button variant="filled" size="small" title="">More Info</syn-button>
     </nav>
   </footer>
   <span slot="footer"> </span>
@@ -75,14 +68,7 @@ Cards can be used to group related subjects in a container.
   <footer slot="footer">
     <small>Optional information</small>
     <nav>
-      <syn-button
-        variant="filled"
-        size="small"
-        title=""
-        data-optional=""
-        data-valid=""
-        >More Info</syn-button
-      >
+      <syn-button variant="filled" size="small" title="">More Info</syn-button>
     </nav>
   </footer>
   <span slot="footer"> </span>
@@ -197,14 +183,7 @@ Footers can be used to display actions, summaries, or other relevant content.
   <footer slot="footer">
     <small>Optional information</small>
     <nav>
-      <syn-button
-        variant="filled"
-        size="small"
-        title=""
-        data-optional=""
-        data-valid=""
-        >Preview</syn-button
-      >
+      <syn-button variant="filled" size="small" title="">Preview</syn-button>
     </nav>
   </footer>
   <style>

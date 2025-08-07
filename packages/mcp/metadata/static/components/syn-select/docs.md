@@ -3,14 +3,7 @@
 Selects allow you to choose items from a menu of predefined options.
 
 ```html
-<syn-select
-  max-options-visible="3"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select max-options-visible="3" size="medium" placement="bottom" form="">
   <syn-option
     value="Option_1"
     role="option"
@@ -42,14 +35,7 @@ Selects allow you to choose items from a menu of predefined options.
 Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-select
-  label="Select one"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select label="Select one" size="medium" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -87,8 +73,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="1"
@@ -121,14 +105,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the placeholder attribute to add a placeholder.
 
 ```html
-<syn-select
-  placeholder="Select one"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select placeholder="Select one" size="medium" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -166,8 +143,6 @@ Use the clearable attribute to make the control clearable. The clear button only
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="option-1"
@@ -201,14 +176,7 @@ The focus event gives the user feedback that the Select has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-select
-    label="Select one"
-    size="medium"
-    placement="bottom"
-    form=""
-    data-optional=""
-    data-valid=""
-  >
+  <syn-select label="Select one" size="medium" placement="bottom" form="">
     <syn-option
       value="option-1"
       role="option"
@@ -247,8 +215,6 @@ Use the disabled attribute to disable a select.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="option-1"
@@ -289,8 +255,6 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="Option_1"
@@ -352,8 +316,6 @@ Use the value attribute to set the initial selection.When using multiple, the va
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="option-1"
@@ -398,8 +360,6 @@ Use <syn-optgroup> to group listbox items visually.
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-optgroup label="Section 1">
     <syn-option
@@ -443,14 +403,7 @@ Use <syn-optgroup> to group listbox items visually.
 Use the size attribute to change a select’s size. Note that size does not apply to listbox options.
 
 ```html
-<syn-select
-  placeholder="Small"
-  size="small"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select placeholder="Small" size="small" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -476,14 +429,7 @@ Use the size attribute to change a select’s size. Note that size does not appl
 
 <br />
 
-<syn-select
-  placeholder="Medium"
-  size="medium"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select placeholder="Medium" size="medium" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -509,14 +455,7 @@ Use the size attribute to change a select’s size. Note that size does not appl
 
 <br />
 
-<syn-select
-  placeholder="Large"
-  size="large"
-  placement="bottom"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-select placeholder="Large" size="large" placement="bottom" form="">
   <syn-option
     value="option-1"
     role="option"
@@ -555,8 +494,6 @@ The invalid status is used to warn the user that the Select is invalid. For exam
     size="medium"
     placement="bottom"
     form=""
-    data-required=""
-    data-invalid=""
   >
     <syn-option
       value="option-1"
@@ -580,13 +517,7 @@ The invalid status is used to warn the user that the Select is invalid. For exam
       >Option 3</syn-option
     >
   </syn-select>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -615,8 +546,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -659,8 +588,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -703,8 +630,6 @@ Use the prefix and suffix slots to add text and icons.
   clearable=""
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="wallpaper"
@@ -758,8 +683,6 @@ When multiple options can be selected, you can provide custom tags by passing a 
   size="medium"
   placement="bottom"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-option
     value="email"

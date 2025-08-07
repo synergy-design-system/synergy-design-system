@@ -30,13 +30,7 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
 
 ```html
 <div style="display: flex; gap: var(--syn-spacing-2x-large)">
-  <syn-button
-    title=""
-    variant="outline"
-    size="medium"
-    data-optional=""
-    data-valid=""
-  >
+  <syn-button title="" variant="outline" size="medium">
     Requests
     <syn-badge pill="" variant="primary">30</syn-badge>
   </syn-button>
@@ -46,8 +40,6 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
     title=""
     variant="outline"
     size="medium"
-    data-optional=""
-    data-valid=""
   >
     Warnings
     <syn-badge variant="warning" pill="">8</syn-badge>
@@ -58,8 +50,6 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
     title=""
     variant="outline"
     size="medium"
-    data-optional=""
-    data-valid=""
   >
     Errors
     <syn-badge variant="danger" pill="">6</syn-badge>
@@ -107,7 +97,6 @@ Badges can be used without content to just show an status indicator.
     placement="right-start"
     skidding="-10"
     strategy="absolute"
-    data-current-placement="right-start"
   >
     <syn-icon
       name="wallpaper"
@@ -125,7 +114,6 @@ Badges can be used without content to just show an status indicator.
     placement="right-start"
     skidding="-10"
     strategy="absolute"
-    data-current-placement="right-start"
   >
     <syn-icon
       name="wallpaper"

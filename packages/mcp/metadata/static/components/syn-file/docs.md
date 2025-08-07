@@ -134,16 +134,8 @@ The invalid status is used to warn the user that the syn-file is invalid. For ex
     label="This is a label"
     size="medium"
     form=""
-    data-optional=""
-    data-invalid=""
   ></syn-file>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>

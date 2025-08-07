@@ -44,13 +44,7 @@ Use the default slot to show a value.
   >
 
   <div style="display: flex; gap: var(--syn-spacing-x-small)">
-    <syn-button
-      variant="outline"
-      size="small"
-      title=""
-      data-optional=""
-      data-valid=""
-    >
+    <syn-button variant="outline" size="small" title="">
       <syn-icon
         name="indeterminate"
         library="system"
@@ -59,13 +53,7 @@ Use the default slot to show a value.
         aria-label="Decrease"
       ></syn-icon>
     </syn-button>
-    <syn-button
-      variant="outline"
-      size="small"
-      title=""
-      data-optional=""
-      data-valid=""
-    >
+    <syn-button variant="outline" size="small" title="">
       <syn-icon
         name="add"
         library="system"

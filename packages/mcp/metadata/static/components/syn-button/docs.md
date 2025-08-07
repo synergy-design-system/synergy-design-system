@@ -3,15 +3,7 @@
 Buttons represent actions that are available to the user.
 
 ```html
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
->
-  Button
-</syn-button>
+<syn-button title="" variant="outline" size="medium"> Button </syn-button>
 ```
 
 ---
@@ -21,25 +13,9 @@ Buttons represent actions that are available to the user.
 Use the variant attribute to set the button’s variant. Variants can be Filled, Outline and Text Buttons. Use the outline attribute to draw outlined buttons with transparent backgrounds. Use the text variant to create text buttons that share the same size as regular buttons but don’t have backgrounds or borders.
 
 ```html
-<syn-button
-  variant="filled"
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Filled</syn-button
->
-<syn-button
-  variant="outline"
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Outline</syn-button
->
-<syn-button variant="text" title="" size="medium" data-optional="" data-valid=""
-  >Text</syn-button
->
+<syn-button variant="filled" title="" size="medium">Filled</syn-button>
+<syn-button variant="outline" title="" size="medium">Outline</syn-button>
+<syn-button variant="text" title="" size="medium">Text</syn-button>
 <style>
   syn-button {
     margin: 0.2rem;
@@ -54,30 +30,9 @@ Use the variant attribute to set the button’s variant. Variants can be Filled,
 Use the size attribute to change a button’s size.
 
 ```html
-<syn-button
-  size="small"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
-  >Small</syn-button
->
-<syn-button
-  size="medium"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
-  >Medium</syn-button
->
-<syn-button
-  size="large"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
-  >Large</syn-button
->
+<syn-button size="small" title="" variant="outline">Small</syn-button>
+<syn-button size="medium" title="" variant="outline">Medium</syn-button>
+<syn-button size="large" title="" variant="outline">Large</syn-button>
 <style>
   syn-button {
     margin: 0.2rem;
@@ -93,14 +48,7 @@ The focus event gives the user feedback that the Button has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-button
-    title=""
-    variant="outline"
-    size="medium"
-    data-optional=""
-    data-valid=""
-    >Default</syn-button
-  >
+  <syn-button title="" variant="outline" size="medium">Default</syn-button>
 </div>
 ```
 
@@ -111,13 +59,7 @@ The focus event gives the user feedback that the Button has been focused by the 
 It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.
 
 ```html
-<syn-button
-  href="https://example.com/"
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
+<syn-button href="https://example.com/" title="" variant="outline" size="medium"
   >Link</syn-button
 >
 <syn-button
@@ -126,8 +68,6 @@ It’s often helpful to have a button that works like a link. This is possible b
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >New Window</syn-button
 >
 <syn-button
@@ -136,8 +76,6 @@ It’s often helpful to have a button that works like a link. This is possible b
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Download</syn-button
 >
 <syn-button
@@ -146,8 +84,6 @@ It’s often helpful to have a button that works like a link. This is possible b
   title=""
   variant="outline"
   size="medium"
-  data-optional=""
-  data-valid=""
   >Disabled</syn-button
 >
 <style>
@@ -169,8 +105,6 @@ As expected, buttons can be given a custom width by setting the width attribute.
   style="width: 100%; margin-bottom: 1rem"
   title=""
   variant="outline"
-  data-optional=""
-  data-valid=""
   >Small</syn-button
 >
 <syn-button
@@ -178,17 +112,9 @@ As expected, buttons can be given a custom width by setting the width attribute.
   style="width: 100%; margin-bottom: 1rem"
   title=""
   variant="outline"
-  data-optional=""
-  data-valid=""
   >Medium</syn-button
 >
-<syn-button
-  size="large"
-  style="width: 100%"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
+<syn-button size="large" style="width: 100%" title="" variant="outline"
   >Large</syn-button
 >
 ```
@@ -200,13 +126,7 @@ As expected, buttons can be given a custom width by setting the width attribute.
 Insert just a single icon to use the same button style.
 
 ```html
-<syn-button
-  size="small"
-  variant="filled"
-  title=""
-  data-optional=""
-  data-valid=""
->
+<syn-button size="small" variant="filled" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -215,13 +135,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button
-  size="small"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="small" title="" variant="outline">
   <syn-icon
     name="settings"
     label="Settings"
@@ -230,7 +144,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button size="small" variant="text" title="" data-optional="" data-valid="">
+<syn-button size="small" variant="text" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -242,13 +156,7 @@ Insert just a single icon to use the same button style.
 
 <br />
 
-<syn-button
-  size="medium"
-  variant="filled"
-  title=""
-  data-optional=""
-  data-valid=""
->
+<syn-button size="medium" variant="filled" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -257,13 +165,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button
-  size="medium"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="medium" title="" variant="outline">
   <syn-icon
     name="settings"
     label="Settings"
@@ -272,13 +174,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button
-  size="medium"
-  variant="text"
-  title=""
-  data-optional=""
-  data-valid=""
->
+<syn-button size="medium" variant="text" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -290,13 +186,7 @@ Insert just a single icon to use the same button style.
 
 <br />
 
-<syn-button
-  size="large"
-  variant="filled"
-  title=""
-  data-optional=""
-  data-valid=""
->
+<syn-button size="large" variant="filled" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -305,13 +195,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button
-  size="large"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="large" title="" variant="outline">
   <syn-icon
     name="settings"
     label="Settings"
@@ -320,7 +204,7 @@ Insert just a single icon to use the same button style.
     library="default"
   ></syn-icon>
 </syn-button>
-<syn-button size="large" variant="text" title="" data-optional="" data-valid="">
+<syn-button size="large" variant="text" title="">
   <syn-icon
     name="settings"
     label="Settings"
@@ -343,13 +227,7 @@ Insert just a single icon to use the same button style.
 Use the prefix and suffix slots to add icons.
 
 ```html
-<syn-button
-  size="small"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="small" title="" variant="outline">
   <syn-icon
     slot="prefix"
     name="settings"
@@ -359,13 +237,7 @@ Use the prefix and suffix slots to add icons.
   Settings
 </syn-button>
 
-<syn-button
-  size="small"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="small" title="" variant="outline">
   <syn-icon
     slot="suffix"
     name="refresh"
@@ -375,13 +247,7 @@ Use the prefix and suffix slots to add icons.
   Refresh
 </syn-button>
 
-<syn-button
-  size="small"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="small" title="" variant="outline">
   <syn-icon
     slot="prefix"
     name="link"
@@ -399,13 +265,7 @@ Use the prefix and suffix slots to add icons.
 
 <br /><br />
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
->
+<syn-button title="" variant="outline" size="medium">
   <syn-icon
     slot="prefix"
     name="settings"
@@ -415,13 +275,7 @@ Use the prefix and suffix slots to add icons.
   Settings
 </syn-button>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
->
+<syn-button title="" variant="outline" size="medium">
   <syn-icon
     slot="suffix"
     name="refresh"
@@ -431,13 +285,7 @@ Use the prefix and suffix slots to add icons.
   Refresh
 </syn-button>
 
-<syn-button
-  title=""
-  variant="outline"
-  size="medium"
-  data-optional=""
-  data-valid=""
->
+<syn-button title="" variant="outline" size="medium">
   <syn-icon
     slot="prefix"
     name="link"
@@ -455,13 +303,7 @@ Use the prefix and suffix slots to add icons.
 
 <br /><br />
 
-<syn-button
-  size="large"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="large" title="" variant="outline">
   <syn-icon
     slot="prefix"
     name="settings"
@@ -471,13 +313,7 @@ Use the prefix and suffix slots to add icons.
   Settings
 </syn-button>
 
-<syn-button
-  size="large"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="large" title="" variant="outline">
   <syn-icon
     slot="suffix"
     name="refresh"
@@ -487,13 +323,7 @@ Use the prefix and suffix slots to add icons.
   Refresh
 </syn-button>
 
-<syn-button
-  size="large"
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
->
+<syn-button size="large" title="" variant="outline">
   <syn-icon
     slot="prefix"
     name="link"
@@ -522,33 +352,11 @@ Use the prefix and suffix slots to add icons.
 Use the caret attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover.
 
 ```html
-<syn-button
-  size="small"
-  caret=""
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
-  >Small</syn-button
->
-<syn-button
-  size="medium"
-  caret=""
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
+<syn-button size="small" caret="" title="" variant="outline">Small</syn-button>
+<syn-button size="medium" caret="" title="" variant="outline"
   >Medium</syn-button
 >
-<syn-button
-  size="large"
-  caret=""
-  title=""
-  variant="outline"
-  data-optional=""
-  data-valid=""
-  >Large</syn-button
->
+<syn-button size="large" caret="" title="" variant="outline">Large</syn-button>
 <style>
   syn-button {
     margin: 0.2rem;
@@ -563,33 +371,13 @@ Use the caret attribute to add a dropdown indicator when a button will trigger a
 Use the loading attribute to make a button busy. The width will remain the same as before, preventing adjacent elements from moving around. Clicks will be suppressed until the loading state is removed.
 
 ```html
-<syn-button
-  variant="filled"
-  loading=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
+<syn-button variant="filled" loading="" title="" size="medium"
   >Filled</syn-button
 >
-<syn-button
-  variant="outline"
-  loading=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
+<syn-button variant="outline" loading="" title="" size="medium"
   >Outline</syn-button
 >
-<syn-button
-  variant="text"
-  loading=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Text</syn-button
->
+<syn-button variant="text" loading="" title="" size="medium">Text</syn-button>
 <style>
   syn-button {
     margin: 0.2rem;
@@ -604,31 +392,11 @@ Use the loading attribute to make a button busy. The width will remain the same 
 Use the disabled attribute to disable a button.
 
 ```html
-<syn-button
-  variant="filled"
-  disabled=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
+<syn-button variant="filled" disabled="" title="" size="medium"
   >Filled</syn-button
 >
-<syn-button
-  variant="outline"
-  disabled=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
+<syn-button variant="outline" disabled="" title="" size="medium"
   >Outline</syn-button
 >
-<syn-button
-  variant="text"
-  disabled=""
-  title=""
-  size="medium"
-  data-optional=""
-  data-valid=""
-  >Text</syn-button
->
+<syn-button variant="text" disabled="" title="" size="medium">Text</syn-button>
 ```

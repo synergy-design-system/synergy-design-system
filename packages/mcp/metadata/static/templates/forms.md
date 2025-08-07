@@ -111,8 +111,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-invalid=""
         >
           Inquiry/offer
         </syn-checkbox>
@@ -123,8 +121,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Orders/invoices
         </syn-checkbox>
@@ -135,8 +131,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Returns/complaint
         </syn-checkbox>
@@ -147,8 +141,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Documentation/CAD
         </syn-checkbox>
@@ -159,8 +151,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Accessories selection
         </syn-checkbox>
@@ -171,8 +161,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Application review
         </syn-checkbox>
@@ -183,8 +171,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         >
           Commissioning support
         </syn-checkbox>
@@ -207,8 +193,6 @@
         title=""
         size="medium"
         form=""
-        data-required=""
-        data-invalid=""
       ></syn-textarea>
     </fieldset>
 
@@ -222,8 +206,6 @@
           type="text"
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         ></syn-input>
         <syn-input
           name="companyName"
@@ -233,8 +215,6 @@
           type="text"
           size="medium"
           form=""
-          data-required=""
-          data-invalid=""
         ></syn-input>
         <syn-input
           name="address"
@@ -244,8 +224,6 @@
           type="text"
           size="medium"
           form=""
-          data-required=""
-          data-invalid=""
         ></syn-input>
         <syn-input
           name="zip"
@@ -255,8 +233,6 @@
           type="text"
           size="medium"
           form=""
-          data-required=""
-          data-invalid=""
         ></syn-input>
         <syn-input
           name="city"
@@ -266,8 +242,6 @@
           type="text"
           size="medium"
           form=""
-          data-required=""
-          data-invalid=""
         ></syn-input>
 
         <syn-select
@@ -277,8 +251,6 @@
           size="medium"
           placement="bottom"
           form=""
-          data-required=""
-          data-invalid=""
         >
           <syn-option
             value="0"
@@ -312,8 +284,6 @@
           size="medium"
           placement="bottom"
           form=""
-          data-required=""
-          data-invalid=""
         >
           <syn-option
             role="option"
@@ -355,8 +325,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         ></syn-input>
         <syn-input
           type="tel"
@@ -365,8 +333,6 @@
           title=""
           size="medium"
           form=""
-          data-optional=""
-          data-valid=""
         ></syn-input>
         <syn-input
           type="email"
@@ -376,18 +342,9 @@
           title=""
           size="medium"
           form=""
-          data-required=""
-          data-invalid=""
         ></syn-input>
       </div>
-      <syn-checkbox
-        name="subscribeNewsletter"
-        title=""
-        size="medium"
-        form=""
-        data-optional=""
-        data-valid=""
-      >
+      <syn-checkbox name="subscribeNewsletter" title="" size="medium" form="">
         Yes, I would like to receive up-to-date and interesting information on
         solutions with products, systems and services from SICK by email on a
         regular basis. I can withdraw my consent at any time. To withdraw my
@@ -397,13 +354,7 @@
     </fieldset>
 
     <div class="submit-actions">
-      <syn-button
-        type="submit"
-        variant="filled"
-        title=""
-        size="medium"
-        data-optional=""
-        data-valid=""
+      <syn-button type="submit" variant="filled" title="" size="medium"
         >Send</syn-button
       >
     </div>

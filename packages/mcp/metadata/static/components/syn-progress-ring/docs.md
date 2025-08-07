@@ -66,13 +66,7 @@ Use the default slot to show a label inside the progress ring. To display the va
     >50%</syn-progress-ring
   >
   <div style="display: flex; gap: var(--syn-spacing-x-small)">
-    <syn-button
-      variant="outline"
-      title=""
-      size="medium"
-      data-optional=""
-      data-valid=""
-    >
+    <syn-button variant="outline" title="" size="medium">
       <syn-icon
         name="indeterminate"
         library="system"
@@ -81,13 +75,7 @@ Use the default slot to show a label inside the progress ring. To display the va
         aria-label="Decrease"
       ></syn-icon>
     </syn-button>
-    <syn-button
-      variant="outline"
-      title=""
-      size="medium"
-      data-optional=""
-      data-valid=""
-    >
+    <syn-button variant="outline" title="" size="medium">
       <syn-icon
         name="add"
         library="system"

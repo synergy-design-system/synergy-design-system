@@ -3,15 +3,7 @@
 Inputs collect data from the user.
 
 ```html
-<syn-input
-  spellcheck=""
-  title=""
-  type="text"
-  size="medium"
-  form=""
-  data-optional=""
-  data-valid=""
-></syn-input>
+<syn-input spellcheck="" title="" type="text" size="medium" form=""></syn-input>
 ```
 
 ---
@@ -27,8 +19,6 @@ Use the label attribute to give the input an accessible label. For labels that c
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -46,8 +36,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -64,8 +52,6 @@ Use the placeholder attribute to add a placeholder.
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -84,8 +70,6 @@ Add the clearable attribute to add a clear button when the input has content.
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -103,8 +87,6 @@ Add the password-toggle attribute to add a toggle button that will show the pass
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -122,8 +104,6 @@ Add the read-only attribute to draw a read-only input.
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -144,8 +124,6 @@ The focus attribute provides feedback to the users, informing them that the inpu
       type="text"
       size="medium"
       form=""
-      data-optional=""
-      data-valid=""
     ></syn-input>
   </form>
 </div>
@@ -167,8 +145,6 @@ Use the disabled attribute to disable an input.
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 >
   <syn-icon
     name="house"
@@ -198,8 +174,6 @@ Use the size attribute to change an input's size.
   title=""
   type="text"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input
 ><br />
 <syn-input
@@ -208,8 +182,6 @@ Use the size attribute to change an input's size.
   title=""
   type="text"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input
 ><br />
 <syn-input
@@ -218,8 +190,6 @@ Use the size attribute to change an input's size.
   title=""
   type="text"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -240,16 +210,8 @@ The invalid status is used to warn the user that the input is invalid. For examp
     type="text"
     size="medium"
     form=""
-    data-required=""
-    data-invalid=""
   ></syn-input>
-  <syn-button
-    type="submit"
-    variant="filled"
-    title=""
-    size="medium"
-    data-optional=""
-    data-valid=""
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
@@ -278,8 +240,6 @@ The type attribute controls the type of input the browser renders.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input
 ><br />
 <syn-input
@@ -288,8 +248,6 @@ The type attribute controls the type of input the browser renders.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input
 ><br />
 <syn-input
@@ -298,8 +256,6 @@ The type attribute controls the type of input the browser renders.
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -310,54 +266,22 @@ The type attribute controls the type of input the browser renders.
 Use the prefix and suffix slots to add text and icons.
 
 ```html
-<syn-input
-  placeholder="Small"
-  size="small"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Small" size="small" title="" type="text" form="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
 </syn-input>
 <br />
-<syn-input
-  placeholder="Medium"
-  size="medium"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Medium" size="medium" title="" type="text" form="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
 </syn-input>
 <br />
-<syn-input
-  placeholder="Large"
-  size="large"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Large" size="large" title="" type="text" form="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
 </syn-input>
 <br />
-<syn-input
-  placeholder="Small"
-  size="small"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Small" size="small" title="" type="text" form="">
   <syn-icon
     name="wallpaper"
     slot="prefix"
@@ -372,15 +296,7 @@ Use the prefix and suffix slots to add text and icons.
   ></syn-icon>
 </syn-input>
 <br />
-<syn-input
-  placeholder="Medium"
-  size="medium"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Medium" size="medium" title="" type="text" form="">
   <syn-icon
     name="wallpaper"
     slot="prefix"
@@ -395,15 +311,7 @@ Use the prefix and suffix slots to add text and icons.
   ></syn-icon>
 </syn-input>
 <br />
-<syn-input
-  placeholder="Large"
-  size="large"
-  title=""
-  type="text"
-  form=""
-  data-optional=""
-  data-valid=""
->
+<syn-input placeholder="Large" size="large" title="" type="text" form="">
   <syn-icon
     name="wallpaper"
     slot="prefix"
@@ -434,8 +342,6 @@ Use to customize the way form controls are drawn. This example uses CSS grid to 
   type="text"
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 <syn-input
   class="label-on-left"
@@ -445,8 +351,6 @@ Use to customize the way form controls are drawn. This example uses CSS grid to 
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 <syn-textarea
   class="label-on-left"
@@ -455,8 +359,6 @@ Use to customize the way form controls are drawn. This example uses CSS grid to 
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-textarea>
 
 <style>
@@ -501,8 +403,6 @@ The Stepper (Input type number) attribute has additional step buttons at the rig
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 <br />
 <syn-input
@@ -513,8 +413,6 @@ The Stepper (Input type number) attribute has additional step buttons at the rig
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 <br />
 <syn-input
@@ -525,8 +423,6 @@ The Stepper (Input type number) attribute has additional step buttons at the rig
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```
 
@@ -548,8 +444,6 @@ The numeric-strategy property defines how numeric input is handled during user i
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 <syn-input
   label="Modern (min and max)"
@@ -562,7 +456,5 @@ The numeric-strategy property defines how numeric input is handled during user i
   title=""
   size="medium"
   form=""
-  data-optional=""
-  data-valid=""
 ></syn-input>
 ```

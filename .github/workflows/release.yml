@@ -11,8 +11,6 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,8 +28,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        # Note we don´t use PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD here, as we need the browsers for the mcp server data
-        run: pnpm i
+        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
       # Make sure pnpm is able to release
       # @see https://github.com/pnpm/pnpm/issues/3141#issuecomment-1305563972

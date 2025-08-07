@@ -542,5 +542,3 @@ The MCP server is built using the Model Context Protocol SDK and provides a stan
 MIT
 
 ---
-
-_Last updated: July 22, 2025_

@@ -4,7 +4,7 @@ This directory contains a generic and extensible system for scraping Storybook d
 
 ## Overview
 
-The system provides a flexible architecture that can be configured to scrape different types of Storybook documentation (components, styles, etc.) with automatic Storybook lifecycle management.
+The system provides a flexible architecture that can be configured to scrape different types of Storybook documentation (components, styles, templates) with automatic Storybook lifecycle management. It features browser reuse, improved iframe handling, and comprehensive error reporting.
 
 ## Architecture
 
@@ -32,6 +32,7 @@ The system provides a flexible architecture that can be configured to scrape dif
    - Pre-configured setups for common use cases
    - `componentScrapingConfig` for component documentation
    - `stylesScrapingConfig` for styles documentation
+   - `templateScrapingConfig` for template documentation
 
 ### Types
 
@@ -56,6 +57,9 @@ await runDocsScraper("components");
 
 // Scrape only styles
 await runDocsScraper("styles");
+
+// Scrape only templates
+await runDocsScraper("templates");
 ```
 
 ### Advanced Usage
@@ -85,6 +89,7 @@ await docsScraper.scrapeWithConfig(customConfig);
 # Using the build script
 node build-docs.ts components  # Scrape components only
 node build-docs.ts styles      # Scrape styles only
+node build-docs.ts templates   # Scrape templates only
 node build-docs.ts all         # Scrape everything (default)
 node build-docs.ts             # Scrape everything (default)
 ```
@@ -96,7 +101,7 @@ node build-docs.ts             # Scrape everything (default)
 ```typescript
 interface ScrapingConfig {
   outputPath: string; // Base output directory
-  getItems: () => Promise<string[]>; // Function to get items to scrape
+  getItems: () => Promise<string[]> | string[]; // Function to get items to scrape
   generateStoryId: (item: string) => string; // Generate story ID from item
   generateOutputPath: (item: string) => string; // Generate output path from item
   formatContent: (item: string, stories: ScrapedStory[]) => string; // Format content
@@ -135,7 +140,9 @@ The system automatically manages the Storybook server:
 
 - **Port Detection**: Automatically finds available ports starting from 6006
 - **Lifecycle Management**: Starts server when needed, stops when done
-- **Reuse**: Reuses existing server if already running
+- **Browser Reuse**: Reuses single browser instance across all scraping operations
+- **Iframe Handling**: Improved extraction of content from iframe-based stories
+- **Error Reporting**: Comprehensive scraping reports with detailed error information
 - **Graceful Shutdown**: Properly handles server cleanup
 
 ## File Structure
@@ -144,13 +151,11 @@ The system automatically manages the Storybook server:
 storybook/
 ├── types.ts              # TypeScript interfaces
 ├── storybook-manager.ts  # Server lifecycle management
-├── scraper.ts            # Core scraping logic
-├── configs.ts            # Pre-configured setups
+├── scraper.ts            # Core scraping logic with browser reuse
+├── configs.ts            # Pre-configured setups (components, styles, templates)
 ├── docs-scraper.ts       # High-level orchestrator
-├── build-docs.ts         # Command line interface
+├── build-docs.ts         # Command line interface with server management
 ├── index.ts              # Main exports
-├── playwright.ts         # Updated to use new system
-├── playwright-legacy.ts  # Legacy implementation
 └── README.md             # This file
 ```
 
@@ -159,23 +164,29 @@ storybook/
 1. **Extensible**: Easy to add new scraping configurations
 2. **Reusable**: Common functionality abstracted into reusable components
 3. **Maintainable**: Clear separation of concerns
-4. **Reliable**: Automatic server management and error handling
+4. **Reliable**: Automatic server management and comprehensive error handling
 5. **Type-Safe**: Full TypeScript support with proper interfaces
+6. **Efficient**: Browser reuse and optimized iframe content extraction
+7. **Robust**: Detailed error reporting and graceful error recovery
 
-## Migration from Legacy System
+## Key Features
 
-The old `playwright.ts` file has been updated to use the new system. The legacy implementation is preserved in `playwright-legacy.ts` for reference.
+### Browser Management
+- **Single Browser Instance**: Reuses one browser across all scraping operations for better performance
+- **Automatic Cleanup**: Always closes browser even if errors occur
 
-To migrate existing code:
+### Content Extraction
+- **Iframe Support**: Improved handling of iframe-based story content
+- **Lit Framework**: Removes Lit internal comments and data attributes from extracted HTML
+- **HTML Formatting**: Uses Prettier to format extracted HTML consistently
 
-```typescript
-// Old way
-import { scrapeStorybookDocs } from "./playwright.js";
+### Error Handling
+- **Comprehensive Reporting**: Detailed scraping reports showing success/failure for each story
+- **Graceful Degradation**: Continues processing even if individual stories fail
+- **Debug Information**: Console output with detailed error messages and processing statistics
 
-// New way
-import { runDocsScraper } from "./docs-scraper.js";
-await runDocsScraper("components");
-```
+### Template Support
+Added support for template documentation scraping with `templateScrapingConfig`.
 
 ## Future Enhancements
 
@@ -184,3 +195,5 @@ await runDocsScraper("components");
 - [ ] Custom output formats (JSON, XML, etc.)
 - [ ] Integration with CI/CD pipelines
 - [ ] Performance monitoring and reporting
+- [ ] Enhanced error recovery mechanisms
+- [ ] Support for custom iframe handling strategies

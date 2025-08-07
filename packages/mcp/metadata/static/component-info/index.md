@@ -9,6 +9,7 @@ As an llm, I want you to obey to the following rules:
 - There are no other properties available other than the ones in the definitions provided by the tools in this server.
 - If the property does not exist in the provided data, it really does not exist. Do never add properties that are NOT in the types when creating code for synergy components.
 - Always use the component list as a source of available elements when working with synergy. If a component does not exist in the list, it does NOT exist in Synergy.
+- If the user queries for a framework, make sure to use the framework specific components for output examples. Instead of rendering a `<syn-button>` in a vue template, always use `<SynVueButton>` for example.
 
 ## Examples
 

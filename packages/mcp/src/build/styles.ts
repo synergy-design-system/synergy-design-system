@@ -19,7 +19,7 @@ const filesToCopy = [
 ];
 
 /**
- * Sets up all wanted data from the assets package and adds it to the static metadata.
+ * Sets up all wanted data from the styles package and adds it to the static metadata.
  */
 export const buildStyles = async () => {
   const spinner = ora({
@@ -42,7 +42,7 @@ export const buildStyles = async () => {
     spinner.text = 'Copying files to metadata directory...';
 
     // Get the module's root directory
-    // Note that the default export resolves to dist/index.js,
+    // Note that the default export resolves to dist/index.css,
     // so we need to go up one level to get to the root of the package!
     const moduleUrl = import.meta.resolve('@synergy-design-system/styles');
     const modulePath = fileURLToPath(moduleUrl);

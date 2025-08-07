@@ -1,10 +1,33 @@
+import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { ScrapingConfig } from './types.js';
 import {
   staticComponentPath,
   staticStylesPath,
   templatesPath,
 } from '../config.js';
-import { getAvailableComponents } from '../components.js';
+
+/**
+ * Get stories from Storybook output based on a prefix.
+ * @param prefix Prefix to filter stories by
+ * @returns List of stories matching the prefix
+ */
+const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
+  const foundStories = Object
+    .entries(storybookOutput.entries)
+    .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('-docs'))
+    .map(([, value]) => value)
+    .reduce((acc, story) => {
+      const componentName = story.id.split('--')[0].replace(`${prefix}-`, '');
+      acc[componentName] = story.id;
+      return acc;
+    }, {} as Record<string, string>);
+
+  return foundStories;
+};
+
+const componentStories = getStoriesFromStorybook('components');
+const styleStories = getStoriesFromStorybook('styles');
+const templateStories = getStoriesFromStorybook('templates');
 
 /**
  * Configuration for scraping component documentation
@@ -26,8 +49,8 @@ ${story.example}
     return content;
   },
   generateOutputPath: (component: string) => `${staticComponentPath}/${component}/docs.md`,
-  generateStoryId: (component: string) => `components-${component}--docs`,
-  getItems: getAvailableComponents,
+  generateStoryId: (component: string) => componentStories[component],
+  getItems: async () => Object.keys(componentStories),
   outputPath: staticComponentPath,
 };
 
@@ -51,16 +74,8 @@ ${story.example}
     return content;
   },
   generateOutputPath: (style: string) => `${staticStylesPath}/${style}.md`,
-  generateStoryId: (style: string) => `styles-syn-${style}--docs`,
-  getItems: () => [
-    'body',
-    'heading',
-    'link-list',
-    'link',
-    'table-cell',
-    'table',
-    'weight',
-  ],
+  generateStoryId: (component: string) => styleStories[component],
+  getItems: async () => Object.keys(styleStories),
   outputPath: staticStylesPath,
 };
 
@@ -84,13 +99,7 @@ ${story.example}
     return content;
   },
   generateOutputPath: (template: string) => `${templatesPath}/${template}.md`,
-  generateStoryId: (template: string) => `templates-${template}--docs`,
-  getItems: () => [
-    'appshell',
-    'breadcrumb',
-    'footer',
-    'forms',
-    'table',
-  ],
+  generateStoryId: (component: string) => templateStories[component],
+  getItems: async () => Object.keys(templateStories),
   outputPath: staticStylesPath,
 };

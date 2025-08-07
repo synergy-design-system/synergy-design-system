@@ -26,6 +26,15 @@ export class StorybookScraper {
       },
     });
 
+    const scrapingReport = {
+      error: null as Error | null,
+      foundStories: 0,
+      processedStories: 0,
+      status: 'pending' as 'success' | 'error' | 'pending',
+      storyDetails: [] as Array<{ heading: string; status: 'success' | 'error'; error?: string }>,
+      storyId,
+    };
+
     try {
       // Navigate to the Storybook docs page
       await page.goto(`${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
@@ -63,22 +72,72 @@ export class StorybookScraper {
         })
         .filter(x => x.heading && x.example));
 
+      scrapingReport.foundStories = results.length;
+
       if (results.length === 0) {
         throw new Error(`No stories found for ${storyId}`);
       }
 
-      return await Promise.all(results.map(async story => ({
-        description: story.description,
-        example: await prettier.format(story.example, {
-          parser: 'html',
-        }),
-        heading: story.heading,
-      })));
+      const processedStories = await Promise.all(results.map(async (story, index) => {
+        try {
+          const formattedExample = await prettier.format(story.example, {
+            parser: 'html',
+          });
+          
+          scrapingReport.storyDetails.push({
+            heading: story.heading,
+            status: 'success',
+          });
+          
+          scrapingReport.processedStories += 1;
+          
+          return {
+            description: story.description,
+            example: formattedExample,
+            heading: story.heading,
+          };
+        } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          scrapingReport.storyDetails.push({
+            error: errorMessage,
+            heading: story.heading || `Story ${index + 1}`,
+            status: 'error',
+          });
+          throw error;
+        }
+      }));
+
+      scrapingReport.status = 'success';
+      return processedStories;
     } catch (error) {
-      console.error(`Error scraping Storybook for story ${storyId}:`, error);
+      scrapingReport.error = error instanceof Error ? error : new Error(String(error));
+      scrapingReport.status = 'error';
       return [];
     } finally {
       await browser.close();
+      
+      // Generate final report
+      console.log(`📊 Scraping Report for ${storyId}:`);
+      console.log(`   Status: ${scrapingReport.status === 'success' ? '✅ Success' : '❌ Error'}`);
+      console.log(`   Found Stories: ${scrapingReport.foundStories}`);
+      console.log(`   Processed Stories: ${scrapingReport.processedStories}`);
+      
+      if (scrapingReport.storyDetails.length > 0) {
+        console.log('   Story Details:');
+        scrapingReport.storyDetails.forEach((detail, index) => {
+          const statusIcon = detail.status === 'success' ? '✅' : '❌';
+          console.log(`     ${index + 1}. ${statusIcon} ${detail.heading}`);
+          if (detail.error) {
+            console.log(`        Error: ${detail.error}`);
+          }
+        });
+      }
+      
+      if (scrapingReport.error) {
+        console.log(`   Error Details: ${scrapingReport.error.message}`);
+      }
+      
+      console.log(''); // Empty line for readability
     }
   }
 
@@ -115,7 +174,6 @@ export class StorybookScraper {
           parser: 'markdown',
         });
         await writeFile(filePath, content, 'utf-8');
-        console.log(`Written documentation for ${item} to ${filePath}`);
       }),
     );
 

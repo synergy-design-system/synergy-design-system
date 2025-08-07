@@ -19,19 +19,19 @@ export class StorybookScraper {
     const browser = await chromium.launch({
       headless: true,
     });
-    const page = await browser.newPage();
+    const page = await browser.newPage({
+      viewport: {
+        height: 768,
+        width: 1024,
+      },
+    });
 
     try {
       // Navigate to the Storybook docs page
-      console.log('Navigating to Storybook docs for:', storyId);
-
       await page.goto(`${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
-      console.log(`Done navigating to ${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
 
       // Wait for the content to load
-      console.log('Waiting for content to load...');
       await page.waitForSelector('.sb-anchor');
-      console.log('Content loaded, scraping stories...');
 
       // Extract the stories
       // We skip stories that have no headline or example
@@ -63,7 +63,9 @@ export class StorybookScraper {
         })
         .filter(x => x.heading && x.example));
 
-      console.log('Found results', results);
+      if (results.length === 0) {
+        throw new Error(`No stories found for ${storyId}`);
+      }
 
       return await Promise.all(results.map(async story => ({
         description: story.description,

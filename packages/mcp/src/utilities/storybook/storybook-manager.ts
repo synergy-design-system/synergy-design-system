@@ -47,32 +47,6 @@ export class StaticServerManager {
   }
 
   /**
-   * Wait for server to be ready by checking if the port is responding
-   */
-  private static async waitForServer(port: number, timeout: number = 30000): Promise<void> {
-    const startTime = Date.now();
-
-    while (Date.now() - startTime < timeout) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        const response = await fetch(`http://localhost:${port}`);
-        if (response.ok) {
-          return;
-        }
-      } catch {
-        // Continue waiting
-      }
-
-      // eslint-disable-next-line no-await-in-loop
-      await new Promise(promiseResolve => {
-        setTimeout(promiseResolve, 1000);
-      });
-    }
-
-    throw new Error(`Static server did not start within ${timeout}ms`);
-  }
-
-  /**
    * Start the static file server for Storybook
    */
   async start(port: number = 6006): Promise<StorybookServer> {
@@ -108,28 +82,28 @@ export class StaticServerManager {
       ],
     }));
 
-    // Handle server errors
-    this.server.on('error', (error) => {
-      console.error('Static server error:', error);
-    });
-
-    // Start listening
+    // Start listening and wait for the server to be ready
     await new Promise<void>((resolvePromise, reject) => {
       if (!this.server) {
         reject(new Error('Server instance not created'));
         return;
       }
 
-      this.server.listen(availablePort, () => {
+      // Handle server errors
+      this.server.on('error', (error) => {
+        console.error('Static server error:', error);
+        reject(error);
+      });
+
+      // Server is ready when listening event fires
+      this.server.on('listening', () => {
         console.log(`✓ Static server started successfully at ${url}`);
         resolvePromise();
       });
 
-      this.server.on('error', reject);
+      // Start the server
+      this.server.listen(availablePort);
     });
-
-    // Wait for server to be ready
-    await StaticServerManager.waitForServer(availablePort);
 
     this.serverInfo = {
       isRunning: true,

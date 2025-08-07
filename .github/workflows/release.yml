@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
+      - name: Build
+        run: pnpm build
+
       # Make sure pnpm is able to release
       # @see https://github.com/pnpm/pnpm/issues/3141#issuecomment-1305563972
       - name: Setup PNPM publish config

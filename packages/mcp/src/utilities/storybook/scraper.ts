@@ -26,9 +26,12 @@ export class StorybookScraper {
       console.log('Navigating to Storybook docs for:', storyId);
 
       await page.goto(`${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
+      console.log(`Done navigating to ${baseUrl}/iframe?viewMode=docs&id=${storyId}&globals=`);
 
       // Wait for the content to load
+      console.log('Waiting for content to load...');
       await page.waitForSelector('.sb-anchor');
+      console.log('Content loaded, scraping stories...');
 
       // Extract the stories
       // We skip stories that have no headline or example
@@ -59,6 +62,8 @@ export class StorybookScraper {
           };
         })
         .filter(x => x.heading && x.example));
+
+      console.log('Found results', results);
 
       return await Promise.all(results.map(async story => ({
         description: story.description,

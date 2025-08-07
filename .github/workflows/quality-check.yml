@@ -51,6 +51,48 @@ jobs:
       - name: Release (Dry)
         run: pnpm release.dry
 
+  quality-gate-mcp:
+    name: Validate mcp metadata
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Install git to ensure the repository is safe
+      # see https://github.com/actions/checkout/issues/363#issuecomment-2624179541
+      - run: git config --global --add safe.directory $PWD
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm -r --filter 'mcp' test
+
+      - name: Check for uncommitted storybook changes
+        run: pnpm -C packages/mcp build:all
+
+      - name: Check for uncommitted changes
+        run: git diff --exit-code .
+
   test_components:
     name: Validate tests (components)
     timeout-minutes: 30
@@ -117,7 +159,7 @@ jobs:
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm -r --filter '!components' test
+        run: pnpm -r --filter 'e2e-demo-test' test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root
@@ -136,7 +178,7 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [quality-gate, test_components, test_e2e]
+    needs: [quality-gate, quality-gate-mcp, test_components, test_e2e]
     steps:
       # 👇 Version 2 of the action
       - name: Checkout repository

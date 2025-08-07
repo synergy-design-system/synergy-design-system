@@ -4,7 +4,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "077f3a0828e6e004ba500dc36f234a8afbc2d511",
+      "key": "c0b8580ee9db62a24ef278785c259d82e8857b59",
       "name": "shadow/medium",
       "styleType": "EFFECT",
       "remote": false,
@@ -295,7 +295,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "d819e586c2ca76a3b1ade9b78cb611f13730cfd8",
+      "key": "7123a6aeffa0d616e09e2cf8ea5d595623278f8c",
       "name": "shadow/large",
       "styleType": "EFFECT",
       "remote": false,
@@ -586,7 +586,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "ba988520ec98b1c817e8a50329795fe76f8c34a5",
+      "key": "decf92e6ae9f3658e952d2f4249bc59ad40a7949",
       "name": "shadow/x-large",
       "styleType": "EFFECT",
       "remote": false,
@@ -874,17 +874,81 @@
   },
   {
     "name": "shadow/overflow-down",
-    "comment": "Overflow Down",
+    "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "9482349e693789eeb6203a6bddf3fd30f611d4e5",
+      "key": "83a7cfa6ab292f413e064c58b850a3931c575de8",
       "name": "shadow/overflow-down",
       "styleType": "EFFECT",
       "remote": false,
-      "description": "Overflow Down",
+      "description": "",
       "id": "87:2604",
       "type": "RECTANGLE",
       "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "effects": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323977"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323978"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323979"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323980"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323981"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323982"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323983"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323984"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323985"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323986"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323987"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323988"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323989"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323990"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323991"
+          }
+        ]
+      },
       "blendMode": "PASS_THROUGH",
       "fills": [
         {
@@ -933,7 +997,29 @@
             "y": 4
           },
           "radius": 12,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323989"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323990"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323991"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323987"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323988"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -950,7 +1036,29 @@
             "y": 3
           },
           "radius": 8,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323980"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323981"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323982"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323978"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323979"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -967,7 +1075,29 @@
             "y": 1
           },
           "radius": 4,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323984"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323985"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323986"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323977"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323983"
+            }
+          }
         }
       ],
       "interactions": []
@@ -1035,17 +1165,81 @@
   },
   {
     "name": "shadow/overflow-up",
-    "comment": "Overflow Up",
+    "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "88436cd6af5f1a432689ef9ad0caf9ead675c812",
+      "key": "ebee7b95cb85a3185584fdc56404b17925e3b283",
       "name": "shadow/overflow-up",
       "styleType": "EFFECT",
       "remote": false,
-      "description": "Overflow Up",
+      "description": "",
       "id": "87:2605",
       "type": "RECTANGLE",
       "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "effects": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323962"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323963"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323964"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323965"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323966"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323967"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323968"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323969"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323970"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323971"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323972"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323973"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323974"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323975"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323976"
+          }
+        ]
+      },
       "blendMode": "PASS_THROUGH",
       "fills": [
         {
@@ -1094,7 +1288,29 @@
             "y": -4
           },
           "radius": 12,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323974"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323975"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323976"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323972"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323973"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1111,7 +1327,29 @@
             "y": -3
           },
           "radius": 8,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323965"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323966"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323967"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323963"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323964"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1128,7 +1366,29 @@
             "y": -1
           },
           "radius": 4,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323969"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323970"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323971"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323962"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323968"
+            }
+          }
         }
       ],
       "interactions": []
@@ -1196,17 +1456,81 @@
   },
   {
     "name": "shadow/overflow-left",
-    "comment": "Overflow Left",
+    "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "086fe8f37f5801ce0e5b68c780cc21a564cf9004",
+      "key": "3997a6cf3d676b608164a1840472409fb97fb436",
       "name": "shadow/overflow-left",
       "styleType": "EFFECT",
       "remote": false,
-      "description": "Overflow Left",
+      "description": "",
       "id": "87:2606",
       "type": "RECTANGLE",
       "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "effects": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323992"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323993"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323994"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323995"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323996"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323997"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323998"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:323999"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324000"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324001"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324002"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324003"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324004"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324005"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324006"
+          }
+        ]
+      },
       "blendMode": "PASS_THROUGH",
       "fills": [
         {
@@ -1255,7 +1579,29 @@
             "y": 0
           },
           "radius": 12,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324004"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324005"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324006"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324002"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324003"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1272,7 +1618,29 @@
             "y": 0
           },
           "radius": 8,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323995"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323996"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323997"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323993"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323994"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1289,7 +1657,29 @@
             "y": 0
           },
           "radius": 4,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323999"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324000"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324001"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323992"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:323998"
+            }
+          }
         }
       ],
       "interactions": []
@@ -1357,17 +1747,81 @@
   },
   {
     "name": "shadow/overflow-right",
-    "comment": "Overflow Right",
+    "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "2a795db071a0a8da76aed2a89478abf52f62a230",
+      "key": "c5a844f08a4ad385d999b9ab9159fb18deebec8a",
       "name": "shadow/overflow-right",
       "styleType": "EFFECT",
       "remote": false,
-      "description": "Overflow Right",
+      "description": "",
       "id": "87:2607",
       "type": "RECTANGLE",
       "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "effects": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324022"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324023"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324024"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324025"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324026"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324027"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324028"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324029"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324030"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324031"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324032"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324033"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324034"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324035"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:37485:324036"
+          }
+        ]
+      },
       "blendMode": "PASS_THROUGH",
       "fills": [
         {
@@ -1416,7 +1870,29 @@
             "y": 0
           },
           "radius": 12,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324034"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324035"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324036"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324032"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324033"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1433,7 +1909,29 @@
             "y": 0
           },
           "radius": 8,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324025"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324026"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324027"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324023"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324024"
+            }
+          }
         },
         {
           "type": "DROP_SHADOW",
@@ -1450,7 +1948,29 @@
             "y": 0
           },
           "radius": 4,
-          "showShadowBehindNode": false
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324029"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324030"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324031"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324022"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:37485:324028"
+            }
+          }
         }
       ],
       "interactions": []
@@ -1521,7 +2041,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "908744469ef8f6c08d861859ed7059ea272bceca",
+      "key": "66b80a202f6771fe0a0761fcdd072807e3c0f571",
       "name": "body/x-small/regular",
       "styleType": "TEXT",
       "remote": false,
@@ -1629,7 +2149,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "27d7ef0f0d8d49455a70a3c204899f5673e3920e",
+      "key": "f5737128e28c444c6d3c4a0176a618e72d7a50e9",
       "name": "body/small/regular",
       "styleType": "TEXT",
       "remote": false,
@@ -1737,7 +2257,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "25bf789ff16ef981e196535069f0b4486e30e0b1",
+      "key": "ae03ac43fcb2c536d40cca90daf52c7f5a8af308",
       "name": "body/medium/regular",
       "styleType": "TEXT",
       "remote": false,
@@ -1845,7 +2365,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "c5c5474e301a58f239a70357414b448f87938d3b",
+      "key": "a0faa1e32eea4aad8fb55e9dded51882d9ab6c68",
       "name": "body/large/regular",
       "styleType": "TEXT",
       "remote": false,
@@ -1953,7 +2473,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "53e74286d35daa02e0f62a9402aca1243ad34e1b",
+      "key": "bccc07ccab234fb971341b16abfc9f83ed011c36",
       "name": "heading/large",
       "styleType": "TEXT",
       "remote": false,
@@ -2061,7 +2581,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "c8a09002eacad2d121caaf4f9424aaf01cd477f9",
+      "key": "8166eff9b731b9736c35b84a66caed8f79303a5b",
       "name": "heading/x-large",
       "styleType": "TEXT",
       "remote": false,
@@ -2169,7 +2689,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "920340647e13229f0eb72cb9d179683137570be8",
+      "key": "287ae4acd05c234f4d0602e1783b7f6593276000",
       "name": "heading/2x-large",
       "styleType": "TEXT",
       "remote": false,
@@ -2277,7 +2797,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "c1894aeaacee95ad37c27a3ac90b92634f3f580f",
+      "key": "3abb1c49155c8ddf0e8210b81b3d23c6fdac3318",
       "name": "heading/3x-large",
       "styleType": "TEXT",
       "remote": false,
@@ -2385,7 +2905,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "c9e227f4651c9203b628892e4b841287768743d4",
+      "key": "9237e8e7b7588a9443c0c8c8622b20587692c0e1",
       "name": "body/x-small/semibold",
       "styleType": "TEXT",
       "remote": false,
@@ -2456,7 +2976,7 @@
       ],
       "style": {
         "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
+        "fontPostScriptName": null,
         "fontStyle": "SemiBold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2493,7 +3013,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "c8cda018a8bd1027020250b9e69babb111803f8b",
+      "key": "4561b26a4ca67ab3a2ccf7debfe8ccd2289fd028",
       "name": "body/x-small/bold",
       "styleType": "TEXT",
       "remote": false,
@@ -2601,7 +3121,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "82cd68702090cad585573d2021344a83f2ace93a",
+      "key": "e09ff184ea5af497925e1f45a69b84935a21a561",
       "name": "body/small/semibold",
       "styleType": "TEXT",
       "remote": false,
@@ -2672,7 +3192,7 @@
       ],
       "style": {
         "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
+        "fontPostScriptName": null,
         "fontStyle": "SemiBold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2709,7 +3229,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "af32fd87ee6d7e1ecc84a421ffe6084cd3d8af0f",
+      "key": "02e95cc4a32b84873ff81cd30dbb9dec68c78979",
       "name": "body/small/bold",
       "styleType": "TEXT",
       "remote": false,
@@ -2817,7 +3337,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "ca296cffc3ff7b5ca80f45760fdb698aeedeebe0",
+      "key": "c7dfc3ca9fbd43e588176073337c34840dfd9b63",
       "name": "body/medium/semibold",
       "styleType": "TEXT",
       "remote": false,
@@ -2888,7 +3408,7 @@
       ],
       "style": {
         "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
+        "fontPostScriptName": null,
         "fontStyle": "SemiBold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2925,7 +3445,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "18aab9c154c0619f1e9d6baf5052d4e9d528faa8",
+      "key": "84a61543108eb70152e7e3854f611df20ba55173",
       "name": "body/medium/bold",
       "styleType": "TEXT",
       "remote": false,
@@ -3033,7 +3553,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "8a4afeabed650c7e25419e9ebb22dc717dc77f68",
+      "key": "8e7e17494157a87fc3e7d718d511be8f46bd2297",
       "name": "body/large/semibold",
       "styleType": "TEXT",
       "remote": false,
@@ -3104,7 +3624,7 @@
       ],
       "style": {
         "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
+        "fontPostScriptName": null,
         "fontStyle": "SemiBold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -3141,7 +3661,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "cd13a77e09dcc66f0eb708a570bec1ad40edc9c9",
+      "key": "b0ab365a8c772ff65cbe85097eab487f102ebf8b",
       "name": "body/large/bold",
       "styleType": "TEXT",
       "remote": false,
@@ -3249,7 +3769,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "3ce2431ab4efb309d4d1f958e361f6e73a37d85a",
+      "key": "f9aac956dec71bf946e1640423d09b278070a25a",
       "name": "shadow/x-small",
       "styleType": "EFFECT",
       "remote": false,
@@ -3540,7 +4060,7 @@
     "comment": "",
     "visible": true,
     "originalNode": {
-      "key": "e6d1be2f81a7aab8d4da0d45d257aa3e06e17b0d",
+      "key": "be5068d3a02ce33be6f52840510dfc174e2be468",
       "name": "shadow/small",
       "styleType": "EFFECT",
       "remote": false,

@@ -1080,22 +1080,18 @@
       "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16)"
     },
     "overflow-down": {
-      "description": "Overflow Down",
       "type": "shadow",
       "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16)"
     },
     "overflow-up": {
-      "description": "Overflow Up",
       "type": "shadow",
       "value": "0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16)"
     },
     "overflow-left": {
-      "description": "Overflow Left",
       "type": "shadow",
       "value": "-1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
     },
     "overflow-right": {
-      "description": "Overflow Right",
       "type": "shadow",
       "value": "1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
     },

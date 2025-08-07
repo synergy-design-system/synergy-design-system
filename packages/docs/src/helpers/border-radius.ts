@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getTokensByCategory, sortTokens } from './tokens.js';
 
 /**
@@ -9,4 +6,4 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
  * @returns Returns the complete border radius tokens
  */
 export const getBorderRadius = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('borderradius', useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, { orderArray: ['none', 'small', 'medium', 'circle', 'pill'], replaceString: 'synborderradius', sortType: 'order' })));
+  .sort((a, b) => sortTokens(a, b, { extractSizeFor: 'SynBorderRadius', sortType: 'size' })));

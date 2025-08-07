@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getTokensByCategory, sortTokens } from './tokens.js';
 
 /**
@@ -9,22 +6,4 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
  * @returns Returns the complete spacing tokens
  */
 export const getSpacings = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('spacing', useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, {
-    orderArray: [
-      '4xsmall',
-      '3xsmall',
-      '2xsmall',
-      'xsmall',
-      'small',
-      'medium',
-      'mediumlarge',
-      'large',
-      'xlarge',
-      '2xlarge',
-      '3xlarge',
-      '4xlarge',
-      '5xlarge',
-    ],
-    replaceString: 'synspacing',
-    sortType: 'order',
-  })));
+  .sort((a, b) => sortTokens(a, b, { extractSizeFor: 'SynSpacing', sortType: 'size' })));

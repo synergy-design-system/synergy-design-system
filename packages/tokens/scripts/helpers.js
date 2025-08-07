@@ -33,3 +33,18 @@ ${lines.join('\n')}
  */
   `.trim();
 };
+
+/**
+ * Creates a nested property in an object
+ * @param {*} obj The object to modify
+ * @param {Array<string>} keys The keys representing the path to the nested property
+ * @param {unknown} value The value to set at the nested property
+ */
+export const setNestedProperty = (obj, keys, value) => {
+  let current = obj;
+  keys.slice(0, -1).forEach(key => {
+    if (!current[key]) current[key] = {};
+    current = current[key];
+  });
+  current[keys[keys.length - 1]] = value;
+};

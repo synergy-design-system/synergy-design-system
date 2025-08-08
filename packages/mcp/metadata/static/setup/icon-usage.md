@@ -39,18 +39,17 @@ Please have a look at the following example to see how to switch the icon librar
 Note that if you do not call this function, it will default to the 2018 icon library, which is used in Synergy 2.0 until Synergy 3.0 is released.
 
 ```javascript
-import { setSystemIconLibrary } from '@synergy-design-system/components';
+import { setSystemIconLibrary } from "@synergy-design-system/components";
 
 // Switch to the 2025 icon library
-setDefaultIconLibrary('sick2025');
+setDefaultIconLibrary("sick2025");
 
 // Switch back to the 2018 icon library
-setDefaultIconLibrary('sick2018');
+setDefaultIconLibrary("sick2018");
 
 // Switch to the default icon library (2018 for Synergy 2.0, 2025 for Synergy 3.0)
 setDefaultIconLibrary();
 ```
-
 
 #### Angular + Webpack
 
@@ -168,10 +167,10 @@ const icons = [
 ];
 
 // V2 iconsheet
-const sheet = createSpriteSheet(icons, 'sick2018');
+const sheet = createSpriteSheet(icons, "sick2018");
 
 // V3 iconsheet
-const sheet = createSpriteSheet(icons, 'sick2025');
+const sheet = createSpriteSheet(icons, "sick2025");
 
 // Automatically chooses the default, depending on the version of Synergy you are using
 const sheet = createSpriteSheet(icons);

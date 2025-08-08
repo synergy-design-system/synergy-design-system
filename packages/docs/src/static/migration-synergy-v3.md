@@ -29,8 +29,8 @@ After calling this function, the system icon library will be set to the new icon
 > Make sure to call this function before rendering any components that use the system icon library!
 
 ```javascript
-import { setSystemIconLibrary } from '@synergy-design-system/icons';
-setSystemIconLibrary('sick2025');
+import { setSystemIconLibrary } from "@synergy-design-system/icons";
+setSystemIconLibrary("sick2025");
 ```
 
 ## Migration Steps

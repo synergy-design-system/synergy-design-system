@@ -3,63 +3,241 @@
  * @typedef {import('@figma-export/types').ComponentOutputter} ComponentOutputter
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode
  */
-import { readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { optimize } from 'svgo';
 
 /**
- * Update the system icons of a file
- * @param {Object} options - Configuration options for the outputter.
- * @param {function(ComponentNode): boolean} [options.componentFilter] - Function to filter components.
- * @param {function(unknown): string} [options.getBasename] - Function to get the basename of the component.
- * @param {string} [options.output='./system-icons.ts'] - Path to the output file.
- * @returns {ComponentOutputter}
+ * Filter the fields of an icon object.
+ * @param {ComponentNode} icon The icon object containing Figma export data, name, and SVG content.
+ * @returns {Pick<ComponentNode, 'figmaExport' | 'name' | 'svg'>} The filtered icon object.
  */
-export const outputSystemIcons = ({
-  componentFilter = () => true,
-  getBasename = ({ basename = '' }) => basename,
-  output = './system-icons.ts',
-}) => async (pages) => {
-  const allIcons = pages
-    // Filter out pages that do not have components
-    .map(page => page.components.filter(c => c?.svg.length > 0))
-    // Flatten the array of arrays into a single array
-    .flat()
-    .filter(componentFilter)
-    // Map to an array of objects with name and svg
-    .map(c => ([
-      getBasename({
-        componentName: c.name,
-        ...c.figmaExport,
-      }),
-      c.svg,
-    ]))
-    // Sort by name of the component
-    .sort((a, b) => a.at(0).localeCompare(b.at(0)))
-    // Final output as key/value string object
-    .reduce((acc, [name, svg]) => {
-      acc[name] = svg;
-      return acc;
-    }, {});
+const filterFields = icon => ({
+  figmaExport: icon.figmaExport,
+  name: icon.name,
+  svg: icon.svg,
+});
+
+/**
+ * Prepare the assets for a component icon.
+ * @param {Partial<ComponentNode>} icon The icon object containing Figma export data and name.
+ * @returns {Partial<ComponentNode> & { place: string }} The prepared asset object.
+ */
+const prepareAssets = icon => {
+  const {
+    name: originalName,
+    svg: originalSvg,
+  } = icon;
+  let place = 'both';
+  let name = originalName;
+  let svg = originalSvg;
+
+  // Get the name of the component through the export component path
+  const path = icon.figmaExport.pathToComponent;
+
+  // If we don´t have a path, use the name of the last entry,
+  // otherwise use the second to last one
+  if (!path.at(-1).name.startsWith('theme')) {
+    name = path.at(-1).name;
+  } else {
+    place = path.at(-1).name.replace('theme=', '');
+    name = path.at(-2).name;
+  }
+
+  // Optimize the SVG content
+  if (svg) {
+    svg = optimize(svg, {
+      multipass: true,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeViewBox: false,
+            },
+          },
+        },
+        {
+          name: 'removeAttrs',
+          params: { attrs: 'fill' },
+        },
+        {
+          name: 'addAttributesToSVGElement',
+          params: {
+            attributes: ["fill='currentColor'"],
+          },
+        },
+      ],
+    }).data;
+  }
+
+  return {
+    ...icon,
+    name,
+    place,
+    svg,
+  };
+};
+
+/**
+ * Duplicate icon sets for different themes.
+ * @param {Array<{name: string, svg: string, place: string}>} acc The accumulator array.
+ * @param {Partial<ComponentNode> & { place: string }} icon The icon object to duplicate.
+ * @returns {Array<{name: string, svg: string, place: string}>} The updated accumulator array with duplicated icons.
+ */
+const duplicateSets = (acc, icon) => {
+  const { name, svg, place } = icon;
+  if (place === 'both') {
+    acc.push({
+      name,
+      place: 'sick2018',
+      svg,
+    });
+    acc.push({
+      name,
+      place: 'sick2025',
+      svg,
+    });
+  } else {
+    acc.push({
+      name,
+      place,
+      svg,
+    });
+  }
+  return acc;
+};
+
+/**
+ * Group icons by their set (e.g. theme).
+ * @param {Record<string, Record<string, string>>} acc The accumulator object.
+ * @param {Partial<ComponentNode> & { place: string }} icon The icon object to group.
+ * @returns {Record<string, Record<string, string>>} The updated accumulator object.
+ */
+const groupBySet = (acc, icon) => {
+  const { name, svg, place } = icon;
+  if (!acc[place]) {
+    acc[place] = {};
+  }
+  acc[place][name] = svg;
+  return acc;
+};
+
+/**
+ * Write TypeScript files for the icons.
+ * @param {string} outputPath The path to output the TypeScript files.
+ * @param {string} iconSet The name of the icon set.
+ * @param {Record<string, string>} icons The icons to write to the files.
+ * @return {Promise<boolean>} A promise that resolves to true if the files were written successfully, false otherwise.
+ */
+const writeTsFiles = async (
+  outputPath,
+  iconSet,
+  icons,
+) => {
+  const output = join(outputPath, `${iconSet}-system-icons.ts`);
 
   try {
-    const fileContent = await readFile(output, 'utf-8');
-
-    // Exchange the old system icons with the new ones in the components package
-    const regex = /\/\/\s*\*\*Start system icons\*\*([\s\S]*?)\/\/\s*\*\*End system icons\*\*/;
-    const replacedContent = `// **Start system icons**
-const icons = ${JSON.stringify(
-  allIcons,
-  null,
-  2,
-)};
-// **End system icons**`;
-
-    const outputContent = fileContent.replace(regex, replacedContent);
-
-    await writeFile(output, outputContent, 'utf-8');
+    const content = `
+/* eslint-disable */
+export const icons = ${JSON.stringify(icons, null, 2)};
+`.trimStart();
+    await writeFile(output, content, 'utf-8');
     return true;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(`Error reading file ${output}:`, error);
     return false;
   }
+};
+
+/**
+ * Write svg files for the icons.
+ * @param {string} outputPath The path to output the TypeScript files.
+ * @param {string} iconSet The name of the icon set.
+ * @param {Record<string, string>} icons The icons to write to the files.
+ * @return {Promise<boolean>} A promise that resolves to true if the files were written successfully, false otherwise.
+ */
+const writeSvgFiles = async (
+  outputPath,
+  iconSet,
+  icons,
+) => {
+  const pathParts = iconSet === 'sick2018' ? 'system-icons' : `system-icons-${iconSet}`;
+  const output = join(outputPath, pathParts);
+
+  // Create the directory if it does not exist
+  try {
+    await mkdir(output, { recursive: true });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error creating directory ${output}:`, error);
+    return false;
+  }
+
+  const writeSuccess = Object
+    .entries(icons)
+    .map(async ([name, svg]) => {
+      const filename = join(output, `${name}.svg`);
+      try {
+        await writeFile(filename, svg, 'utf-8');
+        return true;
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(`Error writing file ${filename}:`, error);
+        return false;
+      }
+    });
+
+  const result = await Promise.all(writeSuccess);
+  return result.every(Boolean);
+};
+
+/**
+ * Update the system icons of a file
+ * @param {Object} options - Configuration options for the outputter.
+ * @param {string} [options.componentExportFolder='./'] - Path to the output folder for ts assets.
+ * @param {function(ComponentNode): boolean} [options.componentFilter] - Function to filter components.
+ * @param {string} [options.svgExportFolder='./'] - Path to the output folder for svg assets.
+ * @returns {ComponentOutputter}
+ */
+export const outputSystemIcons = ({
+  componentExportFolder = './',
+  componentFilter = () => true,
+  svgExportFolder = './',
+}) => async (pages) => {
+  const allIcons = pages
+    // Filter out pages that do not have components
+    .map(page => page.components.filter(c => c?.svg.length > 0))
+    // Flatten the array of arrays into a single array
+    .flat()
+    // Apply the component filter
+    .filter(componentFilter)
+    // Filter out the fields we need
+    .map(filterFields)
+    // Make sure to prepare the assets
+    // so they can be saved to different places in the filesystem
+    .map(prepareAssets)
+    // Sort by name of the component
+    .sort((a, b) => a.name.localeCompare(b.name))
+    // Make sure icons that are available for both sets are duplicated to the sets
+    .reduce(duplicateSets, [])
+    // Group the outputs as an object by place
+    .reduce(groupBySet, {});
+
+  // Write the icons to the filesystem
+  // Writes one file per icon set
+  const createdTsFileResults = Object
+    .entries(allIcons)
+    .map(async ([place, icons]) => writeTsFiles(componentExportFolder, place, icons));
+
+  // Create the svg files in the file system
+  const createdSVGFileResults = Object
+    .entries(allIcons)
+    .map(async ([place, icons]) => writeSvgFiles(svgExportFolder, place, icons));
+
+  const resultsTsFiles = await Promise.all(createdTsFileResults);
+  const resultsSVGFiles = await Promise.all(createdSVGFileResults);
+  const results = [...resultsTsFiles, ...resultsSVGFiles];
+  return results.every(Boolean);
 };

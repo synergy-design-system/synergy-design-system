@@ -28,6 +28,11 @@ const staticFilesToCopy = [
     getAbsolutePath('../../../../packages/components/BREAKING_CHANGES.md'),
     componentMigrationPath,
   ],
+  // Copy the v3 migration guide
+  [
+    getAbsolutePath('../../../../packages/docs/src/static/migration-synergy-v3.md'),
+    componentMigrationPath,
+  ],
 ];
 
 /**

@@ -1,6 +1,9 @@
+// icons config
+export const FIGMA_FILE_ID_ICONS = 'bZFqk9urD3NlghGUKrkKCR';
+export const FIGMA_ID_ICONS = '1616-1509';
+
 // V2 Figma paths
 export const FIGMA_FILE_ID_ICONS_V2 = 'bZFqk9urD3NlghGUKrkKCR';
-export const FIGMA_ID_SYSTEM_ICONS_V2 = '1616-1509';
 export const FIGMA_ID_ALL_ICONS_V2 = '1616-1512';
 export const FIGMA_ID_LOGOS_V2 = '41-4000';
 
@@ -19,11 +22,12 @@ export const PATH_LOGOS_V2 = 'src/logos';
 export const PATH_SYSTEM_ICONS_V2 = 'src/system-icons';
 export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
-export const PATH_ICONS_V3 = 'src/brand2025';
+export const PATH_ICONS_V3 = 'src/sick2025';
+export const PATH_SYSTEM_ICONS_V3 = 'src/system-icons-sick2025';
 
 export const PATH_DEFAULT_ICONS_2018 = 'src/default-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/brand2025-filled-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/brand2025-outline-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/sick2025-filled-icons.ts';
+export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/sick2025-outline-icons.ts';
 
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;
@@ -49,6 +53,7 @@ export const LICENSE_MAP = [
       PATH_ICONS_V2,
       PATH_SYSTEM_ICONS_V2,
       PATH_ICONS_V3,
+      PATH_SYSTEM_ICONS_V3,
     ],
   },
 ];
@@ -62,6 +67,7 @@ export const DYNAMIC_OUTPUT_PATHS = [
   PATH_LOGOS_V2,
   PATH_SYSTEM_ICONS_V2,
   PATH_ICONS_V3,
+  PATH_SYSTEM_ICONS_V3,
   PATH_DEFAULT_ICONS_2018,
   PATH_DEFAULT_ICONS_2025_FILLED,
   PATH_DEFAULT_ICONS_2025_OUTLINE,

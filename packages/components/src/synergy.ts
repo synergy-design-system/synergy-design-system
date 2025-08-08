@@ -64,3 +64,6 @@ export * from './utilities/defaultSettings/index.js';
 
 // Events
 export * from './events/events.js';
+
+// System Iconset switcher
+export { setSystemIconLibrary } from './components/icon/library.system.js';

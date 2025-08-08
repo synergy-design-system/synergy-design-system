@@ -23,6 +23,7 @@
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
+    "svgo": "^3.3.2",
     "typescript": "^5.8.3"
   },
   "exports": {
@@ -32,9 +33,14 @@
     },
     "./icons/*": "./src/icons/*",
     "./logos/*": "./src/logos/*",
+    "./sick2025/*": "./src/sick2025/*",
     "./default-icons.js": {
       "types": "./dist/default-icons.d.ts",
       "import": "./dist/default-icons.js"
+    },
+    "./default-icons-2025.js": {
+      "types": "./dist/default-icons-2025.d.ts",
+      "import": "./dist/default-icons-2025.js"
     },
     "./createSpritesheet.js": {
       "types": "./dist/createSpritesheet.d.ts",
@@ -43,9 +49,11 @@
   },
   "files": [
     "dist",
-    "src/brand2025",
-    "src/logos",
     "src/icons",
+    "src/logos",
+    "src/sick2025",
+    "src/system-icons",
+    "src/system-icons-sick2025",
     "CHANGELOG.md",
     "NOTICE"
   ],

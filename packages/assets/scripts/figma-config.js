@@ -77,20 +77,20 @@ export const createFigmaExportConfig = ({
   ],
 });
 
-// v2 system icons configuration
-export const v2SystemIconConfig = createFigmaExportConfig({
+// Global icons configuration
+export const systemIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
     outputSystemIcons({
+      componentExportFolder: '../components/src/components/icon',
       componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
-      getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/src/components/icon/library.system.ts',
+      svgExportFolder: './src',
     }),
   ],
-  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
-  ids: [FIGMA_CONFIG.FIGMA_ID_SYSTEM_ICONS_V2],
-  includeTypes: ['COMPONENT'],
-  path: 'system-icons',
-  svgComponentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS,
+  ids: [FIGMA_CONFIG.FIGMA_ID_ICONS],
+  includeTypes: ['INSTANCE'],
+  // Circumvent the figmaOutputSvg filter for system icons, we handle it ourself
+  svgComponentFilter: () => false,
 });
 
 // v2 all icons configuration
@@ -128,7 +128,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'outlineIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/brand2025-outline-icons.ts',
+      output: './src/sick2025-outline-icons.ts',
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -139,7 +139,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'brand2025/outline',
+  path: 'sick2025/outline',
 });
 
 // v3 filled icons configuration
@@ -148,7 +148,7 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'filledIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/brand2025-filled-icons.ts',
+      output: './src/sick2025-filled-icons.ts',
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -159,14 +159,13 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'brand2025/fill',
+  path: 'sick2025/fill',
 });
 
 /**
  * V2 consists of all icons, system icons and logos.
  */
 export const CONFIG_FOR_V2 = [
-  v2SystemIconConfig,
   v2AllIconsConfig,
   v2LogosConfig,
 ];
@@ -183,6 +182,7 @@ export const CONFIG_FOR_V3 = [
  * Configuration for all icons, including both V2 and V3.
  */
 export const CONFIG_FOR_ALL = [
+  systemIconsConfig,
   ...CONFIG_FOR_V2,
   ...CONFIG_FOR_V3,
 ];

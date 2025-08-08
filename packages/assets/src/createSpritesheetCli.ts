@@ -6,11 +6,11 @@ import {
   type Icon2025Keys,
   createSpriteSheet,
 } from './createSpritesheet.js';
-import { defaultIcons as brand2018Icons } from './default-icons.js';
-import { defaultIcons as brand2025Icons } from './default-icons-2025.js';
+import { defaultIcons as sick2018Icons } from './default-icons.js';
+import { defaultIcons as sick2025Icons } from './default-icons-2025.js';
 
 type Args = {
-  icons?: Partial<keyof typeof brand2018Icons>[];
+  icons?: Partial<keyof typeof sick2018Icons>[];
   iconset?: AllowedIconsets;
   list?: string;
   [key: string]: unknown;
@@ -22,8 +22,8 @@ type Args = {
  */
 const helpMessage = (usageError = '') => `Usage:
 
-syn-create-spritesheet --icons=icon1,icon2,icon3 --iconset=brand2018 | brand2025
-syn-create-spritesheet --iconset=brand2018 | brand2025 --list=a
+syn-create-spritesheet --icons=icon1,icon2,icon3 --iconset=sick2018 | sick2025
+syn-create-spritesheet --iconset=sick2018 | sick2025 --list=a
 
 Creates a spritesheet string from a list of icons.
 Each icon identifier is a valid icon name for an icon in the synergy icon library.
@@ -31,11 +31,11 @@ Each icon identifier is a valid icon name for an icon in the synergy icon librar
 Using to save the spritesheet string to a file:
 syn-create-spritesheet --icons=a,b,c > icons.svg
 
-List all available icons starting with the letter 'a' in brand2025:
-syn-create-spritesheet --list=a --iconset=brand2025
+List all available icons starting with the letter 'a' in sick2025:
+syn-create-spritesheet --list=a --iconset=sick2025
 
-List all available icons in brand2025:
-syn-create-spritesheet --list=ALL --iconset=brand2025
+List all available icons in sick2025:
+syn-create-spritesheet --list=ALL --iconset=sick2025
 
 Please have a look at https://synergy-design-system.github.io/?path=/docs/icon-search--docs for icon names
 ${usageError && `
@@ -70,17 +70,17 @@ if (args.length === 0) {
 
 const {
   icons,
-  iconset = 'brand2018',
+  iconset = 'sick2018',
   list,
 } = argumentsObject;
 
-const allowedIconNamesFor2018 = Object.keys(brand2018Icons);
-const allowedIconNamesFor2025 = Object.keys(brand2025Icons);
-const allowedIconNames = iconset === 'brand2018' ? allowedIconNamesFor2018 : allowedIconNamesFor2025;
+const allowedIconNamesFor2018 = Object.keys(sick2018Icons);
+const allowedIconNamesFor2025 = Object.keys(sick2025Icons);
+const allowedIconNames = iconset === 'sick2018' ? allowedIconNamesFor2018 : allowedIconNamesFor2025;
 
 // Check if the iconset is valid
-if (!['brand2018', 'brand2025'].includes(iconset)) {
-  console.log(helpMessage(`The iconset "${iconset}" is not valid. Please use "brand2018" or "brand2025".`));
+if (!['sick2018', 'sick2025'].includes(iconset)) {
+  console.log(helpMessage(`The iconset "${iconset}" is not valid. Please use "sick2018" or "sick2025".`));
   process.exit(3);
 }
 
@@ -118,10 +118,10 @@ Please remove them and try again, e.g. by using the following command: syn-creat
 }
 
 let sheet;
-if (iconset === 'brand2018') {
-  sheet = createSpriteSheet(icons as Icon2018Keys[], 'brand2018');
+if (iconset === 'sick2018') {
+  sheet = createSpriteSheet(icons as Icon2018Keys[], 'sick2018');
 } else {
-  sheet = createSpriteSheet(icons as Icon2025Keys[], 'brand2025');
+  sheet = createSpriteSheet(icons as Icon2025Keys[], 'sick2025');
 }
 
 console.log(sheet);

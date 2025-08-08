@@ -38,6 +38,7 @@ const config: StorybookConfig = {
     "../stories/Presentation.mdx",
     "../stories/Accessibility.mdx",
     "../stories/Contributing.mdx",
+    "../stories/Migration2025.mdx",
     "../stories/limitations/**/*.mdx",
     "../stories/packages/**/*.mdx",
     "../stories/tokens/**/*.@(mdx|stories.*)",

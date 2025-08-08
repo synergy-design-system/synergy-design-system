@@ -8,7 +8,7 @@ import {
 } from '../utilities/index.js';
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
-  brand2018Icons: [
+  sick2018Icons: [
     'current',
     'default',
     'legacy',
@@ -17,7 +17,7 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
     'brand2018',
     'sick2018',
   ],
-  brand2025Icons: [
+  sick2025Icons: [
     'synergy2025',
     'new',
     'next',
@@ -26,6 +26,8 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
     'v3',
   ],
 };
+
+const DEFAULT_LIMIT = 5;
 
 /**
  * Simple tool to list all available assets in the Synergy Design System.
@@ -42,7 +44,7 @@ export const assetInfoTool = (server: McpServer) => {
         filter: z
           .string()
           .optional()
-          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned.'),
+          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned. Supports multiple filters separated by "|" (e.g., "home|search|menu" to find icons containing any of these terms).'),
         iconset: z
           .enum([
             'current', // Special key, maps to 2018 currently, should map to 2025 in the next major version
@@ -65,9 +67,9 @@ export const assetInfoTool = (server: McpServer) => {
           .describe('The name of the icon set to retrieve icons from.'),
         limit: z
           .number()
-          .default(5)
+          .default(DEFAULT_LIMIT)
           .optional()
-          .describe('The maximum number of icons to return. Defaults to 5.'),
+          .describe(`The maximum number of icons to return. Defaults to ${DEFAULT_LIMIT}. When using multiple filters (pipe-separated), this limit applies per filter term.`),
       },
       title: 'Available Icons',
     },
@@ -80,21 +82,50 @@ export const assetInfoTool = (server: McpServer) => {
       const setToUse: keyof typeof availableIconsets = iconset
         ? Object
           .entries(iconsetListAliases)
-          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'brand2018Icons'
-        : 'brand2018Icons';
+          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2018Icons'
+        : 'sick2018Icons';
 
       const foundIconSet = typeof availableIconsets[setToUse] !== undefined
         ? availableIconsets[setToUse]
-        : availableIconsets.brand2018Icons;
+        : availableIconsets.sick2018Icons;
 
       // Filter the icons if a filter is provided
-      const availableIcons = Object
-        .keys(foundIconSet)
-        .filter(iconName => iconName.toLowerCase().includes(filter?.toLowerCase() || ''));
+      // Support pipe-separated filters (e.g., "icon1|icon2|icon3") for multiple icon matching
+      let availableIcons: string[];
 
-      // Limit the number of icons returned
-      const limitedIcons = (limit ?? 5) > 0
-        ? availableIcons.slice(0, limit ?? 5)
+      if (!filter) {
+        availableIcons = Object.keys(foundIconSet);
+      } else {
+        const lowerFilter = filter.toLowerCase();
+
+        // Check if filter contains pipe separator for multiple filters
+        if (lowerFilter.includes('|')) {
+          const filterTerms = lowerFilter.split('|').map(term => term.trim());
+          const iconsPerTerm: string[] = [];
+
+          // For each filter term, find matching icons and apply limit per term
+          filterTerms.forEach(term => {
+            const matchingIcons = Object
+              .keys(foundIconSet)
+              .filter(iconName => iconName.toLowerCase().includes(term))
+              .slice(0, limit ?? DEFAULT_LIMIT); // Apply limit per filter term
+
+            iconsPerTerm.push(...matchingIcons);
+          });
+
+          // Remove duplicates while preserving order
+          availableIcons = [...new Set(iconsPerTerm)];
+        } else {
+          // Original single filter behavior
+          availableIcons = Object
+            .keys(foundIconSet)
+            .filter(iconName => iconName.toLowerCase().includes(lowerFilter));
+        }
+      }
+
+      // For single filters or no filter, apply the limit normally
+      const limitedIcons = (!filter || !filter.includes('|')) && (limit ?? DEFAULT_LIMIT) > 0
+        ? availableIcons.slice(0, limit ?? DEFAULT_LIMIT)
         : availableIcons;
 
       const icons = limitedIcons.map(icon => `- ${icon}`).join('\n');
@@ -104,12 +135,19 @@ export const assetInfoTool = (server: McpServer) => {
           type: 'text' as const,
         },
         {
+          text: `Showing ${limitedIcons.length} of ${availableIcons.length} icons`,
+          type: 'text' as const,
+        },
+        {
           text: icons,
           type: 'text' as const,
         },
       ];
 
       const aiRules = await getStructuredMetaData('../../metadata/static/assets');
+      const assetData = await getAssetsMetaData(
+        (fileName) => !fileName.toLowerCase().startsWith('changelog'),
+      );
 
       return {
         content: [
@@ -118,7 +156,7 @@ export const assetInfoTool = (server: McpServer) => {
             type: 'text',
           },
           {
-            text: JSON.stringify(await getAssetsMetaData(), null, 2),
+            text: JSON.stringify(assetData, null, 2),
             type: 'text',
           },
           ...content,

@@ -25,7 +25,7 @@ type SynSpriteSheetOptions<Icons extends Icon2018Keys | Icon2025Keys> = {
 
 const defaultOptions: SynSpriteSheetOptions<Icon2018Keys> = {
   icons: [],
-  iconset: 'brand2018',
+  iconset: 'sick2018',
   outFileName: './public/synergy-icon-sprites.svg',
 };
 
@@ -44,10 +44,10 @@ const synSpriteSheetCreator = <T extends Icon2018Keys | Icon2025Keys>(
     } = finalOptions;
 
     let sheet;
-    if (iconset === 'brand2018') {
-      sheet = createSpriteSheet(icons as Icon2018Keys[], 'brand2018');
+    if (iconset === 'sick2018') {
+      sheet = createSpriteSheet(icons as Icon2018Keys[], 'sick2018');
     } else {
-      sheet = createSpriteSheet(icons as Icon2025Keys[], 'brand2025');
+      sheet = createSpriteSheet(icons as Icon2025Keys[], 'sick2025');
     }
 
     // Create the output file
@@ -103,7 +103,7 @@ export const withSpriteSheetGenerator = {
         'preview',
         'bug_report',
       ],
-      iconset: 'brand2018',
+      iconset: 'sick2018',
     }),
     synSpriteSheetCreator<Icon2025Keys>({
       icons: [
@@ -128,7 +128,7 @@ export const withSpriteSheetGenerator = {
         'preview',
         'bug_report',
       ],
-      iconset: 'brand2025',
+      iconset: 'sick2025',
       outFileName: './public/synergy-icon-sprites-2025.svg',
     }),
     viteStaticCopy({
@@ -149,6 +149,6 @@ export const withSpriteSheetGenerator = {
 // https://vitejs.dev/config/
 export default defineConfig(
   // Change this to withSpriteSheetGenerator to test the sprite sheet generator
-  // withSpriteSheetGenerator,
-  defaultConfig,
+  withSpriteSheetGenerator,
+  // defaultConfig,
 );

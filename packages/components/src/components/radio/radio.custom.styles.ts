@@ -43,6 +43,15 @@ export default css`
     top: -2px;
   }
 
+  /**
+   * #920: The new icons are instances in figma.
+   * The width of the system icon is 12px x 12px, so there is no inner padding.
+   * To accommodate for this, we need to set the width and height of the icon to 50% to get the same result as before.
+   */
+  .radio__checked-icon {
+    scale: 0.5;
+  }
+
   /* /Fix#456 */
 
   /* Size modifiers */

@@ -28,6 +28,30 @@ The default base path of the icon library is set to **assets/icons/**.
 To make the <syn-icon> work out of the box, without configuring anything, the used icons can be copied to this path in you application.
 This can either be done manually or with the help of the bundler.
 
+### Differences in icon usage between Synergy 2.0 and Synergy 3.0
+
+With the upgrade to Synergy 3.0, new icons will be used.
+Those icons are already available as assets in the \`@synergy-design-system/assets\` package.
+When using the new icons, you have to make sure that the icons are available in the \`assets/icons/\` directory of your project as outlined below.
+
+System icons come bundled with the \`@synergy-design-system/components\` package. You may switch to the new icons with the new \`setSystemIconLibrary\` utility provided.
+Please have a look at the following example to see how to switch the icon library.
+Note that if you do not call this function, it will default to the 2018 icon library, which is used in Synergy 2.0 until Synergy 3.0 is released.
+
+```javascript
+import { setSystemIconLibrary } from '@synergy-design-system/components';
+
+// Switch to the 2025 icon library
+setDefaultIconLibrary('sick2025');
+
+// Switch back to the 2018 icon library
+setDefaultIconLibrary('sick2018');
+
+// Switch to the default icon library (2018 for Synergy 2.0, 2025 for Synergy 3.0)
+setDefaultIconLibrary();
+```
+
+
 #### Angular + Webpack
 
 Including assets from another library can be achieved in angular via configuring the assets configuration in the angular.json file.
@@ -130,6 +154,7 @@ This can be done in multiple ways:
 
 The `createSpriteSheet` function is provided by the `@synergy-design-system/assets` package.
 It takes an array of icon keys and returns a string representation of the SVG sprite sheet, intended to be saved into the file system.
+You may also provide an optional second argument to specify the icon set to use, either `sick2018` or `sick2025`. If not provided, it will default to `sick2018` for Synergy V2 and `sick2025` for Synergy V3.
 As we do not know how exactly you want to use the spritesheet, we will just print it to the console in the following example.
 
 ```typescript
@@ -141,6 +166,14 @@ const icons = [
   "battery_charging_full",
   "notifications",
 ];
+
+// V2 iconsheet
+const sheet = createSpriteSheet(icons, 'sick2018');
+
+// V3 iconsheet
+const sheet = createSpriteSheet(icons, 'sick2025');
+
+// Automatically chooses the default, depending on the version of Synergy you are using
 const sheet = createSpriteSheet(icons);
 
 console.log(sheet);
@@ -154,7 +187,12 @@ cd my-project
 
 # Create the spritesheet on the command line.
 # You will need to provide a list of icons to include in the spritesheet.
+# Provide the wanted iconset with the --iconset flag.
 # The following command will make sure to save the spritesheet to the file icons.svg
+
+# Generates the icons from the 2025 iconset
+npx syn-create-spritesheet --icons=warning,inventory,battery_charging_full,notifications --iconset=sick2025 > public/icons.svg
+
 npx syn-create-spritesheet --icons=warning,inventory,battery_charging_full,notifications > public/icons.svg
 ```
 

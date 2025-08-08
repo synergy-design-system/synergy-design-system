@@ -27,13 +27,15 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
   ],
 };
 
+const DEFAULT_LIMIT = 5;
+
 /**
  * Simple tool to list all available assets in the Synergy Design System.
  * This tool fetches the asset data from the Synergy package and formats it for display.
  * @todo: Maybe also include the metadata like in docs and use this to map the new/old sets?
  * @param server - The MCP server instance to register the tool on.
  */
-export const assetInfoTool = (server: McpServer) => {
+export const assetInfoTool = (server: McpServer) => { 
   server.registerTool(
     'asset-info',
     {
@@ -42,7 +44,7 @@ export const assetInfoTool = (server: McpServer) => {
         filter: z
           .string()
           .optional()
-          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned.'),
+          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned. Supports multiple filters separated by "|" (e.g., "home|search|menu" to find icons containing any of these terms).'),
         iconset: z
           .enum([
             'current', // Special key, maps to 2018 currently, should map to 2025 in the next major version
@@ -65,9 +67,9 @@ export const assetInfoTool = (server: McpServer) => {
           .describe('The name of the icon set to retrieve icons from.'),
         limit: z
           .number()
-          .default(5)
+          .default(DEFAULT_LIMIT)
           .optional()
-          .describe('The maximum number of icons to return. Defaults to 5.'),
+          .describe(`The maximum number of icons to return. Defaults to ${DEFAULT_LIMIT}. When using multiple filters (pipe-separated), this limit applies per filter term.`),
       },
       title: 'Available Icons',
     },
@@ -88,13 +90,42 @@ export const assetInfoTool = (server: McpServer) => {
         : availableIconsets.brand2018Icons;
 
       // Filter the icons if a filter is provided
-      const availableIcons = Object
-        .keys(foundIconSet)
-        .filter(iconName => iconName.toLowerCase().includes(filter?.toLowerCase() || ''));
+      // Support pipe-separated filters (e.g., "icon1|icon2|icon3") for multiple icon matching
+      let availableIcons: string[];
+      
+      if (!filter) {
+        availableIcons = Object.keys(foundIconSet);
+      } else {
+        const lowerFilter = filter.toLowerCase();
+        
+        // Check if filter contains pipe separator for multiple filters
+        if (lowerFilter.includes('|')) {
+          const filterTerms = lowerFilter.split('|').map(term => term.trim());
+          const iconsPerTerm: string[] = [];
+          
+          // For each filter term, find matching icons and apply limit per term
+          filterTerms.forEach(term => {
+            const matchingIcons = Object
+              .keys(foundIconSet)
+              .filter(iconName => iconName.toLowerCase().includes(term))
+              .slice(0, limit ?? DEFAULT_LIMIT); // Apply limit per filter term
+            
+            iconsPerTerm.push(...matchingIcons);
+          });
+          
+          // Remove duplicates while preserving order
+          availableIcons = [...new Set(iconsPerTerm)];
+        } else {
+          // Original single filter behavior
+          availableIcons = Object
+            .keys(foundIconSet)
+            .filter(iconName => iconName.toLowerCase().includes(lowerFilter));
+        }
+      }
 
-      // Limit the number of icons returned
-      const limitedIcons = (limit ?? 5) > 0
-        ? availableIcons.slice(0, limit ?? 5)
+      // For single filters or no filter, apply the limit normally
+      const limitedIcons = (!filter || !filter.includes('|')) && (limit ?? DEFAULT_LIMIT) > 0
+        ? availableIcons.slice(0, limit ?? DEFAULT_LIMIT)
         : availableIcons;
 
       const icons = limitedIcons.map(icon => `- ${icon}`).join('\n');
@@ -104,12 +135,19 @@ export const assetInfoTool = (server: McpServer) => {
           type: 'text' as const,
         },
         {
+          text: `Showing ${limitedIcons.length} of ${availableIcons.length} icons`,
+          type: 'text' as const,
+        },
+        {
           text: icons,
           type: 'text' as const,
         },
       ];
 
       const aiRules = await getStructuredMetaData('../../metadata/static/assets');
+      const assetData = await getAssetsMetaData(
+        (fileName) => !fileName.toLowerCase().startsWith('changelog'),
+      );
 
       return {
         content: [
@@ -118,7 +156,7 @@ export const assetInfoTool = (server: McpServer) => {
             type: 'text',
           },
           {
-            text: JSON.stringify(await getAssetsMetaData(), null, 2),
+            text: JSON.stringify(assetData, null, 2),
             type: 'text',
           },
           ...content,

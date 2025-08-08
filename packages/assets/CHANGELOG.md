@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.17.0...assets/1.18.0) (2025-08-08)
+
+
+### Features
+
+* ✨ syn-icon: Provide a function to switch the icon set to brand2025 ([#974](https://github.com/synergy-design-system/synergy-design-system/issues/974)) ([1482e34](https://github.com/synergy-design-system/synergy-design-system/commit/1482e34f21ce80b9ad6f25e760f87de13d5f70db))
+
 # [@synergy-design-system/assets-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.16.1...assets/1.17.0) (2025-07-14)
 
 

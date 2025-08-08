@@ -30,12 +30,12 @@ export const assetListTool = (server: McpServer) => {
               },
               {
                 description: 'The original set of icons from the Synergy Design System. Use this for projects using Synergy Major Version 2.0.',
-                iconset: 'brand2018Icons',
+                iconset: 'sick2018Icons',
                 title: 'Synergy 2018 Icons',
               },
               {
                 description: 'New icon set for the brand 2025 refresh. Use this for projects using Synergy Major Version 3.0.',
-                iconset: 'brand2025Icons',
+                iconset: 'sick2025Icons',
                 title: 'Synergy 2025 Icons',
               },
             ], null, 2),

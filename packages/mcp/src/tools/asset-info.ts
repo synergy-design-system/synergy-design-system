@@ -8,7 +8,7 @@ import {
 } from '../utilities/index.js';
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
-  brand2018Icons: [
+  sick2018Icons: [
     'current',
     'default',
     'legacy',
@@ -17,7 +17,7 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
     'brand2018',
     'sick2018',
   ],
-  brand2025Icons: [
+  sick2025Icons: [
     'synergy2025',
     'new',
     'next',
@@ -35,7 +35,7 @@ const DEFAULT_LIMIT = 5;
  * @todo: Maybe also include the metadata like in docs and use this to map the new/old sets?
  * @param server - The MCP server instance to register the tool on.
  */
-export const assetInfoTool = (server: McpServer) => { 
+export const assetInfoTool = (server: McpServer) => {
   server.registerTool(
     'asset-info',
     {
@@ -82,37 +82,37 @@ export const assetInfoTool = (server: McpServer) => {
       const setToUse: keyof typeof availableIconsets = iconset
         ? Object
           .entries(iconsetListAliases)
-          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'brand2018Icons'
-        : 'brand2018Icons';
+          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2018Icons'
+        : 'sick2018Icons';
 
       const foundIconSet = typeof availableIconsets[setToUse] !== undefined
         ? availableIconsets[setToUse]
-        : availableIconsets.brand2018Icons;
+        : availableIconsets.sick2018Icons;
 
       // Filter the icons if a filter is provided
       // Support pipe-separated filters (e.g., "icon1|icon2|icon3") for multiple icon matching
       let availableIcons: string[];
-      
+
       if (!filter) {
         availableIcons = Object.keys(foundIconSet);
       } else {
         const lowerFilter = filter.toLowerCase();
-        
+
         // Check if filter contains pipe separator for multiple filters
         if (lowerFilter.includes('|')) {
           const filterTerms = lowerFilter.split('|').map(term => term.trim());
           const iconsPerTerm: string[] = [];
-          
+
           // For each filter term, find matching icons and apply limit per term
           filterTerms.forEach(term => {
             const matchingIcons = Object
               .keys(foundIconSet)
               .filter(iconName => iconName.toLowerCase().includes(term))
               .slice(0, limit ?? DEFAULT_LIMIT); // Apply limit per filter term
-            
+
             iconsPerTerm.push(...matchingIcons);
           });
-          
+
           // Remove duplicates while preserving order
           availableIcons = [...new Set(iconsPerTerm)];
         } else {

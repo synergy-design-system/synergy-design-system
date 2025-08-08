@@ -13,6 +13,7 @@
     "packages/tokens/src/figma-tokens/semantic/**",
     "packages/tokens/src/figma-tokens/globals.json",
     "packages/tokens/src/figma-tokens/color/**",
+    "packages/tokens/src/figma-variables/output/**",
     "packages/assets/src/**/*.svg",
     "packages/styles/src/**/*.css"
   ]

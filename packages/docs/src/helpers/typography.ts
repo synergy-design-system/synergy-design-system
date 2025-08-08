@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getTokensByCategory, sortTokens } from './tokens.js';
 
 export const exampleText = 'The quick brown fox jumps over the lazy dog.';
@@ -27,19 +24,7 @@ export const getFontFamily = (useFullTokenName = false) => {
  * @returns Returns the complete font-size tokens
  */
 export const getFontSize = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('fontsize', useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, {
-    orderArray: [
-      'xsmall',
-      'small',
-      'medium',
-      'large',
-      'xlarge',
-      '2xlarge',
-      '3xlarge',
-    ],
-    replaceString: 'synfontsize',
-    sortType: 'order',
-  })));
+  .sort((a, b) => sortTokens(a, b, { extractSizeFor: 'SynFontSize', sortType: 'size' })));
 
 /**
  * Get all font-weight as object

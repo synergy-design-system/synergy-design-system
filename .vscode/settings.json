@@ -16,6 +16,7 @@
     "packages/assets",
     "packages/components",
     "packages/docs",
+    "packages/mcp",
     "packages/angular",
     "packages/react",
     "packages/tokens",
@@ -229,7 +230,9 @@
     "packages/components/tsconfig.json": true,
     "packages/components/tsconfig.prod.json": true,
     "packages/components/web-test-runner.config.js": true,
-    "packages/react/src/**": true
+    "packages/react/src/**": true,
+    "packages/tokens/test/dark.css": true,
+    "packages/tokens/test/light.css": true
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]
 }

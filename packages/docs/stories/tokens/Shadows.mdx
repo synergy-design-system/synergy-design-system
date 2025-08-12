@@ -8,6 +8,10 @@ import {
   getCSSToken,
   getShadows,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Shadows" tags={['Design Tokens']} />
 
@@ -15,29 +19,33 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.shadow?.description?.value} />
 
-<table>
-  <tbody>
-    <>
-      <tr>
-        <th>{docsTokens?.tokens?.shadow?.title.value}</th>
-        <th>Raw Value</th>
-        <th>CSS Token</th>
-      </tr>
-      {Object.entries(getShadows(true)).map(([token, value]) => (
-        <tr key={`${token}-row`}>
-          <td>
-            <Shadow className={token.toLowerCase()} value={value} />
-          </td>
-          <td>
-            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="box-shadow" />
-          </td>
-          <td>
-            <CopyToClipBoard value={getCSSToken(token)}>
-              {getCSSToken(token)}
-            </CopyToClipBoard>
-          </td>
-        </tr>
-      ))}
-    </>
-  </tbody>
-</table>
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], ({ className }) => (
+    <table>
+      <tbody>
+        <>
+          <tr>
+            <th>{docsTokens?.tokens?.shadow?.title.value}</th>
+            <th>Raw Value</th>
+            <th>CSS Token</th>
+          </tr>
+          {Object.entries(getShadows(true)).map(([token, value]) => (
+            <tr key={`${token}-row`}>
+              <td>
+                <Shadow className={`${className}-${token.toLowerCase()}`} value={value} />
+              </td>
+              <td>
+                <CopyRawCssPropValue value={`${className}-${token.toLowerCase()}`} cssProperty="box-shadow" />
+              </td>
+              <td>
+                <CopyToClipBoard value={getCSSToken(token)}>
+                  {getCSSToken(token)}
+                </CopyToClipBoard>
+              </td>
+            </tr>
+          ))}
+        </>
+      </tbody>
+    </table>
+  ))}
+/>

@@ -2,6 +2,7 @@
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
  */
 import { existsSync, mkdirSync } from 'fs';
+import chalk from 'chalk';
 import variablesJson from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
 import { FIGMA_TOKENS_PREFIXES } from '../config.js';
 
@@ -149,4 +150,23 @@ export const formatColor = (color) => {
 
   // eslint-disable-next-line no-bitwise
   return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
+};
+
+/**
+ * Gets the available themes from the Figma variables collection "Synergy Themes".
+ * @returns {Array<{ id: string, name: string }>} An array of available themes with their IDs and names.
+ */
+export const getAvailableThemes = () => {
+  const themes = Object.values(figmaVariables.variableCollections)
+    .filter(({ name }) => name === 'Synergy Themes')
+    .map(({ modes }) => Object.values(modes).map(({ modeId, name }) => ({
+      id: modeId,
+      name,
+    }))).flat();
+  if (themes.length === 0) {
+    console.error(
+      chalk.red('No themes found in Figma variables. Please check the variable collections.'),
+    );
+  }
+  return themes;
 };

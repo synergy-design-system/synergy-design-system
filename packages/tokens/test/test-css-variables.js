@@ -12,8 +12,17 @@ const directory = dirname(filename);
 // Paths to the files to compare
 const BUILT_FILE_DIR = join(directory, '../dist/themes/');
 const REFERENCE_FILE_DIR = join(directory, '../test/');
-const LIGHT_MODE_FILE = 'light.css';
-const DARK_MODE_FILE = 'dark.css';
+const SICK2018_LIGHT_FILE = 'light.css';
+const SICK2018_DARK_FILE = 'dark.css';
+const SICK2025_LIGHT_FILE = 'sick2025_light.css';
+const SICK2025_DARK_FILE = 'sick2025_dark.css';
+
+const modes = [
+  SICK2018_LIGHT_FILE,
+  SICK2018_DARK_FILE,
+  SICK2025_DARK_FILE,
+  SICK2025_LIGHT_FILE,
+];
 
 /**
  * Extract CSS variables from a CSS file content
@@ -120,11 +129,6 @@ function logResults(results) {
  */
 function runTest() {
   console.log('🧪 Testing CSS variables consistency...\n');
-
-  const modes = [
-    LIGHT_MODE_FILE,
-    DARK_MODE_FILE,
-  ];
 
   try {
     /** @type {{[key: string]: ReturnType<typeof compareVariables>}} */

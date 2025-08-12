@@ -23,9 +23,9 @@ import { COLOR_PALETTE_PREFIX, OUTPUT_DIR } from '../config.js';
  */
 const shouldUseAliasValue = (name) => {
   // Exchange the _color-palette alias with the real values, as they should not show up in the json
-  // TODO: Exchange the letter-spacing/default ( for value of input/letter-spacing) and line-height aliases with the real values. They are currently only available for the new brand
+  // TODO: Exchange the letter-spacing/default ( for value of input/letter-spacing), the letter-spacing/positive-2 (for value of letter-spacing/looser) and line-height aliases with the real values. They are currently only available for the new brand
   const NO_ALIAS_VALUE_REGEX = new RegExp(
-    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|line-height)`,
+    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|letter-spacing.positive-2|line-height)`,
   );
   return !NO_ALIAS_VALUE_REGEX.test(name);
 };
@@ -155,13 +155,10 @@ const transformFigmaVariables = () => {
     }
 
     const collection = Object.values(figmaVariables.variableCollections)
-      .find(c => c.id === variableCollectionId);
+      .find(c => c.id === variableCollectionId && c.name === 'Synergy Themes');
 
+    // If the collection is not found, because it is not available or not from "Synergy Themes" collection, skip the variable
     if (!collection) {
-      console.warn(
-        `Variable collection with id ${variableCollectionId} not found for variable `
-        + `${name}`,
-      );
       return;
     }
 
@@ -172,10 +169,6 @@ const transformFigmaVariables = () => {
 
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
-      // Skip the sick2025 modes, as we currently don't want it
-      if (modeName.startsWith('sick2025')) {
-        return;
-      }
 
       if (!transformed[modeName]) transformed[modeName] = {};
 

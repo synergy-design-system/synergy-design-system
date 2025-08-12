@@ -12,10 +12,10 @@ import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { setNestedProperty } from '../helpers.js';
 import {
-  createDirectory, formatColor, getAliasValue, resolveAlias,
+  createDirectory, formatColor, getAliasValue, getAvailableThemes, resolveAlias,
 } from './helpers.js';
 import stylesJson from '../../src/figma-variables/styleTokens.json' with { type: 'json' };
-import { DARK_2018_THEME, LIGHT_2018_THEME, OUTPUT_DIR } from '../config.js';
+import { OUTPUT_DIR } from '../config.js';
 
 /**
  * The fetching result of the Figma API for styles.
@@ -40,7 +40,7 @@ const sanitizeComment = (message) => {
 /**
  * Writes a style to the given object.
  *
- * @param { Object } obj The object to write the style to
+ * @param { * } obj The object to write the style to
  * @param { string } comment The comment for the style, e.g. "Overflow Down"
  * @param { string } name The name of the style e.g. body/medium/regular
  * @param { string } value The CSS value of the style
@@ -152,7 +152,7 @@ const getBoundVariablesEffectStyles = (style, modeId) => {
 
 /**
  * Processes EFFECT style type and writes shadow or blur values
- * @param {Object} result - The result object to write to
+ * @param {*} result - The result object to write to
  * @param {StyleTypeEffect} style - The style object with effects
  * @param {string} modeId - The mode ID for the style
  */
@@ -205,7 +205,7 @@ const processEffectStyle = (result, style, modeId) => {
 
 /**
  * Processes TEXT style type and writes typography values
- * @param {Object} result - The result object to write to
+ * @param {*} result - The result object to write to
  * @param {StyleTypeText} style - The style object with text properties
  */
 const processTextStyle = (result, style) => {
@@ -229,7 +229,7 @@ const processTextStyle = (result, style) => {
 
 /**
  * Processes a single style and adds it to the result object
- * @param {Object} result - The result object to write to
+ * @param {*} result - The result object to write to
  * @param {Style} style - The style object to process
  * @param {string} modeId - The mode ID for the style
  */
@@ -252,35 +252,31 @@ const processStyle = (result, style, modeId) => {
 };
 
 const transformFigmaStyles = () => {
+  /** @type {Record <string, any>} */
   const result = {};
   console.log('Transforming Figma styles...');
 
-  const modes = [
-    {
-      id: '28:3',
-      targetFile: LIGHT_2018_THEME,
-    },
-    {
-      id: '36102:0',
-      targetFile: DARK_2018_THEME,
-    },
-  ];
+  const themes = getAvailableThemes();
 
   figmaStyles.forEach((style) => {
-    modes.forEach(({ targetFile, id }) => {
-      processStyle(result, style, id);
-      const targetFilePath = join(OUTPUT_DIR, targetFile);
-      if (!existsSync(targetFilePath)) {
-        console.warn(`Target file ${targetFilePath} does not exist. Creating a new file.`);
-        createDirectory(OUTPUT_DIR);
-        writeFileSync(targetFilePath, '{}', 'utf-8');
-      }
-      // Add styles to light and dark themes
-      const fileData = readFileSync(targetFilePath, 'utf-8');
-      const object = JSON.parse(fileData);
-      const updatedData = Object.assign(object, result);
-      writeFileSync(targetFilePath, JSON.stringify(updatedData, null, 2));
+    themes.forEach(({ id, name }) => {
+      if (!result[name]) result[name] = {};
+
+      processStyle(result[name], style, id);
     });
+  });
+
+  Object.entries(result).forEach(([name, styles]) => {
+    const targetFilePath = join(OUTPUT_DIR, `${name}.json`);
+    if (!existsSync(targetFilePath)) {
+      console.warn(`Target file ${targetFilePath} does not exist. Creating a new file.`);
+      createDirectory(OUTPUT_DIR);
+      writeFileSync(targetFilePath, '{}', 'utf-8');
+    }
+    const fileData = readFileSync(targetFilePath, 'utf-8');
+    const object = JSON.parse(fileData);
+    const updatedData = Object.assign(object, styles);
+    writeFileSync(targetFilePath, JSON.stringify(updatedData, null, 2));
   });
 };
 

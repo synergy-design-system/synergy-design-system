@@ -9,7 +9,7 @@ This document outlines the changes and migration steps required to upgrade from 
 We are currently working on the migration to Synergy 3.0, which includes significant updates to the brand appearance, fonts and icon library.
 This migration will ensure that your application remains up-to-date with the latest design standards and functionality improvements.
 
-It is currently not adviced to use the new version in production, as we are still finalizing the migration process.
+It is currently not advised to use the new version in production, as we are still finalizing the migration process.
 However, you can start preparing your codebase for the upcoming changes.
 
 A roadmap and current status of the migration can be found in our [GitHub repository](https://github.com/orgs/synergy-design-system/projects/2/views/37).
@@ -41,6 +41,54 @@ import { setSystemIconLibrary } from "@synergy-design-system/icons";
 setSystemIconLibrary("sick2025");
 ```
 
+### Tokens
+
+Synergy 3.0 introduces new CSS theme files that implement the updated SICK brand appearance:
+
+- **`sick2025_light.css`**: The new light theme featuring the SICK 2025 brand identity
+- **`sick2025_dark.css`**: The new dark theme featuring the SICK 2025 brand identity
+
+These new themes include significant visual changes compared to the existing themes e.g. changed colors and new color palettes, components with roundings, new font etc.
+
+We added new css class selectors, so it is easy to switch between different themes.
+
+- SICK 2018 light theme: `.syn-sick2018-light`
+- SICK 2018 dark theme: `.syn-sick2018-dark`
+- SICK 2025 light theme: `.syn-sick2025-light`
+- SICK 2025 dark theme: `.syn-sick2025-dark`
+
+To use the new themes in your application:
+
+1. **Replace theme imports** in your HTML or CSS:
+
+   ```javascript
+   // New Synergy 3.0 themes
+   import "@synergy-design-system/tokens/themes/sick2025_light.css";
+   import "@synergy-design-system/tokens/themes/sick2025_dark.css";
+   ```
+
+2. **Update theme switching logic** if you support runtime theme changes:
+
+   ```javascript
+   // Rename the class names for theme switching
+   const switchTheme = ({ target }) => {
+     const { body } = document;
+     const currentTheme = body.classList.contains("syn-sick2025-dark")
+       ? "dark"
+       : "light";
+
+     if (currentTheme === "light") {
+       // Light theme
+       body.classList.remove("syn-sick2025-light");
+       body.classList.add("syn-sick2025-dark");
+     } else {
+       // Dark theme
+       body.classList.remove("syn-sick2025-dark");
+       body.classList.add("syn-sick2025-light");
+     }
+   };
+   ```
+
 ## Migration Steps
 
 These steps are only needed when switching to the new Synergy 3.0 layout.
@@ -48,3 +96,5 @@ These steps are only needed when switching to the new Synergy 3.0 layout.
 1. Always make sure to use the latest versions of the Synergy packages. You can check for updates using your package manager.
 2. Call `setSystemIconLibrary` with `sick2025` to enable the new system icons.
 3. Adjust your bundler to copy the new icons to your build output. This is necessary to ensure that the new icons are available in your application.
+4. **Update CSS theme imports** to use the new `sick2025_light.css` and `sick2025_dark.css` files instead of the legacy theme files.
+5. **Update theme class names** in your JavaScript theme switching logic to use `syn-sick2025-light` and `syn-sick2025-dark`.

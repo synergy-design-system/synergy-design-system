@@ -1,3 +1,18 @@
-<syn-switch (synChangeEvent)="switchTheme($event)" size="small">
-  {{ currentTheme }}
-</syn-switch>
+<syn-select
+  (synChangeEvent)="setCurrentTheme($event)"
+  placeholder="Select a theme to use"
+  size="small"
+  value="2018-light"
+>
+  <syn-icon [name]="currentMode" slot="prefix"></syn-icon>
+  @for (theme of availableThemes | keyvalue; track theme.key) {
+    <syn-optgroup [label]="theme.value.title">
+      @for (mode of theme.value.modes; track mode) {
+        <syn-option [value]="theme.value.name + '-' + mode">
+          <syn-icon [name]="mode.includes('light') ? 'light_mode' : 'dark_mode'" slot="prefix"></syn-icon>
+          {{ theme.value.title }} - {{ mode }}
+        </syn-option>
+      }
+    </syn-optgroup>
+  }
+</syn-select>

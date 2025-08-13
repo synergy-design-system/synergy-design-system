@@ -10,14 +10,16 @@ import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest
 // @ts-expect-error This is a virtual import, which is not recognized by TypeScript
 import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME } from './modes.js';
+import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 
@@ -59,8 +61,10 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [LIGHT_THEME]: 'syn-theme-light',
-    [DARK_THEME]: 'syn-theme-dark',
+    [DARK_THEME]: 'syn-sick2018-dark',
+    [LIGHT_THEME]: 'syn-sick2018-light',
+    [SICK_2025_DARK]: 'syn-sick2025-dark',
+    [SICK_2025_LIGHT]: 'syn-sick2025-light',
   },
 });
 
@@ -106,6 +110,7 @@ const preview: Preview = {
       stories: { inline: false },
       toc: {
         headingSelector: 'h2, h3',
+        ignoreSelector: '.toc-ignore h2, .toc-ignore h3',
       },
       source: {
         format: 'html',

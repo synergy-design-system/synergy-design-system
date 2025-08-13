@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import type { SynChangeEvent, SynSwitch as SynSwitchElement } from '@synergy-design-system/components';
+import type { SynChangeEvent, SynSelect } from '@synergy-design-system/components';
+import {
+  getAvailableThemes,
+  setThemeFromOptionString,
+} from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'theme-switch',
@@ -9,15 +13,13 @@ import type { SynChangeEvent, SynSwitch as SynSwitchElement } from '@synergy-des
 })
 export class ThemeSwitchComponent {
 
-  currentTheme: string = '🌙';
+  currentMode = 'light_mode';
 
-  switchTheme(e: SynChangeEvent) {
-    const { body } = document;
-    const { checked } = e.target as SynSwitchElement;
-    const theme = checked ? 'dark' : 'light';
-    body.classList.remove('syn-theme-light', 'syn-theme-dark');
-    body.classList.add(`syn-theme-${theme}`);
+  availableThemes = getAvailableThemes();
 
-    this.currentTheme = theme === 'light' ? '🌙' : '☀️';
+  setCurrentTheme(e: SynChangeEvent) {
+    const value = (e.target as SynSelect).value as string;
+    setThemeFromOptionString(value);
+    this.currentMode = value.includes('light') ? 'light_mode' : 'dark_mode';
   }
 }

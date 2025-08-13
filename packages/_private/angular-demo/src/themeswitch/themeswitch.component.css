@@ -1,3 +1,7 @@
 :host {
   display: contents;
 }
+
+syn-icon {
+  color: var(--syn-color-warning-500);
+}

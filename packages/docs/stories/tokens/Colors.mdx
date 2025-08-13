@@ -13,6 +13,10 @@ import {
   getPrimaryColorPalette,
   getSASSToken,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Colors" tags={['Design Tokens', 'Colors']} />
 
@@ -20,10 +24,9 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
-{['light', 'dark'].map(theme => (
-  <div key={theme}>
-    <Markdown>{`## Colors - ${theme}`}</Markdown>
-    <table className={`syn-theme-${theme}`}>
+<TokensForThemes
+  themes={getThemesForComponent(['2018-light', '2018-dark', '2025-light', '2025-dark'], () => (
+    <table>
       <tbody>
         {[
           ['Neutral', getNeutralColorPalette(true)],
@@ -73,5 +76,5 @@ import {
         ))}
       </tbody>
     </table>
-  </div>
-))}
+  ))}
+/>

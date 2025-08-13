@@ -9,6 +9,10 @@ import {
   getCSSToken,
   getSASSToken,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Border Width" tags={['Design Tokens']} />
 
@@ -18,41 +22,45 @@ import {
   {docsTokens?.tokens?.['border-width']?.description?.value}
 </p>
 
-<table>
-  <tbody>
-    <>
-      <tr>
-        <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
-        <th>Raw Value</th>
-        <th>CSS Token</th>
-        <th>SCSS Token</th>
-        <th>JS Token</th>
-      </tr>
-      {Object.entries(getBorderWidth(true)).map(([token, value]) => (
-        <tr key={`${token}-row`}>
-          <td>
-            <BorderWidth className={token.toLowerCase()} value={value}  />
-          </td>
-          <td>
-            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-width"/>
-          </td>
-          <td>
-            <CopyToClipBoard value={getCSSToken(token)}>
-              {getCSSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={getSASSToken(token)}>
-              {getSASSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={token}>
-              {token}
-            </CopyToClipBoard>
-          </td>
-        </tr>
-      ))}
-    </>
-  </tbody>
-</table>
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], ({ className }) => (
+    <table>
+      <tbody>
+        <>
+          <tr>
+            <th>{docsTokens?.tokens?.['border-width']?.title.value}</th>
+            <th>Raw Value</th>
+            <th>CSS Token</th>
+            <th>SCSS Token</th>
+            <th>JS Token</th>
+          </tr>
+          {Object.entries(getBorderWidth(true)).map(([token, value]) => (
+            <tr key={`${token}-row`}>
+              <td>
+                <BorderWidth className={`${className}-${token.toLowerCase()}`} value={value}  />
+              </td>
+              <td>
+                <CopyRawCssPropValue value={`${className}-${token.toLowerCase()}`} cssProperty="border-width"/>
+              </td>
+              <td>
+                <CopyToClipBoard value={getCSSToken(token)}>
+                  {getCSSToken(token)}
+                </CopyToClipBoard>
+              </td>
+              <td>
+                <CopyToClipBoard value={getSASSToken(token)}>
+                  {getSASSToken(token)}
+                </CopyToClipBoard>
+              </td>
+              <td>
+                <CopyToClipBoard value={token}>
+                  {token}
+                </CopyToClipBoard>
+              </td>
+            </tr>
+          ))}
+        </>
+      </tbody>
+    </table>
+  ))}
+/>

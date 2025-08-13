@@ -232,7 +232,8 @@
     "packages/components/web-test-runner.config.js": true,
     "packages/react/src/**": true,
     "packages/tokens/test/dark.css": true,
-    "packages/tokens/test/light.css": true
+    "packages/tokens/test/sick2025_dark.css": true,
+    "packages/tokens/test/sick2025_light.css": true
   },
   "html.customData": ["packages/components/dist/vscode.html-custom-data.json"]
 }

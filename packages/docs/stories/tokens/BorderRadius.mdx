@@ -3,12 +3,15 @@ import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
 import { CopyRawCssPropValue } from '../../src/shared-components/RawColorValue.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 import { BorderRadius, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
-
 import {
   getBorderRadius,
   getCSSToken,
   getSASSToken,
 } from '../../src/helpers';
+import {
+  getThemesForComponent,
+  TokensForThemes,
+} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Border Radius" tags={['Design Tokens']} />
 
@@ -16,44 +19,48 @@ import {
 
 <MultiLineDescription value={docsTokens?.tokens?.['border-radius']?.description?.value} />
 
-<table>
-  <tbody>
-    <>
-      <tr>
-        <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
-        <th>Raw Value</th>
-        <th>CSS Token</th>
-        <th>SCSS Token</th>
-        <th>JS Token</th>
-      </tr>
-      {Object.entries(getBorderRadius(true)).map(([token, value]) => (
-        <tr key={`${token}-row`}>
-          <td>
-            <BorderRadius className={token.toLowerCase()} value={value} />
-          </td>
-          <td>
-            <CopyRawCssPropValue value={token.toLowerCase()} cssProperty="border-radius"/>
-          </td>
-          <td>
-            <CopyToClipBoard value={getCSSToken(token)}>
-              {getCSSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={getSASSToken(token)}>
-              {getSASSToken(token)}
-            </CopyToClipBoard>
-          </td>
-          <td>
-            <CopyToClipBoard value={token}>
-              {token}
-            </CopyToClipBoard>
-          </td>
+<TokensForThemes
+  themes={getThemesForComponent(['2018', '2025'], ({ className }) => (
+    <table>
+      <tbody>
+      <>
+        <tr>
+          <th>{docsTokens?.tokens?.['border-radius']?.title.value}</th>
+          <th>Raw Value</th>
+          <th>CSS Token</th>
+          <th>SCSS Token</th>
+          <th>JS Token</th>
         </tr>
-      ))}
-    </>
-  </tbody>
-</table>
+        {Object.entries(getBorderRadius(true)).map(([token, value]) => (
+          <tr key={`${token}-row`}>
+            <td>
+              <BorderRadius className={`${className}-${token.toLowerCase()}`} value={value} />
+            </td>
+            <td>
+              <CopyRawCssPropValue value={`${className}-${token.toLowerCase()}`} cssProperty="border-radius"/>
+            </td>
+            <td>
+              <CopyToClipBoard value={getCSSToken(token)}>
+                {getCSSToken(token)}
+              </CopyToClipBoard>
+            </td>
+            <td>
+              <CopyToClipBoard value={getSASSToken(token)}>
+                {getSASSToken(token)}
+              </CopyToClipBoard>
+            </td>
+            <td>
+              <CopyToClipBoard value={token}>
+                {token}
+              </CopyToClipBoard>
+            </td>
+          </tr>
+        ))}
+      </>
+      </tbody>
+    </table>
+  ))}
+/>
 
 <style>{`
 .synborderradiuspill {

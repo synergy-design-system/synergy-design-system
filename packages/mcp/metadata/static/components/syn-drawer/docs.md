@@ -5,7 +5,6 @@ Drawers slide in from a container to expose additional options and information.
 ```html
 <syn-drawer open="" label="Drawer" placement="end">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
   <span slot="footer"> </span>
   <syn-button
     class="close-icon"
@@ -15,8 +14,7 @@ Drawers slide in from a container to expose additional options and information.
     size="medium"
     >Close</syn-button
   >
-  <span slot="footer"> </span>
-  <span slot="footer"> </span>
+  <span slot="footer"> </span> <span slot="footer"> </span>
 </syn-drawer>
 
 <syn-button

@@ -2,16 +2,6 @@
 import React, { FC, ReactNode } from 'react';
 import '../../../components/src/components/icon-button/icon-button.js';
 
-// Make sure ts is not sad about custom elements
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      ['syn-icon-button']: unknown;
-    }
-  }
-}
-
 type ClipboardProps = {
   children: ReactNode;
   value?: string;

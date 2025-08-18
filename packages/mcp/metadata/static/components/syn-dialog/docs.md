@@ -5,7 +5,6 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 ```html
 <syn-dialog open="" label="Dialog">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
   <span slot="footer"> </span>
   <syn-button
     class="default-close-icon"
@@ -15,8 +14,7 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
     size="medium"
     >Close</syn-button
   >
-  <span slot="footer"> </span>
-  <span slot="footer"> </span>
+  <span slot="footer"> </span> <span slot="footer"> </span>
 </syn-dialog>
 
 <syn-button

@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import { IconSearchPageThemes } from "../src/shared-components/IconSearchPageThemes.tsx";
 
-import { IconsSearchPage } from '../src/shared-components/IconSearchPage.tsx';
 
 <Meta title="Icon search" tags={['Icons']} />
 
@@ -8,4 +8,4 @@ import { IconsSearchPage } from '../src/shared-components/IconSearchPage.tsx';
 
 Use this icon search to find a matching icon for your need. Icons can be searched via icon name or via tag, which is related to the icon. Click on the desired icon or icon text to copy it's name and use it with a `<syn-icon>` or `<syn-icon-button>`.
 
-<IconsSearchPage />
+<IconSearchPageThemes themes={[{id: "sick2018", name: "SICK 2018"}, {id: "sick2025-outline", name: "SICK 2025 outline", }, {id: "sick2025-fill", name: "SICK 2025 fill", }]} />

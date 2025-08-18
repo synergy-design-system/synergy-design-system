@@ -21,30 +21,49 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
 
   return (
     <>
-      <div style={{
-        backgroundColor: 'var(--syn-color-neutral-0)',
-        paddingTop: 'var(--syn-spacing-x-large)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-      }}>
-        <SynInput
-          label="Search icons"
-          onSynInput={handleSearchTermChange}
-          style={{ marginBottom: 'var(--syn-spacing-x-large)' }}
-        ></SynInput>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div style={{
+          backgroundColor: 'var(--syn-color-neutral-0)',
+          paddingTop: 'var(--syn-spacing-x-large)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 10,
+        }}>
+          <SynInput
+            label="Search icons"
+            onSynInput={handleSearchTermChange}
+            style={{ marginBottom: 'var(--syn-spacing-x-large)' }}
+          ></SynInput>
+        </div>
+        <SynTabGroup>
+          {themes.map(({ id, name }) => (
+            <>
+              <SynTab panel={id} slot="nav">
+                {name}
+              </SynTab><SynTabPanel name={id}>
+                <IconsSearchPage mode={id} searchTerm={searchTerm} />
+              </SynTabPanel>
+            </>
+          ))}
+        </SynTabGroup>
       </div>
-      <SynTabGroup>
-        {themes.map(({ id, name }) => (
-          <>
-            <SynTab panel={id} slot="nav">
-              {name}
-            </SynTab><SynTabPanel name={id}>
-              <IconsSearchPage mode={id} searchTerm={searchTerm} />
-            </SynTabPanel>
-          </>
-        ))}
-      </SynTabGroup>
+      <style>
+        {
+          `
+          syn-tab-group::part(nav) {
+            position: sticky;
+            top: var(--syn-spacing-5x-large);
+            z-index: 10;
+            background-color: var(--syn-color-neutral-0);
+          }
+          `
+        }
+      </style>
     </>
   );
 };

@@ -2,8 +2,9 @@
 import React, {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
-import { SynIcon } from '@synergy-design-system/react';
-import { registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
+import '../../../components/src/components/icon/icon.js';
+// We need to import every synergy component from the direct sources instead of the package, as otherwise it is possible, that the icons could not be loaded, as the "registerIconLibrary" function is used from a wrong source
+import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
 import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
 import { filledIcons as sick2025Filled } from '../../../assets/src/sick2025-filled-icons.js';
@@ -148,7 +149,7 @@ export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' 
                   onClick={copyToClipboard}
                 >
                   <span data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-x-small)' }}>{icon}</span>
-                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library={mode}></SynIcon>
+                  <syn-icon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library={mode}></syn-icon>
                 </div>
               ))}
             </div>

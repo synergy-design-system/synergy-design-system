@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react';
-import {
-  SynInput, SynTab, SynTabGroup, SynTabPanel,
-} from '@synergy-design-system/react';
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
+import '../../../components/src/components/input/input.js';
+import '../../../components/src/components/tab/tab.js';
+import '../../../components/src/components/tab-group/tab-group.js';
+import '../../../components/src/components/tab-panel/tab-panel.js';
 import { IconsSearchPage } from './IconSearchPage.js';
 
 export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
@@ -34,23 +35,24 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
           top: 0,
           zIndex: 10,
         }}>
-          <SynInput
+          <syn-input
             label="Search icons"
-            onSynInput={handleSearchTermChange}
+            onsyn-input={handleSearchTermChange}
             style={{ marginBottom: 'var(--syn-spacing-x-large)' }}
-          ></SynInput>
+          ></syn-input>
         </div>
-        <SynTabGroup>
+        <syn-tab-group>
           {themes.map(({ id, name }) => (
             <>
-              <SynTab panel={id} slot="nav">
+              <syn-tab panel={id} slot="nav">
                 {name}
-              </SynTab><SynTabPanel name={id}>
+              </syn-tab>
+              <syn-tab-panel name={id}>
                 <IconsSearchPage mode={id} searchTerm={searchTerm} />
-              </SynTabPanel>
+              </syn-tab-panel>
             </>
           ))}
-        </SynTabGroup>
+        </syn-tab-group>
       </div>
       <style>
         {

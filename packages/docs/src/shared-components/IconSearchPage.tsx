@@ -2,16 +2,14 @@
 import React, {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
-import {
-  SynIcon, SynOption, SynSelect,
-} from '@synergy-design-system/react';
-import type { SynChangeEvent, SynSelect as SynSelectType } from '@synergy-design-system/components';
+import { SynIcon } from '@synergy-design-system/react';
 import { registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
 import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
 import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
 import { filledIcons as sick2025Filled } from '../../../assets/src/sick2025-filled-icons.js';
 // The new material symbols metadata can be found here: https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true
 import materialIconsMetadata from '../materialSymbolsMetadata.json' with { type: 'json' };
+import { THEMES, Themes } from './IconSearchPageThemes.js';
 
 type FontIcon = {
   name: string,
@@ -23,9 +21,9 @@ type MaterialIconsMetadata = {
   icons: Array<FontIcon>
 };
 
-const getBundledIconsForMode = (mode: 'sick2018' | 'sick2025-filled' | 'sick2025-outline') => {
+const getBundledIconsForMode = (mode: Themes) => {
   switch (mode) {
-  case 'sick2025-filled':
+  case 'sick2025-fill':
     return sick2025Filled;
   case 'sick2025-outline':
     return sick2025Outline;
@@ -38,7 +36,7 @@ const getBundledIconsForMode = (mode: 'sick2018' | 'sick2025-filled' | 'sick2025
 const mapIconData = (icons: Record<string, string>, mode: Themes) => Object.keys(icons).map((iconName) => {
   let customIconsName = iconName;
   // Unfortunately we need a special handling for the sick2025_filled icons, as the naming is different from the other icons. They have a suffix of "_fill" in the name.
-  if (mode === 'sick2025-filled') {
+  if (mode === 'sick2025-fill') {
     customIconsName = customIconsName.replace(/_fill$/, ''); // Remove the "_fill" suffix only if it's at the end
   }
   // Sometimes there are two types of icon with the same name. The first one is always the new Material Symbols version, the second one is the old Material Icons version.
@@ -53,7 +51,7 @@ const mapIconData = (icons: Record<string, string>, mode: Themes) => Object.keys
 
 const getIconsforMode = (mode: Themes): FontIcon[] => {
   switch (mode) {
-  case 'sick2025-filled':
+  case 'sick2025-fill':
     return mapIconData(sick2025Filled, mode);
   case 'sick2025-outline':
     return mapIconData(sick2025Outline, mode);
@@ -94,7 +92,7 @@ const copyToClipboard = async (event: MouseEvent) => {
 };
 
 const registerIcons = () => {
-  (['sick2018', 'sick2025-outline', 'sick2025-filled'] as Themes[]).forEach((theme) => {
+  THEMES.forEach((theme) => {
     const bundledIcons = getBundledIconsForMode(theme);
     registerIconLibrary(theme, {
       mutator: svg => svg.setAttribute('fill', 'currentColor'),
@@ -110,15 +108,12 @@ const registerIcons = () => {
 };
 
 type Props = {
-  mode: 'sick2018' | 'sick2025';
+  mode: Themes;
   searchTerm: string;
 };
 
-type Themes = 'sick2018' | 'sick2025-filled' | 'sick2025-outline';
-
 export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' }) => {
   const [categories, setCategories] = useState<Array<string>>([]);
-  const [theme, setTheme] = useState<Themes>(mode === 'sick2025' ? 'sick2025-outline' : mode);
   const [iconsCache, setIconsCache] = useState<Array<FontIcon>>([]);
 
   useEffect(() => {
@@ -126,13 +121,8 @@ export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' 
   }, []);
 
   useEffect(() => {
-    setIconsCache(getIconsforMode(theme));
-  }, [theme]);
-
-  const handleVariantChange = (event: SynChangeEvent) => {
-    const newMode = (event.target as SynSelectType).value as Themes;
-    setTheme(newMode);
-  };
+    setIconsCache(getIconsforMode(mode));
+  }, [mode]);
 
   useEffect(() => {
     setCategories(getCategoriesWithIcons(iconsCache)(searchTerm));
@@ -140,17 +130,6 @@ export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' 
 
   return (
     <>
-      {mode === 'sick2025'
-        ? <SynSelect
-          label="Icon variant"
-          value={theme}
-          onSynChange={handleVariantChange}
-          style={{ padding: 'var(--syn-spacing-small)' }}
-        >
-          <SynOption value="sick2025-outline">Outline</SynOption>
-          <SynOption value="sick2025-filled">Filled</SynOption>
-        </SynSelect>
-        : null}
       <div style={{ marginTop: 'calc(var(--syn-spacing-2x-large)*-1)' }}>
         {categories.map((category) => (
           <div key={category}>
@@ -169,7 +148,7 @@ export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' 
                   onClick={copyToClipboard}
                 >
                   <span data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-x-small)' }}>{icon}</span>
-                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library={theme}></SynIcon>
+                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library={mode}></SynIcon>
                 </div>
               ))}
             </div>

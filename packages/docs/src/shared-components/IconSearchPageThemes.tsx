@@ -5,8 +5,11 @@ import {
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import { IconsSearchPage } from './IconSearchPage.js';
 
+export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
+export type Themes = typeof THEMES[number];
+
 type Props = {
-  themes: Array<'sick2018' | 'sick2025'>;
+  themes: Array<{ id: Themes, name: string }>;
 };
 
 export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
@@ -32,12 +35,12 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
         ></SynInput>
       </div>
       <SynTabGroup>
-        {themes.map((mode) => (
+        {themes.map(({ id, name }) => (
           <>
-            <SynTab panel={mode} slot="nav">
-              {mode}
-            </SynTab><SynTabPanel name={mode}>
-              <IconsSearchPage mode={mode} searchTerm={searchTerm} />
+            <SynTab panel={id} slot="nav">
+              {name}
+            </SynTab><SynTabPanel name={id}>
+              <IconsSearchPage mode={id} searchTerm={searchTerm} />
             </SynTabPanel>
           </>
         ))}

@@ -2,12 +2,16 @@
 import React, {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
-import { SynIcon, SynInput } from '@synergy-design-system/react';
-import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
+import {
+  SynIcon, SynOption, SynSelect,
+} from '@synergy-design-system/react';
+import type { SynChangeEvent, SynSelect as SynSelectType } from '@synergy-design-system/components';
 import { registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
-import { defaultIcons } from '../../../assets/src/default-icons.js';
-// If an update is done to the icons, the metadata file of material icons need to be updated. This file can be found here: https://fonts.google.com/metadata/icons
-import materialIconsMetatdata from '../materialIconsMetadata.json';
+import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
+import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
+import { filledIcons as sick2025Filled } from '../../../assets/src/sick2025-filled-icons.js';
+// The new material symbols metadata can be found here: https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true
+import materialIconsMetadata from '../materialSymbolsMetadata.json' with { type: 'json' };
 
 type FontIcon = {
   name: string,
@@ -15,8 +19,31 @@ type FontIcon = {
   tags: Array<string>,
 };
 
-const synergyIcons = Object.keys(defaultIcons).map((iconName) => {
-  const metadata = materialIconsMetatdata.icons.find((icon: FontIcon) => icon.name === iconName);
+type MaterialIconsMetadata = {
+  icons: Array<FontIcon>
+};
+
+const getBundledIconsForMode = (mode: 'sick2018' | 'sick2025-filled' | 'sick2025-outline') => {
+  switch (mode) {
+  case 'sick2025-filled':
+    return sick2025Filled;
+  case 'sick2025-outline':
+    return sick2025Outline;
+  case 'sick2018':
+  default:
+    return sick2018Icons;
+  }
+};
+
+const mapIconData = (icons: Record<string, string>, mode: Themes) => Object.keys(icons).map((iconName) => {
+  let customIconsName = iconName;
+  // Unfortunately we need a special handling for the sick2025_filled icons, as the naming is different from the other icons. They have a suffix of "_fill" in the name.
+  if (mode === 'sick2025-filled') {
+    customIconsName = customIconsName.replace(/_fill$/, ''); // Remove the "_fill" suffix only if it's at the end
+  }
+  // Sometimes there are two types of icon with the same name. The first one is always the new Material Symbols version, the second one is the old Material Icons version.
+  // We just take the new version
+  const metadata = ((materialIconsMetadata as MaterialIconsMetadata)?.icons || []).find((icon: FontIcon) => (icon.name === customIconsName));
   return {
     categories: metadata ? metadata.categories : ['No category'],
     name: iconName,
@@ -24,23 +51,35 @@ const synergyIcons = Object.keys(defaultIcons).map((iconName) => {
   };
 });
 
+const getIconsforMode = (mode: Themes): FontIcon[] => {
+  switch (mode) {
+  case 'sick2025-filled':
+    return mapIconData(sick2025Filled, mode);
+  case 'sick2025-outline':
+    return mapIconData(sick2025Outline, mode);
+  case 'sick2018':
+  default:
+    return mapIconData(sick2018Icons, mode);
+  }
+};
+
 const filterForCategory = (category: string) => (icon: FontIcon) => icon.categories && icon.categories.includes(category);
 
 const filterForSearchTerm = (searchTerm: string) => (icon: FontIcon) => (searchTerm === '' || icon.name.includes(searchTerm) || !!(icon.tags && icon.tags.some(tag => tag.includes(searchTerm))));
 
-const getIconsForCategoryAndSearchTerm = (category: string, searchTerm: string): string[] => synergyIcons
+const getIconsForCategoryAndSearchTerm = (icons: FontIcon[]) => (category: string, searchTerm: string): string[] => icons
   .filter(filterForCategory(category))
   .filter(filterForSearchTerm(searchTerm))
   .map((icon: FontIcon) => icon.name);
 
-const getCategoriesWithIcons = (searchTerm: string): string[] => {
+const getCategoriesWithIcons = (icons: FontIcon[]) => (searchTerm: string): string[] => {
   const categories = new Set<string>();
-  synergyIcons.forEach((icon: FontIcon) => {
+  icons.forEach((icon: FontIcon) => {
     if (filterForSearchTerm(searchTerm)(icon)) {
       icon.categories.forEach((category: string) => categories.add(category));
     }
   });
-  return Array.from(categories);
+  return Array.from(categories).sort((a, b) => a.localeCompare(b));
 };
 
 const copyToClipboard = async (event: MouseEvent) => {
@@ -55,49 +94,71 @@ const copyToClipboard = async (event: MouseEvent) => {
 };
 
 const registerIcons = () => {
-  registerIconLibrary('bundled-default', {
-    mutator: svg => svg.setAttribute('fill', 'currentColor'),
-    resolver: (name) => {
-      if (name in defaultIcons) {
-        const defaultName = name as keyof typeof defaultIcons;
-        return `data:image/svg+xml,${encodeURIComponent(defaultIcons[defaultName])}`;
-      }
-      return '';
-    },
+  (['sick2018', 'sick2025-outline', 'sick2025-filled'] as Themes[]).forEach((theme) => {
+    const bundledIcons = getBundledIconsForMode(theme);
+    registerIconLibrary(theme, {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
+      resolver: (name) => {
+        if (name in bundledIcons) {
+          const defaultName = name as keyof typeof bundledIcons;
+          return `data:image/svg+xml,${encodeURIComponent(bundledIcons[defaultName])}`;
+        }
+        return '';
+      },
+    });
   });
 };
 
-export const IconsSearchPage: FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+type Props = {
+  mode: 'sick2018' | 'sick2025';
+  searchTerm: string;
+};
+
+type Themes = 'sick2018' | 'sick2025-filled' | 'sick2025-outline';
+
+export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' }) => {
   const [categories, setCategories] = useState<Array<string>>([]);
+  const [theme, setTheme] = useState<Themes>(mode === 'sick2025' ? 'sick2025-outline' : mode);
+  const [iconsCache, setIconsCache] = useState<Array<FontIcon>>([]);
 
   useEffect(() => {
     registerIcons();
   }, []);
 
-  const handleSearchTermChange = (event: SynInputEvent) => {
-    setSearchTerm((event.target as SynInputType).value.toLowerCase() || '');
+  useEffect(() => {
+    setIconsCache(getIconsforMode(theme));
+  }, [theme]);
+
+  const handleVariantChange = (event: SynChangeEvent) => {
+    const newMode = (event.target as SynSelectType).value as Themes;
+    setTheme(newMode);
   };
 
   useEffect(() => {
-    setCategories(getCategoriesWithIcons(searchTerm));
-  }, [searchTerm]);
+    setCategories(getCategoriesWithIcons(iconsCache)(searchTerm));
+  }, [searchTerm, iconsCache]);
 
   return (
     <>
-      <div style={{
-        backgroundColor: 'var(--syn-color-neutral-0)', paddingTop: 'var(--syn-spacing-x-large)', position: 'sticky', top: 0, zIndex: 10,
-      }}>
-        <SynInput label="Search icons" onSynInput={handleSearchTermChange}></SynInput>
-      </div>
-      <div>
+      {mode === 'sick2025'
+        ? <SynSelect
+          label="Icon variant"
+          value={theme}
+          onSynChange={handleVariantChange}
+          style={{ padding: 'var(--syn-spacing-small)' }}
+        >
+          <SynOption value="sick2025-outline">Outline</SynOption>
+          <SynOption value="sick2025-filled">Filled</SynOption>
+        </SynSelect>
+        : null}
+      <div style={{ marginTop: 'calc(var(--syn-spacing-2x-large)*-1)' }}>
         {categories.map((category) => (
           <div key={category}>
             <h2 style={{ marginTop: 'var(--syn-spacing-3x-large)' }} id={category}>{category}</h2>
             <div style={{
               columnGap: 'var(--syn-spacing-small)', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 150px)', rowGap: 'var(--syn-spacing-x-large)',
             }}>
-              {getIconsForCategoryAndSearchTerm(category, searchTerm).map((icon) => (
+              {getIconsForCategoryAndSearchTerm(iconsCache)(category, searchTerm).map((icon) => (
                 <div
                   key={icon}
                   style={{
@@ -108,7 +169,7 @@ export const IconsSearchPage: FC = () => {
                   onClick={copyToClipboard}
                 >
                   <span data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-x-small)' }}>{icon}</span>
-                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library="bundled-default"></SynIcon>
+                  <SynIcon data-icon-name={icon} style={{ fontSize: 'var(--syn-font-size-2x-large)' }} name={icon} library={theme}></SynIcon>
                 </div>
               ))}
             </div>

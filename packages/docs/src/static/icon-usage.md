@@ -32,7 +32,8 @@ This can either be done manually or with the help of the bundler.
 
 With the upgrade to Synergy 3.0, new icons will be used.
 Those icons are already available as assets in the \`@synergy-design-system/assets\` package.
-When using the new icons, you have to make sure that the icons are available in the \`assets/icons/\` directory of your project as outlined below.
+When using the new icons, you have to make sure that the icons are available in the \`assets/icons/\` directory of your project.
+The new SICK 2025 icons will be available as `outline` and `fill` variant. `Outline` is the default icon variant and should be used in most cases. `Fill` icons have a slighty different naming. They have the same name as the `outline` icons, but with a suffix of `_fill`. If the `fill` icons should be used without the `_fill` suffix, the icon names need to be renamed. For some examples see the following subchapters.
 
 System icons come bundled with the \`@synergy-design-system/components\` package. You may switch to the new icons with the new \`setSystemIconLibrary\` utility provided.
 Please have a look at the following example to see how to switch the icon library.
@@ -58,7 +59,10 @@ For more information have a look at the [angular documentation](https://angular.
 
 Here's an example that copies the Synergy icons to the path **assets/icons/** of an angular project:
 
+##### Synergy icons SICK 2018
+
 ```json
+// angular.json
 "assets": [
   {
     "glob": "**/*",
@@ -68,12 +72,56 @@ Here's an example that copies the Synergy icons to the path **assets/icons/** of
 ],
 ```
 
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper"> <syn-icon /></syn-icon>
+```
+
+##### Synergy icons SICK 2025 outline
+
+```json
+// angular.json
+"assets": [
+  {
+    "glob": "**/*",
+    "input": "./node_modules/@synergy-design-system/assets/src/sick2025/outline",
+    "output": "/assets/icons"
+  }
+],
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper"> <syn-icon /></syn-icon>
+```
+
+##### Synergy icons SICK 2025 fill
+
+```json
+// angular.json
+"assets": [
+  {
+    "glob": "**/*",
+    "input": "./node_modules/@synergy-design-system/assets/src/sick2025/fill",
+    "output": "/assets/icons"
+  }
+],
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper_fill"> <syn-icon /></syn-icon>
+```
+
 #### Vite
 
 Including assets from another library in vite project can be achieved via using the [vite-plugin-static-copy plugin](https://www.npmjs.com/package/vite-plugin-static-copy).
 Here's an example with adapted vite.config.ts that copies the Synergy icons to the path **assets/icons/** of a vite project:
 
+##### Synergy icons SICK 2018
+
 ```js
+// Vite config
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
@@ -89,6 +137,93 @@ export default defineConfig({
     }),
   ],
 });
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper"> <syn-icon /></syn-icon>
+```
+
+##### Synergy icons SICK 2025 outline
+
+```js
+// Vite config
+import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/outline/*",
+          dest: "./assets/icons/",
+        },
+      ],
+    }),
+  ],
+});
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper"> <syn-icon /></syn-icon>
+```
+
+##### Synergy icons SICK 2025 fill
+
+Usage with `_fill` suffix:
+
+```js
+// Vite config
+import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/fill/*",
+          dest: "./assets/icons/",
+        },
+      ],
+    }),
+  ],
+});
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper_fill"> <syn-icon /></syn-icon>
+```
+
+Usage without `_fill` suffix by renaming files:
+
+```js
+// Vite config
+import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/fill/*",
+          dest: "./assets/icons/",
+          rename: (name, extension) =>
+            `${name.replace(/_fill$/, "")}.${extension}`,
+        },
+      ],
+    }),
+  ],
+});
+```
+
+```html
+<!-- Usage -->
+<syn-icon name="wallpaper"> <syn-icon /></syn-icon>
 ```
 
 ### How to use a custom icon library

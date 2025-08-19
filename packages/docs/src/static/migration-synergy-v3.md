@@ -41,6 +41,51 @@ import { setSystemIconLibrary } from "@synergy-design-system/icons";
 setSystemIconLibrary("sick2025");
 ```
 
+#### New SICK 2025 icons
+
+The new SICK 2025 theme comes with an updated icon library that includes both outline and filled versions of icons. These icons are available in the `@synergy-design-system/assets` package and can be used with the `<syn-icon>` or `<syn-icon-button>` component.
+
+The new icon library provides two main styles:
+
+- **Outline icons**: These are the standard outlined icons, which are the default
+- **Filled icons**: These are filled versions of the same icons. The icons have the same name as the outline icons but with a suffix of `_fill`
+
+To use the new SICK 2025 icons in your application, you have several options:
+
+The outline and fill version can be used simultaneously.
+
+```html
+<!-- Outline version -->
+<syn-icon name="home"></syn-icon>
+
+<!-- Filled version -->
+<syn-icon name="home_fill"></syn-icon>
+```
+
+```javascript
+// Example vite config
+import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/outline/*",
+          dest: "./assets/icons/",
+        },
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/fill/*",
+          dest: "./assets/icons/",
+        },
+      ],
+    }),
+  ],
+});
+```
+
+
 ### Tokens
 
 Synergy 3.0 introduces new CSS theme files that implement the updated SICK brand appearance:

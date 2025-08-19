@@ -150,7 +150,8 @@ export const getRawValueFromStyleProperty = (styleProperty: string, element: HTM
  * @returns The found value or false otherwise
  */
 export const getRawValueFromToken = (token: string, parentElement?: HTMLElement) => {
-  const elementWithClass = parentElement ? parentElement.closest('.syn-theme-dark,.syn-theme-light') : document.body;
+  const themeClasses = ['.syn-sick2018-dark', '.syn-sick2018-light', '.syn-sick2025-dark', '.syn-sick2025-light'].join(',');
+  const elementWithClass = parentElement ? parentElement.closest(themeClasses) : document.body;
   const finalElement = elementWithClass ?? document.body;
 
   return getRawValueFromStyleProperty(token, finalElement as HTMLElement);

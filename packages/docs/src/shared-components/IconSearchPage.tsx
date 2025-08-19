@@ -2,8 +2,9 @@
 import React, {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
+// We need to import the icon component and the registerIconLibrary function from the direct sources instead of the package,
+// as otherwise it is possible, that the icons could not be loaded, as the "registerIconLibrary" function is used from a wrong source
 import '../../../components/src/components/icon/icon.js';
-// We need to import every synergy component from the direct sources instead of the package, as otherwise it is possible, that the icons could not be loaded, as the "registerIconLibrary" function is used from a wrong source
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
 import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';

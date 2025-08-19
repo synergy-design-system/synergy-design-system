@@ -3,12 +3,15 @@
 import {
   type SynChangeEvent,
   type SynIconButton,
+  type SynSelect,
   type SynSideNav,
-  type SynSwitch,
   enableExperimentalSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
-import { capitalize } from '@synergy-design-system/demo-utilities';
+import {
+  getAvailableThemes,
+  setThemeFromOptionString,
+} from '@synergy-design-system/demo-utilities';
 
 // Load webfonts
 import '@fontsource/open-sans/400.css';
@@ -18,8 +21,10 @@ import '@fontsource/open-sans/600-italic.css';
 import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/700-italic.css';
 
-import '@synergy-design-system/tokens/themes/dark.css';
-import '@synergy-design-system/tokens/themes/light.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/themes/sick2018_dark.css';
+import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
@@ -54,16 +59,40 @@ const initLayoutSwitch = async () => {
 };
 
 const initThemeSwitch = async () => {
-  await customElements.whenDefined('syn-switch');
+  await customElements.whenDefined('syn-select');
 
-  const { body } = document;
-  const elm = document.querySelector<SynSwitch>('#theme-switch');
-  elm?.addEventListener('syn-change', (e: SynChangeEvent) => {
-    const { checked } = e.target as SynSwitch;
-    const theme = checked ? 'dark' : 'light';
-    body.classList.remove('syn-theme-light', 'syn-theme-dark');
-    body.classList.add(`syn-theme-${theme}`);
-    elm.innerHTML = elm.dataset[`theme${capitalize(theme)}`] ?? '';
+  const select = document.querySelector<SynSelect>('#theme-switch');
+
+  if (!select) {
+    return;
+  }
+
+  // Create theme contents in the DOM
+  Object.values(getAvailableThemes()).forEach(theme => {
+    const optgroup = document.createElement('syn-optgroup');
+    optgroup.label = theme.title;
+
+    theme.modes.forEach(mode => {
+      const option = document.createElement('syn-option');
+      option.value = `${theme.name}-${mode}`;
+      option.innerText = `${theme.title} - ${mode}`;
+
+      const icon = document.createElement('syn-icon');
+      icon.name = mode.includes('light') ? 'light_mode' : 'dark_mode';
+      icon.slot = 'prefix';
+      icon.style.color = 'var(--syn-color-warning-500)';
+      option.appendChild(icon);
+
+      optgroup.appendChild(option);
+    });
+
+    select.appendChild(optgroup);
+  });
+
+  // Switch themes
+  select.addEventListener('syn-change', (e: SynChangeEvent) => {
+    const value = (e.target as SynSelect).value as string;
+    setThemeFromOptionString(value);
   });
 };
 

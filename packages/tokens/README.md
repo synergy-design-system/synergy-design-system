@@ -23,8 +23,8 @@ As projects may use various forms of applying styles, we provide different ways 
 
 ### Using CSS themes
 
-Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or a derived package like `@synergy-design-system/react`.
-The tokens package ships with two themes: 🌞 light and 🌛 dark.
+Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or one of the framework packages like `@synergy-design-system/react`.
+The tokens package ships two **themes** (sick2018 and sick2025), with each providing two **modes**: 🌞 light and 🌛 dark.
 
 > The css styles are used as a single source of truth, also when working with the provided JavaScript or SASS exports!
 > Always make sure to load one of the css themes!
@@ -34,9 +34,11 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
   <head>
     <!-- Example 1: Referencing directly in a HTML document -->
     <!-- Make sure to add the stylesheet before using any components -->
+    <!-- Note that "light.css" will point to the default theme of the tokens package. See table below for defaults -->
     <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
 
     <!-- Alternative: Use the dark theme -->
+    <!-- Note that "dark.css" will point to the default theme of the tokens package. See table below for defaults -->
     <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/dark.css" />
   </head>
   <body>
@@ -51,10 +53,12 @@ The tokens package ships with two themes: 🌞 light and 🌛 dark.
 
 You are also able to switch themes during the runtime. For the time being, we do not ship a utility function for this, as it is easy to implement. Each theme applies the variables via a `:root` selector, as well as a `className` that may be added to the `document.body`.
 
-| Theme | Stylesheet to use         | Body className    |
-| :---- | :------------------------ | :---------------- |
-| light | `tokens/themes/light.css` | `syn-theme-light` |
-| dark  | `tokens/themes/dark.css`  | `syn-theme-dark`  |
+| Theme    | Mode  | Stylesheet to use                  | Corresponding classNames                | Default for Version |
+| :------- | :---- | :--------------------------------- | :-------------------------------------- | :-----------------: |
+| sick2018 | light | `tokens/themes/sick2018_light.css` | `syn-theme-light`, `syn-sick2018-light` |       `2.0.0`       |
+| sick2018 | dark  | `tokens/themes/sick2018_dark.css`  | `syn-theme-dark`, `syn-sick2018-dark`   |                     |
+| sick2025 | light | `tokens/themes/sick2025_light.css` | `syn-sick2025-light`                    |       `3.0.0`       |
+| sick2025 | dark  | `tokens/themes/sick2025_dark.css`  | `syn-sick2025-dark`                     |                     |
 
 To switch the theme, proceed in the following way:
 
@@ -103,7 +107,12 @@ To switch the theme, proceed in the following way:
 // Use this way when you already use a build system like webpack or vite
 // to make it part of your bundle.
 // Note this import should happen BEFORE you render any components!
+
+// Light theme
 import "@synergy-design-system/tokens/themes/light.css";
+
+// Dark theme
+import "@synergy-design-system/tokens/themes/dark.css";
 ```
 
 ---
@@ -200,13 +209,13 @@ Figma
     ↓
 Figma REST API
     ↓
-Raw JSON Files (src/figma-variables/)
+Raw JSON Files (src/figma-variables/variableTokens.json + styleTokens.json)
     ↓
 Transform Scripts (scripts/figma/)
     ↓
-Style Dictionary compliant JSON Files (src/figma-variables/output)
+Style Dictionary compliant JSON Files (src/figma-variables/output/)
     ↓
-Style Dictionary Processing
+Style Dictionary Processing (scripts/build.js)
     ↓
 Build Output (dist/)
 ```
@@ -233,8 +242,17 @@ pnpm fetch:figma
 # Only fetch variables and transform into Style Dictionary format
 pnpm fetch:variables
 
-# Only fetch styles
+# Only fetch styles and transform into Style Dictionary format
 pnpm fetch:styles
+
+# Transform already fetched variables into Style Dictionary format
+pnpm build:variables
+
+# Transform already fetched styles into Style Dictionary format
+pnpm build:styles
+
+# Process transformed tokens with Style Dictionary (build final output)
+pnpm build
 ```
 
 #### Figma variables
@@ -244,6 +262,8 @@ Currently supported modes are:
 
 - **sick2018-light**
 - **sick2018-dark**
+- **sick2025-light**
+- **sick2025-dark**
 
 For each mode a json file is created, with the corresponding tokens and values.
 
@@ -254,7 +274,7 @@ For the styles a separate `styles.json` is created.
 #### Output
 
 Outputs of the tokens are created using [Style Dictionary](https://amzn.github.io/style-dictionary/).
-You can trigger a build using `pnpm build` in the `tokens` package root. This will create the css themes (located in `dist/themes/light.css` and `dist/themes/dark.css`), as well as the JavaScript exports (located at `dist/js/index.js`) and scss variables (`dist/scss/_tokens.scss`).
+You can trigger a build using `pnpm build` in the `tokens` package root. This will create the css themes (located in `dist/themes/` with files like `light.css`, `dark.css`, `sick2018_light.css`, `sick2018_dark.css`, `sick2025_light.css`, and `sick2025_dark.css`), as well as the JavaScript exports (located at `dist/js/index.js`) and scss variables (`dist/scss/_tokens.scss`).
 
 ---
 
@@ -262,17 +282,20 @@ You can trigger a build using `pnpm build` in the `tokens` package root. This wi
 
 #### `/src/figma-variables/`
 
-- **`tokens.json`**: Raw data of Figma Variables and Collections, directly fetched from the Figma API
+- **`variableTokens.json`**: Raw data of Figma Variables and Collections, directly fetched from the Figma API
+- **`styleTokens.json`**: Raw data of Figma Styles, directly fetched from the Figma API
 - **`output/`**: Transformed token files in Style Dictionary-compatible formats
-  - `sick2018-light.json`: Light Theme Tokens
-  - `sick2018-dark.json`: Dark Theme Tokens
-  - `styles.json`: Figma Styles (Typography, Shadows, etc.)
+  - `sick2018-light.json`: Light Theme Tokens for SICK 2018
+  - `sick2018-dark.json`: Dark Theme Tokens for SICK 2018
+  - `sick2025-light.json`: Light Theme Tokens for SICK 2025
+  - `sick2025-dark.json`: Dark Theme Tokens for SICK 2025
 
 #### `/scripts/figma/`
 
 - **`fetch-variables.js`**: Downloads Figma Variables via the REST API
-- **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
 - **`style-dict-outputter.js`**: Custom outputter for Figma Styles export
+- **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
+- **`transform-styles.js`**: Transforms Figma Styles into Style Dictionary format
 - **`helpers.js`**: Utility functions
 
 #### `/scripts/add-missing-tokens.js`
@@ -314,7 +337,7 @@ The workflow is manually triggered using `workflow_dispatch` with configurable i
 
 1. **Repository Setup**: Checks out the repository with full history
 2. **Environment Setup**: Installs pnpm, Node.js 22, and project dependencies
-3. **Token Synchronization**: Runs `pnpm -C ./packages/tokens fetch:figma` to fetch and transform Figma data
+3. **Token Synchronization**: Runs `pnpm -C ./packages/tokens fetch:figma && pnpm -C ./packages/tokens build:figma` to fetch and transform Figma data
 4. **Quality Assurance**: Builds and tests the updated tokens to ensure integrity
 5. **Pull Request Creation**: Creates a new branch and pull request with the changes
 

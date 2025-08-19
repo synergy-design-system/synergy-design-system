@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
-import '../../../components/src/components/input/input.js';
-import '../../../components/src/components/tab/tab.js';
-import '../../../components/src/components/tab-group/tab-group.js';
-import '../../../components/src/components/tab-panel/tab-panel.js';
+import '@synergy-design-system/components/components/input/input.js';
+import '@synergy-design-system/components/components/tab-group/tab-group.js';
+import '@synergy-design-system/components/components/tab/tab.js';
+import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 import { IconsSearchPage } from './IconSearchPage.js';
 
 export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
@@ -43,14 +43,14 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
         </div>
         <syn-tab-group>
           {themes.map(({ id, name }) => (
-            <>
+            < Fragment key={id}>
               <syn-tab panel={id} slot="nav">
                 {name}
               </syn-tab>
               <syn-tab-panel name={id}>
                 <IconsSearchPage mode={id} searchTerm={searchTerm} />
               </syn-tab-panel>
-            </>
+            </Fragment>
           ))}
         </syn-tab-group>
       </div>

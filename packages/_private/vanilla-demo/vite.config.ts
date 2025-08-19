@@ -2,14 +2,11 @@
 import fs from 'node:fs';
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import {
-  type AllowedIconsets,
-  type Icon2018Keys,
-  type Icon2025Keys,
-  createSpriteSheet,
-} from '@synergy-design-system/assets';
+import { AllowedIconsets, createSpriteSheet, Icon2018Keys, Icon2025Keys } from '@synergy-design-system/assets';
 
-type SynSpriteSheetOptions<Icons extends Icon2018Keys | Icon2025Keys> = {
+type IconKeys = Icon2018Keys | Icon2025Keys;
+
+type SynSpriteSheetOptions<Icons extends IconKeys> = {
   /**
    * The output file name. Make sure the path exists
    */
@@ -22,6 +19,31 @@ type SynSpriteSheetOptions<Icons extends Icon2018Keys | Icon2025Keys> = {
 
   iconset: AllowedIconsets;
 };
+
+const icons = [
+  'weekend',
+  'home',
+  'contact_mail',
+  'contact_emergency',
+  'density_small',
+  'density_medium',
+  'density_large',
+  'grid_view',
+  'wallpaper',
+  'house',
+  'chat',
+  'info',
+  'check_circle',
+  'settings',
+  'warning',
+  'error',
+  'lunch_dining',
+  'space_dashboard',
+  'preview',
+  'bug_report',
+  'light_mode',
+  'dark_mode',
+] satisfies (Icon2018Keys & Icon2025Keys)[];
 
 const defaultOptions: SynSpriteSheetOptions<Icon2018Keys> = {
   icons: [],
@@ -81,53 +103,11 @@ export const defaultConfig = {
 export const withSpriteSheetGenerator = {
   plugins: [
     synSpriteSheetCreator<Icon2018Keys>({
-      icons: [
-        'weekend',
-        'home',
-        'contact_mail',
-        'contact_emergency',
-        'density_small',
-        'density_medium',
-        'density_large',
-        'grid_view',
-        'wallpaper',
-        'house',
-        'chat',
-        'info',
-        'check_circle',
-        'settings',
-        'warning',
-        'error',
-        'lunch_dining',
-        'space_dashboard',
-        'preview',
-        'bug_report',
-      ],
+      icons,
       iconset: 'sick2018',
     }),
     synSpriteSheetCreator<Icon2025Keys>({
-      icons: [
-        'weekend',
-        'home',
-        'contact_mail',
-        'contact_emergency',
-        'density_small',
-        'density_medium',
-        'density_large',
-        'grid_view',
-        'wallpaper',
-        'house',
-        'chat',
-        'info',
-        'check_circle',
-        'settings',
-        'warning',
-        'error',
-        'lunch_dining',
-        'space_dashboard',
-        'preview',
-        'bug_report',
-      ],
+      icons,
       iconset: 'sick2025',
       outFileName: './public/synergy-icon-sprites-2025.svg',
     }),

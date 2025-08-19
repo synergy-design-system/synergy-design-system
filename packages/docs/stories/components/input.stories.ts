@@ -12,6 +12,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -20,6 +21,9 @@ const meta: Meta = {
   args,
   argTypes,
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_Sick_2025,
+    },
     design: generateFigmaPluginObject('14695-110120'),
     docs: {
       description: {

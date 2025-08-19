@@ -22,8 +22,8 @@ import { COLOR_PALETTE_PREFIX, OUTPUT_DIR } from '../config.js';
  * @returns {boolean} True if the alias value should be used, false otherwise.
  */
 const shouldUseAliasValue = (name) => {
-  // Exchange the _color-palette alias with the real values, as they should not show up in the json
-  // TODO: Exchange the letter-spacing/default ( for value of input/letter-spacing), the letter-spacing/positive-2 (for value of letter-spacing/looser)
+  // Replace the _color-palette alias with the real values, as they should not show up in the json
+  // TODO: Replace the letter-spacing/default ( for value of input/letter-spacing), the letter-spacing/positive-2 (for value of letter-spacing/looser)
   // and line-height aliases with the real values. They are currently only available for the new brand
   const NO_ALIAS_VALUE_REGEX = new RegExp(
     `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|letter-spacing.positive-2|line-height)`,

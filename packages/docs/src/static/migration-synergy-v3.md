@@ -85,7 +85,6 @@ export default defineConfig({
 });
 ```
 
-
 ### Tokens
 
 Synergy 3.0 introduces new CSS theme files that implement the updated SICK brand appearance:
@@ -116,7 +115,7 @@ To use the new themes in your application:
 
    ```javascript
    // Rename the class names for theme switching
-   const switchTheme = ({ target }) => {
+   const switchTheme = () => {
      const { body } = document;
      const currentTheme = body.classList.contains("syn-sick2025-dark")
        ? "dark"

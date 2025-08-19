@@ -23,7 +23,7 @@ As projects may use various forms of applying styles, we provide different ways 
 
 ### Using CSS themes
 
-Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or a derived package like `@synergy-design-system/react`.
+Provides the css variables that are used in synergy components as css variables and is **required** if you are using `@synergy-design-system/components` or one of the framework packages like `@synergy-design-system/react`.
 The tokens package ships two **themes** (sick2018 and sick2025), with each providing two **modes**: 🌞 light and 🌛 dark.
 
 > The css styles are used as a single source of truth, also when working with the provided JavaScript or SASS exports!

@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.23.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.22.0...tokens/2.23.0) (2025-08-19)
+
+
+### Features
+
+* ✨ export new sick2025 themes ([#985](https://github.com/synergy-design-system/synergy-design-system/issues/985)) ([148730d](https://github.com/synergy-design-system/synergy-design-system/commit/148730d68037ea74dc241ca6627aa6a32af876ab))
+
 # [@synergy-design-system/tokens-v2.22.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.21.0...tokens/2.22.0) (2025-08-07)
 
 

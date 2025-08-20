@@ -794,13 +794,13 @@ export type SynCustomElement<
  * @status stable
  * @since 2.0
  *
- * @dependency syn-divider
- *
  * @slot - The menu label's content.
  *
  * @csspart base - The component's base wrapper.
  * @csspart divider - The divider that is displayed above the content
  * @csspart label - The label that is displayed below the divider
+ *
+ * @dependency syn-divider
  *
  * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */ export type SynMenuLabelJSXElement = SynCustomElement<SynMenuLabel, []>;
@@ -1376,9 +1376,9 @@ export type SynCustomElement<
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
- * @cssproperty --indicator-width - The width of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+ * @cssproperty --indicator-width - The width of the active tab indicator.
  */ export type SynTabGroupJSXElement = SynCustomElement<
   SynTabGroup,
   [['syn-tab-show', SynTabShowEvent], ['syn-tab-hide', SynTabHideEvent]]
@@ -2082,13 +2082,13 @@ declare module 'react' {
        * @status stable
        * @since 2.0
        *
-       * @dependency syn-divider
-       *
        * @slot - The menu label's content.
        *
        * @csspart base - The component's base wrapper.
        * @csspart divider - The divider that is displayed above the content
        * @csspart label - The label that is displayed below the divider
+       *
+       * @dependency syn-divider
        *
        * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
        */ 'syn-menu-label': SynMenuLabelJSXElement;
@@ -2593,9 +2593,9 @@ declare module 'react' {
        * @csspart scroll-button__base - The scroll button's exported `base` part.
        *
        * @cssproperty --indicator-color - The color of the active tab indicator.
-       * @cssproperty --indicator-width - The width of the active tab indicator.
        * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
        * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+       * @cssproperty --indicator-width - The width of the active tab indicator.
        */ 'syn-tab-group': SynTabGroupJSXElement;
       /**
        * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.

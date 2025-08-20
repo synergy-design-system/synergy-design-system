@@ -20,13 +20,13 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  *
- * @dependency syn-divider
- *
  * @slot - The menu label's content.
  *
  * @csspart base - The component's base wrapper.
  * @csspart divider - The divider that is displayed above the content
  * @csspart label - The label that is displayed below the divider
+ *
+ * @dependency syn-divider
  *
  * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */

@@ -1,0 +1,59 @@
+{
+  "@dependency": [
+    {
+      "name": "syn-divider"
+    }
+  ],
+  "@slot": [
+    {
+      "description": "An icon to use in lieu of the default increment number stepper icon.",
+      "name": "increment-number-stepper"
+    },
+    {
+      "description": "An icon to use in lieu of the default decrement number stepper icon.",
+      "name": "decrement-number-stepper"
+    }
+  ],
+  "@event": [
+    {
+      "description": "Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.",
+      "name": "syn-clamp"
+    }
+  ],
+  "@csspart": [
+    {
+      "description": "The container that wraps the number stepper.",
+      "name": "stepper"
+    },
+    {
+      "description": "The decrement number stepper button.",
+      "name": "decrement-number-stepper"
+    },
+    {
+      "description": "The increment number stepper button.",
+      "name": "increment-number-stepper"
+    },
+    {
+      "description": "The divider between the increment and decrement number stepper buttons.",
+      "name": "divider"
+    }
+  ],
+  "@cssproperty": [
+    {
+      "name": "--syn-input-autofill-shadow",
+      "description": "The shadow to apply when the input is autofilled."
+    },
+    {
+      "name": "--syn-input-autofill-readonly-shadow",
+      "description": "The shadow to apply when the input is readonly and autofilled."
+    },
+    {
+      "name": "--syn-input-autofill-text-fill-color",
+      "description": "The text fill color to apply when the input is autofilled."
+    },
+    {
+      "name": "--syn-input-autofill-caret-color",
+      "description": "The caret color to apply when the input is autofilled."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "@csspart": [
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "popup"
+    }
+  ]
+}

@@ -103,12 +103,6 @@ const transformComponent = (path, originalContent) => {
       { newlinesBeforeInsertion: 0 },
     ],
 
-    // Add a new css variable '--indicator-width' to the component
-    [
-      '* @cssproperty --indicator-color - The color of the active tab indicator.',
-      ' * @cssproperty --indicator-width - The width of the active tab indicator.',
-    ],
-
     // Improve documentation of syn-tab-show event
     [
       '@event {{ name: String }} syn-tab-show - Emitted when a tab is shown.',

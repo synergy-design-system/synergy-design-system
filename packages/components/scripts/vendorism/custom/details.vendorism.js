@@ -71,14 +71,6 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // #811: Add support for the details-body part
-  content = addSectionsAfter([
-    [
-      '@csspart content - The details content.',
-      ' * @csspart body - The container that wraps the details content.',
-    ],
-  ], content);
-
   content = replaceSection([
     'class="details__body"',
     'class="details__body" part="body"',

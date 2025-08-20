@@ -42,9 +42,9 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
  * @csspart scroll-button__base - The scroll button's exported `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
- * @cssproperty --indicator-width - The width of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+ * @cssproperty --indicator-width - The width of the active tab indicator.
  */
 @Component({
   selector: 'syn-tab-group',

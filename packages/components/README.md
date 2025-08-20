@@ -246,3 +246,47 @@ All shoelace files are per default readonly and are disabled from being changed.
 ### Adding events to the output
 
 To add events to the component output, make sure to add them to `src/scripts/vendorism.js` into the `events` array that is defined there. After a new build run `via pnpm build`, you will see the new event files and the `events/events.ts` file will be regenerated.
+
+### Adding metadata to components
+
+Components can be enriched with metadata that automatically generates JSDoc annotations during the build process. The `add-metadata-to-components.js` script processes `*.component.ts` files and looks for corresponding `metadata.json` files to inject JSDoc tags.
+
+#### Supported metadata types
+
+- `@animation` - Component animations
+- `@event` - Custom events
+- `@slot` - Content slots
+- `@dependency` - Dependencies
+- `@csspart` - CSS parts for styling
+- `@cssproperty` - CSS custom properties
+
+#### Usage
+
+Create a `metadata.json` file in your component directory:
+
+```json
+{
+  "@event": [
+    { "name": "syn-change", "description": "Emitted when value changes" }
+  ],
+  "@slot": [{ "name": "default", "description": "Main content" }],
+  "@csspart": [{ "name": "base", "description": "Base wrapper" }]
+}
+```
+
+This will generate the following JSDoc annotations in your component:
+
+```typescript
+/**
+ * @summary Your component description
+ *
+ * @event syn-change - Emitted when value changes
+ * @slot default - Main content
+ * @csspart base - Base wrapper
+ */
+export default class YourComponent extends SynergyElement {
+  // Component implementation...
+}
+```
+
+Each metadata object requires a `name` property and optionally accepts a `description`. Run `pnpm vendor.set` to process the metadata and automatically add JSDoc annotations to your component's class comment.

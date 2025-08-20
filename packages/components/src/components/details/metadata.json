@@ -1,0 +1,8 @@
+{
+  "@csspart": [
+    {
+      "description": "The container that wraps the details content.",
+      "name": "body"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "@dependency": [
+    {
+      "name": "syn-divider"
+    }
+  ],
+  "@csspart": [
+    {
+      "description": "The divider that is displayed above the content",
+      "name": "divider"
+    },
+    {
+      "description": "The label that is displayed below the divider",
+      "name": "label"
+    }
+  ],
+  "@cssproperty": [
+    {
+      "name": "--display-divider",
+      "description": "Display property of the divider. Defaults to \"block\""
+    }
+  ]
+}

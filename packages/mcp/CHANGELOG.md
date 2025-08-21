@@ -1,5 +1,12 @@
 # Changelog
 
+# [@synergy-design-system/mcp-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.1.0...mcp/1.2.0) (2025-08-19)
+
+### Features
+
+* ✨ export new sick2025 themes ([#985](https://github.com/synergy-design-system/synergy-design-system/issues/985)) ([148730d](https://github.com/synergy-design-system/synergy-design-system/commit/148730d68037ea74dc241ca6627aa6a32af876ab))
+
+
 # [@synergy-design-system/mcp-v1.1.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.0.0...mcp/1.1.0) (2025-08-08)
 
 

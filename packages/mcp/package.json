@@ -95,7 +95,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add ./metadata && git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
+          "prepareCmd": "pnpm build && git add ./metadata && git diff --cached --quiet ./metadata || git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
         }
       ],
       [

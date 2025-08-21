@@ -1,5 +1,13 @@
 # Changelog
 
+# [@synergy-design-system/mcp-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.2.0...mcp/1.2.1) (2025-08-21)
+
+
+### Bug Fixes
+
+* 🐛  Placeholder is clipped for syn-select multiple ([#992](https://github.com/synergy-design-system/synergy-design-system/issues/992)) ([973933e](https://github.com/synergy-design-system/synergy-design-system/commit/973933e477a2cba1611c2f73f77e4e79d755c8a1))
+
+
 # [@synergy-design-system/mcp-v1.2.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.1.0...mcp/1.2.0) (2025-08-19)
 
 ### Features

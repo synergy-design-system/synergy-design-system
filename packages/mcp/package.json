@@ -95,7 +95,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add . && git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
+          "prepareCmd": "pnpm build && git add ./metadata && git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
         }
       ],
       [
@@ -135,5 +135,5 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "type": "module",
-  "version": "1.2.0"
+  "version": "1.2.1"
 }

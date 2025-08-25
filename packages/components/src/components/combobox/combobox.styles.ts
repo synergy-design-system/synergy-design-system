@@ -381,8 +381,9 @@ export default css`
    * #850: Allow to measure the size of the combobox.
    * This is needed so we can automatically size and truncate the tags in the <syn-combobox multiple> component.
    * Scoped to multiple to not break the single combobox per accident.
+   * Scoped to when placeholder is not visible to not break the placeholder visualization
    */
-  :host([multiple]) .combobox__tags {
+  :host([multiple]) :not(.combobox--placeholder-visible) > .combobox__inputs > .combobox__tags {
     min-width: 100px;
     overflow: hidden;
   }

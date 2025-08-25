@@ -20,16 +20,6 @@ import SynDivider from '../divider/divider.component.js';
     )
     // /Import for divider
 
-    // Add dependency documentation
-    .replace(
-      ' * @slot -',
-      ` * @dependency syn-divider
- *
- * @slot -
-      `.trimEnd(),
-    )
-    // /Add dependency documentation
-
     // Add dependency list
     .replace(
       'render()',
@@ -54,27 +44,6 @@ import SynDivider from '../divider/divider.component.js';
       `.trimEnd(),
     )
     // /Add the divider to the template
-
-    // Add missing parts for doc
-    .replace(
-      'base wrapper.',
-      `base wrapper.
- * @csspart divider - The divider that is displayed above the content
- * @csspart label - The label that is displayed below the divider
-      `.trimEnd(),
-    )
-    // /Add missing parts for doc
-
-    // Add missing cssproperty for displaying the divider
-    .replace(
-      'below the divider',
-      `below the divider
- *
- * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
-       `.trimEnd(),
-    );
-    // /Add missing cssproperty for displaying the divider
-
   return {
     content,
     path,

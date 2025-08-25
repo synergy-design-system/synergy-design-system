@@ -5,7 +5,7 @@ import { execSync } from 'child_process';
 import commandLineArgs from 'command-line-args';
 import { eject, get, set } from 'vendorism';
 import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
-import { generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
+import { addMetadataToComponents, generateStorybookFile, updateVsCodeReadOnlyFiles } from './vendorism/index.js';
 import {
   vendorAlert,
   vendorBadge,
@@ -28,7 +28,6 @@ import {
   vendorMenuItem,
   vendorMenuLabel,
   vendorOption,
-  vendorProgressBar,
   vendorRadio,
   vendorRadioButton,
   vendorRadioGroup,
@@ -360,7 +359,6 @@ const config = {
       vendorMenuItem,
       vendorMenuLabel,
       vendorOption,
-      vendorProgressBar,
       vendorRadioButton,
       vendorRadioGroup,
       vendorRadio,
@@ -375,6 +373,8 @@ const config = {
       vendorTooltip,
       vendorTranslations,
       vendorWebTestRunnerConfig,
+
+      addMetadataToComponents,
     ],
   },
 };

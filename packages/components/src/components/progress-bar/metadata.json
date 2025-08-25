@@ -1,0 +1,8 @@
+{
+  "@cssproperty": [
+    {
+      "name": "--speed",
+      "description": "The speed of the progress bar when in indeterminate state."
+    }
+  ]
+}

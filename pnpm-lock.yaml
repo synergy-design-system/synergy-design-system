@@ -822,6 +822,15 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
     devDependencies:
+      '@semantic-release/changelog':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@19.0.5(encoding@0.1.13))
+      '@semantic-release/exec':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@19.0.5(encoding@0.1.13))
+      '@semantic-release/git':
+        specifier: ^10.0.1
+        version: 10.0.1(semantic-release@19.0.5(encoding@0.1.13))
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../components

@@ -15,6 +15,9 @@
   },
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/docs": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
@@ -92,7 +95,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "pnpm build && git add . && git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
+          "prepareCmd": "pnpm build && git add ./metadata && git diff --cached --quiet ./metadata || git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
         }
       ],
       [
@@ -132,5 +135,5 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "type": "module",
-  "version": "1.1.0"
+  "version": "1.2.1"
 }

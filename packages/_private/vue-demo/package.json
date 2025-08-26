@@ -15,9 +15,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.2.6",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/demo-utilities": "workspace:^",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "@synergy-design-system/vue": "workspace:*",
@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.11.0",
-    "@synergy-design-system/demo-utilities": "workspace:^",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
     "@vitejs/plugin-vue": "^5.2.4",
@@ -39,7 +38,7 @@
     "prettier": "^3.5.3",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vite-plugin-static-copy": "^3.0.2",
+    "vite-plugin-static-copy": "^3.1.2",
     "vue-tsc": "^2.2.10"
   },
   "type": "module"

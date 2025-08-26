@@ -55,3 +55,14 @@
       url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2") format("woff2"),
       url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.ttf") format("truetype");
 }
+
+/* Bold SICK Intl */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 700;
+  src: 
+      url("https://www.sick.com/media/fonts/sickintl-v1/bold/SICKIntl-Bold.woff2") format("woff2"),
+      url("https://www.sick.com/media/fonts/sickintl-v1/bold/SICKIntl-Bold.ttf") format("truetype");
+}

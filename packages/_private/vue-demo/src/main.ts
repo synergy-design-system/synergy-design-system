@@ -1,10 +1,5 @@
-// Load webfonts
-import '@fontsource/open-sans/400.css';
-import '@fontsource/open-sans/400-italic.css';
-import '@fontsource/open-sans/600.css';
-import '@fontsource/open-sans/600-italic.css';
-import '@fontsource/open-sans/700.css';
-import '@fontsource/open-sans/700-italic.css';
+// Load fonts
+import '@synergy-design-system/demo-utilities/styles/font.css';
 
 import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';

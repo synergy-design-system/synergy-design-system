@@ -133,6 +133,93 @@ To use the new themes in your application:
    };
    ```
 
+### Fonts
+
+The SICK 2025 theme introduces a new typeface called **SICK Intl** that replaces the previously used Open Sans font. When migrating to Synergy 3.0 with the SICK 2025 theme, you'll need to ensure this font is properly loaded in your application.
+
+> **Important**: Synergy does **not provide** the SICK Intl font directly. You need to include it in your own project.
+
+#### Font Requirements
+
+The SICK 2025 theme requires the following font weights:
+
+- **Regular (400)**: Used for standard text content
+- **Semi Bold (600)**: Used for emphasized text and headings
+
+For detailed information about when and how to use the different font styles, refer to the [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl).
+
+#### Usage
+
+You have several options to include the SICK Intl font in your project:
+
+##### Option 1: Local Installation
+
+1. Download the `SICK Intl` font from the [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl)
+2. Extract the ZIP file to a location accessible by your project (e.g., a `public` folder)
+3. Add the following CSS to your project (replace `PUBLIC_PATH` with your actual path):
+
+```css
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/PUBLIC_PATH/SICKIntl/SICKIntl-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/PUBLIC_PATH/SICKIntl/SICKIntl-Semibold.ttf") format("truetype");
+}
+```
+
+##### Option 2: Using the SICK CDN
+
+For the quickest setup, load the fonts directly from the SICK CDN:
+
+```css
+/* Regular */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
+      format("woff2"),
+    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.ttf")
+      format("truetype");
+}
+
+/* Semi Bold */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src:
+    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
+      format("woff2"),
+    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.ttf")
+      format("truetype");
+}
+```
+
+For better performance, you can also preload the font:
+
+```html
+<link
+  rel="preload"
+  href="https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+```
+
 ## Migration Steps
 
 These steps are only needed when switching to the new Synergy 3.0 layout.
@@ -142,3 +229,4 @@ These steps are only needed when switching to the new Synergy 3.0 layout.
 3. Adjust your bundler to copy the new icons to your build output. This is necessary to ensure that the new icons are available in your application.
 4. **Update CSS theme imports** to use the new `sick2025_light.css` and `sick2025_dark.css` files instead of the legacy theme files.
 5. **Update theme class names** in your JavaScript theme switching logic to use `syn-sick2025-light` and `syn-sick2025-dark`.
+6. **Add the SICK Intl font** by either downloading it locally or using the SICK CDN. Add the required `@font-face` declarations for Regular (400) and Semi Bold (600) weights to ensure proper typography rendering.

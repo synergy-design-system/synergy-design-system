@@ -43,9 +43,6 @@ importers:
       '@angular/router':
         specifier: ^20.0.3
         version: 20.0.3(@angular/common@20.0.3(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.0.3(@angular/animations@20.0.3(@angular/common@20.0.3(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.0.3(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.3(@angular/compiler@20.0.3)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@fontsource/open-sans':
-        specifier: ^5.2.6
-        version: 5.2.6
       '@synergy-design-system/angular':
         specifier: workspace:*
         version: link:../../angular/dist
@@ -55,6 +52,9 @@ importers:
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/styles':
         specifier: workspace:*
         version: link:../../styles
@@ -77,9 +77,6 @@ importers:
       '@angular/compiler-cli':
         specifier: ^20.0.3
         version: 20.0.3(@angular/compiler@20.0.3)(typescript@5.8.3)
-      '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
-        version: link:../demo-utilities
       '@types/jasmine':
         specifier: ~5.1.8
         version: 5.1.8
@@ -187,15 +184,15 @@ importers:
 
   packages/_private/react-demo:
     dependencies:
-      '@fontsource/open-sans':
-        specifier: ^5.2.6
-        version: 5.2.6
       '@synergy-design-system/assets':
         specifier: workspace:*
         version: link:../../assets
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/react':
         specifier: workspace:*
         version: link:../../react
@@ -206,9 +203,6 @@ importers:
         specifier: workspace:*
         version: link:../../tokens
     devDependencies:
-      '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
-        version: link:../demo-utilities
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../eslint-config-syn
@@ -270,8 +264,8 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)
       vite-plugin-static-copy:
-        specifier: ^3.0.2
-        version: 3.0.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
+        specifier: ^3.1.2
+        version: 3.1.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
 
   packages/_private/stylelint-config-syn:
     dependencies:
@@ -306,12 +300,12 @@ importers:
 
   packages/_private/vanilla-demo:
     dependencies:
-      '@fontsource/open-sans':
-        specifier: ^5.2.6
-        version: 5.2.6
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/styles':
         specifier: workspace:*
         version: link:../../styles
@@ -328,9 +322,6 @@ importers:
       '@synergy-design-system/assets':
         specifier: workspace:^
         version: link:../../assets
-      '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
-        version: link:../demo-utilities
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn
@@ -353,20 +344,20 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)
       vite-plugin-static-copy:
-        specifier: ^3.0.2
-        version: 3.0.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
+        specifier: ^3.1.2
+        version: 3.1.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
 
   packages/_private/vue-demo:
     dependencies:
-      '@fontsource/open-sans':
-        specifier: ^5.2.6
-        version: 5.2.6
       '@synergy-design-system/assets':
         specifier: workspace:*
         version: link:../../assets
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../../components
+      '@synergy-design-system/demo-utilities':
+        specifier: workspace:^
+        version: link:../demo-utilities
       '@synergy-design-system/styles':
         specifier: workspace:*
         version: link:../../styles
@@ -386,9 +377,6 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.11.0
         version: 1.11.0
-      '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
-        version: link:../demo-utilities
       '@tsconfig/node22':
         specifier: ^22.0.2
         version: 22.0.2
@@ -426,8 +414,8 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)
       vite-plugin-static-copy:
-        specifier: ^3.0.2
-        version: 3.0.2(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
+        specifier: ^3.1.2
+        version: 3.1.2(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0))
       vue-tsc:
         specifier: ^2.2.10
         version: 2.2.10(typescript@5.8.3)
@@ -2211,9 +2199,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@fontsource/open-sans@5.2.6':
-    resolution: {integrity: sha512-mnfnUmBWQ+J220gqbibbzmKcc1kawV+lb3/Pspzu+Opnxza12oUffIg0ufG8g+3j1fnSznEWgyNV40MjtmJj6g==}
 
   '@github/catalyst@1.7.0':
     resolution: {integrity: sha512-qOAxrDdRZz9+v4y2WoAfh11rpRY/x4FRofPNmJyZFzAjubtzE3sCa/tAycWWufmQGoYiwwzL/qJBBgyg7avxPw==}
@@ -10677,11 +10662,11 @@ packages:
     peerDependencies:
       vite: ^2
 
-  vite-plugin-static-copy@3.0.2:
-    resolution: {integrity: sha512-/seLvhUg44s1oU9RhjTZZy/0NPbfNctozdysKcvPovxxXZdI5l19mGq6Ri3IaTf1Dy/qChS4BSR7ayxeu8o9aQ==}
+  vite-plugin-static-copy@3.1.2:
+    resolution: {integrity: sha512-aVmYOzptLVOI2b1jL+cmkF7O6uhRv1u5fvOkQgbohWZp2CbR22kn9ZqkCUIt9umKF7UhdbsEpshn1rf4720QFg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      vite: ^5.0.0 || ^6.0.0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0
 
   vite@6.3.5:
     resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
@@ -12527,8 +12512,6 @@ snapshots:
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@fontsource/open-sans@5.2.6': {}
 
   '@github/catalyst@1.7.0': {}
 
@@ -18698,7 +18681,7 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.3.0
       graceful-fs: 4.2.11
-      picomatch: 4.0.2
+      picomatch: 4.0.3
 
   jest-validate@30.0.5:
     dependencies:
@@ -22107,8 +22090,8 @@ snapshots:
 
   tinyglobby@0.2.13:
     dependencies:
-      fdir: 6.4.6(picomatch@4.0.2)
-      picomatch: 4.0.2
+      fdir: 6.4.6(picomatch@4.0.3)
+      picomatch: 4.0.3
 
   tinyglobby@0.2.14:
     dependencies:
@@ -22606,7 +22589,7 @@ snapshots:
     dependencies:
       vite: 6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)
 
-  vite-plugin-static-copy@3.0.2(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)):
+  vite-plugin-static-copy@3.1.2(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)):
     dependencies:
       chokidar: 3.6.0
       fs-extra: 11.3.0
@@ -22615,7 +22598,7 @@ snapshots:
       tinyglobby: 0.2.14
       vite: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)
 
-  vite-plugin-static-copy@3.0.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)):
+  vite-plugin-static-copy@3.1.2(vite@6.3.5(@types/node@24.1.0)(jiti@2.4.2)(less@4.3.0)(sass@1.89.2)(terser@5.39.1)(yaml@2.8.0)):
     dependencies:
       chokidar: 3.6.0
       fs-extra: 11.3.0

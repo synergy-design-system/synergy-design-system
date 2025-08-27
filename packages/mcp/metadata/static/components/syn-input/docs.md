@@ -445,6 +445,7 @@ The numeric-strategy property defines how numeric input is handled during user i
   size="medium"
   form=""
 ></syn-input>
+<br />
 <syn-input
   label="Modern (min and max)"
   max="10"

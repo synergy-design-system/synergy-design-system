@@ -94,6 +94,7 @@ export const resolveAlias = (id) => {
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
+// eslint-disable-next-line complexity
 export const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
   /** @type {Record<string, unknown> | undefined} */
@@ -101,7 +102,10 @@ export const getAliasValue = (aliasId, modeId) => {
   /** @type {unknown} */
   const newValue = valuesByMode?.[modeId];
   // If the current value is a variable alias, resolve it recursively
-  if(newValue && typeof newValue === 'object' && 'type' in newValue && newValue.type === 'VARIABLE_ALIAS' && 'id' in newValue){
+  if (
+    newValue && typeof newValue === 'object' && 'type' in newValue
+    && newValue.type === 'VARIABLE_ALIAS' && 'id' in newValue
+  ) {
     return getAliasValue(/** @type {string} */ (newValue.id), modeId);
   }
   return newValue;

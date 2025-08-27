@@ -23,18 +23,18 @@
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
   --syn-color-accent-50: #481700;
-  --syn-color-accent-100: #7C310B;
-  --syn-color-accent-200: #983B08;
-  --syn-color-accent-300: #BB4D02;
-  --syn-color-accent-400: #E27200;
-  --syn-color-accent-500: #F39200;
-  --syn-color-accent-600: #FFBD1B;
-  --syn-color-accent-700: #FFD246;
-  --syn-color-accent-800: #FFE685;
-  --syn-color-accent-900: #FFF2C5;
-  --syn-color-accent-950: #FFFBEA;
+  --syn-color-accent-100: #7c310b;
+  --syn-color-accent-200: #983b08;
+  --syn-color-accent-300: #bb4d02;
+  --syn-color-accent-400: #e27200;
+  --syn-color-accent-500: #f39200;
+  --syn-color-accent-600: #ffbd1b;
+  --syn-color-accent-700: #ffd246;
+  --syn-color-accent-800: #ffe685;
+  --syn-color-accent-900: #fff2c5;
+  --syn-color-accent-950: #fffbea;
   --syn-color-error-50: #4e010a;
-  --syn-color-error-100: #8D0f1e;
+  --syn-color-error-100: #8d0f1e;
   --syn-color-error-200: #ab091c;
   --syn-color-error-300: #d0051d;
   --syn-color-error-400: #ea0823;
@@ -54,11 +54,11 @@
   --syn-color-neutral-600: #bac2c6;
   --syn-color-neutral-700: #d5dbdd;
   --syn-color-neutral-800: #e8ebec;
-  --syn-color-neutral-900: #F2F3F6;
+  --syn-color-neutral-900: #f2f3f6;
   --syn-color-neutral-950: #f9fafb;
   --syn-color-neutral-1000: #ffffff;
-  --syn-color-primary-50: #072E4A;
-  --syn-color-primary-100: #0B486F;
+  --syn-color-primary-50: #072e4a;
+  --syn-color-primary-100: #0b486f;
   --syn-color-primary-200: #065786;
   --syn-color-primary-300: #0166a3;
   --syn-color-primary-400: #007cc1;
@@ -66,17 +66,17 @@
   --syn-color-primary-600: #36bbfa;
   --syn-color-primary-700: #7cd1fd;
   --syn-color-primary-800: #b9e5fe;
-  --syn-color-primary-900: #e0f1FE;
+  --syn-color-primary-900: #e0f1fe;
   --syn-color-primary-950: #f0f9ff;
-  --syn-color-success-50: #172C07;
+  --syn-color-success-50: #172c07;
   --syn-color-success-100: #315017;
-  --syn-color-success-200: #395E16;
+  --syn-color-success-200: #395e16;
   --syn-color-success-300: #437714;
-  --syn-color-success-400: #63B017;
-  --syn-color-success-500: #73C31F;
-  --syn-color-success-600: #93DD3E;
-  --syn-color-success-700: #B0EB6B;
-  --syn-color-success-800: #D1F4A2;
+  --syn-color-success-400: #63b017;
+  --syn-color-success-500: #73c31f;
+  --syn-color-success-600: #93dd3e;
+  --syn-color-success-700: #b0eb6b;
+  --syn-color-success-800: #d1f4a2;
   --syn-color-success-900: #e7facd;
   --syn-color-success-950: #f5fde8;
   --syn-color-warning-50: #411f07;
@@ -87,7 +87,7 @@
   --syn-color-warning-500: #e5ae0d;
   --syn-color-warning-600: #f5c413;
   --syn-color-warning-700: #f9da4b;
-  --syn-color-warning-800: #FCEC8c;
+  --syn-color-warning-800: #fcec8c;
   --syn-color-warning-900: #fdf7c4;
   --syn-color-warning-950: #fefce8;
   --syn-dimension-base: 4px; /** to be deprecated */
@@ -101,7 +101,7 @@
   --syn-focus-ring-style: solid;
   --syn-focus-ring-width: var(--syn-border-width-medium);
   --syn-font-mono: 'Roboto Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace; /** Coding font */
-  --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /** Open Sans */
+  --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /** Main font */
   --syn-font-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol'; /** System font */
   --syn-font-serif: Georgia, 'Times New Roman', serif; /** Shoelace compatibility DO NOT USE */
   --syn-font-size-2x-large: 32px;
@@ -179,6 +179,12 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
+  --syn-interactive-primary-color: var(--syn-color-primary-600);
+  --syn-interactive-primary-color-active: var(--syn-color-neutral-950);
+  --syn-interactive-primary-color-hover: var(--syn-color-primary-900);
+  --syn-interactive-secondary-color: var(--syn-color-neutral-950);
+  --syn-interactive-secondary-color-active: #ffffff;
+  --syn-interactive-secondary-color-hover: var(--syn-color-primary-600);
   --syn-letter-spacing-dense: -0.24px; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-denser: -0.48px; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-loose: 1.2px; /** Shoelace compatibility DO NOT USE */
@@ -242,10 +248,10 @@
   --syn-shadow-medium: 0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08);
   --syn-shadow-large: 0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16);
   --syn-shadow-x-large: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Down */
-  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Up */
-  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Left */
-  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16); /** Overflow Right */
+  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16);
   --syn-shadow-x-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04);
   --syn-shadow-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06);
   --syn-body-x-small-regular: 400 12px/1.4 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

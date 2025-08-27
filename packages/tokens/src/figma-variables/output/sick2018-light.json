@@ -766,6 +766,36 @@
       "value": "{border-width.small}"
     }
   },
+  "interactive": {
+    "primary": {
+      "color": {
+        "type": "color",
+        "value": "{color.primary.600}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.950}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.900}"
+      }
+    },
+    "secondary": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.950}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "#ffffff"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.600}"
+      }
+    }
+  },
   "letter-spacing": {
     "dense": {
       "description": "Shoelace compatibility DO NOT USE",

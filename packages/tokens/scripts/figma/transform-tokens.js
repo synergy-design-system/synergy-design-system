@@ -25,8 +25,9 @@ const shouldUseAliasValue = (name) => {
   // Replace the _color-palette alias with the real values, as they should not show up in the json
   // TODO: Replace the letter-spacing/default ( for value of input/letter-spacing), the letter-spacing/positive-2 (for value of letter-spacing/looser)
   // and line-height aliases with the real values. They are currently only available for the new brand
+  // as we may rename the primitive/muted palette, we will print the real values here, so they are not getting published officially
   const NO_ALIAS_VALUE_REGEX = new RegExp(
-    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|letter-spacing.positive-2|line-height)`,
+    `^{(?:${COLOR_PALETTE_PREFIX}|letter-spacing.default|letter-spacing.positive-2|line-height|color.muted)`,
   );
   return !NO_ALIAS_VALUE_REGEX.test(name);
 };

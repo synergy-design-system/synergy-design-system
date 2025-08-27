@@ -350,6 +350,7 @@ export const StepperInputHandling: Story = {
       type="number"
       value="0"
     ></syn-input>
+    <br />
     <syn-input 
       label="Modern (min and max)"
       max="10"

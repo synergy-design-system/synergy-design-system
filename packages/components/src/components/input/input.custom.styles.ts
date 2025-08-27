@@ -225,7 +225,7 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    color: var(--syn-color-primary-600);
+    color: var(--syn-interactive-primary-color);
     cursor: pointer;
     display: flex;
     padding: var(--syn-spacing-x-small);
@@ -245,11 +245,11 @@ export default css`
   }
 
   .input__number-stepper-button:hover:not([disabled]) {
-    color: var(--syn-color-primary-900)
+    color: var(--syn-interactive-primary-color-hover)
   }
 
   .input__number-stepper-button:active:not([disabled]) {
-    color: var(--syn-color-primary-950)
+    color: var(--syn-interactive-primary-color-active)
   }
 
   .input__number-stepper-button[disabled] {

@@ -105,8 +105,10 @@ export const getAliasValue = (aliasId, modeId) => {
 const OLD_BRAND_VARIABLES_REGEX = [
   // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
   // figma variables
+  /^component\/input\/(?!focus-ring)/,
+  /^component\/input\/focus-ring\/(?:color|error|offset)/,
   /^component\/button\/font-size/,
-  /^component\/(?:toggle|tooltip|panel|link|input)/,
+  /^component\/(?:toggle|tooltip|panel|link)/,
   /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|opacity|text-decoration|transition|z-index|font)\//,
   /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
   /^primitive\/line-height\/[^\d]/,

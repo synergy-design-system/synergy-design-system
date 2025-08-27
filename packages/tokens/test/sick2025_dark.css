@@ -181,7 +181,7 @@
   --syn-input-width: var(--syn-border-width-small);
   --syn-interactive-primary-color: var(--syn-color-primary-500);
   --syn-interactive-primary-color-active: var(--syn-color-neutral-1000);
-  --syn-interactive-primary-color-hover: var(--syn-color-neutral-1000);
+  --syn-interactive-primary-color-hover: var(--syn-color-primary-900);
   --syn-interactive-secondary-color: var(--syn-color-neutral-1000);
   --syn-interactive-secondary-color-active: #ffffff;
   --syn-interactive-secondary-color-hover: var(--syn-color-primary-500);

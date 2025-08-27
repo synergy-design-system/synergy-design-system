@@ -722,15 +722,15 @@
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "#f8f7f6"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "#f8f7f6"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "#f8f7f6"
       }
     },
     "required": {
@@ -778,7 +778,7 @@
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.primary.900}"
       }
     },
     "secondary": {

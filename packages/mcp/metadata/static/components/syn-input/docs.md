@@ -147,7 +147,7 @@ Use the disabled attribute to disable an input.
   form=""
 >
   <syn-icon
-    name="house"
+    name="home"
     slot="prefix"
     aria-hidden="true"
     library="default"
@@ -380,6 +380,7 @@ Use to customize the way form controls are drawn. This example uses CSS grid to 
 
   .label-on-left::part(form-control-label) {
     text-align: right;
+    margin-bottom: 0;
   }
 
   .label-on-left::part(form-control-help-text) {

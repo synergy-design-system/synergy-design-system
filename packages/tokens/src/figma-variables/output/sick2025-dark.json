@@ -514,7 +514,7 @@
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.primary.300}"
+        "value": "{color.primary.500}"
       },
       "color-focus-error": {
         "type": "color",
@@ -522,7 +522,7 @@
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.300}"
+        "value": "{color.primary.500}"
       },
       "radius-large": {
         "type": "sizing",
@@ -564,7 +564,7 @@
     "focus-ring": {
       "color": {
         "type": "color",
-        "value": "{color.primary.500}"
+        "value": "{color.primary.700}"
       },
       "error": {
         "type": "color",
@@ -788,7 +788,7 @@
       },
       "color-active": {
         "type": "color",
-        "value": "#ffffff"
+        "value": "{color.primary.500}"
       },
       "color-hover": {
         "type": "color",

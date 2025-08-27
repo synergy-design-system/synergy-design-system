@@ -568,7 +568,7 @@
       },
       "error": {
         "type": "color",
-        "value": "{color.error.400}"
+        "value": "{color.error.500}"
       },
       "offset": {
         "type": "sizing",
@@ -788,7 +788,7 @@
       },
       "color-active": {
         "type": "color",
-        "value": "#ffffff"
+        "value": "{color.primary.700}"
       },
       "color-hover": {
         "type": "color",

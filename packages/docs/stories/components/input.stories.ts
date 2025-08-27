@@ -153,7 +153,7 @@ export const Disabled: Story = {
   },
   render: () => html`
   <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
-    <syn-icon name="house" slot="prefix"></syn-icon>
+    <syn-icon name="home" slot="prefix"></syn-icon>
     <syn-icon name="chat" slot="suffix"></syn-icon>
   </syn-input>`,
 };
@@ -307,6 +307,7 @@ export const CustomizingLabelPosition: Story = {
 
       .label-on-left::part(form-control-label) {
         text-align: right;
+        margin-bottom: 0;
       }
 
       .label-on-left::part(form-control-help-text) {

@@ -34,19 +34,14 @@
               }
             ],
             "styles": [
-              "@fontsource/open-sans/400.css",
-              "@fontsource/open-sans/400-italic.css",
-              "@fontsource/open-sans/600.css",
-              "@fontsource/open-sans/600-italic.css",
-              "@fontsource/open-sans/700.css",
-              "@fontsource/open-sans/700-italic.css",
               "@synergy-design-system/tokens/themes/sick2025_dark.css",
               "@synergy-design-system/tokens/themes/sick2025_light.css",
               "@synergy-design-system/tokens/themes/sick2018_dark.css",
               "@synergy-design-system/tokens/themes/sick2018_light.css",
               "@synergy-design-system/components/index.css",
               "@synergy-design-system/styles/index.css",
-              "src/app.css"
+              "src/app.css",
+              "@synergy-design-system/demo-utilities/styles/font.css"
             ],
             "scripts": [],
             "browser": "src/main.ts"

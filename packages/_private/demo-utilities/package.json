@@ -7,8 +7,12 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./styles/*": "./styles/*"
   },
+  "files": [
+    "styles"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc",
     "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",

@@ -123,9 +123,9 @@
   --syn-input-background-color-hover: var(--syn-input-background-color);
   --syn-input-border-color: var(--syn-color-neutral-1000);
   --syn-input-border-color-disabled: var(--syn-color-neutral-1000);
-  --syn-input-border-color-focus: var(--syn-color-primary-300);
+  --syn-input-border-color-focus: var(--syn-color-primary-500);
   --syn-input-border-color-focus-error: var(--syn-color-error-600);
-  --syn-input-border-color-hover: var(--syn-color-primary-300);
+  --syn-input-border-color-hover: var(--syn-color-primary-500);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
   --syn-input-border-radius-small: var(--syn-border-radius-medium);
@@ -135,7 +135,7 @@
   --syn-input-color-focus: var(--syn-color-neutral-1000);
   --syn-input-color-hover: var(--syn-color-neutral-1000);
   --syn-input-disabled-opacity: 0.5;
-  --syn-input-focus-ring-color: var(--syn-color-primary-500);
+  --syn-input-focus-ring-color: var(--syn-color-primary-700);
   --syn-input-focus-ring-error: var(--syn-color-error-400);
   --syn-input-focus-ring-offset: 0px;
   --syn-input-font-family: var(--syn-font-sans);
@@ -183,7 +183,7 @@
   --syn-interactive-primary-color-active: var(--syn-color-neutral-1000);
   --syn-interactive-primary-color-hover: var(--syn-color-primary-900);
   --syn-interactive-secondary-color: var(--syn-color-neutral-1000);
-  --syn-interactive-secondary-color-active: #ffffff;
+  --syn-interactive-secondary-color-active: var(--syn-color-primary-500);
   --syn-interactive-secondary-color-hover: var(--syn-color-primary-500);
   --syn-letter-spacing-dense: normal; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-denser: normal; /** Shoelace compatibility DO NOT USE */

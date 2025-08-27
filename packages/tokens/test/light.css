@@ -184,7 +184,7 @@
   --syn-interactive-primary-color-active: var(--syn-color-neutral-950);
   --syn-interactive-primary-color-hover: var(--syn-color-primary-900);
   --syn-interactive-secondary-color: var(--syn-color-neutral-950);
-  --syn-interactive-secondary-color-active: #ffffff;
+  --syn-interactive-secondary-color-active: var(--syn-color-primary-600);
   --syn-interactive-secondary-color-hover: var(--syn-color-primary-600);
   --syn-letter-spacing-dense: -0.24px; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-denser: -0.48px; /** Shoelace compatibility DO NOT USE */

@@ -1,7 +1,5 @@
 import { expect, test } from '@playwright/test';
 import {
-  type SynChangeEvent,
-  type SynClampEvent,
   type SynInput,
 } from '@synergy-design-system/components';
 import {
@@ -13,8 +11,7 @@ import {
   type SetterType,
   createTestCases,
   fillInput,
-  hasEvent,
-  hasNoEvent,
+  runActionAndValidateEvents,
   setPropertyForLocator,
 } from '../helpers.js';
 
@@ -43,13 +40,17 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericNative');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
-          const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '-5'),
+            [
+              { event: 'syn-change', shouldFire: true },
+              { event: 'syn-clamp', shouldFire: false },
+            ],
+          );
 
-          await fillInput(input, '-5');
-
-          const hasChangeEvent = await waitForChange;
-          const hasClampEvent = await waitForClamp;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
+          const clampResult = eventResults.find(r => r.event === 'syn-clamp');
 
           const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
@@ -61,8 +62,8 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
-          expect(hasClampEvent, 'The syn-clamp event should not be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
+          expect(clampResult?.hasFired, 'The syn-clamp event should not be fired').toBeFalsy();
 
           expect(data.value, 'Value should be set to a string of "-5"').toEqual('-5');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float -5').toEqual(-5);
@@ -76,13 +77,17 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericNative');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
-          const waitForClamp = hasNoEvent<SynClampEvent>(page, 'syn-clamp');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '105'),
+            [
+              { event: 'syn-change', shouldFire: true },
+              { event: 'syn-clamp', shouldFire: false },
+            ],
+          );
 
-          await fillInput(input, '105');
-
-          const hasChangeEvent = await waitForChange;
-          const hasClampEvent = await waitForClamp;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
+          const clampResult = eventResults.find(r => r.event === 'syn-clamp');
 
           const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
@@ -94,8 +99,8 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
-          expect(hasClampEvent, 'The syn-clamp event should not be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
+          expect(clampResult?.hasFired, 'The syn-clamp event should not be fired').toBeFalsy();
 
           expect(data.value, 'Value should be set to a string of "105"').toEqual('105');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float 105').toEqual(105);
@@ -111,13 +116,17 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericModern');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
-          const waitForClamp = hasEvent<SynClampEvent>(page, 'syn-clamp');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '-5'),
+            [
+              { event: 'syn-change', shouldFire: true },
+              { event: 'syn-clamp', shouldFire: true },
+            ],
+          );
 
-          await fillInput(input, '-5');
-
-          const hasChangeEvent = await waitForChange;
-          const hasClampEvent = await waitForClamp;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
+          const clampResult = eventResults.find(r => r.event === 'syn-clamp');
 
           const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
@@ -129,8 +138,8 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
-          expect(hasClampEvent, 'The syn-clamp event should be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
+          expect(clampResult?.hasFired, 'The syn-clamp event should be fired').toBeTruthy();
 
           expect(data.value, 'Value should be set to a string of "0"').toEqual('0');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float 0').toEqual(0);
@@ -144,13 +153,17 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericModern');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
-          const waitForClamp = hasEvent<SynClampEvent>(page, 'syn-clamp');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '105'),
+            [
+              { event: 'syn-change', shouldFire: true },
+              { event: 'syn-clamp', shouldFire: true },
+            ],
+          );
 
-          await fillInput(input, '105');
-
-          const hasChangeEvent = await waitForChange;
-          const hasClampEvent = await waitForClamp;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
+          const clampResult = eventResults.find(r => r.event === 'syn-clamp');
 
           const data = await input.evaluate((el: SynInput) => {
             const { validity, value, valueAsNumber } = el;
@@ -162,8 +175,8 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
-          expect(hasClampEvent, 'The syn-clamp event should be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
+          expect(clampResult?.hasFired, 'The syn-clamp event should be fired').toBeTruthy();
 
           expect(data.value, 'Value should be set to a string of "100"').toEqual('100');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float 100').toEqual(100);
@@ -183,11 +196,15 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericMinFractionDigitsNative');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '1'),
+            [
+              { event: 'syn-change', shouldFire: true },
+            ],
+          );
 
-          await fillInput(input, '1');
-
-          const hasChangeEvent = await waitForChange;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
 
           const data = await input.evaluate((el: SynInput) => {
             const { value, valueAsNumber } = el;
@@ -197,7 +214,7 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
 
           expect(data.value, 'Value should be set to a string of "1.0000"').toEqual('1.0000');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float 1.0000').toEqual(1.0000);
@@ -212,11 +229,15 @@ test.describe('<SynInput />', () => {
 
           const input = await AllComponents.getLocator('input417NumericMinFractionDigitsModern');
 
-          const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
+          const eventResults = await runActionAndValidateEvents(
+            page,
+            () => fillInput(input, '1'),
+            [
+              { event: 'syn-change', shouldFire: true },
+            ],
+          );
 
-          await fillInput(input, '1');
-
-          const hasChangeEvent = await waitForChange;
+          const changeResult = eventResults.find(r => r.event === 'syn-change');
 
           const data = await input.evaluate((el: SynInput) => {
             const { value, valueAsNumber } = el;
@@ -226,7 +247,7 @@ test.describe('<SynInput />', () => {
             };
           });
 
-          expect(hasChangeEvent, 'The syn-change event should be fired').toBeTruthy();
+          expect(changeResult?.hasFired, 'The syn-change event should be fired').toBeTruthy();
 
           expect(data.value, 'Value should be set to a string of "1.0000"').toEqual('1.0000');
           expect(data.valueAsNumber, 'valueAsNumber should be set to float 1.0000').toEqual(1.0000);

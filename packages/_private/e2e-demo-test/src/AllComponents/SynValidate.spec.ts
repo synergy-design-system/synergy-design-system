@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { SynChangeEvent } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
-import { createTestCases, fillInput, hasEvent } from '../helpers.js';
+import { createTestCases, fillInput, runActionAndValidateEvents } from '../helpers.js';
 
 test.describe('<SynValidate />', () => {
   createTestCases(({ name, port }) => {
@@ -16,10 +15,14 @@ test.describe('<SynValidate />', () => {
 
         const validate = AllComponents.getLocator('validate915');
         const input = validate.locator('syn-input');
-        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
 
-        await fillInput(input, 'invalid');
-        await waitForChange;
+        await runActionAndValidateEvents(
+          page,
+          () => fillInput(input, 'invalid'),
+          [
+            { event: 'syn-change', shouldFire: true },
+          ],
+        );
 
         await expect(input, 'data-invalid attribute should be available').toHaveAttribute('data-invalid', '');
         await expect(input, 'data-user-invalid attribute should be available').toHaveAttribute('data-user-invalid', '');

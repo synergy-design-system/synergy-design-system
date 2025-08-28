@@ -1,11 +1,10 @@
 import { expect, test } from '@playwright/test';
 import {
-  type SynChangeEvent,
   type SynCombobox,
   type SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
-import { createTestCases, fillField, hasEvent } from '../helpers.js';
+import { createTestCases, fillField, runActionAndValidateEvents } from '../helpers.js';
 
 test.describe('<SynCombobox />', () => {
   createTestCases(({ name, port }) => {
@@ -184,10 +183,14 @@ test.describe('<SynCombobox />', () => {
         await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
 
         const combobox = await AllComponents.getLocator('combobox626');
-        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
 
-        await fillField(combobox, 'lo', '.combobox__display-input', true);
-        await waitForChange;
+        await runActionAndValidateEvents(
+          page,
+          () => fillField(combobox, 'lo', '.combobox__display-input', true),
+          [
+            { event: 'syn-change', shouldFire: true },
+          ],
+        );
 
         // Check that the displayed value is the text content of the option
         const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
@@ -208,10 +211,14 @@ test.describe('<SynCombobox />', () => {
         combobox.evaluate((ele: SynCombobox) => {
           ele.value = 'ipsum';
         });
-        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
 
-        await fillField(combobox, 'lo', '.combobox__display-input', true);
-        await waitForChange;
+        await runActionAndValidateEvents(
+          page,
+          () => fillField(combobox, 'lo', '.combobox__display-input', true),
+          [
+            { event: 'syn-change', shouldFire: true },
+          ],
+        );
 
         // Check that the displayed value is the text content of the option
         const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
@@ -227,7 +234,6 @@ test.describe('<SynCombobox />', () => {
         await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
 
         const combobox = await AllComponents.getLocator('combobox626Async');
-        const waitForChange = hasEvent<SynChangeEvent>(page, 'syn-change');
 
         const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
         const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
@@ -235,8 +241,13 @@ test.describe('<SynCombobox />', () => {
         expect(value).toEqual('3');
         expect(displayedValue).toEqual('Advanced');
 
-        await fillField(combobox, 'lo', '.combobox__display-input', true);
-        await waitForChange;
+        await runActionAndValidateEvents(
+          page,
+          () => fillField(combobox, 'lo', '.combobox__display-input', true),
+          [
+            { event: 'syn-change', shouldFire: true },
+          ],
+        );
 
         const displayedValueReset = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
         const valueReset = await combobox.evaluate((ele: SynCombobox) => ele.value);

@@ -143,35 +143,72 @@ export const waitForEvent = <T extends Event>(
 });
 
 /**
- * Do wait for an event to be fired on the page
- * @param page The page the event should be bound to
- * @param event The event to use
- * @param timeout The timeout to use
- * @param eventOptions The event options to use
- * @returns The page evaluation object for playwright
+ * Configuration for event monitoring
  */
-export const hasEvent = <T extends Event>(
-  page: Page,
-  event: keyof DocumentEventMap,
-  timeout = 500,
-  eventOptions: AddEventListenerOptions = { once: true },
-) => waitForEvent<T>(page, event, timeout, eventOptions)
-  .then(() => true)
-  .catch(() => false);
+type EventConfig = {
+  event: keyof DocumentEventMap;
+  shouldFire: boolean;
+  eventOptions?: AddEventListenerOptions;
+};
 
 /**
- * Do NOT wait for an event to be fired on the page
- * @param page The page the event should be bound to
- * @param event The event to use
- * @param timeout The timeout to use
- * @param eventOptions The event options to use
- * @returns The page evaluation object for playwright
+ * Result of event monitoring
  */
-export const hasNoEvent = <T extends Event>(
+type EventResult = {
+  hasFired: boolean;
+  event: keyof DocumentEventMap;
+};
+
+/**
+ * Execute a callback action and monitor multiple events simultaneously
+ * @param page The page the events should be bound to
+ * @param callback The async callback function to execute (e.g., filling an input)
+ * @param eventConfigs Array of event configurations to monitor
+ * @param timeout The timeout in milliseconds after callback execution (default: 500)
+ * @returns Promise that resolves to an array of event results
+ */
+export const runActionAndValidateEvents = async (
   page: Page,
-  event: keyof DocumentEventMap,
+  callback: () => Promise<void>,
+  eventConfigs: EventConfig[],
   timeout = 500,
-  eventOptions: AddEventListenerOptions = { once: true },
-) => waitForEvent<T>(page, event, timeout, eventOptions)
-  .then(() => false)
-  .catch(() => true);
+): Promise<EventResult[]> => {
+  const eventPromises = eventConfigs.map((config) => {
+    const eventOptions = config.eventOptions ?? { once: true };
+
+    return page.evaluate(({
+      eventName,
+      eventOptions: playwrightEventOptions,
+    }) => {
+      const promise = new Promise<boolean>((resolve) => {
+        document.addEventListener(
+          eventName,
+          () => resolve(true),
+          playwrightEventOptions,
+        );
+      });
+      return promise;
+    }, {
+      eventName: config.event,
+      eventOptions,
+    });
+  });
+
+  await callback();
+
+  const timeoutPromise = new Promise<boolean>((resolve) => {
+    setTimeout(() => {
+      resolve(false);
+    }, timeout);
+  });
+
+  const racedPromises = eventPromises
+    .map((eventPromise) => Promise.race([eventPromise, timeoutPromise]));
+
+  const allEvents = await Promise.all(racedPromises);
+
+  return eventConfigs.map((config, index) => ({
+    event: config.event,
+    hasFired: allEvents[index],
+  }));
+};

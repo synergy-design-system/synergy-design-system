@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.41.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.41.0...components/2.41.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* 🐛 Add old token as fallback token for new SICK 2025 tokens ([#1006](https://github.com/synergy-design-system/synergy-design-system/issues/1006)) ([e5fff30](https://github.com/synergy-design-system/synergy-design-system/commit/e5fff3060b340ceae2707eefdd06b2f2b32b9224))
+
 # [@synergy-design-system/components-v2.41.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.40.1...components/2.41.0) (2025-08-28)
 
 

@@ -22,6 +22,7 @@ import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018 } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
+import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
 
 // Filter out all private members and readonly properties from the manifest
 const filteredManifest = (manifest: Package): Package => ({
@@ -69,7 +70,7 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 });
 
 const preview: Preview = {
-  decorators: [stopAnimation, themeByClassName],
+  decorators: [stopAnimation, themeByClassName, themeSwitchIcons],
   initialGlobals: {
     background: {
       value: 'neutral-50',

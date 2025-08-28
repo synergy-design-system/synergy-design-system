@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.3.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.2.1...mcp/1.3.0) (2025-08-28)
+
+
+### Features
+
+* ✨CD update for syn-input ([#1001](https://github.com/synergy-design-system/synergy-design-system/issues/1001)) ([52f42f8](https://github.com/synergy-design-system/synergy-design-system/commit/52f42f8d1f494c54492e54b6ddafc6693dcdb0bb))
+
 # [@synergy-design-system/mcp-v1.2.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.2.0...mcp/1.2.1) (2025-08-21)
 
 

@@ -506,35 +506,35 @@
     "border": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.700}"
+        "value": "{color.neutral.950}"
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.700}"
+        "value": "{color.neutral.950}"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.primary.700}"
       },
       "color-focus-error": {
         "type": "color",
-        "value": "{color.error.700}"
+        "value": "{color.error.600}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.primary.700}"
       },
       "radius-large": {
         "type": "sizing",
-        "value": "{border-radius.none}"
+        "value": "{border-radius.medium}"
       },
       "radius-medium": {
         "type": "sizing",
-        "value": "{border-radius.none}"
+        "value": "{border-radius.medium}"
       },
       "radius-small": {
         "type": "sizing",
-        "value": "{border-radius.none}"
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",
@@ -564,11 +564,11 @@
     "focus-ring": {
       "color": {
         "type": "color",
-        "value": "{color.primary.400}"
+        "value": "{color.primary.500}"
       },
       "error": {
         "type": "color",
-        "value": "{color.error.400}"
+        "value": "{color.error.500}"
       },
       "offset": {
         "type": "sizing",
@@ -614,11 +614,11 @@
     "help-text": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{color.neutral.700}"
       },
       "color-error": {
         "type": "color",
-        "value": "{color.error.700}"
+        "value": "{color.error.600}"
       },
       "font-size": {
         "large": {
@@ -638,15 +638,15 @@
     "icon": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{color.neutral.950}"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{color.neutral.950}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{color.neutral.950}"
       },
       "icon-clearable": {
         "color": {
@@ -690,11 +690,11 @@
     "placeholder": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.500}"
+        "value": "{color.neutral.700}"
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.500}"
+        "value": "{color.neutral.700}"
       }
     },
     "readonly": {
@@ -718,19 +718,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.50}"
+        "value": "#f8f7f6"
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.50}"
+        "value": "#f8f7f6"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.50}"
+        "value": "#f8f7f6"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.50}"
+        "value": "#f8f7f6"
       }
     },
     "required": {
@@ -764,6 +764,36 @@
     "width": {
       "type": "sizing",
       "value": "{border-width.small}"
+    }
+  },
+  "interactive": {
+    "primary": {
+      "color": {
+        "type": "color",
+        "value": "{color.primary.700}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.950}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.900}"
+      }
+    },
+    "secondary": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.950}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.primary.700}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.700}"
+      }
     }
   },
   "letter-spacing": {

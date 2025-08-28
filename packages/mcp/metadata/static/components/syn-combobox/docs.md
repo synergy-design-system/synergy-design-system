@@ -2277,7 +2277,15 @@ It is possible to add options dynamically to the combobox e.g. if the option val
     id="syn-combobox-option-2"
     >Option 3</syn-option
   >
-</syn-combobox>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    id="syn-combobox-option-3"
+    aria-disabled="false"
+    value=""
+    >Option 4</syn-option
+  ></syn-combobox
+>
 ```
 
 ---

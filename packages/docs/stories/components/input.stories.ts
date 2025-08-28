@@ -12,6 +12,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-input');
 const { generateTemplate } = storybookTemplate('syn-input');
@@ -20,6 +21,9 @@ const meta: Meta = {
   args,
   argTypes,
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_Sick_2025,
+    },
     design: generateFigmaPluginObject('14695-110120'),
     docs: {
       description: {
@@ -149,7 +153,7 @@ export const Disabled: Story = {
   },
   render: () => html`
   <syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
-    <syn-icon name="house" slot="prefix"></syn-icon>
+    <syn-icon name="home" slot="prefix"></syn-icon>
     <syn-icon name="chat" slot="suffix"></syn-icon>
   </syn-input>`,
 };
@@ -303,6 +307,7 @@ export const CustomizingLabelPosition: Story = {
 
       .label-on-left::part(form-control-label) {
         text-align: right;
+        margin-bottom: 0;
       }
 
       .label-on-left::part(form-control-help-text) {
@@ -346,6 +351,7 @@ export const StepperInputHandling: Story = {
       type="number"
       value="0"
     ></syn-input>
+    <br />
     <syn-input 
       label="Modern (min and max)"
       max="10"

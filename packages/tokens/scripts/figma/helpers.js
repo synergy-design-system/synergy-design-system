@@ -94,25 +94,38 @@ export const resolveAlias = (id) => {
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
+// eslint-disable-next-line complexity
 export const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
   /** @type {Record<string, unknown> | undefined} */
   const valuesByMode = aliasVar?.valuesByMode;
-  return valuesByMode?.[modeId];
+  /** @type {unknown} */
+  const newValue = valuesByMode?.[modeId];
+  // If the current value is a variable alias, resolve it recursively
+  if (
+    newValue && typeof newValue === 'object' && 'type' in newValue
+    && newValue.type === 'VARIABLE_ALIAS' && 'id' in newValue
+  ) {
+    return getAliasValue(/** @type {string} */ (newValue.id), modeId);
+  }
+  return newValue;
 };
 
 /* eslint-disable max-len */
 const OLD_BRAND_VARIABLES_REGEX = [
   // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
   // figma variables
+  /^component\/input\/(?!focus-ring)/,
+  /^component\/input\/focus-ring\/(?:color|error|offset)/,
   /^component\/button\/font-size/,
-  /^component\/(?:toggle|tooltip|panel|link|input)/,
-  /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|opacity|text-decoration|transition|z-index|font)\//,
+  /^component\/(?:toggle|tooltip|panel|link)/,
+  /^primitive\/opacity\/50/,
+  /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|text-decoration|transition|z-index|font)\//,
   /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
   /^primitive\/line-height\/[^\d]/,
   /^primitive\/font-size\/(?:2x-large|2x-small|3x-large|4x-large|large|medium|small|x-large|x-small)$/,
   /^primitive\/spacing\/(?:2x-large|2x-small|3x-large|3x-small|4x-large|4x-small|5x-large|large|medium|medium-large|small|x-large|x-small)$/,
-  /^semantic\/(?:focus-ring|overlay|typography)/,
+  /^semantic\/(?:focus-ring|overlay|typography|interactive)/,
 
   // figma styles
   /^body\/(x-small|small|medium|large)\/(regular|semibold|bold)/,

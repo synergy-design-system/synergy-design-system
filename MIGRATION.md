@@ -1,8 +1,35 @@
 # DEVELOPER MIGRATION DOCUMENTATION
 
-## Workflow for Updating Components to SICK 2025 Theme
-
 This document outlines the complete workflow for updating components in the Synergy Design System to support the new SICK 2025 theme. This process involves migrating design tokens from Figma and updating components to work with the new theme specifications. The workflow covers three main packages: Tokens, Components, and Docs.
+
+## Quick step-by-step guide
+
+This is just a short overview about the different steps to make. For a more detailed version, see the next heading.
+
+### Tokens Package
+
+1. Replace Figma branch ID in `.figmaexportrc.js` and `/scripts/figma/fetch-variables.js`
+2. Run `pnpm fetch:figma` to pull new variables
+3. Optionally check for new variables by commenting out `return` in `transform-tokens.js` line 158
+4. Run `pnpm build:figma` to generate theme JSONs
+5. Remove new variables from exclusion regex if needed (`helpers.js` line 115)
+6. Revert `transform-tokens.js` changes and run `pnpm build:figma` again
+7. Review JSON changes for SICK 2025 theme alignment
+8. Run `pnpm build` to generate CSS files
+9. Run `pnpm compare` to review CSS changes
+10. Update test files in `packages/tokens/test` to match new values
+
+### Components Package
+
+1. Update component styles for SICK 2025 theme compatibility
+2. Add fallback values for new CSS variables (e.g., `var(--new-var, fallback-value)`)
+3. Create `metadata.json` file for documentation of new component CSS variables if added
+
+### Docs Package
+
+1. Configure Chromatic modes with `Chromatic_Modes_Sick_2025` to component story
+
+## More detailed step-by-step guide
 
 ### 1. Tokens Package Updates
 
@@ -156,27 +183,73 @@ Especially the `checksum.txt` file, will in most cases become an update.
 >
 > The mcp is scraping the storybook stories for each component (`pnpm build:storybook`). Our async story of the combobox `AsyncOptions` is a bit flaky. Depending on the performance of the machine, it is possible that the pipeline fails because of that.
 
-## Quick Step-by-Step Checklist
+## Currently from tokens package actively excluded / ignored tokens
 
-### Tokens Package
+### Shadow tokens
 
-1. Replace Figma branch ID in `.figmaexportrc.js` and `/scripts/figma/fetch-variables.js`
-2. Run `pnpm fetch:figma` to pull new variables
-3. Optionally check for new variables by commenting out `return` in `transform-tokens.js` line 158
-4. Run `pnpm build:figma` to generate theme JSONs
-5. Remove new variables from exclusion regex if needed (`helpers.js` line 115)
-6. Revert `transform-tokens.js` changes and run `pnpm build:figma` again
-7. Review JSON changes for SICK 2025 theme alignment
-8. Run `pnpm build` to generate CSS files
-9. Run `pnpm compare` to review CSS changes
-10. Update test files in `packages/tokens/test` to match new values
+We get the shadow variables from the fetching of figma styles NOT from Figma variables. There are some shadow figma variables available, but they are needed for Design only, to create the correct shadow Figma styles.
+Ignored tokens:
 
-### Components Package
+- "primitive/shadow/\*"
 
-1. Update component styles for SICK 2025 theme compatibility
-2. Add fallback values for new CSS variables (e.g., `var(--new-var, fallback-value)`)
-3. Create `metadata.json` file for documentation of new component CSS variables if added
+### Button tokens
 
-### Docs Package
+There where already some new button tokens added on design side, but the button is not yet done and they might not be needed. Thats why they are ignored. Maybe they need to be removed on design side at some point.
 
-1. Configure Chromatic modes with `Chromatic_Modes_Sick_2025` to component story
+Ignored tokens:
+
+- "component/button/border/radius/\*"
+- "component/button/horizontal-padding/\*"
+
+### Color palettes
+
+Some new color palettes were added. Currently the "real" value (hex value) is used instead of the new color tokens on dev side. This was done, so no new tokens are published, that might be renamed. This approach is open to discussion and change.
+
+Ignored tokens:
+
+- "primitive/info/\*"
+- "primitive/muted/\*"
+
+### New additional tokens
+
+There are new additional tokens available from Figma that are currently being ignored. These tokens might be used for future typography updates but are not yet integrated into the current design system implementation. This approach is open to discussion and change.
+Following tokens are currently ignored:
+
+#### Font-size
+
+- "primitive/font-size/0x-large"
+- "primitive/font-size/1x-large"
+- "primitive/font-size/1_5x-large"
+- "primitive/font-size/2_5x-large"
+- "primitive/font-size/medium-large"
+
+#### Letter-spacing
+
+- "primitive/letter-spacing/default"
+- "primitive/letter-spacing/negative-05"
+- "primitive/letter-spacing/positive-05"
+- "primitive/letter-spacing/positive-2"
+- "primitive/letter-spacing/positive-5"
+
+#### Line-height
+
+- "primitive/line-height/100"
+- "primitive/line-height/110"
+- "primitive/line-height/115"
+- "primitive/line-height/120"
+- "primitive/line-height/130"
+- "primitive/line-height/140"
+- "primitive/line-height/150"
+- "primitive/line-height/160"
+- "primitive/line-height/180"
+- "primitive/line-height/220"
+
+#### Spacing
+
+- "primitive/spacing/1_5x-large"
+- "primitive/spacing/3_5x-large"
+
+### Text-transform
+
+- "primitive/text-transform/default"
+- "primitive/text-transform/uppercase"

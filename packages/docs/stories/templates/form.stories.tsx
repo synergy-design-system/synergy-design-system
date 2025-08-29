@@ -18,6 +18,7 @@ import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/button/button.js';
+import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 
 const meta: Meta = {
   parameters: {
@@ -25,6 +26,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
+      modes: Chromatic_Modes_Sick_2025,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {

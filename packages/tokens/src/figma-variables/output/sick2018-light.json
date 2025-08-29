@@ -882,6 +882,14 @@
       "description": "50%",
       "type": "opacity",
       "value": "50%"
+    },
+    "light": {
+      "type": "opacity",
+      "value": "16%"
+    },
+    "medium": {
+      "type": "opacity",
+      "value": "{opacity.50}"
     }
   },
   "overlay": {

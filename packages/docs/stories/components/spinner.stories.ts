@@ -10,6 +10,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-spinner');
 const { generateTemplate } = storybookTemplate('syn-spinner');
@@ -19,6 +20,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-spinner',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_Sick_2025,
+    },
     design: generateFigmaPluginObject('14127-697884'),
     docs: {
       description: {

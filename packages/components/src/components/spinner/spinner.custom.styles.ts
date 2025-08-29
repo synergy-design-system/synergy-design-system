@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --speed: var(--syn-transition-x-slow);
+    --indicator-color: var(--syn-interactive-primary-color, var(--syn-color-primary-600));
   }
 
   .spinner__indicator {
@@ -15,7 +16,7 @@ export default css`
    */
   .spinner__track {
     filter: saturate(0);
-    opacity: 0.16;
+    opacity: var(--syn-opacity-light, 0.16);
     stroke: var(--indicator-color);
   }
 

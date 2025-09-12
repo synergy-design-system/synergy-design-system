@@ -10,6 +10,18 @@ import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
 import { figmaOutputSvg } from './figma-output-svg.js';
 import { outputSystemIcons } from './figma-output-system-icons.js';
 import { outputComponentsToCodeConnect } from './figma-output-export-code-connect.js';
+import {
+  createFileNameForLogo,
+  getLogoVariantPartsFromOptionString,
+} from './utils.js';
+
+/**
+ * @typedef {Object} Options
+ * @property {string} basename - The base name for the SVG file, typically the component name.
+ * @property {string} dirname - The directory name for the SVG file, typically derived from the component's page.
+ * @property {componentName: string} componentName - The name of the component.
+ * @property {string} pageName - The name of the page.
+ */
 
 /**
  * Create a configuration object for the figma export
@@ -22,6 +34,7 @@ import { outputComponentsToCodeConnect } from './figma-output-export-code-connec
  * @param {string[]} [options.onlyFromPages=[]] - The pages to include in the export.
  * @param {boolean} [options.optimizeSVG=true] - Whether to optimize SVG output.
  * @param {string} [options.path='icons'] - Path where the exported files will be saved.
+ * @param {function(Options): string} [options.svgComponentBasename] - Function to get the base name for SVG components.
  * @param {function(ComponentNode): boolean} [options.svgComponentFilter] - Function to filter SVG components.
  * @returns {ComponentsCommandOptions} - The configuration object for the Figma export.
  */
@@ -34,6 +47,7 @@ export const createFigmaExportConfig = ({
   onlyFromPages = [],
   optimizeSVG = true,
   path = 'icons',
+  svgComponentBasename = ({ basename = '' }) => `${basename.replace('name=', '')}.svg`,
   svgComponentFilter = () => true,
 }) => ({
   fileId,
@@ -44,7 +58,7 @@ export const createFigmaExportConfig = ({
   outputters: [
     figmaOutputSvg({
       componentFilter: svgComponentFilter,
-      getBasename: ({ basename = '' }) => `${basename.replace('name=', '')}.svg`,
+      getBasename: svgComponentBasename,
       getDirname: () => path,
       output: './src',
     }),
@@ -113,15 +127,6 @@ export const v2AllIconsConfig = createFigmaExportConfig({
   path: 'icons',
 });
 
-// v2 logos configuration
-export const v2LogosConfig = createFigmaExportConfig({
-  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
-  ids: [FIGMA_CONFIG.FIGMA_ID_LOGOS_V2],
-  onlyFromPages: ['Assets'],
-  optimizeSVG: false,
-  path: 'logos',
-});
-
 // v3 outline icons configuration
 export const v3OutlineIconsConfig = createFigmaExportConfig({
   additionalOutputters: [
@@ -162,12 +167,33 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
   path: 'sick2025/fill',
 });
 
+// logo configuration
+export const logosConfig = createFigmaExportConfig({
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
+  ids: [FIGMA_CONFIG.FIGMA_ID_LOGOS],
+  onlyFromPages: ['Assets'],
+  optimizeSVG: false,
+  path: 'logos',
+  svgComponentBasename: ({ basename = '' }) => {
+    // Split the base name into parts by variant.
+    // Variants look like this in figma:
+    // variant=logo, color=black, theme=sick2018
+    const [variant, color, theme] = getLogoVariantPartsFromOptionString(basename);
+
+    // Make sure we export stuff that does not fit our pattern as the original filename
+    if (!variant || !color || !theme) {
+      return `${basename.replace('name=', '')}.svg`;
+    }
+
+    return createFileNameForLogo(variant, color, theme);
+  },
+});
+
 /**
- * V2 consists of all icons, system icons and logos.
+ * V2 consists of all icons and system icons.
  */
 export const CONFIG_FOR_V2 = [
   v2AllIconsConfig,
-  v2LogosConfig,
 ];
 
 /**
@@ -183,6 +209,7 @@ export const CONFIG_FOR_V3 = [
  */
 export const CONFIG_FOR_ALL = [
   systemIconsConfig,
+  logosConfig,
   ...CONFIG_FOR_V2,
   ...CONFIG_FOR_V3,
 ];

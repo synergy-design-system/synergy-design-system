@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.42.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.41.1...components/2.42.0) (2025-09-12)
+
+
+### Features
+
+* ✨ add new logos for sick2025 ([#1017](https://github.com/synergy-design-system/synergy-design-system/issues/1017)) ([d9eec10](https://github.com/synergy-design-system/synergy-design-system/commit/d9eec1045812f0538d686269254dfc33414d0667))
+
 # [@synergy-design-system/components-v2.41.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.41.0...components/2.41.1) (2025-08-28)
 
 

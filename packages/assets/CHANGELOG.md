@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.18.0...assets/1.19.0) (2025-09-12)
+
+
+### Features
+
+* ✨ add new logos for sick2025 ([#1017](https://github.com/synergy-design-system/synergy-design-system/issues/1017)) ([d9eec10](https://github.com/synergy-design-system/synergy-design-system/commit/d9eec1045812f0538d686269254dfc33414d0667))
+
 # [@synergy-design-system/assets-v1.18.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.17.0...assets/1.18.0) (2025-08-08)
 
 

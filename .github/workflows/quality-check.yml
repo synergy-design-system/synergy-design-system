@@ -134,6 +134,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.52.0-noble
+    strategy:
+      fail-fast: true
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - uses: actions/checkout@v4
 
@@ -159,7 +164,7 @@ jobs:
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm -r --filter 'e2e-demo-test' test
+        run: pnpm -r --filter 'e2e-demo-test' test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root

@@ -434,7 +434,7 @@ describe('<syn-input>', () => {
 
           // Test setting a non numeric value without min or max
           el.focus();
-          await sendKeys({ type: '+-100' });
+          await sendKeys({ type: 'SOME_STRING_VALUE' });
           el.blur();
           await el.updateComplete;
           expect(el.value, 'should default to number "0" when no min or max is provided').to.equal('0.0000');

@@ -10,6 +10,8 @@
     // Disabled because this is a private package that does not differenciate between dev and non dev dependencies
     "import/no-extraneous-dependencies": 0,
 
+    "@typescript-eslint/indent": "off",
+
     // We have to include our packages in a relative way to make autoreloads work
     "import/no-relative-packages": 0,
 

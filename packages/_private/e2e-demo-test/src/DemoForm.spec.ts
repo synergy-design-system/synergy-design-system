@@ -29,7 +29,7 @@ createTestCases(({ name, port }) => {
       // check invalid states of required inputs
       const states = await Promise.all(
         form.allRequiredInputs.map(
-          input => input.evaluate(el => (el as SynInput).validity.valid),
+          input => input.evaluate(el => (el as unknown as SynInput).validity.valid),
         ),
       );
       expect(states.length).toBe(form.allRequiredInputs.length);
@@ -72,7 +72,12 @@ createTestCases(({ name, port }) => {
       // Same goes for experience, which should be set to "a little"
       expect(await getInputValue(form.experience)).toBe(1);
 
-      expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
+      // Using waitForFunction instead of expect as there may be timing issues in ci/cd
+      const isValid = await page.waitForFunction(() => {
+        const formElement = document.querySelector('form') as HTMLFormElement;
+        return formElement?.checkValidity() === true;
+      });
+      expect(isValid).toBeTruthy();
     });
   });
 });

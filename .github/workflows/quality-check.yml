@@ -55,7 +55,7 @@ jobs:
     name: Validate mcp metadata
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      image: mcr.microsoft.com/playwright:v1.54.0-noble
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -98,7 +98,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      image: mcr.microsoft.com/playwright:v1.54.0-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -133,7 +133,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      image: mcr.microsoft.com/playwright:v1.54.0-noble
     strategy:
       fail-fast: true
       matrix:

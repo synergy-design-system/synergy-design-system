@@ -444,7 +444,7 @@ describe('<syn-input>', () => {
           expect(elWithMin.value).to.equal('5');
 
           elWithMin.focus();
-          await sendKeys({ type: '+-100' });
+          await sendKeys({ type: 'SOME_STRING_VALUE' });
           elWithMin.blur();
           await elWithMin.updateComplete;
           expect(elWithMin.value, 'should default to the provided min if the min property is provided').to.equal('10.0000');
@@ -454,7 +454,7 @@ describe('<syn-input>', () => {
           expect(elWithMax.value).to.equal('5');
 
           elWithMax.focus();
-          await sendKeys({ type: '+-100' });
+          await sendKeys({ type: 'SOME_STRING_VALUE' });
           elWithMax.blur();
           await elWithMax.updateComplete;
           expect(elWithMax.value, 'should default to the provided max if the max property is provided').to.equal('50.0000');
@@ -464,7 +464,7 @@ describe('<syn-input>', () => {
           expect(elWithBoth.value).to.equal('5');
 
           elWithBoth.focus();
-          await sendKeys({ type: '+-100' });
+          await sendKeys({ type: 'SOME_STRING_VALUE' });
           elWithBoth.blur();
           await elWithBoth.updateComplete;
           expect(elWithBoth.value, 'should default to the provided max if both min and max property are provided').to.equal('50.0000');

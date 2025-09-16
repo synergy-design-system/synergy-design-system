@@ -8,23 +8,23 @@
   },
   "description": "Assets for the Synergy Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.44.2",
-    "@figma-export/cli": "^6.2.2",
-    "@figma-export/core": "^6.2.2",
-    "@figma-export/output-components-as-svg": "^6.2.2",
-    "@figma-export/transform-svg-with-svgo": "^6.2.2",
-    "@figma-export/types": "^6.2.2",
+    "@dotenvx/dotenvx": "^1.49.1",
+    "@figma-export/cli": "^6.2.3",
+    "@figma-export/core": "^6.2.3",
+    "@figma-export/output-components-as-svg": "^6.2.3",
+    "@figma-export/transform-svg-with-svgo": "^6.2.3",
+    "@figma-export/types": "^6.2.3",
     "@figma/rest-api-spec": "^0.31.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^22.15.32",
+    "@types/node": "^22.18.4",
     "eslint": "^8.57.1",
     "rimraf": "^6.0.1",
     "semantic-release": "^19.0.5",
     "semantic-release-monorepo": "7.0.5",
     "svgo": "^3.3.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "exports": {
     ".": {

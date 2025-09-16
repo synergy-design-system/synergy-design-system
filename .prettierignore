@@ -18,6 +18,9 @@ pnpm-lock.yaml
 build/
 dist/
 
+# e2e test result logs
+packages/_private/e2e-demo-test/test-results/.last-run.json
+
 # Demo repos and their caches
 .angular
 angular/dist

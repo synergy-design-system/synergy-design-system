@@ -13,6 +13,7 @@
       2,
       { "namedComponents": "arrow-function" }
     ],
+    "@typescript-eslint/indent": "off",
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }

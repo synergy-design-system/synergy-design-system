@@ -253,6 +253,9 @@ pnpm build:styles
 
 # Process transformed tokens with Style Dictionary (build final output)
 pnpm build
+
+# Or do it all at once
+FIGMA_FILE_ID="FILE_ID" FIGMA_TOKEN="FIGMA_TOKEN" pnpm build:all
 ```
 
 #### Figma variables

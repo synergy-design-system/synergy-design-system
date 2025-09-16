@@ -120,10 +120,10 @@ jobs:
       # #854: We are only building the components and tokens packages
       # This is done to speed up the build time
       - name: Build
-        run: pnpm -r --filter 'components' --filter 'tokens' build --synergy
+        run: pnpm -r --filter 'tokens' --filter 'components' build --synergy
 
       - name: Run component tests
-        run: pnpm -r --filter 'components' test
+        run: pnpm -r --filter 'tokens' --filter 'components' test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root

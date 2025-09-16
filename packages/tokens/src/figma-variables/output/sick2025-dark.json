@@ -388,9 +388,13 @@
     }
   },
   "focus-ring": {
+    "border-radius": {
+      "type": "sizing",
+      "value": "4px"
+    },
     "color": {
       "type": "color",
-      "value": "{color.primary.400}"
+      "value": "{color.primary.500}"
     },
     "offset": {
       "type": "sizing",
@@ -767,7 +771,7 @@
     }
   },
   "interactive": {
-    "primary": {
+    "emphasis": {
       "color": {
         "type": "color",
         "value": "{color.primary.500}"
@@ -781,14 +785,14 @@
         "value": "{color.primary.900}"
       }
     },
-    "secondary": {
+    "quiet": {
       "color": {
         "type": "color",
         "value": "{color.neutral.1000}"
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.500}"
+        "value": "{color.primary.600}"
       },
       "color-hover": {
         "type": "color",
@@ -852,28 +856,28 @@
   "link": {
     "color": {
       "type": "color",
-      "value": "{color.primary.600}"
+      "value": "{interactive.emphasis.color}"
     },
     "color-active": {
       "type": "color",
-      "value": "{color.primary.950}"
+      "value": "{interactive.emphasis.color-active}"
     },
     "color-hover": {
       "type": "color",
-      "value": "{color.primary.900}"
+      "value": "{interactive.emphasis.color-hover}"
     },
     "quiet": {
       "color": {
         "type": "color",
-        "value": "{typography.color.text}"
+        "value": "{interactive.quiet.color}"
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.950}"
+        "value": "{interactive.quiet.color-active}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.900}"
+        "value": "{interactive.quiet.color-hover}"
       }
     }
   },
@@ -904,13 +908,17 @@
     "background": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.0}"
+        "value": "{color.neutral.50}"
       }
     },
     "border": {
       "color": {
         "type": "color",
         "value": "{color.neutral.300}"
+      },
+      "radius": {
+        "type": "sizing",
+        "value": "{border-radius.x-large}"
       },
       "width": {
         "type": "sizing",
@@ -1069,11 +1077,11 @@
     "color": {
       "text": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.neutral.1000}"
       },
       "text-inverted": {
         "type": "color",
-        "value": "{color.neutral.0}"
+        "value": "{color.neutral.50}"
       }
     }
   },
@@ -1111,27 +1119,27 @@
     },
     "large": {
       "type": "shadow",
-      "value": "0px 0px 3px 0px rgba(13, 13, 13, 0.12), 0px 2px 6px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.16)"
+      "value": "0px 0px 3px 0px rgba(13, 13, 13, 0.12), 0px 2px 6px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(0, 0, 0, 0.80)"
     },
     "x-large": {
       "type": "shadow",
-      "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 8px 24px 0px rgba(13, 13, 13, 0.12), 0px 16px 48px 0px rgba(13, 13, 13, 0.16)"
+      "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 8px 24px 0px rgba(13, 13, 13, 0.12), 0px 16px 48px 0px rgba(0, 0, 0, 0.80)"
     },
     "overflow-down": {
       "type": "shadow",
-      "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.12), 0px 4px 12px 0px rgba(13, 13, 13, 0.16)"
+      "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.12), 0px 4px 12px 0px rgba(0, 0, 0, 0.80)"
     },
     "overflow-up": {
       "type": "shadow",
-      "value": "0px -1px 4px 0px rgba(13, 13, 13, 0.12), 0px -3px 8px 0px rgba(13, 13, 13, 0.12), 0px -4px 12px 0px rgba(13, 13, 13, 0.16)"
+      "value": "0px -1px 4px 0px rgba(13, 13, 13, 0.12), 0px -3px 8px 0px rgba(13, 13, 13, 0.12), 0px -4px 12px 0px rgba(0, 0, 0, 0.80)"
     },
     "overflow-left": {
       "type": "shadow",
-      "value": "-1px 0px 4px 0px rgba(13, 13, 13, 0.12), -3px 0px 8px 0px rgba(13, 13, 13, 0.12), -4px 0px 12px 0px rgba(13, 13, 13, 0.16)"
+      "value": "-1px 0px 4px 0px rgba(13, 13, 13, 0.12), -3px 0px 8px 0px rgba(13, 13, 13, 0.12), -4px 0px 12px 0px rgba(0, 0, 0, 0.80)"
     },
     "overflow-right": {
       "type": "shadow",
-      "value": "1px 0px 4px 0px rgba(13, 13, 13, 0.12), 3px 0px 8px 0px rgba(13, 13, 13, 0.12), 4px 0px 12px 0px rgba(13, 13, 13, 0.16)"
+      "value": "1px 0px 4px 0px rgba(13, 13, 13, 0.12), 3px 0px 8px 0px rgba(13, 13, 13, 0.12), 4px 0px 12px 0px rgba(0, 0, 0, 0.80)"
     },
     "x-small": {
       "type": "shadow",

@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --speed: var(--syn-transition-x-slow);
-    --indicator-color: var(--syn-interactive-primary-color, var(--syn-color-primary-600));
+    --indicator-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
 
   .spinner__indicator {

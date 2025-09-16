@@ -388,6 +388,10 @@
     }
   },
   "focus-ring": {
+    "border-radius": {
+      "type": "sizing",
+      "value": "0px"
+    },
     "color": {
       "type": "color",
       "value": "{color.primary.400}"
@@ -767,28 +771,28 @@
     }
   },
   "interactive": {
-    "primary": {
+    "emphasis": {
       "color": {
         "type": "color",
         "value": "{color.primary.600}"
       },
       "color-active": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.primary.950}"
       },
       "color-hover": {
         "type": "color",
         "value": "{color.primary.900}"
       }
     },
-    "secondary": {
+    "quiet": {
       "color": {
         "type": "color",
         "value": "{color.neutral.950}"
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.600}"
+        "value": "{color.primary.700}"
       },
       "color-hover": {
         "type": "color",
@@ -852,28 +856,28 @@
   "link": {
     "color": {
       "type": "color",
-      "value": "{color.primary.600}"
+      "value": "{interactive.emphasis.color}"
     },
     "color-active": {
       "type": "color",
-      "value": "{color.primary.950}"
+      "value": "{interactive.emphasis.color-active}"
     },
     "color-hover": {
       "type": "color",
-      "value": "{color.primary.900}"
+      "value": "{interactive.emphasis.color-hover}"
     },
     "quiet": {
       "color": {
         "type": "color",
-        "value": "{typography.color.text}"
+        "value": "{interactive.quiet.color}"
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.950}"
+        "value": "{interactive.quiet.color-active}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.900}"
+        "value": "{interactive.quiet.color-hover}"
       }
     }
   },
@@ -911,6 +915,10 @@
       "color": {
         "type": "color",
         "value": "{color.neutral.300}"
+      },
+      "radius": {
+        "type": "sizing",
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",

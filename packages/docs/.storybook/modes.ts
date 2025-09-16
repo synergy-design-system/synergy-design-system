@@ -23,3 +23,8 @@ export const Chromatic_Modes_Sick_2025 = {
     theme: SICK_2025_DARK,
   },
 };
+
+export const Chromatic_Modes_All = {
+  ...Chromatic_Modes_Sick_2018,
+  ...Chromatic_Modes_Sick_2025,
+};

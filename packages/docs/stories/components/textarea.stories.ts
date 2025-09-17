@@ -9,6 +9,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-textarea');
 const { generateTemplate } = storybookTemplate('syn-textarea');
@@ -17,6 +18,9 @@ const meta: Meta = {
   args,
   argTypes,
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('1101-1576'),
     docs: {
       description: {

@@ -203,8 +203,6 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-opacity-light: 0.4;
-  --syn-opacity-medium: var(--syn-opacity-50);
   --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
@@ -223,9 +221,13 @@
   --syn-spacing-small: 12px;
   --syn-spacing-x-large: 32px;
   --syn-spacing-x-small: 8px;
+  --syn-spinner-opacity: 0.4;
+  --syn-table-background-color: var(--syn-panel-background-color);
   --syn-table-background-color-alternating: var(--syn-color-neutral-100);
   --syn-table-background-color-header: var(--syn-color-neutral-200);
   --syn-table-border-color: var(--syn-color-neutral-300);
+  --syn-table-shadow-end: rgba(0, 0, 0, 0);
+  --syn-table-shadow-start: rgba(0, 0, 0, 0.8);
   --syn-text-decoration-default: none;
   --syn-text-decoration-underline: underline;
   --syn-toggle-size-large: var(--syn-spacing-large);
@@ -252,15 +254,15 @@
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-toast: 950; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-tooltip: 1000; /** Shoelace compatibility DO NOT USE */
-  --syn-shadow-medium: 0px 1px 2px 0px rgba(13, 13, 13, 0.08), 0px 1px 4px 0px rgba(13, 13, 13, 0.08), 0px 2px 8px 0px rgba(13, 13, 13, 0.08);
-  --syn-shadow-large: 0px 0px 3px 0px rgba(13, 13, 13, 0.12), 0px 2px 6px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-x-large: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 8px 24px 0px rgba(13, 13, 13, 0.12), 0px 16px 48px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.12), 0px 4px 12px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(13, 13, 13, 0.12), 0px -3px 8px 0px rgba(13, 13, 13, 0.12), 0px -4px 12px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(13, 13, 13, 0.12), -3px 0px 8px 0px rgba(13, 13, 13, 0.12), -4px 0px 12px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(13, 13, 13, 0.12), 3px 0px 8px 0px rgba(13, 13, 13, 0.12), 4px 0px 12px 0px rgba(0, 0, 0, 0.80);
-  --syn-shadow-x-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.04), 0px 1px 4px 0px rgba(13, 13, 13, 0.04), 0px 2px 8px 0px rgba(13, 13, 13, 0.04);
-  --syn-shadow-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.06), 0px 1px 4px 0px rgba(13, 13, 13, 0.06), 0px 2px 8px 0px rgba(13, 13, 13, 0.06);
+  --syn-shadow-medium: 0px 1px 2px 0px rgba(0, 0, 0, 0.08), 0px 1px 4px 0px rgba(0, 0, 0, 0.08), 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
+  --syn-shadow-large: 0px 0px 3px 0px rgba(0, 0, 0, 0.12), 0px 2px 6px 0px rgba(0, 0, 0, 0.12), 0px 3px 8px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-x-large: 0px 1px 4px 0px rgba(0, 0, 0, 0.12), 0px 8px 24px 0px rgba(0, 0, 0, 0.12), 0px 16px 48px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(0, 0, 0, 0.12), 0px 3px 8px 0px rgba(0, 0, 0, 0.12), 0px 4px 12px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(0, 0, 0, 0.12), 0px -3px 8px 0px rgba(0, 0, 0, 0.12), 0px -4px 12px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(0, 0, 0, 0.12), -3px 0px 8px 0px rgba(0, 0, 0, 0.12), -4px 0px 12px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(0, 0, 0, 0.12), 3px 0px 8px 0px rgba(0, 0, 0, 0.12), 4px 0px 12px 0px rgba(0, 0, 0, 0.16);
+  --syn-shadow-x-small: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 4px 0px rgba(0, 0, 0, 0.04), 0px 2px 8px 0px rgba(0, 0, 0, 0.04);
+  --syn-shadow-small: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 4px 0px rgba(0, 0, 0, 0.06), 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
   --syn-body-x-small-regular: 400 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-semibold: 600 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-bold: 600 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

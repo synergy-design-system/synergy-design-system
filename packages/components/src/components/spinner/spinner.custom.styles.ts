@@ -16,7 +16,7 @@ export default css`
    */
   .spinner__track {
     filter: saturate(0);
-    opacity: var(--syn-opacity-light, 0.16);
+    opacity: var(--syn-spinner-opacity, 0.16);
     stroke: var(--indicator-color);
   }
 

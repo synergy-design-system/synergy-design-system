@@ -886,14 +886,6 @@
       "description": "50%",
       "type": "opacity",
       "value": "50%"
-    },
-    "light": {
-      "type": "opacity",
-      "value": "16%"
-    },
-    "medium": {
-      "type": "opacity",
-      "value": "{opacity.50}"
     }
   },
   "overlay": {
@@ -980,8 +972,18 @@
       "value": "8px"
     }
   },
+  "spinner": {
+    "opacity": {
+      "type": "opacity",
+      "value": "16%"
+    }
+  },
   "table": {
     "background": {
+      "color": {
+        "type": "color",
+        "value": "{panel.background.color}"
+      },
       "color-alternating": {
         "type": "color",
         "value": "#f8f7f6"
@@ -995,6 +997,16 @@
       "color": {
         "type": "color",
         "value": "#e6e1dc"
+      }
+    },
+    "shadow": {
+      "end": {
+        "type": "color",
+        "value": "rgba(13, 13, 13, 0.00)"
+      },
+      "start": {
+        "type": "color",
+        "value": "rgba(13, 13, 13, 0.16)"
       }
     }
   },

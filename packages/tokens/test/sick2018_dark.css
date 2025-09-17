@@ -203,8 +203,6 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-opacity-light: 0.16;
-  --syn-opacity-medium: var(--syn-opacity-50);
   --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: var(--syn-color-neutral-300);
@@ -223,9 +221,13 @@
   --syn-spacing-small: 12px;
   --syn-spacing-x-large: 32px;
   --syn-spacing-x-small: 8px;
+  --syn-spinner-opacity: 0.16;
+  --syn-table-background-color: var(--syn-panel-background-color);
   --syn-table-background-color-alternating: var(--syn-color-neutral-50);
   --syn-table-background-color-header: var(--syn-color-neutral-200);
   --syn-table-border-color: var(--syn-color-neutral-300);
+  --syn-table-shadow-end: rgba(49, 55, 58, 0);
+  --syn-table-shadow-start: rgba(49, 55, 58, 0.16);
   --syn-text-decoration-default: none;
   --syn-text-decoration-underline: underline;
   --syn-toggle-size-large: var(--syn-spacing-large);

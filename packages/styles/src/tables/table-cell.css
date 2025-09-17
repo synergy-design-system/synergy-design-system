@@ -107,7 +107,7 @@
 
 .syn-table-cell--shadow-start::after,
 :dir(rtl) .syn-table-cell--shadow-end::after {
-	background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
 	left: calc(var(--syn-spacing-x-small) * -1);
 	right: unset;
 }
@@ -115,7 +115,7 @@
 /* stylelint-disable-next-line no-descending-specificity */
 .syn-table-cell--shadow-end::after,
 :dir(rtl) .syn-table-cell--shadow-start::after {
-	background: linear-gradient(270deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
+	background: linear-gradient(90deg,  var(--shadow-start) 0%, var(--shadow-end) 100%);
 	left: unset;
 	right: calc(var(--syn-spacing-x-small) * -1);
 }

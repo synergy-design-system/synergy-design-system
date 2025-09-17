@@ -408,8 +408,7 @@ After the new / updated tokens are fetched and build:
 
    ```bash
    # Copy the newly built files to serve as new reference files
-   cp dist/themes/light.css test/light.css
-   cp dist/themes/dark.css test/dark.css
+   cp dist/themes/sick*.css test
    ```
 
 4. **Verify the update**: Run the test again to ensure everything matches

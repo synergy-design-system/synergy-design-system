@@ -980,6 +980,24 @@
       "value": "8px"
     }
   },
+  "table": {
+    "background": {
+      "color-alternating": {
+        "type": "color",
+        "value": "{color.neutral.100}"
+      },
+      "color-header": {
+        "type": "color",
+        "value": "{color.neutral.200}"
+      }
+    },
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.300}"
+      }
+    }
+  },
   "text-decoration": {
     "default": {
       "type": "string",

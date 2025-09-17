@@ -980,6 +980,24 @@
       "value": "8px"
     }
   },
+  "table": {
+    "background": {
+      "color-alternating": {
+        "type": "color",
+        "value": "#f8f7f6"
+      },
+      "color-header": {
+        "type": "color",
+        "value": "#f2f0ed"
+      }
+    },
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "#e6e1dc"
+      }
+    }
+  },
   "text-decoration": {
     "default": {
       "type": "string",

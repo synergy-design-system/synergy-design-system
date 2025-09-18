@@ -31,7 +31,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'SICK2025'],
   title: 'Components/syn-input',
 };
 export default meta;

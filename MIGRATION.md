@@ -27,7 +27,8 @@ This is just a short overview about the different steps to make. For a more deta
 
 ### Docs Package
 
-1. Configure Chromatic modes with `Chromatic_Modes_Sick_2025` to component story
+1. Configure Chromatic modes with `Chromatic_Modes_Sick_2025` to component story. Use `Chromatic_Modes_All` as a value for `meta.parameters.chromatic.modes` to enable both 2018 and 2025 versions.
+2. Make sure to add the tag `SICK2025` to `meta.tags` to make it findable via tag find function in Storybook.
 
 ## More detailed step-by-step guide
 

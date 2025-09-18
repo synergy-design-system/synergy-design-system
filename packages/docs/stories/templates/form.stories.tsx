@@ -47,7 +47,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'SICK2025'],
   title: 'Templates/Forms',
 };
 export default meta;

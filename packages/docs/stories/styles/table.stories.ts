@@ -120,7 +120,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'Styles'],
+  tags: ['Structure', 'Styles', 'SICK2025'],
   title: 'Styles/syn-table',
 };
 export default meta;

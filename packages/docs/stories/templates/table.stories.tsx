@@ -174,7 +174,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2025'],
   title: 'Templates/Table',
 };
 export default meta;

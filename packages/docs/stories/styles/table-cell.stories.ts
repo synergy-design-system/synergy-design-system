@@ -37,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'Styles'],
+  tags: ['Structure', 'Styles', 'SICK2025'],
   title: 'Styles/syn-table-cell',
 };
 export default meta;
@@ -54,7 +54,7 @@ export const Default: StoryObj = {
     },
   },
   render: (args: unknown) => html`
-  <table class="syn-table">
+  <table class="syn-table" style="width: 200px;">
     <tbody>
       <tr>
         ${renderStyles(({ ...(args as RenderArgs), sticky: true } as RenderArgs), 'td')}
@@ -78,7 +78,7 @@ export const Header: StoryObj = {
     },
   },
   render: () => html`
-    <table class="syn-table">
+    <table class="syn-table" style="width: 200px;">
       <thead>
         <tr>
           <th class="syn-table-cell--header">Cell header</th>
@@ -102,7 +102,7 @@ export const Alternating: StoryObj = {
     },
   },
   render: () => html`
-    <table class="syn-table">
+    <table class="syn-table" style="width: 200px;">
       <tbody>
         <tr>
           <td class="syn-table-cell">Cell content</td>
@@ -130,7 +130,7 @@ export const Border: StoryObj = {
     },
   },
   render: () => html`
-    <table class="syn-table">
+    <table class="syn-table" style="width: 200px;">
       <tbody>
         <tr>
           <td class="syn-table-cell syn-table-cell--border-top">Border Top</td>
@@ -142,7 +142,7 @@ export const Border: StoryObj = {
           <td class="syn-table-cell syn-table-cell--border-end">Border End</td>
         </tr>
         <tr>
-          <td class="syn-table-cell syn-table-cell--border-bottom">Border Left</td>
+          <td class="syn-table-cell syn-table-cell--border-bottom">Border Bottom</td>
         </tr>
       </tbody>
     </table>
@@ -158,7 +158,7 @@ export const ScrollingBehavior: StoryObj = {
     },
   },
   render: () => html`
-    <table class="syn-table">
+    <table class="syn-table" style="width: 400px;">
       <thead>
         <tr>
           <th class="syn-table-cell--header syn-table-cell--shadow-bottom syn-table-cell--shadow-active sticky">Cell header</th>

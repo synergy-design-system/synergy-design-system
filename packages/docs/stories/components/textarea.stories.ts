@@ -28,7 +28,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'SICK2025'],
   title: 'Components/syn-textarea',
 };
 export default meta;

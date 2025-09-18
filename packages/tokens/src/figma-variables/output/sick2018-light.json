@@ -882,7 +882,7 @@
     },
     "underline-outline": {
       "type": "string",
-      "value": "0%"
+      "value": "7%"
     }
   },
   "opacity": {

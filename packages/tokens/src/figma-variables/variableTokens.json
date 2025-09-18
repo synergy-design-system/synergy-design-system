@@ -274,8 +274,8 @@
         "VariableID:36102:6168",
         "VariableID:36102:6167",
         "VariableID:36102:6166",
-        "VariableID:36102:6171",
         "VariableID:36102:6169",
+        "VariableID:36102:6171",
         "VariableID:36102:6170",
         "VariableID:36331:6159",
         "VariableID:36331:6160",
@@ -344,8 +344,8 @@
         "VariableID:36102:6224",
         "VariableID:36102:6225",
         "VariableID:36102:6222",
-        "VariableID:36547:6175",
         "VariableID:36102:6226",
+        "VariableID:36547:6175",
         "VariableID:36547:6176",
         "VariableID:36547:6177",
         "VariableID:36102:6227",
@@ -356,6 +356,7 @@
         "VariableID:36102:6232",
         "VariableID:36102:6233",
         "VariableID:36102:6234",
+        "VariableID:40239:237186",
         "VariableID:36102:6243",
         "VariableID:36102:6242",
         "VariableID:36102:6238",
@@ -19146,6 +19147,26 @@
           "id": "VariableID:36102:6235",
           "type": "VARIABLE_ALIAS"
         }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:40239:237186": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:40239:237186",
+      "key": "b4eb7b62d4126f6007d4bc56dfd6edad9ba194ff",
+      "name": "component/link/underline-outline",
+      "remote": false,
+      "resolvedType": "STRING",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": "0%",
+        "36102:0": "0%",
+        "36102:1": "25%",
+        "36102:2": "25%"
       },
       "variableCollectionId": "VariableCollectionId:28:527"
     },

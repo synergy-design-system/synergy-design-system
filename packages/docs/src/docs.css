@@ -87,12 +87,12 @@ body {
   margin-block-end: 1.5em;
 }
 
-.sbdocs a {
+.sbdocs a:not(.syn-link) {
   color: var(--syn-color-primary-600);
 }
 
-.sbdocs a:focus,
-.sbdocs button:focus {
+.sbdocs a:not(syn-link):focus,
+.sbdocs button:not(.syn-link):focus {
   outline: none;
 }
 

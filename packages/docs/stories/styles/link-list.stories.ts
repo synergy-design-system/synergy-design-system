@@ -11,6 +11,7 @@ import {
 } from '../../src/helpers/component.js';
 import { renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/icon/icon.js';
 
 const {
@@ -43,6 +44,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-link-list',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('28388-133752'),
     docs: {
       description: {
@@ -50,7 +54,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'Structure', 'Styles'],
+  tags: ['Navigation', 'Structure', 'Styles', 'SICK2025'],
   title: 'Styles/syn-link-list',
 };
 export default meta;

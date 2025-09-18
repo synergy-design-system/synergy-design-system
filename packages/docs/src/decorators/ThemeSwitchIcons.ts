@@ -63,7 +63,10 @@ export const themeSwitchIcons = (story: StoryFn, context: StoryContext) => {
   case SICK_2025_DARK:
   case SICK_2025_LIGHT:
     setSystemIconLibrary('sick2025');
-    themePath = 'assets/sick2025/outline/';
+    // @todo Always use the sick2018 icons for now as we don´t know
+    // Will be fixed with https://github.com/synergy-design-system/synergy-design-system/issues/1024
+    themePath = 'assets/icons/';
+    // themePath = 'assets/sick2025/outline/';
     break;
   case DARK_THEME:
   case LIGHT_THEME:

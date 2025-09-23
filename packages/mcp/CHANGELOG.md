@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.3.1...mcp/1.4.0) (2025-09-23)
+
+
+### Features
+
+* ✨ CD update for syn-spinner, syn-textarea, syn-link, syn-table ([#1010](https://github.com/synergy-design-system/synergy-design-system/issues/1010)) ([c472bab](https://github.com/synergy-design-system/synergy-design-system/commit/c472bab888e5fb9efd368456e1b8f60953970b63))
+
 # [@synergy-design-system/mcp-v1.3.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.3.0...mcp/1.3.1) (2025-08-28)
 
 

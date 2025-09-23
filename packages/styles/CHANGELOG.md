@@ -1,3 +1,10 @@
+# [@synergy-design-system/styles-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.7.2...styles/1.8.0) (2025-09-23)
+
+
+### Features
+
+* ✨ CD update for syn-spinner, syn-textarea, syn-link, syn-table ([#1010](https://github.com/synergy-design-system/synergy-design-system/issues/1010)) ([c472bab](https://github.com/synergy-design-system/synergy-design-system/commit/c472bab888e5fb9efd368456e1b8f60953970b63))
+
 # [@synergy-design-system/styles-v1.7.2](https://github.com/synergy-design-system/synergy-design-system/compare/styles/1.7.1...styles/1.7.2) (2025-06-20)
 
 

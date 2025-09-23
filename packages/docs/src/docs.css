@@ -91,7 +91,7 @@ body {
   color: var(--syn-color-primary-600);
 }
 
-.sbdocs a:not(syn-link):focus,
+.sbdocs a:not(.syn-link):focus,
 .sbdocs button:not(.syn-link):focus {
   outline: none;
 }
@@ -99,7 +99,6 @@ body {
 .sbdocs a:not(.syn-link):hover {
   color: var(--syn-color-primary-800);
 }
-
 
 a:not(.syn-link):focus-visible,
 button:focus-visible {

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.24.0
+ * @synergy-design-system/tokens version 2.25.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -235,7 +235,7 @@
   --syn-toggle-size-medium: var(--syn-spacing-medium);
   --syn-toggle-size-small: 14px;
   --syn-tooltip-arrow-size: 9px;
-  --syn-tooltip-background-color: var(--syn-color-neutral-950);
+  --syn-tooltip-background-color: var(--syn-color-neutral-1000);
   --syn-tooltip-border-radius: var(--syn-border-radius-small);
   --syn-tooltip-color: var(--syn-typography-color-text-inverted);
   --syn-tooltip-font-family: var(--syn-font-sans);

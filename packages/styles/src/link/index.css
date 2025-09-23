@@ -19,6 +19,7 @@
   font-family: var(--syn-font-sans);
   font-size: var(--syn-link-font-size);
   text-decoration: underline;
+  text-underline-offset: var(--syn-link-underline-outline, initial);
 }
 
 .syn-link:has(syn-icon) {
@@ -40,6 +41,7 @@
 }
 
 .syn-link:not(.syn-link--disabled):focus-visible {
+  border-radius: var(--syn-focus-ring-border-radius);
   outline: var(--syn-focus-ring);
   outline-offset: var(--syn-focus-ring-offset);
 }

@@ -3,7 +3,7 @@
 The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows. DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.
 
 ```html
-<table class="syn-table">
+<table class="syn-table" style="width: 200px">
   <tbody>
     <tr>
       <td class="syn-table-cell sticky">Cell content</td>
@@ -24,7 +24,7 @@ The syn-table-cell component offers basic styling for table cells. A table can
 Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.
 
 ```html
-<table class="syn-table">
+<table class="syn-table" style="width: 200px">
   <thead>
     <tr>
       <th class="syn-table-cell--header">Cell header</th>
@@ -45,7 +45,7 @@ Use the cell header attribute to help the user identify the top of the table. T
 The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.
 
 ```html
-<table class="syn-table">
+<table class="syn-table" style="width: 200px">
   <tbody>
     <tr>
       <td class="syn-table-cell">Cell content</td>
@@ -70,7 +70,7 @@ The alternating attribute helps the user to visually separate the rows, even whe
 Use the border attribute to define different borders in a cell. Borders can also be combined.
 
 ```html
-<table class="syn-table">
+<table class="syn-table" style="width: 200px">
   <tbody>
     <tr>
       <td class="syn-table-cell syn-table-cell--border-top">Border Top</td>
@@ -82,7 +82,9 @@ Use the border attribute to define different borders in a cell. Borders can also
       <td class="syn-table-cell syn-table-cell--border-end">Border End</td>
     </tr>
     <tr>
-      <td class="syn-table-cell syn-table-cell--border-bottom">Border Left</td>
+      <td class="syn-table-cell syn-table-cell--border-bottom">
+        Border Bottom
+      </td>
     </tr>
   </tbody>
 </table>
@@ -95,7 +97,7 @@ Use the border attribute to define different borders in a cell. Borders can also
 If the table contains a scrolling behavior the table cell gets a shadow.
 
 ```html
-<table class="syn-table">
+<table class="syn-table" style="width: 400px">
   <thead>
     <tr>
       <th

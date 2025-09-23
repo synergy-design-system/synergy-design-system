@@ -118,14 +118,13 @@ const OLD_BRAND_VARIABLES_REGEX = [
   /^component\/input\/(?!focus-ring)/,
   /^component\/input\/focus-ring\/(?:color|error|offset)/,
   /^component\/button\/font-size/,
-  /^component\/(?:toggle|tooltip|panel|link)/,
-  /^primitive\/opacity\/50/,
-  /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|text-decoration|transition|z-index|font)\//,
+  /^component\/(?:spinner|toggle|table|tooltip|panel|link)/,
+  /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|text-decoration|transition|z-index|font|opacity)\//,
   /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
   /^primitive\/line-height\/[^\d]/,
   /^primitive\/font-size\/(?:2x-large|2x-small|3x-large|4x-large|large|medium|small|x-large|x-small)$/,
   /^primitive\/spacing\/(?:2x-large|2x-small|3x-large|3x-small|4x-large|4x-small|5x-large|large|medium|medium-large|small|x-large|x-small)$/,
-  /^semantic\/(?:focus-ring|overlay|typography|interactive)/,
+  /^semantic\/(?:focus-ring|overlay|typography|interactive|panel)/,
 
   // figma styles
   /^body\/(x-small|small|medium|large)\/(regular|semibold|bold)/,

@@ -300,7 +300,7 @@ test.describe('<SynInput />', () => {
         // Chromium does not support autocorrect, so we skip this test there
         // Also, CI webkit is too old and also has no support, so we skip webkit there as well
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocorrect#browser_compatibility
-        test.skip(browserName === 'firefox', 'Only supported in Firefox at the moment');
+        test.skip(browserName !== 'firefox', 'Only supported in Firefox at the moment');
 
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();

@@ -10,14 +10,15 @@ export default css`
   }
 
   .tag {
-    background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-color-neutral-400);
+    background-color: var(--syn-panel-background-color);
+    border-color: var(--syn-panel-border-color);
     border-radius: var(--syn-border-radius-small);
+    border-width: var(--syn-border-width-small);
     color: var(--syn-input-color);
   }
 
   .tag .tag__remove {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-input-icon-icon-clearable-color);
   }
 
 
@@ -67,11 +68,11 @@ export default css`
 
   /* Hover */
   .tag.tag--removable:hover {
-    background-color: var(--syn-color-neutral-100);
+    background-color: var(--syn-interactive-background-color, var(--syn-color-neutral-100));
   }
   
   .tag .tag__remove:hover {
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-input-icon-icon-clearable-color-hover);
   }
 
 

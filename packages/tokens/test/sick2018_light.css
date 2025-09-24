@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.25.0
+ * @synergy-design-system/tokens version 2.26.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -96,7 +96,7 @@
   --syn-duration-fast: 150ms;
   --syn-duration-normal: 250ms;
   --syn-duration-slow: 500ms;
-  --syn-focus-ring-border-radius: 0px;
+  --syn-focus-ring-border-radius: var(--syn-border-radius-none);
   --syn-focus-ring-color: var(--syn-color-primary-400);
   --syn-focus-ring-offset: var(--syn-spacing-3x-small);
   --syn-focus-ring-style: solid;
@@ -153,11 +153,9 @@
   --syn-input-help-text-font-size-medium: var(--syn-font-size-small);
   --syn-input-help-text-font-size-small: var(--syn-font-size-x-small);
   --syn-input-icon-color: var(--syn-color-neutral-800);
-  --syn-input-icon-color-focus: var(--syn-color-neutral-800);
   --syn-input-icon-color-hover: var(--syn-color-neutral-800);
-  --syn-input-icon-icon-clearable-color: var(--syn-color-neutral-500);
-  --syn-input-icon-icon-clearable-color-focus: var(--syn-color-neutral-500);
-  --syn-input-icon-icon-clearable-color-hover: var(--syn-color-neutral-500);
+  --syn-input-icon-icon-clearable-color: var(--syn-color-neutral-600);
+  --syn-input-icon-icon-clearable-color-hover: var(--syn-color-neutral-800);
   --syn-input-label-color: var(--syn-color-neutral-950);
   --syn-input-label-font-size-large: var(--syn-font-size-large);
   --syn-input-label-font-size-medium: var(--syn-font-size-medium);
@@ -180,6 +178,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
+  --syn-interactive-background-color-hover: var(--syn-color-neutral-100);
   --syn-interactive-emphasis-color: var(--syn-color-primary-600);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-950);
   --syn-interactive-emphasis-color-hover: var(--syn-color-primary-900);

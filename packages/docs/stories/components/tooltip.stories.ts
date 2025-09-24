@@ -13,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tooltip');
 const { overrideArgs } = storybookHelpers('syn-tooltip');
@@ -39,6 +40,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tooltip',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('12852-79550'),
     docs: {
       description: {
@@ -52,7 +56,7 @@ const meta: Meta = {
     },
     layout: 'centered',
   },
-  tags: ['Feedback'],
+  tags: ['Feedback', 'SICK2025'],
   title: 'Components/syn-tooltip',
 };
 export default meta;

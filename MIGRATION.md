@@ -8,7 +8,7 @@ This is just a short overview about the different steps to make. For a more deta
 
 ### Tokens Package
 
-1. Replace Figma branch ID in `.figmaexportrc.js` and `/scripts/figma/fetch-variables.js`
+1. Replace Figma branch ID in `.figmaexportrc.js` and `/scripts/figma/fetch-variables.js` OR change the Figma branch ID in your locale `.env` file.
 2. Run `pnpm fetch:figma` to pull new variables
 3. Optionally check for new variables by commenting out `return` in `transform-tokens.js` line 158
 4. Run `pnpm build:figma` to generate theme JSONs
@@ -44,6 +44,10 @@ Before fetching new tokens for the SICK 2025 theme, you need to configure the sy
 
 - `.figmaexportrc.js`
 - `/scripts/figma/fetch-variables.js`
+
+OR
+
+- `.env`
 
 **What to do:**
 Replace the Figma main branch ID (`'bZFqk9urD3NlghGUKrkKCR'`) with the current branch ID from Figma where the SICK 2025 theme component updates are being made.
@@ -162,18 +166,29 @@ Update your component stories to include the SICK_2025 themes for visual regress
 **Add to your story file:**
 
 ```javascript
-import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 // In your story parameters
 parameters: {
   chromatic: {
-    modes: Chromatic_Modes_Sick_2025,
+    modes: Chromatic_Modes_All,
   },
   // ... other parameters
 }
 ```
 
 This ensures that your component changes are visually tested across all relevant SICK 2025 theme variations in the automated testing pipeline.
+
+**Add SICK2025 tag:**
+Make sure to add the tag `SICK2025` to `meta.tags` to make it findable via tag find function in Storybook.
+
+```javascript
+  // In the meta configuration object
+  const meta: Meta = {
+    ...
+    tags: [..., 'SICK2025'],
+  };
+```
 
 ### 4. MCP Package Update
 

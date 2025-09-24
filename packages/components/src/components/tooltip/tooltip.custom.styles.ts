@@ -7,7 +7,7 @@ export default css`
   }
 
   /** #640: Adjust the zIndex of the arrow to make sure the box-shadow above does not bleed out */
-  :host::part(arrow) {
-    z-index: 0;
+  :host ::part(arrow) {
+    z-index: 0 !important;
   }
 `;

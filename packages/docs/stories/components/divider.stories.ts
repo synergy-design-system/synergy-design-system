@@ -7,6 +7,7 @@ import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-divider');
 const { generateTemplate } = storybookTemplate('syn-divider');
@@ -16,6 +17,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-divider',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('5521-515898'),
     docs: {
       description: {
@@ -23,7 +27,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2025'],
   title: 'Components/syn-divider',
 };
 export default meta;

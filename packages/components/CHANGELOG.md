@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.44.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.43.0...components/2.44.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-progress-bar ([#1026](https://github.com/synergy-design-system/synergy-design-system/issues/1026)) ([7bb3a49](https://github.com/synergy-design-system/synergy-design-system/commit/7bb3a49dfec36d4b78180e1a6413bd0f68d80724))
+
 # [@synergy-design-system/components-v2.43.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.42.0...components/2.43.0) (2025-09-23)
 
 

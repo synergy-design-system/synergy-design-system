@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.4.0...mcp/1.5.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-progress-bar ([#1026](https://github.com/synergy-design-system/synergy-design-system/issues/1026)) ([7bb3a49](https://github.com/synergy-design-system/synergy-design-system/commit/7bb3a49dfec36d4b78180e1a6413bd0f68d80724))
+
 # [@synergy-design-system/mcp-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.3.1...mcp/1.4.0) (2025-09-23)
 
 

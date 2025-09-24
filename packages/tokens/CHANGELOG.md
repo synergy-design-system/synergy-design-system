@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.25.0...tokens/2.26.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-tooltip ([#1025](https://github.com/synergy-design-system/synergy-design-system/issues/1025)) ([b02ec3d](https://github.com/synergy-design-system/synergy-design-system/commit/b02ec3d7d720a869975dcd19dd29f096b8fd2035))
+
 # [@synergy-design-system/tokens-v2.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.24.0...tokens/2.25.0) (2025-09-23)
 
 

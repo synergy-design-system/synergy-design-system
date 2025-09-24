@@ -104,7 +104,7 @@ const preview: Preview = {
       stories: { inline: false },
       toc: {
         headingSelector: 'h2, h3',
-        ignoreSelector: '.toc-ignore h2, .toc-ignore h3',
+        ignoreSelector: '.toc-ignore h2, .toc-ignore h3, .docs-story h2, .docs-story h3',
       },
       source: {
         format: 'html',

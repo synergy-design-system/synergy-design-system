@@ -16,6 +16,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-details');
 const { overrideArgs } = storybookHelpers('syn-details');
@@ -44,6 +45,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-details',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('16771-27087'),
     docs: {
       description: {
@@ -51,7 +55,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2025'],
   title: 'Components/syn-details',
 };
 export default meta;

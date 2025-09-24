@@ -36,6 +36,7 @@ const AllComponentSelectors = {
   input417NumericModern: '#tab-content-Input syn-input[data-testid="input-417-numeric-modern"]',
   input417NumericNative: '#tab-content-Input syn-input[data-testid="input-417-numeric-native"]',
   input872SpinButtons: '#tab-content-Input syn-input[data-testid="input-872-spin-buttons"]',
+  input1023Autocorrect: '#tab-content-Input syn-input[data-testid="input-1023-autocorrect"]',
   inputContent: '#tab-content-Input',
   inputLink: '#tab-Input',
 

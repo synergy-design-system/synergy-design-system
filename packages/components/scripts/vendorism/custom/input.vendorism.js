@@ -518,6 +518,26 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     },
   );
 
+  // #1023 Add fix for autocorrect to make it work as in the HTML spec for ts 5.9.3
+  content = content.replace(
+    "@property() autocorrect: 'off' | 'on';",
+    `@property({
+    attribute: 'autocorrect',
+    reflect: true,
+    converter: {
+      fromAttribute: (value: string) => value === '' || value === 'on',
+      toAttribute: (value: boolean) => (value ? 'on' : 'off')
+    },
+    type: Boolean,
+  }) autocorrect: boolean;`,
+  );
+
+  content = content.replace(
+    "autocorrect=${ifDefined(this.autocorrect)}",
+    "autocorrect=${ifDefined(this.autocorrect ? undefined : 'off')}"
+  );
+  // #1023
+
   return {
     content,
     path,

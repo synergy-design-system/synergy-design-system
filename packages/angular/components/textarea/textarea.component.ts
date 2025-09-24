@@ -287,8 +287,10 @@ the same document or shadow root for this to work.
    * Indicates whether the browser's autocorrect feature is on or off.
    */
   @Input()
-  set autocorrect(v: SynTextarea['autocorrect']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
+  set autocorrect(v: '' | SynTextarea['autocorrect']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.autocorrect = v === '' || v),
+    );
   }
   get autocorrect(): SynTextarea['autocorrect'] {
     return this.nativeElement.autocorrect;

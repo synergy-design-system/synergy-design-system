@@ -76,5 +76,10 @@ export const Input = () => (
       type="number"
       value="50"
     />
+
+    <syn-input
+      data-testid="input-1023-autocorrect"
+      label="Issue #1023 - Autocorrect attribute"
+    />
   </>
 );

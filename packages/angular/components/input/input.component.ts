@@ -414,8 +414,10 @@ implied, allowing any numeric value.
    * Indicates whether the browser's autocorrect feature is on or off.
    */
   @Input()
-  set autocorrect(v: SynInput['autocorrect']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.autocorrect = v));
+  set autocorrect(v: '' | SynInput['autocorrect']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.autocorrect = v === '' || v),
+    );
   }
   get autocorrect(): SynInput['autocorrect'] {
     return this.nativeElement.autocorrect;

@@ -80,4 +80,11 @@ export const Input = () => html`
     value="50"
   ></syn-input>
   <!-- /#872 -->
+
+  <!-- #1023: Autocorrect attribute -->
+  <syn-input
+    data-testid="input-1023-autocorrect"
+    label="Issue #1023 - Autocorrect attribute"
+  ></syn-input>
+  <!-- /#1023 -->
 `;

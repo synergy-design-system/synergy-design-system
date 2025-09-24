@@ -81,4 +81,11 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
     value="50"
   />
   <!-- /#872 -->
+
+  <!-- #1023: Autocorrect attribute -->
+  <SynVueInput
+    data-testid="input-1023-autocorrect"
+    label="Issue #1023 - Autocorrect attribute"
+  />
+  <!-- /#1023 -->
 </template>

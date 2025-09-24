@@ -206,7 +206,7 @@
   --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
-  --syn-panel-border-radius: var(--syn-border-radius-x-large);
+  --syn-panel-border-radius: var(--syn-border-radius-medium);
   --syn-panel-border-width: var(--syn-border-width-small);
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;

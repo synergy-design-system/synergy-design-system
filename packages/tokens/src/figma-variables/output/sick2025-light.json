@@ -912,7 +912,7 @@
       },
       "radius": {
         "type": "sizing",
-        "value": "{border-radius.x-large}"
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",

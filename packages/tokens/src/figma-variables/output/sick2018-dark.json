@@ -358,6 +358,12 @@
       }
     }
   },
+  "details": {
+    "open-rotation": {
+      "type": "string",
+      "value": "-180deg"
+    }
+  },
   "dimension": {
     "base": {
       "description": "to be deprecated",
@@ -863,20 +869,6 @@
     "color-hover": {
       "type": "color",
       "value": "{interactive.emphasis.color-hover}"
-    },
-    "quiet": {
-      "color": {
-        "type": "color",
-        "value": "{interactive.quiet.color}"
-      },
-      "color-active": {
-        "type": "color",
-        "value": "{interactive.quiet.color-active}"
-      },
-      "color-hover": {
-        "type": "color",
-        "value": "{interactive.quiet.color-hover}"
-      }
     },
     "underline-outline": {
       "type": "string",

@@ -90,7 +90,7 @@
   --syn-color-warning-800: #fcec8c;
   --syn-color-warning-900: #fdf7c4;
   --syn-color-warning-950: #fefce8;
-  --syn-details-open-rotation: -180deg;
+  --syn-details-open-rotation: 360deg;
   --syn-dimension-base: 4px; /** to be deprecated */
   --syn-duration-extra-fast: 50ms;
   --syn-duration-extra-slow: 1000ms;
@@ -199,6 +199,9 @@
   --syn-link-color: var(--syn-interactive-emphasis-color);
   --syn-link-color-active: var(--syn-interactive-emphasis-color-active);
   --syn-link-color-hover: var(--syn-interactive-emphasis-color-hover);
+  --syn-link-quiet-color: var(--syn-interactive-quiet-color);
+  --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
+  --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 7%;
   --syn-opacity-50: 0.5; /** 50% */
   --syn-overlay-background-color: rgba(0, 0, 0, 0.5);

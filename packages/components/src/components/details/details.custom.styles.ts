@@ -39,7 +39,7 @@ export default css`
    * we have to adjust the rotation of the icon when the details is open.
    */
   .details--open .details__summary-icon {
-    rotate: var(--syn-details-open-rotation, -180deg);
+    rotate: var(--syn-details-open-rotation, 360deg);
   }
 
   /**

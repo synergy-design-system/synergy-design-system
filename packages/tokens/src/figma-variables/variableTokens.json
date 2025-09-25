@@ -336,12 +336,12 @@
         "VariableID:40876:168826",
         "VariableID:36102:6212",
         "VariableID:40239:237186",
-        "VariableID:36102:6243",
-        "VariableID:36102:6242",
-        "VariableID:36102:6238",
         "VariableID:36102:6239",
         "VariableID:36102:6240",
         "VariableID:36102:6241",
+        "VariableID:36102:6243",
+        "VariableID:36102:6242",
+        "VariableID:36102:6238",
         "VariableID:38939:174453",
         "VariableID:36102:6208",
         "VariableID:36102:6214",
@@ -5582,7 +5582,7 @@
       "hiddenFromPublishing": false,
       "id": "VariableID:36102:6239",
       "key": "c1ad4781873d9a3d3023b854711ca258f9e099e1",
-      "name": "component/quiet/color",
+      "name": "component/link/quiet/color",
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
@@ -5615,7 +5615,7 @@
       "hiddenFromPublishing": false,
       "id": "VariableID:36102:6240",
       "key": "9dfd8b6331f77e72344adeaf1010a181104e5673",
-      "name": "component/quiet/color-hover",
+      "name": "component/link/quiet/color-hover",
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
@@ -5648,7 +5648,7 @@
       "hiddenFromPublishing": false,
       "id": "VariableID:36102:6241",
       "key": "b925dc77f716e1f077c1e5a1d12babb3a0ee313c",
-      "name": "component/quiet/color-active",
+      "name": "component/link/quiet/color-active",
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
@@ -19262,8 +19262,8 @@
         "ALL_SCOPES"
       ],
       "valuesByMode": {
-        "28:3": "-180deg",
-        "36102:0": "-180deg",
+        "28:3": "360deg",
+        "36102:0": "360deg",
         "36102:1": "0deg",
         "36102:2": "0deg"
       },

@@ -8,6 +8,7 @@
 /* eslint-disable */
 import { arrow, autoUpdate, computePosition, flip, offset, platform, shift, size } from '@floating-ui/dom';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { offsetParent } from 'composed-offset-position';
@@ -30,6 +31,8 @@ function isVirtualElement(e: unknown): e is VirtualElement {
     ('contextElement' in e ? e.contextElement instanceof Element : true)
   );
 }
+
+const SUPPORTS_POPOVER = globalThis?.HTMLElement?.prototype.hasOwnProperty('popover');
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
@@ -285,6 +288,10 @@ export default class SynPopup extends SynergyElement {
       return;
     }
 
+    if (SUPPORTS_POPOVER) {
+      this.popup.showPopover?.();
+    }
+
     this.cleanup = autoUpdate(this.anchorEl, this.popup, () => {
       this.reposition();
     });
@@ -292,6 +299,10 @@ export default class SynPopup extends SynergyElement {
 
   private async stop(): Promise<void> {
     return new Promise(resolve => {
+      if (SUPPORTS_POPOVER) {
+        this.popup.hidePopover?.();
+      }
+
       if (this.cleanup) {
         this.cleanup();
         this.cleanup = undefined;
@@ -404,14 +415,14 @@ export default class SynPopup extends SynergyElement {
     // More info: https://github.com/shoelace-style/shoelace/issues/1135
     //
     const getOffsetParent =
-      this.strategy === 'absolute'
+      SUPPORTS_POPOVER || this.strategy === 'absolute'
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
     computePosition(this.anchorEl, this.popup, {
       placement: this.placement,
       middleware,
-      strategy: this.strategy,
+      strategy: SUPPORTS_POPOVER ? 'absolute' : this.strategy,
       platform: {
         ...platform,
         getOffsetParent
@@ -568,10 +579,11 @@ export default class SynPopup extends SynergyElement {
 
       <div
         part="popup"
+        popover=${ifDefined(SUPPORTS_POPOVER ? 'manual' : undefined)}
         class=${classMap({
           popup: true,
           'popup--active': this.active,
-          'popup--fixed': this.strategy === 'fixed',
+          'popup--fixed': !SUPPORTS_POPOVER && this.strategy === 'fixed',
           'popup--has-arrow': this.arrow
         })}
       >

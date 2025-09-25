@@ -67,4 +67,19 @@ export default css`
       var(--hover-bridge-bottom-left-x, 0) var(--hover-bridge-bottom-left-y, 0)
     );
   }
+
+  .popup {
+    /* Clear UA styles for [popover] */
+    :where(&) {
+      inset: unset;
+      padding: unset;
+      margin: unset;
+      width: unset;
+      height: unset;
+      color: unset;
+      background: unset;
+      border: unset;
+      overflow: unset;
+    }
+  }
 `;

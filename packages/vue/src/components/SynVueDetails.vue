@@ -32,6 +32,8 @@
  *
  * @animation details.show - The animation to use when showing details. You can use `height: auto` with this animation.
  * @animation details.hide - The animation to use when hiding details. You can use `height: auto` with this animation.
+ *
+ * @cssproperty --syn-details-open-rotation - The rotation angle of the summary icon when the details is open.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/details/details.js';

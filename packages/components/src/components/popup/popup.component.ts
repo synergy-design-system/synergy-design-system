@@ -16,7 +16,10 @@ import { property, query } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './popup.styles.js';
+import customStyles from './popup.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+
+const SUPPORTS_POPOVER = globalThis?.HTMLElement?.prototype.hasOwnProperty('popover');
 
 export interface VirtualElement {
   getBoundingClientRect: () => DOMRect;
@@ -31,8 +34,6 @@ function isVirtualElement(e: unknown): e is VirtualElement {
     ('contextElement' in e ? e.contextElement instanceof Element : true)
   );
 }
-
-const SUPPORTS_POPOVER = globalThis?.HTMLElement?.prototype.hasOwnProperty('popover');
 
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
@@ -64,7 +65,7 @@ const SUPPORTS_POPOVER = globalThis?.HTMLElement?.prototype.hasOwnProperty('popo
  *  available when using `auto-size`.
  */
 export default class SynPopup extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   private anchorEl: Element | VirtualElement | null;
   private cleanup: ReturnType<typeof autoUpdate> | undefined;
@@ -302,7 +303,6 @@ export default class SynPopup extends SynergyElement {
       if (SUPPORTS_POPOVER) {
         this.popup.hidePopover?.();
       }
-
       if (this.cleanup) {
         this.cleanup();
         this.cleanup = undefined;

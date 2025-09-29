@@ -68,7 +68,7 @@ const meta: Meta = {
       ),
     },
   },
-  tags: ['Navigation'],
+  tags: ['Navigation', 'SICK2018'],
   title: 'Templates/Breadcrumb',
 };
 export default meta;

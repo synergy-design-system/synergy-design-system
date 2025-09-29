@@ -41,7 +41,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Application Shell'],
+  tags: ['Application Shell', 'SICK2018'],
   title: 'Templates/AppShell',
 };
 export default meta;

@@ -49,11 +49,10 @@ const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((res
  */
 export const themeNotSupportedHint = (story: StoryFn, context: StoryContext) => {
   const theme = DecoratorHelpers.pluckThemeFromContext(context);
-
   const tags = context.tags || [];
 
   // Check if the current component supports the 2025 theme. If not show a hint
-  if ([SICK_2025_DARK, SICK_2025_LIGHT].includes(theme) && !tags.includes('sick2025')) {
+  if ([SICK_2025_DARK, SICK_2025_LIGHT].includes(theme) && !tags.includes('SICK2025')) {
     // Wait for the sick2025 classes to be added to body before showing hint.
     // Otherwise there is a flash
     waitForSick2025Class()

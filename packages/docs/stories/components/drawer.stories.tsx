@@ -37,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2018'],
   title: 'Components/syn-drawer',
 };
 export default meta;

@@ -37,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation'],
+  tags: ['Navigation', 'SICK2018'],
   title: 'Components/syn-menu-label',
 };
 export default meta;

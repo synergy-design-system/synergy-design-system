@@ -92,7 +92,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2018'],
   title: 'Components/syn-card',
 };
 export default meta;

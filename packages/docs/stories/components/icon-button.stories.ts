@@ -35,7 +35,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'Navigation', 'Icons'],
+  tags: ['Form', 'Navigation', 'Icons', 'SICK2018'],
   title: 'Components/syn-icon-button',
 };
 export default meta;

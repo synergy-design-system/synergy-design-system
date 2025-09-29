@@ -50,7 +50,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2018'],
   title: 'Components/syn-accordion',
 };
 export default meta;

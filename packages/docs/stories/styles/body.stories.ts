@@ -33,7 +33,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Typography', 'Styles'],
+  tags: ['Typography', 'Styles', 'SICK2018'],
   title: 'Styles/syn-body',
 };
 export default meta;

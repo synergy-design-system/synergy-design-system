@@ -32,7 +32,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback'],
+  tags: ['Feedback', 'SICK2018'],
   title: 'Components/syn-tag',
 };
 export default meta;

@@ -75,6 +75,14 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
+  // #849: Mark hoist as deprecated
+  content = addSectionAfter(
+    content,
+    'Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.',
+    '* @deprecated This property is deprecated and will be removed in the next major version.',
+    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
+  );
+
   content = addSectionsAfter([
     [
       "import type SynOption from '../option/option.component.js';",

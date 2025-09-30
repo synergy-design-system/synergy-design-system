@@ -100,6 +100,8 @@ programmatically.
 `overflow: auto|hidden|scroll`.
 * Hoisting uses a fixed positioning strategy that works in many, but not all,
 scenarios.
+
+@deprecated This property is deprecated and will be removed in the next major version.
  */
   hoist?: SynTooltip['hoist'];
 }>();

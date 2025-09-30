@@ -30,7 +30,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback', 'SICK2025'],
+  tags: ['Feedback', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-spinner',
 };
 export default meta;

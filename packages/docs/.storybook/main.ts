@@ -8,7 +8,8 @@ const config: StorybookConfig = {
     "@storybook/addon-themes",
     '@chromatic-com/storybook',
     { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
+    'storybook-addon-tag-badges',
   ],
 
   core: {

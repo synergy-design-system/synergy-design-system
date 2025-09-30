@@ -17,6 +17,7 @@ export * from './input.vendorism.js';
 export * from './menu-item.vendorism.js';
 export * from './menu-label.vendorism.js';
 export * from './menu.vendorism.js';
+export * from './popup.vendorism.js';
 export * from './option.vendorism.js';
 export * from './radio-button.vendorism.js';
 export * from './radio-group.vendorism.js';

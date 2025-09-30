@@ -100,7 +100,7 @@ export const Colors: Story = {
   render: () => html`
     <syn-progress-ring
       value="50"
-      style="--indicator-color: var(--syn-color-success-600);"
+      style="--indicator-color: var(--syn-color-success-700);"
     ></syn-progress-ring>`,
 };
 

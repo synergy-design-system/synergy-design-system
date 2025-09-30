@@ -19,7 +19,7 @@ const transformComponent = (path, originalContent) => {
 
   // #849: Mark hoist as deprecated
   content = addSectionAfter(
-    originalContent,
+    content,
     '* scenarios.',
     '* @deprecated This property is deprecated and will be removed in the next major version.',
     { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },

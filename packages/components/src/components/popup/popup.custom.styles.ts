@@ -4,14 +4,15 @@ export default css`
   .popup {
     /* Clear UA styles for [popover] */
     :where(&) {
-      inset: unset;
-      padding: unset;
-      margin: unset;
-      width: unset;
-      height: unset;
-      color: unset;
       background: unset;
       border: unset;
+      color: unset;
+      height: unset;
+      inset: unset;
+      margin: unset;
       overflow: unset;
+      padding: unset;
+      width: unset;
     }
+  }
 `;

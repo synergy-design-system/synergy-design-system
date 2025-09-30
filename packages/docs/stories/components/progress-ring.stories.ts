@@ -13,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-progress-ring');
 const { overrideArgs } = storybookHelpers('syn-progress-ring');
@@ -34,6 +35,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-progress-ring',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('14207-8709'),
     docs: {
       description: {
@@ -41,7 +45,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback', 'SICK2018'],
+  tags: ['Feedback', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-progress-ring',
 };
 export default meta;
@@ -96,7 +100,7 @@ export const Colors: Story = {
   render: () => html`
     <syn-progress-ring
       value="50"
-      style="--indicator-color: var(--syn-color-success-600);"
+      style="--indicator-color: var(--syn-color-success-700);"
     ></syn-progress-ring>`,
 };
 

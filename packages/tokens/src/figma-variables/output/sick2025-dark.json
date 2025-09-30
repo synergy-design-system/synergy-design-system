@@ -390,7 +390,7 @@
   "focus-ring": {
     "border-radius": {
       "type": "sizing",
-      "value": "4px"
+      "value": "{border-radius.small}"
     },
     "color": {
       "type": "color",
@@ -644,10 +644,6 @@
         "type": "color",
         "value": "{color.neutral.1000}"
       },
-      "color-focus": {
-        "type": "color",
-        "value": "{color.neutral.1000}"
-      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.1000}"
@@ -657,13 +653,9 @@
           "type": "color",
           "value": "{color.neutral.600}"
         },
-        "color-focus": {
-          "type": "color",
-          "value": "{color.neutral.600}"
-        },
         "color-hover": {
           "type": "color",
-          "value": "{color.neutral.600}"
+          "value": "{color.neutral.800}"
         }
       }
     },
@@ -771,6 +763,12 @@
     }
   },
   "interactive": {
+    "background": {
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.100}"
+      }
+    },
     "emphasis": {
       "color": {
         "type": "color",
@@ -914,11 +912,25 @@
       },
       "radius": {
         "type": "sizing",
-        "value": "{border-radius.x-large}"
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",
         "value": "{border-width.small}"
+      }
+    }
+  },
+  "progress": {
+    "indicator": {
+      "color": {
+        "type": "color",
+        "value": "{color.primary.500}"
+      }
+    },
+    "track": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.300}"
       }
     }
   },

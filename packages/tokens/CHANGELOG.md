@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.26.0...tokens/2.26.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* 🐛 Synergy element which use syn-popup may break if used in a stacking context ([#1034](https://github.com/synergy-design-system/synergy-design-system/issues/1034)) ([8d23dc7](https://github.com/synergy-design-system/synergy-design-system/commit/8d23dc737e36065a0208bc01a98981541540d0ef))
+
 # [@synergy-design-system/tokens-v2.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.25.0...tokens/2.26.0) (2025-09-24)
 
 

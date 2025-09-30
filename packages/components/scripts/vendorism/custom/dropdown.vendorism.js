@@ -1,8 +1,33 @@
-import { addSectionBefore } from '../replace-section.js';
+import {
+  addSectionAfter,
+  addSectionBefore,
+} from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
+  'dropdown.component.ts',
   'dropdown.test.ts',
 ];
+
+/**
+ * Transform the component code
+ * @param {String} path
+ * @param {String} originalContent
+ * @returns
+ */
+const transformComponent = (path, originalContent) => {
+  // #849: Mark hoist as deprecated
+  let content = addSectionAfter(
+    originalContent,
+    'Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.',
+    '* @deprecated This property is deprecated and will be removed in the next major version.',
+    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
+  );
+
+  return {
+    content,
+    path,
+  };
+};
 
 const transformTests = (path, originalContent) => {
   // #854: Make sure flaky tests are skipped for webkit
@@ -33,6 +58,10 @@ export const vendorDropdown = (path, content) => {
 
   if (!isValidFile) {
     return output;
+  }
+
+  if (path.endsWith('dropdown.component.ts')) {
+    return transformComponent(path, content);
   }
 
   if (path.endsWith('dropdown.test.ts')) {

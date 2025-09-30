@@ -276,36 +276,6 @@ export const SettingAMaximumWidth: Story = {
   `,
 };
 
-export const Hoisting: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('tooltip', 'hoisting'),
-      },
-    },
-  },
-  render: () => html`
-  <div class="tooltip-hoist">
-    <syn-tooltip content="This is a tooltip" open placement="bottom">
-      <syn-button>No Hoist</syn-button>
-    </syn-tooltip>
-
-    <syn-tooltip content="This is a tooltip" hoist open>
-      <syn-button>Hoist</syn-button>
-    </syn-tooltip>
-  </div>
-
-  <style>
-    .tooltip-hoist {
-      position: relative;
-      border: solid 2px var(--syn-panel-border-color);
-      overflow: hidden;
-      padding: var(--syn-spacing-large);
-    }
-  </style>
-  `,
-};
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -315,7 +285,6 @@ export const Screenshot: Story = generateScreenshotStory({
   RemovingArrows,
   HTMLInTooltips,
   SettingAMaximumWidth,
-  Hoisting,
 }, {
   heightPx: 550,
   styleHeading: {

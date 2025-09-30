@@ -103,6 +103,12 @@ const SynCheckbox = {
  * @type {import('html-validate').MetaElement}
  */
 const SynCombobox = {
+  attributes: {
+    hoist: {
+      boolean: true,
+      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
   flow: true,
   focusable: true,
   formAssociated,
@@ -146,6 +152,12 @@ const SynDrawer = {
  * @type {import('html-validate').MetaElement}
  */
 const SynDropdown = {
+  attributes: {
+    hoist: {
+      boolean: true,
+      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
   flow: true,
   focusable: true,
 };
@@ -327,6 +339,12 @@ const SynRange = {
  * @type {import('html-validate').MetaElement}
  */
 const SynSelect = {
+  attributes: {
+    hoist: {
+      boolean: true,
+      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
   flow: true,
   focusable: true,
   formAssociated,
@@ -410,6 +428,12 @@ const SynTextarea = {
  * @type {import('html-validate').MetaElement}
  */
 const SynTooltip = {
+  attributes: {
+    hoist: {
+      boolean: true,
+      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
   flow: true,
   interactive: true,
 };

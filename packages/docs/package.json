@@ -34,6 +34,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "storybook": "^9.1.2",
+    "storybook-addon-tag-badges": "^2.0.2",
     "stylelint": "^16.23.1",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",

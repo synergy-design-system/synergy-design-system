@@ -31,7 +31,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'SICK2018'],
   title: 'Components/syn-switch',
 };
 export default meta;

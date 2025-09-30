@@ -1,4 +1,5 @@
 import {
+  addSectionAfter,
   addSectionsAfter,
   replaceSections,
 } from '../replace-section.js';
@@ -68,6 +69,16 @@ const transformComponent = (path, originalContent) => {
       "'popup--fixed': !SUPPORTS_POPOVER && this.strategy === 'fixed'",
     ],
   ], content);
+
+  // Mark the strategy as deprecated
+  content = addSectionAfter(
+    content,
+    'strategy can often workaround it.',
+    ' * @deprecated The strategy property is deprecated and will be removed in future versions. Modern browsers support the popover element which is used internally instead.',
+    {
+      tabsBeforeInsertion: 1,
+    }
+  );
 
   return {
     content,

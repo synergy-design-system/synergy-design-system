@@ -109,6 +109,7 @@ export default class SynPopup extends SynergyElement {
   /**
    * Determines how the popup is positioned. The `absolute` strategy works well in most cases, but if overflow is
    * clipped, using a `fixed` position strategy can often workaround it.
+   * @deprecated The strategy property is deprecated and will be removed in future versions. Modern browsers support the popover element which is used internally instead.
    */
   @property({ reflect: true }) strategy: 'absolute' | 'fixed' = 'absolute';
 

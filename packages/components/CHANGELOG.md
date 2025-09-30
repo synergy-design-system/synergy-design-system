@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.45.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.0...components/2.45.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* 🐛 Synergy element which use syn-popup may break if used in a stacking context ([#1034](https://github.com/synergy-design-system/synergy-design-system/issues/1034)) ([8d23dc7](https://github.com/synergy-design-system/synergy-design-system/commit/8d23dc737e36065a0208bc01a98981541540d0ef))
+
 # [@synergy-design-system/components-v2.45.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.44.0...components/2.45.0) (2025-09-24)
 
 

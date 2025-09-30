@@ -54,7 +54,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'SICK2025'],
+  tags: ['Structure', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-accordion',
 };
 export default meta;

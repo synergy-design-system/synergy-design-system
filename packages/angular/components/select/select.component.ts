@@ -267,6 +267,8 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
 * Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
 `overflow: auto|scroll`.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
+
+@deprecated This property is deprecated and will be removed in the next major version.
  */
   @Input()
   set hoist(v: '' | SynSelect['hoist']) {

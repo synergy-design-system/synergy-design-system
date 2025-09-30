@@ -86,7 +86,7 @@ export default class SynTooltip extends SynergyElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** The distance in pixels from which to offset the tooltip away from its target. */
-  @property({ type: Number }) distance = 13;
+  @property({ type: Number }) distance = 8;
 
   /** Indicates whether or not the tooltip is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -105,6 +105,7 @@ export default class SynTooltip extends SynergyElement {
    * Enable this option to prevent the tooltip from being clipped when the component is placed inside a container with
    * `overflow: auto|hidden|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all,
    * scenarios.
+    * @deprecated This property is deprecated and will be removed in the next major version.
    */
   @property({ type: Boolean }) hoist = false;
 

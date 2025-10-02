@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.46.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.2...components/2.46.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
 # [@synergy-design-system/components-v2.45.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.1...components/2.45.2) (2025-10-02)
 
 

@@ -88,6 +88,8 @@ dropdowns that allow for multiple interactions.
 * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
 `overflow: auto|scroll`.
 * Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
+
+@deprecated This property is deprecated and will be removed in the next major version.
  */
   hoist?: SynDropdown['hoist'];
 

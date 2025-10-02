@@ -28,6 +28,7 @@ import {
   vendorMenuItem,
   vendorMenuLabel,
   vendorOption,
+  vendorPopup,
   vendorRadio,
   vendorRadioButton,
   vendorRadioGroup,
@@ -80,6 +81,7 @@ export const components = [
   'tab',
   'tab-group',
   'tab-panel',
+  'popup',
 ].sort();
 
 /**
@@ -359,6 +361,7 @@ const config = {
       vendorMenuItem,
       vendorMenuLabel,
       vendorOption,
+      vendorPopup,
       vendorRadioButton,
       vendorRadioGroup,
       vendorRadio,

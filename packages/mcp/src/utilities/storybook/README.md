@@ -11,19 +11,16 @@ The system provides a flexible architecture that can be configured to scrape dif
 ### Core Components
 
 1. **StaticServerManager** (`storybook-manager.ts`)
-
    - Manages the static file server lifecycle for serving built Storybook documentation
    - Handles automatic port detection and allocation
    - Provides graceful start/stop functionality
 
 2. **StorybookScraper** (`scraper.ts`)
-
    - Generic scraping functionality
    - Configurable via `ScrapingConfig` interface
    - Handles browser automation and content extraction
 
 3. **DocsScraper** (`docs-scraper.ts`)
-
    - High-level orchestrator that combines manager and scraper
    - Provides convenience methods for common scraping tasks
    - Handles server lifecycle automatically

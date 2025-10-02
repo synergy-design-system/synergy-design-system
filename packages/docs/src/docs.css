@@ -1,7 +1,7 @@
 /* Element Selection */
 ::selection {
   background-color: var(--syn-color-primary-200);
-  color: var(--syn-color-neutral-900);
+  color: var(--syn-typography-color-text);
 }
 
 /* Default Body */
@@ -18,7 +18,7 @@ html {
 
 body {
   background-color: var(--syn-color-neutral-0);
-  color: var(--syn-color-neutral-900);
+  color: var(--syn-typography-color-text);
   font: 16px var(--syn-font-sans);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

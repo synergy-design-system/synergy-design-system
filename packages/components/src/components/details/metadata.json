@@ -4,5 +4,11 @@
       "description": "The container that wraps the details content.",
       "name": "body"
     }
+  ],
+  "@cssproperty": [
+    {
+      "description": "The rotation angle of the summary icon when the details is open.",
+      "name": "--syn-details-open-rotation"
+    }
   ]
 }

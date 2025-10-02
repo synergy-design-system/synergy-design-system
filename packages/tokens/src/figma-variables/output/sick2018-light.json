@@ -358,6 +358,12 @@
       }
     }
   },
+  "details": {
+    "open-rotation": {
+      "type": "string",
+      "value": "360deg"
+    }
+  },
   "dimension": {
     "base": {
       "description": "to be deprecated",
@@ -390,7 +396,7 @@
   "focus-ring": {
     "border-radius": {
       "type": "sizing",
-      "value": "0px"
+      "value": "{border-radius.none}"
     },
     "color": {
       "type": "color",
@@ -644,10 +650,6 @@
         "type": "color",
         "value": "{color.neutral.800}"
       },
-      "color-focus": {
-        "type": "color",
-        "value": "{color.neutral.800}"
-      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.800}"
@@ -655,15 +657,11 @@
       "icon-clearable": {
         "color": {
           "type": "color",
-          "value": "{color.neutral.500}"
-        },
-        "color-focus": {
-          "type": "color",
-          "value": "{color.neutral.500}"
+          "value": "{color.neutral.600}"
         },
         "color-hover": {
           "type": "color",
-          "value": "{color.neutral.500}"
+          "value": "{color.neutral.800}"
         }
       }
     },
@@ -771,6 +769,12 @@
     }
   },
   "interactive": {
+    "background": {
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.100}"
+      }
+    },
     "emphasis": {
       "color": {
         "type": "color",

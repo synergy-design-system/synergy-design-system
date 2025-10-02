@@ -76,6 +76,29 @@ const transformComponent = (path, originalContent) => {
     'class="details__body" part="body"',
   ], content);
 
+  // #9384: Change the icon to use the new brand system icons
+  content = replaceSection([
+    `<span part="summary-icon" class="details__summary-icon">
+            <slot name="expand-icon">
+              <syn-icon library="system" name="chevron-down"></syn-icon>
+            </slot>
+            <slot name="collapse-icon">
+              <syn-icon library="system" name="chevron-down"></syn-icon>
+            </slot>
+          </span>
+`,
+    `<span part="summary-icon" class="details__summary-icon">
+            <slot name="expand-icon">
+              <syn-icon library="system" name="details-open"></syn-icon>
+            </slot>
+            <slot name="collapse-icon">
+              <syn-icon library="system" name="details-close"></syn-icon>
+            </slot>
+          </span>
+`],
+    content,
+  );
+
   return {
     content,
     path,

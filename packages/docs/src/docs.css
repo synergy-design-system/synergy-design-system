@@ -1,7 +1,7 @@
 /* Element Selection */
 ::selection {
   background-color: var(--syn-color-primary-200);
-  color: var(--syn-color-neutral-900);
+  color: var(--syn-typography-color-text);
 }
 
 /* Default Body */

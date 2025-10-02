@@ -135,7 +135,6 @@ The side navigation opens when the user clicks on the burger menu. As the side n
       }
 
       .copyright {
-        color: var(--syn-typography-color-text);
         font: var(--syn-body-small-bold);
         margin: 0;
       }
@@ -400,7 +399,6 @@ The side navigation opens when the user clicks on the burger menu. As the side n
         }
 
         .copyright {
-          color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
@@ -697,7 +695,6 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
         }
 
         .copyright {
-          color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
@@ -975,7 +972,6 @@ The navigation opens when the user touches it. As the side navigation opens, a t
         }
 
         .copyright {
-          color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
@@ -1237,7 +1233,6 @@ General BehaviourThe navigation maintains its compact width until the user click
         }
 
         .copyright {
-          color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
@@ -1499,7 +1494,6 @@ General BehaviourThe navigation maintains its compact width until the user click
         }
 
         .copyright {
-          color: var(--syn-typography-color-text);
           font: var(--syn-body-small-bold);
           margin: 0;
         }
@@ -1719,7 +1713,6 @@ The top navigation can be combined with a light grey background.This variant is 
       }
 
       .copyright {
-        color: var(--syn-typography-color-text);
         font: var(--syn-body-small-bold);
         margin: 0;
       }
@@ -1926,7 +1919,6 @@ Additionally the top navigation can be combined with a white background.
       }
 
       .copyright {
-        color: var(--syn-typography-color-text);
         font: var(--syn-body-small-bold);
         margin: 0;
       }

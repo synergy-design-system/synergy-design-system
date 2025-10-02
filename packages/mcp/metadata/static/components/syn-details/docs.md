@@ -6,7 +6,6 @@
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -29,7 +28,6 @@ Details show a brief summary and expand to show additional content. If you want 
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -52,7 +50,6 @@ Details show a brief summary and expand to show additional content.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -75,7 +72,6 @@ To give content more structure, you can use the property contained.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -90,7 +86,6 @@ To give content more structure, you can use the property contained.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -114,7 +109,6 @@ The focus event gives the user feedback that the detail has been focused by the 
       style="
         margin: 0 0 var(--syn-spacing-x-small);
         font: var(--syn-body-small-bold);
-        color: var(--syn-typography-color-text);
       "
     >
       Subheadline
@@ -138,7 +132,6 @@ Use the disable attribute to prevent the details from expanding.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -162,7 +155,6 @@ Use the size attribute to change a detail’s size.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -178,7 +170,6 @@ Use the size attribute to change a detail’s size.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline
@@ -208,7 +199,6 @@ Use the prefix Icon to prepend an icon to the details.
     style="
       margin: 0 0 var(--syn-spacing-x-small);
       font: var(--syn-body-small-bold);
-      color: var(--syn-typography-color-text);
     "
   >
     Subheadline

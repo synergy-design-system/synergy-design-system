@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.45.1",
+  "version": "2.45.2",
   "description": "",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "report-bundle-size": "pnpm exec size-limit --json",
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default",
-    "test.watch": "pnpm test -- --watch",
+    "test.watch": "pnpm test --watch",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
     "vendor.set": "node scripts/vendorism.js -s",

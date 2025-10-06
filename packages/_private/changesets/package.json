@@ -1,0 +1,30 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4"
+  },
+  "dependencies": {
+    "@manypkg/get-packages": "^3.1.0"
+  },
+  "description": "Synergy utilities for working with changesets",
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/changesets",
+  "keywords": [],
+  "license": "MIT",
+  "name": "@synergy-design-system/changesets",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/_private/changesets"
+  },
+  "scripts": {
+    "lint": "eslint \"src/**/*.{js,ts}\" --ext js,ts --report-unused-disable-directives --max-warnings 0"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

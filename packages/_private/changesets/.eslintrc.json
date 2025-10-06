@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@synergy-design-system/eslint-config-syn"
+  ],
+  "root": true
+}

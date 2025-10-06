@@ -936,7 +936,7 @@
     "track": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.neutral.200}"
       }
     }
   },

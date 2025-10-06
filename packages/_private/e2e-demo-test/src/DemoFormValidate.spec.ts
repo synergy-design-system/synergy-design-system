@@ -38,25 +38,34 @@ createTestCases(({ name, port }) => {
       const form = new DemoFormValidate(page, port);
       await form.loadInitialPage();
 
-      // react on submit / confirm dialog
-      let submitted = false;
-      page.on('dialog', dialog => {
-        submitted = true;
-        dialog
-          .accept()
-          .catch(() => {
-            submitted = false;
-          });
-      });
-
       // check initial state
       await form.checkInitialState(expect);
 
       // fill-out the form correctly
       await form.fill();
 
+      // Promise-based dialog handling for better reliability
+      const dialogHandled = new Promise<boolean>((resolve) => {
+        page.once('dialog', async (dialog) => {
+          try {
+            await dialog.accept();
+            resolve(true);
+          } catch {
+            resolve(false);
+          }
+        });
+      });
+
       // submit valid form
       await form.submit.click();
+
+      // Wait for dialog to be handled with timeout
+      const submitted = await Promise.race([
+        dialogHandled,
+        new Promise<boolean>((resolve) => {
+          setTimeout(() => resolve(false), 5000); // 5 second timeout
+        }),
+      ]);
 
       expect(submitted).toBe(true);
 
